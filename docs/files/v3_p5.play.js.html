@@ -138,8 +138,6 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 		&#x27;layer&#x27;,
 		&#x27;life&#x27;,
 		&#x27;mass&#x27;,
-		&#x27;mirrorX&#x27;,
-		&#x27;mirrorY&#x27;,
 		&#x27;rotation&#x27;,
 		&#x27;rotationDrag&#x27;,
 		&#x27;rotationLock&#x27;,
@@ -518,7 +516,7 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 				if (prop == &#x27;collider&#x27;) continue;
 				let val = lastG[prop];
 				if (val === undefined) continue;
-				if (typeof val == &#x27;function&#x27;) val = val();
+				if (typeof val == &#x27;function&#x27;) val = val(lastG.length - 1);
 				if (typeof val == &#x27;object&#x27;) {
 					this[prop] = Object.assign({}, val);
 				} else {
@@ -549,7 +547,9 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 					&#x27;animations&#x27;,
 					&#x27;shouldCull&#x27;,
 					&#x27;Sprite&#x27;,
-					&#x27;Group&#x27;
+					&#x27;Group&#x27;,
+					&#x27;vel&#x27;,
+					&#x27;mirror&#x27;
 				];
 				for (let d of deletes) {
 					delete traits[d];
@@ -558,7 +558,7 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 				for (let prop in traits) {
 					let val = g[prop];
 					if (val === undefined) continue;
-					if (typeof val == &#x27;function&#x27;) val = val();
+					// if (typeof val == &#x27;function&#x27;) val = val();
 					if (typeof val == &#x27;object&#x27;) {
 						this[prop] = Object.assign({}, val);
 					} else {
@@ -1097,31 +1097,6 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 		// 	this.body.setMassData(val);
 		// }
 
-		/**
-		 * Setting mirrorX to true will mirror the sprite horizontally.
-		 *
-		 * @property mirrorX
-		 * @type {Boolean}
-		 */
-		get mirrorX() {
-			return this._mirror.x &lt; 0;
-		}
-		set mirrorX(val) {
-			this._mirror.x = val ? -1 : 1;
-		}
-		/**
-		 * Setting mirrorY to true will mirror the sprite vertically.
-		 *
-		 * @property mirrorY
-		 * @type {Boolean}
-		 */
-		get mirrorY() {
-			return this._mirror.y &lt; 0;
-		}
-		set mirrorY(val) {
-			this._mirror.y = val ? -1 : 1;
-		}
-
 		// get next() {
 		// 	return this.body.getNext();
 		// }
@@ -1324,6 +1299,10 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 			return this._w;
 		}
 		set w(val) {
+			if (val &lt; 0) {
+				this.remove();
+				return;
+			}
 			if (val == this._w) return;
 			this._w = val;
 			this._hw = val * 0.5;
@@ -1362,6 +1341,10 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 			return this._h;
 		}
 		set h(val) {
+			if (val &lt; 0) {
+				this.remove();
+				return;
+			}
 			if (this.shape == &#x27;circle&#x27;) {
 				this.w = val;
 				return;
@@ -1404,6 +1387,10 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 			return this._diameter;
 		}
 		set d(val) {
+			if (val &lt; 0) {
+				this.remove();
+				return;
+			}
 			if (this._diameter == val) return;
 			this._diameter = val;
 
@@ -1600,6 +1587,7 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 			this.p.translate(x, y);
 			if (this.rotation) this.p.rotate(this.rotation);
 			this.p.scale(this.scale * this._mirror.x, this.scale * this._mirror.y);
+			this.p.fill(this.shapeColor);
 
 			this._draw();
 
@@ -1615,7 +1603,6 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 		 * @private
 		 */
 		_drawFixture(fxt) {
-			this.p.fill(this.shapeColor);
 			const sh = fxt.m_shape;
 			if (sh.m_type == &#x27;polygon&#x27; || sh.m_type == &#x27;chain&#x27;) {
 				if (sh.m_type == &#x27;chain&#x27;) {
@@ -2808,8 +2795,8 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 	 * since they inherit all the functions and properties of standard
 	 * arrays such as group.length
 	 *
-	 * Since groups just contain references, a sprite can be in multiple
-	 * groups and deleting a group doesn&#x27;t delete the sprites themselves.
+	 * Since groups just contain references to sprites, a sprite can be in
+	 * multiple groups.
 	 *
 	 * sprite.remove() removes the sprite from all the groups
 	 * it belongs to. group.removeAll() removes all the sprites from
@@ -2898,22 +2885,62 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 				Object.defineProperty(this, prop, {
 					get() {
 						let val = _this[&#x27;_&#x27; + prop];
+						let i = _this.length - 1;
 						if (val === undefined &amp;&amp; this.p.world &amp;&amp; !_this._isAllSpritesGroup) {
 							let parent = this.p.world.groups[_this.parent];
-							if (parent) val = parent[prop];
+							if (parent) {
+								val = parent[prop];
+								i = parent.length - 1;
+							}
 						}
-						if (typeof val == &#x27;function&#x27;) val = val();
 						return val;
 					},
 					set(val) {
 						_this[&#x27;_&#x27; + prop] = val;
 
 						// change the prop in all the sprite of this group
-						for (let s of _this) {
-							s[prop] = val;
+						for (let i = 0; i &lt; _this.length; i++) {
+							let s = _this[i];
+							let v = val;
+							if (typeof val == &#x27;function&#x27;) v = val(i);
+							s[prop] = v;
 						}
 					}
 				});
+			}
+
+			this.vel = {};
+			this.mirror = {};
+
+			let objProps = { vel: [&#x27;x&#x27;, &#x27;y&#x27;], mirror: [&#x27;x&#x27;, &#x27;y&#x27;] };
+			for (let objProp in objProps) {
+				for (let prop of objProps[objProp]) {
+					Object.defineProperty(this[objProp], prop, {
+						get() {
+							let val = _this[objProp][&#x27;_&#x27; + prop];
+							let i = _this.length - 1;
+							if (val === undefined &amp;&amp; this.p.world &amp;&amp; !_this._isAllSpritesGroup) {
+								let parent = this.p.world.groups[_this.parent];
+								if (parent) {
+									val = parent[objProp][prop];
+									i = parent.length - 1;
+								}
+							}
+							return val;
+						},
+						set(val) {
+							_this[objProp][&#x27;_&#x27; + prop] = val;
+
+							// change the prop in all the sprite of this group
+							for (let i = 0; i &lt; _this.length; i++) {
+								let s = _this[i];
+								let v = val;
+								if (typeof val == &#x27;function&#x27;) v = val(i);
+								s[objProp][prop] = v;
+							}
+						}
+					});
+				}
 			}
 		}
 
@@ -2929,6 +2956,16 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 
 		get animation() {
 			return this._animation;
+		}
+
+		set amount(val) {
+			let diff = val - this.length;
+			let shouldAdd = diff &gt; 0;
+			diff = Math.abs(diff);
+			for (let i = 0; i &lt; diff; i++) {
+				if (shouldAdd) this.add(new this.Sprite());
+				else this.remove(this[this.length - 1]);
+			}
 		}
 
 		snap(o, dist) {
@@ -3016,6 +3053,16 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 		 */
 		overlap(target, callback) {
 			this.overlaps[target] = callback || true;
+		}
+
+		move() {
+			console.warn(&quot;group.move() hasn&#x27;t been implemented yet. Check discord for updates to p5.play.&quot;);
+		}
+
+		moveTowards(x, y, tracking) {
+			for (let s of this) {
+				s.moveTowards(x, y, tracking);
+			}
 		}
 
 		/**
@@ -4377,6 +4424,14 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 	 */
 	this.world = new World();
 
+	/**
+	 * Equal to the p5.js frameCount, the amount of times the draw() function has
+	 * been called.
+	 *
+	 * @property frame
+	 */
+	this.frame = 0;
+
 	this.cameraPush = function () {
 		var camera = this.camera;
 
@@ -4480,6 +4535,11 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 		}
 	}
 
+	/**
+	 * Stores the state of the left, center, or right mouse buttons.
+	 *
+	 * @property mouse
+	 */
 	this.mouse = new Mouse();
 
 	class SpriteMouse extends Mouse {
@@ -4554,36 +4614,6 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 		_onmouseup.call(this, e);
 	};
 
-	/**
-	 * 
-	 * @example
-	// pressed
-	if (kb.pressed(&#x27;x&#x27;)) {
-		player.jump();
-	}
-	// pressed alt
-	if (kb.x == 1) {
-		player.jump();
-	}
- 
-	// held
-	if (kb.held(&#x27;e&#x27;)) {
-		player.chargeAttack();
-	}
-	// custom frames held check
-	if (kb.e &gt; 12) {
-		player.chargeAttack();
-	}
-
-	// released
-	if (kb.released(&#x27;q&#x27;)) {
-		player.slide();
-	}
-	// released alt
-	if (kb.q == 0) {
-		player.slide();
-	}
-	 */
 	class KeyBoard extends InputDevice {
 		constructor() {
 			super();
@@ -4591,6 +4621,26 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 		}
 	}
 
+	/**
+	 * 
+	 * 
+	 * @property kb (keyboard)
+	 * @example
+	// pressed
+	if (kb.pressed(&#x27;x&#x27;)) {
+		player.jump();
+	}
+ 
+	// held
+	if (kb.held(&#x27;e&#x27;)) {
+		player.chargeAttack();
+	}
+
+	// released
+	if (kb.released(&#x27;q&#x27;)) {
+		player.slide();
+	}
+	 */
 	this.kb = new KeyBoard();
 	this.keyboard = this.kb;
 
@@ -4758,6 +4808,8 @@ p5.prototype.registerMethod(&#x27;pre&#x27;, function () {
 
 // called after each p5.js draw function call
 p5.prototype.registerMethod(&#x27;post&#x27;, function p5playPostDraw() {
+	this.frame = this.frameCount;
+
 	for (let btn of [&#x27;left&#x27;, &#x27;center&#x27;, &#x27;right&#x27;]) {
 		if (this.mouse[btn] &lt; 0) this.mouse[btn] = 0;
 		else if (this.mouse[btn] &gt; 0) this.mouse[btn]++;
