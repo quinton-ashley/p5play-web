@@ -1,0 +1,21 @@
+{
+	"name": "p5play-web",
+	"author": "quinton-ashley <qashto@gmail.com>",
+	"contributors": [
+		"Paolo Pedercini <info@molleindustria.it>"
+	],
+	"description": "The website for p5.play",
+	"dependencies": {
+		"yuidocjs": "^0.10.2"
+	},
+	"license": "GPL-3.0-only",
+	"homepage": "https://github.com/quintos/p5play-web/tree/gh-pages",
+	"scripts": {
+		"docs": "yuidoc .;rm docs/assets/favicon.ico|rm docs/assets/favicon.ico;cp favicon.ico docs/assets/favicon.ico|cp favicon.png docs/assets/favicon.png",
+		"v": "npm version patch --force",
+		"V": "npm version minor --force",
+		"version": "git add -A",
+		"postversion": "git push"
+	},
+	"version": "1.1.119"
+}

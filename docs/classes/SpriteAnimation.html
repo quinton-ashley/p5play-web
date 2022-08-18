@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>SpriteAnimation - p5.play</title>
+    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/css/lucid.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+</head>
+<body class="yui3-skin-sam">
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">
+	    <img alt="p5.play" src="../../favicon.ico" style="max-height: 65%;" title="p5.play">
+            p5.play
+        </h1>
+	<div class="nav">
+            <li class="divider-vertical"></li>
+            <li>
+                <p class="navbar-text">
+                    API Docs for Version: <b>3</b>
+                </p>
+            </li>
+        </div>
+        <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/Camera", "classes/Group", "classes/p5.play", "classes/Sprite", "classes/SpriteAnimation"]'>
+        </form>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="span3">
+<div>
+    <div id="sidebar">
+    <div id="classes">
+        <ul id="api-classes" class="nav nav-list">
+                <li><a href="../classes/Camera.html">Camera</a></li>
+                <li><a href="../classes/Group.html">Group</a></li>
+                <li><a href="../classes/p5.play.html">p5.play</a></li>
+                <li><a href="../classes/Sprite.html">Sprite</a></li>
+                <li><a href="../classes/SpriteAnimation.html">SpriteAnimation</a></li>
+        </ul>
+    </div>
+    </div>
+</div>
+        </div>
+        <div class="span9">
+    <form id="options-form" class="form-inline pull-right">
+        Show:
+        <label for="api-show-inherited" class="checkbox">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected" class="checkbox">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private" class="checkbox">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated" class="checkbox">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </form>
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+<div class="page-header">
+    <h1>SpriteAnimation</h1>
+</div>
+
+
+
+
+
+
+<div class="yuidoc-class-description">
+<p>A SpriteAnimation object contains a series of images (p5.Image objects)
+that can be displayed sequentially.</p>
+<p>A sprite can have multiple labeled animations, see Sprite.addAnimation
+and Sprite.changeAnimation, but you can also create animations that
+can be used without being added to a sprite first.</p>
+<p>An animation can be created either from a list of images or sequentially
+numbered images. p5.play will try to detect the sequence pattern.</p>
+<p>For example if the image file path is "image1.png" and the last frame
+index is 3 then "image2.png" and "image3.png" will be loaded as well.</p>
+
+</div>
+
+<!-- table of contents -->
+
+<div id="class-toc" class="page-section">
+	<h2>Table of Contents</h2>
+    <ul>
+		<li>
+			<strong>Methods</strong>
+			<ul>
+				<li class=""><a href="#method-draw"><span class="im">draw</span>(<span class="ia">x</span><span class="ia">y</span><span class="ia">r</span>)</a></li>
+				<li class=""><a href="#method-getImage"><span class="im">getImage</span>()</a></li>
+				<li class=""><a href="#method-goToFrame"><span class="im">goToFrame</span>(<span class="ia">toFrame</span>)</a></li>
+				<li class=""><a href="#method-nextFrame"><span class="im">nextFrame</span>()</a></li>
+				<li class=""><a href="#method-onComplete"><span class="im">onComplete</span>()</a></li>
+				<li class=""><a href="#method-play"><span class="im">play</span>()</a></li>
+				<li class=""><a href="#method-previousFrame"><span class="im">previousFrame</span>()</a></li>
+				<li class=""><a href="#method-rewind"><span class="im">rewind</span>()</a></li>
+				<li class=""><a href="#method-stop"><span class="im">stop</span>()</a></li>
+			</ul>
+		</li>
+
+		<li>
+			<strong>Properties</strong>
+			<ul>
+				<li class=""><a href="#prop-frame"><span class="ip">frame</span></a></li>
+				<li class=""><a href="#prop-frameChanged"><span class="ip">frameChanged</span></a></li>
+				<li class=""><a href="#prop-frameDelay"><span class="ip">frameDelay</span></a></li>
+				<li class=""><a href="#prop-images"><span class="ip">images</span></a></li>
+				<li class=""><a href="#prop-looping"><span class="ip">looping</span></a></li>
+				<li class=""><a href="#prop-name"><span class="ip">name</span></a></li>
+				<li class=""><a href="#prop-offset"><span class="ip">offset</span></a></li>
+				<li class=""><a href="#prop-playing"><span class="ip">playing</span></a></li>
+				<li class=""><a href="#prop-visible"><span class="ip">visible</span></a></li>
+			</ul>
+		</li>
+
+
+	</ul>
+</div>
+
+<!-- details -->
+
+    <div class="constructor yuidoc-class-constructor page-section">
+        <h2>Constructor</h2>
+        <div class="item-list">
+<div id="method-SpriteAnimation" class="method item ">
+	<div class="method-signature">
+	<span class="name"><code>SpriteAnimation</code></span>
+
+		<span class="paren">()</span>
+	</div>
+
+
+
+
+
+
+	<div class="meta">
+				<p>
+				Defined in
+		<a href="../files/v3_p5.play.js.html#l2121"><code>v3&#x2F;p5.play.js:2121</code></a>
+		</p>
+
+
+
+	</div>
+
+
+
+
+		<div class="example">
+			<h4>Example:</h4>
+
+			<div class="example-content">
+				<p>let shapeShifter = new SpriteAnimation("dog.png", "cat.png", "snake.png");
+let walking = new SpriteAnimation("walking0001.png", 5);</p>
+
+			</div>
+		</div>
+</div>
+        </div>
+    </div>
+
+    <div id="methods" class="page-section">
+        <h2 class="off-left">Methods</h2>
+        <div class="item-list">
+<div id="method-draw" class="method item ">
+	<div class="method-signature">
+	<span class="name"><code>draw</code></span>
+
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+				<li class="arg">
+						<code>x</code>
+				</li>
+				<li class="arg">
+						<code>y</code>
+				</li>
+				<li class="arg">
+						<code class="optional">r=0</code>
+				</li>
+			</ul><span class="paren">)</span>
+		</div>
+	</div>
+
+
+
+
+
+
+	<div class="meta">
+				<p>
+				Defined in
+		<a href="../files/v3_p5.play.js.html#l2461"><code>v3&#x2F;p5.play.js:2461</code></a>
+		</p>
+
+
+
+	</div>
+
+	<div class="description"><p>Draws the animation at coordinate x and y.
+Updates the frames automatically.</p>
+</div>
+
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+				<li class="param">
+						<code class="param-name">x</code>
+						<span class="type">Number</span>
+
+
+					<div class="param-description"><p>horizontal position</p>
+</div>
+
+				</li>
+				<li class="param">
+						<code class="param-name">y</code>
+						<span class="type">Number</span>
+
+
+					<div class="param-description"><p>vertical position</p>
+</div>
+
+				</li>
+				<li class="param">
+						<code class="param-name optional">[r=0]</code>
+						<span class="type">Number</span>
+						<span class="flag optional" title="This parameter is optional.">optional</span>
+
+
+					<div class="param-description"><p>rotation</p>
+</div>
+
+				</li>
+			</ul>
+		</div>
+
+
+</div>
+<div id="method-getImage" class="method item ">
+	<div class="method-signature">
+	<span class="name"><code>getImage</code></span>
+
+		<span class="paren">()</span>
+		<span class="returns-inline">
+			<span class="type">p5.Image</span>
+		</span>
+	</div>
+
+
+
+
+
+
+	<div class="meta">
+				<p>
+				Defined in
+		<a href="../files/v3_p5.play.js.html#l2675"><code>v3&#x2F;p5.play.js:2675</code></a>
+		</p>
+
+
+
+	</div>
+
+	<div class="description"><p>Returns the current frame image as p5.Image.</p>
+</div>
+
+
+		<div class="returns">
+			<h4>Returns:</h4>
+
+			<div class="returns-description">
+						<span class="type">p5.Image</span>:
+					<p>Current frame image</p>
+
+			</div>
+		</div>
+
+</div>
+<div id="method-goToFrame" class="method item ">
+	<div class="method-signature">
+	<span class="name"><code>goToFrame</code></span>
+
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+				<li class="arg">
+						<code>toFrame</code>
+				</li>
+			</ul><span class="paren">)</span>
+		</div>
+	</div>
+
+
+
+
+
+
+	<div class="meta">
+				<p>
+				Defined in
+		<a href="../files/v3_p5.play.js.html#l2623"><code>v3&#x2F;p5.play.js:2623</code></a>
+		</p>
+
+
+
+	</div>
+
+	<div class="description"><p>Plays the animation forward or backward toward a target frame.</p>
+</div>
+
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+				<li class="param">
+						<code class="param-name">toFrame</code>
+						<span class="type">Number</span>
+
+
+					<div class="param-description"><p>Frame number destination (starts from 0)</p>
+</div>
+
+				</li>
+			</ul>
+		</div>
+
+
+</div>
+<div id="method-nextFrame" class="method item ">
+	<div class="method-signature">
+	<span class="name"><code>nextFrame</code></span>
+
+		<span class="paren">()</span>
+	</div>
+
+
+
+
+
+
+	<div class="meta">
+				<p>
+				Defined in
+		<a href="../files/v3_p5.play.js.html#l2597"><code>v3&#x2F;p5.play.js:2597</code></a>
+		</p>
+
+
+
+	</div>
+
+	<div class="description"><p>Goes to the next frame and stops.</p>
+</div>
+
+
+
+</div>
+<div id="method-onComplete" class="method item ">
+	<div class="method-signature">
+	<span class="name"><code>onComplete</code></span>
+
+		<span class="paren">()</span>
+		<span class="returns-inline">
+			<span class="type"><a href="../classes/SpriteAnimation.html" class="crosslink">SpriteAnimation</a></span>
+		</span>
+	</div>
+
+
+
+
+
+
+	<div class="meta">
+				<p>
+				Defined in
+		<a href="../files/v3_p5.play.js.html#l2571"><code>v3&#x2F;p5.play.js:2571</code></a>
+		</p>
+
+
+
+	</div>
+
+	<div class="description"><p>fire when animation ends</p>
+</div>
+
+
+		<div class="returns">
+			<h4>Returns:</h4>
+
+			<div class="returns-description">
+						<span class="type"><a href="../classes/SpriteAnimation.html" class="crosslink">SpriteAnimation</a></span>
+			</div>
+		</div>
+
+</div>
+<div id="method-play" class="method item ">
+	<div class="method-signature">
+	<span class="name"><code>play</code></span>
+
+		<span class="paren">()</span>
+	</div>
+
+
+
+
+
+
+	<div class="meta">
+				<p>
+				Defined in
+		<a href="../files/v3_p5.play.js.html#l2541"><code>v3&#x2F;p5.play.js:2541</code></a>
+		</p>
+
+
+
+	</div>
+
+	<div class="description"><p>Plays the animation, starting from the specified frame.</p>
+</div>
+
+
+
+</div>
+<div id="method-previousFrame" class="method item ">
+	<div class="method-signature">
+	<span class="name"><code>previousFrame</code></span>
+
+		<span class="paren">()</span>
+	</div>
+
+
+
+
+
+
+	<div class="meta">
+				<p>
+				Defined in
+		<a href="../files/v3_p5.play.js.html#l2610"><code>v3&#x2F;p5.play.js:2610</code></a>
+		</p>
+
+
+
+	</div>
+
+	<div class="description"><p>Goes to the previous frame and stops.</p>
+</div>
+
+
+
+</div>
+<div id="method-rewind" class="method item ">
+	<div class="method-signature">
+	<span class="name"><code>rewind</code></span>
+
+		<span class="paren">()</span>
+	</div>
+
+
+
+
+
+
+	<div class="meta">
+				<p>
+				Defined in
+		<a href="../files/v3_p5.play.js.html#l2561"><code>v3&#x2F;p5.play.js:2561</code></a>
+		</p>
+
+
+
+	</div>
+
+	<div class="description"><p>Plays the animation backwards.
+Equivalent to ani.goToFrame(0)</p>
+</div>
+
+
+
+</div>
+<div id="method-stop" class="method item ">
+	<div class="method-signature">
+	<span class="name"><code>stop</code></span>
+
+		<span class="paren">()</span>
+	</div>
+
+
+
+
+
+
+	<div class="meta">
+				<p>
+				Defined in
+		<a href="../files/v3_p5.play.js.html#l2552"><code>v3&#x2F;p5.play.js:2552</code></a>
+		</p>
+
+
+
+	</div>
+
+	<div class="description"><p>Stops the animation.</p>
+</div>
+
+
+
+</div>
+        </div>
+    </div>
+
+    <div id="properties" class="page-section">
+        <h2 class="off-left">Properties</h2>
+
+        <div class="item-list">
+<div id="prop-frame" class="property item ">
+    <h3 class="name"><code>frame</code></h3>
+    <span class="type">Number</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l2177"><code>v3&#x2F;p5.play.js:2177</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>The index of the current frame that the animation is on.</p>
+
+    </div>
+
+
+
+</div>
+<div id="prop-frameChanged" class="property item ">
+    <h3 class="name"><code>frameChanged</code></h3>
+    <span class="type">Boolean</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l2239"><code>v3&#x2F;p5.play.js:2239</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>True if frame changed during the last draw cycle</p>
+
+    </div>
+
+
+
+</div>
+<div id="prop-frameDelay" class="property item ">
+    <h3 class="name"><code>frameDelay</code></h3>
+    <span class="type">Number</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l2201"><code>v3&#x2F;p5.play.js:2201</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>Delay between frames in number of draw cycles.
+If set to 4 the framerate of the animation would be the
+sketch framerate divided by 4 (60fps = 15fps)</p>
+
+    </div>
+
+        <p><strong>Default:</strong> 4</p>
+
+
+</div>
+<div id="prop-images" class="property item ">
+    <h3 class="name"><code>images</code></h3>
+    <span class="type">Array</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l2169"><code>v3&#x2F;p5.play.js:2169</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>Array of frames (p5.Image)</p>
+
+    </div>
+
+
+
+</div>
+<div id="prop-looping" class="property item ">
+    <h3 class="name"><code>looping</code></h3>
+    <span class="type">Boolean</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l2230"><code>v3&#x2F;p5.play.js:2230</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>If set to false the animation will stop after reaching the last frame</p>
+
+    </div>
+
+        <p><strong>Default:</strong> true</p>
+
+
+</div>
+<div id="prop-name" class="property item ">
+    <h3 class="name"><code>name</code></h3>
+    <span class="type">String</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l2148"><code>v3&#x2F;p5.play.js:2148</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>The name of the animation</p>
+
+    </div>
+
+
+
+</div>
+<div id="prop-offset" class="property item ">
+    <h3 class="name"><code>offset</code></h3>
+    <span class="type">Object x and y keys</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l2189"><code>v3&#x2F;p5.play.js:2189</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>The offset is how far the animation should be placed from
+the location it is played at.</p>
+
+    </div>
+
+
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <p>offset.x = 16;</p>
+
+            </div>
+        </div>
+
+</div>
+<div id="prop-playing" class="property item ">
+    <h3 class="name"><code>playing</code></h3>
+    <span class="type">Boolean</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l2212"><code>v3&#x2F;p5.play.js:2212</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>True if the animation is currently playing.</p>
+
+    </div>
+
+        <p><strong>Default:</strong> true</p>
+
+
+</div>
+<div id="prop-visible" class="property item ">
+    <h3 class="name"><code>visible</code></h3>
+    <span class="type">Boolean</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l2221"><code>v3&#x2F;p5.play.js:2221</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>Animation visibility.</p>
+
+    </div>
+
+        <p><strong>Default:</strong> true</p>
+
+
+</div>
+        </div>
+    </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/jquery/jquery-1.8.2.min.js"></script>
+<script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script src="../assets/js/yuidoc-bootstrap.js"></script>
+<script>prettyPrint();</script>
+</body>
+</html>

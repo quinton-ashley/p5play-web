@@ -1,0 +1,2623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Sprite - p5.play</title>
+    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/css/lucid.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+</head>
+<body class="yui3-skin-sam">
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">
+	    <img alt="p5.play" src="../../favicon.ico" style="max-height: 65%;" title="p5.play">
+            p5.play
+        </h1>
+	<div class="nav">
+            <li class="divider-vertical"></li>
+            <li>
+                <p class="navbar-text">
+                    API Docs for Version: <b>3</b>
+                </p>
+            </li>
+        </div>
+        <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/Camera", "classes/Group", "classes/p5.play", "classes/Sprite", "classes/SpriteAnimation"]'>
+        </form>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="span3">
+<div>
+    <div id="sidebar">
+    <div id="classes">
+        <ul id="api-classes" class="nav nav-list">
+                <li><a href="../classes/Camera.html">Camera</a></li>
+                <li><a href="../classes/Group.html">Group</a></li>
+                <li><a href="../classes/p5.play.html">p5.play</a></li>
+                <li><a href="../classes/Sprite.html">Sprite</a></li>
+                <li><a href="../classes/SpriteAnimation.html">SpriteAnimation</a></li>
+        </ul>
+    </div>
+    </div>
+</div>
+        </div>
+        <div class="span9">
+    <form id="options-form" class="form-inline pull-right">
+        Show:
+        <label for="api-show-inherited" class="checkbox">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected" class="checkbox">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private" class="checkbox">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated" class="checkbox">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </form>
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+<div class="page-header">
+    <h1>Sprite</h1>
+</div>
+
+
+
+
+
+
+<div class="yuidoc-class-description">
+<p>Take a look at the Sprite reference pages before reading these docs.
+<a href="https://molleindustria.github.io/p5.play/ref/sprite.html">https://molleindustria.github.io/p5.play/ref/sprite.html</a>
+<a href="https://molleindustria.github.io/p5.play/ref/sprite2.html">https://molleindustria.github.io/p5.play/ref/sprite2.html</a></p>
+<p>Every sprite you create is added to the allSprites
+group and put on the top layer, in front of all other
+previously created sprites.</p>
+
+</div>
+
+<!-- table of contents -->
+
+<div id="class-toc" class="page-section">
+	<h2>Table of Contents</h2>
+    <ul>
+		<li>
+			<strong>Methods</strong>
+			<ul>
+				<li class=""><a href="#method-addSpeed"><span class="im">addSpeed</span>(<span class="ia">speed</span><span class="ia">angle</span>)</a></li>
+				<li class="deprectated"><a href="#method-addToGroup"><span class="im">addToGroup</span>(<span class="ia">group</span>)</a></li>
+				<li class=""><a href="#method-ani"><span class="im">ani</span>(<span class="ia">anis</span>)</a></li>
+				<li class="deprectated"><a href="#method-bounce"><span class="im">bounce</span>(<span class="ia">target</span><span class="ia">callback</span>)</a></li>
+				<li class=""><a href="#method-changeAnimation"><span class="im">changeAnimation</span>(<span class="ia">label</span>)</a></li>
+				<li class=""><a href="#method-collide"><span class="im">collide</span>(<span class="ia">target</span><span class="ia">callback</span>)</a></li>
+				<li class="deprectated"><a href="#method-displace"><span class="im">displace</span>(<span class="ia">target</span><span class="ia">callback</span>)</a></li>
+				<li class=""><a href="#method-draw"><span class="im">draw</span>()</a></li>
+				<li class=""><a href="#method-move"><span class="im">move</span>(<span class="ia">destX</span><span class="ia">destY</span><span class="ia">speed</span><span class="ia">cb</span>)</a></li>
+				<li class=""><a href="#method-moveTo"><span class="im">moveTo</span>()</a></li>
+				<li class=""><a href="#method-moveTowards"><span class="im">moveTowards</span>(<span class="ia">destX</span><span class="ia">destY</span><span class="ia">tracking</span>)</a></li>
+				<li class=""><a href="#method-overlap"><span class="im">overlap</span>(<span class="ia">target</span><span class="ia">callback</span>)</a></li>
+				<li class=""><a href="#method-remove"><span class="im">remove</span>()</a></li>
+				<li class=""><a href="#method-removeColliders"><span class="im">removeColliders</span>()</a></li>
+				<li class=""><a href="#method-rotate"><span class="im">rotate</span>(<span class="ia">angle</span><span class="ia">speed</span>)</a></li>
+				<li class=""><a href="#method-rotateTowards"><span class="im">rotateTowards</span>(<span class="ia">angle</span><span class="ia">tracking</span>)</a></li>
+				<li class=""><a href="#method-scale"><span class="im">scale</span>(<span class="ia">UNKNOWN</span>)</a></li>
+				<li class="deprectated"><a href="#method-setSpeed"><span class="im">setSpeed</span>(<span class="ia">speed</span><span class="ia">direction</span>)</a></li>
+				<li class=""><a href="#method-toString"><span class="im">toString</span>()</a></li>
+			</ul>
+		</li>
+
+		<li>
+			<strong>Properties</strong>
+			<ul>
+				<li class=""><a href="#prop-animation"><span class="ip">animation</span></a></li>
+				<li class=""><a href="#prop-animations"><span class="ip">animations</span></a></li>
+				<li class=""><a href="#prop-autoResetAnimations"><span class="ip">autoResetAnimations</span></a></li>
+				<li class=""><a href="#prop-bounciness"><span class="ip">bounciness</span></a></li>
+				<li class=""><a href="#prop-centerOfMass"><span class="ip">centerOfMass</span></a></li>
+				<li class=""><a href="#prop-d"><span class="ip">d</span></a></li>
+				<li class=""><a href="#prop-density"><span class="ip">density</span></a></li>
+				<li class="deprectated"><a href="#prop-depth"><span class="ip">depth</span></a></li>
+				<li class=""><a href="#prop-diameter"><span class="ip">diameter</span></a></li>
+				<li class=""><a href="#prop-direction"><span class="ip">direction</span></a></li>
+				<li class=""><a href="#prop-drag"><span class="ip">drag</span></a></li>
+				<li class=""><a href="#prop-dynamic"><span class="ip">dynamic</span></a></li>
+				<li class="private"><a href="#prop-fixture"><span class="ip">fixture</span></a></li>
+				<li class="private"><a href="#prop-fixtureList"><span class="ip">fixtureList</span></a></li>
+				<li class=""><a href="#prop-friction"><span class="ip">friction</span></a></li>
+				<li class=""><a href="#prop-groups"><span class="ip">groups</span></a></li>
+				<li class=""><a href="#prop-h"><span class="ip">h</span></a></li>
+				<li class=""><a href="#prop-height"><span class="ip">height</span></a></li>
+				<li class="deprectated"><a href="#prop-immovable"><span class="ip">immovable</span></a></li>
+				<li class=""><a href="#prop-isSuperFast"><span class="ip">isSuperFast</span></a></li>
+				<li class=""><a href="#prop-kinematic"><span class="ip">kinematic</span></a></li>
+				<li class=""><a href="#prop-life"><span class="ip">life</span></a></li>
+				<li class=""><a href="#prop-mass"><span class="ip">mass</span></a></li>
+				<li class=""><a href="#prop-mirrorX"><span class="ip">mirrorX</span></a></li>
+				<li class=""><a href="#prop-mirrorY"><span class="ip">mirrorY</span></a></li>
+				<li class=""><a href="#prop-pos"><span class="ip">pos</span></a></li>
+				<li class=""><a href="#prop-removed"><span class="ip">removed</span></a></li>
+				<li class=""><a href="#prop-rotation"><span class="ip">rotation</span></a></li>
+				<li class=""><a href="#prop-rotationDrag"><span class="ip">rotationDrag</span></a></li>
+				<li class=""><a href="#prop-rotationLock"><span class="ip">rotationLock</span></a></li>
+				<li class=""><a href="#prop-rotationSpeed"><span class="ip">rotationSpeed</span></a></li>
+				<li class=""><a href="#prop-scale"><span class="ip">scale</span></a></li>
+				<li class=""><a href="#prop-shape"><span class="ip">shape</span></a></li>
+				<li class=""><a href="#prop-shapeColor"><span class="ip">shapeColor</span></a></li>
+				<li class=""><a href="#prop-speed"><span class="ip">speed</span></a></li>
+				<li class=""><a href="#prop-speed"><span class="ip">speed</span></a></li>
+				<li class=""><a href="#prop-static"><span class="ip">static</span></a></li>
+				<li class=""><a href="#prop-torque"><span class="ip">torque</span></a></li>
+				<li class=""><a href="#prop-touching"><span class="ip">touching</span></a></li>
+				<li class=""><a href="#prop-vel"><span class="ip">vel</span></a></li>
+				<li class=""><a href="#prop-velocity"><span class="ip">velocity</span></a></li>
+				<li class=""><a href="#prop-visible"><span class="ip">visible</span></a></li>
+				<li class=""><a href="#prop-w"><span class="ip">w</span></a></li>
+				<li class=""><a href="#prop-width"><span class="ip">width</span></a></li>
+				<li class=""><a href="#prop-x"><span class="ip">x</span></a></li>
+				<li class=""><a href="#prop-y"><span class="ip">y</span></a></li>
+			</ul>
+		</li>
+
+
+	</ul>
+</div>
+
+<!-- details -->
+
+    <div class="constructor yuidoc-class-constructor page-section">
+        <h2>Constructor</h2>
+        <div class="item-list">
+<div id="method-Sprite" class="method item ">
+	<div class="method-signature">
+	<span class="name"><code>Sprite</code></span>
+
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+				<li class="arg">
+						<code class="optional">aniName|ani|image</code>
+				</li>
+				<li class="arg">
+						<code>x</code>
+				</li>
+				<li class="arg">
+						<code>y</code>
+				</li>
+				<li class="arg">
+						<code class="optional">width|diameter</code>
+				</li>
+				<li class="arg">
+						<code class="optional">height</code>
+				</li>
+				<li class="arg">
+						<code class="optional">physics</code>
+				</li>
+			</ul><span class="paren">)</span>
+		</div>
+	</div>
+
+
+
+
+
+
+	<div class="meta">
+				<p>
+				Defined in
+		<a href="../files/v3_p5.play.js.html#l78"><code>v3&#x2F;p5.play.js:78</code></a>
+		</p>
+
+
+
+	</div>
+
+
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+				<li class="param">
+						<code class="param-name optional">[aniName|ani|image]</code>
+						<span class="type">String  |  <a href="../classes/SpriteAnimation.html" class="crosslink">SpriteAnimation</a>  |  p5.Image</span>
+						<span class="flag optional" title="This parameter is optional.">optional</span>
+
+
+
+				</li>
+				<li class="param">
+						<code class="param-name">x</code>
+						<span class="type">Number</span>
+
+
+					<div class="param-description"><p>Horizontal position of the sprite</p>
+</div>
+
+				</li>
+				<li class="param">
+						<code class="param-name">y</code>
+						<span class="type">Number</span>
+
+
+					<div class="param-description"><p>Vertical position of the sprite</p>
+</div>
+
+				</li>
+				<li class="param">
+						<code class="param-name optional">[width|diameter]</code>
+						<span class="type">Number</span>
+						<span class="flag optional" title="This parameter is optional.">optional</span>
+
+
+					<div class="param-description"><p>Width of the placeholder rectangle and of
+the collider until an image or new collider are set. <em>OR</em> If height is not
+set then this parameter becomes the diameter of the placeholder circle.</p>
+</div>
+
+				</li>
+				<li class="param">
+						<code class="param-name optional">[height]</code>
+						<span class="type">Number</span>
+						<span class="flag optional" title="This parameter is optional.">optional</span>
+
+
+					<div class="param-description"><p>Height of the placeholder rectangle and of the collider
+until an image or new collider are set</p>
+</div>
+
+				</li>
+				<li class="param">
+						<code class="param-name optional">[physics]</code>
+						<span class="type">String</span>
+						<span class="flag optional" title="This parameter is optional.">optional</span>
+
+
+					<div class="param-description"><p>collider type is 'dynamic' by default, can be
+'static', 'kinematic', or 'none'</p>
+</div>
+
+				</li>
+			</ul>
+		</div>
+
+
+		<div class="example">
+			<h4>Example:</h4>
+
+			<div class="example-content">
+				<p>let rectangle = new Sprite(x, y, width, height);</p>
+<p>let circle = new Sprite(x, y, diameter);</p>
+<p>let line = new Sprite(x, y, [length, angle]);</p>
+<p>let chain = new Sprite(x, y, [length0, angle0, length1, angle1]);</p>
+
+			</div>
+		</div>
+</div>
+        </div>
+    </div>
+
+    <div id="methods" class="page-section">
+        <h2 class="off-left">Methods</h2>
+        <div class="item-list">
+<div id="method-addSpeed" class="method item ">
+	<div class="method-signature">
+	<span class="name"><code>addSpeed</code></span>
+
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+				<li class="arg">
+						<code>speed</code>
+				</li>
+				<li class="arg">
+						<code class="optional">angle</code>
+				</li>
+			</ul><span class="paren">)</span>
+		</div>
+	</div>
+
+
+
+
+
+
+	<div class="meta">
+				<p>
+				Defined in
+		<a href="../files/v3_p5.play.js.html#l1596"><code>v3&#x2F;p5.play.js:1596</code></a>
+		</p>
+
+
+
+	</div>
+
+	<div class="description"><p>Add to the speed of the sprite.
+If direction is not supplied, the current direction is maintained.
+If direction is not supplied and there is no current velocity, the * current rotation angle used for the direction.</p>
+</div>
+
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+				<li class="param">
+						<code class="param-name">speed</code>
+						<span class="type">Number</span>
+
+
+					<div class="param-description"><p>Scalar speed</p>
+</div>
+
+				</li>
+				<li class="param">
+						<code class="param-name optional">[angle]</code>
+						<span class="type">Number</span>
+						<span class="flag optional" title="This parameter is optional.">optional</span>
+
+
+					<div class="param-description"><p>Direction in degrees</p>
+</div>
+
+				</li>
+			</ul>
+		</div>
+
+
+</div>
+<div id="method-addToGroup" class="method item deprectated">
+	<div class="method-signature">
+	<span class="name"><code>addToGroup</code></span>
+
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+				<li class="arg">
+						<code>group</code>
+				</li>
+			</ul><span class="paren">)</span>
+		</div>
+	</div>
+
+		<span class="flag deprecated">deprecated</span>
+
+
+
+
+
+	<div class="meta">
+				<p>
+				Defined in
+		<a href="../files/v3_p5.play.js.html#l1917"><code>v3&#x2F;p5.play.js:1917</code></a>
+		</p>
+
+
+
+	</div>
+
+	<div class="description"><p>Deprecated. Use group.push(sprite) instead.
+Adds the sprite to an existing group.</p>
+</div>
+
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+				<li class="param">
+						<code class="param-name">group</code>
+						<span class="type"><a href="../classes/Group.html" class="crosslink">Group</a></span>
+
+
+
+				</li>
+			</ul>
+		</div>
+
+
+</div>
+<div id="method-ani" class="method item ">
+	<div class="method-signature">
+	<span class="name"><code>ani</code></span>
+
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+				<li class="arg">
+						<code>anis</code>
+				</li>
+			</ul><span class="paren">)</span>
+		</div>
+		<span class="returns-inline">
+			<span class="type"></span>
+		</span>
+	</div>
+
+
+
+
+
+
+	<div class="meta">
+				<p>
+				Defined in
+		<a href="../files/v3_p5.play.js.html#l1815"><code>v3&#x2F;p5.play.js:1815</code></a>
+		</p>
+
+
+
+	</div>
+
+	<div class="description"><p>Changes the sprite's animation. Use <code>addAni</code> to define the
+animation(s) first.</p>
+</div>
+
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+				<li class="param">
+						<code class="param-name">anis</code>
+						<span class="type">...String</span>
+
+
+					<div class="param-description"><p>the names of one or many animations to be played in
+sequence</p>
+</div>
+
+				</li>
+			</ul>
+		</div>
+
+		<div class="returns">
+			<h4>Returns:</h4>
+
+			<div class="returns-description">
+					<p>A promise that fulfills when the animation or sequence of animations
+completes</p>
+
+			</div>
+		</div>
+
+</div>
+<div id="method-bounce" class="method item deprectated">
+	<div class="method-signature">
+	<span class="name"><code>bounce</code></span>
+
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+				<li class="arg">
+						<code>target</code>
+				</li>
+				<li class="arg">
+						<code>callback</code>
+				</li>
+			</ul><span class="paren">)</span>
+		</div>
+	</div>
+
+		<span class="flag deprecated">deprecated</span>
+
+
+
+
+
+	<div class="meta">
+				<p>
+				Defined in
+		<a href="../files/v3_p5.play.js.html#l2044"><code>v3&#x2F;p5.play.js:2044</code></a>
+		</p>
+
+
+
+	</div>
+
+	<div class="description"><p>Deprecated, use sprite.collide instead.</p>
+</div>
+
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+				<li class="param">
+						<code class="param-name">target</code>
+						<span class="type"><a href="../classes/Sprite.html" class="crosslink">Sprite</a>  |  <a href="../classes/Group.html" class="crosslink">Group</a></span>
+
+
+
+				</li>
+				<li class="param">
+						<code class="param-name">callback</code>
+						<span class="type">Function</span>
+
+
+
+				</li>
+			</ul>
+		</div>
+
+
+</div>
+<div id="method-changeAnimation" class="method item ">
+	<div class="method-signature">
+	<span class="name"><code>changeAnimation</code></span>
+
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+				<li class="arg">
+						<code>label</code>
+				</li>
+			</ul><span class="paren">)</span>
+		</div>
+	</div>
+
+
+
+
+
+
+	<div class="meta">
+				<p>
+				Defined in
+		<a href="../files/v3_p5.play.js.html#l1870"><code>v3&#x2F;p5.play.js:1870</code></a>
+		</p>
+
+
+
+	</div>
+
+	<div class="description"><p>Changes the displayed animation. The animation must be added first
+using the sprite.addAnimation method. The animation could also be
+added using the group.addAnimation method to a group the sprite
+has been added to.</p>
+<p>See SpriteAnimation for more control over the sequence.</p>
+</div>
+
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+				<li class="param">
+						<code class="param-name">label</code>
+						<span class="type">String</span>
+
+
+					<div class="param-description"><p>SpriteAnimation identifier</p>
+</div>
+
+				</li>
+			</ul>
+		</div>
+
+
+</div>
+<div id="method-collide" class="method item ">
+	<div class="method-signature">
+	<span class="name"><code>collide</code></span>
+
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+				<li class="arg">
+						<code>target</code>
+				</li>
+				<li class="arg">
+						<code class="optional">callback</code>
+				</li>
+			</ul><span class="paren">)</span>
+		</div>
+	</div>
+
+
+
+
+
+
+	<div class="meta">
+				<p>
+				Defined in
+		<a href="../files/v3_p5.play.js.html#l2019"><code>v3&#x2F;p5.play.js:2019</code></a>
+		</p>
+
+
+
+	</div>
+
+	<div class="description"><p>Checks if the the sprite is colliding with another sprite or a group.
+The check is performed using the sprite's physics body (colliders).</p>
+<p>A callback function can be specified to perform additional operations
+when contact occurs. If the target is a group the function will be called
+for each single sprite colliding. The parameter of the function are
+respectively the current sprite and the colliding sprite.</p>
+</div>
+
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+				<li class="param">
+						<code class="param-name">target</code>
+						<span class="type"><a href="../classes/Sprite.html" class="crosslink">Sprite</a>  |  <a href="../classes/Group.html" class="crosslink">Group</a></span>
+
+
+					<div class="param-description"><p>Sprite or group to check against the current one</p>
+</div>
+
+				</li>
+				<li class="param">
+						<code class="param-name optional">[callback]</code>
+						<span class="type">Function</span>
+						<span class="flag optional" title="This parameter is optional.">optional</span>
+
+
+					<div class="param-description"><p>The function to be called if overlap is positive</p>
+</div>
+
+				</li>
+			</ul>
+		</div>
+
+
+		<div class="example">
+			<h4>Example:</h4>
+
+			<div class="example-content">
+				<pre class="code prettyprint"><code>sprite.collide(otherSprite, explosion);
+
+function explosion(spriteA, spriteB) {
+  spriteA.remove();
+  spriteB.score++;
+}</code></pre>
+
+			</div>
+		</div>
+</div>
+<div id="method-displace" class="method item deprectated">
+	<div class="method-signature">
+	<span class="name"><code>displace</code></span>
+
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+				<li class="arg">
+						<code>target</code>
+				</li>
+				<li class="arg">
+						<code>callback</code>
+				</li>
+			</ul><span class="paren">)</span>
+		</div>
+	</div>
+
+		<span class="flag deprecated">deprecated</span>
+
+
+
+
+
+	<div class="meta">
+				<p>
+				Defined in
+		<a href="../files/v3_p5.play.js.html#l2056"><code>v3&#x2F;p5.play.js:2056</code></a>
+		</p>
+
+
+
+	</div>
+
+	<div class="description"><p>Deprecated, use sprite.collide instead.</p>
+</div>
+
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+				<li class="param">
+						<code class="param-name">target</code>
+						<span class="type"><a href="../classes/Sprite.html" class="crosslink">Sprite</a>  |  <a href="../classes/Group.html" class="crosslink">Group</a></span>
+
+
+
+				</li>
+				<li class="param">
+						<code class="param-name">callback</code>
+						<span class="type">Function</span>
+
+
+
+				</li>
+			</ul>
+		</div>
+
+
+</div>
+<div id="method-draw" class="method item ">
+	<div class="method-signature">
+	<span class="name"><code>draw</code></span>
+
+		<span class="paren">()</span>
+	</div>
+
+
+
+
+
+
+	<div class="meta">
+				<p>
+				Defined in
+		<a href="../files/v3_p5.play.js.html#l844"><code>v3&#x2F;p5.play.js:844</code></a>
+		</p>
+
+
+
+	</div>
+
+	<div class="description"><p>Manages the visuals of the sprite. It can be overridden with a
+custom drawing function in which the center of the sprite is
+at (0, 0).</p>
+</div>
+
+
+
+		<div class="example">
+			<h4>Example:</h4>
+
+			<div class="example-content">
+				<p>sprite.draw = function() {
+// an oval
+ellipse(0,0,20,10);
+}</p>
+
+			</div>
+		</div>
+</div>
+<div id="method-move" class="method item ">
+	<div class="method-signature">
+	<span class="name"><code>move</code></span>
+
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+				<li class="arg">
+						<code>destX</code>
+				</li>
+				<li class="arg">
+						<code>destY</code>
+				</li>
+				<li class="arg">
+						<code>speed</code>
+				</li>
+				<li class="arg">
+						<code>cb</code>
+				</li>
+			</ul><span class="paren">)</span>
+		</div>
+		<span class="returns-inline">
+			<span class="type">Promise</span>
+		</span>
+	</div>
+
+
+
+
+
+
+	<div class="meta">
+				<p>
+				Defined in
+		<a href="../files/v3_p5.play.js.html#l1635"><code>v3&#x2F;p5.play.js:1635</code></a>
+		</p>
+
+
+
+	</div>
+
+	<div class="description"><p>Move the sprite to a destination position</p>
+</div>
+
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+				<li class="param">
+						<code class="param-name">destX</code>
+						<span class="type">Number</span>
+
+
+					<div class="param-description"><p>destination x</p>
+</div>
+
+				</li>
+				<li class="param">
+						<code class="param-name">destY</code>
+						<span class="type">Number</span>
+
+
+					<div class="param-description"><p>destination y</p>
+</div>
+
+				</li>
+				<li class="param">
+						<code class="param-name">speed</code>
+						<span class="type">Number</span>
+
+
+					<div class="param-description"><p>scalar</p>
+</div>
+
+				</li>
+				<li class="param">
+						<code class="param-name">cb</code>
+						<span class="type">Function</span>
+
+
+					<div class="param-description"><p>callback, called when movement is complete</p>
+</div>
+
+				</li>
+			</ul>
+		</div>
+
+		<div class="returns">
+			<h4>Returns:</h4>
+
+			<div class="returns-description">
+						<span class="type">Promise</span>:
+					<p>resolves when the movement is complete</p>
+
+			</div>
+		</div>
+
+</div>
+<div id="method-moveTo" class="method item ">
+	<div class="method-signature">
+	<span class="name"><code>moveTo</code></span>
+
+		<span class="paren">()</span>
+	</div>
+
+
+
+
+
+
+	<div class="meta">
+				<p>
+				Defined in
+		<a href="../files/v3_p5.play.js.html#l1739"><code>v3&#x2F;p5.play.js:1739</code></a>
+		</p>
+
+
+
+	</div>
+
+	<div class="description"><p>Same as sprite.move</p>
+</div>
+
+
+
+</div>
+<div id="method-moveTowards" class="method item ">
+	<div class="method-signature">
+	<span class="name"><code>moveTowards</code></span>
+
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+				<li class="arg">
+						<code>destX</code>
+				</li>
+				<li class="arg">
+						<code>destY</code>
+				</li>
+				<li class="arg">
+						<code>tracking</code>
+				</li>
+			</ul><span class="paren">)</span>
+		</div>
+	</div>
+
+
+
+
+
+
+	<div class="meta">
+				<p>
+				Defined in
+		<a href="../files/v3_p5.play.js.html#l1616"><code>v3&#x2F;p5.play.js:1616</code></a>
+		</p>
+
+
+
+	</div>
+
+	<div class="description"><p>Move a sprite towards a position</p>
+</div>
+
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+				<li class="param">
+						<code class="param-name">destX</code>
+						<span class="type">Number</span>
+
+
+					<div class="param-description"><p>destination x</p>
+</div>
+
+				</li>
+				<li class="param">
+						<code class="param-name">destY</code>
+						<span class="type">Number</span>
+
+
+					<div class="param-description"><p>destination y</p>
+</div>
+
+				</li>
+				<li class="param">
+						<code class="param-name">tracking</code>
+						<span class="type">Number</span>
+
+
+					<div class="param-description"><p>1 represents 1:1 tracking, the mouse moves to the destination immediately, 0 represents no tracking</p>
+</div>
+
+				</li>
+			</ul>
+		</div>
+
+
+</div>
+<div id="method-overlap" class="method item ">
+	<div class="method-signature">
+	<span class="name"><code>overlap</code></span>
+
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+				<li class="arg">
+						<code>target</code>
+				</li>
+				<li class="arg">
+						<code class="optional">callback</code>
+				</li>
+			</ul><span class="paren">)</span>
+		</div>
+	</div>
+
+
+
+
+
+
+	<div class="meta">
+				<p>
+				Defined in
+		<a href="../files/v3_p5.play.js.html#l2068"><code>v3&#x2F;p5.play.js:2068</code></a>
+		</p>
+
+
+
+	</div>
+
+	<div class="description"><p>Checks if this sprite is overlapping with another sprite or a group.
+The check is performed using the sprite's physics body (colliders).</p>
+<p>A callback function can be specified to perform additional operations
+when contact occurs. If the target is a group the function will be called
+for each single sprite overlapping. The parameters of the callback function
+are the current sprite and the overlapping sprite.</p>
+<p>Since v3, this function only needs to be called once, it doesn't need to be
+used in the p5.js draw loop.</p>
+</div>
+
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+				<li class="param">
+						<code class="param-name">target</code>
+						<span class="type"><a href="../classes/Sprite.html" class="crosslink">Sprite</a>  |  <a href="../classes/Group.html" class="crosslink">Group</a></span>
+
+
+					<div class="param-description"><p>Sprite or group to check against the current one</p>
+</div>
+
+				</li>
+				<li class="param">
+						<code class="param-name optional">[callback]</code>
+						<span class="type">Function</span>
+						<span class="flag optional" title="This parameter is optional.">optional</span>
+
+
+					<div class="param-description"><p>The function to be called if an overlap occurs</p>
+</div>
+
+				</li>
+			</ul>
+		</div>
+
+
+		<div class="example">
+			<h4>Example:</h4>
+
+			<div class="example-content">
+				<p>sprite.overlap(otherSprite, pickup);</p>
+<p>function pickup(spriteA, spriteB) {
+spriteA.remove();
+spriteB.itemCount++;
+}</p>
+
+			</div>
+		</div>
+</div>
+<div id="method-remove" class="method item ">
+	<div class="method-signature">
+	<span class="name"><code>remove</code></span>
+
+		<span class="paren">()</span>
+	</div>
+
+
+
+
+
+
+	<div class="meta">
+				<p>
+				Defined in
+		<a href="../files/v3_p5.play.js.html#l1901"><code>v3&#x2F;p5.play.js:1901</code></a>
+		</p>
+
+
+
+	</div>
+
+	<div class="description"><p>Removes the Sprite from the sketch.
+The removed Sprite will not be drawn or updated anymore.</p>
+</div>
+
+
+
+</div>
+<div id="method-removeColliders" class="method item ">
+	<div class="method-signature">
+	<span class="name"><code>removeColliders</code></span>
+
+		<span class="paren">()</span>
+	</div>
+
+
+
+
+
+
+	<div class="meta">
+				<p>
+				Defined in
+		<a href="../files/v3_p5.play.js.html#l655"><code>v3&#x2F;p5.play.js:655</code></a>
+		</p>
+
+
+
+	</div>
+
+	<div class="description"><p>Removes the physics body collider from the sprite.</p>
+<p>Avoid using this method. It is more efficient to set the physics
+body type of the sprite to 'none'.</p>
+</div>
+
+
+
+</div>
+<div id="method-rotate" class="method item ">
+	<div class="method-signature">
+	<span class="name"><code>rotate</code></span>
+
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+				<li class="arg">
+						<code>angle</code>
+				</li>
+				<li class="arg">
+						<code>speed</code>
+				</li>
+			</ul><span class="paren">)</span>
+		</div>
+	</div>
+
+
+
+
+
+
+	<div class="meta">
+				<p>
+				Defined in
+		<a href="../files/v3_p5.play.js.html#l1790"><code>v3&#x2F;p5.play.js:1790</code></a>
+		</p>
+
+
+
+	</div>
+
+	<div class="description"><p>Rotates the sprite to an angle with a specified speed.</p>
+</div>
+
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+				<li class="param">
+						<code class="param-name">angle</code>
+						<span class="type">Number</span>
+
+
+
+				</li>
+				<li class="param">
+						<code class="param-name">speed</code>
+						<span class="type">Number</span>
+
+
+
+				</li>
+			</ul>
+		</div>
+
+
+</div>
+<div id="method-rotateTowards" class="method item ">
+	<div class="method-signature">
+	<span class="name"><code>rotateTowards</code></span>
+
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+				<li class="arg">
+						<code>angle</code>
+				</li>
+				<li class="arg">
+						<code>tracking</code>
+				</li>
+			</ul><span class="paren">)</span>
+		</div>
+	</div>
+
+
+
+
+
+
+	<div class="meta">
+				<p>
+				Defined in
+		<a href="../files/v3_p5.play.js.html#l1777"><code>v3&#x2F;p5.play.js:1777</code></a>
+		</p>
+
+
+
+	</div>
+
+	<div class="description"><p>TODO: Rotates the sprite towards a position or angle.</p>
+</div>
+
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+				<li class="param">
+						<code class="param-name">angle</code>
+						<span class="type"></span>
+
+
+
+				</li>
+				<li class="param">
+						<code class="param-name">tracking</code>
+						<span class="type"></span>
+
+
+
+				</li>
+			</ul>
+		</div>
+
+
+</div>
+<div id="method-scale" class="method item ">
+	<div class="method-signature">
+	<span class="name"><code>scale</code></span>
+
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+				<li class="arg">
+						<code>UNKNOWN</code>
+				</li>
+			</ul><span class="paren">)</span>
+		</div>
+	</div>
+
+
+
+
+
+
+	<div class="meta">
+				<p>
+				Defined in
+		<a href="../files/v3_p5.play.js.html#l1097"><code>v3&#x2F;p5.play.js:1097</code></a>
+		</p>
+
+
+
+	</div>
+
+	<div class="description"><p>Scales the sprite's visual size and physics body.</p>
+</div>
+
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+				<li class="param">
+						<code class="param-name">UNKNOWN</code>
+						<span class="type">Number</span>
+
+
+
+				</li>
+			</ul>
+		</div>
+
+
+</div>
+<div id="method-setSpeed" class="method item deprectated">
+	<div class="method-signature">
+	<span class="name"><code>setSpeed</code></span>
+
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+				<li class="arg">
+						<code>speed</code>
+				</li>
+				<li class="arg">
+						<code class="optional">direction</code>
+				</li>
+			</ul><span class="paren">)</span>
+		</div>
+	</div>
+
+		<span class="flag deprecated">deprecated</span>
+
+
+
+
+
+	<div class="meta">
+				<p>
+				Defined in
+		<a href="../files/v3_p5.play.js.html#l1576"><code>v3&#x2F;p5.play.js:1576</code></a>
+		</p>
+
+
+
+	</div>
+
+	<div class="description"><p>Deprecated: set direction and set speed separately</p>
+<p>Sets the speed of the sprite.
+The action overwrites the current velocity.
+If direction is not supplied, the current direction is maintained.
+If direction is not supplied and there is no current velocity, the
+current rotation angle used for the direction.</p>
+</div>
+
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+				<li class="param">
+						<code class="param-name">speed</code>
+						<span class="type">Number</span>
+
+
+					<div class="param-description"><p>Scalar speed</p>
+</div>
+
+				</li>
+				<li class="param">
+						<code class="param-name optional">[direction]</code>
+						<span class="type">Number</span>
+						<span class="flag optional" title="This parameter is optional.">optional</span>
+
+
+					<div class="param-description"><p>angle</p>
+</div>
+
+				</li>
+			</ul>
+		</div>
+
+
+</div>
+<div id="method-toString" class="method item ">
+	<div class="method-signature">
+	<span class="name"><code>toString</code></span>
+
+		<span class="paren">()</span>
+		<span class="returns-inline">
+			<span class="type"></span>
+		</span>
+	</div>
+
+
+
+
+
+
+	<div class="meta">
+				<p>
+				Defined in
+		<a href="../files/v3_p5.play.js.html#l1931"><code>v3&#x2F;p5.play.js:1931</code></a>
+		</p>
+
+
+
+	</div>
+
+	<div class="description"><p>Returns the sprite's unique identifier</p>
+</div>
+
+
+		<div class="returns">
+			<h4>Returns:</h4>
+
+			<div class="returns-description">
+					<p>the sprite's id</p>
+
+			</div>
+		</div>
+
+</div>
+        </div>
+    </div>
+
+    <div id="properties" class="page-section">
+        <h2 class="off-left">Properties</h2>
+
+        <div class="item-list">
+<div id="prop-animation" class="property item ">
+    <h3 class="name"><code>animation</code></h3>
+    <span class="type"><a href="../classes/SpriteAnimation.html" class="crosslink">SpriteAnimation</a></span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l710"><code>v3&#x2F;p5.play.js:710</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>Reference to the sprite's current animation.</p>
+
+    </div>
+
+
+
+</div>
+<div id="prop-animations" class="property item ">
+    <h3 class="name"><code>animations</code></h3>
+    <span class="type">Object</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l152"><code>v3&#x2F;p5.play.js:152</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>Keys are the animation label, values are SpriteAnimation objects.</p>
+
+    </div>
+
+
+
+</div>
+<div id="prop-autoResetAnimations" class="property item ">
+    <h3 class="name"><code>autoResetAnimations</code></h3>
+    <span class="type"><a href="../classes/SpriteAnimation.html" class="crosslink">SpriteAnimation</a></span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l160"><code>v3&#x2F;p5.play.js:160</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>If false, animations that are stopped before they are completed,
+typically by a call to sprite.changeAni, will start at the frame
+they were stopped at. If true, animations will always start playing from
+frame 0 unless specified by the user in a separate anim.changeFrame
+call.</p>
+
+    </div>
+
+        <p><strong>Default:</strong> false</p>
+
+
+</div>
+<div id="prop-bounciness" class="property item ">
+    <h3 class="name"><code>bounciness</code></h3>
+    <span class="type">Number</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l736"><code>v3&#x2F;p5.play.js:736</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>The bounciness of the sprite's physics body.</p>
+
+    </div>
+
+
+
+</div>
+<div id="prop-centerOfMass" class="property item ">
+    <h3 class="name"><code>centerOfMass</code></h3>
+    <span class="type">Number</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l752"><code>v3&#x2F;p5.play.js:752</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>The center of mass of the sprite's physics body.</p>
+
+    </div>
+
+
+
+</div>
+<div id="prop-d" class="property item ">
+    <h3 class="name"><code>d</code></h3>
+    <span class="type">Number</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l1314"><code>v3&#x2F;p5.play.js:1314</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>The diameter of a circular sprite.</p>
+
+    </div>
+
+
+
+</div>
+<div id="prop-density" class="property item ">
+    <h3 class="name"><code>density</code></h3>
+    <span class="type">Number</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l780"><code>v3&#x2F;p5.play.js:780</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>The density of the sprite's physics body.</p>
+
+    </div>
+
+
+
+</div>
+<div id="prop-depth" class="property item deprectated">
+    <h3 class="name"><code>depth</code></h3>
+    <span class="type">Unknown</span>
+
+        <span class="flag deprecated">deprecated</span>
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l796"><code>v3&#x2F;p5.play.js:796</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>Use .layer instead.</p>
+
+    </div>
+
+
+
+</div>
+<div id="prop-diameter" class="property item ">
+    <h3 class="name"><code>diameter</code></h3>
+    <span class="type">Number</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l1352"><code>v3&#x2F;p5.play.js:1352</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>The diameter of a circular sprite.</p>
+
+    </div>
+
+
+
+</div>
+<div id="prop-direction" class="property item ">
+    <h3 class="name"><code>direction</code></h3>
+    <span class="type">Number</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l809"><code>v3&#x2F;p5.play.js:809</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>The angle of the sprite's movement or it's rotation angle if the
+sprite is not moving.</p>
+
+    </div>
+
+
+
+</div>
+<div id="prop-drag" class="property item ">
+    <h3 class="name"><code>drag</code></h3>
+    <span class="type">Number</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l830"><code>v3&#x2F;p5.play.js:830</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>The amount of resistance a sprite has to being moved.</p>
+
+    </div>
+
+
+
+</div>
+<div id="prop-dynamic" class="property item ">
+    <h3 class="name"><code>dynamic</code></h3>
+    <span class="type">Boolean</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l865"><code>v3&#x2F;p5.play.js:865</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>True if the sprite's physics body is dynamic.</p>
+
+    </div>
+
+
+
+</div>
+<div id="prop-fixture" class="property item private">
+    <h3 class="name"><code>fixture</code></h3>
+    <span class="type">Unknown</span>
+
+
+        <span class="flag private">private</span>
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l891"><code>v3&#x2F;p5.play.js:891</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>Returns the first node in a linked list of the planck physics
+body's fixtures.</p>
+
+    </div>
+
+
+
+</div>
+<div id="prop-fixtureList" class="property item private">
+    <h3 class="name"><code>fixtureList</code></h3>
+    <span class="type">Unknown</span>
+
+
+        <span class="flag private">private</span>
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l901"><code>v3&#x2F;p5.play.js:901</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>Returns the first node in a linked list of the planck physics
+body's fixtures.</p>
+
+    </div>
+
+
+
+</div>
+<div id="prop-friction" class="property item ">
+    <h3 class="name"><code>friction</code></h3>
+    <span class="type">Number</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l916"><code>v3&#x2F;p5.play.js:916</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>The amount the sprite's physics body resists moving
+when rubbing against another physics body.</p>
+
+    </div>
+
+
+
+</div>
+<div id="prop-groups" class="property item ">
+    <h3 class="name"><code>groups</code></h3>
+    <span class="type">Array</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l143"><code>v3&#x2F;p5.play.js:143</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>Groups the sprite belongs to, including allSprites</p>
+
+    </div>
+
+
+
+</div>
+<div id="prop-h" class="property item ">
+    <h3 class="name"><code>h</code></h3>
+    <span class="type">Number</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l1272"><code>v3&#x2F;p5.play.js:1272</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>The height of the sprite.</p>
+
+    </div>
+
+
+
+</div>
+<div id="prop-height" class="property item ">
+    <h3 class="name"><code>height</code></h3>
+    <span class="type">Number</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l1297"><code>v3&#x2F;p5.play.js:1297</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>The height of the sprite.</p>
+
+    </div>
+
+
+
+</div>
+<div id="prop-immovable" class="property item deprectated">
+    <h3 class="name"><code>immovable</code></h3>
+    <span class="type">Unknown</span>
+
+        <span class="flag deprecated">deprecated</span>
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l933"><code>v3&#x2F;p5.play.js:933</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>Use .static instead.</p>
+
+    </div>
+
+
+
+</div>
+<div id="prop-isSuperFast" class="property item ">
+    <h3 class="name"><code>isSuperFast</code></h3>
+    <span class="type">Boolean</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l956"><code>v3&#x2F;p5.play.js:956</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>Set this to true if the sprite goes really fast to prevent
+inaccurate physics simulation.</p>
+
+    </div>
+
+
+
+</div>
+<div id="prop-kinematic" class="property item ">
+    <h3 class="name"><code>kinematic</code></h3>
+    <span class="type">Boolean</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l977"><code>v3&#x2F;p5.play.js:977</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>True if the sprite's physics body is kinematic.</p>
+
+    </div>
+
+
+
+</div>
+<div id="prop-life" class="property item ">
+    <h3 class="name"><code>life</code></h3>
+    <span class="type">Number</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l210"><code>v3&#x2F;p5.play.js:210</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>Cycles before self removal.
+Set it to initiate a countdown, every draw cycle the property is
+reduced by 1 unit. If less than or equal to 0, this sprite will be removed.</p>
+
+    </div>
+
+        <p><strong>Default:</strong> 100000000</p>
+
+
+</div>
+<div id="prop-mass" class="property item ">
+    <h3 class="name"><code>mass</code></h3>
+    <span class="type">Number</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l989"><code>v3&#x2F;p5.play.js:989</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>The mass of the sprite's physics body.</p>
+
+    </div>
+
+
+
+</div>
+<div id="prop-mirrorX" class="property item ">
+    <h3 class="name"><code>mirrorX</code></h3>
+    <span class="type">Boolean</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l1017"><code>v3&#x2F;p5.play.js:1017</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>Setting mirrorX to true will mirror the sprite horizontally.</p>
+
+    </div>
+
+
+
+</div>
+<div id="prop-mirrorY" class="property item ">
+    <h3 class="name"><code>mirrorY</code></h3>
+    <span class="type">Boolean</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l1029"><code>v3&#x2F;p5.play.js:1029</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>Setting mirrorY to true will mirror the sprite vertically.</p>
+
+    </div>
+
+
+
+</div>
+<div id="prop-pos" class="property item ">
+    <h3 class="name"><code>pos</code></h3>
+    <span class="type">Object</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l1225"><code>v3&#x2F;p5.play.js:1225</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>Set the position vector {x, y}</p>
+
+    </div>
+
+
+
+</div>
+<div id="prop-removed" class="property item ">
+    <h3 class="name"><code>removed</code></h3>
+    <span class="type">Boolean</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l173"><code>v3&#x2F;p5.play.js:173</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>True if the sprite was removed from the world</p>
+
+    </div>
+
+        <p><strong>Default:</strong> false</p>
+
+
+</div>
+<div id="prop-rotation" class="property item ">
+    <h3 class="name"><code>rotation</code></h3>
+    <span class="type">Number</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l1046"><code>v3&#x2F;p5.play.js:1046</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>The angle of the sprite's rotation, not the direction it is moving.</p>
+
+    </div>
+
+
+
+</div>
+<div id="prop-rotationDrag" class="property item ">
+    <h3 class="name"><code>rotationDrag</code></h3>
+    <span class="type">Number</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l1070"><code>v3&#x2F;p5.play.js:1070</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>The amount of the sprite resists rotating.</p>
+
+    </div>
+
+
+
+</div>
+<div id="prop-rotationLock" class="property item ">
+    <h3 class="name"><code>rotationLock</code></h3>
+    <span class="type">Boolean</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l878"><code>v3&#x2F;p5.play.js:878</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>If true the sprite can not rotate.</p>
+
+    </div>
+
+
+
+</div>
+<div id="prop-rotationSpeed" class="property item ">
+    <h3 class="name"><code>rotationSpeed</code></h3>
+    <span class="type">Number</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l1082"><code>v3&#x2F;p5.play.js:1082</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>The speed of the sprite's rotation.</p>
+
+    </div>
+
+
+
+</div>
+<div id="prop-scale" class="property item ">
+    <h3 class="name"><code>scale</code></h3>
+    <span class="type">Number</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l414"><code>v3&#x2F;p5.play.js:414</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>Scales the appearance of the sprite but not its collider.</p>
+
+    </div>
+
+
+
+</div>
+<div id="prop-shape" class="property item ">
+    <h3 class="name"><code>shape</code></h3>
+    <span class="type">String</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l182"><code>v3&#x2F;p5.play.js:182</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>The kind of shape: 'box', 'circle', 'polygon', or 'chain'</p>
+
+    </div>
+
+        <p><strong>Default:</strong> box</p>
+
+
+</div>
+<div id="prop-shapeColor" class="property item ">
+    <h3 class="name"><code>shapeColor</code></h3>
+    <span class="type">Color</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l487"><code>v3&#x2F;p5.play.js:487</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>If no image or animations are set this is color of the
+placeholder rectangle</p>
+
+    </div>
+
+        <p><strong>Default:</strong> a randomly generated color</p>
+
+
+</div>
+<div id="prop-speed" class="property item ">
+    <h3 class="name"><code>speed</code></h3>
+    <span class="type">Number</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l1125"><code>v3&#x2F;p5.play.js:1125</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>The sprite's speed.</p>
+
+    </div>
+
+
+
+</div>
+<div id="prop-speed" class="property item ">
+    <h3 class="name"><code>speed</code></h3>
+    <span class="type">Number</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l1141"><code>v3&#x2F;p5.play.js:1141</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>The sprite's speed.</p>
+
+    </div>
+
+
+
+        <h4>Sub-properties:</h4>
+
+        <ul class="params-list">
+            <li class="param">
+                    <code class="param-name">speed</code>
+                    <span class="type">Number</span>
+
+                <div class="param-description">
+                    <p>that the sprite will move at in the direction of its current rotation</p>
+
+                </div>
+
+            </li>
+        </ul>
+</div>
+<div id="prop-static" class="property item ">
+    <h3 class="name"><code>static</code></h3>
+    <span class="type">Boolean</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l1154"><code>v3&#x2F;p5.play.js:1154</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>Is the sprite's physics collider static?</p>
+
+    </div>
+
+
+
+</div>
+<div id="prop-torque" class="property item ">
+    <h3 class="name"><code>torque</code></h3>
+    <span class="type">Unknown</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l1167"><code>v3&#x2F;p5.play.js:1167</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>Apply a torque on the sprite's physics body.
+Torque is the force that causes rotation.
+A positive torque will rotate the sprite clockwise.
+A negative torque will rotate the sprite counter-clockwise.</p>
+
+    </div>
+
+
+
+        <h4>Sub-properties:</h4>
+
+        <ul class="params-list">
+            <li class="param">
+                    <code class="param-name">torque</code>
+                    <span class="type">Number</span>
+
+                <div class="param-description">
+                    <p>The amount of torque to apply.</p>
+
+                </div>
+
+            </li>
+        </ul>
+</div>
+<div id="prop-touching" class="property item ">
+    <h3 class="name"><code>touching</code></h3>
+    <span class="type">Object</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l356"><code>v3&#x2F;p5.play.js:356</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>Object containing information about the most recent collision/overlapping
+To be typically used in combination with Sprite.overlap or Sprite.collide
+functions.
+The properties are touching.left, touching.right, touching.top,
+touching.bottom and are either true or false depending on the side of the
+collider.</p>
+
+    </div>
+
+
+
+</div>
+<div id="prop-vel" class="property item ">
+    <h3 class="name"><code>vel</code></h3>
+    <span class="type">Unknown</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l279"><code>v3&#x2F;p5.play.js:279</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>A vector representing how fast the sprite is moving horizontally
+and vertically.</p>
+
+    </div>
+
+
+
+</div>
+<div id="prop-velocity" class="property item ">
+    <h3 class="name"><code>velocity</code></h3>
+    <span class="type">Unknown</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l316"><code>v3&#x2F;p5.play.js:316</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>Verbose/legacy version of sprite.vel</p>
+
+    </div>
+
+
+
+</div>
+<div id="prop-visible" class="property item ">
+    <h3 class="name"><code>visible</code></h3>
+    <span class="type">Boolean</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l221"><code>v3&#x2F;p5.play.js:221</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>The sprite's visibility.</p>
+
+    </div>
+
+        <p><strong>Default:</strong> true</p>
+
+
+</div>
+<div id="prop-w" class="property item ">
+    <h3 class="name"><code>w</code></h3>
+    <span class="type">Number</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l1235"><code>v3&#x2F;p5.play.js:1235</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>The width of the sprite.</p>
+
+    </div>
+
+
+
+</div>
+<div id="prop-width" class="property item ">
+    <h3 class="name"><code>width</code></h3>
+    <span class="type">Number</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l1255"><code>v3&#x2F;p5.play.js:1255</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>The width of the sprite.</p>
+
+    </div>
+
+
+
+</div>
+<div id="prop-x" class="property item ">
+    <h3 class="name"><code>x</code></h3>
+    <span class="type">Number</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l1191"><code>v3&#x2F;p5.play.js:1191</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>The horizontal position of the sprite.</p>
+
+    </div>
+
+
+
+</div>
+<div id="prop-y" class="property item ">
+    <h3 class="name"><code>y</code></h3>
+    <span class="type">Number</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l1208"><code>v3&#x2F;p5.play.js:1208</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>The vertical position of the sprite.</p>
+
+    </div>
+
+
+
+</div>
+        </div>
+    </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/jquery/jquery-1.8.2.min.js"></script>
+<script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script src="../assets/js/yuidoc-bootstrap.js"></script>
+<script>prettyPrint();</script>
+</body>
+</html>

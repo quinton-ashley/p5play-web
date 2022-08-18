@@ -1,0 +1,41 @@
+{
+	"name": "p5.play-web",
+	"author": "Paolo Pedercini <info@molleindustria.it>",
+	"bugs": {
+		"url": "https://github.com/molleindustria/p5.play/issues"
+	},
+	"contributors": [
+		"quinton-ashley <qashto@gmail.com> (https://quintos.org)"
+	],
+	"description": "A website for p5.play",
+	"dependencies": {},
+	"devDependencies": {
+		"eslint": "^3.1.0",
+		"http-server": "^0.9.0",
+		"mocha-phantomjs": "^4.0.1",
+		"p5": "^1.4.0",
+		"yuidocjs": "^0.10.0"
+	},
+	"engines": {
+		"node": ">=4.0.0"
+	},
+	"license": "LGPL-2.1",
+	"homepage": "https://github.com/molleindustria/p5.play/tree/gh-pages",
+	"scripts": {
+		"docs": "yuidoc .;rm docs/assets/favicon.ico|rm docs/assets/favicon.ico;cp favicon.ico docs/assets/favicon.ico|cp favicon.png docs/assets/favicon.png",
+		"lint": "eslint lib/** test/unit/** examples/*.js",
+		"lint:examples": "eslint examples/*.js",
+		"lint:lib": "eslint lib/**",
+		"lint:test": "eslint test/unit/**",
+		"copy:p5": "cp -f `npm root`/p5/lib/p5.js examples/lib/p5.js",
+		"start": "http-server -o",
+		"postinstall": "npm run copy:p5 && npm run docs",
+		"pretest": "npm run lint",
+		"test": "mocha-phantomjs test/index.html",
+		"v": "npm version patch --force",
+		"V": "npm version minor --force",
+		"version": "git add -A",
+		"postversion": "git push"
+	},
+	"version": "1.1.118"
+}

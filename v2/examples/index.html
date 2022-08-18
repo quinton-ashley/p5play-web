@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>p5.play Example</title>
+	<link rel="icon" href="../favicon.ico" />
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+	<link rel="stylesheet" type="text/css" href="index.css" />
+</head>
+
+<body>
+	<div id="container">
+		<div id="myP5"></div>
+
+		<div class="dropdown">
+			<button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-bs-toggle="dropdown"
+				aria-expanded="false">
+				Examples <span class="caret"></span>
+			</button>
+			<ul id="examples" class="dropdown-menu" role="menu" aria-labelledby="menu1"></ul>
+		</div>
+
+		<a class="btn" href="#" onclick="run()">&#9658; Run</a>
+		<a class="btn" href="#" onclick="reset()">&#8634; Reset</a>
+
+		<pre id="editor">// file not found</pre>
+	</div>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.1/p5.min.js"></script>
+	<script src="../p5.play.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.8.1/ace.min.js"></script>
+	<script src="player.js"></script>
+	<script src="index.js"></script>
+</body>
+
+</html>

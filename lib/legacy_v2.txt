@@ -1,0 +1,1 @@
+This folder will not be moved or deleted so people can continue to link to v2, the fully backwards compatible legacy version of p5.play, at its original url location.

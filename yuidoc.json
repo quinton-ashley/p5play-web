@@ -1,0 +1,13 @@
+{
+	"name": "p5.play",
+	"description": "A p5.js library for games and playthings",
+	"version": "3",
+	"url": "http://molleindustria.org/",
+	"logo": "../favicon.ico",
+	"options": {
+		"outdir": "docs",
+		"exclude": "docs,examples,lib,test,theme,docs,examples,v2",
+		"themedir": "theme",
+		"helpers": ["theme/helpers/helpers.js"]
+	}
+}

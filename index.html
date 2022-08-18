@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>p5.play</title>
+	<link rel="icon" href="favicon.png" />
+	<link rel="stylesheet" href="ref/p5-mini.css" />
+	<link rel="stylesheet" href="ref/style.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.2/p5.js"></script>
+	<script src="v3/planck.js"></script>
+	<script src="v3/p5.play.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.8.1/ace.min.js"></script>
+</head>
+
+<body>
+	<nav id="topNav">
+		<a href="index.html" class="active"><img src="logo.svg" class="logo">p5.play</a>
+		<span>:</span>
+		<a href="ref/sprite.html">Learn</a>
+		<a href="demos/index.html">Demos</a>
+		<a href="docs/index.html">Docs</a>
+		<span>:</span>
+		<a href="https://github.com/molleindustria/p5.play"><img src="https://github.githubassets.com/favicons/favicon.svg"
+				class="github" alt="GitHub"></a>
+		<a href="https://www.npmjs.com/package/p5.play"><img
+				src="https://static.npmjs.com/1996fcfdf7ca81ea795f67f093d7f449.png" alt="npm"></a>
+		<a href=""></a>
+	</nav>
+	<div class="top big break"></div>
+
+	<div class="page" style="display: flex;">
+		<div>
+			<h3>
+				<a href="https://github.com/molleindustria/p5.play" style="font-size: 48px;">p5.play</a> is a 2D game engine
+				made by Computer Science teachers to help you
+				turn
+				your game ideas
+				into JavaScript code!
+			</h3>
+
+			<p>
+				It uses <a href="http://p5js.org/" target="_blank">p5.js</a> for graphics rendering. We share the Processing
+				Foundation's goal of make coding more accessible for artists, designers, educators, and beginners. Behind the
+				scenes p5.play version 3 uses <a href="https://piqnt.com/planck.js/" target="_blank">planck</a> (Box2D), a
+				physics
+				simulator that's been used in popular 2D games like Angry Birds and Tiny Wings.
+			</p>
+
+			<p>
+				Ready to learn how to use p5.play to prototype, develop, and publish your own games?
+			</p>
+			<p>
+				First take a look at the
+				interactive reference page for <a href="sprite.html">Sprite</a>. You can use this
+				<a href="https://editor.p5js.org/quinton-ashley/sketches/szN_XdV5O" target="_blank">template sketch</a> to
+				start making your own games with p5.play. You can view the open source code on <a
+					href="https://github.com/molleindustria/p5.play">GitHub</a> and <a
+					href="https://www.npmjs.com/package/p5.play">npm</a>.
+			</p>
+		</div>
+		<script type="text/p5" name="tumbler" base-0 no-editor>
+let tumbler, x, y, sides, len, angle;
+
+function setup() {
+	createCanvas(500, 400);
+	world.gravity.y = 10;
+
+	x = width * 0.5;
+	y = height * 0.5;
+	sides = 5;
+	len = height / sides;
+	angle = 360 / sides;
+
+	let s = [len, angle, len, -angle, len, angle, sides];
+	tumbler = new Sprite(x, y, s, 'kinematic');
+	tumbler.rotationSpeed = 0.5;
+
+	allSprites.remove(tumbler);
+	dropSprite();
+}
+
+function draw() {
+	clear();
+	text('Click to add items to the tumbler', 20, 20);
+
+	push();
+	strokeWeight(8);
+	strokeJoin(ROUND);
+	stroke('#ed225d');
+	tumbler.draw();
+	pop();
+
+	allSprites.draw();
+}
+
+function dropSprite() {
+	len = (height * random(0.1, 0.3)) / sides;
+	let penta = new Sprite(mouse.x || x, mouse.y || y, [len, angle, sides]);
+	penta.shapeColor = '#c0eeff';
+}
+
+function mousePressed() {
+	dropSprite();
+}
+		</script>
+	</div>
+
+	<div class="break"></div>
+
+	<div class="credits">
+		<div>
+			Currently led by <strong>Quinton Ashley</strong> |
+			<a href="http://quintos.org/" target="_blank">quintos.org</a> |
+			<a href="https://twitter.com/qashto" target="_blank">@qashto</a>
+		</div>
+		<div>
+			Initiated by <strong>Paolo Pedercini</strong> |
+			<a href="http://molleindustria.org/" target="_blank">molleindustria.org</a> |
+			<a href="https://twitter.com/molleindustria" target="_blank">@molleindustria</a>
+		</div>
+		<div>
+			<span>
+				Huge thanks to Bradley C. Buchanan, Chayarat Wangweera, Zhiyuan Guo, Aarnav Gupta, Richard Chen, and
+				Carter Noa!
+			</span>
+		</div>
+	</div>
+	<div class="break"></div>
+	<footer class="text-small">Created by Quinton Ashley (@quinton-ashley) Copyright 2022. Looking for the legacy
+		version of p5.play?
+		<a href="../v2/index.html">Click here</a>.
+	</footer>
+
+	<script src="ref/p5-mini.js"></script>
+</body>
+
+</html>

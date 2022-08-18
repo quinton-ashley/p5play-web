@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>p5.play : Sprite</title>
+	<link rel="icon" href="../logo.svg" />
+	<link rel="stylesheet" href="p5-mini.css" />
+	<link rel="stylesheet" href="style.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.2/p5.js"></script>
+	<script src="../v3/planck.js"></script>
+	<script src="../v3/p5.play.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.8.1/ace.min.js"></script>
+</head>
+
+<body>
+	<nav id="topNav">
+		<a href="../index.html" class="active"><img src="../logo.svg" class="logo">p5.play</a>
+		<span>:</span>
+		<a href="sprite.html" class="active">Sprite</a>
+		<a href="group.html">Group</a>
+		<a href="sprite_animation.html">SpriteAnimation</a>
+		<a href="tiles.html">Tiles</a>
+		<a href="camera.html">Camera</a>
+	</nav>
+	<div class="top break"></div>
+	<div id="page-0" class="page">
+		<div>
+			<h2>What is a sprite?</h2>
+			<p>A sprite is a ghost!</p>
+			<p>Video game developers use the word "sprite" to refer to characters, items,
+				or anything else that moves above a background.</p>
+			<p>Try editing the properties of the square and circle sprites in the mini
+				p5.js sketches below and press play!
+			</p>
+		</div>
+		<div class="minis horiz">
+			<div>
+				<script type="text/p5" name="square" base-0 horiz lines="9">
+let sprite;
+
+function setup() {
+	createCanvas(200, 100);
+
+	sprite = new Sprite();
+	sprite.width = 50;
+	sprite.height = 50;
+}
+
+function draw() {
+	clear();
+}
+	</script>
+			</div>
+			<div>
+				<script type="text/p5" name="circle" base-1 horiz lines="8">
+let sprite;
+
+function setup() {
+	createCanvas(200, 100);
+
+	sprite = new Sprite();
+	sprite.diameter = 50;
+}
+
+function draw() {
+	clear();
+}
+		</script>
+			</div>
+		</div>
+		<div class="minis">
+			<div>
+				<script type="text/p5" name="x">
+				sprite.x = 150;
+			</script>
+			</div>
+			<div>
+				<script type="text/p5" name="y" base="1">
+				sprite.y = 30;
+			</script>
+			</div>
+			<div>
+				<script type="text/p5" name="velocity.x" base="1">
+				sprite.vel.x = cos(frame);
+			</script>
+			</div>
+			<div>
+				<script type="text/p5" name="velocity.y">
+				sprite.vel.y = cos(frame);
+			</script>
+			</div>
+			<div>
+				<script type="text/p5" name="rotationSpeed">
+							sprite.rotationSpeed = 1;
+						</script>
+			</div>
+			<div>
+				<script type="text/p5" name="shapeColor" base="1">
+let c = color(0, 255, 0);
+sprite.shapeColor = c;
+						</script>
+			</div>
+		</div>
+
+		<div class="minis">
+			<div>
+				<script type="text/p5" name="width">
+								sprite.w = 200;
+							</script>
+			</div>
+			<div>
+				<script type="text/p5" name="height">
+								sprite.h = 80;
+							</script>
+			</div>
+			<div>
+				<script type="text/p5" name="diameter" base="1">
+				sprite.d = 75;
+			</script>
+			</div>
+			<div>
+				<script type="text/p5" name="rotation">
+				sprite.rotation = 45;
+			</script>
+			</div>
+			<div>
+				<script type="text/p5" name="speed">
+sprite.direction = 45;
+sprite.speed = cos(frame);
+			</script>
+			</div>
+			<div>
+				<script type="text/p5" name="visible">
+				sprite.visible = false;
+			</script>
+			</div>
+		</div>
+	</div>
+	<div id="page-1" class="page">
+		<div>
+			<h2>Sprite physics</h2>
+			<p>A sprite's collider is used to detect collisions with other sprites.</p>
+			<p>By default, sprites have a dynamic physics collider that allows the sprite to move freely and be affected by
+				gravity.</p>
+			<p>There's another collider type called 'static'. Sprites that have a static collider can't be moved by other
+				sprites and aren't affected by gravity.</p>
+			<p>You might have to replay these mini-sketches to see what happened!</p>
+		</div>
+		<div>
+			<script type="text/p5" name="dynamic and static colliders" base-2 horiz lines="16">
+let ball, floor;
+
+function setup() {
+	createCanvas(200, 200);
+	world.gravity.y = 10;
+
+	ball = new Sprite();
+	ball.diameter = 50;
+	ball.y = 30;
+
+	floor = new Sprite();
+	floor.collider = 'static';
+	floor.y = 190;
+	floor.w = 400;
+	floor.h = 5;
+}
+
+function draw() {
+	clear();
+}
+					</script>
+		</div>
+		<div class="minis">
+			<div>
+				<script type="text/p5" name="bounciness" base="2">
+// scale of 0 to 1
+ball.bounciness = 1;
+						</script>
+			</div>
+			<div>
+				<script type="text/p5" name="sloped floor" base="2">
+floor.rotation = 2;
+						</script>
+			</div>
+		</div>
+
+		<div class="minis">
+			<div>
+				<script type="text/p5" name="anti-gravity" base="2">
+world.gravity.y = -1;
+						</script>
+			</div>
+			<div>
+				<script type="text/p5" name="whoops!" base="2">
+ball.collider = 'static';
+floor.collider = 'dynamic';
+						</script>
+			</div>
+		</div>
+	</div>
+	<div id="page-2" class="page">
+		<div>
+			<h2>Sprite movement</h2>
+			<p>There are a few ways to move a sprite. Note that directly changing a sprite's position teleports it.
+			</p>
+			<p>If you want a sprite to interact with other sprites while it's moving, change
+				the sprite's x/y velocity, speed/direction, or use the move or moveTowards methods.</p>
+			<p>Remember the p5.js setup function only runs once at the beginning of your sketch so move sprites in draw!
+			</p>
+			<p>Use your mouse to interact with these mini-sketches!</p>
+		</div>
+		<script type="text/p5" name="idle player" lines="11" base-3>
+let player, block;
+
+function setup() {
+	createCanvas(500, 100);
+
+	player = new Sprite();
+	player.diameter = 50;
+	player.x = 400;
+
+	block = new Sprite();
+}
+
+function draw() {
+	clear();
+}
+		</script>
+		<script type="text/p5" name="teleport" base="3">
+if (mouse.pressed()) {
+	player.x = mouse.x;
+	player.y = mouse.y;
+}
+		</script>
+		<script type="text/p5" name="velocity" base="3">
+if (kb.pressing('a')) player.vel.x = -5;
+else if (kb.pressing('d')) player.vel.x = 5;
+else player.vel.x = 0;
+		</script>
+		<script type="text/p5" name="moveTowards" base="3">
+player.moveTowards(mouse.x, mouse.y);
+				</script>
+		<script type="text/p5" name="move" base="3">
+if (mouse.held()) {
+	player.move(mouse.x, mouse.y, 8);
+}
+		</script>
+	</div>
+	<div id="page-3" class="page">
+		<div>
+			<h2>Create Sprites faster</h2>
+			<p>Inside the Sprite constructor, <code>new Sprite()</code>, you can specify the sprite's position, size, and
+				collider
+				type.</p>
+			<p>As you saw on the first Sprite reference page, adding these inputs to the constructor is optional. But, if you
+				do want to set a sprite's size in the constructor you'll need to specify its position first.</p>
+			<p>
+				By default, if no inputs are given to the Sprite constructor, new sprites are positioned at the center of the
+				canvas, with a width and height of 50 pixels, and a dynamic collider.
+			</p>
+			<script type="text/p5" name="default sprite" lines="3" horiz>
+function setup() {
+	new Sprite();
+}
+
+function draw() {
+	clear();
+}
+					</script>
+		</div>
+		<div class="minis horiz">
+			<script type="text/p5" name="Ooo!" horiz lines="18">
+let box, circle;
+
+function setup() {
+	createCanvas(50, 200);
+	world.gravity.y = 10;
+
+	//             	( x,  y,  w,  h, collider)
+	box = new Sprite(25, 70, 10, 90, 'static');
+	// same as setting the values separately
+	// box.x = 25;
+	// box.y = 60;
+	// box.width = 10;
+	// box.height = 90;
+	// box.collider = 'static';
+
+	// 					 	     ( x,   y,  d, collider)
+	circle = new Sprite(25, 140, 10, 'static');
+}
+
+function draw() {
+	clear();
+}
+			</script>
+			<script type="text/p5" name="ball on the floor" lines="10" horiz>
+let ball, floor;
+
+function setup() {
+	createCanvas(80, 160);
+	world.gravity.y = 10;
+	
+	ball = new Sprite(40, 30, 50);
+
+	floor = new Sprite(40, 155, 80, 5, 'static');
+}
+
+function draw() {
+	clear();
+}
+			</script>
+		</div>
+	</div>
+	<div id="page-4" class="page">
+		<div>
+			<h2>Sprite overlap</h2>
+			<p>Sprites collide by default but they can also overlap!</p>
+		</div>
+		<script type="text/p5" name="overlap" horiz lines="8">
+function setup() {
+	createCanvas(200, 128);
+
+	sprite1 = new Sprite(90, 50);
+	sprite2 = new Sprite(115, 75);
+
+	sprite1.overlap(sprite2);
+}
+
+function draw() {
+	clear();
+}
+		</script>
+		<script type="text/p5" name="pillar stomp!" horiz>
+let player, pillar;
+
+function setup() {
+	createCanvas(60, 480);
+	world.gravity.y = 10;
+
+	pillar = new Sprite(30, 480, 30, 720, 'static');
+
+	player = new Sprite(30, 0, 50);
+
+	player.collide(pillar, stomp);
+}
+
+function stomp() {
+	if (player.vel.y < -0.9) {
+		pillar.h -= 52;
+	}
+}
+
+function draw() {
+	clear();
+	if (mouse.pressed()) {
+		player.vel.y = -5;
+	}
+}
+		</script>
+		<script type="text/p5" name="overlap collect">
+let player, coin;
+
+function setup() {
+	createCanvas(500, 100);
+
+	coin = new Sprite(400, 50, 30);
+	coin.shapeColor = 'yellow';
+
+	player = new Sprite(50, 50);
+	
+	player.overlap(coin, () => coin.remove());
+}
+
+function draw() {
+	clear();
+	if (mouse.isOnCanvas) {
+		player.moveTowards(mouse.x, mouse.y);
+	}
+}
+		</script>
+	</div>
+	<div id="page-5" class="page">
+		<div>
+			<h2>Chain and Polygon Colliders</h2>
+			<p>In addition to rectangle and circle colliders you can also make chains of lines and polygons!</p>
+			<p>Chains can be made with a list of vertexes or with line lengths and angles.</p>
+			<p>Examples coming soon!</p>
+		</div>
+	</div>
+
+	<div class="break"></div>
+	<nav id="pageNav"></nav>
+	<div class="break"></div>
+	<footer class="text-small">
+		Created by Quinton Ashley (@quinton-ashley) Copyright 2022.
+	</footer>
+
+	<script src="ref.js"></script>
+	<script src="p5-mini.js"></script>
+</body>
+
+</html>

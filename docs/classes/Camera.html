@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Camera - p5.play</title>
+    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/css/lucid.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+</head>
+<body class="yui3-skin-sam">
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">
+	    <img alt="p5.play" src="../../favicon.ico" style="max-height: 65%;" title="p5.play">
+            p5.play
+        </h1>
+	<div class="nav">
+            <li class="divider-vertical"></li>
+            <li>
+                <p class="navbar-text">
+                    API Docs for Version: <b>3</b>
+                </p>
+            </li>
+        </div>
+        <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/Camera", "classes/Group", "classes/p5.play", "classes/Sprite", "classes/SpriteAnimation"]'>
+        </form>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="span3">
+<div>
+    <div id="sidebar">
+    <div id="classes">
+        <ul id="api-classes" class="nav nav-list">
+                <li><a href="../classes/Camera.html">Camera</a></li>
+                <li><a href="../classes/Group.html">Group</a></li>
+                <li><a href="../classes/p5.play.html">p5.play</a></li>
+                <li><a href="../classes/Sprite.html">Sprite</a></li>
+                <li><a href="../classes/SpriteAnimation.html">SpriteAnimation</a></li>
+        </ul>
+    </div>
+    </div>
+</div>
+        </div>
+        <div class="span9">
+    <form id="options-form" class="form-inline pull-right">
+        Show:
+        <label for="api-show-inherited" class="checkbox">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected" class="checkbox">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private" class="checkbox">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated" class="checkbox">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </form>
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+<div class="page-header">
+    <h1>Camera</h1>
+</div>
+
+
+
+
+
+
+<div class="yuidoc-class-description">
+<p>A camera facilitates scrolling and zooming for scenes extending beyond
+the canvas. A camera has a position, a zoom factor, and the mouse
+coordinates relative to the view.
+The camera is automatically created on the first draw cycle.</p>
+<p>In p5.js terms the camera wraps the whole drawing cycle in a
+transformation matrix but it can be disable anytime during the draw
+cycle for example to draw interface elements in an absolute position.</p>
+
+</div>
+
+<!-- table of contents -->
+
+<div id="class-toc" class="page-section">
+	<h2>Table of Contents</h2>
+    <ul>
+		<li>
+			<strong>Methods</strong>
+			<ul>
+				<li class=""><a href="#method-off"><span class="im">off</span>()</a></li>
+				<li class=""><a href="#method-on"><span class="im">on</span>()</a></li>
+			</ul>
+		</li>
+
+		<li>
+			<strong>Properties</strong>
+			<ul>
+				<li class=""><a href="#prop-active"><span class="ip">active</span></a></li>
+				<li class=""><a href="#prop-mouse"><span class="ip">mouse</span></a></li>
+				<li class="deprectated"><a href="#prop-position"><span class="ip">position</span></a></li>
+				<li class=""><a href="#prop-zoom"><span class="ip">zoom</span></a></li>
+			</ul>
+		</li>
+
+
+	</ul>
+</div>
+
+<!-- details -->
+
+    <div class="constructor yuidoc-class-constructor page-section">
+        <h2>Constructor</h2>
+        <div class="item-list">
+<div id="method-Camera" class="method item ">
+	<div class="method-signature">
+	<span class="name"><code>Camera</code></span>
+
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+				<li class="arg">
+						<code>x</code>
+				</li>
+				<li class="arg">
+						<code>y</code>
+				</li>
+				<li class="arg">
+						<code>zoom</code>
+				</li>
+			</ul><span class="paren">)</span>
+		</div>
+	</div>
+
+
+
+
+
+
+	<div class="meta">
+				<p>
+				Defined in
+		<a href="../files/v3_p5.play.js.html#l3359"><code>v3&#x2F;p5.play.js:3359</code></a>
+		</p>
+
+
+
+	</div>
+
+
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+				<li class="param">
+						<code class="param-name">x</code>
+						<span class="type">Number</span>
+
+
+					<div class="param-description"><p>Initial x coordinate</p>
+</div>
+
+				</li>
+				<li class="param">
+						<code class="param-name">y</code>
+						<span class="type">Number</span>
+
+
+					<div class="param-description"><p>Initial y coordinate</p>
+</div>
+
+				</li>
+				<li class="param">
+						<code class="param-name">zoom</code>
+						<span class="type">Number</span>
+
+
+					<div class="param-description"><p>magnification</p>
+</div>
+
+				</li>
+			</ul>
+		</div>
+
+
+</div>
+        </div>
+    </div>
+
+    <div id="methods" class="page-section">
+        <h2 class="off-left">Methods</h2>
+        <div class="item-list">
+<div id="method-off" class="method item ">
+	<div class="method-signature">
+	<span class="name"><code>off</code></span>
+
+		<span class="paren">()</span>
+	</div>
+
+
+
+
+
+
+	<div class="meta">
+				<p>
+				Defined in
+		<a href="../files/v3_p5.play.js.html#l3482"><code>v3&#x2F;p5.play.js:3482</code></a>
+		</p>
+
+
+
+	</div>
+
+	<div class="description"><p>Deactivates the camera.
+The canvas will be drawn normally, ignoring the camera's position
+and scale until camera.on() is called</p>
+</div>
+
+
+
+</div>
+<div id="method-on" class="method item ">
+	<div class="method-signature">
+	<span class="name"><code>on</code></span>
+
+		<span class="paren">()</span>
+	</div>
+
+
+
+
+
+
+	<div class="meta">
+				<p>
+				Defined in
+		<a href="../files/v3_p5.play.js.html#l3468"><code>v3&#x2F;p5.play.js:3468</code></a>
+		</p>
+
+
+
+	</div>
+
+	<div class="description"><p>Activates the camera.
+The canvas will be drawn according to the camera position and scale until
+camera.off() is called</p>
+</div>
+
+
+
+</div>
+        </div>
+    </div>
+
+    <div id="properties" class="page-section">
+        <h2 class="off-left">Properties</h2>
+
+        <div class="item-list">
+<div id="prop-active" class="property item ">
+    <h3 class="name"><code>active</code></h3>
+    <span class="type">Boolean</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l3429"><code>v3&#x2F;p5.play.js:3429</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>True if the camera is active.
+Read only property. Use the methods Camera.on() and Camera.off()
+to enable or disable the camera.</p>
+
+    </div>
+
+
+
+</div>
+<div id="prop-mouse" class="property item ">
+    <h3 class="name"><code>mouse</code></h3>
+    <span class="type">Object</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l3415"><code>v3&#x2F;p5.play.js:3415</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>Get the translated mouse position relative to the camera view.
+Offsetting and scaling the canvas will not change the sprites' position
+nor the mouseX and mouseY variables. Use this property to read the mouse
+position if the camera moved or zoomed.</p>
+
+    </div>
+
+
+
+</div>
+<div id="prop-position" class="property item deprectated">
+    <h3 class="name"><code>position</code></h3>
+    <span class="type">Unknown</span>
+
+        <span class="flag deprecated">deprecated</span>
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l3380"><code>v3&#x2F;p5.play.js:3380</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>Camera position.</p>
+
+    </div>
+
+
+
+</div>
+<div id="prop-zoom" class="property item ">
+    <h3 class="name"><code>zoom</code></h3>
+    <span class="type">Number</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l3403"><code>v3&#x2F;p5.play.js:3403</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>Camera zoom.</p>
+<p>A scale of 1 will be the normal size. Setting it to 2 will
+make everything twice the size. .5 will make everything half
+size.</p>
+
+    </div>
+
+
+
+</div>
+        </div>
+    </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/jquery/jquery-1.8.2.min.js"></script>
+<script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script src="../assets/js/yuidoc-bootstrap.js"></script>
+<script>prettyPrint();</script>
+</body>
+</html>

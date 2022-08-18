@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>p5.play : Group</title>
+	<link rel="icon" href="../favicon.png" />
+	<link rel="stylesheet" href="p5-mini.css" />
+	<link rel="stylesheet" href="style.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.2/p5.js"></script>
+	<script src="../v3/planck.js"></script>
+	<script src="../v3/p5.play.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.8.1/ace.min.js"></script>
+</head>
+
+<body>
+	<nav id="topNav">
+		<a href="../index.html" class="active"><img src="../logo.svg" class="logo">p5.play</a>
+		<span>:</span>
+		<a href="sprite.html">Sprite</a>
+		<a href="group.html" class="active">Group</a>
+		<a href="sprite_animation.html">SpriteAnimation</a>
+		<a href="tiles.html">Tiles</a>
+		<a href="camera.html">Camera</a>
+	</nav>
+	<div class="top break"></div>
+	<div id="page-0" class="page">
+		<div>
+			<h2>What is a Group?</h2>
+			<p>
+				In p5.play a Group is an array of sprites with similar traits and
+				behaviors. For example the dots in Pac-Man!
+			</p>
+			<p>
+				In the "dots" mini example, each new dots sprite inherits the
+				dots group shape color, which is set to yellow.
+			</p>
+		</div>
+		<script type="text/p5" name="dots" lines="12" base-0>
+let dots;
+
+function setup() {
+	createCanvas(500, 50);
+
+	dots = new Group();
+	dots.shapeColor = 'yellow';
+	
+	for (let i = 0; i < 26; i++) {
+		new dots.Sprite(i * 20, 25, 10);
+	}
+}
+
+function draw() {
+	clear();
+}
+		</script>
+		<div>
+			<p>
+				You can access a sprite in a group by index just like with standard
+				JavaScript arrays.
+			</p>
+		</div>
+		<script type="text/p5" name="green dot" base="0">
+dots[5].shapeColor = 'green';
+		</script>
+		<div>
+			<p>
+				Changing the property of a group will change that property
+				for all of the sprites in the group.
+			</p>
+		</div>
+		<script type="text/p5" name="green dots" base="0">
+dots.shapeColor = 'green';
+		</script>
+		<div>
+			<p>
+				You can even move all the sprites in a group at the same time!
+			</p>
+		</div>
+		<script type="text/p5" name="moving dots" base="0">
+dots.moveTowards(null, mouse.y);
+		</script>
+	</div>
+	<div id="page-1" class="page">
+		<div>
+			<h2>Property functions</h2>
+			<p>When you set a sprite property in a group with a function, each new sprite created using that group will use
+				the function to evaluate the property.</p>
+		</div>
+		<script type="text/p5" name="throw gems" horiz>
+let player, gems;
+
+function setup() {
+	createCanvas(160, 352);
+
+	gems = new Group();
+	gems.diameter = 10;
+	gems.x = () => random(0, width);
+	gems.y = () => random(0, height);
+	gems.amount = 80;
+
+	player = new Sprite();
+}
+
+function draw() {
+	clear();
+	player.moveTowards(mouse.x, mouse.y);
+}
+		</script>
+		<div>
+			<p>When evaluating a group sprite's property you can even use its index.</p>
+			<p>i is the index of the sprite in the group, it's the input parameter given to group property functions when
+				they are evaluated.</p>
+		</div>
+		<!-- <script type="text/p5" name="doors">
+let doors;
+
+function setup() {
+	createCanvas(500, 150);
+
+	doors = new Group();
+	doors.height = (i) => i * 55;
+	doors.amount = 80;
+}
+
+function draw() {
+	clear();
+}
+		</script> -->
+		<script type="text/p5" name="doors">
+let doors, rail;
+
+function setup() {
+	createCanvas(500, 150);
+
+	doors = new Group();
+	doors.x = (i) => i * 55;
+	doors.y = (i) => 100 - i * 5;
+	doors.height = 100;
+	doors.amount = 80;
+
+	rail = new Sprite(250, 20, 500, 5);
+	rail.shapeColor = 'grey';
+	rail.rotation = -5;
+}
+
+function draw() {
+	clear();
+}
+		</script>
+	</div>
+	<div id="page-2" class="page">
+		<div>
+			<h2>Group overlap</h2>
+		</div>
+		<script type="text/p5" name="collect gems" horiz>
+let player, gems;
+
+function setup() {
+	createCanvas(160, 456);
+
+	gems = new Group();
+	gems.diameter = 10;
+	gems.x = () => random(0, width);
+	gems.y = () => random(0, height);
+	gems.amount = 80;
+
+	player = new Sprite();
+
+	player.overlap(gems, collect);
+}
+
+function collect(player, gem) {
+	gem.remove();
+}
+
+function draw() {
+	clear();
+	player.moveTowards(mouse.x, mouse.y);
+}
+			</script>
+	</div>
+
+	<div class="break"></div>
+	<nav id="pageNav"></nav>
+	<div class="break"></div>
+	<footer class="text-small">
+		Created by Quinton Ashley (@quinton-ashley) Copyright 2022.
+	</footer>
+
+	<script src="ref.js"></script>
+	<script src="p5-mini.js"></script>
+</body>
+
+</html>

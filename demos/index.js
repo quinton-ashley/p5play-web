@@ -1,0 +1,173 @@
+const p5functions = [
+	'preload',
+	'setup',
+	'draw',
+	'keyPressed',
+	'keyReleased',
+	'keyTyped',
+	'mouseMoved',
+	'mouseDragged',
+	'mousePressed',
+	'mouseReleased',
+	'mouseClicked',
+	'touchStarted',
+	'touchMoved',
+	'touchEnded'
+];
+
+let editor;
+let myP5 = document.getElementById('myP5');
+let sketch;
+
+function playCode(code, elem) {
+	function s(p) {
+		for (let f of p5functions) {
+			code = code.replace('function ' + f + '()', 'p.' + f + ' = function()');
+		}
+		with (p) eval(code);
+	}
+	elem.innerHTML = ''; // avoid duplicate canvases
+	return new p5(s, elem);
+}
+
+function playEditor() {
+	if (sketch) sketch.remove();
+	sketch = playCode(editor.getValue(), myP5);
+}
+
+function startMain() {
+	ace.config.set('basePath', 'https://cdnjs.cloudflare.com/ajax/libs/ace/1.8.1/');
+	editor = ace.edit('editor');
+	editor.session.on('changeMode', function (e, session) {
+		if ('ace/mode/javascript' === session.getMode().$id) {
+			if (!!session.$worker) {
+				session.$worker.send('setOptions', [
+					{
+						esversion: 11,
+						esnext: false
+					}
+				]);
+			}
+		}
+	});
+	editor.session.setMode('ace/mode/javascript');
+	editor.setTheme('ace/theme/xcode');
+	editor.getSession().setMode('ace/mode/javascript');
+	editor.getSession().setUseWrapMode(true);
+	//editor.setHighlightActiveLine(false);
+	editor.renderer.setShowPrintMargin(false);
+	//editor.renderer.setShowGutter(false);
+	//editor.gotoLine(0);
+	// editor.setAutoScrollEditorIntoView(true);
+	editor.setOptions({
+		maxLines: 28,
+		tabSize: 2
+	});
+}
+
+let args = {};
+{
+	let params = new URLSearchParams(location.href.split('?')[1]);
+	for (let pair of params.entries()) {
+		args[pair[0]] = pair[1];
+	}
+}
+
+let examples = {
+	Sprites: {
+		creation: 'creation',
+		appearance: 'appearance',
+		spritesheets: 'sprite sheets',
+		movements: 'movements',
+		life: 'lifespan and visibility',
+		layer: 'layer and drawing order',
+		groups: 'groups',
+		customDraw: 'custom draw function'
+	},
+	Animation: {
+		aniImages: 'image based',
+		aniSpriteSheet: 'sprite sheet based',
+		changeAni: 'change animation',
+		aniControl: 'control'
+	},
+	Physics: {
+		collisions: 'collide, overlap, displace',
+		groupCollisions: 'group collisions and events',
+		customColliders: 'custom colliders',
+		bounces: 'bounces',
+		collisions5: 'point and pixel overlap [TODO]',
+		displace: 'group displacement',
+		pickup: 'pickup',
+		culling: 'culling offscreen sprites'
+	},
+	'User Input': {
+		mouseEvents: 'mouse events on sprites',
+		keyPresses: 'keyboard and mouse input'
+	},
+	Camera: {
+		camera: 'using the virtual camera',
+		mouseCamera: 'mouse events with camera'
+	},
+	Advanced: {
+		ballPit: 'ball pit',
+		drop: 'drop',
+		hourglass: 'hourglass',
+		tumbler: 'tumbler'
+	},
+	Shapes: {
+		hexagon: 'hexagon',
+		polygons: 'polygons',
+		star: 'star'
+	},
+	Tests: {
+		tunneling: 'tunneling',
+		slowBounce: 'slow bounce',
+		fullBounce: 'full bounce [BUG]'
+	},
+	Tiles: {
+		tiles: 'tiles [TODO]'
+	},
+	Games: {
+		pong: 'Pong',
+		asteroids: 'Asteroids',
+		breakout: 'Breakout',
+		flappyBird: 'Flappy Bird [TODO]'
+	}
+};
+
+let loc = location.href.includes('index') ? 'index' : 'v3';
+
+let ih = '';
+for (let category in examples) {
+	ih += `<div><h4>${category}</h4>`;
+	for (let name in examples[category]) {
+		let description = examples[category][name];
+		ih += `
+<a class="dropdown-item" role="menuitem" href="${loc}.html?fileName=${name}.js">${description}</a>
+`;
+	}
+	ih += `</div>`;
+}
+let ul = document.getElementById('examples');
+ul.innerHTML += ih;
+
+let originalCode;
+
+$(async () => {
+	let file = args.fileName || 'creation.js';
+	originalCode = `console.log('running ${file}');\n\n`;
+	originalCode += await (await fetch(file)).text();
+	startMain();
+	console.log('example loaded');
+	editor.setValue(originalCode, -1);
+	playEditor();
+});
+
+function undoAllChanges() {
+	editor.setValue(originalCode, -1);
+	playEditor();
+}
+
+function run() {
+	playEditor();
+}
