@@ -1,4 +1,5 @@
 if (typeof window.p5m == 'undefined') window.p5m = {};
+
 ace.config.set('basePath', 'https://cdnjs.cloudflare.com/ajax/libs/ace/1.9.5/');
 ace.config.loadModule('ace/ext/language_tools', function () {
 	const log = console.log;
@@ -62,7 +63,7 @@ ace.config.loadModule('ace/ext/language_tools', function () {
 			}
 
 			let lines = props.lines || 0;
-			if (!lines && !props['no-editor']) {
+			if (!lines) {
 				for (let c of code) {
 					if (c == '\n') lines++;
 				}
@@ -91,21 +92,12 @@ ace.config.loadModule('ace/ext/language_tools', function () {
 			title.append(span);
 			div.append(title);
 
-			if (!props['no-editor'] && props['editor-btn']) {
+			if (props['editor-btn']) {
 				let editBtn = document.createElement('button');
 				editBtn.className = 'p5m-edit';
 				editBtn.innerHTML = '{ }';
 				editBtn.onclick = () => {
-					let ed = document.getElementById('p5m-editor-' + id);
-					let pr = document.getElementById('p5m-preview-' + id);
-					if (ed.style.display == 'none') {
-						ed.style.display = 'block';
-						pr.style.width = 'unset';
-						this.editor.focus();
-					} else {
-						pr.style.width = '100%';
-						ed.style.display = 'none';
-					}
+					this.toggleEditor();
 				};
 				title.append(editBtn);
 			}
@@ -123,13 +115,14 @@ ace.config.loadModule('ace/ext/language_tools', function () {
 			preview.id = 'p5m-preview-' + id;
 			preview.className = 'p5m-preview';
 			main.append(preview);
-			this.preview = preview;
+			this.previewElem = preview;
 
 			let ed = document.createElement('div');
 			ed.id = 'p5m-editor-' + id;
 			ed.className = 'p5m-editor';
 			ed.innerHTML = code;
 			main.append(ed);
+			this.editorElem = ed;
 
 			let editor = ace.edit('p5m-editor-' + id);
 			editor.setOptions({
@@ -170,6 +163,10 @@ ace.config.loadModule('ace/ext/language_tools', function () {
 			this.editor = editor;
 			this.sketch = null;
 
+			if (props['hide-editor']) {
+				this.hideEditor();
+			}
+
 			this.play();
 		}
 
@@ -179,10 +176,31 @@ ace.config.loadModule('ace/ext/language_tools', function () {
 			if (!code.includes('function draw')) {
 				code = p5m.bases[this.base || 0] + code + '}';
 			}
-			this.sketch = playCode(code, this.preview);
+			this.sketch = playCode(code, this.previewElem);
 		}
 
-		reset() {}
+		toggleEditor() {
+			if (this.editorElem.style.display == 'none') {
+				this.showEditor();
+			} else {
+				this.hideEditor();
+			}
+		}
+
+		showEditor() {
+			let ed = this.editorElem;
+			let pr = this.previewElem;
+			ed.style.display = 'block';
+			pr.style.width = 'unset';
+			this.editor.focus();
+		}
+
+		hideEditor() {
+			let ed = this.editorElem;
+			let pr = this.previewElem;
+			pr.style.width = '100%';
+			ed.style.display = 'none';
+		}
 
 		remove() {
 			this.sketch.remove();
