@@ -15,11 +15,9 @@ window.p5m = {
 };
 
 p5m.ready = function () {
-	loadPage();
-
 	let pages = document.getElementsByClassName('page');
-
 	let pageNav = document.getElementById('pageNav');
+
 	for (let i = 0; i < pages.length; i++) {
 		let a = document.createElement('a');
 		a.innerText = i;
@@ -30,23 +28,32 @@ p5m.ready = function () {
 		};
 		pageNav.appendChild(a);
 	}
-};
 
-function loadPage(pageNum) {
-	pageNum = pageNum ?? args.page ?? 0;
-	for (let mini of p5m.minis) {
-		mini.remove();
+	function loadPage(pageNum) {
+		pageNum = pageNum ?? args.page ?? 0;
+
+		for (let i = 0; i < pages.length; i++) {
+			if (i == pageNum) {
+				pageNav.children[i].className = 'active';
+			} else {
+				pageNav.children[i].className = '';
+			}
+		}
+		for (let mini of p5m.minis) {
+			mini.remove();
+		}
+		for (let page of pages) {
+			page.style.display = 'none';
+		}
+		let page = document.getElementById('page-' + pageNum);
+		page.style.display = 'flex';
+		p5m.loadMinis(page);
+		document.body.scrollTop = 0; // for Safari
+		document.documentElement.scrollTop = 0; // Chrome, Firefox, and Opera
 	}
-	let pages = document.getElementsByClassName('page');
-	for (let page of pages) {
-		page.style.display = 'none';
-	}
-	let page = document.getElementById('page-' + pageNum);
-	page.style.display = 'flex';
-	p5m.loadMinis(page);
-	document.body.scrollTop = 0; // for Safari
-	document.documentElement.scrollTop = 0; // Chrome, Firefox, and Opera
-}
+
+	loadPage();
+};
 
 // function setup() {
 // 	noCanvas();
