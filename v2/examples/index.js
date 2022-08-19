@@ -49,15 +49,13 @@ let examples = {
 	}
 };
 
-let loc = location.href.includes('index') ? 'index' : 'v3';
-
 let ih = '';
 for (let category in examples) {
 	ih += `<div><h4>${category}</h4>`;
 	for (let name in examples[category]) {
 		let description = examples[category][name];
 		ih += `
-<a class="dropdown-item" role="menuitem" href="${loc}.html?fileName=${name}.js">${description}</a>
+<a class="dropdown-item" role="menuitem" href="index.html?fileName=${name}.js">${description}</a>
 `;
 	}
 	ih += `</div>`;

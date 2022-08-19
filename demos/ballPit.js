@@ -1,6 +1,4 @@
-let circles;
-let numOfBigCircles = 3;
-let numOfLittleCircles = 150;
+let circles, bigCircles, littleCircles, walls;
 
 function setup() {
 	createCanvas(400, 400);
@@ -21,19 +19,13 @@ function setup() {
 	bigCircles.diameter = 50;
 	bigCircles.mass = PI * 250;
 	bigCircles.speed = 3;
+	bigCircles.amount = 3;
 
 	littleCircles = new circles.Group();
 	littleCircles.diameter = 5;
 	littleCircles.mass = PI * 25;
 	littleCircles.speed = 0;
-
-	for (let i = 0; i < numOfBigCircles; i++) {
-		new bigCircles.Sprite();
-	}
-
-	for (let i = 0; i < numOfLittleCircles; i++) {
-		new littleCircles.Sprite();
-	}
+	littleCircles.amount = 150;
 
 	walls = new Group();
 	walls.collider = 'static';
