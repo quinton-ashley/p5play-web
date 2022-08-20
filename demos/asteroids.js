@@ -59,9 +59,9 @@ function draw() {
 		if (s.y > height + MARGIN) s.y = -MARGIN;
 	}
 
-	if (keyIsDown('a')) ship.rotation -= 5;
-	if (keyIsDown('d')) ship.rotation += 5;
-	if (keyIsDown('w')) {
+	if (kb.pressing('a')) ship.rotation -= 5;
+	if (kb.pressing('d')) ship.rotation += 5;
+	if (kb.pressing('w')) {
 		ship.addSpeed(0.2, ship.rotation);
 		ship.ani = 'thrust';
 	} else {

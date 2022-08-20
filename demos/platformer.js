@@ -74,9 +74,9 @@ function draw() {
 		player.ani = 'walk';
 	}
 
-	if (keyIsDown('a')) {
+	if (kb.pressing('a')) {
 		player.vel.x = -2;
-	} else if (keyIsDown('d')) {
+	} else if (kb.pressing('d')) {
 		player.vel.x = 2;
 	} else {
 		player.vel.x = 0;

@@ -32,8 +32,8 @@ function draw() {
 	//if no arrow input set velocity to 0
 	triangle.vel.x = 0;
 
-	if (keyIsDown(LEFT_ARROW)) triangle.vel.x = -5;
-	if (keyIsDown(RIGHT_ARROW)) triangle.vel.x = 5;
+	if (kb.pressing(LEFT_ARROW)) triangle.vel.x = -5;
+	if (kb.pressing(RIGHT_ARROW)) triangle.vel.x = 5;
 
 	//instead of checking the colliders or bounding box overlaps
 	//I can just check a point against a collider

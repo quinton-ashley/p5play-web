@@ -64,6 +64,6 @@ function draw() {
 	// up and down keys to change the scale
 	// note that scaling the image quality deteriorates
 	// and scaling to a negative value flips the image
-	if (keyIsDown('ArrowUp')) ghost.scale += 0.05;
-	if (keyIsDown('ArrowDown')) ghost.scale -= 0.05;
+	if (kb.pressing('ArrowUp')) ghost.scale += 0.05;
+	if (kb.pressing('ArrowDown')) ghost.scale -= 0.05;
 }

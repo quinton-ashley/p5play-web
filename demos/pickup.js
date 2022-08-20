@@ -29,9 +29,9 @@ function draw() {
 		count = 0;
 	}
 
-	if (keyIsDown('ArrowLeft')) {
+	if (kb.pressing('ArrowLeft')) {
 		player.vel.x = -10;
-	} else if (keyIsDown('ArrowRight')) {
+	} else if (kb.pressing('ArrowRight')) {
 		player.vel.x = 10;
 	} else {
 		player.vel.x = 0;
