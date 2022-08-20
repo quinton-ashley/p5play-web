@@ -95,7 +95,6 @@ let examples = {
 		groupCollisions: 'group collisions and events',
 		customColliders: 'custom colliders',
 		bounces: 'bounces',
-		collisions5: 'point and pixel overlap [TODO]',
 		displace: 'group displacement',
 		pickup: 'pickup',
 		culling: 'culling offscreen sprites'
@@ -112,7 +111,8 @@ let examples = {
 		ballPit: 'ball pit',
 		drop: 'drop',
 		hourglass: 'hourglass',
-		tumbler: 'tumbler'
+		tumbler: 'tumbler',
+		groupOrbit: 'group orbit'
 	},
 	Shapes: {
 		hexagon: 'hexagon',
@@ -120,12 +120,12 @@ let examples = {
 		star: 'star'
 	},
 	Tests: {
-		tunneling: 'tunneling',
-		slowBounce: 'slow bounce',
-		fullBounce: 'full bounce [BUG]'
-	},
-	Tiles: {
-		tiles: 'tiles [TODO]'
+		tunneling: 'tunneling [FIXED]',
+		slowBounce: 'slow bounce [FIXED]',
+		fullBounce: 'full bounce [BUG]',
+		moveOrbit: 'move orbit [BUG]',
+		tiles: 'tiles displace [TODO]',
+		collisions5: 'custom colliders [TODO]'
 	},
 	Games: {
 		pong: 'Pong',

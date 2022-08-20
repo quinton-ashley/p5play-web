@@ -17,7 +17,7 @@ p5.prototype.registerMethod('init', async function p5PlayWebInit() {
 
 	// redirect to the home page
 	if (!user || (!title && !sketch)) {
-		window.location.replace('home.html');
+		window.location.replace('index.html');
 	}
 
 	title ??= sketch;
