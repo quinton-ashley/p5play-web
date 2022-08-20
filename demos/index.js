@@ -104,10 +104,7 @@ let examples = {
 		drop: 'drop',
 		hourglass: 'hourglass',
 		tumbler: 'tumbler',
-		groupOrbit: 'group orbit'
-	},
-	Shapes: {
-		hexagon: 'hexagon',
+		groupOrbit: 'group orbit',
 		polygons: 'polygons',
 		star: 'star'
 	},

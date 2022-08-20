@@ -94,9 +94,9 @@ function draw() {
 	// character on the top
 	ghost.draw();
 
-	// I can turn on and off the camera at any point to restore
-	// the normal drawing coordinates, the frame will be drawn at
-	// the absolute 0,0 (try to see what happens if you don't turn it off
+	// you can turn on and off the camera at any point in draw to restore
+	// the normal drawing coordinates, the frame will be drawn at 0,0
+	// try to see what happens if you don't turn it off
 	camera.off();
 
 	image(frame, 0, 0);
