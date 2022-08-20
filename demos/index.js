@@ -74,19 +74,11 @@ let args = {};
 }
 
 let examples = {
-	Sprites: {
+	Basic: {
 		creation: 'creation',
 		appearance: 'appearance',
-		spritesheets: 'sprite sheets',
-		movements: 'movements',
-		life: 'lifespan and visibility',
-		layer: 'layer and drawing order',
+		layer: 'layer',
 		groups: 'groups',
-		customDraw: 'custom draw function'
-	},
-	Animation: {
-		aniImages: 'image based',
-		aniSpriteSheet: 'sprite sheet based',
 		changeAni: 'change animation',
 		aniControl: 'control'
 	},
@@ -131,7 +123,8 @@ let examples = {
 		pong: 'Pong',
 		asteroids: 'Asteroids',
 		breakout: 'Breakout',
-		flappyBird: 'Flappy Bird [TODO]'
+		flappyBird: 'Flappy Bird [TODO]',
+		platformer: 'platformer'
 	}
 };
 

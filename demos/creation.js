@@ -1,12 +1,15 @@
-// Welcome to the p5.play Version 3 examples!
+// Welcome to the p5.play Version 3 demos!
 
-// In this first example I'll explain the basics of p5.js and p5.play.
+// Please look at the reference documentation on the learn section of
+// the website first: https://p5play.org/learn/sprite.html
+
+// In this first demo I'll explain the basics of p5.js and p5.play.
 
 // You can edit this file and press Play to restart the program with
 // your changes. You don't have to wait for the code to compile or load.
 // That's the beauty of JavaScript!
 
-// p5.js runs this async function one time when its ready to start your program
+// p5.js runs this function one time when its ready to start your program
 function setup() {
 	createCanvas(800, 400);
 }

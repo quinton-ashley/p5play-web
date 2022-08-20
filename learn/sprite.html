@@ -383,10 +383,62 @@ function draw() {
 	<div id="page-5" class="page">
 		<div>
 			<h2>Chain and Polygon Colliders</h2>
+			<!-- <p style="font-style: italic;">Level 2 reference</p> -->
 			<p>In addition to rectangle and circle colliders you can also make chains of lines and polygons!</p>
 			<p>Chains can be made with a list of vertexes or with line lengths and angles.</p>
 			<p>Examples coming soon!</p>
 		</div>
+	</div>
+	<div id="page-6" class="page">
+		<div>
+			<h2>Custom draw</h2>
+			<!-- <p style="font-style: italic;">Level 2 reference</p> -->
+			<p>
+				Sometimes you won't be able to use pre-drawn animations to get
+				the kind of visual effect you want for a sprite in motion.
+			</p>
+			<p>
+				Fortunately, you can customize the sprite's <code>draw</code> function
+				and make it display anything you want!
+			</p>
+			<p>
+				Note that inside the sprite's draw function the center of the sprite
+				is translated to position (0, 0).
+			</p>
+			<p>
+				This mini example rotates the sprite's ellipse to the direction it's moving and makes the ellipse stretch in
+				that direction
+				proportional to it's speed. Kind of complicated!
+			</p>
+		</div>
+		<script type="text/p5" name="custom draw">
+let face, stretchy;
+
+function setup() {
+	createCanvas(500, 200);
+	noStroke();
+
+	face = loadImage('assets/face.png');
+	stretchy = new Sprite(400, 200, 10, 10);
+	
+	stretchy.draw = () => {
+		fill(237, 205, 0);
+
+		push();
+		rotate(stretchy.direction);
+		ellipse(0, 0, 100 + stretchy.speed, 100 - stretchy.speed);
+		pop();
+
+		image(face, stretchy.vel.x * 2, stretchy.vel.y * 2);
+	};
+}
+
+function draw() {
+	clear();
+	stretchy.moveTowards(mouse.x, mouse.y, 0.07);
+}
+//
+				</script>
 	</div>
 
 	<div class="break"></div>

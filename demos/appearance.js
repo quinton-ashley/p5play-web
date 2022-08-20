@@ -11,7 +11,7 @@ function preload() {
 	box.shapeColor = color(222, 125, 2);
 
 	asterisk = new Sprite(300, 150, 110); // circle with diameter of 110
-	asterisk.addAni('assets/asterisk.png');
+	asterisk.addImg('assets/asterisk.png');
 
 	ghost = new Sprite(500, 150, 60, 128);
 	ghost.addAni('floating', 'assets/ghost_standing0001.png', 7);
@@ -42,7 +42,4 @@ function draw() {
 	// note: frames must be integer numbers so I have to round the result of map
 
 	cloud.ani.changeFrame(frame);
-
-	// show the sprite's physics collider when the mouse is pressed
-	allSprites.debug = mouseIsPressed;
 }
