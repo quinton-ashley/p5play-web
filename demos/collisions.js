@@ -46,5 +46,5 @@ function draw() {
 
 	// if debug is set to true the sprite's physic's body, center,
 	// and layer are visualized
-	allSprites.debug = mouseIsPressed;
+	allSprites.debug = mouse.pressing();
 }

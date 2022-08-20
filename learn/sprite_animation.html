@@ -99,7 +99,7 @@ function draw() {
 		</script>
 		<div>
 			<p>
-				This mini example loads an animation from a sprite sheet, which is an image that contains
+				This mini example loads an animation from a sprite sheet, which is a single image that contains
 				all the frames of an animation. Take a look at the sprite sheet in this sketch which is displayed just so you
 				can
 				see what one looks like.
@@ -138,7 +138,8 @@ function draw() {
 			<p>By default the last animation added to the sprite will be the animation the sprite displays. You can change
 				this by setting <code>sprite.ani</code> to the name of another animation.</p>
 			<p>
-				When the <code>sprite.debug</code> property is set to true you can see the sprite's collider.
+				When the <code>sprite.debug</code> property is set to true you can see the sprite's collider. Try holding the
+				left mouse button.
 			</p>
 		</div>
 		<script type="text/p5" name="sprites with animation" base-0>
@@ -156,7 +157,7 @@ function setup() {
 function draw() {
 	clear();
 	ghost.vel.x = cos(frame);
-	ghost.debug = mouse.pressing();
+	ghost.debug = mouse.holding();
 }
 		</script>
 		<script type="text/p5" name="fly" base="0">

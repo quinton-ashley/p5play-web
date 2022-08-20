@@ -84,7 +84,7 @@ let examples = {
 	},
 	Physics: {
 		collisions: 'collide, overlap, displace',
-		groupCollisions: 'group collisions and events',
+		groupCollisions: 'group collisions',
 		customColliders: 'custom colliders',
 		bounces: 'bounces',
 		displace: 'group displacement',
@@ -117,7 +117,7 @@ let examples = {
 		fullBounce: 'full bounce [BUG]',
 		moveOrbit: 'move orbit [BUG]',
 		tiles: 'tiles displace [TODO]',
-		collisions5: 'custom colliders [TODO]'
+		collisions5: 'polygonal colliders [TODO]'
 	},
 	Games: {
 		pong: 'Pong',

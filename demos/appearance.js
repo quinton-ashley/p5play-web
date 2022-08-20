@@ -31,7 +31,7 @@ function draw() {
 	// accessible from the .animation or .ani properties of the sprite
 
 	// stop/play a sprite animation
-	if (mouseIsPressed) {
+	if (mouse.pressing()) {
 		ghost.ani.stop();
 	} else {
 		ghost.ani.play();

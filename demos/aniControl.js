@@ -35,7 +35,7 @@ function draw() {
 	text(instructions, 20, 20);
 
 	// playing an pausing an animation
-	if (mouseIsPressed) {
+	if (mouse.pressing()) {
 		sleep.play();
 	} else {
 		sleep.stop();
@@ -49,7 +49,7 @@ function draw() {
 
 	// playing backward or forward toward a specific frame
 	// returns to the initial frame if click and hold
-	if (mouseIsPressed) {
+	if (mouse.pressing()) {
 		circle.goToFrame(0);
 	} else {
 		circle.goToFrame(circle.lastFrame);

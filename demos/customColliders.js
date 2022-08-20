@@ -44,5 +44,5 @@ function draw() {
 	// improves the collision resolution
 	circle.moveTowards(mouse.x, mouse.y);
 
-	allSprites.debug = mouseIsPressed;
+	allSprites.debug = mouse.pressing();
 }

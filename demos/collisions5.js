@@ -55,5 +55,5 @@ function draw() {
 	// 	triangle.velocity.y = 0;
 	// }
 
-	allSprites.debug = mouseIsPressed;
+	allSprites.debug = mouse.pressing();
 }

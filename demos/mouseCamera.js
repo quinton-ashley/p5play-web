@@ -53,7 +53,7 @@ function draw() {
 
 	s2.draw();
 
-	if (mouseIsPressed) {
+	if (mouse.pressing()) {
 		camera.rotation += 1;
 	}
 }

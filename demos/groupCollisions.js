@@ -63,5 +63,5 @@ function draw() {
 		asterisk.ani = 'default';
 	}
 
-	allSprites.debug = mouseIsPressed;
+	allSprites.debug = mouse.pressing();
 }

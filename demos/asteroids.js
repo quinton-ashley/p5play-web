@@ -70,7 +70,7 @@ function draw() {
 
 	if (!asteroids.length) text('You won!', width / 2, height / 2);
 
-	allSprites.debug = mouseIsPressed;
+	allSprites.debug = mouse.pressing();
 }
 
 function keyPressed() {
@@ -91,8 +91,8 @@ function createAsteroid(type, x, y) {
 	a.rotationSpeed = random(-1, 1);
 	//a.debug = true; // uncomment to see the colliders
 	a.type = type;
-	if (type == 2) a.scaleBy(0.6);
-	if (type == 1) a.scaleBy(0.3);
+	if (type == 2) a.scale = 0.6;
+	if (type == 1) a.scale = 0.3;
 	a.mass = 2 + 0.3 * type;
 	return a;
 }

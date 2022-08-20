@@ -56,5 +56,5 @@ function draw() {
 	asterisk.moveTowards(mouse.x, mouse.y, 0.1);
 	// 1 represents 1:1 tracking, the mouse moves to the destination immediately, 0 represents no tracking
 
-	allSprites.debug = mouseIsPressed;
+	allSprites.debug = mouse.pressing();
 }
