@@ -314,6 +314,14 @@ function draw() {
 	</div>
 	<div id="page-4" class="page">
 		<div>
+			<h2>spriteArt</h2>
+			<p>
+				coming soon!
+			</p>
+		</div>
+	</div>
+	<div id="page-5" class="page">
+		<div>
 			<h2>Sprite overlap</h2>
 			<p>Sprites collide by default but they can also overlap!</p>
 		</div>
@@ -380,7 +388,7 @@ function draw() {
 }
 		</script>
 	</div>
-	<div id="page-5" class="page">
+	<div id="page-6" class="page">
 		<div>
 			<h2>Chain Colliders</h2>
 			<!-- <p style="font-style: italic;">Level 2 reference</p> -->
@@ -410,13 +418,18 @@ function draw() {
 		</script>
 		<div>
 			<p>
-				You can also make chains using a list of points (vertexes).
+				You can also make chains using a list of points (vertices).
 			</p>
 			<p>
 				By default a chain's x and y position is
 				located at the center of the chain, just like with other collider shapes. Although, when making a chain using
-				vertexes you may find it useful to have the chain start at the chain's (x,y) position. You can do this by
-				changing the <code>p5play.chainMode</code> property to "start", the default is "center".
+				vertices you may find it useful to have the chain start at the chain's (x,y) position. You can do this by
+				changing the <code>p5play.chainOrigin</code> property from the default "center" to "start". The chain's vertices
+				are "relative" to the chain's origin but you can also change the <code>p5play.chainPoints</code> property to
+				"absolute".
+			</p>
+			<p>
+				Try changing this chain's position so the ball can roll on it!
 			</p>
 		</div>
 		<script type="text/p5" name="vertex list" lines="11">
@@ -424,7 +437,7 @@ function draw() {
 	createCanvas(500, 200);
 	world.gravity.y = 10;
 
-	p5play.chainMode = 'start';
+	p5play.chainOrigin = 'start';
 
 	//        (  x,   y, [point0, point1, ...])
 	new Sprite(250, 100, [[200, 20], [400, 100]], 'static');
@@ -439,19 +452,22 @@ function draw() {
 }
 		</script>
 	</div>
-	<div id="page-6" class="page">
+	<div id="page-7" class="page">
 		<div>
 			<h2>Polygon Colliders</h2>
-			<p></p>
+			<p>
+				If the start and end of a chain is at the same point it automatically becomes a polygon collider!
+			</p>
+			<p>
+				The easiest way to make regular polygons like a Hexagon is with a list of line lengths and angles with a repeat.
+			</p>
 		</div>
-		<script type="text/p5" name="hexagon">
+		<script type="text/p5" name="hexagon" lines="6">
 function setup() {
 	createCanvas(500, 200);
-	
-	let x = width * 0.5;
-	let y = height * 0.5;
-	//           [length,  angle, repeat]
-	new Sprite(x, y, [80, 360 / 6, 6]);
+
+	//        ( x,  y, [length, angle, repeat])
+	new Sprite(250, 100, [80, 360 / 6, 6]);
 }
 	
 function draw() {
@@ -459,7 +475,7 @@ function draw() {
 }
 </script>
 	</div>
-	<div id="page-7" class="page">
+	<div id="page-8" class="page">
 		<div>
 			<h2>Custom draw</h2>
 			<!-- <p style="font-style: italic;">Level 2 reference</p> -->

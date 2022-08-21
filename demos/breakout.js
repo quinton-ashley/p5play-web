@@ -62,7 +62,7 @@ function draw() {
 
 	if (mouse.pressed()) {
 		// start or restart the game
-		bricks.removeAll();
+		bricks.remove();
 
 		new Tiles(
 			[

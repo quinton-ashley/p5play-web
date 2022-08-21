@@ -100,7 +100,7 @@ function die() {
 }
 
 function newGame() {
-	pipes.removeSprites();
+	pipes.remove();
 	gameOver = false;
 	updateSprites(true);
 	bird.position.x = width / 2;

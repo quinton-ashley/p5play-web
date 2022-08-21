@@ -119,8 +119,8 @@ function gameOver() {
 	text('Game Over!', width / 2, height / 2);
 
 	if (frameCount >= gameOverFrame + 60) {
-		asteroids.removeAll();
-		lasers.removeAll();
+		asteroids.remove();
+		lasers.remove();
 		startNewGame();
 	}
 

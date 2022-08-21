@@ -36,7 +36,7 @@ function makePoly() {
 }
 
 function mousePressed() {
-	allSprites.removeAll();
+	allSprites.remove();
 
 	// 12 is the maximum number of sides a polygon
 	// can have in planck.js

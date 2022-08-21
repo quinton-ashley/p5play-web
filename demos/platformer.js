@@ -1,8 +1,10 @@
 // Creating sprite using sprite sheets for animation
 
+let instructions = 'This one is a bit tricky! Use wasd to move and jump.';
+
 let mouse_moved = false;
 let touch_started = false;
-let tiles, explosion, player;
+let tileFrames, tiles, signs, ground, fakeGround, exit, exitSign, explosion, player;
 
 function preload() {
 	width = 800;
@@ -41,23 +43,41 @@ function preload() {
 	loadJSON('assets/tiles.json', (tileFrames) => {
 		// Load tiles sprite sheet from frames array once frames array is ready
 		tiles = new Group();
-		tiles.collider = 'static';
+		tiles.collider = 'kinematic';
 		tiles.layer = 1;
 		tiles.w = 70;
 		tiles.h = 70;
 		tiles.spriteSheet = loadImage('assets/tiles_spritesheet.png');
 		// Load the frame data for the tiles
 		tiles.addAnis(tileFrames);
+
+		ground = new tiles.Group();
+		ground.friction = 0;
+		fakeGround = new ground.Group();
 		// Draw the ground tiles
-		for (let i = 0; i < 10; i++) {
-			if (i % 2 == 0) continue;
-			new tiles.Sprite('castle', i * 70, 365);
+		for (let i = 0; i < 4; i++) {
+			if (i < 2) {
+				new ground.Sprite('castle', 70 + i * 140, 365);
+			} else {
+				new fakeGround.Sprite('castle', 70 + i * 140, 365);
+			}
 		}
 
+		exit = new ground.Sprite('castle', 630, 365);
+
+		signs = new tiles.Group();
+		signs.collider = 'none';
 		// Draw the sign tiles
-		new tiles.Sprite('signExit', 630, 295, 'none');
-		new tiles.Sprite('signRight', 210, 295, 'none');
+		exitSign = new signs.Sprite('signExit', 630, 295);
+		new signs.Sprite('signRight', 210, 295);
 	});
+}
+
+function resetPlayer() {
+	player.vel.x = 0;
+	player.vel.y = 0;
+	player.x = 70;
+	player.y = 280;
 }
 
 function setup() {
@@ -65,13 +85,40 @@ function setup() {
 
 	// makes the sprite's collider smaller
 	player.w = 20;
+
+	player.collide(fakeGround[0], () => {
+		resetPlayer();
+		instructions = "Can't step on that! Press space to reset.";
+	});
+	fakeGround[1].collider = 'none';
+
+	player.collide(exit, () => {
+		exit.vel.y = -10;
+		exitSign.vel.y = -10;
+		instructions = 'You win!';
+	});
 }
 
 function draw() {
 	background(0);
+	fill(255);
+	text(instructions, 16, 16);
 
 	if (player.ani.name == 'jump' && player.ani.frame != 0 && player.y > 280) {
 		player.ani = 'walk';
+	}
+
+	if (kb.pressed('w')) {
+		player.ani = 'jump';
+		player.vel.y = -3;
+	}
+
+	if (kb.pressed('a')) {
+		player.ani = 'walk';
+		player.mirror.x = true;
+	} else if (kb.pressed('d')) {
+		player.ani = 'walk';
+		player.mirror.x = false;
 	}
 
 	if (kb.pressing('a')) {
@@ -86,24 +133,9 @@ function draw() {
 		player.ani = 'stand';
 	}
 
+	if (kb.pressed(' ')) {
+		resetPlayer();
+	}
+
 	allSprites.debug = mouse.pressing();
-}
-
-function keyPressed() {
-	if (key == 'a') {
-		player.ani = 'walk';
-		player.mirror.x = true;
-	} else if (key == 'd') {
-		player.ani = 'walk';
-		player.mirror.x = false;
-	}
-	if (key == 'w') {
-		player.ani = 'jump';
-	}
-
-	if (key == 'w' && player.y > 200) {
-		player.vel.y = -3;
-	} else if (key == 's') {
-		player.vel.y = 3;
-	}
 }
