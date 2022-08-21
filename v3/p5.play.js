@@ -4053,7 +4053,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		let clr;
 		if (palette) clr = palette[c];
 		// if transparent
-		if (clr === '' || c == '.' || c == ' ') {
+		if (clr === '' || c === '.' || c === ' ') {
 			return pInst.color(0, 0, 0, 0);
 		}
 		return pInst.color(clr || c);
