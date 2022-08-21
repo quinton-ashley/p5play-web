@@ -316,9 +316,68 @@ function draw() {
 		<div>
 			<h2>spriteArt</h2>
 			<p>
-				coming soon!
+				You can use the <code>spriteArt</code> function to create pixel art images for your sprites. It takes a string
+				as input and returns an image. Each character in the string represents the color value of a pixel in the image.
+			</p>
+			<p>
+				The second input parameter to the <code>spriteArt</code> function is the scale of the image.
+			</p>
+			<p>
+				By default the color pa
 			</p>
 		</div>
+		<script type="text/p5" name="smiley">
+let smiley;
+
+function setup() {
+	createCanvas(500, 120);
+	let str = `
+..yyyyyy
+.yybyybyy
+yyyyyyyyyy
+yybyyyybyy
+.yybbbbyy
+..yyyyyy`;
+
+	let img = spriteArt(str, 16);
+	smiley = new Sprite(img);
+}
+
+function draw() {
+	clear();
+}
+		</script>
+		<div>
+			<p>
+
+			</p>
+		</div>
+		<script type="text/p5" name="smiley">
+let smiley;
+
+function setup() {
+	createCanvas(500, 120);
+	let str = `
+..yyyyyy
+.yybyybyy
+yyyyyyyyyy
+yybyyyybyy
+.yybbbbyy
+..yyyyyy`;
+
+	let palette = {
+		'y': color(255, 220, 60),
+		'b': color(20)
+	};
+
+	let img = spriteArt(str, 16, palette);
+	smiley = new Sprite(img);
+}
+
+function draw() {
+	clear();
+}
+				</script>
 	</div>
 	<div id="page-5" class="page">
 		<div>
