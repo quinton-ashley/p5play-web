@@ -38,10 +38,10 @@
 			</p>
 
 			<p>
-				You can work individually or in a team. Share your "work in progress" games in the
-				<a href="https://discord.gg/3UTbqUgmPF">#p5play-game-jam-2022 channel on Discord</a> to get feedback that can
-				help you develop and polish the game to make it the best
-				it can be before you submit it.
+				You can work individually or in a team. Share your game in the
+				<a href="https://discord.gg/3UTbqUgmPF">#p5play-game-jam-2022 channel on Discord</a> to receive feedback that
+				can
+				help you develop and polish your game before you submit it.
 			</p>
 
 			<p>
@@ -68,12 +68,17 @@ function preload() {
 
 function setup() {
 	createCanvas(800, 400);
+	stroke(150);
+	strokeWeight(2);
+	textSize(36);
+	textAlign(CENTER)
 }
 
 function draw() {
 	clear();
-	logosAni.draw(width / 2, height / 2, 0, 2, 2);
+	logosAni.draw(width / 2, 180, 0, 1.5, 1.5);
 	logosAni.update();
+	text('2022 : Lines!', width / 2, 360);
 }
 
 		</script>
