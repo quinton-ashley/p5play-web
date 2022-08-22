@@ -24,28 +24,28 @@ function draw() {
 	textAlign(CENTER);
 	text('Click to create a new sprite', width / 2, height / 2);
 
+	// check if the left mouse button was pressed
+	if (mouse.pressed()) {
+		// let the variable "s" store
+		// a new sprite at the mouse's position,
+		// with a width of 30 and height of 30
+		let s = new Sprite(mouse.x, mouse.y, 30, 30);
+		// you can also use the createSprite function to make new sprites
+		// try editing the sprite's size!
+
+		// by default sprites are displayed as simple shapes
+		// that have a random fill color
+
+		// sprites have many properties you can edit
+		// here the x and y velocities of the sprite are edited
+		s.vel.x = random(-5, 5);
+		s.vel.y = random(-5, 5);
+		// try editing the sprite's speed!
+
+		// Sprites collide by default in p5.play v3.
+		// Try playing this example and see if you can keep one of the
+		// squares from leaving the p5.js canvas!
+	}
+
 	// by default all sprites are drawn at the end
-}
-
-// p5.js runs this function when the mouse is pressed
-function mousePressed() {
-	// let the variable "s" store
-	// a new sprite at the mouse's position,
-	// with a width of 30 and height of 30
-	let s = new Sprite(mouse.x, mouse.y, 30, 30);
-	// you can also use the createSprite function to make new sprites
-	// try editing the sprite's size!
-
-	// by default sprites are displayed as simple shapes
-	// that have a random fill color
-
-	// sprites have many properties you can edit
-	// here the x and y velocities of the sprite are edited
-	s.vel.x = random(-5, 5);
-	s.vel.y = random(-5, 5);
-	// try editing the sprite's speed!
-
-	// Sprites collide by default in p5.play v3.
-	// Try playing this example and see if you can keep one of the
-	// squares from leaving the p5.js canvas!
 }

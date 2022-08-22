@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>p5.play : Jam!</title>
+	<link rel="icon" href="../favicon.png" />
+	<link rel="stylesheet" href="../learn/p5-mini.css" />
+	<link rel="stylesheet" href="../learn/style.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.2/p5.js"></script>
+	<script src="../v3/planck.js"></script>
+	<script src="../v3/p5.play.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.8.1/ace.min.js"></script>
+</head>
+
+<body>
+	<nav id="topNav">
+		<a href="../index.html" class="active"><img src="../logo.svg" class="logo">p5.play</a>
+		<span>:</span>
+		<a href="learn/sprite.html">Learn</a>
+		<a href="demos">Demos</a>
+		<a href="docs">Docs</a>
+		<a href="jam" class="active">Jam!</a>
+		<span>:</span>
+		<a href="https://github.com/molleindustria/p5.play"><img src="https://github.githubassets.com/favicons/favicon.svg"
+				class="github" alt="GitHub"></a>
+		<a href="https://www.npmjs.com/package/p5.play"><img
+				src="https://static.npmjs.com/1996fcfdf7ca81ea795f67f093d7f449.png" alt="npm"></a>
+	</nav>
+	<div class="top big break"></div>
+
+	<div class="page" style="display: flex;">
+		<div>
+			<h2>p5.play Game Jam! 2022</h2>
+
+			<p>
+				The p5.play Game Jam is a competition held bi-annually to see who can make the best game using p5.play!
+			</p>
+
+			<p>
+				You can work individually or in a team. Share your "work in progress" games in the
+				<a href="https://discord.gg/3UTbqUgmPF">#p5play-game-jam-2022 channel on Discord</a> to get feedback that can
+				help you develop and polish the game to make it the best
+				it can be before you submit it.
+			</p>
+
+			<p>
+				Games can be submitted from December 1st to the deadline on
+				December 16th.
+			</p>
+
+			<h3>
+				The 2022 jam's theme is: Lines!
+			</h3>
+
+		</div>
+		<script type="text/p5" name="logos" hide-editor>
+let logosAni;
+
+function preload() {
+	let logos = [];
+	for (let i = 0; i < 25; i++) {
+		logos.push('../logos/logo' + i + '.svg');
+	}
+	logosAni = new SpriteAnimation(...logos);
+	logosAni.frameDelay = 30;
+}
+
+function setup() {
+	createCanvas(800, 400);
+}
+
+function draw() {
+	clear();
+	logosAni.draw(width / 2, height / 2, 0, 2, 2);
+	logosAni.update();
+}
+
+		</script>
+	</div>
+
+	<div class="break"></div>
+
+	<div class="credits">
+		<div>
+			<h3>The winners will be announced in January 2023!</h3>
+		</div>
+	</div>
+	<div class="break"></div>
+	<footer class="text-small">Created by Quinton Ashley (@quinton-ashley) Copyright 2022. Looking for the legacy
+		version of p5.play?
+		<a href="../v2/index.html">Click here</a>.
+	</footer>
+
+	<script src="../learn/p5-mini.js"></script>
+</body>
+
+</html>

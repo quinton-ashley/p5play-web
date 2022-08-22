@@ -63,6 +63,12 @@ nav a:hover {
 #topNav a.active,
 #topNav a:hover {
 	font-size: 34px;
+	/* text-shadow: 2px 2px 10px#ed225d; */
+}
+
+#topNav img:hover {
+	height: 40px;
+	box-shadow: 2px 2px 10px#ed225d;
 }
 
 p {
