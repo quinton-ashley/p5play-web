@@ -3,7 +3,7 @@ let logosAni;
 function preload() {
 	let logos = [];
 	for (let i = 0; i < 25; i++) {
-		logos.push('../logos/logo' + i + '.svg');
+		logos.push('../logos/png/logo' + i + '.png');
 	}
 	logosAni = new SpriteAnimation(...logos);
 	logosAni.frameDelay = 30;
@@ -15,6 +15,6 @@ function setup() {
 
 function draw() {
 	clear();
-	logosAni.draw(width / 2, height / 2, 0, 2, 2);
+	logosAni.draw(width / 2, height / 2);
 	logosAni.update();
 }

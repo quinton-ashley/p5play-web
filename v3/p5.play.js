@@ -23,6 +23,10 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 	// change the angle mode to degrees
 	this.angleMode(p5.prototype.DEGREES);
 
+	if (typeof window.planck == 'undefined') {
+		throw new Error('planck.js must be loaded before p5.play');
+	}
+
 	const pl = planck;
 	// set the velocity threshold to allow for slow moving objects
 	pl.Settings.velocityThreshold = 0.19;
@@ -69,6 +73,8 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		'shapeColor',
 		'speed',
 		'static',
+		'text',
+		'textColor',
 		'tileSize',
 		'visible',
 		'w',
@@ -503,8 +509,9 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			 * @type {color}
 			 * @default a randomly generated color
 			 */
-			if (!this.shapeColor)
-				this.shapeColor = this.p.color(this.p.random(30, 245), this.p.random(30, 245), this.p.random(30, 245));
+			this.shapeColor ??= this.p.color(this.p.random(30, 245), this.p.random(30, 245), this.p.random(30, 245));
+
+			this.textColor ??= this.p.color(0);
 
 			let shouldCreateSensor = false;
 			for (let g of this.groups) {
@@ -1488,6 +1495,12 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 				} else if (this.shape == 'circle') {
 					this.p.circle(0, 0, this.d);
 				}
+			}
+			if (this.text) {
+				this.p.textAlign(this.p.CENTER, this.p.CENTER);
+				this.p.fill(this.textColor);
+				this.p.textSize(this.textSize);
+				this.p.text(this.text, 0, 0);
 			}
 		}
 
@@ -2698,18 +2711,14 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			return this.images.length - 1;
 		}
 
-		get image() {
-			return this.getImage();
-		}
-
 		/**
 		 * Returns the current frame image as p5.Image.
 		 *
 		 * @method getImage
 		 * @return {p5.Image} Current frame image
 		 */
-		getImage(f) {
-			f ??= this.frame;
+		get frameImage() {
+			let f = this.frame;
 			let img = this.images[f];
 			if (img instanceof p5.Image) return img;
 
@@ -4879,6 +4888,7 @@ p5.prototype.registerMethod('pre', function () {
 
 // called after each p5.js draw function call
 p5.prototype.registerMethod('post', function p5playPostDraw() {
+	this.frame = this.frameCount;
 	if (!this.allSprites.length) return;
 
 	if (this.p5play.autoDrawSprites) {
@@ -4892,8 +4902,6 @@ p5.prototype.registerMethod('post', function p5playPostDraw() {
 	}
 
 	this.allSprites.cull(10000);
-
-	this.frame = this.frameCount;
 
 	for (let btn of ['left', 'center', 'right']) {
 		if (this.mouse[btn] < 0) this.mouse[btn] = 0;

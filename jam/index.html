@@ -17,10 +17,10 @@
 	<nav id="topNav">
 		<a href="../index.html" class="active"><img src="../logo.svg" class="logo">p5.play</a>
 		<span>:</span>
-		<a href="learn/sprite.html">Learn</a>
-		<a href="demos">Demos</a>
-		<a href="docs">Docs</a>
-		<a href="jam" class="active">Jam!</a>
+		<a href="../learn/sprite.html">Learn</a>
+		<a href="../demos">Demos</a>
+		<a href="../docs">Docs</a>
+		<a href="../jam" class="active">Jam!</a>
 		<span>:</span>
 		<a href="https://github.com/molleindustria/p5.play"><img src="https://github.githubassets.com/favicons/favicon.svg"
 				class="github" alt="GitHub"></a>
@@ -60,25 +60,36 @@ let logosAni;
 function preload() {
 	let logos = [];
 	for (let i = 0; i < 25; i++) {
-		logos.push('../logos/logo' + i + '.svg');
+		logos.push('../logos/png/logo' + i + '.png');
 	}
 	logosAni = new SpriteAnimation(...logos);
-	logosAni.frameDelay = 30;
 }
 
 function setup() {
-	createCanvas(800, 400);
-	stroke(150);
-	strokeWeight(2);
-	textSize(36);
-	textAlign(CENTER)
+	createCanvas(500, 400);
+	stroke(239, 53, 107);
+	strokeWeight(4);
+	textSize(22);
+	textAlign(CENTER);
+	textFont('monospace');
+	logosAni.frame = 12;
+	let box = new Sprite(logosAni.frameImage,250, 200, 140, 'static');
+	box.text = 'p5.play\nGame Jam!\n2022';
+	box.shapeColor = color(0, 0, 0, 0);
+	allSprites.cull(100);
 }
 
 function draw() {
 	clear();
-	logosAni.draw(width / 2, 180, 0, 1.5, 1.5);
-	logosAni.update();
-	text('2022 : Lines!', width / 2, 360);
+	if (frame % 10 == 0) {
+		logosAni.frame = round(random(1, 24));
+		new Sprite(logosAni.frameImage, random(width), random(height), 160);
+	}
+	for (let s of allSprites) {
+		if (s.mouse.dragging()) {
+			s.moveTowards(mouse.x + s.mouse.x, mouse.y + s.mouse.y, 1);
+		}
+	}
 }
 
 		</script>
