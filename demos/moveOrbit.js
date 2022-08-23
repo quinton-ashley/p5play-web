@@ -24,5 +24,5 @@ function draw() {
 
 	// BUG!
 	// blocks.moveTowards(mouse.x, mouse.y);
-	blocks.orbit(-2 + mouse.y / 200);
+	blocks.orbit(0.5);
 }

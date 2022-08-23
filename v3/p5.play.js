@@ -87,8 +87,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 
 	/**
 	 * Take a look at the Sprite reference pages before reading these docs.
-	 * https://molleindustria.github.io/p5.play/ref/sprite.html
-	 * https://molleindustria.github.io/p5.play/ref/sprite2.html
+	 * https://p5play.org/learn/sprite.html
 	 *
 	 * Every sprite you create is added to the allSprites
 	 * group and put on the top layer, in front of all other
@@ -1485,6 +1484,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			if (this.animation && !this.debug) {
 				this.animation.draw(0, 0, undefined, this._scale, this._scale);
 			} else if (this.body) {
+				if (this.shape == 'chain') this.p.stroke(this.shapeColor);
 				for (let fxt = this.fixtureList; fxt; fxt = fxt.getNext()) {
 					this._drawFixture(fxt);
 				}

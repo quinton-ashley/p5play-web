@@ -66,7 +66,7 @@ function setup() {
 function draw() {
 	clear();
 }
-		</script>
+				</script>
 			</div>
 		</div>
 		<div class="minis">
@@ -136,6 +136,26 @@ sprite.speed = cos(frame);
 			</script>
 			</div>
 		</div>
+		<div class="break"></div>
+		<div>
+			<h2>Try it out!</h2>
+			<p>
+				Try creating your own sprite. Have it be a circle with a diameter of 40. Position it so it touches the top right
+				corner of the canvas. Change it's velocity to have it move left and down.
+			</p>
+		</div>
+		<script type="text/p5" name="Level 1 Challenge" horiz>
+let sprite;
+
+function setup() {
+	createCanvas(200, 100);
+
+}
+
+function draw() {
+	clear();
+}
+		</script>
 	</div>
 	<div id="page-1" class="page">
 		<div>
@@ -198,6 +218,27 @@ floor.collider = 'dynamic';
 						</script>
 			</div>
 		</div>
+		<div class="break"></div>
+		<div>
+			<h2>Try it out!</h2>
+			<p>
+				Try creating a static sprite <code>peg</code> with a circle collider shape. Drop a dynamic sprite
+				<code>block</code> with a box collider shape on
+				top of it. Make the block fall to the right of the peg.
+			</p>
+		</div>
+		<script type="text/p5" name="Level 1 Challenge" horiz>
+let peg, block;
+
+function setup() {
+	createCanvas(200, 100);
+
+}
+
+function draw() {
+	clear();
+}
+		</script>
 	</div>
 	<div id="page-2" class="page">
 		<div>
@@ -311,6 +352,25 @@ function draw() {
 }
 			</script>
 		</div>
+		<div class="break"></div>
+		<div>
+			<h2>Try it out!</h2>
+			<p>
+				Try creating two sprites using the sprite constructor.
+			</p>
+		</div>
+		<script type="text/p5" name="Level 1 Challenge" horiz>
+let sprite1, sprite2;
+
+function setup() {
+	createCanvas(200, 100);
+
+}
+
+function draw() {
+	clear();
+}
+		</script>
 	</div>
 	<div id="page-4" class="page">
 		<div>
@@ -443,6 +503,25 @@ function draw() {
 	}
 }
 		</script>
+		<div class="break"></div>
+		<div>
+			<h2>Try it out!</h2>
+			<p>
+				Try making a sprite that changes color when it overlaps with another sprite.
+			</p>
+		</div>
+		<script type="text/p5" name="Level 1 Challenge" horiz>
+let sprite1, sprite2;
+
+function setup() {
+	createCanvas(200, 100);
+	
+}
+
+function draw() {
+	clear();
+}
+		</script>
 	</div>
 	<div id="page-6" class="page">
 		<div>
@@ -455,7 +534,7 @@ function draw() {
 				In this example, the chain is made with a list of line lengths and angles.
 			</p>
 		</div>
-		<script type="text/p5" name="line lengths and angles list" lines="11">
+		<script type="text/p5" name="line lengths and angles list" lines="9">
 function setup() {
 	createCanvas(500, 200);
 	world.gravity.y = 10;
@@ -464,8 +543,6 @@ function setup() {
 	new Sprite(250, 100, [300, 10, 200, 20], 'static');
 
 	new Sprite(40, 0, 20); // ball
-
-	stroke(255, 0, 0);
 }
 	
 function draw() {
@@ -499,8 +576,6 @@ function draw() {
 	new Sprite(250, 100, [[200, 20], [400, 100]], 'static');
 
 	new Sprite(40, 0, 20); // ball
-
-	stroke(255, 0, 0);
 }
 	
 function draw() {
@@ -529,7 +604,26 @@ function setup() {
 function draw() {
 	clear();
 }
-</script>
+		</script>
+		<div class="break"></div>
+		<div>
+			<h2>Try it out!</h2>
+			<p>
+				Try making a triangle collider.
+			</p>
+		</div>
+		<script type="text/p5" name="Level 2 Challenge">
+let triangle;
+
+function setup() {
+	createCanvas(200, 100);
+	
+}
+
+function draw() {
+	clear();
+}
+		</script>
 	</div>
 	<div id="page-8" class="page">
 		<div>

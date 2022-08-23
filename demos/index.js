@@ -131,7 +131,7 @@ for (let category in examples) {
 	for (let name in examples[category]) {
 		let description = examples[category][name];
 		ih += `
-<a class="dropdown-item" role="menuitem" href="?fileName=${name}.js">${description}</a>
+<a class="dropdown-item" role="menuitem" href="?file=${name}.js">${description}</a>
 `;
 	}
 	ih += `</div>`;
@@ -142,7 +142,7 @@ ul.innerHTML += ih;
 let originalCode;
 
 $(async () => {
-	let file = args.fileName || 'creation.js';
+	let file = args.file || args.fileName || 'creation.js';
 	originalCode = `console.log('running ${file}');\n\n`;
 	originalCode += await (await fetch(file)).text();
 	startMain();

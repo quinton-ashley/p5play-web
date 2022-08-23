@@ -103,6 +103,12 @@ code {
 	border: #ed225d 2px solid;
 }
 
+.page>.break {
+	width: 100%;
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
 .top.break {
 	margin-top: 2%;
 }
