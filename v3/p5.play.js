@@ -4889,7 +4889,6 @@ p5.prototype.registerMethod('pre', function () {
 // called after each p5.js draw function call
 p5.prototype.registerMethod('post', function p5playPostDraw() {
 	this.frame = this.frameCount;
-	if (!this.allSprites.length) return;
 
 	if (this.p5play.autoDrawSprites) {
 		this.allSprites.draw();

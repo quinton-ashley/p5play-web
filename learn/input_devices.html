@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>p5.play : Group</title>
+	<title>p5.play : InputDevices</title>
 	<link rel="icon" href="../favicon.png" />
 	<link rel="stylesheet" href="p5-mini.css" />
 	<link rel="stylesheet" href="style.css">
@@ -31,8 +31,65 @@
 		<div>
 			<h2>Input Devices</h2>
 			<p>
-				coming soon!
+				There are three different input device types in p5.play:
 			</p>
+			<ul>
+				<li><code>kb</code> or <code>keyboard</code> for the keyboard</li>
+				<li><code>mouse</code> for the mouse</li>
+				<li><code>contro</code> for gamepads/controllers</li>
+			</ul>
+			<p>
+				These input devices all use the same
+				functions for getting the state of an input.
+			</p>
+		</div>
+		<script type="text/p5" name="pressed" base-0 hide>
+let sprite;
+
+function setup() {
+	createCanvas(100, 100);
+}
+
+function draw() {
+	clear();
+}
+		</script>
+		<div class="minis">
+			<script type="text/p5" name="pressed" base="0">
+if (kb.pressed('w')) {
+	background(0, 255, 0);
+}
+			</script>
+			<script type="text/p5" name="pressing" base="0">
+if (kb.pressing('w')) {
+	background(0, 255, 0);
+}
+			</script>
+			<script type="text/p5" name="held" base="0">
+if (kb.held('w')) {
+	background(0, 255, 0);
+}
+			</script>
+			<script type="text/p5" name="holding" base="0">
+if (kb.holding('w')) {
+	background(0, 255, 0);
+}
+			</script>
+			<script type="text/p5" name="released" base="0">
+if (kb.released('w')) {
+	background(0, 255, 0);
+}
+			</script>
+			<script type="text/p5" name="not" base="0">
+if (!kb.w) {
+	background(0, 255, 0);
+}
+			</script>
+		</div>
+	</div>
+	<div id="page-1" class="page">
+		<div>
+			<p>coming soon!</p>
 		</div>
 	</div>
 

@@ -72,14 +72,14 @@ ace.config.loadModule('ace/ext/language_tools', function () {
 
 			this.base = props.base;
 
-			let div = document.createElement('div');
-			div.className = 'p5-mini';
-			if (props.horiz) div.className += ' horiz';
-			else div.className += ' vert';
-			div.id = 'p5m-' + id;
-			div.style = script.style.cssText;
-			script.after(div);
-			this.elem = div;
+			let mini = document.createElement('div');
+			mini.className = 'p5-mini';
+			if (props.horiz) mini.className += ' horiz';
+			else mini.className += ' vert';
+			mini.id = 'p5m-' + id;
+			mini.style = script.style.cssText;
+			script.after(mini);
+			this.elem = mini;
 
 			let title = document.createElement('div');
 			title.className = 'p5m-title';
@@ -90,7 +90,7 @@ ace.config.loadModule('ace/ext/language_tools', function () {
 			let span = document.createElement('span');
 			span.innerHTML += props.name || props.title || 'sketch';
 			title.append(span);
-			div.append(title);
+			mini.append(title);
 
 			if (props['editor-btn']) {
 				let editBtn = document.createElement('button');
@@ -109,7 +109,7 @@ ace.config.loadModule('ace/ext/language_tools', function () {
 
 			let main = document.createElement('div');
 			main.className = 'p5m-main';
-			div.append(main);
+			mini.append(main);
 
 			let preview = document.createElement('div');
 			preview.id = 'p5m-preview-' + id;
@@ -168,6 +168,10 @@ ace.config.loadModule('ace/ext/language_tools', function () {
 			}
 
 			this.play();
+
+			if (props.hide) {
+				mini.style.display = 'none';
+			}
 		}
 
 		play() {
