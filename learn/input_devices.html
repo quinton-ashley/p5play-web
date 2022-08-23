@@ -19,8 +19,8 @@
 		<span>:</span>
 		<a href="sprite.html">Sprite</a>
 		<a href="group.html">Group</a>
-		<a href="sprite_animation.html">SpriteAnimation</a>
-		<a href="input_devices.html" class="active">InputDevices</a>
+		<a href="sprite_animation.html">Animation</a>
+		<a href="input_devices.html" class="active">Input</a>
 		<a href="tiles.html">Tiles</a>
 		<a href="camera.html">Camera</a>
 	</nav>
@@ -44,10 +44,8 @@
 			</p>
 		</div>
 		<script type="text/p5" name="pressed" base-0 hide>
-let sprite;
-
 function setup() {
-	createCanvas(100, 100);
+	createCanvas(240, 100);
 }
 
 function draw() {
@@ -89,8 +87,54 @@ if (!kb.w) {
 	</div>
 	<div id="page-1" class="page">
 		<div>
-			<p>coming soon!</p>
+			<p>
+				The default mouse input is 'left'.
+			</p>
 		</div>
+		<script type="text/p5" name="pressed" base-1 hide>
+let sprite;
+
+function setup() {
+	createCanvas(500, 100);
+	sprite = new Sprite();
+}
+
+function draw() {
+	clear();
+	sprite.shapeColor = 'blue';
+}
+		</script>
+		<div class="minis horiz">
+			<script type="text/p5" name="left" base="1">
+if (mouse.pressing()) {
+	sprite.shapeColor = 'green';
+}
+			</script>
+			<script type="text/p5" name="right" base="1">
+if (mouse.pressing('right')) {
+	sprite.shapeColor = 'red';
+}
+			</script>
+		</div>
+		<div>
+			<p>
+				The <code>mouse</code> has an additional function for detecting dragging, moving the mouse while holding a
+				button.
+			</p>
+		</div>
+		<div class="minis horiz">
+			<script type="text/p5" name="dragging" base="1">
+if (sprite.mouse.dragging()) {
+	sprite.moveTowards(
+		mouse.x + sprite.mouse.x,
+		mouse.y + sprite.mouse.y,
+		1 // full tracking
+	);
+}
+			</script>
+		</div>
+
+
 	</div>
 
 	<div class="break"></div>
