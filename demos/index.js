@@ -121,7 +121,7 @@ let examples = {
 		asteroids: 'Asteroids',
 		breakout: 'Breakout',
 		flappyBird: 'Flappy Bird [TODO]',
-		platformer: 'platformer'
+		platformer: 'Tricky Platformer'
 	}
 };
 

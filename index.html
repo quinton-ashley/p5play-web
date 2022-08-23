@@ -81,6 +81,7 @@ function setup() {
 	let s = [len, angle, len, -angle, len, angle, sides];
 	tumbler = new Sprite(x, y, s, 'kinematic');
 	tumbler.rotationSpeed = 0.5;
+	tumbler.shapeColor = '#ed225d';
 
 	allSprites.remove(tumbler);
 	dropSprite();
@@ -93,7 +94,6 @@ function draw() {
 	push();
 	strokeWeight(8);
 	strokeJoin(ROUND);
-	stroke('#ed225d');
 	tumbler.draw();
 	pop();
 
