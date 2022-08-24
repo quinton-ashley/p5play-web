@@ -134,15 +134,14 @@ function draw() {
 		<div>
 			<h2>Sprite physics</h2>
 			<p>
-				A sprite's collider is used to detect collisions with other sprites.
-			</p>
-			<p>
-				By default, sprites have a dynamic physics collider that allows the sprite to move freely and be affected by
+				A sprite's collider is used to detect collisions with other sprites. By default, sprites have a dynamic physics
+				collider that allows the sprite to move freely and be affected by
 				gravity.
 			</p>
 			<p>
-				There's another collider type called 'static'. Sprites that have a static collider can't be moved by other
-				sprites and aren't affected by gravity.
+				The other collider types are 'static' and 'none'. Sprites that have a 'static' collider can't be moved by other
+				sprites and aren't affected by gravity. Sprites that have a 'none' collider don't have a collider for physics
+				simulation.
 			</p>
 			<p>
 				You might have to replay these mini-sketches to see what happened!
@@ -187,8 +186,7 @@ floor.rotation = 2;
 world.gravity.y = -1;
 			</script>
 			<script type="text/p5" name="whoops!" base="2">
-ball.collider = 'static';
-floor.collider = 'dynamic';
+floor.collider = 'none';
 			</script>
 		</div>
 		<div class="break"></div>
