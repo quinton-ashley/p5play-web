@@ -167,13 +167,18 @@ ghost.ani = 'fly';
 		<script type="text/p5" name="move" base="0">
 ghost.ani = 'move';
 		</script>
+	</div>
+	<div id="page-2" class="page">
 		<div>
+			<h2>Groups with Animation</h2>
 			<p>
-				You can also load an animation first and then add it to the sprite.
+				Instead of creating the sprite first and adding an animation to it you can also load animations first and then
+				use them in the sprite constructor.
 			</p>
 			<p>
 				Each splat sprite has a lifespan of 40 frames before it removes itself. Note that if you put splats too close
-				together they'll move apart until their colliders are no longer overlapping.
+				together they'll move apart until their colliders are no longer overlapping. The size of the collider is taken
+				from the size of the animation.
 			</p>
 		</div>
 		<script type="text/p5" name="life">
@@ -192,13 +197,37 @@ function draw() {
 		splat.life = 40;
 	}
 }
-</script>
-	</div>
-	<!-- <div id="page-2" class="page">
+//
+		</script>
 		<div>
-			<h2></h2>
+			<p>
+				Yet, it's better to just create a Group and add animations to it.
+			</p>
+			<p>
+				If a group has only one animation, new group sprites will get that animation. Otherwise by default the
+				sprite gets the last animation loaded.
+			</p>
 		</div>
-	</div> -->
+		<script type="text/p5" name="life">
+let splats;
+
+function setup() {
+	createCanvas(500, 160);
+
+	splats = new Group();
+	splats.life = 40;
+	splats.addAni('assets/asterisk_explode0001.png', 11);
+}
+
+function draw() {
+	clear();
+
+	if (mouse.pressed()) {
+		new splats.Sprite(mouse.x, mouse.y);
+	}
+}
+		</script>
+	</div>
 
 	<div class="break"></div>
 	<nav id="pageNav"></nav>

@@ -89,8 +89,9 @@ if (!kb[' ']) {
 		<div>
 			<h2>Keyboard</h2>
 			<p>
-				Because the WASD keys are commonly used for movement you can also use direction names: 'up', 'down', 'left', and
-				'right'.
+				In PC games the WASD keys are commonly used for movement so you can use the direction names 'up', 'down',
+				'left', and
+				'right' to detect if these keys are pressed.
 			</p>
 			<p>
 				Using the IJKL keys for movement is common to support left handed players or second players in local two player
@@ -104,10 +105,10 @@ if (!kb[' ']) {
 				the arrow keys you can use 'ArrowUp', 'ArrowDown', 'ArrowLeft' and 'ArrowRight'.
 			</p>
 			<p>
-				If the top row of letters on your keyboard doesn't start with QWERTY, p5.play will map your keyboard layout to
-				the standard English QWERTY layout. That means if you're using a French AZERTY keyboard the WASD keys in p5.play
-				are
-				ZQSD on your keyboard. <a href="https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/code">
+				Note that some keyboards don't start with QWERTY on the top row. p5.play maps other keyboard layouts to
+				the standard English QWERTY layout. For example that means that for French AZERTY keyboard users the WASD keys
+				are ZQSD. This is why it's better to use the direction names instead of the letter names for these keys. <a
+					href="https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/code">
 					More info</a>
 			</p>
 		</div>

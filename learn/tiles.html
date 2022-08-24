@@ -31,14 +31,73 @@
 		<div>
 			<h2>Tiles</h2>
 			<p>
-				Did you know that for the original Super Mario Bros. that Shigeru Miyamoto, Takashi Tezuka, and the their team
-				used graph paper to <a href="https://www.youtube.com/watch?v=DLoRd6_a1CI">plot out the levels?</a>
+				For the original Super Mario Bros. lead developer, Shigeru Miyamoto, and level designer, Takashi Tezuka,
+				<a href="https://www.youtube.com/watch?v=DLoRd6_a1CI" target="_blank">used graph paper to plot out the
+					levels</a> and then had
+				their team of programmers type the coordinates of every sprite in the game!
 			</p>
 
 			<p>
-				The <code>new Tiles()</code> constructor takes a string which it uses to make sprites.
+				Luckily the p5.play <code>Tiles</code> constructor can make tons of sprites on a tile grid based on the
+				positions of characters in a string.
+			</p>
+
+			<p>
+				The first input parameter is a string or array of strings, each line or string in the array representing a
+				row of tiles.
+			</p>
+
+			<p>
+				The second and third input parameters are the x and y coordinates of the top left (first) tile in the tiles
+				grid.
+			</p>
+
+			<p>
+				The fourth and fifth input parameters are the width and height respectively of each tile plus the spacing
+				between tiles.
+			</p>
+
+			<h2>Try it out!</h2>
+
+			<p>
+				Try editing the "P5" brick layout to make something else.
 			</p>
 		</div>
+		<script type="text/p5" title="tiles" lines="29">
+let bricks;
+
+function setup() {
+	createCanvas(500, 200);
+
+	bricks = new Group();
+	bricks.w = 20;
+	bricks.h = 10;
+	bricks.tile = '=';
+
+	new Tiles(
+		[
+			'=====...======',
+			'======..======',
+			'==..==..==....',
+			'==..==..==....',
+			'======..=====.',
+			'=====...======',
+			'==..........==',
+			'==..........==',
+			'==......======',
+			'==......=====.'
+		],
+		100,
+		40,
+		bricks.w + 4,
+		bricks.h + 4
+	);
+}
+
+function draw() {
+	clear();
+}
+		</script>
 	</div>
 
 	<div class="break"></div>
