@@ -134,13 +134,15 @@ function draw() {
 		<div>
 			<h2>Sprite physics</h2>
 			<p>
-				A sprite's collider is used to detect collisions with other sprites. By default, sprites have a dynamic physics
+				A sprite's collider is used to detect collisions with other sprites. By default, sprites have a 'dynamic'
+				physics
 				collider that allows the sprite to move freely and be affected by
 				gravity.
 			</p>
 			<p>
 				The other collider types are 'static' and 'none'. Sprites that have a 'static' collider can't be moved by other
-				sprites and aren't affected by gravity. Sprites that have a 'none' collider don't have a collider for physics
+				sprites and aren't affected by gravity. Setting a sprite's collider type to 'none' removes its collider from the
+				physics
 				simulation.
 			</p>
 			<p>
@@ -152,7 +154,7 @@ function draw() {
 let ball, floor;
 
 function setup() {
-	createCanvas(200, 200);
+	createCanvas(242, 200);
 	world.gravity.y = 10;
 
 	ball = new Sprite();
@@ -173,7 +175,6 @@ function draw() {
 		</div>
 		<div class="minis">
 			<script type="text/p5" name="bounciness" base="2">
-// scale of 0 to 1
 ball.bounciness = 1;
 			</script>
 			<script type="text/p5" name="sloped floor" base="2">
