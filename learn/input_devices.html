@@ -31,7 +31,7 @@
 		<div>
 			<h2>Input Devices</h2>
 			<p>
-				There are three different input device types in p5.play:
+				Here are the input devices available in p5.play:
 			</p>
 			<ul>
 				<li><code>kb</code> or <code>keyboard</code> for the keyboard</li>
@@ -40,7 +40,7 @@
 			</ul>
 			<p>
 				These input devices all use the same
-				functions for getting the state of an input.
+				functions for getting the state of an input. Try pressing the space key!
 			</p>
 		</div>
 		<script type="text/p5" name="pressed" base-0 hide>
@@ -54,32 +54,32 @@ function draw() {
 		</script>
 		<div class="minis">
 			<script type="text/p5" name="pressed" base="0">
-if (kb.pressed('w')) {
+if (kb.pressed(' ')) {
 	background(0, 255, 0);
 }
 			</script>
 			<script type="text/p5" name="pressing" base="0">
-if (kb.pressing('w')) {
+if (kb.pressing(' ')) {
 	background(0, 255, 0);
 }
 			</script>
 			<script type="text/p5" name="held" base="0">
-if (kb.held('w')) {
+if (kb.held(' ')) {
 	background(0, 255, 0);
 }
 			</script>
 			<script type="text/p5" name="holding" base="0">
-if (kb.holding('w')) {
+if (kb.holding(' ')) {
 	background(0, 255, 0);
 }
 			</script>
 			<script type="text/p5" name="released" base="0">
-if (kb.released('w')) {
+if (kb.released(' ')) {
 	background(0, 255, 0);
 }
 			</script>
 			<script type="text/p5" name="not" base="0">
-if (!kb.w) {
+if (!kb[' ']) {
 	background(0, 255, 0);
 }
 			</script>
@@ -87,8 +87,64 @@ if (!kb.w) {
 	</div>
 	<div id="page-1" class="page">
 		<div>
+			<h2>Keyboard</h2>
 			<p>
-				The default mouse input is 'left'.
+				Because the WASD keys are commonly used for movement you can also use direction names: 'up', 'down', 'left', and
+				'right'.
+			</p>
+			<p>
+				Using the IJKL keys for movement is common to support left handed players or second players in local two player
+				games.
+				These keys can be
+				referenced using: 'up2',
+				'down2', 'left2', and 'right2'.
+			</p>
+			<p>
+				For
+				the arrow keys you can use 'ArrowUp', 'ArrowDown', 'ArrowLeft' and 'ArrowRight'.
+			</p>
+			<p>
+				If the top row of letters on your keyboard doesn't start with QWERTY, p5.play will map your keyboard layout to
+				the standard English QWERTY layout. That means if you're using a French AZERTY keyboard the WASD keys in p5.play
+				are
+				ZQSD on your keyboard. <a href="https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/code">
+					More info</a>
+			</p>
+		</div>
+		<script type="text/p5" name="keyboard movement">
+let player;
+
+function setup() {
+	createCanvas(500, 160);
+	player = new Sprite();
+}
+
+function draw() {
+	clear();
+	if (kb.pressing('up')) {
+		player.vel.y = -4;
+	} else if (kb.pressing('down')) {
+		player.vel.y = 4;
+	} else {
+		player.vel.y = 0;
+	}
+	
+	if (kb.pressing('left')) {
+		player.vel.x = -4;
+	} else if (kb.pressing('right')) {
+		player.vel.x = 4;
+	} else {
+		player.vel.x = 0;
+	}
+}
+		</script>
+	</div>
+	<div id="page-2" class="page">
+		<div>
+			<h2>Multi-Input</h2>
+			<p>
+				This mini-sketch shows how one action can be performed by
+				either pressing the space key or clicking the mouse. The default mouse input is 'left'.
 			</p>
 		</div>
 		<script type="text/p5" name="pressed" base-1 hide>
@@ -101,35 +157,60 @@ function setup() {
 
 function draw() {
 	clear();
-	sprite.shapeColor = 'blue';
+	sprite.shapeColor = 'yellow';
 }
 		</script>
 		<div class="minis horiz">
-			<script type="text/p5" name="left" base="1">
-if (mouse.pressing()) {
-	sprite.shapeColor = 'green';
-}
-			</script>
-			<script type="text/p5" name="right" base="1">
-if (mouse.pressing('right')) {
+			<script type="text/p5" name="green thumb" base="1">
+if (kb.pressing(' ') || mouse.pressing()) {
 	sprite.shapeColor = 'red';
 }
 			</script>
 		</div>
+	</div>
+	<div id="page-3" class="page">
 		<div>
+			<h2>Sprite Mouse</h2>
+			<p>
+				Sprites all have their own mouse object for detecting mouse inputs on the sprite.
+			</p>
 			<p>
 				The <code>mouse</code> has an additional function for detecting dragging, moving the mouse while holding a
 				button.
 			</p>
+			<p>
+				Note that <code>mouse.x</code> is the x position of the mouse on the canvas and <code>sprite.mouse.x</code> is
+				the
+				x position of the mouse relative to the sprite.
+			</p>
 		</div>
 		<div class="minis horiz">
-			<script type="text/p5" name="dragging" base="1">
-if (sprite.mouse.dragging()) {
-	sprite.moveTowards(
-		mouse.x + sprite.mouse.x,
-		mouse.y + sprite.mouse.y,
-		1 // full tracking
-	);
+			<script type="text/p5" name="sprite.mouse">
+let sprite;
+
+function setup() {
+	createCanvas(500, 100);
+	sprite = new Sprite();
+}
+
+function draw() {
+	clear();
+	sprite.shapeColor = 'yellow';
+
+	if (mouse.pressing()) {
+		sprite.shapeColor = 'red';
+	}
+	if (sprite.mouse.pressing()) {
+		sprite.shapeColor = 'green';
+	}
+
+	if (sprite.mouse.dragging()) {
+		sprite.moveTowards(
+			mouse.x + sprite.mouse.x,
+			mouse.y + sprite.mouse.y,
+			1 // full tracking
+		);
+	}
 }
 			</script>
 		</div>

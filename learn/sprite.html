@@ -36,8 +36,7 @@
 			</p>
 		</div>
 		<div class="minis horiz">
-			<div>
-				<script type="text/p5" name="square" base-0 horiz lines="9">
+			<script type="text/p5" name="square" base-0 horiz lines="9">
 let sprite;
 
 function setup() {
@@ -52,9 +51,7 @@ function draw() {
 	clear();
 }
 	</script>
-			</div>
-			<div>
-				<script type="text/p5" name="circle" base-1 horiz lines="8">
+			<script type="text/p5" name="circle" base-1 horiz lines="8">
 let sprite;
 
 function setup() {
@@ -68,74 +65,49 @@ function draw() {
 	clear();
 }
 				</script>
-			</div>
 		</div>
 		<div class="minis">
-			<div>
-				<script type="text/p5" name="x">
+			<script type="text/p5" name="x">
 				sprite.x = 150;
 			</script>
-			</div>
-			<div>
-				<script type="text/p5" name="y" base="1">
+			<script type="text/p5" name="y" base="1">
 				sprite.y = 30;
 			</script>
-			</div>
-			<div>
-				<script type="text/p5" name="velocity.x" base="1">
+			<script type="text/p5" name="velocity.x" base="1">
 				sprite.vel.x = cos(frame);
 			</script>
-			</div>
-			<div>
-				<script type="text/p5" name="velocity.y">
+			<script type="text/p5" name="velocity.y">
 				sprite.vel.y = cos(frame);
 			</script>
-			</div>
-			<div>
-				<script type="text/p5" name="rotationSpeed">
-							sprite.rotationSpeed = 1;
-						</script>
-			</div>
-			<div>
-				<script type="text/p5" name="shapeColor" base="1">
+			<script type="text/p5" name="rotationSpeed">
+				sprite.rotationSpeed = 1;
+			</script>
+			<script type="text/p5" name="shapeColor" base="1">
 let c = color(0, 255, 0);
 sprite.shapeColor = c;
-						</script>
-			</div>
+			</script>
 		</div>
 
 		<div class="minis">
-			<div>
-				<script type="text/p5" name="width">
-								sprite.w = 200;
-							</script>
-			</div>
-			<div>
-				<script type="text/p5" name="height">
-								sprite.h = 80;
-							</script>
-			</div>
-			<div>
-				<script type="text/p5" name="diameter" base="1">
+			<script type="text/p5" name="width">
+				sprite.w = 200;
+			</script>
+			<script type="text/p5" name="height">
+				sprite.h = 80;
+			</script>
+			<script type="text/p5" name="diameter" base="1">
 				sprite.d = 75;
 			</script>
-			</div>
-			<div>
-				<script type="text/p5" name="rotation">
+			<script type="text/p5" name="rotation">
 				sprite.rotation = 45;
 			</script>
-			</div>
-			<div>
-				<script type="text/p5" name="speed">
+			<script type="text/p5" name="speed">
 sprite.direction = 45;
 sprite.speed = cos(frame);
 			</script>
-			</div>
-			<div>
-				<script type="text/p5" name="visible">
+			<script type="text/p5" name="visible">
 				sprite.visible = false;
 			</script>
-			</div>
 		</div>
 		<div class="break"></div>
 		<div>
@@ -161,12 +133,20 @@ function draw() {
 	<div id="page-1" class="page">
 		<div>
 			<h2>Sprite physics</h2>
-			<p>A sprite's collider is used to detect collisions with other sprites.</p>
-			<p>By default, sprites have a dynamic physics collider that allows the sprite to move freely and be affected by
-				gravity.</p>
-			<p>There's another collider type called 'static'. Sprites that have a static collider can't be moved by other
-				sprites and aren't affected by gravity.</p>
-			<p>You might have to replay these mini-sketches to see what happened!</p>
+			<p>
+				A sprite's collider is used to detect collisions with other sprites.
+			</p>
+			<p>
+				By default, sprites have a dynamic physics collider that allows the sprite to move freely and be affected by
+				gravity.
+			</p>
+			<p>
+				There's another collider type called 'static'. Sprites that have a static collider can't be moved by other
+				sprites and aren't affected by gravity.
+			</p>
+			<p>
+				You might have to replay these mini-sketches to see what happened!
+			</p>
 		</div>
 		<div>
 			<script type="text/p5" name="dynamic and static colliders" base-2 horiz lines="16">
@@ -190,34 +170,26 @@ function setup() {
 function draw() {
 	clear();
 }
-					</script>
+			</script>
 		</div>
 		<div class="minis">
-			<div>
-				<script type="text/p5" name="bounciness" base="2">
+			<script type="text/p5" name="bounciness" base="2">
 // scale of 0 to 1
 ball.bounciness = 1;
-						</script>
-			</div>
-			<div>
-				<script type="text/p5" name="sloped floor" base="2">
+			</script>
+			<script type="text/p5" name="sloped floor" base="2">
 floor.rotation = 2;
-						</script>
-			</div>
+			</script>
 		</div>
 
 		<div class="minis">
-			<div>
-				<script type="text/p5" name="anti-gravity" base="2">
+			<script type="text/p5" name="anti-gravity" base="2">
 world.gravity.y = -1;
-						</script>
-			</div>
-			<div>
-				<script type="text/p5" name="whoops!" base="2">
+			</script>
+			<script type="text/p5" name="whoops!" base="2">
 ball.collider = 'static';
 floor.collider = 'dynamic';
-						</script>
-			</div>
+			</script>
 		</div>
 		<div class="break"></div>
 		<div>
@@ -226,6 +198,10 @@ floor.collider = 'dynamic';
 				Try creating a static sprite <code>peg</code> with a circle collider shape. Drop a dynamic sprite
 				<code>block</code> with a box collider shape on
 				top of it. Make the block fall to the right of the peg.
+			</p>
+			<p>
+				Note that the <code>world</code> is created by default when p5.play loads but by default the (x, y) gravity is
+				0.
 			</p>
 		</div>
 		<script type="text/p5" name="Level 1 Challenge" horiz>
@@ -309,7 +285,7 @@ function setup() {
 function draw() {
 	clear();
 }
-					</script>
+			</script>
 		</div>
 		<div class="minis horiz">
 			<script type="text/p5" name="Ooo!" horiz lines="18">
@@ -647,6 +623,11 @@ function draw() {
 				that direction
 				proportional to it's speed. Kind of complicated!
 			</p>
+			<h2>Custom Update</h2>
+			<p>
+				You can also define a custom update function for a sprite that runs at the end of the draw loop or when
+				updateSprites is called. You can put any sprite specific behavior you want in there.
+			</p>
 		</div>
 		<script type="text/p5" name="custom draw">
 let face, stretchy;
@@ -668,14 +649,17 @@ function setup() {
 
 		image(face, stretchy.vel.x * 2, stretchy.vel.y * 2);
 	};
+
+	stretchy.update = () => {
+		stretchy.moveTowards(mouse.x, mouse.y, 0.07);
+	};
 }
 
 function draw() {
 	clear();
-	stretchy.moveTowards(mouse.x, mouse.y, 0.07);
 }
 //
-				</script>
+		</script>
 	</div>
 
 	<div class="break"></div>
