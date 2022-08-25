@@ -92,7 +92,8 @@ code {
 	row-gap: 20px;
 }
 
-.page>div {
+.page>div,
+.page>md {
 	/* flex: 1; */
 	width: 49%;
 }

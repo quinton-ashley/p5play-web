@@ -34,6 +34,7 @@ function draw() {
 	}
 
 	if (asterisk.mouse.dragging()) {
+		log(mouse.x + asterisk.mouse.x, mouse.y + asterisk.mouse.y);
 		asterisk.moveTowards(mouse.x + asterisk.mouse.x, mouse.y + asterisk.mouse.y, 1);
 	}
 

@@ -20,12 +20,12 @@ function setup() {
 	ball = new Sprite(width / 2, height / 2, 10, 10, 'dynamic');
 
 	ball.collide(paddleL, () => {
-		ball.direction -= ball.y - paddleL.y;
+		ball.direction -= (ball.y - paddleL.y) * 0.5;
 		ball.speed = serveSpeed;
 	});
 
 	ball.collide(paddleR, () => {
-		ball.direction += ball.y - paddleR.y;
+		ball.direction += (ball.y - paddleR.y) * 0.5;
 		ball.speed = serveSpeed;
 	});
 
@@ -42,15 +42,15 @@ function draw() {
 	background(0);
 	image(net, width / 2 - 1, 0);
 
-	if (isKeyDown('w') && paddleL.y > wallTop.y) {
+	if (kb.pressing('up') && paddleL.y > wallTop.y) {
 		paddleL.y -= 12;
-	} else if (isKeyDown('s') && paddleL.y < wallBottom.y) {
+	} else if (kb.pressing('down') && paddleL.y < wallBottom.y) {
 		paddleL.y += 12;
 	}
 
-	if (isKeyDown('i') && paddleR.y > wallTop.y) {
+	if (kb.pressing('up2') && paddleR.y > wallTop.y) {
 		paddleR.y -= 12;
-	} else if (isKeyDown('k') && paddleR.y < wallBottom.y) {
+	} else if (kb.pressing('down2') && paddleR.y < wallBottom.y) {
 		paddleR.y += 12;
 	}
 

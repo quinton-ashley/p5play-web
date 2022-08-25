@@ -28,26 +28,25 @@
 	<div class="top break"></div>
 
 	<div id="page-0" class="page">
-		<div>
-			<h2>Camera</h2>
-			<p>In this example the camera follows the player.</p>
-			<p>
-				...more explanation coming soon
-			</p>
-		</div>
+		<script type="text/md">
+## Camera
+
+In this example the camera follows the player.
+
+`mouse.x` stores the x position of the mouse in relation to the world, which can be larger than the canvas. `camera.mouse.x` stores the x position of the mouse in relation to the canvas.
+
+The player and environment of your game should be drawn with the camera on.
+
+UI or HUD sprites, represented by magenta squares in this examples, should be drawn when the camera is off.
+
+`camera.zoom` can be used to zoom in and out.
+		</script>
 		<script type="text/p5" name="camera follow">
 let player;
 
 function setup() {
 	createCanvas(500, 240);
 	player = new Sprite();
-
-	ui = new Group();
-	for (let i = 1; i < 10; i++) {
-		let btn = new ui.Sprite(i * 50, 210, 20, 20);
-		btn.shapeColor = color(255, 0, 255);
-	}
-	ui.overlap(allSprites);
 }
 
 function draw() {
@@ -56,19 +55,25 @@ function draw() {
 	camera.on();
 
 	for (let i = 0; i < 10; i++) {
-		fill(i * 20, 200, 200);
+		fill(i * 20, 200, 200); // blue to gray
 		rect(-250 + i * 50, -250 + i * 100, 750, 50);
 	}
 
-	player.moveTowards(camera.mouse.x, camera.mouse.y, 0.05);
+	player.moveTowards(mouse.x, mouse.y, 0.04);
 	player.draw();
 
 	camera.x = player.x;
 	camera.y = player.y;
 
+	if (mouse.pressing()) camera.zoom = 1;
+	else camera.zoom = 0.5;
+
 	camera.off();
 
-	ui.draw();
+	fill(255, 0, 255); // magenta
+	for (let i = 1; i < 10; i++) {
+		rect(i * 50, 210, 20, 20);
+	}
 }
 		</script>
 	</div>
@@ -81,6 +86,8 @@ function draw() {
 	</footer>
 
 	<script src="learn.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+	<script src="md-tag-parser.js"></script>
 	<script src="p5-mini.js"></script>
 </body>
 

@@ -47,8 +47,8 @@ function draw() {
 	camera.on();
 
 	// mouse trailer, the speed is inversely proportional to the mouse distance
-	ghost.vel.x = (camera.mouse.x - ghost.x) / 20;
-	ghost.vel.y = (camera.mouse.y - ghost.y) / 20;
+	ghost.vel.x = (mouse.x - ghost.x) / 20;
+	ghost.vel.y = (mouse.y - ghost.y) / 20;
 
 	if (abs(ghost.vel.x) > 2) {
 		ghost.ani = 'moving';

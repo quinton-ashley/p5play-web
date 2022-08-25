@@ -28,21 +28,17 @@
 	<div class="top break"></div>
 
 	<div id="page-0" class="page">
-		<div>
-			<h2>Input Devices</h2>
-			<p>
-				Here are the input devices available in p5.play:
-			</p>
-			<ul>
-				<li><code>kb</code> or <code>keyboard</code> for the keyboard</li>
-				<li><code>mouse</code> for the mouse</li>
-				<li><code>contro</code> for gamepads/controllers</li>
-			</ul>
-			<p>
-				These input devices all use the same
-				functions for getting the state of an input. Try pressing the space key!
-			</p>
-		</div>
+		<script type="text/md">
+## Input Devices
+			
+Here are the input devices available in p5.play:
+					
+- `kb` or `keyboard` for the keyboard
+- `mouse` for the mouse
+- `contro` for gamepads/controllers
+			
+These input devices all use the same functions for getting the state of an input. Try pressing the space key!
+		</script>
 		<script type="text/p5" name="pressed" base-0 hide>
 function setup() {
 	createCanvas(240, 100);
@@ -86,32 +82,17 @@ if (!kb[' ']) {
 		</div>
 	</div>
 	<div id="page-1" class="page">
-		<div>
-			<h2>Keyboard</h2>
-			<p>
-				In PC games the WASD keys are commonly used for movement so you can use the direction names 'up', 'down',
-				'left', and
-				'right' to detect if these keys are pressed.
-			</p>
-			<p>
-				Using the IJKL keys for movement is common to support left handed players or second players in local two player
-				games.
-				These keys can be
-				referenced using: 'up2',
-				'down2', 'left2', and 'right2'.
-			</p>
-			<p>
-				For
-				the arrow keys you can use 'ArrowUp', 'ArrowDown', 'ArrowLeft' and 'ArrowRight'.
-			</p>
-			<p>
-				Note that some keyboards don't start with QWERTY on the top row. p5.play maps other keyboard layouts to
-				the standard English QWERTY layout. For example that means that for French AZERTY keyboard users the WASD keys
-				are ZQSD. This is why it's better to use the direction names instead of the letter names for these keys. <a
-					href="https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/code">
-					More info</a>
-			</p>
-		</div>
+		<script type="text/md">
+## Keyboard
+			
+In PC games the WASD keys are commonly used for movement so you can use the direction names 'up', 'down', 'left', and 'right' to detect if these keys are pressed.
+			
+Using the IJKL keys for movement is common to support left handed players or second players in local two player games. These keys can be referenced using: 'up2', 'down2', 'left2', and 'right2'.
+			
+For the arrow keys you can use 'ArrowUp', 'ArrowDown', 'ArrowLeft' and 'ArrowRight'.
+			
+Note that some keyboards don't start with QWERTY on the top row. p5.play maps other keyboard layouts to the standard English QWERTY layout. For example that means that for French AZERTY keyboard users the WASD keys are ZQSD. This is why it's better to use the direction names instead of the letter names for these keys. [More info](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/code)
+		</script>
 		<script type="text/p5" name="keyboard movement">
 let player;
 
@@ -170,21 +151,15 @@ if (kb.pressing(' ') || mouse.pressing()) {
 		</div>
 	</div>
 	<div id="page-3" class="page">
-		<div>
-			<h2>Sprite Mouse</h2>
-			<p>
-				Sprites all have their own mouse object for detecting mouse inputs on the sprite.
-			</p>
-			<p>
-				The <code>mouse</code> has an additional function for detecting dragging, moving the mouse while holding a
-				button.
-			</p>
-			<p>
-				Note that <code>mouse.x</code> is the x position of the mouse on the canvas and <code>sprite.mouse.x</code> is
-				the
-				x position of the mouse relative to the sprite.
-			</p>
-		</div>
+		<script type="text/md">
+## Sprite Mouse
+			
+Sprites all have their own mouse object for detecting mouse inputs on the sprite.
+			
+The `mouse` has an additional function for detecting dragging, moving the mouse while holding a button.
+						
+Note that `mouse.x` is the x position of the mouse on the canvas and `sprite.mouse.x` is the x position of the mouse relative to the sprite.
+		</script>
 		<div class="minis horiz">
 			<script type="text/p5" name="sprite.mouse">
 let sprite;
@@ -227,6 +202,8 @@ function draw() {
 	</footer>
 
 	<script src="learn.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+	<script src="md-tag-parser.js"></script>
 	<script src="p5-mini.js"></script>
 </body>
 

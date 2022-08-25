@@ -52,8 +52,4 @@ function draw() {
 	}
 
 	s2.draw();
-
-	if (mouse.pressing()) {
-		camera.rotation += 1;
-	}
 }

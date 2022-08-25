@@ -191,18 +191,13 @@ floor.collider = 'none';
 			</script>
 		</div>
 		<div class="break"></div>
-		<div>
-			<h2>Try it out!</h2>
-			<p>
-				Try creating a static sprite <code>peg</code> with a circle collider shape. Drop a dynamic sprite
-				<code>block</code> with a box collider shape on
-				top of it. Make the block fall to the right of the peg.
-			</p>
-			<p>
-				Note that the <code>world</code> is created by default when p5.play loads but by default the (x, y) gravity is
-				0.
-			</p>
-		</div>
+		<script type="text/md">
+## Try it out!
+
+Try creating a static sprite `peg` with a circle collider shape. Drop a dynamic sprite `block` with a box collider shape on top of it. Make the block fall to the right of the peg.
+
+Note that the `world` is created by default when p5.play loads but by default the (x, y) gravity is 0.
+		</script>
 		<script type="text/p5" name="Level 1 Challenge" horiz>
 let peg, block;
 
@@ -217,16 +212,17 @@ function draw() {
 		</script>
 	</div>
 	<div id="page-2" class="page">
-		<div>
-			<h2>Sprite movement</h2>
-			<p>There are a few ways to move a sprite. Note that directly changing a sprite's position teleports it.
-			</p>
-			<p>If you want a sprite to interact with other sprites while it's moving, change
-				the sprite's x/y velocity, speed/direction, or use the move or moveTowards methods.</p>
-			<p>Remember the p5.js setup function only runs once at the beginning of your sketch so move sprites in draw!
-			</p>
-			<p>Use your mouse to interact with these mini-sketches!</p>
-		</div>
+		<script type="text/md">
+## Sprite movement
+
+There are a few ways to move a sprite. Note that directly changing a sprite's position teleports it.
+
+If you want a sprite to interact with other sprites while it's moving, change the sprite's x/y velocity, speed/direction, or use the move or moveTowards methods.
+
+Remember the p5.js setup function only runs once at the beginning of your sketch so move sprites in draw!
+
+Use your mouse to interact with these mini-sketches!
+		</script>
 		<script type="text/p5" name="idle player" lines="11" base-3>
 let player, block;
 
@@ -266,16 +262,15 @@ if (mouse.held()) {
 	</div>
 	<div id="page-3" class="page">
 		<div>
-			<h2>Create Sprites faster</h2>
-			<p>Inside the Sprite constructor, <code>new Sprite()</code>, you can specify the sprite's position, size, and
-				collider
-				type.</p>
-			<p>As you saw on the first Sprite reference page, adding these inputs to the constructor is optional. But, if you
-				do want to set a sprite's size in the constructor you'll need to specify its position first.</p>
-			<p>
-				By default, if no inputs are given to the Sprite constructor, new sprites are positioned at the center of the
-				canvas, with a width and height of 50 pixels, and a dynamic collider.
-			</p>
+			<script type="text/md">
+## Create Sprites faster
+
+Inside the Sprite constructor, `new Sprite()`, you can specify the sprite's position, size, and collider type.
+
+As you saw on the first Sprite reference page, adding these inputs to the constructor is optional. But, if you do want to set a sprite's size in the constructor you'll need to specify its position first.
+			
+By default, if no inputs are given to the Sprite constructor, new sprites are positioned at the center of the canvas, with a width and height of 50 pixels, and a dynamic collider.
+			</script>
 			<script type="text/p5" name="default sprite" lines="3" horiz>
 function setup() {
 	new Sprite();
@@ -349,16 +344,13 @@ function draw() {
 		</script>
 	</div>
 	<div id="page-4" class="page">
-		<div>
-			<h2>spriteArt</h2>
-			<p>
-				You can use the <code>spriteArt</code> function to create pixel art images for your sprites. It takes a string
-				as input and returns an image. Each character in the string represents the color value of a pixel in the image.
-			</p>
-			<p>
-				The second input parameter to the <code>spriteArt</code> function is the scale of the image.
-			</p>
-		</div>
+		<script type="text/md">
+## spriteArt
+			
+You can use the `spriteArt` function to create pixel art images for your sprites. It takes a string as input and returns an image. Each character in the string represents the color value of a pixel in the image.
+			
+The second input parameter to the `spriteArt` function is the scale of the image.			
+		</script>
 		<script type="text/p5" name="smiley">
 let smiley;
 
@@ -604,7 +596,6 @@ function draw() {
 	<div id="page-8" class="page">
 		<div>
 			<h2>Custom draw</h2>
-			<!-- <p style="font-style: italic;">Level 2 reference</p> -->
 			<p>
 				Sometimes you won't be able to use pre-drawn animations to get
 				the kind of visual effect you want for a sprite in motion.
@@ -669,6 +660,8 @@ function draw() {
 	</footer>
 
 	<script src="learn.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+	<script src="md-tag-parser.js"></script>
 	<script src="p5-mini.js"></script>
 </body>
 
