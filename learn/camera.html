@@ -30,8 +30,47 @@
 	<div id="page-0" class="page">
 		<div>
 			<h2>Camera</h2>
-			<p>Coming soon!</p>
+			<p>In this example the camera follows the player.</p>
+			<p>
+				...more explanation coming soon
+			</p>
 		</div>
+		<script type="text/p5" name="camera follow">
+let player;
+
+function setup() {
+	createCanvas(500, 240);
+	player = new Sprite();
+
+	ui = new Group();
+	for (let i = 1; i < 10; i++) {
+		let btn = new ui.Sprite(i * 50, 210, 20, 20);
+		btn.shapeColor = color(255, 0, 255);
+	}
+	ui.overlap(allSprites);
+}
+
+function draw() {
+	background(0);
+
+	camera.on();
+
+	for (let i = 0; i < 10; i++) {
+		fill(i * 20, 200, 200);
+		rect(-250 + i * 50, -250 + i * 100, 750, 50);
+	}
+
+	player.moveTowards(camera.mouse.x, camera.mouse.y, 0.05);
+	player.draw();
+
+	camera.x = player.x;
+	camera.y = player.y;
+
+	camera.off();
+
+	ui.draw();
+}
+		</script>
 	</div>
 
 	<div class="break"></div>

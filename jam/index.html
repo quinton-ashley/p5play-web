@@ -73,7 +73,7 @@ function setup() {
 	textAlign(CENTER);
 	textFont('monospace');
 	logosAni.frame = 12;
-	let box = new Sprite(logosAni.frameImage,250, 200, 140, 'static');
+	let box = new Sprite(logosAni.frameImage, 250, 200, 'static');
 	box.text = 'p5.play\nGame Jam!\n2022';
 	box.shapeColor = color(0, 0, 0, 0);
 	allSprites.cull(100);
@@ -81,7 +81,7 @@ function setup() {
 
 function draw() {
 	clear();
-	if (frame % 10 == 0) {
+	if (frame % 30 == 0) {
 		logosAni.frame = round(random(1, 24));
 		new Sprite(logosAni.frameImage, random(width), random(height), 160);
 	}

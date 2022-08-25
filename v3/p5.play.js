@@ -1727,7 +1727,8 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 				if (destY) this.dest.y = destY;
 			}
 
-			if (!destX && !destY) return;
+			this._destIdx++;
+			if (!destX && !destY) return true;
 
 			if (this.tileSize > 1) speed ??= 0.1;
 			speed ??= 1;
@@ -1752,7 +1753,6 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			// margin of error
 			let margin = totalSpeed + 0.01;
 
-			this._destIdx++;
 			let destIdx = this._destIdx;
 
 			return (async () => {
