@@ -33,11 +33,13 @@
 
 In this example the camera follows the player.
 
-`mouse.x` stores the x position of the mouse in relation to the world, which can be larger than the canvas. `camera.mouse.x` stores the x position of the mouse in relation to the canvas.
+By default, `allSprites.draw()` is called at the end of the p5.js draw loop. However, if you want to control when sprites and groups are drawn, you can draw them separately.
 
 The player and environment of your game should be drawn with the camera on.
 
 UI or HUD sprites, represented by magenta squares in this examples, should be drawn when the camera is off.
+
+`mouse.x` stores the x position of the mouse in relation to the world, which can be larger than the canvas. `camera.mouse.x` stores the x position of the mouse in relation to the canvas.
 
 `camera.zoom` can be used to zoom in and out.
 		</script>
