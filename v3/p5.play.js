@@ -1123,8 +1123,10 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			}
 			this._resizeCollider();
 			this._scale = val;
-			this.ani.scale.x = val;
-			this.ani.scale.y = val;
+			if (this.ani) {
+				this.ani.scale.x = val;
+				this.ani.scale.y = val;
+			}
 		}
 
 		get shapeColor() {
