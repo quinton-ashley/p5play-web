@@ -526,7 +526,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 					break;
 				}
 			}
-			if (shouldCreateSensor && !this.sensor) this._createSensor();
+			if (shouldCreateSensor && !this._hasOverlaps) this._createSensors();
 		}
 
 		/**
@@ -830,17 +830,24 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 
 		set collider(val) {
 			if (this._collider == val) return;
-			this._collider = val;
 			let bodyProps;
-			if (this._collider == 'none') bodyProps = this._cloneBodyProps();
+			if (this._collider != 'none') {
+				bodyProps = this._cloneBodyProps();
+			}
 
+			// remove body
 			if (this.body) {
 				this.p.world.destroyBody(this.body);
 				this.body = undefined;
 			}
 
+			// replace colliders and overlap sensors
+			this._collider = val;
 			if (this._collider != 'none') {
 				this.addCollider();
+				if (this._hasOverlaps) {
+					this._createSensors();
+				}
 				for (let prop in bodyProps) {
 					this[prop] = bodyProps[prop];
 				}
@@ -976,6 +983,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		 * @property fixtureList
 		 */
 		get fixtureList() {
+			if (!this.body) return null;
 			return this.body.getFixtureList();
 		}
 
@@ -2181,12 +2189,12 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			if (!(target instanceof Sprite) && !(target instanceof Group)) {
 				throw new Error('collide target must be a sprite or a group');
 			}
-			if (!this.sensor) this._createSensor();
+			if (!this._hasOverlaps) this._createSensors();
 			if (target instanceof Sprite) {
-				if (!target.sensor) target._createSensor();
+				if (!target._hasOverlaps) target._createSensors();
 			} else if (target instanceof Group) {
 				for (let s of target) {
-					if (!s.sensor) s._createSensor();
+					if (!s._hasOverlaps) s._createSensor();
 				}
 				target._hasOverlaps = true;
 			}
@@ -2194,17 +2202,16 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			return this.touching[target];
 		}
 
-		_createSensor() {
+		_createSensors() {
 			let shape;
 			for (let fxt = this.fixtureList; fxt; fxt = fxt.getNext()) {
 				shape = fxt.m_shape;
-				break;
+				this.body.createFixture({
+					shape: shape,
+					isSensor: true
+				});
 			}
-
-			this.sensor = this.body.createFixture({
-				shape: shape,
-				isSensor: true
-			});
+			this._hasOverlaps = true;
 		}
 
 		/**
@@ -3117,7 +3124,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 				if (!s.sensor) s._createSensor();
 			}
 			if (target instanceof Sprite) {
-				if (!target.sensor) target._createSensor();
+				if (!target.sensor) target._createSensors();
 			} else if (target instanceof Group) {
 				for (let s of target) {
 					if (!s.sensor) s._createSensor();
@@ -3586,7 +3593,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			let b = contact.m_fixtureB;
 
 			let contactType = 'collides';
-			if (a.isSensor() || b.isSensor()) contactType = 'overlaps';
+			if (a.isSensor()) contactType = 'overlaps';
 
 			a = a.m_body.sprite;
 			b = b.m_body.sprite;
@@ -3596,11 +3603,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 
 			// log(a, b);
 			let cb = _findContactCB(contactType, a, b);
-			if (cb) {
-				this.contacts.push([cb, a, b]);
-				return;
-			}
-			cb = _findContactCB(contactType, b, a);
+			if (!cb) cb = _findContactCB(contactType, b, a);
 			if (cb) this.contacts.push([cb, b, a]);
 		}
 
