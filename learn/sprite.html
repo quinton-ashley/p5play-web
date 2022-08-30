@@ -219,7 +219,7 @@ There are a few ways to move a sprite. Note that directly changing a sprite's po
 
 If you want a sprite to interact with other sprites while it's moving, change the sprite's x/y velocity, speed/direction, or use the move or moveTowards methods.
 
-Remember the p5.js setup function only runs once at the beginning of your sketch so move sprites in draw!
+Remember the p5.js setup function only runs once at the beginning of your sketch so move sprites in the p5.js draw function!
 
 Use your mouse to interact with these mini-sketches!
 		</script>
@@ -267,8 +267,8 @@ if (mouse.held()) {
 
 Inside the Sprite constructor, `new Sprite()`, you can specify the sprite's position, size, and collider type.
 
-As you saw on the first Sprite reference page, adding these inputs to the constructor is optional. But, if you do want to set a sprite's size in the constructor you'll need to specify its position first.
-			
+As you saw on the previous Sprite reference pages, you don't need to add any inputs to the Sprite constructor to create a sprite. But, if you do want to set a sprite's size in the constructor you'll need to specify its position first.
+
 By default, if no inputs are given to the Sprite constructor, new sprites are positioned at the center of the canvas, with a width and height of 50 pixels, and a dynamic collider.
 			</script>
 			<script type="text/p5" name="default sprite" lines="3" horiz>
