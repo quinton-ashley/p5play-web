@@ -3142,13 +3142,13 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			}
 			this._hasOverlaps = true;
 			for (let s of this) {
-				if (!s.sensor) s._createSensors();
+				if (!s._hasOverlaps) s._createSensors();
 			}
 			if (target instanceof Sprite) {
-				if (!target.sensor) target._createSensors();
+				if (!target._hasOverlaps) target._createSensors();
 			} else if (target instanceof Group) {
 				for (let s of target) {
-					if (!s.sensor) s._createSensors();
+					if (!s._hasOverlaps) s._createSensors();
 				}
 				target._hasOverlaps = true;
 			}
@@ -3941,12 +3941,11 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		aabb.upperBound = new pl.Vec2(convertedPoint.x + 0.001, convertedPoint.y + 0.001);
 
 		// Query the world for overlapping shapes.
-		let selectedFxt = null;
+		let fxts = [];
 		pInst.world.queryAABB(aabb, (fxt) => {
 			if (!fxt.getBody().isStatic()) {
 				if (fxt.getShape().testPoint(fxt.getBody().getTransform(), convertedPoint)) {
-					selectedFxt = fxt;
-					return false;
+					fxts.push(fxt);
 				}
 			}
 			return true;
@@ -3955,10 +3954,10 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		group ??= pInst.allSprites;
 
 		let sprites = [];
-		if (selectedFxt) {
+		if (fxts.length > 0) {
 			for (let s of group) {
 				if (!s.body) continue;
-				if (selectedFxt == s.body.m_fixtureList) {
+				if (fxts.includes(s.body.m_fixtureList)) {
 					if (s._cameraActiveWhenDrawn == cameraActiveWhenDrawn) sprites.push(s);
 				}
 			}
