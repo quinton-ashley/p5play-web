@@ -14,7 +14,22 @@
  * Initiated by Paolo Pedercini @molleindustria, 2015
  * https://molleindustria.org/
  */
+(async () => {
+	if (typeof window.Box2D == 'undefined') {
+		throw new Error('Box2D must be loaded before p5.play');
+	}
+	const Box2DFactory = Box2D;
+	window.B2D = await Box2DFactory();
+	new p5();
+})();
+
 p5.prototype.registerMethod('init', function p5PlayInit() {
+	if (typeof window.B2D == 'undefined') {
+		window.__start = this._start;
+		this._start = () => {};
+		return;
+	}
+	this._start = window.__start;
 	const log = console.log; // shortcut
 	this.log = console.log;
 
@@ -23,14 +38,26 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 	// change the angle mode to degrees
 	this.angleMode(p5.prototype.DEGREES);
 
-	if (typeof window.planck == 'undefined') {
-		throw new Error('planck.js must be loaded before p5.play');
-	}
+	const {
+		b2_dynamicBody,
+		b2BodyDef,
+		b2CircleShape,
+		b2Contact,
+		b2Color,
+		b2Draw: { e_shapeBit },
+		b2EdgeShape,
+		b2Transform,
+		b2Vec2,
+		b2PolygonShape,
+		b2World,
+		JSDraw,
+		wrapPointer,
+		JSContactListener,
+		getPointer,
+		NULL
+	} = B2D;
 
-	const pl = planck;
-	// set the velocity threshold to allow for slow moving objects
-	pl.Settings.velocityThreshold = 0.19;
-	let plScale = 60;
+	const b2Scale = 60;
 
 	this.p5play = this.p5play || {};
 	this.p5play.autoDrawSprites ??= true;
@@ -41,10 +68,11 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 	this.p5play.chainOrigin = 'center';
 	this.p5play.chainPoints = 'relative';
 	this.p5play.standardKeyboard = true;
+	this.p5play.linearSlop ??= 0.0001;
 
-	const scaleTo = ({ x, y }, tileSize) => new pl.Vec2((x * tileSize) / plScale, (y * tileSize) / plScale);
-	const scaleFrom = ({ x, y }, tileSize) => new pl.Vec2((x / tileSize) * plScale, (y / tileSize) * plScale);
-	const fixRound = (val) => (Math.abs(val - Math.round(val)) <= pl.Settings.linearSlop ? Math.round(val) : val);
+	const scaleTo = ({ x, y }, tileSize) => new b2Vec2((x * tileSize) / b2Scale, (y * tileSize) / b2Scale);
+	const scaleFrom = ({ x, y }, tileSize) => new b2Vec2((x / tileSize) * b2Scale, (y / tileSize) * b2Scale);
+	const fixRound = (val) => (Math.abs(val - Math.round(val)) <= this.p5play.linearSlop ? Math.round(val) : val);
 
 	let spriteProps = [
 		'bounciness',
@@ -310,13 +338,13 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 				get x() {
 					let val;
 					if (!_this.body) val = _this._vel.x;
-					else val = _this.body.getLinearVelocity().x;
+					else val = _this.body.GetLinearVelocity().x;
 					return fixRound(val / _this.tileSize);
 				},
 				set x(val) {
 					val *= _this.tileSize;
 					if (_this.body) {
-						_this.body.setLinearVelocity(new pl.Vec2(val, _this.body.getLinearVelocity().y));
+						_this.body.SetLinearVelocity(new b2Vec2(val, _this.body.GetLinearVelocity().y));
 					} else {
 						_this._vel.x = val;
 					}
@@ -324,13 +352,13 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 				get y() {
 					let val;
 					if (!_this.body) val = _this._vel.y;
-					else val = _this.body.getLinearVelocity().y;
+					else val = _this.body.GetLinearVelocity().y;
 					return fixRound(val / _this.tileSize);
 				},
 				set y(val) {
 					val *= _this.tileSize;
 					if (_this.body) {
-						_this.body.setLinearVelocity(new pl.Vec2(_this.body.getLinearVelocity().x, val));
+						_this.body.SetLinearVelocity(new b2Vec2(_this.body.GetLinearVelocity().x, val));
 					} else {
 						_this._vel.y = val;
 					}
@@ -398,8 +426,8 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 				if (ani instanceof p5.Image) {
 					this.addAni(ani);
 				} else {
-					if (typeof ani == 'string') this._changeAni(ani);
-					else this._animation = ani.clone();
+					if (typeof ani == 'string') this.changeAni(ani);
+					else this._animation = ani;
 				}
 				let ts = this.tileSize;
 				if (!w && this.ani.w != 1) {
@@ -541,10 +569,10 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		 */
 		addCollider(offsetX, offsetY, w, h) {
 			if (!this.body) {
-				this.body = this.p.world.createBody({
-					position: scaleTo({ x: this.x, y: this.y }, this.tileSize),
-					type: this.collider
-				});
+				let bd = new b2BodyDef();
+				bd.set_type(0);
+				bd.set_position(scaleTo({ x: this.x, y: this.y }, this.tileSize));
+				this.body = this.p.world.CreateBody(bd);
 				this.body.sprite = this;
 			}
 
@@ -580,11 +608,14 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 
 			let s;
 			if (shape == 'box') {
-				s = pl.Box(dimensions.x / 2, dimensions.y / 2, scaleTo({ x: offsetX, y: offsetY }, this.tileSize), 0);
+				s = new b2PolygonShape();
+				s.SetAsBox(dimensions.x / 2, dimensions.y / 2);
+				// scaleTo({ x: offsetX, y: offsetY }, this.tileSize)
 			} else if (shape == 'circle') {
-				s = pl.Circle(dimensions.x / 2);
-				s.m_p.x = 0;
-				s.m_p.y = 0;
+				s = b2CircleShape();
+				s.set_m_radius(dimensions.x / 2);
+				// s.m_p.x = 0;
+				// s.m_p.y = 0;
 			} else if (path) {
 				let vecs = [{ x: 0, y: 0 }];
 				let vert = { x: 0, y: 0 };
@@ -652,15 +683,15 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 					for (let i = 0; i < vecs.length; i++) {
 						let vec = vecs[i];
 						vecs[i] = new pl.Vec2(
-							((vec.x - this._hw - min.x) * this.tileSize) / plScale,
-							((vec.y - this._hh - min.y) * this.tileSize) / plScale
+							((vec.x - this._hw - min.x) * this.tileSize) / b2Scale,
+							((vec.y - this._hh - min.y) * this.tileSize) / b2Scale
 						);
 					}
 				} else {
 					// originMode is start
 					for (let i = 0; i < vecs.length; i++) {
 						let vec = vecs[i];
-						vecs[i] = new pl.Vec2((vec.x * this.tileSize) / plScale, (vec.y * this.tileSize) / plScale);
+						vecs[i] = new pl.Vec2((vec.x * this.tileSize) / b2Scale, (vec.y * this.tileSize) / b2Scale);
 					}
 				}
 				if (shape == 'polygon') {
@@ -674,11 +705,11 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 					props.restitution = 0;
 				}
 			}
-			props.shape = s;
-			props.density ??= this.density || 5;
-			props.friction ??= this.friction || 0.5;
-			props.restitution ??= this.bounciness || 0.2;
-			this.body.createFixture(props);
+			// props.shape = s;
+			// props.density ??= this.density || 5;
+			// props.friction ??= this.friction || 0.5;
+			// props.restitution ??= this.bounciness || 0.2;
+			this.body.CreateFixture(s, 1);
 			if (!this.shape) {
 				this.shape = shape;
 			} else if (this.fixture.getNext()) {
@@ -913,11 +944,11 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		 * @type {Number}
 		 */
 		get drag() {
-			if (this.body) return this.body.getLinearDamping();
+			if (this.body) return this.body.GetLinearDamping();
 			else return Infinity;
 		}
 		set drag(val) {
-			if (this.body) this.body.setLinearDamping(val);
+			if (this.body) this.body.SetLinearDamping(val);
 		}
 
 		/**
@@ -986,7 +1017,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		 */
 		get fixtureList() {
 			if (!this.body) return null;
-			return this.body.getFixtureList();
+			return this.body.GetFixtureList();
 		}
 
 		// set force(val) {
@@ -1107,16 +1138,19 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		get rotation() {
 			if (!this.body) return this._angle || 0;
 			if (this.p._angleMode === p5.prototype.DEGREES) {
-				return p5.prototype.degrees(this.body.getAngle());
+				// return p5.prototype.degrees(this.body.getAngle()); // TODO
+				return 0;
 			}
-			return this.body.getAngle();
+			// return this.body.getAngle();
+			return 0;
 		}
 		set rotation(val) {
 			if (this.body) {
 				if (this.p._angleMode === p5.prototype.DEGREES) {
-					this.body.setAngle(p5.prototype.radians(val));
+					// TODO
+					// this.body.setAngle(p5.prototype.radians(val));
 				} else {
-					this.body.setAngle(val);
+					// this.body.setAngle(val);
 				}
 			} else {
 				this._angle = val;
@@ -1262,13 +1296,13 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		 */
 		get x() {
 			if (!this.body) return this._pos.x;
-			let x = (this.body.getPosition().x / this.tileSize) * plScale;
+			let x = (this.body.GetPosition().x / this.tileSize) * b2Scale;
 			return fixRound(x);
 		}
 		set x(val) {
 			if (this.body) {
-				let pos = new pl.Vec2((val * this.tileSize) / plScale, this.body.getPosition().y);
-				this.body.setPosition(pos);
+				let pos = new b2Vec2((val * this.tileSize) / b2Scale, this.body.GetPosition().y);
+				this.body.SetPosition(pos);
 			}
 			this._pos.x = val;
 		}
@@ -1279,13 +1313,13 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		 */
 		get y() {
 			if (!this.body) return this._pos.y;
-			let y = (this.body.getPosition().y / this.tileSize) * plScale;
+			let y = (this.body.GetPosition().y / this.tileSize) * b2Scale;
 			return fixRound(y);
 		}
 		set y(val) {
 			if (this.body) {
-				let pos = new pl.Vec2(this.body.getPosition().x, (val * this.tileSize) / plScale);
-				this.body.setPosition(pos);
+				let pos = new b2Vec2(this.body.GetPosition().x, (val * this.tileSize) / b2Scale);
+				this.body.SetPosition(pos);
 			}
 			this._pos.y = val;
 		}
@@ -1296,8 +1330,8 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		 * @type {Object}
 		 */
 		set pos(val) {
-			let pos = new pl.Vec2((val.x * this.tileSize) / plScale, (val.y * this.tileSize) / plScale);
-			_this.body.setPosition(pos);
+			let pos = new b2Vec2((val.x * this.tileSize) / b2Scale, (val.y * this.tileSize) / b2Scale);
+			_this.body.SetPosition(pos);
 		}
 		/**
 		 * The width of the sprite.
@@ -1568,7 +1602,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 				this.animation.draw(0, 0, undefined, this._scale, this._scale);
 			} else if (this.fixture != null) {
 				if (this.shape == 'chain') this.p.stroke(this.shapeColor);
-				for (let fxt = this.fixtureList; fxt; fxt = fxt.getNext()) {
+				for (let fxt = this.fixtureList; getPointer(fxt) !== getPointer(NULL); fxt = fxt.GetNext()) {
 					this._drawFixture(fxt);
 				}
 			} else {
@@ -1642,8 +1676,8 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		 * @private
 		 */
 		_drawFixture(fxt) {
-			const sh = fxt.m_shape;
-			if (sh.m_type == 'polygon' || sh.m_type == 'chain') {
+			const sh = fxt.GetShape();
+			if (sh.m_type == 2 || sh.m_type == 'chain') {
 				if (sh.m_type == 'chain') {
 					this.p.push();
 					this.p.noFill();
@@ -1651,7 +1685,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 				let v = sh.m_vertices;
 				this.p.beginShape();
 				for (let i = 0; i < v.length; i++) {
-					this.p.vertex(v[i].x * plScale, v[i].y * plScale);
+					this.p.vertex(v[i].x * b2Scale, v[i].y * b2Scale);
 				}
 				if (sh.m_type != 'chain') this.p.endShape(p5.prototype.CLOSE);
 				else {
@@ -1659,14 +1693,14 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 					this.p.pop();
 				}
 			} else if (sh.m_type == 'circle') {
-				const d = sh.m_radius * 2 * plScale;
-				this.p.ellipse(sh.m_p.x * plScale, sh.m_p.y * plScale, d, d);
+				const d = sh.m_radius * 2 * b2Scale;
+				this.p.ellipse(sh.m_p.x * b2Scale, sh.m_p.y * b2Scale, d, d);
 			} else if (sh.m_type == 'edge') {
 				this.p.line(
-					sh.m_vertex1.x * plScale,
-					sh.m_vertex1.y * plScale,
-					sh.m_vertex2.x * plScale,
-					sh.m_vertex2.y * plScale
+					sh.m_vertex1.x * b2Scale,
+					sh.m_vertex1.y * b2Scale,
+					sh.m_vertex2.x * b2Scale,
+					sh.m_vertex2.y * b2Scale
 				);
 			}
 		}
@@ -1992,10 +2026,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			if (!ani) {
 				for (let g of this.groups) {
 					ani = g.animations[label];
-					if (ani) {
-						ani = ani.clone();
-						break;
-					}
+					if (ani) break;
 				}
 			}
 			if (!ani) {
@@ -2349,18 +2380,6 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			this.looping = true;
 
 			/**
-			 * Ends the loop on frame 0 instead of the last frame.
-			 * This is useful for animations that are symmetric.
-			 * For example a walking cycle where the first frame is the
-			 * same as the last frame.
-			 *
-			 * @property endOnFirstFrame
-			 * @type {Boolean}
-			 * @default false
-			 */
-			this.endOnFirstFrame = false;
-
-			/**
 			 * True if frame changed during the last draw cycle
 			 *
 			 * @property frameChanged
@@ -2370,8 +2389,6 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 
 			this.rotation = 0;
 			this.scale = { x: 1, y: 1 };
-
-			if (args.length == 0) return;
 
 			// sequence mode
 			if (
@@ -2457,9 +2474,6 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 				let sheet = parent.spriteSheet;
 				let atlas;
 				if (args[0] instanceof p5.Image || typeof args[0] == 'string') {
-					if (args.length >= 3) {
-						throw new Error('SpriteAnimation error: the name of animation should go first');
-					}
 					sheet = args[0];
 					atlas = args[1];
 				} else {
@@ -2588,19 +2602,6 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			}
 		}
 
-		clone() {
-			let ani = new SpriteAnimation();
-			ani.spriteSheet = this.spriteSheet;
-			ani.images = this.images.slice();
-			ani.offset.x = this.offset.x;
-			ani.offset.y = this.offset.y;
-			ani.frameDelay = this.frameDelay;
-			ani.playing = this.playing;
-			ani.looping = this.looping;
-			ani.rotation = this.rotation;
-			return ani;
-		}
-
 		/**
 		 * Draws the animation at coordinate x and y.
 		 * Updates the frames automatically.
@@ -2656,16 +2657,6 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			}
 
 			if (this.playing && this.cycles % this.frameDelay === 0) {
-				this.frameChanged = true;
-
-				if ((this.targetFrame == -1 && this.frame == this.lastFrame) || this.frame == this.targetFrame) {
-					if (this.endOnFirstFrame) this.frame = 0;
-					if (this.looping) this.targetFrame = -1;
-					else this.playing = false;
-					this.onComplete(); //fire when on last frame
-					if (!this.looping) return;
-				}
-
 				//going to target frame up
 				if (this.targetFrame > this.frame && this.targetFrame !== -1) {
 					this.frame++;
@@ -2678,14 +2669,22 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 				} else if (this.looping) {
 					//advance frame
 					//if next frame is too high
-					if (this.frame >= this.lastFrame) {
-						this.frame = 0;
-					} else this.frame++;
+					if (this.frame >= this.lastFrame) this.frame = 0;
+					else this.frame++;
 				} else {
 					//if next frame is too high
 					if (this.frame < this.lastFrame) this.frame++;
 				}
 			}
+			if (
+				this.onComplete &&
+				((this.targetFrame == -1 && this.frame == this.lastFrame) || this.frame == this.targetFrame)
+			) {
+				if (this.looping) this.targetFrame = -1;
+				this.onComplete(); //fire when on last frame
+			}
+
+			if (previousFrame !== this.frame) this.frameChanged = true;
 		}
 
 		/**
@@ -3396,15 +3395,6 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		}
 
 		/**
-		 * Removes all sprites from the group and destroys the group.
-		 *
-		 * @method removeAll
-		 */
-		removeAll() {
-			this.remove();
-		}
-
-		/**
 		 * Returns the highest depth in a group
 		 *
 		 * @method maxDepth
@@ -3530,9 +3520,9 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 	/**
 	 * World
 	 */
-	class World extends pl.World {
+	class World extends b2World {
 		constructor() {
-			super(new pl.Vec2(0, 0), true);
+			super(new b2Vec2(0, 0));
 			this.p = pInst;
 			this.width = this.p.width;
 			this.height = this.p.height;
@@ -3611,8 +3601,8 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			this.spritesCreated = 0;
 			this.contacts = [];
 
-			this.on('begin-contact', this._beginContact);
-			this.on('end-contact', this._endContact);
+			// this.on('begin-contact', this._beginContact);
+			// this.on('end-contact', this._endContact);
 
 			/**
 			 * Gravity vector
@@ -3852,27 +3842,27 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 
 	// an overlap occurs when two sensor fixtures touch
 	// a collision occurs when two collider fixtures touch
-	pl.Fixture.prototype.shouldCollide = function (that) {
-		// should this and that collide?
-		let a = this;
-		let b = that;
+	// pl.Fixture.prototype.shouldCollide = function (that) {
+	// 	// should this and that collide?
+	// 	let a = this;
+	// 	let b = that;
 
-		// overlap
-		if (a.isSensor() && b.isSensor()) return true;
+	// 	// overlap
+	// 	if (a.isSensor() && b.isSensor()) return true;
 
-		// mismatched sensor + collider touching
-		if (a.isSensor() && !b.isSensor()) return false;
-		if (!a.isSensor() && b.isSensor()) return false;
+	// 	// mismatched sensor + collider touching
+	// 	if (a.isSensor() && !b.isSensor()) return false;
+	// 	if (!a.isSensor() && b.isSensor()) return false;
 
-		// only collide if `a` doesn't have overlap enabled with `b`
-		a = a.m_body.sprite;
-		b = b.m_body.sprite;
+	// 	// only collide if `a` doesn't have overlap enabled with `b`
+	// 	a = a.m_body.sprite;
+	// 	b = b.m_body.sprite;
 
-		let cb = _findContactCB('overlaps', a, b);
-		if (!cb) cb = _findContactCB('overlaps', b, a);
-		if (cb) return false;
-		return true;
-	};
+	// 	let cb = _findContactCB('overlaps', a, b);
+	// 	if (!cb) cb = _findContactCB('overlaps', b, a);
+	// 	if (cb) return false;
+	// 	return true;
+	// };
 
 	class Tiles {
 		constructor(tiles, x, y, w, h) {
@@ -3979,7 +3969,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 	 */
 	p5.prototype.getSpritesAt = function (x, y, group, cameraActiveWhenDrawn) {
 		cameraActiveWhenDrawn ??= true;
-		const convertedPoint = new pl.Vec2(x / plScale, y / plScale);
+		const convertedPoint = new pl.Vec2(x / b2Scale, y / b2Scale);
 		const aabb = new pl.AABB();
 		aabb.lowerBound = new pl.Vec2(convertedPoint.x - 0.001, convertedPoint.y - 0.001);
 		aabb.upperBound = new pl.Vec2(convertedPoint.x + 0.001, convertedPoint.y + 0.001);
@@ -5023,9 +5013,7 @@ p5.prototype.registerMethod('post', function p5playPostDraw() {
 	this.frame = this.frameCount;
 
 	if (this.p5play.autoDrawSprites) {
-		this.camera.on();
 		this.allSprites.draw();
-		this.camera.off();
 		this.p5play.autoDrawSprites = true;
 	}
 

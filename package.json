@@ -6,6 +6,8 @@
 	],
 	"description": "The website for p5.play",
 	"dependencies": {
+		"box2d-wasm": "npm:liquidfun-wasm@^7.0.0",
+		"p5": "^1.4.2",
 		"yuidocjs": "^0.10.2"
 	},
 	"license": "GPL-3.0-only",
@@ -17,5 +19,5 @@
 		"version": "git add -A",
 		"postversion": "git push"
 	},
-	"version": "1.1.159"
+	"version": "1.1.160"
 }
