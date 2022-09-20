@@ -112,25 +112,73 @@ function draw() {
 			</p>
 		</div>
 		<script type="text/p5" name="sprite sheet mode">
-let explodeAni;
+let splatAni;
 
 function setup() {
 	createCanvas(500, 200);
 
-	explodeAni = loadAnimation('assets/explode_sprite_sheet.png', { size: [171, 158], frames: 11 });
+	splatAni = loadAnimation('assets/explode_sprite_sheet.png', { size: [171, 158], frames: 11 });
 }
 
 function draw() {
 	clear();
-	animation(explodeAni, 100, 100);
+	animation(splatAni, 100, 100);
 
 	scale(0.6);
-	image(explodeAni.spriteSheet, 320, 80, 500, 154);
+	image(splatAni.spriteSheet, 320, 80, 500, 154);
 }
 //
 </script>
 	</div>
 	<div id="page-1" class="page">
+		<div>
+			<h2>Animating</h2>
+			<p>
+				p5play gives you total control over your animations. Try this example out!
+			</p>
+		</div>
+		<script type="text/p5" name="splat" base-0>
+let splatAni;
+
+function setup() {
+	createCanvas(500, 160);
+
+	splatAni = loadAni('assets/asterisk_explode0001.png', 11);
+}
+
+function draw() {
+	clear();
+
+	if (kb.pressed('p')) {
+		splatAni.play();
+	} else if (kb.pressed('a')) {
+		splatAni.play(0);
+	} else if (kb.pressed('s')) {
+		splatAni.stop();
+	} else if (kb.pressed('r')) {
+		splatAni.rewind();
+	} else if (kb.pressed('l')) {
+		splatAni.loop();
+	} else if (kb.pressed('n')) {
+		splatAni.noLoop();
+	} else if (kb.pressed('f')) {
+		splatAni.nextFrame();
+	} else if (kb.pressed('b')) {
+		splatAni.previousFrame();
+	} else if (kb.pressed('5')) {
+		splatAni.frame = 5;
+	} else if (kb.pressing('x')) {
+		splatAni.scale.x = -1;
+	} if (kb.pressing('y')) {
+		splatAni.scale.y = -1;
+	}
+
+	animation(splatAni, 250, 80);
+}
+//
+		</script>
+	</div>
+	<div id="page-2" class="page">
 		<div>
 			<h2>Sprites with Animation</h2>
 			<p>
@@ -143,7 +191,7 @@ function draw() {
 				left mouse button.
 			</p>
 		</div>
-		<script type="text/p5" name="sprites with animation" base-0>
+		<script type="text/p5" name="sprites with animation" base-1>
 let ghost;
 
 function setup() {
@@ -161,14 +209,14 @@ function draw() {
 	ghost.debug = mouse.holding();
 }
 		</script>
-		<script type="text/p5" name="fly" base="0">
+		<script type="text/p5" name="fly" base="1">
 ghost.ani = 'fly';
 		</script>
-		<script type="text/p5" name="move" base="0">
+		<script type="text/p5" name="move" base="1">
 ghost.ani = 'move';
 		</script>
 	</div>
-	<div id="page-2" class="page">
+	<div id="page-3" class="page">
 		<div>
 			<h2>Groups with Animation</h2>
 			<p>
@@ -204,7 +252,7 @@ function draw() {
 				Yet, it's better to just create a Group and add animations to it.
 			</p>
 			<p>
-				If a group has only one animation, new group sprites will get that animation. Otherwise by default the
+				If a group has only one animation, new group sprites will have that animation. Otherwise by default the
 				sprite gets the last animation loaded.
 			</p>
 		</div>

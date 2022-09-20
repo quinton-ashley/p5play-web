@@ -2697,7 +2697,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		 */
 		play(frame) {
 			this.playing = true;
-			if (frame) this.frame = frame;
+			if (frame !== undefined) this.frame = frame;
 			this.targetFrame = -1;
 		}
 
@@ -2717,7 +2717,27 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		 * @method rewind
 		 */
 		rewind() {
+			this.looping = false;
 			this.goToFrame(0);
+		}
+
+		/**
+		 * Plays the animation forwards and loops it.
+		 *
+		 * @method loop
+		 */
+		loop() {
+			this.looping = true;
+			this.playing = true;
+		}
+
+		/**
+		 * Prevents the animation from looping
+		 *
+		 * @method noLoop
+		 */
+		noLoop() {
+			this.looping = false;
 		}
 
 		/**
@@ -4350,9 +4370,9 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 	 * @param {Number} y Y coordinate
 	 *
 	 */
-	p5.prototype.animation = function (ani, x, y) {
+	p5.prototype.animation = function (ani, x, y, r, sX, sY) {
 		if (ani.visible) ani.update();
-		ani.draw(x, y);
+		ani.draw(x, y, r, sX, sY);
 	};
 
 	/**
