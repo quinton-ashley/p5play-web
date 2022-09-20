@@ -55,6 +55,7 @@ function draw() {
 let sprite;
 
 function setup() {
+	// setup runs once at the start of the game
 	createCanvas(200, 100);
 
 	sprite = new Sprite();
@@ -62,6 +63,7 @@ function setup() {
 }
 
 function draw() {
+	// draw runs every frame (60 times per second)
 	clear();
 }
 				</script>
@@ -122,7 +124,6 @@ let sprite;
 
 function setup() {
 	createCanvas(200, 256);
-	sprite = new Sprite();
 
 }
 
@@ -198,9 +199,9 @@ floor.collider = 'none';
 		<script type="text/md">
 ## Try it out!
 
-Try creating a static sprite `peg` with a circle collider shape. Drop a dynamic sprite `block` with a box collider shape on top of it. Make the block fall to the right of the peg.
+Try creating a sprite `peg` with a static collider and circle shape. Create a sprite `block` with a dynamic collider and box shape. Make the block fall from above the page and hit the peg, falling to the right side.
 
-Note that the `world` is created by default when p5.play loads but by default the (x, y) gravity is 0.
+Note that the `world` is created by default when p5.play loads but by default the (x, y) gravity is (0, 0).
 		</script>
 		<script type="text/p5" name="Level 1 Challenge" horiz>
 let peg, block;
@@ -300,7 +301,7 @@ function setup() {
 	box = new Sprite(25, 70, 10, 90, 'static');
 	// same as setting the values separately
 	// box.x = 25;
-	// box.y = 60;
+	// box.y = 70;
 	// box.width = 10;
 	// box.height = 90;
 	// box.collider = 'static';
