@@ -3064,7 +3064,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		}
 
 		/**
-		 * Reference to the sprite's current animation.
+		 * Reference to the current animation.
 		 *
 		 * @property ani
 		 * @type {SpriteAnimation}
@@ -3075,6 +3075,10 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 
 		get animation() {
 			return this._animation;
+		}
+
+		get anis() {
+			return this.animations;
 		}
 
 		set amount(val) {
