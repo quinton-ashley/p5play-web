@@ -112,10 +112,9 @@ let examples = {
 		tunneling: 'tunneling [FIXED]',
 		slowBounce: 'slow bounce [FIXED]',
 		fullBounce: 'full bounce [BUG?]',
-		move: 'move function [BUG]',
-		moveOrbit: 'group orbit + moveTowards [BUG]',
 		tiles: 'tiles displace [TODO]',
-		collisions5: 'polygonal colliders [TODO]'
+		collisions5: 'large edge colliders [TODO]',
+		moveOrbit: 'group orbit + moveTowards [TODO]'
 	},
 	Games: {
 		pong: 'Pong',

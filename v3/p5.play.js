@@ -40,7 +40,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 	this.p5play.mouseSprites = [];
 	this.p5play.chainOrigin = 'center';
 	this.p5play.chainPoints = 'relative';
-	this.p5play.standardKeyboard = true;
+	this.p5play.standardizeKeyboard = false;
 
 	const scaleTo = ({ x, y }, tileSize) => new pl.Vec2((x * tileSize) / plScale, (y * tileSize) / plScale);
 	const scaleFrom = ({ x, y }, tileSize) => new pl.Vec2((x / tileSize) * plScale, (y / tileSize) * plScale);
@@ -4828,14 +4828,18 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 
 	if (navigator.keyboard) {
 		const keyboard = navigator.keyboard;
-		keyboard.getLayoutMap().then((keyboardLayoutMap) => {
-			const key = keyboardLayoutMap.get('KeyW');
-			if (key != 'w') this.p5play.standardKeyboard = false;
-		});
+		try {
+			keyboard.getLayoutMap().then((keyboardLayoutMap) => {
+				const key = keyboardLayoutMap.get('KeyW');
+				if (key != 'w') this.p5play.standardizeKeyboard = true;
+			});
+		} catch (e) {
+			this.p5play.standardizeKeyboard = true;
+		}
 	} else {
 		// Firefox doesn't have navigator.keyboard
 		// so just make it use key codes
-		this.p5play.standardKeyboard = false;
+		this.p5play.standardizeKeyboard = true;
 	}
 
 	function getKeyFromCode(e) {
@@ -4861,7 +4865,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 
 	this._onkeydown = function (e) {
 		let key = e.key;
-		if (!this.p5play.standardKeyboard) {
+		if (this.p5play.standardizeKeyboard) {
 			key = getKeyFromCode(e);
 		}
 		let keys = [key];
@@ -4879,7 +4883,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 
 	this._onkeyup = function (e) {
 		let key = e.key;
-		if (!this.p5play.standardKeyboard) {
+		if (this.p5play.standardizeKeyboard) {
 			key = getKeyFromCode(e);
 		}
 		let keys = [key];
