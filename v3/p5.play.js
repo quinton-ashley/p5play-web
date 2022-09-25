@@ -4822,12 +4822,12 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 
 	if (navigator.keyboard) {
 		const keyboard = navigator.keyboard;
-		try {
+		if (window == window.top) {
 			keyboard.getLayoutMap().then((keyboardLayoutMap) => {
 				const key = keyboardLayoutMap.get('KeyW');
 				if (key != 'w') this.p5play.standardizeKeyboard = true;
 			});
-		} catch (e) {
+		} else {
 			this.p5play.standardizeKeyboard = true;
 		}
 	} else {
