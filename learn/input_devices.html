@@ -91,7 +91,7 @@ Using the IJKL keys for movement is common to support left handed players or sec
 			
 For the arrow keys you can use 'ArrowUp', 'ArrowDown', 'ArrowLeft' and 'ArrowRight'.
 			
-Note that some keyboards don't start with QWERTY on the top row. p5.play maps other keyboard layouts to the standard English QWERTY layout. For example that means that for French AZERTY keyboard users the WASD keys are ZQSD. This is why it's better to use the direction names instead of the letter names for these keys. [More info](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/code)
+Some keyboards don't start with QWERTY on the top row. p5.play maps other keyboard layouts to the standard English QWERTY layout. For example, the WASD keys for French AZERTY keyboard users are ZQSD. This can be disabled by setting `p5play.standardizeKeyboard` to false. [More info](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/code)
 		</script>
 		<script type="text/p5" name="keyboard movement">
 let player;
@@ -126,7 +126,8 @@ function draw() {
 			<h2>Multi-Input</h2>
 			<p>
 				This mini-sketch shows how one action can be performed by
-				either pressing the space key or clicking the mouse. The default mouse input is 'left'.
+				either pressing the space key or clicking the mouse. The default mouse input
+				is 'left' for the left mouse button or normal click.
 			</p>
 		</div>
 		<script type="text/p5" name="pressed" base-1 hide>
@@ -143,7 +144,7 @@ function draw() {
 }
 		</script>
 		<div class="minis horiz">
-			<script type="text/p5" name="green thumb" base="1">
+			<script type="text/p5" name="multi-input" base="1">
 if (kb.pressing(' ') || mouse.pressing()) {
 	sprite.shapeColor = 'red';
 }
@@ -190,8 +191,36 @@ function draw() {
 }
 			</script>
 		</div>
+	</div>
+	<div id="page-4" class="page">
+		<script type="text/md">
+## Game Controllers
 
+In addition to getting the input state of buttons, the `contro` object can also give you the position of the analog sticks: `leftStick` and `rightStick`. Each of these properties is an object with `x` and `y` axis properties. The axis values are between -1 and 1, where 0 is the center position.
 
+The `contro` object is also an array that contains all the game controllers connected to the web page. Access connected controllers by index. For example, `contro[0]` and `contro[1]` are the first and second controllers. By default `contro` references `contro[0]`.
+
+Try it out! Press any button on your connected game controller for it to be detected by p5.play.
+		</script>
+		<script type="text/p5" name="controller test">
+let sprite;
+
+function setup() {
+	createCanvas(500, 200);
+	sprite = new Sprite(250, 100, 10, 10);
+}
+
+function draw() {
+	clear();
+	if (contro.pressing('a')) {
+		sprite.shapeColor = 'red';
+	} else {
+		sprite.shapeColor = 'yellow';
+	}
+	sprite.x = 250 + contro.leftStick.x * 80;
+	sprite.y = 100 + contro.leftStick.y * 80;
+}
+		</script>
 	</div>
 
 	<div class="break"></div>
