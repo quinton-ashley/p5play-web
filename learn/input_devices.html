@@ -198,7 +198,7 @@ function draw() {
 
 The `contro` object provides the input state of game controller buttons: "a", "b", "x", "y", "l" (left bumper), "r" (right bumper), "lt" (left trigger), "rt" (right trigger), "up", "down", "left", "right", (dpad) "start", and "select".
 
-It also provides the axis values of the analog sticks: `leftStick` and `rightStick`. Each of these properties is an object with `x` and `y` axis properties. The axis values are between -1 and 1, where 0 is the center position.
+It also provides the `x` and `y` axis values of the analog sticks: `leftStick` and `rightStick`. The axis values are between -1 and 1, where 0 is the center position.
 
 The `contro` object is also an array that contains all the game controllers connected to the web page. Access connected controllers by index. For example, `contro[0]` and `contro[1]` are the first and second controllers. By default `contro` references `contro[0]`.
 
