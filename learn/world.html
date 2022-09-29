@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>p5.play : Sprite</title>
+	<link rel="icon" href="../logo.svg" />
+	<link rel="stylesheet" href="p5-mini.css" />
+	<link rel="stylesheet" href="style.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.2/p5.min.js"></script>
+	<script src="../v3/planck.min.js"></script>
+	<script src="../v3/p5.play.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.8.1/ace.min.js"></script>
+</head>
+
+<body>
+	<nav id="topNav">
+		<a href="../index.html" class="active"><img src="../logo.svg" class="logo">p5.play</a>
+		<span>:</span>
+		<a href="sprite.html">Sprite</a>
+		<a href="group.html">Group</a>
+		<a href="sprite_animation.html">Animation</a>
+		<a href="input_devices.html">Input</a>
+		<a href="tiles.html">Tiles</a>
+		<a href="camera.html">Camera</a>
+		<a href="world.html" class="active">World</a>
+	</nav>
+	<div class="top break"></div>
+	<div id="page-0" class="page">
+		<script type="text/md">
+## World
+
+`world.gravity = {x: 0, y: 0}` is the gravity vector. Set `world.gravity.y = 10` to simulate Earth's gravity.
+
+`world.autoCull = true` sprites are removed from the world when they go 10000 pixels offscreen relative to the camera's position. Use the `group.cull` function to set a different cull boundary.
+
+`world.allowSleeping = true` "Sleeping" sprites are taken out of the physics simulation. A sprite starts "sleeping" when it stops moving and doesn't collide with anything that it wasn't already touching. Allowing non-moving sprites to sleep is good for performance but sometimes you may need to wake up a non-moving sprite. This can be done on a per sprite basis by setting `sprite.sleeping = false`.
+		</script>
+		<div class="minis horiz">
+			<script type="text/p5" name="world.allowSleeping = true" horiz>
+let ball, floor;
+
+function setup() {
+	createCanvas(80, 256);
+	world.gravity.y = 10;
+	ball = new Sprite(40, 30, 50);
+	floor = new Sprite(40, 155, 80, 5, 'static');
+}
+
+function draw() {
+	clear();
+	if (frame == 100)	floor.rotation = 10;
+	if (kb.pressing(' ')) ball.sleeping = false;
+}
+			</script>
+			<script type="text/p5" name="world.allowSleeping = false" horiz>
+let ball, floor;
+
+function setup() {
+	createCanvas(80, 256);
+	world.gravity.y = 10;
+	world.allowSleeping = false;
+	ball = new Sprite(40, 30, 50);
+	floor = new Sprite(40, 155, 80, 5, 'static');
+}
+
+function draw() {
+	clear();
+	if (frame == 100)	floor.rotation = 10;
+}
+			</script>
+		</div>
+
+		<div class="break"></div>
+		<nav id="pageNav"></nav>
+		<div class="break"></div>
+		<footer class="text-small">
+			Created by Quinton Ashley (@quinton-ashley) Copyright 2022.
+		</footer>
+
+		<script src="learn.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+		<script src="md-tag-parser.js"></script>
+		<script src="p5-mini.js"></script>
+</body>
+
+</html>

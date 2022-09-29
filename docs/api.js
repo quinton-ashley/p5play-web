@@ -3,6 +3,7 @@ YUI.add("yuidoc-meta", function(Y) {
     "classes": [
         "Camera",
         "Group",
+        "InputDevice",
         "Sprite",
         "SpriteAnimation",
         "p5.play"

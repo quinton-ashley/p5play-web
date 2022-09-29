@@ -27,7 +27,7 @@
             </li>
         </div>
         <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
-            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/Camera", "classes/Group", "classes/p5.play", "classes/Sprite", "classes/SpriteAnimation"]'>
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/Camera", "classes/Group", "classes/InputDevice", "classes/p5.play", "classes/Sprite", "classes/SpriteAnimation"]'>
         </form>
     </div>
 </div>
@@ -40,6 +40,7 @@
         <ul id="api-classes" class="nav nav-list">
                 <li><a href="../classes/Camera.html">Camera</a></li>
                 <li><a href="../classes/Group.html">Group</a></li>
+                <li><a href="../classes/InputDevice.html">InputDevice</a></li>
                 <li><a href="../classes/p5.play.html">p5.play</a></li>
                 <li><a href="../classes/Sprite.html">Sprite</a></li>
                 <li><a href="../classes/SpriteAnimation.html">SpriteAnimation</a></li>
@@ -104,6 +105,8 @@ cycle for example to draw interface elements in an absolute position.</p>
 			<strong>Methods</strong>
 			<ul>
 				<li class=""><a href="#method-off"><span class="im">off</span>()</a></li>
+				<li class=""><a href="#method-off"><span class="im">off</span>()</a></li>
+				<li class=""><a href="#method-on"><span class="im">on</span>()</a></li>
 				<li class=""><a href="#method-on"><span class="im">on</span>()</a></li>
 			</ul>
 		</li>
@@ -112,8 +115,12 @@ cycle for example to draw interface elements in an absolute position.</p>
 			<strong>Properties</strong>
 			<ul>
 				<li class=""><a href="#prop-active"><span class="ip">active</span></a></li>
+				<li class=""><a href="#prop-active"><span class="ip">active</span></a></li>
+				<li class=""><a href="#prop-mouse"><span class="ip">mouse</span></a></li>
 				<li class=""><a href="#prop-mouse"><span class="ip">mouse</span></a></li>
 				<li class="deprectated"><a href="#prop-position"><span class="ip">position</span></a></li>
+				<li class="deprectated"><a href="#prop-position"><span class="ip">position</span></a></li>
+				<li class=""><a href="#prop-zoom"><span class="ip">zoom</span></a></li>
 				<li class=""><a href="#prop-zoom"><span class="ip">zoom</span></a></li>
 			</ul>
 		</li>
@@ -154,7 +161,7 @@ cycle for example to draw interface elements in an absolute position.</p>
 	<div class="meta">
 				<p>
 				Defined in
-		<a href="../files/v3_p5.play.js.html#l3406"><code>v3&#x2F;p5.play.js:3406</code></a>
+		<a href="../files/v3_p5.play_box2d.js.html#l3677"><code>v3&#x2F;p5.play_box2d.js:3677</code></a>
 		</p>
 
 
@@ -219,7 +226,37 @@ cycle for example to draw interface elements in an absolute position.</p>
 	<div class="meta">
 				<p>
 				Defined in
-		<a href="../files/v3_p5.play.js.html#l3529"><code>v3&#x2F;p5.play.js:3529</code></a>
+		<a href="../files/v3_p5.play.js.html#l3880"><code>v3&#x2F;p5.play.js:3880</code></a>
+		</p>
+
+
+
+	</div>
+
+	<div class="description"><p>Deactivates the camera.
+The canvas will be drawn normally, ignoring the camera's position
+and scale until camera.on() is called</p>
+</div>
+
+
+
+</div>
+<div id="method-off" class="method item ">
+	<div class="method-signature">
+	<span class="name"><code>off</code></span>
+
+		<span class="paren">()</span>
+	</div>
+
+
+
+
+
+
+	<div class="meta">
+				<p>
+				Defined in
+		<a href="../files/v3_p5.play_box2d.js.html#l3800"><code>v3&#x2F;p5.play_box2d.js:3800</code></a>
 		</p>
 
 
@@ -249,7 +286,37 @@ and scale until camera.on() is called</p>
 	<div class="meta">
 				<p>
 				Defined in
-		<a href="../files/v3_p5.play.js.html#l3515"><code>v3&#x2F;p5.play.js:3515</code></a>
+		<a href="../files/v3_p5.play.js.html#l3866"><code>v3&#x2F;p5.play.js:3866</code></a>
+		</p>
+
+
+
+	</div>
+
+	<div class="description"><p>Activates the camera.
+The canvas will be drawn according to the camera position and scale until
+camera.off() is called</p>
+</div>
+
+
+
+</div>
+<div id="method-on" class="method item ">
+	<div class="method-signature">
+	<span class="name"><code>on</code></span>
+
+		<span class="paren">()</span>
+	</div>
+
+
+
+
+
+
+	<div class="meta">
+				<p>
+				Defined in
+		<a href="../files/v3_p5.play_box2d.js.html#l3786"><code>v3&#x2F;p5.play_box2d.js:3786</code></a>
 		</p>
 
 
@@ -282,7 +349,34 @@ camera.off() is called</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5.play.js.html#l3476"><code>v3&#x2F;p5.play.js:3476</code></a>
+        <a href="../files/v3_p5.play.js.html#l3827"><code>v3&#x2F;p5.play.js:3827</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>True if the camera is active.
+Read only property. Use the methods Camera.on() and Camera.off()
+to enable or disable the camera.</p>
+
+    </div>
+
+
+
+</div>
+<div id="prop-active" class="property item ">
+    <h3 class="name"><code>active</code></h3>
+    <span class="type">Boolean</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play_box2d.js.html#l3747"><code>v3&#x2F;p5.play_box2d.js:3747</code></a>
         </p>
 
 
@@ -309,7 +403,35 @@ to enable or disable the camera.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5.play.js.html#l3462"><code>v3&#x2F;p5.play.js:3462</code></a>
+        <a href="../files/v3_p5.play.js.html#l3813"><code>v3&#x2F;p5.play.js:3813</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>Get the translated mouse position relative to the camera view.
+Offsetting and scaling the canvas will not change the sprites' position
+nor the mouseX and mouseY variables. Use this property to read the mouse
+position if the camera moved or zoomed.</p>
+
+    </div>
+
+
+
+</div>
+<div id="prop-mouse" class="property item ">
+    <h3 class="name"><code>mouse</code></h3>
+    <span class="type">Object</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play_box2d.js.html#l3733"><code>v3&#x2F;p5.play_box2d.js:3733</code></a>
         </p>
 
 
@@ -338,7 +460,33 @@ position if the camera moved or zoomed.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5.play.js.html#l3427"><code>v3&#x2F;p5.play.js:3427</code></a>
+        <a href="../files/v3_p5.play.js.html#l3778"><code>v3&#x2F;p5.play.js:3778</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>Camera position.</p>
+
+    </div>
+
+
+
+</div>
+<div id="prop-position" class="property item deprectated">
+    <h3 class="name"><code>position</code></h3>
+    <span class="type">Unknown</span>
+
+        <span class="flag deprecated">deprecated</span>
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play_box2d.js.html#l3698"><code>v3&#x2F;p5.play_box2d.js:3698</code></a>
         </p>
 
 
@@ -363,7 +511,35 @@ position if the camera moved or zoomed.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5.play.js.html#l3450"><code>v3&#x2F;p5.play.js:3450</code></a>
+        <a href="../files/v3_p5.play.js.html#l3801"><code>v3&#x2F;p5.play.js:3801</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>Camera zoom.</p>
+<p>A scale of 1 will be the normal size. Setting it to 2 will
+make everything twice the size. .5 will make everything half
+size.</p>
+
+    </div>
+
+
+
+</div>
+<div id="prop-zoom" class="property item ">
+    <h3 class="name"><code>zoom</code></h3>
+    <span class="type">Number</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play_box2d.js.html#l3721"><code>v3&#x2F;p5.play_box2d.js:3721</code></a>
         </p>
 
 

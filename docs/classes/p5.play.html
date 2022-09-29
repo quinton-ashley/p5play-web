@@ -27,7 +27,7 @@
             </li>
         </div>
         <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
-            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/Camera", "classes/Group", "classes/p5.play", "classes/Sprite", "classes/SpriteAnimation"]'>
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/Camera", "classes/Group", "classes/InputDevice", "classes/p5.play", "classes/Sprite", "classes/SpriteAnimation"]'>
         </form>
     </div>
 </div>
@@ -40,6 +40,7 @@
         <ul id="api-classes" class="nav nav-list">
                 <li><a href="../classes/Camera.html">Camera</a></li>
                 <li><a href="../classes/Group.html">Group</a></li>
+                <li><a href="../classes/InputDevice.html">InputDevice</a></li>
                 <li><a href="../classes/p5.play.html">p5.play</a></li>
                 <li><a href="../classes/Sprite.html">Sprite</a></li>
                 <li><a href="../classes/SpriteAnimation.html">SpriteAnimation</a></li>
@@ -94,21 +95,38 @@
 			<strong>Methods</strong>
 			<ul>
 				<li class=""><a href="#method-animation"><span class="im">animation</span>(<span class="ia">ani</span><span class="ia">x</span><span class="ia">y</span>)</a></li>
+				<li class=""><a href="#method-animation"><span class="im">animation</span>(<span class="ia">ani</span><span class="ia">x</span><span class="ia">y</span>)</a></li>
+				<li class=""><a href="#method-background"><span class="im">background</span>()</a></li>
 				<li class=""><a href="#method-background"><span class="im">background</span>()</a></li>
 				<li class=""><a href="#method-colorPal"><span class="im">colorPal</span>(<span class="ia">c</span><span class="ia">palette</span>)</a></li>
+				<li class=""><a href="#method-colorPal"><span class="im">colorPal</span>(<span class="ia">c</span><span class="ia">palette</span>)</a></li>
 				<li class=""><a href="#method-createTiles"><span class="im">createTiles</span>(<span class="ia">tiles</span>)</a></li>
+				<li class=""><a href="#method-createTiles"><span class="im">createTiles</span>(<span class="ia">tiles</span>)</a></li>
+				<li class=""><a href="#method-delay"><span class="im">delay</span>(<span class="ia">millisecond</span>)</a></li>
+				<li class=""><a href="#method-delay"><span class="im">delay</span>(<span class="ia">millisecond</span>)</a></li>
+				<li class="deprectated"><a href="#method-drawSprites"><span class="im">drawSprites</span>()</a></li>
+				<li class="deprectated"><a href="#method-drawSprites"><span class="im">drawSprites</span>()</a></li>
 				<li class="deprectated"><a href="#method-drawSprites"><span class="im">drawSprites</span>()</a></li>
 				<li class="deprectated"><a href="#method-drawSprites"><span class="im">drawSprites</span>()</a></li>
 				<li class=""><a href="#method-fill"><span class="im">fill</span>()</a></li>
-				<li class=""><a href="#method-getKeyCode"><span class="im">getKeyCode</span>(<span class="ia">keyName</span>)</a></li>
+				<li class=""><a href="#method-fill"><span class="im">fill</span>()</a></li>
 				<li class=""><a href="#method-getSpriteAt"><span class="im">getSpriteAt</span>(<span class="ia">x</span><span class="ia">y</span>)</a></li>
 				<li class=""><a href="#method-getSpriteAt"><span class="im">getSpriteAt</span>(<span class="ia">x</span><span class="ia">y</span>)</a></li>
-				<li class=""><a href="#method-keyIsDown"><span class="im">keyIsDown</span>(<span class="ia">keyName</span>)</a></li>
+				<li class=""><a href="#method-getSpriteAt"><span class="im">getSpriteAt</span>(<span class="ia">x</span><span class="ia">y</span>)</a></li>
+				<li class=""><a href="#method-getSpriteAt"><span class="im">getSpriteAt</span>(<span class="ia">x</span><span class="ia">y</span>)</a></li>
+				<li class=""><a href="#method-loadAni"><span class="im">loadAni</span>()</a></li>
 				<li class=""><a href="#method-loadAni"><span class="im">loadAni</span>()</a></li>
 				<li class=""><a href="#method-loadImage"><span class="im">loadImage</span>(<span class="ia">url</span><span class="ia">width</span><span class="ia">height</span><span class="ia">callback</span>)</a></li>
+				<li class=""><a href="#method-loadImage"><span class="im">loadImage</span>(<span class="ia">url</span><span class="ia">width</span><span class="ia">height</span><span class="ia">callback</span>)</a></li>
 				<li class=""><a href="#method-play"><span class="im">play</span>(<span class="ia">sound</span>)</a></li>
+				<li class=""><a href="#method-play"><span class="im">play</span>(<span class="ia">sound</span>)</a></li>
+				<li class=""><a href="#method-sleep"><span class="im">sleep</span>(<span class="ia">millisecond</span>)</a></li>
+				<li class=""><a href="#method-sleep"><span class="im">sleep</span>(<span class="ia">millisecond</span>)</a></li>
+				<li class=""><a href="#method-spriteArt"><span class="im">spriteArt</span>(<span class="ia">txt</span><span class="ia">scale</span><span class="ia">palette</span>)</a></li>
 				<li class=""><a href="#method-spriteArt"><span class="im">spriteArt</span>(<span class="ia">txt</span><span class="ia">scale</span><span class="ia">palette</span>)</a></li>
 				<li class=""><a href="#method-stroke"><span class="im">stroke</span>()</a></li>
+				<li class=""><a href="#method-stroke"><span class="im">stroke</span>()</a></li>
+				<li class=""><a href="#method-updateSprites"><span class="im">updateSprites</span>(<span class="ia">timeStep</span><span class="ia">velocityIterations</span><span class="ia">positionIterations</span>)</a></li>
 				<li class=""><a href="#method-updateSprites"><span class="im">updateSprites</span>(<span class="ia">timeStep</span><span class="ia">velocityIterations</span><span class="ia">positionIterations</span>)</a></li>
 			</ul>
 		</li>
@@ -117,10 +135,12 @@
 			<strong>Properties</strong>
 			<ul>
 				<li class=""><a href="#prop-allSprites"><span class="ip">allSprites</span></a></li>
+				<li class=""><a href="#prop-allSprites"><span class="ip">allSprites</span></a></li>
+				<li class=""><a href="#prop-camera"><span class="ip">camera</span></a></li>
 				<li class=""><a href="#prop-camera"><span class="ip">camera</span></a></li>
 				<li class=""><a href="#prop-frame"><span class="ip">frame</span></a></li>
-				<li class=""><a href="#prop-kb (keyboard)"><span class="ip">kb (keyboard)</span></a></li>
-				<li class=""><a href="#prop-mouse"><span class="ip">mouse</span></a></li>
+				<li class=""><a href="#prop-frame"><span class="ip">frame</span></a></li>
+				<li class=""><a href="#prop-world"><span class="ip">world</span></a></li>
 				<li class=""><a href="#prop-world"><span class="ip">world</span></a></li>
 			</ul>
 		</li>
@@ -162,7 +182,80 @@
 	<div class="meta">
 				<p>
 				Defined in
-		<a href="../files/v3_p5.play.js.html#l4051"><code>v3&#x2F;p5.play.js:4051</code></a>
+		<a href="../files/v3_p5.play.js.html#l4412"><code>v3&#x2F;p5.play.js:4412</code></a>
+		</p>
+
+
+
+	</div>
+
+	<div class="description"><p>Displays an animation. Similar to the p5.js image function.</p>
+</div>
+
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+				<li class="param">
+						<code class="param-name">ani</code>
+						<span class="type"><a href="../classes/SpriteAnimation.html" class="crosslink">SpriteAnimation</a></span>
+
+
+					<div class="param-description"><p>Animation to be displayed</p>
+</div>
+
+				</li>
+				<li class="param">
+						<code class="param-name">x</code>
+						<span class="type">Number</span>
+
+
+					<div class="param-description"><p>X coordinate</p>
+</div>
+
+				</li>
+				<li class="param">
+						<code class="param-name">y</code>
+						<span class="type">Number</span>
+
+
+					<div class="param-description"><p>Y coordinate</p>
+</div>
+
+				</li>
+			</ul>
+		</div>
+
+
+</div>
+<div id="method-animation" class="method item ">
+	<div class="method-signature">
+	<span class="name"><code>animation</code></span>
+
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+				<li class="arg">
+						<code>ani</code>
+				</li>
+				<li class="arg">
+						<code>x</code>
+				</li>
+				<li class="arg">
+						<code>y</code>
+				</li>
+			</ul><span class="paren">)</span>
+		</div>
+	</div>
+
+
+
+
+
+
+	<div class="meta">
+				<p>
+				Defined in
+		<a href="../files/v3_p5.play_box2d.js.html#l4332"><code>v3&#x2F;p5.play_box2d.js:4332</code></a>
 		</p>
 
 
@@ -223,7 +316,36 @@
 	<div class="meta">
 				<p>
 				Defined in
-		<a href="../files/v3_p5.play.js.html#l4209"><code>v3&#x2F;p5.play.js:4209</code></a>
+		<a href="../files/v3_p5.play.js.html#l4518"><code>v3&#x2F;p5.play.js:4518</code></a>
+		</p>
+
+
+
+	</div>
+
+	<div class="description"><p>Just like the p5.js background function except it also accepts
+a color pallette code.</p>
+</div>
+
+
+
+</div>
+<div id="method-background" class="method item ">
+	<div class="method-signature">
+	<span class="name"><code>background</code></span>
+
+		<span class="paren">()</span>
+	</div>
+
+
+
+
+
+
+	<div class="meta">
+				<p>
+				Defined in
+		<a href="../files/v3_p5.play_box2d.js.html#l4438"><code>v3&#x2F;p5.play_box2d.js:4438</code></a>
 		</p>
 
 
@@ -264,7 +386,80 @@ a color pallette code.</p>
 	<div class="meta">
 				<p>
 				Defined in
-		<a href="../files/v3_p5.play.js.html#l3903"><code>v3&#x2F;p5.play.js:3903</code></a>
+		<a href="../files/v3_p5.play.js.html#l4261"><code>v3&#x2F;p5.play.js:4261</code></a>
+		</p>
+
+
+
+	</div>
+
+	<div class="description"><p>Gets a color from a color palette</p>
+</div>
+
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+				<li class="param">
+						<code class="param-name">c</code>
+						<span class="type">String</span>
+
+
+					<div class="param-description"><p>A single character, a key found in the color palette object.</p>
+</div>
+
+				</li>
+				<li class="param">
+						<code class="param-name">palette</code>
+						<span class="type">Number  |  Object</span>
+
+
+					<div class="param-description"><p>Can be a palette object or number index
+in the system's palettes array.</p>
+</div>
+
+				</li>
+			</ul>
+		</div>
+
+		<div class="returns">
+			<h4>Returns:</h4>
+
+			<div class="returns-description">
+					<p>a hex color string for use by p5.js functions</p>
+
+			</div>
+		</div>
+
+</div>
+<div id="method-colorPal" class="method item ">
+	<div class="method-signature">
+	<span class="name"><code>colorPal</code></span>
+
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+				<li class="arg">
+						<code>c</code>
+				</li>
+				<li class="arg">
+						<code>palette</code>
+				</li>
+			</ul><span class="paren">)</span>
+		</div>
+		<span class="returns-inline">
+			<span class="type"></span>
+		</span>
+	</div>
+
+
+
+
+
+
+	<div class="meta">
+				<p>
+				Defined in
+		<a href="../files/v3_p5.play_box2d.js.html#l4181"><code>v3&#x2F;p5.play_box2d.js:4181</code></a>
 		</p>
 
 
@@ -331,7 +526,7 @@ in the system's palettes array.</p>
 	<div class="meta">
 				<p>
 				Defined in
-		<a href="../files/v3_p5.play.js.html#l3644"><code>v3&#x2F;p5.play.js:3644</code></a>
+		<a href="../files/v3_p5.play.js.html#l4003"><code>v3&#x2F;p5.play.js:4003</code></a>
 		</p>
 
 
@@ -357,6 +552,191 @@ in the system's palettes array.</p>
 
 
 </div>
+<div id="method-createTiles" class="method item ">
+	<div class="method-signature">
+	<span class="name"><code>createTiles</code></span>
+
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+				<li class="arg">
+						<code>tiles</code>
+				</li>
+			</ul><span class="paren">)</span>
+		</div>
+	</div>
+
+
+
+
+
+
+	<div class="meta">
+				<p>
+				Defined in
+		<a href="../files/v3_p5.play_box2d.js.html#l3923"><code>v3&#x2F;p5.play_box2d.js:3923</code></a>
+		</p>
+
+
+
+	</div>
+
+
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+				<li class="param">
+						<code class="param-name">tiles</code>
+						<span class="type">String  |  Array</span>
+
+
+					<div class="param-description"><p>String or array of strings</p>
+</div>
+
+				</li>
+			</ul>
+		</div>
+
+
+</div>
+<div id="method-delay" class="method item ">
+	<div class="method-signature">
+	<span class="name"><code>delay</code></span>
+
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+				<li class="arg">
+						<code>millisecond</code>
+				</li>
+			</ul><span class="paren">)</span>
+		</div>
+		<span class="returns-inline">
+			<span class="type">Promise</span>
+		</span>
+	</div>
+
+
+
+
+
+
+	<div class="meta">
+				<p>
+				Defined in
+		<a href="../files/v3_p5.play.js.html#l4426"><code>v3&#x2F;p5.play.js:4426</code></a>
+		</p>
+
+
+
+	</div>
+
+	<div class="description"><p>Delay for the specified time.</p>
+</div>
+
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+				<li class="param">
+						<code class="param-name">millisecond</code>
+						<span class="type">Number</span>
+
+
+
+				</li>
+			</ul>
+		</div>
+
+		<div class="returns">
+			<h4>Returns:</h4>
+
+			<div class="returns-description">
+						<span class="type">Promise</span>:
+					<p>A Promise that fulfills after the specified time.</p>
+
+			</div>
+		</div>
+
+		<div class="example">
+			<h4>Example:</h4>
+
+			<div class="example-content">
+				<p>async function startGame() {
+await delay(3000);
+}</p>
+
+			</div>
+		</div>
+</div>
+<div id="method-delay" class="method item ">
+	<div class="method-signature">
+	<span class="name"><code>delay</code></span>
+
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+				<li class="arg">
+						<code>millisecond</code>
+				</li>
+			</ul><span class="paren">)</span>
+		</div>
+		<span class="returns-inline">
+			<span class="type">Promise</span>
+		</span>
+	</div>
+
+
+
+
+
+
+	<div class="meta">
+				<p>
+				Defined in
+		<a href="../files/v3_p5.play_box2d.js.html#l4346"><code>v3&#x2F;p5.play_box2d.js:4346</code></a>
+		</p>
+
+
+
+	</div>
+
+	<div class="description"><p>Delay for the specified time.</p>
+</div>
+
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+				<li class="param">
+						<code class="param-name">millisecond</code>
+						<span class="type">Number</span>
+
+
+
+				</li>
+			</ul>
+		</div>
+
+		<div class="returns">
+			<h4>Returns:</h4>
+
+			<div class="returns-description">
+						<span class="type">Promise</span>:
+					<p>A Promise that fulfills after the specified time.</p>
+
+			</div>
+		</div>
+
+		<div class="example">
+			<h4>Example:</h4>
+
+			<div class="example-content">
+				<p>async function startGame() {
+await delay(3000);
+}</p>
+
+			</div>
+		</div>
+</div>
 <div id="method-drawSprites" class="method item deprectated">
 	<div class="method-signature">
 	<span class="name"><code>drawSprites</code></span>
@@ -373,7 +753,7 @@ in the system's palettes array.</p>
 	<div class="meta">
 				<p>
 				Defined in
-		<a href="../files/v3_p5.play.js.html#l3981"><code>v3&#x2F;p5.play.js:3981</code></a>
+		<a href="../files/v3_p5.play.js.html#l4342"><code>v3&#x2F;p5.play.js:4342</code></a>
 		</p>
 
 
@@ -405,7 +785,71 @@ draw loop.</p>
 	<div class="meta">
 				<p>
 				Defined in
-		<a href="../files/v3_p5.play.js.html#l3996"><code>v3&#x2F;p5.play.js:3996</code></a>
+		<a href="../files/v3_p5.play.js.html#l4357"><code>v3&#x2F;p5.play.js:4357</code></a>
+		</p>
+
+
+
+	</div>
+
+	<div class="description"><p>Deprecated, use group.draw() instead.</p>
+<p>allSprites.draw() is run automatically at the end of the p5.js
+draw loop, unless a sprite or group is drawn separately within the
+draw loop.</p>
+</div>
+
+
+
+</div>
+<div id="method-drawSprites" class="method item deprectated">
+	<div class="method-signature">
+	<span class="name"><code>drawSprites</code></span>
+
+		<span class="paren">()</span>
+	</div>
+
+		<span class="flag deprecated">deprecated</span>
+
+
+
+
+
+	<div class="meta">
+				<p>
+				Defined in
+		<a href="../files/v3_p5.play_box2d.js.html#l4262"><code>v3&#x2F;p5.play_box2d.js:4262</code></a>
+		</p>
+
+
+
+	</div>
+
+	<div class="description"><p>Deprecated, use sprite.draw() instead.</p>
+<p>allSprites.draw() is run automatically at the end of the p5.js
+draw loop, unless a sprite or group is drawn separately within the
+draw loop.</p>
+</div>
+
+
+
+</div>
+<div id="method-drawSprites" class="method item deprectated">
+	<div class="method-signature">
+	<span class="name"><code>drawSprites</code></span>
+
+		<span class="paren">()</span>
+	</div>
+
+		<span class="flag deprecated">deprecated</span>
+
+
+
+
+
+	<div class="meta">
+				<p>
+				Defined in
+		<a href="../files/v3_p5.play_box2d.js.html#l4277"><code>v3&#x2F;p5.play_box2d.js:4277</code></a>
 		</p>
 
 
@@ -436,7 +880,7 @@ draw loop.</p>
 	<div class="meta">
 				<p>
 				Defined in
-		<a href="../files/v3_p5.play.js.html#l4227"><code>v3&#x2F;p5.play.js:4227</code></a>
+		<a href="../files/v3_p5.play.js.html#l4536"><code>v3&#x2F;p5.play.js:4536</code></a>
 		</p>
 
 
@@ -450,20 +894,11 @@ a color pallette code.</p>
 
 
 </div>
-<div id="method-getKeyCode" class="method item ">
+<div id="method-fill" class="method item ">
 	<div class="method-signature">
-	<span class="name"><code>getKeyCode</code></span>
+	<span class="name"><code>fill</code></span>
 
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
-				<li class="arg">
-						<code>keyName</code>
-				</li>
-			</ul><span class="paren">)</span>
-		</div>
-		<span class="returns-inline">
-			<span class="type">Number</span>
-		</span>
+		<span class="paren">()</span>
 	</div>
 
 
@@ -474,39 +909,18 @@ a color pallette code.</p>
 	<div class="meta">
 				<p>
 				Defined in
-		<a href="../files/v3_p5.play.js.html#l4159"><code>v3&#x2F;p5.play.js:4159</code></a>
+		<a href="../files/v3_p5.play_box2d.js.html#l4456"><code>v3&#x2F;p5.play_box2d.js:4456</code></a>
 		</p>
 
 
 
 	</div>
 
-	<div class="description"><p>Get the keyCode of a key</p>
+	<div class="description"><p>Just like the p5.js fill function except it also accepts
+a color pallette code.</p>
 </div>
 
-		<div class="params">
-			<h4>Parameters:</h4>
 
-			<ul class="params-list">
-				<li class="param">
-						<code class="param-name">keyName</code>
-						<span class="type">String</span>
-
-
-
-				</li>
-			</ul>
-		</div>
-
-		<div class="returns">
-			<h4>Returns:</h4>
-
-			<div class="returns-description">
-						<span class="type">Number</span>:
-					<p>keyCode</p>
-
-			</div>
-		</div>
 
 </div>
 <div id="method-getSpriteAt" class="method item ">
@@ -536,7 +950,7 @@ a color pallette code.</p>
 	<div class="meta">
 				<p>
 				Defined in
-		<a href="../files/v3_p5.play.js.html#l3683"><code>v3&#x2F;p5.play.js:3683</code></a>
+		<a href="../files/v3_p5.play.js.html#l4042"><code>v3&#x2F;p5.play.js:4042</code></a>
 		</p>
 
 
@@ -602,7 +1016,7 @@ a color pallette code.</p>
 	<div class="meta">
 				<p>
 				Defined in
-		<a href="../files/v3_p5.play.js.html#l3724"><code>v3&#x2F;p5.play.js:3724</code></a>
+		<a href="../files/v3_p5.play.js.html#l4082"><code>v3&#x2F;p5.play.js:4082</code></a>
 		</p>
 
 
@@ -642,19 +1056,22 @@ the mouse click occurs</p>
 		</div>
 
 </div>
-<div id="method-keyIsDown" class="method item ">
+<div id="method-getSpriteAt" class="method item ">
 	<div class="method-signature">
-	<span class="name"><code>keyIsDown</code></span>
+	<span class="name"><code>getSpriteAt</code></span>
 
 		<div class="args">
 			<span class="paren">(</span><ul class="args-list inline commas">
 				<li class="arg">
-						<code>keyName</code>
+						<code>x</code>
+				</li>
+				<li class="arg">
+						<code>y</code>
 				</li>
 			</ul><span class="paren">)</span>
 		</div>
 		<span class="returns-inline">
-			<span class="type">Boolean</span>
+			<span class="type"></span>
 		</span>
 	</div>
 
@@ -666,15 +1083,14 @@ the mouse click occurs</p>
 	<div class="meta">
 				<p>
 				Defined in
-		<a href="../files/v3_p5.play.js.html#l4179"><code>v3&#x2F;p5.play.js:4179</code></a>
+		<a href="../files/v3_p5.play_box2d.js.html#l3962"><code>v3&#x2F;p5.play_box2d.js:3962</code></a>
 		</p>
 
 
 
 	</div>
 
-	<div class="description"><p>Use kb.pressing(keyName) instead.</p>
-<p>Check if user is pressing a key.</p>
+	<div class="description"><p>Returns the sprites at a position.</p>
 </div>
 
 		<div class="params">
@@ -682,8 +1098,15 @@ the mouse click occurs</p>
 
 			<ul class="params-list">
 				<li class="param">
-						<code class="param-name">keyName</code>
-						<span class="type">String</span>
+						<code class="param-name">x</code>
+						<span class="type">Number</span>
+
+
+
+				</li>
+				<li class="param">
+						<code class="param-name">y</code>
+						<span class="type">Number</span>
 
 
 
@@ -695,9 +1118,73 @@ the mouse click occurs</p>
 			<h4>Returns:</h4>
 
 			<div class="returns-description">
-						<span class="type">Boolean</span>:
-					<p>true if key is down</p>
+			</div>
+		</div>
 
+</div>
+<div id="method-getSpriteAt" class="method item ">
+	<div class="method-signature">
+	<span class="name"><code>getSpriteAt</code></span>
+
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+				<li class="arg">
+						<code>x</code>
+				</li>
+				<li class="arg">
+						<code>y</code>
+				</li>
+			</ul><span class="paren">)</span>
+		</div>
+		<span class="returns-inline">
+			<span class="type"></span>
+		</span>
+	</div>
+
+
+
+
+
+
+	<div class="meta">
+				<p>
+				Defined in
+		<a href="../files/v3_p5.play_box2d.js.html#l4002"><code>v3&#x2F;p5.play_box2d.js:4002</code></a>
+		</p>
+
+
+
+	</div>
+
+	<div class="description"><p>Returns the sprite at the top most layer position where
+the mouse click occurs</p>
+</div>
+
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+				<li class="param">
+						<code class="param-name">x</code>
+						<span class="type">Number</span>
+
+
+
+				</li>
+				<li class="param">
+						<code class="param-name">y</code>
+						<span class="type">Number</span>
+
+
+
+				</li>
+			</ul>
+		</div>
+
+		<div class="returns">
+			<h4>Returns:</h4>
+
+			<div class="returns-description">
 			</div>
 		</div>
 
@@ -720,7 +1207,46 @@ the mouse click occurs</p>
 	<div class="meta">
 				<p>
 				Defined in
-		<a href="../files/v3_p5.play.js.html#l4030"><code>v3&#x2F;p5.play.js:4030</code></a>
+		<a href="../files/v3_p5.play.js.html#l4391"><code>v3&#x2F;p5.play.js:4391</code></a>
+		</p>
+
+
+
+	</div>
+
+	<div class="description"><p>Loads an animation.
+Use this in the preload p5.js function.</p>
+</div>
+
+
+		<div class="returns">
+			<h4>Returns:</h4>
+
+			<div class="returns-description">
+						<span class="type"><a href="../classes/SpriteAnimation.html" class="crosslink">SpriteAnimation</a></span>
+			</div>
+		</div>
+
+</div>
+<div id="method-loadAni" class="method item ">
+	<div class="method-signature">
+	<span class="name"><code>loadAni</code></span>
+
+		<span class="paren">()</span>
+		<span class="returns-inline">
+			<span class="type"><a href="../classes/SpriteAnimation.html" class="crosslink">SpriteAnimation</a></span>
+		</span>
+	</div>
+
+
+
+
+
+
+	<div class="meta">
+				<p>
+				Defined in
+		<a href="../files/v3_p5.play_box2d.js.html#l4311"><code>v3&#x2F;p5.play_box2d.js:4311</code></a>
 		</p>
 
 
@@ -771,7 +1297,90 @@ Use this in the preload p5.js function.</p>
 	<div class="meta">
 				<p>
 				Defined in
-		<a href="../files/v3_p5.play.js.html#l4269"><code>v3&#x2F;p5.play.js:4269</code></a>
+		<a href="../files/v3_p5.play.js.html#l4578"><code>v3&#x2F;p5.play.js:4578</code></a>
+		</p>
+
+
+
+	</div>
+
+	<div class="description"><p>Just like the p5.js loadImage function except it also accepts
+width and height parameters in addition to a callback.
+It also caches images so that they are only loaded once.
+It also adds a url property to the image object.</p>
+</div>
+
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+				<li class="param">
+						<code class="param-name">url</code>
+						<span class="type">String</span>
+
+
+
+				</li>
+				<li class="param">
+						<code class="param-name optional">[width]</code>
+						<span class="type">Number</span>
+						<span class="flag optional" title="This parameter is optional.">optional</span>
+
+
+
+				</li>
+				<li class="param">
+						<code class="param-name optional">[height]</code>
+						<span class="type">Number</span>
+						<span class="flag optional" title="This parameter is optional.">optional</span>
+
+
+
+				</li>
+				<li class="param">
+						<code class="param-name optional">[callback]</code>
+						<span class="type">Function</span>
+						<span class="flag optional" title="This parameter is optional.">optional</span>
+
+
+
+				</li>
+			</ul>
+		</div>
+
+
+</div>
+<div id="method-loadImage" class="method item ">
+	<div class="method-signature">
+	<span class="name"><code>loadImage</code></span>
+
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+				<li class="arg">
+						<code>url</code>
+				</li>
+				<li class="arg">
+						<code class="optional">width</code>
+				</li>
+				<li class="arg">
+						<code class="optional">height</code>
+				</li>
+				<li class="arg">
+						<code class="optional">callback</code>
+				</li>
+			</ul><span class="paren">)</span>
+		</div>
+	</div>
+
+
+
+
+
+
+	<div class="meta">
+				<p>
+				Defined in
+		<a href="../files/v3_p5.play_box2d.js.html#l4498"><code>v3&#x2F;p5.play_box2d.js:4498</code></a>
 		</p>
 
 
@@ -848,7 +1457,7 @@ It also adds a url property to the image object.</p>
 	<div class="meta">
 				<p>
 				Defined in
-		<a href="../files/v3_p5.play.js.html#l4103"><code>v3&#x2F;p5.play.js:4103</code></a>
+		<a href="../files/v3_p5.play.js.html#l4466"><code>v3&#x2F;p5.play.js:4466</code></a>
 		</p>
 
 
@@ -881,6 +1490,201 @@ It also adds a url property to the image object.</p>
 		</div>
 
 </div>
+<div id="method-play" class="method item ">
+	<div class="method-signature">
+	<span class="name"><code>play</code></span>
+
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+				<li class="arg">
+						<code>sound</code>
+				</li>
+			</ul><span class="paren">)</span>
+		</div>
+		<span class="returns-inline">
+			<span class="type">Promise</span>
+		</span>
+	</div>
+
+
+
+
+
+
+	<div class="meta">
+				<p>
+				Defined in
+		<a href="../files/v3_p5.play_box2d.js.html#l4386"><code>v3&#x2F;p5.play_box2d.js:4386</code></a>
+		</p>
+
+
+
+	</div>
+
+	<div class="description"><p>Awaitable function for playing sounds.</p>
+</div>
+
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+				<li class="param">
+						<code class="param-name">sound</code>
+						<span class="type">p5.Sound</span>
+
+
+
+				</li>
+			</ul>
+		</div>
+
+		<div class="returns">
+			<h4>Returns:</h4>
+
+			<div class="returns-description">
+						<span class="type">Promise</span>
+			</div>
+		</div>
+
+</div>
+<div id="method-sleep" class="method item ">
+	<div class="method-signature">
+	<span class="name"><code>sleep</code></span>
+
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+				<li class="arg">
+						<code>millisecond</code>
+				</li>
+			</ul><span class="paren">)</span>
+		</div>
+		<span class="returns-inline">
+			<span class="type">Promise</span>
+		</span>
+	</div>
+
+
+
+
+
+
+	<div class="meta">
+				<p>
+				Defined in
+		<a href="../files/v3_p5.play.js.html#l4450"><code>v3&#x2F;p5.play.js:4450</code></a>
+		</p>
+
+
+
+	</div>
+
+	<div class="description"><p>Sleep for the specified time.</p>
+</div>
+
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+				<li class="param">
+						<code class="param-name">millisecond</code>
+						<span class="type">Number</span>
+
+
+
+				</li>
+			</ul>
+		</div>
+
+		<div class="returns">
+			<h4>Returns:</h4>
+
+			<div class="returns-description">
+						<span class="type">Promise</span>:
+					<p>A Promise that fulfills after the specified time.</p>
+
+			</div>
+		</div>
+
+		<div class="example">
+			<h4>Example:</h4>
+
+			<div class="example-content">
+				<p>async function startGame() {
+await sleep(3000);
+}</p>
+
+			</div>
+		</div>
+</div>
+<div id="method-sleep" class="method item ">
+	<div class="method-signature">
+	<span class="name"><code>sleep</code></span>
+
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+				<li class="arg">
+						<code>millisecond</code>
+				</li>
+			</ul><span class="paren">)</span>
+		</div>
+		<span class="returns-inline">
+			<span class="type">Promise</span>
+		</span>
+	</div>
+
+
+
+
+
+
+	<div class="meta">
+				<p>
+				Defined in
+		<a href="../files/v3_p5.play_box2d.js.html#l4370"><code>v3&#x2F;p5.play_box2d.js:4370</code></a>
+		</p>
+
+
+
+	</div>
+
+	<div class="description"><p>Sleep for the specified time.</p>
+</div>
+
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+				<li class="param">
+						<code class="param-name">millisecond</code>
+						<span class="type">Number</span>
+
+
+
+				</li>
+			</ul>
+		</div>
+
+		<div class="returns">
+			<h4>Returns:</h4>
+
+			<div class="returns-description">
+						<span class="type">Promise</span>:
+					<p>A Promise that fulfills after the specified time.</p>
+
+			</div>
+		</div>
+
+		<div class="example">
+			<h4>Example:</h4>
+
+			<div class="example-content">
+				<p>async function startGame() {
+await sleep(3000);
+}</p>
+
+			</div>
+		</div>
+</div>
 <div id="method-spriteArt" class="method item ">
 	<div class="method-signature">
 	<span class="name"><code>spriteArt</code></span>
@@ -911,7 +1715,102 @@ It also adds a url property to the image object.</p>
 	<div class="meta">
 				<p>
 				Defined in
-		<a href="../files/v3_p5.play.js.html#l3925"><code>v3&#x2F;p5.play.js:3925</code></a>
+		<a href="../files/v3_p5.play.js.html#l4285"><code>v3&#x2F;p5.play.js:4285</code></a>
+		</p>
+
+
+
+	</div>
+
+	<div class="description"><p>Create pixel art images from a string. Each character in the
+input string represents a color value defined in the palette
+object.</p>
+</div>
+
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+				<li class="param">
+						<code class="param-name">txt</code>
+						<span class="type">String</span>
+
+
+					<div class="param-description"><p>Each character represents a pixel color value</p>
+</div>
+
+				</li>
+				<li class="param">
+						<code class="param-name">scale</code>
+						<span class="type">Number</span>
+
+
+					<div class="param-description"><p>The scale of the image</p>
+</div>
+
+				</li>
+				<li class="param">
+						<code class="param-name">palette</code>
+						<span class="type">Number  |  Object</span>
+
+
+					<div class="param-description"><p>Color palette</p>
+</div>
+
+				</li>
+			</ul>
+		</div>
+
+		<div class="returns">
+			<h4>Returns:</h4>
+
+			<div class="returns-description">
+					<p>A p5.js Image</p>
+
+			</div>
+		</div>
+
+		<div class="example">
+			<h4>Example:</h4>
+
+			<div class="example-content">
+				<p>let str = <code>...yyyy .yybyybyy yyyyyyyyyy yybyyyybyy .yybbbbyy ...yyyy</code>;</p>
+<p>let img = spriteArt(str);</p>
+
+			</div>
+		</div>
+</div>
+<div id="method-spriteArt" class="method item ">
+	<div class="method-signature">
+	<span class="name"><code>spriteArt</code></span>
+
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+				<li class="arg">
+						<code>txt</code>
+				</li>
+				<li class="arg">
+						<code>scale</code>
+				</li>
+				<li class="arg">
+						<code>palette</code>
+				</li>
+			</ul><span class="paren">)</span>
+		</div>
+		<span class="returns-inline">
+			<span class="type"></span>
+		</span>
+	</div>
+
+
+
+
+
+
+	<div class="meta">
+				<p>
+				Defined in
+		<a href="../files/v3_p5.play_box2d.js.html#l4205"><code>v3&#x2F;p5.play_box2d.js:4205</code></a>
 		</p>
 
 
@@ -991,7 +1890,36 @@ object.</p>
 	<div class="meta">
 				<p>
 				Defined in
-		<a href="../files/v3_p5.play.js.html#l4245"><code>v3&#x2F;p5.play.js:4245</code></a>
+		<a href="../files/v3_p5.play.js.html#l4554"><code>v3&#x2F;p5.play.js:4554</code></a>
+		</p>
+
+
+
+	</div>
+
+	<div class="description"><p>Just like the p5.js stroke function except it also accepts
+a color pallette code.</p>
+</div>
+
+
+
+</div>
+<div id="method-stroke" class="method item ">
+	<div class="method-signature">
+	<span class="name"><code>stroke</code></span>
+
+		<span class="paren">()</span>
+	</div>
+
+
+
+
+
+
+	<div class="meta">
+				<p>
+				Defined in
+		<a href="../files/v3_p5.play_box2d.js.html#l4474"><code>v3&#x2F;p5.play_box2d.js:4474</code></a>
 		</p>
 
 
@@ -1032,7 +1960,75 @@ a color pallette code.</p>
 	<div class="meta">
 				<p>
 				Defined in
-		<a href="../files/v3_p5.play.js.html#l3652"><code>v3&#x2F;p5.play.js:3652</code></a>
+		<a href="../files/v3_p5.play.js.html#l4011"><code>v3&#x2F;p5.play.js:4011</code></a>
+		</p>
+
+
+
+	</div>
+
+	<div class="description"><p>This function is automatically called at the end of the p5.js draw
+loop, unless it was already called in the draw loop.</p>
+</div>
+
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+				<li class="param">
+						<code class="param-name">timeStep</code>
+						<span class="type">Number</span>
+
+
+
+				</li>
+				<li class="param">
+						<code class="param-name">velocityIterations</code>
+						<span class="type">Number</span>
+
+
+
+				</li>
+				<li class="param">
+						<code class="param-name">positionIterations</code>
+						<span class="type">Number</span>
+
+
+
+				</li>
+			</ul>
+		</div>
+
+
+</div>
+<div id="method-updateSprites" class="method item ">
+	<div class="method-signature">
+	<span class="name"><code>updateSprites</code></span>
+
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+				<li class="arg">
+						<code>timeStep</code>
+				</li>
+				<li class="arg">
+						<code>velocityIterations</code>
+				</li>
+				<li class="arg">
+						<code>positionIterations</code>
+				</li>
+			</ul><span class="paren">)</span>
+		</div>
+	</div>
+
+
+
+
+
+
+	<div class="meta">
+				<p>
+				Defined in
+		<a href="../files/v3_p5.play_box2d.js.html#l3931"><code>v3&#x2F;p5.play_box2d.js:3931</code></a>
 		</p>
 
 
@@ -1091,7 +2087,32 @@ loop, unless it was already called in the draw loop.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5.play.js.html#l4327"><code>v3&#x2F;p5.play.js:4327</code></a>
+        <a href="../files/v3_p5.play.js.html#l4636"><code>v3&#x2F;p5.play.js:4636</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>A group of all the sprites.</p>
+
+    </div>
+
+
+
+</div>
+<div id="prop-allSprites" class="property item ">
+    <h3 class="name"><code>allSprites</code></h3>
+    <span class="type">Unknown</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play_box2d.js.html#l4556"><code>v3&#x2F;p5.play_box2d.js:4556</code></a>
         </p>
 
 
@@ -1116,7 +2137,32 @@ loop, unless it was already called in the draw loop.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5.play.js.html#l4381"><code>v3&#x2F;p5.play.js:4381</code></a>
+        <a href="../files/v3_p5.play.js.html#l4679"><code>v3&#x2F;p5.play.js:4679</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>The default camera. Use this to pan and zoom the camera.</p>
+
+    </div>
+
+
+
+</div>
+<div id="prop-camera" class="property item ">
+    <h3 class="name"><code>camera</code></h3>
+    <span class="type">Unknown</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play_box2d.js.html#l4599"><code>v3&#x2F;p5.play_box2d.js:4599</code></a>
         </p>
 
 
@@ -1141,7 +2187,7 @@ loop, unless it was already called in the draw loop.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5.play.js.html#l4344"><code>v3&#x2F;p5.play.js:4344</code></a>
+        <a href="../files/v3_p5.play.js.html#l4653"><code>v3&#x2F;p5.play.js:4653</code></a>
         </p>
 
 
@@ -1156,8 +2202,8 @@ been called.</p>
 
 
 </div>
-<div id="prop-kb (keyboard)" class="property item ">
-    <h3 class="name"><code>kb (keyboard)</code></h3>
+<div id="prop-frame" class="property item ">
+    <h3 class="name"><code>frame</code></h3>
     <span class="type">Unknown</span>
 
 
@@ -1167,59 +2213,15 @@ been called.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5.play.js.html#l4541"><code>v3&#x2F;p5.play.js:4541</code></a>
+        <a href="../files/v3_p5.play_box2d.js.html#l4573"><code>v3&#x2F;p5.play_box2d.js:4573</code></a>
         </p>
 
 
     </div>
 
     <div class="description">
-        
-    </div>
-
-
-        <div class="example">
-            <h4>Example:</h4>
-
-            <div class="example-content">
-                <pre class="code prettyprint"><code>// pressed
-if (kb.pressed('x')) {
-    player.jump();
-}
-
-// held
-if (kb.held('e')) {
-    player.chargeAttack();
-}
-
-// released
-if (kb.released('q')) {
-    player.slide();
-}</code></pre>
-
-            </div>
-        </div>
-
-</div>
-<div id="prop-mouse" class="property item ">
-    <h3 class="name"><code>mouse</code></h3>
-    <span class="type">Unknown</span>
-
-
-
-
-
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/v3_p5.play.js.html#l4455"><code>v3&#x2F;p5.play.js:4455</code></a>
-        </p>
-
-
-    </div>
-
-    <div class="description">
-        <p>Stores the state of the left, center, or right mouse buttons.</p>
+        <p>Equal to the p5.js frameCount, the amount of times the draw() function has
+been called.</p>
 
     </div>
 
@@ -1237,7 +2239,33 @@ if (kb.released('q')) {
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5.play.js.html#l4336"><code>v3&#x2F;p5.play.js:4336</code></a>
+        <a href="../files/v3_p5.play.js.html#l4645"><code>v3&#x2F;p5.play.js:4645</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>The planck physics world. Use this to change gravity and offset the
+sprite's coordinate system.</p>
+
+    </div>
+
+
+
+</div>
+<div id="prop-world" class="property item ">
+    <h3 class="name"><code>world</code></h3>
+    <span class="type">Unknown</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play_box2d.js.html#l4565"><code>v3&#x2F;p5.play_box2d.js:4565</code></a>
         </p>
 
 
