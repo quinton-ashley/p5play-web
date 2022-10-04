@@ -50,19 +50,16 @@ function draw() {
 			bottomPipe.x = width + bird.x;
 			bottomPipe.y = ground.y - pos;
 
-			// top pipe
-			// if (random() < 0.9) {
 			let topPipe = new pipes.Sprite();
 			topPipe.x = bottomPipe.x;
 			topPipe.y = ground.y - pos - 510 - random(0, 100);
 			topPipe.mirror.y = -1;
-			// }
 		}
 
 		// get rid of passed pipes
-		for (let i = 0; i < pipes.length; i++) {
-			if (pipes[i].x < bird.x - width / 2) {
-				pipes[i].remove();
+		for (let pipe of pipes) {
+			if (pipe.x < bird.x - width / 2) {
+				pipe.remove();
 			}
 		}
 
@@ -92,7 +89,7 @@ function draw() {
 
 async function die() {
 	gameOver = true;
-	await delay(500);
+	await delay(500); // 500 milliseconds
 	canStartNewGame = true;
 }
 

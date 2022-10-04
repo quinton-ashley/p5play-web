@@ -120,8 +120,8 @@ let examples = {
 		pong: 'Pong',
 		asteroids: 'Asteroids',
 		breakout: 'Breakout',
-		flappyBird: 'Flappy Bird'
-		// platformer: 'Tricky Platformer [BUG]'
+		flappyBird: 'Flappy Bird',
+		platformer: 'Tricky Platformer'
 	}
 };
 
