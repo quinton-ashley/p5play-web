@@ -1,10 +1,6 @@
 // flappy bird clone
-// mouse click or x to flap
+// mouse click or spacebar to flap
 
-let GRAVITY = 0.3;
-let FLAP = -7;
-let GROUND_Y = 450;
-let MIN_OPENING = 300;
 let bird, ground, pipes, gameOver;
 let birdImg, pipeImg, groundImg, bgImg;
 
@@ -18,99 +14,96 @@ function preload() {
 function setup() {
 	createCanvas(400, 600);
 
-	bird = createSprite(width / 2, height / 2, 40, 40);
-	bird.rotateToDirection = true;
-	bird.velocity.x = 4;
-	bird.setCollider('circle', 0, 0, 20);
-	bird.addImage(birdImg);
+	bird = new Sprite(birdImg, 0, height / 2, 24);
 
-	ground = createSprite(800 / 2, GROUND_Y + 100); //image 800x200
-	ground.addImage(groundImg);
+	ground = new Sprite(groundImg, width / 2, 650, 'none');
 
 	pipes = new Group();
-	gameOver = true;
-	updateSprites(false);
+	pipes.addImg(pipeImg);
+	pipes.collider = 'static';
 
-	camera.position.y = height / 2;
+	gameOver = true;
+	canStartNewGame = true;
+
+	bird.overlap(pipes, die);
 }
 
 function draw() {
-	if (gameOver && keyWentDown('x')) {
-		newGame();
+	if (mouse.pressed() || kb.pressed(' ')) {
+		if (canStartNewGame) newGame();
+		// FLAP
+		bird.vel.y = -9;
 	}
 
 	if (!gameOver) {
-		if (keyWentDown('x')) bird.velocity.y = FLAP;
+		bird.rotation = bird.direction * 0.8;
+		// prevent bird from going off the top of the screen (cheating!)
+		if (bird.y < 0) bird.y = 0;
+		// if the bird hits the ground, it dies
+		if (bird.y > ground.y - 100) die();
 
-		bird.velocity.y += GRAVITY;
-
-		if (bird.position.y < 0) bird.position.y = 0;
-
-		if (bird.position.y + bird.height / 2 > GROUND_Y) {
-			die();
-		}
-
-		if (bird.overlap(pipes)) die();
-
-		//spawn pipes
+		// spawn pipes every 60 frames (1 second)
 		if (frameCount % 60 == 0) {
-			let pipeH = random(50, 300);
-			let pipe = createSprite(bird.position.x + width, GROUND_Y - pipeH / 2 + 1 + 100, 80, pipeH);
-			pipe.addImage(pipeImg);
-			pipes.add(pipe);
+			let pos = random(0, 250);
 
-			//top pipe
-			if (pipeH < 200) {
-				pipeH = height - (height - GROUND_Y) - (pipeH + MIN_OPENING);
-				pipe = createSprite(bird.position.x + width, pipeH / 2 - 100, 80, pipeH);
-				pipe.mirror.y(-1);
-				pipe.addImage(pipeImg);
-				pipes.add(pipe);
-			}
+			let bottomPipe = new pipes.Sprite();
+			bottomPipe.x = width + bird.x;
+			bottomPipe.y = ground.y - pos;
+
+			// top pipe
+			// if (random() < 0.9) {
+			let topPipe = new pipes.Sprite();
+			topPipe.x = bottomPipe.x;
+			topPipe.y = ground.y - pos - 510 - random(0, 100);
+			topPipe.mirror.y = -1;
+			// }
 		}
 
-		//get rid of passed pipes
+		// get rid of passed pipes
 		for (let i = 0; i < pipes.length; i++) {
-			if (pipes[i].position.x < bird.position.x - width / 2) {
+			if (pipes[i].x < bird.x - width / 2) {
 				pipes[i].remove();
 			}
 		}
+
+		// wrap ground
+		if (camera.x > ground.x + width / 2) {
+			ground.x += width;
+		}
 	}
 
-	camera.position.x = bird.position.x + width / 4;
+	camera.x = bird.x + 150;
 
-	//wrap ground
-	if (camera.position.x > ground.position.x - ground.width + width / 2) {
-		ground.position.x += ground.width;
-	}
+	camera.off();
 
 	background(247, 134, 131);
-	camera.off();
-	image(bgImg, 0, GROUND_Y - 190);
+	image(bgImg, 0, ground.y - 280);
+
 	camera.on();
 
-	drawSprites(pipes);
-	drawSprite(ground);
-	drawSprite(bird);
+	ground.draw();
+	pipes.draw();
+	bird.draw();
+
+	if (!gameOver) updateSprites();
+
+	allSprites.debug = kb.pressing('d');
 }
 
-function die() {
-	updateSprites(false);
+async function die() {
 	gameOver = true;
+	await delay(500);
+	canStartNewGame = true;
 }
 
 function newGame() {
 	pipes.remove();
 	gameOver = false;
-	updateSprites(true);
-	bird.position.x = width / 2;
-	bird.position.y = height / 2;
-	bird.velocity.y = 0;
-	ground.position.x = 800 / 2;
-	ground.position.y = GROUND_Y + 100;
-}
-
-function mousePressed() {
-	if (gameOver) newGame();
-	bird.velocity.y = FLAP;
+	canStartNewGame = false;
+	bird.x = width * 0.7;
+	bird.y = height / 2;
+	bird.vel.x = 4;
+	bird.vel.y = 0;
+	ground.x = width / 2;
+	world.gravity.y = 24;
 }

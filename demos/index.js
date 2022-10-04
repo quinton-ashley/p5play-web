@@ -120,8 +120,8 @@ let examples = {
 		pong: 'Pong',
 		asteroids: 'Asteroids',
 		breakout: 'Breakout',
-		flappyBird: 'Flappy Bird [TODO]',
-		platformer: 'Tricky Platformer'
+		flappyBird: 'Flappy Bird'
+		// platformer: 'Tricky Platformer [BUG]'
 	}
 };
 
@@ -159,3 +159,17 @@ function undoAllChanges() {
 function run() {
 	playEditor();
 }
+
+window.addEventListener('keydown', function (e) {
+	if (
+		(e.key == ' ' ||
+			e.key == '/' ||
+			e.key == 'ArrowUp' ||
+			e.key == 'ArrowDown' ||
+			e.key == 'ArrowLeft' ||
+			e.key == 'ArrowRight') &&
+		e.target == document.body
+	) {
+		e.preventDefault();
+	}
+});

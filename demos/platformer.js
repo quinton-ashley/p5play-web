@@ -4,7 +4,7 @@ let instructions = 'This one is a bit tricky! Use wasd to move and jump.';
 
 let mouse_moved = false;
 let touch_started = false;
-let tileFrames, tiles, signs, ground, fakeGround, exit, exitSign, explosion, player;
+let tileFrames, tiles, signs, ground, fakeGround, exit, exitSign, explosion, player, tileSheet;
 
 function preload() {
 	width = 800;
@@ -40,6 +40,8 @@ function preload() {
 	player.rotationLock = true;
 	player.autoResetAnimations = true;
 
+	tileSheet = loadImage('assets/tiles_spritesheet.png');
+
 	loadJSON('assets/tiles.json', (tileFrames) => {
 		// Load tiles sprite sheet from frames array once frames array is ready
 		tiles = new Group();
@@ -47,7 +49,7 @@ function preload() {
 		tiles.layer = 1;
 		tiles.w = 70;
 		tiles.h = 70;
-		tiles.spriteSheet = loadImage('assets/tiles_spritesheet.png');
+		tiles.spriteSheet = tileSheet;
 		// Load the frame data for the tiles
 		tiles.addAnis(tileFrames);
 
@@ -93,8 +95,8 @@ function setup() {
 	fakeGround[1].collider = 'none';
 
 	player.collide(exit, () => {
-		exit.vel.y = -10;
-		exitSign.vel.y = -10;
+		exit.vel.y = -6;
+		exitSign.vel.y = -6;
 		instructions = 'You win!';
 	});
 }
@@ -104,7 +106,7 @@ function draw() {
 	fill(255);
 	text(instructions, 16, 16);
 
-	if (player.ani.name == 'jump' && player.ani.frame != 0 && player.y > 280) {
+	if (player.ani.name == 'jump' && player.y > 280) {
 		player.ani = 'walk';
 	}
 
