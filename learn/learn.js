@@ -17,6 +17,19 @@ window.p5m = {
 p5m.ready = function () {
 	let pages = document.getElementsByClassName('page');
 	let pageNav = document.getElementById('pageNav');
+	let currentPage = 0;
+
+	let previousPage = document.createElement('a');
+	previousPage.innerText = 'Previous';
+	previousPage.onclick = function () {
+		if (currentPage - 1 > -1) {
+			let i = currentPage - 1;
+			let url = `?page=${i}`;
+			history.pushState({}, 'p5.play : Sprite : ' + i, url);
+			loadPage(i);
+		}
+	};
+	pageNav.appendChild(previousPage);
 
 	for (let i = 0; i < pages.length; i++) {
 		let a = document.createElement('a');
@@ -29,14 +42,26 @@ p5m.ready = function () {
 		pageNav.appendChild(a);
 	}
 
+	let nextPage = document.createElement('a');
+	nextPage.innerText = 'Next';
+	nextPage.onclick = function () {
+		if (currentPage + 1 < pages.length) {
+			let i = currentPage + 1;
+			let url = `?page=${i}`;
+			history.pushState({}, 'p5.play : Sprite : ' + i, url);
+			loadPage(i);
+		}
+	};
+	pageNav.appendChild(nextPage);
+
 	function loadPage(pageNum) {
 		pageNum = pageNum ?? args.page ?? 0;
 
 		for (let i = 0; i < pages.length; i++) {
 			if (i == pageNum) {
-				pageNav.children[i].className = 'active';
+				pageNav.children[i + 1].className = 'active';
 			} else {
-				pageNav.children[i].className = '';
+				pageNav.children[i + 1].className = '';
 			}
 		}
 		for (let mini of p5m.minis) {
@@ -50,6 +75,7 @@ p5m.ready = function () {
 		p5m.loadMinis(page);
 		document.body.scrollTop = 0; // for Safari
 		document.documentElement.scrollTop = 0; // Chrome, Firefox, and Opera
+		currentPage = parseInt(pageNum);
 	}
 
 	loadPage();
