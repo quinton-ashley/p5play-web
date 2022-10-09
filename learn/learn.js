@@ -20,7 +20,7 @@ p5m.ready = function () {
 	let currentPage = 0;
 
 	let previousPage = document.createElement('a');
-	previousPage.innerText = 'Previous';
+	previousPage.innerText = 'Prev';
 	previousPage.onclick = function () {
 		if (currentPage - 1 > -1) {
 			let i = currentPage - 1;

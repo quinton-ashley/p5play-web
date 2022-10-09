@@ -195,6 +195,10 @@ function draw() {
 				holding the
 				left mouse button.
 			</p>
+			<p>
+				The <code>mirror</code> property can be used to flip the sprite horizontally on its x axis or vertically on its
+				y axis.
+			</p>
 		</div>
 		<script type="text/p5" name="sprites with animation" base-1>
 let ghost;
@@ -220,6 +224,14 @@ ghost.ani = 'fly';
 		<script type="text/p5" name="move" base="1">
 ghost.ani = 'move';
 		</script>
+		<script type="text/p5" name="fly + y axis mirrored" base="1">
+ghost.ani = 'fly';
+ghost.mirror.y = true;
+				</script>
+		<script type="text/p5" name="move + x axis mirrored" base="1">
+ghost.ani = 'move';
+ghost.mirror.x = true;
+				</script>
 	</div>
 	<div id="page-3" class="page">
 		<div>

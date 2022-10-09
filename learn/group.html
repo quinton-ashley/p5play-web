@@ -174,15 +174,29 @@ function draw() {
 	clear();
 	player.moveTowards(mouse.x, mouse.y);
 }
-			</script>
+		</script>
 	</div>
 	<div id="page-3" class="page">
 		<div>
 			<h2>allSprites Group</h2>
 			<p>
-				p5.play creates an allSprites group that contains all the sprites in a sketch.
+				p5.play creates an <code>allSprites</code> group that contains all the sprites in a sketch.
 			</p>
 		</div>
+		<script type="text/p5" name="allSprites" horiz>
+let box, circle;
+
+function setup() {
+	createCanvas(50, 232);
+	box = new Sprite(25, 70, 10, 90);
+	circle = new Sprite(25, 140, 10);
+}
+
+function draw() {
+	clear();
+	allSprites.moveTowards(mouse.x, mouse.y);
+}
+		</script>
 	</div>
 
 	<div class="break"></div>

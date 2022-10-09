@@ -201,7 +201,7 @@ floor.collider = 'none';
 
 Try creating a sprite `peg` with a static collider and circle shape. Create a sprite `block` with a dynamic collider and box shape. Make the block fall from above and hit the peg, falling to the right side.
 
-Note that the `world` is created by default when p5.play loads but by default the (x, y) gravity is (0, 0).
+Note that `world` is created when p5.play loads, but by default the (x, y) gravity is (0, 0).
 		</script>
 		<script type="text/p5" name="Level 1 Challenge" horiz>
 let peg, block;
@@ -269,6 +269,67 @@ if (mouse.held()) {
 		</script>
 	</div>
 	<div id="page-3" class="page">
+		<script type="text/md">
+	## Make Pixel Art!
+				
+	You can use the `spriteArt` function to create pixel art images for your sprites. It takes a string as input and returns an image. Each character in the string represents the color value of a pixel in the image.
+	
+	The second input parameter to the `spriteArt` function is the scale of the image.
+			</script>
+		<script type="text/p5" name="smiley">
+	let smiley;
+	
+	function setup() {
+		createCanvas(500, 120);
+		let str = `
+	..yyyyyy
+	.yybyybyy
+	yyyyyyyyyy
+	yybyyyybyy
+	.yybbbbyy
+	..yyyyyy`;
+	
+		let img = spriteArt(str, 16);
+		smiley = new Sprite(img);
+	}
+	
+	function draw() {
+		clear();
+	}
+			</script>
+		<div>
+			<p>
+				The default palette uses p5.js default colors but you can change the color palette too!
+			</p>
+		</div>
+		<script type="text/p5" name="smiley">
+	let smiley;
+	
+	function setup() {
+		createCanvas(500, 120);
+		let str = `
+	..yyyyyy
+	.yybyybyy
+	yyyyyyyyyy
+	yybyyyybyy
+	.yybbbbyy
+	..yyyyyy`;
+	
+		let palette = {
+			'y': color(255, 220, 60),
+			'b': color(20)
+		};
+	
+		let img = spriteArt(str, 16, palette);
+		smiley = new Sprite(img);
+	}
+	
+	function draw() {
+		clear();
+	}
+					</script>
+	</div>
+	<div id="page-4" class="page">
 		<div>
 			<script type="text/md">
 ## Create Sprites faster
@@ -350,67 +411,6 @@ function draw() {
 	clear();
 }
 		</script>
-	</div>
-	<div id="page-4" class="page">
-		<script type="text/md">
-## Make Pixel Art!
-			
-You can use the `spriteArt` function to create pixel art images for your sprites. It takes a string as input and returns an image. Each character in the string represents the color value of a pixel in the image.
-
-The second input parameter to the `spriteArt` function is the scale of the image.
-		</script>
-		<script type="text/p5" name="smiley">
-let smiley;
-
-function setup() {
-	createCanvas(500, 120);
-	let str = `
-..yyyyyy
-.yybyybyy
-yyyyyyyyyy
-yybyyyybyy
-.yybbbbyy
-..yyyyyy`;
-
-	let img = spriteArt(str, 16);
-	smiley = new Sprite(img);
-}
-
-function draw() {
-	clear();
-}
-		</script>
-		<div>
-			<p>
-				The default palette uses p5.js default colors but you can change the color palette too!
-			</p>
-		</div>
-		<script type="text/p5" name="smiley">
-let smiley;
-
-function setup() {
-	createCanvas(500, 120);
-	let str = `
-..yyyyyy
-.yybyybyy
-yyyyyyyyyy
-yybyyyybyy
-.yybbbbyy
-..yyyyyy`;
-
-	let palette = {
-		'y': color(255, 220, 60),
-		'b': color(20)
-	};
-
-	let img = spriteArt(str, 16, palette);
-	smiley = new Sprite(img);
-}
-
-function draw() {
-	clear();
-}
-				</script>
 	</div>
 	<div id="page-5" class="page">
 		<div>
