@@ -20,13 +20,5 @@ function collect(player, gem) {
 
 function draw() {
 	clear();
-	// player.moveTowards(mouse.x, mouse.y);
-
-	if (player.mouse.hovers()) {
-		player.shapeColor = 'red';
-	}
-
-	if (gems.mouse.hovers()) {
-		gems.shapeColor = 'green';
-	}
+	player.moveTowards(mouse.x, mouse.y);
 }

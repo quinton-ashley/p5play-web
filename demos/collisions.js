@@ -38,7 +38,7 @@ function draw() {
 
 	asterisk.moveTowards(mouse.x, mouse.y);
 
-	if (asterisk.overlap(circle)) {
+	if (asterisk.overlapping(circle)) {
 		asterisk.ani = 'round';
 	} else {
 		asterisk.ani = 'default';

@@ -8,7 +8,7 @@ function setup() {
 function draw() {
 	clear();
 
-	if (mouse.pressed()) {
+	if (mouse.presses()) {
 		let splat = new Sprite(splatAni, mouse.x, mouse.y);
 		splat.life = 40;
 	}

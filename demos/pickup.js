@@ -1,5 +1,3 @@
-// Pickup
-
 let instructions = 'Use the left and right arrow keys to move the player to pickup items';
 
 let player, items;
@@ -23,9 +21,8 @@ function draw() {
 	text(instructions, 20, 20);
 
 	if (count >= 80) {
-		let item = new Sprite(random(10, width - 10), -10, 20, 20);
+		let item = new items.Sprite(random(10, width - 10), -10, 20, 20);
 		item.vel.y = 2;
-		items.add(item);
 		count = 0;
 	}
 

@@ -60,7 +60,7 @@ function draw() {
 
 	paddle.moveTowards(mouse.x, height - 50, 1);
 
-	if (mouse.pressed()) {
+	if (mouse.presses()) {
 		// start or restart the game
 		bricks.remove();
 

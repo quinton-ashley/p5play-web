@@ -28,7 +28,7 @@ function draw() {
 	// being pressed while hovering over it
 	ghost.visible = !ghost.mouse.pressing();
 
-	if (asterisk.mouse.pressed()) {
+	if (asterisk.mouse.presses()) {
 		asterisk.ani = 'transform';
 		asterisk.ani.play(0); // play the animation starting from frame 0
 	}
@@ -42,11 +42,11 @@ function draw() {
 		asterisk.ani = ['transform', '!transform', 'default'];
 	}
 
-	if (asterisk.mouse.hoveredOn()) {
+	if (asterisk.mouse.hovers()) {
 		asterisk.ani = 'stretch';
 	}
 
-	if (asterisk.mouse.hoveredOut()) {
+	if (asterisk.mouse.hovered()) {
 		if (asterisk.ani.name == 'transform') {
 			// reverse the transform animation (use ! before the animation name),
 			// when it's completed play the default animation

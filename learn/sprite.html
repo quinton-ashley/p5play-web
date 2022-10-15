@@ -249,7 +249,7 @@ function draw() {
 }
 		</script>
 		<script type="text/p5" name="teleport" base="3">
-if (mouse.pressed()) {
+if (mouse.presses()) {
 	player.x = mouse.x;
 	player.y = mouse.y;
 }
@@ -270,11 +270,11 @@ if (mouse.held()) {
 	</div>
 	<div id="page-3" class="page">
 		<script type="text/md">
-	## Make Pixel Art!
-				
-	You can use the `spriteArt` function to create pixel art images for your sprites. It takes a string as input and returns an image. Each character in the string represents the color value of a pixel in the image.
-	
-	The second input parameter to the `spriteArt` function is the scale of the image.
+## Make Pixel Art!
+			
+You can use the `spriteArt` function to create pixel art images for your sprites. It takes a string as input and returns an image. Each character in the string represents the color value of a pixel in the image.
+
+The second input parameter to the `spriteArt` function is the scale of the image.
 			</script>
 		<script type="text/p5" name="smiley">
 	let smiley;
@@ -437,28 +437,27 @@ let player, pillar;
 function setup() {
 	createCanvas(60, 480);
 	world.gravity.y = 10;
-
+	
 	pillar = new Sprite(30, 480, 30, 720, 'static');
-
 	player = new Sprite(30, 0, 50);
-
-	player.collide(pillar, stomp);
-}
-
-function stomp() {
-	if (player.vel.y < -0.9) {
-		pillar.h -= 52;
-	}
+	player.bounciness = 0.4;
 }
 
 function draw() {
 	clear();
-	if (mouse.pressed()) {
+
+	if (player.collides(pillar)) {
+		if (player.vel.y < -1.6) {
+			pillar.h -= 52;
+		}
+	}
+
+	if (mouse.presses()) {
 		player.vel.y = -5;
 	}
 }
 		</script>
-		<script type="text/p5" name="overlap collect">
+		<script type="text/p5" name="collect coin">
 let player, coin;
 
 function setup() {
@@ -468,12 +467,13 @@ function setup() {
 	coin.shapeColor = 'yellow';
 
 	player = new Sprite(50, 50);
-	
-	player.overlap(coin, () => coin.remove());
 }
 
 function draw() {
 	clear();
+		
+	if (player.overlaps(coin)) coin.remove();
+
 	if (mouse.isOnCanvas) {
 		player.moveTowards(mouse.x, mouse.y);
 	}

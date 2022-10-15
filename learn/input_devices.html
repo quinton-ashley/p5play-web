@@ -40,7 +40,7 @@ Here are the input devices available in p5.play:
 			
 These input devices all use the same functions for getting the state of an input. Try pressing the space key!
 		</script>
-		<script type="text/p5" name="pressed" base-0 hide>
+		<script type="text/p5" name="hidden" base-0 hide>
 function setup() {
 	createCanvas(240, 100);
 }
@@ -50,8 +50,8 @@ function draw() {
 }
 		</script>
 		<div class="minis">
-			<script type="text/p5" name="pressed" base="0">
-if (kb.pressed(' ')) {
+			<script type="text/p5" name="presses" base="0">
+if (kb.presses(' ')) {
 	background(0, 255, 0);
 }
 			</script>
@@ -60,8 +60,8 @@ if (kb.pressing(' ')) {
 	background(0, 255, 0);
 }
 			</script>
-			<script type="text/p5" name="held" base="0">
-if (kb.held(' ')) {
+			<script type="text/p5" name="holds" base="0">
+if (kb.holds(' ')) {
 	background(0, 255, 0);
 }
 			</script>
@@ -131,7 +131,7 @@ function draw() {
 				is 'left' for the left mouse button or normal click.
 			</p>
 		</div>
-		<script type="text/p5" name="pressed" base-1 hide>
+		<script type="text/p5" name="hidden" base-1 hide>
 let sprite;
 
 function setup() {

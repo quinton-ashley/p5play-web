@@ -4,10 +4,12 @@ function setup() {
 	createCanvas(800, 400);
 
 	boxes = new Group();
+	boxes.w = 40;
+	boxes.h = 40;
+	boxes.fixedRotation = true;
 
 	for (let i = 0; i < 3; i++) {
-		let box = new Sprite(random(width), random(height), 40, 40);
-		box.fixedRotation = true;
+		let box = new boxes.Sprite(random(width), random(height));
 		box.draw = () => {
 			fill(0);
 			rect(0, 0, 40, 40);
@@ -15,7 +17,6 @@ function setup() {
 			text(i, 10, 10);
 		};
 		box.drag = box.mass;
-		boxes.add(box);
 	}
 	cursor = 0;
 }
@@ -23,7 +24,7 @@ function setup() {
 function draw() {
 	background(220);
 
-	text(cursor, 10, 20);
+	text('Controlling box #' + cursor + '. Click the mouse to change!', 10, 20);
 
 	boxes[cursor].moveTowards(mouse.x, mouse.y, 0.1);
 
@@ -31,8 +32,6 @@ function draw() {
 		if (box == boxes[cursor]) return;
 		box.moveTo(width * 0.5, height * 0.5);
 	});
-
-	drawSprites();
 }
 
 function mousePressed() {

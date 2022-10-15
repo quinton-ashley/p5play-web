@@ -153,23 +153,23 @@ function setup() {
 function draw() {
 	clear();
 
-	if (kb.pressed('p')) {
+	if (kb.presses('p')) {
 		splatAni.play();
-	} else if (kb.pressed('a')) {
+	} else if (kb.presses('a')) {
 		splatAni.play(0);
-	} else if (kb.pressed('s')) {
+	} else if (kb.presses('s')) {
 		splatAni.stop();
-	} else if (kb.pressed('r')) {
+	} else if (kb.presses('r')) {
 		splatAni.rewind();
-	} else if (kb.pressed('l')) {
+	} else if (kb.presses('l')) {
 		splatAni.loop();
-	} else if (kb.pressed('n')) {
+	} else if (kb.presses('n')) {
 		splatAni.noLoop();
-	} else if (kb.pressed('f')) {
+	} else if (kb.presses('f')) {
 		splatAni.nextFrame();
-	} else if (kb.pressed('b')) {
+	} else if (kb.presses('b')) {
 		splatAni.previousFrame();
-	} else if (kb.pressed('5')) {
+	} else if (kb.presses('5')) {
 		splatAni.frame = 5;
 	} else if (kb.pressing('x')) {
 		splatAni.scale.x = -1;
@@ -257,7 +257,7 @@ function setup() {
 function draw() {
 	clear();
 
-	if (mouse.pressed()) {
+	if (mouse.presses()) {
 		let splat = new Sprite(splatAni, mouse.x, mouse.y);
 		splat.life = 40;
 	}
@@ -287,7 +287,7 @@ function setup() {
 function draw() {
 	clear();
 
-	if (mouse.pressed()) {
+	if (mouse.presses()) {
 		new splats.Sprite(mouse.x, mouse.y);
 	}
 }

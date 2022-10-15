@@ -32,11 +32,11 @@ function draw() {
 	textAlign(CENTER);
 	text('Press x and z', width / 2, 20);
 
-	if (asterisk.collide(platform)) {
-		asterisk.ani = 'normal';
+	if (asterisk.collides(platform)) {
+		asterisk.ani = 'default';
 	}
 
-	if (kb.pressed('x') || mouse.pressed('left')) {
+	if (kb.presses('x') || mouse.presses('left')) {
 		asterisk.jump();
 	}
 

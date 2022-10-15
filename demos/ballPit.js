@@ -40,7 +40,7 @@ function draw() {
 	background(220);
 	status();
 
-	if (mouse.pressed()) circles.direction = 90;
+	if (mouse.presses()) circles.direction = 90;
 }
 
 function status() {

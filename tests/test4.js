@@ -25,10 +25,10 @@ const minimalExample = (p) => {
 
 	p.draw = () => {
 		p.allSprites.forEach((sprite) => {
-			if (sprite.mouse.hoveredOn()) {
+			if (sprite.mouse.hovers()) {
 				p.setFrameRate(5);
 			}
-			if (sprite.mouse.hoveredOut()) {
+			if (sprite.mouse.hovered()) {
 				p.setFrameRate(24);
 			}
 		});

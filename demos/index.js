@@ -73,27 +73,28 @@ let args = {};
 	}
 }
 
+// I removed demos that I felt were just duplicates of Learn page examples
 let examples = {
 	Basic: {
 		creation: 'creation',
-		appearance: 'appearance',
-		layer: 'layer',
-		groups: 'groups',
+		// appearance: 'appearance',
+		// layer: 'layer',
+		// groups: 'groups',
 		changeAni: 'change animation',
-		aniControl: 'control'
+		aniControl: 'animation controls'
 	},
 	Physics: {
 		collisions: 'collide, overlap, displace',
-		groupCollisions: 'group collisions',
+		// groupCollisions: 'group collisions',
 		customColliders: 'custom colliders',
 		bounces: 'bounces',
-		displace: 'group displacement',
+		swap: 'control swap',
 		pickup: 'pickup',
 		culling: 'culling offscreen sprites'
 	},
 	'User Input': {
 		mouseEvents: 'mouse events on sprites',
-		keyPresses: 'keyboard and mouse input'
+		multiInput: 'multi-input'
 	},
 	Camera: {
 		camera: 'using the virtual camera',

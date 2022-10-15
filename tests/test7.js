@@ -17,10 +17,10 @@ function setup() {
 
 function draw() {
 	clear();
-	if (kb.pressed('x')) {
+	if (kb.presses('x')) {
 		floor.w = mouse.x;
 	}
-	if (kb.pressed('r')) {
+	if (kb.presses('r')) {
 		floor.rotation += 2;
 	}
 }

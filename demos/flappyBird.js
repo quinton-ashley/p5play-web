@@ -29,7 +29,7 @@ function setup() {
 }
 
 function draw() {
-	if (mouse.pressed() || kb.pressed(' ')) {
+	if (mouse.presses() || kb.presses(' ')) {
 		if (canStartNewGame) newGame();
 		// FLAP
 		bird.vel.y = -9;

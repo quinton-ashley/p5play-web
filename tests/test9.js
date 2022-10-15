@@ -1,17 +1,12 @@
-let splats;
-
 function setup() {
-	createCanvas(500, 160);
+	createCanvas(200, 128);
 
-	splats = new Group();
-	splats.life = 40;
-	splats.addAni('../learn/assets/asterisk_explode0001.png', 11);
+	sprite1 = new Sprite(90, 50);
+	sprite2 = new Sprite(115, 75);
+
+	sprite1.overlap(sprite2);
 }
 
 function draw() {
 	clear();
-
-	if (mouse.pressed()) {
-		new splats.Sprite(mouse.x, mouse.y);
-	}
 }

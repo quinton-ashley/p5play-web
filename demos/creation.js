@@ -25,7 +25,7 @@ function draw() {
 	text('Click to create a new sprite', width / 2, height / 2);
 
 	// check if the left mouse button was pressed
-	if (mouse.pressed()) {
+	if (mouse.presses()) {
 		// let the variable "s" store
 		// a new sprite at the mouse's position,
 		// with a width of 30 and height of 30

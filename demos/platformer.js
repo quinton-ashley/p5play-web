@@ -88,17 +88,7 @@ function setup() {
 	// makes the sprite's collider smaller
 	player.w = 20;
 
-	player.collide(fakeGround[0], () => {
-		resetPlayer();
-		instructions = "Can't step on that! Press space to reset.";
-	});
 	fakeGround[1].collider = 'none';
-
-	player.collide(exit, () => {
-		exit.vel.y = -6;
-		exitSign.vel.y = -6;
-		instructions = 'You win!';
-	});
 }
 
 function draw() {
@@ -110,15 +100,15 @@ function draw() {
 		player.ani = 'walk';
 	}
 
-	if (kb.pressed('w')) {
+	if (kb.presses('w')) {
 		player.ani = 'jump';
 		player.vel.y = -3;
 	}
 
-	if (kb.pressed('a')) {
+	if (kb.presses('a')) {
 		player.ani = 'walk';
 		player.mirror.x = true;
-	} else if (kb.pressed('d')) {
+	} else if (kb.presses('d')) {
 		player.ani = 'walk';
 		player.mirror.x = false;
 	}
@@ -135,8 +125,19 @@ function draw() {
 		player.ani = 'stand';
 	}
 
-	if (kb.pressed(' ')) {
+	if (kb.presses(' ')) {
 		resetPlayer();
+	}
+
+	if (player.collides(fakeGround[0])) {
+		resetPlayer();
+		instructions = "Can't step on that! Press space to reset.";
+	}
+
+	if (player.collides(exit)) {
+		exit.vel.y = -6;
+		exitSign.vel.y = -6;
+		instructions = 'You win!';
 	}
 
 	allSprites.debug = mouse.pressing();

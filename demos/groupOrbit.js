@@ -44,5 +44,5 @@ function draw() {
 		}
 	}
 
-	blocks.orbit(-2 + mouse.y / 200);
+	blocks.orbit(-2 + mouse.x / 200);
 }

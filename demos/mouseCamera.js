@@ -25,10 +25,10 @@ function draw() {
 		s1.shapeColor = '#224477';
 	}
 
-	if (s1.mouse.pressed()) {
+	if (s1.mouse.presses()) {
 		s1.rotation += 10;
 	}
-	if (s1.mouse.pressed('right')) {
+	if (s1.mouse.presses('right')) {
 		s1.rotation -= 10;
 	}
 
@@ -44,10 +44,10 @@ function draw() {
 		s2.shapeColor = '#224477';
 	}
 
-	if (s2.mouse.pressed()) {
+	if (s2.mouse.presses()) {
 		s2.rotation += 10;
 	}
-	if (s2.mouse.pressed('right')) {
+	if (s2.mouse.presses('right')) {
 		s2.rotation -= 10;
 	}
 
