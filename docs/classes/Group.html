@@ -117,14 +117,15 @@ a group.</p>
 				<li class=""><a href="#method-addAnis"><span class="im">addAnis</span>()</a></li>
 				<li class=""><a href="#method-addAnis"><span class="im">addAnis</span>()</a></li>
 				<li class="deprectated"><a href="#method-bounce"><span class="im">bounce</span>(<span class="ia">target</span><span class="ia">callback</span>)</a></li>
-				<li class="deprectated"><a href="#method-bounce"><span class="im">bounce</span>(<span class="ia">target</span><span class="ia">callback</span>)</a></li>
+				<li class="deprectated"><a href="#method-collide"><span class="im">collide</span>()</a></li>
 				<li class=""><a href="#method-collide"><span class="im">collide</span>(<span class="ia">target</span><span class="ia">callback</span>)</a></li>
-				<li class=""><a href="#method-collide"><span class="im">collide</span>(<span class="ia">target</span><span class="ia">callback</span>)</a></li>
+				<li class=""><a href="#method-collided"><span class="im">collided</span>(<span class="ia">target</span><span class="ia">callback</span>)</a></li>
+				<li class=""><a href="#method-collides"><span class="im">collides</span>(<span class="ia">target</span><span class="ia">callback</span>)</a></li>
+				<li class=""><a href="#method-colliding"><span class="im">colliding</span>(<span class="ia">target</span><span class="ia">callback</span>)</a></li>
 				<li class=""><a href="#method-contains"><span class="im">contains</span>(<span class="ia">sprite</span>)</a></li>
 				<li class=""><a href="#method-contains"><span class="im">contains</span>(<span class="ia">sprite</span>)</a></li>
 				<li class=""><a href="#method-cull"><span class="im">cull</span>(<span class="ia">top|size</span><span class="ia">bottom|cb</span><span class="ia">left</span><span class="ia">right</span><span class="ia">cb(sprite)</span>)</a></li>
 				<li class=""><a href="#method-cull"><span class="im">cull</span>(<span class="ia">top|size</span><span class="ia">bottom|cb</span><span class="ia">left</span><span class="ia">right</span><span class="ia">cb(sprite)</span>)</a></li>
-				<li class="deprectated"><a href="#method-displace"><span class="im">displace</span>(<span class="ia">target</span><span class="ia">callback</span>)</a></li>
 				<li class="deprectated"><a href="#method-displace"><span class="im">displace</span>(<span class="ia">target</span><span class="ia">callback</span>)</a></li>
 				<li class="deprectated"><a href="#method-get"><span class="im">get</span>(<span class="ia">i</span>)</a></li>
 				<li class="deprectated"><a href="#method-get"><span class="im">get</span>(<span class="ia">i</span>)</a></li>
@@ -132,10 +133,15 @@ a group.</p>
 				<li class=""><a href="#method-maxDepth"><span class="im">maxDepth</span>()</a></li>
 				<li class=""><a href="#method-minDepth"><span class="im">minDepth</span>()</a></li>
 				<li class=""><a href="#method-minDepth"><span class="im">minDepth</span>()</a></li>
+				<li class=""><a href="#method-move"><span class="im">move</span>()</a></li>
+				<li class=""><a href="#method-moveTowards"><span class="im">moveTowards</span>()</a></li>
 				<li class=""><a href="#method-orbit"><span class="im">orbit</span>(<span class="ia">amount</span>)</a></li>
 				<li class=""><a href="#method-orbit"><span class="im">orbit</span>(<span class="ia">amount</span>)</a></li>
+				<li class="deprectated"><a href="#method-overlap"><span class="im">overlap</span>()</a></li>
 				<li class=""><a href="#method-overlap"><span class="im">overlap</span>(<span class="ia">target</span><span class="ia">callback</span>)</a></li>
-				<li class=""><a href="#method-overlap"><span class="im">overlap</span>(<span class="ia">target</span><span class="ia">callback</span>)</a></li>
+				<li class=""><a href="#method-overlapped"><span class="im">overlapped</span>(<span class="ia">target</span><span class="ia">callback</span>)</a></li>
+				<li class=""><a href="#method-overlapping"><span class="im">overlapping</span>(<span class="ia">target</span><span class="ia">callback</span>)</a></li>
+				<li class=""><a href="#method-overlaps"><span class="im">overlaps</span>(<span class="ia">target</span><span class="ia">callback</span>)</a></li>
 				<li class=""><a href="#method-push"><span class="im">push</span>(<span class="ia">s</span>)</a></li>
 				<li class=""><a href="#method-push"><span class="im">push</span>(<span class="ia">s</span>)</a></li>
 				<li class=""><a href="#method-remove"><span class="im">remove</span>(<span class="ia">item</span>)</a></li>
@@ -149,6 +155,8 @@ a group.</p>
 		<li>
 			<strong>Properties</strong>
 			<ul>
+				<li class=""><a href="#prop-_collides"><span class="ip">_collides</span></a></li>
+				<li class=""><a href="#prop-_overlaps"><span class="ip">_overlaps</span></a></li>
 				<li class=""><a href="#prop-ani"><span class="ip">ani</span></a></li>
 				<li class=""><a href="#prop-ani"><span class="ip">ani</span></a></li>
 				<li class=""><a href="#prop-animations"><span class="ip">animations</span></a></li>
@@ -156,14 +164,12 @@ a group.</p>
 				<li class=""><a href="#prop-autoResetAnimations"><span class="ip">autoResetAnimations</span></a></li>
 				<li class=""><a href="#prop-autoResetAnimations"><span class="ip">autoResetAnimations</span></a></li>
 				<li class=""><a href="#prop-collides"><span class="ip">collides</span></a></li>
-				<li class=""><a href="#prop-collides"><span class="ip">collides</span></a></li>
 				<li class=""><a href="#prop-gravity"><span class="ip">gravity</span></a></li>
 				<li class=""><a href="#prop-gravity"><span class="ip">gravity</span></a></li>
 				<li class=""><a href="#prop-offset.x"><span class="ip">offset.x</span></a></li>
 				<li class=""><a href="#prop-offset.x"><span class="ip">offset.x</span></a></li>
 				<li class=""><a href="#prop-offset.y"><span class="ip">offset.y</span></a></li>
 				<li class=""><a href="#prop-offset.y"><span class="ip">offset.y</span></a></li>
-				<li class=""><a href="#prop-overlaps"><span class="ip">overlaps</span></a></li>
 				<li class=""><a href="#prop-overlaps"><span class="ip">overlaps</span></a></li>
 			</ul>
 		</li>
@@ -230,7 +236,7 @@ a group.</p>
 	<div class="meta">
 				<p>
 				Defined in
-		<a href="../files/v3_p5.play.js.html#l3339"><code>v3&#x2F;p5.play.js:3339</code></a>
+		<a href="../files/v3_p5.play.js.html#l3485"><code>v3&#x2F;p5.play.js:3485</code></a>
 		</p>
 
 
@@ -333,7 +339,7 @@ because it was not already in the group.</p>
 	<div class="meta">
 				<p>
 				Defined in
-		<a href="../files/v3_p5.play.js.html#l3509"><code>v3&#x2F;p5.play.js:3509</code></a>
+		<a href="../files/v3_p5.play.js.html#l3655"><code>v3&#x2F;p5.play.js:3655</code></a>
 		</p>
 
 
@@ -470,7 +476,7 @@ sprite.addAni(name, atlas);</p>
 	<div class="meta">
 				<p>
 				Defined in
-		<a href="../files/v3_p5.play.js.html#l3556"><code>v3&#x2F;p5.play.js:3556</code></a>
+		<a href="../files/v3_p5.play.js.html#l3702"><code>v3&#x2F;p5.play.js:3702</code></a>
 		</p>
 
 
@@ -536,64 +542,6 @@ sprite.addAni(name, atlas);</p>
 	<div class="meta">
 				<p>
 				Defined in
-		<a href="../files/v3_p5.play.js.html#l3182"><code>v3&#x2F;p5.play.js:3182</code></a>
-		</p>
-
-
-
-	</div>
-
-	<div class="description"><p>Deprecated, use group.collide instead.</p>
-</div>
-
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-				<li class="param">
-						<code class="param-name">target</code>
-						<span class="type"><a href="../classes/Sprite.html" class="crosslink">Sprite</a>  |  <a href="../classes/Group.html" class="crosslink">Group</a></span>
-
-
-
-				</li>
-				<li class="param">
-						<code class="param-name">callback</code>
-						<span class="type">Function</span>
-
-
-
-				</li>
-			</ul>
-		</div>
-
-
-</div>
-<div id="method-bounce" class="method item deprectated">
-	<div class="method-signature">
-	<span class="name"><code>bounce</code></span>
-
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
-				<li class="arg">
-						<code>target</code>
-				</li>
-				<li class="arg">
-						<code>callback</code>
-				</li>
-			</ul><span class="paren">)</span>
-		</div>
-	</div>
-
-		<span class="flag deprecated">deprecated</span>
-
-
-
-
-
-	<div class="meta">
-				<p>
-				Defined in
 		<a href="../files/v3_p5.play_box2d.js.html#l3125"><code>v3&#x2F;p5.play_box2d.js:3125</code></a>
 		</p>
 
@@ -627,22 +575,14 @@ sprite.addAni(name, atlas);</p>
 
 
 </div>
-<div id="method-collide" class="method item ">
+<div id="method-collide" class="method item deprectated">
 	<div class="method-signature">
 	<span class="name"><code>collide</code></span>
 
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
-				<li class="arg">
-						<code>target</code>
-				</li>
-				<li class="arg">
-						<code class="optional">callback</code>
-				</li>
-			</ul><span class="paren">)</span>
-		</div>
+		<span class="paren">()</span>
 	</div>
 
+		<span class="flag deprecated" title="use collides instead">deprecated</span>
 
 
 
@@ -651,63 +591,17 @@ sprite.addAni(name, atlas);</p>
 	<div class="meta">
 				<p>
 				Defined in
-		<a href="../files/v3_p5.play.js.html#l3151"><code>v3&#x2F;p5.play.js:3151</code></a>
+		<a href="../files/v3_p5.play.js.html#l3253"><code>v3&#x2F;p5.play.js:3253</code></a>
 		</p>
 
 
+			<p>Deprecated: use collides instead</p>
 
 	</div>
 
-	<div class="description"><p>Checks if a sprite in the group is colliding with another sprite or a group.
-The check is performed using the sprite's physics body (colliders).</p>
-<p>A callback function can be specified to perform additional operations
-when contact occurs. If the target is a group the function will be called
-for each single sprite colliding. The parameter of the function are
-respectively the current sprite and the colliding sprite.</p>
-<p>Since v3, this function only needs to be called once, it doesn't need to be
-used in the p5.js draw loop.</p>
-</div>
-
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-				<li class="param">
-						<code class="param-name">target</code>
-						<span class="type"><a href="../classes/Sprite.html" class="crosslink">Sprite</a>  |  <a href="../classes/Group.html" class="crosslink">Group</a></span>
 
 
-					<div class="param-description"><p>Sprite or group to check against the current one</p>
-</div>
 
-				</li>
-				<li class="param">
-						<code class="param-name optional">[callback]</code>
-						<span class="type">Function</span>
-						<span class="flag optional" title="This parameter is optional.">optional</span>
-
-
-					<div class="param-description"><p>The function to be called when a collision occurs</p>
-</div>
-
-				</li>
-			</ul>
-		</div>
-
-
-		<div class="example">
-			<h4>Example:</h4>
-
-			<div class="example-content">
-				<pre class="code prettyprint"><code>group.collide(otherSprite, explosion);
-
-function explosion(spriteA, spriteB) {
-  spriteA.remove();
-  spriteB.score++;
-}</code></pre>
-
-			</div>
-		</div>
 </div>
 <div id="method-collide" class="method item ">
 	<div class="method-signature">
@@ -791,6 +685,205 @@ function explosion(spriteA, spriteB) {
 			</div>
 		</div>
 </div>
+<div id="method-collided" class="method item ">
+	<div class="method-signature">
+	<span class="name"><code>collided</code></span>
+
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+				<li class="arg">
+						<code>target</code>
+				</li>
+				<li class="arg">
+						<code class="optional">callback</code>
+				</li>
+			</ul><span class="paren">)</span>
+		</div>
+		<span class="returns-inline">
+			<span class="type">Boolean</span>
+		</span>
+	</div>
+
+
+
+
+
+
+	<div class="meta">
+				<p>
+				Defined in
+		<a href="../files/v3_p5.play.js.html#l3293"><code>v3&#x2F;p5.play.js:3293</code></a>
+		</p>
+
+
+
+	</div>
+
+	<div class="description"><p>Returns true on the first frame that the group no longer overlaps
+with the target sprite or group.</p>
+</div>
+
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+				<li class="param">
+						<code class="param-name">target</code>
+						<span class="type"><a href="../classes/Sprite.html" class="crosslink">Sprite</a>  |  <a href="../classes/Group.html" class="crosslink">Group</a></span>
+
+
+
+				</li>
+				<li class="param">
+						<code class="param-name optional">[callback]</code>
+						<span class="type">Function</span>
+						<span class="flag optional" title="This parameter is optional.">optional</span>
+
+
+
+				</li>
+			</ul>
+		</div>
+
+		<div class="returns">
+			<h4>Returns:</h4>
+
+			<div class="returns-description">
+						<span class="type">Boolean</span>
+			</div>
+		</div>
+
+</div>
+<div id="method-collides" class="method item ">
+	<div class="method-signature">
+	<span class="name"><code>collides</code></span>
+
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+				<li class="arg">
+						<code>target</code>
+				</li>
+				<li class="arg">
+						<code class="optional">callback</code>
+				</li>
+			</ul><span class="paren">)</span>
+		</div>
+	</div>
+
+
+
+
+
+
+	<div class="meta">
+				<p>
+				Defined in
+		<a href="../files/v3_p5.play.js.html#l3261"><code>v3&#x2F;p5.play.js:3261</code></a>
+		</p>
+
+
+
+	</div>
+
+	<div class="description"><p>Returns true on the first frame that the group collides with the
+target sprite or group.</p>
+<p>Custom collision event handling can be done by using this function
+in an if statement or adding a callback as the second parameter.</p>
+</div>
+
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+				<li class="param">
+						<code class="param-name">target</code>
+						<span class="type"><a href="../classes/Sprite.html" class="crosslink">Sprite</a>  |  <a href="../classes/Group.html" class="crosslink">Group</a></span>
+
+
+
+				</li>
+				<li class="param">
+						<code class="param-name optional">[callback]</code>
+						<span class="type">Function</span>
+						<span class="flag optional" title="This parameter is optional.">optional</span>
+
+
+
+				</li>
+			</ul>
+		</div>
+
+
+</div>
+<div id="method-colliding" class="method item ">
+	<div class="method-signature">
+	<span class="name"><code>colliding</code></span>
+
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+				<li class="arg">
+						<code>target</code>
+				</li>
+				<li class="arg">
+						<code class="optional">callback</code>
+				</li>
+			</ul><span class="paren">)</span>
+		</div>
+		<span class="returns-inline">
+			<span class="type">Boolean</span>
+		</span>
+	</div>
+
+
+
+
+
+
+	<div class="meta">
+				<p>
+				Defined in
+		<a href="../files/v3_p5.play.js.html#l3278"><code>v3&#x2F;p5.play.js:3278</code></a>
+		</p>
+
+
+
+	</div>
+
+	<div class="description"><p>Returns true while the group is colliding with the target
+sprite or group.</p>
+</div>
+
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+				<li class="param">
+						<code class="param-name">target</code>
+						<span class="type"><a href="../classes/Sprite.html" class="crosslink">Sprite</a>  |  <a href="../classes/Group.html" class="crosslink">Group</a></span>
+
+
+
+				</li>
+				<li class="param">
+						<code class="param-name optional">[callback]</code>
+						<span class="type">Function</span>
+						<span class="flag optional" title="This parameter is optional.">optional</span>
+
+
+
+				</li>
+			</ul>
+		</div>
+
+		<div class="returns">
+			<h4>Returns:</h4>
+
+			<div class="returns-description">
+						<span class="type">Boolean</span>
+			</div>
+		</div>
+
+</div>
 <div id="method-contains" class="method item ">
 	<div class="method-signature">
 	<span class="name"><code>contains</code></span>
@@ -815,7 +908,7 @@ function explosion(spriteA, spriteB) {
 	<div class="meta">
 				<p>
 				Defined in
-		<a href="../files/v3_p5.play.js.html#l3308"><code>v3&#x2F;p5.play.js:3308</code></a>
+		<a href="../files/v3_p5.play.js.html#l3454"><code>v3&#x2F;p5.play.js:3454</code></a>
 		</p>
 
 
@@ -946,7 +1039,7 @@ function explosion(spriteA, spriteB) {
 	<div class="meta">
 				<p>
 				Defined in
-		<a href="../files/v3_p5.play.js.html#l3368"><code>v3&#x2F;p5.play.js:3368</code></a>
+		<a href="../files/v3_p5.play.js.html#l3514"><code>v3&#x2F;p5.play.js:3514</code></a>
 		</p>
 
 
@@ -1143,64 +1236,6 @@ removed by default</p>
 	<div class="meta">
 				<p>
 				Defined in
-		<a href="../files/v3_p5.play.js.html#l3194"><code>v3&#x2F;p5.play.js:3194</code></a>
-		</p>
-
-
-
-	</div>
-
-	<div class="description"><p>Deprecated, use group.collide instead.</p>
-</div>
-
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-				<li class="param">
-						<code class="param-name">target</code>
-						<span class="type"><a href="../classes/Sprite.html" class="crosslink">Sprite</a>  |  <a href="../classes/Group.html" class="crosslink">Group</a></span>
-
-
-
-				</li>
-				<li class="param">
-						<code class="param-name">callback</code>
-						<span class="type">Function</span>
-
-
-
-				</li>
-			</ul>
-		</div>
-
-
-</div>
-<div id="method-displace" class="method item deprectated">
-	<div class="method-signature">
-	<span class="name"><code>displace</code></span>
-
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
-				<li class="arg">
-						<code>target</code>
-				</li>
-				<li class="arg">
-						<code>callback</code>
-				</li>
-			</ul><span class="paren">)</span>
-		</div>
-	</div>
-
-		<span class="flag deprecated">deprecated</span>
-
-
-
-
-
-	<div class="meta">
-				<p>
-				Defined in
 		<a href="../files/v3_p5.play_box2d.js.html#l3137"><code>v3&#x2F;p5.play_box2d.js:3137</code></a>
 		</p>
 
@@ -1256,7 +1291,7 @@ removed by default</p>
 	<div class="meta">
 				<p>
 				Defined in
-		<a href="../files/v3_p5.play.js.html#l3297"><code>v3&#x2F;p5.play.js:3297</code></a>
+		<a href="../files/v3_p5.play.js.html#l3443"><code>v3&#x2F;p5.play.js:3443</code></a>
 		</p>
 
 
@@ -1352,7 +1387,7 @@ removed by default</p>
 	<div class="meta">
 				<p>
 				Defined in
-		<a href="../files/v3_p5.play.js.html#l3461"><code>v3&#x2F;p5.play.js:3461</code></a>
+		<a href="../files/v3_p5.play.js.html#l3607"><code>v3&#x2F;p5.play.js:3607</code></a>
 		</p>
 
 
@@ -1432,7 +1467,7 @@ removed by default</p>
 	<div class="meta">
 				<p>
 				Defined in
-		<a href="../files/v3_p5.play.js.html#l3477"><code>v3&#x2F;p5.play.js:3477</code></a>
+		<a href="../files/v3_p5.play.js.html#l3623"><code>v3&#x2F;p5.play.js:3623</code></a>
 		</p>
 
 
@@ -1494,6 +1529,58 @@ removed by default</p>
 		</div>
 
 </div>
+<div id="method-move" class="method item ">
+	<div class="method-signature">
+	<span class="name"><code>move</code></span>
+
+		<span class="paren">()</span>
+	</div>
+
+
+
+
+
+
+	<div class="meta">
+				<p>
+				Defined in
+		<a href="../files/v3_p5.play.js.html#l3389"><code>v3&#x2F;p5.play.js:3389</code></a>
+		</p>
+
+
+
+	</div>
+
+
+
+
+</div>
+<div id="method-moveTowards" class="method item ">
+	<div class="method-signature">
+	<span class="name"><code>moveTowards</code></span>
+
+		<span class="paren">()</span>
+	</div>
+
+
+
+
+
+
+	<div class="meta">
+				<p>
+				Defined in
+		<a href="../files/v3_p5.play.js.html#l3405"><code>v3&#x2F;p5.play.js:3405</code></a>
+		</p>
+
+
+
+	</div>
+
+
+
+
+</div>
 <div id="method-orbit" class="method item ">
 	<div class="method-signature">
 	<span class="name"><code>orbit</code></span>
@@ -1515,7 +1602,7 @@ removed by default</p>
 	<div class="meta">
 				<p>
 				Defined in
-		<a href="../files/v3_p5.play.js.html#l3274"><code>v3&#x2F;p5.play.js:3274</code></a>
+		<a href="../files/v3_p5.play.js.html#l3420"><code>v3&#x2F;p5.play.js:3420</code></a>
 		</p>
 
 
@@ -1592,22 +1679,14 @@ removed by default</p>
 
 
 </div>
-<div id="method-overlap" class="method item ">
+<div id="method-overlap" class="method item deprectated">
 	<div class="method-signature">
 	<span class="name"><code>overlap</code></span>
 
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
-				<li class="arg">
-						<code>target</code>
-				</li>
-				<li class="arg">
-						<code class="optional">callback</code>
-				</li>
-			</ul><span class="paren">)</span>
-		</div>
+		<span class="paren">()</span>
 	</div>
 
+		<span class="flag deprecated" title="use overlaps instead">deprecated</span>
 
 
 
@@ -1616,63 +1695,17 @@ removed by default</p>
 	<div class="meta">
 				<p>
 				Defined in
-		<a href="../files/v3_p5.play.js.html#l3206"><code>v3&#x2F;p5.play.js:3206</code></a>
+		<a href="../files/v3_p5.play.js.html#l3334"><code>v3&#x2F;p5.play.js:3334</code></a>
 		</p>
 
 
+			<p>Deprecated: use overlaps instead</p>
 
 	</div>
 
-	<div class="description"><p>Checks if a sprite in the group is overlapping with another sprite or a group.
-The check is performed using the sprite's physics body (colliders).</p>
-<p>A callback function can be specified to perform additional operations
-when contact occurs. If the target is a group the function will be called
-for each single sprite overlapping. The parameter of the function are
-respectively the current sprite and the overlapping sprite.</p>
-<p>Since v3, this function only needs to be called once, it doesn't need to be
-used in the p5.js draw loop.</p>
-</div>
-
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-				<li class="param">
-						<code class="param-name">target</code>
-						<span class="type"><a href="../classes/Sprite.html" class="crosslink">Sprite</a>  |  <a href="../classes/Group.html" class="crosslink">Group</a></span>
 
 
-					<div class="param-description"><p>Sprite or group to check against the current one</p>
-</div>
 
-				</li>
-				<li class="param">
-						<code class="param-name optional">[callback]</code>
-						<span class="type">Function</span>
-						<span class="flag optional" title="This parameter is optional.">optional</span>
-
-
-					<div class="param-description"><p>The function to be called if overlap is positive</p>
-</div>
-
-				</li>
-			</ul>
-		</div>
-
-
-		<div class="example">
-			<h4>Example:</h4>
-
-			<div class="example-content">
-				<pre class="code prettyprint"><code>group.overlap(otherSprite, pickup);
-
-function pickup(spriteA, spriteB) {
-  spriteA.remove();
-  spriteB.itemCount++;
-}</code></pre>
-
-			</div>
-		</div>
 </div>
 <div id="method-overlap" class="method item ">
 	<div class="method-signature">
@@ -1756,6 +1789,205 @@ function pickup(spriteA, spriteB) {
 			</div>
 		</div>
 </div>
+<div id="method-overlapped" class="method item ">
+	<div class="method-signature">
+	<span class="name"><code>overlapped</code></span>
+
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+				<li class="arg">
+						<code>target</code>
+				</li>
+				<li class="arg">
+						<code class="optional">callback</code>
+				</li>
+			</ul><span class="paren">)</span>
+		</div>
+		<span class="returns-inline">
+			<span class="type">Boolean</span>
+		</span>
+	</div>
+
+
+
+
+
+
+	<div class="meta">
+				<p>
+				Defined in
+		<a href="../files/v3_p5.play.js.html#l3374"><code>v3&#x2F;p5.play.js:3374</code></a>
+		</p>
+
+
+
+	</div>
+
+	<div class="description"><p>Returns true on the first frame that the group no longer overlaps
+with the target sprite or group.</p>
+</div>
+
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+				<li class="param">
+						<code class="param-name">target</code>
+						<span class="type"><a href="../classes/Sprite.html" class="crosslink">Sprite</a>  |  <a href="../classes/Group.html" class="crosslink">Group</a></span>
+
+
+
+				</li>
+				<li class="param">
+						<code class="param-name optional">[callback]</code>
+						<span class="type">Function</span>
+						<span class="flag optional" title="This parameter is optional.">optional</span>
+
+
+
+				</li>
+			</ul>
+		</div>
+
+		<div class="returns">
+			<h4>Returns:</h4>
+
+			<div class="returns-description">
+						<span class="type">Boolean</span>
+			</div>
+		</div>
+
+</div>
+<div id="method-overlapping" class="method item ">
+	<div class="method-signature">
+	<span class="name"><code>overlapping</code></span>
+
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+				<li class="arg">
+						<code>target</code>
+				</li>
+				<li class="arg">
+						<code class="optional">callback</code>
+				</li>
+			</ul><span class="paren">)</span>
+		</div>
+		<span class="returns-inline">
+			<span class="type">Boolean</span>
+		</span>
+	</div>
+
+
+
+
+
+
+	<div class="meta">
+				<p>
+				Defined in
+		<a href="../files/v3_p5.play.js.html#l3359"><code>v3&#x2F;p5.play.js:3359</code></a>
+		</p>
+
+
+
+	</div>
+
+	<div class="description"><p>Returns true while the group is overlapping with the target
+sprite or group.</p>
+</div>
+
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+				<li class="param">
+						<code class="param-name">target</code>
+						<span class="type"><a href="../classes/Sprite.html" class="crosslink">Sprite</a>  |  <a href="../classes/Group.html" class="crosslink">Group</a></span>
+
+
+
+				</li>
+				<li class="param">
+						<code class="param-name optional">[callback]</code>
+						<span class="type">Function</span>
+						<span class="flag optional" title="This parameter is optional.">optional</span>
+
+
+
+				</li>
+			</ul>
+		</div>
+
+		<div class="returns">
+			<h4>Returns:</h4>
+
+			<div class="returns-description">
+						<span class="type">Boolean</span>
+			</div>
+		</div>
+
+</div>
+<div id="method-overlaps" class="method item ">
+	<div class="method-signature">
+	<span class="name"><code>overlaps</code></span>
+
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+				<li class="arg">
+						<code>target</code>
+				</li>
+				<li class="arg">
+						<code class="optional">callback</code>
+				</li>
+			</ul><span class="paren">)</span>
+		</div>
+	</div>
+
+
+
+
+
+
+	<div class="meta">
+				<p>
+				Defined in
+		<a href="../files/v3_p5.play.js.html#l3342"><code>v3&#x2F;p5.play.js:3342</code></a>
+		</p>
+
+
+
+	</div>
+
+	<div class="description"><p>Returns true on the first frame that the group overlaps with the
+target sprite or group.</p>
+<p>Custom overlap event handling can be done by using this function
+in an if statement or adding a callback as the second parameter.</p>
+</div>
+
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+				<li class="param">
+						<code class="param-name">target</code>
+						<span class="type"><a href="../classes/Sprite.html" class="crosslink">Sprite</a>  |  <a href="../classes/Group.html" class="crosslink">Group</a></span>
+
+
+
+				</li>
+				<li class="param">
+						<code class="param-name optional">[callback]</code>
+						<span class="type">Function</span>
+						<span class="flag optional" title="This parameter is optional.">optional</span>
+
+
+
+				</li>
+			</ul>
+		</div>
+
+
+</div>
 <div id="method-push" class="method item ">
 	<div class="method-signature">
 	<span class="name"><code>push</code></span>
@@ -1777,7 +2009,7 @@ function pickup(spriteA, spriteB) {
 	<div class="meta">
 				<p>
 				Defined in
-		<a href="../files/v3_p5.play.js.html#l3319"><code>v3&#x2F;p5.play.js:3319</code></a>
+		<a href="../files/v3_p5.play.js.html#l3465"><code>v3&#x2F;p5.play.js:3465</code></a>
 		</p>
 
 
@@ -1880,7 +2112,7 @@ because it was not already in the group.</p>
 	<div class="meta">
 				<p>
 				Defined in
-		<a href="../files/v3_p5.play.js.html#l3410"><code>v3&#x2F;p5.play.js:3410</code></a>
+		<a href="../files/v3_p5.play.js.html#l3556"><code>v3&#x2F;p5.play.js:3556</code></a>
 		</p>
 
 
@@ -1999,7 +2231,7 @@ allSprites group.</p>
 	<div class="meta">
 				<p>
 				Defined in
-		<a href="../files/v3_p5.play.js.html#l3452"><code>v3&#x2F;p5.play.js:3452</code></a>
+		<a href="../files/v3_p5.play.js.html#l3598"><code>v3&#x2F;p5.play.js:3598</code></a>
 		</p>
 
 
@@ -2027,7 +2259,7 @@ allSprites group.</p>
 	<div class="meta">
 				<p>
 				Defined in
-		<a href="../files/v3_p5.play.js.html#l3350"><code>v3&#x2F;p5.play.js:3350</code></a>
+		<a href="../files/v3_p5.play.js.html#l3496"><code>v3&#x2F;p5.play.js:3496</code></a>
 		</p>
 
 
@@ -2075,6 +2307,58 @@ allSprites group.</p>
         <h2 class="off-left">Properties</h2>
 
         <div class="item-list">
+<div id="prop-_collides" class="property item ">
+    <h3 class="name"><code>_collides</code></h3>
+    <span class="type">Unknown</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l3052"><code>v3&#x2F;p5.play.js:3052</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>Contains all the collision callback functions for this group
+when it comes in contact with other sprites or groups.</p>
+
+    </div>
+
+
+
+</div>
+<div id="prop-_overlaps" class="property item ">
+    <h3 class="name"><code>_overlaps</code></h3>
+    <span class="type">Unknown</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l3062"><code>v3&#x2F;p5.play.js:3062</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>Contains all the overlap callback functions for this group
+when it comes in contact with other sprites or groups.</p>
+
+    </div>
+
+
+
+</div>
 <div id="prop-ani" class="property item ">
     <h3 class="name"><code>ani</code></h3>
     <span class="type"><a href="../classes/SpriteAnimation.html" class="crosslink">SpriteAnimation</a></span>
@@ -2086,7 +2370,7 @@ allSprites group.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5.play.js.html#l3096"><code>v3&#x2F;p5.play.js:3096</code></a>
+        <a href="../files/v3_p5.play.js.html#l3192"><code>v3&#x2F;p5.play.js:3192</code></a>
         </p>
 
 
@@ -2136,7 +2420,7 @@ allSprites group.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5.play.js.html#l2956"><code>v3&#x2F;p5.play.js:2956</code></a>
+        <a href="../files/v3_p5.play.js.html#l3044"><code>v3&#x2F;p5.play.js:3044</code></a>
         </p>
 
 
@@ -2186,7 +2470,7 @@ allSprites group.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5.play.js.html#l3619"><code>v3&#x2F;p5.play.js:3619</code></a>
+        <a href="../files/v3_p5.play.js.html#l3765"><code>v3&#x2F;p5.play.js:3765</code></a>
         </p>
 
 
@@ -2246,32 +2530,6 @@ call.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5.play.js.html#l2964"><code>v3&#x2F;p5.play.js:2964</code></a>
-        </p>
-
-
-    </div>
-
-    <div class="description">
-        <p>Contains all the collision callback functions for this group
-when it comes in contact with other sprites or groups.</p>
-
-    </div>
-
-
-
-</div>
-<div id="prop-collides" class="property item ">
-    <h3 class="name"><code>collides</code></h3>
-    <span class="type">Unknown</span>
-
-
-
-
-
-    <div class="meta">
-                <p>
-                Defined in
         <a href="../files/v3_p5.play_box2d.js.html#l2911"><code>v3&#x2F;p5.play_box2d.js:2911</code></a>
         </p>
 
@@ -2298,7 +2556,7 @@ when it comes in contact with other sprites or groups.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5.play.js.html#l3671"><code>v3&#x2F;p5.play.js:3671</code></a>
+        <a href="../files/v3_p5.play.js.html#l3817"><code>v3&#x2F;p5.play.js:3817</code></a>
         </p>
 
 
@@ -2348,7 +2606,7 @@ when it comes in contact with other sprites or groups.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5.play.js.html#l3599"><code>v3&#x2F;p5.play.js:3599</code></a>
+        <a href="../files/v3_p5.play.js.html#l3745"><code>v3&#x2F;p5.play.js:3745</code></a>
         </p>
 
 
@@ -2396,7 +2654,7 @@ when it comes in contact with other sprites or groups.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5.play.js.html#l3609"><code>v3&#x2F;p5.play.js:3609</code></a>
+        <a href="../files/v3_p5.play.js.html#l3755"><code>v3&#x2F;p5.play.js:3755</code></a>
         </p>
 
 
@@ -2428,32 +2686,6 @@ when it comes in contact with other sprites or groups.</p>
 
     <div class="description">
         
-    </div>
-
-
-
-</div>
-<div id="prop-overlaps" class="property item ">
-    <h3 class="name"><code>overlaps</code></h3>
-    <span class="type">Unknown</span>
-
-
-
-
-
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/v3_p5.play.js.html#l2971"><code>v3&#x2F;p5.play.js:2971</code></a>
-        </p>
-
-
-    </div>
-
-    <div class="description">
-        <p>Contains all the overlap callback functions for this group
-when it comes in contact with other sprites or groups.</p>
-
     </div>
 
 
