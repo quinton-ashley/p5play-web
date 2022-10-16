@@ -417,6 +417,15 @@ function draw() {
 		</script>
 	</div>
 	<div id="page-5" class="page">
+		<script type="text/md">
+## collides, colliding, and collided
+
+On the first frame that a sprite collides with another sprite, the `collides` function returns true.
+
+While a sprite is colliding with another sprite, the `colliding` function returns true.
+
+On the first frame after two sprites collided, the `collided` function returns true.
+		</script>
 		<script type="text/p5" name="pillar stomp!" horiz>
 let player, pillar;
 
@@ -426,15 +435,53 @@ function setup() {
 	
 	pillar = new Sprite(30, 362, 30, 500, 'static');
 	player = new Sprite(30, 0, 50);
-	player.bounciness = 0.4;
 }
 
 function draw() {
 	clear();
-	if (mouse.presses()) player.vel.y = -5;
 
 	if (player.collides(pillar)) {
-		if (player.vel.y < -1.6) pillar.h -= 52;
+		player.vel.y = -5;
+		pillar.h -= 52;
+	}
+}
+		</script>
+		<script type="text/p5" name="drop block" horiz>
+let block, floor;
+
+function setup() {
+	createCanvas(60, 400);
+	world.gravity.y = 10;
+	
+	block = new Sprite(30, 30);
+	floor = new Sprite(30, 300, 60, 5, 'static');
+	floor.shapeColor = 'red';
+}
+
+function draw() {
+	clear();
+	if (block.colliding(floor)) {
+		block.shapeColor = 'red';
+	} else {
+		block.shapeColor = 'blue';
+	}
+}
+		</script>
+		<script type="text/p5" name="break floor" horiz>
+let block, floor;
+
+function setup() {
+	createCanvas(60, 400);
+	world.gravity.y = 10;
+	
+	block = new Sprite(30, 30);
+	floor = new Sprite(30, 300, 60, 5, 'static');
+}
+
+function draw() {
+	clear();
+	if (block.collided(floor)) {
+		floor.collider = 'dynamic';
 	}
 }
 		</script>
@@ -466,6 +513,15 @@ function draw() {
 		<script type="text/p5" name="layer" horiz lines=8 base=4>
 sprite1.layer = 2;
 sprite2.layer = 1;
+		</script>
+		<script type="text/md">
+## overlaps, overlapping, and overlapped
+
+On the first frame that a sprite overlaps with another sprite, the `overlaps` function returns true.
+
+While a sprite is overlapping with another sprite, the `overlapping` function returns true.
+
+On the first frame after two sprites overlapped, the `overlapped` function returns true.
 		</script>
 		<script type="text/p5" name="collect coin">
 let player, coin;
