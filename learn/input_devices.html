@@ -143,13 +143,13 @@ function setup() {
 
 function draw() {
 	clear();
-	sprite.shapeColor = 'yellow';
+	sprite.color = 'yellow';
 }
 		</script>
 		<div class="minis horiz">
 			<script type="text/p5" name="multi-input" base="1">
 if (kb.pressing(' ') || mouse.pressing()) {
-	sprite.shapeColor = 'red';
+	sprite.color = 'red';
 }
 			</script>
 		</div>
@@ -175,13 +175,13 @@ function setup() {
 
 function draw() {
 	clear();
-	sprite.shapeColor = 'yellow';
+	sprite.color = 'yellow';
 
 	if (mouse.pressing()) {
-		sprite.shapeColor = 'red';
+		sprite.color = 'red';
 	}
 	if (sprite.mouse.pressing()) {
-		sprite.shapeColor = 'green';
+		sprite.color = 'green';
 	}
 
 	if (sprite.mouse.dragging()) {
@@ -218,9 +218,9 @@ function setup() {
 function draw() {
 	clear();
 	if (contro.pressing('a')) {
-		sprite.shapeColor = 'red';
+		sprite.color = 'red';
 	} else {
-		sprite.shapeColor = 'yellow';
+		sprite.color = 'yellow';
 	}
 	sprite.x = 250 + contro.leftStick.x * 80;
 	sprite.y = 100 + contro.leftStick.y * 80;

@@ -34,7 +34,7 @@
 				behaviors. For example the dots in Pac-Man!
 			</p>
 			<p>
-				In the "dots" mini example, each new dots sprite inherits the shape color of the dots group.
+				In the "dots" mini example, each new dots sprite inherits the color of the dots group.
 			</p>
 		</div>
 		<script type="text/p5" name="dots" lines="12" base-0>
@@ -44,7 +44,7 @@ function setup() {
 	createCanvas(500, 50);
 
 	dots = new Group();
-	dots.shapeColor = 'yellow';
+	dots.color = 'yellow';
 	
 	for (let i = 0; i < 26; i++) {
 		new dots.Sprite(i * 20, 25, 10);
@@ -62,7 +62,7 @@ function draw() {
 			</p>
 		</div>
 		<script type="text/p5" name="green dot" base="0">
-dots[5].shapeColor = 'green';
+dots[5].color = 'green';
 		</script>
 		<div>
 			<p>
@@ -71,7 +71,7 @@ dots[5].shapeColor = 'green';
 			</p>
 		</div>
 		<script type="text/p5" name="green dots" base="0">
-dots.shapeColor = 'green';
+dots.color = 'green';
 		</script>
 		<div>
 			<p>
@@ -126,7 +126,7 @@ function setup() {
 	doors.amount = 80;
 
 	rail = new Sprite(250, 20, 500, 5);
-	rail.shapeColor = 'grey';
+	rail.color = 'grey';
 	rail.rotation = -5;
 }
 

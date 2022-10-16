@@ -116,7 +116,7 @@ let examples = {
 		tiles: 'tiles displace [TODO]',
 		collisions5: 'large edge colliders [TODO]',
 		moveOrbit: 'group orbit + moveTowards [TODO]',
-		collidingBug: 'colliding bug [TODO]'
+		collidingBug: 'colliding bug [BUG]'
 	},
 	Games: {
 		pong: 'Pong',
