@@ -414,7 +414,7 @@ function draw() {
 	</div>
 	<div id="page-5" class="page">
 		<div>
-			<h2>Sprite overlap</h2>
+			<h2>Collide and Overlap</h2>
 			<p>Sprites collide by default but they can also overlap!</p>
 		</div>
 		<script type="text/p5" name="overlap" horiz lines="8">
@@ -424,7 +424,7 @@ function setup() {
 	sprite1 = new Sprite(90, 50);
 	sprite2 = new Sprite(115, 75);
 
-	sprite1.overlap(sprite2);
+	sprite1.overlaps(sprite2);
 }
 
 function draw() {
@@ -435,10 +435,10 @@ function draw() {
 let player, pillar;
 
 function setup() {
-	createCanvas(60, 480);
+	createCanvas(60, 362);
 	world.gravity.y = 10;
 	
-	pillar = new Sprite(30, 480, 30, 720, 'static');
+	pillar = new Sprite(30, 362, 30, 500, 'static');
 	player = new Sprite(30, 0, 50);
 	player.bounciness = 0.4;
 }
@@ -446,14 +446,10 @@ function setup() {
 function draw() {
 	clear();
 
-	if (player.collides(pillar)) {
-		if (player.vel.y < -1.6) {
-			pillar.h -= 52;
-		}
-	}
-
-	if (mouse.presses()) {
-		player.vel.y = -5;
+	if (mouse.presses()) player.vel.y = -5;
+	
+	if (player.collided(pillar)) {
+		pillar.h -= 52;
 	}
 }
 		</script>
@@ -465,18 +461,16 @@ function setup() {
 
 	coin = new Sprite(400, 50, 30);
 	coin.shapeColor = 'yellow';
-
 	player = new Sprite(50, 50);
 }
 
 function draw() {
 	clear();
-		
-	if (player.overlaps(coin)) coin.remove();
-
 	if (mouse.isOnCanvas) {
 		player.moveTowards(mouse.x, mouse.y);
 	}
+		
+	if (player.overlaps(coin)) coin.remove();
 }
 		</script>
 		<div class="break"></div>
