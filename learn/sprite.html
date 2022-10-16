@@ -228,10 +228,8 @@ There are a few ways to move a sprite. Note that directly changing a sprite's po
 If you want a sprite to interact with other sprites while it's moving, change the sprite's x/y velocity, speed/direction, or use the move or moveTowards methods.
 
 Remember the p5.js setup function only runs once at the beginning of your sketch so move sprites in the p5.js draw function!
-
-Use your mouse to interact with these mini-sketches!
 		</script>
-		<script type="text/p5" name="idle player" lines="11" base-3>
+		<script type="text/p5" name="idle player" lines="11" hide base-3>
 let player, block;
 
 function setup() {
@@ -254,9 +252,15 @@ if (mouse.presses()) {
 	player.y = mouse.y;
 }
 		</script>
+		<script type="text/p5" name="teleport" base="3">
+if (kb.presses(' ')) {
+	player.direction = 190;
+	player.speed = 3;
+}
+		</script>
 		<script type="text/p5" name="velocity" base="3">
-if (kb.pressing('a')) player.vel.x = -5;
-else if (kb.pressing('d')) player.vel.x = 5;
+if (kb.pressing('ArrowLeft')) player.vel.x = -5;
+else if (kb.pressing('ArrowRight')) player.vel.x = 5;
 else player.vel.x = 0;
 		</script>
 		<script type="text/p5" name="moveTowards" base="3">
@@ -413,24 +417,6 @@ function draw() {
 		</script>
 	</div>
 	<div id="page-5" class="page">
-		<div>
-			<h2>Collide and Overlap</h2>
-			<p>Sprites collide by default but they can also overlap!</p>
-		</div>
-		<script type="text/p5" name="overlap" horiz lines="8">
-function setup() {
-	createCanvas(200, 128);
-
-	sprite1 = new Sprite(90, 50);
-	sprite2 = new Sprite(115, 75);
-
-	sprite1.overlaps(sprite2);
-}
-
-function draw() {
-	clear();
-}
-		</script>
 		<script type="text/p5" name="pillar stomp!" horiz>
 let player, pillar;
 
@@ -445,13 +431,41 @@ function setup() {
 
 function draw() {
 	clear();
-
 	if (mouse.presses()) player.vel.y = -5;
-	
-	if (player.collided(pillar)) {
-		pillar.h -= 52;
+
+	if (player.collides(pillar)) {
+		if (player.vel.y < -1.6) pillar.h -= 52;
 	}
 }
+		</script>
+	</div>
+	<div id="page-6" class="page">
+		<div>
+			<h2>Overlap</h2>
+			<p>Sprites collide by default but they can also overlap!</p>
+		</div>
+		<script type="text/p5" name="overlap" horiz lines="8" base-4>
+function setup() {
+	createCanvas(200, 128);
+
+	sprite1 = new Sprite(90, 50);
+	sprite2 = new Sprite(115, 75);
+
+	sprite1.overlaps(sprite2);
+}
+
+function draw() {
+	clear();
+}
+		</script>
+		<div>
+			<h2>Layer</h2>
+			<p>By default sprites are drawn in the order they were created in. You can change the draw order by editing
+				sprite's <code>.layer</code> property.</p>
+		</div>
+		<script type="text/p5" name="layer" horiz lines=8 base=4>
+sprite1.layer = 2;
+sprite2.layer = 1;
 		</script>
 		<script type="text/p5" name="collect coin">
 let player, coin;
@@ -493,7 +507,7 @@ function draw() {
 }
 		</script>
 	</div>
-	<div id="page-6" class="page">
+	<div id="page-7" class="page">
 		<div>
 			<h2>Chain Colliders</h2>
 			<!-- <p style="font-style: italic;">Level 2 reference</p> -->
@@ -557,7 +571,7 @@ function draw() {
 }
 		</script>
 	</div>
-	<div id="page-7" class="page">
+	<div id="page-8" class="page">
 		<div>
 			<h2>Polygon Colliders</h2>
 			<p>
@@ -599,7 +613,7 @@ function draw() {
 }
 		</script>
 	</div>
-	<div id="page-8" class="page">
+	<div id="page-9" class="page">
 		<div>
 			<h2>Custom draw</h2>
 			<p>

@@ -94,3 +94,17 @@ p5m.ready = function () {
 // 		storeItem('pagesRead', pagesRead);
 // 	}
 // }
+
+window.addEventListener('keydown', function (e) {
+	if (
+		(e.key == ' ' ||
+			e.key == '/' ||
+			e.key == 'ArrowUp' ||
+			e.key == 'ArrowDown' ||
+			e.key == 'ArrowLeft' ||
+			e.key == 'ArrowRight') &&
+		e.target == document.body
+	) {
+		e.preventDefault();
+	}
+});

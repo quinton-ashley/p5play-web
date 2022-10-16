@@ -43,6 +43,8 @@ These input devices all use the same functions for getting the state of an input
 		<script type="text/p5" name="hidden" base-0 hide>
 function setup() {
 	createCanvas(240, 100);
+	frameRate(30);
+	kb.holdThreshold = 6;
 }
 
 function draw() {
@@ -75,8 +77,8 @@ if (kb.released(' ')) {
 	background(0, 255, 0);
 }
 			</script>
-			<script type="text/p5" name="not" base="0">
-if (!kb[' ']) {
+			<script type="text/p5" name="held" base="0">
+if (kb.held(' ')) {
 	background(0, 255, 0);
 }
 			</script>
