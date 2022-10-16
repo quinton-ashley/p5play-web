@@ -83,9 +83,9 @@ function draw() {
 			<script type="text/p5" name="rotationSpeed">
 				sprite.rotationSpeed = 1;
 			</script>
-			<script type="text/p5" name="shapeColor" base="1">
+			<script type="text/p5" name="color" base="1">
 let c = color(0, 255, 0);
-sprite.shapeColor = c;
+sprite.color = c;
 			</script>
 		</div>
 
@@ -422,7 +422,7 @@ function draw() {
 
 On the first frame that a sprite collides with another sprite, the `collides` function returns true.
 
-While a sprite is colliding with another sprite, the `colliding` function returns true.
+While a sprite is colliding with another sprite, the `colliding` function returns the number of frames the collision has occurred for.
 
 On the first frame after two sprites collided, the `collided` function returns true.
 		</script>
@@ -430,7 +430,7 @@ On the first frame after two sprites collided, the `collided` function returns t
 let player, pillar;
 
 function setup() {
-	createCanvas(60, 362);
+	createCanvas(60, 342);
 	world.gravity.y = 10;
 	
 	pillar = new Sprite(30, 362, 30, 500, 'static');
@@ -450,28 +450,26 @@ function draw() {
 let block, floor;
 
 function setup() {
-	createCanvas(60, 400);
+	createCanvas(60, 342);
 	world.gravity.y = 10;
 	
 	block = new Sprite(30, 30);
 	floor = new Sprite(30, 300, 60, 5, 'static');
-	floor.shapeColor = 'red';
+	floor.color = 'red';
 }
 
 function draw() {
 	clear();
 	if (block.colliding(floor)) {
-		block.shapeColor = 'red';
-	} else {
-		block.shapeColor = 'blue';
-	}
+		block.color = 'red';
+	} else block.color = 'blue';
 }
 		</script>
 		<script type="text/p5" name="break floor" horiz>
 let block, floor;
 
 function setup() {
-	createCanvas(60, 400);
+	createCanvas(60, 342);
 	world.gravity.y = 10;
 	
 	block = new Sprite(30, 30);
@@ -519,7 +517,7 @@ sprite2.layer = 1;
 
 On the first frame that a sprite overlaps with another sprite, the `overlaps` function returns true.
 
-While a sprite is overlapping with another sprite, the `overlapping` function returns true.
+While a sprite is overlapping with another sprite, the `overlapping` function returns the number of frames the overlap has occurred for.
 
 On the first frame after two sprites overlapped, the `overlapped` function returns true.
 		</script>
@@ -530,7 +528,7 @@ function setup() {
 	createCanvas(500, 100);
 
 	coin = new Sprite(400, 50, 30);
-	coin.shapeColor = 'yellow';
+	coin.color = 'yellow';
 	player = new Sprite(50, 50);
 }
 
@@ -547,19 +545,26 @@ function draw() {
 		<div>
 			<h2>Try it out!</h2>
 			<p>
-				Try making a sprite that changes color when it overlaps with another sprite.
+				Try making a sprite that changes color while overlapping with another sprite.
 			</p>
 		</div>
 		<script type="text/p5" name="Level 1 Challenge" horiz>
 let sprite1, sprite2;
 
 function setup() {
-	createCanvas(200, 256);
-	
+	createCanvas(100, 400);
+	sprite1 = new Sprite(50, 50);
+	sprite1.color = 'blue';
+	sprite2 = new Sprite(50, 300);
+	sprite2.color = 'red';
 }
 
 function draw() {
 	clear();
+	sprite1.moveTowards(mouse.x, mouse.y);
+
+	
+	
 }
 		</script>
 	</div>
