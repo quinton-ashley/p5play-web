@@ -111,14 +111,13 @@ sprite.speed = cos(frame);
 			</script>
 		</div>
 		<div class="break"></div>
-		<div>
-			<h2>Try it out!</h2>
-			<p>
-				Try creating your own sprite `sprite = new Sprite()`. Have it be a circle with a diameter of 40. Position it so
-				it touches the top right
-				corner of the canvas. Change it's x and y velocities to have it move left and down.
-			</p>
-		</div>
+		<script type="text/md">
+## Try it out!
+
+Try creating your own sprite `sprite = new Sprite()`. Have it be a circle with a diameter of 40. Position it so it touches the top right corner of the canvas. Change it's x and y velocities to have it move left and down.
+
+The code in the `setup` function is run by p5.js when the program starts. The p5.js `draw` function is run 60 times per second. The p5.js `createCanvas` function is used to create a section of the screen the program can draw on.
+		</script>
 		<script type="text/p5" name="Level 1 Challenge" horiz>
 let sprite;
 
@@ -252,7 +251,7 @@ if (mouse.presses()) {
 	player.y = mouse.y;
 }
 		</script>
-		<script type="text/p5" name="teleport" base="3">
+		<script type="text/p5" name="direction + speed" base="3">
 if (kb.presses(' ')) {
 	player.direction = 190;
 	player.speed = 3;

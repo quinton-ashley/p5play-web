@@ -14,7 +14,7 @@ function draw() {
 	clear();
 	platform.vel.y = cos(frame * 2.2) * 6;
 
-	// the block will blink between red and blue when the ball is being
+	// the block will blink between red and blue when the block is being
 	// displaced by the platform, ideally the block should stay red while
 	// stationary on the platform
 	if (block.colliding(platform)) {

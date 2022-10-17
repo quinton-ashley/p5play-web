@@ -109,8 +109,9 @@ function draw() {
 }
 		</script>
 		<div>
-			<p>When evaluating a group sprite's property you can even use its index.</p>
-			<p>i is the index of the sprite in the group, it's the input parameter given to group property functions when
+			<p>When evaluating a group sprite's property you can even use its index!</p>
+			<p><code>i</code> is the index of the sprite in the group, which is given as an input parameter to group property
+				functions when
 				they are evaluated.</p>
 		</div>
 		<script type="text/p5" name="doors">
@@ -123,7 +124,7 @@ function setup() {
 	doors.x = (i) => i * 55;
 	doors.y = (i) => 100 - i * 5;
 	doors.height = 100;
-	doors.amount = 80;
+	doors.amount = 10;
 
 	rail = new Sprite(250, 20, 500, 5);
 	rail.color = 'grey';
