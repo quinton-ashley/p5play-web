@@ -6,7 +6,7 @@
 	"logo": "../favicon.ico",
 	"options": {
 		"outdir": "docs",
-		"exclude": "docs,examples,lib,test,theme,docs,examples,v2",
+		"exclude": "docs,examples,lib,test,theme,docs,examples,v2,v4",
 		"themedir": "theme",
 		"helpers": ["theme/helpers/helpers.js"]
 	}

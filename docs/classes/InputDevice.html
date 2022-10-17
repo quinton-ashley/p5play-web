@@ -88,14 +88,15 @@
 <div class="yuidoc-class-description">
 <p>Root class for storing the state of inputs (mouse, keyboard,
 gamepads).</p>
-<p>-2 means input was pressed and released on the same frame
+<p>-3 means input was released after being held, pressed for 12 frames
+-2 means input was pressed and released on the same frame
 -1 means input was released
 0 means input is not pressed
 1 means input was pressed</p>
 <blockquote>
 <p>1 means input is still being pressed
-12 means input was held, pressed for 12 frames
-12 means input was held, pressed for 12 or more frames</p>
+12 means input was held
+12 means input is being held</p>
 </blockquote>
 
 </div>
@@ -109,11 +110,8 @@ gamepads).</p>
 		<li>
 			<strong>Properties</strong>
 			<ul>
-				<li class=""><a href="#prop-heldThreshold"><span class="ip">heldThreshold</span></a></li>
 				<li class=""><a href="#prop-holdThreshold"><span class="ip">holdThreshold</span></a></li>
 				<li class=""><a href="#prop-kb (keyboard)"><span class="ip">kb (keyboard)</span></a></li>
-				<li class=""><a href="#prop-kb (keyboard)"><span class="ip">kb (keyboard)</span></a></li>
-				<li class=""><a href="#prop-mouse"><span class="ip">mouse</span></a></li>
 				<li class=""><a href="#prop-mouse"><span class="ip">mouse</span></a></li>
 			</ul>
 		</li>
@@ -130,32 +128,6 @@ gamepads).</p>
         <h2 class="off-left">Properties</h2>
 
         <div class="item-list">
-<div id="prop-heldThreshold" class="property item ">
-    <h3 class="name"><code>heldThreshold</code></h3>
-    <span class="type">Number</span>
-
-
-
-
-
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/v3_p5.play_box2d.js.html#l4622"><code>v3&#x2F;p5.play_box2d.js:4622</code></a>
-        </p>
-
-
-    </div>
-
-    <div class="description">
-        <p>The amount of frames an input must be pressed to be considered held.
-Default is 12.</p>
-
-    </div>
-
-
-
-</div>
 <div id="prop-holdThreshold" class="property item ">
     <h3 class="name"><code>holdThreshold</code></h3>
     <span class="type">Number</span>
@@ -227,51 +199,6 @@ if (kb.released('q')) {
         </div>
 
 </div>
-<div id="prop-kb (keyboard)" class="property item ">
-    <h3 class="name"><code>kb (keyboard)</code></h3>
-    <span class="type">Unknown</span>
-
-
-
-
-
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/v3_p5.play_box2d.js.html#l4770"><code>v3&#x2F;p5.play_box2d.js:4770</code></a>
-        </p>
-
-
-    </div>
-
-    <div class="description">
-        
-    </div>
-
-
-        <div class="example">
-            <h4>Example:</h4>
-
-            <div class="example-content">
-                <pre class="code prettyprint"><code>// pressed
-if (kb.pressed('x')) {
-    player.jump();
-}
-
-// held
-if (kb.held('e')) {
-    player.chargeAttack();
-}
-
-// released
-if (kb.released('q')) {
-    player.slide();
-}</code></pre>
-
-            </div>
-        </div>
-
-</div>
 <div id="prop-mouse" class="property item ">
     <h3 class="name"><code>mouse</code></h3>
     <span class="type">Unknown</span>
@@ -284,31 +211,6 @@ if (kb.released('q')) {
                 <p>
                 Defined in
         <a href="../files/v3_p5.play.js.html#l4984"><code>v3&#x2F;p5.play.js:4984</code></a>
-        </p>
-
-
-    </div>
-
-    <div class="description">
-        <p>Stores the state of the left, center, or right mouse buttons.</p>
-
-    </div>
-
-
-
-</div>
-<div id="prop-mouse" class="property item ">
-    <h3 class="name"><code>mouse</code></h3>
-    <span class="type">Unknown</span>
-
-
-
-
-
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/v3_p5.play_box2d.js.html#l4684"><code>v3&#x2F;p5.play_box2d.js:4684</code></a>
         </p>
 
 
