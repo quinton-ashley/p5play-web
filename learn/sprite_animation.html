@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>p5.play : Group</title>
+	<title>p5.play : Animation</title>
 	<link rel="icon" href="../favicon.png" />
 	<link rel="stylesheet" href="p5-mini.css" />
 	<link rel="stylesheet" href="style.css">
@@ -173,8 +173,11 @@ function draw() {
 		splatAni.frame = 5;
 	} else if (kb.pressing('x')) {
 		splatAni.scale.x = -1;
-	} if (kb.pressing('y')) {
+	} else if (kb.pressing('y')) {
 		splatAni.scale.y = -1;
+	} else if (kb.pressing('z')) {
+		splatAni.scale.x = 1;
+		splatAni.scale.y = 1;
 	}
 
 	animation(splatAni, 250, 80);
@@ -237,39 +240,12 @@ ghost.mirror.x = true;
 		<div>
 			<h2>Groups with Animation</h2>
 			<p>
-				Instead of creating the sprite first and adding an animation to it you can also load animations first and then
-				use them in the sprite constructor.
-			</p>
-			<p>
 				Each splat sprite has a lifespan of 40 frames before it removes itself. Note that if you put splats too close
 				together they'll move apart until their colliders are no longer overlapping. The size of the collider is taken
 				from the size of the animation.
 			</p>
-		</div>
-		<script type="text/p5" name="life">
-let splatAni;
-
-function setup() {
-	createCanvas(500, 160);
-	splatAni = loadAni('assets/asterisk_explode0001.png', 11);
-}
-
-function draw() {
-	clear();
-
-	if (mouse.presses()) {
-		let splat = new Sprite(splatAni, mouse.x, mouse.y);
-		splat.life = 40;
-	}
-}
-//
-		</script>
-		<div>
 			<p>
-				Yet, it's better to just create a Group and add animations to it.
-			</p>
-			<p>
-				If a group has only one animation, new group sprites will have that animation. Otherwise by default the
+				If a group has only one animation, new group sprites will use that animation. Otherwise by default the
 				sprite gets the last animation loaded.
 			</p>
 		</div>
