@@ -462,6 +462,10 @@ function draw() {
 	if (block.colliding(floor)) {
 		block.color = 'red';
 	} else block.color = 'blue';
+
+	if (block.colliding(floor) > 60) {
+		block.vel.y = -9;
+	}
 }
 		</script>
 		<script type="text/p5" name="break floor" horiz>
@@ -544,7 +548,7 @@ function draw() {
 		<div>
 			<h2>Try it out!</h2>
 			<p>
-				Try making a sprite that changes color while overlapping with another sprite.
+				Try making the blue sprite change to red only while overlapping with the red sprite.
 			</p>
 		</div>
 		<script type="text/p5" name="Level 1 Challenge" horiz>
