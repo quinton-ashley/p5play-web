@@ -1,17 +1,26 @@
-let world, player, tileSize, logo;
+let player, blocks;
 let gridSize = 32;
 
 function setup() {
-	createCanvas(384, 200);
+	new Canvas(384, 200);
 
 	allSprites.tileSize = 32;
 	allSprites.rotationLock = true;
 
 	player = new Sprite(1, 1);
+	player.color = 'red';
 
-	new Sprite(4, 5);
-	new Sprite(3, 2);
-	new Sprite(6, 0);
+	blocks = new Group();
+	new blocks.Sprite(4, 5);
+	new blocks.Sprite(3, 2);
+	new blocks.Sprite(6, 0);
+
+	player.collides(blocks, (player, block) => {
+		block.move(player.heading);
+	});
+	blocks.collides(blocks, (b, block) => {
+		block.move(player.heading);
+	});
 }
 
 function draw() {
@@ -22,19 +31,17 @@ function draw() {
 			rect(i * gridSize, j * gridSize, gridSize, gridSize);
 		}
 	}
-}
 
-function keyPressed() {
-	if (key == 'w') {
+	if (kb.presses('w')) {
 		player.move('up');
 	}
-	if (key == 's') {
+	if (kb.presses('s')) {
 		player.move('down');
 	}
-	if (key == 'a') {
+	if (kb.presses('a')) {
 		player.move('left');
 	}
-	if (key == 'd') {
+	if (kb.presses('d')) {
 		player.move('right');
 	}
 }
