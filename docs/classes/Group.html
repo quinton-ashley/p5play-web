@@ -27,7 +27,7 @@
             </li>
         </div>
         <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
-            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/Camera", "classes/Group", "classes/InputDevice", "classes/p5.play", "classes/Sprite", "classes/SpriteAnimation"]'>
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/Camera", "classes/Group", "classes/InputDevice", "classes/p5.play", "classes/Sprite", "classes/SpriteAnimation", "classes/Tiles", "classes/World"]'>
         </form>
     </div>
 </div>
@@ -44,6 +44,8 @@
                 <li><a href="../classes/p5.play.html">p5.play</a></li>
                 <li><a href="../classes/Sprite.html">Sprite</a></li>
                 <li><a href="../classes/SpriteAnimation.html">SpriteAnimation</a></li>
+                <li><a href="../classes/Tiles.html">Tiles</a></li>
+                <li><a href="../classes/World.html">World</a></li>
         </ul>
     </div>
     </div>
@@ -86,6 +88,8 @@
 
 
 <div class="yuidoc-class-description">
+<p>Look at the Group reference pages before reading these docs.</p>
+<p><a href="https://p5play.org/learn/group.html">https://p5play.org/learn/group.html</a></p>
 <p>In p5.play groups are collections of sprites with similar behavior.
 For example a group may contain all the coin sprites that the
 player can collect.</p>
@@ -98,7 +102,7 @@ multiple groups.</p>
 it belongs to. group.removeAll() removes all the sprites from
 a group.</p>
 <p>The top level group is a p5 instance level variable named
-'allSprites' that contains all the sprites.</p>
+'allSprites' that contains all the sprites added to the sketch.</p>
 
 </div>
 
@@ -143,10 +147,6 @@ a group.</p>
 				<li class=""><a href="#prop-_overlaps"><span class="ip">_overlaps</span></a></li>
 				<li class=""><a href="#prop-ani"><span class="ip">ani</span></a></li>
 				<li class=""><a href="#prop-animations"><span class="ip">animations</span></a></li>
-				<li class=""><a href="#prop-autoResetAnimations"><span class="ip">autoResetAnimations</span></a></li>
-				<li class=""><a href="#prop-gravity"><span class="ip">gravity</span></a></li>
-				<li class=""><a href="#prop-offset.x"><span class="ip">offset.x</span></a></li>
-				<li class=""><a href="#prop-offset.y"><span class="ip">offset.y</span></a></li>
 			</ul>
 		</li>
 
@@ -174,7 +174,7 @@ a group.</p>
 	<div class="meta">
 				<p>
 				Defined in
-		<a href="../files/v3_p5.play.js.html#l3018"><code>v3&#x2F;p5.play.js:3018</code></a>
+		<a href="../files/v3_p5.play.js.html#l3034"><code>v3&#x2F;p5.play.js:3034</code></a>
 		</p>
 
 
@@ -212,7 +212,7 @@ a group.</p>
 	<div class="meta">
 				<p>
 				Defined in
-		<a href="../files/v3_p5.play.js.html#l3503"><code>v3&#x2F;p5.play.js:3503</code></a>
+		<a href="../files/v3_p5.play.js.html#l3523"><code>v3&#x2F;p5.play.js:3523</code></a>
 		</p>
 
 
@@ -265,7 +265,7 @@ because it was not already in the group.</p>
 	<div class="meta">
 				<p>
 				Defined in
-		<a href="../files/v3_p5.play.js.html#l3673"><code>v3&#x2F;p5.play.js:3673</code></a>
+		<a href="../files/v3_p5.play.js.html#l3693"><code>v3&#x2F;p5.play.js:3693</code></a>
 		</p>
 
 
@@ -329,7 +329,7 @@ sprite.addAni(name, atlas);</p>
 	<div class="meta">
 				<p>
 				Defined in
-		<a href="../files/v3_p5.play.js.html#l3720"><code>v3&#x2F;p5.play.js:3720</code></a>
+		<a href="../files/v3_p5.play.js.html#l3740"><code>v3&#x2F;p5.play.js:3740</code></a>
 		</p>
 
 
@@ -358,7 +358,7 @@ sprite.addAni(name, atlas);</p>
 	<div class="meta">
 				<p>
 				Defined in
-		<a href="../files/v3_p5.play.js.html#l3267"><code>v3&#x2F;p5.play.js:3267</code></a>
+		<a href="../files/v3_p5.play.js.html#l3287"><code>v3&#x2F;p5.play.js:3287</code></a>
 		</p>
 
 
@@ -397,7 +397,7 @@ sprite.addAni(name, atlas);</p>
 	<div class="meta">
 				<p>
 				Defined in
-		<a href="../files/v3_p5.play.js.html#l3309"><code>v3&#x2F;p5.play.js:3309</code></a>
+		<a href="../files/v3_p5.play.js.html#l3329"><code>v3&#x2F;p5.play.js:3329</code></a>
 		</p>
 
 
@@ -463,7 +463,7 @@ with the target sprite or group.</p>
 	<div class="meta">
 				<p>
 				Defined in
-		<a href="../files/v3_p5.play.js.html#l3275"><code>v3&#x2F;p5.play.js:3275</code></a>
+		<a href="../files/v3_p5.play.js.html#l3295"><code>v3&#x2F;p5.play.js:3295</code></a>
 		</p>
 
 
@@ -527,7 +527,7 @@ in an if statement or adding a callback as the second parameter.</p>
 	<div class="meta">
 				<p>
 				Defined in
-		<a href="../files/v3_p5.play.js.html#l3292"><code>v3&#x2F;p5.play.js:3292</code></a>
+		<a href="../files/v3_p5.play.js.html#l3312"><code>v3&#x2F;p5.play.js:3312</code></a>
 		</p>
 
 
@@ -596,7 +596,7 @@ the group has been colliding with the target.</p>
 	<div class="meta">
 				<p>
 				Defined in
-		<a href="../files/v3_p5.play.js.html#l3472"><code>v3&#x2F;p5.play.js:3472</code></a>
+		<a href="../files/v3_p5.play.js.html#l3492"><code>v3&#x2F;p5.play.js:3492</code></a>
 		</p>
 
 
@@ -666,7 +666,7 @@ the group has been colliding with the target.</p>
 	<div class="meta">
 				<p>
 				Defined in
-		<a href="../files/v3_p5.play.js.html#l3532"><code>v3&#x2F;p5.play.js:3532</code></a>
+		<a href="../files/v3_p5.play.js.html#l3552"><code>v3&#x2F;p5.play.js:3552</code></a>
 		</p>
 
 
@@ -758,7 +758,7 @@ removed by default</p>
 	<div class="meta">
 				<p>
 				Defined in
-		<a href="../files/v3_p5.play.js.html#l3461"><code>v3&#x2F;p5.play.js:3461</code></a>
+		<a href="../files/v3_p5.play.js.html#l3481"><code>v3&#x2F;p5.play.js:3481</code></a>
 		</p>
 
 
@@ -804,7 +804,7 @@ removed by default</p>
 	<div class="meta">
 				<p>
 				Defined in
-		<a href="../files/v3_p5.play.js.html#l3625"><code>v3&#x2F;p5.play.js:3625</code></a>
+		<a href="../files/v3_p5.play.js.html#l3645"><code>v3&#x2F;p5.play.js:3645</code></a>
 		</p>
 
 
@@ -844,7 +844,7 @@ removed by default</p>
 	<div class="meta">
 				<p>
 				Defined in
-		<a href="../files/v3_p5.play.js.html#l3641"><code>v3&#x2F;p5.play.js:3641</code></a>
+		<a href="../files/v3_p5.play.js.html#l3661"><code>v3&#x2F;p5.play.js:3661</code></a>
 		</p>
 
 
@@ -881,7 +881,7 @@ removed by default</p>
 	<div class="meta">
 				<p>
 				Defined in
-		<a href="../files/v3_p5.play.js.html#l3407"><code>v3&#x2F;p5.play.js:3407</code></a>
+		<a href="../files/v3_p5.play.js.html#l3427"><code>v3&#x2F;p5.play.js:3427</code></a>
 		</p>
 
 
@@ -907,7 +907,7 @@ removed by default</p>
 	<div class="meta">
 				<p>
 				Defined in
-		<a href="../files/v3_p5.play.js.html#l3423"><code>v3&#x2F;p5.play.js:3423</code></a>
+		<a href="../files/v3_p5.play.js.html#l3443"><code>v3&#x2F;p5.play.js:3443</code></a>
 		</p>
 
 
@@ -939,7 +939,7 @@ removed by default</p>
 	<div class="meta">
 				<p>
 				Defined in
-		<a href="../files/v3_p5.play.js.html#l3438"><code>v3&#x2F;p5.play.js:3438</code></a>
+		<a href="../files/v3_p5.play.js.html#l3458"><code>v3&#x2F;p5.play.js:3458</code></a>
 		</p>
 
 
@@ -983,7 +983,7 @@ removed by default</p>
 	<div class="meta">
 				<p>
 				Defined in
-		<a href="../files/v3_p5.play.js.html#l3350"><code>v3&#x2F;p5.play.js:3350</code></a>
+		<a href="../files/v3_p5.play.js.html#l3370"><code>v3&#x2F;p5.play.js:3370</code></a>
 		</p>
 
 
@@ -1022,7 +1022,7 @@ removed by default</p>
 	<div class="meta">
 				<p>
 				Defined in
-		<a href="../files/v3_p5.play.js.html#l3392"><code>v3&#x2F;p5.play.js:3392</code></a>
+		<a href="../files/v3_p5.play.js.html#l3412"><code>v3&#x2F;p5.play.js:3412</code></a>
 		</p>
 
 
@@ -1091,7 +1091,7 @@ with the target sprite or group.</p>
 	<div class="meta">
 				<p>
 				Defined in
-		<a href="../files/v3_p5.play.js.html#l3375"><code>v3&#x2F;p5.play.js:3375</code></a>
+		<a href="../files/v3_p5.play.js.html#l3395"><code>v3&#x2F;p5.play.js:3395</code></a>
 		</p>
 
 
@@ -1160,7 +1160,7 @@ frames the group has been overlapping with the target.</p>
 	<div class="meta">
 				<p>
 				Defined in
-		<a href="../files/v3_p5.play.js.html#l3358"><code>v3&#x2F;p5.play.js:3358</code></a>
+		<a href="../files/v3_p5.play.js.html#l3378"><code>v3&#x2F;p5.play.js:3378</code></a>
 		</p>
 
 
@@ -1218,7 +1218,7 @@ in an if statement or adding a callback as the second parameter.</p>
 	<div class="meta">
 				<p>
 				Defined in
-		<a href="../files/v3_p5.play.js.html#l3483"><code>v3&#x2F;p5.play.js:3483</code></a>
+		<a href="../files/v3_p5.play.js.html#l3503"><code>v3&#x2F;p5.play.js:3503</code></a>
 		</p>
 
 
@@ -1271,7 +1271,7 @@ because it was not already in the group.</p>
 	<div class="meta">
 				<p>
 				Defined in
-		<a href="../files/v3_p5.play.js.html#l3574"><code>v3&#x2F;p5.play.js:3574</code></a>
+		<a href="../files/v3_p5.play.js.html#l3594"><code>v3&#x2F;p5.play.js:3594</code></a>
 		</p>
 
 
@@ -1326,7 +1326,7 @@ allSprites group.</p>
 	<div class="meta">
 				<p>
 				Defined in
-		<a href="../files/v3_p5.play.js.html#l3616"><code>v3&#x2F;p5.play.js:3616</code></a>
+		<a href="../files/v3_p5.play.js.html#l3636"><code>v3&#x2F;p5.play.js:3636</code></a>
 		</p>
 
 
@@ -1354,7 +1354,7 @@ allSprites group.</p>
 	<div class="meta">
 				<p>
 				Defined in
-		<a href="../files/v3_p5.play.js.html#l3514"><code>v3&#x2F;p5.play.js:3514</code></a>
+		<a href="../files/v3_p5.play.js.html#l3534"><code>v3&#x2F;p5.play.js:3534</code></a>
 		</p>
 
 
@@ -1385,7 +1385,7 @@ allSprites group.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5.play.js.html#l3066"><code>v3&#x2F;p5.play.js:3066</code></a>
+        <a href="../files/v3_p5.play.js.html#l3086"><code>v3&#x2F;p5.play.js:3086</code></a>
         </p>
 
 
@@ -1411,7 +1411,7 @@ when it comes in contact with other sprites or groups.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5.play.js.html#l3076"><code>v3&#x2F;p5.play.js:3076</code></a>
+        <a href="../files/v3_p5.play.js.html#l3096"><code>v3&#x2F;p5.play.js:3096</code></a>
         </p>
 
 
@@ -1437,7 +1437,7 @@ when it comes in contact with other sprites or groups.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5.play.js.html#l3206"><code>v3&#x2F;p5.play.js:3206</code></a>
+        <a href="../files/v3_p5.play.js.html#l3226"><code>v3&#x2F;p5.play.js:3226</code></a>
         </p>
 
 
@@ -1462,7 +1462,7 @@ when it comes in contact with other sprites or groups.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5.play.js.html#l3058"><code>v3&#x2F;p5.play.js:3058</code></a>
+        <a href="../files/v3_p5.play.js.html#l3078"><code>v3&#x2F;p5.play.js:3078</code></a>
         </p>
 
 
@@ -1471,109 +1471,6 @@ when it comes in contact with other sprites or groups.</p>
     <div class="description">
         <p>Keys are the animation label, values are SpriteAnimation objects.</p>
 
-    </div>
-
-
-
-</div>
-<div id="prop-autoResetAnimations" class="property item ">
-    <h3 class="name"><code>autoResetAnimations</code></h3>
-    <span class="type"><a href="../classes/SpriteAnimation.html" class="crosslink">SpriteAnimation</a></span>
-
-
-
-
-
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/v3_p5.play.js.html#l3783"><code>v3&#x2F;p5.play.js:3783</code></a>
-        </p>
-
-
-    </div>
-
-    <div class="description">
-        <p>If false, animations that are stopped before they are completed,
-typically by a call to sprite.changeAni, will restart at the
-frame they were stopped at. If true, animations will always
-start playing from frame 0 unless specified by the user in a
-separate <code>anim.changeFrame</code> call.</p>
-
-    </div>
-
-        <p><strong>Default:</strong> false</p>
-
-
-</div>
-<div id="prop-gravity" class="property item ">
-    <h3 class="name"><code>gravity</code></h3>
-    <span class="type">Unknown</span>
-
-
-
-
-
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/v3_p5.play.js.html#l3835"><code>v3&#x2F;p5.play.js:3835</code></a>
-        </p>
-
-
-    </div>
-
-    <div class="description">
-        <p>Gravity vector</p>
-
-    </div>
-
-
-
-</div>
-<div id="prop-offset.x" class="property item ">
-    <h3 class="name"><code>offset.x</code></h3>
-    <span class="type">Unknown</span>
-
-
-
-
-
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/v3_p5.play.js.html#l3763"><code>v3&#x2F;p5.play.js:3763</code></a>
-        </p>
-
-
-    </div>
-
-    <div class="description">
-        
-    </div>
-
-
-
-</div>
-<div id="prop-offset.y" class="property item ">
-    <h3 class="name"><code>offset.y</code></h3>
-    <span class="type">Unknown</span>
-
-
-
-
-
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/v3_p5.play.js.html#l3773"><code>v3&#x2F;p5.play.js:3773</code></a>
-        </p>
-
-
-    </div>
-
-    <div class="description">
-        
     </div>
 
 

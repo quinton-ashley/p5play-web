@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>InputDevice - p5.play</title>
+    <title>World - p5.play</title>
     <link rel="stylesheet" href="">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -79,7 +79,7 @@
                 <div id="docs-main">
                     <div class="content">
 <div class="page-header">
-    <h1>InputDevice</h1>
+    <h1>World</h1>
 </div>
 
 
@@ -88,20 +88,8 @@
 
 
 <div class="yuidoc-class-description">
-<p>Look at the Input reference pages before reading these docs.</p>
-<p><a href="https://p5play.org/learn/input_devices.html">https://p5play.org/learn/input_devices.html</a></p>
-<p>Root class for storing the state of inputs (mouse, keyboard,
-gamepads).</p>
-<p>-3 means input was released after being held, pressed for 12 frames
--2 means input was pressed and released on the same frame
--1 means input was released
-0 means input is not pressed
-1 means input was pressed</p>
-<blockquote>
-<p>1 means input is still being pressed
-12 means input was held
-12 means input is being held</p>
-</blockquote>
+<p>Look at the World reference pages before reading these docs.</p>
+<p><a href="https://p5play.org/learn/world.html">https://p5play.org/learn/world.html</a></p>
 
 </div>
 
@@ -114,9 +102,10 @@ gamepads).</p>
 		<li>
 			<strong>Properties</strong>
 			<ul>
-				<li class=""><a href="#prop-holdThreshold"><span class="ip">holdThreshold</span></a></li>
-				<li class=""><a href="#prop-kb (keyboard)"><span class="ip">kb (keyboard)</span></a></li>
-				<li class=""><a href="#prop-mouse"><span class="ip">mouse</span></a></li>
+				<li class=""><a href="#prop-autoResetAnimations"><span class="ip">autoResetAnimations</span></a></li>
+				<li class=""><a href="#prop-gravity"><span class="ip">gravity</span></a></li>
+				<li class=""><a href="#prop-offset.x"><span class="ip">offset.x</span></a></li>
+				<li class=""><a href="#prop-offset.y"><span class="ip">offset.y</span></a></li>
 			</ul>
 		</li>
 
@@ -126,15 +115,46 @@ gamepads).</p>
 
 <!-- details -->
 
+    <div class="constructor yuidoc-class-constructor page-section">
+        <h2>Constructor</h2>
+        <div class="item-list">
+<div id="method-World" class="method item ">
+	<div class="method-signature">
+	<span class="name"><code>World</code></span>
+
+		<span class="paren">()</span>
+	</div>
+
+
+
+
+
+
+	<div class="meta">
+				<p>
+				Defined in
+		<a href="../files/v3_p5.play.js.html#l3768"><code>v3&#x2F;p5.play.js:3768</code></a>
+		</p>
+
+
+
+	</div>
+
+
+
+
+</div>
+        </div>
+    </div>
 
 
     <div id="properties" class="page-section">
         <h2 class="off-left">Properties</h2>
 
         <div class="item-list">
-<div id="prop-holdThreshold" class="property item ">
-    <h3 class="name"><code>holdThreshold</code></h3>
-    <span class="type">Number</span>
+<div id="prop-autoResetAnimations" class="property item ">
+    <h3 class="name"><code>autoResetAnimations</code></h3>
+    <span class="type"><a href="../classes/SpriteAnimation.html" class="crosslink">SpriteAnimation</a></span>
 
 
 
@@ -143,23 +163,27 @@ gamepads).</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5.play.js.html#l4985"><code>v3&#x2F;p5.play.js:4985</code></a>
+        <a href="../files/v3_p5.play.js.html#l3808"><code>v3&#x2F;p5.play.js:3808</code></a>
         </p>
 
 
     </div>
 
     <div class="description">
-        <p>The amount of frames an input must be pressed to be considered held.
-Default is 12.</p>
+        <p>If false, animations that are stopped before they are completed,
+typically by a call to sprite.changeAni, will restart at the
+frame they were stopped at. If true, animations will always
+start playing from frame 0 unless specified by the user in a
+separate <code>anim.changeFrame</code> call.</p>
 
     </div>
 
+        <p><strong>Default:</strong> false</p>
 
 
 </div>
-<div id="prop-kb (keyboard)" class="property item ">
-    <h3 class="name"><code>kb (keyboard)</code></h3>
+<div id="prop-gravity" class="property item ">
+    <h3 class="name"><code>gravity</code></h3>
     <span class="type">Unknown</span>
 
 
@@ -169,7 +193,32 @@ Default is 12.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5.play.js.html#l5150"><code>v3&#x2F;p5.play.js:5150</code></a>
+        <a href="../files/v3_p5.play.js.html#l3860"><code>v3&#x2F;p5.play.js:3860</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>Gravity vector</p>
+
+    </div>
+
+
+
+</div>
+<div id="prop-offset.x" class="property item ">
+    <h3 class="name"><code>offset.x</code></h3>
+    <span class="type">Unknown</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l3788"><code>v3&#x2F;p5.play.js:3788</code></a>
         </p>
 
 
@@ -180,31 +229,10 @@ Default is 12.</p>
     </div>
 
 
-        <div class="example">
-            <h4>Example:</h4>
-
-            <div class="example-content">
-                <pre class="code prettyprint"><code>// presses
-if (kb.presses('x')) {
-    player.jump();
-}
-
-// holds
-if (kb.holds('e')) {
-    player.chargeAttack();
-}
-
-// released
-if (kb.released('q')) {
-    player.slide();
-}</code></pre>
-
-            </div>
-        </div>
 
 </div>
-<div id="prop-mouse" class="property item ">
-    <h3 class="name"><code>mouse</code></h3>
+<div id="prop-offset.y" class="property item ">
+    <h3 class="name"><code>offset.y</code></h3>
     <span class="type">Unknown</span>
 
 
@@ -214,15 +242,14 @@ if (kb.released('q')) {
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5.play.js.html#l5060"><code>v3&#x2F;p5.play.js:5060</code></a>
+        <a href="../files/v3_p5.play.js.html#l3798"><code>v3&#x2F;p5.play.js:3798</code></a>
         </p>
 
 
     </div>
 
     <div class="description">
-        <p>Stores the state of the left, center, or right mouse buttons.</p>
-
+        
     </div>
 
 

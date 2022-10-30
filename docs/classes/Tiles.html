@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>InputDevice - p5.play</title>
+    <title>Tiles - p5.play</title>
     <link rel="stylesheet" href="">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -79,7 +79,7 @@
                 <div id="docs-main">
                     <div class="content">
 <div class="page-header">
-    <h1>InputDevice</h1>
+    <h1>Tiles</h1>
 </div>
 
 
@@ -88,20 +88,8 @@
 
 
 <div class="yuidoc-class-description">
-<p>Look at the Input reference pages before reading these docs.</p>
-<p><a href="https://p5play.org/learn/input_devices.html">https://p5play.org/learn/input_devices.html</a></p>
-<p>Root class for storing the state of inputs (mouse, keyboard,
-gamepads).</p>
-<p>-3 means input was released after being held, pressed for 12 frames
--2 means input was pressed and released on the same frame
--1 means input was released
-0 means input is not pressed
-1 means input was pressed</p>
-<blockquote>
-<p>1 means input is still being pressed
-12 means input was held
-12 means input is being held</p>
-</blockquote>
+<p>Look at the Tiles reference pages before reading these docs.</p>
+<p><a href="https://p5play.org/learn/tiles.html">https://p5play.org/learn/tiles.html</a></p>
 
 </div>
 
@@ -111,14 +99,6 @@ gamepads).</p>
 	<h2>Table of Contents</h2>
     <ul>
 
-		<li>
-			<strong>Properties</strong>
-			<ul>
-				<li class=""><a href="#prop-holdThreshold"><span class="ip">holdThreshold</span></a></li>
-				<li class=""><a href="#prop-kb (keyboard)"><span class="ip">kb (keyboard)</span></a></li>
-				<li class=""><a href="#prop-mouse"><span class="ip">mouse</span></a></li>
-			</ul>
-		</li>
 
 
 	</ul>
@@ -126,110 +106,98 @@ gamepads).</p>
 
 <!-- details -->
 
-
-
-    <div id="properties" class="page-section">
-        <h2 class="off-left">Properties</h2>
-
+    <div class="constructor yuidoc-class-constructor page-section">
+        <h2>Constructor</h2>
         <div class="item-list">
-<div id="prop-holdThreshold" class="property item ">
-    <h3 class="name"><code>holdThreshold</code></h3>
-    <span class="type">Number</span>
+<div id="method-Tiles" class="method item ">
+	<div class="method-signature">
+	<span class="name"><code>Tiles</code></span>
+
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+				<li class="arg">
+						<code>tiles</code>
+				</li>
+				<li class="arg">
+						<code>x</code>
+				</li>
+				<li class="arg">
+						<code>y</code>
+				</li>
+				<li class="arg">
+						<code>w</code>
+				</li>
+				<li class="arg">
+						<code>h</code>
+				</li>
+			</ul><span class="paren">)</span>
+		</div>
+	</div>
 
 
 
 
 
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/v3_p5.play.js.html#l4985"><code>v3&#x2F;p5.play.js:4985</code></a>
-        </p>
 
-
-    </div>
-
-    <div class="description">
-        <p>The amount of frames an input must be pressed to be considered held.
-Default is 12.</p>
-
-    </div>
+	<div class="meta">
+				<p>
+				Defined in
+		<a href="../files/v3_p5.play.js.html#l4193"><code>v3&#x2F;p5.play.js:4193</code></a>
+		</p>
 
 
 
-</div>
-<div id="prop-kb (keyboard)" class="property item ">
-    <h3 class="name"><code>kb (keyboard)</code></h3>
-    <span class="type">Unknown</span>
+	</div>
+
+
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+				<li class="param">
+						<code class="param-name">tiles</code>
+						<span class="type">String</span>
 
 
 
-
-
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/v3_p5.play.js.html#l5150"><code>v3&#x2F;p5.play.js:5150</code></a>
-        </p>
-
-
-    </div>
-
-    <div class="description">
-        
-    </div>
-
-
-        <div class="example">
-            <h4>Example:</h4>
-
-            <div class="example-content">
-                <pre class="code prettyprint"><code>// presses
-if (kb.presses('x')) {
-    player.jump();
-}
-
-// holds
-if (kb.holds('e')) {
-    player.chargeAttack();
-}
-
-// released
-if (kb.released('q')) {
-    player.slide();
-}</code></pre>
-
-            </div>
-        </div>
-
-</div>
-<div id="prop-mouse" class="property item ">
-    <h3 class="name"><code>mouse</code></h3>
-    <span class="type">Unknown</span>
+				</li>
+				<li class="param">
+						<code class="param-name">x</code>
+						<span class="type">Number</span>
 
 
 
+				</li>
+				<li class="param">
+						<code class="param-name">y</code>
+						<span class="type">Number</span>
 
 
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/v3_p5.play.js.html#l5060"><code>v3&#x2F;p5.play.js:5060</code></a>
-        </p>
+
+				</li>
+				<li class="param">
+						<code class="param-name">w</code>
+						<span class="type">Number</span>
 
 
-    </div>
 
-    <div class="description">
-        <p>Stores the state of the left, center, or right mouse buttons.</p>
+				</li>
+				<li class="param">
+						<code class="param-name">h</code>
+						<span class="type">Number</span>
 
-    </div>
 
+
+				</li>
+			</ul>
+		</div>
 
 
 </div>
         </div>
     </div>
+
+
 
 
 

@@ -6,6 +6,8 @@ YUI.add("yuidoc-meta", function(Y) {
         "InputDevice",
         "Sprite",
         "SpriteAnimation",
+        "Tiles",
+        "World",
         "p5.play"
     ],
     "modules": [],

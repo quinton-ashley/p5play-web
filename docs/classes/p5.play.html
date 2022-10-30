@@ -27,7 +27,7 @@
             </li>
         </div>
         <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
-            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/Camera", "classes/Group", "classes/InputDevice", "classes/p5.play", "classes/Sprite", "classes/SpriteAnimation"]'>
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/Camera", "classes/Group", "classes/InputDevice", "classes/p5.play", "classes/Sprite", "classes/SpriteAnimation", "classes/Tiles", "classes/World"]'>
         </form>
     </div>
 </div>
@@ -44,6 +44,8 @@
                 <li><a href="../classes/p5.play.html">p5.play</a></li>
                 <li><a href="../classes/Sprite.html">Sprite</a></li>
                 <li><a href="../classes/SpriteAnimation.html">SpriteAnimation</a></li>
+                <li><a href="../classes/Tiles.html">Tiles</a></li>
+                <li><a href="../classes/World.html">World</a></li>
         </ul>
     </div>
     </div>
@@ -85,6 +87,11 @@
 
 
 
+<div class="yuidoc-class-description">
+<p>Look at the p5.play reference pages before reading these docs.</p>
+<p><a href="https://p5play.org/learn/sprite.html">https://p5play.org/learn/sprite.html</a></p>
+
+</div>
 
 <!-- table of contents -->
 
@@ -97,6 +104,7 @@
 				<li class=""><a href="#method-animation"><span class="im">animation</span>(<span class="ia">ani</span><span class="ia">x</span><span class="ia">y</span>)</a></li>
 				<li class=""><a href="#method-background"><span class="im">background</span>()</a></li>
 				<li class=""><a href="#method-colorPal"><span class="im">colorPal</span>(<span class="ia">c</span><span class="ia">palette</span>)</a></li>
+				<li class=""><a href="#method-createCanvas"><span class="im">createCanvas</span>(<span class="ia">width|ratio</span><span class="ia">height</span>)</a></li>
 				<li class=""><a href="#method-createTiles"><span class="im">createTiles</span>(<span class="ia">tiles</span>)</a></li>
 				<li class=""><a href="#method-delay"><span class="im">delay</span>(<span class="ia">millisecond</span>)</a></li>
 				<li class="deprectated"><a href="#method-drawSprites"><span class="im">drawSprites</span>()</a></li>
@@ -161,7 +169,7 @@
 	<div class="meta">
 				<p>
 				Defined in
-		<a href="../files/v3_p5.play.js.html#l4623"><code>v3&#x2F;p5.play.js:4623</code></a>
+		<a href="../files/v3_p5.play.js.html#l4672"><code>v3&#x2F;p5.play.js:4672</code></a>
 		</p>
 
 
@@ -222,7 +230,7 @@
 	<div class="meta">
 				<p>
 				Defined in
-		<a href="../files/v3_p5.play.js.html#l4742"><code>v3&#x2F;p5.play.js:4742</code></a>
+		<a href="../files/v3_p5.play.js.html#l4813"><code>v3&#x2F;p5.play.js:4813</code></a>
 		</p>
 
 
@@ -263,7 +271,7 @@ a color pallette code.</p>
 	<div class="meta">
 				<p>
 				Defined in
-		<a href="../files/v3_p5.play.js.html#l4471"><code>v3&#x2F;p5.play.js:4471</code></a>
+		<a href="../files/v3_p5.play.js.html#l4520"><code>v3&#x2F;p5.play.js:4520</code></a>
 		</p>
 
 
@@ -309,6 +317,70 @@ in the system's palettes array.</p>
 		</div>
 
 </div>
+<div id="method-createCanvas" class="method item ">
+	<div class="method-signature">
+	<span class="name"><code>createCanvas</code></span>
+
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+				<li class="arg">
+						<code>width|ratio</code>
+				</li>
+				<li class="arg">
+						<code>height</code>
+				</li>
+			</ul><span class="paren">)</span>
+		</div>
+	</div>
+
+
+
+
+
+
+	<div class="meta">
+				<p>
+				Defined in
+		<a href="../files/v3_p5.play.js.html#l4747"><code>v3&#x2F;p5.play.js:4747</code></a>
+		</p>
+
+
+
+	</div>
+
+	<div class="description"><p>Equivalent to p5.js createCanvas function and <code>new Canvas()</code></p>
+<p>In p5.play a canvas can be created with an aspect ratio in the
+format <code>width:height</code>. For example <code>new Canvas('16:9')</code> will create
+the largest possible canvas with a 16:9 aspect ratio.</p>
+<p>This function also disables the default keydown responses for
+the arrow keys, slash, and spacebar. This is to prevent the
+browser from scrolling the page when the user is playing a game using
+common keyboard commands.</p>
+</div>
+
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+				<li class="param">
+						<code class="param-name">width|ratio</code>
+						<span class="type">Number</span>
+
+
+
+				</li>
+				<li class="param">
+						<code class="param-name">height</code>
+						<span class="type">Number</span>
+
+
+
+				</li>
+			</ul>
+		</div>
+
+
+</div>
 <div id="method-createTiles" class="method item ">
 	<div class="method-signature">
 	<span class="name"><code>createTiles</code></span>
@@ -330,13 +402,15 @@ in the system's palettes array.</p>
 	<div class="meta">
 				<p>
 				Defined in
-		<a href="../files/v3_p5.play.js.html#l4220"><code>v3&#x2F;p5.play.js:4220</code></a>
+		<a href="../files/v3_p5.play.js.html#l4266"><code>v3&#x2F;p5.play.js:4266</code></a>
 		</p>
 
 
 
 	</div>
 
+	<div class="description"><p>Equivalent to <code>new Tiles</code></p>
+</div>
 
 		<div class="params">
 			<h4>Parameters:</h4>
@@ -380,14 +454,14 @@ in the system's palettes array.</p>
 	<div class="meta">
 				<p>
 				Defined in
-		<a href="../files/v3_p5.play.js.html#l4637"><code>v3&#x2F;p5.play.js:4637</code></a>
+		<a href="../files/v3_p5.play.js.html#l4686"><code>v3&#x2F;p5.play.js:4686</code></a>
 		</p>
 
 
 
 	</div>
 
-	<div class="description"><p>Delay for the specified time.</p>
+	<div class="description"><p>Delay code execution in an async function for the specified time.</p>
 </div>
 
 		<div class="params">
@@ -441,7 +515,7 @@ await delay(3000);
 	<div class="meta">
 				<p>
 				Defined in
-		<a href="../files/v3_p5.play.js.html#l4553"><code>v3&#x2F;p5.play.js:4553</code></a>
+		<a href="../files/v3_p5.play.js.html#l4602"><code>v3&#x2F;p5.play.js:4602</code></a>
 		</p>
 
 
@@ -473,7 +547,7 @@ draw loop.</p>
 	<div class="meta">
 				<p>
 				Defined in
-		<a href="../files/v3_p5.play.js.html#l4568"><code>v3&#x2F;p5.play.js:4568</code></a>
+		<a href="../files/v3_p5.play.js.html#l4617"><code>v3&#x2F;p5.play.js:4617</code></a>
 		</p>
 
 
@@ -504,7 +578,7 @@ draw loop.</p>
 	<div class="meta">
 				<p>
 				Defined in
-		<a href="../files/v3_p5.play.js.html#l4760"><code>v3&#x2F;p5.play.js:4760</code></a>
+		<a href="../files/v3_p5.play.js.html#l4831"><code>v3&#x2F;p5.play.js:4831</code></a>
 		</p>
 
 
@@ -545,7 +619,7 @@ a color pallette code.</p>
 	<div class="meta">
 				<p>
 				Defined in
-		<a href="../files/v3_p5.play.js.html#l4252"><code>v3&#x2F;p5.play.js:4252</code></a>
+		<a href="../files/v3_p5.play.js.html#l4300"><code>v3&#x2F;p5.play.js:4300</code></a>
 		</p>
 
 
@@ -611,7 +685,7 @@ a color pallette code.</p>
 	<div class="meta">
 				<p>
 				Defined in
-		<a href="../files/v3_p5.play.js.html#l4292"><code>v3&#x2F;p5.play.js:4292</code></a>
+		<a href="../files/v3_p5.play.js.html#l4340"><code>v3&#x2F;p5.play.js:4340</code></a>
 		</p>
 
 
@@ -669,7 +743,7 @@ the mouse click occurs</p>
 	<div class="meta">
 				<p>
 				Defined in
-		<a href="../files/v3_p5.play.js.html#l4602"><code>v3&#x2F;p5.play.js:4602</code></a>
+		<a href="../files/v3_p5.play.js.html#l4651"><code>v3&#x2F;p5.play.js:4651</code></a>
 		</p>
 
 
@@ -720,17 +794,17 @@ Use this in the preload p5.js function.</p>
 	<div class="meta">
 				<p>
 				Defined in
-		<a href="../files/v3_p5.play.js.html#l4802"><code>v3&#x2F;p5.play.js:4802</code></a>
+		<a href="../files/v3_p5.play.js.html#l4873"><code>v3&#x2F;p5.play.js:4873</code></a>
 		</p>
 
 
 
 	</div>
 
-	<div class="description"><p>Just like the p5.js loadImage function except it also accepts
-width and height parameters in addition to a callback.
-It also caches images so that they are only loaded once.
-It also adds a url property to the image object.</p>
+	<div class="description"><p>Just like the p5.js loadImage function except it also caches images
+so that they are only loaded once. Multiple calls to loadImage with
+the same path will return the same image object. It also adds the
+image's url as a property of the image object.</p>
 </div>
 
 		<div class="params">
@@ -797,7 +871,7 @@ It also adds a url property to the image object.</p>
 	<div class="meta">
 				<p>
 				Defined in
-		<a href="../files/v3_p5.play.js.html#l4677"><code>v3&#x2F;p5.play.js:4677</code></a>
+		<a href="../files/v3_p5.play.js.html#l4726"><code>v3&#x2F;p5.play.js:4726</code></a>
 		</p>
 
 
@@ -854,14 +928,14 @@ It also adds a url property to the image object.</p>
 	<div class="meta">
 				<p>
 				Defined in
-		<a href="../files/v3_p5.play.js.html#l4661"><code>v3&#x2F;p5.play.js:4661</code></a>
+		<a href="../files/v3_p5.play.js.html#l4710"><code>v3&#x2F;p5.play.js:4710</code></a>
 		</p>
 
 
 
 	</div>
 
-	<div class="description"><p>Sleep for the specified time.</p>
+	<div class="description"><p>Sleep for the specified time. Equivalent to the delay function.</p>
 </div>
 
 		<div class="params">
@@ -929,7 +1003,7 @@ await sleep(3000);
 	<div class="meta">
 				<p>
 				Defined in
-		<a href="../files/v3_p5.play.js.html#l4495"><code>v3&#x2F;p5.play.js:4495</code></a>
+		<a href="../files/v3_p5.play.js.html#l4544"><code>v3&#x2F;p5.play.js:4544</code></a>
 		</p>
 
 
@@ -1009,7 +1083,7 @@ object.</p>
 	<div class="meta">
 				<p>
 				Defined in
-		<a href="../files/v3_p5.play.js.html#l4778"><code>v3&#x2F;p5.play.js:4778</code></a>
+		<a href="../files/v3_p5.play.js.html#l4849"><code>v3&#x2F;p5.play.js:4849</code></a>
 		</p>
 
 
@@ -1050,7 +1124,7 @@ a color pallette code.</p>
 	<div class="meta">
 				<p>
 				Defined in
-		<a href="../files/v3_p5.play.js.html#l4228"><code>v3&#x2F;p5.play.js:4228</code></a>
+		<a href="../files/v3_p5.play.js.html#l4276"><code>v3&#x2F;p5.play.js:4276</code></a>
 		</p>
 
 
@@ -1109,7 +1183,7 @@ loop, unless it was already called in the draw loop.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5.play.js.html#l4860"><code>v3&#x2F;p5.play.js:4860</code></a>
+        <a href="../files/v3_p5.play.js.html#l4932"><code>v3&#x2F;p5.play.js:4932</code></a>
         </p>
 
 
@@ -1134,7 +1208,7 @@ loop, unless it was already called in the draw loop.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5.play.js.html#l4885"><code>v3&#x2F;p5.play.js:4885</code></a>
+        <a href="../files/v3_p5.play.js.html#l4957"><code>v3&#x2F;p5.play.js:4957</code></a>
         </p>
 
 
@@ -1159,7 +1233,7 @@ loop, unless it was already called in the draw loop.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5.play.js.html#l4877"><code>v3&#x2F;p5.play.js:4877</code></a>
+        <a href="../files/v3_p5.play.js.html#l4949"><code>v3&#x2F;p5.play.js:4949</code></a>
         </p>
 
 
@@ -1185,7 +1259,7 @@ been called.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5.play.js.html#l4869"><code>v3&#x2F;p5.play.js:4869</code></a>
+        <a href="../files/v3_p5.play.js.html#l4941"><code>v3&#x2F;p5.play.js:4941</code></a>
         </p>
 
 
