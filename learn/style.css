@@ -98,6 +98,10 @@ code {
 	width: 49%;
 }
 
+.page>.full {
+	width: 100%;
+}
+
 .break {
 	width: 100%;
 	margin-top: 2%;
@@ -156,6 +160,15 @@ footer {
 
 .text-small {
 	font-size: 0.8em;
+}
+
+textarea {
+	margin-top: 20px;
+	width: 100%;
+	font-family: monospace;
+	white-space: pre;
+	overflow-wrap: normal;
+	overflow-x: scroll;
 }
 
 @media screen and (max-width: 1030px) {

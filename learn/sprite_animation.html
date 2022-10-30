@@ -165,11 +165,11 @@ function draw() {
 		splatAni.loop();
 	} else if (kb.presses('n')) {
 		splatAni.noLoop();
-	} else if (kb.presses('f')) {
+	} else if (kb.presses('t')) {
 		splatAni.nextFrame();
-	} else if (kb.presses('b')) {
+	} else if (kb.presses('v')) {
 		splatAni.previousFrame();
-	} else if (kb.presses('5')) {
+	} else if (kb.presses('f')) {
 		splatAni.frame = 5;
 	} else if (kb.pressing('x')) {
 		splatAni.scale.x = -1;
@@ -235,6 +235,19 @@ ghost.mirror.y = true;
 ghost.ani = 'move';
 ghost.mirror.x = true;
 				</script>
+
+		<script type="text/md">
+You can reference the sprite's current animation by using `sprite.ani` or `sprite.animation`. Try this
+mini-example out by pressing "p" to
+make the animation play.
+		</script>
+		<script type="text/p5" name="control" base="1">
+if (kb.pressing('p')) {
+	ghost.ani.play();
+} else {
+	ghost.ani.stop();
+}
+		</script>
 	</div>
 	<div id="page-3" class="page">
 		<div>
