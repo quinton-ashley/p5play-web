@@ -113,7 +113,7 @@ let examples = {
 		tunneling: 'tunneling [FIXED]',
 		slowBounce: 'slow bounce [FIXED]',
 		fullBounce: 'full bounce [BUG]',
-		tiles: 'tiles displace [TODO]',
+		tiles: 'tiles displace [KINDA FIXED]',
 		collisions5: 'large edge colliders [TODO]',
 		moveOrbit: 'group orbit + moveTowards [TODO]',
 		collidingBug: 'colliding bug [BUG]'

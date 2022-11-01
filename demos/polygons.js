@@ -8,8 +8,17 @@ function setup() {
 }
 
 function draw() {
-	background(100);
+	clear();
 	text('Click to see how other polygons are drawn', 20, 20);
+
+	if (mouse.presses()) {
+		allSprites.remove();
+
+		// 12 is the maximum number of sides a polygon
+		// can have in planck.js
+		sides++;
+		makePoly();
+	}
 }
 
 function makePoly() {
@@ -33,13 +42,4 @@ function makePoly() {
 			new Sprite(x, y, 1, 1, 'static');
 		}
 	}
-}
-
-function mousePressed() {
-	allSprites.remove();
-
-	// 12 is the maximum number of sides a polygon
-	// can have in planck.js
-	sides++;
-	makePoly();
 }
