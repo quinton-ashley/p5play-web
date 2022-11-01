@@ -8,11 +8,11 @@ function preload() {
 	ghost.addAni('assets/ghost_spin0001.png', 3);
 
 	asterisk = new Sprite(600, 200, 110);
-	asterisk.addAni('stretch', 'assets/asterisk_stretching0001.png', 8);
+	asterisk.addAni('assets/asterisk_normal0001.png', 3);
 	asterisk.addAni('transform', 'assets/asterisk_circle0001.png', 8);
 	asterisk.ani.frameDelay = 1;
 	asterisk.ani.looping = false;
-	asterisk.addAni('assets/asterisk_normal0001.png', 3);
+	asterisk.addAni('stretch', 'assets/asterisk_stretching0001.png', 8);
 }
 
 function setup() {
@@ -43,16 +43,10 @@ function draw() {
 	}
 
 	if (asterisk.mouse.hovers()) {
-		asterisk.ani = 'stretch';
+		asterisk.ani = 'default';
 	}
 
 	if (asterisk.mouse.hovered()) {
-		if (asterisk.ani.name == 'transform') {
-			// reverse the transform animation (use ! before the animation name),
-			// when it's completed play the default animation
-			asterisk.ani = ['!transform', 'default'];
-		} else {
-			asterisk.ani = 'default';
-		}
+		asterisk.ani = 'stretch';
 	}
 }
