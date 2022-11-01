@@ -580,64 +580,105 @@ function draw() {
 	<div id="page-7" class="page">
 		<div>
 			<h2>Chain Colliders</h2>
-			<!-- <p style="font-style: italic;">Level 2 reference</p> -->
 			<p>
-				In addition to rectangle and circle colliders you can also make chains of lines.
+				There are three different chain modes: vertex, distance, and line.
 			</p>
 			<p>
-				In this example, the chain is made with a list of line lengths and angles.
+				To use vertex mode, provide the Sprite constructor with an array
+				of vertex arrays. Each vertex array should contain [x, y]
+				coordinates. In these
+				mini-examples the sprite's (x, y) position is highlighted by a small black square.
 			</p>
 			<p>
-				Try changing the lengths of these lines and their angles.
+				Try changing the vertexes of the chain sprite in the mini-example
+				to make the ball stay on the floor!
 			</p>
 		</div>
-		<script type="text/p5" name="line lengths and angles list" lines="9">
+		<script type="text/p5" name="vertex mode" lines="12">
+let floor, ball;
+
 function setup() {
 	createCanvas(500, 200);
 	world.gravity.y = 10;
 
-	//        (  x,   y, [length, angle, ...])
-	new Sprite(250, 100, [300, 10, 200, 20], 'static');
+	//                ([vertex0, vertex1, vertex2, ...])
+	floor = new Sprite([[20, 60], [200, 140], [450, 180]]);
+	floor.collider = 'static';
 
-	new Sprite(40, 0, 20); // ball
+	ball = new Sprite(40, 0, 20);
 }
-	
+
 function draw() {
 	clear();
+	rect(floor.x - 2, floor.y - 2, 4, 4);
 }
 		</script>
 		<div>
 			<p>
-				You can also make chains using a list of points (vertices).
+				To use distance mode, provide the Sprite constructor an (x, y) position and a list of distance arrays. These
+				arrays should contain [x, y] distances relative to the previous vertex. The (x, y) position will be the first
+				vertex in the chain.
 			</p>
 			<p>
-				By default a chain's x and y position is
-				located at the center of the chain, just like with other collider shapes. Although, when making a chain using
-				vertices you may find it useful to have the chain start at the chain's (x,y) position. You can do this by
-				changing the <code>p5play.chainOrigin</code> property from the default "center" to "start". The chain's vertices
-				are "relative" to the chain's origin but you can also change the <code>p5play.chainPoints</code> property to
-				"absolute".
+				Distance mode is best for creating super long chains.
 			</p>
 			<p>
-				Try changing this chain's position so the ball can roll on it! Then try changing the chain's points so the ball
-				stay on the chain.
+				Try adding 5 distances to make the ground roll up and down on a rocky ground chain.
 			</p>
 		</div>
-		<script type="text/p5" name="vertex list" lines="11">
-			function setup() {
+		<script type="text/p5" name="distance mode" lines="12">
+let ground, ball;
+
+function setup() {
 	createCanvas(500, 200);
 	world.gravity.y = 10;
 
-	p5play.chainOrigin = 'start';
+	//                 (x, y, [distance0, distance1, ...])
+	ground = new Sprite(30, 90, [[20, 20], [60, -10], [50, 10]], 'static');
 
-	//        (  x,   y, [point0, point1, ...])
-	new Sprite(250, 100, [[200, 20], [400, 100]], 'static');
-
-	new Sprite(40, 0, 20); // ball
+	ball = new Sprite(40, 0, 20);
 }
 	
 function draw() {
 	clear();
+	rect(ground.x - 2, ground.y - 2, 4, 4);
+}
+		</script>
+
+		<div>
+			<p>
+				To use line mode, provide the Sprite constructor an (x,y) position and a list of line lengths and angles. Each
+				angle is relative to the previous line's angle.
+			</p>
+			<p>
+				It's best to use line mode for small
+				and/or
+				symmetrical chains.
+			</p>
+			<p>
+				Note that the line mode chain's (x, y) position is located at
+				half the chain's width and half the chain's height, which may not be a point on the chain.
+			</p>
+			<p>
+				Try changing the lengths of these lines and their angles!
+			</p>
+		</div>
+		<script type="text/p5" name="line mode" lines="12">
+let shelf, orb;
+
+function setup() {
+	createCanvas(500, 200);
+	world.gravity.y = 10;
+
+	//                (x, y, [length0, angle0, length1, ...])
+	shelf = new Sprite(250, 100, [50, 20, 50, -20, 50, -20], 'static');
+
+	orb = new Sprite(200, 0, 20);
+}
+	
+function draw() {
+	clear();
+	rect(shelf.x - 2, shelf.y - 2, 4, 4);
 }
 		</script>
 	</div>
