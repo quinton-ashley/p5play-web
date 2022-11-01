@@ -42,37 +42,7 @@ function preload() {
 
 	tileSheet = loadImage('assets/tiles_spritesheet.png');
 
-	loadJSON('assets/tiles.json', (tileFrames) => {
-		// Load tiles sprite sheet from frames array once frames array is ready
-		tiles = new Group();
-		tiles.collider = 'kinematic';
-		tiles.layer = 1;
-		tiles.w = 70;
-		tiles.h = 70;
-		tiles.spriteSheet = tileSheet;
-		// Load the frame data for the tiles
-		tiles.addAnis(tileFrames);
-
-		ground = new tiles.Group();
-		ground.friction = 0;
-		fakeGround = new ground.Group();
-		// Draw the ground tiles
-		for (let i = 0; i < 4; i++) {
-			if (i < 2) {
-				new ground.Sprite('castle', 70 + i * 140, 365);
-			} else {
-				new fakeGround.Sprite('castle', 70 + i * 140, 365);
-			}
-		}
-
-		exit = new ground.Sprite('castle', 630, 365);
-
-		signs = new tiles.Group();
-		signs.collider = 'none';
-		// Draw the sign tiles
-		exitSign = new signs.Sprite('signExit', 630, 295);
-		new signs.Sprite('signRight', 210, 295);
-	});
+	tileFrames = loadJSON('assets/tiles.json');
 }
 
 function resetPlayer() {
@@ -84,6 +54,36 @@ function resetPlayer() {
 
 function setup() {
 	createCanvas(800, 400);
+
+	// Load tiles sprite sheet from frames array once frames array is ready
+	tiles = new Group();
+	tiles.collider = 'kinematic';
+	tiles.layer = 1;
+	tiles.w = 70;
+	tiles.h = 70;
+	tiles.spriteSheet = tileSheet;
+	// Load the frame data for the tiles
+	tiles.addAnis(tileFrames);
+
+	ground = new tiles.Group();
+	ground.friction = 0;
+	fakeGround = new ground.Group();
+	// Draw the ground tiles
+	for (let i = 0; i < 4; i++) {
+		if (i < 2) {
+			new ground.Sprite('castle', 70 + i * 140, 365);
+		} else {
+			new fakeGround.Sprite('castle', 70 + i * 140, 365);
+		}
+	}
+
+	exit = new ground.Sprite('castle', 630, 365);
+
+	signs = new tiles.Group();
+	signs.collider = 'none';
+	// Draw the sign tiles
+	exitSign = new signs.Sprite('signExit', 630, 295);
+	new signs.Sprite('signRight', 210, 295);
 
 	// makes the sprite's collider smaller
 	player.w = 20;
