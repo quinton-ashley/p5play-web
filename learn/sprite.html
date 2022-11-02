@@ -686,37 +686,105 @@ function draw() {
 		<div>
 			<h2>Polygon Colliders</h2>
 			<p>
-				If the start and end of a chain is at the same point it automatically becomes a polygon collider!
+				Regular polyons can be created by providing the Sprite constructor with a side length and the name of the
+				polygon.
 			</p>
 			<p>
-				The easiest way to make regular polygons like a Hexagon is with a list of line lengths and angles with a repeat.
+				Here are the names you can use: triangle, square, pentagon, hexagon, septagon, octagon, enneagon,
+				decagon, hendecagon, and
+				dodecagon.
 			</p>
 		</div>
-		<script type="text/p5" name="hexagon" lines="6">
+		<script type="text/p5" name="pentagon" lines="6">
 function setup() {
 	createCanvas(500, 200);
 
-	//        ( x,  y, [length, angle, repeat])
-	new Sprite(250, 100, [80, 360 / 6, 6]);
+	//        ( x,  y, sideLength, polygonName)
+	new Sprite(250, 100, 80, 'pentagon');
 }
 	
 function draw() {
 	clear();
 }
 		</script>
-		<div class="break"></div>
 		<div>
-			<h2>Try it out!</h2>
 			<p>
-				Try making a triangle collider.
+				If the start and end of a chain is at the same point and the resulting shape is convex, it automatically becomes
+				a polygon!
 			</p>
 		</div>
-		<script type="text/p5" name="Level 2 Challenge">
-let triangle;
-
+		<script type="text/p5" name="irregular polygon" lines="6">
 function setup() {
-	createCanvas(200, 256);
+	createCanvas(500, 200);
+
+	new Sprite([[8, 8], [140, 192], [492, 90], [8, 8]]);
+}
+
+function draw() {
+	clear();
+}
+
+		</script>
+		<div>
+			<p>
+				You can force a convex polygon to be a chain by setting <code>sprite.shape = 'chain'</code>
+			</p>
+			<p>
+				Regular polygons can be created from a list with the line length,
+				angle, and repeat.
+			</p>
+			<p>
+				The formula for the angle of
+				a regular polygon is 360 / n, where n is the number of sides. Make
+				that angle negative to orient the polygon with one of its edges on top.
+			</p>
+			<p>
+				Try making a square shaped chain!
+			</p>
+		</div>
+		<script type="text/p5" name="pentagon chain" lines="7">
+function setup() {
+	createCanvas(500, 200);
+
+	//               (x, y, [length, angle, repeat])
+	let s = new Sprite(250, 100, [80, -72, 5]);
+	s.shape = 'chain';
+}
 	
+function draw() {
+	clear();
+}
+		</script>
+		<div>
+			<p>
+				Here's the code for making a regular star with five points.
+			</p>
+			<p>
+				Try changing the number of points!
+			</p>
+		</div>
+		<script type="text/p5" name="star" lines="6">
+function setup() {
+	createCanvas(500, 200);
+
+	//        ( x,  y, [l0, a0, l1, a1, repeat])
+	new Sprite(250, 100, [60, -72, 60, 144, 5]);
+}
+
+function draw() {
+	clear();
+}
+		</script>
+		<div>
+			<p>
+				Now you can see how the p5.play logo was made!
+			</p>
+		</div>
+		<script type="text/p5" name="p5.play logo" lines="5">
+function setup() {
+	createCanvas(500, 200);
+
+	new Sprite(250, 100, [40, 72, 40, -72, 40, 72, 5]);
 }
 
 function draw() {
