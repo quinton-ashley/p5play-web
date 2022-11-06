@@ -1,3 +1,36 @@
+:root {
+	--primary: #cdc8c2;
+	--secondary: #131516;
+	--bright: #eee;
+	--dark: #766e61;
+	--dark-pink: #a10d38;
+}
+
+.p5m-play {
+	border-color: transparent transparent transparent #81786a !important;
+}
+
+@media screen and (prefers-color-scheme: light) {
+	:root {
+		--primary: #000;
+		--secondary: #fff;
+		--bright: #000;
+	}
+}
+
+.p5-mini,
+.ace-xcode {
+	background-color: var(--secondary);
+	color: var(--primary);
+}
+
+.p5-mini,
+.p5-mini div {
+	border-color: var(--dark) !important;
+}
+
+/*	border-color: rgb(62, 68, 70);*/
+
 body {
 	display: flex;
 	margin: auto;
@@ -6,6 +39,8 @@ body {
 	font-family: sans-serif;
 	width: 1030px;
 	font-size: large;
+	background-color: var(--secondary);
+	color: var(--primary);
 }
 
 a {
@@ -33,6 +68,15 @@ nav img {
 	vertical-align: bottom;
 }
 
+nav .socials img:not(.github) {
+	opacity: 80%;
+}
+
+nav .discord-logo {
+	height: 28px;
+	border-radius: 40%;
+}
+
 nav .github {
 	background-color: #aaa;
 	border-radius: 50%;
@@ -46,7 +90,7 @@ nav .logo {
 
 nav a {
 	text-decoration: none;
-	color: #000;
+	color: var(--primary);
 	transition: 100ms;
 	padding-left: 5px;
 	padding-right: 5px;
@@ -106,7 +150,7 @@ code {
 	width: 100%;
 	margin-top: 2%;
 	margin-bottom: 2%;
-	border: #ed225d 2px solid;
+	border: var(--dark-pink) 2px solid;
 }
 
 .page>.break {
@@ -169,6 +213,12 @@ textarea {
 	white-space: pre;
 	overflow-wrap: normal;
 	overflow-x: scroll;
+	background-color: var(--secondary);
+	color: var(--primary);
+}
+
+center p {
+	text-align: center;
 }
 
 @media screen and (max-width: 1030px) {
@@ -191,3 +241,81 @@ textarea {
 		row-gap: 40px;
 	}
 }
+
+@font-face {
+	font-family: "bariol";
+	src: url("https://openprocessing.org/assets/fonts/Bariol_Webfont/Bariol_Light_Webfont/bariol_light-webfont.eot");
+	src: url("https://openprocessing.org/assets/fonts/Bariol_Webfont/Bariol_Light_Webfont/bariol_light-webfont.eot?#iefix") format("embedded-opentype"), url("https://openprocessing.org/assets/fonts/Bariol_Webfont/Bariol_Light_Webfont/bariol_light-webfont.woff") format("woff"), url("https://openprocessing.org/assets/fonts/Bariol_Webfont/Bariol_Light_Webfont/bariol_light-webfont.ttf") format("truetype"), url("https://openprocessing.org/assets/fonts/Bariol_Webfont/Bariol_Light_Webfont/bariol_light-webfont.svg#bariol_lightlight") format("svg");
+	font-display: fallback;
+}
+
+#discord-brand {
+	color: var(--primary);
+	display: flex;
+	align-items: center;
+	width: fit-content;
+}
+
+#discord-brand img {
+	opacity: 94%;
+	height: 48px
+}
+
+#discord-brand span {
+	font-size: 28px;
+	font-weight: bold;
+	margin-right: 14px;
+	color: var(--bright);
+}
+
+#discord-brand:hover,
+#discord-brand:hover span {
+	color: #ed225d;
+	text-decoration: none;
+}
+
+#discord-brand:hover img {
+	filter: sepia(100%) saturate(1000%) hue-rotate(76deg) invert() brightness(156%);
+}
+
+.bariol {
+	font-family: "bariol", "source sans pro", "helvetica";
+	font-weight: 300;
+	line-height: 1;
+	color: var(--primary);
+	font-size: 36px;
+}
+
+#editors {
+	margin-top: 32px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	gap: 32px;
+}
+
+.codepen-brand,
+.replit-brand,
+#discord-brand {
+	border-bottom: 1px solid transparent;
+}
+
+.codepen-brand:hover,
+.replit-brand:hover,
+#discord-brand:hover {
+	border-bottom: 1px solid #ed225d;
+}
+
+.replit-brand {
+	margin-right: 16px;
+	transform: scale(1.5);
+}
+
+/* 
+.day-mode .night {
+	display: none;
+}
+
+.night-mode .day {
+	display: none;
+} */

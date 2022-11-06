@@ -2,7 +2,7 @@
 
 The p5.play website is hosted at https://p5play.org and is maintained by @quinton-ashley. This repository contains the source code for the website.
 
-Want to display your own p5.js sketches on your website? Use [p5-mini][], a package I created for doing just that!
+Want to display your own mini p5.js sketches on your website? Use [p5-mini][], a package I created for doing just that!
 
 ## p5.play Development
 
