@@ -317,6 +317,10 @@ center p {
 	transform: scale(1.5);
 }
 
+.donate img {
+	margin-bottom: -6px;
+}
+
 /* 
 .day-mode .night {
 	display: none;
