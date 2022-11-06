@@ -207,7 +207,6 @@ footer {
 }
 
 textarea {
-	margin-top: 20px;
 	width: 100%;
 	font-family: monospace;
 	white-space: pre;
@@ -257,15 +256,22 @@ center p {
 }
 
 #discord-brand img {
-	opacity: 94%;
+	opacity: 82%;
 	height: 48px
+}
+
+.codepen-brand {
+	opacity: 82%;
 }
 
 #discord-brand span {
 	font-size: 28px;
 	font-weight: bold;
 	margin-right: 14px;
-	color: var(--bright);
+}
+
+#discord-brand:hover span {
+	color: var(--primary) !important;
 }
 
 #discord-brand:hover,
@@ -274,9 +280,9 @@ center p {
 	text-decoration: none;
 }
 
-#discord-brand:hover img {
+/* #discord-brand:hover img {
 	filter: sepia(100%) saturate(1000%) hue-rotate(76deg) invert() brightness(156%);
-}
+} */
 
 .bariol {
 	font-family: "bariol", "source sans pro", "helvetica";
