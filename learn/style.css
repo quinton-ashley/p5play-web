@@ -10,16 +10,32 @@
 	border-color: transparent transparent transparent #81786a !important;
 }
 
+.p5-mini .ace_cursor {
+	border-color: white !important;
+}
+
+.ace_numeric {
+	color: #ff1c5c !important;
+}
+
+.ace_scroller,
+.ace_active-line {
+	background-color: var(--secondary) !important;
+}
+
 @media screen and (prefers-color-scheme: light) {
 	:root {
 		--primary: #000;
 		--secondary: #fff;
 		--bright: #000;
 	}
+
+	.ace_cursor {
+		border-color: #000 !important;
+	}
 }
 
-.p5-mini,
-.ace-xcode {
+.p5-mini {
 	background-color: var(--secondary);
 	color: var(--primary);
 }
