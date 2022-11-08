@@ -4,6 +4,25 @@
 	--bright: #eee;
 	--dark: #766e61;
 	--dark-pink: #a10d38;
+	--margins: #181a1b;
+}
+
+html {
+	background-color: var(--margins);
+}
+
+body {
+	background-color: var(--secondary);
+	color: var(--primary);
+	display: flex;
+	margin: auto;
+	padding-left: 15px;
+	padding-right: 15px;
+	justify-content: center;
+	flex-wrap: wrap;
+	font-family: sans-serif;
+	width: 1030px;
+	font-size: large;
 }
 
 .p5m-play {
@@ -28,6 +47,7 @@
 		--primary: #000;
 		--secondary: #fff;
 		--bright: #000;
+		--margins: #eee;
 	}
 
 	.ace_cursor {
@@ -43,20 +63,6 @@
 .p5-mini,
 .p5-mini div {
 	border-color: var(--dark) !important;
-}
-
-/*	border-color: rgb(62, 68, 70);*/
-
-body {
-	display: flex;
-	margin: auto;
-	justify-content: center;
-	flex-wrap: wrap;
-	font-family: sans-serif;
-	width: 1030px;
-	font-size: large;
-	background-color: var(--secondary);
-	color: var(--primary);
 }
 
 a {
@@ -236,9 +242,11 @@ center p {
 	text-align: center;
 }
 
-@media screen and (max-width: 1030px) {
+@media screen and (max-width: 1060px) {
 	body {
-		width: 100%;
+		width: 98%;
+		padding-left: 1%;
+		padding-right: 1%;
 	}
 
 	.page {
@@ -248,7 +256,8 @@ center p {
 		row-gap: 40px;
 	}
 
-	.page>div {
+	.page>div,
+	.page>md {
 		width: 100%;
 	}
 
