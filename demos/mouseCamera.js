@@ -4,7 +4,7 @@
 let s1, s2;
 
 function setup() {
-	createCanvas(800, 400);
+	new Canvas(800, 400);
 
 	s1 = new Sprite(width / 2, height / 2, 100, 100);
 

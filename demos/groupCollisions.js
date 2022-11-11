@@ -20,7 +20,7 @@ function preload() {
 }
 
 function setup() {
-	createCanvas(800, 400);
+	new Canvas(800, 400);
 
 	for (let i = 0; i < 4; i++) {
 		// new box with a random position on the screen

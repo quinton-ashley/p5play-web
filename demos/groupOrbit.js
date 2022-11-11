@@ -1,7 +1,7 @@
 let blocks, dots, bounds;
 
 function setup() {
-	createCanvas(800, 800);
+	new Canvas(800, 800);
 
 	blocks = new Group();
 	blocks.shapeColor = 'yellow';

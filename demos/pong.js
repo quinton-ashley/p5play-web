@@ -6,7 +6,7 @@ let paddleL, paddleR, ball, wallTop, wallBottom;
 let serveSpeed = 10;
 
 function setup() {
-	createCanvas(800, 400);
+	new Canvas(800, 400);
 
 	allSprites.collider = 'static';
 	allSprites.shapeColor = color(255);

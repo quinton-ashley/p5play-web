@@ -1,7 +1,7 @@
 let player, dots;
 
 function setup() {
-	createCanvas(500, 50);
+	new Canvas(500, 50);
 
 	dots = new Group();
 	dots.shapeColor = 'yellow';

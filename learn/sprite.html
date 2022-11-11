@@ -41,7 +41,7 @@
 let sprite;
 
 function setup() {
-	createCanvas(200, 100);
+	new Canvas(200, 100);
 
 	sprite = new Sprite();
 	sprite.width = 50;
@@ -56,7 +56,7 @@ function draw() {
 let sprite;
 
 function setup() {
-	createCanvas(200, 100);
+	new Canvas(200, 100);
 
 	sprite = new Sprite();
 	sprite.diameter = 50;
@@ -74,11 +74,8 @@ function draw() {
 			<script type="text/p5" name="y" base="1">
 				sprite.y = 30;
 			</script>
-			<script type="text/p5" name="velocity.x" base="1">
-				sprite.vel.x = cos(frame);
-			</script>
-			<script type="text/p5" name="velocity.y">
-				sprite.vel.y = cos(frame);
+			<script type="text/p5" name="rotation">
+				sprite.rotation = 45;
 			</script>
 			<script type="text/p5" name="rotationSpeed">
 				sprite.rotationSpeed = 1;
@@ -86,6 +83,10 @@ function draw() {
 			<script type="text/p5" name="color" base="1">
 let c = color(0, 255, 0);
 sprite.color = c;
+			</script>
+			<script type="text/p5" name="textColor">
+sprite.textColor = 'blue';
+sprite.text = "Hello!";
 			</script>
 		</div>
 
@@ -97,14 +98,14 @@ sprite.color = c;
 				sprite.h = 80;
 			</script>
 			<script type="text/p5" name="diameter" base="1">
-				sprite.d = 75;
+				sprite.d = 80;
 			</script>
-			<script type="text/p5" name="rotation">
-				sprite.rotation = 45;
+			<script type="text/p5" name="radius">
+				sprite.r = 40;
 			</script>
-			<script type="text/p5" name="speed">
-sprite.direction = 45;
-sprite.speed = cos(frame);
+			<script type="text/p5" name="textSize">
+sprite.textSize = 40;
+sprite.text = "p5";
 			</script>
 			<script type="text/p5" name="visible">
 				sprite.visible = false;
@@ -114,26 +115,23 @@ sprite.speed = cos(frame);
 		<script type="text/md">
 ## Try it out!
 
-Try creating your own sprite `sprite = new Sprite()`. Have it be a circle with a diameter of 40. Position it so it touches the top right corner of the canvas. Change it's x and y velocities to have it move left and down.
+The code in the `setup` function is run by p5.js when the program starts. The p5.js `draw` function is run 60 times per second. `new Canvas()` is equivalent to the p5.js `createCanvas` function which is used to create a section of the screen the program can draw on.
 
-The code in the `setup` function is run by p5.js when the program starts. The p5.js `draw` function is run 60 times per second. The p5.js `createCanvas` function is used to create a section of the screen the program can draw on.
+Try making the `ball` sprite a blue circle with a diameter of 30 and place it at the top right corner of the canvas.
 		</script>
-		<script type="text/p5" name="Level 1 Challenge" horiz>
-let sprite;
+		<script type="text/p5" name="Level 0 Challenge" lines="13" horiz>
+let ball;
 
 function setup() {
-	createCanvas(200, 256);
+	new Canvas(200, 256);
+	ball = new Sprite();
+	// write your code here!
 
 }
 
 function draw() {
 	clear();
 }
-
-
-
-
-
 		</script>
 	</div>
 	<div id="page-1" class="page">
@@ -160,7 +158,7 @@ function draw() {
 let ball, floor;
 
 function setup() {
-	createCanvas(242, 200);
+	new Canvas(242, 200);
 	world.gravity.y = 10;
 
 	ball = new Sprite();
@@ -204,37 +202,34 @@ Try creating a sprite `peg` with a static collider and circle shape. Create a sp
 
 Note that `world` is created when p5.play loads, but by default the (x, y) gravity is (0, 0).
 		</script>
-		<script type="text/p5" name="Level 1 Challenge" horiz>
+		<script type="text/p5" name="Level 1 Challenge" lines="13" horiz>
 let peg, block;
 
 function setup() {
-	createCanvas(200, 256);
+	new Canvas(200, 256);
 
 }
 
 function draw() {
 	clear();
 }
-
-
-
 		</script>
 	</div>
 	<div id="page-2" class="page">
-		<script type="text/md">
-## Sprite movement
-
-There are a few ways to move a sprite. Note that directly changing a sprite's position teleports it.
-
-If you want a sprite to interact with other sprites while it's moving, change the sprite's x/y velocity, speed/direction, or use the move or moveTowards methods.
-
-Remember the p5.js setup function only runs once at the beginning of your sketch so move sprites in the p5.js draw function!
-		</script>
+		<div>
+			<h2>Sprite movement</h2>
+			<p>
+				Note that directly changing a sprite's position teleports it! Try clicking around this mini-example.
+			</p>
+			<p>
+				If you want a sprite to interact with other sprites while it's moving, don't teleport it!
+			</p>
+		</div>
 		<script type="text/p5" name="idle player" lines="11" hide base-3>
 let player, block;
 
 function setup() {
-	createCanvas(500, 100);
+	new Canvas(500, 100);
 
 	player = new Sprite();
 	player.diameter = 50;
@@ -253,24 +248,62 @@ if (mouse.presses()) {
 	player.y = mouse.y;
 }
 		</script>
-		<script type="text/p5" name="direction + speed" base="3">
-if (kb.presses(' ')) {
-	player.direction = 190;
-	player.speed = 3;
+		<div>
+			<p>
+				The <code>moveTo</code> function moves a sprite to a position at a consistent speed. The function can accept an
+				(x, y) position or object with (x, y) position properties. Speed can also be set
+				separately with the <code>sprite.speed</code> property.
+			</p>
+			<p>
+				Note that if the sprite encounters
+				resistance, its speed and direction will be affected and it may not reach the target position.
+			</p>
+		</div>
+		<script type="text/p5" name="moveTo" base="3">
+if (mouse.presses()) {
+	//        (position, speed)
+	player.moveTo(mouse, 8);
 }
 		</script>
+		<div>
+			<p>
+				Move the sprite indefinitely by setting it's direction and speed.
+			</p>
+		</div>
+		<script type="text/p5" name="direction + speed" base="3">
+player.direction = 190;
+player.speed = 2;
+		</script>
+		<div>
+			<p>
+				The <code>move</code> function takes a direction, speed, and distance. Direction and speed can be set
+				separately.
+			</p>
+		</div>
+		<script type="text/p5" name="move" base="3">
+if (kb.presses('ArrowLeft')) {
+	//    (direction, speed, distance)
+	player.move('left', 3, 50);
+}
+		</script>
+		<div>
+			<p>
+				You can also change the sprite's (x, y) velocities directly.
+			</p>
+		</div>
 		<script type="text/p5" name="velocity" base="3">
-if (kb.pressing('ArrowLeft')) player.vel.x = -5;
-else if (kb.pressing('ArrowRight')) player.vel.x = 5;
+if (kb.pressing('ArrowLeft')) player.vel.x = -3;
 else player.vel.x = 0;
 		</script>
+		<div>
+			<p>
+				The <code>moveTowards</code> function can accept an (x, y) position or object with (x, y) position properties.
+				It also takes a tracking distance. In this example the player moves towards the mouse by 10% of the distance to
+				the mouse on every p5.js draw call.
+			</p>
+		</div>
 		<script type="text/p5" name="moveTowards" base="3">
-player.moveTowards(mouse.x, mouse.y);
-				</script>
-		<script type="text/p5" name="move" base="3">
-if (mouse.held()) {
-	player.move(mouse.x, mouse.y, 8);
-}
+player.moveTowards(mouse, 0.10);
 		</script>
 	</div>
 	<div id="page-3" class="page">
@@ -282,25 +315,25 @@ You can use the `spriteArt` function to create pixel art images for your sprites
 The second input parameter to the `spriteArt` function is the scale of the image.
 			</script>
 		<script type="text/p5" name="smiley">
-	let smiley;
-	
-	function setup() {
-		createCanvas(500, 120);
-		let str = `
-	..yyyyyy
-	.yybyybyy
-	yyyyyyyyyy
-	yybyyyybyy
-	.yybbbbyy
-	..yyyyyy`;
-	
-		let img = spriteArt(str, 16);
-		smiley = new Sprite(img);
-	}
-	
-	function draw() {
-		clear();
-	}
+let smiley;
+
+function setup() {
+	new Canvas(500, 120);
+	let str = `
+..yyyyyy
+.yybyybyy
+yyyyyyyyyy
+yybyyyybyy
+.yybbbbyy
+..yyyyyy`;
+
+	smiley = new Sprite();
+	smiley.img = spriteArt(str, 16);
+}
+
+function draw() {
+	clear();
+}
 			</script>
 		<div>
 			<p>
@@ -308,30 +341,30 @@ The second input parameter to the `spriteArt` function is the scale of the image
 			</p>
 		</div>
 		<script type="text/p5" name="smiley">
-	let smiley;
-	
-	function setup() {
-		createCanvas(500, 120);
-		let str = `
-	..yyyyyy
-	.yybyybyy
-	yyyyyyyyyy
-	yybyyyybyy
-	.yybbbbyy
-	..yyyyyy`;
-	
-		let palette = {
-			'y': color(255, 220, 60),
-			'b': color(20)
-		};
-	
-		let img = spriteArt(str, 16, palette);
-		smiley = new Sprite(img);
-	}
-	
-	function draw() {
-		clear();
-	}
+let smiley;
+
+function setup() {
+	new Canvas(500, 120);
+	let str = `
+..yyyyyy
+.yybyybyy
+yyyyyyyyyy
+yybyyyybyy
+.yybbbbyy
+..yyyyyy`;
+
+	let palette = {
+		'y': color(255, 220, 60),
+		'b': color(20)
+	};
+
+	let img = spriteArt(str, 16, palette);
+	smiley = new Sprite(img);
+}
+
+function draw() {
+	clear();
+}
 					</script>
 	</div>
 	<div id="page-4" class="page">
@@ -360,7 +393,7 @@ function draw() {
 let box, circle;
 
 function setup() {
-	createCanvas(50, 200);
+	new Canvas(50, 200);
 	world.gravity.y = 10;
 
 	//             	( x,  y,  w,  h, collider)
@@ -384,7 +417,7 @@ function draw() {
 let ball, floor;
 
 function setup() {
-	createCanvas(80, 160);
+	new Canvas(80, 160);
 	world.gravity.y = 10;
 	
 	ball = new Sprite(40, 30, 50);
@@ -404,21 +437,17 @@ function draw() {
 				Try creating two sprites using the sprite constructor.
 			</p>
 		</div>
-		<script type="text/p5" name="Level 1 Challenge" horiz>
+		<script type="text/p5" name="Level 1 Challenge" lines="13" horiz>
 let sprite1, sprite2;
 
 function setup() {
-	createCanvas(50, 256);
+	new Canvas(50, 256);
 
 }
 
 function draw() {
 	clear();
 }
-
-
-
-
 		</script>
 	</div>
 	<div id="page-5" class="page">
@@ -435,7 +464,7 @@ On the first frame after two sprites collided, the `collided` function returns t
 let player, pillar;
 
 function setup() {
-	createCanvas(60, 342);
+	new Canvas(60, 342);
 	world.gravity.y = 10;
 	
 	pillar = new Sprite(30, 362, 30, 500, 'static');
@@ -455,7 +484,7 @@ function draw() {
 let block, floor;
 
 function setup() {
-	createCanvas(60, 342);
+	new Canvas(60, 342);
 	world.gravity.y = 10;
 	
 	block = new Sprite(30, 30);
@@ -478,7 +507,7 @@ function draw() {
 let block, floor;
 
 function setup() {
-	createCanvas(60, 342);
+	new Canvas(60, 342);
 	world.gravity.y = 10;
 	
 	block = new Sprite(30, 30);
@@ -500,7 +529,7 @@ function draw() {
 		</div>
 		<script type="text/p5" name="overlap" horiz lines="8" base-4>
 function setup() {
-	createCanvas(200, 128);
+	new Canvas(200, 128);
 
 	sprite1 = new Sprite(90, 50);
 	sprite2 = new Sprite(115, 75);
@@ -534,7 +563,7 @@ On the first frame after two sprites overlapped, the `overlapped` function retur
 let player, coin;
 
 function setup() {
-	createCanvas(500, 100);
+	new Canvas(500, 100);
 
 	coin = new Sprite(400, 50, 30);
 	coin.color = 'yellow';
@@ -557,11 +586,11 @@ function draw() {
 				Try making the blue sprite change to red only while overlapping with the red sprite.
 			</p>
 		</div>
-		<script type="text/p5" name="Level 1 Challenge" horiz>
+		<script type="text/p5" name="Level 1 Challenge" lines="20" horiz>
 let sprite1, sprite2;
 
 function setup() {
-	createCanvas(100, 400);
+	new Canvas(100, 400);
 	sprite1 = new Sprite(50, 50);
 	sprite1.color = 'blue';
 	sprite2 = new Sprite(50, 300);
@@ -598,7 +627,7 @@ function draw() {
 let floor, ball;
 
 function setup() {
-	createCanvas(500, 200);
+	new Canvas(500, 200);
 	world.gravity.y = 10;
 
 	//                ([vertex0, vertex1, vertex2, ...])
@@ -630,7 +659,7 @@ function draw() {
 let ground, ball;
 
 function setup() {
-	createCanvas(500, 200);
+	new Canvas(500, 200);
 	world.gravity.y = 10;
 
 	//                 (x, y, [distance0, distance1, ...])
@@ -667,7 +696,7 @@ function draw() {
 let shelf, orb;
 
 function setup() {
-	createCanvas(500, 200);
+	new Canvas(500, 200);
 	world.gravity.y = 10;
 
 	//                (x, y, [length0, angle0, length1, ...])
@@ -697,7 +726,7 @@ function draw() {
 		</div>
 		<script type="text/p5" name="pentagon" lines="6">
 function setup() {
-	createCanvas(500, 200);
+	new Canvas(500, 200);
 
 	//        ( x,  y, sideLength, polygonName)
 	new Sprite(250, 100, 80, 'pentagon');
@@ -715,7 +744,7 @@ function draw() {
 		</div>
 		<script type="text/p5" name="irregular polygon" lines="6">
 function setup() {
-	createCanvas(500, 200);
+	new Canvas(500, 200);
 
 	new Sprite([[8, 8], [140, 192], [492, 90], [8, 8]]);
 }
@@ -744,7 +773,7 @@ function draw() {
 		</div>
 		<script type="text/p5" name="pentagon chain" lines="7">
 function setup() {
-	createCanvas(500, 200);
+	new Canvas(500, 200);
 
 	//               (x, y, [length, angle, repeat])
 	let s = new Sprite(250, 100, [80, -72, 5]);
@@ -765,7 +794,7 @@ function draw() {
 		</div>
 		<script type="text/p5" name="star" lines="6">
 function setup() {
-	createCanvas(500, 200);
+	new Canvas(500, 200);
 
 	//        ( x,  y, [l0, a0, l1, a1, repeat])
 	new Sprite(250, 100, [60, -72, 60, 144, 5]);
@@ -782,7 +811,7 @@ function draw() {
 		</div>
 		<script type="text/p5" name="p5.play logo" lines="5">
 function setup() {
-	createCanvas(500, 200);
+	new Canvas(500, 200);
 
 	new Sprite(250, 100, [40, 72, 40, -72, 40, 72, 5]);
 }
@@ -822,7 +851,7 @@ function draw() {
 let face, stretchy;
 
 function setup() {
-	createCanvas(500, 200);
+	new Canvas(500, 200);
 	noStroke();
 
 	face = loadImage('assets/face.png');

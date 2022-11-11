@@ -3,7 +3,7 @@
 let ball, walls;
 
 function setup() {
-	createCanvas(800, 400);
+	new Canvas(800, 400);
 
 	/* FIX */
 	// by default the velocity threshold is higher to avoid jittering on

@@ -3,7 +3,7 @@
 let clouds, ghosts, asterisk;
 
 function setup() {
-	createCanvas(800, 400);
+	new Canvas(800, 400);
 
 	// Most games have sprites that have similar properties and behaviors,
 	// such as the ghosts in PacMan. Use sprite groups to easily create

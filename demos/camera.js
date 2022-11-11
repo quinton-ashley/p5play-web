@@ -29,7 +29,7 @@ function preload() {
 }
 
 function setup() {
-	createCanvas(800, 400);
+	new Canvas(800, 400);
 
 	// create some background for visual reference
 	for (let i = 0; i < 80; i++) {

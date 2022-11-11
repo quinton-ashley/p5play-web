@@ -4,7 +4,7 @@
 let walls, paddle, ball, bricks, hasStarted;
 
 function setup() {
-	createCanvas(800, 600);
+	new Canvas(800, 600);
 
 	allSprites.collider = 'static';
 	allSprites.shapeColor = color(255);

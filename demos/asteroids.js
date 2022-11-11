@@ -22,7 +22,7 @@ function preload() {
 }
 
 function setup() {
-	createCanvas(800, 800);
+	new Canvas(800, 800);
 
 	ship.overlap(lasers);
 

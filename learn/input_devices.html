@@ -42,7 +42,7 @@ These input devices all use the same functions for getting the state of an input
 		</script>
 		<script type="text/p5" name="hidden" base-0 hide>
 function setup() {
-	createCanvas(240, 100);
+	new Canvas(240, 100);
 	frameRate(30);
 	kb.holdThreshold = 6;
 }
@@ -100,7 +100,7 @@ Some keyboards don't start with QWERTY on the top row. p5.play maps other keyboa
 let player;
 
 function setup() {
-	createCanvas(500, 160);
+	new Canvas(500, 160);
 	player = new Sprite();
 }
 
@@ -137,7 +137,7 @@ function draw() {
 let sprite;
 
 function setup() {
-	createCanvas(500, 100);
+	new Canvas(500, 100);
 	sprite = new Sprite();
 }
 
@@ -169,7 +169,7 @@ Note that `mouse.x` is the x position of the mouse on the canvas and `sprite.mou
 let sprite;
 
 function setup() {
-	createCanvas(500, 100);
+	new Canvas(500, 100);
 	sprite = new Sprite();
 }
 
@@ -211,7 +211,7 @@ Try it out! Press any button on your connected game controller for it to be dete
 let sprite;
 
 function setup() {
-	createCanvas(500, 200);
+	new Canvas(500, 200);
 	sprite = new Sprite(250, 100, 10, 10);
 }
 

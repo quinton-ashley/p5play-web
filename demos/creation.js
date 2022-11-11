@@ -11,7 +11,7 @@
 
 // p5.js runs this function one time when its ready to start your program
 function setup() {
-	createCanvas(800, 400);
+	new Canvas(800, 400);
 }
 
 // p5.js runs this function over and over in a loop,

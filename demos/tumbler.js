@@ -1,7 +1,7 @@
 let tumbler, x, y, sides, len, angle;
 
 function setup() {
-	createCanvas(800, 400);
+	new Canvas(800, 400);
 	world.gravity.y = 10;
 
 	x = width * 0.5;

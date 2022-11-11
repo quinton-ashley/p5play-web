@@ -1,7 +1,7 @@
 let block, platform;
 
 function setup() {
-	createCanvas(60, 400);
+	new Canvas(60, 400);
 	world.gravity.y = 10;
 
 	block = new Sprite(30, 30);

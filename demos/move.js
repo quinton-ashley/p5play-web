@@ -1,7 +1,7 @@
 let player, block;
 
 function setup() {
-	createCanvas(800, 500);
+	new Canvas(800, 500);
 
 	player = new Sprite();
 	player.diameter = 50;

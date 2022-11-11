@@ -1,5 +1,5 @@
 function setup() {
-	createCanvas(800, 200);
+	new Canvas(800, 200);
 
 	// 12 is the maximum number of sides a polygon
 	// can have in planck.js

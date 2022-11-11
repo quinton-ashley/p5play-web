@@ -5,7 +5,7 @@ function preload() {
 }
 
 function setup() {
-	createCanvas(800, 400);
+	new Canvas(800, 400);
 
 	new Sprite(icon, 100, 100);
 }

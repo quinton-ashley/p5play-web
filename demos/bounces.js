@@ -27,7 +27,7 @@ function preload() {
 }
 
 function setup() {
-	createCanvas(800, 400);
+	new Canvas(800, 400);
 
 	// bounciness is the dispersion of energy at each bounce
 	// if = 1 the circles will bounce forever

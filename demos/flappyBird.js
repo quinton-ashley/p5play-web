@@ -12,7 +12,7 @@ function preload() {
 }
 
 function setup() {
-	createCanvas(400, 600);
+	new Canvas(400, 600);
 
 	bird = new Sprite(birdImg, 0, height / 2, 24);
 

@@ -5,7 +5,7 @@ let score = 0;
 let count = 0;
 
 function setup() {
-	createCanvas(800, 200);
+	new Canvas(800, 200);
 
 	let centerX = width * 0.5;
 

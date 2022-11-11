@@ -1,7 +1,7 @@
 let sides;
 
 function setup() {
-	createCanvas(800, 400);
+	new Canvas(800, 400);
 
 	sides = 3;
 	makePoly();

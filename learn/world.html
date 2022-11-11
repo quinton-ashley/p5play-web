@@ -41,7 +41,7 @@ By default sprites are removed from the world when they go 10000 pixels offscree
 let ball, floor;
 
 function setup() {
-	createCanvas(80, 256);
+	new Canvas(80, 256);
 	world.gravity.y = 10;
 	ball = new Sprite(40, 30, 50);
 	floor = new Sprite(40, 155, 80, 5, 'static');
@@ -57,7 +57,7 @@ function draw() {
 let ball, floor;
 
 function setup() {
-	createCanvas(80, 256);
+	new Canvas(80, 256);
 	world.gravity.y = 10;
 	world.allowSleeping = false;
 	ball = new Sprite(40, 30, 50);

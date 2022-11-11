@@ -1,7 +1,7 @@
 let boxes, cursor;
 
 function setup() {
-	createCanvas(800, 400);
+	new Canvas(800, 400);
 
 	boxes = new Group();
 	boxes.w = 40;

@@ -5,7 +5,7 @@ function preload() {
 }
 
 function setup() {
-	createCanvas(800, 400);
+	new Canvas(800, 400);
 	world.gravity.y = 10;
 
 	// angled platforms to drop sprites onto

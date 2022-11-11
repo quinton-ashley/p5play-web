@@ -1,7 +1,7 @@
 let circles, bigCircles, littleCircles, walls;
 
 function setup() {
-	createCanvas(400, 400);
+	new Canvas(400, 400);
 
 	// by default the velocity threshold is higher to avoid jittering on
 	// stationary objects, for a physics experiment like this no momentum

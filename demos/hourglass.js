@@ -1,7 +1,7 @@
 let hourglass;
 
 function setup() {
-	createCanvas(400, 400);
+	new Canvas(400, 400);
 	world.gravity.y = 10;
 
 	let centerX = width * 0.5;

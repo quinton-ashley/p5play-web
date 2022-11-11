@@ -31,7 +31,7 @@ function preload() {
 }
 
 function setup() {
-	createCanvas(800, 400);
+	new Canvas(800, 400);
 
 	// top and bottom walls
 	new walls.Sprite('small_platform', width / 2, 100);

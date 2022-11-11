@@ -1,5 +1,5 @@
 function setup() {
-	createCanvas(800, 400);
+	new Canvas(800, 400);
 
 	let centerX = width * 0.5;
 	let centerY = height * 0.5;

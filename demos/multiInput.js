@@ -5,7 +5,7 @@
 let asterisk, ghost, platform;
 
 function setup() {
-	createCanvas(800, 400);
+	new Canvas(800, 400);
 	world.gravity.y = 10;
 
 	ghost = new Sprite(600, 200, 'kinematic');

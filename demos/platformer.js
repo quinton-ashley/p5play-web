@@ -53,7 +53,7 @@ function resetPlayer() {
 }
 
 function setup() {
-	createCanvas(800, 400);
+	new Canvas(800, 400);
 
 	// Load tiles sprite sheet from frames array once frames array is ready
 	tiles = new Group();

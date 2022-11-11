@@ -41,7 +41,7 @@
 let dots;
 
 function setup() {
-	createCanvas(500, 50);
+	new Canvas(500, 50);
 
 	dots = new Group();
 	dots.color = 'yellow';
@@ -92,7 +92,7 @@ dots.moveTowards(mouse.x, mouse.y);
 let player, gems;
 
 function setup() {
-	createCanvas(160, 352);
+	new Canvas(160, 352);
 
 	gems = new Group();
 	gems.diameter = 10;
@@ -118,7 +118,7 @@ function draw() {
 let doors, rail;
 
 function setup() {
-	createCanvas(500, 150);
+	new Canvas(500, 150);
 
 	doors = new Group();
 	doors.x = (i) => i * 55;
@@ -154,7 +154,7 @@ function draw() {
 let player, gems;
 
 function setup() {
-	createCanvas(160, 456);
+	new Canvas(160, 456);
 
 	gems = new Group();
 	gems.diameter = 10;
@@ -188,7 +188,7 @@ function draw() {
 let box, circle;
 
 function setup() {
-	createCanvas(50, 232);
+	new Canvas(50, 232);
 	box = new Sprite(25, 70, 10, 90);
 	circle = new Sprite(25, 140, 10);
 }

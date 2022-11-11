@@ -2,7 +2,7 @@ let ball, platform;
 let gridSize = 32;
 
 function setup() {
-	createCanvas(800, 400);
+	new Canvas(800, 400);
 	// error can be fixed by setting gravity to 10
 	// but sometimes it still breaks
 	// depending on the size of the ball and platform
