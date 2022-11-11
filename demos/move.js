@@ -16,6 +16,6 @@ function draw() {
 	// depending on how the player hits the block
 	// it either can reach the destination or not
 	if (mouse.presses()) {
-		player.move(mouse.x, mouse.y, 8);
+		player.moveTo(mouse, 8);
 	}
 }
