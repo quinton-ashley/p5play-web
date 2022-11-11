@@ -222,7 +222,7 @@ function draw() {
 				Note that directly changing a sprite's position teleports it! Try clicking around this mini-example.
 			</p>
 			<p>
-				If you want a sprite to interact with other sprites while it's moving, don't teleport it!
+				Don't teleport a sprite if you want it to physically interact with other sprites while it's moving.
 			</p>
 		</div>
 		<script type="text/p5" name="idle player" lines="11" hide base-3>
@@ -250,7 +250,10 @@ if (mouse.presses()) {
 		</script>
 		<div>
 			<p>
-				The <code>moveTo</code> function moves a sprite to a position at a consistent speed. The function can accept an
+				The <code>moveTo</code> function moves a sprite to a position, at a constant speed.
+			</p>
+			<p>
+				The function can accept an
 				(x, y) position or object with (x, y) position properties. Speed can also be set
 				separately with the <code>sprite.speed</code> property.
 			</p>
@@ -269,6 +272,11 @@ if (mouse.presses()) {
 			<p>
 				Move the sprite indefinitely by setting it's direction and speed.
 			</p>
+			<p>
+				You can set a sprite's direction using an angle value or direction name: 'up', 'down', 'left', 'right',
+				'upLeft',
+				'upRight', 'downLeft', 'downRight'.
+			</p>
 		</div>
 		<script type="text/p5" name="direction + speed" base="3">
 player.direction = 190;
@@ -276,7 +284,10 @@ player.speed = 2;
 		</script>
 		<div>
 			<p>
-				The <code>move</code> function takes a direction, speed, and distance. Direction and speed can be set
+				The <code>move</code> function moves a sprite in a direction, at a fixed speed, across a distance.
+			</p>
+			<p>
+				Direction and speed can be set
 				separately.
 			</p>
 		</div>
@@ -297,8 +308,11 @@ else player.vel.x = 0;
 		</script>
 		<div>
 			<p>
-				The <code>moveTowards</code> function can accept an (x, y) position or object with (x, y) position properties.
-				It also takes a tracking distance. In this example the player moves towards the mouse by 10% of the distance to
+				The <code>moveTowards</code> function moves a sprite towards a position, at a percentage of the distance to that
+				position.
+			</p>
+			<p>
+				In this example the player moves towards the mouse by 10% of the distance to
 				the mouse on every p5.js draw call.
 			</p>
 		</div>
