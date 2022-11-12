@@ -86,14 +86,13 @@ a:hover {
 }
 
 nav a {
-	color: var(--pink);
-	/* -webkit-text-stroke: 1px var(--pink); */
+	color: var(--blue);
+	-webkit-text-stroke: 1px var(--pink);
 	text-shadow: 3px 3px 0px var(--blue);
 }
 
 h3 a {
 	color: var(--pink);
-	/* -webkit-text-stroke: 1px var(--blue); */
 	text-shadow: 4px 4px 0px var(--blue);
 }
 
