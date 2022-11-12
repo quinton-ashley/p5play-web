@@ -73,7 +73,7 @@ p5m.ready = function () {
 		let page = document.getElementById('page-' + pageNum);
 		page.style.display = 'flex';
 		p5m.loadMinis(page);
-		if (!window.matchMedia('prefers-color-scheme: light').matches) {
+		if (window.matchMedia('prefers-color-scheme: dark').matches) {
 			for (let mini of p5m.minis) {
 				mini.editor.setTheme('ace/theme/dracula');
 			}
