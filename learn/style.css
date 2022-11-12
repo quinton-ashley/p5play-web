@@ -1,17 +1,33 @@
-body {
-	--primary: #cdc8c2;
-	--secondary: #131516;
-	--bright: #eee;
-	--dark: #766e61;
+html {
+	--pink: #ed225d;
+	--bright-pink: #ff1c5c;
 	--dark-pink: #a10d38;
-	--margins: #181a1b;
-}
 
-body.light {
+	--blue: #c0eeff;
+
 	--primary: #000;
 	--secondary: #fff;
 	--bright: #000;
+	--dark: #d1cdc9;
 	--margins: #eee;
+}
+
+html:has(body.dark) {
+	--primary: #cdc8c2;
+	--secondary: #131516;
+
+	--bright: #eee;
+	--dark: #66615a;
+	--margins: #242424;
+}
+
+body.dark {
+	--primary: #cdc8c2;
+	--secondary: #131516;
+
+	--bright: #eee;
+	--dark: #66615a;
+	--margins: #242424;
 }
 
 html {
@@ -33,24 +49,20 @@ body {
 }
 
 .p5m-play {
-	border-color: transparent transparent transparent #81786a !important;
+	border-color: transparent transparent transparent var(--dark) !important;
 }
 
 .p5-mini .ace_cursor {
-	border-color: white !important;
+	border-color: var(--primary) !important;
 }
 
 .ace_numeric {
-	color: #ff1c5c !important;
+	color: var(--bright-pink) !important;
 }
 
 .ace_scroller,
 .ace_active-line {
 	background-color: var(--secondary) !important;
-}
-
-body.light .ace_cursor {
-	border-color: #000 !important;
 }
 
 .p5-mini {
@@ -64,13 +76,25 @@ body.light .ace_cursor {
 }
 
 a {
-	color: #ed225d;
+	color: var(--pink);
 	text-decoration: none;
 	cursor: pointer;
 }
 
 a:hover {
 	text-decoration: underline;
+}
+
+nav a {
+	color: var(--pink);
+	/* -webkit-text-stroke: 1px var(--pink); */
+	text-shadow: 3px 3px 0px var(--blue);
+}
+
+h3 a {
+	color: var(--pink);
+	/* -webkit-text-stroke: 1px var(--blue); */
+	text-shadow: 4px 4px 0px var(--blue);
 }
 
 nav {
@@ -110,7 +134,6 @@ nav .logo {
 
 nav a {
 	text-decoration: none;
-	color: var(--primary);
 	transition: 100ms;
 	padding-left: 5px;
 	padding-right: 5px;
@@ -133,7 +156,7 @@ nav a:hover {
 
 #topNav img:not(.logo):hover {
 	height: 40px;
-	box-shadow: 2px 2px 10px#ed225d;
+	box-shadow: 2px 2px 10px var(--pink);
 }
 
 p {
@@ -170,7 +193,8 @@ code {
 	width: 100%;
 	margin-top: 2%;
 	margin-bottom: 2%;
-	border: var(--dark-pink) 2px solid;
+	border: var(--pink) 2px solid;
+	box-shadow: 4px 4px 0px var(--blue);
 }
 
 .page>.break {
@@ -294,18 +318,16 @@ center p {
 }
 
 #discord-brand:hover span {
-	color: var(--primary) !important;
+	color: var(--pink);
 }
 
-#discord-brand:hover,
-#discord-brand:hover span {
-	color: #ed225d;
+#discord-brand:hover {
 	text-decoration: none;
 }
 
-/* #discord-brand:hover img {
-	filter: sepia(100%) saturate(1000%) hue-rotate(76deg) invert() brightness(156%);
-} */
+#discord-brand:hover img {
+	filter: sepia(100%) saturate(1000%) hue-rotate(80deg) invert() brightness(140%);
+}
 
 .bariol {
 	font-family: "bariol", "source sans pro", "helvetica";
@@ -342,6 +364,12 @@ center p {
 
 .donate img {
 	margin-bottom: -6px;
+}
+
+body.light .codepen-brand,
+body.light .discord-brand,
+body.light .discord-logo {
+	filter: invert(1);
 }
 
 /* 

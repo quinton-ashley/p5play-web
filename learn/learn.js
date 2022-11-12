@@ -14,10 +14,10 @@ window.p5m = {
 	autoLoad: false
 };
 
-if (window.matchMedia('prefers-color-scheme: light').matches) {
-	document.body.className = 'light';
-} else {
+if (window.matchMedia('prefers-color-scheme: dark').matches) {
 	document.body.className = 'dark';
+} else {
+	document.body.className = 'light';
 }
 
 p5m.ready = function () {
@@ -98,6 +98,15 @@ function setEditorThemes() {
 			mini.editor.setTheme('ace/theme/xcode');
 		}
 	}
+}
+
+function toggleDarkMode() {
+	if (document.body.className == 'dark') {
+		document.body.className = 'light';
+	} else {
+		document.body.className = 'dark';
+	}
+	setEditorThemes();
 }
 
 // function setup() {

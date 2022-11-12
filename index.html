@@ -15,7 +15,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.8.1/ace.min.js"></script>
 </head>
 
-<body>
+<body class="light">
 	<nav id="topNav">
 		<a href="index.html" class="active"><img src="logo.svg" class="logo">p5.play</a>
 		<span>:</span>
@@ -68,7 +68,7 @@
 let tumbler, x, y, sides, len, angle;
 
 function setup() {
-	createCanvas(500, 400);
+	new Canvas(500, 400);
 	world.gravity.y = 10;
 
 	x = width * 0.5;
@@ -77,36 +77,32 @@ function setup() {
 	len = height / sides;
 	angle = 360 / sides;
 
-	let s = [len, angle, len, -angle, len, angle, sides];
-	tumbler = new Sprite(x, y, s, 'kinematic');
+	let la = [len, angle, len, -angle, len, angle, sides];
+	tumbler = new Sprite(x, y, la, 'kinematic');
 	tumbler.rotationSpeed = 0.5;
-	tumbler.shapeColor = '#ed225d';
+	tumbler.color = '#ed225d';
 
 	allSprites.remove(tumbler);
 	dropSprite();
+	strokeJoin(ROUND);
 }
 
 function draw() {
 	clear();
-	text('Click to add items to the tumbler', 20, 20);
 
-	push();
 	strokeWeight(8);
-	strokeJoin(ROUND);
 	tumbler.draw();
-	pop();
 
+	if (mouse.presses()) dropSprite();
+
+	strokeWeight(1);
 	allSprites.draw();
 }
 
 function dropSprite() {
 	len = (height * random(0.1, 0.3)) / sides;
-	let penta = new Sprite(mouse.x || x, mouse.y || y, [len, angle, sides]);
-	penta.shapeColor = '#c0eeff';
-}
-
-function mousePressed() {
-	dropSprite();
+	let penta = new Sprite(mouse.x || x, mouse.y || y, len, 'pentagon');
+	penta.color = '#c0eeff';
 }
 		</script>
 
