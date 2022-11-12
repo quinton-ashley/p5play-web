@@ -14,6 +14,12 @@ window.p5m = {
 	autoLoad: false
 };
 
+if (window.matchMedia('prefers-color-scheme: light').matches) {
+	document.body.className = 'light';
+} else {
+	document.body.className = 'dark';
+}
+
 p5m.ready = function () {
 	let pages = document.getElementsByClassName('page');
 	let pageNav = document.getElementById('pageNav');
@@ -73,11 +79,7 @@ p5m.ready = function () {
 		let page = document.getElementById('page-' + pageNum);
 		page.style.display = 'flex';
 		p5m.loadMinis(page);
-		if (window.matchMedia('prefers-color-scheme: dark').matches) {
-			for (let mini of p5m.minis) {
-				mini.editor.setTheme('ace/theme/dracula');
-			}
-		}
+		setEditorThemes();
 		document.body.scrollTop = 0; // for Safari
 		document.documentElement.scrollTop = 0; // Chrome, Firefox, and Opera
 		currentPage = parseInt(pageNum);
@@ -85,6 +87,18 @@ p5m.ready = function () {
 
 	loadPage();
 };
+
+function setEditorThemes() {
+	if (document.body.className == 'dark') {
+		for (let mini of p5m.minis) {
+			mini.editor.setTheme('ace/theme/dracula');
+		}
+	} else {
+		for (let mini of p5m.minis) {
+			mini.editor.setTheme('ace/theme/xcode');
+		}
+	}
+}
 
 // function setup() {
 // 	noCanvas();
