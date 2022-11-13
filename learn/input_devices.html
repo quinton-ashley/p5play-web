@@ -106,20 +106,19 @@ function setup() {
 
 function draw() {
 	clear();
-	if (kb.pressing('up')) {
-		player.vel.y = -4;
-	} else if (kb.pressing('down')) {
-		player.vel.y = 4;
-	} else {
-		player.vel.y = 0;
-	}
+
+	player.speed = 3;
 	
-	if (kb.pressing('left')) {
-		player.vel.x = -4;
+	if (kb.pressing('up')) {
+		player.direction = -90;
+	} else if (kb.pressing('down')) {
+		player.direction = 90;
+	} else if (kb.pressing('left')) {
+		player.direction = 180;
 	} else if (kb.pressing('right')) {
-		player.vel.x = 4;
+		player.direction = 0;
 	} else {
-		player.vel.x = 0;
+	  player.speed = 0;
 	}
 }
 		</script>

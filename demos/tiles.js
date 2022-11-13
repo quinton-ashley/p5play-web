@@ -4,7 +4,7 @@ let gridSize = 32;
 function setup() {
 	new Canvas(384, 200);
 
-	allSprites.tileSize = 32;
+	allSprites.tileSize = gridSize;
 	allSprites.rotationLock = true;
 
 	player = new Sprite(1, 1);
@@ -44,8 +44,4 @@ function draw() {
 	if (kb.presses('d')) {
 		player.move('right');
 	}
-}
-
-function mousePressed() {
-	console.log(getSpriteAt(mouse.x, mouse.y));
 }

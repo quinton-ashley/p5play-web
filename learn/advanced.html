@@ -33,7 +33,19 @@
 This reference page highlights some of the more advanced features of p5.play.
 
 Please read all the other reference pages first!
+		</script>
+		<script type="text/md">
+## Canvas
 
+The `Canvas` class is a wrapper around the p5.play's version of the p5.js `createCanvas` function, which is used to create a canvas element and a p5.js drawing context. p5.play's version also provides a few extra features.
+
+If no parameters are passed to `new Canvas()`, it will create a canvas that fills the entire window.
+
+You can also pass an aspect ratio to the Canvas constructor. This will create the largest possible canvas that fits within the window, while maintaining the given aspect ratio. For example, `new Canvas('2:1')` will create a canvas that is twice as wide as it is tall.
+		</script>
+	</div>
+	<div id="page-1" class="page">
+		<script type="text/md">
 ## World
 
 By default sprites are removed from the world when they go 10000 pixels offscreen relative to the camera's position. To change this set `world.autoCull = false` and use the `group.cull` function to set a different cull boundary.
