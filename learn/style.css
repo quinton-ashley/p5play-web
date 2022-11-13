@@ -22,6 +22,8 @@ html:has(body.dark) {
 }
 
 body.dark {
+	--blue: #002d3e;
+
 	--primary: #cdc8c2;
 	--secondary: #131516;
 
