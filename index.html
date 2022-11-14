@@ -18,19 +18,29 @@
 <body class="light">
 	<nav id="topNav">
 		<a href="index.html" class="active"><img src="logo.svg" class="logo">p5.play</a>
-		<span>:</span>
-		<a href="learn/sprite.html">Learn</a>
-		<a href="demos">Demos</a>
-		<a href="docs">Docs</a>
-		<a href="jam">Jam!</a>
-		<span>:</span>
-		<a class="socials" href="https://discord.gg/3UTbqUgmPF" target="_blank"><img class="discord-logo"
-				src="https://assets-global.website-files.com/6257adef93867e50d84d30e2/62595384f934b806f37f4956_145dc557845548a36a82337912ca3ac5.svg"
-				alt="Discord"></a>
-		<a class="socials" href="https://github.com/molleindustria/p5.play" target="_blank"><img
-				src="https://github.githubassets.com/favicons/favicon.svg" class="github" alt="GitHub"></a>
-		<a class="socials" href="https://www.npmjs.com/package/p5.play" target="_blank"><img
-				src="https://static.npmjs.com/1996fcfdf7ca81ea795f67f093d7f449.png" alt="npm"></a>
+		<span class="nav2">
+			<span class="colon">:</span>
+			<a href="learn/sprite.html">Learn</a>
+			<a href="demos">Demos</a>
+			<a href="docs">Docs</a>
+			<a href="jam">Jam!</a>
+			<span class="colon">:</span>
+			<a id="darkMode" onclick="toggleDarkMode()">
+				<div id="darkModeIcon"></div>
+			</a>
+			<span class="colon">:</span>
+			<a class="socials" href="https://discord.gg/3UTbqUgmPF" target="_blank">
+				<img class="discord-logo"
+					src="https://assets-global.website-files.com/6257adef93867e50d84d30e2/62595384f934b806f37f4956_145dc557845548a36a82337912ca3ac5.svg"
+					alt="Discord">
+			</a>
+			<a class="socials" href="https://github.com/molleindustria/p5.play" target="_blank">
+				<img src="https://github.githubassets.com/favicons/favicon.svg" class="github" alt="GitHub">
+			</a>
+			<a class="socials" href="https://www.npmjs.com/package/p5.play" target="_blank">
+				<img src="https://static.npmjs.com/1996fcfdf7ca81ea795f67f093d7f449.png" alt="npm">
+			</a>
+		</span>
 	</nav>
 	<div class="top big break"></div>
 
@@ -235,6 +245,7 @@ function dropSprite() {
 		<a href="../v2/index.html">Click here</a>.
 	</footer>
 
+	<script src="main.js"></script>
 	<script src="learn/p5-mini.js"></script>
 </body>
 

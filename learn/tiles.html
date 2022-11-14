@@ -11,6 +11,7 @@
 	<script src="../v3/planck.min.js"></script>
 	<script src="../v3/p5.play.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.8.1/ace.min.js"></script>
+
 </head>
 
 <body>
@@ -24,6 +25,10 @@
 		<a href="tiles.html" class="active">Tiles</a>
 		<a href="camera.html">Camera</a>
 		<a href="advanced.html">Adv</a>
+		<span class="colon">:</span>
+		<a id="darkMode" onclick="toggleDarkMode()">
+			<div id="darkModeIcon"></div>
+		</a>
 	</nav>
 
 	<div class="top break"></div>
@@ -185,6 +190,7 @@ function draw() {
 		Created by Quinton Ashley (@quinton-ashley) Copyright 2022.
 	</footer>
 
+	<script src="../main.js"></script>
 	<script src="learn.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 	<script src="md-tag-parser.js"></script>
