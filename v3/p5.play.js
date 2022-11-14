@@ -4853,6 +4853,8 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			}
 		}
 		img.updatePixels();
+		img.w = img.width;
+		img.h = img.height;
 		pInst.p5play.images.onLoad(img);
 		return img; // return the p5 graphics object
 	};
@@ -5092,7 +5094,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			let version = navigator.userAgent.substring(idx + 10, idx + 12);
 			this.p5play.version = version;
 			if (version < 16) {
-				pixelDensity(1);
+				pInst.pixelDensity(1);
 			}
 			this.p5play.os.platform = 'iOS';
 			this.p5play.os.version = version;
