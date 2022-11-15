@@ -23,10 +23,10 @@ function draw() {
 	// player.moveTowards(mouse.x, mouse.y);
 
 	if (player.mouse.hovers()) {
-		player.shapeColor = 'red';
+		player.color = 'red';
 	}
 
 	if (gems.mouse.hovers()) {
-		gems.shapeColor = 'green';
+		gems.color = 'green';
 	}
 }

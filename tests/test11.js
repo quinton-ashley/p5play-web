@@ -15,15 +15,15 @@ function setup() {
 }
 
 // function collect(player, gem) {
-// 	player.shapeColor = gem.shapeColor;
+// 	player.color = gem.color;
 // }
 
 function draw() {
 	clear();
 	if (player.overlapping(gems)) {
-		player.shapeColor = '#f00';
+		player.color = '#f00';
 	} else {
-		player.shapeColor = '#0f0';
+		player.color = '#0f0';
 	}
 	player.moveTowards(mouse.x, mouse.y);
 }
