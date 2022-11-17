@@ -304,11 +304,22 @@ center p {
 
 #discord-brand img {
 	opacity: 82%;
-	height: 48px
+	height: 56px
 }
 
 .codepen-brand {
 	opacity: 82%;
+}
+
+.openprocessing-brand,
+.glitch-brand {
+	color: var(--primary);
+	height: 32px;
+}
+
+.p5js-web-editor-brand {
+	height: 40px;
+	margin-bottom: -10px;
 }
 
 #discord-brand span {
@@ -325,16 +336,16 @@ center p {
 	text-decoration: none;
 }
 
-#discord-brand:hover img {
+/* #discord-brand:hover img {
 	filter: sepia(100%) saturate(1000%) hue-rotate(80deg) invert() brightness(140%);
-}
+} */
 
 .bariol {
 	font-family: "bariol", "source sans pro", "helvetica";
 	font-weight: 300;
 	line-height: 1;
 	color: var(--primary);
-	font-size: 36px;
+	font-size: 32px;
 }
 
 #editors {
@@ -345,16 +356,19 @@ center p {
 	gap: 32px;
 }
 
+.glitch-brand,
 .codepen-brand,
 .replit-brand,
 #discord-brand {
 	border-bottom: 1px solid transparent;
 }
 
+.glitch-brand:hover,
 .codepen-brand:hover,
 .replit-brand:hover,
 #discord-brand:hover {
-	border-bottom: 1px solid #ed225d;
+	color: var(--pink);
+	border-bottom: 1px solid var(--pink);
 }
 
 .replit-brand {
@@ -439,4 +453,27 @@ body.light .discord-logo {
 	.text-small {
 		font-size: 16px;
 	}
+
+	.p5js-web-editor-brand+span {
+		font-size: 16px;
+	}
+
+	.bariol {
+		font-size: 28px;
+	}
+
+	/* #editors {
+		gap: 48px;
+	}
+
+	.p5js-web-editor-brand,
+	.glitch-brand,
+	.codepen-brand,
+	.openprocessing-brand {
+		height: 64px;
+	}
+
+	.p5js-web-editor-brand {
+		margin-bottom: -20px;
+	} */
 }
