@@ -6,7 +6,9 @@
 	"logo": "../favicon.ico",
 	"options": {
 		"outdir": "docs",
-		"exclude": "docs,examples,lib,test,theme,docs,examples,v2,v4",
+		"paths": ["v3"],
+		"ignorePaths": ["planck"],
+		"exclude": "demos,docs,game,jam,learn,logos,tests,theme,v2,v4",
 		"themedir": "theme",
 		"helpers": ["theme/helpers/helpers.js"]
 	}

@@ -6,9 +6,13 @@
 	],
 	"description": "The website for p5.play",
 	"dependencies": {
-		"box2d-wasm": "npm:liquidfun-wasm@^7.0.0",
-		"p5": "^1.4.2",
-		"yuidocjs": "^0.10.2"
+		"p5": "^1.5.0",
+		"planck": "^1.0.0-alpha.4"
+	},
+	"devDependencies": {
+		"canvas": "^2.10.2",
+		"jest-cli": "^29.3.1",
+		"jest-environment-jsdom": "^29.3.1"
 	},
 	"license": "GPL-3.0-only",
 	"homepage": "https://github.com/quintos/p5play-web/tree/gh-pages",
@@ -19,5 +23,5 @@
 		"version": "git add -A",
 		"postversion": "git push"
 	},
-	"version": "1.1.232"
+	"version": "1.1.233"
 }

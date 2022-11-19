@@ -118,19 +118,26 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 	pl.Settings.velocityThreshold = 0.19;
 	let plScale = 60;
 
-	this.p5play = this.p5play || {};
+	this.p5play = this.p5play || {
+		os: {
+			emulated: false
+		}
+	};
 	this.p5play.autoDrawSprites ??= true;
 	this.p5play.autoUpdateSprites ??= true;
 	this.p5play.mouseTracking ??= true;
 	this.p5play.mouseSprite = null;
 	this.p5play.mouseSprites = [];
-	this.p5play.chainOrigin = &#x27;center&#x27;;
-	this.p5play.chainPoints = &#x27;relative&#x27;;
 	this.p5play.standardizeKeyboard = false;
 
 	const scaleTo = ({ x, y }, tileSize) =&gt; new pl.Vec2((x * tileSize) / plScale, (y * tileSize) / plScale);
+	const scaleXTo = (x, tileSize) =&gt; (x * tileSize) / plScale;
 	const scaleFrom = ({ x, y }, tileSize) =&gt; new pl.Vec2((x / tileSize) * plScale, (y / tileSize) * plScale);
 	const fixRound = (val) =&gt; (Math.abs(val - Math.round(val)) &lt;= pl.Settings.linearSlop ? Math.round(val) : val);
+	const isArrowFunction = (fn) =&gt;
+		!/^(?:(?:\/\*[^(?:\*\/)]*\*\/\s*)|(?:\/\/[^\r\n]*))*\s*(?:(?:(?:async\s(?:(?:\/\*[^(?:\*\/)]*\*\/\s*)|(?:\/\/[^\r\n]*))*\s*)?function|class)(?:\s|(?:(?:\/\*[^(?:\*\/)]*\*\/\s*)|(?:\/\/[^\r\n]*))*)|(?:[_$\w][\w0-9_$]*\s*(?:\/\*[^(?:\*\/)]*\*\/\s*)*\s*\()|(?:\[\s*(?:\/\*[^(?:\*\/)]*\*\/\s*)*\s*(?:(?:[&#x27;][^&#x27;]+[&#x27;])|(?:[&quot;][^&quot;]+[&quot;]))\s*(?:\/\*[^(?:\*\/)]*\*\/\s*)*\s*\]\())/.test(
+			fn.toString()
+		);
 
 	let spriteProps = [
 		&#x27;bounciness&#x27;,
@@ -225,8 +232,13 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 				args = args.slice(1);
 			}
 
-			if (args[0] !== undefined &amp;&amp; typeof args[0] !== &#x27;number&#x27;) {
-				// ani instanceof p5.Image
+			if (!args.length) this._noArgs = true;
+
+			if (
+				args[0] !== undefined &amp;&amp;
+				isNaN(args[0]) &amp;&amp;
+				(typeof args[0] == &#x27;string&#x27; || args[0] instanceof SpriteAnimation || args[0] instanceof p5.Image)
+			) {
 				// shift
 				ani = args[0];
 				args = args.slice(1);
@@ -243,6 +255,7 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 			w = args[2];
 			h = args[3];
 			collider = args[4];
+			this.originMode = &#x27;center&#x27;;
 
 			if (Array.isArray(x)) {
 				x = undefined;
@@ -252,12 +265,46 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 				collider = args[2];
 			}
 
-			if (Array.isArray(w) || (!isNaN(w) &amp;&amp; typeof h == &#x27;string&#x27;)) {
-				collider = h;
-				h = undefined;
+			// if (w is chain array) or (diameter/side length and h is a
+			// collider type or the name of a regular polygon)
+			if (Array.isArray(w) || typeof h == &#x27;string&#x27;) {
+				if (!isNaN(w)) w = Number(w);
+				if (typeof w != &#x27;number&#x27; &amp;&amp; Array.isArray(w[0])) {
+					this.originMode = &#x27;start&#x27;;
+				}
+				if (h !== undefined) {
+					let abr = h.slice(0, 2);
+					// h is a collider type
+					if (abr == &#x27;dy&#x27; || abr == &#x27;st&#x27; || abr == &#x27;ki&#x27; || abr == &#x27;no&#x27;) {
+						collider = h;
+					} else {
+						// h is the name of a regular polygon
+						if (h == &#x27;circle&#x27;) h == undefined;
+						else if (h == &#x27;triangle&#x27;) w = [w, -120, 3];
+						else if (h == &#x27;square&#x27;) w = [w, -90, 4];
+						else if (h == &#x27;pentagon&#x27;) w = [w, -72, 5];
+						else if (h == &#x27;hexagon&#x27;) w = [w, -60, 6];
+						else if (h == &#x27;septagon&#x27;) w = [w, -51.4285714286, 7];
+						else if (h == &#x27;octagon&#x27;) w = [w, -45, 8];
+						else if (h == &#x27;enneagon&#x27;) w = [w, -40, 9];
+						else if (h == &#x27;decagon&#x27;) w = [w, -36, 10];
+						else if (h == &#x27;hendecagon&#x27;) w = [w, -32.7272727273, 11];
+						else if (h == &#x27;dodecagon&#x27;) w = [w, -30, 12];
+					}
+					h = undefined;
+				}
 			} else if (isNaN(w)) {
 				collider = w;
 				w = undefined;
+			}
+
+			if (collider !== undefined) {
+				collider = collider.toLowerCase();
+				let abr = collider.slice(0, 2);
+				if (abr == &#x27;dy&#x27;) collider = &#x27;dynamic&#x27;;
+				if (abr == &#x27;st&#x27;) collider = &#x27;static&#x27;;
+				if (abr == &#x27;ki&#x27;) collider = &#x27;kinematic&#x27;;
+				if (abr == &#x27;no&#x27;) collider = &#x27;none&#x27;;
 			}
 
 			/**
@@ -299,15 +346,6 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 			 */
 			this.removed = false;
 
-			/**
-			 * The kind of shape: &#x27;box&#x27;, &#x27;circle&#x27;, &#x27;polygon&#x27;, or &#x27;chain&#x27;
-			 *
-			 * @property shape
-			 * @type {String}
-			 * @default box
-			 */
-			this.shape;
-
 			if (group) {
 				group.push(this);
 				if (!ani) {
@@ -325,7 +363,7 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 			if (group.static) collider ??= &#x27;static&#x27;;
 			collider ??= group.collider;
 
-			this.shape = group.shape;
+			this._shape = group.shape;
 
 			/**
 			 * Cycles before self removal.
@@ -503,7 +541,10 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 			}
 
 			x ??= group.x;
-			if (x === undefined) x = this.p.width / this.p.allSprites.tileSize / 2;
+			if (x === undefined) {
+				x = this.p.width / this.p.allSprites.tileSize / 2;
+				this._vertexMode = true;
+			}
 			y ??= group.y;
 			if (y === undefined) y = this.p.height / this.p.allSprites.tileSize / 2;
 			w ??= group.w || group.width || group.diameter;
@@ -523,19 +564,24 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 			} else {
 				this.w = w || (this.tileSize &gt; 1 ? 1 : 50);
 				this.h = h;
-				if (h === undefined) this.shape = &#x27;circle&#x27;;
-				else this.shape = &#x27;box&#x27;;
+				if (h === undefined) this._shape = &#x27;circle&#x27;;
+				else this._shape = &#x27;box&#x27;;
 			}
 
 			this._scale = 1;
 			this.previousPosition = { x, y };
 			this.dest = { x, y };
-			this.vel.x = 0;
-			this.vel.y = 0;
 			this._destIdx = 0;
 			this.drag = 0;
 			this.debug = false;
 			this._shift = {};
+
+			let gvx = group.vel.x || 0;
+			let gvy = group.vel.y || 0;
+			if (typeof gvx == &#x27;function&#x27;) gvx = gvx(group.length - 1);
+			if (typeof gvy == &#x27;function&#x27;) gvy = gvy(group.length - 1);
+			this.vel.x = gvx;
+			this.vel.y = gvy;
 
 			for (let prop of spriteProps) {
 				if (prop == &#x27;collider&#x27; || prop == &#x27;x&#x27; || prop == &#x27;y&#x27;) continue;
@@ -591,7 +637,9 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 				for (let prop in traits) {
 					let val = g[prop];
 					if (val === undefined) continue;
-					// if (typeof val == &#x27;function&#x27;) val = val();
+					if (typeof val == &#x27;function&#x27;) {
+						if (isArrowFunction(val)) val = val();
+					}
 					if (typeof val == &#x27;object&#x27;) {
 						this[prop] = Object.assign({}, val);
 					} else {
@@ -631,14 +679,6 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 		 * @param {Number} offsetY distance from the center of the sprite
 		 */
 		addCollider(offsetX, offsetY, w, h) {
-			if (!this.body) {
-				this.body = this.p.world.createBody({
-					position: scaleTo({ x: this.x, y: this.y }, this.tileSize),
-					type: this.collider
-				});
-				this.body.sprite = this;
-			}
-
 			let path, shape;
 
 			offsetX ??= 0;
@@ -684,8 +724,6 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 
 				// if the path is an array of position arrays
 				let usesVertices = Array.isArray(path[0]);
-				let originMode = this.p.p5play.chainOrigin;
-				let pointMode = this.p.p5play.chainPoints;
 
 				function checkVert() {
 					if (vert.x &lt; min.x) min.x = vert.x;
@@ -695,14 +733,18 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 				}
 
 				if (usesVertices) {
+					if (this._vertexMode) {
+						this.x = path[0][0];
+						this.y = path[0][1];
+					}
 					for (let i = 0; i &lt; path.length; i++) {
-						if (pointMode == &#x27;relative&#x27;) {
-							vert.x = path[i][0];
-							vert.y = path[i][1];
-						} else {
-							// absolute
+						if (this._vertexMode) {
+							if (i == 0) continue;
 							vert.x = path[i][0] - this.x;
 							vert.y = path[i][1] - this.y;
+						} else {
+							vert.x += path[i][0];
+							vert.y += path[i][1];
 						}
 						vecs.push({ x: vert.x, y: vert.y });
 						checkVert();
@@ -729,7 +771,8 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 				if (
 					Math.round(vert.x * 1e6) / 1e6 == 0 &amp;&amp;
 					Math.round(vert.y * 1e6) / 1e6 == 0 &amp;&amp;
-					vecs.length - 1 &lt;= pl.Settings.maxPolygonVertices
+					vecs.length - 1 &lt;= pl.Settings.maxPolygonVertices &amp;&amp;
+					this._shape != &#x27;chain&#x27;
 				) {
 					shape = &#x27;polygon&#x27;;
 				} else {
@@ -739,7 +782,8 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 				this._hw = w * 0.5;
 				h = max.y - min.y;
 				this._hh = h * 0.5;
-				if (originMode == &#x27;center&#x27;) {
+
+				if (this.originMode == &#x27;center&#x27;) {
 					for (let i = 0; i &lt; vecs.length; i++) {
 						let vec = vecs[i];
 						vecs[i] = new pl.Vec2(
@@ -748,7 +792,7 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 						);
 					}
 				} else {
-					// originMode is start
+					// origin is start
 					for (let i = 0; i &lt; vecs.length; i++) {
 						let vec = vecs[i];
 						vecs[i] = new pl.Vec2((vec.x * this.tileSize) / plScale, (vec.y * this.tileSize) / plScale);
@@ -769,11 +813,19 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 			props.density ??= this.density || 5;
 			props.friction ??= this.friction || 0.5;
 			props.restitution ??= this.bounciness || 0.2;
+
+			if (!this.body) {
+				this.body = this.p.world.createBody({
+					position: scaleTo({ x: this.x, y: this.y }, this.tileSize),
+					type: this.collider
+				});
+				this.body.sprite = this;
+			}
 			this.body.createFixture(props);
-			if (!this.shape) {
-				this.shape = shape;
+			if (!this._shape) {
+				this._shape = shape;
 			} else if (this.fixture.getNext()) {
-				this.shape = &#x27;combo&#x27;;
+				this._shape = &#x27;combo&#x27;;
 			}
 			if (shape == &#x27;circle&#x27;) this._diameter = w;
 			else {
@@ -796,6 +848,104 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 			this._colliding = {};
 			this._collided = {};
 			this._removeFixtures(false);
+		}
+
+		/**
+		 * Adds a joint between this sprite and another sprite.
+		 *
+		 * @method addJoint
+		 * @param {Sprite} spriteB the sprite to add a joint to
+		 * @param {String} [type] the type of joint
+		 * @param {Object} [props] the joint options
+		 */
+		addJoint(spriteB, type, props) {
+			let spriteA = this;
+			props ??= {};
+			/*
+			 * frequencyHz, dampingRatio, collideConnected, userData, ratio,
+			 * enableLimit, enableMotor, lowerAngle, maxMotorTorque
+			 * maxMotorForce, motorSpeed, referenceAngle, upperAngle, maxForce
+			 * maxTorque, localAxisA, angularOffset, joint1, joint2,
+			 * correctionFactor
+			 */
+			if (props.motorSpeed) props.enableMotor = true;
+
+			// function genProps(a, b) {
+			props = Object.assign(props, {
+				bodyA: spriteA.body,
+				bodyB: spriteB.body,
+				length: props.length != undefined ? scaleXTo(props.length) : null,
+				maxLength: props.maxLength != undefined ? scaleXTo(props.maxLength) : null,
+				lengthA: props.lengthA != undefined ? scaleXTo(props.lengthA) : null,
+				lengthB: props.lengthB != undefined ? scaleXTo(props.lengthB) : null,
+				groundAnchorA: props.groundAnchorA ? scaleXTo(props.groundAnchorA) : new pl.Vec2(0, 0),
+				groundAnchorB: props.groundAnchorB ? scaleXTo(props.groundAnchorB) : new pl.Vec2(0, 0),
+				upperTranslation: props.upperTranslation ? scaleXTo(props.upperTranslation) : 1,
+				lowerTranslation: props.lowerTranslation ? scaleXTo(props.lowerTranslation) : 1,
+				linearOffset: props.linearOffset ? scaleTo(props.linearOffset) : new pl.Vec2(0, 0)
+			});
+			if (props.anchorA) {
+				props.localAnchorA = scaleTo(props.anchorA);
+			} else if (props.localAnchorA) {
+				props.localAnchorA = scaleTo(props.localAnchorA);
+			} else {
+				props.localAnchorA = new pl.Vec2(0, 0);
+			}
+			if (props.anchorB) {
+				props.localAnchorB = scaleTo(props.anchorB);
+			} else if (props.localAnchorB) {
+				props.localAnchorB = scaleTo(props.localAnchorB);
+			} else {
+				props.localAnchorB = new pl.Vec2(0, 0);
+			}
+			// 	return props;
+			// }
+
+			type ??= &#x27;distance&#x27;;
+			let j;
+			if (type == &#x27;distance&#x27;) {
+				j = pl.DistanceJoint(props);
+			} else if (type == &#x27;orbit&#x27;) {
+				// let s = new Sprite([
+				// 	[spriteA.x, spriteA.y],
+				// 	[spriteB.x, spriteB.y]
+				// ]);
+				// s.overlaps(allSprites);
+				// j = pl.DistanceJoint(genProps(spriteA, s));
+				// this.p.world.createJoint(j);
+				// genProps(s, spriteB);
+				// j = pl.RevoluteJoint(props, s.body, spriteB.body, spriteB.body.getWorldCenter());
+			} else if (type == &#x27;pulley&#x27;) {
+				j = pl.PulleyJoint(props);
+			} else if (type == &#x27;wheel&#x27;) {
+				j = pl.WheelJoint(props);
+			} else if (type == &#x27;rope&#x27;) {
+				j = pl.RopeJoint(props);
+			} else if (type == &#x27;weld&#x27;) {
+				j = pl.WeldJoint(props);
+			} else if (type == &#x27;revolute&#x27;) {
+				j = pl.RevoluteJoint(props, spriteA.body, spriteB.body, spriteA.body.getWorldCenter());
+			} else if (type == &#x27;gear&#x27;) {
+				j = pl.GearJoint(props);
+			} else if (type == &#x27;friction&#x27;) {
+				j = pl.FrictionJoint(props);
+			} else if (type == &#x27;motor&#x27;) {
+				j = pl.MotorJoint(props);
+			} else if (type == &#x27;prismatic&#x27;) {
+				j = pl.PrismaticJoint(props);
+			} else if (type == &#x27;mouse&#x27;) {
+				/*j = new box2d.b2MouseJointDef();
+        j.bodyA = bodyA!=null?bodyA.body:b2world.CreateBody(new box2d.b2BodyDef());
+        j.bodyB = bodyB.body;
+        j.target = b2scaleTo(props.xy);
+        j.collideConnected = true;
+        j.maxForce = props.maxForce||(1000.0 * bodyB.body.GetMass());
+        j.frequencyHz = props.frequency||5;  // Try a value less than 5 (0 for no elasticity)
+        j.dampingRatio = props.damping||0.9; // Ranges between 0 and 1 (1 for no springiness)
+        bodyB.body.SetAwake(true);
+        bodyA=bodyB;*/
+			}
+			return this.p.world.createJoint(j);
 		}
 
 		/**
@@ -847,7 +997,9 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 				&#x27;dynamic&#x27;,
 				&#x27;static&#x27;,
 				&#x27;kinematic&#x27;,
-				&#x27;collider&#x27;
+				&#x27;collider&#x27;,
+				&#x27;heading&#x27;,
+				&#x27;direction&#x27;
 			];
 			for (let del of deletes) {
 				let i = props.indexOf(del);
@@ -946,9 +1098,20 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 
 		set collider(val) {
 			if (this._collider == val) return;
+			this._collider = val;
+			this._reset();
+		}
+
+		_reset() {
 			let bodyProps;
 			if (this._collider != &#x27;none&#x27;) {
 				bodyProps = this._cloneBodyProps();
+			}
+
+			let v;
+			if (this._shape == &#x27;chain&#x27; || this._shape == &#x27;polygon&#x27;) {
+				v = this._getVertices(true);
+				this._vertexMode = true;
 			}
 
 			// remove body
@@ -958,9 +1121,12 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 			}
 
 			// replace colliders and overlap sensors
-			this._collider = val;
 			if (this._collider != &#x27;none&#x27;) {
-				this.addCollider();
+				if (v) {
+					this.addCollider(0, 0, v);
+				} else {
+					this.addCollider();
+				}
 				if (this._hasOverlaps) {
 					this._createSensors();
 				}
@@ -970,6 +1136,12 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 			}
 		}
 
+		/**
+		 * The sprite&#x27;s current color. By default sprites get a random color.
+		 *
+		 * @property color
+		 * @type {p5.Color}
+		 */
 		get color() {
 			return this._color;
 		}
@@ -1036,6 +1208,27 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 			return this._direction;
 		}
 		set direction(val) {
+			if (typeof val == &#x27;string&#x27;) {
+				this._heading = val;
+
+				let dir = val.toLowerCase().replaceAll(/[ _-]/g, &#x27;&#x27;);
+				let dirs = {
+					up: -90,
+					down: 90,
+					left: 180,
+					right: 0,
+					upright: -45,
+					rightup: -45,
+					upleft: -135,
+					leftup: -135,
+					downright: 45,
+					rightdown: 45,
+					downleft: 135,
+					leftdown: 135
+				};
+				val = dirs[dir];
+			}
+
 			this._direction = val;
 			let speed = this.speed;
 			this.vel.x = this.p.cos(val) * speed;
@@ -1144,6 +1337,23 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 			for (let fxt = this.fixtureList; fxt; fxt = fxt.getNext()) {
 				fxt.setFriction(val);
 			}
+		}
+
+		/**
+		 * The sprite&#x27;s heading. This is a string that can be set to
+		 * &quot;up&quot;, &quot;down&quot;, &quot;left&quot;, &quot;right&quot;, &quot;upRight&quot;, &quot;upLeft&quot;, &quot;downRight&quot;
+		 *
+		 * It ignores cardinal direction word order, capitalization, spaces,
+		 * underscores, and dashes.
+		 *
+		 * @property heading
+		 * @type {String}
+		 */
+		get heading() {
+			return this._heading;
+		}
+		set heading(val) {
+			this.direction = val;
 		}
 
 		/**
@@ -1392,16 +1602,37 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 			this.body.applyTorque(val, true);
 		}
 
-		// get transform() {
-		// 	const t = this.body.getTransform();
-		// 	return { position: scaleFrom(t.p), angle: asin(t.q.s) };
-		// }
-		// set transform({ position, angle }) {
-		// 	this.body.setTransform(scaleTo(position), angle);
-		// }
-		// get world() {
-		// 	return this.body.getWorld();
-		// }
+		/**
+		 * The sprite&#x27;s vertices.
+		 *
+		 * @property vertices
+		 * @type {Array} An array of p5.Vector objects.
+		 */
+		get vertices() {
+			return this._getVertices();
+		}
+
+		_getVertices(output2DArrays) {
+			let s = this.body.getFixtureList().getShape();
+			let v = [...s.m_vertices];
+			if (s.m_type == &#x27;polygon&#x27;) v.unshift(v.at(-1));
+			let x = this.x;
+			let y = this.y;
+			if (this.originMode == &#x27;center&#x27;) {
+				let minX = Math.min(...v.map((v) =&gt; v.x));
+				let minY = Math.min(...v.map((v) =&gt; v.y));
+				x = this._hw + minX;
+				y = this._hh + minY;
+			}
+			for (let i = 0; i &lt; v.length; i++) {
+				let arr = [v[i].x * plScale + x, v[i].y * plScale + y];
+				if (output2DArrays) v[i] = arr;
+				else v[i] = pInst.createVector(arr[0], arr[1]);
+			}
+			return v;
+		}
+
+		// TODO set vertices
 
 		/**
 		 * The horizontal position of the sprite.
@@ -1555,14 +1786,14 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 				}
 				this.removeColliders();
 				this._h = undefined;
-				this.shape = undefined;
+				this._shape = undefined;
 				if (this._collider != &#x27;none&#x27;) {
 					this.addCollider(0, 0, val);
 					for (let prop in bodyProps) {
 						this[prop] = bodyProps[prop];
 					}
 				}
-				this.shape = &#x27;circle&#x27;;
+				this._shape = &#x27;circle&#x27;;
 			}
 			let scale = val / this._w;
 			this._w = val;
@@ -1582,19 +1813,28 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 			this.d = val;
 		}
 
+		/**
+		 * The radius of a circular sprite.
+		 * @property r
+		 * @type {Number}
+		 */
 		get r() {
 			return this._hw;
 		}
-
 		set r(val) {
-			throw new Error(&quot;Unable to change the value of radius directly, change the sprite&#x27;s diameter instead&quot;);
+			this.d = val * 2;
 		}
 
+		/**
+		 * The radius of a circular sprite.
+		 * @property radius
+		 * @type {Number}
+		 */
 		get radius() {
 			return this._hw;
 		}
 		set radius(val) {
-			throw new Error(&quot;Unable to change the value of radius directly, change the sprite&#x27;s diameter instead&quot;);
+			this.d = val * 2;
 		}
 
 		// TODO make this work for other shapes
@@ -1638,26 +1878,48 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 		 * @returns true if valid
 		 */
 		_isConvexPoly(vecs) {
-			for (let i = 0; i &lt; vecs.length; ++i) {
-				const i1 = i;
-				const i2 = i &lt; vecs.length - 1 ? i1 + 1 : 0;
-				const p = vecs[i1];
-				const e = pl.Vec2.sub(vecs[i2], p);
+			loopk: for (let k = 0; k &lt; 2; k++) {
+				if (k == 1) vecs = vecs.reverse();
+				for (let i = 0; i &lt; vecs.length; ++i) {
+					const i1 = i;
+					const i2 = i &lt; vecs.length - 1 ? i1 + 1 : 0;
+					const p = vecs[i1];
+					const e = pl.Vec2.sub(vecs[i2], p);
 
-				for (let j = 0; j &lt; vecs.length; ++j) {
-					if (j == i1 || j == i2) {
-						continue;
-					}
+					for (let j = 0; j &lt; vecs.length; ++j) {
+						if (j == i1 || j == i2) {
+							continue;
+						}
 
-					const v = pl.Vec2.sub(vecs[j], p);
-					const c = pl.Vec2.cross(e, v);
-					if (c &lt; 0.0) {
-						return false;
+						const v = pl.Vec2.sub(vecs[j], p);
+						const c = pl.Vec2.cross(e, v);
+						if (c &lt; 0.0) {
+							if (k == 0) continue loopk;
+							else return false;
+						}
 					}
 				}
+				break;
 			}
 
 			return true;
+		}
+
+		/**
+		 * The kind of shape: &#x27;box&#x27;, &#x27;circle&#x27;, &#x27;chain&#x27;, or &#x27;polygon&#x27;.
+		 *
+		 * @property shape
+		 * @type {String}
+		 * @default box
+		 */
+		get shape() {
+			return this._shape;
+		}
+
+		set shape(val) {
+			if (this._shape == val) return;
+			this._shape = val;
+			this._reset();
 		}
 
 		/**
@@ -1733,15 +1995,15 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 			if (this.animation &amp;&amp; !this.debug) {
 				this.animation.draw(0, 0, undefined, this._scale, this._scale);
 			} else if (this.fixture != null) {
-				if (this.shape == &#x27;chain&#x27;) this.p.stroke(this.color);
+				if (this._shape == &#x27;chain&#x27;) this.p.stroke(this.color);
 				for (let fxt = this.fixtureList; fxt; fxt = fxt.getNext()) {
 					this._drawFixture(fxt);
 				}
 			} else {
 				this.p.stroke(120);
-				if (this.shape == &#x27;box&#x27;) {
+				if (this._shape == &#x27;box&#x27;) {
 					this.p.rect(0, 0, this.w, this.h);
-				} else if (this.shape == &#x27;circle&#x27;) {
+				} else if (this._shape == &#x27;circle&#x27;) {
 					this.p.circle(0, 0, this.d);
 				}
 			}
@@ -1840,12 +2102,16 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 		/**
 		 * Set the velocity vector.
 		 *
-		 * @deprecated
-		 * @param {Number} x horizontal velocity
+		 * @param {Number} vector|x vector or horizontal velocity
 		 * @param {Number} y vertical velocity
 		 */
 		setVelocity(x, y) {
-			this.body.setLinearVelocity(new pl.Vec2(x, y));
+			if (typeof x == &#x27;object&#x27;) {
+				y = x.y;
+				x = x.x;
+			}
+			this.vel.x = x;
+			this.vel.y = y;
 		}
 
 		/**
@@ -1863,7 +2129,7 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 		 * @param {Number} [direction] angle
 		 */
 		setSpeed(speed, direction) {
-			console.warn(&#x27;setSpeed is deprecated. Set direction and set speed separately instead.&#x27;);
+			console.warn(&#x27;setSpeed is deprecated. Set sprite.direction and sprite.speed separately instead.&#x27;);
 			if (direction) this.direction = direction;
 			this.speed = speed;
 		}
@@ -1884,92 +2150,137 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 			this.vel.y += this.p.sin(angle) * speed;
 		}
 
-		getDirection() {
-			return this.direction;
-		}
-
 		/**
-		 * Move a sprite towards a position
+		 * Move a sprite towards a position.
 		 *
 		 * @method moveTowards
-		 * @param {Number} destX destination x
-		 * @param {Number} destY destination y
-		 * @param {Number} tracking 1 represents 1:1 tracking, the mouse moves to the destination immediately, 0 represents no tracking
+		 * @param {Number|Object} x|position destination x or any object with x and y properties
+		 * @param {Number} y destination y
+		 * @param {Number} tracking [optional] 1 represents 1:1 tracking, the mouse moves to the destination immediately, 0 represents no tracking. Default is 0.1 (10% tracking).
 		 */
-		moveTowards(destX, destY, tracking) {
-			if (!destX &amp;&amp; !destY) return;
-			tracking ??= 0.1;
-			// let vec = new pl.Vec2(0, 0);
-			if (destX !== undefined &amp;&amp; destX !== null) {
-				// vec.x = (destX - this.x) * tracking * this.tileSize * this.mass;
-				this.vel.x = (destX - this.x) * tracking * this.tileSize;
+		moveTowards(x, y, tracking) {
+			if (typeof x != &#x27;number&#x27;) {
+				let obj = x;
+				if (obj == this.p.mouse &amp;&amp; !this.p.mouse.active) return;
+				if (obj.x === undefined || obj.y === undefined) {
+					console.error(
+						&#x27;sprite.moveTowards/moveAway ERROR: movement destination not defined, object given with no x or y properties&#x27;
+					);
+					return;
+				}
+				tracking = y;
+				y = obj.y;
+				x = obj.x;
 			}
-			if (destY !== undefined &amp;&amp; destY !== null) {
+			if (x === undefined &amp;&amp; y === undefined) return;
+			tracking ??= 0.1;
+
+			// let vec = new pl.Vec2(0, 0);
+			if (x !== undefined &amp;&amp; x !== null) {
+				// vec.x = (destX - this.x) * tracking * this.tileSize * this.mass;
+				this.vel.x = (x - this.x) * tracking * this.tileSize;
+			}
+			if (y !== undefined &amp;&amp; y !== null) {
 				// vec.y = (destY - this.y) * tracking * this.tileSize * this.mass;
-				this.vel.y = (destY - this.y) * tracking * this.tileSize;
+				this.vel.y = (y - this.y) * tracking * this.tileSize;
 			}
 			// this.body.applyForce(vec, new pl.Vec2(0, 0));
 		}
 
 		/**
-		 * Move the sprite to a destination position or use a direction name:
-		 * &#x27;up&#x27;, &#x27;down&#x27;, &#x27;left&#x27;, &#x27;right&#x27;, &#x27;upLeft&#x27;, &#x27;upRight&#x27;, &#x27;downLeft&#x27;,
-		 * &#x27;downRight&#x27;
+		 * Move a sprite away from a position.
+		 *
+		 * @method moveAway
+		 * @param {Number|Object} x|position x or any object with x and y properties
+		 * @param {Number} y
+		 * @param {Number} repel [optional] the higher the value, the faster the sprite moves away. Default is 0.1 (10% repel).
+		 */
+		moveAway(x, y, repel) {
+			this.moveTowards(...arguments);
+			this.vel.x *= -1;
+			this.vel.y *= -1;
+		}
+
+		/**
+		 * Move the sprite a certain distance from its current position.
 		 *
 		 * @method move
-		 * @param {Number} destX destination x
-		 * @param {Number} destY destination y
-		 * @param {Number} speed scalar
-		 * @returns {Promise} resolves when the movement is complete
+		 * @param {Number|String} direction [optional]
+		 * @param {Number} speed [optional]
+		 * @param {Number} distance [optional]
+		 * @returns {Promise} resolves when the movement is complete or cancelled
 		 */
-		move(destX, destY, speed) {
-			if (typeof destX == &#x27;undefined&#x27;) {
+		move(direction, speed, distance) {
+			let dirNameMode = isNaN(arguments[0]);
+			if (arguments.length == 1) {
+				if (!dirNameMode) {
+					// move(distance)
+					direction = this.direction;
+					distance = arguments[0];
+				} else {
+					// move(direction)
+					this.direction = direction;
+				}
+			} else if (arguments.length &gt; 1) {
+				this.direction = direction;
+			}
+			distance ??= 1;
+			let x = this.x + this.p.cos(this.direction) * distance;
+			let y = this.y + this.p.sin(this.direction) * distance;
+			if (dirNameMode) {
+				x = Math.round(x);
+				y = Math.round(y);
+			}
+			return this.moveTo(x, y, speed);
+		}
+
+		/**
+		 * Move the sprite to a position.
+		 *
+		 * @method moveTo
+		 * @param {Number|Object} x|position destination x or any object with x and y properties
+		 * @param {Number} y destination y
+		 * @param {Number} speed [optional]
+		 * @returns {Promise} resolves when the movement is complete or cancelled
+		 */
+		moveTo(x, y, speed) {
+			if (typeof x == &#x27;undefined&#x27;) {
 				console.error(&#x27;sprite.move ERROR: movement direction or destination not defined&#x27;);
 				return;
 			}
+			if (typeof x != &#x27;number&#x27;) {
+				let obj = x;
+				if (obj == this.p.mouse &amp;&amp; !this.p.mouse.active) return;
+				if (obj.x === undefined || obj.y === undefined) {
+					console.error(
+						&#x27;sprite.moveTo ERROR: movement destination not defined, object given with no x or y properties&#x27;
+					);
+					return;
+				}
+				speed = y;
+				y = obj.y;
+				x = obj.x;
+			}
 			this.dest.x = this.x;
 			this.dest.y = this.y;
-			// if the sprite is moving stop it from moving in the direction it used to be moving in
-			// if (this.isMoving) {
-			// 	this.velocity.x = 0;
-			// 	this.velocity.y = 0;
-			// }
+
 			let direction = true;
-			// if destX is actually the direction (up, down, left, or right)
-			if (typeof destX == &#x27;string&#x27;) {
-				// shift input parameters over by one
-				speed = arguments[1];
-				direction = arguments[0];
-				if (direction == &#x27;up&#x27; || direction.slice(0, 2) == &#x27;up&#x27;) {
-					this.dest.y = Math.round(this.y - 1);
-				}
-				if (direction == &#x27;down&#x27; || direction.slice(0, 4) == &#x27;down&#x27;) {
-					this.dest.y = Math.round(this.y + 1);
-				}
-				if (direction == &#x27;left&#x27; || direction.includes(&#x27;Left&#x27;)) {
-					this.dest.x = Math.round(this.x - 1);
-				}
-				if (direction == &#x27;right&#x27; || direction.includes(&#x27;Right&#x27;)) {
-					this.dest.x = Math.round(this.x + 1);
-				}
-				destX = destY = false;
-				if (/(up|down)/.test(direction)) {
-					destY = true;
-				}
-				if (/(left|right)/.test(direction)) {
-					destX = true;
-				}
-				this.heading = direction;
-			} else {
-				if (destX == this.x) destX = false;
-				if (destX) this.dest.x = destX;
-				if (destY == this.y) destY = false;
-				if (destY) this.dest.y = destY;
+
+			if (x == this.x) x = false;
+			else {
+				this.dest.x = x;
+				x = true;
+			}
+			if (y == this.y) y = false;
+			else {
+				this.dest.y = y;
+				y = true;
 			}
 
 			this._destIdx++;
-			if (!destX &amp;&amp; !destY) return true;
+			if (!x &amp;&amp; !y) return true;
 
+			if (this.speed) speed ??= this.speed;
 			if (this.tileSize &gt; 1) speed ??= 0.1;
 			speed ??= 1;
 			if (speed &lt;= 0) {
@@ -1977,21 +2288,21 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 				speed = Math.abs(speed);
 			}
 
-			let dist = Math.max(Math.abs(this.x - this.dest.x), Math.abs(this.y - this.dest.y));
+			let a = this.dest.y - this.y;
+			let b = this.dest.x - this.x;
+			let c = Math.sqrt(a * a + b * b);
 
-			let percent = speed / dist;
+			let percent = speed / c;
 
-			this.vel.x = (this.dest.x - this.x) * percent;
-			this.vel.y = (this.dest.y - this.y) * percent;
-
-			let totalSpeed = Math.sqrt(this.vel.x ** 2 + this.vel.y ** 2);
+			this.vel.x = b * percent;
+			this.vel.y = a * percent;
 
 			// estimate how many frames it will take for the sprite
 			// to reach its destination
-			let frames = Math.floor(dist / totalSpeed) - 5;
+			let frames = Math.floor(c / speed) - 5;
 
 			// margin of error
-			let margin = totalSpeed + 0.01;
+			let margin = speed + 0.01;
 
 			let destIdx = this._destIdx;
 
@@ -1999,6 +2310,8 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 				let distX = margin + margin;
 				let distY = margin + margin;
 				do {
+					if (destIdx != this._destIdx) return;
+
 					await p5.prototype.delay();
 
 					// skip calculations if not close enough to destination yet
@@ -2007,27 +2320,16 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 						continue;
 					}
 
-					if (destIdx != this._destIdx) return;
-
 					// check if the sprite has reached its destination
 					distX = Math.abs(this.x - this.dest.x);
 					distY = Math.abs(this.y - this.dest.y);
-				} while ((destX &amp;&amp; distX &gt; margin) || (destY &amp;&amp; distY &gt; margin));
+				} while ((x &amp;&amp; distX &gt; margin) || (y &amp;&amp; distY &gt; margin));
 				// stop moving the sprite, snap to destination
 				if (distX &lt; margin) this.x = this.dest.x;
 				if (distY &lt; margin) this.y = this.dest.y;
 				this.vel.x = 0;
 				this.vel.y = 0;
 			})();
-		}
-
-		/**
-		 * Same as sprite.move
-		 *
-		 * @method moveTo
-		 */
-		moveTo(destX, destY, speed) {
-			return this.move(destX, destY, speed);
 		}
 
 		/**
@@ -2111,26 +2413,16 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 			if (anis.length == 1 &amp;&amp; Array.isArray(anis[0])) {
 				anis = anis[0];
 			}
-			let count = ++this._aniChanged;
-
-			for (let i = 0; i &lt; anis.length; i++) {
-				if (typeof anis[i] == &#x27;string&#x27;) anis[i] = { name: anis[i] };
-				let ani = anis[i];
-				if (ani.name[0] == &#x27;!&#x27;) {
-					ani.name = ani.name.slice(1);
-					ani.start = -1;
-					ani.end = 0;
-				}
-			}
 
 			let _ani = (name, start, end) =&gt; {
 				return new Promise((resolve) =&gt; {
 					this._changeAni(name);
-					if (start &lt; 0) {
-						start = this.animation.length + start;
-					}
+					if (start &lt; 0) start = this.animation.length + start;
 					if (start) this.animation.frame = start;
-					if (end != undefined) this.animation.goToFrame(end);
+
+					if (end !== undefined) this.animation.goToFrame(end);
+					else if (this.frame == this.lastFrame) resolve();
+
 					this.animation.onComplete = () =&gt; {
 						resolve();
 					};
@@ -2139,10 +2431,29 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 
 			for (let i = 0; i &lt; anis.length; i++) {
 				let ani = anis[i];
-				if (ani.name == &#x27;*&#x27;) {
-					if (count == this._aniChanged) i = 0;
-					continue;
+				if (ani instanceof SpriteAnimation || ani instanceof p5.Image) {
+					anis[i] = this.addAni(ani);
+					ani = anis[i];
 				}
+				if (typeof ani == &#x27;string&#x27;) {
+					anis[i] = { name: ani };
+					ani = anis[i];
+				}
+				if (ani.name[0] == &#x27;!&#x27;) {
+					ani.name = ani.name.slice(1);
+					ani.start = -1;
+					ani.end = 0;
+				}
+			}
+
+			// let count = ++this._aniChanged;
+
+			for (let i = 0; i &lt; anis.length; i++) {
+				let ani = anis[i];
+				// if () { // TODO repeat
+				// 	if (count == this._aniChanged) i = 0;
+				// 	continue;
+				// }
 				let { name, start, end } = ani;
 				await _ani(name, start, end);
 			}
@@ -2211,84 +2522,6 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 		toString() {
 			return &#x27;s&#x27; + this.idNum;
 		}
-
-		// createJoint(type, { body }, props, anchor) {
-		// 	let j;
-		// 	const bodyA = this;
-		// 	j = {
-		// 		bodyA: this.body,
-		// 		bodyB: body,
-		// 		length: props.length != undefined ? props.length / plScale : null,
-		// 		frequencyHz: props.frequencyHz,
-		// 		dampingRatio: props.dampingRatio,
-		// 		collideConnected: props.collideConnected,
-		// 		maxLength: props.maxLength != undefined ? props.maxLength / plScale : null,
-		// 		userData: props.userData,
-		// 		lengthA: props.lengthA != undefined ? props.lengthA / plScale : null,
-		// 		lengthB: props.lengthB != undefined ? props.lengthB / plScale : null,
-		// 		ratio: props.ratio,
-		// 		groundAnchorA: props.groundAnchorA ? scaleTo(props.groundAnchorA) : new pl.Vec2(0, 0),
-		// 		groundAnchorB: props.groundAnchorB ? scaleTo(props.groundAnchorB) : new pl.Vec2(0, 0),
-		// 		enableLimit: props.enableLimit,
-		// 		enableMotor: props.enableMotor,
-		// 		lowerAngle: props.lowerAngle,
-		// 		maxMotorTorque: props.maxMotorTorque,
-		// 		maxMotorForce: props.maxMotorForce,
-		// 		motorSpeed: props.motorSpeed,
-		// 		referenceAngle: props.referenceAngle,
-		// 		upperAngle: props.upperAngle,
-		// 		maxForce: props.maxForce,
-		// 		maxTorque: props.maxTorque,
-		// 		localAxisA: props.localAxisA,
-		// 		upperTranslation: props.upperTranslation ? props.upperTranslation / plScale : 1,
-		// 		lowerTranslation: props.lowerTranslation ? props.lowerTranslation / plScale : 1,
-		// 		angularOffset: props.angularOffset,
-		// 		joint1: props.joint1,
-		// 		joint2: props.joint2,
-		// 		correctionFactor: props.correctionFactor,
-		// 		linearOffset: props.linearOffset ? scaleTo(props.linearOffset) : new pl.Vec2(0, 0)
-		// 	};
-		// 	if (anchor) {
-		// 		j.localAnchorA = bodyA.body.getLocalPoint(scaleTo(anchor));
-		// 		j.localAnchorB = body.getLocalPoint(scaleTo(anchor));
-		// 	} else {
-		// 		j.localAnchorA = props.localAnchorA ? scaleTo(props.localAnchorA) : new pl.Vec2(0, 0);
-		// 		j.localAnchorB = props.localAnchorB ? scaleTo(props.localAnchorB) : new pl.Vec2(0, 0);
-		// 	}
-		// 	if (type == &#x27;distance&#x27;) {
-		// 		j = pl.DistanceJoint(j);
-		// 	} else if (type == &#x27;pulley&#x27;) {
-		// 		j = pl.PulleyJoint(j);
-		// 	} else if (type == &#x27;wheel&#x27;) {
-		// 		j = pl.WheelJoint(j);
-		// 	} else if (type == &#x27;rope&#x27;) {
-		// 		j = pl.RopeJoint(j);
-		// 	} else if (type == &#x27;weld&#x27;) {
-		// 		j = pl.WeldJoint(j);
-		// 	} else if (type == &#x27;revolute&#x27;) {
-		// 		j = pl.RevoluteJoint(j);
-		// 	} else if (type == &#x27;gear&#x27;) {
-		// 		j = pl.GearJoint(j);
-		// 	} else if (type == &#x27;friction&#x27;) {
-		// 		j = pl.FrictionJoint(j);
-		// 	} else if (type == &#x27;motor&#x27;) {
-		// 		j = pl.MotorJoint(j);
-		// 	} else if (type == &#x27;prismatic&#x27;) {
-		// 		j = pl.PrismaticJoint(j);
-		// 	} else if (type == &#x27;mouse&#x27;) {
-		// 		/*j = new box2d.b2MouseJointDef();
-		//         j.bodyA = bodyA!=null?bodyA.body:b2world.CreateBody(new box2d.b2BodyDef());
-		//         j.bodyB = bodyB.body;
-		//         j.target = b2scaleTo(props.xy);
-		//         j.collideConnected = true;
-		//         j.maxForce = props.maxForce||(1000.0 * bodyB.body.GetMass());
-		//         j.frequencyHz = props.frequency||5;  // Try a value less than 5 (0 for no elasticity)
-		//         j.dampingRatio = props.damping||0.9; // Ranges between 0 and 1 (1 for no springiness)
-		//         bodyB.body.SetAwake(true);
-		//         bodyA=bodyB;*/
-		// 	}
-		// 	return this.p.world.createJoint(j);
-		// }
 
 		_ensureCollide(target, callback) {
 			if (!(target instanceof Sprite) &amp;&amp; !(target instanceof Group)) {
@@ -2689,7 +2922,7 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 
 				let _this = this;
 
-				if (sheet instanceof p5.Image &amp;&amp; sheet.modified) {
+				if (sheet instanceof p5.Image &amp;&amp; sheet.width != 1 &amp;&amp; sheet.height != 1) {
 					this.spriteSheet = sheet;
 					_generateSheetFrames();
 				} else {
@@ -3282,8 +3515,8 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 						get() {
 							let val = _this[objProp][&#x27;_&#x27; + prop];
 							let i = _this.length - 1;
-							if (val === undefined &amp;&amp; this.p.world &amp;&amp; !_this._isAllSpritesGroup) {
-								let parent = this.p.world.groups[_this.parent];
+							if (val === undefined &amp;&amp; _this.p.world &amp;&amp; !_this._isAllSpritesGroup) {
+								let parent = _this.p.world.groups[_this.parent];
 								if (parent) {
 									val = parent[objProp][prop];
 									i = parent.length - 1;
@@ -3511,9 +3744,9 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 		}
 
 		/**
-		 * @method move
+		 * @method moveTo
 		 */
-		move(x, y, speed) {
+		moveTo(x, y, speed) {
 			let centroid = this.centroid;
 			let movements = [];
 			for (let s of this) {
@@ -3530,6 +3763,12 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 		 * @method moveTowards
 		 */
 		moveTowards(x, y, tracking) {
+			if (typeof x != &#x27;number&#x27;) {
+				tracking = y;
+				y = x.y;
+				x = x.x;
+			}
+			if (x === undefined &amp;&amp; y === undefined) return;
 			let centroid = this.resetCentroid();
 			for (let s of this) {
 				if (s.distCentroid === undefined) this.resetDistancesFromCentroid();
@@ -3542,7 +3781,30 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 		}
 
 		/**
+		 * @method moveAway
+		 */
+		moveAway(x, y, tracking) {
+			if (typeof x != &#x27;number&#x27;) {
+				tracking = y;
+				y = x.y;
+				x = x.x;
+			}
+			if (x === undefined &amp;&amp; y === undefined) return;
+			let centroid = this.resetCentroid();
+			for (let s of this) {
+				if (s.distCentroid === undefined) this.resetDistancesFromCentroid();
+				let dest = {
+					x: s.distCentroid.x + x,
+					y: s.distCentroid.y + y
+				};
+				s.moveAway(dest.x, dest.y, tracking);
+			}
+		}
+
+		/**
 		 * Rotates the group around its centroid.
+		 *
+		 * TODO experimental function, subject to change!
 		 *
 		 * @method orbit
 		 * @param {Number} amount Amount of rotation
@@ -4681,6 +4943,8 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 			}
 		}
 		img.updatePixels();
+		img.w = img.width;
+		img.h = img.height;
 		pInst.p5play.images.onLoad(img);
 		return img; // return the p5 graphics object
 	};
@@ -4848,6 +5112,7 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 	 */
 	this.createCanvas = function () {
 		let args = [...arguments];
+		let isFullScreen = false;
 		if (typeof args[0] == &#x27;string&#x27;) {
 			let ratio = args[0].split(&#x27;:&#x27;);
 			let rW = Number(ratio[0]);
@@ -4859,14 +5124,17 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 				w = (window.innerHeight * rW) / rH;
 				h = window.innerHeight;
 			}
-			args[0] = w;
-			args[1] = h;
-		} else if (args.length &lt; 2) {
+			args[0] = Math.round(w);
+			args[1] = Math.round(h);
+		} else if (args.length == 1) {
+			args[1] = args[0];
+		} else if (!args.length) {
 			args[0] = window.innerWidth;
 			args[1] = window.innerHeight;
+			isFullScreen = true;
 		}
 		if (args.length &lt; 3) args[2] = &#x27;p2d&#x27;;
-		_createCanvas.call(pInst, ...args);
+		let can = _createCanvas.call(pInst, ...args);
 		this.canvas.tabIndex = 0;
 		// log(this.canvas);
 		this.canvas.addEventListener(&#x27;keydown&#x27;, function (e) {
@@ -4881,17 +5149,68 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 				e.preventDefault();
 			}
 		});
+		this.canvas.addEventListener(
+			&#x27;mouseover&#x27;,
+			() =&gt; {
+				this.mouse.isOnCanvas = true;
+				this.mouse.active = true;
+			},
+			false
+		);
+		this.canvas.addEventListener(
+			&#x27;mouseleave&#x27;,
+			() =&gt; {
+				this.mouse.isOnCanvas = false;
+			},
+			false
+		);
 		this.world.resize();
 		if (!userDisabledP5Errors) p5.disableFriendlyErrors = false;
 		let style = document.createElement(&#x27;style&#x27;);
-		style.innerHTML = &#x60;canvas { outline: none; }&#x60;;
+
+		/* prevent callout to copy image, etc when tap to hold */
+		/* prevent webkit from resizing text to fit */
+		/* prevent copy paste, to allow, change &#x27;none&#x27; to &#x27;text&#x27; */
+		style.innerHTML = &#x60;
+		canvas { 
+			outline: none;
+			-webkit-touch-callout: none;
+			-webkit-text-size-adjust: none;
+			-webkit-user-select: none;
+			overscroll-behavior: none;
+		}
+		main{
+			overscroll-behavior: none;
+		}&#x60;;
+		if (isFullScreen) {
+			style.innerHTML = &#x27;html,\nbody,\n&#x27; + style.innerHTML;
+			style.innerHTML += &#x60;
+			html, body {
+				margin: 0;
+				padding: 0;
+				overflow: hidden;
+			}&#x60;;
+		}
 		document.head.appendChild(style);
+
+		let idx = navigator.userAgent.indexOf(&#x27;iPhone OS&#x27;);
+		if (idx &gt; -1) {
+			let version = navigator.userAgent.substring(idx + 10, idx + 12);
+			this.p5play.version = version;
+			if (version &lt; 16) {
+				pInst.pixelDensity(1);
+			}
+			this.p5play.os.platform = &#x27;iOS&#x27;;
+			this.p5play.os.version = version;
+		} else if (navigator.userAgentData !== undefined) {
+			this.p5play.os.platform = navigator.userAgentData.platform;
+		}
+
+		return can;
 	};
 
-	class Canvas {
-		constructor() {
-			createCanvas(...arguments);
-		}
+	function Canvas() {
+		return pInst.createCanvas(...arguments);
 	}
 
 	const _background = this.background;
@@ -4905,7 +5224,7 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 	this.background = function () {
 		let args = arguments;
 		let c;
-		if (args.length == 1) {
+		if (args.length == 1 &amp;&amp; (typeof args[0] == &#x27;string&#x27; || args[0] instanceof p5.Color)) {
 			c = p5.prototype.colorPal(args[0]);
 		}
 		if (c !== undefined) _background.call(this, c);
@@ -4978,7 +5297,7 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 		}
 		if (img) {
 			// if not finished loading, add callback to the list
-			if (!img.modified) {
+			if (img.width == 1 &amp;&amp; img.height == 1) {
 				if (cb) {
 					img.cbs.push(cb);
 					img.calls++;
@@ -4998,6 +5317,8 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 			for (let i = 1; i &lt; _img.calls; i++) {
 				pInst._decrementPreload();
 			}
+			// delete _img.calls;
+			// delete _img.cbs;
 			_img.cbs = [];
 			pInst.p5play.images.onLoad(img);
 		});
@@ -5084,13 +5405,23 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 			}
 		}
 
+		/**
+		 * Attempt to auto-correct the user&#x27;s input. Inheriting classes
+		 * override this method.
+		 */
+		ac(inp) {
+			return inp;
+		}
+
 		presses(inp) {
 			inp ??= this.default;
+			if (this[inp] === undefined) inp = this.ac(inp);
 			return this[inp] == 1 || this[inp] == -2;
 		}
 
 		pressing(inp) {
 			inp ??= this.default;
+			if (this[inp] === undefined) inp = this.ac(inp);
 			return this[inp] &gt; 0 || this[inp] == -2;
 		}
 
@@ -5100,21 +5431,25 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 
 		holds(inp) {
 			inp ??= this.default;
+			if (this[inp] === undefined) inp = this.ac(inp);
 			return this[inp] == this.holdThreshold;
 		}
 
 		holding(inp) {
 			inp ??= this.default;
+			if (this[inp] === undefined) inp = this.ac(inp);
 			return this[inp] &gt;= this.holdThreshold;
 		}
 
 		held(inp) {
 			inp ??= this.default;
+			if (this[inp] === undefined) inp = this.ac(inp);
 			return this[inp] == -3;
 		}
 
 		released(inp) {
 			inp ??= this.default;
+			if (this[inp] === undefined) inp = this.ac(inp);
 			return this[inp] &lt;= -1;
 		}
 
@@ -5130,16 +5465,22 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 			this.init(inputs);
 			this.default = &#x27;left&#x27;;
 			this.draggable = false;
+			this.isOnCanvas = false;
+			this.active = false;
+		}
+
+		ac(inp) {
+			if (inp.slice(0, 4)) inp = &#x27;left&#x27;;
+			else if (inp.slice(0, 5) == &#x27;right&#x27;) inp = &#x27;right&#x27;;
+			else if (inp.slice(0, 6) == &#x27;middle&#x27;) inp = &#x27;center&#x27;;
+			else inp = inp.toLowerCase();
+			return inp;
 		}
 
 		dragging(inp) {
 			inp ??= this.default;
 			this.draggable = true;
 			return this[inp] &gt;= this.holdThreshold;
-		}
-
-		get isOnCanvas() {
-			return this.x &gt;= 0 &amp;&amp; this.x &lt; pInst.width &amp;&amp; this.y &gt;= 0 &amp;&amp; this.y &lt; pInst.height;
 		}
 	}
 
@@ -5171,12 +5512,9 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 
 	const _onmousedown = this._onmousedown;
 
-	this._onmousedown = function (e) {
-		let btn = &#x27;left&#x27;;
-		if (e.button === 1) btn = &#x27;center&#x27;;
-		else if (e.button === 2) btn = &#x27;right&#x27;;
-
+	const __onmousedown = function (btn) {
 		this.mouse[btn]++;
+		this.mouse.active = true;
 
 		let ms;
 		if (this.p5play.mouseSprites.length) {
@@ -5192,27 +5530,38 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 			}
 			this.p5play.mouseSprite = ms;
 		}
-
-		_onmousedown.call(this, e);
 	};
 
-	const _onmouseup = this._onmouseup;
-
-	this._onmouseup = function (e) {
+	this._onmousedown = function (e) {
 		let btn = &#x27;left&#x27;;
 		if (e.button === 1) btn = &#x27;center&#x27;;
 		else if (e.button === 2) btn = &#x27;right&#x27;;
 
+		__onmousedown.call(this, btn);
+
+		_onmousedown.call(this, e);
+	};
+
+	const _ontouchstart = this._ontouchstart;
+
+	this._ontouchstart = function (e) {
+		__onmousedown.call(this, &#x27;left&#x27;);
+		_ontouchstart.call(this, e);
+	};
+
+	const _onmouseup = this._onmouseup;
+
+	const __onmouseup = function (btn) {
 		if (this.mouse[btn] &gt;= this.mouse.holdThreshold) {
 			this.mouse[btn] = -3;
-		} else if (this.mouse[btn] &gt; 0) this.mouse[btn] = -1;
+		} else if (this.mouse[btn] &gt; 1) this.mouse[btn] = -1;
 		else this.mouse[btn] = -2;
 
 		if (this.p5play.mouseSprite) {
-			if (this.p5play.mouseSprite.mouse.hover &gt; 0) {
+			if (this.p5play.mouseSprite.mouse.hover &gt; 1) {
 				if (this.p5play.mouseSprite.mouse[btn] &gt;= this.mouse.holdThreshold) {
 					this.p5play.mouseSprite.mouse[btn] = -3;
-				} else if (this.p5play.mouseSprite.mouse[btn] &gt; 0) {
+				} else if (this.p5play.mouseSprite.mouse[btn] &gt; 1) {
 					this.p5play.mouseSprite.mouse[btn] = -1;
 				} else {
 					this.p5play.mouseSprite.mouse[btn] = -2;
@@ -5222,14 +5571,40 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 				this.p5play.mouseSprite.mouse.draggable = false;
 			}
 		}
+	};
 
+	this._onmouseup = function (e) {
+		let btn = &#x27;left&#x27;;
+		if (e.button === 1) btn = &#x27;center&#x27;;
+		else if (e.button === 2) btn = &#x27;right&#x27;;
+
+		__onmouseup.call(this, btn);
 		_onmouseup.call(this, e);
+	};
+
+	const _ontouchend = this._ontouchend;
+
+	this._ontouchend = function (e) {
+		__onmouseup.call(this, &#x27;left&#x27;);
+		_ontouchend.call(this, e);
 	};
 
 	class KeyBoard extends InputDevice {
 		constructor() {
 			super();
 			this.default = &#x27; &#x27;;
+		}
+
+		ac(inp) {
+			if (inp.length == 1) return inp.toLowerCase();
+			if (!isNaN(inp)) {
+				if (inp == 38) return &#x27;ArrowUp&#x27;;
+				if (inp == 40) return &#x27;ArrowDown&#x27;;
+				if (inp == 37) return &#x27;ArrowLeft&#x27;;
+				if (inp == 39) return &#x27;ArrowRight&#x27;;
+				throw new Error(&#x27;Use key names with the keyboard input functions, not key codes!&#x27;);
+			}
+			return inp[0].toUpperCase() + inp.slice(1).toLowerCase();
 		}
 	}
 
@@ -5322,7 +5697,7 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 		for (let k of keys) {
 			if (this.kb[k] &gt;= this.kb.holdThreshold) {
 				this.kb[k] = -3;
-			} else if (this.kb[k] &gt; 0) this.kb[k] = -1;
+			} else if (this.kb[k] &gt; 1) this.kb[k] = -1;
 			else this.kb[k] = -2;
 		}
 
@@ -5394,6 +5769,10 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 				leftTrigger: 4,
 				rightTrigger: 5
 			};
+		}
+
+		ac(inp) {
+			return inp.toLowerCase();
 		}
 
 		_update() {
