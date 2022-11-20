@@ -159,9 +159,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			}
 
 			if (args.length == 1 && typeof args[0] == 'number') {
-				throw new Error(
-					"Invalid input parameters for the Sprite constructor. You can't only have one number! Specify both the x and y position of the sprite"
-				);
+				throw new FriendlyError('Sprite', 0, [args[0]]);
 			}
 
 			x = args[0];
@@ -187,6 +185,9 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 					this.originMode = 'start';
 				}
 				if (h !== undefined) {
+					if (Array.isArray(h)) {
+						throw new FriendlyError('Sprite', 1, [`[[${w}], [${h}]]`]);
+					}
 					let abr = h.slice(0, 2);
 					// h is a collider type
 					if (abr == 'dy' || abr == 'st' || abr == 'ki' || abr == 'no') {
@@ -5263,6 +5264,33 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		pInst.p5play.images[url] = img;
 		return img;
 	};
+
+	/**
+	 *
+	 * @param {String} func is the name of the function the error was thrown in
+	 * @param {Number} errorNum is the error's code number
+	 * @param {Array} e is an array with references to the cause of the error
+	 */
+	class FriendlyError extends Error {
+		constructor(func, errorNum, e) {
+			super();
+
+			let ln = this.stack.match(/\/([^p\/][^5][^\/:]*:[^\/:]+):/)[1];
+			ln = ln.split(':');
+			ln = ' in ' + ln[0] + ' at line ' + ln[1] + '. ';
+
+			let msgs = {
+				Sprite: {
+					base: `Sorry I'm unable to make a new Sprite`,
+					0: `What is ${e[0]}? If you're trying to specify the x position of the sprite, please specify the y position as well.`,
+					1: `If you're trying to specify points for a chain Sprite, please use an array of position arrays:\n${e[0]}`
+				}
+			};
+			let msg = msgs[func];
+			msg = msg.base + ln + msg[errorNum];
+			p5._friendlyError(msg, func);
+		}
+	}
 
 	this.Sprite = Sprite;
 	this.SpriteAnimation = SpriteAnimation;

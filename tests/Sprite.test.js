@@ -201,12 +201,11 @@ test('Sprite : chain and polygon constructors', () => {
 			expect(s.shape).toBe('chain');
 			expect(s.x).toBe(0);
 			expect(s.y).toBe(10);
-			log(s.w, s.h);
-			// expect(s.w).toBe(50);
-			// expect(s.h).toBe(50);
+			expect(s.w).toBe(20);
+			expect(s.h).toBe(20);
 			s.remove();
 
-			expect(() => new p.Sprite(10)).toThrow();
+			expect(() => new p.Sprite([40, 50], [60, 70])).toThrow();
 		};
 	};
 	new p5(sketch);
