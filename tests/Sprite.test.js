@@ -55,6 +55,37 @@ test('Sprite : constructor', () => {
 	new p5(sketch);
 });
 
+test('Sprite : constructor', () => {
+	const sketch = (p) => {
+		let s;
+
+		p.setup = () => {
+			new p.Canvas(400, 400);
+			p.noLoop();
+
+			s = new p.Sprite();
+			s.x = 5;
+			expect(s.x).toBe(5);
+			s.y = 10;
+			expect(s.y).toBe(10);
+			s.w = 15;
+			expect(s.w).toBe(15);
+			s.h = 20;
+			expect(s.h).toBe(20);
+			s.rotation = 25;
+			expect(s.rotation).toBe(25);
+			s.color = 'red';
+			expect(s.color).toBe('red');
+
+			s.d = 20;
+			expect(s.d).toBe(20);
+			expect(s.w).toBe(20);
+			expect(s.h).toBe(20);
+		};
+	};
+	new p5(sketch);
+});
+
 test('Sprite : move, moveTo, moveAway, moveTowards', () => {
 	const sketch = (p) => {
 		let s;
