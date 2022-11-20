@@ -2,11 +2,12 @@
  * @jest-environment jsdom
  */
 
+const log = console.log;
 global.p5 = require('p5');
 global.planck = require('planck');
 require('../v3/p5.play.js');
 
-test('Sprite : constructor', () => {
+test('Sprite : constructors', () => {
 	const sketch = (p) => {
 		let s;
 
@@ -181,6 +182,32 @@ test('Sprite : move, moveTo, moveAway, moveTowards', () => {
 		};
 
 		p.draw = () => {};
+	};
+	new p5(sketch);
+});
+
+test('Sprite : chain and polygon constructors', () => {
+	const sketch = (p) => {
+		let s;
+
+		p.setup = () => {
+			new p.Canvas(400, 400);
+			p.noLoop();
+
+			s = new p.Sprite([
+				[0, 10],
+				[20, 30]
+			]);
+			expect(s.shape).toBe('chain');
+			expect(s.x).toBe(0);
+			expect(s.y).toBe(10);
+			log(s.w, s.h);
+			// expect(s.w).toBe(50);
+			// expect(s.h).toBe(50);
+			s.remove();
+
+			expect(() => new p.Sprite(10)).toThrow();
+		};
 	};
 	new p5(sketch);
 });
