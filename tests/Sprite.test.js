@@ -80,6 +80,10 @@ test('Sprite : properties', () => {
 			expect(s.h).toBe(20);
 			expect(s.hh).toBe(10);
 
+			expect(() => {
+				s.hw = 10;
+			}).toThrow();
+
 			s.rotation = 25;
 			expect(s.rotation).toBeCloseTo(25);
 			s.rotationSpeed = 30;
