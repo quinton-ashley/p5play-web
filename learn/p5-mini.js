@@ -172,6 +172,16 @@ ace.config.loadModule('ace/ext/language_tools', function () {
 			if (props.hide) {
 				mini.style.display = 'none';
 			}
+
+			/* auto reload after the specified amount of seconds */
+			if (props.reload) {
+				(async () => {
+					while (props.reload) {
+						await new Promise((r) => setTimeout(r, props.reload * 1000));
+						this.play();
+					}
+				})();
+			}
 		}
 
 		play() {

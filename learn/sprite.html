@@ -140,24 +140,24 @@ function draw() {
 		</script>
 	</div>
 	<div id="page-1" class="page">
-		<div>
-			<h2>Sprite physics</h2>
-			<p>
-				A sprite's collider is used to detect collisions with other sprites. By default, sprites have a 'dynamic'
-				physics
-				collider that allows the sprite to move freely and be affected by
-				gravity.
-			</p>
-			<p>
-				The other collider types are 'static' and 'none'. Sprites that have a 'static' collider can't be moved by other
-				sprites and aren't affected by gravity. Setting a sprite's collider type to 'none' removes its collider from the
-				physics
-				simulation.
-			</p>
-			<p>
-				You might have to replay these mini-sketches to see what happened!
-			</p>
-		</div>
+		<script type="text/md">
+## Sprite physics
+
+A sprite's collider is used to detect collisions with other
+sprites. By default, sprites have a `'dynamic'` physics
+collider that allows the sprite to move freely and be affected by
+gravity.
+
+`'static'` colliders can't be moved. `'kinematic'` colliders can be moved 
+programmatically but not by other sprites. Setting a sprite's collider
+type to `'none'` fully removes it from the physics simulation.
+
+You can also use the letters `'d'`, `'s'`, `'k'`, and `'n'` to
+set the collider type of a sprite without having to type out
+the full type name.
+
+You might have to replay these mini-sketches to see what happened!
+			</script>
 		<div>
 			<script type="text/p5" name="dynamic and static colliders" base-2 horiz lines="16">
 let ball, floor;
@@ -183,8 +183,8 @@ function draw() {
 			</script>
 		</div>
 		<div class="minis">
-			<script type="text/p5" name="bounciness" base="2">
-ball.bounciness = 1;
+			<script type="text/p5" name="anti-gravity" base="2">
+world.gravity.y = -1;
 			</script>
 			<script type="text/p5" name="sloped floor" base="2">
 floor.rotation = 2;
@@ -192,8 +192,9 @@ floor.rotation = 2;
 		</div>
 
 		<div class="minis">
-			<script type="text/p5" name="anti-gravity" base="2">
-world.gravity.y = -1;
+			<script type="text/p5" name="rising platform" base="2">
+floor.collider = 'k';
+floor.vel.y = -1;
 			</script>
 			<script type="text/p5" name="whoops!" base="2">
 floor.collider = 'none';
