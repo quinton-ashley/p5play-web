@@ -76,12 +76,14 @@ test('Sprite : properties', () => {
 			s.w = 15;
 			expect(s.w).toBe(15);
 			expect(s.hw).toBe(7.5);
+			expect(() => {
+				s.hw = 10;
+			}).toThrow();
 			s.h = 20;
 			expect(s.h).toBe(20);
 			expect(s.hh).toBe(10);
-
 			expect(() => {
-				s.hw = 10;
+				s.hh = 10;
 			}).toThrow();
 
 			s.rotation = 25;

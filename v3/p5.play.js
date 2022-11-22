@@ -5575,6 +5575,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 	this._ontouchstart = function (e) {
 		__onmousedown.call(this, 'left');
 		_ontouchstart.call(this, e);
+		e.preventDefault();
 	};
 
 	const _onmouseup = this._onmouseup;
