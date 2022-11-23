@@ -245,9 +245,7 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 			}
 
 			if (args.length == 1 &amp;&amp; typeof args[0] == &#x27;number&#x27;) {
-				throw new Error(
-					&quot;Invalid input parameters for the Sprite constructor. You can&#x27;t only have one number! Specify both the x and y position of the sprite&quot;
-				);
+				throw new FriendlyError(&#x27;Sprite&#x27;, 0, [args[0]]);
 			}
 
 			x = args[0];
@@ -273,6 +271,9 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 					this.originMode = &#x27;start&#x27;;
 				}
 				if (h !== undefined) {
+					if (Array.isArray(h)) {
+						throw new FriendlyError(&#x27;Sprite&#x27;, 1, [&#x60;[[${w}], [${h}]]&#x60;]);
+					}
 					let abr = h.slice(0, 2);
 					// h is a collider type
 					if (abr == &#x27;dy&#x27; || abr == &#x27;st&#x27; || abr == &#x27;ki&#x27; || abr == &#x27;no&#x27;) {
@@ -573,7 +574,17 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 			this.dest = { x, y };
 			this._destIdx = 0;
 			this.drag = 0;
+
+			/**
+			 * When the sprite.debug property is set to true you can see the
+			 * sprite&#x27;s physics body collider.
+			 *
+			 * @property debug
+			 * @type {boolean}
+			 * @default false
+			 */
 			this.debug = false;
+
 			this._shift = {};
 
 			let gvx = group.vel.x || 0;
@@ -1165,6 +1176,26 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 		}
 
 		/**
+		 * The sprite&#x27;s current text color. By default sprites get a random text color.
+		 *
+		 * @property textColor
+		 * @type {p5.Color}
+		 */
+		get textColor() {
+			return this._textColor;
+		}
+
+		set textColor(val) {
+			if (val instanceof p5.Color) {
+				this._textColor = val;
+			} else if (typeof val != &#x27;object&#x27;) {
+				this._textColor = this.p.color(val);
+			} else {
+				this._textColor = this.p.color(...val.levels);
+			}
+		}
+
+		/**
 		 * The density of the sprite&#x27;s physics body.
 		 *
 		 * @property density
@@ -1698,7 +1729,7 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 			return this._hw;
 		}
 		set hw(val) {
-			throw new Error(&quot;Unable to change the value of halfWidth directly, change the sprite&#x27;s width instead&quot;);
+			throw new FriendlyError(&#x27;Sprite.hw&#x27;);
 		}
 		/**
 		 * The width of the sprite.
@@ -1715,7 +1746,7 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 			return this.hw;
 		}
 		set halfWidth(val) {
-			throw new Error(&quot;Unable to change the value of halfWidth directly, change the sprite&#x27;s width instead&quot;);
+			throw new FriendlyError(&#x27;Sprite.hw&#x27;);
 		}
 		/**
 		 * The height of the sprite.
@@ -1742,7 +1773,7 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 			return this._hh;
 		}
 		set hh(val) {
-			throw new Error(&quot;Unable to change the value of halfHeight directly, change the sprite&#x27;s height instead&quot;);
+			throw new FriendlyError(&#x27;Sprite.hh&#x27;);
 		}
 		/**
 		 * The height of the sprite.
@@ -1759,7 +1790,7 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 			return this.hh;
 		}
 		set halfHeight(val) {
-			throw new Error(&quot;Unable to change the value of halfHeight directly, change the sprite&#x27;s height instead&quot;);
+			throw new FriendlyError(&#x27;Sprite.hh&#x27;);
 		}
 		/**
 		 * The diameter of a circular sprite.
@@ -2382,9 +2413,8 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 		 * @param {Number} speed
 		 */
 		rotate(angle, speed) {
-			if (!angle) {
-				throw new Error(&#x27;angle must be a number greater or less than zero&#x27;);
-			}
+			if (typeof angle != &#x27;number&#x27;) throw new FriendlyError();
+			if (angle == 0) return;
 			let ang = this.rotation + angle;
 			let mod = ang - this.rotation &gt; 0 ? 1 : -1;
 			this.rotationSpeed = speed * mod;
@@ -2487,7 +2517,7 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 			}
 			if (!ani) {
 				this.p.noLoop();
-				throw new Error(&#x27;changeAnimation error: no animation named &#x27; + label);
+				throw new FriendlyError(&#x27;Sprite.changeAnimation&#x27;, [label]);
 			}
 			this._animation = ani;
 			this.animation.name = label;
@@ -2525,7 +2555,10 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 
 		_ensureCollide(target, callback) {
 			if (!(target instanceof Sprite) &amp;&amp; !(target instanceof Group)) {
-				throw new Error(&#x27;collide target must be a sprite or a group&#x27;);
+				throw new FriendlyError(&#x27;Sprite.collisions&#x27;, 0, [target]);
+			}
+			if (callback &amp;&amp; typeof callback != &#x27;function&#x27;) {
+				throw new FriendlyError(&#x27;Sprite.collisions&#x27;, 1);
 			}
 		}
 
@@ -2591,7 +2624,10 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 
 		_ensureOverlap(target, callback) {
 			if (!(target instanceof Sprite) &amp;&amp; !(target instanceof Group)) {
-				throw new Error(&#x27;collide target must be a sprite or a group&#x27;);
+				throw new Error(&#x27;Sprite.overlaps&#x27;, 0, [target]);
+			}
+			if (callback &amp;&amp; typeof callback != &#x27;function&#x27;) {
+				throw new FriendlyError(&#x27;Sprite.overlaps&#x27;, 1);
 			}
 			if (!this._hasOverlaps) this._createSensors();
 			if (target instanceof Sprite) {
@@ -2842,7 +2878,7 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 
 				// make sure the extensions are fine
 				if (from.slice(-4) != &#x27;.png&#x27; || (to &amp;&amp; to.slice(-4) != &#x27;.png&#x27;)) {
-					throw new Error(&#x27;SpriteAnimation error: you need to use .png files (filename &#x27; + from + &#x27;)&#x27;);
+					throw new FriendlyError(&#x27;SpriteAnimation&#x27;, 0, [from]);
 				}
 
 				let digits1 = 0;
@@ -2912,7 +2948,7 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 				let atlas;
 				if (args[0] instanceof p5.Image || typeof args[0] == &#x27;string&#x27;) {
 					if (args.length &gt;= 3) {
-						throw new Error(&#x27;SpriteAnimation error: the name of animation should go first&#x27;);
+						throw new FriendlyError(&#x27;SpriteAnimation&#x27;, 1);
 					}
 					sheet = args[0];
 					atlas = args[1];
@@ -5149,21 +5185,16 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 				e.preventDefault();
 			}
 		});
-		this.canvas.addEventListener(
-			&#x27;mouseover&#x27;,
-			() =&gt; {
-				this.mouse.isOnCanvas = true;
-				this.mouse.active = true;
-			},
-			false
-		);
-		this.canvas.addEventListener(
-			&#x27;mouseleave&#x27;,
-			() =&gt; {
-				this.mouse.isOnCanvas = false;
-			},
-			false
-		);
+		this.canvas.addEventListener(&#x27;mouseover&#x27;, () =&gt; {
+			this.mouse.isOnCanvas = true;
+			this.mouse.active = true;
+		});
+		this.canvas.addEventListener(&#x27;mouseleave&#x27;, () =&gt; {
+			this.mouse.isOnCanvas = false;
+		});
+		this.canvas.addEventListener(&#x27;touchstart&#x27;, (e) =&gt; {
+			e.preventDefault();
+		});
 		this.world.resize();
 		if (!userDisabledP5Errors) p5.disableFriendlyErrors = false;
 		let style = document.createElement(&#x27;style&#x27;);
@@ -5329,6 +5360,94 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 		pInst.p5play.images[url] = img;
 		return img;
 	};
+
+	let errorMessages = {
+		generic: [
+			&#x27;Ah! I found an error&#x27;,
+			&#x27;Oh no! Something went wrong&#x27;,
+			&#x27;Oof! Something went wrong&#x27;,
+			&#x27;Houston, we have a problem&#x27;,
+			&#x27;Whoops, having trouble here&#x27;
+		],
+		Sprite: {
+			constructor: {
+				base: &quot;Sorry I&#x27;m unable to make a new Sprite&quot;,
+				0: &quot;What is $0 for? If you&#x27;re trying to specify the x position of the sprite, please specify the y position as well.&quot;,
+				1: &quot;If you&#x27;re trying to specify points for a chain Sprite, please use an array of position arrays:\n$0&quot;
+			},
+			hw: &quot;I can&#x27;t change the halfWidth of a Sprite directly, change the sprite&#x27;s width instead.&quot;,
+			hh: &quot;I can&#x27;t change the halfHeight of a Sprite directly, change the sprite&#x27;s height instead.&quot;,
+			rotate: &#x27;The angle of rotation must be a number.&#x27;,
+			changeAnimation: &#x60;I can&#x27;t find any animation named &quot;$0&quot;.&#x60;,
+			collisions: {
+				0: &quot;I can&#x27;t make that sprite collide with $0. Sprites can only collide with another sprite or a group.&quot;,
+				1: &#x27;The collision callback has to be a function.&#x27;
+			},
+			overlaps: {
+				0: &quot;I can&#x27;t make that sprite overlap with $0. Sprites can only overlap with another sprite or a group.&quot;,
+				1: &#x27;The overlap callback has to be a function.&#x27;
+			}
+		},
+		SpriteAnimation: {
+			constructor: {
+				base: &quot;Hey so, I tried to make a new SpriteAnimation but couldn&#x27;t&quot;,
+				0: &#x60;I don&#x27;t know how to display this type of image: &quot;$0&quot;. I can only use &quot;.png&quot; image files.&#x60;,
+				1: &#x27;The name of the animation must be the first input parameter.&#x27;
+			}
+		},
+		Group: {
+			constructor: {
+				base: &quot;Hmm awkward! Well it seems I can&#x27;t make that new Group you wanted&quot;
+			}
+		}
+	};
+
+	/**
+	 *
+	 * @param {String} func is the name of the function the error was thrown in
+	 * @param {Number} errorNum is the error&#x27;s code number
+	 * @param {Array} e is an array with references to the cause of the error
+	 */
+	class FriendlyError extends Error {
+		constructor(func, errorNum, e) {
+			super();
+
+			if (typeof func != &#x27;string&#x27;) {
+				e = errorNum;
+				errorNum = func;
+				func = this.stack.match(/\n\s*at ([^\(]*)/)[1];
+				func = func.slice(0, -1);
+			}
+			if (typeof errorNum != &#x27;number&#x27;) {
+				e = errorNum;
+				errorNum = undefined;
+			}
+			if (func.slice(0, 3) == &#x27;new&#x27;) func = func.slice(4);
+			func = func.split(&#x27;.&#x27;);
+			let className = func[0];
+			func = func[1] || &#x27;constructor&#x27;;
+
+			let ln = this.stack.match(/\/([^p\/][^5][^\/:]*:[^\/:]+):/);
+			if (ln) {
+				ln = ln[1].split(&#x27;:&#x27;);
+				ln = &#x27; in &#x27; + ln[0] + &#x27; at line &#x27; + ln[1] + &#x27;. &#x27;;
+			} else ln = &#x27;.&#x27;;
+
+			e = e || [];
+
+			let m = errorMessages[className][func];
+			let msg;
+			if (m.base) msg = m.base + ln;
+			else msg = errorMessages.generic[Math.floor(Math.random() * errorMessages.generic.length)] + ln;
+			if (errorNum !== undefined) m = m[errorNum];
+			m = m.replace(/\$([0-9]+)/g, (m, n) =&gt; {
+				return e[n];
+			});
+			msg += m;
+
+			p5._friendlyError(msg, func);
+		}
+	}
 
 	this.Sprite = Sprite;
 	this.SpriteAnimation = SpriteAnimation;

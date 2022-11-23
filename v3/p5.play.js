@@ -488,7 +488,17 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			this.dest = { x, y };
 			this._destIdx = 0;
 			this.drag = 0;
+
+			/**
+			 * When the sprite.debug property is set to true you can see the
+			 * sprite's physics body collider.
+			 *
+			 * @property debug
+			 * @type {boolean}
+			 * @default false
+			 */
 			this.debug = false;
+
 			this._shift = {};
 
 			let gvx = group.vel.x || 0;
