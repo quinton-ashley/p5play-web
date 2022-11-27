@@ -194,18 +194,23 @@ function draw() {
 		<div>
 			<h2>Sprites with Animation</h2>
 			<p>
-				Use the <code>sprite.addAni</code> function to load and add an animation to a sprite.
-			</p>
-			<p>By default the last animation added to the sprite will be the animation the sprite displays. You can change
-				this by setting <code>sprite.ani</code> to the name of another animation.</p>
-			<p>
-				When the <code>sprite.debug</code> property is set to true you can see the sprite's physics body collider. Try
-				holding the
-				left mouse button.
+				Use the <code>sprite.addAni</code> function to load and add an
+				animation to a sprite. By default the last animation added to the
+				sprite will be the animation the sprite displays.
 			</p>
 			<p>
-				The <code>mirror</code> property can be used to flip the sprite horizontally on its x axis or vertically on its
-				y axis.
+				Try pressing the left mouse button. When the
+				<code>sprite.debug</code> property is set to true you can
+				see the sprite's physics body collider.
+			</p>
+			<h2>Change a Sprite's Animation</h2>
+			<p>
+				<code>sprite.ani</code> stores the sprite's current animation,
+				which can be changed by setting it to the name of a different
+				animation.
+			</p>
+			<p>
+				Try pressing "s" to make the "swoosh" animation play.
 			</p>
 		</div>
 		<script type="text/p5" name="sprites with animation" base-1>
@@ -215,42 +220,20 @@ function setup() {
 	new Canvas(500, 160);
 	ghost = new Sprite(250, 80, 120);
 
+	ghost.addAni('swoosh', 'assets/ghost_spin0001.png', 3);
 	ghost.addAni('fly', 'assets/ghost_standing0001.png', 7);
-	ghost.addAni('move', 'assets/ghost_walk0001.png', 4);
-	ghost.addAni('spin', 'assets/ghost_spin0001.png', 3);
 }
 
 function draw() {
 	clear();
-	ghost.vel.x = cos(frame);
-	ghost.debug = mouse.holding();
-}
-		</script>
-		<script type="text/p5" name="fly" base="1">
-ghost.ani = 'fly';
-		</script>
-		<script type="text/p5" name="move" base="1">
-ghost.ani = 'move';
-		</script>
-		<script type="text/p5" name="fly + y axis mirrored" base="1">
-ghost.ani = 'fly';
-ghost.mirror.y = true;
-				</script>
-		<script type="text/p5" name="move + x axis mirrored" base="1">
-ghost.ani = 'move';
-ghost.mirror.x = true;
-				</script>
 
-		<script type="text/md">
-You can reference the sprite's current animation by using `sprite.ani` or `sprite.animation`. Try this
-mini-example out by pressing "p" to
-make the animation play.
-		</script>
-		<script type="text/p5" name="control" base="1">
-if (kb.pressing('p')) {
-	ghost.ani.play();
-} else {
-	ghost.ani.stop();
+	ghost.debug = mouse.pressing();
+
+	if (kb.pressing('s')) {
+		ghost.ani = 'swoosh';
+	} else {
+		ghost.ani = 'fly';
+	}
 }
 		</script>
 	</div>
@@ -258,23 +241,23 @@ if (kb.pressing('p')) {
 		<div>
 			<h2>Groups with Animation</h2>
 			<p>
-				Each splat sprite has a lifespan of 40 frames before it removes itself. Note that if you put splats too close
-				together they'll move apart until their colliders are no longer overlapping. The size of the collider is taken
-				from the size of the animation.
+				If a group has only one animation, new group sprites will use that
+				animation. Otherwise by default the sprite gets the last animation
+				loaded.
 			</p>
 			<p>
-				If a group has only one animation, new group sprites will use that animation. Otherwise by default the
-				sprite gets the last animation loaded.
+				Note that in this mini-example if you put splats too close together
+				they'll move apart until their colliders are no longer overlapping. The
+				size of the collider is taken from the size of the animation.
 			</p>
 		</div>
-		<script type="text/p5" name="life">
+		<script type="text/p5" name="splats">
 let splats;
 
 function setup() {
 	new Canvas(500, 160);
 
 	splats = new Group();
-	splats.life = 40;
 	splats.addAni('assets/asterisk_explode0001.png', 11);
 }
 

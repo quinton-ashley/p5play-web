@@ -35,11 +35,16 @@
 		<div>
 			<h2>What is a Group?</h2>
 			<p>
-				In p5.play a Group is an array of sprites with similar traits and
-				behaviors. For example the dots in Pac-Man!
+				In p5.play a Group is a collection of and blueprint for sprites
+				with similar traits and behaviors. For example the dots in Pac-Man!
 			</p>
 			<p>
-				In the "dots" mini example, each new dots sprite inherits the color of the dots group.
+				In the mini example, <code>new dots.Sprite</code> creates a sprite
+				that inherits the dots group color, which was set to yellow.
+			</p>
+			<p>
+				I call this "soft inheritance" because a group acts as a
+				blueprint for new group sprites.
 			</p>
 		</div>
 		<script type="text/p5" name="dots" lines="12" base-0>
@@ -62,8 +67,7 @@ function draw() {
 		</script>
 		<div>
 			<p>
-				You can access a sprite in a group by index just like with standard
-				JavaScript arrays.
+				You can access a sprite in a group by index because groups are arrays.
 			</p>
 		</div>
 		<script type="text/p5" name="green dot" base="0">
@@ -71,8 +75,8 @@ dots[5].color = 'green';
 		</script>
 		<div>
 			<p>
-				Changing the property of a group will change that property
-				for all of the sprites in the group.
+				Setting a group's property to a different value will affect all the
+				sprites in the group! I call this "dynamic inheritance".
 			</p>
 		</div>
 		<script type="text/p5" name="green dots" base="0">
@@ -80,7 +84,8 @@ dots.color = 'green';
 		</script>
 		<div>
 			<p>
-				You can even move all the sprites in a group at the same time!
+				Using movement functions like <code>moveTowards</code> on a group,
+				will even cause all the sprites in a group to move.
 			</p>
 		</div>
 		<script type="text/p5" name="moving dots" base="0">

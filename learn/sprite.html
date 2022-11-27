@@ -33,12 +33,45 @@
 	<div class="top break"></div>
 	<div id="page-0" class="page">
 		<div>
+			<h2>Setup</h2>
+			<p>
+				The code inside the p5.js <code>setup</code> function runs
+				when the program starts. The <code>new Canvas()</code> constructor
+				creates a section of the screen that the program can draw on.
+			</p>
+			<p>
+				The p5.js <code>draw</code> function is run 60 times per second by
+				default. The <code>background</code> function can be used to fill the canvas with a color each time it is drawn.
+			</p>
+			<p>
+				Try changing the width and height of the canvas, then restart the example program!
+			</p>
+		</div>
+		<script type="text/p5" name="p5.js setup and draw">
+function setup() {
+	new Canvas(242, 100);
+}
+
+function draw() {
+	background('blue');
+}
+		</script>
+		<div class="break"></div>
+		<div>
 			<h2>What is a sprite?</h2>
-			<p>A sprite is a ghost!</p>
-			<p>Video game developers use the word "sprite" to refer to characters, items,
-				or anything else that moves above a background.</p>
-			<p>Try editing the properties of the square and circle sprites in the mini
-				p5.js sketches below and press play!
+			<p>
+				A sprite is a ghost!
+			</p>
+			<p>
+				Video game developers use the word "sprite" to refer to
+				characters, items, or anything else that moves above a background
+			</p>
+			<p>
+				The <code>new Sprite()</code> constructor creates a sprite.
+			</p>
+			<p>
+				Try editing the properties of the square and circle sprites in the
+				mini p5.js examples below!
 			</p>
 		</div>
 		<div class="minis horiz">
@@ -46,7 +79,7 @@
 let sprite;
 
 function setup() {
-	new Canvas(200, 100);
+	new Canvas(242, 100);
 
 	sprite = new Sprite();
 	sprite.width = 50;
@@ -56,12 +89,12 @@ function setup() {
 function draw() {
 	clear();
 }
-	</script>
+			</script>
 			<script type="text/p5" name="circle" base-1 horiz lines="8">
 let sprite;
 
 function setup() {
-	new Canvas(200, 100);
+	new Canvas(242, 100);
 
 	sprite = new Sprite();
 	sprite.diameter = 50;
@@ -117,13 +150,33 @@ sprite.text = "p5";
 			</script>
 		</div>
 		<div class="break"></div>
-		<script type="text/md">
-## Try it out!
+		<div>
+			<div>
+				<h2>Try it out!</h2>
 
-The code in the `setup` function is run by p5.js when the program starts. The p5.js `draw` function is run 60 times per second. `new Canvas()` is equivalent to the p5.js `createCanvas` function which is used to create a section of the screen the program can draw on.
+				<p>
+					Try turning the sprite named <code>ball</code> into a blue circle with a diameter of 30 and place it at the
+					top right corner of the
+					canvas.
+				</p>
+			</div>
+			<script type="text/p5" name="Level 0 Challenge Goal" hide-editor>
+let ball;
 
-Try making the `ball` sprite a blue circle with a diameter of 30 and place it at the top right corner of the canvas.
-		</script>
+function setup() {
+	new Canvas(500, 60);
+	ball = new Sprite();
+	ball.diameter = 30;
+	ball.color = 'blue';
+	ball.x = 485;
+	ball.y = 15;
+}
+
+function draw() {
+	clear();
+}
+			</script>
+		</div>
 		<script type="text/p5" name="Level 0 Challenge" lines="13" horiz>
 let ball;
 
@@ -201,13 +254,38 @@ floor.collider = 'none';
 			</script>
 		</div>
 		<div class="break"></div>
-		<script type="text/md">
+		<div>
+			<script type="text/md">
 ## Try it out!
 
 Try creating a sprite `peg` with a static collider and circle shape. Create a sprite `block` with a dynamic collider and box shape. Make the block fall from above and hit the peg, falling to the right side.
 
 Note that `world` is created when p5.play loads, but by default the (x, y) gravity is (0, 0).
 		</script>
+			<script type="text/p5" name="Level 1 Challenge Goal" hide-editor>
+let peg, block;
+
+function setup() {
+	new Canvas(500, 60);
+	world.gravity.y = 10;
+
+	peg = new Sprite();
+	peg.collider = 'static';
+	peg.diameter = 10;
+	peg.y = 40;
+
+	block = new Sprite();
+	block.w = 30;
+	block.h = 30;
+	block.x = 252;
+	block.y = 0;
+}
+
+function draw() {
+	clear();
+}
+			</script>
+		</div>
 		<script type="text/p5" name="Level 1 Challenge" lines="13" horiz>
 let peg, block;
 
@@ -298,18 +376,19 @@ player.speed = 2;
 			</p>
 		</div>
 		<script type="text/p5" name="move" base="3">
-if (kb.presses('ArrowLeft')) {
+if (kb.presses('left')) {
 	//    (direction, speed, distance)
 	player.move('left', 3, 50);
 }
 		</script>
 		<div>
 			<p>
-				You can also change the sprite's (x, y) velocities directly.
+				The sprite's x axis and y axis velocities can also be adjusted seperately. <code>sprite.velocity</code> is a
+				p5.js Vector, you can use any of the Vector functions on it.
 			</p>
 		</div>
 		<script type="text/p5" name="velocity" base="3">
-if (kb.pressing('ArrowLeft')) player.vel.x = -3;
+if (kb.pressing('left')) player.vel.x = -3;
 else player.vel.x = 0;
 		</script>
 		<div>

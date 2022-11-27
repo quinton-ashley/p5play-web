@@ -86,6 +86,10 @@ test('Sprite : properties', () => {
 				s.hh = 10;
 			}).toThrow();
 
+			expect(s.vel instanceof p5.Vector).toBe(true);
+			expect(typeof s.vel.__lookupGetter__('x') == 'function').toBe(true);
+			expect(typeof s.vel.__lookupGetter__('y') == 'function').toBe(true);
+
 			s.rotation = 25;
 			expect(s.rotation).toBeCloseTo(25);
 			s.rotationSpeed = 30;
@@ -165,7 +169,7 @@ test('Sprite : physics', () => {
 	new p5(sketch);
 });
 
-test('Sprite : move, moveTo, moveAway, moveTowards', () => {
+test('Sprite : move, moveTo, moveTowards', () => {
 	const sketch = (p) => {
 		let s;
 
@@ -174,17 +178,50 @@ test('Sprite : move, moveTo, moveAway, moveTowards', () => {
 
 			s = new p.Sprite();
 
-			await expect(s.move(180, 10, 100)).resolves.toBe(undefined);
+			await expect(s.move(180, 10, 100)).resolves.toBe(true);
 			expect(s.x).toBe(200);
 			expect(s.y).toBe(100);
 
-			await expect(s.move('up', 10, 100)).resolves.toBe(undefined);
+			await expect(s.move('up', 10, 100)).resolves.toBe(true);
 			expect(s.x).toBe(100);
 			expect(s.y).toBe(100);
 
-			await expect(s.moveTo(10, 20)).resolves.toBe(undefined);
+			await expect(s.moveTo(10, 20)).resolves.toBe(true);
 			expect(s.x).toBe(10);
 			expect(s.y).toBe(20);
+
+			expect(s.moveTo(50, 20)).resolves.toBe(false);
+			await expect(s.moveTo(30, 20)).resolves.toBe(true);
+		};
+
+		p.draw = () => {};
+	};
+	new p5(sketch);
+});
+
+test('Sprite : rotate, rotateTo, rotateTowards', () => {
+	const sketch = (p) => {
+		let s;
+
+		p.setup = async () => {
+			new p.Canvas(400, 400);
+
+			s = new p.Sprite();
+
+			await expect(s.move(180, 10, 100)).resolves.toBe(true);
+			expect(s.x).toBe(200);
+			expect(s.y).toBe(100);
+
+			await expect(s.move('up', 10, 100)).resolves.toBe(true);
+			expect(s.x).toBe(100);
+			expect(s.y).toBe(100);
+
+			await expect(s.moveTo(10, 20)).resolves.toBe(true);
+			expect(s.x).toBe(10);
+			expect(s.y).toBe(20);
+
+			expect(s.moveTo(50, 20)).resolves.toBe(false);
+			await expect(s.moveTo(30, 20)).resolves.toBe(true);
 		};
 
 		p.draw = () => {};

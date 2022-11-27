@@ -20,6 +20,24 @@ test('Group', () => {
 
 			g = new p.Group();
 			expect(g).toBeInstanceOf(p.Group);
+
+			new g.Sprite();
+
+			g.customProp = 'foo';
+			expect(g.customProp).toBe('foo');
+
+			new g.Sprite();
+
+			expect(g[0].customProp).toBe(undefined);
+			expect(g[1].customProp).toBe('foo');
+
+			g.life = 100;
+
+			expect(g[0].life).toBe(100);
+
+			g.removeAll();
+
+			expect(g.length).toBe(0);
 		};
 	};
 	new p5(sketch);
