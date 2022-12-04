@@ -5,7 +5,7 @@
 	<meta charset="UTF-8">
 	<title>p5.play : Advanced</title>
 	<link rel="icon" href="../logo.svg" />
-	<link rel="stylesheet" href="p5-mini.css" />
+	<link rel="stylesheet" href="mies.css" />
 	<link rel="stylesheet" href="style.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.2/p5.min.js"></script>
 	<script src="../v3/planck.min.js"></script>
@@ -53,7 +53,7 @@ By default sprites are removed from the world when they go 10000 pixels offscree
 "Sleeping" sprites are taken out of the physics simulation. A sprite starts "sleeping" when it stops moving and doesn't collide with anything that it wasn't already touching. Allowing non-moving sprites to sleep is good for performance but sometimes you may need to wake up a non-moving sprite. You can disable sleeping completely by setting `world.allowSleeping = false`, or on a per sprite basis by setting `sprite.allowSleeping = false`, or to wake up a sleeping sprite you can `sprite.sleeping = false`.
 		</script>
 		<div class="minis horiz">
-			<script type="text/p5" name="world.allowSleeping = true" horiz>
+			<script type="text/mie-p5" name="world.allowSleeping = true" horiz>
 let ball, floor;
 
 function setup() {
@@ -69,7 +69,7 @@ function draw() {
 	if (kb.pressing(' ')) ball.sleeping = false;
 }
 			</script>
-			<script type="text/p5" name="world.allowSleeping = false" horiz>
+			<script type="text/mie-p5" name="world.allowSleeping = false" horiz>
 let ball, floor;
 
 function setup() {
@@ -99,6 +99,7 @@ function draw() {
 	<script src="learn.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 	<script src="md-tag-parser.js"></script>
+	<script src="mies.js"></script>
 	<script src="p5-mini.js"></script>
 </body>
 

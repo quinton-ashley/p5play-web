@@ -10,11 +10,11 @@ let args = {};
 	}
 }
 
-window.p5m = {
+window.mies = {
 	autoLoad: false
 };
 
-p5m.ready = function () {
+mies.ready = function () {
 	let pages = document.getElementsByClassName('page');
 	let pageNav = document.getElementById('pageNav');
 	let currentPage = 0;
@@ -64,7 +64,7 @@ p5m.ready = function () {
 				pageNav.children[i + 1].className = '';
 			}
 		}
-		for (let mini of p5m.minis) {
+		for (let mini of mies) {
 			mini.remove();
 		}
 		for (let page of pages) {
@@ -72,7 +72,7 @@ p5m.ready = function () {
 		}
 		let page = document.getElementById('page-' + pageNum);
 		page.style.display = 'flex';
-		p5m.loadMinis(page);
+		mies.loadMinis(page);
 		setEditorThemes();
 		document.body.scrollTop = 0; // for Safari
 		document.documentElement.scrollTop = 0; // Chrome, Firefox, and Opera
@@ -84,11 +84,11 @@ p5m.ready = function () {
 
 function setEditorThemes() {
 	if (document.body.className == 'dark') {
-		for (let mini of p5m.minis) {
+		for (let mini of mies) {
 			mini.editor.setTheme('ace/theme/dracula');
 		}
 	} else {
-		for (let mini of p5m.minis) {
+		for (let mini of mies) {
 			mini.editor.setTheme('ace/theme/xcode');
 		}
 	}

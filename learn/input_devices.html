@@ -5,7 +5,7 @@
 	<meta charset="UTF-8">
 	<title>p5.play : Input</title>
 	<link rel="icon" href="../favicon.png" />
-	<link rel="stylesheet" href="p5-mini.css" />
+	<link rel="stylesheet" href="mies.css" />
 	<link rel="stylesheet" href="style.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.2/p5.min.js"></script>
 	<script src="../v3/planck.min.js"></script>
@@ -45,7 +45,7 @@ Here are the input devices available in p5.play:
 			
 These input devices all use the same functions for getting the state of an input. Try pressing the space key!
 		</script>
-		<script type="text/p5" name="hidden" base-0 hide>
+		<script type="text/mie-p5" name="hidden" base-0 hide>
 function setup() {
 	new Canvas(240, 100);
 	frameRate(30);
@@ -57,32 +57,32 @@ function draw() {
 }
 		</script>
 		<div class="minis">
-			<script type="text/p5" name="presses" base="0">
+			<script type="text/mie-p5" name="presses" base="0">
 if (kb.presses(' ')) {
 	background(0, 255, 0);
 }
 			</script>
-			<script type="text/p5" name="pressing" base="0">
+			<script type="text/mie-p5" name="pressing" base="0">
 if (kb.pressing(' ')) {
 	background(0, 255, 0);
 }
 			</script>
-			<script type="text/p5" name="holds" base="0">
+			<script type="text/mie-p5" name="holds" base="0">
 if (kb.holds(' ')) {
 	background(0, 255, 0);
 }
 			</script>
-			<script type="text/p5" name="holding" base="0">
+			<script type="text/mie-p5" name="holding" base="0">
 if (kb.holding(' ')) {
 	background(0, 255, 0);
 }
 			</script>
-			<script type="text/p5" name="released" base="0">
+			<script type="text/mie-p5" name="released" base="0">
 if (kb.released(' ')) {
 	background(0, 255, 0);
 }
 			</script>
-			<script type="text/p5" name="held" base="0">
+			<script type="text/mie-p5" name="held" base="0">
 if (kb.held(' ')) {
 	background(0, 255, 0);
 }
@@ -101,7 +101,7 @@ Using the IJKL keys for movement is common to support left handed players or sec
 			
 Some keyboards don't start with QWERTY on the top row. p5.play maps other keyboard layouts to the standard English QWERTY layout. For example, the WASD keys for French AZERTY keyboard users are ZQSD. This can be disabled by setting `p5play.standardizeKeyboard` to false. [More info](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/code)
 		</script>
-		<script type="text/p5" name="keyboard movement">
+		<script type="text/mie-p5" name="keyboard movement">
 let player;
 
 function setup() {
@@ -137,7 +137,7 @@ function draw() {
 				is 'left' for the left mouse button or normal click.
 			</p>
 		</div>
-		<script type="text/p5" name="hidden" base-1 hide>
+		<script type="text/mie-p5" name="hidden" base-1 hide>
 let sprite;
 
 function setup() {
@@ -151,7 +151,7 @@ function draw() {
 }
 		</script>
 		<div class="minis horiz">
-			<script type="text/p5" name="multi-input" base="1">
+			<script type="text/mie-p5" name="multi-input" base="1">
 if (kb.pressing(' ') || mouse.pressing()) {
 	sprite.color = 'red';
 }
@@ -169,7 +169,7 @@ The `mouse` has an additional function for detecting dragging, moving the mouse 
 Note that `mouse.x` is the x position of the mouse on the canvas and `sprite.mouse.x` is the x position of the mouse relative to the sprite.
 		</script>
 		<div class="minis horiz">
-			<script type="text/p5" name="sprite.mouse">
+			<script type="text/mie-p5" name="sprite.mouse">
 let sprite;
 
 function setup() {
@@ -211,7 +211,7 @@ The `contro` object is also an array that contains all the game controllers conn
 
 Try it out! Press any button on your connected game controller for it to be detected by p5.play.
 		</script>
-		<script type="text/p5" name="controller test">
+		<script type="text/mie-p5" name="controller test">
 let sprite;
 
 function setup() {
@@ -243,6 +243,7 @@ function draw() {
 	<script src="learn.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 	<script src="md-tag-parser.js"></script>
+	<script src="mies.js"></script>
 	<script src="p5-mini.js"></script>
 </body>
 

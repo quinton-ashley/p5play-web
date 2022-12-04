@@ -5,7 +5,7 @@
 	<meta charset="UTF-8">
 	<title>p5.play : Sprite</title>
 	<link rel="icon" href="../logo.svg" />
-	<link rel="stylesheet" href="p5-mini.css" />
+	<link rel="stylesheet" href="mies.css" />
 	<link rel="stylesheet" href="style.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.2/p5.min.js"></script>
 	<script src="../v3/planck.min.js"></script>
@@ -47,7 +47,7 @@
 				Try changing the width and height of the canvas, then restart the example program!
 			</p>
 		</div>
-		<script type="text/p5" name="p5.js setup and draw">
+		<script type="text/mie-p5" name="p5.js setup and draw">
 function setup() {
 	new Canvas(242, 100);
 }
@@ -75,7 +75,7 @@ function draw() {
 			</p>
 		</div>
 		<div class="minis horiz">
-			<script type="text/p5" name="square" base-0 horiz lines="9">
+			<script type="text/mie-p5" name="square" base-0 horiz lines="9">
 let sprite;
 
 function setup() {
@@ -90,7 +90,7 @@ function draw() {
 	clear();
 }
 			</script>
-			<script type="text/p5" name="circle" base-1 horiz lines="8">
+			<script type="text/mie-p5" name="circle" base-1 horiz lines="8">
 let sprite;
 
 function setup() {
@@ -106,46 +106,46 @@ function draw() {
 				</script>
 		</div>
 		<div class="minis">
-			<script type="text/p5" name="x">
+			<script type="text/mie-p5" name="x">
 				sprite.x = 150;
 			</script>
-			<script type="text/p5" name="y" base="1">
+			<script type="text/mie-p5" name="y" base="1">
 				sprite.y = 30;
 			</script>
-			<script type="text/p5" name="rotation">
+			<script type="text/mie-p5" name="rotation">
 				sprite.rotation = 45;
 			</script>
-			<script type="text/p5" name="rotationSpeed">
+			<script type="text/mie-p5" name="rotationSpeed">
 				sprite.rotationSpeed = 1;
 			</script>
-			<script type="text/p5" name="color" base="1">
+			<script type="text/mie-p5" name="color" base="1">
 let c = color(0, 255, 0);
 sprite.color = c;
 			</script>
-			<script type="text/p5" name="textColor">
+			<script type="text/mie-p5" name="textColor">
 sprite.textColor = 'blue';
 sprite.text = "Hello!";
 			</script>
 		</div>
 
 		<div class="minis">
-			<script type="text/p5" name="width">
+			<script type="text/mie-p5" name="width">
 				sprite.w = 200;
 			</script>
-			<script type="text/p5" name="height">
+			<script type="text/mie-p5" name="height">
 				sprite.h = 80;
 			</script>
-			<script type="text/p5" name="diameter" base="1">
+			<script type="text/mie-p5" name="diameter" base="1">
 				sprite.d = 40;
 			</script>
-			<script type="text/p5" name="radius">
+			<script type="text/mie-p5" name="radius">
 				sprite.r = 40;
 			</script>
-			<script type="text/p5" name="textSize">
+			<script type="text/mie-p5" name="textSize">
 sprite.textSize = 40;
 sprite.text = "p5";
 			</script>
-			<script type="text/p5" name="visible">
+			<script type="text/mie-p5" name="visible">
 				sprite.visible = false;
 			</script>
 		</div>
@@ -160,7 +160,7 @@ sprite.text = "p5";
 					canvas.
 				</p>
 			</div>
-			<script type="text/p5" name="Level 0 Challenge Goal" hide-editor>
+			<script type="text/mie-p5" name="Level 0 Challenge Goal" hide-editor>
 let ball;
 
 function setup() {
@@ -177,7 +177,7 @@ function draw() {
 }
 			</script>
 		</div>
-		<script type="text/p5" name="Level 0 Challenge" lines="13" horiz>
+		<script type="text/mie-p5" name="Level 0 Challenge" lines="13" horiz>
 let ball;
 
 function setup() {
@@ -211,7 +211,7 @@ set the collider type of a sprite.
 You might have to replay these mini-sketches to see what happened!
 			</script>
 		<div>
-			<script type="text/p5" name="dynamic and static colliders" base-2 horiz lines="16">
+			<script type="text/mie-p5" name="dynamic and static colliders" base-2 horiz lines="16">
 let ball, floor;
 
 function setup() {
@@ -235,20 +235,20 @@ function draw() {
 			</script>
 		</div>
 		<div class="minis">
-			<script type="text/p5" name="anti-gravity" base="2">
+			<script type="text/mie-p5" name="anti-gravity" base="2">
 world.gravity.y = -1;
 			</script>
-			<script type="text/p5" name="sloped floor" base="2">
+			<script type="text/mie-p5" name="sloped floor" base="2">
 floor.rotation = 2;
 			</script>
 		</div>
 
 		<div class="minis">
-			<script type="text/p5" name="rising platform" base="2">
+			<script type="text/mie-p5" name="rising platform" base="2">
 floor.collider = 'k';
 floor.vel.y = -1;
 			</script>
-			<script type="text/p5" name="whoops!" base="2">
+			<script type="text/mie-p5" name="whoops!" base="2">
 floor.collider = 'none';
 			</script>
 		</div>
@@ -261,7 +261,7 @@ Try creating a sprite `peg` with a static collider and circle shape. Create a sp
 
 Note that `world` is created when p5.play loads, but by default the (x, y) gravity is (0, 0).
 		</script>
-			<script type="text/p5" name="Level 1 Challenge Goal" hide-editor>
+			<script type="text/mie-p5" name="Level 1 Challenge Goal" hide-editor>
 let peg, block;
 
 function setup() {
@@ -285,7 +285,7 @@ function draw() {
 }
 			</script>
 		</div>
-		<script type="text/p5" name="Level 1 Challenge" lines="13" horiz>
+		<script type="text/mie-p5" name="Level 1 Challenge" lines="13" horiz>
 let peg, block;
 
 function setup() {
@@ -308,7 +308,7 @@ function draw() {
 				Don't teleport a sprite if you want it to physically interact with other sprites while it's moving.
 			</p>
 		</div>
-		<script type="text/p5" name="idle player" lines="11" hide base-3>
+		<script type="text/mie-p5" name="idle player" lines="11" hide base-3>
 let player, block;
 
 function setup() {
@@ -325,7 +325,7 @@ function draw() {
 	clear();
 }
 		</script>
-		<script type="text/p5" name="teleport" base="3">
+		<script type="text/mie-p5" name="teleport" base="3">
 if (mouse.presses()) {
 	player.x = mouse.x;
 	player.y = mouse.y;
@@ -345,7 +345,7 @@ if (mouse.presses()) {
 				resistance, its speed and direction will be affected and it may not reach the target position.
 			</p>
 		</div>
-		<script type="text/p5" name="moveTo" base="3">
+		<script type="text/mie-p5" name="moveTo" base="3">
 if (mouse.presses()) {
 	//        (position, speed)
 	player.moveTo(mouse, 8);
@@ -361,7 +361,7 @@ if (mouse.presses()) {
 				'upRight', 'downLeft', 'downRight'.
 			</p>
 		</div>
-		<script type="text/p5" name="direction + speed" base="3">
+		<script type="text/mie-p5" name="direction + speed" base="3">
 player.direction = 190;
 player.speed = 2;
 		</script>
@@ -374,7 +374,7 @@ player.speed = 2;
 				separately.
 			</p>
 		</div>
-		<script type="text/p5" name="move" base="3">
+		<script type="text/mie-p5" name="move" base="3">
 if (kb.presses('left')) {
 	//    (direction, speed, distance)
 	player.move('left', 3, 50);
@@ -386,7 +386,7 @@ if (kb.presses('left')) {
 				p5.js Vector, you can use any of the Vector functions on it.
 			</p>
 		</div>
-		<script type="text/p5" name="velocity" base="3">
+		<script type="text/mie-p5" name="velocity" base="3">
 if (kb.pressing('left')) player.vel.x = -3;
 else player.vel.x = 0;
 		</script>
@@ -400,7 +400,7 @@ else player.vel.x = 0;
 				the mouse on every p5.js draw call.
 			</p>
 		</div>
-		<script type="text/p5" name="moveTowards" base="3">
+		<script type="text/mie-p5" name="moveTowards" base="3">
 player.moveTowards(mouse, 0.10);
 		</script>
 	</div>
@@ -412,7 +412,7 @@ You can use the `spriteArt` function to create pixel art images for your sprites
 
 The second input parameter to the `spriteArt` function is the scale of the image.
 			</script>
-		<script type="text/p5" name="smiley">
+		<script type="text/mie-p5" name="smiley">
 let smiley;
 
 function setup() {
@@ -438,7 +438,7 @@ function draw() {
 				The default palette uses p5.js default colors but you can change the color palette too!
 			</p>
 		</div>
-		<script type="text/p5" name="smiley">
+		<script type="text/mie-p5" name="smiley">
 let smiley;
 
 function setup() {
@@ -476,7 +476,7 @@ As you saw on the previous Sprite reference pages, you don't need to add any inp
 
 By default, if no inputs are given to the Sprite constructor, new sprites are positioned at the center of the canvas, with a width and height of 50 pixels, and a dynamic collider.
 			</script>
-			<script type="text/p5" name="default sprite" lines="3" horiz>
+			<script type="text/mie-p5" name="default sprite" lines="3" horiz>
 function setup() {
 	new Sprite();
 }
@@ -487,7 +487,7 @@ function draw() {
 			</script>
 		</div>
 		<div class="minis horiz">
-			<script type="text/p5" name="Ooo!" horiz lines="18">
+			<script type="text/mie-p5" name="Ooo!" horiz lines="18">
 let box, circle;
 
 function setup() {
@@ -511,7 +511,7 @@ function draw() {
 	clear();
 }
 			</script>
-			<script type="text/p5" name="ball on the floor" lines="10" horiz>
+			<script type="text/mie-p5" name="ball on the floor" lines="10" horiz>
 let ball, floor;
 
 function setup() {
@@ -535,7 +535,7 @@ function draw() {
 				Try creating two sprites using the sprite constructor.
 			</p>
 		</div>
-		<script type="text/p5" name="Level 1 Challenge" lines="13" horiz>
+		<script type="text/mie-p5" name="Level 1 Challenge" lines="13" horiz>
 let sprite1, sprite2;
 
 function setup() {
@@ -558,7 +558,7 @@ While a sprite is colliding with another sprite, the `colliding` function return
 
 On the first frame after two sprites collided, the `collided` function returns true.
 		</script>
-		<script type="text/p5" name="pillar stomp!" horiz>
+		<script type="text/mie-p5" name="pillar stomp!" horiz>
 let player, pillar;
 
 function setup() {
@@ -578,7 +578,7 @@ function draw() {
 	}
 }
 		</script>
-		<script type="text/p5" name="drop block" horiz>
+		<script type="text/mie-p5" name="drop block" horiz>
 let block, floor;
 
 function setup() {
@@ -601,7 +601,7 @@ function draw() {
 	}
 }
 		</script>
-		<script type="text/p5" name="break floor" horiz>
+		<script type="text/mie-p5" name="break floor" horiz>
 let block, floor;
 
 function setup() {
@@ -625,7 +625,7 @@ function draw() {
 			<h2>Overlap</h2>
 			<p>Sprites collide by default but they can also overlap!</p>
 		</div>
-		<script type="text/p5" name="overlap" horiz lines="8" base-4>
+		<script type="text/mie-p5" name="overlap" horiz lines="8" base-4>
 function setup() {
 	new Canvas(200, 128);
 
@@ -644,7 +644,7 @@ function draw() {
 			<p>By default sprites are drawn in the order they were created in. You can change the draw order by editing
 				sprite's <code>.layer</code> property. Sprites with the highest layer value get drawn first.</p>
 		</div>
-		<script type="text/p5" name="layer" horiz lines=8 base=4>
+		<script type="text/mie-p5" name="layer" horiz lines=8 base=4>
 sprite1.layer = 2;
 sprite2.layer = 1;
 		</script>
@@ -657,7 +657,7 @@ While a sprite is overlapping with another sprite, the `overlapping` function re
 
 On the first frame after two sprites overlapped, the `overlapped` function returns true.
 		</script>
-		<script type="text/p5" name="collect coin">
+		<script type="text/mie-p5" name="collect coin">
 let player, coin;
 
 function setup() {
@@ -684,7 +684,7 @@ function draw() {
 				Try making the blue sprite change to red only while overlapping with the red sprite.
 			</p>
 		</div>
-		<script type="text/p5" name="Level 1 Challenge" lines="20" horiz>
+		<script type="text/mie-p5" name="Level 1 Challenge" lines="20" horiz>
 let sprite1, sprite2;
 
 function setup() {
@@ -721,7 +721,7 @@ function draw() {
 				to make the ball stay on the floor!
 			</p>
 		</div>
-		<script type="text/p5" name="vertex mode" lines="12">
+		<script type="text/mie-p5" name="vertex mode" lines="12">
 let floor, ball;
 
 function setup() {
@@ -753,7 +753,7 @@ function draw() {
 				Try adding 5 distances to make the ground roll up and down on a rocky ground chain.
 			</p>
 		</div>
-		<script type="text/p5" name="distance mode" lines="12">
+		<script type="text/mie-p5" name="distance mode" lines="12">
 let ground, ball;
 
 function setup() {
@@ -790,7 +790,7 @@ function draw() {
 				Try changing the lengths of these lines and their angles!
 			</p>
 		</div>
-		<script type="text/p5" name="line mode" lines="12">
+		<script type="text/mie-p5" name="line mode" lines="12">
 let shelf, orb;
 
 function setup() {
@@ -822,7 +822,7 @@ function draw() {
 				dodecagon.
 			</p>
 		</div>
-		<script type="text/p5" name="pentagon" lines="6">
+		<script type="text/mie-p5" name="pentagon" lines="6">
 function setup() {
 	new Canvas(500, 200);
 
@@ -840,7 +840,7 @@ function draw() {
 				a polygon!
 			</p>
 		</div>
-		<script type="text/p5" name="irregular polygon" lines="6">
+		<script type="text/mie-p5" name="irregular polygon" lines="6">
 function setup() {
 	new Canvas(500, 200);
 
@@ -869,7 +869,7 @@ function draw() {
 				Try making a square shaped chain!
 			</p>
 		</div>
-		<script type="text/p5" name="pentagon chain" lines="7">
+		<script type="text/mie-p5" name="pentagon chain" lines="7">
 function setup() {
 	new Canvas(500, 200);
 
@@ -890,7 +890,7 @@ function draw() {
 				Try changing the number of points!
 			</p>
 		</div>
-		<script type="text/p5" name="star" lines="6">
+		<script type="text/mie-p5" name="star" lines="6">
 function setup() {
 	new Canvas(500, 200);
 
@@ -907,7 +907,7 @@ function draw() {
 				Now you can see how the p5.play logo was made!
 			</p>
 		</div>
-		<script type="text/p5" name="p5.play logo" lines="5">
+		<script type="text/mie-p5" name="p5.play logo" lines="5">
 function setup() {
 	new Canvas(500, 200);
 
@@ -945,7 +945,7 @@ function draw() {
 				updateSprites is called. You can put any sprite specific behavior you want in there.
 			</p>
 		</div>
-		<script type="text/p5" name="custom draw">
+		<script type="text/mie-p5" name="custom draw">
 let face, stretchy;
 
 function setup() {
@@ -989,6 +989,7 @@ function draw() {
 	<script src="learn.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 	<script src="md-tag-parser.js"></script>
+	<script src="mies.js"></script>
 	<script src="p5-mini.js"></script>
 </body>
 

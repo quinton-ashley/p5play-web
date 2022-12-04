@@ -7,6 +7,7 @@ function setup() {
 	let centerX = width * 0.5;
 	let centerY = height * 0.5;
 	hourglass = new Sprite(centerX, centerY, [200, 60, 200, 60, 212, -120, 200, -120, 200, 60, 212, -120], 'kinematic');
+	hourglass.color = 'white'; // set to another color to see the hourglass shape
 	hourglass.angularDamping = 1000;
 
 	for (let i = 0; i < 200; i++) {
@@ -16,11 +17,11 @@ function setup() {
 		new Sprite(x, y, 6).friction = 0.02;
 	}
 }
-function draw() {
-	// if (frameCount % 10 != 0) return;
-	background(50);
-}
 
-function mousePressed() {
-	hourglass.rotate(180, 2);
+function draw() {
+	clear();
+
+	if (mouse.presses()) {
+		hourglass.rotate(180, 2);
+	}
 }
