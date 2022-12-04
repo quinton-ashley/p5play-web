@@ -116,8 +116,8 @@ function draw() {
 			</p>
 			<p>
 				Since the size of the character is the same for every frame
-				of animation, an atlas object can be used to specify the size and how
-				many frames of animation there are.
+				of animation, an atlas object can be used to specify the size of each
+				frame and how many frames of animation there are.
 			</p>
 		</div>
 		<script type="text/p5" name="sprite sheet mode">
@@ -126,7 +126,7 @@ let splatAni;
 function setup() {
 	new Canvas(500, 200);
 
-	splatAni = loadAnimation('assets/explode_sprite_sheet.png', { size: [171, 158], frames: 11 });
+	splatAni = loadAnimation('assets/explode_sprite_sheet.png', { frameSize: [171, 158], frames: 11 });
 }
 
 function draw() {

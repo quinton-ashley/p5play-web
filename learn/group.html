@@ -209,6 +209,54 @@ function draw() {
 }
 		</script>
 	</div>
+	<div id="page-4" class="page">
+		<div>
+			<h2>Sub Groups</h2>
+			<p>
+				In this mini example there are two sub groups of the <code>boxes</code>
+				group: <code>smallBoxes</code> and <code>bigBoxes</code>.
+			</p>
+			<p>
+				New sprites created using the <code>bigBoxes</code> group will
+				inherit traits from the <code>boxes</code> group but
+				not from the <code>smallBoxes</code> groups.
+			</p>
+			<p>
+				The <code>boxes</code> group contains all the sprites in the
+				<code>smallBoxes</code> and <code>bigBoxes</code> groups.
+			</p>
+		</div>
+		<script type="text/p5" name="SubGroup" horiz>
+let boxes, smallBoxes, bigBoxes;
+
+function setup() {
+	new Canvas(100, 472);
+
+	boxes = new Group();
+	boxes.h = 10;
+
+	smallBoxes = new boxes.Group();
+	smallBoxes.w = 20;
+
+	bigBoxes = new boxes.Group();
+	bigBoxes.w = 60;
+}
+
+function draw() {
+	clear();
+
+	if (mouse.presses('left')) {
+		new smallBoxes.Sprite(mouse.x, mouse.y);
+	}
+	if (mouse.presses('right')) {
+		new bigBoxes.Sprite(mouse.x, mouse.y);
+	}
+	if (kb.presses(' ')) {
+		boxes.removeAll();
+	}
+}
+		</script>
+	</div>
 
 	<div class="break"></div>
 	<nav id="pageNav"></nav>
