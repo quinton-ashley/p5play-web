@@ -84,13 +84,9 @@ mies.ready = function () {
 
 function setEditorThemes() {
 	if (document.body.className == 'dark') {
-		for (let mini of mies) {
-			mini.editor.setTheme('ace/theme/dracula');
-		}
+		mies.theme = 'dark';
 	} else {
-		for (let mini of mies) {
-			mini.editor.setTheme('ace/theme/xcode');
-		}
+		mies.theme = 'light';
 	}
 }
 

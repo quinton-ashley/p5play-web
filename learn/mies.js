@@ -198,6 +198,22 @@ ace.config.loadModule('ace/ext/language_tools', function () {
 		}
 	};
 
+	Object.defineProperty(mies, 'theme', {
+		get: () => mies._theme,
+		set: (theme) => {
+			if (theme == 'dark') {
+				for (let mini of mies) {
+					mini.editor.setTheme('ace/theme/dracula');
+				}
+			} else {
+				for (let mini of mies) {
+					mini.editor.setTheme('ace/theme/xcode');
+				}
+			}
+			mies._theme = theme;
+		}
+	});
+
 	if (mies.autoLoad !== false) mies.autoLoad = true;
 	if (mies.autoLoad) mies.loadMinis();
 
