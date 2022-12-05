@@ -112,11 +112,11 @@ function draw() {
 			<script type="text/mie-p5" name="y" base="1">
 				sprite.y = 30;
 			</script>
+			<script type="text/mie-p5" name="position">
+				sprite.pos = {x: 50, y: 0};
+			</script>
 			<script type="text/mie-p5" name="rotation">
 				sprite.rotation = 45;
-			</script>
-			<script type="text/mie-p5" name="rotationSpeed">
-				sprite.rotationSpeed = 1;
 			</script>
 			<script type="text/mie-p5" name="color" base="1">
 let c = color(0, 255, 0);
@@ -705,6 +705,101 @@ function draw() {
 		</script>
 	</div>
 	<div id="page-7" class="page">
+		<script type="text/mie-p5" base-5 hide>
+		let sprite;
+		
+		function setup() {
+			new Canvas(242, 80);
+		
+			sprite = new Sprite();
+			sprite.h = 20;
+		}
+		
+		function draw() {
+			clear();
+		}
+		</script>
+		<div>
+			<h2>Sprite rotation</h2>
+			<p>
+				Directly changing the <code>rotation</code> property of a sprite will teleport it to the specified rotation
+				angle.
+			</p>
+			<p>
+				Don't teleport a sprite if you want it to physically interact with other sprites while it's rotating!
+			</p>
+		</div>
+		<script type="text/mie-p5" name="rotation (teleport)" base="5">
+if (kb.pressing(' ')) sprite.rotation = 90;
+else sprite.rotation = 0;
+		</script>
+		<div>
+			<p>
+				Changing the sprite's <code>rotationSpeed</code> directly is useful for sprites that rotate indefinitely.
+			</p>
+		</div>
+		<script type="text/mie-p5" name="rotationSpeed" base="5">
+sprite.rotationSpeed = 1;
+		</script>
+		<div>
+			<p>
+				Use the <code>rotate</code> function to rotate a sprite by an amount.
+			</p>
+			<p>
+				The optional second parameter is the speed at which the sprite rotates per frame. Try changing the speed of
+				rotation in this mini example.
+			</p>
+		</div>
+		<script type="text/mie-p5" name="rotate" base="5">
+if (kb.presses('left')) sprite.rotate(-45, 3);
+if (kb.presses('right')) sprite.rotate(45, 3);
+		</script>
+		<div>
+			<p>
+				Use the <code>rotateTo</code> function to rotate a sprite so that it faces a position, which can also be given
+				in x,y coordinates. The optional
+				parameter follwing the position is the angle at which the sprite should be facing the target position. The
+				optional parameter at the end is the
+				rotation speed.
+			</p>
+			<p>
+				Try setting the second parameter to 90! When you click, the long side of the sprite will rotate to face the
+				mouse.
+			</p>
+		</div>
+		<script type="text/mie-p5" name="rotateTo" base="5">
+if (mouse.presses()) sprite.rotateTo(mouse, 0, 3);
+		</script>
+		<div>
+			<p>
+				Use the <code>rotateTowards</code> function to rotate a sprite towards a position. Has the same optional second
+				parameter as
+				the <code>rotateTo</code> function. The third optional parameter is the tracking speed, a percent of the
+				distance the sprite moves on each frame to the target rotation angle, 0.1 (10%) by default.
+			</p>
+		</div>
+		<script type="text/mie-p5" name="rotateTowards" base="5">
+sprite.rotateTowards(mouse);
+		</script>
+
+	</div>
+	<div id="page-8" class="page">
+		<div>
+			<h2>Movement sequencing</h2>
+			<p>
+				Coming soon!
+			</p>
+		</div>
+	</div>
+	<div id="page-9" class="page">
+		<div>
+			<h2>Physical attributes</h2>
+			<p>
+				Coming soon!
+			</p>
+		</div>
+	</div>
+	<div id="page-10" class="page">
 		<div>
 			<h2>Chain Colliders</h2>
 			<p>
@@ -809,7 +904,7 @@ function draw() {
 }
 		</script>
 	</div>
-	<div id="page-8" class="page">
+	<div id="page-11" class="page">
 		<div>
 			<h2>Polygon Colliders</h2>
 			<p>
@@ -919,7 +1014,7 @@ function draw() {
 }
 		</script>
 	</div>
-	<div id="page-9" class="page">
+	<div id="page-12" class="page">
 		<div>
 			<h2>Custom draw</h2>
 			<p>
