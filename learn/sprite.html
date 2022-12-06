@@ -768,7 +768,7 @@ if (kb.presses('right')) sprite.rotate(45, 3);
 			</p>
 		</div>
 		<script type="text/mie-p5" name="rotateTo" base="5">
-if (mouse.presses()) sprite.rotateTo(mouse, 0, 3);
+if (mouse.presses()) sprite.rotateTo(mouse, 0, 5);
 		</script>
 		<div>
 			<p>
@@ -790,6 +790,52 @@ sprite.rotateTowards(mouse);
 				Coming soon!
 			</p>
 		</div>
+		<script type="text/mie-p5" name="move sequence" horiz>
+let turtle;
+
+function setup() {
+	new Canvas(160, 400);
+	turtle = new Sprite(30, 30, 25, 25);
+	turtle.color = 'green';
+
+	exampleSequence();
+}
+
+async function exampleSequence() {
+	while (true) {
+		await turtle.moveTo(130, 30, 2);
+		await turtle.moveTo(130, 370, 5);
+		await turtle.moveTo(30, 370, 2);
+		await turtle.moveTo(30, 30, 5);
+	}
+}
+
+function draw() {
+	clear();
+}
+		</script>
+		<!-- <script type="text/mie-p5" name="move sequence" horiz>
+let turtle;
+
+function setup() {
+	new Canvas(160, 400);
+	turtle = new Sprite(30, 30, 25, 25);
+	turtle.color = 'red';
+
+	exampleSequence();
+}
+
+async function exampleSequence() {
+	while (true) {
+		await turtle.rotate(90, 2);
+		await turtle.move('up', 2, 50);
+	}
+}
+
+function draw() {
+	clear();
+}
+		</script> -->
 	</div>
 	<div id="page-9" class="page">
 		<div>

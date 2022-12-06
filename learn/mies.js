@@ -151,7 +151,7 @@ ace.config.loadModule('ace/ext/language_tools', function () {
 		play() {
 			if (this.sketch) this.sketch.remove();
 			let code = this.editor.getValue().trim();
-			if (!code.includes('function setup') || !code.includes('function draw')) {
+			if (this.lang == 'p5' && !code.includes('function setup') && !code.includes('function draw')) {
 				code = mies.bases[this.base || 0] + code + '}';
 			}
 			this.sketch = mies.lang[this.lang].play.call(this, code);
