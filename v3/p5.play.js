@@ -3169,8 +3169,8 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		 * @param {Number} [sy] scale y
 		 */
 		draw(x, y, r, sx, sy) {
-			this.x = x;
-			this.y = y;
+			this.x = x || 0;
+			this.y = y || 0;
 
 			if (!this.visible) return;
 
