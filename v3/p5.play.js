@@ -1448,7 +1448,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		}
 
 		/**
-		 * Scale of the sprite's physics body and appearance. Default is 1.
+		 * Scale of the sprite's physics body. Default is 1.
 		 *
 		 * @property scale
 		 * @type {Number}
@@ -1456,7 +1456,6 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		get scale() {
 			return this._scale;
 		}
-
 		set scale(val) {
 			if (val == 1) return;
 			this._w *= val;
@@ -1467,10 +1466,6 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			}
 			this._resizeCollider(val);
 			this._scale = val;
-			if (this.ani) {
-				this.ani.scale.x = val;
-				this.ani.scale.y = val;
-			}
 		}
 
 		/**
@@ -1971,7 +1966,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		 */
 		_draw() {
 			if (this.animation && !this.debug) {
-				this.animation.draw(0, 0, undefined, this._scale, this._scale);
+				this.animation.draw();
 			} else if (this.fixture != null) {
 				if (this._shape == 'chain') this.p.stroke(this.color);
 				for (let fxt = this.fixtureList; fxt; fxt = fxt.getNext()) {
