@@ -210,7 +210,10 @@ function draw() {
 				animation.
 			</p>
 			<p>
-				Try pressing "s" to make the "swoosh" animation play.
+				The <code>sprite.ani</code> property can also be used to access the sprite's current animation object!
+			</p>
+			<p>
+				Try pressing "s" to make the "swoosh" animation play. Pressing the space bar stops the animation.
 			</p>
 		</div>
 		<script type="text/mie-p5" name="sprites with animation" base-1>
@@ -234,6 +237,12 @@ function draw() {
 	} else {
 		ghost.ani = 'fly';
 	}
+
+	if (kb.pressing(' ')) {
+		ghost.ani.stop();
+	} else {
+		ghost.ani.play();
+	}
 }
 		</script>
 	</div>
@@ -249,6 +258,9 @@ function draw() {
 				Note that in this mini-example if you put splats too close together
 				they'll move apart until their colliders are no longer overlapping. The
 				size of the collider is taken from the size of the animation.
+			</p>
+			<p>
+				Try clicking the mouse to add new splats!
 			</p>
 		</div>
 		<script type="text/mie-p5" name="splats">

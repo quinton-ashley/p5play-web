@@ -3868,6 +3868,17 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		}
 
 		/**
+		 * @method move
+		 */
+		move(distance, direction, speed) {
+			let movements = [];
+			for (let s of this) {
+				movements.push(s.move(distance, direction, speed));
+			}
+			return Promise.all(movements);
+		}
+
+		/**
 		 * @method moveTo
 		 */
 		moveTo(x, y, speed) {
@@ -3878,7 +3889,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 					x: s.x - centroid.x + x,
 					y: s.y - centroid.y + y
 				};
-				movements.push(s.move(dest.x, dest.y, speed));
+				movements.push(s.moveTo(dest.x, dest.y, speed));
 			}
 			return Promise.all(movements);
 		}
