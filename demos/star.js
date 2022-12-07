@@ -17,7 +17,7 @@ function setup() {
 		new Sprite(x, y, [len, angle * 2, len, -angle, i]);
 
 		// create a dot to mark the center of the sprite
-		if (i != 1 && i != sides) {
+		if (i != sides) {
 			new Sprite(x, y, 1, 1, 'static');
 		}
 	}

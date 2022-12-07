@@ -178,20 +178,35 @@ test('Sprite : move, moveTo, moveTowards', () => {
 
 			s = new p.Sprite();
 
-			await expect(s.move(180, 10, 100)).resolves.toBe(true);
+			await expect(s.move(100, 180, 10)).resolves.toBe(true);
 			expect(s.x).toBe(200);
 			expect(s.y).toBe(100);
 
-			await expect(s.move('up', 10, 100)).resolves.toBe(true);
+			await expect(s.move(100, 'up', 10)).resolves.toBe(true);
 			expect(s.x).toBe(100);
 			expect(s.y).toBe(100);
+
+			await expect(s.move(10)).resolves.toBe(true);
+			expect(s.x).toBe(100);
+			expect(s.y).toBe(110);
+
+			s.direction = 'left';
+			await expect(s.move(10)).resolves.toBe(true);
+			expect(s.x).toBe(90);
+			expect(s.y).toBe(110);
 
 			await expect(s.moveTo(10, 20)).resolves.toBe(true);
 			expect(s.x).toBe(10);
 			expect(s.y).toBe(20);
 
+			// test interrupted movement
 			expect(s.moveTo(50, 20)).resolves.toBe(false);
 			await expect(s.moveTo(30, 20)).resolves.toBe(true);
+
+			s.moveTowards(0, 0);
+			expect(s.x).toBeLessThan(30);
+
+			s.remove();
 		};
 
 		p.draw = () => {};
@@ -208,20 +223,17 @@ test('Sprite : rotate, rotateTo, rotateTowards', () => {
 
 			s = new p.Sprite();
 
-			await expect(s.move(180, 10, 100)).resolves.toBe(true);
-			expect(s.x).toBe(200);
-			expect(s.y).toBe(100);
+			await expect(s.rotate(180, 10)).resolves.toBe(true);
+			expect(s.rotation).toBe(180);
+			expect(frame).toBe(18);
 
-			await expect(s.move('up', 10, 100)).resolves.toBe(true);
-			expect(s.x).toBe(100);
-			expect(s.y).toBe(100);
+			await expect(s.rotateTo(200, 0)).resolves.toBe(true);
+			expect(s.rotation).toBe(90);
 
-			await expect(s.moveTo(10, 20)).resolves.toBe(true);
-			expect(s.x).toBe(10);
-			expect(s.y).toBe(20);
+			s.rotateTowards(0, 0);
+			expect(s.rotation).toBeGreaterThan(90);
 
-			expect(s.moveTo(50, 20)).resolves.toBe(false);
-			await expect(s.moveTo(30, 20)).resolves.toBe(true);
+			s.remove();
 		};
 
 		p.draw = () => {};
@@ -247,6 +259,17 @@ test('Sprite : chain and polygon constructors', () => {
 			expect(s.w).toBe(20);
 			expect(s.h).toBe(20);
 			s.remove();
+
+			s = new p.Sprite(1, 1, [
+				[100, 40],
+				[-100, 40],
+				[0, -80]
+			]);
+			expect(s.shape).toBe('polygon');
+			expect(s.originMode).toBe('center');
+			expect(s.x).toBe(1);
+			expect(s.y).toBe(1);
+			expect(s.w).toBe(100);
 
 			expect(() => new p.Sprite([40, 50], [60, 70])).toThrow();
 		};
