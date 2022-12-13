@@ -42,6 +42,17 @@ The `Canvas` class is a wrapper around the p5.play's version of the p5.js `creat
 If no parameters are passed to `new Canvas()`, it will create a canvas that fills the entire window.
 
 You can also pass an aspect ratio to the Canvas constructor. This will create the largest possible canvas that fits within the window, while maintaining the given aspect ratio. For example, `new Canvas('2:1')` will create a canvas that is twice as wide as it is tall.
+
+Another added feature is the "pixelated" preset. Use it for 8-bit or 16-bit style games!
+		</script>
+		<script type="text/mie-p5" title="pixelated preset">
+function setup() {
+	//       (width, height, preset)
+	new Canvas(256, 240, 'pixelated x2');
+}
+function draw() {
+	clear();
+}
 		</script>
 	</div>
 	<div id="page-1" class="page">
