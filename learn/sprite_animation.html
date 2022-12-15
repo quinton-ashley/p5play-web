@@ -143,49 +143,41 @@ function draw() {
 		<div>
 			<h2>Animating</h2>
 			<p>
-				p5play gives you total control over your animations. Try this example out!
+				p5play gives you total control over your animations.
+			</p>
+			<p>
+				Try using your keyboard to test out some of the different ways to control animations!
 			</p>
 		</div>
 		<script type="text/mie-p5" name="splat" base-0>
-let splatAni;
+let ani;
 
 function setup() {
 	new Canvas(500, 160);
 
-	splatAni = loadAni('assets/asterisk_explode0001.png', 11);
+	ani = loadAni('assets/asterisk_explode0001.png', 11);
 }
 
 function draw() {
 	clear();
 
-	if (kb.presses('p')) {
-		splatAni.play();
-	} else if (kb.presses('a')) {
-		splatAni.play(0);
-	} else if (kb.presses('s')) {
-		splatAni.stop();
-	} else if (kb.presses('r')) {
-		splatAni.rewind();
-	} else if (kb.presses('l')) {
-		splatAni.loop();
-	} else if (kb.presses('n')) {
-		splatAni.noLoop();
-	} else if (kb.presses('t')) {
-		splatAni.nextFrame();
-	} else if (kb.presses('v')) {
-		splatAni.previousFrame();
-	} else if (kb.presses('f')) {
-		splatAni.frame = 5;
-	} else if (kb.pressing('x')) {
-		splatAni.scale.x = -1;
-	} else if (kb.pressing('y')) {
-		splatAni.scale.y = -1;
-	} else if (kb.pressing('z')) {
-		splatAni.scale.x = 1;
-		splatAni.scale.y = 1;
-	}
+	if (kb.presses('w')) ani.play();
+	if (kb.presses('p')) ani.play(0);
+	if (kb.presses('ArrowLeft')) ani.frameDelay--;
+	if (kb.presses('ArrowRight')) ani.frameDelay++;
+	if (kb.presses('s')) ani.stop();
+	if (kb.presses('r')) ani.rewind();
+	if (kb.presses('l')) ani.loop();
+	if (kb.presses('n')) ani.noLoop();
+	if (kb.presses('a')) ani.previousFrame();
+	if (kb.presses('d')) ani.nextFrame();
+	if (kb.presses('5')) ani.frame = 5;
+	if (kb.pressing('x')) ani.scale.x = -1;
+	if (kb.pressing('y')) ani.scale.y = -1;
+	if (kb.pressing('1')) ani.scale = 1;
+	if (kb.pressing('2')) ani.scale = 2;
 
-	animation(splatAni, 250, 80);
+	animation(ani, 250, 80);
 }
 //
 		</script>
