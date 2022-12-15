@@ -49,12 +49,6 @@
 				December 31st. Games must use the latest version of p5.play.
 			</p>
 
-			<h3>
-				<a
-					href="https://docs.google.com/forms/d/e/1FAIpQLSeoHpKEy58ubTE0Pq_3kKCN83ZI5w-Zy56tlIyEUlwXm8wWzw/viewform?usp=sf_link">Submit
-					your games here!</a>
-			</h3>
-
 		</div>
 		<script type="text/mie-p5" name="logos" hide-editor>
 let logosAni;
@@ -68,16 +62,10 @@ function preload() {
 }
 
 function setup() {
-	createCanvas(500, 400);
+	new Canvas(500, 400);
 	stroke(239, 53, 107);
 	strokeWeight(4);
-	textSize(22);
-	textAlign(CENTER);
-	textFont('monospace');
 	logosAni.frame = 12;
-	let box = new Sprite(logosAni.frameImage, 250, 200, 'static');
-	box.text = 'p5.play\nGame Jam!\n2022';
-	box.shapeColor = color(0, 0, 0, 0);
 	allSprites.cull(100);
 }
 
@@ -101,7 +89,10 @@ function draw() {
 
 	<div class="credits">
 		<div>
-			<h3>The winners will be announced in January 2023!</h3>
+			<h1><a
+					href="https://docs.google.com/forms/d/e/1FAIpQLSeoHpKEy58ubTE0Pq_3kKCN83ZI5w-Zy56tlIyEUlwXm8wWzw/viewform?usp=sf_link">Submit
+					your game here!</a></h1>
+			<h3>The winners will be announced in January 2023</h3>
 		</div>
 	</div>
 	<div class="break"></div>
