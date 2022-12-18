@@ -793,7 +793,7 @@ You can wait for a movement to finish before continuing with the next movement. 
 
 The `move`, `moveTo`, `rotate`, and `rotateTo` functions all return a promise that resolves when the movement is finished. You can use the `await` keyword to wait for the promise to resolve before continuing with the next movement.
 		</script>
-		<script type="text/mie-p5" name="square sequence" horiz>
+		<script type="text/mie-p5" name="square sequence" horiz lines="14">
 let turtle;
 
 function setup() {
@@ -804,8 +804,8 @@ function setup() {
 }
 
 async function squareSequence() {
-	await turtle.move(100, 'forward', 5);
-	await turtle.rotate(90, 3);
+	await turtle.move(100);
+	await turtle.rotate(90);
 	squareSequence();
 }
 
@@ -813,11 +813,17 @@ function draw() {
 	clear();
 }
 		</script>
-		<script type="text/mie-p5" name="random sequence" horiz>
+		<div>
+			<p>
+				These examples use a `Turtle` sprite which is just a regular sprite that's green and shaped like a triangle for
+				that classic turtle programming look.
+			</p>
+		</div>
+		<script type="text/mie-p5" name="random sequence" horiz lines="16">
 let turtle;
 
 function setup() {
-	new Canvas(160, 300);
+	new Canvas(160, 304);
 	turtle = new Turtle(30);
 
 	randomSequence();
