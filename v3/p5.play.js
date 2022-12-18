@@ -2437,6 +2437,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			if (typeof x != 'number') {
 				facing = tracking;
 				tracking = y;
+				y = facing;
 			}
 			let angle = this.angleTo(x, y, facing);
 			tracking ??= 0.1;
@@ -2495,6 +2496,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			if (typeof x != 'number') {
 				facing = speed;
 				speed = y;
+				y = facing;
 			}
 
 			let angle = this.angleTo(x, y, facing);
