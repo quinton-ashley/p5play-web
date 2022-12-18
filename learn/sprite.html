@@ -758,9 +758,9 @@ if (kb.presses('right')) sprite.rotate(45, 3);
 			<p>
 				Use the <code>rotateTo</code> function to rotate a sprite so that it faces a position, which can also be given
 				in x,y coordinates. The optional
-				parameter follwing the position is the angle at which the sprite should be facing the target position. The
-				optional parameter at the end is the
-				rotation speed.
+				parameter follwing the position is the
+				rotation speed. The
+				optional parameter at the end is the angle at which the sprite should be facing the target position.
 			</p>
 			<p>
 				Try setting the second parameter to 90! When you click, the long side of the sprite will rotate to face the
@@ -768,14 +768,16 @@ if (kb.presses('right')) sprite.rotate(45, 3);
 			</p>
 		</div>
 		<script type="text/mie-p5" name="rotateTo" base="5">
-if (mouse.presses()) sprite.rotateTo(mouse, 0, 5);
+if (mouse.presses()) sprite.rotateTo(mouse, 5);
 		</script>
 		<div>
 			<p>
-				Use the <code>rotateTowards</code> function to rotate a sprite towards a position. Has the same optional second
+				Use the <code>rotateTowards</code> function to rotate a sprite towards a position. The optional parameter after
+				the position is the tracking speed, a percent of the
+				distance the sprite moves on each frame to the target rotation angle, 0.1 (10%) by default. Has the same
+				optional last
 				parameter as
-				the <code>rotateTo</code> function. The third optional parameter is the tracking speed, a percent of the
-				distance the sprite moves on each frame to the target rotation angle, 0.1 (10%) by default.
+				the <code>rotateTo</code> function.
 			</p>
 		</div>
 		<script type="text/mie-p5" name="rotateTowards" base="5">
@@ -784,30 +786,49 @@ sprite.rotateTowards(mouse);
 
 	</div>
 	<div id="page-8" class="page">
-		<div>
-			<h2>Movement sequencing</h2>
-			<p>
-				Coming soon!
-			</p>
-		</div>
-		<script type="text/mie-p5" name="move sequence" horiz>
+		<script type="text/md">
+## Movement sequencing
+
+You can wait for a movement to finish before continuing with the next movement. This is useful for making a sprite move in a sequence.
+
+The `move`, `moveTo`, `rotate`, and `rotateTo` functions all return a promise that resolves when the movement is finished. You can use the `await` keyword to wait for the promise to resolve before continuing with the next movement.
+		</script>
+		<script type="text/mie-p5" name="square sequence" horiz>
 let turtle;
 
 function setup() {
-	new Canvas(160, 400);
-	turtle = new Sprite(30, 30, 25, 25);
-	turtle.color = 'green';
+	new Canvas(160, 160);
+	turtle = new Turtle(30);
 
-	exampleSequence();
+	squareSequence();
 }
 
-async function exampleSequence() {
-	while (true) {
-		await turtle.moveTo(130, 30, 2);
-		await turtle.moveTo(130, 370, 5);
-		await turtle.moveTo(30, 370, 2);
-		await turtle.moveTo(30, 30, 5);
-	}
+async function squareSequence() {
+	await turtle.move(100, 'forward', 5);
+	await turtle.rotate(90, 3);
+	squareSequence();
+}
+
+function draw() {
+	clear();
+}
+		</script>
+		<script type="text/mie-p5" name="random sequence" horiz>
+let turtle;
+
+function setup() {
+	new Canvas(160, 300);
+	turtle = new Turtle(30);
+
+	randomSequence();
+}
+
+async function randomSequence() {
+	let x = random(0, width);
+	let y = random(0, height);
+	await turtle.rotateTo(x, y, 5);
+	await turtle.moveTo(x, y, 5);
+	randomSequence();
 }
 
 function draw() {
