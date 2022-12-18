@@ -952,7 +952,7 @@ function draw() {
 			</p>
 			<p>
 				Note that the line mode chain's (x, y) position is located at
-				half the chain's width and half the chain's height, which may not be a point on the chain.
+				the average of all its vertices, which may not be a point on the chain.
 			</p>
 			<p>
 				Try changing the lengths of these lines and their angles!
@@ -1021,8 +1021,11 @@ function draw() {
 		</script>
 		<div>
 			<p>
-				If you use distance mode to create a polygon it's origin will be
-				at the center instead of the start!
+				Regardless of whether a sprite is a polygon or a chain, all
+				physics bodies that start and end at the same point have their
+				(x, y) position located at the center of the shape, not at the
+				first vertex. This position is calculated by averaging all of the
+				shape's vertexes.
 			</p>
 		</div>
 		<script type="text/mie-p5" name="irregular polygon: distance mode" lines="9">
@@ -1073,6 +1076,9 @@ function draw() {
 		<div>
 			<p>
 				Here's the code for making a regular star with five points.
+			</p>
+			<p>
+				Note that the star is a chain, not a polygon. That's because it's not convex!
 			</p>
 			<p>
 				Try changing the number of points!
