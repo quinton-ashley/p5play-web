@@ -1,3 +1,5 @@
+window.mies ??= [];
+mies.lang ??= {};
 mies.lang.p5 = {};
 
 mies.lang.p5.completions = [

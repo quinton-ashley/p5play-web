@@ -1,6 +1,6 @@
 if (typeof window.mies == 'undefined') window.mies = [];
 else window.mies = Object.assign([], window.mies);
-mies.lang = {
+mies.lang ??= {
 	javascript: {
 		play: function (code) {}
 	}
