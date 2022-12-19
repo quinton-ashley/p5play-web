@@ -55,7 +55,7 @@ function collect(collector, collected) {
 function draw() {
 	background(255);
 
-	asterisk.moveTowards(mouse.x, mouse.y);
+	asterisk.moveTowards(mouse);
 
 	// if the asterisk's animation is named "stretch" and it reached
 	// its last frame, change its current animation to its default animation

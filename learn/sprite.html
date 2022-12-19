@@ -670,9 +670,7 @@ function setup() {
 
 function draw() {
 	clear();
-	if (mouse.isOnCanvas) {
-		player.moveTowards(mouse.x, mouse.y);
-	}
+	player.moveTowards(mouse);
 		
 	if (player.overlaps(coin)) coin.remove();
 }
@@ -697,7 +695,7 @@ function setup() {
 
 function draw() {
 	clear();
-	sprite1.moveTowards(mouse.x, mouse.y);
+	sprite1.moveTowards(mouse);
 
 	
 	
@@ -1144,10 +1142,9 @@ let face, stretchy;
 
 function setup() {
 	new Canvas(500, 200);
-	noStroke();
 
 	face = loadImage('assets/face.png');
-	stretchy = new Sprite(400, 200, 10, 10);
+	stretchy = new Sprite();
 	
 	stretchy.draw = () => {
 		fill(237, 205, 0);
@@ -1161,7 +1158,7 @@ function setup() {
 	};
 
 	stretchy.update = () => {
-		stretchy.moveTowards(mouse.x, mouse.y, 0.07);
+		stretchy.moveTowards(mouse, 0.07);
 	};
 }
 

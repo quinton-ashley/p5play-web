@@ -67,7 +67,7 @@ function draw() {
 		rect(-250 + i * 50, -250 + i * 100, 750, 50);
 	}
 
-	player.moveTowards(mouse.x, mouse.y, 0.04);
+	player.moveTowards(mouse, 0.04);
 	player.draw();
 
 	camera.x = player.x;

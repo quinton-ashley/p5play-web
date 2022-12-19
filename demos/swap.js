@@ -6,7 +6,7 @@ function setup() {
 	boxes = new Group();
 	boxes.w = 40;
 	boxes.h = 40;
-	boxes.fixedRotation = true;
+	boxes.rotationDrag = 1;
 
 	for (let i = 0; i < 3; i++) {
 		let box = new boxes.Sprite(random(width), random(height));
@@ -26,14 +26,14 @@ function draw() {
 
 	text('Controlling box #' + cursor + '. Click the mouse to change!', 10, 20);
 
-	boxes[cursor].moveTowards(mouse.x, mouse.y, 0.1);
+	boxes[cursor].moveTowards(mouse);
 
 	boxes.cull(0, (box) => {
 		if (box == boxes[cursor]) return;
 		box.moveTo(width * 0.5, height * 0.5);
 	});
-}
 
-function mousePressed() {
-	cursor = cursor >= boxes.length - 1 ? 0 : cursor + 1;
+	if (mouse.presses()) {
+		cursor = cursor >= boxes.length - 1 ? 0 : cursor + 1;
+	}
 }

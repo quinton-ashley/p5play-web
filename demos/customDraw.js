@@ -42,5 +42,5 @@ function draw() {
 	background(255);
 
 	// mouse trailer, the speed is inversely proportional to the mouse distance
-	stretchy.moveTowards(mouse.x, mouse.y, 0.07);
+	stretchy.moveTowards(mouse, 0.07);
 }

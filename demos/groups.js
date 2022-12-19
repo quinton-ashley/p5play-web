@@ -53,7 +53,7 @@ function draw() {
 
 	// change's the sprite's velocities so it moves towards a point
 	// at a specified tracking ratio
-	asterisk.moveTowards(mouse.x, mouse.y, 0.1);
+	asterisk.moveTowards(mouse, 0.1);
 	// 1 represents 1:1 tracking, the mouse moves to the destination immediately, 0 represents no tracking
 
 	allSprites.debug = mouse.pressing();

@@ -26,7 +26,7 @@ function preload() {
 
 	circle = new Sprite(400, 350, 110);
 	circle.addAni('assets/asterisk_circle0006.png', 8);
-	circle.angularDrag = 2;
+	circle.rotationDrag = 2;
 }
 
 function setup() {
@@ -42,7 +42,7 @@ function draw() {
 	// follow the mouse
 	// moving sprites with the velocity instead of the position directly
 	// improves the collision resolution
-	circle.moveTowards(mouse.x, mouse.y);
+	circle.moveTowards(mouse);
 
 	allSprites.debug = mouse.pressing();
 }
