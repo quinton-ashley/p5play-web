@@ -206,25 +206,25 @@ function draw() {
 				they are evaluated.</p>
 		</div>
 		<script type="text/mie-p5" name="doors">
-				let doors, rail;
-				
-				function setup() {
-					new Canvas(500, 150);
-				
-					doors = new Group();
-					doors.x = (i) => i * 55;
-					doors.y = (i) => 100 - i * 5;
-					doors.height = 100;
-					doors.amount = 10;
-				
-					rail = new Sprite(250, 20, 500, 5);
-					rail.color = 'grey';
-					rail.rotation = -5;
-				}
-				
-				function draw() {
-					clear();
-				}
+let doors, rail;
+
+function setup() {
+	new Canvas(500, 150);
+
+	doors = new Group();
+	doors.x = (i) => i * 55;
+	doors.y = (i) => 100 - i * 5;
+	doors.height = 100;
+	doors.amount = 10;
+
+	rail = new Sprite(250, 20, 500, 5);
+	rail.color = 'grey';
+	rail.rotation = -5;
+}
+
+function draw() {
+	clear();
+}
 						</script>
 	</div>
 	<div id="page-5" class="page">
@@ -248,7 +248,7 @@ function draw() {
 let boxes, smallBoxes, bigBoxes;
 
 function setup() {
-	new Canvas(100, 472);
+	new Canvas(100, 528);
 
 	boxes = new Group();
 	boxes.h = 10;
