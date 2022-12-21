@@ -41,7 +41,6 @@ function setup() {
 		let circle = new circles.Sprite(random(0, width), random(0, height));
 		// mass determines the force exchange in case of bounce
 		circle.mass = circle.scale;
-		circle.ani.scale = circle.scale;
 	}
 
 	for (let j = 0; j < 4; j++) {
