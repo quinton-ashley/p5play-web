@@ -58,32 +58,32 @@ function draw() {
 		</script>
 		<div class="minis">
 			<script type="text/mie-p5" name="presses" base="0">
-if (kb.presses(' ')) {
+if (kb.presses('space')) {
 	background(0, 255, 0);
 }
 			</script>
 			<script type="text/mie-p5" name="pressing" base="0">
-if (kb.pressing(' ')) {
+if (kb.pressing('space')) {
 	background(0, 255, 0);
 }
 			</script>
 			<script type="text/mie-p5" name="holds" base="0">
-if (kb.holds(' ')) {
+if (kb.holds('space')) {
 	background(0, 255, 0);
 }
 			</script>
 			<script type="text/mie-p5" name="holding" base="0">
-if (kb.holding(' ')) {
+if (kb.holding('space')) {
 	background(0, 255, 0);
 }
 			</script>
 			<script type="text/mie-p5" name="released" base="0">
-if (kb.released(' ')) {
+if (kb.released('space')) {
 	background(0, 255, 0);
 }
 			</script>
 			<script type="text/mie-p5" name="held" base="0">
-if (kb.held(' ')) {
+if (kb.held('space')) {
 	background(0, 255, 0);
 }
 			</script>
@@ -152,7 +152,7 @@ function draw() {
 		</script>
 		<div class="minis horiz">
 			<script type="text/mie-p5" name="multi-input" base="1">
-if (kb.pressing(' ') || mouse.pressing()) {
+if (kb.pressing('space') || mouse.pressing()) {
 	sprite.color = 'red';
 }
 			</script>
