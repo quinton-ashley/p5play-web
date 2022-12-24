@@ -939,6 +939,10 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		/**
 		 * Removes overlap sensors from the sprite.
 		 *
+		 * Note that this can't be done while the sprite is in the middle of
+		 * an overlap check. It could be used after an overlap in response to
+		 * an `overlapped` event though.
+		 *
 		 * @method removeSensors
 		 */
 		removeSensors() {
