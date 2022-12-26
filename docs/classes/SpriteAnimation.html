@@ -110,13 +110,15 @@ index is 3 then "image2.png" and "image3.png" will be loaded as well.</p>
 		<li>
 			<strong>Methods</strong>
 			<ul>
+				<li class=""><a href="#method-clone"><span class="im">clone</span>()</a></li>
 				<li class=""><a href="#method-draw"><span class="im">draw</span>(<span class="ia">x</span><span class="ia">y</span><span class="ia">r</span><span class="ia">sx</span><span class="ia">sy</span>)</a></li>
-				<li class=""><a href="#method-getImage"><span class="im">getImage</span>()</a></li>
+				<li class=""><a href="#method-frameImage"><span class="im">frameImage</span>()</a></li>
 				<li class=""><a href="#method-goToFrame"><span class="im">goToFrame</span>(<span class="ia">toFrame</span>)</a></li>
 				<li class=""><a href="#method-loop"><span class="im">loop</span>()</a></li>
 				<li class=""><a href="#method-nextFrame"><span class="im">nextFrame</span>()</a></li>
 				<li class=""><a href="#method-noLoop"><span class="im">noLoop</span>()</a></li>
 				<li class=""><a href="#method-onComplete"><span class="im">onComplete</span>()</a></li>
+				<li class=""><a href="#method-pause"><span class="im">pause</span>()</a></li>
 				<li class=""><a href="#method-play"><span class="im">play</span>()</a></li>
 				<li class=""><a href="#method-previousFrame"><span class="im">previousFrame</span>()</a></li>
 				<li class=""><a href="#method-rewind"><span class="im">rewind</span>()</a></li>
@@ -131,11 +133,19 @@ index is 3 then "image2.png" and "image3.png" will be loaded as well.</p>
 				<li class=""><a href="#prop-frame"><span class="ip">frame</span></a></li>
 				<li class=""><a href="#prop-frameChanged"><span class="ip">frameChanged</span></a></li>
 				<li class=""><a href="#prop-frameDelay"><span class="ip">frameDelay</span></a></li>
+				<li class=""><a href="#prop-frames"><span class="ip">frames</span></a></li>
+				<li class=""><a href="#prop-h"><span class="ip">h</span></a></li>
+				<li class=""><a href="#prop-height"><span class="ip">height</span></a></li>
+				<li class=""><a href="#prop-images"><span class="ip">images</span></a></li>
+				<li class=""><a href="#prop-lastFrame"><span class="ip">lastFrame</span></a></li>
 				<li class=""><a href="#prop-looping"><span class="ip">looping</span></a></li>
 				<li class=""><a href="#prop-name"><span class="ip">name</span></a></li>
 				<li class=""><a href="#prop-offset"><span class="ip">offset</span></a></li>
 				<li class=""><a href="#prop-playing"><span class="ip">playing</span></a></li>
+				<li class=""><a href="#prop-scale"><span class="ip">scale</span></a></li>
 				<li class=""><a href="#prop-visible"><span class="ip">visible</span></a></li>
+				<li class=""><a href="#prop-w"><span class="ip">w</span></a></li>
+				<li class=""><a href="#prop-width"><span class="ip">width</span></a></li>
 			</ul>
 		</li>
 
@@ -163,7 +173,7 @@ index is 3 then "image2.png" and "image3.png" will be loaded as well.</p>
 	<div class="meta">
 				<p>
 				Defined in
-		<a href="../files/v3_p5.play.js.html#l2960"><code>v3&#x2F;p5.play.js:2960</code></a>
+		<a href="../files/v3_p5.play.js.html#l3010"><code>v3&#x2F;p5.play.js:3010</code></a>
 		</p>
 
 
@@ -189,6 +199,46 @@ let walking = new SpriteAnimation("walking0001.png", 5);</p>
     <div id="methods" class="page-section">
         <h2 class="off-left">Methods</h2>
         <div class="item-list">
+<div id="method-clone" class="method item ">
+	<div class="method-signature">
+	<span class="name"><code>clone</code></span>
+
+		<span class="paren">()</span>
+		<span class="returns-inline">
+			<span class="type"><a href="../classes/SpriteAnimation.html" class="crosslink">SpriteAnimation</a></span>
+		</span>
+	</div>
+
+
+
+
+
+
+	<div class="meta">
+				<p>
+				Defined in
+		<a href="../files/v3_p5.play.js.html#l3394"><code>v3&#x2F;p5.play.js:3394</code></a>
+		</p>
+
+
+
+	</div>
+
+	<div class="description"><p>Make a copy of the animation.</p>
+</div>
+
+
+		<div class="returns">
+			<h4>Returns:</h4>
+
+			<div class="returns-description">
+						<span class="type"><a href="../classes/SpriteAnimation.html" class="crosslink">SpriteAnimation</a></span>:
+					<p>A copy of the animation.</p>
+
+			</div>
+		</div>
+
+</div>
 <div id="method-draw" class="method item ">
 	<div class="method-signature">
 	<span class="name"><code>draw</code></span>
@@ -222,7 +272,7 @@ let walking = new SpriteAnimation("walking0001.png", 5);</p>
 	<div class="meta">
 				<p>
 				Defined in
-		<a href="../files/v3_p5.play.js.html#l3352"><code>v3&#x2F;p5.play.js:3352</code></a>
+		<a href="../files/v3_p5.play.js.html#l3415"><code>v3&#x2F;p5.play.js:3415</code></a>
 		</p>
 
 
@@ -292,9 +342,9 @@ are not saved between draw cycles.</p>
 
 
 </div>
-<div id="method-getImage" class="method item ">
+<div id="method-frameImage" class="method item ">
 	<div class="method-signature">
-	<span class="name"><code>getImage</code></span>
+	<span class="name"><code>frameImage</code></span>
 
 		<span class="paren">()</span>
 		<span class="returns-inline">
@@ -310,14 +360,14 @@ are not saved between draw cycles.</p>
 	<div class="meta">
 				<p>
 				Defined in
-		<a href="../files/v3_p5.play.js.html#l3593"><code>v3&#x2F;p5.play.js:3593</code></a>
+		<a href="../files/v3_p5.play.js.html#l3690"><code>v3&#x2F;p5.play.js:3690</code></a>
 		</p>
 
 
 
 	</div>
 
-	<div class="description"><p>Returns the current frame image as p5.Image.</p>
+	<div class="description"><p>Returns the current frame as p5.Image.</p>
 </div>
 
 
@@ -343,6 +393,9 @@ are not saved between draw cycles.</p>
 				</li>
 			</ul><span class="paren">)</span>
 		</div>
+		<span class="returns-inline">
+			<span class="type"></span>
+		</span>
 	</div>
 
 
@@ -353,7 +406,7 @@ are not saved between draw cycles.</p>
 	<div class="meta">
 				<p>
 				Defined in
-		<a href="../files/v3_p5.play.js.html#l3543"><code>v3&#x2F;p5.play.js:3543</code></a>
+		<a href="../files/v3_p5.play.js.html#l3627"><code>v3&#x2F;p5.play.js:3627</code></a>
 		</p>
 
 
@@ -379,6 +432,14 @@ are not saved between draw cycles.</p>
 			</ul>
 		</div>
 
+		<div class="returns">
+			<h4>Returns:</h4>
+
+			<div class="returns-description">
+					<p>[Promise] a promise that resolves when the animation completes</p>
+
+			</div>
+		</div>
 
 </div>
 <div id="method-loop" class="method item ">
@@ -396,7 +457,7 @@ are not saved between draw cycles.</p>
 	<div class="meta">
 				<p>
 				Defined in
-		<a href="../files/v3_p5.play.js.html#l3471"><code>v3&#x2F;p5.play.js:3471</code></a>
+		<a href="../files/v3_p5.play.js.html#l3555"><code>v3&#x2F;p5.play.js:3555</code></a>
 		</p>
 
 
@@ -424,7 +485,7 @@ are not saved between draw cycles.</p>
 	<div class="meta">
 				<p>
 				Defined in
-		<a href="../files/v3_p5.play.js.html#l3517"><code>v3&#x2F;p5.play.js:3517</code></a>
+		<a href="../files/v3_p5.play.js.html#l3601"><code>v3&#x2F;p5.play.js:3601</code></a>
 		</p>
 
 
@@ -452,7 +513,7 @@ are not saved between draw cycles.</p>
 	<div class="meta">
 				<p>
 				Defined in
-		<a href="../files/v3_p5.play.js.html#l3481"><code>v3&#x2F;p5.play.js:3481</code></a>
+		<a href="../files/v3_p5.play.js.html#l3565"><code>v3&#x2F;p5.play.js:3565</code></a>
 		</p>
 
 
@@ -483,7 +544,7 @@ are not saved between draw cycles.</p>
 	<div class="meta">
 				<p>
 				Defined in
-		<a href="../files/v3_p5.play.js.html#l3490"><code>v3&#x2F;p5.play.js:3490</code></a>
+		<a href="../files/v3_p5.play.js.html#l3574"><code>v3&#x2F;p5.play.js:3574</code></a>
 		</p>
 
 
@@ -503,9 +564,9 @@ are not saved between draw cycles.</p>
 		</div>
 
 </div>
-<div id="method-play" class="method item ">
+<div id="method-pause" class="method item ">
 	<div class="method-signature">
-	<span class="name"><code>play</code></span>
+	<span class="name"><code>pause</code></span>
 
 		<span class="paren">()</span>
 	</div>
@@ -518,7 +579,38 @@ are not saved between draw cycles.</p>
 	<div class="meta">
 				<p>
 				Defined in
-		<a href="../files/v3_p5.play.js.html#l3439"><code>v3&#x2F;p5.play.js:3439</code></a>
+		<a href="../files/v3_p5.play.js.html#l3522"><code>v3&#x2F;p5.play.js:3522</code></a>
+		</p>
+
+
+
+	</div>
+
+	<div class="description"><p>Pauses the animation.</p>
+</div>
+
+
+
+</div>
+<div id="method-play" class="method item ">
+	<div class="method-signature">
+	<span class="name"><code>play</code></span>
+
+		<span class="paren">()</span>
+		<span class="returns-inline">
+			<span class="type"></span>
+		</span>
+	</div>
+
+
+
+
+
+
+	<div class="meta">
+				<p>
+				Defined in
+		<a href="../files/v3_p5.play.js.html#l3505"><code>v3&#x2F;p5.play.js:3505</code></a>
 		</p>
 
 
@@ -529,6 +621,14 @@ are not saved between draw cycles.</p>
 </div>
 
 
+		<div class="returns">
+			<h4>Returns:</h4>
+
+			<div class="returns-description">
+					<p>[Promise] a promise that resolves when the animation completes</p>
+
+			</div>
+		</div>
 
 </div>
 <div id="method-previousFrame" class="method item ">
@@ -546,7 +646,7 @@ are not saved between draw cycles.</p>
 	<div class="meta">
 				<p>
 				Defined in
-		<a href="../files/v3_p5.play.js.html#l3530"><code>v3&#x2F;p5.play.js:3530</code></a>
+		<a href="../files/v3_p5.play.js.html#l3614"><code>v3&#x2F;p5.play.js:3614</code></a>
 		</p>
 
 
@@ -564,6 +664,9 @@ are not saved between draw cycles.</p>
 	<span class="name"><code>rewind</code></span>
 
 		<span class="paren">()</span>
+		<span class="returns-inline">
+			<span class="type"></span>
+		</span>
 	</div>
 
 
@@ -574,7 +677,7 @@ are not saved between draw cycles.</p>
 	<div class="meta">
 				<p>
 				Defined in
-		<a href="../files/v3_p5.play.js.html#l3460"><code>v3&#x2F;p5.play.js:3460</code></a>
+		<a href="../files/v3_p5.play.js.html#l3542"><code>v3&#x2F;p5.play.js:3542</code></a>
 		</p>
 
 
@@ -586,6 +689,15 @@ Equivalent to ani.goToFrame(0)</p>
 </div>
 
 
+		<div class="returns">
+			<h4>Returns:</h4>
+
+			<div class="returns-description">
+					<p>[Promise] a promise that resolves when the animation completes
+rewinding</p>
+
+			</div>
+		</div>
 
 </div>
 <div id="method-stop" class="method item ">
@@ -603,14 +715,14 @@ Equivalent to ani.goToFrame(0)</p>
 	<div class="meta">
 				<p>
 				Defined in
-		<a href="../files/v3_p5.play.js.html#l3450"><code>v3&#x2F;p5.play.js:3450</code></a>
+		<a href="../files/v3_p5.play.js.html#l3532"><code>v3&#x2F;p5.play.js:3532</code></a>
 		</p>
 
 
 
 	</div>
 
-	<div class="description"><p>Stops the animation.</p>
+	<div class="description"><p>Stops the animation. Alt for pause.</p>
 </div>
 
 
@@ -634,7 +746,7 @@ Equivalent to ani.goToFrame(0)</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5.play.js.html#l3075"><code>v3&#x2F;p5.play.js:3075</code></a>
+        <a href="../files/v3_p5.play.js.html#l3116"><code>v3&#x2F;p5.play.js:3116</code></a>
         </p>
 
 
@@ -663,7 +775,7 @@ same as the last frame.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5.play.js.html#l3013"><code>v3&#x2F;p5.play.js:3013</code></a>
+        <a href="../files/v3_p5.play.js.html#l3063"><code>v3&#x2F;p5.play.js:3063</code></a>
         </p>
 
 
@@ -688,7 +800,7 @@ same as the last frame.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5.play.js.html#l3087"><code>v3&#x2F;p5.play.js:3087</code></a>
+        <a href="../files/v3_p5.play.js.html#l3128"><code>v3&#x2F;p5.play.js:3128</code></a>
         </p>
 
 
@@ -713,7 +825,7 @@ same as the last frame.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5.play.js.html#l3037"><code>v3&#x2F;p5.play.js:3037</code></a>
+        <a href="../files/v3_p5.play.js.html#l3357"><code>v3&#x2F;p5.play.js:3357</code></a>
         </p>
 
 
@@ -730,6 +842,131 @@ sketch framerate divided by 4 (60fps = 15fps)</p>
 
 
 </div>
+<div id="prop-frames" class="property item ">
+    <h3 class="name"><code>frames</code></h3>
+    <span class="type">Array</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l3756"><code>v3&#x2F;p5.play.js:3756</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>The frames of the animation.</p>
+
+    </div>
+
+
+
+</div>
+<div id="prop-h" class="property item ">
+    <h3 class="name"><code>h</code></h3>
+    <span class="type">Number</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l3732"><code>v3&#x2F;p5.play.js:3732</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>Height of the animation.</p>
+
+    </div>
+
+
+
+</div>
+<div id="prop-height" class="property item ">
+    <h3 class="name"><code>height</code></h3>
+    <span class="type">Number</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l3741"><code>v3&#x2F;p5.play.js:3741</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>Height of the animation.</p>
+
+    </div>
+
+
+
+</div>
+<div id="prop-images" class="property item ">
+    <h3 class="name"><code>images</code></h3>
+    <span class="type">Array</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l3770"><code>v3&#x2F;p5.play.js:3770</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>The frames of the animation. Alt for ani.frames</p>
+
+    </div>
+
+
+
+</div>
+<div id="prop-lastFrame" class="property item ">
+    <h3 class="name"><code>lastFrame</code></h3>
+    <span class="type">Number</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l3679"><code>v3&#x2F;p5.play.js:3679</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>Returns the index of the last frame.</p>
+
+    </div>
+
+
+
+</div>
 <div id="prop-looping" class="property item ">
     <h3 class="name"><code>looping</code></h3>
     <span class="type">Boolean</span>
@@ -741,7 +978,7 @@ sketch framerate divided by 4 (60fps = 15fps)</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5.play.js.html#l3066"><code>v3&#x2F;p5.play.js:3066</code></a>
+        <a href="../files/v3_p5.play.js.html#l3107"><code>v3&#x2F;p5.play.js:3107</code></a>
         </p>
 
 
@@ -767,7 +1004,7 @@ sketch framerate divided by 4 (60fps = 15fps)</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5.play.js.html#l2992"><code>v3&#x2F;p5.play.js:2992</code></a>
+        <a href="../files/v3_p5.play.js.html#l3042"><code>v3&#x2F;p5.play.js:3042</code></a>
         </p>
 
 
@@ -792,7 +1029,7 @@ sketch framerate divided by 4 (60fps = 15fps)</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5.play.js.html#l3025"><code>v3&#x2F;p5.play.js:3025</code></a>
+        <a href="../files/v3_p5.play.js.html#l3075"><code>v3&#x2F;p5.play.js:3075</code></a>
         </p>
 
 
@@ -826,7 +1063,7 @@ the location it is played at.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5.play.js.html#l3048"><code>v3&#x2F;p5.play.js:3048</code></a>
+        <a href="../files/v3_p5.play.js.html#l3089"><code>v3&#x2F;p5.play.js:3089</code></a>
         </p>
 
 
@@ -841,6 +1078,33 @@ the location it is played at.</p>
 
 
 </div>
+<div id="prop-scale" class="property item ">
+    <h3 class="name"><code>scale</code></h3>
+    <span class="type">Unknown</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l3374"><code>v3&#x2F;p5.play.js:3374</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>The animation's scale.</p>
+<p>Can be set to a number to scale both x and y
+or an object with x and/or y properties.</p>
+
+    </div>
+
+
+
+</div>
 <div id="prop-visible" class="property item ">
     <h3 class="name"><code>visible</code></h3>
     <span class="type">Boolean</span>
@@ -852,7 +1116,7 @@ the location it is played at.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5.play.js.html#l3057"><code>v3&#x2F;p5.play.js:3057</code></a>
+        <a href="../files/v3_p5.play.js.html#l3098"><code>v3&#x2F;p5.play.js:3098</code></a>
         </p>
 
 
@@ -864,6 +1128,56 @@ the location it is played at.</p>
     </div>
 
         <p><strong>Default:</strong> true</p>
+
+
+</div>
+<div id="prop-w" class="property item ">
+    <h3 class="name"><code>w</code></h3>
+    <span class="type">Number</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l3708"><code>v3&#x2F;p5.play.js:3708</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>Width of the animation.</p>
+
+    </div>
+
+
+
+</div>
+<div id="prop-width" class="property item ">
+    <h3 class="name"><code>width</code></h3>
+    <span class="type">Number</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l3717"><code>v3&#x2F;p5.play.js:3717</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>Width of the animation.</p>
+
+    </div>
+
 
 
 </div>
