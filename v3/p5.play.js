@@ -6335,9 +6335,9 @@ canvas {
 	}
 
 	/**
-	 * Deprecated, use kb.pressing(key) instead.
+	 * Obsolete: Use kb.pressing(key) instead.
 	 *
-	 * @deprecated
+	 * @obsolete
 	 * @method keyIsDown
 	 * @param {String} key
 	 */

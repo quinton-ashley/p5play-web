@@ -31,6 +31,9 @@ const p5functions = [
 ];
 
 mies.lang.p5.play = function (code) {
+	if (!code.includes('function setup') && !code.includes('function draw')) {
+		code = mies.bases[this.base || 0] + code + '}';
+	}
 	function s(p) {
 		for (let f of p5functions) {
 			code = code.replace('function ' + f + '()', 'p.' + f + ' = function()');
@@ -39,4 +42,8 @@ mies.lang.p5.play = function (code) {
 	}
 	this.previewElem.innerHTML = ''; // avoid duplicate canvases
 	return new p5(s, this.previewElem);
+};
+
+mies.lang.p5.remove = function () {
+	if (this.player?.remove) this.player.remove();
 };

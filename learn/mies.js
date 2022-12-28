@@ -149,12 +149,9 @@ ace.config.loadModule('ace/ext/language_tools', function () {
 		}
 
 		play() {
-			if (this.sketch) this.sketch.remove();
+			mies.lang[this.lang].remove.call(this);
 			let code = this.editor.getValue().trim();
-			if (this.lang == 'p5' && !code.includes('function setup') && !code.includes('function draw')) {
-				code = mies.bases[this.base || 0] + code + '}';
-			}
-			this.sketch = mies.lang[this.lang].play.call(this, code);
+			this.player = mies.lang[this.lang].play.call(this, code);
 		}
 
 		toggleEditor() {
@@ -181,7 +178,7 @@ ace.config.loadModule('ace/ext/language_tools', function () {
 		}
 
 		remove() {
-			this.sketch.remove();
+			mies.lang[this.lang].remove.call(this);
 			this.editor.destroy();
 			this.editor.container.remove();
 			this.elem.remove();
