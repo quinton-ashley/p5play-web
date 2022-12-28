@@ -136,37 +136,73 @@ test('Sprite : properties', () => {
 });
 
 test('Sprite : physics', () => {
-	const sketch = (p) => {
-		let s0, s1;
+	return new Promise((resolve) => {
+		const sketch = (p) => {
+			let s0, s1;
 
-		p.setup = () => {
-			new p.Canvas(400, 400);
+			p.setup = () => {
+				new p.Canvas(400, 400);
 
-			s0 = new p.Sprite(10, 0);
+				s0 = new p.Sprite(10, 0);
+				s1 = new p.Sprite(100, 10, 50, 'static');
+			};
 
-			s1 = new p.Sprite(100, 10, 50, 'static');
+			p.draw = () => {
+				if (p.frame == 1) {
+					expect(s0.x).toBe(10);
+					expect(s0.y).toBe(0);
+					expect(s1.x).toBe(100);
+					expect(s1.y).toBe(10);
+					p.world.gravity.y = 10;
+				}
+				if (p.frame == 2) {
+					// s0 is dynamic so with gravity it should fall
+					expect(s0.x).toBe(10);
+					expect(s0.y).toBeGreaterThan(0);
+					expect(s0.vel.x).toBe(0);
+					expect(s0.vel.y).toBeGreaterThan(0);
+					// becasue s1 is static it should be in the same place
+					expect(s1.x).toBe(100);
+					expect(s1.y).toBe(10);
+				}
+				if (p.frame == 3) {
+					s0.speed = 0;
+					s0.x = 10;
+					s0.y = 0;
+					p.world.gravity.y = -5;
+				}
+				if (p.frame == 4) {
+					// the x position shouldn't because gravity is only in the y
+					expect(s0.x).toBe(10);
+					expect(s0.y).toBeLessThan(0);
+					// the x vel won't change but they y-vel will
+					expect(s0.vel.x).toBe(0);
+					expect(s0.vel.y).toBeLessThan(0);
+				}
+				if (p.frame == 5) {
+					s0.remove();
+					s1.remove();
+					s0 = new p.Sprite(100, 86, 100, 2, 'kinematic');
+					s0.vel.y = -5;
+					s1 = new p.Sprite(100, 60, 50);
+				}
+				if (p.frame == 6) {
+					// kinematic platform moved up and pushed s1
+					expect(s0.y).toBeLessThan(86);
+					expect(s1.y).toBeLessThan(60);
+					// the speed of kinematic sprites is not effected by moving
+					// other sprites
+					expect(s0.vel.y).toBe(-5);
+					expect(s1.vel.y).toBeLessThan(0);
+
+					// end of test
+					p.noLoop();
+					resolve();
+				}
+			};
 		};
-
-		p.draw = () => {
-			if (frame == 1) {
-				expect(s0.x).toBe(10);
-				expect(s0.y).toBe(0);
-				expect(s1.x).toBe(100);
-				expect(s1.y).toBe(0);
-				p.world.gravity.y = 10;
-			}
-			if (frame == 2) {
-				expect(s0.x).not.toBe(10);
-				expect(s0.y).not.toBe(0);
-				expect(s0.vel.x).toBe(0);
-				expect(s0.vel.y).not.toBe(0);
-				expect(s1.x).toBe(100);
-				expect(s1.y).toBe(0);
-				p.noLoop();
-			}
-		};
-	};
-	new p5(sketch);
+		new p5(sketch);
+	});
 });
 
 test('Sprite : move, moveTo, moveTowards', () => {
