@@ -19,17 +19,15 @@ function setup() {
 	ground = new Sprite(groundImg, width / 2, 650, 'none');
 
 	pipes = new Group();
-	pipes.addImg(pipeImg);
+	pipes.image = pipeImg;
 	pipes.collider = 'static';
 
 	gameOver = true;
 	canStartNewGame = true;
-
-	bird.overlap(pipes, die);
 }
 
 function draw() {
-	if (mouse.presses() || kb.presses(' ')) {
+	if (mouse.presses() || kb.presses('space')) {
 		if (canStartNewGame) newGame();
 		// FLAP
 		bird.vel.y = -9;
@@ -37,10 +35,12 @@ function draw() {
 
 	if (!gameOver) {
 		bird.rotation = bird.direction * 0.8;
-		// prevent bird from going off the top of the screen (cheating!)
+
+		// prevent bird from going above the top of the screen (cheating!)
 		if (bird.y < 0) bird.y = 0;
+
 		// if the bird hits the ground, it dies
-		if (bird.y > ground.y - 100) die();
+		if (bird.overlaps(ground) || bird.overlaps(pipes)) die();
 
 		// spawn pipes every 60 frames (1 second)
 		if (frameCount % 60 == 0) {
@@ -94,7 +94,7 @@ async function die() {
 }
 
 function newGame() {
-	pipes.remove();
+	pipes.removeAll();
 	gameOver = false;
 	canStartNewGame = false;
 	bird.x = width * 0.7;

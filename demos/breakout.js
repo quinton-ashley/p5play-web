@@ -7,7 +7,7 @@ function setup() {
 	new Canvas(800, 600);
 
 	allSprites.collider = 'static';
-	allSprites.shapeColor = color(255);
+	allSprites.color = color(255);
 
 	walls = new Group();
 	walls.w = 30;
@@ -44,19 +44,6 @@ function setup() {
 
 function draw() {
 	background(247, 134, 131);
-
-	// TODO make this work!
-	// if (hasStarted) {
-	// 	// good games usually don't follow the laws of physics precisely
-	// 	// here the ball direction is pushed more vertical
-	// 	// if it becomes too horizontal
-	// 	if ((ball.direction < 20 && ball.direction >= 0) || (ball.direction > -160 && ball.direction < -180)) {
-	// 		ball.direction++;
-	// 	}
-	// 	if ((ball.direction < 0 && ball.direction > -20) || (ball.direction < 180 && ball.direction > 160)) {
-	// 		ball.direction--;
-	// 	}
-	// }
 
 	paddle.moveTowards(mouse.x, height - 50, 1);
 

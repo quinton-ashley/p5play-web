@@ -9,7 +9,7 @@ function setup() {
 	new Canvas(800, 400);
 
 	allSprites.collider = 'static';
-	allSprites.shapeColor = color(255);
+	allSprites.color = color(255);
 
 	paddleL = new Sprite(30, height / 2, 10, 100);
 	paddleR = new Sprite(width - 28, height / 2, 10, 100);

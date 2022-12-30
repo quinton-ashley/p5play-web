@@ -20,9 +20,9 @@ function draw() {
 	camera.x = sin(frameCount) * 300 + 400;
 
 	if (s1.mouse.hovering()) {
-		s1.shapeColor = '#ff0000';
+		s1.color = '#ff0000';
 	} else {
-		s1.shapeColor = '#224477';
+		s1.color = '#224477';
 	}
 
 	if (s1.mouse.presses()) {
@@ -39,9 +39,9 @@ function draw() {
 	// camera is off - this sprite is drawn in the screen space like a UI
 
 	if (s2.mouse.hovering()) {
-		s2.shapeColor = '#ff0000';
+		s2.color = '#ff0000';
 	} else {
-		s2.shapeColor = '#224477';
+		s2.color = '#224477';
 	}
 
 	if (s2.mouse.presses()) {

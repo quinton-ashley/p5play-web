@@ -4,7 +4,7 @@ function setup() {
 	new Canvas(800, 800);
 
 	blocks = new Group();
-	blocks.shapeColor = 'yellow';
+	blocks.color = 'yellow';
 	blocks.rotationLock = true;
 
 	let sym = 360 / 6;

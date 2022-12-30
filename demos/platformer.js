@@ -100,22 +100,22 @@ function draw() {
 		player.ani = 'walk';
 	}
 
-	if (kb.presses('w')) {
+	if (kb.presses('up')) {
 		player.ani = 'jump';
 		player.vel.y = -3;
 	}
 
-	if (kb.presses('a')) {
+	if (kb.presses('left')) {
 		player.ani = 'walk';
 		player.mirror.x = true;
-	} else if (kb.presses('d')) {
+	} else if (kb.presses('right')) {
 		player.ani = 'walk';
 		player.mirror.x = false;
 	}
 
-	if (kb.pressing('a')) {
+	if (kb.pressing('left')) {
 		player.vel.x = -2;
-	} else if (kb.pressing('d')) {
+	} else if (kb.pressing('right')) {
 		player.vel.x = 2;
 	} else {
 		player.vel.x = 0;
@@ -125,7 +125,7 @@ function draw() {
 		player.ani = 'stand';
 	}
 
-	if (kb.presses(' ')) {
+	if (kb.presses('space')) {
 		resetPlayer();
 	}
 

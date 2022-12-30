@@ -4,7 +4,7 @@ function setup() {
 	new Canvas(800, 800);
 
 	blocks = new Group();
-	blocks.shapeColor = 'yellow';
+	blocks.color = 'yellow';
 	blocks.rotationLock = true;
 
 	let sym = 360 / 6;
@@ -19,7 +19,7 @@ function setup() {
 	}
 
 	dots = new Group();
-	dots.shapeColor = 'red';
+	dots.color = 'red';
 	dots.x = () => random(200, 600);
 	dots.y = () => random(200, 600);
 	dots.diameter = 12;
@@ -28,7 +28,7 @@ function setup() {
 
 	bounds = new Group();
 	bounds.collider = 'static';
-	bounds.shapeColor = 'blue';
+	bounds.color = 'blue';
 	bounds.x = (i) => 400 + cos(i * 2) * 380;
 	bounds.y = (i) => 400 + sin(i * 2) * 380;
 	bounds.diameter = 10;

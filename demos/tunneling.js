@@ -5,7 +5,7 @@ function setup() {
 	let centerY = height * 0.5;
 
 	let circle = new Sprite(centerX, centerY, 5);
-	circle.shapeColor = '#fff'; // white
+	circle.color = '#fff'; // white
 	circle.bounciness = 1;
 	circle.friction = 0;
 

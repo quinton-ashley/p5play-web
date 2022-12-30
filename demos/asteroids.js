@@ -24,11 +24,9 @@ function preload() {
 function setup() {
 	new Canvas(800, 800);
 
-	ship.overlap(lasers);
-
-	asteroids.collide(lasers, asteroidHit);
-
-	asteroids.overlap(ship, gameOver);
+	ship.overlaps(lasers);
+	asteroids.collides(lasers, asteroidHit);
+	asteroids.overlaps(ship, gameOver);
 
 	startNewGame();
 }
@@ -119,8 +117,8 @@ function gameOver() {
 	text('Game Over!', width / 2, height / 2);
 
 	if (frameCount >= gameOverFrame + 60) {
-		asteroids.remove();
-		lasers.remove();
+		asteroids.removeAll();
+		lasers.removeAll();
 		startNewGame();
 	}
 

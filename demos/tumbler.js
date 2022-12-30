@@ -34,7 +34,7 @@ function draw() {
 function dropSprite() {
 	len = (height * random(0.1, 0.3)) / sides;
 	let penta = new Sprite(mouse.x, mouse.y, [len, angle, sides]);
-	penta.shapeColor = '#c0eeff';
+	penta.color = '#c0eeff';
 }
 
 function mousePressed() {

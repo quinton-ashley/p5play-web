@@ -7,7 +7,7 @@ function setup() {
 	block = new Sprite(30, 30);
 	block.bounciness = 0;
 	platform = new Sprite(30, 200, 60, 5, 'kinematic');
-	platform.shapeColor = 'red';
+	platform.color = 'red';
 }
 
 function draw() {
@@ -18,8 +18,8 @@ function draw() {
 	// displaced by the platform, ideally the block should stay red while
 	// stationary on the platform
 	if (block.colliding(platform)) {
-		block.shapeColor = 'red';
+		block.color = 'red';
 	} else {
-		block.shapeColor = 'blue';
+		block.color = 'blue';
 	}
 }

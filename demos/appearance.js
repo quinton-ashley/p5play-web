@@ -8,7 +8,7 @@ function preload() {
 	// the sprite's collider will be shown
 	box = new Sprite(100, 150, 50, 100);
 	// change the color of the collider to orange
-	box.shapeColor = color(222, 125, 2);
+	box.color = color(222, 125, 2);
 
 	asterisk = new Sprite(300, 150, 110); // circle with diameter of 110
 	asterisk.addImg('assets/asterisk.png');

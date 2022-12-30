@@ -122,6 +122,7 @@ let examples = {
 		pong: 'Pong',
 		asteroids: 'Asteroids',
 		breakout: 'Breakout',
+		dotEater: 'Dot Eater',
 		flappyBird: 'Flappy Bird',
 		platformer: 'Tricky Platformer'
 	}
