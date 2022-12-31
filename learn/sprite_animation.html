@@ -7,7 +7,7 @@
 	<link rel="icon" href="../favicon.png" />
 	<link rel="stylesheet" href="mies.css" />
 	<link rel="stylesheet" href="style.css">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.2/p5.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/p5@1/lib/p5.min.js"></script>
 	<script src="../v3/planck.min.js"></script>
 	<script src="../v3/p5.play.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.8.1/ace.min.js"></script>
@@ -119,6 +119,11 @@ function draw() {
 				of animation, an atlas object can be used to specify the size of each
 				frame and how many frames of animation there are.
 			</p>
+			<p>
+				If you really need to use an animation when your program starts,
+				you should load it in the p5.js preload function
+				instead of setup.
+			</p>
 		</div>
 		<script type="text/mie-p5" name="sprite sheet mode">
 let splatAni;
@@ -186,8 +191,8 @@ function draw() {
 		<div>
 			<h2>Sprites with Animations</h2>
 			<p>
-				Use the <code>sprite.addAni</code> function to load and add an
-				animation to a sprite. By default the last animation added to the
+				The <code>sprite.addAni</code> function can be used to add a previously loaded animation to a sprite or it can
+				load and add an animation to a sprite just like <code>loadAni</code>. By default the last animation added to the
 				sprite will be the animation the sprite displays.
 			</p>
 			<p>
@@ -273,6 +278,23 @@ function draw() {
 	}
 }
 		</script>
+	</div>
+	<div id="page-4" class="page">
+		<div>
+			<h2>Loading Multiple Animations from a SpriteSheet</h2>
+			<p>
+				Coming soon! This page will specify how to add multiple animations to a
+				sprite or group from the same spritesheet.
+			</p>
+		</div>
+	</div>
+	<div id="page-5" class="page">
+		<div>
+			<h2>Animation Sequencing</h2>
+			<p>
+				Coming soon!
+			</p>
+		</div>
 	</div>
 
 	<div class="break"></div>
