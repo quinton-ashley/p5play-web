@@ -37,24 +37,52 @@
 		<script type="text/md">
 ## Camera
 
-In this example the camera follows the player.
+In this example the camera follows the player's x axis movement.
+
+		</script>
+		<script type="text/mie-p5" name="sidescrolling camera">
+let player, floor;
+
+function setup() {
+	new Canvas(500, 240);
+	world.gravity.y = 10;
+	player = new Sprite(50, 0);
+	floor = new Sprite(250, 200, 500, 40, 'static');
+}
+
+function draw() {
+	clear();
+	if (kb.presses("right")) {
+		player.vel.y = -4;
+		player.vel.x = 3;
+	}
+
+	camera.x = player.x;
+}
+		</script>
+	</div>
+	<div id="page-1" class="page">
+		<script type="text/md">
+## Camera On/Off
 
 By default, `allSprites.draw()` is called at the end of the p5.js draw loop. However, if you want to control when sprites and groups are drawn, you can draw them separately.
 
 The player and environment of your game should be drawn with the camera on.
 
-UI or HUD sprites, represented by magenta squares in this examples, should be drawn when the camera is off.
-
-`mouse.x` stores the x position of the mouse in relation to the world, which can be larger than the canvas. `camera.mouse.x` stores the x position of the mouse in relation to the canvas.
+UI or HUD sprites, represented by orange squares in this examples, should be drawn when the camera is off.
 
 `camera.zoom` can be used to zoom in and out.
+
+`mouse.x` stores the x position of the mouse in relation to the world, which can be larger than the canvas. `camera.mouse.x` stores the x position of the mouse in relation to the canvas.
 		</script>
-		<script type="text/mie-p5" name="camera follow">
+		<script type="text/mie-p5" name="overhead camera">
 let player;
 
 function setup() {
 	new Canvas(500, 240);
 	player = new Sprite();
+	player.d = 80;
+	player.color = 'magenta'
 }
 
 function draw() {
@@ -67,7 +95,7 @@ function draw() {
 		rect(-250 + i * 50, -250 + i * 100, 750, 50);
 	}
 
-	player.moveTowards(mouse, 0.04);
+	player.moveTowards(mouse, 0.01);
 	player.draw();
 
 	camera.x = player.x;
@@ -78,9 +106,9 @@ function draw() {
 
 	camera.off();
 
-	fill(255, 0, 255); // magenta
-	for (let i = 1; i < 10; i++) {
-		rect(i * 50, 210, 20, 20);
+	fill('orange');
+	for (let i = 1; i < 12; i++) {
+		rect(i * 40, 200, 35, 35);
 	}
 }
 		</script>
