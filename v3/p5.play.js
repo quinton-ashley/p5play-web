@@ -3,29 +3,21 @@
  *
  * @version 3.4
  * @author quinton-ashley
- * @year 2022
+ * @year 2023
  * @license gpl-v3-only
  * @descripton p5.play is a 2D game engine that uses planck (Box2D) to simulate
  * physics and provides sprites, a tile system, input handling, and animations!
- *
- * Created by Quinton Ashley @qashto, 2022
- * https://quintos.org
- *
- * Initiated by Paolo Pedercini @molleindustria, 2015
- * https://molleindustria.org/
  */
 p5.prototype.registerMethod('init', function p5PlayInit() {
-	const log = console.log; // shortcut
-	this.log = console.log;
-
-	// store a reference to the p5 instance that p5play is being added to
-	let pInst = this;
-	// change the angle mode to degrees
-	this.angleMode(p5.prototype.DEGREES);
-
 	if (typeof window.planck == 'undefined') {
 		throw new Error('planck.js must be loaded before p5.play');
 	}
+
+	// store a reference to the p5 instance that p5play is being added to
+	let pInst = this;
+
+	const log = console.log; // shortcut
+	this.log = console.log;
 
 	const pl = planck;
 	// set the velocity threshold to allow for slow moving objects
@@ -42,6 +34,9 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 	this.p5play.mouseSprite = null;
 	this.p5play.mouseSprites = [];
 	this.p5play.standardizeKeyboard = false;
+
+	// change the angle mode to degrees
+	this.angleMode(p5.prototype.DEGREES);
 
 	// scale to planck coordinates from p5 coordinates
 	const scaleTo = ({ x, y }, tileSize) => new pl.Vec2((x * tileSize) / plScale, (y * tileSize) / plScale);
@@ -126,8 +121,6 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 	 *
 	 *   let line = new Sprite(x, y, [length, angle]);
 	 *
-	 *   let chain = new Sprite(x, y, [length0, angle0, length1, angle1]);
-	 *
 	 * @class Sprite
 	 * @constructor
 	 * @param {String|SpriteAnimation|p5.Image} [aniName|ani|image]
@@ -143,9 +136,9 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 	 */
 	class Sprite {
 		constructor(x, y, w, h, collider) {
-			this.idNum = pInst.world.spritesCreated;
-			pInst.world.spritesCreated++;
 			this.p = pInst;
+			this.idNum = this.p.world.spritesCreated;
+			this.p.world.spritesCreated++;
 
 			let args = [...arguments];
 

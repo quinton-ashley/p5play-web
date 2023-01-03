@@ -3,16 +3,10 @@
  *
  * @version 4 (in development, not for public use)
  * @author quinton-ashley
- * @year 2022
+ * @year 2023
  * @license gpl-v3-only
  * @descripton p5.play is a 2D game engine that uses Box2D to simulate
  * physics and provides sprites, a tile system, input handling, and animations!
- *
- * Created by Quinton Ashley @qashto, 2022
- * https://quintos.org
- *
- * Initiated by Paolo Pedercini @molleindustria, 2015
- * https://molleindustria.org/
  */
 (async () => {
 	if (typeof window.Box2D == 'undefined') {
