@@ -113,7 +113,19 @@ gamepads).</p>
 		<li>
 			<strong>Methods</strong>
 			<ul>
-				<li class=""><a href="#method-keyIsDown"><span class="im">keyIsDown</span>(<span class="ia">key</span>)</a></li>
+				<li class="private"><a href="#method-ac"><span class="im">ac</span>()</a></li>
+				<li class=""><a href="#method-dragging"><span class="im">dragging</span>(<span class="ia">inp</span>)</a></li>
+				<li class=""><a href="#method-held"><span class="im">held</span>(<span class="ia">inp</span>)</a></li>
+				<li class=""><a href="#method-holding"><span class="im">holding</span>(<span class="ia">inp</span>)</a></li>
+				<li class=""><a href="#method-holds"><span class="im">holds</span>(<span class="ia">inp</span>)</a></li>
+				<li class=""><a href="#method-hovered"><span class="im">hovered</span>()</a></li>
+				<li class=""><a href="#method-hovering"><span class="im">hovering</span>()</a></li>
+				<li class=""><a href="#method-hovers"><span class="im">hovers</span>()</a></li>
+				<li class="private"><a href="#method-init"><span class="im">init</span>()</a></li>
+				<li class=""><a href="#method-pressed"><span class="im">pressed</span>(<span class="ia">inp</span>)</a></li>
+				<li class=""><a href="#method-presses"><span class="im">presses</span>(<span class="ia">inp</span>)</a></li>
+				<li class=""><a href="#method-pressing"><span class="im">pressing</span>(<span class="ia">inp</span>)</a></li>
+				<li class=""><a href="#method-released"><span class="im">released</span>(<span class="ia">inp</span>)</a></li>
 			</ul>
 		</li>
 
@@ -121,8 +133,10 @@ gamepads).</p>
 			<strong>Properties</strong>
 			<ul>
 				<li class=""><a href="#prop-holdThreshold"><span class="ip">holdThreshold</span></a></li>
-				<li class=""><a href="#prop-kb (keyboard)"><span class="ip">kb (keyboard)</span></a></li>
-				<li class=""><a href="#prop-mouse"><span class="ip">mouse</span></a></li>
+				<li class=""><a href="#prop-pos"><span class="ip">pos</span></a></li>
+				<li class=""><a href="#prop-position"><span class="ip">position</span></a></li>
+				<li class=""><a href="#prop-x"><span class="ip">x</span></a></li>
+				<li class=""><a href="#prop-y"><span class="ip">y</span></a></li>
 			</ul>
 		</li>
 
@@ -136,14 +150,101 @@ gamepads).</p>
     <div id="methods" class="page-section">
         <h2 class="off-left">Methods</h2>
         <div class="item-list">
-<div id="method-keyIsDown" class="method item ">
+<div id="method-ac" class="method item private">
 	<div class="method-signature">
-	<span class="name"><code>keyIsDown</code></span>
+	<span class="name"><code>ac</code></span>
+
+		<span class="paren">()</span>
+	</div>
+
+
+		<span class="flag private">private</span>
+
+
+
+
+	<div class="meta">
+				<p>
+				Defined in
+		<a href="../files/v3_p5.play.js.html#l6124"><code>v3&#x2F;p5.play.js:6124</code></a>
+		</p>
+
+
+
+	</div>
+
+	<div class="description"><p>Attempt to auto-correct the user's input. Inheriting classes
+override this method.</p>
+</div>
+
+
+
+</div>
+<div id="method-dragging" class="method item ">
+	<div class="method-signature">
+	<span class="name"><code>dragging</code></span>
 
 		<div class="args">
 			<span class="paren">(</span><ul class="args-list inline commas">
 				<li class="arg">
-						<code>key</code>
+						<code>inp</code>
+				</li>
+			</ul><span class="paren">)</span>
+		</div>
+		<span class="returns-inline">
+			<span class="type">Boolean</span>
+		</span>
+	</div>
+
+
+
+
+
+
+	<div class="meta">
+				<p>
+				Defined in
+		<a href="../files/v3_p5.play.js.html#l6274"><code>v3&#x2F;p5.play.js:6274</code></a>
+		</p>
+
+
+
+	</div>
+
+
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+				<li class="param">
+						<code class="param-name">inp</code>
+						<span class="type">String</span>
+
+
+
+				</li>
+			</ul>
+		</div>
+
+		<div class="returns">
+			<h4>Returns:</h4>
+
+			<div class="returns-description">
+						<span class="type">Boolean</span>:
+					<p>true if the mouse is being dragged while holding the input</p>
+
+			</div>
+		</div>
+
+</div>
+<div id="method-held" class="method item ">
+	<div class="method-signature">
+	<span class="name"><code>held</code></span>
+
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+				<li class="arg">
+						<code>inp</code>
 				</li>
 			</ul><span class="paren">)</span>
 		</div>
@@ -157,22 +258,433 @@ gamepads).</p>
 	<div class="meta">
 				<p>
 				Defined in
-		<a href="../files/v3_p5.play.js.html#l6348"><code>v3&#x2F;p5.play.js:6348</code></a>
+		<a href="../files/v3_p5.play.js.html#l6183"><code>v3&#x2F;p5.play.js:6183</code></a>
 		</p>
 
 
 
 	</div>
 
-	<div class="description"><p>Obsolete: Use kb.pressing(key) instead.</p>
-</div>
 
 		<div class="params">
 			<h4>Parameters:</h4>
 
 			<ul class="params-list">
 				<li class="param">
-						<code class="param-name">key</code>
+						<code class="param-name">inp</code>
+						<span class="type">String</span>
+
+
+
+				</li>
+			</ul>
+		</div>
+
+
+</div>
+<div id="method-holding" class="method item ">
+	<div class="method-signature">
+	<span class="name"><code>holding</code></span>
+
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+				<li class="arg">
+						<code>inp</code>
+				</li>
+			</ul><span class="paren">)</span>
+		</div>
+	</div>
+
+
+
+
+
+
+	<div class="meta">
+				<p>
+				Defined in
+		<a href="../files/v3_p5.play.js.html#l6173"><code>v3&#x2F;p5.play.js:6173</code></a>
+		</p>
+
+
+
+	</div>
+
+
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+				<li class="param">
+						<code class="param-name">inp</code>
+						<span class="type">String</span>
+
+
+
+				</li>
+			</ul>
+		</div>
+
+
+</div>
+<div id="method-holds" class="method item ">
+	<div class="method-signature">
+	<span class="name"><code>holds</code></span>
+
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+				<li class="arg">
+						<code>inp</code>
+				</li>
+			</ul><span class="paren">)</span>
+		</div>
+	</div>
+
+
+
+
+
+
+	<div class="meta">
+				<p>
+				Defined in
+		<a href="../files/v3_p5.play.js.html#l6163"><code>v3&#x2F;p5.play.js:6163</code></a>
+		</p>
+
+
+
+	</div>
+
+
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+				<li class="param">
+						<code class="param-name">inp</code>
+						<span class="type">String</span>
+
+
+
+				</li>
+			</ul>
+		</div>
+
+
+</div>
+<div id="method-hovered" class="method item ">
+	<div class="method-signature">
+	<span class="name"><code>hovered</code></span>
+
+		<span class="paren">()</span>
+		<span class="returns-inline">
+			<span class="type">Boolean</span>
+		</span>
+	</div>
+
+
+
+
+
+
+	<div class="meta">
+				<p>
+				Defined in
+		<a href="../files/v3_p5.play.js.html#l6310"><code>v3&#x2F;p5.play.js:6310</code></a>
+		</p>
+
+
+
+	</div>
+
+
+
+		<div class="returns">
+			<h4>Returns:</h4>
+
+			<div class="returns-description">
+						<span class="type">Boolean</span>:
+					<p>true on the first frame that the mouse is no longer over the sprite</p>
+
+			</div>
+		</div>
+
+</div>
+<div id="method-hovering" class="method item ">
+	<div class="method-signature">
+	<span class="name"><code>hovering</code></span>
+
+		<span class="paren">()</span>
+		<span class="returns-inline">
+			<span class="type">Boolean</span>
+		</span>
+	</div>
+
+
+
+
+
+
+	<div class="meta">
+				<p>
+				Defined in
+		<a href="../files/v3_p5.play.js.html#l6302"><code>v3&#x2F;p5.play.js:6302</code></a>
+		</p>
+
+
+
+	</div>
+
+
+
+		<div class="returns">
+			<h4>Returns:</h4>
+
+			<div class="returns-description">
+						<span class="type">Boolean</span>:
+					<p>true if the mouse is hovering over the sprite</p>
+
+			</div>
+		</div>
+
+</div>
+<div id="method-hovers" class="method item ">
+	<div class="method-signature">
+	<span class="name"><code>hovers</code></span>
+
+		<span class="paren">()</span>
+		<span class="returns-inline">
+			<span class="type">Boolean</span>
+		</span>
+	</div>
+
+
+
+
+
+
+	<div class="meta">
+				<p>
+				Defined in
+		<a href="../files/v3_p5.play.js.html#l6294"><code>v3&#x2F;p5.play.js:6294</code></a>
+		</p>
+
+
+
+	</div>
+
+
+
+		<div class="returns">
+			<h4>Returns:</h4>
+
+			<div class="returns-description">
+						<span class="type">Boolean</span>:
+					<p>true on the first frame that the mouse is over the sprite</p>
+
+			</div>
+		</div>
+
+</div>
+<div id="method-init" class="method item private">
+	<div class="method-signature">
+	<span class="name"><code>init</code></span>
+
+		<span class="paren">()</span>
+	</div>
+
+
+		<span class="flag private">private</span>
+
+
+
+
+	<div class="meta">
+				<p>
+				Defined in
+		<a href="../files/v3_p5.play.js.html#l6112"><code>v3&#x2F;p5.play.js:6112</code></a>
+		</p>
+
+
+
+	</div>
+
+	<div class="description"><p>Initializes the input's values to zero.</p>
+</div>
+
+
+
+</div>
+<div id="method-pressed" class="method item ">
+	<div class="method-signature">
+	<span class="name"><code>pressed</code></span>
+
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+				<li class="arg">
+						<code>inp</code>
+				</li>
+			</ul><span class="paren">)</span>
+		</div>
+	</div>
+
+
+
+
+
+
+	<div class="meta">
+				<p>
+				Defined in
+		<a href="../files/v3_p5.play.js.html#l6155"><code>v3&#x2F;p5.play.js:6155</code></a>
+		</p>
+
+
+
+	</div>
+
+
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+				<li class="param">
+						<code class="param-name">inp</code>
+						<span class="type">String</span>
+
+
+
+				</li>
+			</ul>
+		</div>
+
+
+</div>
+<div id="method-presses" class="method item ">
+	<div class="method-signature">
+	<span class="name"><code>presses</code></span>
+
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+				<li class="arg">
+						<code>inp</code>
+				</li>
+			</ul><span class="paren">)</span>
+		</div>
+	</div>
+
+
+
+
+
+
+	<div class="meta">
+				<p>
+				Defined in
+		<a href="../files/v3_p5.play.js.html#l6135"><code>v3&#x2F;p5.play.js:6135</code></a>
+		</p>
+
+
+
+	</div>
+
+
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+				<li class="param">
+						<code class="param-name">inp</code>
+						<span class="type">String</span>
+
+
+
+				</li>
+			</ul>
+		</div>
+
+
+</div>
+<div id="method-pressing" class="method item ">
+	<div class="method-signature">
+	<span class="name"><code>pressing</code></span>
+
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+				<li class="arg">
+						<code>inp</code>
+				</li>
+			</ul><span class="paren">)</span>
+		</div>
+	</div>
+
+
+
+
+
+
+	<div class="meta">
+				<p>
+				Defined in
+		<a href="../files/v3_p5.play.js.html#l6145"><code>v3&#x2F;p5.play.js:6145</code></a>
+		</p>
+
+
+
+	</div>
+
+
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+				<li class="param">
+						<code class="param-name">inp</code>
+						<span class="type">String</span>
+
+
+
+				</li>
+			</ul>
+		</div>
+
+
+</div>
+<div id="method-released" class="method item ">
+	<div class="method-signature">
+	<span class="name"><code>released</code></span>
+
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+				<li class="arg">
+						<code>inp</code>
+				</li>
+			</ul><span class="paren">)</span>
+		</div>
+	</div>
+
+
+
+
+
+
+	<div class="meta">
+				<p>
+				Defined in
+		<a href="../files/v3_p5.play.js.html#l6193"><code>v3&#x2F;p5.play.js:6193</code></a>
+		</p>
+
+
+
+	</div>
+
+
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+				<li class="param">
+						<code class="param-name">inp</code>
 						<span class="type">String</span>
 
 
@@ -201,7 +713,7 @@ gamepads).</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5.play.js.html#l6061"><code>v3&#x2F;p5.play.js:6061</code></a>
+        <a href="../files/v3_p5.play.js.html#l6102"><code>v3&#x2F;p5.play.js:6102</code></a>
         </p>
 
 
@@ -216,8 +728,8 @@ Default is 12.</p>
 
 
 </div>
-<div id="prop-kb (keyboard)" class="property item ">
-    <h3 class="name"><code>kb (keyboard)</code></h3>
+<div id="prop-pos" class="property item ">
+    <h3 class="name"><code>pos</code></h3>
     <span class="type">Unknown</span>
 
 
@@ -227,42 +739,22 @@ Default is 12.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5.play.js.html#l6309"><code>v3&#x2F;p5.play.js:6309</code></a>
+        <a href="../files/v3_p5.play.js.html#l6251"><code>v3&#x2F;p5.play.js:6251</code></a>
         </p>
 
 
     </div>
 
     <div class="description">
-        
+        <p>The mouse's position.</p>
+
     </div>
 
 
-        <div class="example">
-            <h4>Example:</h4>
-
-            <div class="example-content">
-                <pre class="code prettyprint"><code>// presses
-if (kb.presses('x')) {
-    player.jump();
-}
-
-// holds
-if (kb.holds('e')) {
-    player.chargeAttack();
-}
-
-// released
-if (kb.released('q')) {
-    player.slide();
-}</code></pre>
-
-            </div>
-        </div>
 
 </div>
-<div id="prop-mouse" class="property item ">
-    <h3 class="name"><code>mouse</code></h3>
+<div id="prop-position" class="property item ">
+    <h3 class="name"><code>position</code></h3>
     <span class="type">Unknown</span>
 
 
@@ -272,14 +764,64 @@ if (kb.released('q')) {
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5.play.js.html#l6182"><code>v3&#x2F;p5.play.js:6182</code></a>
+        <a href="../files/v3_p5.play.js.html#l6258"><code>v3&#x2F;p5.play.js:6258</code></a>
         </p>
 
 
     </div>
 
     <div class="description">
-        <p>Stores the state of the left, center, or right mouse buttons.</p>
+        <p>The mouse's position. Alias for pos.</p>
+
+    </div>
+
+
+
+</div>
+<div id="prop-x" class="property item ">
+    <h3 class="name"><code>x</code></h3>
+    <span class="type">Number</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l6236"><code>v3&#x2F;p5.play.js:6236</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>The mouse's x position.</p>
+
+    </div>
+
+
+
+</div>
+<div id="prop-y" class="property item ">
+    <h3 class="name"><code>y</code></h3>
+    <span class="type">Number</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l6243"><code>v3&#x2F;p5.play.js:6243</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>The mouse's y position.</p>
 
     </div>
 

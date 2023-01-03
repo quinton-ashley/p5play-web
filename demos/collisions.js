@@ -8,7 +8,7 @@ let box, asterisk, cloud, circle;
 function preload() {
 	circle = new Sprite(400, 200, 100, 'static');
 	circle.addAni('assets/plain_circle.png');
-	circle.overlap(allSprites);
+	circle.overlaps(allSprites);
 
 	box = new Sprite(200, 200, 75, 120, 'static');
 	box.addAni('assets/box0001.png', 3);

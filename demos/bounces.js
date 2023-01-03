@@ -10,10 +10,10 @@ let boxes;
 function preload() {
 	circles = new Group();
 	circles.addAni('assets/asterisk_circle0006.png', 8);
-	circles.ani.frameDelay = floor(random(120, 240));
 
-	circles.shape = 'circle';
 	circles.diameter = 110;
+	circles.bounciness = 0.9;
+	circles.friction = 0;
 	circles.direction = () => random(0, 360);
 	circles.speed = () => random(2, 6);
 	circles.scale = () => random(0.2, 1);
@@ -29,18 +29,12 @@ function preload() {
 function setup() {
 	new Canvas(800, 400);
 
-	// bounciness is the dispersion of energy at each bounce
-	// if = 1 the circles will bounce forever
-	// if < 1 the circles will slow down
-	// if > 1 the circles will accelerate until they glitch
-	circles.bounciness = 0.9;
-	circles.friction = 0;
-
 	for (let i = 0; i < 20; i++) {
 		// new circle with a random position on the screen
 		let circle = new circles.Sprite(random(0, width), random(0, height));
 		// mass determines the force exchange in case of bounce
 		circle.mass = circle.scale;
+		circle.ani.frameDelay = round(random(10, 20));
 	}
 
 	for (let j = 0; j < 4; j++) {

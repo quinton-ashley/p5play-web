@@ -73,28 +73,15 @@ let args = {};
 	}
 }
 
-// I removed demos that I felt were just duplicates of Learn page examples
+// I removed demos that I felt were duplicates of Learn page examples
 let examples = {
-	Basic: {
-		creation: 'creation',
-		// appearance: 'appearance',
-		// layer: 'layer',
-		// groups: 'groups',
-		changeAni: 'change animation',
-		aniControl: 'animation controls'
-	},
 	Physics: {
 		collisions: 'collide, overlap, displace',
-		// groupCollisions: 'group collisions',
 		customColliders: 'custom colliders',
 		bounces: 'bounces',
 		swap: 'control swap',
 		pickup: 'pickup',
 		culling: 'culling offscreen sprites'
-	},
-	'User Input': {
-		mouseEvents: 'mouse events on sprites',
-		multiInput: 'multi-input'
 	},
 	Camera: {
 		camera: 'using the virtual camera',
@@ -110,13 +97,9 @@ let examples = {
 		star: 'star'
 	},
 	Tests: {
-		tunneling: 'tunneling [FIXED]',
-		slowBounce: 'slow bounce [FIXED]',
-		fullBounce: 'full bounce [BUG]',
-		tiles: 'tiles displace [KINDA FIXED]',
 		collisions5: 'large edge colliders [TODO]',
 		moveOrbit: 'group orbit + moveTowards [TODO]',
-		collidingBug: 'colliding bug [BUG]'
+		collidingBug: 'displacing [BUG]'
 	},
 	Games: {
 		pong: 'Pong',
@@ -145,7 +128,7 @@ ul.innerHTML += ih;
 let originalCode;
 
 $(async () => {
-	let file = args.file || args.fileName || 'creation.js';
+	let file = args.file || args.fileName || 'collisions.js';
 	originalCode = `console.log('running ${file}');\n\n`;
 	originalCode += await (await fetch(file)).text();
 	startMain();
