@@ -1944,8 +1944,9 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		/**
 		 * Resizes the collider of the sprite.
 		 *
-		 * @param {*} scalars
-		 * @returns
+		 * @private
+		 * @method _resizeCollider
+		 * @param {*} scalars The x and y scalars to resize the collider by.
 		 */
 		_resizeCollider(scalars) {
 			if (!this.body) return;
@@ -1966,18 +1967,13 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			}
 		}
 
-		_isPoly(vecs) {
-			let first = vecs[0];
-			let last = vecs[vecs.length - 1];
-			return first.x;
-		}
-
 		/**
 		 * Validate convexity.
 		 *
 		 * @private
+		 * @method _isConvexPoly
 		 * @param vecs {Array} an array of planck.Vec2 vertices
-		 * @returns true if valid
+		 * @returns true if the polygon is convex
 		 */
 		_isConvexPoly(vecs) {
 			loopk: for (let k = 0; k < 2; k++) {
@@ -2248,8 +2244,6 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		}
 
 		/**
-		 * EXPERIMENTAL implementation for beta testing!
-		 *
 		 * Apply a force that is scaled to the sprite's mass.
 		 *
 		 * @method applyForce
@@ -2533,7 +2527,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		 * Pushes the sprite toward a point.
 		 * The force is added to the current velocity.
 		 *
-		 * Legacy method, use attract, move, or moveTowards instead.
+		 * Legacy method, use moveTo or moveTowards instead.
 		 *
 		 * @deprecated
 		 * @param {Number}  magnitude Scalar speed to add
@@ -4328,15 +4322,15 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		}
 
 		/**
-		 * Rotates the group around its centroid.
+		 * EXPERIMENTAL! Subject to change in the future!
 		 *
-		 * TODO experimental function, subject to change!
+		 * Rotates the group around its centroid.
 		 *
 		 * @method orbit
 		 * @param {Number} amount Amount of rotation
 		 */
 		orbit(amount) {
-			console.warn('group.orbit is an experimental and subject to change in the future!');
+			if (this.frame == 0) console.warn('group.orbit is experimental and is subject to change in the future!');
 			if (!this.centroid) this.resetCentroid();
 			this.orbitAngle += amount;
 			let angle = this.orbitAngle;

@@ -87,31 +87,23 @@
 /**
  * p5.play
  *
- * @version 3.3
+ * @version 3.4
  * @author quinton-ashley
- * @year 2022
+ * @year 2023
  * @license gpl-v3-only
  * @descripton p5.play is a 2D game engine that uses planck (Box2D) to simulate
  * physics and provides sprites, a tile system, input handling, and animations!
- *
- * Created by Quinton Ashley @qashto, 2022
- * https://quintos.org
- *
- * Initiated by Paolo Pedercini @molleindustria, 2015
- * https://molleindustria.org/
  */
 p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
-	const log = console.log; // shortcut
-	this.log = console.log;
-
-	// store a reference to the p5 instance that p5play is being added to
-	let pInst = this;
-	// change the angle mode to degrees
-	this.angleMode(p5.prototype.DEGREES);
-
 	if (typeof window.planck == &#x27;undefined&#x27;) {
 		throw new Error(&#x27;planck.js must be loaded before p5.play&#x27;);
 	}
+
+	// store a reference to the p5 instance that p5play is being added to
+	let pInst = this;
+
+	const log = console.log; // shortcut
+	this.log = console.log;
 
 	const pl = planck;
 	// set the velocity threshold to allow for slow moving objects
@@ -128,6 +120,9 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 	this.p5play.mouseSprite = null;
 	this.p5play.mouseSprites = [];
 	this.p5play.standardizeKeyboard = false;
+
+	// change the angle mode to degrees
+	this.angleMode(p5.prototype.DEGREES);
 
 	// scale to planck coordinates from p5 coordinates
 	const scaleTo = ({ x, y }, tileSize) =&gt; new pl.Vec2((x * tileSize) / plScale, (y * tileSize) / plScale);
@@ -212,8 +207,6 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 	 *
 	 *   let line = new Sprite(x, y, [length, angle]);
 	 *
-	 *   let chain = new Sprite(x, y, [length0, angle0, length1, angle1]);
-	 *
 	 * @class Sprite
 	 * @constructor
 	 * @param {String|SpriteAnimation|p5.Image} [aniName|ani|image]
@@ -229,9 +222,9 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 	 */
 	class Sprite {
 		constructor(x, y, w, h, collider) {
-			this.idNum = pInst.world.spritesCreated;
-			pInst.world.spritesCreated++;
 			this.p = pInst;
+			this.idNum = this.p.world.spritesCreated;
+			this.p.world.spritesCreated++;
 
 			let args = [...arguments];
 
@@ -1968,11 +1961,11 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 				this.remove();
 				return;
 			}
-			if (this._diameter == val) return;
-			this._diameter = val;
-
-			let prevShape = this.shape;
-			if (prevShape != &#x27;circle&#x27;) {
+			let shapeChange = this.shape != &#x27;circle&#x27;;
+			if (!shapeChange) {
+				if (this._diameter == val) return;
+				this._diameter = val;
+			} else {
 				let bodyProps;
 				if (this._collider == &#x27;none&#x27;) {
 					bodyProps = this._cloneBodyProps();
@@ -1995,7 +1988,7 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 			this._hw = val * 0.5;
 			this._h = val;
 			this._hh = this._hw;
-			if (prevShape != &#x27;circle&#x27;) return;
+			if (shapeChange) return;
 			this._resizeCollider({ x: scalar, y: scalar });
 		}
 		/**
@@ -2037,8 +2030,9 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 		/**
 		 * Resizes the collider of the sprite.
 		 *
-		 * @param {*} scalars
-		 * @returns
+		 * @private
+		 * @method _resizeCollider
+		 * @param {*} scalars The x and y scalars to resize the collider by.
 		 */
 		_resizeCollider(scalars) {
 			if (!this.body) return;
@@ -2059,18 +2053,13 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 			}
 		}
 
-		_isPoly(vecs) {
-			let first = vecs[0];
-			let last = vecs[vecs.length - 1];
-			return first.x;
-		}
-
 		/**
 		 * Validate convexity.
 		 *
 		 * @private
+		 * @method _isConvexPoly
 		 * @param vecs {Array} an array of planck.Vec2 vertices
-		 * @returns true if valid
+		 * @returns true if the polygon is convex
 		 */
 		_isConvexPoly(vecs) {
 			loopk: for (let k = 0; k &lt; 2; k++) {
@@ -2112,9 +2101,21 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 		}
 
 		set shape(val) {
-			if (this._shape == val) return;
-			this._shape = val;
-			this._reset();
+			if (val == this._shape) return;
+
+			let validShapes = [&#x27;box&#x27;, &#x27;circle&#x27;, &#x27;chain&#x27;, &#x27;polygon&#x27;];
+			if (validShapes.indexOf(val) == -1) {
+				throw new Error(
+					&#x27;Invalid shape type: &quot;&#x27; + val + &#x27;&quot;\nThe valid shape types are: &quot;&#x27; + validShapes.join(&#x27;&quot;, &quot;&#x27;) + &#x27;&quot;&#x27;
+				);
+			}
+
+			if (val == &#x27;circle&#x27;) {
+				this.d = this.w;
+			} else {
+				this._shape = val;
+				this._reset();
+			}
 		}
 
 		/**
@@ -2329,8 +2330,6 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 		}
 
 		/**
-		 * EXPERIMENTAL implementation for beta testing!
-		 *
 		 * Apply a force that is scaled to the sprite&#x27;s mass.
 		 *
 		 * @method applyForce
@@ -2614,7 +2613,7 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 		 * Pushes the sprite toward a point.
 		 * The force is added to the current velocity.
 		 *
-		 * Legacy method, use attract, move, or moveTowards instead.
+		 * Legacy method, use moveTo or moveTowards instead.
 		 *
 		 * @deprecated
 		 * @param {Number}  magnitude Scalar speed to add
@@ -4409,15 +4408,15 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 		}
 
 		/**
-		 * Rotates the group around its centroid.
+		 * EXPERIMENTAL! Subject to change in the future!
 		 *
-		 * TODO experimental function, subject to change!
+		 * Rotates the group around its centroid.
 		 *
 		 * @method orbit
 		 * @param {Number} amount Amount of rotation
 		 */
 		orbit(amount) {
-			console.warn(&#x27;group.orbit is an experimental and subject to change in the future!&#x27;);
+			if (this.frame == 0) console.warn(&#x27;group.orbit is experimental and is subject to change in the future!&#x27;);
 			if (!this.centroid) this.resetCentroid();
 			this.orbitAngle += amount;
 			let angle = this.orbitAngle;
