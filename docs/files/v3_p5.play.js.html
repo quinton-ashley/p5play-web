@@ -2847,7 +2847,8 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 		_changeAni(label) {
 			let ani = this.animations[label];
 			if (!ani) {
-				for (let g of this.groups) {
+				for (let i = this.groups.length - 1; i &gt;= 0; i--) {
+					let g = this.groups[i];
 					ani = g.animations[label];
 					if (ani) {
 						ani = ani.clone();
@@ -3205,9 +3206,9 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 			this.rotation = 0;
 			this._scale = new Scale();
 
-			parent.addAni(this);
-
 			if (args.length == 0 || typeof args[0] == &#x27;number&#x27;) return;
+
+			parent.addAni(this);
 
 			// sequence mode
 			if (
