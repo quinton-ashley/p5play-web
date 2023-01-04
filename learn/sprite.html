@@ -406,6 +406,27 @@ player.moveTowards(mouse, 0.10);
 	</div>
 	<div id="page-3" class="page">
 		<script type="text/md">
+## Sprite image
+
+`sprite.img` or `sprite.image` can be set to a p5.Image or a url path to an image file.
+
+If you need an image to be loaded before your program starts, it's best to use [`loadImage`](https://p5js.org/reference/#/p5/loadImage) inside the p5.js `preload` function!
+		</script>
+		<script type="text/mie-p5" name="image" lines="8">
+let monster;
+
+function setup() {
+	new Canvas(500, 120);
+
+	monster = new Sprite();
+	monster.img = 'assets/monster.png';
+}
+
+function draw() {
+	clear();
+}
+		</script>
+		<script type="text/md">
 ## Make Pixel Art!
 			
 You can use the `spriteArt` function to create pixel art images for your sprites. It takes a string as input and returns an image. Each character in the string represents the color value of a pixel in the image.
@@ -417,7 +438,7 @@ let smiley;
 
 function setup() {
 	new Canvas(500, 120);
-	let str = `
+	let smileText = `
 ..yyyyyy
 .yybyybyy
 yyyyyyyyyy
@@ -426,7 +447,7 @@ yybyyyybyy
 ..yyyyyy`;
 
 	smiley = new Sprite();
-	smiley.img = spriteArt(str, 16);
+	smiley.img = spriteArt(smileText, 16);
 }
 
 function draw() {
@@ -443,7 +464,7 @@ let smiley;
 
 function setup() {
 	new Canvas(500, 120);
-	let str = `
+	let smileText = `
 ..yyyyyy
 .yybyybyy
 yyyyyyyyyy
@@ -457,7 +478,7 @@ yybyyyybyy
 	};
 
 	smiley = new Sprite();
-	smiley.img = spriteArt(str, 16, palette);
+	smiley.img = spriteArt(smileText, 16, palette);
 }
 
 function draw() {

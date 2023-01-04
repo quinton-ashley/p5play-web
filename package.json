@@ -18,11 +18,11 @@
 	"homepage": "https://github.com/quintos/p5play-web/tree/gh-pages",
 	"scripts": {
 		"tests": "jest tests",
-		"docs": "yuidoc .;rm docs/assets/favicon.ico|rm docs/assets/favicon.ico;cp favicon.ico docs/assets/favicon.ico|cp favicon.png docs/assets/favicon.png",
+		"docs": "yuidoc .;rm docs/assets/favicon.ico|rm docs/assets/favicon.ico;cp favicon.ico docs/assets/favicon.ico|cp favicon.png docs/assets/icon.png",
 		"v": "npm version patch --force",
 		"V": "npm version minor --force",
 		"version": "git add -A",
 		"postversion": "git push"
 	},
-	"version": "1.1.299"
+	"version": "1.1.300"
 }

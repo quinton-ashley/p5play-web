@@ -4,12 +4,58 @@
 <head>
 	<meta charset="UTF-8">
 	<title>p5.play : Learn</title>
+	<link rel="icon" href="../logo.svg" />
+	<link rel="stylesheet" href="style.css">
+	<style>
+		#refs {
+			display: flex;
+		}
+
+		#refs div {
+			display: flex;
+			flex-direction: column;
+			gap: 4px;
+		}
+
+	</style>
 </head>
 
 <body>
 	<script>
 		window.location.replace("sprite.html");
 	</script>
+
+	<nav id="topNav">
+		<a href="../index.html" class="active"><img src="../logo.svg" class="logo">p5.play</a>
+		<span>:</span>
+		<a href="sprite.html">Sprite</a>
+		<a href="group.html">Group</a>
+		<a href="sprite_animation.html">Animation</a>
+		<a href="input_devices.html">Input</a>
+		<a href="tiles.html">Tiles</a>
+		<a href="camera.html">Camera</a>
+		<a href="advanced.html">Adv</a>
+		<span class="colon">:</span>
+		<a id="darkMode" onclick="toggleDarkMode()">
+			<div id="darkModeIcon"></div>
+		</a>
+	</nav>
+	<div class="top break"></div>
+
+	<div class="page" style="display: block;">
+		<h2>New to p5.play?</h2>
+		<p>Start by looking at the Sprite pages!</p>
+	</div>
+
+	<div id="refs"></div>
+
+	<div class="break"></div>
+	<footer class="text-small">
+		Created by Quinton Ashley (@quinton-ashley) Copyright 2022-2023.
+	</footer>
+
+	<script src="../main.js"></script>
+	<script src="reference.js"></script>
 </body>
 
 </html>

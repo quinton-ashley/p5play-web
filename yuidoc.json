@@ -3,13 +3,11 @@
 	"description": "A p5.js library for games and playthings",
 	"version": "3",
 	"url": "http://molleindustria.org/",
-	"logo": "../favicon.ico",
+	"logo": "../icon.png",
 	"options": {
 		"outdir": "docs",
 		"paths": ["v3"],
 		"ignorePaths": ["planck"],
-		"exclude": "demos,docs,game,jam,learn,logos,tests,theme,v2,v4",
-		"themedir": "theme",
-		"helpers": ["theme/helpers/helpers.js"]
+		"exclude": "demos,docs,game,jam,learn,logos,tests,theme,v2,v4"
 	}
 }

@@ -3,92 +3,100 @@
 <head>
     <meta charset="utf-8">
     <title>Group - p5.play</title>
-    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
-    <link rel="stylesheet" href="../assets/css/custom.css">
-    <link rel="stylesheet" href="../assets/css/lucid.css">
-    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
-    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+    <link rel="icon" href="../assets/favicon.ico">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
 </head>
 <body class="yui3-skin-sam">
-<div class="navbar navbar-fixed-top">
-    <div class="navbar-inner">
-        <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">
-	    <img alt="p5.play" src="../../favicon.ico" style="max-height: 65%;" title="p5.play">
-            p5.play
-        </h1>
-	<div class="nav">
-            <li class="divider-vertical"></li>
-            <li>
-                <p class="navbar-text">
-                    API Docs for Version: <b>3</b>
-                </p>
-            </li>
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+                <h1><img src="../../icon.png" title="p5.play"></h1>
         </div>
-        <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
-            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/Camera", "classes/Group", "classes/InputDevice", "classes/p5.play", "classes/Sprite", "classes/SpriteAnimation", "classes/Tiles", "classes/World"]'>
-        </form>
-    </div>
-</div>
-<div class="container">
-    <div class="row">
-        <div class="span3">
-<div>
-    <div id="sidebar">
-    <div id="classes">
-        <ul id="api-classes" class="nav nav-list">
-                <li><a href="../classes/Camera.html">Camera</a></li>
-                <li><a href="../classes/Group.html">Group</a></li>
-                <li><a href="../classes/InputDevice.html">InputDevice</a></li>
-                <li><a href="../classes/p5.play.html">p5.play</a></li>
-                <li><a href="../classes/Sprite.html">Sprite</a></li>
-                <li><a href="../classes/SpriteAnimation.html">SpriteAnimation</a></li>
-                <li><a href="../classes/Tiles.html">Tiles</a></li>
-                <li><a href="../classes/World.html">World</a></li>
-        </ul>
-    </div>
-    </div>
-</div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: 3</em>
         </div>
-        <div class="span9">
-    <form id="options-form" class="form-inline pull-right">
-        Show:
-        <label for="api-show-inherited" class="checkbox">
-            <input type="checkbox" id="api-show-inherited" checked>
-            Inherited
-        </label>
+    </div>
+    <div id="bd" class="yui3-g">
 
-        <label for="api-show-protected" class="checkbox">
-            <input type="checkbox" id="api-show-protected">
-            Protected
-        </label>
-
-        <label for="api-show-private" class="checkbox">
-            <input type="checkbox" id="api-show-private">
-            Private
-        </label>
-        <label for="api-show-deprecated" class="checkbox">
-            <input type="checkbox" id="api-show-deprecated">
-            Deprecated
-        </label>
-
-    </form>
-
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+                    <h2 class="off-left">APIs</h2>
+                    <div id="api-tabview" class="tabview">
+                        <ul class="tabs">
+                            <li><a href="#api-classes">Classes</a></li>
+                            <li><a href="#api-modules">Modules</a></li>
+                        </ul>
+                
+                        <div id="api-tabview-filter">
+                            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+                        </div>
+                
+                        <div id="api-tabview-panel">
+                            <ul id="api-classes" class="apis classes">
+                                <li><a href="../classes/Camera.html">Camera</a></li>
+                                <li><a href="../classes/Group.html">Group</a></li>
+                                <li><a href="../classes/InputDevice.html">InputDevice</a></li>
+                                <li><a href="../classes/p5.play.html">p5.play</a></li>
+                                <li><a href="../classes/Sprite.html">Sprite</a></li>
+                                <li><a href="../classes/SpriteAnimation.html">SpriteAnimation</a></li>
+                                <li><a href="../classes/Tiles.html">Tiles</a></li>
+                                <li><a href="../classes/World.html">World</a></li>
+                            </ul>
+                
+                
+                            <ul id="api-modules" class="apis modules">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+                    Show:
+                    <label for="api-show-inherited">
+                        <input type="checkbox" id="api-show-inherited" checked>
+                        Inherited
+                    </label>
+            
+                    <label for="api-show-protected">
+                        <input type="checkbox" id="api-show-protected">
+                        Protected
+                    </label>
+            
+                    <label for="api-show-private">
+                        <input type="checkbox" id="api-show-private">
+                        Private
+                    </label>
+                    <label for="api-show-deprecated">
+                        <input type="checkbox" id="api-show-deprecated">
+                        Deprecated
+                    </label>
+            
+                </div>
+            
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-<div class="page-header">
-    <h1>Group</h1>
+<h1>Group Class</h1>
+<div class="box meta">
+
+
+        <div class="foundat">
+            Defined in: <a href="../files/v3_p5.play.js.html#l3777"><code>v3&#x2F;p5.play.js:3777</code></a>
+        </div>
+
+
 </div>
 
 
-
-
-
-
-<div class="yuidoc-class-description">
-<p>Look at the Group reference pages before reading these docs.</p>
+<div class="box intro">
+    <p>Look at the Group reference pages before reading these docs.</p>
 <p><a href="https://p5play.org/learn/group.html">https://p5play.org/learn/group.html</a></p>
 <p>In p5.play groups are collections of sprites with similar behavior.
 For example a group may contain all the coin sprites that the
@@ -106,1205 +114,1430 @@ a group.</p>
 
 </div>
 
-<!-- table of contents -->
-
-<div id="class-toc" class="page-section">
-	<h2>Table of Contents</h2>
-    <ul>
-		<li>
-			<strong>Methods</strong>
-			<ul>
-				<li class=""><a href="#method-add"><span class="im">add</span>(<span class="ia">s</span>)</a></li>
-				<li class=""><a href="#method-addAni"><span class="im">addAni</span>(<span class="ia">name</span><span class="ia">animation</span>)</a></li>
-				<li class=""><a href="#method-addAnis"><span class="im">addAnis</span>()</a></li>
-				<li class=""><a href="#method-applyForce"><span class="im">applyForce</span>(<span class="ia">forceVector</span><span class="ia">forceOrigin</span>)</a></li>
-				<li class=""><a href="#method-collided"><span class="im">collided</span>(<span class="ia">target</span><span class="ia">callback</span>)</a></li>
-				<li class=""><a href="#method-collides"><span class="im">collides</span>(<span class="ia">target</span><span class="ia">callback</span>)</a></li>
-				<li class=""><a href="#method-colliding"><span class="im">colliding</span>(<span class="ia">target</span><span class="ia">callback</span>)</a></li>
-				<li class=""><a href="#method-cull"><span class="im">cull</span>(<span class="ia">top|size</span><span class="ia">bottom|cb</span><span class="ia">left</span><span class="ia">right</span><span class="ia">cb(sprite)</span>)</a></li>
-				<li class=""><a href="#method-draw"><span class="im">draw</span>()</a></li>
-				<li class=""><a href="#method-includes"><span class="im">includes</span>(<span class="ia">sprite</span>)</a></li>
-				<li class=""><a href="#method-move"><span class="im">move</span>()</a></li>
-				<li class=""><a href="#method-moveAway"><span class="im">moveAway</span>()</a></li>
-				<li class=""><a href="#method-moveTo"><span class="im">moveTo</span>()</a></li>
-				<li class=""><a href="#method-moveTowards"><span class="im">moveTowards</span>()</a></li>
-				<li class=""><a href="#method-orbit"><span class="im">orbit</span>(<span class="ia">amount</span>)</a></li>
-				<li class=""><a href="#method-overlapped"><span class="im">overlapped</span>(<span class="ia">target</span><span class="ia">callback</span>)</a></li>
-				<li class=""><a href="#method-overlapping"><span class="im">overlapping</span>(<span class="ia">target</span><span class="ia">callback</span>)</a></li>
-				<li class=""><a href="#method-overlaps"><span class="im">overlaps</span>(<span class="ia">target</span><span class="ia">callback</span>)</a></li>
-				<li class=""><a href="#method-push"><span class="im">push</span>(<span class="ia">s</span>)</a></li>
-				<li class=""><a href="#method-remove"><span class="im">remove</span>(<span class="ia">item</span>)</a></li>
-				<li class=""><a href="#method-removeAll"><span class="im">removeAll</span>()</a></li>
-			</ul>
-		</li>
-
-		<li>
-			<strong>Properties</strong>
-			<ul>
-				<li class=""><a href="#prop-amount"><span class="ip">amount</span></a></li>
-				<li class=""><a href="#prop-ani"><span class="ip">ani</span></a></li>
-				<li class=""><a href="#prop-animation"><span class="ip">animation</span></a></li>
-				<li class=""><a href="#prop-animations"><span class="ip">animations</span></a></li>
-				<li class=""><a href="#prop-anis"><span class="ip">anis</span></a></li>
-				<li class=""><a href="#prop-image"><span class="ip">image</span></a></li>
-				<li class=""><a href="#prop-img"><span class="ip">img</span></a></li>
-				<li class=""><a href="#prop-length"><span class="ip">length</span></a></li>
-			</ul>
-		</li>
-
-
-	</ul>
-</div>
-
-<!-- details -->
-
-    <div class="constructor yuidoc-class-constructor page-section">
+    <div class="constructor">
         <h2>Constructor</h2>
-        <div class="item-list">
-<div id="method-Group" class="method item ">
-	<div class="method-signature">
-	<span class="name"><code>Group</code></span>
+<div id="method_Group" class="method item">
+    <h3 class="name"><code>Group</code></h3>
 
-		<span class="paren">()</span>
-	</div>
+        <span class="paren">()</span>
 
 
 
 
 
 
-	<div class="meta">
-				<p>
-				Defined in
-		<a href="../files/v3_p5.play.js.html#l3773"><code>v3&#x2F;p5.play.js:3773</code></a>
-		</p>
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l3777"><code>v3&#x2F;p5.play.js:3777</code></a>
+        </p>
 
 
 
-	</div>
-
-
-
-
-</div>
-        </div>
     </div>
 
-    <div id="methods" class="page-section">
-        <h2 class="off-left">Methods</h2>
-        <div class="item-list">
-<div id="method-add" class="method item ">
-	<div class="method-signature">
-	<span class="name"><code>add</code></span>
-
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
-				<li class="arg">
-						<code>s</code>
-				</li>
-			</ul><span class="paren">)</span>
-		</div>
-	</div>
+    <div class="description">
+        
+    </div>
 
 
 
 
+</div>
+    </div>
+
+<div id="classdocs" class="tabview">
+    <ul class="api-class-tabs">
+        <li class="api-class-tab index"><a href="#index">Index</a></li>
+
+            <li class="api-class-tab methods"><a href="#methods">Methods</a></li>
+            <li class="api-class-tab properties"><a href="#properties">Properties</a></li>
+    </ul>
+
+    <div>
+        <div id="index" class="api-class-tabpanel index">
+            <h2 class="off-left">Item Index</h2>
+
+                <div class="index-section methods">
+                    <h3>Methods</h3>
+
+                    <ul class="index-list methods">
+                            <li class="index-item method">
+                                <a href="#method_add">add</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_addAni">addAni</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_addAnis">addAnis</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_applyForce">applyForce</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_collided">collided</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_collides">collides</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_colliding">colliding</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_cull">cull</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_draw">draw</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_includes">includes</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_move">move</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_moveAway">moveAway</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_moveTo">moveTo</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_moveTowards">moveTowards</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_orbit">orbit</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_overlapped">overlapped</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_overlapping">overlapping</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_overlaps">overlaps</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_push">push</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_remove">remove</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_removeAll">removeAll</a>
+
+                            </li>
+                    </ul>
+                </div>
+
+                <div class="index-section properties">
+                    <h3>Properties</h3>
+
+                    <ul class="index-list properties">
+                            <li class="index-item property">
+                                <a href="#property_amount">amount</a>
+
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_ani">ani</a>
+
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_animation">animation</a>
+
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_animations">animations</a>
+
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_anis">anis</a>
+
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_image">image</a>
+
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_img">img</a>
+
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_length">length</a>
+
+                            </li>
+                    </ul>
+                </div>
 
 
-	<div class="meta">
-				<p>
-				Defined in
-		<a href="../files/v3_p5.play.js.html#l4376"><code>v3&#x2F;p5.play.js:4376</code></a>
-		</p>
+        </div>
+
+            <div id="methods" class="api-class-tabpanel">
+                <h2 class="off-left">Methods</h2>
+
+<div id="method_add" class="method item">
+    <h3 class="name"><code>add</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>s</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
 
 
 
-	</div>
 
-	<div class="description"><p>Adds a sprite to the group. Returns true if the sprite was added
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l4380"><code>v3&#x2F;p5.play.js:4380</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Adds a sprite to the group. Returns true if the sprite was added
 because it was not already in the group.</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">s</code>
+                        <span class="type"><a href="../classes/Sprite.html" class="crosslink">Sprite</a></span>
+
+
+                    <div class="param-description">
+                        <p>The sprite to be added</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
 </div>
+<div id="method_addAni" class="method item">
+    <h3 class="name"><code>addAni</code></h3>
 
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-				<li class="param">
-						<code class="param-name">s</code>
-						<span class="type"><a href="../classes/Sprite.html" class="crosslink">Sprite</a></span>
-
-
-					<div class="param-description"><p>The sprite to be added</p>
-</div>
-
-				</li>
-			</ul>
-		</div>
-
-
-</div>
-<div id="method-addAni" class="method item ">
-	<div class="method-signature">
-	<span class="name"><code>addAni</code></span>
-
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
-				<li class="arg">
-						<code>name</code>
-				</li>
-				<li class="arg">
-						<code>animation</code>
-				</li>
-			</ul><span class="paren">)</span>
-		</div>
-	</div>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>name</code>
+                </li>
+                <li class="arg">
+                        <code>animation</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
 
 
 
 
 
 
-	<div class="meta">
-				<p>
-				Defined in
-		<a href="../files/v3_p5.play.js.html#l4559"><code>v3&#x2F;p5.play.js:4559</code></a>
-		</p>
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l4563"><code>v3&#x2F;p5.play.js:4563</code></a>
+        </p>
 
 
 
-	</div>
+    </div>
 
-	<div class="description"><p>Adds an animation to the sprite. Use this function in the preload p5.js
+    <div class="description">
+        <p>Adds an animation to the sprite. Use this function in the preload p5.js
 function. You don't need to name the animation if the sprite will only
 use one animation. See SpriteAnimation for more information.</p>
-</div>
 
-		<div class="params">
-			<h4>Parameters:</h4>
+    </div>
 
-			<ul class="params-list">
-				<li class="param">
-						<code class="param-name">name</code>
-						<span class="type">String</span>
+        <div class="params">
+            <h4>Parameters:</h4>
 
-
-					<div class="param-description"><p>SpriteAnimation identifier</p>
-</div>
-
-				</li>
-				<li class="param">
-						<code class="param-name">animation</code>
-						<span class="type"><a href="../classes/SpriteAnimation.html" class="crosslink">SpriteAnimation</a></span>
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">name</code>
+                        <span class="type">String</span>
 
 
-					<div class="param-description"><p>The preloaded animation</p>
-</div>
+                    <div class="param-description">
+                        <p>SpriteAnimation identifier</p>
 
-				</li>
-			</ul>
-		</div>
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">animation</code>
+                        <span class="type"><a href="../classes/SpriteAnimation.html" class="crosslink">SpriteAnimation</a></span>
 
 
-		<div class="example">
-			<h4>Example:</h4>
+                    <div class="param-description">
+                        <p>The preloaded animation</p>
 
-			<div class="example-content">
-				<p>sprite.addAni(name, animation);
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <p>sprite.addAni(name, animation);
 sprite.addAni(name, frame1, frame2, frame3...);
 sprite.addAni(name, atlas);</p>
 
-			</div>
-		</div>
+            </div>
+        </div>
 </div>
-<div id="method-addAnis" class="method item ">
-	<div class="method-signature">
-	<span class="name"><code>addAnis</code></span>
+<div id="method_addAnis" class="method item">
+    <h3 class="name"><code>addAnis</code></h3>
 
-		<span class="paren">()</span>
-	</div>
+        <span class="paren">()</span>
 
 
 
 
 
 
-	<div class="meta">
-				<p>
-				Defined in
-		<a href="../files/v3_p5.play.js.html#l4607"><code>v3&#x2F;p5.play.js:4607</code></a>
-		</p>
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l4611"><code>v3&#x2F;p5.play.js:4611</code></a>
+        </p>
 
 
 
-	</div>
+    </div>
 
-	<div class="description"><p>Add multiple animations</p>
+    <div class="description">
+        <p>Add multiple animations</p>
+
+    </div>
+
+
+
+
 </div>
+<div id="method_applyForce" class="method item">
+    <h3 class="name"><code>applyForce</code></h3>
 
-
-
-</div>
-<div id="method-applyForce" class="method item ">
-	<div class="method-signature">
-	<span class="name"><code>applyForce</code></span>
-
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
-				<li class="arg">
-						<code>forceVector</code>
-				</li>
-				<li class="arg">
-						<code class="optional">forceOrigin</code>
-				</li>
-			</ul><span class="paren">)</span>
-		</div>
-	</div>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>forceVector</code>
+                </li>
+                <li class="arg">
+                        <code class="optional">[forceOrigin]</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
 
 
 
 
 
 
-	<div class="meta">
-				<p>
-				Defined in
-		<a href="../files/v3_p5.play.js.html#l4204"><code>v3&#x2F;p5.play.js:4204</code></a>
-		</p>
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l4208"><code>v3&#x2F;p5.play.js:4208</code></a>
+        </p>
 
 
 
-	</div>
+    </div>
 
-	<div class="description"><p>EXPERIMENTAL implementation for beta testing!</p>
+    <div class="description">
+        <p>EXPERIMENTAL implementation for beta testing!</p>
 <p>Apply a force that is scaled to the sprite's mass.</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">forceVector</code>
+                        <span class="type">p5.Vector | Array</span>
+
+
+                    <div class="param-description">
+                        <p>force vector</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name optional">[forceOrigin]</code>
+                        <span class="type">p5.Vector | Array</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+
+
+                    <div class="param-description">
+                        <p>force origin</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
 </div>
+<div id="method_collided" class="method item">
+    <h3 class="name"><code>collided</code></h3>
 
-		<div class="params">
-			<h4>Parameters:</h4>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>target</code>
+                </li>
+                <li class="arg">
+                        <code class="optional">[callback]</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
 
-			<ul class="params-list">
-				<li class="param">
-						<code class="param-name">forceVector</code>
-						<span class="type">p5.Vector  |  Array</span>
-
-
-					<div class="param-description"><p>force vector</p>
-</div>
-
-				</li>
-				<li class="param">
-						<code class="param-name optional">[forceOrigin]</code>
-						<span class="type">p5.Vector  |  Array</span>
-						<span class="flag optional" title="This parameter is optional.">optional</span>
-
-
-					<div class="param-description"><p>force origin</p>
-</div>
-
-				</li>
-			</ul>
-		</div>
-
-
-</div>
-<div id="method-collided" class="method item ">
-	<div class="method-signature">
-	<span class="name"><code>collided</code></span>
-
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
-				<li class="arg">
-						<code>target</code>
-				</li>
-				<li class="arg">
-						<code class="optional">callback</code>
-				</li>
-			</ul><span class="paren">)</span>
-		</div>
-		<span class="returns-inline">
-			<span class="type">Boolean</span>
-		</span>
-	</div>
+        <span class="returns-inline">
+            <span class="type">Boolean</span>
+        </span>
 
 
 
 
 
 
-	<div class="meta">
-				<p>
-				Defined in
-		<a href="../files/v3_p5.play.js.html#l4110"><code>v3&#x2F;p5.play.js:4110</code></a>
-		</p>
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l4114"><code>v3&#x2F;p5.play.js:4114</code></a>
+        </p>
 
 
 
-	</div>
+    </div>
 
-	<div class="description"><p>Returns true on the first frame that the group no longer overlaps
+    <div class="description">
+        <p>Returns true on the first frame that the group no longer overlaps
 with the target sprite or group.</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">target</code>
+                        <span class="type"><a href="../classes/Sprite.html" class="crosslink">Sprite</a> | <a href="../classes/Group.html" class="crosslink">Group</a></span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name optional">[callback]</code>
+                        <span class="type">Function</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">Boolean</span>:
+            </div>
+        </div>
+
+
 </div>
+<div id="method_collides" class="method item">
+    <h3 class="name"><code>collides</code></h3>
 
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-				<li class="param">
-						<code class="param-name">target</code>
-						<span class="type"><a href="../classes/Sprite.html" class="crosslink">Sprite</a>  |  <a href="../classes/Group.html" class="crosslink">Group</a></span>
-
-
-
-				</li>
-				<li class="param">
-						<code class="param-name optional">[callback]</code>
-						<span class="type">Function</span>
-						<span class="flag optional" title="This parameter is optional.">optional</span>
-
-
-
-				</li>
-			</ul>
-		</div>
-
-		<div class="returns">
-			<h4>Returns:</h4>
-
-			<div class="returns-description">
-						<span class="type">Boolean</span>
-			</div>
-		</div>
-
-</div>
-<div id="method-collides" class="method item ">
-	<div class="method-signature">
-	<span class="name"><code>collides</code></span>
-
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
-				<li class="arg">
-						<code>target</code>
-				</li>
-				<li class="arg">
-						<code class="optional">callback</code>
-				</li>
-			</ul><span class="paren">)</span>
-		</div>
-	</div>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>target</code>
+                </li>
+                <li class="arg">
+                        <code class="optional">[callback]</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
 
 
 
 
 
 
-	<div class="meta">
-				<p>
-				Defined in
-		<a href="../files/v3_p5.play.js.html#l4076"><code>v3&#x2F;p5.play.js:4076</code></a>
-		</p>
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l4080"><code>v3&#x2F;p5.play.js:4080</code></a>
+        </p>
 
 
 
-	</div>
+    </div>
 
-	<div class="description"><p>Returns true on the first frame that the group collides with the
+    <div class="description">
+        <p>Returns true on the first frame that the group collides with the
 target sprite or group.</p>
 <p>Custom collision event handling can be done by using this function
 in an if statement or adding a callback as the second parameter.</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">target</code>
+                        <span class="type"><a href="../classes/Sprite.html" class="crosslink">Sprite</a> | <a href="../classes/Group.html" class="crosslink">Group</a></span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name optional">[callback]</code>
+                        <span class="type">Function</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
 </div>
+<div id="method_colliding" class="method item">
+    <h3 class="name"><code>colliding</code></h3>
 
-		<div class="params">
-			<h4>Parameters:</h4>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>target</code>
+                </li>
+                <li class="arg">
+                        <code class="optional">[callback]</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
 
-			<ul class="params-list">
-				<li class="param">
-						<code class="param-name">target</code>
-						<span class="type"><a href="../classes/Sprite.html" class="crosslink">Sprite</a>  |  <a href="../classes/Group.html" class="crosslink">Group</a></span>
-
-
-
-				</li>
-				<li class="param">
-						<code class="param-name optional">[callback]</code>
-						<span class="type">Function</span>
-						<span class="flag optional" title="This parameter is optional.">optional</span>
-
-
-
-				</li>
-			</ul>
-		</div>
-
-
-</div>
-<div id="method-colliding" class="method item ">
-	<div class="method-signature">
-	<span class="name"><code>colliding</code></span>
-
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
-				<li class="arg">
-						<code>target</code>
-				</li>
-				<li class="arg">
-						<code class="optional">callback</code>
-				</li>
-			</ul><span class="paren">)</span>
-		</div>
-		<span class="returns-inline">
-			<span class="type">Number</span>
-		</span>
-	</div>
+        <span class="returns-inline">
+            <span class="type">Number</span>
+        </span>
 
 
 
 
 
 
-	<div class="meta">
-				<p>
-				Defined in
-		<a href="../files/v3_p5.play.js.html#l4093"><code>v3&#x2F;p5.play.js:4093</code></a>
-		</p>
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l4097"><code>v3&#x2F;p5.play.js:4097</code></a>
+        </p>
 
 
 
-	</div>
+    </div>
 
-	<div class="description"><p>Returns a truthy value while the group is colliding with the
+    <div class="description">
+        <p>Returns a truthy value while the group is colliding with the
 target sprite or group. The value is the number of frames that
 the group has been colliding with the target.</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">target</code>
+                        <span class="type"><a href="../classes/Sprite.html" class="crosslink">Sprite</a> | <a href="../classes/Group.html" class="crosslink">Group</a></span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name optional">[callback]</code>
+                        <span class="type">Function</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">Number</span>:
+                    <p>frames</p>
+
+            </div>
+        </div>
+
+
 </div>
+<div id="method_cull" class="method item">
+    <h3 class="name"><code>cull</code></h3>
 
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-				<li class="param">
-						<code class="param-name">target</code>
-						<span class="type"><a href="../classes/Sprite.html" class="crosslink">Sprite</a>  |  <a href="../classes/Group.html" class="crosslink">Group</a></span>
-
-
-
-				</li>
-				<li class="param">
-						<code class="param-name optional">[callback]</code>
-						<span class="type">Function</span>
-						<span class="flag optional" title="This parameter is optional.">optional</span>
-
-
-
-				</li>
-			</ul>
-		</div>
-
-		<div class="returns">
-			<h4>Returns:</h4>
-
-			<div class="returns-description">
-						<span class="type">Number</span>:
-					<p>frames</p>
-
-			</div>
-		</div>
-
-</div>
-<div id="method-cull" class="method item ">
-	<div class="method-signature">
-	<span class="name"><code>cull</code></span>
-
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
-				<li class="arg">
-						<code>top|size</code>
-				</li>
-				<li class="arg">
-						<code>bottom|cb</code>
-				</li>
-				<li class="arg">
-						<code class="optional">left</code>
-				</li>
-				<li class="arg">
-						<code class="optional">right</code>
-				</li>
-				<li class="arg">
-						<code class="optional">cb(sprite)</code>
-				</li>
-			</ul><span class="paren">)</span>
-		</div>
-	</div>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>top|size</code>
+                </li>
+                <li class="arg">
+                        <code>bottom|cb</code>
+                </li>
+                <li class="arg">
+                        <code class="optional">[left]</code>
+                </li>
+                <li class="arg">
+                        <code class="optional">[right]</code>
+                </li>
+                <li class="arg">
+                        <code class="optional">[cb(sprite)]</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
 
 
 
 
 
 
-	<div class="meta">
-				<p>
-				Defined in
-		<a href="../files/v3_p5.play.js.html#l4409"><code>v3&#x2F;p5.play.js:4409</code></a>
-		</p>
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l4413"><code>v3&#x2F;p5.play.js:4413</code></a>
+        </p>
 
 
 
-	</div>
+    </div>
 
-	<div class="description"><p>Remove sprites that go outside the given culling boundary
+    <div class="description">
+        <p>Remove sprites that go outside the given culling boundary
 relative to the camera.</p>
-</div>
 
-		<div class="params">
-			<h4>Parameters:</h4>
+    </div>
 
-			<ul class="params-list">
-				<li class="param">
-						<code class="param-name">top|size</code>
-						<span class="type">Number</span>
+        <div class="params">
+            <h4>Parameters:</h4>
 
-
-					<div class="param-description"><p>The distance that sprites can move below the p5.js canvas before they are removed. <em>OR</em> The distance sprites can travel outside the screen on all sides before they get removed.</p>
-</div>
-
-				</li>
-				<li class="param">
-						<code class="param-name">bottom|cb</code>
-						<span class="type">Number</span>
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">top|size</code>
+                        <span class="type">Number</span>
 
 
-					<div class="param-description"><p>The distance that sprites can move below the p5.js canvas before they are removed.</p>
-</div>
+                    <div class="param-description">
+                        <p>The distance that sprites can move below the p5.js canvas before they are removed. <em>OR</em> The distance sprites can travel outside the screen on all sides before they get removed.</p>
 
-				</li>
-				<li class="param">
-						<code class="param-name optional">[left]</code>
-						<span class="type">Number</span>
-						<span class="flag optional" title="This parameter is optional.">optional</span>
+                    </div>
 
-
-					<div class="param-description"><p>The distance that sprites can move beyond the left side of the p5.js canvas before they are removed.</p>
-</div>
-
-				</li>
-				<li class="param">
-						<code class="param-name optional">[right]</code>
-						<span class="type">Number</span>
-						<span class="flag optional" title="This parameter is optional.">optional</span>
+                </li>
+                <li class="param">
+                        <code class="param-name">bottom|cb</code>
+                        <span class="type">Number</span>
 
 
-					<div class="param-description"><p>The distance that sprites can move beyond the right side of the p5.js canvas before they are removed.</p>
-</div>
+                    <div class="param-description">
+                        <p>The distance that sprites can move below the p5.js canvas before they are removed.</p>
 
-				</li>
-				<li class="param">
-						<code class="param-name optional">[cb(sprite)]</code>
-						<span class="type">Function</span>
-						<span class="flag optional" title="This parameter is optional.">optional</span>
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name optional">[left]</code>
+                        <span class="type">Number</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
 
 
-					<div class="param-description"><p>The callback is given the sprite that
+                    <div class="param-description">
+                        <p>The distance that sprites can move beyond the left side of the p5.js canvas before they are removed.</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name optional">[right]</code>
+                        <span class="type">Number</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+
+
+                    <div class="param-description">
+                        <p>The distance that sprites can move beyond the right side of the p5.js canvas before they are removed.</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name optional">[cb(sprite)]</code>
+                        <span class="type">Function</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+
+
+                    <div class="param-description">
+                        <p>The callback is given the sprite that
 passed the cull boundary, if no callback is given the sprite is
 removed by default</p>
-</div>
 
-				</li>
-			</ul>
-		</div>
+                    </div>
 
-
-</div>
-<div id="method-draw" class="method item ">
-	<div class="method-signature">
-	<span class="name"><code>draw</code></span>
-
-		<span class="paren">()</span>
-	</div>
-
-
-
-
-
-
-	<div class="meta">
-				<p>
-				Defined in
-		<a href="../files/v3_p5.play.js.html#l4534"><code>v3&#x2F;p5.play.js:4534</code></a>
-		</p>
-
-
-
-	</div>
-
-	<div class="description"><p>Draws all the sprites in the group.</p>
-</div>
+                </li>
+            </ul>
+        </div>
 
 
 
 </div>
-<div id="method-includes" class="method item ">
-	<div class="method-signature">
-	<span class="name"><code>includes</code></span>
+<div id="method_draw" class="method item">
+    <h3 class="name"><code>draw</code></h3>
 
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
-				<li class="arg">
-						<code>sprite</code>
-				</li>
-			</ul><span class="paren">)</span>
-		</div>
-		<span class="returns-inline">
-			<span class="type">Number</span>
-		</span>
-	</div>
+        <span class="paren">()</span>
 
 
 
 
 
 
-	<div class="meta">
-				<p>
-				Defined in
-		<a href="../files/v3_p5.play.js.html#l4336"><code>v3&#x2F;p5.play.js:4336</code></a>
-		</p>
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l4538"><code>v3&#x2F;p5.play.js:4538</code></a>
+        </p>
 
 
 
-	</div>
+    </div>
 
-	<div class="description"><p>Check if a sprite is in the group.</p>
-</div>
+    <div class="description">
+        <p>Draws all the sprites in the group.</p>
 
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-				<li class="param">
-						<code class="param-name">sprite</code>
-						<span class="type"><a href="../classes/Sprite.html" class="crosslink">Sprite</a></span>
-
-
-
-				</li>
-			</ul>
-		</div>
-
-		<div class="returns">
-			<h4>Returns:</h4>
-
-			<div class="returns-description">
-						<span class="type">Number</span>:
-					<p>index of the sprite or -1 if not found</p>
-
-			</div>
-		</div>
-
-</div>
-<div id="method-move" class="method item ">
-	<div class="method-signature">
-	<span class="name"><code>move</code></span>
-
-		<span class="paren">()</span>
-	</div>
-
-
-
-
-
-
-	<div class="meta">
-				<p>
-				Defined in
-		<a href="../files/v3_p5.play.js.html#l4219"><code>v3&#x2F;p5.play.js:4219</code></a>
-		</p>
-
-
-
-	</div>
+    </div>
 
 
 
 
 </div>
-<div id="method-moveAway" class="method item ">
-	<div class="method-signature">
-	<span class="name"><code>moveAway</code></span>
+<div id="method_includes" class="method item">
+    <h3 class="name"><code>includes</code></h3>
 
-		<span class="paren">()</span>
-	</div>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>sprite</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
 
-
-
-
-
-
-	<div class="meta">
-				<p>
-				Defined in
-		<a href="../files/v3_p5.play.js.html#l4276"><code>v3&#x2F;p5.play.js:4276</code></a>
-		</p>
+        <span class="returns-inline">
+            <span class="type">Number</span>
+        </span>
 
 
 
-	</div>
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l4340"><code>v3&#x2F;p5.play.js:4340</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Check if a sprite is in the group.</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">sprite</code>
+                        <span class="type"><a href="../classes/Sprite.html" class="crosslink">Sprite</a></span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">Number</span>:
+                    <p>index of the sprite or -1 if not found</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_move" class="method item">
+    <h3 class="name"><code>move</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l4223"><code>v3&#x2F;p5.play.js:4223</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        
+    </div>
 
 
 
 
 </div>
-<div id="method-moveTo" class="method item ">
-	<div class="method-signature">
-	<span class="name"><code>moveTo</code></span>
+<div id="method_moveAway" class="method item">
+    <h3 class="name"><code>moveAway</code></h3>
 
-		<span class="paren">()</span>
-	</div>
+        <span class="paren">()</span>
 
 
 
 
 
 
-	<div class="meta">
-				<p>
-				Defined in
-		<a href="../files/v3_p5.play.js.html#l4230"><code>v3&#x2F;p5.play.js:4230</code></a>
-		</p>
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l4280"><code>v3&#x2F;p5.play.js:4280</code></a>
+        </p>
 
 
 
-	</div>
+    </div>
 
-
-
-
-</div>
-<div id="method-moveTowards" class="method item ">
-	<div class="method-signature">
-	<span class="name"><code>moveTowards</code></span>
-
-		<span class="paren">()</span>
-	</div>
-
-
-
-
-
-
-	<div class="meta">
-				<p>
-				Defined in
-		<a href="../files/v3_p5.play.js.html#l4253"><code>v3&#x2F;p5.play.js:4253</code></a>
-		</p>
-
-
-
-	</div>
+    <div class="description">
+        
+    </div>
 
 
 
 
 </div>
-<div id="method-orbit" class="method item ">
-	<div class="method-signature">
-	<span class="name"><code>orbit</code></span>
+<div id="method_moveTo" class="method item">
+    <h3 class="name"><code>moveTo</code></h3>
 
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
-				<li class="arg">
-						<code>amount</code>
-				</li>
-			</ul><span class="paren">)</span>
-		</div>
-	</div>
+        <span class="paren">()</span>
 
 
 
 
 
 
-	<div class="meta">
-				<p>
-				Defined in
-		<a href="../files/v3_p5.play.js.html#l4299"><code>v3&#x2F;p5.play.js:4299</code></a>
-		</p>
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l4234"><code>v3&#x2F;p5.play.js:4234</code></a>
+        </p>
 
 
 
-	</div>
+    </div>
 
-	<div class="description"><p>EXPERIMENTAL! Subject to change in the future!</p>
+    <div class="description">
+        
+    </div>
+
+
+
+
+</div>
+<div id="method_moveTowards" class="method item">
+    <h3 class="name"><code>moveTowards</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l4257"><code>v3&#x2F;p5.play.js:4257</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+
+
+
+</div>
+<div id="method_orbit" class="method item">
+    <h3 class="name"><code>orbit</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>amount</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l4303"><code>v3&#x2F;p5.play.js:4303</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>EXPERIMENTAL! Subject to change in the future!</p>
 <p>Rotates the group around its centroid.</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">amount</code>
+                        <span class="type">Number</span>
+
+
+                    <div class="param-description">
+                        <p>Amount of rotation</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
 </div>
+<div id="method_overlapped" class="method item">
+    <h3 class="name"><code>overlapped</code></h3>
 
-		<div class="params">
-			<h4>Parameters:</h4>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>target</code>
+                </li>
+                <li class="arg">
+                        <code class="optional">[callback]</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
 
-			<ul class="params-list">
-				<li class="param">
-						<code class="param-name">amount</code>
-						<span class="type">Number</span>
-
-
-					<div class="param-description"><p>Amount of rotation</p>
-</div>
-
-				</li>
-			</ul>
-		</div>
-
-
-</div>
-<div id="method-overlapped" class="method item ">
-	<div class="method-signature">
-	<span class="name"><code>overlapped</code></span>
-
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
-				<li class="arg">
-						<code>target</code>
-				</li>
-				<li class="arg">
-						<code class="optional">callback</code>
-				</li>
-			</ul><span class="paren">)</span>
-		</div>
-		<span class="returns-inline">
-			<span class="type">Boolean</span>
-		</span>
-	</div>
+        <span class="returns-inline">
+            <span class="type">Boolean</span>
+        </span>
 
 
 
 
 
 
-	<div class="meta">
-				<p>
-				Defined in
-		<a href="../files/v3_p5.play.js.html#l4189"><code>v3&#x2F;p5.play.js:4189</code></a>
-		</p>
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l4193"><code>v3&#x2F;p5.play.js:4193</code></a>
+        </p>
 
 
 
-	</div>
+    </div>
 
-	<div class="description"><p>Returns true on the first frame that the group no longer overlaps
+    <div class="description">
+        <p>Returns true on the first frame that the group no longer overlaps
 with the target sprite or group.</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">target</code>
+                        <span class="type"><a href="../classes/Sprite.html" class="crosslink">Sprite</a> | <a href="../classes/Group.html" class="crosslink">Group</a></span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name optional">[callback]</code>
+                        <span class="type">Function</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">Boolean</span>:
+            </div>
+        </div>
+
+
 </div>
+<div id="method_overlapping" class="method item">
+    <h3 class="name"><code>overlapping</code></h3>
 
-		<div class="params">
-			<h4>Parameters:</h4>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>target</code>
+                </li>
+                <li class="arg">
+                        <code class="optional">[callback]</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
 
-			<ul class="params-list">
-				<li class="param">
-						<code class="param-name">target</code>
-						<span class="type"><a href="../classes/Sprite.html" class="crosslink">Sprite</a>  |  <a href="../classes/Group.html" class="crosslink">Group</a></span>
-
-
-
-				</li>
-				<li class="param">
-						<code class="param-name optional">[callback]</code>
-						<span class="type">Function</span>
-						<span class="flag optional" title="This parameter is optional.">optional</span>
-
-
-
-				</li>
-			</ul>
-		</div>
-
-		<div class="returns">
-			<h4>Returns:</h4>
-
-			<div class="returns-description">
-						<span class="type">Boolean</span>
-			</div>
-		</div>
-
-</div>
-<div id="method-overlapping" class="method item ">
-	<div class="method-signature">
-	<span class="name"><code>overlapping</code></span>
-
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
-				<li class="arg">
-						<code>target</code>
-				</li>
-				<li class="arg">
-						<code class="optional">callback</code>
-				</li>
-			</ul><span class="paren">)</span>
-		</div>
-		<span class="returns-inline">
-			<span class="type">Number</span>
-		</span>
-	</div>
+        <span class="returns-inline">
+            <span class="type">Number</span>
+        </span>
 
 
 
 
 
 
-	<div class="meta">
-				<p>
-				Defined in
-		<a href="../files/v3_p5.play.js.html#l4172"><code>v3&#x2F;p5.play.js:4172</code></a>
-		</p>
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l4176"><code>v3&#x2F;p5.play.js:4176</code></a>
+        </p>
 
 
 
-	</div>
+    </div>
 
-	<div class="description"><p>Returns a truthy value while the group is overlapping with the
+    <div class="description">
+        <p>Returns a truthy value while the group is overlapping with the
 target sprite or group. The value returned is the number of
 frames the group has been overlapping with the target.</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">target</code>
+                        <span class="type"><a href="../classes/Sprite.html" class="crosslink">Sprite</a> | <a href="../classes/Group.html" class="crosslink">Group</a></span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name optional">[callback]</code>
+                        <span class="type">Function</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">Number</span>:
+                    <p>frames</p>
+
+            </div>
+        </div>
+
+
 </div>
+<div id="method_overlaps" class="method item">
+    <h3 class="name"><code>overlaps</code></h3>
 
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-				<li class="param">
-						<code class="param-name">target</code>
-						<span class="type"><a href="../classes/Sprite.html" class="crosslink">Sprite</a>  |  <a href="../classes/Group.html" class="crosslink">Group</a></span>
-
-
-
-				</li>
-				<li class="param">
-						<code class="param-name optional">[callback]</code>
-						<span class="type">Function</span>
-						<span class="flag optional" title="This parameter is optional.">optional</span>
-
-
-
-				</li>
-			</ul>
-		</div>
-
-		<div class="returns">
-			<h4>Returns:</h4>
-
-			<div class="returns-description">
-						<span class="type">Number</span>:
-					<p>frames</p>
-
-			</div>
-		</div>
-
-</div>
-<div id="method-overlaps" class="method item ">
-	<div class="method-signature">
-	<span class="name"><code>overlaps</code></span>
-
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
-				<li class="arg">
-						<code>target</code>
-				</li>
-				<li class="arg">
-						<code class="optional">callback</code>
-				</li>
-			</ul><span class="paren">)</span>
-		</div>
-	</div>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>target</code>
+                </li>
+                <li class="arg">
+                        <code class="optional">[callback]</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
 
 
 
 
 
 
-	<div class="meta">
-				<p>
-				Defined in
-		<a href="../files/v3_p5.play.js.html#l4155"><code>v3&#x2F;p5.play.js:4155</code></a>
-		</p>
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l4159"><code>v3&#x2F;p5.play.js:4159</code></a>
+        </p>
 
 
 
-	</div>
+    </div>
 
-	<div class="description"><p>Returns true on the first frame that the group overlaps with the
+    <div class="description">
+        <p>Returns true on the first frame that the group overlaps with the
 target sprite or group.</p>
 <p>Custom overlap event handling can be done by using this function
 in an if statement or adding a callback as the second parameter.</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">target</code>
+                        <span class="type"><a href="../classes/Sprite.html" class="crosslink">Sprite</a> | <a href="../classes/Group.html" class="crosslink">Group</a></span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name optional">[callback]</code>
+                        <span class="type">Function</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
 </div>
+<div id="method_push" class="method item">
+    <h3 class="name"><code>push</code></h3>
 
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-				<li class="param">
-						<code class="param-name">target</code>
-						<span class="type"><a href="../classes/Sprite.html" class="crosslink">Sprite</a>  |  <a href="../classes/Group.html" class="crosslink">Group</a></span>
-
-
-
-				</li>
-				<li class="param">
-						<code class="param-name optional">[callback]</code>
-						<span class="type">Function</span>
-						<span class="flag optional" title="This parameter is optional.">optional</span>
-
-
-
-				</li>
-			</ul>
-		</div>
-
-
-</div>
-<div id="method-push" class="method item ">
-	<div class="method-signature">
-	<span class="name"><code>push</code></span>
-
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
-				<li class="arg">
-						<code>s</code>
-				</li>
-			</ul><span class="paren">)</span>
-		</div>
-	</div>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>s</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
 
 
 
 
 
 
-	<div class="meta">
-				<p>
-				Defined in
-		<a href="../files/v3_p5.play.js.html#l4356"><code>v3&#x2F;p5.play.js:4356</code></a>
-		</p>
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l4360"><code>v3&#x2F;p5.play.js:4360</code></a>
+        </p>
 
 
 
-	</div>
+    </div>
 
-	<div class="description"><p>Adds a sprite to the group. Returns true if the sprite was added
+    <div class="description">
+        <p>Adds a sprite to the group. Returns true if the sprite was added
 because it was not already in the group.</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">s</code>
+                        <span class="type"><a href="../classes/Sprite.html" class="crosslink">Sprite</a></span>
+
+
+                    <div class="param-description">
+                        <p>The sprite to be added</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
 </div>
+<div id="method_remove" class="method item">
+    <h3 class="name"><code>remove</code></h3>
 
-		<div class="params">
-			<h4>Parameters:</h4>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>item</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
 
-			<ul class="params-list">
-				<li class="param">
-						<code class="param-name">s</code>
-						<span class="type"><a href="../classes/Sprite.html" class="crosslink">Sprite</a></span>
-
-
-					<div class="param-description"><p>The sprite to be added</p>
-</div>
-
-				</li>
-			</ul>
-		</div>
-
-
-</div>
-<div id="method-remove" class="method item ">
-	<div class="method-signature">
-	<span class="name"><code>remove</code></span>
-
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
-				<li class="arg">
-						<code>item</code>
-				</li>
-			</ul><span class="paren">)</span>
-		</div>
-		<span class="returns-inline">
-			<span class="type">Boolean</span>
-		</span>
-	</div>
+        <span class="returns-inline">
+            <span class="type">Boolean</span>
+        </span>
 
 
 
 
 
 
-	<div class="meta">
-				<p>
-				Defined in
-		<a href="../files/v3_p5.play.js.html#l4451"><code>v3&#x2F;p5.play.js:4451</code></a>
-		</p>
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l4455"><code>v3&#x2F;p5.play.js:4455</code></a>
+        </p>
 
 
 
-	</div>
+    </div>
 
-	<div class="description"><p>If no input is given all sprites in the group are removed.</p>
+    <div class="description">
+        <p>If no input is given all sprites in the group are removed.</p>
 <p>If a sprite or index is given, that sprite is removed from this
 group and any group this group inherits from except for the
 allSprites group.</p>
-</div>
 
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-				<li class="param">
-						<code class="param-name">item</code>
-						<span class="type"><a href="../classes/Sprite.html" class="crosslink">Sprite</a></span>
-
-
-					<div class="param-description"><p>The sprite to be removed</p>
-</div>
-
-				</li>
-			</ul>
-		</div>
-
-		<div class="returns">
-			<h4>Returns:</h4>
-
-			<div class="returns-description">
-						<span class="type">Boolean</span>:
-					<p>true if sprite was found and removed</p>
-
-			</div>
-		</div>
-
-</div>
-<div id="method-removeAll" class="method item ">
-	<div class="method-signature">
-	<span class="name"><code>removeAll</code></span>
-
-		<span class="paren">()</span>
-	</div>
-
-
-
-
-
-
-	<div class="meta">
-				<p>
-				Defined in
-		<a href="../files/v3_p5.play.js.html#l4493"><code>v3&#x2F;p5.play.js:4493</code></a>
-		</p>
-
-
-
-	</div>
-
-	<div class="description"><p>Removes all sprites from the group and destroys the group.</p>
-</div>
-
-
-
-</div>
-        </div>
     </div>
 
-    <div id="properties" class="page-section">
-        <h2 class="off-left">Properties</h2>
+        <div class="params">
+            <h4>Parameters:</h4>
 
-        <div class="item-list">
-<div id="prop-amount" class="property item ">
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">item</code>
+                        <span class="type"><a href="../classes/Sprite.html" class="crosslink">Sprite</a></span>
+
+
+                    <div class="param-description">
+                        <p>The sprite to be removed</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">Boolean</span>:
+                    <p>true if sprite was found and removed</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_removeAll" class="method item">
+    <h3 class="name"><code>removeAll</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l4497"><code>v3&#x2F;p5.play.js:4497</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Removes all sprites from the group and destroys the group.</p>
+
+    </div>
+
+
+
+
+</div>
+            </div>
+
+            <div id="properties" class="api-class-tabpanel">
+                <h2 class="off-left">Properties</h2>
+
+<div id="property_amount" class="property item">
     <h3 class="name"><code>amount</code></h3>
     <span class="type">Number</span>
 
@@ -1315,7 +1548,7 @@ allSprites group.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5.play.js.html#l4022"><code>v3&#x2F;p5.play.js:4022</code></a>
+        <a href="../files/v3_p5.play.js.html#l4026"><code>v3&#x2F;p5.play.js:4026</code></a>
         </p>
 
 
@@ -1330,7 +1563,7 @@ either add or remove sprites.</p>
 
 
 </div>
-<div id="prop-ani" class="property item ">
+<div id="property_ani" class="property item">
     <h3 class="name"><code>ani</code></h3>
     <span class="type"><a href="../classes/SpriteAnimation.html" class="crosslink">SpriteAnimation</a></span>
 
@@ -1341,7 +1574,7 @@ either add or remove sprites.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5.play.js.html#l3963"><code>v3&#x2F;p5.play.js:3963</code></a>
+        <a href="../files/v3_p5.play.js.html#l3967"><code>v3&#x2F;p5.play.js:3967</code></a>
         </p>
 
 
@@ -1355,7 +1588,7 @@ either add or remove sprites.</p>
 
 
 </div>
-<div id="prop-animation" class="property item ">
+<div id="property_animation" class="property item">
     <h3 class="name"><code>animation</code></h3>
     <span class="type"><a href="../classes/SpriteAnimation.html" class="crosslink">SpriteAnimation</a></span>
 
@@ -1366,7 +1599,7 @@ either add or remove sprites.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5.play.js.html#l3976"><code>v3&#x2F;p5.play.js:3976</code></a>
+        <a href="../files/v3_p5.play.js.html#l3980"><code>v3&#x2F;p5.play.js:3980</code></a>
         </p>
 
 
@@ -1380,7 +1613,7 @@ either add or remove sprites.</p>
 
 
 </div>
-<div id="prop-animations" class="property item ">
+<div id="property_animations" class="property item">
     <h3 class="name"><code>animations</code></h3>
     <span class="type">Object</span>
 
@@ -1391,7 +1624,7 @@ either add or remove sprites.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5.play.js.html#l3817"><code>v3&#x2F;p5.play.js:3817</code></a>
+        <a href="../files/v3_p5.play.js.html#l3821"><code>v3&#x2F;p5.play.js:3821</code></a>
         </p>
 
 
@@ -1405,7 +1638,7 @@ either add or remove sprites.</p>
 
 
 </div>
-<div id="prop-anis" class="property item ">
+<div id="property_anis" class="property item">
     <h3 class="name"><code>anis</code></h3>
     <span class="type"><a href="../classes/SpriteAnimation.html" class="crosslink">SpriteAnimation</a></span>
 
@@ -1416,7 +1649,7 @@ either add or remove sprites.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5.play.js.html#l3989"><code>v3&#x2F;p5.play.js:3989</code></a>
+        <a href="../files/v3_p5.play.js.html#l3993"><code>v3&#x2F;p5.play.js:3993</code></a>
         </p>
 
 
@@ -1430,7 +1663,7 @@ either add or remove sprites.</p>
 
 
 </div>
-<div id="prop-image" class="property item ">
+<div id="property_image" class="property item">
     <h3 class="name"><code>image</code></h3>
     <span class="type"><a href="../classes/SpriteAnimation.html" class="crosslink">SpriteAnimation</a></span>
 
@@ -1441,7 +1674,7 @@ either add or remove sprites.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5.play.js.html#l4010"><code>v3&#x2F;p5.play.js:4010</code></a>
+        <a href="../files/v3_p5.play.js.html#l4014"><code>v3&#x2F;p5.play.js:4014</code></a>
         </p>
 
 
@@ -1455,7 +1688,7 @@ either add or remove sprites.</p>
 
 
 </div>
-<div id="prop-img" class="property item ">
+<div id="property_img" class="property item">
     <h3 class="name"><code>img</code></h3>
     <span class="type"><a href="../classes/SpriteAnimation.html" class="crosslink">SpriteAnimation</a></span>
 
@@ -1466,7 +1699,7 @@ either add or remove sprites.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5.play.js.html#l3998"><code>v3&#x2F;p5.play.js:3998</code></a>
+        <a href="../files/v3_p5.play.js.html#l4002"><code>v3&#x2F;p5.play.js:4002</code></a>
         </p>
 
 
@@ -1480,7 +1713,7 @@ either add or remove sprites.</p>
 
 
 </div>
-<div id="prop-length" class="property item ">
+<div id="property_length" class="property item">
     <h3 class="name"><code>length</code></h3>
     <span class="type">Unknown</span>
 
@@ -1491,7 +1724,7 @@ either add or remove sprites.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5.play.js.html#l4387"><code>v3&#x2F;p5.play.js:4387</code></a>
+        <a href="../files/v3_p5.play.js.html#l4391"><code>v3&#x2F;p5.play.js:4391</code></a>
         </p>
 
 
@@ -1504,21 +1737,24 @@ either add or remove sprites.</p>
 
 
 </div>
-        </div>
+            </div>
+
+
     </div>
-
-
-
+</div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<script src="../assets/vendor/jquery/jquery-1.8.2.min.js"></script>
-<script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
 <script src="../assets/vendor/prettify/prettify-min.js"></script>
-<script src="../assets/js/yuidoc-bootstrap.js"></script>
 <script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
 </body>
 </html>

@@ -3,92 +3,100 @@
 <head>
     <meta charset="utf-8">
     <title>InputDevice - p5.play</title>
-    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
-    <link rel="stylesheet" href="../assets/css/custom.css">
-    <link rel="stylesheet" href="../assets/css/lucid.css">
-    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
-    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+    <link rel="icon" href="../assets/favicon.ico">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
 </head>
 <body class="yui3-skin-sam">
-<div class="navbar navbar-fixed-top">
-    <div class="navbar-inner">
-        <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">
-	    <img alt="p5.play" src="../../favicon.ico" style="max-height: 65%;" title="p5.play">
-            p5.play
-        </h1>
-	<div class="nav">
-            <li class="divider-vertical"></li>
-            <li>
-                <p class="navbar-text">
-                    API Docs for Version: <b>3</b>
-                </p>
-            </li>
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+                <h1><img src="../../icon.png" title="p5.play"></h1>
         </div>
-        <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
-            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/Camera", "classes/Group", "classes/InputDevice", "classes/p5.play", "classes/Sprite", "classes/SpriteAnimation", "classes/Tiles", "classes/World"]'>
-        </form>
-    </div>
-</div>
-<div class="container">
-    <div class="row">
-        <div class="span3">
-<div>
-    <div id="sidebar">
-    <div id="classes">
-        <ul id="api-classes" class="nav nav-list">
-                <li><a href="../classes/Camera.html">Camera</a></li>
-                <li><a href="../classes/Group.html">Group</a></li>
-                <li><a href="../classes/InputDevice.html">InputDevice</a></li>
-                <li><a href="../classes/p5.play.html">p5.play</a></li>
-                <li><a href="../classes/Sprite.html">Sprite</a></li>
-                <li><a href="../classes/SpriteAnimation.html">SpriteAnimation</a></li>
-                <li><a href="../classes/Tiles.html">Tiles</a></li>
-                <li><a href="../classes/World.html">World</a></li>
-        </ul>
-    </div>
-    </div>
-</div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: 3</em>
         </div>
-        <div class="span9">
-    <form id="options-form" class="form-inline pull-right">
-        Show:
-        <label for="api-show-inherited" class="checkbox">
-            <input type="checkbox" id="api-show-inherited" checked>
-            Inherited
-        </label>
+    </div>
+    <div id="bd" class="yui3-g">
 
-        <label for="api-show-protected" class="checkbox">
-            <input type="checkbox" id="api-show-protected">
-            Protected
-        </label>
-
-        <label for="api-show-private" class="checkbox">
-            <input type="checkbox" id="api-show-private">
-            Private
-        </label>
-        <label for="api-show-deprecated" class="checkbox">
-            <input type="checkbox" id="api-show-deprecated">
-            Deprecated
-        </label>
-
-    </form>
-
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+                    <h2 class="off-left">APIs</h2>
+                    <div id="api-tabview" class="tabview">
+                        <ul class="tabs">
+                            <li><a href="#api-classes">Classes</a></li>
+                            <li><a href="#api-modules">Modules</a></li>
+                        </ul>
+                
+                        <div id="api-tabview-filter">
+                            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+                        </div>
+                
+                        <div id="api-tabview-panel">
+                            <ul id="api-classes" class="apis classes">
+                                <li><a href="../classes/Camera.html">Camera</a></li>
+                                <li><a href="../classes/Group.html">Group</a></li>
+                                <li><a href="../classes/InputDevice.html">InputDevice</a></li>
+                                <li><a href="../classes/p5.play.html">p5.play</a></li>
+                                <li><a href="../classes/Sprite.html">Sprite</a></li>
+                                <li><a href="../classes/SpriteAnimation.html">SpriteAnimation</a></li>
+                                <li><a href="../classes/Tiles.html">Tiles</a></li>
+                                <li><a href="../classes/World.html">World</a></li>
+                            </ul>
+                
+                
+                            <ul id="api-modules" class="apis modules">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+                    Show:
+                    <label for="api-show-inherited">
+                        <input type="checkbox" id="api-show-inherited" checked>
+                        Inherited
+                    </label>
+            
+                    <label for="api-show-protected">
+                        <input type="checkbox" id="api-show-protected">
+                        Protected
+                    </label>
+            
+                    <label for="api-show-private">
+                        <input type="checkbox" id="api-show-private">
+                        Private
+                    </label>
+                    <label for="api-show-deprecated">
+                        <input type="checkbox" id="api-show-deprecated">
+                        Deprecated
+                    </label>
+            
+                </div>
+            
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-<div class="page-header">
-    <h1>InputDevice</h1>
+<h1>InputDevice Class</h1>
+<div class="box meta">
+
+
+        <div class="foundat">
+            Defined in: <a href="../files/v3_p5.play.js.html#l6086"><code>v3&#x2F;p5.play.js:6086</code></a>
+        </div>
+
+
 </div>
 
 
-
-
-
-
-<div class="yuidoc-class-description">
-<p>Look at the Input reference pages before reading these docs.</p>
+<div class="box intro">
+    <p>Look at the Input reference pages before reading these docs.</p>
 <p><a href="https://p5play.org/learn/input_devices.html">https://p5play.org/learn/input_devices.html</a></p>
 <p>Root class for storing the state of inputs (mouse, keyboard,
 gamepads).</p>
@@ -105,604 +113,736 @@ gamepads).</p>
 
 </div>
 
-<!-- table of contents -->
 
-<div id="class-toc" class="page-section">
-	<h2>Table of Contents</h2>
-    <ul>
-		<li>
-			<strong>Methods</strong>
-			<ul>
-				<li class="private"><a href="#method-ac"><span class="im">ac</span>()</a></li>
-				<li class=""><a href="#method-dragging"><span class="im">dragging</span>(<span class="ia">inp</span>)</a></li>
-				<li class=""><a href="#method-held"><span class="im">held</span>(<span class="ia">inp</span>)</a></li>
-				<li class=""><a href="#method-holding"><span class="im">holding</span>(<span class="ia">inp</span>)</a></li>
-				<li class=""><a href="#method-holds"><span class="im">holds</span>(<span class="ia">inp</span>)</a></li>
-				<li class=""><a href="#method-hovered"><span class="im">hovered</span>()</a></li>
-				<li class=""><a href="#method-hovering"><span class="im">hovering</span>()</a></li>
-				<li class=""><a href="#method-hovers"><span class="im">hovers</span>()</a></li>
-				<li class="private"><a href="#method-init"><span class="im">init</span>()</a></li>
-				<li class=""><a href="#method-pressed"><span class="im">pressed</span>(<span class="ia">inp</span>)</a></li>
-				<li class=""><a href="#method-presses"><span class="im">presses</span>(<span class="ia">inp</span>)</a></li>
-				<li class=""><a href="#method-pressing"><span class="im">pressing</span>(<span class="ia">inp</span>)</a></li>
-				<li class=""><a href="#method-released"><span class="im">released</span>(<span class="ia">inp</span>)</a></li>
-			</ul>
-		</li>
+<div id="classdocs" class="tabview">
+    <ul class="api-class-tabs">
+        <li class="api-class-tab index"><a href="#index">Index</a></li>
 
-		<li>
-			<strong>Properties</strong>
-			<ul>
-				<li class=""><a href="#prop-holdThreshold"><span class="ip">holdThreshold</span></a></li>
-				<li class=""><a href="#prop-pos"><span class="ip">pos</span></a></li>
-				<li class=""><a href="#prop-position"><span class="ip">position</span></a></li>
-				<li class=""><a href="#prop-x"><span class="ip">x</span></a></li>
-				<li class=""><a href="#prop-y"><span class="ip">y</span></a></li>
-			</ul>
-		</li>
+            <li class="api-class-tab methods"><a href="#methods">Methods</a></li>
+            <li class="api-class-tab properties"><a href="#properties">Properties</a></li>
+    </ul>
 
+    <div>
+        <div id="index" class="api-class-tabpanel index">
+            <h2 class="off-left">Item Index</h2>
 
-	</ul>
-</div>
+                <div class="index-section methods">
+                    <h3>Methods</h3>
 
-<!-- details -->
+                    <ul class="index-list methods">
+                            <li class="index-item method private">
+                                <a href="#method_ac">ac</a>
 
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_dragging">dragging</a>
 
-    <div id="methods" class="page-section">
-        <h2 class="off-left">Methods</h2>
-        <div class="item-list">
-<div id="method-ac" class="method item private">
-	<div class="method-signature">
-	<span class="name"><code>ac</code></span>
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_held">held</a>
 
-		<span class="paren">()</span>
-	</div>
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_holding">holding</a>
 
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_holds">holds</a>
 
-		<span class="flag private">private</span>
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_hovered">hovered</a>
 
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_hovering">hovering</a>
 
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_hovers">hovers</a>
 
+                            </li>
+                            <li class="index-item method private">
+                                <a href="#method_init">init</a>
 
-	<div class="meta">
-				<p>
-				Defined in
-		<a href="../files/v3_p5.play.js.html#l6125"><code>v3&#x2F;p5.play.js:6125</code></a>
-		</p>
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_pressed">pressed</a>
 
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_presses">presses</a>
 
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_pressing">pressing</a>
 
-	</div>
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_released">released</a>
 
-	<div class="description"><p>Attempt to auto-correct the user's input. Inheriting classes
-override this method.</p>
-</div>
+                            </li>
+                    </ul>
+                </div>
 
+                <div class="index-section properties">
+                    <h3>Properties</h3>
 
+                    <ul class="index-list properties">
+                            <li class="index-item property">
+                                <a href="#property_holdThreshold">holdThreshold</a>
 
-</div>
-<div id="method-dragging" class="method item ">
-	<div class="method-signature">
-	<span class="name"><code>dragging</code></span>
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_pos">pos</a>
 
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
-				<li class="arg">
-						<code>inp</code>
-				</li>
-			</ul><span class="paren">)</span>
-		</div>
-		<span class="returns-inline">
-			<span class="type">Boolean</span>
-		</span>
-	</div>
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_position">position</a>
 
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_x">x</a>
 
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_y">y</a>
 
+                            </li>
+                    </ul>
+                </div>
 
 
-
-	<div class="meta">
-				<p>
-				Defined in
-		<a href="../files/v3_p5.play.js.html#l6275"><code>v3&#x2F;p5.play.js:6275</code></a>
-		</p>
-
-
-
-	</div>
-
-
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-				<li class="param">
-						<code class="param-name">inp</code>
-						<span class="type">String</span>
-
-
-
-				</li>
-			</ul>
-		</div>
-
-		<div class="returns">
-			<h4>Returns:</h4>
-
-			<div class="returns-description">
-						<span class="type">Boolean</span>:
-					<p>true if the mouse is being dragged while holding the input</p>
-
-			</div>
-		</div>
-
-</div>
-<div id="method-held" class="method item ">
-	<div class="method-signature">
-	<span class="name"><code>held</code></span>
-
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
-				<li class="arg">
-						<code>inp</code>
-				</li>
-			</ul><span class="paren">)</span>
-		</div>
-	</div>
-
-
-
-
-
-
-	<div class="meta">
-				<p>
-				Defined in
-		<a href="../files/v3_p5.play.js.html#l6184"><code>v3&#x2F;p5.play.js:6184</code></a>
-		</p>
-
-
-
-	</div>
-
-
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-				<li class="param">
-						<code class="param-name">inp</code>
-						<span class="type">String</span>
-
-
-
-				</li>
-			</ul>
-		</div>
-
-
-</div>
-<div id="method-holding" class="method item ">
-	<div class="method-signature">
-	<span class="name"><code>holding</code></span>
-
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
-				<li class="arg">
-						<code>inp</code>
-				</li>
-			</ul><span class="paren">)</span>
-		</div>
-	</div>
-
-
-
-
-
-
-	<div class="meta">
-				<p>
-				Defined in
-		<a href="../files/v3_p5.play.js.html#l6174"><code>v3&#x2F;p5.play.js:6174</code></a>
-		</p>
-
-
-
-	</div>
-
-
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-				<li class="param">
-						<code class="param-name">inp</code>
-						<span class="type">String</span>
-
-
-
-				</li>
-			</ul>
-		</div>
-
-
-</div>
-<div id="method-holds" class="method item ">
-	<div class="method-signature">
-	<span class="name"><code>holds</code></span>
-
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
-				<li class="arg">
-						<code>inp</code>
-				</li>
-			</ul><span class="paren">)</span>
-		</div>
-	</div>
-
-
-
-
-
-
-	<div class="meta">
-				<p>
-				Defined in
-		<a href="../files/v3_p5.play.js.html#l6164"><code>v3&#x2F;p5.play.js:6164</code></a>
-		</p>
-
-
-
-	</div>
-
-
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-				<li class="param">
-						<code class="param-name">inp</code>
-						<span class="type">String</span>
-
-
-
-				</li>
-			</ul>
-		</div>
-
-
-</div>
-<div id="method-hovered" class="method item ">
-	<div class="method-signature">
-	<span class="name"><code>hovered</code></span>
-
-		<span class="paren">()</span>
-		<span class="returns-inline">
-			<span class="type">Boolean</span>
-		</span>
-	</div>
-
-
-
-
-
-
-	<div class="meta">
-				<p>
-				Defined in
-		<a href="../files/v3_p5.play.js.html#l6311"><code>v3&#x2F;p5.play.js:6311</code></a>
-		</p>
-
-
-
-	</div>
-
-
-
-		<div class="returns">
-			<h4>Returns:</h4>
-
-			<div class="returns-description">
-						<span class="type">Boolean</span>:
-					<p>true on the first frame that the mouse is no longer over the sprite</p>
-
-			</div>
-		</div>
-
-</div>
-<div id="method-hovering" class="method item ">
-	<div class="method-signature">
-	<span class="name"><code>hovering</code></span>
-
-		<span class="paren">()</span>
-		<span class="returns-inline">
-			<span class="type">Boolean</span>
-		</span>
-	</div>
-
-
-
-
-
-
-	<div class="meta">
-				<p>
-				Defined in
-		<a href="../files/v3_p5.play.js.html#l6303"><code>v3&#x2F;p5.play.js:6303</code></a>
-		</p>
-
-
-
-	</div>
-
-
-
-		<div class="returns">
-			<h4>Returns:</h4>
-
-			<div class="returns-description">
-						<span class="type">Boolean</span>:
-					<p>true if the mouse is hovering over the sprite</p>
-
-			</div>
-		</div>
-
-</div>
-<div id="method-hovers" class="method item ">
-	<div class="method-signature">
-	<span class="name"><code>hovers</code></span>
-
-		<span class="paren">()</span>
-		<span class="returns-inline">
-			<span class="type">Boolean</span>
-		</span>
-	</div>
-
-
-
-
-
-
-	<div class="meta">
-				<p>
-				Defined in
-		<a href="../files/v3_p5.play.js.html#l6295"><code>v3&#x2F;p5.play.js:6295</code></a>
-		</p>
-
-
-
-	</div>
-
-
-
-		<div class="returns">
-			<h4>Returns:</h4>
-
-			<div class="returns-description">
-						<span class="type">Boolean</span>:
-					<p>true on the first frame that the mouse is over the sprite</p>
-
-			</div>
-		</div>
-
-</div>
-<div id="method-init" class="method item private">
-	<div class="method-signature">
-	<span class="name"><code>init</code></span>
-
-		<span class="paren">()</span>
-	</div>
-
-
-		<span class="flag private">private</span>
-
-
-
-
-	<div class="meta">
-				<p>
-				Defined in
-		<a href="../files/v3_p5.play.js.html#l6113"><code>v3&#x2F;p5.play.js:6113</code></a>
-		</p>
-
-
-
-	</div>
-
-	<div class="description"><p>Initializes the input's values to zero.</p>
-</div>
-
-
-
-</div>
-<div id="method-pressed" class="method item ">
-	<div class="method-signature">
-	<span class="name"><code>pressed</code></span>
-
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
-				<li class="arg">
-						<code>inp</code>
-				</li>
-			</ul><span class="paren">)</span>
-		</div>
-	</div>
-
-
-
-
-
-
-	<div class="meta">
-				<p>
-				Defined in
-		<a href="../files/v3_p5.play.js.html#l6156"><code>v3&#x2F;p5.play.js:6156</code></a>
-		</p>
-
-
-
-	</div>
-
-
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-				<li class="param">
-						<code class="param-name">inp</code>
-						<span class="type">String</span>
-
-
-
-				</li>
-			</ul>
-		</div>
-
-
-</div>
-<div id="method-presses" class="method item ">
-	<div class="method-signature">
-	<span class="name"><code>presses</code></span>
-
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
-				<li class="arg">
-						<code>inp</code>
-				</li>
-			</ul><span class="paren">)</span>
-		</div>
-	</div>
-
-
-
-
-
-
-	<div class="meta">
-				<p>
-				Defined in
-		<a href="../files/v3_p5.play.js.html#l6136"><code>v3&#x2F;p5.play.js:6136</code></a>
-		</p>
-
-
-
-	</div>
-
-
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-				<li class="param">
-						<code class="param-name">inp</code>
-						<span class="type">String</span>
-
-
-
-				</li>
-			</ul>
-		</div>
-
-
-</div>
-<div id="method-pressing" class="method item ">
-	<div class="method-signature">
-	<span class="name"><code>pressing</code></span>
-
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
-				<li class="arg">
-						<code>inp</code>
-				</li>
-			</ul><span class="paren">)</span>
-		</div>
-	</div>
-
-
-
-
-
-
-	<div class="meta">
-				<p>
-				Defined in
-		<a href="../files/v3_p5.play.js.html#l6146"><code>v3&#x2F;p5.play.js:6146</code></a>
-		</p>
-
-
-
-	</div>
-
-
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-				<li class="param">
-						<code class="param-name">inp</code>
-						<span class="type">String</span>
-
-
-
-				</li>
-			</ul>
-		</div>
-
-
-</div>
-<div id="method-released" class="method item ">
-	<div class="method-signature">
-	<span class="name"><code>released</code></span>
-
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
-				<li class="arg">
-						<code>inp</code>
-				</li>
-			</ul><span class="paren">)</span>
-		</div>
-	</div>
-
-
-
-
-
-
-	<div class="meta">
-				<p>
-				Defined in
-		<a href="../files/v3_p5.play.js.html#l6194"><code>v3&#x2F;p5.play.js:6194</code></a>
-		</p>
-
-
-
-	</div>
-
-
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-				<li class="param">
-						<code class="param-name">inp</code>
-						<span class="type">String</span>
-
-
-
-				</li>
-			</ul>
-		</div>
-
-
-</div>
         </div>
+
+            <div id="methods" class="api-class-tabpanel">
+                <h2 class="off-left">Methods</h2>
+
+<div id="method_ac" class="method item private">
+    <h3 class="name"><code>ac</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+        <span class="flag private">private</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l6129"><code>v3&#x2F;p5.play.js:6129</code></a>
+        </p>
+
+
+
     </div>
 
-    <div id="properties" class="page-section">
-        <h2 class="off-left">Properties</h2>
+    <div class="description">
+        <p>Attempt to auto-correct the user's input. Inheriting classes
+override this method.</p>
 
-        <div class="item-list">
-<div id="prop-holdThreshold" class="property item ">
+    </div>
+
+
+
+
+</div>
+<div id="method_dragging" class="method item">
+    <h3 class="name"><code>dragging</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>inp</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type">Boolean</span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l6279"><code>v3&#x2F;p5.play.js:6279</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">inp</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">Boolean</span>:
+                    <p>true if the mouse is being dragged while holding the input</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_held" class="method item">
+    <h3 class="name"><code>held</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>inp</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l6188"><code>v3&#x2F;p5.play.js:6188</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">inp</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_holding" class="method item">
+    <h3 class="name"><code>holding</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>inp</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l6178"><code>v3&#x2F;p5.play.js:6178</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">inp</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_holds" class="method item">
+    <h3 class="name"><code>holds</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>inp</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l6168"><code>v3&#x2F;p5.play.js:6168</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">inp</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_hovered" class="method item">
+    <h3 class="name"><code>hovered</code></h3>
+
+        <span class="paren">()</span>
+
+        <span class="returns-inline">
+            <span class="type">Boolean</span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l6315"><code>v3&#x2F;p5.play.js:6315</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">Boolean</span>:
+                    <p>true on the first frame that the mouse is no longer over the sprite</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_hovering" class="method item">
+    <h3 class="name"><code>hovering</code></h3>
+
+        <span class="paren">()</span>
+
+        <span class="returns-inline">
+            <span class="type">Boolean</span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l6307"><code>v3&#x2F;p5.play.js:6307</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">Boolean</span>:
+                    <p>true if the mouse is hovering over the sprite</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_hovers" class="method item">
+    <h3 class="name"><code>hovers</code></h3>
+
+        <span class="paren">()</span>
+
+        <span class="returns-inline">
+            <span class="type">Boolean</span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l6299"><code>v3&#x2F;p5.play.js:6299</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">Boolean</span>:
+                    <p>true on the first frame that the mouse is over the sprite</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_init" class="method item private">
+    <h3 class="name"><code>init</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+        <span class="flag private">private</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l6117"><code>v3&#x2F;p5.play.js:6117</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Initializes the input's values to zero.</p>
+
+    </div>
+
+
+
+
+</div>
+<div id="method_pressed" class="method item">
+    <h3 class="name"><code>pressed</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>inp</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l6160"><code>v3&#x2F;p5.play.js:6160</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">inp</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_presses" class="method item">
+    <h3 class="name"><code>presses</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>inp</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l6140"><code>v3&#x2F;p5.play.js:6140</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">inp</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_pressing" class="method item">
+    <h3 class="name"><code>pressing</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>inp</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l6150"><code>v3&#x2F;p5.play.js:6150</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">inp</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_released" class="method item">
+    <h3 class="name"><code>released</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>inp</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5.play.js.html#l6198"><code>v3&#x2F;p5.play.js:6198</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">inp</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+            </div>
+
+            <div id="properties" class="api-class-tabpanel">
+                <h2 class="off-left">Properties</h2>
+
+<div id="property_holdThreshold" class="property item">
     <h3 class="name"><code>holdThreshold</code></h3>
     <span class="type">Number</span>
 
@@ -713,7 +853,7 @@ override this method.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5.play.js.html#l6103"><code>v3&#x2F;p5.play.js:6103</code></a>
+        <a href="../files/v3_p5.play.js.html#l6107"><code>v3&#x2F;p5.play.js:6107</code></a>
         </p>
 
 
@@ -728,7 +868,7 @@ Default is 12.</p>
 
 
 </div>
-<div id="prop-pos" class="property item ">
+<div id="property_pos" class="property item">
     <h3 class="name"><code>pos</code></h3>
     <span class="type">Unknown</span>
 
@@ -739,7 +879,7 @@ Default is 12.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5.play.js.html#l6252"><code>v3&#x2F;p5.play.js:6252</code></a>
+        <a href="../files/v3_p5.play.js.html#l6256"><code>v3&#x2F;p5.play.js:6256</code></a>
         </p>
 
 
@@ -753,7 +893,7 @@ Default is 12.</p>
 
 
 </div>
-<div id="prop-position" class="property item ">
+<div id="property_position" class="property item">
     <h3 class="name"><code>position</code></h3>
     <span class="type">Unknown</span>
 
@@ -764,7 +904,7 @@ Default is 12.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5.play.js.html#l6259"><code>v3&#x2F;p5.play.js:6259</code></a>
+        <a href="../files/v3_p5.play.js.html#l6263"><code>v3&#x2F;p5.play.js:6263</code></a>
         </p>
 
 
@@ -778,7 +918,7 @@ Default is 12.</p>
 
 
 </div>
-<div id="prop-x" class="property item ">
+<div id="property_x" class="property item">
     <h3 class="name"><code>x</code></h3>
     <span class="type">Number</span>
 
@@ -789,7 +929,7 @@ Default is 12.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5.play.js.html#l6237"><code>v3&#x2F;p5.play.js:6237</code></a>
+        <a href="../files/v3_p5.play.js.html#l6241"><code>v3&#x2F;p5.play.js:6241</code></a>
         </p>
 
 
@@ -803,7 +943,7 @@ Default is 12.</p>
 
 
 </div>
-<div id="prop-y" class="property item ">
+<div id="property_y" class="property item">
     <h3 class="name"><code>y</code></h3>
     <span class="type">Number</span>
 
@@ -814,7 +954,7 @@ Default is 12.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5.play.js.html#l6244"><code>v3&#x2F;p5.play.js:6244</code></a>
+        <a href="../files/v3_p5.play.js.html#l6248"><code>v3&#x2F;p5.play.js:6248</code></a>
         </p>
 
 
@@ -828,21 +968,24 @@ Default is 12.</p>
 
 
 </div>
-        </div>
+            </div>
+
+
     </div>
-
-
-
+</div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<script src="../assets/vendor/jquery/jquery-1.8.2.min.js"></script>
-<script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
 <script src="../assets/vendor/prettify/prettify-min.js"></script>
-<script src="../assets/js/yuidoc-bootstrap.js"></script>
 <script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
 </body>
 </html>
