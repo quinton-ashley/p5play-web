@@ -63,7 +63,7 @@ function draw() {
 
 "Sleeping" sprites get temporarily ignored during physics simulation. A sprite starts "sleeping" when it stops moving and doesn't collide with anything that it wasn't already touching. Allowing non-moving sprites to sleep is good for performance but sometimes you may need to wake up a non-moving sprite. You can disable sleeping completely by setting `world.allowSleeping = false`, or on a per sprite basis by setting `sprite.allowSleeping = false`, or to wake up a sleeping sprite you can `sprite.sleeping = false`.
 
-Also by default sprites are removed from the world when they go 10000 pixels offscreen relative to the camera's position. To change this set `world.autoCull = false` and use the `group.cull` function to set a different cull boundary.
+Also by default sprites are removed from the world when they go 10000 pixels offscreen relative to the camera's position. To change this set `allSprites.autoCull = false` and use the `group.cull` function to set a different cull boundary.
 		</script>
 		<div class="minis horiz">
 			<script type="text/mie-p5" name="sleeping" horiz>

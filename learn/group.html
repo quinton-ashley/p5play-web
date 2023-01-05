@@ -39,13 +39,13 @@
 				with similar traits and behaviors. For example the dots in Pac-Man!
 			</p>
 			<p>
-				The <code>length</code> property can be used to
+				The <code>group.length</code> property can be used to
 				check how many sprites are in a group. In this example the while loop condition is true as long as the dots
 				group has less than 24 sprites.
 			</p>
 			<p>
 				In the mini example, <code>new dots.Sprite</code> creates a sprite
-				that inherits the dots group color, y position, and diameter. Each dot is assigned a unique x position.
+				that inherits the dots group's color, y position, and diameter. Each dot is assigned a unique x position.
 			</p>
 			<p>
 				I call this "soft inheritance" because a group acts as a
@@ -93,8 +93,8 @@ dots.color = 'green';
 		</script>
 		<div>
 			<p>
-				Using movement functions like <code>moveTowards</code> on a group,
-				will even cause all the sprites in a group to move.
+				Using movement functions like <code>group.moveTowards</code>,
+				will cause all the sprites in a group to move.
 			</p>
 		</div>
 		<script type="text/mie-p5" name="moving dots" base="0">

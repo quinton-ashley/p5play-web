@@ -18,33 +18,42 @@ let refs = {
 		1: ['collider', 'dynamic', 'kinematic', 'static'],
 		2: ['move', 'moveTo', 'moveTowards', 'speed', 'direction', 'vel / velocity'],
 		3: ['img / image'],
+
 		5: ['collides', 'colliding', 'collided', 'layer'],
 		6: ['overlap', 'overlapping', 'overlapped'],
 		7: ['rotate', 'rotateTo', 'rotateTowards', 'rotationSpeed'],
 		11: ['shape'],
-		12: ['draw', 'update']
+		12: ['draw', 'update'],
+		'sprite_animation.html?page=2': ['debug', 'ani / animation', 'addAni / addAnimation'],
+		'tiles.html?page=0': ['tile'],
+		'tiles.html?page=1': ['tileSize'],
+		'advanced.html?page=1': ['allowSleeping', 'sleeping']
 	},
 	'Group.html': {
 		0: ['sprite properties', 'GroupSprite', 'move functions'],
 		1: ['collide functions', 'amount', 'arrow setters'],
 		2: ['overlap functions', 'remove'],
 		3: ['allSprites'],
-		5: ['removeAll', 'SubGroup']
+		5: ['removeAll', 'SubGroup'],
+		'advanced.html?page=1': ['autoCull', 'cull']
 	},
 	'Sprite_Animation.html': {
-		0: ['animation', 'loadAnimation', 'frameDelay'],
+		0: ['animation', 'loadAni / loadAnimation', 'frameDelay'],
 		1: ['play', 'stop', 'rewind', 'loop', 'noLoop', 'frame', 'nextFrame', 'previousFrame', 'scale']
 	},
 	'Input_Devices.html': {
-		0: ['mouse', 'kb / keyboard', 'contro', 'presses', 'pressing', 'holds', 'holding', 'held', 'released']
-	},
-	'Tiles.html': {
-		0: ['tile'],
-		1: ['tileSize']
+		0: ['mouse', 'kb / keyboard', 'contro / controllers', 'presses', 'pressing', 'holds', 'holding', 'held', 'released']
 	},
 	'Camera.html': {
 		0: ['x', 'y'],
 		1: ['zoom', 'on', 'off', 'mouse']
+	},
+	Canvas: {
+		'advanced.html?page=0': ['"w:h" aspect ratio', '"pixelated" preset']
+	},
+	World: {
+		'sprite.html?page=1': ['gravity'],
+		'advanced.html?page=1': ['allowSleeping']
 	}
 };
 
@@ -53,8 +62,9 @@ let refsDiv = document.getElementById('refs');
 for (let refPage in refs) {
 	let ref = refs[refPage];
 	let className = refPage.split('.')[0];
-	if (className == 'Sprite_Animation') className = 'Animation';
+	if (className == 'Sprite_Animation') className = 'SpriteAnimation';
 	if (className == 'Input_Devices') className = 'Input';
+	if (className == 'Canvas' || className == 'World') refPage = 'advanced.html';
 	refPage = refPage.toLowerCase();
 
 	let div = document.createElement('div');
@@ -66,7 +76,12 @@ for (let refPage in refs) {
 
 	let links = [];
 	for (let pageNum in ref) {
-		let url = refPage + '?page=' + pageNum;
+		let url;
+		if (pageNum.length == 1) {
+			url = refPage + '?page=' + pageNum;
+		} else {
+			url = pageNum;
+		}
 		let topics = ref[pageNum];
 		for (let topic of topics) {
 			let a = document.createElement('a');

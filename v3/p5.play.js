@@ -6679,6 +6679,7 @@ canvas {
 	}
 
 	this.contro = new Contros();
+	this.controllers = this.contro;
 });
 
 // called before each p5.js draw function call
