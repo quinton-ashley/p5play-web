@@ -410,9 +410,11 @@ player.moveTowards(mouse, 0.10);
 
 `sprite.img` or `sprite.image` can be set to a p5.Image or a url path to an image file.
 
-If you need an image to be loaded before your program starts, it's best to use [`loadImage`](https://p5js.org/reference/#/p5/loadImage) inside the p5.js `preload` function!
+If you need an image to be loaded before your program starts, it's best to use [`loadImage`](https://p5js.org/reference/#/p5/loadImage) inside the p5.js `preload` function.
+
+Try pressing the left mouse button. When the `sprite.debug` property is set to true you can see the sprite's physics body collider. You can make the size of the collider different from the size of the image!
 		</script>
-		<script type="text/mie-p5" name="image" lines="8">
+		<script type="text/mie-p5" name="image">
 let monster;
 
 function setup() {
@@ -420,10 +422,12 @@ function setup() {
 
 	monster = new Sprite();
 	monster.img = 'assets/monster.png';
+	monster.diameter = 70;
 }
 
 function draw() {
 	clear();
+	monster.debug = mouse.pressing();
 }
 		</script>
 		<script type="text/md">

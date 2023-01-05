@@ -17,14 +17,13 @@ let refs = {
 		],
 		1: ['collider', 'dynamic', 'kinematic', 'static'],
 		2: ['move', 'moveTo', 'moveTowards', 'speed', 'direction', 'vel / velocity'],
-		3: ['img / image'],
-
+		3: ['img / image', 'debug'],
 		5: ['collides', 'colliding', 'collided', 'layer'],
 		6: ['overlap', 'overlapping', 'overlapped'],
 		7: ['rotate', 'rotateTo', 'rotateTowards', 'rotationSpeed'],
 		11: ['shape'],
 		12: ['draw', 'update'],
-		'sprite_animation.html?page=2': ['debug', 'ani / animation', 'addAni / addAnimation'],
+		'sprite_animation.html?page=2': ['ani / animation', 'addAni / addAnimation'],
 		'tiles.html?page=0': ['tile'],
 		'tiles.html?page=1': ['tileSize'],
 		'advanced.html?page=1': ['allowSleeping', 'sleeping']
