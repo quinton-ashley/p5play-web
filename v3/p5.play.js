@@ -1623,6 +1623,14 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		}
 
 		/**
+		 * @deprecated
+		 */
+		getSpeed() {
+			console.warn('getSpeed() is deprecated, use sprite.speed instead');
+			return this.speed;
+		}
+
+		/**
 		 * The sprite's speed.
 		 *
 		 * @property speed
@@ -1631,21 +1639,6 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		get speed() {
 			return this.p.createVector(this.vel.x, this.vel.y).mag();
 		}
-
-		/**
-		 * @deprecated
-		 */
-		getSpeed() {
-			console.warn('getSpeed() is deprecated, use sprite.speed instead');
-			return this.speed;
-		}
-		/**
-		 * The sprite's speed.
-		 *
-		 * @property speed
-		 * @type {Number}
-		 * @param {Number} speed that the sprite will move at in the direction of its current rotation
-		 */
 		set speed(val) {
 			let angle = this.direction;
 			this.vel.x = this.p.cos(angle) * val;
