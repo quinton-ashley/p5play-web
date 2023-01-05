@@ -16,10 +16,10 @@ let refs = {
 			'visible'
 		],
 		1: ['collider', 'dynamic', 'kinematic', 'static'],
-		2: ['direction', 'move', 'moveTo', 'moveTowards', 'speed', 'vel / velocity'],
+		2: ['move', 'moveTo', 'moveTowards', 'speed', 'direction', 'vel / velocity'],
 		3: ['img / image'],
-		5: ['collides', 'colliding', 'collided'],
-		6: ['layer', 'overlap', 'overlapping', 'overlapped'],
+		5: ['collides', 'colliding', 'collided', 'layer'],
+		6: ['overlap', 'overlapping', 'overlapped'],
 		7: ['rotate', 'rotateTo', 'rotateTowards', 'rotationSpeed'],
 		11: ['shape'],
 		12: ['draw', 'update']
@@ -76,22 +76,22 @@ for (let refPage in refs) {
 		}
 	}
 
-	if (className == 'Sprite') {
-		links = [
-			...links.slice(0, 4),
-			...links.slice(4).sort((a, b) => {
-				let aText = a.innerHTML;
-				let bText = b.innerHTML;
-				if (aText < bText) {
-					return -1;
-				} else if (aText > bText) {
-					return 1;
-				} else {
-					return 0;
-				}
-			})
-		];
-	}
+	// if (className == 'Sprite') {
+	// 	links = [
+	// 		...links.slice(0, 4),
+	// 		...links.slice(4).sort((a, b) => {
+	// 			let aText = a.innerHTML;
+	// 			let bText = b.innerHTML;
+	// 			if (aText < bText) {
+	// 				return -1;
+	// 			} else if (aText > bText) {
+	// 				return 1;
+	// 			} else {
+	// 				return 0;
+	// 			}
+	// 		})
+	// 	];
+	// }
 
 	for (let link of links) {
 		div.append(link);
