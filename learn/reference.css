@@ -1,0 +1,54 @@
+#refs {
+	display: flex;
+	width: 100%;
+	flex-direction: row;
+	flex-wrap: wrap;
+	gap: 4%;
+}
+
+#refs div {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	gap: 4px;
+	align-content: start;
+}
+
+#refs div:not(:first-child) {
+	width: 48%;
+}
+
+#refs h2 {
+	padding: 0;
+}
+
+#refs div a:first-child {
+	color: black;
+	width: 100%;
+}
+
+body.dark #refs div a:first-child {
+	-webkit-text-stroke: 1.2px var(--bright);
+	text-shadow: var(--blue) 3px 3px 0px;
+	color: var(--pink);
+}
+
+#refs div a:not(:first-child) {
+	/* font-family: monospace; */
+	color: var(--pink);
+	box-shadow: var(--blue) 3px 3px 0px;
+
+	height: min-content;
+	padding: 4px;
+	margin: 2px;
+}
+
+body.dark #refs div a:not(:first-child) {
+	color: var(--primary);
+	background-color: var(--pink);
+}
+
+#refs div h2:hover {
+	color: var(--pink);
+	text-decoration: underline;
+}

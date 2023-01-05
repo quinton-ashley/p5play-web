@@ -1614,11 +1614,12 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		 * @default true
 		 */
 		get sleeping() {
-			return this.body.isAwake();
+			if (this.body) return this.body.isAwake();
+			return undefined;
 		}
 
 		set sleeping(val) {
-			return this.body.setAwake(!val);
+			if (this.body) this.body.setAwake(!val);
 		}
 
 		/**
@@ -3866,7 +3867,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 					super(_this, ...arguments);
 				}
 			}
-
+			this.GroupSprite = GroupSprite;
 			this.Sprite = GroupSprite;
 
 			class SubGroup extends Group {
@@ -3874,7 +3875,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 					super(_this, ...arguments);
 				}
 			}
-
+			this.SubGroup = SubGroup;
 			this.Group = SubGroup;
 
 			this.mouse = {
@@ -4378,8 +4379,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		}
 
 		/**
-		 * Adds a sprite to the group. Returns true if the sprite was added
-		 * because it was not already in the group.
+		 * Alias for push.
 		 *
 		 * @method add
 		 * @param {Sprite} s The sprite to be added
@@ -4729,7 +4729,9 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			this.on('end-contact', this._endContact);
 
 			/**
-			 * Gravity vector
+			 * Gravity vector (x, y)
+			 *
+			 * All sprites getting
 			 *
 			 * @property gravity
 			 */
@@ -4738,12 +4740,18 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 					return _this.m_gravity.x;
 				},
 				set x(val) {
+					for (let s of _this.p.allSprites) {
+						s.sleeping = false;
+					}
 					_this.m_gravity.x = _this.p.round(val || 0);
 				},
 				get y() {
 					return _this.m_gravity.y;
 				},
 				set y(val) {
+					for (let s of _this.p.allSprites) {
+						s.sleeping = false;
+					}
 					_this.m_gravity.y = _this.p.round(val || 0);
 				}
 			};

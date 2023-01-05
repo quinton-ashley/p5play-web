@@ -16,7 +16,7 @@
 
 <body>
 	<nav id="topNav">
-		<a href="../index.html" class="active"><img src="../logo.svg" class="logo">p5.play</a>
+		<a href="index.html" class="active"><img src="../logo.svg" class="logo">p5.play</a>
 		<span>:</span>
 		<a href="sprite.html">Sprite</a>
 		<a href="group.html" class="active">Group</a>
@@ -108,6 +108,10 @@ dots.moveTowards(mouse);
 				In p5.play, when you set a sprite property in a group to an arrow
 				function, each new sprite created using that group will use
 				the function to evaluate the property.
+			</p>
+			<p>
+				When <code>group.amount</code> gets adjusted, the group will
+				automatically create or remove sprites to match the set amount.
 			</p>
 			<p>
 				In this mini example, each gem sprite is assigned a random x and y position.
@@ -244,7 +248,7 @@ function draw() {
 				<code>smallBoxes</code> and <code>bigBoxes</code> groups.
 			</p>
 			<p>
-				The `group.removeAll` function can be used to remove all the sprites from a group.
+				The <code>group.removeAll</code> function can be used to remove all the sprites from a group.
 			</p>
 		</div>
 		<script type="text/mie-p5" name="SubGroup" horiz>
