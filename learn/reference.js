@@ -77,7 +77,7 @@ for (let refPage in refs) {
 	let links = [];
 	for (let pageNum in ref) {
 		let url;
-		if (pageNum.length == 1) {
+		if (pageNum.length <= 2) {
 			url = refPage + '?page=' + pageNum;
 		} else {
 			url = pageNum;
