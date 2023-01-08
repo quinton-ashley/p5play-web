@@ -1281,8 +1281,16 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		}
 
 		/**
-		 * Manages the visuals of the sprite. It can be overridden with a
-		 * custom drawing function in which the center of the sprite is
+		 * Displays the sprite.
+		 *
+		 * This function is called automatically at
+		 * the end of each p5.js draw function call but it can also be run
+		 * separately to customize the order sprites are drawn in relation
+		 * to other stuff drawn to the p5.js canvas. Also see the sprite.layer
+		 * property.
+		 *
+		 * A sprite's draw function can be overridden with a
+		 * custom draw function, in which the center of the sprite is
 		 * at (0, 0).
 		 *
 		 * @example

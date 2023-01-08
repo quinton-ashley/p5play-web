@@ -90,7 +90,7 @@
 /**
  * p5.play
  *
- * @version 3.4
+ * @version 3.5
  * @author quinton-ashley
  * @year 2023
  * @license gpl-v3-only
@@ -653,7 +653,9 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 					&#x27;animations&#x27;,
 					&#x27;autoCull&#x27;,
 					&#x27;Sprite&#x27;,
+					&#x27;GroupSprite&#x27;,
 					&#x27;Group&#x27;,
+					&#x27;SubGroup&#x27;,
 					&#x27;vel&#x27;,
 					&#x27;mirror&#x27;,
 					&#x27;mouse&#x27;
@@ -1368,8 +1370,16 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 		}
 
 		/**
-		 * Manages the visuals of the sprite. It can be overridden with a
-		 * custom drawing function in which the center of the sprite is
+		 * Displays the sprite.
+		 *
+		 * This function is called automatically at
+		 * the end of each p5.js draw function call but it can also be run
+		 * separately to customize the order sprites are drawn in relation
+		 * to other stuff drawn to the p5.js canvas. Also see the sprite.layer
+		 * property.
+		 *
+		 * A sprite&#x27;s draw function can be overridden with a
+		 * custom draw function, in which the center of the sprite is
 		 * at (0, 0).
 		 *
 		 * @example
@@ -3443,6 +3453,16 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 			if (val &lt;= 0) val = 1;
 			this._frameDelay = val;
 		}
+		/**
+		 * TODO frameRate
+		 * Another way to set the animation&#x27;s frame delay.
+		 */
+		// get frameRate() {
+
+		// }
+		// set frameRate(val) {
+
+		// }
 
 		/**
 		 * The animation&#x27;s scale.
