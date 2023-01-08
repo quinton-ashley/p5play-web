@@ -94,7 +94,7 @@ nav a {
 	text-decoration: none;
 }
 
-h3 a {
+.superLink {
 	color: var(--pink);
 	text-shadow: 4px 4px 0px var(--blue);
 }
@@ -209,6 +209,10 @@ code {
 	width: 100%;
 }
 
+.shields {
+	height: 24px;
+}
+
 .break {
 	width: 100%;
 	margin-top: 2%;
@@ -296,6 +300,54 @@ center p {
 	display: flex;
 	align-items: center;
 	width: fit-content;
+}
+
+#user-brands {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	flex-wrap: wrap;
+	gap: 32px;
+}
+
+#user-brands a {
+	padding: 8px;
+	border-radius: 8px;
+}
+
+#crimson-brand {
+	background-color: #1d1e2b;
+}
+
+#girlswhocode-brand {
+	background-color: #e5f8ff;
+}
+
+#codeorg-brand {
+	background-color: #00adbc;
+}
+
+#lsuddem-brand {
+	background-color: #36ab9d;
+	max-width: 20%;
+}
+
+#nyuitp-brand {
+	background-color: #57068c;
+	width: 25%;
+}
+
+#lsu-brand {
+	background-color: #502e81;
+	width: 16%;
+}
+
+#ttu-brand {
+	background-color: #d60000;
+}
+
+#nyuitp-brand img {
+	width: 100%;
 }
 
 #discord-brand img {

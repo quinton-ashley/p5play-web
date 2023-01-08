@@ -22,6 +22,11 @@
 		<a href="../docs">Docs</a>
 		<a href="../jam" class="active">Jam!</a>
 		<span>:</span>
+		<a class="socials" href="https://discord.gg/3UTbqUgmPF" target="_blank">
+			<img class="discord-logo"
+				src="https://assets-global.website-files.com/6257adef93867e50d84d30e2/62595384f934b806f37f4956_145dc557845548a36a82337912ca3ac5.svg"
+				alt="Discord">
+		</a>
 		<a href="https://github.com/molleindustria/p5.play"><img src="https://github.githubassets.com/favicons/favicon.svg"
 				class="github" alt="GitHub"></a>
 		<a href="https://www.npmjs.com/package/p5.play"><img
@@ -39,41 +44,38 @@
 
 			<p>
 				You can work individually or in a team. Share your game in the
-				<a href="https://discord.gg/3UTbqUgmPF">#p5play-game-jam channel on Discord</a> to receive feedback that
+				<a href="https://discord.gg/3UTbqUgmPF">#share</a> channel on Discord to receive feedback that
 				can
 				help you develop and polish your game before you submit it.
 			</p>
 
 			<p>
-				Games for this jam can be submitted from May 1st to May 31st. Games must use the latest version of p5.play.
+				Games for the next jam can be submitted from May 1st to May 31st. Games must use the latest version of p5.play.
 			</p>
 
 		</div>
 		<script type="text/mie-p5" name="logos" hide-editor>
 let logosAni;
 
-function preload() {
+function setup() {
+	new Canvas(500, 400);
 	let logos = [];
 	for (let i = 0; i < 25; i++) {
 		logos.push('../logos/png/logo' + i + '.png');
 	}
 	logosAni = new SpriteAnimation(...logos);
-}
-
-function setup() {
-	new Canvas(500, 400);
 	stroke(239, 53, 107);
 	strokeWeight(4);
 	logosAni.frame = 12;
 	allSprites.cull(100);
+	while (allSprites.length < 20) {
+		logosAni.frame = round(random(1, 24));
+		new Sprite(logosAni.frameImage, random(width), random(height), 160);
+	}
 }
 
 function draw() {
 	clear();
-	if (frame % 30 == 0) {
-		logosAni.frame = round(random(1, 24));
-		new Sprite(logosAni.frameImage, random(width), random(height), 160);
-	}
 	for (let s of allSprites) {
 		if (s.mouse.dragging()) {
 			s.moveTowards(mouse.x + s.mouse.x, mouse.y + s.mouse.y, 1);
@@ -82,14 +84,39 @@ function draw() {
 }
 
 		</script>
+
+		<div>
+			<img
+				src="https://images-ext-2.discordapp.net/external/LWIN7hKDU_JS3nZcPIVdliwVbK_DiHLCZBUpobQTLpQ/https/img.itch.zone/aW1nLzEwODE4OTA1LnBuZw%3D%3D/original/8PvGJE.png"
+				alt="Puzzling Magnetism Recharged title screen image" style="width: 100%;">
+		</div>
+		<div>
+			<h2>Winter 2022 winner: <a href="https://kevin98799.itch.io">@kevin98799</a></h2>
+			<p>
+				In <a href="https://kevin98799.itch.io/puzzling-magnetism-recharged">"Puzzling Magnetism Recharged"</a> you play
+				as two characters with opposite magnetic charges that can push or
+				pull boxes
+				respective to their magnetism.
+			</p>
+			<p>
+				This game won because it's unique and has a progressively challenging level
+				design. The
+				code also makes great use of Groups and the Tiles constructor.
+			</p>
+			<p>
+				Big congrats to Kevin! 🥳
+			</p>
+			<!-- <p>
+				<a href="https://kevin98799.itch.io/puzzling-magnetism-recharged">Play!</a>
+			</p> -->
+		</div>
 	</div>
 
 	<div class="break"></div>
 
 	<div class="credits">
 		<div>
-			<h1>Submissions for the 2022 game jam are now closed!</h1>
-			<h3>The winners will be announced in January 2023</h3>
+			Submissions for the next Jam! will open on May 1st, 2023.
 		</div>
 	</div>
 	<div class="break"></div>
