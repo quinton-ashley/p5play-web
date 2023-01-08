@@ -24,7 +24,7 @@ let refs = {
 		9: ['bounciness', 'friction', 'density', 'drag', 'mass', 'rotationDrag', 'rotationLock', 'scale', 'xLock', 'yLock'],
 		11: ['shape'],
 		12: ['draw', 'update'],
-		'sprite_animation.html?page=2': ['ani / animation', 'addAni / addAnimation'],
+		'sprite_animation.html?page=2': ['ani / animation', 'addAni / addAnimation', 'mirror'],
 		'tiles.html?page=0': ['tile'],
 		'tiles.html?page=1': ['tileSize'],
 		'advanced.html?page=1': ['allowSleeping', 'sleeping']

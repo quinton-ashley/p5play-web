@@ -3356,6 +3356,16 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			if (val <= 0) val = 1;
 			this._frameDelay = val;
 		}
+		/**
+		 * TODO frameRate
+		 * Another way to set the animation's frame delay.
+		 */
+		// get frameRate() {
+
+		// }
+		// set frameRate(val) {
+
+		// }
 
 		/**
 		 * The animation's scale.
