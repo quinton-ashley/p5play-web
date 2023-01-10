@@ -99,7 +99,8 @@ let examples = {
 	Tests: {
 		collisions5: 'large edge colliders [TODO]',
 		moveOrbit: 'group orbit + moveTowards [TODO]',
-		collidingBug: 'displacing [BUG]'
+		collidingBug: 'displacing [BUG]',
+		fullBounce: 'bounciness [BUG]'
 	},
 	Games: {
 		pong: 'Pong',
