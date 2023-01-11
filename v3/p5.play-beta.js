@@ -4875,23 +4875,32 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		_postSolve(contact, oldManifold) {
 			const b = contact.getFixtureB().getBody();
 			const newB = b.getPosition().y;
-			const newE =
-				world.getGravity().y * -b.getPosition().y +
-				(1 / 2) * (b.getLinearVelocity().y + (this.timeStep / 2) * world.getGravity().y) ** 2;
+			// const newE =
+			// 	world.getGravity().y * -b.getPosition().y +
+			// 	(1 / 2) * (b.getLinearVelocity().y + (this.timeStep / 2) * world.getGravity().y) ** 2;
+
+			// log(this.oldE, newE);
 
 			const C = (this.timeStep / 2) * world.getGravity().y;
 
 			const energyPotentialDiff = world.getGravity().y * -(newB - this.oldB);
-			// solves `energyProtentialDiff = energyVelocityV - energyVelocityPre`
 
+			// solves `energyProtentialDiff = energyVelocityV - energyVelocityPre`
 			let q = Math.sqrt(C ** 2 - 2 * energyPotentialDiff + this.oldV ** 2 + 2 * this.oldV * C);
 			const v1 = -C + q;
 			const v2 = -C - q;
 
-			log(newE, v2);
+			// log(newE, v2);
 
-			// TODO pick the correct solution
-			b.setLinearVelocity(new pl.Vec2(0, v2));
+			const v = b.getLinearVelocity().y;
+			b.setLinearVelocity(new pl.Vec2(0, Math.abs(v - v1) < Math.abs(v - v2) ? v1 : v2));
+			log(b.getLinearVelocity().y);
+
+			const correctedE =
+				world.getGravity().y * -b.getPosition().y +
+				(1 / 2) * (b.getLinearVelocity().y + (this.timeStep / 2) * world.getGravity().y) ** 2;
+
+			log(this.oldE, correctedE);
 		}
 
 		get autoCull() {
