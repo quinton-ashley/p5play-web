@@ -310,9 +310,27 @@ center p {
 	gap: 32px;
 }
 
-#user-brands a {
+#user-brands a,
+.brand {
 	padding: 8px;
 	border-radius: 8px;
+}
+
+#patreon-brand {
+	display: flex;
+	align-items: center;
+	gap: 24px;
+	width: min-content;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+body.dark #patreon-brand svg {
+	filter: invert(90%);
+}
+
+#patreon-brand img {
+	height: 40px;
 }
 
 #crimson-brand {
@@ -421,7 +439,8 @@ center p {
 .glitch-brand:hover,
 .codepen-brand:hover,
 .replit-brand:hover,
-#discord-brand:hover {
+#discord-brand:hover,
+#patreon-brand:hover {
 	color: var(--pink);
 	border-bottom: 1px solid var(--pink);
 }
