@@ -327,8 +327,8 @@ center p {
 	background-color: #00adbc;
 }
 
-#lsuddem-brand {
-	background-color: #36ab9d;
+#hunter-brand {
+	background-color: #fff;
 	max-width: 20%;
 }
 
@@ -352,7 +352,8 @@ center p {
 }
 
 #zenn-brand img,
-#nyuitp-brand img {
+#nyuitp-brand img,
+#hunter-brand img {
 	width: 100%;
 }
 
