@@ -4740,7 +4740,6 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 
 			this.on('begin-contact', this._beginContact);
 			this.on('end-contact', this._endContact);
-			this.on('pre-solve', this._preSolve);
 			this.on('post-solve', this._postSolve);
 
 			/**
@@ -4860,16 +4859,6 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 					}
 				}
 			}
-		}
-
-		_preSolve(contact, oldManifold) {
-			const b = contact.getFixtureB().getBody();
-
-			this.oldB = b.getPosition().y;
-			this.oldE =
-				world.getGravity().y * -b.getPosition().y +
-				(1 / 2) * (b.getLinearVelocity().y + (this.timeStep / 2) * world.getGravity().y) ** 2;
-			this.oldV = b.getLinearVelocity().y;
 		}
 
 		_postSolve(contact, oldManifold) {

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>v3/p5.play.js - p5.play</title>
+    <title>v3/p5.play-beta.js - p5.play</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -83,7 +83,7 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-<h1 class="file-heading">File: v3/p5.play.js</h1>
+<h1 class="file-heading">File: v3/p5.play-beta.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
@@ -2241,7 +2241,7 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 					this.p.circle(0, 0, this.d * this.tileSize);
 				}
 			}
-			if (this.text !== undefined) {
+			if (this.text) {
 				this.p.textAlign(this.p.CENTER, this.p.CENTER);
 				this.p.fill(this.textColor);
 				this.p.textSize(this.textSize * this.tileSize);
@@ -4829,6 +4829,7 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 
 			this.on(&#x27;begin-contact&#x27;, this._beginContact);
 			this.on(&#x27;end-contact&#x27;, this._endContact);
+			this.on(&#x27;post-solve&#x27;, this._postSolve);
 
 			/**
 			 * Gravity vector (x, y)
@@ -4857,6 +4858,10 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 					_this.m_gravity.y = _this.p.round(val || 0);
 				}
 			};
+
+			this.oldB = 0;
+			this.oldE = 0;
+			this.oldV = 0;
 		}
 
 		resize(w, h) {
@@ -4943,6 +4948,37 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 					}
 				}
 			}
+		}
+
+		_postSolve(contact, oldManifold) {
+			const b = contact.getFixtureB().getBody();
+			const newB = b.getPosition().y;
+			// const newE =
+			// 	world.getGravity().y * -b.getPosition().y +
+			// 	(1 / 2) * (b.getLinearVelocity().y + (this.timeStep / 2) * world.getGravity().y) ** 2;
+
+			// log(this.oldE, newE);
+
+			const C = (this.timeStep / 2) * world.getGravity().y;
+
+			const energyPotentialDiff = world.getGravity().y * -(newB - this.oldB);
+
+			// solves &#x60;energyProtentialDiff = energyVelocityV - energyVelocityPre&#x60;
+			let q = Math.sqrt(C ** 2 - 2 * energyPotentialDiff + this.oldV ** 2 + 2 * this.oldV * C);
+			const v1 = -C + q;
+			const v2 = -C - q;
+
+			// log(newE, v2);
+
+			const v = b.getLinearVelocity().y;
+			b.setLinearVelocity(new pl.Vec2(0, Math.abs(v - v1) &lt; Math.abs(v - v2) ? v1 : v2));
+			log(b.getLinearVelocity().y);
+
+			const correctedE =
+				world.getGravity().y * -b.getPosition().y +
+				(1 / 2) * (b.getLinearVelocity().y + (this.timeStep / 2) * world.getGravity().y) ** 2;
+
+			log(this.oldE, correctedE);
 		}
 
 		get autoCull() {
@@ -5314,8 +5350,10 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 			s.previousPosition.y = s.y;
 		}
 
+		this.world.timeStep = timeStep || 1 / 60;
+
 		// 2nd and 3rd arguments are velocity and position iterations
-		this.world.step(timeStep || 1 / 60, velocityIterations || 8, positionIterations || 3);
+		this.world.step(this.world.timeStep, velocityIterations || 8, positionIterations || 3);
 
 		for (let s of this.allSprites) {
 			s.update();
@@ -6250,7 +6288,6 @@ canvas {
 		/**
 		 * @method presses
 		 * @param {string} inp
-		 * @returns {boolean} true on the first frame that the user presses the input
 		 */
 		presses(inp) {
 			inp ??= this.default;
@@ -6261,19 +6298,16 @@ canvas {
 		/**
 		 * @method pressing
 		 * @param {string} inp
-		 * @returns {number} the amount of frames the user has been pressing the input
 		 */
 		pressing(inp) {
 			inp ??= this.default;
 			if (this[inp] === undefined) inp = this.ac(inp);
-			if (this[inp] == -2) return 1;
-			return this[inp] &gt; 0 ? this[inp] : 0;
+			return this[inp] &gt; 0 || this[inp] == -2;
 		}
 
 		/**
 		 * @method pressed
 		 * @param {string} inp
-		 * @returns {boolean} true on the first frame that the user released the input
 		 */
 		pressed(inp) {
 			return this.released(inp);
@@ -6282,7 +6316,6 @@ canvas {
 		/**
 		 * @method holds
 		 * @param {string} inp
-		 * @returns {boolean} true on the first frame that the user holds the input
 		 */
 		holds(inp) {
 			inp ??= this.default;
@@ -6293,18 +6326,16 @@ canvas {
 		/**
 		 * @method holding
 		 * @param {string} inp
-		 * @returns {number} the amount of frames the user has been holding the input
 		 */
 		holding(inp) {
 			inp ??= this.default;
 			if (this[inp] === undefined) inp = this.ac(inp);
-			return this[inp] &gt;= this.holdThreshold ? this[inp] : 0;
+			return this[inp] &gt;= this.holdThreshold;
 		}
 
 		/**
 		 * @method held
 		 * @param {string} inp
-		 * @returns {boolean} true on the first frame that the user released a held input
 		 */
 		held(inp) {
 			inp ??= this.default;
@@ -6315,7 +6346,6 @@ canvas {
 		/**
 		 * @method released
 		 * @param {string} inp
-		 * @returns {boolean} true on the first frame that the user released the input
 		 */
 		released(inp) {
 			inp ??= this.default;
@@ -6397,12 +6427,12 @@ canvas {
 		/**
 		 * @method dragging
 		 * @param {string} inp
-		 * @returns {number} the amount of frames the user has been dragging the input
+		 * @returns {boolean} true if the mouse is being dragged while holding the input
 		 */
 		dragging(inp) {
 			inp ??= this.default;
 			this.draggable = true;
-			return this[inp] &gt;= this.holdThreshold ? this[inp] : 0;
+			return this[inp] &gt;= this.holdThreshold;
 		}
 	}
 
@@ -6424,10 +6454,10 @@ canvas {
 
 		/**
 		 * @method hovering
-		 * @returns {number} the amount of frames the mouse has been over the sprite
+		 * @returns {boolean} true if the mouse is hovering over the sprite
 		 */
 		hovering() {
-			return this.hover &gt; 0 ? this.hover : 0;
+			return this.hover &gt; 0;
 		}
 
 		/**
@@ -6537,13 +6567,6 @@ canvas {
 			}
 			if (inp == &#x27;space&#x27; || inp == &#x27;spacebar&#x27;) return &#x27; &#x27;;
 			return inp[0].toUpperCase() + inp.slice(1).toLowerCase();
-		}
-
-		get space() {
-			return this[&#x27; &#x27;];
-		}
-		get spacebar() {
-			return this[&#x27; &#x27;];
 		}
 	}
 

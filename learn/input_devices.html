@@ -43,7 +43,9 @@ Here are the input devices available in p5.play:
 - `mouse` for the mouse
 - `contro` or `controllers` for game controllers
 			
-These input devices all use the same functions for getting the state of an input. Try pressing the space key!
+These input devices all use the same simple functions for getting the state of an input: `presses`, `pressing`, and `released`.
+
+They also store the state of all their inputs as properties. For example, `kb.space` stores how many frames the user has been pressing the space key. It gets reset when the user releases the input.
 		</script>
 		<script type="text/mie-p5" name="hidden" base-0 hide>
 function setup() {
@@ -67,23 +69,13 @@ if (kb.pressing('space')) {
 	background(0, 255, 0);
 }
 			</script>
-			<script type="text/mie-p5" name="holds" base="0">
-if (kb.holds('space')) {
-	background(0, 255, 0);
-}
-			</script>
 			<script type="text/mie-p5" name="holding" base="0">
-if (kb.holding('space')) {
+if (kb.space >= 12) {
 	background(0, 255, 0);
 }
 			</script>
 			<script type="text/mie-p5" name="released" base="0">
 if (kb.released('space')) {
-	background(0, 255, 0);
-}
-			</script>
-			<script type="text/mie-p5" name="held" base="0">
-if (kb.held('space')) {
 	background(0, 255, 0);
 }
 			</script>

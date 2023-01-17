@@ -2152,7 +2152,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 					this.p.circle(0, 0, this.d * this.tileSize);
 				}
 			}
-			if (this.text) {
+			if (this.text !== undefined) {
 				this.p.textAlign(this.p.CENTER, this.p.CENTER);
 				this.p.fill(this.textColor);
 				this.p.textSize(this.textSize * this.tileSize);
@@ -6161,6 +6161,7 @@ canvas {
 		/**
 		 * @method presses
 		 * @param {string} inp
+		 * @returns {boolean} true on the first frame that the user presses the input
 		 */
 		presses(inp) {
 			inp ??= this.default;
@@ -6171,16 +6172,19 @@ canvas {
 		/**
 		 * @method pressing
 		 * @param {string} inp
+		 * @returns {number} the amount of frames the user has been pressing the input
 		 */
 		pressing(inp) {
 			inp ??= this.default;
 			if (this[inp] === undefined) inp = this.ac(inp);
-			return this[inp] > 0 || this[inp] == -2;
+			if (this[inp] == -2) return 1;
+			return this[inp] > 0 ? this[inp] : 0;
 		}
 
 		/**
 		 * @method pressed
 		 * @param {string} inp
+		 * @returns {boolean} true on the first frame that the user released the input
 		 */
 		pressed(inp) {
 			return this.released(inp);
@@ -6189,6 +6193,7 @@ canvas {
 		/**
 		 * @method holds
 		 * @param {string} inp
+		 * @returns {boolean} true on the first frame that the user holds the input
 		 */
 		holds(inp) {
 			inp ??= this.default;
@@ -6199,16 +6204,18 @@ canvas {
 		/**
 		 * @method holding
 		 * @param {string} inp
+		 * @returns {number} the amount of frames the user has been holding the input
 		 */
 		holding(inp) {
 			inp ??= this.default;
 			if (this[inp] === undefined) inp = this.ac(inp);
-			return this[inp] >= this.holdThreshold;
+			return this[inp] >= this.holdThreshold ? this[inp] : 0;
 		}
 
 		/**
 		 * @method held
 		 * @param {string} inp
+		 * @returns {boolean} true on the first frame that the user released a held input
 		 */
 		held(inp) {
 			inp ??= this.default;
@@ -6219,6 +6226,7 @@ canvas {
 		/**
 		 * @method released
 		 * @param {string} inp
+		 * @returns {boolean} true on the first frame that the user released the input
 		 */
 		released(inp) {
 			inp ??= this.default;
@@ -6300,12 +6308,12 @@ canvas {
 		/**
 		 * @method dragging
 		 * @param {string} inp
-		 * @returns {boolean} true if the mouse is being dragged while holding the input
+		 * @returns {number} the amount of frames the user has been dragging the input
 		 */
 		dragging(inp) {
 			inp ??= this.default;
 			this.draggable = true;
-			return this[inp] >= this.holdThreshold;
+			return this[inp] >= this.holdThreshold ? this[inp] : 0;
 		}
 	}
 
@@ -6327,10 +6335,10 @@ canvas {
 
 		/**
 		 * @method hovering
-		 * @returns {boolean} true if the mouse is hovering over the sprite
+		 * @returns {number} the amount of frames the mouse has been over the sprite
 		 */
 		hovering() {
-			return this.hover > 0;
+			return this.hover > 0 ? this.hover : 0;
 		}
 
 		/**
@@ -6440,6 +6448,13 @@ canvas {
 			}
 			if (inp == 'space' || inp == 'spacebar') return ' ';
 			return inp[0].toUpperCase() + inp.slice(1).toLowerCase();
+		}
+
+		get space() {
+			return this[' '];
+		}
+		get spacebar() {
+			return this[' '];
 		}
 	}
 
