@@ -8,6 +8,6 @@
 		"outdir": "docs",
 		"paths": ["v3"],
 		"ignorePaths": ["planck"],
-		"exclude": "demos,docs,game,jam,learn,logos,tests,theme,v2,v4"
+		"exclude": "demos,docs,game,jam,learn,logos,tests,theme,v2,v4,p5.play-beta.js"
 	}
 }
