@@ -153,6 +153,7 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 		&#x27;drag&#x27;,
 		&#x27;dynamic&#x27;,
 		&#x27;friction&#x27;,
+		&#x27;fill&#x27;,
 		&#x27;h&#x27;,
 		&#x27;height&#x27;,
 		&#x27;heading&#x27;,
@@ -169,6 +170,8 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 		&#x27;shape&#x27;,
 		&#x27;speed&#x27;,
 		&#x27;static&#x27;,
+		&#x27;stroke&#x27;,
+		&#x27;strokeWeight&#x27;,
 		&#x27;text&#x27;,
 		&#x27;textColor&#x27;,
 		&#x27;tileSize&#x27;,
@@ -2026,6 +2029,7 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 				if (this._collider == &#x27;none&#x27;) {
 					bodyProps = this._cloneBodyProps();
 				}
+				this._removeSensors();
 				this._removeColliders();
 				this._h = undefined;
 				this._shape = undefined;
