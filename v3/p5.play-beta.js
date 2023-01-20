@@ -64,6 +64,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		'drag',
 		'dynamic',
 		'friction',
+		'fill',
 		'h',
 		'height',
 		'heading',
@@ -80,6 +81,8 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		'shape',
 		'speed',
 		'static',
+		'stroke',
+		'strokeWeight',
 		'text',
 		'textColor',
 		'tileSize',
@@ -590,13 +593,12 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			}
 
 			/**
-			 * If no image or animations are set this is color of the
-			 * placeholder rectangle
-			 *
-			 * @property color
-			 * @type {color}
-			 * @default a randomly generated color
+			 * @property strokeWeight
+			 * @type {Number}
+			 * @default undefined
 			 */
+			this.strokeWeight;
+
 			this.color ??= this.p.color(this.p.random(30, 245), this.p.random(30, 245), this.p.random(30, 245));
 
 			this.textColor ??= this.p.color(0);
@@ -824,9 +826,9 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		 * Removes the physics body colliders from the sprite but not
 		 * overlap sensors.
 		 *
-		 * @method removeColliders
+		 * @private _removeColliders
 		 */
-		removeColliders() {
+		_removeColliders() {
 			this._collides = {};
 			this._colliding = {};
 			this._collided = {};
@@ -935,9 +937,9 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		/**
 		 * Removes overlap sensors from the sprite.
 		 *
-		 * @method removeSensors
+		 * @private _removeSensors
 		 */
-		removeSensors() {
+		_removeSensors() {
 			this._overlap = {};
 			this._overlaps = {};
 			this._overlapping = {};
@@ -1142,6 +1144,19 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			}
 		}
 
+		_parseColor(val) {
+			if (val instanceof p5.Color) {
+				return val;
+			} else if (typeof val != 'object') {
+				if (typeof val == 'string' && val.length == 1) {
+					return this.p.colorPal(val);
+				} else {
+					return this.p.color(val);
+				}
+			}
+			return this.p.color(...val.levels);
+		}
+
 		/**
 		 * The sprite's current color. By default sprites get a random color.
 		 *
@@ -1152,25 +1167,69 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			return this._color;
 		}
 		set color(val) {
-			if (val instanceof p5.Color) {
-				this._color = val;
-			} else if (typeof val != 'object') {
-				if (typeof val == 'string' && val.length == 1) {
-					this._color = this.colorPal(val);
-				} else {
-					this._color = this.p.color(val);
-				}
-			} else {
-				this._color = this.p.color(...val.levels);
-			}
+			this._color = this._parseColor(val);
 		}
-
-		// deprecated
+		/**
+		 * @deprecated shapeColor
+		 */
 		get shapeColor() {
 			return this._color;
 		}
 		set shapeColor(val) {
 			this.color = val;
+		}
+
+		/**
+		 * Alias for sprite.fillColor
+		 *
+		 * @property fill
+		 * @type {p5.Color}
+		 */
+		get fill() {
+			return this._color;
+		}
+		set fill(val) {
+			this._color = this._parseColor(val);
+		}
+
+		/**
+		 * Alias for sprite.color
+		 *
+		 * @property fillColor
+		 * @type {p5.Color}
+		 */
+		get fillColor() {
+			return this._color;
+		}
+		set fillColor(val) {
+			this._color = this._parseColor(val);
+		}
+
+		/**
+		 * Alias for sprite.strokeColor
+		 *
+		 * @property stroke
+		 * @type {p5.Color}
+		 */
+		get stroke() {
+			return this._stroke;
+		}
+		set stroke(val) {
+			this._stroke = this._parseColor(val);
+		}
+
+		/**
+		 * The sprite's stroke current color. By default the stroke of a sprite
+		 * indicates its collider type.
+		 *
+		 * @property strokeColor
+		 * @type {p5.Color}
+		 */
+		get strokeColor() {
+			return this._stroke;
+		}
+		set strokeColor(val) {
+			this._stroke = this._parseColor(val);
 		}
 
 		/**
@@ -1183,13 +1242,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			return this._textColor;
 		}
 		set textColor(val) {
-			if (val instanceof p5.Color) {
-				this._textColor = val;
-			} else if (typeof val != 'object') {
-				this._textColor = this.p.color(val);
-			} else {
-				this._textColor = this.p.color(...val.levels);
-			}
+			this._textColor = this._parseColor(val);
 		}
 
 		/**
@@ -1617,14 +1670,14 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		 *
 		 * "Sleeping" sprites are not included in the physics simulation, a
 		 * sprite starts "sleeping" when it stops moving and doesn't collide
-		 * with anything that it wasn't already _touching.
+		 * with anything that it wasn't already touching.
 		 *
 		 * @property sleeping
 		 * @type {Boolean}
 		 * @default true
 		 */
 		get sleeping() {
-			if (this.body) return this.body.isAwake();
+			if (this.body) return !this.body.isAwake();
 			return undefined;
 		}
 
@@ -1887,7 +1940,8 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 				if (this._collider == 'none') {
 					bodyProps = this._cloneBodyProps();
 				}
-				this.removeColliders();
+				this._removeSensors();
+				this._removeColliders();
 				this._h = undefined;
 				this._shape = undefined;
 				if (this._collider != 'none') {
@@ -2137,22 +2191,24 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		 * @private
 		 */
 		_draw() {
+			if (this.strokeWeight) this.p.strokeWeight(this.strokeWeight);
 			if (this.animation && !this.debug) {
 				this.animation.draw(0, 0, 0, this._scale.x, this._scale.y);
 			} else if (this.fixture != null) {
-				if (this._shape == 'chain') this.p.stroke(this.color);
+				if (this._shape == 'chain') this.p.stroke(this.stroke || this.color);
+				else if (this._stroke) this.p.stroke(this._stroke);
 				for (let fxt = this.fixtureList; fxt; fxt = fxt.getNext()) {
 					this._drawFixture(fxt);
 				}
 			} else {
-				this.p.stroke(120);
+				this.p.stroke(this._stroke || 120);
 				if (this._shape == 'box') {
 					this.p.rect(0, 0, this.w * this.tileSize, this.h * this.tileSize);
 				} else if (this._shape == 'circle') {
 					this.p.circle(0, 0, this.d * this.tileSize);
 				}
 			}
-			if (this.text) {
+			if (this.text !== undefined) {
 				this.p.textAlign(this.p.CENTER, this.p.CENTER);
 				this.p.fill(this.textColor);
 				this.p.textSize(this.textSize * this.tileSize);
@@ -4769,10 +4825,6 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 					_this.m_gravity.y = _this.p.round(val || 0);
 				}
 			};
-
-			this.oldB = 0;
-			this.oldE = 0;
-			this.oldV = 0;
 		}
 
 		resize(w, h) {
@@ -4862,34 +4914,27 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		}
 
 		_postSolve(contact, oldManifold) {
-			const b = contact.getFixtureB().getBody();
-			const newB = b.getPosition().y;
-			// const newE =
-			// 	world.getGravity().y * -b.getPosition().y +
-			// 	(1 / 2) * (b.getLinearVelocity().y + (this.timeStep / 2) * world.getGravity().y) ** 2;
+			for (let f of [contact.m_fixtureA, contact.m_fixtureB]) {
+				const b = f.getBody();
+				const s = b.sprite;
 
-			// log(this.oldE, newE);
+				const y = b.getPosition().y;
 
-			const C = (this.timeStep / 2) * world.getGravity().y;
+				const C = this._timeStep * 0.5 * world.getGravity().y;
 
-			const energyPotentialDiff = world.getGravity().y * -(newB - this.oldB);
+				const energyPotentialDiff = world.getGravity().y * -(y - s._oldY);
 
-			// solves `energyProtentialDiff = energyVelocityV - energyVelocityPre`
-			let q = Math.sqrt(C ** 2 - 2 * energyPotentialDiff + this.oldV ** 2 + 2 * this.oldV * C);
-			const v1 = -C + q;
-			const v2 = -C - q;
+				// solves `energyProtentialDiff = energyVelocityV - energyVelocityPre`
+				const q = Math.sqrt(C ** 2 - 2 * energyPotentialDiff + s._oldVelY ** 2 + 2 * s._oldVelY * C);
+				const v1 = -C + q;
+				const v2 = -C - q;
 
-			// log(newE, v2);
-
-			const v = b.getLinearVelocity().y;
-			b.setLinearVelocity(new pl.Vec2(0, Math.abs(v - v1) < Math.abs(v - v2) ? v1 : v2));
-			log(b.getLinearVelocity().y);
-
-			const correctedE =
-				world.getGravity().y * -b.getPosition().y +
-				(1 / 2) * (b.getLinearVelocity().y + (this.timeStep / 2) * world.getGravity().y) ** 2;
-
-			log(this.oldE, correctedE);
+				const vy = b.getLinearVelocity().y;
+				const _vy = Math.abs(vy - v1) < Math.abs(vy - v2) ? v1 : v2;
+				if (isNaN(_vy) || Math.abs(_vy) < pl.Settings.velocityThreshold) {
+					b.setLinearVelocity(new pl.Vec2(b.getLinearVelocity().x, 0));
+				} else b.setLinearVelocity(new pl.Vec2(b.getLinearVelocity().x, _vy * s.bounciness));
+			}
 		}
 
 		get autoCull() {
@@ -5259,12 +5304,14 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		for (let s of this.allSprites) {
 			s.previousPosition.x = s.x;
 			s.previousPosition.y = s.y;
+			s._oldY = s.body.getPosition().y;
+			s._oldVelY = s.body.getLinearVelocity().y;
 		}
 
-		this.world.timeStep = timeStep || 1 / 60;
+		this.world._timeStep = timeStep || 1 / 60;
 
 		// 2nd and 3rd arguments are velocity and position iterations
-		this.world.step(this.world.timeStep, velocityIterations || 8, positionIterations || 3);
+		this.world.step(this.world._timeStep, velocityIterations || 8, positionIterations || 3);
 
 		for (let s of this.allSprites) {
 			s.update();
@@ -6199,6 +6246,7 @@ canvas {
 		/**
 		 * @method presses
 		 * @param {string} inp
+		 * @returns {boolean} true on the first frame that the user presses the input
 		 */
 		presses(inp) {
 			inp ??= this.default;
@@ -6209,16 +6257,19 @@ canvas {
 		/**
 		 * @method pressing
 		 * @param {string} inp
+		 * @returns {number} the amount of frames the user has been pressing the input
 		 */
 		pressing(inp) {
 			inp ??= this.default;
 			if (this[inp] === undefined) inp = this.ac(inp);
-			return this[inp] > 0 || this[inp] == -2;
+			if (this[inp] == -2) return 1;
+			return this[inp] > 0 ? this[inp] : 0;
 		}
 
 		/**
 		 * @method pressed
 		 * @param {string} inp
+		 * @returns {boolean} true on the first frame that the user released the input
 		 */
 		pressed(inp) {
 			return this.released(inp);
@@ -6227,6 +6278,7 @@ canvas {
 		/**
 		 * @method holds
 		 * @param {string} inp
+		 * @returns {boolean} true on the first frame that the user holds the input
 		 */
 		holds(inp) {
 			inp ??= this.default;
@@ -6237,16 +6289,18 @@ canvas {
 		/**
 		 * @method holding
 		 * @param {string} inp
+		 * @returns {number} the amount of frames the user has been holding the input
 		 */
 		holding(inp) {
 			inp ??= this.default;
 			if (this[inp] === undefined) inp = this.ac(inp);
-			return this[inp] >= this.holdThreshold;
+			return this[inp] >= this.holdThreshold ? this[inp] : 0;
 		}
 
 		/**
 		 * @method held
 		 * @param {string} inp
+		 * @returns {boolean} true on the first frame that the user released a held input
 		 */
 		held(inp) {
 			inp ??= this.default;
@@ -6257,6 +6311,7 @@ canvas {
 		/**
 		 * @method released
 		 * @param {string} inp
+		 * @returns {boolean} true on the first frame that the user released the input
 		 */
 		released(inp) {
 			inp ??= this.default;
@@ -6338,12 +6393,12 @@ canvas {
 		/**
 		 * @method dragging
 		 * @param {string} inp
-		 * @returns {boolean} true if the mouse is being dragged while holding the input
+		 * @returns {number} the amount of frames the user has been dragging the input
 		 */
 		dragging(inp) {
 			inp ??= this.default;
 			this.draggable = true;
-			return this[inp] >= this.holdThreshold;
+			return this[inp] >= this.holdThreshold ? this[inp] : 0;
 		}
 	}
 
@@ -6365,10 +6420,10 @@ canvas {
 
 		/**
 		 * @method hovering
-		 * @returns {boolean} true if the mouse is hovering over the sprite
+		 * @returns {number} the amount of frames the mouse has been over the sprite
 		 */
 		hovering() {
-			return this.hover > 0;
+			return this.hover > 0 ? this.hover : 0;
 		}
 
 		/**
@@ -6478,6 +6533,13 @@ canvas {
 			}
 			if (inp == 'space' || inp == 'spacebar') return ' ';
 			return inp[0].toUpperCase() + inp.slice(1).toLowerCase();
+		}
+
+		get space() {
+			return this[' '];
+		}
+		get spacebar() {
+			return this[' '];
 		}
 	}
 
