@@ -2939,7 +2939,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 
 		_ensureOverlap(target, callback) {
 			if (!(target instanceof Sprite) && !(target instanceof Group)) {
-				throw new Error('Sprite.overlaps', 0, [target]);
+				throw new FriendlyError('Sprite.overlaps', 0, [target]);
 			}
 			if (callback && typeof callback != 'function') {
 				throw new FriendlyError('Sprite.overlaps', 1);
