@@ -11,7 +11,6 @@
 	<script src="../v3/planck.min.js"></script>
 	<script src="../v3/p5.play.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.8.1/ace.min.js"></script>
-
 </head>
 
 <body>
@@ -160,7 +159,7 @@ sprite.text = "p5";
 					canvas.
 				</p>
 			</div>
-			<script type="text/mie-p5" name="Level 0 Challenge Goal" hide-editor>
+			<script type="text/mie-p5" name="Level 0 Challenge Solution" hide-editor>
 let ball;
 
 function setup() {
@@ -246,7 +245,7 @@ floor.rotation = 2;
 		<div class="minis">
 			<script type="text/mie-p5" name="rising platform" base="2">
 floor.collider = 'k';
-floor.vel.y = -1;
+floor.velocity.y = -1;
 			</script>
 			<script type="text/mie-p5" name="whoops!" base="2">
 floor.collider = 'none';
@@ -257,11 +256,11 @@ floor.collider = 'none';
 			<script type="text/md">
 ## Try it out!
 
-Try creating a sprite `peg` with a static collider and circle shape. Create a sprite `block` with a dynamic collider and box shape. Make the block fall from above and hit the peg, falling to the right side.
+Try creating a sprite named `peg` with a static collider and circle shape. Create a sprite `block` with a dynamic collider and box shape. Make the block fall from above and hit the peg, falling to the right side.
 
-Note that `world` is created when p5.play loads but by default there is no gravity. Set `world.gravity.y` to a positive number to make dynamic sprites fall. Each time the p5.js `draw` function finishes, sprites are automatically drawn and updated by default.
+Note that `world` is created when p5.play loads but by default there is no gravity. Try setting `world.gravity.y` to a positive number. Each time the p5.js `draw` function finishes, sprites are automatically drawn and updated by default.
 		</script>
-			<script type="text/mie-p5" name="Level 1 Challenge Goal" hide-editor>
+			<script type="text/mie-p5" name="Level 1 Challenge Solution" hide-editor>
 let peg, block;
 
 function setup() {
