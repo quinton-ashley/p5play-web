@@ -179,9 +179,7 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 		&#x27;w&#x27;,
 		&#x27;width&#x27;,
 		&#x27;x&#x27;,
-		&#x27;xLock&#x27;,
-		&#x27;y&#x27;,
-		&#x27;yLock&#x27;
+		&#x27;y&#x27;
 	];
 
 	let eventTypes = {
@@ -322,6 +320,7 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 			 *
 			 * @property groups
 			 * @type {Array}
+			 * @default [allSprites]
 			 */
 			this.groups = [];
 			this.p.allSprites.push(this);
@@ -590,8 +589,15 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 				}
 			});
 
-			this.previousPosition = { x, y };
-			this.dest = { x, y };
+			/**
+			 * The sprite&#x27;s position on the previous frame.
+			 *
+			 * @property prevPos
+			 * @type {object}
+			 */
+			this.prevPos = { x, y };
+
+			this._dest = { x, y };
 			this._destIdx = 0;
 			this.drag = 0;
 
@@ -719,7 +725,9 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 			offsetX ??= 0;
 			offsetY ??= 0;
 			w ??= this._w;
-			h ??= this._h;
+			if (this.shape &amp;&amp; this.shape != &#x27;circle&#x27;) {
+				h ??= this._h;
+			}
 
 			if (Array.isArray(w)) {
 				path = w;
@@ -1104,7 +1112,8 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 		 * sprite starts &quot;sleeping&quot; when it stops moving and doesn&#x27;t collide
 		 * with anything that it wasn&#x27;t already _touching.
 		 *
-		 * @property {Boolean} allowSleeping
+		 * @property allowSleeping
+		 * @type {Boolean}
 		 * @default true
 		 */
 		get allowSleeping() {
@@ -1144,6 +1153,7 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 		 *
 		 * @property bounciness
 		 * @type {Number}
+		 * @default 0.2
 		 */
 		get bounciness() {
 			if (!this.fixture) return;
@@ -1173,6 +1183,7 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 		 *
 		 * @property collider
 		 * @type {String}
+		 * @default &#x27;dynamic&#x27;
 		 */
 		get collider() {
 			return this._collider;
@@ -1251,6 +1262,7 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 		 *
 		 * @property color
 		 * @type {p5.Color}
+		 * @default random color
 		 */
 		get color() {
 			return this._color;
@@ -1273,6 +1285,7 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 		 *
 		 * @property fill
 		 * @type {p5.Color}
+		 * @default random color
 		 */
 		get fill() {
 			return this._color;
@@ -1286,6 +1299,7 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 		 *
 		 * @property fillColor
 		 * @type {p5.Color}
+		 * @default random color
 		 */
 		get fillColor() {
 			return this._color;
@@ -1322,10 +1336,11 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 		}
 
 		/**
-		 * The sprite&#x27;s current text color. By default sprites get a random text color.
+		 * The sprite&#x27;s current text color. Black by default.
 		 *
 		 * @property textColor
 		 * @type {p5.Color}
+		 * @default black (#000000)
 		 */
 		get textColor() {
 			return this._textColor;
@@ -1370,6 +1385,7 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 		 *
 		 * @property direction
 		 * @type {Number}
+		 * @default 0 (&quot;right&quot;)
 		 */
 		get direction() {
 			if (this.body &amp;&amp; (this.vel.x !== 0 || this.vel.y !== 0)) {
@@ -1413,6 +1429,7 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 		 *
 		 * @property drag
 		 * @type {Number}
+		 * @default 0
 		 */
 		get drag() {
 			if (this.body) return this.body.getLinearDamping();
@@ -1456,6 +1473,7 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 		 *
 		 * @property dynamic
 		 * @type {Boolean}
+		 * @default true
 		 */
 		get dynamic() {
 			if (!this.body) return undefined;
@@ -1470,6 +1488,7 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 		 *
 		 * @property rotationLock
 		 * @type {Boolean}
+		 * @default false
 		 */
 		get rotationLock() {
 			if (!this.body) return undefined;
@@ -1483,8 +1502,7 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 		 * Returns the first node in a linked list of the planck physics
 		 * body&#x27;s fixtures.
 		 *
-		 * @private
-		 * @property fixture
+		 * @private fixture
 		 */
 		get fixture() {
 			return this.fixtureList;
@@ -1493,8 +1511,7 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 		 * Returns the first node in a linked list of the planck physics
 		 * body&#x27;s fixtures.
 		 *
-		 * @private
-		 * @property fixtureList
+		 * @private fixtureList
 		 */
 		get fixtureList() {
 			if (!this.body) return null;
@@ -1507,6 +1524,7 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 		 *
 		 * @property friction
 		 * @type {Number}
+		 * @default 0.5
 		 */
 		get friction() {
 			if (!this.fixture) return;
@@ -1527,6 +1545,7 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 		 *
 		 * @property heading
 		 * @type {String}
+		 * @default undefined
 		 */
 		get heading() {
 			return this._heading;
@@ -1598,6 +1617,7 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 		 *
 		 * @property isSuperFast
 		 * @type {Boolean}
+		 * @default false
 		 */
 		get isSuperFast() {
 			if (!this.body) return undefined;
@@ -1619,6 +1639,7 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 		 *
 		 * @property kinematic
 		 * @type {Boolean}
+		 * @default false
 		 */
 		get kinematic() {
 			if (!this.body) return undefined;
@@ -1662,10 +1683,24 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 		// }
 
 		/**
+		 * Verbose alias for sprite.prevPos
+		 *
+		 * @property previousPosition
+		 * @type {object}
+		 */
+		get previousPosition() {
+			return this.prevPos;
+		}
+		set previousPosition(val) {
+			this.prevPos = val;
+		}
+
+		/**
 		 * The angle of the sprite&#x27;s rotation, not the direction it is moving.
 		 *
 		 * @property rotation
 		 * @type {Number}
+		 * @default 0
 		 */
 		get rotation() {
 			if (!this.body) return this._angle || 0;
@@ -1690,6 +1725,7 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 		 *
 		 * @property rotationDrag
 		 * @type {Number}
+		 * @default 0
 		 */
 		get rotationDrag() {
 			if (!this.body) return undefined;
@@ -1703,6 +1739,7 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 		 *
 		 * @property rotationSpeed
 		 * @type {Number}
+		 * @default 0
 		 */
 		get rotationSpeed() {
 			if (this.body) return this.body.getAngularVelocity();
@@ -1724,7 +1761,8 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 		 * to double the sprite&#x27;s scale.
 		 *
 		 * @property scale
-		 * @type {Object}
+		 * @type {Number|Object}
+		 * @default 1
 		 */
 		get scale() {
 			return this._scale;
@@ -1766,7 +1804,7 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 		 * @default true
 		 */
 		get sleeping() {
-			if (this.body) return this.body.isAwake();
+			if (this.body) return !this.body.isAwake();
 			return undefined;
 		}
 
@@ -1787,6 +1825,7 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 		 *
 		 * @property speed
 		 * @type {Number}
+		 * @default 0
 		 */
 		get speed() {
 			return this.p.createVector(this.vel.x, this.vel.y).mag();
@@ -1802,6 +1841,7 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 		 *
 		 * @property static
 		 * @type {Boolean}
+		 * @default false
 		 */
 		get static() {
 			if (!this.body) return undefined;
@@ -1809,19 +1849,6 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 		}
 		set static(val) {
 			if (val) this.collider = &#x27;static&#x27;;
-		}
-
-		/**
-		 * Apply a torque on the sprite&#x27;s physics body.
-		 * Torque is the force that causes rotation.
-		 * A positive torque will rotate the sprite clockwise.
-		 * A negative torque will rotate the sprite counter-clockwise.
-		 *
-		 * @property torque
-		 * @param {Number} torque The amount of torque to apply.
-		 */
-		set torque(val) {
-			this.body.applyTorque(val, true);
 		}
 
 		/**
@@ -2110,6 +2137,7 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 					}
 				}
 			}
+			if (this.collider == &#x27;static&#x27;) this.body.synchronizeFixtures();
 		}
 
 		/**
@@ -2239,9 +2267,6 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 				this.x += this.vel.x;
 				this.y += this.vel.y;
 			}
-
-			if (this.xLock) this.x = this.previousPosition.x;
-			if (this.yLock) this.y = this.previousPosition.y;
 
 			for (let prop in this.mouse) {
 				if (this.mouse[prop] == -1) this.mouse[prop] = 0;
@@ -2413,6 +2438,19 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 			} else {
 				this.body.applyForceToCenter(forceVector.mul(this.body.m_mass), false);
 			}
+		}
+
+		/**
+		 * Apply a torque on the sprite&#x27;s physics body.
+		 * Torque is the force that causes rotation.
+		 * A positive torque will rotate the sprite clockwise.
+		 * A negative torque will rotate the sprite counter-clockwise.
+		 *
+		 * @method applyTorque
+		 * @param {Number} torque The amount of torque to apply.
+		 */
+		applyTorque(val) {
+			this.body.applyTorque(val, true);
 		}
 
 		/**
@@ -2595,19 +2633,19 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 				y = obj.y;
 				x = obj.x;
 			}
-			this.dest.x = this.x;
-			this.dest.y = this.y;
+			this._dest.x = this.x;
+			this._dest.y = this.y;
 
 			let direction = true;
 
 			if (x == this.x) x = false;
 			else {
-				this.dest.x = x;
+				this._dest.x = x;
 				x = true;
 			}
 			if (y == this.y) y = false;
 			else {
-				this.dest.y = y;
+				this._dest.y = y;
 				y = true;
 			}
 
@@ -2622,8 +2660,8 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 				return;
 			}
 
-			let a = this.dest.y - this.y;
-			let b = this.dest.x - this.x;
+			let a = this._dest.y - this.y;
+			let b = this._dest.x - this.x;
 			let c = Math.sqrt(a * a + b * b);
 
 			let percent = speed / c;
@@ -2655,12 +2693,12 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 					}
 
 					// check if the sprite has reached its destination
-					distX = Math.abs(this.x - this.dest.x);
-					distY = Math.abs(this.y - this.dest.y);
+					distX = Math.abs(this.x - this._dest.x);
+					distY = Math.abs(this.y - this._dest.y);
 				} while ((x &amp;&amp; distX &gt; margin) || (y &amp;&amp; distY &gt; margin));
 				// stop moving the sprite, snap to destination
-				if (distX &lt; margin) this.x = this.dest.x;
-				if (distY &lt; margin) this.y = this.dest.y;
+				if (distX &lt; margin) this.x = this._dest.x;
+				if (distY &lt; margin) this.y = this._dest.y;
 				this.vel.x = 0;
 				this.vel.y = 0;
 				return true;
@@ -2686,7 +2724,7 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 		}
 
 		snap(o, dist) {
-			if (o.isMoving || o.x != o.dest.x || o.y != o.dest.y || !this.isMoving) return;
+			if (o.isMoving || o.x != o._dest.x || o.y != o._dest.y || !this.isMoving) return;
 			dist ??= 1 || this.tileSize * 0.1;
 			if (Math.abs(this.x) % 1 &gt;= dist || Math.abs(this.y) % 1 &gt;= dist) {
 				return;
@@ -2963,11 +3001,14 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 		}
 
 		_ensureCollide(target, callback) {
+			if (!target) {
+				throw new FriendlyError(&#x27;Sprite.collide&#x27;, 2);
+			}
 			if (!(target instanceof Sprite) &amp;&amp; !(target instanceof Group)) {
-				throw new FriendlyError(&#x27;Sprite.collisions&#x27;, 0, [target]);
+				throw new FriendlyError(&#x27;Sprite.collide&#x27;, 0, [target]);
 			}
 			if (callback &amp;&amp; typeof callback != &#x27;function&#x27;) {
-				throw new FriendlyError(&#x27;Sprite.collisions&#x27;, 1);
+				throw new FriendlyError(&#x27;Sprite.collide&#x27;, 1, [callback]);
 			}
 		}
 
@@ -3025,11 +3066,14 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 		}
 
 		_ensureOverlap(target, callback) {
+			if (!target) {
+				throw new FriendlyError(&#x27;Sprite.overlap&#x27;, 2);
+			}
 			if (!(target instanceof Sprite) &amp;&amp; !(target instanceof Group)) {
-				throw new Error(&#x27;Sprite.overlaps&#x27;, 0, [target]);
+				throw new FriendlyError(&#x27;Sprite.overlap&#x27;, 0, [target]);
 			}
 			if (callback &amp;&amp; typeof callback != &#x27;function&#x27;) {
-				throw new FriendlyError(&#x27;Sprite.overlaps&#x27;, 1);
+				throw new FriendlyError(&#x27;Sprite.overlap&#x27;, 1, [callback]);
 			}
 			if (!this._hasOverlaps) this._createSensors();
 			if (target instanceof Sprite) {
@@ -3527,6 +3571,8 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 		 * or an object with x and/or y properties.
 		 *
 		 * @property scale
+		 * @type {Number|Object}
+		 * @default 1
 		 */
 		get scale() {
 			return this._scale;
@@ -4227,8 +4273,14 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 		}
 
 		_ensureCollide(target, callback) {
+			if (!target) {
+				throw new FriendlyError(&#x27;Group.collide&#x27;, 2);
+			}
 			if (!(target instanceof Sprite) &amp;&amp; !(target instanceof Group)) {
-				throw new Error(&#x27;collide target must be a sprite or a group&#x27;);
+				throw new FriendlyError(&#x27;Group.collide&#x27;, 0, [target]);
+			}
+			if (callback &amp;&amp; typeof callback != &#x27;function&#x27;) {
+				throw new FriendlyError(&#x27;Group.collide&#x27;, 1, [callback]);
 			}
 		}
 
@@ -4285,12 +4337,15 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 			return this._collisions.get(target) == -1;
 		}
 
-		// TODO
-		// displaces(target, callback) {}
-
 		_ensureOverlap(target, callback) {
+			if (!target) {
+				throw new FriendlyError(&#x27;Group.overlap&#x27;, 2);
+			}
 			if (!(target instanceof Sprite) &amp;&amp; !(target instanceof Group)) {
-				throw new Error(&#x27;collide target must be a sprite or a group&#x27;);
+				throw new FriendlyError(&#x27;Group.overlap&#x27;, 0, [target]);
+			}
+			if (callback &amp;&amp; typeof callback != &#x27;function&#x27;) {
+				throw new FriendlyError(&#x27;Group.overlap&#x27;, 1, [callback]);
 			}
 			if (!this._hasOverlaps) {
 				for (let s of this) {
@@ -5054,6 +5109,7 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 			 *
 			 * @property zoom
 			 * @type {Number}
+			 * @default 1
 			 */
 			this.zoom = zoom || 1;
 
@@ -5071,10 +5127,12 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 				y: this.p.mouseY
 			};
 			/**
-			 * @property {Number} mouse.x
+			 * @property mouse.x
+			 * @type {Number}
 			 */
 			/**
-			 * @property {Number} mouse.y
+			 * @property mouse.y
+			 * @type {Number}
 			 */
 
 			/**
@@ -5084,6 +5142,7 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 			 *
 			 * @property active
 			 * @type {Boolean}
+			 * @default false
 			 */
 			this.active = false;
 
@@ -5179,7 +5238,7 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 	/**
 	 * Used internally to find a contact callback between two sprites.
 	 *
-	 * @private
+	 * @private _findContactCB
 	 * @param {String} type &quot;collide&quot; or &quot;overlap&quot;
 	 * @param {Sprite} s0
 	 * @param {Sprite} s1
@@ -5366,8 +5425,8 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 	 */
 	this.updateSprites = function (timeStep, velocityIterations, positionIterations) {
 		for (let s of this.allSprites) {
-			s.previousPosition.x = s.x;
-			s.previousPosition.y = s.y;
+			s.prevPos.x = s.x;
+			s.prevPos.y = s.y;
 		}
 
 		// 2nd and 3rd arguments are velocity and position iterations
@@ -5870,9 +5929,9 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 			let rH = Number(ratio[1]);
 
 			w = window.innerWidth;
-			h = (window.innerWidth * rH) / rW;
+			h = window.innerWidth * (rH / rW);
 			if (h &gt; window.innerHeight) {
-				w = (window.innerHeight * rW) / rH;
+				w = window.innerHeight * (rW / rH);
 				h = window.innerHeight;
 			}
 			w = Math.round(w);
@@ -6119,13 +6178,15 @@ canvas {
 			hh: &quot;I can&#x27;t change the halfHeight of a Sprite directly, change the sprite&#x27;s height instead.&quot;,
 			rotate: &#x27;The angle of rotation must be a number.&#x27;,
 			changeAnimation: &#x60;I can&#x27;t find any animation named &quot;$0&quot;.&#x60;,
-			collisions: {
+			collide: {
 				0: &quot;I can&#x27;t make that sprite collide with $0. Sprites can only collide with another sprite or a group.&quot;,
-				1: &#x27;The collision callback has to be a function.&#x27;
+				1: &#x27;The collision callback has to be a function.&#x27;,
+				2: &quot;You&#x27;re trying to check for an collision with a sprite or group that doesn&#x27;t exist!&quot;
 			},
-			overlaps: {
+			overlap: {
 				0: &quot;I can&#x27;t make that sprite overlap with $0. Sprites can only overlap with another sprite or a group.&quot;,
-				1: &#x27;The overlap callback has to be a function.&#x27;
+				1: &#x27;The overlap callback has to be a function.&#x27;,
+				2: &quot;You&#x27;re trying to check for an overlap with a sprite or group that doesn&#x27;t exist!&quot;
 			}
 		},
 		SpriteAnimation: {
@@ -6141,6 +6202,8 @@ canvas {
 			}
 		}
 	};
+	errorMessages.Group.collide = errorMessages.Sprite.collide;
+	errorMessages.Group.overlap = errorMessages.Sprite.overlap;
 
 	/**
 	 * @private
