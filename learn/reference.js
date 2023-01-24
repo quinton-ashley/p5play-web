@@ -22,13 +22,14 @@ let refs = {
 		5: ['collides', 'colliding', 'collided', 'layer'],
 		6: ['overlap', 'overlapping', 'overlapped'],
 		7: ['rotate', 'rotateTo', 'rotateTowards', 'rotationSpeed'],
-		9: ['bounciness', 'friction', 'density', 'drag', 'mass', 'rotationDrag', 'rotationLock', 'scale', 'xLock', 'yLock'],
+		9: ['bounciness', 'friction', 'density', 'drag', 'mass', 'rotationDrag', 'rotationLock', 'scale'],
 		11: ['shape'],
 		12: ['draw', 'update'],
 		'sprite_animation.html?page=2': ['ani / animation', 'addAni / addAnimation', 'mirror'],
 		'tiles.html?page=0': ['tile'],
 		'tiles.html?page=1': ['tileSize'],
-		'advanced.html?page=1': ['allowSleeping', 'sleeping']
+		'advanced.html?page=1': ['allowSleeping', 'sleeping'],
+		'input_devices.html?page=3': ['mouse']
 	},
 	'Group.html': {
 		0: ['sprite properties', 'GroupSprite', 'move functions'],
