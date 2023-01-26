@@ -1482,26 +1482,26 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		// }
 
 		/**
-		 * A reference to the sprite's current animation.
+		 * A reference to the sprite's current image.
 		 *
 		 * @property img
 		 * @type {SpriteAnimation}
 		 */
 		get img() {
-			return this._animation;
+			return this._animation.frameImage;
 		}
 		set img(val) {
 			this.changeAni(val);
 		}
 
 		/**
-		 * A reference to the sprite's current animation.
+		 * A reference to the sprite's current image.
 		 *
 		 * @property image
 		 * @type {SpriteAnimation}
 		 */
 		get image() {
-			return this._animation;
+			return this._animation.frameImage;
 		}
 		set image(val) {
 			this.changeAni(val);
@@ -1626,7 +1626,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			}
 		}
 		/**
-		 * The amount of the sprite resists rotating.
+		 * The amount the sprite resists rotating.
 		 *
 		 * @property rotationDrag
 		 * @type {Number}
@@ -4107,25 +4107,25 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			return this.animations;
 		}
 		/**
-		 * Reference to the group's current animation.
+		 * Reference to the group's current image.
 		 *
 		 * @property img
 		 * @type {SpriteAnimation}
 		 */
 		get img() {
-			return this._animation;
+			return this._animation.frameImage;
 		}
 		set img(val) {
 			this.ani = val;
 		}
 		/**
-		 * Reference to the group's current animation.
+		 * Reference to the group's current image.
 		 *
 		 * @property image
 		 * @type {SpriteAnimation}
 		 */
 		get image() {
-			return this._animation;
+			return this._animation.frameImage;
 		}
 		set image(val) {
 			this.ani = val;

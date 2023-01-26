@@ -632,7 +632,7 @@
         {
             "file": "v3/p5.play.js",
             "line": 1484,
-            "description": "A reference to the sprite's current animation.",
+            "description": "A reference to the sprite's current image.",
             "itemtype": "property",
             "name": "img",
             "type": "{SpriteAnimation}",
@@ -641,7 +641,7 @@
         {
             "file": "v3/p5.play.js",
             "line": 1497,
-            "description": "A reference to the sprite's current animation.",
+            "description": "A reference to the sprite's current image.",
             "itemtype": "property",
             "name": "image",
             "type": "{SpriteAnimation}",
@@ -708,7 +708,7 @@
         {
             "file": "v3/p5.play.js",
             "line": 1628,
-            "description": "The amount of the sprite resists rotating.",
+            "description": "The amount the sprite resists rotating.",
             "itemtype": "property",
             "name": "rotationDrag",
             "type": "{Number}",
@@ -1993,7 +1993,7 @@
         {
             "file": "v3/p5.play.js",
             "line": 4109,
-            "description": "Reference to the group's current animation.",
+            "description": "Reference to the group's current image.",
             "itemtype": "property",
             "name": "img",
             "type": "{SpriteAnimation}",
@@ -2002,7 +2002,7 @@
         {
             "file": "v3/p5.play.js",
             "line": 4121,
-            "description": "Reference to the group's current animation.",
+            "description": "Reference to the group's current image.",
             "itemtype": "property",
             "name": "image",
             "type": "{SpriteAnimation}",
