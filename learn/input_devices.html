@@ -214,11 +214,15 @@ function setup() {
 
 function draw() {
 	clear();
+
 	if (contro.pressing('a')) {
+		sprite.color = 'green';
+	} else if (contro.pressing('b')) {
 		sprite.color = 'red';
 	} else {
 		sprite.color = 'yellow';
 	}
+
 	sprite.x = 250 + contro.leftStick.x * 80;
 	sprite.y = 100 + contro.leftStick.y * 80;
 }

@@ -6666,7 +6666,7 @@ canvas {
 	};
 
 	class Contro extends InputDevice {
-		constructor() {
+		constructor(gp) {
 			super();
 			let inputs = [
 				'a',
@@ -6711,8 +6711,8 @@ canvas {
 				rt: 7,
 				select: 8,
 				start: 9,
-				// leftStickBtn: 10,
-				// rightStickBtn: 11,
+				leftStickButton: 10,
+				rightStickButton: 11,
 				up: 12,
 				down: 13,
 				left: 14,
@@ -6730,6 +6730,20 @@ canvas {
 				leftTrigger: 4,
 				rightTrigger: 5
 			};
+
+			// corrects button mapping for GuliKit gamepads
+			// which have a Nintendo Switch style button layout
+			if (gp.id.includes('GuliKit')) {
+				this._btns.a = 1;
+				this._btns.b = 0;
+				this._btns.x = 3;
+				this._btns.y = 2;
+			}
+
+			log(gp);
+
+			this.gamepad = gp;
+			this.id = gp.id;
 		}
 
 		ac(inp) {
@@ -6738,10 +6752,8 @@ canvas {
 
 		_update() {
 			this.gamepad = navigator.getGamepads()[this.gamepad.index];
-			// TODO
-			// if (this.index != this.gamepad.index) {
-			// 	return; // contro disconnected
-			// }
+			if (!this.gamepad) return;
+
 			let pad = this.gamepad;
 
 			// buttons
@@ -6758,10 +6770,14 @@ canvas {
 			this.rightStick.x = pad.axes[this._axes.rightStick.x];
 			this.rightStick.y = pad.axes[this._axes.rightStick.y];
 
-			// TODO
 			// triggers
-			this.leftTrigger = pad.axes[this._axes.leftTrigger];
-			this.rightTrigger = pad.axes[this._axes.rightTrigger];
+			if (pad.axes[this._axes.leftTrigger] !== undefined) {
+				this.leftTrigger = pad.axes[this._axes.leftTrigger];
+				this.rightTrigger = pad.axes[this._axes.rightTrigger];
+			} else {
+				this.leftTrigger = pad.buttons[this._btns.lt].value;
+				this.rightTrigger = pad.buttons[this._btns.rt].value;
+			}
 
 			return true; // update completed
 		}
@@ -6774,6 +6790,10 @@ canvas {
 			window.addEventListener('gamepadconnected', (e) => {
 				_this._addContro(e.gamepad);
 			});
+			// TODO
+			// window.addEventListener('gamepaddisconnected', (e) => {
+			// 	_this._removeContro(e.gamepad);
+			// });
 
 			this.default = 'a';
 
@@ -6796,22 +6816,28 @@ canvas {
 					});
 				}
 			}
+
+			// if the page was not reloaded, but p5.play sketch was,
+			// then gamepads could be already connected
+			// so they need to be added as Contro objects
+			let gps = navigator.getGamepads();
+			for (let gp of gps) {
+				if (gp) this._addContro(gp);
+			}
 		}
 
 		_addContro(gp) {
-			let contro = new Contro();
-			contro.gamepad = gp;
-			contro.id = gp.id;
-			this.push(contro);
+			if (!gp) return;
+			log('controller ' + this.length + ' connected: ' + gp.id);
+			this.push(new Contro(gp));
 		}
 
+		/**
+		 * Updates the state of all controllers.
+		 */
 		_update() {
-			for (let i = 0; i < this.length; i++) {
-				let connected = this[i]._update();
-				if (!connected) {
-					this.splice(i, 1);
-					i--;
-				}
+			for (let c of this) {
+				c._update();
 			}
 		}
 	}
