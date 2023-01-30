@@ -1101,7 +1101,7 @@ function draw() {
 				Here's the code for making a regular star with five points.
 			</p>
 			<p>
-				Note that the star is a chain, not a polygon. That's because it's not convex!
+				Note that because the star is a concave shape it can't have a polygon collider.
 			</p>
 			<p>
 				Try changing the number of points!
@@ -1123,12 +1123,47 @@ function draw() {
 			<p>
 				Now you can see how the p5.play logo was made!
 			</p>
+			<p>
+				Even closed chains like this one are made of lines and
+				they're empty on the inside. In the example on the p5.play
+				homepage, you can see how chain
+				colliders can contain many other sprites inside them!
+			</p>
 		</div>
-		<script type="text/mie-p5" name="p5.play logo" lines="5">
+		<script type="text/mie-p5" name="p5.play logo" lines="8">
 function setup() {
 	new Canvas(500, 200);
+	world.gravity.y = 10;
 
-	new Sprite(250, 100, [40, 72, 40, -72, 40, 72, 5]);
+	new Sprite(250, 100, [40, 72, 40, -72, 40, 72, 5], 's');
+
+	new Sprite(251, 50, 20, 'pentagon');
+}
+
+function draw() {
+	clear();
+}
+		</script>
+		<div>
+			<p>
+				Note that closed chain colliders aren't so good at being dynamic colliders. This is a
+				limitation of the Box2D physics engine that p5.play uses.
+			</p>
+		</div>
+		<script type="text/mie-p5" name="concave chain colliders" lines="9">
+function setup() {
+	new Canvas(500, 200);
+	world.gravity.y = 10;
+
+	new Sprite([
+		[200, 50],
+		[300, 50],
+		[300, 100],
+		[280, 70],
+		[200, 50]
+	]);
+
+	new Sprite(250, 190, 500, 10, 's');
 }
 
 function draw() {
