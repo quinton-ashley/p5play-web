@@ -751,7 +751,6 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 					}
 				} else {
 					// origin is center
-
 					let centerX = 0;
 					let centerY = 0;
 					// use centroid of a triangle method to get center
@@ -759,24 +758,24 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 					let sumX = 0;
 					let sumY = 0;
 
-					// last vertex is same as first
 					let vl = vecs.length;
+					// last vertex is same as first
 					if (shape == 'polygon' || isConvex) vl--;
 					for (let i = 0; i < vl; i++) {
 						sumX += vecs[i].x;
 						sumY += vecs[i].y;
 					}
-
 					centerX = sumX / vl;
 					centerY = sumY / vl;
-					// }
+
 					// use bounding box method to get center
+					// not how planck does it!
 					// centerX = this._hw - min.x;
 					// centerY = this._hh - min.y;
-					// }
+
 					if (this._vertexMode && usesVertices) {
-						this.x = least.x + centerX;
-						this.y = least.y + centerY;
+						this.x += centerX;
+						this.y += centerY;
 					}
 
 					for (let i = 0; i < vecs.length; i++) {
@@ -6733,6 +6732,7 @@ canvas {
 
 			// corrects button mapping for GuliKit gamepads
 			// which have a Nintendo Switch style button layout
+			// https://www.aliexpress.com/item/1005003624801819.html
 			if (gp.id.includes('GuliKit')) {
 				this._btns.a = 1;
 				this._btns.b = 0;
@@ -6804,6 +6804,33 @@ canvas {
 				};
 			}
 
+			let inputs = [
+				'a',
+				'b',
+				'x',
+				'y',
+				'l',
+				'r',
+				'lt',
+				'rt',
+				'select',
+				'start',
+				'leftStickButton',
+				'rightStickButton',
+				'up',
+				'down',
+				'left',
+				'right'
+			];
+			for (let inp of inputs) {
+				Object.defineProperty(this, inp, {
+					get() {
+						if (_this[0]) return _this[0][inp];
+						return 0;
+					}
+				});
+			}
+
 			let props = ['leftStick', 'rightStick'];
 			for (let prop of props) {
 				this[prop] = {};
@@ -6816,6 +6843,11 @@ canvas {
 					});
 				}
 			}
+
+			// test if the broswer supports the HTML5 Gamepad API
+			// all modern browsers do, this is really just to prevent
+			// p5.play's Jest tests from failing
+			if (!navigator?.getGamepads) return;
 
 			// if the page was not reloaded, but p5.play sketch was,
 			// then gamepads could be already connected
