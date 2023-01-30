@@ -675,7 +675,6 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 				let vert = { x: 0, y: 0 };
 				let min = { x: 0, y: 0 };
 				let max = { x: 0, y: 0 };
-				let least = { x: Number.MAX_SAFE_INTEGER, y: Number.MAX_SAFE_INTEGER };
 
 				// if the path is an array of position arrays
 				let usesVertices = Array.isArray(path[0]);
@@ -695,8 +694,6 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 					for (let i = 0; i < path.length; i++) {
 						if (this._vertexMode) {
 							if (i == 0) continue;
-							if (path[i][0] < least.x) least.x = path[i][0];
-							if (path[i][1] < least.y) least.y = path[i][1];
 							vert.x = path[i][0] - this.x;
 							vert.y = path[i][1] - this.y;
 						} else {
