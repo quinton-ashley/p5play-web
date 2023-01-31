@@ -681,6 +681,9 @@ On the first frame that a sprite overlaps with another sprite, the `overlaps` fu
 While a sprite is overlapping with another sprite, the `overlapping` function returns the number of frames the overlap has occurred for.
 
 On the first frame after two sprites overlapped, the `overlapped` function returns true.
+
+Note that physical interactions between sprites, including collisions and overlaps, can't be properly detected after a
+sprite is teleported (its position is directly changed)!
 		</script>
 		<script type="text/mie-p5" name="collect coin">
 let player, coin;
