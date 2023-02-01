@@ -49,7 +49,7 @@
             "plugin_for": [],
             "extension_for": [],
             "file": "v3/p5.play.js",
-            "line": 108,
+            "line": 147,
             "description": "Look at the Sprite reference pages before reading these docs.\n\nhttps://p5play.org/learn/sprite.html\n\nEvery sprite you create is added to the allSprites\ngroup and put on the top layer, in front of all other\npreviously created sprites.",
             "example": [
                 "\n\n  let rectangle = new Sprite(x, y, width, height);\n\n  let circle = new Sprite(x, y, diameter);\n\n  let line = new Sprite(x, y, [length, angle]);"
@@ -101,7 +101,7 @@
             "plugin_for": [],
             "extension_for": [],
             "file": "v3/p5.play.js",
-            "line": 3096,
+            "line": 3156,
             "description": "Look at the Animation reference pages before reading these docs.\n\nhttps://p5play.org/learn/sprite_animation.html\n\nA SpriteAnimation object contains a series of images (p5.Image objects)\nthat can be displayed sequentially.\n\nA sprite can have multiple labeled animations, see Sprite.addAnimation\nand Sprite.changeAnimation, but you can also create animations that\ncan be used without being added to a sprite first.\n\nAn animation can be created either from a list of images or sequentially\nnumbered images. p5.play will try to detect the sequence pattern.\n\nFor example if the image file path is \"image1.png\" and the last frame\nindex is 3 then \"image2.png\" and \"image3.png\" will be loaded as well.",
             "example": [
                 "\n\nlet shapeShifter = new SpriteAnimation(\"dog.png\", \"cat.png\", \"snake.png\");\nlet walking = new SpriteAnimation(\"walking0001.png\", 5);"
@@ -117,7 +117,7 @@
             "plugin_for": [],
             "extension_for": [],
             "file": "v3/p5.play.js",
-            "line": 3884,
+            "line": 3944,
             "description": "Look at the Group reference pages before reading these docs.\n\nhttps://p5play.org/learn/group.html\n\nIn p5.play groups are collections of sprites with similar behavior.\nFor example a group may contain all the coin sprites that the\nplayer can collect.\n\nGroup extends Array. You can use them in for loops just like arrays\nsince they inherit all the functions and properties of standard\narrays such as group.length\n\nSince groups just contain references to sprites, a sprite can be in\nmultiple groups.\n\nsprite.remove() removes the sprite from all the groups\nit belongs to. group.removeAll() removes all the sprites from\na group.\n\nThe top level group is a p5 instance level variable named\n'allSprites' that contains all the sprites added to the sketch.",
             "is_constructor": 1
         },
@@ -130,7 +130,7 @@
             "plugin_for": [],
             "extension_for": [],
             "file": "v3/p5.play.js",
-            "line": 4754,
+            "line": 4814,
             "description": "Look at the World reference pages before reading these docs.\n\nhttps://p5play.org/learn/world.html",
             "is_constructor": 1
         },
@@ -143,7 +143,7 @@
             "plugin_for": [],
             "extension_for": [],
             "file": "v3/p5.play.js",
-            "line": 4978,
+            "line": 5038,
             "description": "Look at the Camera reference pages before reading these docs.\n\nhttps://p5play.org/learn/camera.html\n\nA camera facilitates scrolling and zooming for scenes extending beyond\nthe canvas. A camera has a position, a zoom factor, and the mouse\ncoordinates relative to the view.\nThe camera is automatically created on the first draw cycle.\n\nIn p5.js terms the camera wraps the whole drawing cycle in a\ntransformation matrix but it can be disable anytime during the draw\ncycle for example to draw interface elements in an absolute position.",
             "is_constructor": 1,
             "params": [
@@ -173,7 +173,7 @@
             "plugin_for": [],
             "extension_for": [],
             "file": "v3/p5.play.js",
-            "line": 5206,
+            "line": 5266,
             "description": "Look at the Tiles reference pages before reading these docs.\n\nhttps://p5play.org/learn/tiles.html",
             "is_constructor": 1,
             "params": [
@@ -213,7 +213,7 @@
             "plugin_for": [],
             "extension_for": [],
             "file": "v3/p5.play.js",
-            "line": 5271,
+            "line": 5331,
             "description": "Look at the p5.play reference pages before reading these docs.\n\nhttps://p5play.org/learn"
         },
         "InputDevice": {
@@ -225,7 +225,7 @@
             "plugin_for": [],
             "extension_for": [],
             "file": "v3/p5.play.js",
-            "line": 6219,
+            "line": 6279,
             "description": "Look at the Input reference pages before reading these docs.\n\nhttps://p5play.org/learn/input_devices.html\n\nRoot class for storing the state of inputs (mouse, keyboard,\ngamepads).\n\n-3 means input was released after being held, pressed for 12 frames\n-2 means input was pressed and released on the same frame\n-1 means input was released\n0 means input is not pressed\n1 means input was pressed\n>1 means input is still being pressed\n12 means input was held\n>12 means input is being held"
         }
     },
@@ -244,7 +244,46 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 229,
+            "line": 55,
+            "description": "Checks if the given string contains a valid collider type\nor collider type code letter:\n\n'd' or 'dynamic'\n's' or 'static'\n'k' or 'kinematic'\n'n' or 'none'",
+            "params": [
+                {
+                    "name": "t",
+                    "description": "type name",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "true if the given string contains a valid collider type",
+                "type": "Boolean"
+            },
+            "class": "Sprite"
+        },
+        {
+            "file": "v3/p5.play.js",
+            "line": 72,
+            "description": "Returns an array with the line length, angle, and number of sides of a regular polygon",
+            "params": [
+                {
+                    "name": "n",
+                    "description": "name of the regular polygon",
+                    "type": "String"
+                },
+                {
+                    "name": "l",
+                    "description": "side length",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "an array [line, angle, sides]",
+                "type": "Boolean"
+            },
+            "class": "Sprite"
+        },
+        {
+            "file": "v3/p5.play.js",
+            "line": 246,
             "description": "Groups the sprite belongs to, including allSprites",
             "itemtype": "property",
             "name": "groups",
@@ -254,7 +293,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 239,
+            "line": 256,
             "description": "Keys are the animation label, values are SpriteAnimation objects.",
             "itemtype": "property",
             "name": "animations",
@@ -263,7 +302,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 247,
+            "line": 264,
             "description": "If false, animations that are stopped before they are completed,\ntypically by a call to sprite.changeAni, will start at the frame\nthey were stopped at. If true, animations will always start playing from\nframe 0 unless specified by the user in a separate anim.changeFrame\ncall.",
             "itemtype": "property",
             "name": "autoResetAnimations",
@@ -273,7 +312,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 260,
+            "line": 277,
             "description": "True if the sprite was removed from the world",
             "itemtype": "property",
             "name": "removed",
@@ -283,7 +322,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 288,
+            "line": 305,
             "description": "Cycles before self removal.\nSet it to initiate a countdown, every draw cycle the property is\nreduced by 1 unit. If less than or equal to 0, this sprite will be removed.",
             "itemtype": "property",
             "name": "life",
@@ -293,7 +332,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 299,
+            "line": 316,
             "description": "The sprite's visibility.",
             "itemtype": "property",
             "name": "visible",
@@ -303,19 +342,19 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 308,
+            "line": 325,
             "description": "Contains all the collision callback functions for this sprite\nwhen it comes in contact with other sprites or groups.",
             "class": "Sprite"
         },
         {
             "file": "v3/p5.play.js",
-            "line": 317,
+            "line": 334,
             "description": "Contains all the overlap callback functions for this sprite\nwhen it comes in contact with other sprites or groups.",
             "class": "Sprite"
         },
         {
             "file": "v3/p5.play.js",
-            "line": 503,
+            "line": 521,
             "description": "The sprite's position on the previous frame.",
             "itemtype": "property",
             "name": "prevPos",
@@ -324,7 +363,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 515,
+            "line": 533,
             "description": "When the sprite.debug property is set to true you can see the\nsprite's physics body collider.",
             "itemtype": "property",
             "name": "debug",
@@ -334,7 +373,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 601,
+            "line": 619,
             "itemtype": "property",
             "name": "strokeWeight",
             "type": "{Number}",
@@ -343,8 +382,10 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 625,
-            "description": "Similar to createSprite and the Sprite constructor except\noffset is the distance the collider is from the center of the\nsprite.",
+            "line": 643,
+            "description": "EXPERIMENTAL method! Subject to change!\n\nAdds a collider (fixture) to the sprite's physics body.\n\nIt accepts parameters in a similar format to the Sprite\nconstructor except the first two parameters are x and y offsets,\nthe distance new collider should be from the center of the sprite.\n\nOne limitation of the current implementation is that the collider\ntype can't be changed without losing every collider added to the\nsprite besides the first. This will be fixed in a future release.",
+            "itemtype": "method",
+            "name": "addCollider",
             "params": [
                 {
                     "name": "offsetX",
@@ -355,13 +396,23 @@
                     "name": "offsetY",
                     "description": "distance from the center of the sprite",
                     "type": "Number"
+                },
+                {
+                    "name": "w",
+                    "description": "width of the collider",
+                    "type": "Number"
+                },
+                {
+                    "name": "h",
+                    "description": "height of the collider",
+                    "type": "Number"
                 }
             ],
             "class": "Sprite"
         },
         {
             "file": "v3/p5.play.js",
-            "line": 833,
+            "line": 896,
             "description": "Removes the physics body colliders from the sprite but not\noverlap sensors.",
             "access": "private",
             "tagname": "_removeColliders",
@@ -369,8 +420,8 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 846,
-            "description": "EXPERIMENTAL! This function is incomplete and will be changed.\n\nAdds a joint between this sprite and another sprite.",
+            "line": 909,
+            "description": "EXPERIMENTAL! This function doesn't work yet and will be changed.\n\nAdds a joint between this sprite and another sprite.",
             "params": [
                 {
                     "name": "spriteB",
@@ -394,7 +445,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 945,
+            "line": 1008,
             "description": "Removes overlap sensors from the sprite.",
             "access": "private",
             "tagname": "_removeSensors",
@@ -402,7 +453,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 976,
+            "line": 1039,
             "description": "Clones the collider's props to be transferred to a new collider.",
             "access": "private",
             "tagname": "",
@@ -410,7 +461,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 1019,
+            "line": 1082,
             "description": "This property disables the ability for a sprite to \"sleep\".\n\n\"Sleeping\" sprites are not included in the physics simulation, a\nsprite starts \"sleeping\" when it stops moving and doesn't collide\nwith anything that it wasn't already _touching.",
             "itemtype": "property",
             "name": "allowSleeping",
@@ -420,7 +471,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 1038,
+            "line": 1101,
             "description": "Reference to the sprite's current animation.",
             "itemtype": "property",
             "name": "animation",
@@ -429,7 +480,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 1062,
+            "line": 1125,
             "description": "The bounciness of the sprite's physics body.",
             "itemtype": "property",
             "name": "bounciness",
@@ -439,7 +490,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 1079,
+            "line": 1142,
             "description": "The center of mass of the sprite's physics body.",
             "itemtype": "property",
             "name": "centerOfMass",
@@ -448,7 +499,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 1089,
+            "line": 1152,
             "description": "The sprite's collider type. Default is 'dynamic'.\n\nThe collider type can be one of the following strings:\n'dynamic', 'static', 'kinematic', 'none'.",
             "itemtype": "property",
             "name": "collider",
@@ -458,7 +509,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 1171,
+            "line": 1234,
             "description": "The sprite's current color. By default sprites get a random color.",
             "itemtype": "property",
             "name": "color",
@@ -468,14 +519,14 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 1184,
+            "line": 1247,
             "deprecated": true,
             "deprecationMessage": "shapeColor",
             "class": "Sprite"
         },
         {
             "file": "v3/p5.play.js",
-            "line": 1194,
+            "line": 1257,
             "description": "Alias for sprite.fillColor",
             "itemtype": "property",
             "name": "fill",
@@ -485,7 +536,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 1208,
+            "line": 1271,
             "description": "Alias for sprite.color",
             "itemtype": "property",
             "name": "fillColor",
@@ -495,7 +546,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 1222,
+            "line": 1285,
             "description": "Alias for sprite.strokeColor",
             "itemtype": "property",
             "name": "stroke",
@@ -504,7 +555,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 1235,
+            "line": 1298,
             "description": "The sprite's stroke current color. By default the stroke of a sprite\nindicates its collider type.",
             "itemtype": "property",
             "name": "strokeColor",
@@ -513,7 +564,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 1249,
+            "line": 1312,
             "description": "The sprite's current text color. Black by default.",
             "itemtype": "property",
             "name": "textColor",
@@ -523,7 +574,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 1263,
+            "line": 1326,
             "description": "The density of the sprite's physics body.",
             "itemtype": "property",
             "name": "density",
@@ -532,7 +583,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 1279,
+            "line": 1342,
             "description": "Use .layer instead.",
             "deprecated": true,
             "deprecationMessage": "depth",
@@ -540,7 +591,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 1293,
+            "line": 1356,
             "description": "The angle of the sprite's movement or it's rotation angle if the\nsprite is not moving.",
             "itemtype": "property",
             "name": "direction",
@@ -550,7 +601,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 1338,
+            "line": 1401,
             "description": "The amount of resistance a sprite has to being moved.",
             "itemtype": "property",
             "name": "drag",
@@ -560,7 +611,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 1353,
+            "line": 1416,
             "description": "Displays the sprite.\n\nThis function is called automatically at\nthe end of each p5.js draw function call but it can also be run\nseparately to customize the order sprites are drawn in relation\nto other stuff drawn to the p5.js canvas. Also see the sprite.layer\nproperty.\n\nA sprite's draw function can be overridden with a\ncustom draw function, in which the center of the sprite is\nat (0, 0).",
             "example": [
                 "\nsprite.draw = function() {\n  // an oval\n  ellipse(0,0,20,10);\n}"
@@ -571,7 +622,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 1382,
+            "line": 1445,
             "description": "True if the sprite's physics body is dynamic.",
             "itemtype": "property",
             "name": "dynamic",
@@ -581,7 +632,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 1397,
+            "line": 1460,
             "description": "If true the sprite can not rotate.",
             "itemtype": "property",
             "name": "rotationLock",
@@ -591,19 +642,19 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 1412,
+            "line": 1475,
             "description": "Returns the first node in a linked list of the planck physics\nbody's fixtures.",
             "class": "Sprite"
         },
         {
             "file": "v3/p5.play.js",
-            "line": 1419,
+            "line": 1482,
             "description": "Returns the first node in a linked list of the planck physics\nbody's fixtures.",
             "class": "Sprite"
         },
         {
             "file": "v3/p5.play.js",
-            "line": 1428,
+            "line": 1491,
             "description": "The amount the sprite's physics body resists moving\nwhen rubbing against another physics body.",
             "itemtype": "property",
             "name": "friction",
@@ -613,7 +664,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 1446,
+            "line": 1509,
             "description": "The sprite's heading. This is a string that can be set to\n\"up\", \"down\", \"left\", \"right\", \"upRight\", \"upLeft\", \"downRight\"\n\nIt ignores cardinal direction word order, capitalization, spaces,\nunderscores, and dashes.",
             "itemtype": "property",
             "name": "heading",
@@ -623,7 +674,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 1464,
+            "line": 1527,
             "description": "Use .static instead.",
             "deprecated": true,
             "deprecationMessage": "immovable",
@@ -631,7 +682,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 1484,
+            "line": 1547,
             "description": "A reference to the sprite's current image.",
             "itemtype": "property",
             "name": "img",
@@ -640,7 +691,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 1497,
+            "line": 1560,
             "description": "A reference to the sprite's current image.",
             "itemtype": "property",
             "name": "image",
@@ -649,7 +700,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 1510,
+            "line": 1573,
             "description": "True if the sprite is moving.",
             "itemtype": "property",
             "name": "isMoving",
@@ -659,7 +710,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 1521,
+            "line": 1584,
             "description": "Set this to true if the sprite goes really fast to prevent\ninaccurate physics simulation.",
             "itemtype": "property",
             "name": "isSuperFast",
@@ -669,7 +720,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 1544,
+            "line": 1607,
             "description": "True if the sprite's physics body is kinematic.",
             "itemtype": "property",
             "name": "kinematic",
@@ -679,7 +730,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 1558,
+            "line": 1621,
             "description": "The mass of the sprite's physics body.",
             "itemtype": "property",
             "name": "mass",
@@ -688,7 +739,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 1590,
+            "line": 1653,
             "description": "Verbose alias for sprite.prevPos",
             "itemtype": "property",
             "name": "previousPosition",
@@ -697,7 +748,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 1603,
+            "line": 1666,
             "description": "The angle of the sprite's rotation, not the direction it is moving.",
             "itemtype": "property",
             "name": "rotation",
@@ -707,7 +758,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 1628,
+            "line": 1691,
             "description": "The amount the sprite resists rotating.",
             "itemtype": "property",
             "name": "rotationDrag",
@@ -717,7 +768,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 1642,
+            "line": 1705,
             "description": "The speed of the sprite's rotation.",
             "itemtype": "property",
             "name": "rotationSpeed",
@@ -727,7 +778,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 1658,
+            "line": 1721,
             "description": "Scale of the sprite's physics body. Default is {x: 1, y: 1}\n\nThe getter for sprite.scale returns the scale as an object with\nx and y properties.\n\nThe valueOf function for sprite.scale returns the scale as a\nnumber. This enables users to do things like `sprite.scale *= 2`\nto double the sprite's scale.",
             "itemtype": "property",
             "name": "scale",
@@ -737,7 +788,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 1700,
+            "line": 1763,
             "description": "Wake a sprite up or put it to sleep.\n\n\"Sleeping\" sprites are not included in the physics simulation, a\nsprite starts \"sleeping\" when it stops moving and doesn't collide\nwith anything that it wasn't already _touching.",
             "itemtype": "property",
             "name": "sleeping",
@@ -747,13 +798,13 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 1720,
+            "line": 1783,
             "deprecated": true,
             "class": "Sprite"
         },
         {
             "file": "v3/p5.play.js",
-            "line": 1728,
+            "line": 1791,
             "description": "The sprite's speed.",
             "itemtype": "property",
             "name": "speed",
@@ -763,7 +814,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 1744,
+            "line": 1807,
             "description": "Is the sprite's physics collider static?",
             "itemtype": "property",
             "name": "static",
@@ -773,7 +824,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 1759,
+            "line": 1822,
             "description": "The sprite's vertices.",
             "itemtype": "property",
             "name": "vertices",
@@ -783,7 +834,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 1792,
+            "line": 1852,
             "description": "The horizontal position of the sprite.",
             "itemtype": "property",
             "name": "x",
@@ -792,7 +843,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 1809,
+            "line": 1869,
             "description": "The vertical position of the sprite.",
             "itemtype": "property",
             "name": "y",
@@ -801,7 +852,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 1826,
+            "line": 1886,
             "description": "Set the position vector {x, y}",
             "itemtype": "property",
             "name": "pos",
@@ -810,7 +861,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 1836,
+            "line": 1896,
             "description": "The width of the sprite.",
             "itemtype": "property",
             "name": "w",
@@ -819,7 +870,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 1853,
+            "line": 1913,
             "description": "Half the width of the sprite.",
             "itemtype": "property",
             "name": "hw",
@@ -828,7 +879,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 1864,
+            "line": 1924,
             "description": "The width of the sprite.",
             "itemtype": "property",
             "name": "width",
@@ -837,7 +888,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 1875,
+            "line": 1935,
             "description": "Half the width of the sprite.",
             "itemtype": "property",
             "name": "halfWidth",
@@ -846,7 +897,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 1886,
+            "line": 1946,
             "description": "The height of the sprite.",
             "itemtype": "property",
             "name": "h",
@@ -855,7 +906,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 1908,
+            "line": 1968,
             "description": "Half the height of the sprite.",
             "itemtype": "property",
             "name": "hh",
@@ -864,7 +915,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 1919,
+            "line": 1979,
             "description": "The height of the sprite.",
             "itemtype": "property",
             "name": "height",
@@ -873,7 +924,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 1930,
+            "line": 1990,
             "description": "Half the height of the sprite.",
             "itemtype": "property",
             "name": "halfHeight",
@@ -882,7 +933,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 1941,
+            "line": 2001,
             "description": "The diameter of a circular sprite.",
             "itemtype": "property",
             "name": "d",
@@ -891,7 +942,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 1986,
+            "line": 2046,
             "description": "The diameter of a circular sprite.",
             "itemtype": "property",
             "name": "diameter",
@@ -900,7 +951,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 1998,
+            "line": 2058,
             "description": "The radius of a circular sprite.",
             "itemtype": "property",
             "name": "r",
@@ -909,7 +960,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 2010,
+            "line": 2070,
             "description": "The radius of a circular sprite.",
             "itemtype": "property",
             "name": "radius",
@@ -918,7 +969,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 2022,
+            "line": 2082,
             "description": "Resizes the collider of the sprite.",
             "access": "private",
             "tagname": "_resizeCollider",
@@ -933,7 +984,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 2048,
+            "line": 2108,
             "description": "Validate convexity.",
             "access": "private",
             "tagname": "_isConvexPoly",
@@ -951,7 +1002,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 2083,
+            "line": 2143,
             "description": "The kind of shape: 'box', 'circle', 'chain', or 'polygon'.",
             "itemtype": "property",
             "name": "shape",
@@ -961,7 +1012,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 2112,
+            "line": 2172,
             "description": "You can set the sprite's update function to your own custom\nupdate function that will be run after every draw call or when\nthe updateSprites function is called.",
             "itemtype": "method",
             "name": "update",
@@ -969,7 +1020,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 2161,
+            "line": 2221,
             "description": "Updates the sprite. Called automatically at the end of the draw\ncycle.",
             "access": "private",
             "tagname": "_update",
@@ -977,7 +1028,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 2207,
+            "line": 2267,
             "description": "Default draw",
             "access": "private",
             "tagname": "_draw",
@@ -985,7 +1036,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 2238,
+            "line": 2298,
             "description": "Displays the Sprite with rotation and scaling applied before\nthe sprite's draw function is called.",
             "access": "private",
             "tagname": "_display",
@@ -993,7 +1044,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 2287,
+            "line": 2347,
             "description": "Draws a fixture. Used to draw the sprite's physics body.",
             "access": "private",
             "tagname": "_drawFixture",
@@ -1001,7 +1052,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 2322,
+            "line": 2382,
             "description": "Apply a force that is scaled to the sprite's mass.",
             "itemtype": "method",
             "name": "applyForce",
@@ -1022,7 +1073,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 2348,
+            "line": 2408,
             "description": "Apply a torque on the sprite's physics body.\nTorque is the force that causes rotation.\nA positive torque will rotate the sprite clockwise.\nA negative torque will rotate the sprite counter-clockwise.",
             "itemtype": "method",
             "name": "applyTorque",
@@ -1037,7 +1088,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 2361,
+            "line": 2421,
             "description": "Deprecated: set sprite.vel instead.\n\nSets the velocity vector.",
             "deprecated": true,
             "deprecationMessage": "setVelocity",
@@ -1060,7 +1111,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 2385,
+            "line": 2445,
             "description": "Deprecated: set direction and set speed separately\n\nSets the speed of the sprite.\nThe action overwrites the current velocity.\nIf direction is not supplied, the current direction is maintained.\nIf direction is not supplied and there is no current velocity, the\ncurrent rotation angle used for the direction.",
             "deprecated": true,
             "deprecationMessage": "setSpeed",
@@ -1081,7 +1132,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 2404,
+            "line": 2464,
             "description": "Add to the speed of the sprite.\nIf direction is not supplied, the current direction is maintained.\nIf direction is not supplied and there is no current velocity, the * current rotation angle used for the direction.",
             "itemtype": "method",
             "name": "addSpeed",
@@ -1102,7 +1153,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 2420,
+            "line": 2480,
             "description": "Move a sprite towards a position.",
             "itemtype": "method",
             "name": "moveTowards",
@@ -1127,7 +1178,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 2457,
+            "line": 2517,
             "description": "Move a sprite away from a position.",
             "itemtype": "method",
             "name": "moveAway",
@@ -1152,7 +1203,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 2471,
+            "line": 2531,
             "description": "Move the sprite a certain distance from its current position.",
             "itemtype": "method",
             "name": "move",
@@ -1184,7 +1235,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 2514,
+            "line": 2574,
             "description": "Move the sprite to a position.",
             "itemtype": "method",
             "name": "moveTo",
@@ -1213,7 +1264,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 2613,
+            "line": 2673,
             "description": "Pushes the sprite toward a point.\nThe force is added to the current velocity.\n\nLegacy method, use moveTo or moveTowards instead.",
             "deprecated": true,
             "params": [
@@ -1237,7 +1288,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 2643,
+            "line": 2703,
             "itemtype": "method",
             "name": "rotateTowards",
             "params": [
@@ -1266,7 +1317,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 2661,
+            "line": 2721,
             "description": "Finds the minimium amount the sprite would have to rotate to\n\"face\" a position at a rotation.",
             "itemtype": "method",
             "name": "angleTo",
@@ -1295,7 +1346,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 2699,
+            "line": 2759,
             "description": "Rotates the sprite to a position at a rotation.",
             "itemtype": "method",
             "name": "rotateTo",
@@ -1329,7 +1380,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 2721,
+            "line": 2781,
             "description": "Rotates the sprite by an amount at a specified angles per frame speed.",
             "itemtype": "method",
             "name": "rotate",
@@ -1353,7 +1404,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 2768,
+            "line": 2828,
             "description": "Changes the sprite's animation. Use `addAni` to define the\nanimation(s) first.",
             "itemtype": "method",
             "name": "changeAni",
@@ -1371,7 +1422,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 2832,
+            "line": 2892,
             "description": "Changes the sprite's animation. Use `addAni` to define the\nanimation(s) first. Alt for `changeAni`.",
             "itemtype": "method",
             "name": "changeAnimation",
@@ -1389,7 +1440,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 2846,
+            "line": 2906,
             "description": "Changes the displayed animation. The animation must be added first\nusing the sprite.addAnimation method. The animation could also be\nadded using the group.addAnimation method to a group the sprite\nhas been added to.\n\nSee SpriteAnimation for more control over the sequence.",
             "itemtype": "method",
             "name": "changeAnimation",
@@ -1404,7 +1455,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 2881,
+            "line": 2941,
             "description": "Removes the Sprite from the sketch.\nThe removed Sprite will not be drawn or updated anymore.",
             "itemtype": "method",
             "name": "remove",
@@ -1412,7 +1463,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 2898,
+            "line": 2958,
             "description": "Returns the sprite's unique identifier",
             "itemtype": "method",
             "name": "toString",
@@ -1423,7 +1474,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 2924,
+            "line": 2984,
             "description": "Returns true on the first frame that the sprite collides with the\ntarget sprite or group.\n\nCustom collision event handling can be done by using this function\nin an if statement or adding a callback as the second parameter.",
             "itemtype": "method",
             "name": "collides",
@@ -1444,7 +1495,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 2941,
+            "line": 3001,
             "description": "Returns a truthy value while the sprite is colliding with the\ntarget sprite or group. The value is the number of frames that\nthe sprite has been colliding with the target.",
             "itemtype": "method",
             "name": "colliding",
@@ -1469,7 +1520,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 2958,
+            "line": 3018,
             "description": "Returns true on the first frame that the sprite no longer overlaps\nwith the target sprite or group.",
             "itemtype": "method",
             "name": "collided",
@@ -1494,7 +1545,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 3001,
+            "line": 3061,
             "description": "Returns true on the first frame that the sprite overlaps with the\ntarget sprite or group.\n\nCustom overlap event handling can be done by using this function\nin an if statement or adding a callback as the second parameter.",
             "itemtype": "method",
             "name": "overlaps",
@@ -1515,7 +1566,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 3018,
+            "line": 3078,
             "description": "Returns a truthy value while the sprite is overlapping with the\ntarget sprite or group. The value returned is the number of\nframes the sprite has been overlapping with the target.",
             "itemtype": "method",
             "name": "overlapping",
@@ -1540,7 +1591,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 3035,
+            "line": 3095,
             "description": "Returns true on the first frame that the sprite no longer overlaps\nwith the target sprite or group.",
             "itemtype": "method",
             "name": "overlapped",
@@ -1565,7 +1616,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 3062,
+            "line": 3122,
             "description": "Use sprite.animation.name instead.",
             "deprecated": true,
             "deprecationMessage": "getAnimationLabel",
@@ -1576,7 +1627,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 3128,
+            "line": 3188,
             "description": "The name of the animation",
             "itemtype": "property",
             "name": "name",
@@ -1585,7 +1636,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 3149,
+            "line": 3209,
             "description": "The index of the current frame that the animation is on.",
             "itemtype": "property",
             "name": "frame",
@@ -1594,7 +1645,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 3161,
+            "line": 3221,
             "description": "The offset is how far the animation should be placed from\nthe location it is played at.",
             "itemtype": "property",
             "name": "offset",
@@ -1606,7 +1657,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 3175,
+            "line": 3235,
             "description": "True if the animation is currently playing.",
             "itemtype": "property",
             "name": "playing",
@@ -1616,7 +1667,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 3184,
+            "line": 3244,
             "description": "Animation visibility.",
             "itemtype": "property",
             "name": "visible",
@@ -1626,7 +1677,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 3193,
+            "line": 3253,
             "description": "If set to false the animation will stop after reaching the last frame",
             "itemtype": "property",
             "name": "looping",
@@ -1636,7 +1687,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 3202,
+            "line": 3262,
             "description": "Ends the loop on frame 0 instead of the last frame.\nThis is useful for animations that are symmetric.\nFor example a walking cycle where the first frame is the\nsame as the last frame.",
             "itemtype": "property",
             "name": "endOnFirstFrame",
@@ -1646,7 +1697,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 3214,
+            "line": 3274,
             "description": "True if frame changed during the last draw cycle",
             "itemtype": "property",
             "name": "frameChanged",
@@ -1655,7 +1706,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 3445,
+            "line": 3505,
             "description": "Delay between frames in number of draw cycles.\nIf set to 4 the framerate of the animation would be the\nsketch framerate divided by 4 (60fps = 15fps)",
             "itemtype": "property",
             "name": "frameDelay",
@@ -1665,13 +1716,13 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 3461,
+            "line": 3521,
             "description": "TODO frameRate\nAnother way to set the animation's frame delay.",
             "class": "SpriteAnimation"
         },
         {
             "file": "v3/p5.play.js",
-            "line": 3472,
+            "line": 3532,
             "description": "The animation's scale.\n\nCan be set to a number to scale both x and y\nor an object with x and/or y properties.",
             "itemtype": "property",
             "name": "scale",
@@ -1681,7 +1732,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 3494,
+            "line": 3554,
             "description": "Make a copy of the animation.",
             "itemtype": "method",
             "name": "clone",
@@ -1693,7 +1744,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 3515,
+            "line": 3575,
             "description": "Draws the animation at coordinate x and y.\nUpdates the frames automatically.\n\nOptional parameters effect the current draw cycle only and\nare not saved between draw cycles.",
             "itemtype": "method",
             "name": "draw",
@@ -1731,7 +1782,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 3608,
+            "line": 3668,
             "description": "Plays the animation, starting from the specified frame.",
             "itemtype": "method",
             "name": "play",
@@ -1742,7 +1793,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 3625,
+            "line": 3685,
             "description": "Pauses the animation.",
             "itemtype": "method",
             "name": "pause",
@@ -1750,7 +1801,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 3635,
+            "line": 3695,
             "description": "Stops the animation. Alt for pause.",
             "itemtype": "method",
             "name": "stop",
@@ -1758,7 +1809,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 3645,
+            "line": 3705,
             "description": "Plays the animation backwards.\nEquivalent to ani.goToFrame(0)",
             "itemtype": "method",
             "name": "rewind",
@@ -1769,7 +1820,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 3658,
+            "line": 3718,
             "description": "Plays the animation forwards and loops it.",
             "itemtype": "method",
             "name": "loop",
@@ -1777,7 +1828,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 3668,
+            "line": 3728,
             "description": "Prevents the animation from looping",
             "itemtype": "method",
             "name": "noLoop",
@@ -1785,7 +1836,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 3677,
+            "line": 3737,
             "description": "fire when animation ends",
             "itemtype": "method",
             "name": "onComplete",
@@ -1797,7 +1848,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 3687,
+            "line": 3747,
             "description": "Deprecated, change the frame property directly.\n\nChanges the current frame.",
             "deprecated": true,
             "params": [
@@ -1811,7 +1862,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 3704,
+            "line": 3764,
             "description": "Goes to the next frame and stops.",
             "itemtype": "method",
             "name": "nextFrame",
@@ -1819,7 +1870,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 3717,
+            "line": 3777,
             "description": "Goes to the previous frame and stops.",
             "itemtype": "method",
             "name": "previousFrame",
@@ -1827,7 +1878,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 3730,
+            "line": 3790,
             "description": "Plays the animation forward or backward toward a target frame.",
             "itemtype": "method",
             "name": "goToFrame",
@@ -1845,7 +1896,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 3756,
+            "line": 3816,
             "description": "Use .frame instead.\n\nReturns the current frame number.",
             "deprecated": true,
             "return": {
@@ -1856,7 +1907,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 3769,
+            "line": 3829,
             "description": "Use .lastFrame instead.\n\nReturns the last frame number.",
             "deprecated": true,
             "return": {
@@ -1867,7 +1918,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 3782,
+            "line": 3842,
             "description": "Returns the index of the last frame.",
             "itemtype": "property",
             "name": "lastFrame",
@@ -1877,7 +1928,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 3793,
+            "line": 3853,
             "description": "Returns the current frame as p5.Image.",
             "itemtype": "method",
             "name": "frameImage",
@@ -1890,7 +1941,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 3811,
+            "line": 3871,
             "description": "Width of the animation.",
             "itemtype": "property",
             "name": "w",
@@ -1899,7 +1950,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 3820,
+            "line": 3880,
             "description": "Width of the animation.",
             "itemtype": "property",
             "name": "width",
@@ -1908,7 +1959,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 3835,
+            "line": 3895,
             "description": "Height of the animation.",
             "itemtype": "property",
             "name": "h",
@@ -1917,7 +1968,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 3844,
+            "line": 3904,
             "description": "Height of the animation.",
             "itemtype": "property",
             "name": "height",
@@ -1926,7 +1977,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 3859,
+            "line": 3919,
             "description": "The frames of the animation.",
             "itemtype": "property",
             "name": "frames",
@@ -1935,7 +1986,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 3873,
+            "line": 3933,
             "description": "The frames of the animation. Alt for ani.frames",
             "itemtype": "property",
             "name": "images",
@@ -1944,7 +1995,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 3928,
+            "line": 3988,
             "description": "Keys are the animation label, values are SpriteAnimation objects.",
             "itemtype": "property",
             "name": "animations",
@@ -1953,19 +2004,19 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 3936,
+            "line": 3996,
             "description": "Contains all the collision callback functions for this group\nwhen it comes in contact with other sprites or groups.",
             "class": "Group"
         },
         {
             "file": "v3/p5.play.js",
-            "line": 3945,
+            "line": 4005,
             "description": "Contains all the overlap callback functions for this group\nwhen it comes in contact with other sprites or groups.",
             "class": "Group"
         },
         {
             "file": "v3/p5.play.js",
-            "line": 4074,
+            "line": 4134,
             "description": "Reference to the group's current animation.",
             "itemtype": "property",
             "name": "ani",
@@ -1974,7 +2025,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 4087,
+            "line": 4147,
             "description": "Reference to the group's current animation.",
             "itemtype": "property",
             "name": "animation",
@@ -1983,7 +2034,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 4100,
+            "line": 4160,
             "description": "The group's animations.",
             "itemtype": "property",
             "name": "anis",
@@ -1992,7 +2043,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 4109,
+            "line": 4169,
             "description": "Reference to the group's current image.",
             "itemtype": "property",
             "name": "img",
@@ -2001,7 +2052,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 4121,
+            "line": 4181,
             "description": "Reference to the group's current image.",
             "itemtype": "property",
             "name": "image",
@@ -2010,7 +2061,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 4133,
+            "line": 4193,
             "description": "Depending on the value that the amount property is set to, the group will\neither add or remove sprites.",
             "itemtype": "property",
             "name": "amount",
@@ -2019,7 +2070,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 4193,
+            "line": 4253,
             "description": "Returns true on the first frame that the group collides with the\ntarget sprite or group.\n\nCustom collision event handling can be done by using this function\nin an if statement or adding a callback as the second parameter.",
             "itemtype": "method",
             "name": "collides",
@@ -2040,7 +2091,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 4210,
+            "line": 4270,
             "description": "Returns a truthy value while the group is colliding with the\ntarget sprite or group. The value is the number of frames that\nthe group has been colliding with the target.",
             "itemtype": "method",
             "name": "colliding",
@@ -2065,7 +2116,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 4227,
+            "line": 4287,
             "description": "Returns true on the first frame that the group no longer overlaps\nwith the target sprite or group.",
             "itemtype": "method",
             "name": "collided",
@@ -2090,7 +2141,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 4275,
+            "line": 4335,
             "description": "Returns true on the first frame that the group overlaps with the\ntarget sprite or group.\n\nCustom overlap event handling can be done by using this function\nin an if statement or adding a callback as the second parameter.",
             "itemtype": "method",
             "name": "overlaps",
@@ -2111,7 +2162,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 4292,
+            "line": 4352,
             "description": "Returns a truthy value while the group is overlapping with the\ntarget sprite or group. The value returned is the number of\nframes the group has been overlapping with the target.",
             "itemtype": "method",
             "name": "overlapping",
@@ -2136,7 +2187,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 4309,
+            "line": 4369,
             "description": "Returns true on the first frame that the group no longer overlaps\nwith the target sprite or group.",
             "itemtype": "method",
             "name": "overlapped",
@@ -2161,7 +2212,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 4324,
+            "line": 4384,
             "description": "EXPERIMENTAL implementation for beta testing!\n\nApply a force that is scaled to the sprite's mass.",
             "itemtype": "method",
             "name": "applyForce",
@@ -2182,35 +2233,35 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 4339,
+            "line": 4399,
             "itemtype": "method",
             "name": "move",
             "class": "Group"
         },
         {
             "file": "v3/p5.play.js",
-            "line": 4350,
+            "line": 4410,
             "itemtype": "method",
             "name": "moveTo",
             "class": "Group"
         },
         {
             "file": "v3/p5.play.js",
-            "line": 4373,
+            "line": 4433,
             "itemtype": "method",
             "name": "moveTowards",
             "class": "Group"
         },
         {
             "file": "v3/p5.play.js",
-            "line": 4396,
+            "line": 4456,
             "itemtype": "method",
             "name": "moveAway",
             "class": "Group"
         },
         {
             "file": "v3/p5.play.js",
-            "line": 4419,
+            "line": 4479,
             "description": "EXPERIMENTAL! Subject to change in the future!\n\nRotates the group around its centroid.",
             "itemtype": "method",
             "name": "orbit",
@@ -2225,7 +2276,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 4445,
+            "line": 4505,
             "description": "Gets the member at index i.",
             "deprecated": true,
             "deprecationMessage": "get",
@@ -2240,7 +2291,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 4456,
+            "line": 4516,
             "description": "Check if a sprite is in the group.",
             "itemtype": "method",
             "name": "includes",
@@ -2259,7 +2310,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 4464,
+            "line": 4524,
             "description": "Use group.includes(sprite) instead.",
             "deprecated": true,
             "deprecationMessage": "contains",
@@ -2278,7 +2329,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 4476,
+            "line": 4536,
             "description": "Adds a sprite to the group. Returns true if the sprite was added\nbecause it was not already in the group.",
             "itemtype": "method",
             "name": "push",
@@ -2293,7 +2344,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 4496,
+            "line": 4556,
             "description": "Alias for push.",
             "itemtype": "method",
             "name": "add",
@@ -2308,7 +2359,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 4506,
+            "line": 4566,
             "itemtype": "property",
             "name": "length",
             "return": {
@@ -2319,7 +2370,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 4511,
+            "line": 4571,
             "description": "Alias for group.length",
             "deprecated": true,
             "deprecationMessage": "size",
@@ -2327,7 +2378,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 4519,
+            "line": 4579,
             "description": "Returns the group's unique identifier.",
             "return": {
                 "description": "groupID",
@@ -2337,7 +2388,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 4528,
+            "line": 4588,
             "description": "Remove sprites that go outside the given culling boundary\nrelative to the camera.",
             "itemtype": "method",
             "name": "cull",
@@ -2375,7 +2426,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 4570,
+            "line": 4630,
             "description": "If no input is given all sprites in the group are removed.\n\nIf a sprite or index is given, that sprite is removed from this\ngroup and any group this group inherits from except for the\nallSprites group.",
             "itemtype": "method",
             "name": "remove",
@@ -2394,7 +2445,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 4612,
+            "line": 4672,
             "description": "Removes all sprites from the group and destroys the group.",
             "itemtype": "method",
             "name": "removeAll",
@@ -2402,7 +2453,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 4621,
+            "line": 4681,
             "description": "Returns the highest depth in a group",
             "deprecated": true,
             "deprecationMessage": "maxDepth",
@@ -2414,7 +2465,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 4637,
+            "line": 4697,
             "description": "Returns the lowest depth in a group",
             "deprecated": true,
             "deprecationMessage": "minDepth",
@@ -2426,7 +2477,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 4653,
+            "line": 4713,
             "description": "Draws all the sprites in the group.",
             "itemtype": "method",
             "name": "draw",
@@ -2434,7 +2485,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 4678,
+            "line": 4738,
             "description": "Adds an animation to the sprite. Use this function in the preload p5.js\nfunction. You don't need to name the animation if the sprite will only\nuse one animation. See SpriteAnimation for more information.",
             "example": [
                 "\nsprite.addAni(name, animation);\nsprite.addAni(name, frame1, frame2, frame3...);\nsprite.addAni(name, atlas);"
@@ -2457,7 +2508,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 4726,
+            "line": 4786,
             "description": "Add multiple animations",
             "itemtype": "method",
             "name": "addAnis",
@@ -2465,21 +2516,21 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 4774,
+            "line": 4834,
             "itemtype": "property",
             "name": "offset.x",
             "class": "World"
         },
         {
             "file": "v3/p5.play.js",
-            "line": 4784,
+            "line": 4844,
             "itemtype": "property",
             "name": "offset.y",
             "class": "World"
         },
         {
             "file": "v3/p5.play.js",
-            "line": 4794,
+            "line": 4854,
             "description": "If false, animations that are stopped before they are completed,\ntypically by a call to sprite.changeAni, will restart at the\nframe they were stopped at. If true, animations will always\nstart playing from frame 0 unless specified by the user in a\nseparate `anim.changeFrame` call.",
             "itemtype": "property",
             "name": "autoResetAnimations",
@@ -2489,7 +2540,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 4846,
+            "line": 4906,
             "description": "Gravity vector (x, y)\n\nAll sprites getting",
             "itemtype": "property",
             "name": "gravity",
@@ -2497,7 +2548,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 5005,
+            "line": 5065,
             "description": "Camera zoom.\n\nA scale of 1 will be the normal size. Setting it to 2 will\nmake everything twice the size. .5 will make everything half\nsize.",
             "itemtype": "property",
             "name": "zoom",
@@ -2507,7 +2558,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 5018,
+            "line": 5078,
             "description": "Get the translated mouse position relative to the camera view.\nOffsetting and scaling the canvas will not change the sprites' position\nnor the mouseX and mouseY variables. Use this property to read the mouse\nposition if the camera moved or zoomed.",
             "itemtype": "property",
             "name": "mouse",
@@ -2516,7 +2567,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 5031,
+            "line": 5091,
             "itemtype": "property",
             "name": "mouse.x",
             "type": "{Number}",
@@ -2524,7 +2575,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 5035,
+            "line": 5095,
             "itemtype": "property",
             "name": "mouse.y",
             "type": "{Number}",
@@ -2532,7 +2583,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 5040,
+            "line": 5100,
             "description": "True if the camera is active.\nRead only property. Use the methods Camera.on() and Camera.off()\nto enable or disable the camera.",
             "itemtype": "property",
             "name": "active",
@@ -2542,7 +2593,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 5060,
+            "line": 5120,
             "description": "The camera's position. {x, y}",
             "itemtype": "property",
             "name": "pos",
@@ -2551,7 +2602,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 5069,
+            "line": 5129,
             "description": "The camera's position. Alias for pos.",
             "itemtype": "property",
             "name": "position",
@@ -2560,7 +2611,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 5079,
+            "line": 5139,
             "description": "The camera x position.",
             "itemtype": "property",
             "name": "x",
@@ -2569,7 +2620,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 5094,
+            "line": 5154,
             "description": "The camera y position.",
             "itemtype": "property",
             "name": "y",
@@ -2578,7 +2629,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 5109,
+            "line": 5169,
             "description": "Activates the camera.\nThe canvas will be drawn according to the camera position and scale until\ncamera.off() is called",
             "itemtype": "method",
             "name": "on",
@@ -2586,7 +2637,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 5125,
+            "line": 5185,
             "description": "Deactivates the camera.\nThe canvas will be drawn normally, ignoring the camera's position\nand scale until camera.on() is called",
             "itemtype": "method",
             "name": "off",
@@ -2594,7 +2645,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 5140,
+            "line": 5200,
             "description": "Used internally to find a contact callback between two sprites.",
             "access": "private",
             "tagname": "_findContactCB",
@@ -2622,13 +2673,13 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 5177,
+            "line": 5237,
             "description": "This planck function should've be named \"shouldContact\", because that's what\nit actually decides.\n\nHere we override it to allow for overlap events between sprites.",
             "class": "Camera"
         },
         {
             "file": "v3/p5.play.js",
-            "line": 5279,
+            "line": 5339,
             "description": "Equivalent to `new Tiles`",
             "itemtype": "method",
             "name": "createTiles",
@@ -2643,7 +2694,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 5319,
+            "line": 5379,
             "description": "This function is automatically called at the end of the p5.js draw\nloop, unless it was already called in the draw loop.",
             "itemtype": "method",
             "name": "updateSprites",
@@ -2668,7 +2719,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 5343,
+            "line": 5403,
             "description": "Returns the sprites at a position.",
             "itemtype": "method",
             "name": "getSpriteAt",
@@ -2691,7 +2742,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 5381,
+            "line": 5441,
             "description": "Returns the sprite at the top most layer position where\nthe mouse click occurs",
             "itemtype": "method",
             "name": "getSpriteAt",
@@ -2714,7 +2765,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 5561,
+            "line": 5621,
             "description": "Gets a color from a color palette",
             "itemtype": "method",
             "name": "colorPal",
@@ -2737,7 +2788,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 5585,
+            "line": 5645,
             "description": "Create pixel art images from a string. Each character in the\ninput string represents a color value defined in the palette\nobject.",
             "itemtype": "method",
             "name": "spriteArt",
@@ -2768,7 +2819,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 5645,
+            "line": 5705,
             "description": "Deprecated, use sprite.draw() instead.\n\nallSprites.draw() is run automatically at the end of the p5.js\ndraw loop, unless a sprite or group is drawn separately within the\ndraw loop.",
             "deprecated": true,
             "itemtype": "method",
@@ -2777,7 +2828,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 5660,
+            "line": 5720,
             "description": "Deprecated, use group.draw() instead.\n\nallSprites.draw() is run automatically at the end of the p5.js\ndraw loop, unless a sprite or group is drawn separately within the\ndraw loop.",
             "deprecated": true,
             "itemtype": "method",
@@ -2786,7 +2837,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 5676,
+            "line": 5736,
             "description": "Creates a new sprite. Equivalent to `new Sprite()`",
             "return": {
                 "description": "",
@@ -2796,7 +2847,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 5685,
+            "line": 5745,
             "description": "Creates a new group of sprites. Equivalent to `new Group()`",
             "return": {
                 "description": "",
@@ -2806,7 +2857,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 5694,
+            "line": 5754,
             "description": "Loads an animation. Equivalent to `new SpriteAnimation()`\n\nLoad animations in the preload p5.js function if you need to use\nthem when your program starts.",
             "itemtype": "method",
             "name": "loadAni",
@@ -2818,7 +2869,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 5703,
+            "line": 5763,
             "description": "Alias for loadAni",
             "itemtype": "method",
             "name": "loadAnimation",
@@ -2830,7 +2881,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 5713,
+            "line": 5773,
             "description": "Displays an animation. Similar to the p5.js image function.",
             "itemtype": "method",
             "name": "animation",
@@ -2855,7 +2906,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 5727,
+            "line": 5787,
             "description": "Delay code execution in an async function for the specified time.",
             "itemtype": "method",
             "name": "delay",
@@ -2877,7 +2928,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 5751,
+            "line": 5811,
             "description": "Sleep for the specified time. Equivalent to the delay function.",
             "itemtype": "method",
             "name": "sleep",
@@ -2899,7 +2950,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 5767,
+            "line": 5827,
             "description": "Awaitable function for playing sounds.",
             "itemtype": "method",
             "name": "play",
@@ -2918,7 +2969,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 5788,
+            "line": 5848,
             "description": "Equivalent to p5.js createCanvas function and `new Canvas()`\n\nIn p5.play a canvas can be created with an aspect ratio in the\nformat `width:height`. For example `new Canvas('16:9')` will create\nthe largest possible canvas with a 16:9 aspect ratio.\n\nThis function also disables the default keydown responses for\nthe arrow keys, slash, and spacebar. This is to prevent the\nbrowser from scrolling the page when the user is playing a game using\ncommon keyboard commands.",
             "itemtype": "method",
             "name": "createCanvas",
@@ -2938,7 +2989,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 5943,
+            "line": 6003,
             "description": "Just like the p5.js background function except it also accepts\na color pallette code.",
             "itemtype": "method",
             "name": "background",
@@ -2946,7 +2997,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 5961,
+            "line": 6021,
             "description": "Just like the p5.js fill function except it also accepts\na color pallette code.",
             "itemtype": "method",
             "name": "fill",
@@ -2954,7 +3005,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 5979,
+            "line": 6039,
             "description": "Just like the p5.js stroke function except it also accepts\na color pallette code.",
             "itemtype": "method",
             "name": "stroke",
@@ -2962,7 +3013,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 6003,
+            "line": 6063,
             "description": "Just like the p5.js loadImage function except it also caches images\nso that they are only loaded once. Multiple calls to loadImage with\nthe same path will return the same image object. It also adds the\nimage's url as a property of the image object.",
             "itemtype": "method",
             "name": "loadImage",
@@ -2995,7 +3046,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 6110,
+            "line": 6170,
             "description": "A FriendlyError is a custom error class that extends the native JS Error class.",
             "access": "private",
             "tagname": "FriendlyError",
@@ -3020,7 +3071,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 6165,
+            "line": 6225,
             "description": "A group of all the sprites.",
             "itemtype": "property",
             "name": "allSprites",
@@ -3028,7 +3079,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 6174,
+            "line": 6234,
             "description": "The planck physics world. Use this to change gravity and offset the\nsprite's coordinate system.",
             "itemtype": "property",
             "name": "world",
@@ -3036,7 +3087,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 6182,
+            "line": 6242,
             "description": "Equal to the p5.js frameCount, the amount of times the draw() function has\nbeen called.",
             "itemtype": "property",
             "name": "frame",
@@ -3044,7 +3095,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 6190,
+            "line": 6250,
             "description": "The default camera. Use this to pan and zoom the camera.",
             "itemtype": "property",
             "name": "camera",
@@ -3052,7 +3103,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 6197,
+            "line": 6257,
             "description": "Get user input from the mouse.\nStores the state of the left, center, or right mouse buttons.",
             "itemtype": "property",
             "name": "mouse",
@@ -3060,7 +3111,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 6203,
+            "line": 6263,
             "description": "Get user input from the keyboard.",
             "itemtype": "property",
             "name": "kb",
@@ -3068,7 +3119,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 6208,
+            "line": 6268,
             "description": "Alias for kb.",
             "itemtype": "property",
             "name": "keyboard",
@@ -3076,7 +3127,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 6213,
+            "line": 6273,
             "description": "Get user input from game controllers.",
             "itemtype": "property",
             "name": "contro",
@@ -3084,7 +3135,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 6240,
+            "line": 6300,
             "description": "The amount of frames an input must be pressed to be considered held.\nDefault is 12.",
             "itemtype": "property",
             "name": "holdThreshold",
@@ -3093,7 +3144,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 6250,
+            "line": 6310,
             "description": "Initializes the input's values to zero.",
             "access": "private",
             "tagname": "init",
@@ -3101,7 +3152,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 6261,
+            "line": 6321,
             "description": "Attempt to auto-correct the user's input. Inheriting classes\noverride this method.",
             "access": "private",
             "tagname": "ac",
@@ -3109,7 +3160,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 6271,
+            "line": 6331,
             "itemtype": "method",
             "name": "presses",
             "params": [
@@ -3127,7 +3178,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 6282,
+            "line": 6342,
             "itemtype": "method",
             "name": "pressing",
             "params": [
@@ -3145,7 +3196,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 6294,
+            "line": 6354,
             "itemtype": "method",
             "name": "pressed",
             "params": [
@@ -3163,7 +3214,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 6303,
+            "line": 6363,
             "itemtype": "method",
             "name": "holds",
             "params": [
@@ -3181,7 +3232,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 6314,
+            "line": 6374,
             "itemtype": "method",
             "name": "holding",
             "params": [
@@ -3199,7 +3250,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 6325,
+            "line": 6385,
             "itemtype": "method",
             "name": "held",
             "params": [
@@ -3217,7 +3268,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 6336,
+            "line": 6396,
             "itemtype": "method",
             "name": "released",
             "params": [
@@ -3235,7 +3286,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 6380,
+            "line": 6440,
             "description": "The mouse's x position.",
             "itemtype": "property",
             "name": "x",
@@ -3244,7 +3295,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 6387,
+            "line": 6447,
             "description": "The mouse's y position.",
             "itemtype": "property",
             "name": "y",
@@ -3253,7 +3304,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 6395,
+            "line": 6455,
             "description": "The mouse's position.",
             "itemtype": "property",
             "name": "pos",
@@ -3261,7 +3312,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 6402,
+            "line": 6462,
             "description": "The mouse's position. Alias for pos.",
             "itemtype": "property",
             "name": "position",
@@ -3269,7 +3320,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 6418,
+            "line": 6478,
             "itemtype": "method",
             "name": "dragging",
             "params": [
@@ -3287,7 +3338,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 6438,
+            "line": 6498,
             "itemtype": "method",
             "name": "hovers",
             "return": {
@@ -3298,7 +3349,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 6446,
+            "line": 6506,
             "itemtype": "method",
             "name": "hovering",
             "return": {
@@ -3309,7 +3360,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 6454,
+            "line": 6514,
             "itemtype": "method",
             "name": "hovered",
             "return": {
@@ -3320,7 +3371,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 6590,
+            "line": 6650,
             "description": "Obsolete: Use kb.pressing(key) instead.",
             "obsolete": "keyIsDown",
             "params": [
@@ -3334,7 +3385,7 @@
         },
         {
             "file": "v3/p5.play.js",
-            "line": 6602,
+            "line": 6662,
             "access": "private",
             "tagname": "_getKeyFromCode",
             "params": [
@@ -3347,6 +3398,12 @@
             "return": {
                 "description": "key name"
             },
+            "class": "InputDevice"
+        },
+        {
+            "file": "v3/p5.play.js",
+            "line": 6928,
+            "description": "Updates the state of all controllers.",
             "class": "InputDevice"
         },
         {
@@ -7507,23 +7564,23 @@
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " v3/p5.play.js:2048"
+            "line": " v3/p5.play.js:55"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " v3/p5.play.js:2471"
+            "line": " v3/p5.play.js:72"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " v3/p5.play.js:2514"
+            "line": " v3/p5.play.js:2108"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " v3/p5.play.js:2661"
+            "line": " v3/p5.play.js:2531"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " v3/p5.play.js:2699"
+            "line": " v3/p5.play.js:2574"
         },
         {
             "message": "replacing incorrect tag: returns with return",
@@ -7531,135 +7588,143 @@
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " v3/p5.play.js:2768"
+            "line": " v3/p5.play.js:2759"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " v3/p5.play.js:2832"
+            "line": " v3/p5.play.js:2781"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " v3/p5.play.js:2898"
+            "line": " v3/p5.play.js:2828"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " v3/p5.play.js:3062"
+            "line": " v3/p5.play.js:2892"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " v3/p5.play.js:3608"
+            "line": " v3/p5.play.js:2958"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " v3/p5.play.js:3645"
+            "line": " v3/p5.play.js:3122"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " v3/p5.play.js:3730"
+            "line": " v3/p5.play.js:3668"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " v3/p5.play.js:4519"
+            "line": " v3/p5.play.js:3705"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " v3/p5.play.js:5140"
+            "line": " v3/p5.play.js:3790"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " v3/p5.play.js:5343"
+            "line": " v3/p5.play.js:4579"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " v3/p5.play.js:5381"
+            "line": " v3/p5.play.js:5200"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " v3/p5.play.js:5561"
+            "line": " v3/p5.play.js:5403"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " v3/p5.play.js:5585"
+            "line": " v3/p5.play.js:5441"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " v3/p5.play.js:5676"
+            "line": " v3/p5.play.js:5621"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " v3/p5.play.js:5685"
+            "line": " v3/p5.play.js:5645"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " v3/p5.play.js:5694"
+            "line": " v3/p5.play.js:5736"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " v3/p5.play.js:5703"
+            "line": " v3/p5.play.js:5745"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " v3/p5.play.js:5727"
+            "line": " v3/p5.play.js:5754"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " v3/p5.play.js:5751"
+            "line": " v3/p5.play.js:5763"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " v3/p5.play.js:5767"
+            "line": " v3/p5.play.js:5787"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " v3/p5.play.js:6271"
+            "line": " v3/p5.play.js:5811"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " v3/p5.play.js:6282"
+            "line": " v3/p5.play.js:5827"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " v3/p5.play.js:6294"
+            "line": " v3/p5.play.js:6331"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " v3/p5.play.js:6303"
+            "line": " v3/p5.play.js:6342"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " v3/p5.play.js:6314"
+            "line": " v3/p5.play.js:6354"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " v3/p5.play.js:6325"
+            "line": " v3/p5.play.js:6363"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " v3/p5.play.js:6336"
+            "line": " v3/p5.play.js:6374"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " v3/p5.play.js:6418"
+            "line": " v3/p5.play.js:6385"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " v3/p5.play.js:6438"
+            "line": " v3/p5.play.js:6396"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " v3/p5.play.js:6446"
+            "line": " v3/p5.play.js:6478"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " v3/p5.play.js:6454"
+            "line": " v3/p5.play.js:6498"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " v3/p5.play.js:6506"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " v3/p5.play.js:6514"
         },
         {
             "message": "unknown tag: obsolete",
-            "line": " v3/p5.play.js:6590"
+            "line": " v3/p5.play.js:6650"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " v3/p5.play.js:6602"
+            "line": " v3/p5.play.js:6662"
         },
         {
             "message": "unknown tag: license",
@@ -7890,180 +7955,188 @@
             "line": " v3/p5.play.js:1"
         },
         {
+            "message": "Missing item type\nChecks if the given string contains a valid collider type\nor collider type code letter:\n\n'd' or 'dynamic'\n's' or 'static'\n'k' or 'kinematic'\n'n' or 'none'",
+            "line": " v3/p5.play.js:55"
+        },
+        {
+            "message": "Missing item type\nReturns an array with the line length, angle, and number of sides of a regular polygon",
+            "line": " v3/p5.play.js:72"
+        },
+        {
             "message": "Missing item type\nContains all the collision callback functions for this sprite\nwhen it comes in contact with other sprites or groups.",
-            "line": " v3/p5.play.js:308"
+            "line": " v3/p5.play.js:325"
         },
         {
             "message": "Missing item type\nContains all the overlap callback functions for this sprite\nwhen it comes in contact with other sprites or groups.",
-            "line": " v3/p5.play.js:317"
-        },
-        {
-            "message": "Missing item type\nSimilar to createSprite and the Sprite constructor except\noffset is the distance the collider is from the center of the\nsprite.",
-            "line": " v3/p5.play.js:625"
+            "line": " v3/p5.play.js:334"
         },
         {
             "message": "Missing item type\nRemoves the physics body colliders from the sprite but not\noverlap sensors.",
-            "line": " v3/p5.play.js:833"
+            "line": " v3/p5.play.js:896"
         },
         {
-            "message": "Missing item type\nEXPERIMENTAL! This function is incomplete and will be changed.\n\nAdds a joint between this sprite and another sprite.",
-            "line": " v3/p5.play.js:846"
+            "message": "Missing item type\nEXPERIMENTAL! This function doesn't work yet and will be changed.\n\nAdds a joint between this sprite and another sprite.",
+            "line": " v3/p5.play.js:909"
         },
         {
             "message": "Missing item type\nRemoves overlap sensors from the sprite.",
-            "line": " v3/p5.play.js:945"
+            "line": " v3/p5.play.js:1008"
         },
         {
             "message": "Missing item type\nClones the collider's props to be transferred to a new collider.",
-            "line": " v3/p5.play.js:976"
+            "line": " v3/p5.play.js:1039"
         },
         {
             "message": "Missing item type",
-            "line": " v3/p5.play.js:1184"
+            "line": " v3/p5.play.js:1247"
         },
         {
             "message": "Missing item type\nUse .layer instead.",
-            "line": " v3/p5.play.js:1279"
+            "line": " v3/p5.play.js:1342"
         },
         {
             "message": "Missing item type\nReturns the first node in a linked list of the planck physics\nbody's fixtures.",
-            "line": " v3/p5.play.js:1412"
+            "line": " v3/p5.play.js:1475"
         },
         {
             "message": "Missing item type\nReturns the first node in a linked list of the planck physics\nbody's fixtures.",
-            "line": " v3/p5.play.js:1419"
+            "line": " v3/p5.play.js:1482"
         },
         {
             "message": "Missing item type\nUse .static instead.",
-            "line": " v3/p5.play.js:1464"
+            "line": " v3/p5.play.js:1527"
         },
         {
             "message": "Missing item type",
-            "line": " v3/p5.play.js:1720"
+            "line": " v3/p5.play.js:1783"
         },
         {
             "message": "Missing item type\nResizes the collider of the sprite.",
-            "line": " v3/p5.play.js:2022"
+            "line": " v3/p5.play.js:2082"
         },
         {
             "message": "Missing item type\nValidate convexity.",
-            "line": " v3/p5.play.js:2048"
+            "line": " v3/p5.play.js:2108"
         },
         {
             "message": "Missing item type\nUpdates the sprite. Called automatically at the end of the draw\ncycle.",
-            "line": " v3/p5.play.js:2161"
+            "line": " v3/p5.play.js:2221"
         },
         {
             "message": "Missing item type\nDefault draw",
-            "line": " v3/p5.play.js:2207"
+            "line": " v3/p5.play.js:2267"
         },
         {
             "message": "Missing item type\nDisplays the Sprite with rotation and scaling applied before\nthe sprite's draw function is called.",
-            "line": " v3/p5.play.js:2238"
+            "line": " v3/p5.play.js:2298"
         },
         {
             "message": "Missing item type\nDraws a fixture. Used to draw the sprite's physics body.",
-            "line": " v3/p5.play.js:2287"
+            "line": " v3/p5.play.js:2347"
         },
         {
             "message": "Missing item type\nDeprecated: set sprite.vel instead.\n\nSets the velocity vector.",
-            "line": " v3/p5.play.js:2361"
+            "line": " v3/p5.play.js:2421"
         },
         {
             "message": "Missing item type\nDeprecated: set direction and set speed separately\n\nSets the speed of the sprite.\nThe action overwrites the current velocity.\nIf direction is not supplied, the current direction is maintained.\nIf direction is not supplied and there is no current velocity, the\ncurrent rotation angle used for the direction.",
-            "line": " v3/p5.play.js:2385"
+            "line": " v3/p5.play.js:2445"
         },
         {
             "message": "Missing item type\nPushes the sprite toward a point.\nThe force is added to the current velocity.\n\nLegacy method, use moveTo or moveTowards instead.",
-            "line": " v3/p5.play.js:2613"
+            "line": " v3/p5.play.js:2673"
         },
         {
             "message": "Missing item type\nUse sprite.animation.name instead.",
-            "line": " v3/p5.play.js:3062"
+            "line": " v3/p5.play.js:3122"
         },
         {
             "message": "Missing item type\nTODO frameRate\nAnother way to set the animation's frame delay.",
-            "line": " v3/p5.play.js:3461"
+            "line": " v3/p5.play.js:3521"
         },
         {
             "message": "Missing item type\nDeprecated, change the frame property directly.\n\nChanges the current frame.",
-            "line": " v3/p5.play.js:3687"
+            "line": " v3/p5.play.js:3747"
         },
         {
             "message": "Missing item type\nUse .frame instead.\n\nReturns the current frame number.",
-            "line": " v3/p5.play.js:3756"
+            "line": " v3/p5.play.js:3816"
         },
         {
             "message": "Missing item type\nUse .lastFrame instead.\n\nReturns the last frame number.",
-            "line": " v3/p5.play.js:3769"
+            "line": " v3/p5.play.js:3829"
         },
         {
             "message": "Missing item type\nContains all the collision callback functions for this group\nwhen it comes in contact with other sprites or groups.",
-            "line": " v3/p5.play.js:3936"
+            "line": " v3/p5.play.js:3996"
         },
         {
             "message": "Missing item type\nContains all the overlap callback functions for this group\nwhen it comes in contact with other sprites or groups.",
-            "line": " v3/p5.play.js:3945"
+            "line": " v3/p5.play.js:4005"
         },
         {
             "message": "Missing item type\nGets the member at index i.",
-            "line": " v3/p5.play.js:4445"
+            "line": " v3/p5.play.js:4505"
         },
         {
             "message": "Missing item type\nUse group.includes(sprite) instead.",
-            "line": " v3/p5.play.js:4464"
+            "line": " v3/p5.play.js:4524"
         },
         {
             "message": "Missing item type\nAlias for group.length",
-            "line": " v3/p5.play.js:4511"
+            "line": " v3/p5.play.js:4571"
         },
         {
             "message": "Missing item type\nReturns the group's unique identifier.",
-            "line": " v3/p5.play.js:4519"
+            "line": " v3/p5.play.js:4579"
         },
         {
             "message": "Missing item type\nReturns the highest depth in a group",
-            "line": " v3/p5.play.js:4621"
+            "line": " v3/p5.play.js:4681"
         },
         {
             "message": "Missing item type\nReturns the lowest depth in a group",
-            "line": " v3/p5.play.js:4637"
+            "line": " v3/p5.play.js:4697"
         },
         {
             "message": "Missing item type\nUsed internally to find a contact callback between two sprites.",
-            "line": " v3/p5.play.js:5140"
+            "line": " v3/p5.play.js:5200"
         },
         {
             "message": "Missing item type\nThis planck function should've be named \"shouldContact\", because that's what\nit actually decides.\n\nHere we override it to allow for overlap events between sprites.",
-            "line": " v3/p5.play.js:5177"
+            "line": " v3/p5.play.js:5237"
         },
         {
             "message": "Missing item type\nCreates a new sprite. Equivalent to `new Sprite()`",
-            "line": " v3/p5.play.js:5676"
+            "line": " v3/p5.play.js:5736"
         },
         {
             "message": "Missing item type\nCreates a new group of sprites. Equivalent to `new Group()`",
-            "line": " v3/p5.play.js:5685"
+            "line": " v3/p5.play.js:5745"
         },
         {
             "message": "Missing item type\nA FriendlyError is a custom error class that extends the native JS Error class.",
-            "line": " v3/p5.play.js:6110"
+            "line": " v3/p5.play.js:6170"
         },
         {
             "message": "Missing item type\nInitializes the input's values to zero.",
-            "line": " v3/p5.play.js:6250"
+            "line": " v3/p5.play.js:6310"
         },
         {
             "message": "Missing item type\nAttempt to auto-correct the user's input. Inheriting classes\noverride this method.",
-            "line": " v3/p5.play.js:6261"
+            "line": " v3/p5.play.js:6321"
         },
         {
             "message": "Missing item type\nObsolete: Use kb.pressing(key) instead.",
-            "line": " v3/p5.play.js:6590"
+            "line": " v3/p5.play.js:6650"
         },
         {
             "message": "Missing item type",
-            "line": " v3/p5.play.js:6602"
+            "line": " v3/p5.play.js:6662"
+        },
+        {
+            "message": "Missing item type\nUpdates the state of all controllers.",
+            "line": " v3/p5.play.js:6928"
         },
         {
             "message": "Missing item type\nPlanck.js v1.0.0-alpha.4",

@@ -133,12 +133,51 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 
 	// scale from planck coordinates to p5 coordinates
 	const scaleFrom = ({ x, y }, tileSize) =&gt; new pl.Vec2((x / tileSize) * plScale, (y / tileSize) * plScale);
+	const scaleXFrom = (x, tileSize) =&gt; (x / tileSize) * plScale;
 
 	const fixRound = (val) =&gt; (Math.abs(val - Math.round(val)) &lt;= pl.Settings.linearSlop ? Math.round(val) : val);
 	const isArrowFunction = (fn) =&gt;
 		!/^(?:(?:\/\*[^(?:\*\/)]*\*\/\s*)|(?:\/\/[^\r\n]*))*\s*(?:(?:(?:async\s(?:(?:\/\*[^(?:\*\/)]*\*\/\s*)|(?:\/\/[^\r\n]*))*\s*)?function|class)(?:\s|(?:(?:\/\*[^(?:\*\/)]*\*\/\s*)|(?:\/\/[^\r\n]*))*)|(?:[_$\w][\w0-9_$]*\s*(?:\/\*[^(?:\*\/)]*\*\/\s*)*\s*\()|(?:\[\s*(?:\/\*[^(?:\*\/)]*\*\/\s*)*\s*(?:(?:[&#x27;][^&#x27;]+[&#x27;])|(?:[&quot;][^&quot;]+[&quot;]))\s*(?:\/\*[^(?:\*\/)]*\*\/\s*)*\s*\]\())/.test(
 			fn.toString()
 		);
+
+	/**
+	 * Checks if the given string contains a valid collider type
+	 * or collider type code letter:
+	 *
+	 * &#x27;d&#x27; or &#x27;dynamic&#x27;
+	 * &#x27;s&#x27; or &#x27;static&#x27;
+	 * &#x27;k&#x27; or &#x27;kinematic&#x27;
+	 * &#x27;n&#x27; or &#x27;none&#x27;
+	 *
+	 * @param {String} t type name
+	 * @returns {Boolean} true if the given string contains a valid collider type
+	 */
+	function isColliderType(t) {
+		let abr = t.slice(0, 2);
+		return t == &#x27;d&#x27; || t == &#x27;s&#x27; || t == &#x27;k&#x27; || t == &#x27;n&#x27; || abr == &#x27;dy&#x27; || abr == &#x27;st&#x27; || abr == &#x27;ki&#x27; || abr == &#x27;no&#x27;;
+	}
+
+	/**
+	 * Returns an array with the line length, angle, and number of sides of a regular polygon
+	 *
+	 * @param {String} n name of the regular polygon
+	 * @param {Number} l side length
+	 * @returns {Boolean} an array [line, angle, sides]
+	 */
+	function getRegularPolygon(n, l) {
+		if (n == &#x27;triangle&#x27;) l = [l, -120, 3];
+		else if (n == &#x27;square&#x27;) l = [l, -90, 4];
+		else if (n == &#x27;pentagon&#x27;) l = [l, -72, 5];
+		else if (n == &#x27;hexagon&#x27;) l = [l, -60, 6];
+		else if (n == &#x27;septagon&#x27;) l = [l, -51.4285714286, 7];
+		else if (n == &#x27;octagon&#x27;) l = [l, -45, 8];
+		else if (n == &#x27;enneagon&#x27;) l = [l, -40, 9];
+		else if (n == &#x27;decagon&#x27;) l = [l, -36, 10];
+		else if (n == &#x27;hendecagon&#x27;) l = [l, -32.7272727273, 11];
+		else if (n == &#x27;dodecagon&#x27;) l = [l, -30, 12];
+		return l;
+	}
 
 	let spriteProps = [
 		&#x27;bounciness&#x27;,
@@ -281,32 +320,10 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 					if (Array.isArray(h)) {
 						throw new FriendlyError(&#x27;Sprite&#x27;, 1, [&#x60;[[${w}], [${h}]]&#x60;]);
 					}
-					let abr = h.slice(0, 2);
-					// h is a collider type
-					if (
-						h == &#x27;d&#x27; ||
-						h == &#x27;s&#x27; ||
-						h == &#x27;k&#x27; ||
-						h == &#x27;n&#x27; ||
-						abr == &#x27;dy&#x27; ||
-						abr == &#x27;st&#x27; ||
-						abr == &#x27;ki&#x27; ||
-						abr == &#x27;no&#x27;
-					) {
+					if (isColliderType(h)) {
 						collider = h;
 					} else {
-						// h is the name of a regular polygon
-						if (h == &#x27;circle&#x27;) h == undefined;
-						else if (h == &#x27;triangle&#x27;) w = [w, -120, 3];
-						else if (h == &#x27;square&#x27;) w = [w, -90, 4];
-						else if (h == &#x27;pentagon&#x27;) w = [w, -72, 5];
-						else if (h == &#x27;hexagon&#x27;) w = [w, -60, 6];
-						else if (h == &#x27;septagon&#x27;) w = [w, -51.4285714286, 7];
-						else if (h == &#x27;octagon&#x27;) w = [w, -45, 8];
-						else if (h == &#x27;enneagon&#x27;) w = [w, -40, 9];
-						else if (h == &#x27;decagon&#x27;) w = [w, -36, 10];
-						else if (h == &#x27;hendecagon&#x27;) w = [w, -32.7272727273, 11];
-						else if (h == &#x27;dodecagon&#x27;) w = [w, -30, 12];
+						w = getRegularPolygon(h, w);
 					}
 					h = undefined;
 				}
@@ -547,7 +564,8 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 			this.mouse = new SpriteMouse();
 
 			if (this.collider != &#x27;none&#x27;) {
-				this.addCollider(0, 0, w, h);
+				if (this._vertexMode) this.addCollider(w, h);
+				else this.addCollider(0, 0, w, h);
 			} else {
 				this.w = w || (this.tileSize &gt; 1 ? 1 : 50);
 				this.h = h || this.w;
@@ -712,25 +730,56 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 		}
 
 		/**
-		 * Similar to createSprite and the Sprite constructor except
-		 * offset is the distance the collider is from the center of the
-		 * sprite.
+		 * EXPERIMENTAL method! Subject to change!
 		 *
+		 * Adds a collider (fixture) to the sprite&#x27;s physics body.
+		 *
+		 * It accepts parameters in a similar format to the Sprite
+		 * constructor except the first two parameters are x and y offsets,
+		 * the distance new collider should be from the center of the sprite.
+		 *
+		 * One limitation of the current implementation is that the collider
+		 * type can&#x27;t be changed without losing every collider added to the
+		 * sprite besides the first. This will be fixed in a future release.
+		 *
+		 * @method addCollider
 		 * @param {Number} offsetX distance from the center of the sprite
 		 * @param {Number} offsetY distance from the center of the sprite
+		 * @param {Number} w width of the collider
+		 * @param {Number} h height of the collider
 		 */
 		addCollider(offsetX, offsetY, w, h) {
+			let args = [...arguments];
 			let path, shape;
+
+			if (args.length &lt; 3) {
+				offsetX = 0;
+				offsetY = 0;
+				w = args[0];
+				h = args[1];
+				this._vertexMode = true;
+			}
 
 			offsetX ??= 0;
 			offsetY ??= 0;
 			w ??= this._w;
-			if (this.shape &amp;&amp; this.shape != &#x27;circle&#x27;) {
+			if (!this.body &amp;&amp; this.shape &amp;&amp; this.shape != &#x27;circle&#x27;) {
 				h ??= this._h;
 			}
 
-			if (Array.isArray(w)) {
-				path = w;
+			// if (w is chain array) or (diameter/side length and h is a
+			// collider type or the name of a regular polygon)
+			if (Array.isArray(w) || typeof h == &#x27;string&#x27;) {
+				if (!isNaN(w)) w = Number(w);
+				if (typeof w != &#x27;number&#x27; &amp;&amp; Array.isArray(w[0])) {
+					this.originMode = &#x27;start&#x27;;
+				}
+				if (typeof h == &#x27;string&#x27;) {
+					path = getRegularPolygon(h, w);
+					h = undefined;
+				} else {
+					path = w;
+				}
 			} else {
 				if (w !== undefined &amp;&amp; h === undefined) shape ??= &#x27;circle&#x27;;
 				shape ??= &#x27;box&#x27;;
@@ -756,15 +805,12 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 			if (shape == &#x27;box&#x27;) {
 				s = pl.Box(dimensions.x / 2, dimensions.y / 2, scaleTo({ x: offsetX, y: offsetY }, this.tileSize), 0);
 			} else if (shape == &#x27;circle&#x27;) {
-				s = pl.Circle(dimensions.x / 2);
-				s.m_p.x = 0;
-				s.m_p.y = 0;
+				s = pl.Circle(scaleTo({ x: offsetX, y: offsetY }, this.tileSize), dimensions.x / 2);
 			} else if (path) {
 				let vecs = [{ x: 0, y: 0 }];
 				let vert = { x: 0, y: 0 };
 				let min = { x: 0, y: 0 };
 				let max = { x: 0, y: 0 };
-				let least = { x: Number.MAX_SAFE_INTEGER, y: Number.MAX_SAFE_INTEGER };
 
 				// if the path is an array of position arrays
 				let usesVertices = Array.isArray(path[0]);
@@ -776,18 +822,28 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 					if (vert.y &gt; max.y) max.y = vert.y;
 				}
 
+				let x, y;
 				if (usesVertices) {
 					if (this._vertexMode) {
-						this.x = path[0][0];
-						this.y = path[0][1];
+						x = path[0][0];
+						y = path[0][1];
+						// log(x, y);
+						if (!this.body) {
+							this.x = x;
+							this.y = y;
+						} else {
+							x = this.x - this._relativeOrigin.x;
+							y = this.y - this._relativeOrigin.y;
+							vecs.pop();
+						}
 					}
 					for (let i = 0; i &lt; path.length; i++) {
 						if (this._vertexMode) {
-							if (i == 0) continue;
-							if (path[i][0] &lt; least.x) least.x = path[i][0];
-							if (path[i][1] &lt; least.y) least.y = path[i][1];
-							vert.x = path[i][0] - this.x;
-							vert.y = path[i][1] - this.y;
+							if (i == 0 &amp;&amp; !this.body) continue;
+							// verts are relative to the first vert
+							vert.x = path[i][0] - x;
+							vert.y = path[i][1] - y;
+							log(i, vert.x, vert.y);
 						} else {
 							vert.x += path[i][0];
 							vert.y += path[i][1];
@@ -816,17 +872,20 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 					}
 				}
 
-				w = max.x - min.x;
-				this._hw = w * 0.5;
-				h = max.y - min.y;
-				this._hh = h * 0.5;
-
-				if (Math.round(vert.x * 1e6) / 1e6 == 0 &amp;&amp; Math.round(vert.y * 1e6) / 1e6 == 0) {
+				if (
+					Math.abs(Math.abs(vecs[0].x) - Math.abs(vecs[vecs.length - 1].x)) &lt;= pl.Settings.linearSlop &amp;&amp;
+					Math.abs(Math.abs(vecs[0].y) - Math.abs(vecs[vecs.length - 1].y)) &lt;= pl.Settings.linearSlop
+				) {
 					shape = &#x27;polygon&#x27;;
 					this.originMode = &#x27;center&#x27;;
 				} else {
 					shape = &#x27;chain&#x27;;
 				}
+
+				w = max.x - min.x;
+				this._hw = w * 0.5;
+				h = max.y - min.y;
+				this._hh = h * 0.5;
 
 				let isConvex = false;
 				if (shape == &#x27;polygon&#x27; &amp;&amp; this._isConvexPoly(vecs.slice(0, -1))) {
@@ -835,12 +894,10 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 
 				if (this.originMode == &#x27;start&#x27;) {
 					for (let i = 0; i &lt; vecs.length; i++) {
-						let vec = vecs[i];
-						vecs[i] = new pl.Vec2((vec.x * this.tileSize) / plScale, (vec.y * this.tileSize) / plScale);
+						vecs[i] = scaleTo(vecs[i], this.tileSize);
 					}
 				} else {
-					// origin is center
-
+					// the center relative to the first vertex
 					let centerX = 0;
 					let centerY = 0;
 					// use centroid of a triangle method to get center
@@ -848,32 +905,40 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 					let sumX = 0;
 					let sumY = 0;
 
-					// last vertex is same as first
 					let vl = vecs.length;
+					// last vertex is same as first
 					if (shape == &#x27;polygon&#x27; || isConvex) vl--;
 					for (let i = 0; i &lt; vl; i++) {
 						sumX += vecs[i].x;
 						sumY += vecs[i].y;
 					}
-
 					centerX = sumX / vl;
 					centerY = sumY / vl;
-					// }
+
+					if (!this.body) {
+						this._relativeOrigin = { x: centerX, y: centerY };
+					}
+
 					// use bounding box method to get center
+					// not how planck does it!
 					// centerX = this._hw - min.x;
 					// centerY = this._hh - min.y;
-					// }
+
 					if (this._vertexMode &amp;&amp; usesVertices) {
-						this.x = least.x + centerX;
-						this.y = least.y + centerY;
+						if (!this.body) {
+							// repositions the sprite&#x27;s x, y coordinates
+							// to be in the center of the shape
+							this.x += centerX;
+							this.y += centerY;
+						} else {
+							centerX = this._relativeOrigin.x;
+							centerY = this._relativeOrigin.y;
+						}
 					}
 
 					for (let i = 0; i &lt; vecs.length; i++) {
 						let vec = vecs[i];
-						vecs[i] = new pl.Vec2(
-							((vec.x - centerX) * this.tileSize) / plScale,
-							((vec.y - centerY) * this.tileSize) / plScale
-						);
+						vecs[i] = scaleTo({ x: vec.x + offsetX - centerX, y: vec.y + offsetY - centerY }, this.tileSize);
 					}
 				}
 
@@ -901,12 +966,10 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 				});
 				this.body.sprite = this;
 			}
-			this.body.createFixture(props);
 			if (!this._shape) {
 				this._shape = shape;
-			} else if (this.fixture.getNext()) {
-				this._shape = &#x27;combo&#x27;;
 			}
+			this.body.createFixture(props);
 
 			this._w = w;
 			this._hw = w * 0.5;
@@ -933,7 +996,7 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 		}
 
 		/**
-		 * EXPERIMENTAL! This function is incomplete and will be changed.
+		 * EXPERIMENTAL! This function doesn&#x27;t work yet and will be changed.
 		 *
 		 * Adds a joint between this sprite and another sprite.
 		 *
@@ -1857,19 +1920,16 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 		}
 
 		_getVertices(output2DArrays) {
-			let s = this.body.getFixtureList().getShape();
+			let f = this.fixture;
+			while (f.m_next) f = f.m_next;
+			let s = f.getShape();
 			let v = [...s.m_vertices];
 			if (s.m_type == &#x27;polygon&#x27;) v.unshift(v.at(-1));
 			let x = this.x;
 			let y = this.y;
-			if (this.originMode == &#x27;center&#x27;) {
-				let minX = Math.min(...v.map((v) =&gt; v.x));
-				let minY = Math.min(...v.map((v) =&gt; v.y));
-				x = this._hw + minX;
-				y = this._hh + minY;
-			}
 			for (let i = 0; i &lt; v.length; i++) {
-				let arr = [v[i].x * plScale + x, v[i].y * plScale + y];
+				let arr = [fixRound((v[i].x / this.tileSize) * plScale + x), fixRound((v[i].y / this.tileSize) * plScale + y)];
+				log(arr);
 				if (output2DArrays) v[i] = arr;
 				else v[i] = pInst.createVector(arr[0], arr[1]);
 			}
@@ -6755,7 +6815,7 @@ canvas {
 	};
 
 	class Contro extends InputDevice {
-		constructor() {
+		constructor(gp) {
 			super();
 			let inputs = [
 				&#x27;a&#x27;,
@@ -6800,8 +6860,8 @@ canvas {
 				rt: 7,
 				select: 8,
 				start: 9,
-				// leftStickBtn: 10,
-				// rightStickBtn: 11,
+				leftStickButton: 10,
+				rightStickButton: 11,
 				up: 12,
 				down: 13,
 				left: 14,
@@ -6819,6 +6879,21 @@ canvas {
 				leftTrigger: 4,
 				rightTrigger: 5
 			};
+
+			// corrects button mapping for GuliKit gamepads
+			// which have a Nintendo Switch style button layout
+			// https://www.aliexpress.com/item/1005003624801819.html
+			if (gp.id.includes(&#x27;GuliKit&#x27;)) {
+				this._btns.a = 1;
+				this._btns.b = 0;
+				this._btns.x = 3;
+				this._btns.y = 2;
+			}
+
+			log(gp);
+
+			this.gamepad = gp;
+			this.id = gp.id;
 		}
 
 		ac(inp) {
@@ -6827,10 +6902,8 @@ canvas {
 
 		_update() {
 			this.gamepad = navigator.getGamepads()[this.gamepad.index];
-			// TODO
-			// if (this.index != this.gamepad.index) {
-			// 	return; // contro disconnected
-			// }
+			if (!this.gamepad) return;
+
 			let pad = this.gamepad;
 
 			// buttons
@@ -6847,10 +6920,14 @@ canvas {
 			this.rightStick.x = pad.axes[this._axes.rightStick.x];
 			this.rightStick.y = pad.axes[this._axes.rightStick.y];
 
-			// TODO
 			// triggers
-			this.leftTrigger = pad.axes[this._axes.leftTrigger];
-			this.rightTrigger = pad.axes[this._axes.rightTrigger];
+			if (pad.axes[this._axes.leftTrigger] !== undefined) {
+				this.leftTrigger = pad.axes[this._axes.leftTrigger];
+				this.rightTrigger = pad.axes[this._axes.rightTrigger];
+			} else {
+				this.leftTrigger = pad.buttons[this._btns.lt].value;
+				this.rightTrigger = pad.buttons[this._btns.rt].value;
+			}
 
 			return true; // update completed
 		}
@@ -6863,6 +6940,10 @@ canvas {
 			window.addEventListener(&#x27;gamepadconnected&#x27;, (e) =&gt; {
 				_this._addContro(e.gamepad);
 			});
+			// TODO
+			// window.addEventListener(&#x27;gamepaddisconnected&#x27;, (e) =&gt; {
+			// 	_this._removeContro(e.gamepad);
+			// });
 
 			this.default = &#x27;a&#x27;;
 
@@ -6871,6 +6952,33 @@ canvas {
 				this[m] = (inp) =&gt; {
 					if (this[0]) return this[0][m](inp);
 				};
+			}
+
+			let inputs = [
+				&#x27;a&#x27;,
+				&#x27;b&#x27;,
+				&#x27;x&#x27;,
+				&#x27;y&#x27;,
+				&#x27;l&#x27;,
+				&#x27;r&#x27;,
+				&#x27;lt&#x27;,
+				&#x27;rt&#x27;,
+				&#x27;select&#x27;,
+				&#x27;start&#x27;,
+				&#x27;leftStickButton&#x27;,
+				&#x27;rightStickButton&#x27;,
+				&#x27;up&#x27;,
+				&#x27;down&#x27;,
+				&#x27;left&#x27;,
+				&#x27;right&#x27;
+			];
+			for (let inp of inputs) {
+				Object.defineProperty(this, inp, {
+					get() {
+						if (_this[0]) return _this[0][inp];
+						return 0;
+					}
+				});
 			}
 
 			let props = [&#x27;leftStick&#x27;, &#x27;rightStick&#x27;];
@@ -6885,22 +6993,33 @@ canvas {
 					});
 				}
 			}
+
+			// test if the broswer supports the HTML5 Gamepad API
+			// all modern browsers do, this is really just to prevent
+			// p5.play&#x27;s Jest tests from failing
+			if (!navigator?.getGamepads) return;
+
+			// if the page was not reloaded, but p5.play sketch was,
+			// then gamepads could be already connected
+			// so they need to be added as Contro objects
+			let gps = navigator.getGamepads();
+			for (let gp of gps) {
+				if (gp) this._addContro(gp);
+			}
 		}
 
 		_addContro(gp) {
-			let contro = new Contro();
-			contro.gamepad = gp;
-			contro.id = gp.id;
-			this.push(contro);
+			if (!gp) return;
+			log(&#x27;controller &#x27; + this.length + &#x27; connected: &#x27; + gp.id);
+			this.push(new Contro(gp));
 		}
 
+		/**
+		 * Updates the state of all controllers.
+		 */
 		_update() {
-			for (let i = 0; i &lt; this.length; i++) {
-				let connected = this[i]._update();
-				if (!connected) {
-					this.splice(i, 1);
-					i--;
-				}
+			for (let c of this) {
+				c._update();
 			}
 		}
 	}
