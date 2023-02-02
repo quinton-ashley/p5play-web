@@ -4,6 +4,7 @@
 	border: 2px solid #ccc;
 	border-radius: 10px;
 	font-family: sans-serif;
+	box-sizing: border-box;
 }
 
 .mies * {

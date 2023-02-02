@@ -48,7 +48,7 @@ They also store the state of all their inputs as properties. For example, `kb.sp
 		</script>
 		<script type="text/mie-p5" name="hidden" base-0 hide>
 function setup() {
-	new Canvas(240, 100);
+	new Canvas(238, 100);
 	frameRate(30);
 	kb.holdThreshold = 6;
 }
@@ -141,7 +141,7 @@ function draw() {
 	sprite.color = 'yellow';
 }
 		</script>
-		<div class="minis horiz">
+		<div class="horiz">
 			<script type="text/mie-p5" name="multi-input" base="1">
 if (kb.pressing('space') || mouse.pressing()) {
 	sprite.color = 'red';
@@ -159,7 +159,7 @@ The `mouse` has an additional function for detecting dragging, moving the mouse 
 						
 Note that `mouse.x` is the x position of the mouse on the canvas and `sprite.mouse.x` is the x position of the mouse relative to the sprite.
 		</script>
-		<div class="minis horiz">
+		<div class="horiz">
 			<script type="text/mie-p5" name="sprite.mouse">
 let sprite;
 

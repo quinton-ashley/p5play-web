@@ -49,7 +49,7 @@
 		</div>
 		<script type="text/mie-p5" name="p5.js setup and draw">
 function setup() {
-	new Canvas(242, 100);
+	new Canvas(250, 100);
 }
 
 function draw() {
@@ -79,7 +79,7 @@ function draw() {
 let sprite;
 
 function setup() {
-	new Canvas(242, 100);
+	new Canvas(238, 100);
 
 	sprite = new Sprite();
 	sprite.width = 50;
@@ -94,7 +94,7 @@ function draw() {
 let sprite;
 
 function setup() {
-	new Canvas(242, 100);
+	new Canvas(238, 100);
 
 	sprite = new Sprite();
 	sprite.diameter = 50;
@@ -103,7 +103,7 @@ function setup() {
 function draw() {
 	clear();
 }
-				</script>
+			</script>
 		</div>
 		<div class="minis">
 			<script type="text/mie-p5" name="x">
@@ -215,7 +215,7 @@ You might have to replay these mini-sketches to see what happened!
 let ball, floor;
 
 function setup() {
-	new Canvas(242, 200);
+	new Canvas(238, 200);
 	world.gravity.y = 10;
 
 	ball = new Sprite();
@@ -224,7 +224,7 @@ function setup() {
 
 	floor = new Sprite();
 	floor.y = 190;
-	floor.w = 400;
+	floor.w = 238;
 	floor.h = 5;
 	floor.collider = 'static';
 }
@@ -735,7 +735,7 @@ function draw() {
 		let sprite;
 		
 		function setup() {
-			new Canvas(242, 80);
+			new Canvas(238, 80);
 		
 			sprite = new Sprite();
 			sprite.h = 20;
@@ -894,10 +894,177 @@ function draw() {
 		<script type="text/md">
 ## Physical attributes
 
-This page will have examples for `bounciness`, `friction`, `density`, `drag`, `mass`, `rotationDrag`, `rotationLock`, and `scale`.
-
-Coming soon!
+Sprites have physical attributes that affect how they interact with the world. Take a look at the mini-examples to see these attributes in action.
 		</script>
+		<script type="text/mie-p5" base-6 hide>
+let sprite, floor;
+function setup() {
+	new Canvas(238, 100);
+	world.gravity.y = 10;
+	sprite = new Sprite(26, 0, 40, 40);
+	floor = new Sprite(119, 88, 238, 5, 's');
+	floor.rotation = 5;
+}
+function draw() {
+	clear();
+}
+		</script>
+		<script type="text/mie-p5" base-7 hide>
+let sprite, floor;
+function setup() {
+	new Canvas(238, 100);
+	world.gravity.y = 10;
+	sprite = new Sprite(26, 0, 40);
+	floor = new Sprite(119, 88, 238, 5, 's');
+	floor.rotation = 5;
+}
+function draw() {
+	clear();
+}
+		</script>
+		<div class="minis">
+			<script type="text/mie-p5" name="low bounciness" base="7">
+			sprite.bounciness = 0.5;
+						</script>
+			<script type="text/mie-p5" name="full bounciness" base="7">
+			sprite.bounciness = 1;
+						</script>
+		</div>
+		<div class="minis">
+			<script type="text/mie-p5" name="0 friction" base="6">
+sprite.friction = 0;
+			</script>
+			<script type="text/mie-p5" name="high friction" base="6">
+sprite.friction = 10;
+			</script>
+			<script type="text/mie-p5" name="0 drag" base="6">
+sprite.drag = 0;
+			</script>
+			<script type="text/mie-p5" name="high drag" base="6">
+sprite.drag = 10;
+			</script>
+		</div>
+		<div class="minis">
+			<script type="text/mie-p5" name="low rotationDrag" base="7">
+sprite.rotationDrag = 1;
+			</script>
+			<script type="text/mie-p5" name="high rotationDrag" base="7">
+sprite.rotationDrag = 5;
+			</script>
+			<script type="text/mie-p5" name="no rotationLock" base="7">
+sprite.rotationLock = false
+			</script>
+			<script type="text/mie-p5" name="with rotationLock" base="7">
+sprite.rotationLock = true;
+			</script>
+		</div>
+		<div>
+			<p>
+				By default, <code>mass</code> is assigned based on the sprite's size. The larger the sprite, the more mass it
+				has. Mass can
+				also be set manually.
+			</p>
+			<p>
+				Try changing the mass of one of the sprites in this mini-example.
+			</p>
+		</div>
+		<script type="text/mie-p5" name="mass" lines="13">
+let platform, pin, a, b;
+function setup() {
+	new Canvas(238, 100);
+	world.gravity.y = 10;
+
+	platform = new Sprite(121, 88, 232, 5);
+	pin = new Sprite(121, 93, 5, 's');
+
+	a = new Sprite(26, 0, 40, 40);
+	a.mass = 2;
+	b = new Sprite(216, 0, 40, 40);
+	b.mass = 2;
+}
+function draw() {
+	clear();
+}
+		</script>
+		<div class="break"></div>
+		<div>
+			<h2>planck Bugs</h2>
+			<p>
+				p5.play uses the planck physics engine, which usually outputs realistic looking physical
+				interactions, but it's not perfect.
+			</p>
+			<p>
+				In this mini-example the ball has a <code>bounciness</code> of 1, so each time the ball bounces it should
+				return to its starting position. However, due to a bug in planck, the ball bounces incrementally higher each
+				time it hits the ground.
+			</p>
+		</div>
+		<script type="text/mie-p5" name="full bounce error" lines="10" horiz>
+let ball, ground;
+function setup() {
+	new Canvas(32, 192);
+	world.gravity.y = 10;
+
+	ball = new Sprite(16, 100, 8);
+	ball.bounciness = 1;
+
+	ground = new Sprite(16, 184, 32, 16, 's');
+}
+
+function draw() {
+	background(0);
+
+	fill(100);
+	for (let i = 0; i < width / 32; i++) {
+		for (let j = 0; j < height / 32; j++) {
+			rect(i * 32, j * 32, 32, 32);
+		}
+	}
+}
+		</script>
+		<div>
+			<p>
+				Hopefully the bug will be fixed in a future version of planck or p5.play, but until then here's a workaround.
+			</p>
+			<p>
+				The <code>bounciness</code> bug is most noticeable when the ball bounces off a flat surface. Here's a workaround
+				that overrides the ball's y velocity after it collides with the ground.
+			</p>
+		</div>
+		<script type="text/mie-p5" name="full bounce workaround" horiz>
+let ball, ground;
+function setup() {
+	new Canvas(32, 192);
+	world.gravity.y = 10;
+
+	ball = new Sprite(16, 100, 8);
+	ball.bounciness = 1;
+
+	ground = new Sprite(16, 184, 32, 16, 's');
+}
+
+function draw() {
+	clear();
+
+	if (ball.collided(ground)) {
+		ball.vel.y = -4.8;
+	}
+}
+		</script>
+		<div>
+			<p>
+				Also, you may expect <code>friction</code> to affect circle physics colliders, but sadly it doesn't! Use the
+				<code>rotationDrag</code> property instead.
+			</p>
+		</div>
+		<div class="minis">
+			<script type="text/mie-p5" name="circle friction?" base="7">
+sprite.friction = 500;
+			</script>
+			<script type="text/mie-p5" name="circle rotationDrag" base="7">
+sprite.rotationDrag = 5;
+			</script>
+		</div>
 	</div>
 	<div id="page-10" class="page">
 		<div>

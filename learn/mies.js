@@ -133,7 +133,7 @@ ace.config.loadModule('ace/ext/language_tools', function () {
 
 			this.play();
 
-			if (props.hide) {
+			if (props.hide || props.hidden) {
 				mini.style.display = 'none';
 			}
 
