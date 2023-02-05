@@ -3285,6 +3285,9 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 
 			parent.addAni(this);
 
+			// list mode images can be added as a list of arguments or an array
+			if (Array.isArray(args[0])) args = [...args[0]];
+
 			// sequence mode
 			if (
 				args.length == 2 &&
