@@ -754,7 +754,6 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 							// verts are relative to the first vert
 							vert.x = path[i][0] - x;
 							vert.y = path[i][1] - y;
-							log(i, vert.x, vert.y);
 						} else {
 							vert.x += path[i][0];
 							vert.y += path[i][1];
@@ -1840,7 +1839,6 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			let y = this.y;
 			for (let i = 0; i < v.length; i++) {
 				let arr = [fixRound((v[i].x / this.tileSize) * plScale + x), fixRound((v[i].y / this.tileSize) * plScale + y)];
-				log(arr);
 				if (output2DArrays) v[i] = arr;
 				else v[i] = pInst.createVector(arr[0], arr[1]);
 			}
