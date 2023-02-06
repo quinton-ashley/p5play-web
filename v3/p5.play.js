@@ -2268,7 +2268,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		 * @private _draw
 		 */
 		_draw() {
-			if (this.strokeWeight) this.p.strokeWeight(this.strokeWeight);
+			if (this.strokeWeight !== undefined) this.p.strokeWeight(this.strokeWeight);
 			if (this.animation && !this.debug) {
 				this.animation.draw(0, 0, 0, this._scale.x, this._scale.y);
 			} else if (this.fixture != null) {
