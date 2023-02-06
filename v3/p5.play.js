@@ -36,7 +36,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 	this.p5play.standardizeKeyboard = false;
 
 	// change the angle mode to degrees
-	this.angleMode(p5.prototype.DEGREES);
+	this.angleMode('degrees');
 
 	// scale to planck coordinates from p5 coordinates
 	const scaleTo = ({ x, y }, tileSize) => new pl.Vec2((x * tileSize) / plScale, (y * tileSize) / plScale);
@@ -1671,15 +1671,15 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		 */
 		get rotation() {
 			if (!this.body) return this._angle || 0;
-			if (this.p._angleMode === p5.prototype.DEGREES) {
-				return p5.prototype.degrees(this.body.getAngle());
+			if (this.p._angleMode === 'degrees') {
+				return this.p.degrees(this.body.getAngle());
 			}
 			return this.body.getAngle();
 		}
 		set rotation(val) {
 			if (this.body) {
-				if (this.p._angleMode === p5.prototype.DEGREES) {
-					this.body.setAngle(p5.prototype.radians(val));
+				if (this.p._angleMode === 'degrees') {
+					this.body.setAngle(this.p.radians(val));
 				} else {
 					this.body.setAngle(val);
 				}
@@ -2324,9 +2324,9 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			// y += this.tileSize * 0.015;
 
 			this.p.push();
-			this.p.imageMode(p5.prototype.CENTER);
-			this.p.rectMode(p5.prototype.CENTER);
-			this.p.ellipseMode(p5.prototype.CENTER);
+			this.p.imageMode('center');
+			this.p.rectMode('center');
+			this.p.ellipseMode('center');
 
 			this.p.translate(x, y);
 			if (this.rotation) this.p.rotate(this.rotation);
@@ -2359,7 +2359,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 				for (let i = 0; i < v.length; i++) {
 					this.p.vertex(v[i].x * plScale, v[i].y * plScale);
 				}
-				if (sh.m_type != 'chain') this.p.endShape(p5.prototype.CLOSE);
+				if (sh.m_type != 'chain') this.p.endShape('close');
 				else {
 					this.p.endShape();
 					this.p.pop();
@@ -2647,7 +2647,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 				do {
 					if (destIdx != this._destIdx) return false;
 
-					await p5.prototype.delay();
+					await pInst.delay();
 
 					// skip calculations if not close enough to destination yet
 					if (frames > 0) {
@@ -2804,19 +2804,19 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 				if (frames > 1) {
 					while (frames > 0) {
 						if (this._rotateIdx != _rotateIdx) return;
-						await p5.prototype.delay();
+						await pInst.delay();
 						frames--;
 					}
 
 					while (Math.abs(this.rotationSpeed) < Math.abs(ang - this.rotation)) {
-						await p5.prototype.delay();
+						await pInst.delay();
 					}
 					if (Math.abs(ang - this.rotation) > 0.01) {
 						this.rotationSpeed = ang - this.rotation;
-						await p5.prototype.delay();
+						await pInst.delay();
 					}
 				} else {
-					await p5.prototype.delay();
+					await pInst.delay();
 				}
 				this.rotationSpeed = 0;
 				this.rotation = ang;
@@ -3596,7 +3596,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			sy ??= 1;
 
 			this.p.push();
-			this.p.imageMode(p5.prototype.CENTER);
+			this.p.imageMode('center');
 			this.p.translate(this.x, this.y);
 			this.p.rotate(r || this.rotation);
 			this.p.scale(sx * this._scale.x, sy * this._scale.y);
@@ -5785,7 +5785,9 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 	};
 
 	/**
-	 * Delay code execution in an async function for the specified time.
+	 * Delay code execution in an async function for the specified time
+	 * or if no input arg given, it waits for the next possible
+	 * animation frame.
 	 *
 	 * @method delay
 	 * @param {Number} millisecond
@@ -5796,8 +5798,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 	 *   await delay(3000);
 	 * }
 	 */
-	p5.prototype.delay = (millisecond) => {
-		// if no input arg given, delay waits for the next possible animation frame
+	this.delay = (millisecond) => {
 		if (!millisecond) {
 			return new Promise(requestAnimationFrame);
 		} else {
@@ -5820,8 +5821,8 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 	 *   await sleep(3000);
 	 * }
 	 */
-	p5.prototype.sleep = (millisecond) => {
-		return p5.prototype.delay(millisecond);
+	this.sleep = (millisecond) => {
+		return this.delay(millisecond);
 	};
 
 	/**
@@ -5973,6 +5974,11 @@ canvas {
 		styleElem.innerHTML = style;
 		document.head.appendChild(styleElem);
 
+		if (pixelated) {
+			pInst.pixelDensity(1);
+			pInst.noSmooth();
+		}
+
 		let idx = navigator.userAgent.indexOf('iPhone OS');
 		if (idx > -1) {
 			let version = navigator.userAgent.substring(idx + 10, idx + 12);
@@ -5984,11 +5990,6 @@ canvas {
 			this.p5play.os.version = version;
 		} else if (navigator.userAgentData !== undefined) {
 			this.p5play.os.platform = navigator.userAgentData.platform;
-		}
-
-		if (pixelated) {
-			pInst.pixelDensity(1);
-			pInst.noSmooth();
 		}
 
 		return can;

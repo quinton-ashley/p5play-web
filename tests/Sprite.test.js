@@ -294,6 +294,9 @@ test('Sprite : chain and polygon constructors', () => {
 			expect(s.y).toBe(10);
 			expect(s.w).toBe(20);
 			expect(s.h).toBe(20);
+			expect(s.vertices.length).toBe(2);
+			expect(s.vertices[0].x).toBe(0);
+			expect(s.vertices[0].y).toBe(10);
 			s.collider = 'static';
 			expect(s.shape).toBe('chain');
 			expect(s.x).toBe(0);
