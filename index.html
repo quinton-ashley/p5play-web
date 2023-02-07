@@ -3,21 +3,18 @@
 
 <head>
 	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>p5.play</title>
 	<meta name="description"
 		content="p5.play is a 2D game engine made by Computer Science teachers to help you turn your game ideas into JavaScript code!" />
 	<link rel="icon" href="favicon.png" />
 	<link rel="stylesheet" href="learn/mies.css" />
 	<link rel="stylesheet" href="learn/style.css">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/p5.min.js"></script>
-	<script src="v3/planck.min.js"></script>
-	<script src="v3/p5.play.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.8.1/ace.min.js"></script>
 </head>
 
 <body class="light">
 	<nav id="topNav">
-		<a href="index.html" class="active"><img src="logo.svg" class="logo">p5.play</a>
+		<a href="index.html" class="active"><img alt="p5.play logo" src="logo.svg" class="logo">p5.play</a>
 		<span class="nav2">
 			<span class="colon">:</span>
 			<a href="learn">Learn</a>
@@ -25,9 +22,9 @@
 			<a href="docs/classes/Sprite.html">Docs</a>
 			<a href="jam">Jam!</a>
 			<span class="colon">:</span>
-			<a id="darkMode" onclick="toggleDarkMode()">
+			<span id="darkMode" onclick="toggleDarkMode()">
 				<div id="darkModeIcon"></div>
-			</a>
+			</span>
 			<span class="colon">:</span>
 			<a class="socials" href="https://discord.gg/3UTbqUgmPF" target="_blank">
 				<img class="discord-logo"
@@ -65,17 +62,17 @@
 			</p>
 
 			<p style="opacity: 80%;">
-				<a href="https://github.com/quinton-ashley/p5.play" target="_blank">
-					<img class="shields" src="https://img.shields.io/github/package-json/v/quinton-ashley/p5.play" alt="">
+				<a aria-label="p5.play GitHub page" href="https://github.com/quinton-ashley/p5.play" target="_blank">
+					<img class="shields" src="https://img.shields.io/github/package-json/v/quinton-ashley/p5.play.svg" alt="">
 				</a>
-				<a href="https://github.com/quinton-ashley/p5.play" target="_blank">
-					<img class="shields" src="https://img.shields.io/github/license/quinton-ashley/p5.play" alt="">
+				<a aria-label="p5.play license" href="https://github.com/quinton-ashley/p5.play" target="_blank">
+					<img class="shields" src="https://img.shields.io/github/license/quinton-ashley/p5.play.svg" alt="">
 				</a>
-				<a href="https://www.patreon.com/p5play" target="_blank">
+				<a aria-label="Patreon page of p5.play" href="https://www.patreon.com/p5play" target="_blank">
 					<img class="shields" src="https://img.shields.io/badge/Patreon-@p5play-orange.svg" alt="">
 				</a>
-				<a href="https://github.com/quinton-ashley/p5.play" target="_blank">
-					<img class="shields" src="https://img.shields.io/github/stars/quinton-ashley/p5.play?style=social" alt="">
+				<a aria-label="p5.play GitHub stars counter" href="https://github.com/quinton-ashley/p5.play" target="_blank">
+					<img class="shields" src="https://img.shields.io/github/stars/quinton-ashley/p5.play.svg?style=social" alt="">
 				</a>
 			</p>
 		</div>
@@ -142,11 +139,12 @@ function dropSprite() {
 			<p>Use one of these online code editor templates.</p>
 			<div id="editors">
 				<a href="https://openprocessing.org/sketch/1717172" target="_blank">
-					<img class="openprocessing-brand" src=" https://openprocessing.org/assets/img/logo/logo_36x30_color@2x.png">
+					<img alt="OpenProcessing logo" class="openprocessing-brand"
+						src=" https://openprocessing.org/assets/img/logo/logo_36x30_color@2x.png">
 					<span class="bariol">OpenProcessing</span>
 				</a>
 				<a href="https://editor.p5js.org/quinton-ashley/sketches/szN_XdV5O" target="_blank">
-					<img class="p5js-web-editor-brand" src="https://p5js.org/assets/img/p5js.svg">
+					<img alt="p5.js web editor logo" class="p5js-web-editor-brand" src="https://p5js.org/assets/img/p5js.svg">
 					<span>web editor</span>
 				</a>
 				<a href="https://codepen.io/qashto/pen/rNKMjrZ?editors=0010" target="_blank">
@@ -223,7 +221,7 @@ function dropSprite() {
 					Patreon</a>! 🤝
 			</p>
 			<p>
-				<a id="patreon-brand" href="https://www.patreon.com/p5play">
+				<a aria-label="Patreon page for p5.play" id="patreon-brand" href="https://www.patreon.com/p5play">
 					<img src="https://www.svgrepo.com/download/354168/patreon.svg" alt="">
 					<svg viewBox="0 0 222 32" class="Icons_root___hjwL" height="20">
 						<path
@@ -238,9 +236,10 @@ function dropSprite() {
 			<p>
 				Use p5.play on your own website by adding these links to your HTML file.
 				School firewall blocking p5play.org?
-				<a href="https://github.com/molleindustria/p5.play/wiki/FAQ#school-firewall-blocking-p5playorg">more info</a>
+				<a aria-label="FAQ school firewall blocking p5.play"
+					href="https://github.com/molleindustria/p5.play/wiki/FAQ#school-firewall-blocking-p5playorg">more info</a>
 			</p>
-			<textarea rows="5">&lt;script src=&quot;https://cdn.jsdelivr.net/npm/p5@1/lib/p5.min.js&quot;&gt;&lt;/script&gt;
+			<textarea aria-label="link tags for p5.play and its dependencies" rows="5">&lt;script src=&quot;https://cdn.jsdelivr.net/npm/p5@1/lib/p5.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdn.jsdelivr.net/npm/p5@1/lib/addons/p5.sound.min.js&quot;&gt;&lt;/script&gt;
 
 &lt;script src=&quot;https://cdn.jsdelivr.net/npm/planck@latest/dist/planck.min.js&quot;&gt;&lt;/script&gt;
@@ -259,7 +258,7 @@ function dropSprite() {
 				<div>
 					<h2 style="width: fit-content;">Used by</h2>
 				</div>
-				<a id="crimson-brand" href="https://www.crimsoneducation.org/" target="_blank">
+				<a aria-label="Crimson Education" id="crimson-brand" href="https://www.crimsoneducation.org/" target="_blank">
 					<svg height="64" viewBox="0 0 144 64" class="crimsonLogo_5l1bc">
 						<g fill="#fff">
 							<path
@@ -336,7 +335,8 @@ function dropSprite() {
 				<a id="ttu-brand" href="https://wreckem.itch.io/p5play-games" target="_blank">
 					<img src="https://www.ttu.edu/_resources/homepage/images/logo.png" alt="Texas Tech University">
 				</a>
-				<a id="zenn-brand" href="https://zenn.dev/sdkfz181tiger/books/63a7aa5d928ac7">
+				<a aria-label="p5.play lessons in Japanese" id="zenn-brand"
+					href="https://zenn.dev/sdkfz181tiger/books/63a7aa5d928ac7">
 					<img
 						src="https://res.cloudinary.com/zenn/image/fetch/s--SqzDCwCX--/c_fill%2Cf_jpg%2Cfl_progressive%2Ch_700%2Cq_90%2Cw_500/https://storage.googleapis.com/zenn-user-upload/book_cover/8f5a690c53.jpeg"
 						alt="" target="_blank">
@@ -375,6 +375,10 @@ function dropSprite() {
 		version of p5.play?
 		<a href="../v2/index.html">Click here</a>.
 	</footer>
+
+	<script src="https://cdn.jsdelivr.net/npm/p5@1/lib/p5.min.js"></script>
+	<script src="v3/planck.min.js"></script>
+	<script src="v3/p5play.min.js"></script>
 
 	<script src="main.js"></script>
 

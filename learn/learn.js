@@ -1,3 +1,33 @@
+function toggleDarkMode() {
+	if (document.body.className == 'dark') {
+		document.body.className = 'light';
+	} else {
+		document.body.className = 'dark';
+	}
+	if (typeof setEditorThemes != 'undefined') setEditorThemes();
+
+	// Save the preference
+	localStorage.setItem('darkMode', document.body.className);
+}
+
+{
+	let pref = localStorage.getItem('darkMode');
+	pref ??= window.matchMedia('prefers-color-scheme: dark').matches ? 'dark' : 'light';
+
+	document.body.className = pref;
+}
+
+{
+	let tags = document.getElementsByTagName('script');
+
+	for (let tag of tags) {
+		if (tag.type != 'text/md') continue;
+		let md = document.createElement('md');
+		md.innerHTML = marked.parse(tag.innerHTML || 'error');
+		tag.after(md);
+	}
+}
+
 let args = {};
 
 {
