@@ -46,7 +46,7 @@ body {
 	font-size: 18px;
 }
 
-.p5-mini .ace_cursor {
+.mie .ace_cursor {
 	border-color: var(--primary) !important;
 }
 
@@ -59,13 +59,13 @@ body {
 	background-color: var(--secondary) !important;
 }
 
-.p5-mini {
+.mie {
 	background-color: var(--secondary);
 	color: var(--primary);
 }
 
-.p5-mini,
-.p5-mini div {
+.mie,
+.mie div {
 	border-color: var(--dark) !important;
 }
 
