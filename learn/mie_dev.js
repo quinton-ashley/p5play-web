@@ -1,16 +1,16 @@
-if (typeof window.mies == 'undefined') window.mies = [];
-else window.mies = Object.assign([], window.mies);
-mies.lang ??= {
+if (typeof window.mie == 'undefined') window.mie = [];
+else window.mie = Object.assign([], window.mie);
+mie.lang ??= {
 	javascript: {
 		play: function (code) {}
 	}
 };
-mies.bases = {};
+mie.bases = {};
 
-mies.onload = () => {
+mie.onload = () => {
 	class MiniEditor {
 		constructor(script) {
-			this.id = mies.length;
+			this.id = mie.length;
 			this.lang = script.type.slice(9) || 'javascript';
 
 			let code = script.innerHTML.trim();
@@ -19,7 +19,7 @@ mies.onload = () => {
 			let baseIdx = attrs.findIndex((v) => v.startsWith('base-'));
 			if (baseIdx != -1) {
 				let baseKey = attrs[baseIdx].split('-')[1];
-				mies.bases[baseKey] = code.slice(0, code.lastIndexOf('}'));
+				mie.bases[baseKey] = code.slice(0, code.lastIndexOf('}'));
 			}
 			let props = {};
 			for (let prop of attrs) {
@@ -37,18 +37,18 @@ mies.onload = () => {
 			this.base = props.base;
 
 			let mini = document.createElement('div');
-			mini.className = 'mies ' + this.lang;
+			mini.className = 'mie ' + this.lang;
 			if (props.horiz) mini.className += ' horiz';
 			else mini.className += ' vert';
-			mini.id = 'mies-' + this.id;
+			mini.id = 'mie-' + this.id;
 			mini.style = script.style.cssText;
 			script.after(mini);
 			this.elem = mini;
 
 			let title = document.createElement('div');
-			title.className = 'mies-title';
+			title.className = 'mie-title';
 			let logo = document.createElement('div');
-			logo.className = 'mies-logo';
+			logo.className = 'mie-logo';
 			title.append(logo);
 			let span = document.createElement('span');
 			span.innerHTML += props.name || props.title || 'sketch';
@@ -57,7 +57,7 @@ mies.onload = () => {
 
 			if (props['editor-btn']) {
 				let editBtn = document.createElement('button');
-				editBtn.className = 'mies-edit';
+				editBtn.className = 'mie-edit';
 				editBtn.innerHTML = '{ }';
 				editBtn.onclick = () => {
 					this.toggleEditor();
@@ -66,30 +66,30 @@ mies.onload = () => {
 			}
 
 			let playBtn = document.createElement('button');
-			playBtn.className = 'mies-play';
+			playBtn.className = 'mie-play';
 			playBtn.title = 'replay';
 			playBtn.onclick = () => this.play();
 			title.append(playBtn);
 
 			let main = document.createElement('div');
-			main.className = 'mies-main';
+			main.className = 'mie-main';
 			mini.append(main);
 
 			let preview = document.createElement('div');
-			preview.id = 'mies-preview-' + this.id;
-			preview.className = 'mies-preview';
+			preview.id = 'mie-preview-' + this.id;
+			preview.className = 'mie-preview';
 			main.append(preview);
 			this.previewElem = preview;
 
-			if (mies.editorEnabled) {
+			if (mie.editorEnabled) {
 				let ed = document.createElement('div');
-				ed.id = 'mies-editor-' + this.id;
-				ed.className = 'mies-editor';
+				ed.id = 'mie-editor-' + this.id;
+				ed.className = 'mie-editor';
 				ed.innerHTML = code;
 				main.append(ed);
 				this.editorElem = ed;
 
-				let editor = ace.edit('mies-editor-' + this.id);
+				let editor = ace.edit('mie-editor-' + this.id);
 				editor.setOptions({
 					minLines: 1,
 					maxLines: lines,
@@ -101,7 +101,7 @@ mies.onload = () => {
 						{
 							getCompletions: (editor, session, pos, prefix, callback) => {
 								// note, won't fire if caret is at a word that does not have these letters
-								callback(null, mies.lang[this.lang].completions || []);
+								callback(null, mie.lang[this.lang].completions || []);
 							}
 						}
 					],
@@ -153,9 +153,9 @@ mies.onload = () => {
 		}
 
 		play() {
-			mies.lang[this.lang].remove.call(this);
+			mie.lang[this.lang].remove.call(this);
 			let code = this.code || this.editor.getValue().trim();
-			this.player = mies.lang[this.lang].play.call(this, code);
+			this.player = mie.lang[this.lang].play.call(this, code);
 		}
 
 		toggleEditor() {
@@ -182,50 +182,50 @@ mies.onload = () => {
 		}
 
 		remove() {
-			mies.lang[this.lang].remove.call(this);
+			mie.lang[this.lang].remove.call(this);
 			this.editor.destroy();
 			this.editor.container.remove();
 			this.elem.remove();
 		}
 	}
 
-	mies.loadMinis = function (elem) {
+	mie.loadMinis = function (elem) {
 		elem = elem || document;
 		let scripts = [...elem.getElementsByTagName('script')];
 		for (let script of scripts) {
 			if (script.type.includes('text/mie')) {
-				mies.push(new MiniEditor(script));
+				mie.push(new MiniEditor(script));
 			}
 		}
 	};
 
-	Object.defineProperty(mies, 'theme', {
-		get: () => mies._theme,
+	Object.defineProperty(mie, 'theme', {
+		get: () => mie._theme,
 		set: (theme) => {
 			if (theme == 'dark') {
-				for (let mini of mies) {
+				for (let mini of mie) {
 					mini.editor.setTheme('ace/theme/dracula');
 				}
 			} else {
-				for (let mini of mies) {
+				for (let mini of mie) {
 					mini.editor.setTheme('ace/theme/xcode');
 				}
 			}
-			mies._theme = theme;
+			mie._theme = theme;
 		}
 	});
 
-	if (mies.autoLoad !== false) mies.autoLoad = true;
-	if (mies.autoLoad) mies.loadMinis();
+	if (mie.autoLoad !== false) mie.autoLoad = true;
+	if (mie.autoLoad) mie.loadMinis();
 
-	if (mies.ready) mies.ready();
+	if (mie.ready) mie.ready();
 };
 
 if (typeof window.ace != 'undefined') {
-	mies.editorEnabled = true;
+	mie.editorEnabled = true;
 	ace.config.set('basePath', 'https://cdnjs.cloudflare.com/ajax/libs/ace/1.9.5/');
-	ace.config.loadModule('ace/ext/language_tools', mies.onload);
+	ace.config.loadModule('ace/ext/language_tools', mie.onload);
 } else {
-	console.log('mies will run without the ace editor, which was not loaded.');
-	mies.onload();
+	console.log('mie will run without the ace editor, which was not loaded.');
+	mie.onload();
 }

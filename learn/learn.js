@@ -40,11 +40,11 @@ let args = {};
 	}
 }
 
-window.mies = {
+window.mie = {
 	autoLoad: false
 };
 
-mies.ready = function () {
+mie.ready = function () {
 	let pages = document.getElementsByClassName('page');
 	let pageNav = document.getElementById('pageNav');
 	let currentPage = 0;
@@ -94,7 +94,7 @@ mies.ready = function () {
 				pageNav.children[i + 1].className = '';
 			}
 		}
-		for (let mini of mies) {
+		for (let mini of mie) {
 			mini.remove();
 		}
 		for (let page of pages) {
@@ -102,7 +102,7 @@ mies.ready = function () {
 		}
 		let page = document.getElementById('page-' + pageNum);
 		page.style.display = 'flex';
-		mies.loadMinis(page);
+		mie.loadMinis(page);
 		setEditorThemes();
 		document.body.scrollTop = 0; // for Safari
 		document.documentElement.scrollTop = 0; // Chrome, Firefox, and Opera
@@ -114,9 +114,9 @@ mies.ready = function () {
 
 function setEditorThemes() {
 	if (document.body.className == 'dark') {
-		mies.theme = 'dark';
+		mie.theme = 'dark';
 	} else {
-		mies.theme = 'light';
+		mie.theme = 'light';
 	}
 }
 

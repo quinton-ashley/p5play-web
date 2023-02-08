@@ -1,8 +1,8 @@
 window.mies ??= [];
-mies.lang ??= {};
-mies.lang.p5 = {};
+mie.lang ??= {};
+mie.lang.p5 = {};
 
-mies.lang.p5.completions = [
+mie.lang.p5.completions = [
 	{ value: 'new Sprite', score: 2, meta: '(ani, x, y, w, h, collider)' },
 	{ value: 'Sprite', score: 1, meta: '(ani, x, y, w, h, collider)' },
 	{ value: 'new Group', score: 1, meta: '()' },
@@ -30,9 +30,9 @@ const p5functions = [
 	'touchEnded'
 ];
 
-mies.lang.p5.play = function (code) {
+mie.lang.p5.play = function (code) {
 	if (!code.includes('function setup') && !code.includes('function draw')) {
-		code = mies.bases[this.base || 0] + code + '}';
+		code = mie.bases[this.base || 0] + code + '}';
 	}
 	function s(p) {
 		for (let f of p5functions) {
@@ -44,6 +44,6 @@ mies.lang.p5.play = function (code) {
 	return new p5(s, this.previewElem);
 };
 
-mies.lang.p5.remove = function () {
+mie.lang.p5.remove = function () {
 	if (this.player?.remove) this.player.remove();
 };
