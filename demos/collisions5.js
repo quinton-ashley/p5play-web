@@ -1,10 +1,3 @@
-//Overlap Point and pixel
-//the collisions are not checked against bounding boxes but between
-//points or image pixels
-
-//left and right keys to move the sprite
-//it's position is adjusted to another sprite's opaque pixels
-
 let triangle, cloud, platform;
 
 function preload() {

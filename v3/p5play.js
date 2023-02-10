@@ -1214,6 +1214,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		}
 
 		_parseColor(val) {
+			// false if object was copied with Object.assign
 			if (val instanceof p5.Color) {
 				return val;
 			} else if (typeof val != 'object') {
@@ -1223,7 +1224,11 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 					return this.p.color(val);
 				}
 			}
-			return this.p.color(...val.levels);
+			if (val.levels) return this.p.color(...val.levels);
+			// support for Q5.Color
+			if (val._r !== undefined) return this.p.color(val._r, val._g, val._b, val._a * 255);
+			if (val._h !== undefined) return this.p.color(val._h, val._s, val._v, val._a * 255);
+			throw new Error('Invalid color');
 		}
 
 		/**
@@ -3280,7 +3285,9 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			parent.addAni(this);
 
 			// list mode images can be added as a list of arguments or an array
-			if (Array.isArray(args[0])) args = [...args[0]];
+			if (Array.isArray(args[0]) && typeof args[0][0] == 'string') {
+				args = [...args[0]];
+			}
 
 			// sequence mode
 			if (
