@@ -4,6 +4,11 @@
  * @author quinton-ashley
  * @license gpl-v3-only
  */
+
+console.warn(
+	`"p5.play" is now called "p5play" since v3.5.22! This file "https://p5play.org/v3/p5.play.js" won't be updated after v3.6 is released. Please use "https://p5play.org/v3/p5play.js" instead.`
+);
+
 p5.prototype.registerMethod('init', function p5PlayInit() {
 	if (typeof window.planck == 'undefined') {
 		throw new Error('planck.js must be loaded before p5play');
