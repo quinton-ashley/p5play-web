@@ -311,7 +311,7 @@ test('Sprite : chain and polygon constructors', () => {
 				[0, -80]
 			]);
 			expect(s.shape).toBe('polygon');
-			expect(s.originMode).toBe('center');
+			expect(s._originMode).toBe('center');
 			expect(s.x).toBe(1);
 			expect(s.y).toBe(1);
 			expect(s.w).toBe(100);

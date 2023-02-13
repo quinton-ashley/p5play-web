@@ -17,7 +17,7 @@ test('SpriteAnimation', () => {
 
 			let imgs = [p.spriteArt('bww'), p.spriteArt('wbw'), p.spriteArt('wwb')];
 
-			let ani0 = new p.SpriteAnimation(imgs);
+			let ani0 = new p.SpriteAnimation(...imgs);
 			expect(ani0).toBeInstanceOf(p.SpriteAnimation);
 			expect(ani0.length).toBe(3);
 			expect(ani0.frame).toBe(0);
