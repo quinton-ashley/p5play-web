@@ -151,34 +151,6 @@ function draw() {
 let player, gems;
 
 function setup() {
-	log('hi 1')
-	new Canvas(160, 476);
-
-	gems = new Group();
-	gems.diameter = 10;
-	gems.x = () => random(0, width);
-	gems.y = () => random(0, height);
-	gems.amount = 80;
-
-	player = new Sprite();
-
-	player.overlaps(gems, collect);
-}
-
-function collect(player, gem) {
-	gem.remove();
-}
-
-function draw() {
-	clear();
-	player.moveTowards(mouse);
-}
-		</script>
-		<!-- <script type="text/mie-p5" name="collect gems" horiz>
-let player, gems;
-
-function setup() {
-	log('hi 2')
 	new Canvas(160, 456);
 
 	gems = new Group();
@@ -200,7 +172,7 @@ function draw() {
 	clear();
 	player.moveTowards(mouse);
 }
-				</script> -->
+		</script>
 	</div>
 	<div id="page-3" class="page">
 		<div>

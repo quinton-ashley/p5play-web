@@ -54,6 +54,12 @@ test('Sprite : constructors', () => {
 			expect(s.w).toBe(40);
 			expect(s.h).toBe(60);
 			s.remove();
+
+			s = new p.Turtle();
+			expect(s.shape).toBe('polygon');
+			expect(s.x).toBe(25);
+			expect(s.y).toBe(25);
+			s.remove();
 		};
 	};
 	new p5(sketch);
