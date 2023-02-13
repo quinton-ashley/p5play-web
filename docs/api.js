@@ -8,7 +8,7 @@ YUI.add("yuidoc-meta", function(Y) {
         "SpriteAnimation",
         "Tiles",
         "World",
-        "p5.play"
+        "p5play"
     ],
     "modules": [],
     "allModules": [],

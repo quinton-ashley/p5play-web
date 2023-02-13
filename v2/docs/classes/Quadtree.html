@@ -1,370 +1,389 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="utf-8">
-    <title>Quadtree - p5.play</title>
-    <link rel="stylesheet" href="">
-    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
-    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
-    <link rel="stylesheet" href="../assets/css/custom.css">
-    <link rel="stylesheet" href="../assets/css/lucid.css">
-    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
-    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+	<meta charset="utf-8">
+	<title>Quadtree - p5play</title>
+	<link rel="stylesheet" href="">
+	<link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+	<link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+	<link rel="stylesheet" href="../assets/css/custom.css">
+	<link rel="stylesheet" href="../assets/css/lucid.css">
+	<link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
+	<link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
 </head>
+
 <body class="yui3-skin-sam">
-<div class="navbar navbar-fixed-top">
-    <div class="navbar-inner">
-        <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">
-	    <img alt="p5.play" src="../../favicon.ico" style="max-height: 65%;" title="p5.play">
-            p5.play
-        </h1>
-	<div class="nav">
-            <li class="divider-vertical"></li>
-            <li>
-                <p class="navbar-text">
-                    API Docs for Version: <b>2.3.0</b>
-                </p>
-            </li>
-        </div>
-        <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
-            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/Camera", "classes/Group", "classes/p5.js", "classes/Quadtree", "classes/Sprite", "classes/SpriteAnimation", "classes/SpriteSheet", "modules/p5.play"]'>
-        </form>
-    </div>
-</div>
-<div class="container">
-    <div class="row">
-        <div class="span3">
-<div>
-    <div id="sidebar">
-    <div id="classes">
-        <ul id="api-classes" class="nav nav-list">
-                <li><a href="../classes/Camera.html">Camera</a></li>
-                <li><a href="../classes/Group.html">Group</a></li>
-                <li><a href="../classes/p5.js.html">p5.js</a></li>
-                <li><a href="../classes/Sprite.html">Sprite</a></li>
-                <li><a href="../classes/SpriteAnimation.html">SpriteAnimation</a></li>
-                <li><a href="../classes/SpriteSheet.html">SpriteSheet</a></li>
-        </ul>
-    </div>
-    </div>
-</div>
-        </div>
-        <div class="span9">
-    <form id="options-form" class="form-inline pull-right">
-        Show:
-        <label for="api-show-inherited" class="checkbox">
-            <input type="checkbox" id="api-show-inherited" checked>
-            Inherited
-        </label>
-
-        <label for="api-show-protected" class="checkbox">
-            <input type="checkbox" id="api-show-protected">
-            Protected
-        </label>
-
-        <label for="api-show-private" class="checkbox">
-            <input type="checkbox" id="api-show-private">
-            Private
-        </label>
-        <label for="api-show-deprecated" class="checkbox">
-            <input type="checkbox" id="api-show-deprecated">
-            Deprecated
-        </label>
-
-    </form>
-
-            <div class="apidocs">
-                <div id="docs-main">
-                    <div class="content">
-<div class="page-header">
-    <h1>Quadtree</h1>
-</div>
-
-
-
-	<div class="well well-small">
-            Module: <a href="../modules/p5.play.html">p5.play</a>
-    </div>
-
-
-
-<div class="yuidoc-class-description">
-<p>Quadtree Constructor</p>
-
-</div>
-
-<!-- table of contents -->
-
-<div id="class-toc" class="page-section">
-	<h2>Table of Contents</h2>
-    <ul>
-		<li>
-			<strong>Methods</strong>
-			<ul>
-				<li class=""><a href="#method-clear"><span class="im">clear</span>()</a></li>
-				<li class=""><a href="#method-getIndex"><span class="im">getIndex</span>(<span class="ia">pRect</span>)</a></li>
-				<li class=""><a href="#method-insert"><span class="im">insert</span>(<span class="ia">pRect</span>)</a></li>
-				<li class=""><a href="#method-retrieve"><span class="im">retrieve</span>(<span class="ia">pRect</span>)</a></li>
-				<li class=""><a href="#method-split"><span class="im">split</span>()</a></li>
-			</ul>
-		</li>
-
-
-
-	</ul>
-</div>
-
-<!-- details -->
-
-
-    <div id="methods" class="page-section">
-        <h2 class="off-left">Methods</h2>
-        <div class="item-list">
-<div id="method-clear" class="method item ">
-	<div class="method-signature">
-	<span class="name"><code>clear</code></span>
-
-		<span class="paren">()</span>
-	</div>
-
-
-
-
-
-
-	<div class="meta">
-				<p>
-				Defined in
-		<a href="../files/lib_p5.play.js.html#l3571"><code>lib&#x2F;p5.play.js:3571</code></a>
-		</p>
-
-
-
-	</div>
-
-	<div class="description"><p>Clear the quadtree</p>
-</div>
-
-
-
-</div>
-<div id="method-getIndex" class="method item ">
-	<div class="method-signature">
-	<span class="name"><code>getIndex</code></span>
-
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
-				<li class="arg">
-						<code>pRect</code>
+	<div class="navbar navbar-fixed-top">
+		<div class="navbar-inner">
+			<h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">
+				<img alt="p5play" src="../../favicon.ico" style="max-height: 65%;" title="p5play">
+				p5play
+			</h1>
+			<div class="nav">
+				<li class="divider-vertical"></li>
+				<li>
+					<p class="navbar-text">
+						API Docs for Version: <b>2.3.0</b>
+					</p>
 				</li>
-			</ul><span class="paren">)</span>
+			</div>
+			<form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
+				<input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..."
+					data-obj='["classes/Camera", "classes/Group", "classes/p5.js", "classes/Quadtree", "classes/Sprite", "classes/SpriteAnimation", "classes/SpriteSheet", "modules/p5play"]'>
+			</form>
 		</div>
-		<span class="returns-inline">
-			<span class="type">Number[]</span>
-		</span>
 	</div>
+	<div class="container">
+		<div class="row">
+			<div class="span3">
+				<div>
+					<div id="sidebar">
+						<div id="classes">
+							<ul id="api-classes" class="nav nav-list">
+								<li><a href="../classes/Camera.html">Camera</a></li>
+								<li><a href="../classes/Group.html">Group</a></li>
+								<li><a href="../classes/p5.js.html">p5.js</a></li>
+								<li><a href="../classes/Sprite.html">Sprite</a></li>
+								<li><a href="../classes/SpriteAnimation.html">SpriteAnimation</a></li>
+								<li><a href="../classes/SpriteSheet.html">SpriteSheet</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="span9">
+				<form id="options-form" class="form-inline pull-right">
+					Show:
+					<label for="api-show-inherited" class="checkbox">
+						<input type="checkbox" id="api-show-inherited" checked>
+						Inherited
+					</label>
+
+					<label for="api-show-protected" class="checkbox">
+						<input type="checkbox" id="api-show-protected">
+						Protected
+					</label>
+
+					<label for="api-show-private" class="checkbox">
+						<input type="checkbox" id="api-show-private">
+						Private
+					</label>
+					<label for="api-show-deprecated" class="checkbox">
+						<input type="checkbox" id="api-show-deprecated">
+						Deprecated
+					</label>
+
+				</form>
+
+				<div class="apidocs">
+					<div id="docs-main">
+						<div class="content">
+							<div class="page-header">
+								<h1>Quadtree</h1>
+							</div>
+
+
+
+							<div class="well well-small">
+								Module: <a href="../modules/p5play.html">p5play</a>
+							</div>
+
+
+
+							<div class="yuidoc-class-description">
+								<p>Quadtree Constructor</p>
+
+							</div>
+
+							<!-- table of contents -->
+
+							<div id="class-toc" class="page-section">
+								<h2>Table of Contents</h2>
+								<ul>
+									<li>
+										<strong>Methods</strong>
+										<ul>
+											<li class=""><a href="#method-clear"><span class="im">clear</span>()</a></li>
+											<li class=""><a href="#method-getIndex"><span class="im">getIndex</span>(<span
+														class="ia">pRect</span>)</a></li>
+											<li class=""><a href="#method-insert"><span class="im">insert</span>(<span
+														class="ia">pRect</span>)</a></li>
+											<li class=""><a href="#method-retrieve"><span class="im">retrieve</span>(<span
+														class="ia">pRect</span>)</a></li>
+											<li class=""><a href="#method-split"><span class="im">split</span>()</a></li>
+										</ul>
+									</li>
+
+
+
+								</ul>
+							</div>
+
+							<!-- details -->
+
+
+							<div id="methods" class="page-section">
+								<h2 class="off-left">Methods</h2>
+								<div class="item-list">
+									<div id="method-clear" class="method item ">
+										<div class="method-signature">
+											<span class="name"><code>clear</code></span>
+
+											<span class="paren">()</span>
+										</div>
 
 
 
 
 
 
-	<div class="meta">
-				<p>
-				Defined in
-		<a href="../files/lib_p5.play.js.html#l3460"><code>lib&#x2F;p5.play.js:3460</code></a>
-		</p>
+										<div class="meta">
+											<p>
+												Defined in
+												<a href="../files/lib_p5play.js.html#l3571"><code>lib&#x2F;p5play.js:3571</code></a>
+											</p>
 
 
 
-	</div>
+										</div>
 
-	<div class="description"><p>Determine which node the object belongs to</p>
-</div>
-
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-				<li class="param">
-						<code class="param-name">pRect</code>
-						<span class="type">Rect</span>
+										<div class="description">
+											<p>Clear the quadtree</p>
+										</div>
 
 
-					<div class="param-description"><p>bounds of the area to be checked ({ x, y, width, height })</p>
-</div>
 
-				</li>
-			</ul>
-		</div>
+									</div>
+									<div id="method-getIndex" class="method item ">
+										<div class="method-signature">
+											<span class="name"><code>getIndex</code></span>
 
-		<div class="returns">
-			<h4>Returns:</h4>
+											<div class="args">
+												<span class="paren">(</span>
+												<ul class="args-list inline commas">
+													<li class="arg">
+														<code>pRect</code>
+													</li>
+												</ul><span class="paren">)</span>
+											</div>
+											<span class="returns-inline">
+												<span class="type">Number[]</span>
+											</span>
+										</div>
 
-			<div class="returns-description">
-						<span class="type">Number[]</span>:
-					<p>an array of indexes of the intersecting subnodes (0-3 = top-right, top-left, bottom-left, bottom-right / ne, nw, sw, se)</p>
 
+
+
+
+
+										<div class="meta">
+											<p>
+												Defined in
+												<a href="../files/lib_p5play.js.html#l3460"><code>lib&#x2F;p5play.js:3460</code></a>
+											</p>
+
+
+
+										</div>
+
+										<div class="description">
+											<p>Determine which node the object belongs to</p>
+										</div>
+
+										<div class="params">
+											<h4>Parameters:</h4>
+
+											<ul class="params-list">
+												<li class="param">
+													<code class="param-name">pRect</code>
+													<span class="type">Rect</span>
+
+
+													<div class="param-description">
+														<p>bounds of the area to be checked ({ x, y, width, height })</p>
+													</div>
+
+												</li>
+											</ul>
+										</div>
+
+										<div class="returns">
+											<h4>Returns:</h4>
+
+											<div class="returns-description">
+												<span class="type">Number[]</span>:
+												<p>an array of indexes of the intersecting subnodes (0-3 = top-right, top-left, bottom-left,
+													bottom-right / ne, nw, sw, se)</p>
+
+											</div>
+										</div>
+
+									</div>
+									<div id="method-insert" class="method item ">
+										<div class="method-signature">
+											<span class="name"><code>insert</code></span>
+
+											<div class="args">
+												<span class="paren">(</span>
+												<ul class="args-list inline commas">
+													<li class="arg">
+														<code>pRect</code>
+													</li>
+												</ul><span class="paren">)</span>
+											</div>
+										</div>
+
+
+
+
+
+
+										<div class="meta">
+											<p>
+												Defined in
+												<a href="../files/lib_p5play.js.html#l3500"><code>lib&#x2F;p5play.js:3500</code></a>
+											</p>
+
+
+
+										</div>
+
+										<div class="description">
+											<p>Insert the object into the node. If the node
+												exceeds the capacity, it will split and add all
+												objects to their corresponding subnodes.</p>
+										</div>
+
+										<div class="params">
+											<h4>Parameters:</h4>
+
+											<ul class="params-list">
+												<li class="param">
+													<code class="param-name">pRect</code>
+													<span class="type">Rect</span>
+
+
+													<div class="param-description">
+														<p>bounds of the object to be added ({ x, y, width, height })</p>
+													</div>
+
+												</li>
+											</ul>
+										</div>
+
+
+									</div>
+									<div id="method-retrieve" class="method item ">
+										<div class="method-signature">
+											<span class="name"><code>retrieve</code></span>
+
+											<div class="args">
+												<span class="paren">(</span>
+												<ul class="args-list inline commas">
+													<li class="arg">
+														<code>pRect</code>
+													</li>
+												</ul><span class="paren">)</span>
+											</div>
+											<span class="returns-inline">
+												<span class="type">Rect[]</span>
+											</span>
+										</div>
+
+
+
+
+
+
+										<div class="meta">
+											<p>
+												Defined in
+												<a href="../files/lib_p5play.js.html#l3545"><code>lib&#x2F;p5play.js:3545</code></a>
+											</p>
+
+
+
+										</div>
+
+										<div class="description">
+											<p>Return all objects that could collide with the given object</p>
+										</div>
+
+										<div class="params">
+											<h4>Parameters:</h4>
+
+											<ul class="params-list">
+												<li class="param">
+													<code class="param-name">pRect</code>
+													<span class="type">Rect</span>
+
+
+													<div class="param-description">
+														<p>bounds of the object to be checked ({ x, y, width, height })</p>
+													</div>
+
+												</li>
+											</ul>
+										</div>
+
+										<div class="returns">
+											<h4>Returns:</h4>
+
+											<div class="returns-description">
+												<span class="type">Rect[]</span>:
+												<p>array with all detected objects</p>
+
+											</div>
+										</div>
+
+									</div>
+									<div id="method-split" class="method item ">
+										<div class="method-signature">
+											<span class="name"><code>split</code></span>
+
+											<span class="paren">()</span>
+										</div>
+
+
+
+
+
+
+										<div class="meta">
+											<p>
+												Defined in
+												<a href="../files/lib_p5play.js.html#l3395"><code>lib&#x2F;p5play.js:3395</code></a>
+											</p>
+
+
+
+										</div>
+
+										<div class="description">
+											<p>Split the node into 4 subnodes</p>
+										</div>
+
+
+
+									</div>
+								</div>
+							</div>
+
+
+
+
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
-
-</div>
-<div id="method-insert" class="method item ">
-	<div class="method-signature">
-	<span class="name"><code>insert</code></span>
-
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
-				<li class="arg">
-						<code>pRect</code>
-				</li>
-			</ul><span class="paren">)</span>
-		</div>
 	</div>
-
-
-
-
-
-
-	<div class="meta">
-				<p>
-				Defined in
-		<a href="../files/lib_p5.play.js.html#l3500"><code>lib&#x2F;p5.play.js:3500</code></a>
-		</p>
-
-
-
-	</div>
-
-	<div class="description"><p>Insert the object into the node. If the node
-exceeds the capacity, it will split and add all
-objects to their corresponding subnodes.</p>
-</div>
-
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-				<li class="param">
-						<code class="param-name">pRect</code>
-						<span class="type">Rect</span>
-
-
-					<div class="param-description"><p>bounds of the object to be added ({ x, y, width, height })</p>
-</div>
-
-				</li>
-			</ul>
-		</div>
-
-
-</div>
-<div id="method-retrieve" class="method item ">
-	<div class="method-signature">
-	<span class="name"><code>retrieve</code></span>
-
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
-				<li class="arg">
-						<code>pRect</code>
-				</li>
-			</ul><span class="paren">)</span>
-		</div>
-		<span class="returns-inline">
-			<span class="type">Rect[]</span>
-		</span>
-	</div>
-
-
-
-
-
-
-	<div class="meta">
-				<p>
-				Defined in
-		<a href="../files/lib_p5.play.js.html#l3545"><code>lib&#x2F;p5.play.js:3545</code></a>
-		</p>
-
-
-
-	</div>
-
-	<div class="description"><p>Return all objects that could collide with the given object</p>
-</div>
-
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-				<li class="param">
-						<code class="param-name">pRect</code>
-						<span class="type">Rect</span>
-
-
-					<div class="param-description"><p>bounds of the object to be checked ({ x, y, width, height })</p>
-</div>
-
-				</li>
-			</ul>
-		</div>
-
-		<div class="returns">
-			<h4>Returns:</h4>
-
-			<div class="returns-description">
-						<span class="type">Rect[]</span>:
-					<p>array with all detected objects</p>
-
-			</div>
-		</div>
-
-</div>
-<div id="method-split" class="method item ">
-	<div class="method-signature">
-	<span class="name"><code>split</code></span>
-
-		<span class="paren">()</span>
-	</div>
-
-
-
-
-
-
-	<div class="meta">
-				<p>
-				Defined in
-		<a href="../files/lib_p5.play.js.html#l3395"><code>lib&#x2F;p5.play.js:3395</code></a>
-		</p>
-
-
-
-	</div>
-
-	<div class="description"><p>Split the node into 4 subnodes</p>
-</div>
-
-
-
-</div>
-        </div>
-    </div>
-
-
-
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<script src="../assets/vendor/jquery/jquery-1.8.2.min.js"></script>
-<script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
-<script src="../assets/vendor/prettify/prettify-min.js"></script>
-<script src="../assets/js/yuidoc-bootstrap.js"></script>
-<script>prettyPrint();</script>
+	<script src="../assets/vendor/jquery/jquery-1.8.2.min.js"></script>
+	<script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
+	<script src="../assets/vendor/prettify/prettify-min.js"></script>
+	<script src="../assets/js/yuidoc-bootstrap.js"></script>
+	<script>prettyPrint();</script>
 </body>
+
 </html>

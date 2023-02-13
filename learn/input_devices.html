@@ -4,14 +4,14 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>p5.play : Input</title>
+	<title>p5play : Input</title>
 	<link rel="icon" href="../favicon.png" />
 	<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 	<nav id="topNav">
-		<a href="index.html" class="active"><img src="../logo.svg" class="logo">p5.play</a>
+		<a href="index.html" class="active"><img src="../logo.svg" class="logo">p5play</a>
 		<span>:</span>
 		<a href="sprite.html">Sprite</a>
 		<a href="group.html">Group</a>
@@ -32,7 +32,7 @@
 		<script type="text/md">
 ## Input Devices
 			
-Here are the input devices available in p5.play:
+Here are the input devices available in p5play:
 					
 - `kb` or `keyboard` for the keyboard
 - `mouse` for the mouse
@@ -80,13 +80,13 @@ if (kb.released('space')) {
 		<script type="text/md">
 ## Keyboard
 			
-In PC games the WASD keys are commonly used to control the player character's movement. In p5.play you can use the direction names 'up', 'down', 'left', and 'right' to detect WASD key and arrow key presses.
+In PC games the WASD keys are commonly used to control the player character's movement. In p5play you can use the direction names 'up', 'down', 'left', and 'right' to detect WASD key and arrow key presses.
 
 If you want to use WASD and the arrow keys seperately you can use these key names to detect arrow key presses: 'ArrowUp', 'ArrowDown', 'ArrowLeft' and 'ArrowRight'.
 			
 Using the IJKL keys for movement is common to support left handed players or second players in local two player games. These keys can be referenced using: 'up2', 'down2', 'left2', and 'right2'.
 			
-Some keyboards don't start with QWERTY on the top row. p5.play maps other keyboard layouts to the standard English QWERTY layout. For example, the WASD keys for French AZERTY keyboard users are ZQSD. This can be disabled by setting `p5play.standardizeKeyboard` to false. [More info](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/code)
+Some keyboards don't start with QWERTY on the top row. p5play maps other keyboard layouts to the standard English QWERTY layout. For example, the WASD keys for French AZERTY keyboard users are ZQSD. This can be disabled by setting `p5play.standardizeKeyboard` to false. [More info](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/code)
 		</script>
 		<script type="text/mie-p5" name="keyboard movement">
 let player;
@@ -198,7 +198,7 @@ It also provides the `x` and `y` axis positions of the analog sticks: `leftStick
 
 The `contro` object is also an array that contains all the connected game controllers detected by your web browser. Access connected controllers by index. For example, `contro[0]` and `contro[1]` are the first and second controllers. By default `contro` references `contro[0]`.
 
-Try it out! Press any button on your connected game controller for it to be detected by p5.play.
+Try it out! Press any button on your connected game controller for it to be detected by p5play.
 		</script>
 		<script type="text/mie-p5" name="controller test">
 let sprite;

@@ -1,9 +1,9 @@
-// Welcome to the p5.play Version 3 demos!
+// Welcome to the p5play Version 3 demos!
 
 // Please look at the reference documentation on the learn section of
 // the website first: https://p5play.org/learn/sprite.html
 
-// In this first demo I'll explain the basics of p5.js and p5.play.
+// In this first demo I'll explain the basics of p5.js and p5play.
 
 // You can edit this file and press Play to restart the program with
 // your changes. You don't have to wait for the code to compile or load.
@@ -42,7 +42,7 @@ function draw() {
 		s.vel.y = random(-5, 5);
 		// try editing the sprite's speed!
 
-		// Sprites collide by default in p5.play v3.
+		// Sprites collide by default in p5play v3.
 		// Try playing this example and see if you can keep one of the
 		// squares from leaving the p5.js canvas!
 	}

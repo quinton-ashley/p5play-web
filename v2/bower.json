@@ -1,9 +1,9 @@
 {
-	"name": "p5.play",
+	"name": "p5play",
 	"version": "2.0.0",
-	"homepage": "https://github.com/molleindustria/p5.play",
+	"homepage": "https://github.com/molleindustria/p5play",
 	"authors": ["molleindustria"],
-	"main": "lib/p5.play.js",
+	"main": "lib/p5play.js",
 	"moduleType": ["amd", "globals", "node"],
 	"license": "GPLv2.1",
 	"ignore": [

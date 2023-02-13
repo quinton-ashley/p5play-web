@@ -1,16 +1,16 @@
 /**
- * p5.play
+ * p5play
  *
  * @version 4 (in development, not for public use)
  * @author quinton-ashley
  * @year 2023
  * @license gpl-v3-only
- * @descripton p5.play is a 2D game engine that uses Box2D to simulate
+ * @descripton p5play is a 2D game engine that uses Box2D to simulate
  * physics and provides sprites, a tile system, input handling, and animations!
  */
 (async () => {
 	if (typeof window.Box2D == 'undefined') {
-		throw new Error('Box2D must be loaded before p5.play');
+		throw new Error('Box2D must be loaded before p5play');
 	}
 	const Box2DFactory = Box2D;
 	window.B2D = await Box2DFactory();
@@ -2264,7 +2264,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 	 * can be used without being added to a sprite first.
 	 *
 	 * An animation can be created either from a list of images or sequentially
-	 * numbered images. p5.play will try to detect the sequence pattern.
+	 * numbered images. p5play will try to detect the sequence pattern.
 	 *
 	 * For example if the image file path is "image1.png" and the last frame
 	 * index is 3 then "image2.png" and "image3.png" will be loaded as well.
@@ -2856,7 +2856,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 	}
 
 	/**
-	 * In p5.play groups are collections of sprites with similar behavior.
+	 * In p5play groups are collections of sprites with similar behavior.
 	 * For example a group may contain all the coin sprites that the
 	 * player can collect.
 	 *
@@ -3911,7 +3911,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 	this.Tiles = Tiles;
 
 	/**
-	 * @class p5.play
+	 * @class p5play
 	 */
 
 	/**

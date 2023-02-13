@@ -2,4 +2,4 @@ Don't use version 4, I've barely started working on it. Use version 3, which is 
 
 When finished, v4 will be fully backwards compatible with v3, it'll just be a lot faster.
 
-My work on this version has been put on hold so I can prioritize adding features to version 3 of p5.play.
+My work on this version has been put on hold so I can prioritize adding features to version 3 of p5play.

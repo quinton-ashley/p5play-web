@@ -1,9 +1,9 @@
-# p5.play development
+# p5play development
 
 > This development info is archived for historical purposes.
 
-The following documentation is for _developing_ p5.play itself. If you
-want to _use_ p5.play, please see [p5play.molleindustria.org][].
+The following documentation is for _developing_ p5play itself. If you
+want to _use_ p5play, please see [p5play.molleindustria.org][].
 
 ## Quick Start
 
@@ -36,7 +36,7 @@ A (mostly current) copy of the docs is also hosted at [p5play.molleindustria.org
 
 Several example sketches are available at [p5play.molleindustria.org/examples][].
 
-You can try these examples against your local copy of p5.play at
+You can try these examples against your local copy of p5play at
 [localhost:8080/examples][] or via the "Examples" link on the quick start
 welcome page.
 

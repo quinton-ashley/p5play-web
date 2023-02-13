@@ -1,89 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="utf-8">
-    <title>lib/p5.play.js - p5.play</title>
-    <link rel="stylesheet" href="">
-    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
-    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
-    <link rel="stylesheet" href="../assets/css/custom.css">
-    <link rel="stylesheet" href="../assets/css/lucid.css">
-    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
-    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+	<meta charset="utf-8">
+	<title>lib/p5play.js - p5play</title>
+	<link rel="stylesheet" href="">
+	<link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+	<link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+	<link rel="stylesheet" href="../assets/css/custom.css">
+	<link rel="stylesheet" href="../assets/css/lucid.css">
+	<link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
+	<link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
 </head>
+
 <body class="yui3-skin-sam">
-<div class="navbar navbar-fixed-top">
-    <div class="navbar-inner">
-        <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">
-	    <img alt="p5.play" src="../../favicon.ico" style="max-height: 65%;" title="p5.play">
-            p5.play
-        </h1>
-	<div class="nav">
-            <li class="divider-vertical"></li>
-            <li>
-                <p class="navbar-text">
-                    API Docs for Version: <b>2.3.0</b>
-                </p>
-            </li>
-        </div>
-        <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
-            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/Camera", "classes/Group", "classes/p5.js", "classes/Quadtree", "classes/Sprite", "classes/SpriteAnimation", "classes/SpriteSheet", "modules/p5.play"]'>
-        </form>
-    </div>
-</div>
-<div class="container">
-    <div class="row">
-        <div class="span3">
-<div>
-    <div id="sidebar">
-    <div id="classes">
-        <ul id="api-classes" class="nav nav-list">
-                <li><a href="../classes/Camera.html">Camera</a></li>
-                <li><a href="../classes/Group.html">Group</a></li>
-                <li><a href="../classes/p5.js.html">p5.js</a></li>
-                <li><a href="../classes/Sprite.html">Sprite</a></li>
-                <li><a href="../classes/SpriteAnimation.html">SpriteAnimation</a></li>
-                <li><a href="../classes/SpriteSheet.html">SpriteSheet</a></li>
-        </ul>
-    </div>
-    </div>
-</div>
-        </div>
-        <div class="span9">
-    <form id="options-form" class="form-inline pull-right">
-        Show:
-        <label for="api-show-inherited" class="checkbox">
-            <input type="checkbox" id="api-show-inherited" checked>
-            Inherited
-        </label>
+	<div class="navbar navbar-fixed-top">
+		<div class="navbar-inner">
+			<h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">
+				<img alt="p5play" src="../../favicon.ico" style="max-height: 65%;" title="p5play">
+				p5play
+			</h1>
+			<div class="nav">
+				<li class="divider-vertical"></li>
+				<li>
+					<p class="navbar-text">
+						API Docs for Version: <b>2.3.0</b>
+					</p>
+				</li>
+			</div>
+			<form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
+				<input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..."
+					data-obj='["classes/Camera", "classes/Group", "classes/p5.js", "classes/Quadtree", "classes/Sprite", "classes/SpriteAnimation", "classes/SpriteSheet", "modules/p5play"]'>
+			</form>
+		</div>
+	</div>
+	<div class="container">
+		<div class="row">
+			<div class="span3">
+				<div>
+					<div id="sidebar">
+						<div id="classes">
+							<ul id="api-classes" class="nav nav-list">
+								<li><a href="../classes/Camera.html">Camera</a></li>
+								<li><a href="../classes/Group.html">Group</a></li>
+								<li><a href="../classes/p5.js.html">p5.js</a></li>
+								<li><a href="../classes/Sprite.html">Sprite</a></li>
+								<li><a href="../classes/SpriteAnimation.html">SpriteAnimation</a></li>
+								<li><a href="../classes/SpriteSheet.html">SpriteSheet</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="span9">
+				<form id="options-form" class="form-inline pull-right">
+					Show:
+					<label for="api-show-inherited" class="checkbox">
+						<input type="checkbox" id="api-show-inherited" checked>
+						Inherited
+					</label>
 
-        <label for="api-show-protected" class="checkbox">
-            <input type="checkbox" id="api-show-protected">
-            Protected
-        </label>
+					<label for="api-show-protected" class="checkbox">
+						<input type="checkbox" id="api-show-protected">
+						Protected
+					</label>
 
-        <label for="api-show-private" class="checkbox">
-            <input type="checkbox" id="api-show-private">
-            Private
-        </label>
-        <label for="api-show-deprecated" class="checkbox">
-            <input type="checkbox" id="api-show-deprecated">
-            Deprecated
-        </label>
+					<label for="api-show-private" class="checkbox">
+						<input type="checkbox" id="api-show-private">
+						Private
+					</label>
+					<label for="api-show-deprecated" class="checkbox">
+						<input type="checkbox" id="api-show-deprecated">
+						Deprecated
+					</label>
 
-    </form>
+				</form>
 
-            <div class="apidocs">
-                <div id="docs-main">
-                    <div class="content">
-<div class="page-header">
-    <h1>lib/p5.play.js <small>File</small></h1>
-</div>
+				<div class="apidocs">
+					<div id="docs-main">
+						<div class="content">
+							<div class="page-header">
+								<h1>lib/p5play.js <small>File</small></h1>
+							</div>
 
-<div class="file">
-    <pre class="prettyprint linenums">
+							<div class="file">
+								<pre class="prettyprint linenums">
 /*
-p5.play
+p5play
 
 created by Paolo Pedercini @molleindustria, 2015
 https://molleindustria.org/
@@ -95,7 +98,7 @@ https://quintos.org
 (function (root, factory) {
 	if (typeof module === &#x27;object&#x27;) module.exports = factory(require(&#x27;p5&#x27;)); // CommonJS
 	else if (typeof define === &#x27;function&#x27; &amp;&amp; define.amd) {
-		define(&#x27;p5.play&#x27;, [&#x27;p5&#x27;], (p5) =&gt; factory(p5)); // AMD
+		define(&#x27;p5play&#x27;, [&#x27;p5&#x27;], (p5) =&gt; factory(p5)); // AMD
 	} else factory(root.p5); // automatic web browser loading
 })(this, function (p5) {
 	// These are utility p5 functions that don&#x27;t depend on p5 instance state
@@ -124,7 +127,7 @@ https://quintos.org
 		let pInst = this;
 
 		/**
-		 * A Sprite is the main building block of p5.play:
+		 * A Sprite is the main building block of p5play:
 		 * an element able to store images or animations with a set of
 		 * properties such as position and visibility.
 		 * A Sprite can have a collider that defines the active area to detect
@@ -640,7 +643,7 @@ https://quintos.org
 				 * Internal variable to keep track of whether this sprite is drawn while
 				 * the camera is active.
 				 * Used in Sprite.update() to know whether to use camera mouse coordinates.
-				 * @see https://github.com/molleindustria/p5.play/issues/107
+				 * @see https://github.com/molleindustria/p5play/issues/107
 				 *
 				 * @private
 				 * @property _drawnWithCamera
@@ -895,7 +898,7 @@ https://quintos.org
 			/**
 			 * Sets a collider for the sprite.
 			 *
-			 * In p5.play a Collider is an invisible circle or rectangle
+			 * In p5play a Collider is an invisible circle or rectangle
 			 * that can have any size or position relative to the sprite and which
 			 * will be used to detect collisions and overlapping with other sprites,
 			 * or the mouse cursor.
@@ -1163,7 +1166,7 @@ https://quintos.org
 				// Unlike Math.atan2, the atan2 method above will return degrees if
 				// the current p5 angleMode is DEGREES, and radians if the p5 angleMode is
 				// RADIANS.  This method should always return degrees (for now).
-				// See https://github.com/molleindustria/p5.play/issues/94
+				// See https://github.com/molleindustria/p5play/issues/94
 				if (this.p._angleMode === this.p.RADIANS) {
 					direction = degrees(direction);
 				}
@@ -1956,7 +1959,7 @@ https://quintos.org
 		} //end camera class
 
 		/**
-		 * In p5.play groups are collections of sprites with similar behavior.
+		 * In p5play groups are collections of sprites with similar behavior.
 		 * For example a group may contain all the coin sprites that the
 		 * player can collect.
 		 *
@@ -2235,7 +2238,7 @@ https://quintos.org
 			}
 
 			/**
-			 * Not for p5.play users! This method is used to rebuild quad tree and
+			 * Not for p5play users! This method is used to rebuild quad tree and
 			 * should only be called on the allSprites group.
 			 *
 			 * @method _rebuildQuadtree
@@ -2761,7 +2764,7 @@ https://quintos.org
 		 * An animation can be created either by passing a series of file names,
 		 * no matter how many or by passing the first and the last file name
 		 * of a numbered sequence.
-		 * p5.play will try to detect the sequence pattern.
+		 * p5play will try to detect the sequence pattern.
 		 *
 		 * For example if the given filenames are
 		 * &quot;data/file0001.png&quot; and &quot;data/file0005.png&quot; the images
@@ -3671,26 +3674,26 @@ https://quintos.org
 		}
 
 		/**
-		 * p5.play is a library for p5.js to facilitate the creation of games and gamelike
+		 * p5play is a library for p5.js to facilitate the creation of games and gamelike
 		 * projects.
 		 *
 		 * It provides a flexible Sprite class to manage visual objects in 2D space
 		 * and features such as animation support, basic collision detection
 		 * and resolution, mouse and keyboard interactions, and a virtual camera.
 		 *
-		 * p5.play is not a box2D-derived physics engine, it doesn&#x27;t use events, and it&#x27;s
+		 * p5play is not a box2D-derived physics engine, it doesn&#x27;t use events, and it&#x27;s
 		 * designed to be understood and possibly modified by intermediate programmers.
 		 *
 		 * Try the interactive examples for more info on how to use this library.
 		 * https://p5play.molleindustria.org/examples/
 		 *
-		 * @module p5.play
+		 * @module p5play
 		 * @for p5.js
 		 * @main
 		 */
 
 		/**
-		 * A Sprite is the main building block of p5.play:
+		 * A Sprite is the main building block of p5play:
 		 * an element able to store images or animations with a set of
 		 * properties such as position and visibility.
 		 * A Sprite can have a collider that defines the active area to detect
@@ -4091,7 +4094,7 @@ https://quintos.org
 					&#x27;Key literal &quot;&#x27; +
 						alias +
 						&#x27;&quot; is deprecated and may be removed &#x27; +
-						&#x27;in a future version of p5.play. &#x27; +
+						&#x27;in a future version of p5play. &#x27; +
 						&#x27;Please use &quot;&#x27; +
 						this.KEY_DEPRECATIONS[alias] +
 						&#x27;&quot; instead.&#x27;
@@ -4107,7 +4110,7 @@ https://quintos.org
 		 * It can improve performance when there is a large number of Sprites to be
 		 * checked continuously for overlapping.
 		 *
-		 * p5.play will create and update a quadtree automatically.
+		 * p5play will create and update a quadtree automatically.
 		 *
 		 * @method useQuadTree
 		 * @param {Boolean} use Pass true to enable, false to disable
@@ -4317,17 +4320,18 @@ https://quintos.org
 });
 
     </pre>
-</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<script src="../assets/vendor/jquery/jquery-1.8.2.min.js"></script>
-<script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
-<script src="../assets/vendor/prettify/prettify-min.js"></script>
-<script src="../assets/js/yuidoc-bootstrap.js"></script>
-<script>prettyPrint();</script>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="../assets/vendor/jquery/jquery-1.8.2.min.js"></script>
+	<script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
+	<script src="../assets/vendor/prettify/prettify-min.js"></script>
+	<script src="../assets/js/yuidoc-bootstrap.js"></script>
+	<script>prettyPrint();</script>
 </body>
+
 </html>

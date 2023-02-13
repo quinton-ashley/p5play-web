@@ -1,5 +1,5 @@
 {
-	"name": "p5.play",
+	"name": "p5play",
 	"description": "A p5.js library for games and playthings",
 	"version": "3",
 	"url": "http://molleindustria.org/",
@@ -8,6 +8,6 @@
 		"outdir": "docs",
 		"paths": ["v3"],
 		"ignorePaths": ["planck"],
-		"exclude": "demos,docs,game,jam,learn,logos,tests,theme,v2,v4,p5.play-beta.js"
+		"exclude": "demos,docs,game,jam,learn,logos,tests,theme,v2,v4,p5.play.js,p5play.min.js"
 	}
 }

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Tiles - p5play</title>
+    <title>testing/error3.js - p5play</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -83,151 +83,75 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-<h1>Tiles Class</h1>
-<div class="box meta">
+<h1 class="file-heading">File: testing/error3.js</h1>
 
+<div class="file">
+    <pre class="code prettyprint linenums">
+let img;
+function setup() {
+	createCanvas(100, 100);
+	img = createImage(100, 100);
+	img.loadPixels();
+	noLoop();
+}
+/**
+ * @param {p5.Vector} v
+ * @param {number} n
+ */
+function vectorPow(v, n) {
+	const r = v.mag();
+	const theta = v.heading();
+	const rn = Math.pow(r, n);
+	const tn = theta * n;
+	return createVector(rn * cos(tn), rn * sin(tn));
+}
+/**
+ * @param {p5.Vector} v1
+ * @param {p5.Vector} v2
+ * @description https://www.nagwa.com/en/explainers/597140740835/
+ */
+function vectorDiv(v1, v2) {
+	const [a, b] = v1.array();
+	const [p, q] = v2.array();
+	return createVector(a * p + b * q, b * p - a * q).div(sq(p) + sq(q));
+}
+/**
+ * @param {p5.Vector} z
+ * @param {(x:p5.Vector) =&gt; p5.Vector} p
+ * @param {(x:p5.Vector) =&gt; p5.Vector} dp
+ */
+function getLastPosition(z, p, dp) {
+	for (let index = 0; index &lt; 30; index++) {
+		const newz = z.copy().sub(vectorDiv(p(z), dp(z)));
+		if (newz.equals(z)) {
+			return newz;
+		}
+		z = newz;
+	}
+	return z;
+}
+const f = (/** @type {p5.Vector} */ x) =&gt; vectorPow(x, 4).sub(1); // z^4-1
+const df = (/** @type {p5.Vector} */ x) =&gt; vectorPow(x, 3).mult(4); // 4z^3
+function plot() {
+	for (let i = 0; i &lt; img.width; i++) {
+		for (let j = 0; j &lt; img.height; j++) {
+			const p = getLastPosition(createVector(map(i, 0, img.width, -2, 2), map(j, 0, img.height, -2, 2)), f, df);
+			const r = map(sin(p.x), -1, 1, 0, 255);
+			const g = map(sin(p.y), -1, 1, 0, 255);
+			const b = map(p.mag(), 0, 2, 0, 255);
+			img.set(i, j, color(r, g, b));
+		}
+	}
+}
 
-        <div class="foundat">
-            Defined in: <a href="../files/v3_p5play.js.html#l5269"><code>v3&#x2F;p5play.js:5269</code></a>
-        </div>
+function draw() {
+	background(100);
+	plot();
+	img.updatePixels();
+	image(img, 0, 0);
+}
 
-
-</div>
-
-
-<div class="box intro">
-    <p>Look at the Tiles reference pages before reading these docs.</p>
-<p><a href="https://p5play.org/learn/tiles.html">https://p5play.org/learn/tiles.html</a></p>
-
-</div>
-
-    <div class="constructor">
-        <h2>Constructor</h2>
-<div id="method_Tiles" class="method item">
-    <h3 class="name"><code>Tiles</code></h3>
-
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-                <li class="arg">
-                        <code>tiles</code>
-                </li>
-                <li class="arg">
-                        <code>x</code>
-                </li>
-                <li class="arg">
-                        <code>y</code>
-                </li>
-                <li class="arg">
-                        <code>w</code>
-                </li>
-                <li class="arg">
-                        <code>h</code>
-                </li>
-            </ul><span class="paren">)</span>
-        </div>
-
-
-
-
-
-
-
-
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/v3_p5play.js.html#l5269"><code>v3&#x2F;p5play.js:5269</code></a>
-        </p>
-
-
-
-    </div>
-
-    <div class="description">
-        
-    </div>
-
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-                <li class="param">
-                        <code class="param-name">tiles</code>
-                        <span class="type">String</span>
-
-
-                    <div class="param-description">
-                         
-                    </div>
-
-                </li>
-                <li class="param">
-                        <code class="param-name">x</code>
-                        <span class="type">Number</span>
-
-
-                    <div class="param-description">
-                         
-                    </div>
-
-                </li>
-                <li class="param">
-                        <code class="param-name">y</code>
-                        <span class="type">Number</span>
-
-
-                    <div class="param-description">
-                         
-                    </div>
-
-                </li>
-                <li class="param">
-                        <code class="param-name">w</code>
-                        <span class="type">Number</span>
-
-
-                    <div class="param-description">
-                         
-                    </div>
-
-                </li>
-                <li class="param">
-                        <code class="param-name">h</code>
-                        <span class="type">Number</span>
-
-
-                    <div class="param-description">
-                         
-                    </div>
-
-                </li>
-            </ul>
-        </div>
-
-
-
-</div>
-    </div>
-
-<div id="classdocs" class="tabview">
-    <ul class="api-class-tabs">
-        <li class="api-class-tab index"><a href="#index">Index</a></li>
-
-    </ul>
-
-    <div>
-        <div id="index" class="api-class-tabpanel index">
-            <h2 class="off-left">Item Index</h2>
-
-
-
-
-        </div>
-
-
-
-
-    </div>
+    </pre>
 </div>
                     </div>
                 </div>

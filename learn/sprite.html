@@ -4,14 +4,14 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>p5.play : Sprite</title>
+	<title>p5play : Sprite</title>
 	<link rel="icon" href="../logo.svg" />
 	<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 	<nav id="topNav">
-		<a href="index.html" class="active"><img src="../logo.svg" class="logo">p5.play</a>
+		<a href="index.html" class="active"><img src="../logo.svg" class="logo">p5play</a>
 		<span>:</span>
 		<a href="sprite.html" class="active">Sprite</a>
 		<a href="group.html">Group</a>
@@ -255,7 +255,7 @@ floor.collider = 'none';
 
 Try creating a sprite named `peg` with a static collider and circle shape. Create a sprite `block` with a dynamic collider and box shape. Make the block fall from above and hit the peg, falling to the right side.
 
-Note that `world` is created when p5.play loads but by default there is no gravity. Try setting `world.gravity.y` to a positive number. Each time the p5.js `draw` function finishes, sprites are automatically drawn and updated by default.
+Note that `world` is created when p5play loads but by default there is no gravity. Try setting `world.gravity.y` to a positive number. Each time the p5.js `draw` function finishes, sprites are automatically drawn and updated by default.
 		</script>
 			<script type="text/mie-p5" name="Level 1 Challenge Solution" hide-editor>
 let peg, block;
@@ -986,7 +986,7 @@ function draw() {
 		<div>
 			<h2>planck Bugs</h2>
 			<p>
-				p5.play uses the planck physics engine, which usually outputs realistic looking physical
+				p5play uses the planck physics engine, which usually outputs realistic looking physical
 				interactions, but it's not perfect.
 			</p>
 			<p>
@@ -1020,7 +1020,7 @@ function draw() {
 		</script>
 		<div>
 			<p>
-				Hopefully the bug will be fixed in a future version of planck or p5.play, but until then here's a workaround.
+				Hopefully the bug will be fixed in a future version of planck or p5play, but until then here's a workaround.
 			</p>
 			<p>
 				The <code>bounciness</code> bug is most noticeable when the ball bounces off a flat surface. Here's a workaround
@@ -1288,16 +1288,16 @@ function draw() {
 		</script>
 		<div>
 			<p>
-				Now you can see how the p5.play logo was made!
+				Now you can see how the p5play logo was made!
 			</p>
 			<p>
 				Even closed chains like this one are made of lines and
-				they're empty on the inside. In the example on the p5.play
+				they're empty on the inside. In the example on the p5play
 				homepage, you can see how chain
 				colliders can contain many other sprites inside them!
 			</p>
 		</div>
-		<script type="text/mie-p5" name="p5.play logo" lines="8">
+		<script type="text/mie-p5" name="p5play logo" lines="8">
 function setup() {
 	new Canvas(500, 200);
 	world.gravity.y = 10;
@@ -1314,7 +1314,7 @@ function draw() {
 		<div>
 			<p>
 				Note that closed chain colliders aren't so good at being dynamic colliders. This is a
-				limitation of the Box2D physics engine that p5.play uses.
+				limitation of the Box2D physics engine that p5play uses.
 			</p>
 		</div>
 		<script type="text/mie-p5" name="concave chain colliders" lines="9">

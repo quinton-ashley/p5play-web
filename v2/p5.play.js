@@ -1,5 +1,5 @@
 /*
-p5.play
+p5play
 
 created by Paolo Pedercini @molleindustria, 2015
 https://molleindustria.org/
@@ -11,7 +11,7 @@ https://quintos.org
 (function (root, factory) {
 	if (typeof module === 'object') module.exports = factory(require('p5')); // CommonJS
 	else if (typeof define === 'function' && define.amd) {
-		define('p5.play', ['p5'], (p5) => factory(p5)); // AMD
+		define('p5play', ['p5'], (p5) => factory(p5)); // AMD
 	} else factory(root.p5); // automatic web browser loading
 })(this, function (p5) {
 	// These are utility p5 functions that don't depend on p5 instance state
@@ -40,7 +40,7 @@ https://quintos.org
 		let pInst = this;
 
 		/**
-		 * A Sprite is the main building block of p5.play:
+		 * A Sprite is the main building block of p5play:
 		 * an element able to store images or animations with a set of
 		 * properties such as position and visibility.
 		 * A Sprite can have a collider that defines the active area to detect
@@ -556,7 +556,7 @@ https://quintos.org
 				 * Internal variable to keep track of whether this sprite is drawn while
 				 * the camera is active.
 				 * Used in Sprite.update() to know whether to use camera mouse coordinates.
-				 * @see https://github.com/molleindustria/p5.play/issues/107
+				 * @see https://github.com/molleindustria/p5play/issues/107
 				 *
 				 * @private
 				 * @property _drawnWithCamera
@@ -809,7 +809,7 @@ https://quintos.org
 			/**
 			 * Sets a collider for the sprite.
 			 *
-			 * In p5.play a Collider is an invisible circle or rectangle
+			 * In p5play a Collider is an invisible circle or rectangle
 			 * that can have any size or position relative to the sprite and which
 			 * will be used to detect collisions and overlapping with other sprites,
 			 * or the mouse cursor.
@@ -1077,7 +1077,7 @@ https://quintos.org
 				// Unlike Math.atan2, the atan2 method above will return degrees if
 				// the current p5 angleMode is DEGREES, and radians if the p5 angleMode is
 				// RADIANS.  This method should always return degrees (for now).
-				// See https://github.com/molleindustria/p5.play/issues/94
+				// See https://github.com/molleindustria/p5play/issues/94
 				if (this.p._angleMode === this.p.RADIANS) {
 					direction = degrees(direction);
 				}
@@ -1870,7 +1870,7 @@ https://quintos.org
 		} //end camera class
 
 		/**
-		 * In p5.play groups are collections of sprites with similar behavior.
+		 * In p5play groups are collections of sprites with similar behavior.
 		 * For example a group may contain all the coin sprites that the
 		 * player can collect.
 		 *
@@ -2149,7 +2149,7 @@ https://quintos.org
 			}
 
 			/**
-			 * Not for p5.play users! This method is used to rebuild quad tree and
+			 * Not for p5play users! This method is used to rebuild quad tree and
 			 * should only be called on the allSprites group.
 			 *
 			 * @method _rebuildQuadtree
@@ -2675,7 +2675,7 @@ https://quintos.org
 		 * An animation can be created either by passing a series of file names,
 		 * no matter how many or by passing the first and the last file name
 		 * of a numbered sequence.
-		 * p5.play will try to detect the sequence pattern.
+		 * p5play will try to detect the sequence pattern.
 		 *
 		 * For example if the given filenames are
 		 * "data/file0001.png" and "data/file0005.png" the images
@@ -3585,26 +3585,26 @@ https://quintos.org
 		}
 
 		/**
-		 * p5.play is a library for p5.js to facilitate the creation of games and gamelike
+		 * p5play is a library for p5.js to facilitate the creation of games and gamelike
 		 * projects.
 		 *
 		 * It provides a flexible Sprite class to manage visual objects in 2D space
 		 * and features such as animation support, basic collision detection
 		 * and resolution, mouse and keyboard interactions, and a virtual camera.
 		 *
-		 * p5.play is not a box2D-derived physics engine, it doesn't use events, and it's
+		 * p5play is not a box2D-derived physics engine, it doesn't use events, and it's
 		 * designed to be understood and possibly modified by intermediate programmers.
 		 *
 		 * Try the interactive examples for more info on how to use this library.
 		 * https://p5play.molleindustria.org/examples/
 		 *
-		 * @module p5.play
+		 * @module p5play
 		 * @for p5.js
 		 * @main
 		 */
 
 		/**
-		 * A Sprite is the main building block of p5.play:
+		 * A Sprite is the main building block of p5play:
 		 * an element able to store images or animations with a set of
 		 * properties such as position and visibility.
 		 * A Sprite can have a collider that defines the active area to detect
@@ -4005,7 +4005,7 @@ https://quintos.org
 					'Key literal "' +
 						alias +
 						'" is deprecated and may be removed ' +
-						'in a future version of p5.play. ' +
+						'in a future version of p5play. ' +
 						'Please use "' +
 						this.KEY_DEPRECATIONS[alias] +
 						'" instead.'
@@ -4021,7 +4021,7 @@ https://quintos.org
 		 * It can improve performance when there is a large number of Sprites to be
 		 * checked continuously for overlapping.
 		 *
-		 * p5.play will create and update a quadtree automatically.
+		 * p5play will create and update a quadtree automatically.
 		 *
 		 * @method useQuadTree
 		 * @param {Boolean} use Pass true to enable, false to disable

@@ -1,13 +1,13 @@
 {
-	"name": "p5.play-web",
+	"name": "p5play-web",
 	"author": "Paolo Pedercini <info@molleindustria.it>",
 	"bugs": {
-		"url": "https://github.com/molleindustria/p5.play/issues"
+		"url": "https://github.com/molleindustria/p5play/issues"
 	},
 	"contributors": [
 		"quinton-ashley <qashto@gmail.com> (https://quintos.org)"
 	],
-	"description": "A website for p5.play",
+	"description": "A website for p5play",
 	"dependencies": {},
 	"devDependencies": {
 		"eslint": "^3.1.0",
@@ -20,7 +20,7 @@
 		"node": ">=4.0.0"
 	},
 	"license": "LGPL-2.1",
-	"homepage": "https://github.com/molleindustria/p5.play/tree/gh-pages",
+	"homepage": "https://github.com/molleindustria/p5play/tree/gh-pages",
 	"scripts": {
 		"docs": "yuidoc .;rm docs/assets/favicon.ico|rm docs/assets/favicon.ico;cp favicon.ico docs/assets/favicon.ico|cp favicon.png docs/assets/favicon.png",
 		"lint": "eslint lib/** test/unit/** examples/*.js",

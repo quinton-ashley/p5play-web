@@ -5,7 +5,7 @@
 const log = console.log;
 global.p5 = require('p5');
 global.planck = require('planck');
-require('../v3/p5.play.js');
+require('../v3/p5play.js');
 
 test('World', () => {
 	const sketch = (p) => {

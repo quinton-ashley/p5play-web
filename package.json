@@ -4,7 +4,7 @@
 	"contributors": [
 		"Paolo Pedercini <info@molleindustria.it>"
 	],
-	"description": "The website for p5.play",
+	"description": "The website for p5play",
 	"dependencies": {
 		"p5": "^1.5.0",
 		"planck": "^1.0.0-alpha.4"
@@ -15,7 +15,7 @@
 		"jest-environment-jsdom": "^29.3.1"
 	},
 	"license": "GPL-3.0-only",
-	"homepage": "https://github.com/quintos/p5play-web/tree/gh-pages",
+	"homepage": "https://github.com/quintos/p5play-web",
 	"scripts": {
 		"tests": "jest tests",
 		"docs": "yuidoc .;rm docs/assets/favicon.ico|rm docs/assets/favicon.ico;cp favicon.ico docs/assets/favicon.ico|cp favicon.png docs/assets/icon.png",
@@ -24,5 +24,5 @@
 		"version": "git add -A",
 		"postversion": "git push"
 	},
-	"version": "1.1.358"
+	"version": "1.1.359"
 }

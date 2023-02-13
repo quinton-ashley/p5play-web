@@ -55,7 +55,7 @@ mie.ready = function () {
 		if (currentPage - 1 > -1) {
 			let i = currentPage - 1;
 			let url = `?page=${i}`;
-			history.pushState({}, 'p5.play : Sprite : ' + i, url);
+			history.pushState({}, 'p5play : Sprite : ' + i, url);
 			loadPage(i);
 		}
 	};
@@ -66,7 +66,7 @@ mie.ready = function () {
 		a.innerText = i;
 		a.onclick = function () {
 			let url = `?page=${i}`;
-			history.pushState({}, 'p5.play : Sprite : ' + i, url);
+			history.pushState({}, 'p5play : Sprite : ' + i, url);
 			loadPage(i);
 		};
 		pageNav.appendChild(a);
@@ -78,7 +78,7 @@ mie.ready = function () {
 		if (currentPage + 1 < pages.length) {
 			let i = currentPage + 1;
 			let url = `?page=${i}`;
-			history.pushState({}, 'p5.play : Sprite : ' + i, url);
+			history.pushState({}, 'p5play : Sprite : ' + i, url);
 			loadPage(i);
 		}
 	};
