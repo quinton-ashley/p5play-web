@@ -1,5 +1,5 @@
 /**
- * q5js
+ * q5.js
  * @version 1.0
  * @author LingDong- and quinton-ashley
  */
