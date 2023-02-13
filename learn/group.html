@@ -151,7 +151,8 @@ function draw() {
 let player, gems;
 
 function setup() {
-	new Canvas(160, 456);
+	log('hi 1')
+	new Canvas(160, 476);
 
 	gems = new Group();
 	gems.diameter = 10;
@@ -173,6 +174,33 @@ function draw() {
 	player.moveTowards(mouse);
 }
 		</script>
+		<!-- <script type="text/mie-p5" name="collect gems" horiz>
+let player, gems;
+
+function setup() {
+	log('hi 2')
+	new Canvas(160, 456);
+
+	gems = new Group();
+	gems.diameter = 10;
+	gems.x = () => random(0, width);
+	gems.y = () => random(0, height);
+	gems.amount = 80;
+
+	player = new Sprite();
+
+	player.overlaps(gems, collect);
+}
+
+function collect(player, gem) {
+	gem.remove();
+}
+
+function draw() {
+	clear();
+	player.moveTowards(mouse);
+}
+				</script> -->
 	</div>
 	<div id="page-3" class="page">
 		<div>
@@ -285,7 +313,8 @@ function draw() {
 		Created by Quinton Ashley (@quinton-ashley) Copyright 2022-2023.
 	</footer>
 
-	<script src="https://cdn.jsdelivr.net/npm/p5@1/lib/p5.min.js"></script>
+	<!-- <script src="https://cdn.jsdelivr.net/npm/p5@1/lib/p5.js"></script> -->
+	<script src="../v3/q5.js"></script>
 	<script src="../v3/planck.min.js"></script>
 	<script src="../v3/p5play.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.8.1/ace.min.js"></script>

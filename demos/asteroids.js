@@ -57,27 +57,25 @@ function draw() {
 		if (s.y > height + MARGIN) s.y = -MARGIN;
 	}
 
-	if (kb.pressing('a')) ship.rotation -= 5;
-	if (kb.pressing('d')) ship.rotation += 5;
-	if (kb.pressing('w')) {
+	if (kb.pressing('left')) ship.rotation -= 5;
+	if (kb.pressing('right')) ship.rotation += 5;
+	if (kb.pressing('up')) {
 		ship.addSpeed(0.2, ship.rotation);
 		ship.ani = 'thrust';
 	} else {
 		ship.ani = 'default';
 	}
 
-	if (!asteroids.length) text('You won!', width / 2, height / 2);
-
-	allSprites.debug = mouse.pressing();
-}
-
-function keyPressed() {
-	if (key == 'k') {
+	if (kb.presses('k')) {
 		let laser = new lasers.Sprite(ship.x, ship.y);
 		laser.direction = ship.rotation;
 		laser.speed = ship.speed + 10;
 		laser.life = 30;
 	}
+
+	if (!asteroids.length) text('You won!', width / 2, height / 2);
+
+	allSprites.debug = mouse.pressing();
 }
 
 function createAsteroid(type, x, y) {

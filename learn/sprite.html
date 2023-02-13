@@ -30,7 +30,7 @@
 		<div>
 			<h2>Setup</h2>
 			<p>
-				The code inside the p5.js <code>setup</code> function runs
+				The code inside the p5.js or q5.js <code>setup</code> function runs
 				when the program starts. The <code>new Canvas()</code> constructor
 				creates a section of the screen that the program can draw on.
 			</p>
@@ -728,18 +728,18 @@ function draw() {
 	</div>
 	<div id="page-7" class="page">
 		<script type="text/mie-p5" base-5 hide>
-		let sprite;
-		
-		function setup() {
-			new Canvas(238, 80);
-		
-			sprite = new Sprite();
-			sprite.h = 20;
-		}
-		
-		function draw() {
-			clear();
-		}
+let sprite;
+
+function setup() {
+	new Canvas(238, 80);
+
+	sprite = new Sprite();
+	sprite.h = 20;
+}
+
+function draw() {
+	clear();
+}
 		</script>
 		<div>
 			<h2>Sprite rotation</h2>
@@ -1404,8 +1404,9 @@ function draw() {
 	</footer>
 
 	<script src="https://cdn.jsdelivr.net/npm/p5@1/lib/p5.min.js"></script>
+	<!-- <script src="../v3/q5.js"></script> -->
 	<script src="../v3/planck.min.js"></script>
-	<script src="../v3/p5play.js"></script>
+	<script src="../v3/p5play.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.8.1/ace.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 	<script src="learn.js"></script>
