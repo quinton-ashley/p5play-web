@@ -47,7 +47,7 @@
 				blueprint for new group sprites.
 			</p>
 		</div>
-		<script type="text/mie-p5" name="dots" lines="15" base-0>
+		<script type="mie/p5" name="dots" lines="15" base-0>
 let dots;
 
 function setup() {
@@ -74,7 +74,7 @@ function draw() {
 				JavaScript array methods on a group.
 			</p>
 		</div>
-		<script type="text/mie-p5" name="green dot" base="0">
+		<script type="mie/p5" name="green dot" base="0">
 dots[5].color = 'green';
 		</script>
 		<div>
@@ -83,7 +83,7 @@ dots[5].color = 'green';
 				sprites in the group! I call this "dynamic inheritance".
 			</p>
 		</div>
-		<script type="text/mie-p5" name="green dots" base="0">
+		<script type="mie/p5" name="green dots" base="0">
 dots.color = 'green';
 		</script>
 		<div>
@@ -92,7 +92,7 @@ dots.color = 'green';
 				will cause all the sprites in a group to move.
 			</p>
 		</div>
-		<script type="text/mie-p5" name="moving dots" base="0">
+		<script type="mie/p5" name="moving dots" base="0">
 dots.moveTowards(mouse);
 		</script>
 	</div>
@@ -112,7 +112,7 @@ dots.moveTowards(mouse);
 				In this mini example, each gem sprite is assigned a random x and y position.
 			</p>
 		</div>
-		<script type="text/mie-p5" name="throw gems" horiz>
+		<script type="mie/p5" name="throw gems" horiz>
 let player, gems;
 
 function setup() {
@@ -147,7 +147,7 @@ function draw() {
 			</p>
 			<p>You can use the overlap and collide functions on groups as well.</p>
 		</div>
-		<script type="text/mie-p5" name="collect gems" horiz>
+		<script type="mie/p5" name="collect gems" horiz>
 let player, gems;
 
 function setup() {
@@ -181,7 +181,7 @@ function draw() {
 				p5play creates an <code>allSprites</code> group that contains all the sprites in a sketch.
 			</p>
 		</div>
-		<script type="text/mie-p5" name="allSprites" horiz>
+		<script type="mie/p5" name="allSprites" horiz>
 let box, circle;
 
 function setup() {
@@ -204,7 +204,7 @@ function draw() {
 				functions when
 				they are evaluated.</p>
 		</div>
-		<script type="text/mie-p5" name="doors">
+		<script type="mie/p5" name="doors">
 let doors, rail;
 
 function setup() {
@@ -246,7 +246,7 @@ function draw() {
 				The <code>group.removeAll</code> function can be used to remove all the sprites from a group.
 			</p>
 		</div>
-		<script type="text/mie-p5" name="SubGroup" horiz>
+		<script type="mie/p5" name="SubGroup" horiz>
 let boxes, smallBoxes, bigBoxes;
 
 function setup() {

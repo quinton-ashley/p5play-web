@@ -42,7 +42,7 @@ These input devices all use the same simple functions for getting the state of a
 
 They also store the state of all their inputs as properties. For example, `kb.space` stores how many frames the user has been pressing the space key. It gets reset when the user releases the input.
 		</script>
-		<script type="text/mie-p5" name="hidden" base-0 hide>
+		<script type="mie/p5" name="hidden" base-0 hide>
 function setup() {
 	new Canvas(238, 100);
 	frameRate(30);
@@ -54,22 +54,22 @@ function draw() {
 }
 		</script>
 		<div class="minis">
-			<script type="text/mie-p5" name="presses" base="0">
+			<script type="mie/p5" name="presses" base="0">
 if (kb.presses('space')) {
 	background(0, 255, 0);
 }
 			</script>
-			<script type="text/mie-p5" name="pressing" base="0">
+			<script type="mie/p5" name="pressing" base="0">
 if (kb.pressing('space')) {
 	background(0, 255, 0);
 }
 			</script>
-			<script type="text/mie-p5" name="holding" base="0">
+			<script type="mie/p5" name="holding" base="0">
 if (kb.space >= 12) {
 	background(0, 255, 0);
 }
 			</script>
-			<script type="text/mie-p5" name="released" base="0">
+			<script type="mie/p5" name="released" base="0">
 if (kb.released('space')) {
 	background(0, 255, 0);
 }
@@ -88,7 +88,7 @@ Using the IJKL keys for movement is common to support left handed players or sec
 			
 Some keyboards don't start with QWERTY on the top row. p5play maps other keyboard layouts to the standard English QWERTY layout. For example, the WASD keys for French AZERTY keyboard users are ZQSD. This can be disabled by setting `p5play.standardizeKeyboard` to false. [More info](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/code)
 		</script>
-		<script type="text/mie-p5" name="keyboard movement">
+		<script type="mie/p5" name="keyboard movement">
 let player;
 
 function setup() {
@@ -124,7 +124,7 @@ function draw() {
 				is 'left' for the left mouse button or normal click.
 			</p>
 		</div>
-		<script type="text/mie-p5" name="hidden" base-1 hide>
+		<script type="mie/p5" name="hidden" base-1 hide>
 let sprite;
 
 function setup() {
@@ -138,7 +138,7 @@ function draw() {
 }
 		</script>
 		<div class="horiz">
-			<script type="text/mie-p5" name="multi-input" base="1">
+			<script type="mie/p5" name="multi-input" base="1">
 if (kb.pressing('space') || mouse.pressing()) {
 	sprite.color = 'red';
 }
@@ -149,14 +149,14 @@ if (kb.pressing('space') || mouse.pressing()) {
 		<script type="text/md">
 ## Sprite Mouse
 			
-Sprites all have their own mouse object for detecting mouse inputs on the sprite.
+Sprites with physics colliders have their own mouse object for detecting mouse inputs on the sprite.
 			
-The `mouse` has an additional function for detecting dragging, moving the mouse while holding a button.
+`sprite.mouse` objects are just like the `mouse` input object, except they have an additional function called `dragging` that detects when the user is holding a button while moving the mouse.
 						
 Note that `mouse.x` is the x position of the mouse on the canvas and `sprite.mouse.x` is the x position of the mouse relative to the sprite.
 		</script>
 		<div class="horiz">
-			<script type="text/mie-p5" name="sprite.mouse">
+			<script type="mie/p5" name="sprite.mouse">
 let sprite;
 
 function setup() {
@@ -200,7 +200,7 @@ The `contro` object is also an array that contains all the connected game contro
 
 Try it out! Press any button on your connected game controller for it to be detected by p5play.
 		</script>
-		<script type="text/mie-p5" name="controller test">
+		<script type="mie/p5" name="controller test">
 let sprite;
 
 function setup() {
@@ -234,7 +234,7 @@ function draw() {
 
 	<script src="../v3/q5.js"></script>
 	<script src="../v3/planck.min.js"></script>
-	<script src="../v3/p5play.min.js"></script>
+	<script src="../v3/p5play.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.8.1/ace.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 	<script src="learn.js"></script>

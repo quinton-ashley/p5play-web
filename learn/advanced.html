@@ -43,7 +43,7 @@ Another added feature is the "pixelated" preset. Use it for 8-bit or 16-bit styl
 
 `new Canvas(256, 240, 'pixelated')`
 		</script>
-		<!-- <script type="text/mie-p5" title="pixelated preset">
+		<!-- <script type="mie/p5" title="pixelated preset">
 function setup() {
 	//       (width, height, preset)
 	new Canvas(256, 240, 'pixelated x2');
@@ -55,21 +55,19 @@ function draw() {
 	</div>
 	<div id="page-1" class="page">
 		<script type="text/md">
-## World
+## sprite.sleeping
 
 "Sleeping" sprites get temporarily ignored during physics simulation. A sprite starts "sleeping" when it stops moving and doesn't collide with anything that it wasn't already touching. Allowing non-moving sprites to sleep is good for performance but sometimes you may need to wake up a non-moving sprite. You can disable sleeping completely by setting `world.allowSleeping = false`, or on a per sprite basis by setting `sprite.allowSleeping = false`, or to wake up a sleeping sprite you can `sprite.sleeping = false`.
-
-Also by default sprites are removed from the world when they go 10000 pixels offscreen relative to the camera's position. To change this set `allSprites.autoCull = false` and use the `group.cull` function to set a different cull boundary.
 		</script>
 		<div class="minis horiz">
-			<script type="text/mie-p5" name="sleeping" horiz>
+			<script type="mie/p5" name="sleeping" horiz>
 let ball, floor;
 
 function setup() {
-	new Canvas(80, 256);
+	new Canvas(80, 240);
 	world.gravity.y = 10;
 	ball = new Sprite(40, 30, 50);
-	floor = new Sprite(40, 155, 80, 5, 'static');
+	floor = new Sprite(40, 155, 80, 5, 's');
 }
 
 function draw() {
@@ -77,14 +75,14 @@ function draw() {
 	if (frame == 100)	floor.rotation = 10;
 }
 			</script>
-			<script type="text/mie-p5" name="wake up!" horiz>
+			<script type="mie/p5" name="wake up!" horiz>
 let ball, floor;
 
 function setup() {
 	new Canvas(80, 256);
 	world.gravity.y = 10;
 	ball = new Sprite(40, 30, 50);
-	floor = new Sprite(40, 155, 80, 5, 'static');
+	floor = new Sprite(40, 155, 80, 5, 's');
 }
 
 function draw() {
@@ -97,6 +95,97 @@ function draw() {
 			</script>
 		</div>
 	</div>
+	<div id="page-2" class="page">
+		<script type="text/md">
+## Culling
+
+By default, sprites are removed when they go 10000 pixels offscreen relative to the camera's position. This is to prevent the world from getting too big, which would slow down the physics simulation.
+
+To change this, set `allSprites.autoCull = false` and use the `group.cull` function to set a different cull boundary. It can even cull sprites that don't have a physics collider.
+		</script>
+		<script type="mie/p5" name="cull">
+let balls;
+function setup() {
+	new Canvas(500, 192);
+	balls = new Group();
+	balls.collider = 'none';
+	balls.direction = () => random(0, 360);
+	balls.speed = () => random(1, 5);
+	balls.d = 20;
+	balls.amount = 10;
+}
+function draw() {
+	clear();
+	if (balls.cull(-50)) {
+		new balls.Sprite();
+	}
+}
+		</script>
+	</div>
+	<div id="page-3" class="page">
+		<script type="text/md">
+## autoDraw, autoStep, and autoUpdate
+
+By default, after each time the p5.js draw function is run, p5play calls three functions in this order:
+
+- `allSprites.draw()` : draws all sprites
+- `world.step()` : progresses the physics simulation
+- `allSprites.update()` : updates sprite.ani and sprite.mouse
+
+But you can also take manual control of these processes by calling them yourself.
+
+In the mini-example, try pressing space to toggle slow-motion!
+
+## sprite.draw and group.draw
+
+You can use the `sprite.draw` and `group.draw` functions to manually control when individual sprites and groups are drawn inside the p5.js draw loop. Any sprites not drawn manually will be automatically drawn at the end of the p5.js draw loop unless the sprite's autoDraw property is set to false directly or by one of its parent groups. To prevent automatic drawing completely set `allSprites.autoDraw = false`.
+
+Note that you will have to manually turn the camera on and off if you want to use it with manually drawn sprites.
+		</script>
+		<script type="mie/p5" name="world.step">
+let ball, box;
+		
+function setup() {
+	new Canvas(500, 192);
+
+	ball = new Sprite(250, 100, 20);
+	ball.speed = 10;
+	ball.direction = 45;
+	ball.bounciness = 1;
+	ball.friction = 0;
+	ball.strokeWeight = 0;
+
+	box = new Sprite(250, 96, 490, 180, 's');
+	box.shape = 'chain';
+}
+
+function draw() {
+	if (kb.pressing('space')) {
+		background(0, 0, 0, 30);
+		allSprites.draw();
+		world.step(1/240);
+	} else {
+		background(0);
+	}
+}
+		</script>
+		<script type="text/md">
+## world.step
+
+`world.step` checks for collisions and calculates the positions and velocities of all sprites after progressing the physics simulation by 1/60th of a second by default. Sprites can't be progressed forward in time individually.
+
+Before you use `world.step` in your p5.js draw function, be sure to draw all the sprites. Otherwise, they will be drawn in the wrong position!
+
+Set `world.autoStep = false` to disable automatic stepping. Then you can call `world.step` manually whenever you want to progress the physics simulation.
+		</script>
+		<script type="text/md">
+## sprite.update and group.update
+
+What does `sprite.update` do? It's responsible for updating the sprite's animation and mouse events. It also runs the user's custom update function if they set any.
+
+Why is this functionality seperated from the world step? Because on a pause screen the physics world could be paused, but pause menu UI animations and mouse events could still be updated.
+		</script>
+	</div>
 
 	<div class="break"></div>
 	<nav id="pageNav"></nav>
@@ -107,7 +196,7 @@ function draw() {
 
 	<script src="../v3/q5.js"></script>
 	<script src="../v3/planck.min.js"></script>
-	<script src="../v3/p5play.min.js"></script>
+	<script src="../v3/p5play.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.8.1/ace.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 	<script src="learn.js"></script>

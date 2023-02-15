@@ -802,7 +802,8 @@ function Q5(scope, parent) {
 	}
 
 	$.strokeWeight = (n) => {
-		$._doStroke = true;
+		if (n > 0) $._doStroke = true;
+		else $._doStroke = false;
 		ctx.lineWidth = n;
 	};
 	$.stroke = function () {
@@ -1679,6 +1680,7 @@ function Q5(scope, parent) {
 	};
 
 	$.remove = () => {
+		$.noLoop();
 		$.canvas.remove();
 	};
 
@@ -2596,7 +2598,7 @@ Q5.prototype.registerMethod = function () {
 };
 Q5.prototype.registerPreloadMethod = () => {};
 Q5._validateParameters = () => true;
-window.p5 = Q5;
+window.p5 ??= Q5;
 
 document.addEventListener('DOMContentLoaded', () => {
 	if (!Q5._hasGlobal) new Q5('auto');

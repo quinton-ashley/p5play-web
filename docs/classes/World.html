@@ -88,7 +88,7 @@
 
 
         <div class="foundat">
-            Defined in: <a href="../files/v3_p5play.js.html#l4818"><code>v3&#x2F;p5play.js:4818</code></a>
+            Defined in: <a href="../files/v3_p5play.js.html#l4892"><code>v3&#x2F;p5play.js:4892</code></a>
         </div>
 
 
@@ -118,7 +118,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l4818"><code>v3&#x2F;p5play.js:4818</code></a>
+        <a href="../files/v3_p5play.js.html#l4892"><code>v3&#x2F;p5play.js:4892</code></a>
         </p>
 
 
@@ -139,6 +139,7 @@
     <ul class="api-class-tabs">
         <li class="api-class-tab index"><a href="#index">Index</a></li>
 
+            <li class="api-class-tab methods"><a href="#methods">Methods</a></li>
             <li class="api-class-tab properties"><a href="#properties">Properties</a></li>
     </ul>
 
@@ -146,15 +147,29 @@
         <div id="index" class="api-class-tabpanel index">
             <h2 class="off-left">Item Index</h2>
 
+                <div class="index-section methods">
+                    <h3>Methods</h3>
+
+                    <ul class="index-list methods">
+                            <li class="index-item method">
+                                <a href="#method_getSpriteAt">getSpriteAt</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_getSpritesAt">getSpritesAt</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_step">step</a>
+
+                            </li>
+                    </ul>
+                </div>
 
                 <div class="index-section properties">
                     <h3>Properties</h3>
 
                     <ul class="index-list properties">
-                            <li class="index-item property">
-                                <a href="#property_autoResetAnimations">autoResetAnimations</a>
-
-                            </li>
                             <li class="index-item property">
                                 <a href="#property_gravity">gravity</a>
 
@@ -173,13 +188,28 @@
 
         </div>
 
+            <div id="methods" class="api-class-tabpanel">
+                <h2 class="off-left">Methods</h2>
 
-            <div id="properties" class="api-class-tabpanel">
-                <h2 class="off-left">Properties</h2>
+<div id="method_getSpriteAt" class="method item">
+    <h3 class="name"><code>getSpriteAt</code></h3>
 
-<div id="property_autoResetAnimations" class="property item">
-    <h3 class="name"><code>autoResetAnimations</code></h3>
-    <span class="type"><a href="../classes/SpriteAnimation.html" class="crosslink">SpriteAnimation</a></span>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>x</code>
+                </li>
+                <li class="arg">
+                        <code>y</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+
+
 
 
 
@@ -188,25 +218,220 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l4858"><code>v3&#x2F;p5play.js:4858</code></a>
+        <a href="../files/v3_p5play.js.html#l5050"><code>v3&#x2F;p5play.js:5050</code></a>
         </p>
+
 
 
     </div>
 
     <div class="description">
-        <p>If false, animations that are stopped before they are completed,
-typically by a call to sprite.changeAni, will restart at the
-frame they were stopped at. If true, animations will always
-start playing from frame 0 unless specified by the user in a
-separate <code>anim.changeFrame</code> call.</p>
+        <p>Returns the sprite at the top most layer position where
+the mouse click occurs</p>
 
     </div>
 
-        <p><strong>Default:</strong> false</p>
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">x</code>
+                        <span class="type">Number</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">y</code>
+                        <span class="type">Number</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+            </div>
+        </div>
 
 
 </div>
+<div id="method_getSpritesAt" class="method item">
+    <h3 class="name"><code>getSpritesAt</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>x</code>
+                </li>
+                <li class="arg">
+                        <code>y</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5play.js.html#l5012"><code>v3&#x2F;p5play.js:5012</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Returns the sprites at a position.</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">x</code>
+                        <span class="type">Number</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">y</code>
+                        <span class="type">Number</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+            </div>
+        </div>
+
+
+</div>
+<div id="method_step" class="method item">
+    <h3 class="name"><code>step</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>timeStep</code>
+                </li>
+                <li class="arg">
+                        <code>velocityIterations</code>
+                </li>
+                <li class="arg">
+                        <code>positionIterations</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5play.js.html#l4990"><code>v3&#x2F;p5play.js:4990</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Performs a physics simulation step that advances all sprites'
+forward in time by 1/60th of a second if no timeStep is given.</p>
+<p>This function is automatically called at the end of the p5.js draw
+loop, unless it was already called inside the draw loop.</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">timeStep</code>
+                        <span class="type">Number</span>
+
+
+                    <div class="param-description">
+                        <ul>
+<li>time step in seconds</li>
+</ul>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">velocityIterations</code>
+                        <span class="type">Number</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">positionIterations</code>
+                        <span class="type">Number</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+            </div>
+
+            <div id="properties" class="api-class-tabpanel">
+                <h2 class="off-left">Properties</h2>
+
 <div id="property_gravity" class="property item">
     <h3 class="name"><code>gravity</code></h3>
     <span class="type">Unknown</span>
@@ -218,7 +443,7 @@ separate <code>anim.changeFrame</code> call.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l4910"><code>v3&#x2F;p5play.js:4910</code></a>
+        <a href="../files/v3_p5play.js.html#l4940"><code>v3&#x2F;p5play.js:4940</code></a>
         </p>
 
 
@@ -244,7 +469,7 @@ separate <code>anim.changeFrame</code> call.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l4838"><code>v3&#x2F;p5play.js:4838</code></a>
+        <a href="../files/v3_p5play.js.html#l4912"><code>v3&#x2F;p5play.js:4912</code></a>
         </p>
 
 
@@ -268,7 +493,7 @@ separate <code>anim.changeFrame</code> call.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l4848"><code>v3&#x2F;p5play.js:4848</code></a>
+        <a href="../files/v3_p5play.js.html#l4922"><code>v3&#x2F;p5play.js:4922</code></a>
         </p>
 
 

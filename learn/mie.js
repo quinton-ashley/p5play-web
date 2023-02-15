@@ -1,7 +1,7 @@
 if (typeof window.mie == 'undefined') window.mie = [];
 else window.mie = Object.assign([], window.mie);
 mie.lang ??= {
-	javascript: {
+	js: {
 		play: function (code) {}
 	}
 };
@@ -11,7 +11,7 @@ mie.onload = () => {
 	class MiniEditor {
 		constructor(script) {
 			this.id = mie.length;
-			this.lang = script.type.slice(9) || 'javascript';
+			this.lang = script.type.slice(4) || 'js';
 
 			let code = script.innerHTML.trim();
 
@@ -193,7 +193,7 @@ mie.onload = () => {
 		elem = elem || document;
 		let scripts = [...elem.getElementsByTagName('script')];
 		for (let script of scripts) {
-			if (script.type.includes('text/mie')) {
+			if (script.type.includes('mie')) {
 				mie.push(new MiniEditor(script));
 			}
 		}
