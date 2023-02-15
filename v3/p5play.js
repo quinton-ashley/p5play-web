@@ -4938,11 +4938,14 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			this.on('end-contact', this._endContact);
 
 			/**
-			 * Gravity vector (x, y)
+			 * Gravity force that affects all dynamic physics colliders.
 			 *
-			 * All sprites getting
+			 * @property gravity.x
+			 */
+			/**
+			 * Gravity force that affects all dynamic physics colliders.
 			 *
-			 * @property gravity
+			 * @property gravity.y
 			 */
 			this.gravity = {
 				get x() {
@@ -5444,10 +5447,10 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 	 */
 
 	/**
-	 * Equivalent to `new Tiles`
+	 * Use of `new Tiles()` is preferred.
 	 *
+	 * @deprecated
 	 * @method createTiles
-	 * @param {String|Array} tiles String or array of strings
 	 */
 	this.createTiles = function (tiles, x, y, w, h) {
 		return new this.Tiles(tiles, x, y, w, h);
@@ -5486,7 +5489,8 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 	/**
 	 * Deprecated. Use world.step and allSprites.update instead.
 	 *
-	 * @deprected updateSprites
+	 * @deprecated
+	 * @method updateSprites
 	 */
 	this.updateSprites = function () {
 		if (this.frameCount == 1) console.warn('updateSprites() is deprecated, use world.step() instead.');
@@ -5826,8 +5830,12 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 	};
 
 	/**
-	 * Creates a new sprite. Equivalent to `new Sprite()`
+	 * Use of `new Sprite()` is preferred.
 	 *
+	 * Creates a new sprite.
+	 *
+	 * @deprecated
+	 * @method createSprite
 	 * @returns {Sprite}
 	 */
 	this.createSprite = function () {
@@ -5835,8 +5843,12 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 	};
 
 	/**
-	 * Creates a new group of sprites. Equivalent to `new Group()`
+	 * Use of `new Group()` is preferred.
 	 *
+	 * Creates a new group of sprites.
+	 *
+	 * @deprecated
+	 * @method createGroup
 	 * @returns {Group}
 	 */
 	this.createGroup = function () {
@@ -5932,16 +5944,19 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 	const _createCanvas = this.createCanvas;
 
 	/**
-	 * Equivalent to p5.js createCanvas function and `new Canvas()`
+	 * Use of `new Canvas()` is preferred.
 	 *
-	 * In p5play a canvas can be created with an aspect ratio in the
+	 * p5play adds some extra functionality to the p5.js createCanvas
+	 * function.
+	 *
+	 * In p5play, a canvas can be created with an aspect ratio in the
 	 * format `width:height`. For example `new Canvas('16:9')` will create
 	 * the largest possible canvas with a 16:9 aspect ratio.
 	 *
 	 * This function also disables the default keydown responses for
 	 * the arrow keys, slash, and spacebar. This is to prevent the
-	 * browser from scrolling the page when the user is playing a game using
-	 * common keyboard commands.
+	 * browser from scrolling the page when the user is playing a game
+	 * using common keyboard commands.
 	 *
 	 * @method createCanvas
 	 * @param {Number} width|ratio
@@ -6357,6 +6372,16 @@ canvas {
 	 * Get user input from game controllers.
 	 *
 	 * @property contro
+	 */
+	/**
+	 * Use this function to performance test your game code. FPS, amongst
+	 * the gaming community, refers to how many frames a game could render
+	 * per second, not including the delay between when frames are shown
+	 * on the screen. The higher the FPS, the better the game is
+	 * performing.
+	 *
+	 * @method getFPS
+	 * @returns {Number} The current FPS
 	 */
 
 	/**

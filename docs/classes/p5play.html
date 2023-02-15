@@ -88,7 +88,7 @@
 
 
         <div class="foundat">
-            Defined in: <a href="../files/v3_p5play.js.html#l5438"><code>v3&#x2F;p5play.js:5438</code></a>
+            Defined in: <a href="../files/v3_p5play.js.html#l5441"><code>v3&#x2F;p5play.js:5441</code></a>
         </div>
 
 
@@ -134,9 +134,20 @@
                                 <a href="#method_createCanvas">createCanvas</a>
 
                             </li>
-                            <li class="index-item method">
+                            <li class="index-item method deprecated">
+                                <a href="#method_createGroup">createGroup</a>
+
+                                    <span class="flag deprecated">deprecated</span>
+                            </li>
+                            <li class="index-item method deprecated">
+                                <a href="#method_createSprite">createSprite</a>
+
+                                    <span class="flag deprecated">deprecated</span>
+                            </li>
+                            <li class="index-item method deprecated">
                                 <a href="#method_createTiles">createTiles</a>
 
+                                    <span class="flag deprecated">deprecated</span>
                             </li>
                             <li class="index-item method">
                                 <a href="#method_delay">delay</a>
@@ -154,6 +165,10 @@
                             </li>
                             <li class="index-item method">
                                 <a href="#method_fill">fill</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_getFPS">getFPS</a>
 
                             </li>
                             <li class="index-item method deprecated">
@@ -189,6 +204,11 @@
                             <li class="index-item method">
                                 <a href="#method_stroke">stroke</a>
 
+                            </li>
+                            <li class="index-item method deprecated">
+                                <a href="#method_updateSprites">updateSprites</a>
+
+                                    <span class="flag deprecated">deprecated</span>
                             </li>
                     </ul>
                 </div>
@@ -265,7 +285,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l5865"><code>v3&#x2F;p5play.js:5865</code></a>
+        <a href="../files/v3_p5play.js.html#l5877"><code>v3&#x2F;p5play.js:5877</code></a>
         </p>
 
 
@@ -335,7 +355,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l6089"><code>v3&#x2F;p5play.js:6089</code></a>
+        <a href="../files/v3_p5play.js.html#l6104"><code>v3&#x2F;p5play.js:6104</code></a>
         </p>
 
 
@@ -379,7 +399,7 @@ a color pallette code.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l5713"><code>v3&#x2F;p5play.js:5713</code></a>
+        <a href="../files/v3_p5play.js.html#l5717"><code>v3&#x2F;p5play.js:5717</code></a>
         </p>
 
 
@@ -456,7 +476,7 @@ in the system's palettes array.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l5934"><code>v3&#x2F;p5play.js:5934</code></a>
+        <a href="../files/v3_p5play.js.html#l5946"><code>v3&#x2F;p5play.js:5946</code></a>
         </p>
 
 
@@ -464,14 +484,16 @@ in the system's palettes array.</p>
     </div>
 
     <div class="description">
-        <p>Equivalent to p5.js createCanvas function and <code>new Canvas()</code></p>
-<p>In p5play a canvas can be created with an aspect ratio in the
+        <p>Use of <code>new Canvas()</code> is preferred.</p>
+<p>p5play adds some extra functionality to the p5.js createCanvas
+function.</p>
+<p>In p5play, a canvas can be created with an aspect ratio in the
 format <code>width:height</code>. For example <code>new Canvas('16:9')</code> will create
 the largest possible canvas with a 16:9 aspect ratio.</p>
 <p>This function also disables the default keydown responses for
 the arrow keys, slash, and spacebar. This is to prevent the
-browser from scrolling the page when the user is playing a game using
-common keyboard commands.</p>
+browser from scrolling the page when the user is playing a game
+using common keyboard commands.</p>
 
     </div>
 
@@ -505,18 +527,16 @@ common keyboard commands.</p>
 
 
 </div>
-<div id="method_createTiles" class="method item">
-    <h3 class="name"><code>createTiles</code></h3>
+<div id="method_createGroup" class="method item deprecated">
+    <h3 class="name"><code>createGroup</code></h3>
 
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-                <li class="arg">
-                        <code>tiles</code>
-                </li>
-            </ul><span class="paren">)</span>
-        </div>
+        <span class="paren">()</span>
 
+        <span class="returns-inline">
+            <span class="type"><a href="../classes/Group.html" class="crosslink">Group</a></span>
+        </span>
 
+        <span class="flag deprecated">deprecated</span>
 
 
 
@@ -526,7 +546,7 @@ common keyboard commands.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l5446"><code>v3&#x2F;p5play.js:5446</code></a>
+        <a href="../files/v3_p5play.js.html#l5845"><code>v3&#x2F;p5play.js:5845</code></a>
         </p>
 
 
@@ -534,27 +554,93 @@ common keyboard commands.</p>
     </div>
 
     <div class="description">
-        <p>Equivalent to <code>new Tiles</code></p>
+        <p>Use of <code>new Group()</code> is preferred.</p>
+<p>Creates a new group of sprites.</p>
 
     </div>
 
-        <div class="params">
-            <h4>Parameters:</h4>
 
-            <ul class="params-list">
-                <li class="param">
-                        <code class="param-name">tiles</code>
-                        <span class="type">String | Array</span>
+        <div class="returns">
+            <h4>Returns:</h4>
 
-
-                    <div class="param-description">
-                        <p>String or array of strings</p>
-
-                    </div>
-
-                </li>
-            </ul>
+            <div class="returns-description">
+                        <span class="type"><a href="../classes/Group.html" class="crosslink">Group</a></span>:
+            </div>
         </div>
+
+
+</div>
+<div id="method_createSprite" class="method item deprecated">
+    <h3 class="name"><code>createSprite</code></h3>
+
+        <span class="paren">()</span>
+
+        <span class="returns-inline">
+            <span class="type"><a href="../classes/Sprite.html" class="crosslink">Sprite</a></span>
+        </span>
+
+        <span class="flag deprecated">deprecated</span>
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5play.js.html#l5832"><code>v3&#x2F;p5play.js:5832</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Use of <code>new Sprite()</code> is preferred.</p>
+<p>Creates a new sprite.</p>
+
+    </div>
+
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type"><a href="../classes/Sprite.html" class="crosslink">Sprite</a></span>:
+            </div>
+        </div>
+
+
+</div>
+<div id="method_createTiles" class="method item deprecated">
+    <h3 class="name"><code>createTiles</code></h3>
+
+        <span class="paren">()</span>
+
+
+        <span class="flag deprecated">deprecated</span>
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5play.js.html#l5449"><code>v3&#x2F;p5play.js:5449</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Use of <code>new Tiles()</code> is preferred.</p>
+
+    </div>
+
 
 
 
@@ -583,7 +669,7 @@ common keyboard commands.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l5879"><code>v3&#x2F;p5play.js:5879</code></a>
+        <a href="../files/v3_p5play.js.html#l5891"><code>v3&#x2F;p5play.js:5891</code></a>
         </p>
 
 
@@ -652,7 +738,7 @@ await delay(3000);
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l5797"><code>v3&#x2F;p5play.js:5797</code></a>
+        <a href="../files/v3_p5play.js.html#l5801"><code>v3&#x2F;p5play.js:5801</code></a>
         </p>
 
 
@@ -687,7 +773,7 @@ draw loop.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l5812"><code>v3&#x2F;p5play.js:5812</code></a>
+        <a href="../files/v3_p5play.js.html#l5816"><code>v3&#x2F;p5play.js:5816</code></a>
         </p>
 
 
@@ -721,7 +807,7 @@ draw loop.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l6107"><code>v3&#x2F;p5play.js:6107</code></a>
+        <a href="../files/v3_p5play.js.html#l6122"><code>v3&#x2F;p5play.js:6122</code></a>
         </p>
 
 
@@ -735,6 +821,53 @@ a color pallette code.</p>
     </div>
 
 
+
+
+</div>
+<div id="method_getFPS" class="method item">
+    <h3 class="name"><code>getFPS</code></h3>
+
+        <span class="paren">()</span>
+
+        <span class="returns-inline">
+            <span class="type">Number</span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5play.js.html#l6376"><code>v3&#x2F;p5play.js:6376</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Use this function to performance test your game code. FPS, amongst
+the gaming community, refers to how many frames a game could render
+per second, not including the delay between when frames are shown
+on the screen. The higher the FPS, the better the game is
+performing.</p>
+
+    </div>
+
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">Number</span>:
+                    <p>The current FPS</p>
+
+            </div>
+        </div>
 
 
 </div>
@@ -754,7 +887,7 @@ a color pallette code.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l5507"><code>v3&#x2F;p5play.js:5507</code></a>
+        <a href="../files/v3_p5play.js.html#l5511"><code>v3&#x2F;p5play.js:5511</code></a>
         </p>
 
 
@@ -786,7 +919,7 @@ a color pallette code.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l5497"><code>v3&#x2F;p5play.js:5497</code></a>
+        <a href="../files/v3_p5play.js.html#l5501"><code>v3&#x2F;p5play.js:5501</code></a>
         </p>
 
 
@@ -820,7 +953,7 @@ a color pallette code.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l5846"><code>v3&#x2F;p5play.js:5846</code></a>
+        <a href="../files/v3_p5play.js.html#l5858"><code>v3&#x2F;p5play.js:5858</code></a>
         </p>
 
 
@@ -863,7 +996,7 @@ them when your program starts.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l5855"><code>v3&#x2F;p5play.js:5855</code></a>
+        <a href="../files/v3_p5play.js.html#l5867"><code>v3&#x2F;p5play.js:5867</code></a>
         </p>
 
 
@@ -916,7 +1049,7 @@ them when your program starts.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l6149"><code>v3&#x2F;p5play.js:6149</code></a>
+        <a href="../files/v3_p5play.js.html#l6164"><code>v3&#x2F;p5play.js:6164</code></a>
         </p>
 
 
@@ -1008,7 +1141,7 @@ image's url as a property of the image object.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l5911"><code>v3&#x2F;p5play.js:5911</code></a>
+        <a href="../files/v3_p5play.js.html#l5923"><code>v3&#x2F;p5play.js:5923</code></a>
         </p>
 
 
@@ -1085,7 +1218,7 @@ image's url as a property of the image object.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l5737"><code>v3&#x2F;p5play.js:5737</code></a>
+        <a href="../files/v3_p5play.js.html#l5741"><code>v3&#x2F;p5play.js:5741</code></a>
         </p>
 
 
@@ -1174,7 +1307,7 @@ object.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l6125"><code>v3&#x2F;p5play.js:6125</code></a>
+        <a href="../files/v3_p5play.js.html#l6140"><code>v3&#x2F;p5play.js:6140</code></a>
         </p>
 
 
@@ -1184,6 +1317,38 @@ object.</p>
     <div class="description">
         <p>Just like the p5.js stroke function except it also accepts
 a color pallette code.</p>
+
+    </div>
+
+
+
+
+</div>
+<div id="method_updateSprites" class="method item deprecated">
+    <h3 class="name"><code>updateSprites</code></h3>
+
+        <span class="paren">()</span>
+
+
+        <span class="flag deprecated">deprecated</span>
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5play.js.html#l5489"><code>v3&#x2F;p5play.js:5489</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Deprecated. Use world.step and allSprites.update instead.</p>
 
     </div>
 
@@ -1207,7 +1372,7 @@ a color pallette code.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l6310"><code>v3&#x2F;p5play.js:6310</code></a>
+        <a href="../files/v3_p5play.js.html#l6325"><code>v3&#x2F;p5play.js:6325</code></a>
         </p>
 
 
@@ -1232,7 +1397,7 @@ a color pallette code.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l6333"><code>v3&#x2F;p5play.js:6333</code></a>
+        <a href="../files/v3_p5play.js.html#l6348"><code>v3&#x2F;p5play.js:6348</code></a>
         </p>
 
 
@@ -1257,7 +1422,7 @@ a color pallette code.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l6356"><code>v3&#x2F;p5play.js:6356</code></a>
+        <a href="../files/v3_p5play.js.html#l6371"><code>v3&#x2F;p5play.js:6371</code></a>
         </p>
 
 
@@ -1282,7 +1447,7 @@ a color pallette code.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l6325"><code>v3&#x2F;p5play.js:6325</code></a>
+        <a href="../files/v3_p5play.js.html#l6340"><code>v3&#x2F;p5play.js:6340</code></a>
         </p>
 
 
@@ -1308,7 +1473,7 @@ been called.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l6346"><code>v3&#x2F;p5play.js:6346</code></a>
+        <a href="../files/v3_p5play.js.html#l6361"><code>v3&#x2F;p5play.js:6361</code></a>
         </p>
 
 
@@ -1333,7 +1498,7 @@ been called.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l6351"><code>v3&#x2F;p5play.js:6351</code></a>
+        <a href="../files/v3_p5play.js.html#l6366"><code>v3&#x2F;p5play.js:6366</code></a>
         </p>
 
 
@@ -1358,7 +1523,7 @@ been called.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l6340"><code>v3&#x2F;p5play.js:6340</code></a>
+        <a href="../files/v3_p5play.js.html#l6355"><code>v3&#x2F;p5play.js:6355</code></a>
         </p>
 
 
@@ -1384,7 +1549,7 @@ Stores the state of the left, center, or right mouse buttons.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l6317"><code>v3&#x2F;p5play.js:6317</code></a>
+        <a href="../files/v3_p5play.js.html#l6332"><code>v3&#x2F;p5play.js:6332</code></a>
         </p>
 
 
