@@ -281,6 +281,10 @@ until an image or new collider are set</p>
 
                             </li>
                             <li class="index-item method">
+                                <a href="#method_applyImpulse">applyImpulse</a>
+
+                            </li>
+                            <li class="index-item method">
                                 <a href="#method_applyTorque">applyTorque</a>
 
                             </li>
@@ -751,7 +755,7 @@ sprite besides the first. This will be fixed in a future release.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l2491"><code>v3&#x2F;p5play.js:2491</code></a>
+        <a href="../files/v3_p5play.js.html#l2529"><code>v3&#x2F;p5play.js:2529</code></a>
         </p>
 
 
@@ -828,7 +832,7 @@ If direction is not supplied and there is no current velocity, the * current rot
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l2748"><code>v3&#x2F;p5play.js:2748</code></a>
+        <a href="../files/v3_p5play.js.html#l2786"><code>v3&#x2F;p5play.js:2786</code></a>
         </p>
 
 
@@ -897,10 +901,16 @@ If direction is not supplied and there is no current velocity, the * current rot
         <div class="args">
             <span class="paren">(</span><ul class="args-list inline commas">
                 <li class="arg">
-                        <code>forceVector</code>
+                        <code>x</code>
                 </li>
                 <li class="arg">
-                        <code class="optional">[forceOrigin]</code>
+                        <code>y</code>
+                </li>
+                <li class="arg">
+                        <code class="optional">[originX]</code>
+                </li>
+                <li class="arg">
+                        <code class="optional">[originY]</code>
                 </li>
             </ul><span class="paren">)</span>
         </div>
@@ -915,7 +925,7 @@ If direction is not supplied and there is no current velocity, the * current rot
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l2409"><code>v3&#x2F;p5play.js:2409</code></a>
+        <a href="../files/v3_p5play.js.html#l2415"><code>v3&#x2F;p5play.js:2415</code></a>
         </p>
 
 
@@ -932,25 +942,44 @@ If direction is not supplied and there is no current velocity, the * current rot
 
             <ul class="params-list">
                 <li class="param">
-                        <code class="param-name">forceVector</code>
-                        <span class="type">p5.Vector | Array</span>
+                        <code class="param-name">x</code>
+                        <span class="type">Number</span>
 
 
                     <div class="param-description">
-                        <p>force vector</p>
-
+                         
                     </div>
 
                 </li>
                 <li class="param">
-                        <code class="param-name optional">[forceOrigin]</code>
-                        <span class="type">p5.Vector | Array</span>
+                        <code class="param-name">y</code>
+                        <span class="type">Number</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name optional">[originX]</code>
+                        <span class="type">Number</span>
                         <span class="flag optional" title="This parameter is optional.">optional</span>
 
 
                     <div class="param-description">
-                        <p>force origin</p>
+                         
+                    </div>
 
+                </li>
+                <li class="param">
+                        <code class="param-name optional">[originY]</code>
+                        <span class="type">Number</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+
+
+                    <div class="param-description">
+                         
                     </div>
 
                 </li>
@@ -959,6 +988,122 @@ If direction is not supplied and there is no current velocity, the * current rot
 
 
 
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <p>sprite.applyForce(x, y);
+sprite.applyForce(x, y, originX, originY);
+sprite.applyForce(x, y, {x: originX, y: originY});
+sprite.applyForce({x, y}, {x: originX, y: originY});</p>
+
+            </div>
+        </div>
+</div>
+<div id="method_applyImpulse" class="method item">
+    <h3 class="name"><code>applyImpulse</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>x</code>
+                </li>
+                <li class="arg">
+                        <code>y</code>
+                </li>
+                <li class="arg">
+                        <code class="optional">[originX]</code>
+                </li>
+                <li class="arg">
+                        <code class="optional">[originY]</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5play.js.html#l2444"><code>v3&#x2F;p5play.js:2444</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Apply an impulse to the sprite's physics collider.</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">x</code>
+                        <span class="type">Number</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">y</code>
+                        <span class="type">Number</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name optional">[originX]</code>
+                        <span class="type">Number</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name optional">[originY]</code>
+                        <span class="type">Number</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <p>sprite.applyImpulse(x, y);
+sprite.applyImpulse(x, y, originX, originY);
+sprite.applyImpulse(x, y, {x: originX, y: originY});
+sprite.applyImpulse({x, y}, {x: originX, y: originY});</p>
+
+            </div>
+        </div>
 </div>
 <div id="method_applyTorque" class="method item">
     <h3 class="name"><code>applyTorque</code></h3>
@@ -981,7 +1126,7 @@ If direction is not supplied and there is no current velocity, the * current rot
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l2435"><code>v3&#x2F;p5play.js:2435</code></a>
+        <a href="../files/v3_p5play.js.html#l2473"><code>v3&#x2F;p5play.js:2473</code></a>
         </p>
 
 
@@ -1041,7 +1186,7 @@ A negative torque will rotate the sprite counter-clockwise.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l2855"><code>v3&#x2F;p5play.js:2855</code></a>
+        <a href="../files/v3_p5play.js.html#l2893"><code>v3&#x2F;p5play.js:2893</code></a>
         </p>
 
 
@@ -1109,7 +1254,7 @@ completes</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l2918"><code>v3&#x2F;p5play.js:2918</code></a>
+        <a href="../files/v3_p5play.js.html#l2956"><code>v3&#x2F;p5play.js:2956</code></a>
         </p>
 
 
@@ -1174,7 +1319,7 @@ completes</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l2932"><code>v3&#x2F;p5play.js:2932</code></a>
+        <a href="../files/v3_p5play.js.html#l2970"><code>v3&#x2F;p5play.js:2970</code></a>
         </p>
 
 
@@ -1238,7 +1383,7 @@ has been added to.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l3049"><code>v3&#x2F;p5play.js:3049</code></a>
+        <a href="../files/v3_p5play.js.html#l3087"><code>v3&#x2F;p5play.js:3087</code></a>
         </p>
 
 
@@ -1313,7 +1458,7 @@ with the target sprite or group.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l3015"><code>v3&#x2F;p5play.js:3015</code></a>
+        <a href="../files/v3_p5play.js.html#l3053"><code>v3&#x2F;p5play.js:3053</code></a>
         </p>
 
 
@@ -1386,7 +1531,7 @@ in an if statement or adding a callback as the second parameter.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l3032"><code>v3&#x2F;p5play.js:3032</code></a>
+        <a href="../files/v3_p5play.js.html#l3070"><code>v3&#x2F;p5play.js:3070</code></a>
         </p>
 
 
@@ -1520,7 +1665,7 @@ ellipse(0,0,20,10);
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l2558"><code>v3&#x2F;p5play.js:2558</code></a>
+        <a href="../files/v3_p5play.js.html#l2596"><code>v3&#x2F;p5play.js:2596</code></a>
         </p>
 
 
@@ -1624,7 +1769,7 @@ sprite.move(directionName, speed, distance); // deprecated usage</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l2544"><code>v3&#x2F;p5play.js:2544</code></a>
+        <a href="../files/v3_p5play.js.html#l2582"><code>v3&#x2F;p5play.js:2582</code></a>
         </p>
 
 
@@ -1708,7 +1853,7 @@ sprite.move(directionName, speed, distance); // deprecated usage</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l2601"><code>v3&#x2F;p5play.js:2601</code></a>
+        <a href="../files/v3_p5play.js.html#l2639"><code>v3&#x2F;p5play.js:2639</code></a>
         </p>
 
 
@@ -1799,7 +1944,7 @@ sprite.move(directionName, speed, distance); // deprecated usage</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l2507"><code>v3&#x2F;p5play.js:2507</code></a>
+        <a href="../files/v3_p5play.js.html#l2545"><code>v3&#x2F;p5play.js:2545</code></a>
         </p>
 
 
@@ -1881,7 +2026,7 @@ sprite.move(directionName, speed, distance); // deprecated usage</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l3126"><code>v3&#x2F;p5play.js:3126</code></a>
+        <a href="../files/v3_p5play.js.html#l3164"><code>v3&#x2F;p5play.js:3164</code></a>
         </p>
 
 
@@ -1959,7 +2104,7 @@ with the target sprite or group.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l3109"><code>v3&#x2F;p5play.js:3109</code></a>
+        <a href="../files/v3_p5play.js.html#l3147"><code>v3&#x2F;p5play.js:3147</code></a>
         </p>
 
 
@@ -2037,7 +2182,7 @@ frames the sprite has been overlapping with the target.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l3092"><code>v3&#x2F;p5play.js:3092</code></a>
+        <a href="../files/v3_p5play.js.html#l3130"><code>v3&#x2F;p5play.js:3130</code></a>
         </p>
 
 
@@ -2098,7 +2243,7 @@ in an if statement or adding a callback as the second parameter.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l2965"><code>v3&#x2F;p5play.js:2965</code></a>
+        <a href="../files/v3_p5play.js.html#l3003"><code>v3&#x2F;p5play.js:3003</code></a>
         </p>
 
 
@@ -2147,7 +2292,7 @@ sprite use <code>sprite.visible = false</code> instead.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l2808"><code>v3&#x2F;p5play.js:2808</code></a>
+        <a href="../files/v3_p5play.js.html#l2846"><code>v3&#x2F;p5play.js:2846</code></a>
         </p>
 
 
@@ -2233,7 +2378,7 @@ sprite use <code>sprite.visible = false</code> instead.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l2786"><code>v3&#x2F;p5play.js:2786</code></a>
+        <a href="../files/v3_p5play.js.html#l2824"><code>v3&#x2F;p5play.js:2824</code></a>
         </p>
 
 
@@ -2336,7 +2481,7 @@ sprite use <code>sprite.visible = false</code> instead.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l2730"><code>v3&#x2F;p5play.js:2730</code></a>
+        <a href="../files/v3_p5play.js.html#l2768"><code>v3&#x2F;p5play.js:2768</code></a>
         </p>
 
 
@@ -2419,7 +2564,7 @@ sprite use <code>sprite.visible = false</code> instead.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l2989"><code>v3&#x2F;p5play.js:2989</code></a>
+        <a href="../files/v3_p5play.js.html#l3027"><code>v3&#x2F;p5play.js:3027</code></a>
         </p>
 
 
@@ -2458,7 +2603,7 @@ sprite use <code>sprite.visible = false</code> instead.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l2195"><code>v3&#x2F;p5play.js:2195</code></a>
+        <a href="../files/v3_p5play.js.html#l2192"><code>v3&#x2F;p5play.js:2192</code></a>
         </p>
 
 
@@ -2739,7 +2884,7 @@ remain false for the rest of the sketch, unless changed.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l2024"><code>v3&#x2F;p5play.js:2024</code></a>
+        <a href="../files/v3_p5play.js.html#l2021"><code>v3&#x2F;p5play.js:2021</code></a>
         </p>
 
 
@@ -2816,7 +2961,7 @@ sprite's physics body collider.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l2069"><code>v3&#x2F;p5play.js:2069</code></a>
+        <a href="../files/v3_p5play.js.html#l2066"><code>v3&#x2F;p5play.js:2066</code></a>
         </p>
 
 
@@ -3025,7 +3170,7 @@ when rubbing against another physics body.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l1969"><code>v3&#x2F;p5play.js:1969</code></a>
+        <a href="../files/v3_p5play.js.html#l1966"><code>v3&#x2F;p5play.js:1966</code></a>
         </p>
 
 
@@ -3050,7 +3195,7 @@ when rubbing against another physics body.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l2013"><code>v3&#x2F;p5play.js:2013</code></a>
+        <a href="../files/v3_p5play.js.html#l2010"><code>v3&#x2F;p5play.js:2010</code></a>
         </p>
 
 
@@ -3075,7 +3220,7 @@ when rubbing against another physics body.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l1958"><code>v3&#x2F;p5play.js:1958</code></a>
+        <a href="../files/v3_p5play.js.html#l1955"><code>v3&#x2F;p5play.js:1955</code></a>
         </p>
 
 
@@ -3129,7 +3274,7 @@ underscores, and dashes.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l2002"><code>v3&#x2F;p5play.js:2002</code></a>
+        <a href="../files/v3_p5play.js.html#l1999"><code>v3&#x2F;p5play.js:1999</code></a>
         </p>
 
 
@@ -3154,7 +3299,7 @@ underscores, and dashes.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l1991"><code>v3&#x2F;p5play.js:1991</code></a>
+        <a href="../files/v3_p5play.js.html#l1988"><code>v3&#x2F;p5play.js:1988</code></a>
         </p>
 
 
@@ -3179,7 +3324,7 @@ underscores, and dashes.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l1936"><code>v3&#x2F;p5play.js:1936</code></a>
+        <a href="../files/v3_p5play.js.html#l1933"><code>v3&#x2F;p5play.js:1933</code></a>
         </p>
 
 
@@ -3204,7 +3349,7 @@ underscores, and dashes.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l1584"><code>v3&#x2F;p5play.js:1584</code></a>
+        <a href="../files/v3_p5play.js.html#l1581"><code>v3&#x2F;p5play.js:1581</code></a>
         </p>
 
 
@@ -3229,7 +3374,7 @@ underscores, and dashes.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l1571"><code>v3&#x2F;p5play.js:1571</code></a>
+        <a href="../files/v3_p5play.js.html#l1568"><code>v3&#x2F;p5play.js:1568</code></a>
         </p>
 
 
@@ -3254,7 +3399,7 @@ underscores, and dashes.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l1597"><code>v3&#x2F;p5play.js:1597</code></a>
+        <a href="../files/v3_p5play.js.html#l1594"><code>v3&#x2F;p5play.js:1594</code></a>
         </p>
 
 
@@ -3279,7 +3424,7 @@ underscores, and dashes.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l1608"><code>v3&#x2F;p5play.js:1608</code></a>
+        <a href="../files/v3_p5play.js.html#l1605"><code>v3&#x2F;p5play.js:1605</code></a>
         </p>
 
 
@@ -3306,7 +3451,7 @@ inaccurate physics simulation.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l1631"><code>v3&#x2F;p5play.js:1631</code></a>
+        <a href="../files/v3_p5play.js.html#l1628"><code>v3&#x2F;p5play.js:1628</code></a>
         </p>
 
 
@@ -3360,7 +3505,7 @@ reduced by 1 unit. If less than or equal to 0, this sprite will be removed.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l1645"><code>v3&#x2F;p5play.js:1645</code></a>
+        <a href="../files/v3_p5play.js.html#l1642"><code>v3&#x2F;p5play.js:1642</code></a>
         </p>
 
 
@@ -3385,7 +3530,7 @@ reduced by 1 unit. If less than or equal to 0, this sprite will be removed.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l1909"><code>v3&#x2F;p5play.js:1909</code></a>
+        <a href="../files/v3_p5play.js.html#l1906"><code>v3&#x2F;p5play.js:1906</code></a>
         </p>
 
 
@@ -3410,7 +3555,7 @@ reduced by 1 unit. If less than or equal to 0, this sprite will be removed.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l1677"><code>v3&#x2F;p5play.js:1677</code></a>
+        <a href="../files/v3_p5play.js.html#l1674"><code>v3&#x2F;p5play.js:1674</code></a>
         </p>
 
 
@@ -3460,7 +3605,7 @@ reduced by 1 unit. If less than or equal to 0, this sprite will be removed.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l2081"><code>v3&#x2F;p5play.js:2081</code></a>
+        <a href="../files/v3_p5play.js.html#l2078"><code>v3&#x2F;p5play.js:2078</code></a>
         </p>
 
 
@@ -3485,7 +3630,7 @@ reduced by 1 unit. If less than or equal to 0, this sprite will be removed.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l2093"><code>v3&#x2F;p5play.js:2093</code></a>
+        <a href="../files/v3_p5play.js.html#l2090"><code>v3&#x2F;p5play.js:2090</code></a>
         </p>
 
 
@@ -3565,7 +3710,7 @@ from frame 0.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l1690"><code>v3&#x2F;p5play.js:1690</code></a>
+        <a href="../files/v3_p5play.js.html#l1687"><code>v3&#x2F;p5play.js:1687</code></a>
         </p>
 
 
@@ -3591,7 +3736,7 @@ from frame 0.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l1715"><code>v3&#x2F;p5play.js:1715</code></a>
+        <a href="../files/v3_p5play.js.html#l1712"><code>v3&#x2F;p5play.js:1712</code></a>
         </p>
 
 
@@ -3643,7 +3788,7 @@ from frame 0.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l1729"><code>v3&#x2F;p5play.js:1729</code></a>
+        <a href="../files/v3_p5play.js.html#l1726"><code>v3&#x2F;p5play.js:1726</code></a>
         </p>
 
 
@@ -3669,7 +3814,7 @@ from frame 0.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l1745"><code>v3&#x2F;p5play.js:1745</code></a>
+        <a href="../files/v3_p5play.js.html#l1742"><code>v3&#x2F;p5play.js:1742</code></a>
         </p>
 
 
@@ -3700,7 +3845,7 @@ to double the sprite's scale.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l2166"><code>v3&#x2F;p5play.js:2166</code></a>
+        <a href="../files/v3_p5play.js.html#l2163"><code>v3&#x2F;p5play.js:2163</code></a>
         </p>
 
 
@@ -3726,7 +3871,7 @@ to double the sprite's scale.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l1787"><code>v3&#x2F;p5play.js:1787</code></a>
+        <a href="../files/v3_p5play.js.html#l1784"><code>v3&#x2F;p5play.js:1784</code></a>
         </p>
 
 
@@ -3755,7 +3900,7 @@ with anything that it wasn't already _touching.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l1815"><code>v3&#x2F;p5play.js:1815</code></a>
+        <a href="../files/v3_p5play.js.html#l1812"><code>v3&#x2F;p5play.js:1812</code></a>
         </p>
 
 
@@ -3781,7 +3926,7 @@ with anything that it wasn't already _touching.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l1831"><code>v3&#x2F;p5play.js:1831</code></a>
+        <a href="../files/v3_p5play.js.html#l1828"><code>v3&#x2F;p5play.js:1828</code></a>
         </p>
 
 
@@ -3938,7 +4083,7 @@ x=1 and y=1 will be drawn at position (16, 16) on the canvas.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l1846"><code>v3&#x2F;p5play.js:1846</code></a>
+        <a href="../files/v3_p5play.js.html#l1843"><code>v3&#x2F;p5play.js:1843</code></a>
         </p>
 
 
@@ -3989,7 +4134,7 @@ x=1 and y=1 will be drawn at position (16, 16) on the canvas.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l1919"><code>v3&#x2F;p5play.js:1919</code></a>
+        <a href="../files/v3_p5play.js.html#l1916"><code>v3&#x2F;p5play.js:1916</code></a>
         </p>
 
 
@@ -4014,7 +4159,7 @@ x=1 and y=1 will be drawn at position (16, 16) on the canvas.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l1947"><code>v3&#x2F;p5play.js:1947</code></a>
+        <a href="../files/v3_p5play.js.html#l1944"><code>v3&#x2F;p5play.js:1944</code></a>
         </p>
 
 
@@ -4039,7 +4184,7 @@ x=1 and y=1 will be drawn at position (16, 16) on the canvas.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l1875"><code>v3&#x2F;p5play.js:1875</code></a>
+        <a href="../files/v3_p5play.js.html#l1872"><code>v3&#x2F;p5play.js:1872</code></a>
         </p>
 
 
@@ -4064,7 +4209,7 @@ x=1 and y=1 will be drawn at position (16, 16) on the canvas.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l1892"><code>v3&#x2F;p5play.js:1892</code></a>
+        <a href="../files/v3_p5play.js.html#l1889"><code>v3&#x2F;p5play.js:1889</code></a>
         </p>
 
 

@@ -2407,7 +2407,8 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			if (Array.isArray(x)) {
 				return { x: x[0], y: x[1] };
 			} else if (typeof x == 'object') {
-				return x;
+				y = x.y;
+				x = x.x;
 			}
 			return { x: x || 0, y: y || 0 };
 		}
