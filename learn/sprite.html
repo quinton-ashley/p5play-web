@@ -295,15 +295,6 @@ function draw() {
 		</script>
 	</div>
 	<div id="page-2" class="page">
-		<div>
-			<h2>Sprite movement</h2>
-			<p>
-				Note that directly changing a sprite's position teleports it! Try clicking around this mini-example.
-			</p>
-			<p>
-				Don't teleport a sprite if you want it to physically interact with other sprites while it's moving.
-			</p>
-		</div>
 		<script type="mie/p5" name="idle player" lines="11" hide base-3>
 let player, block;
 
@@ -321,6 +312,15 @@ function draw() {
 	clear();
 }
 		</script>
+		<div>
+			<h2>Sprite movement</h2>
+			<p>
+				Changing a sprite's position teleports it!
+			</p>
+			<p>
+				Try clicking around this mini-example.
+			</p>
+		</div>
 		<script type="mie/p5" name="teleport" base="3">
 if (mouse.presses()) {
 	player.x = mouse.x;
@@ -329,62 +329,49 @@ if (mouse.presses()) {
 		</script>
 		<div>
 			<p>
-				The <code>moveTo</code> function moves a sprite to a position, at a constant speed.
+				The next example shows what happens if a sprite is teleported
+				every time the p5.js draw function renders a frame.
 			</p>
+			<p>
+				If you want a sprite to physically interact with other sprites while it's moving, don't teleport it!
+			</p>
+		</div>
+		<script type="mie/p5" name="teleport (continuously)" base="3">
+player.x = mouse.x;
+player.y = mouse.y;
+		</script>
+		<div>
+			<p>
+				The <code>moveTo</code> function generates an impulse that moves a sprite to a position at a constant speed.
+			</p>
+			<p>
+				But note that if the sprite is acted on by a force like gravity or bumps into another sprite, its speed and
+				direction
+				will be affected and it may not reach the
+				target position.
+			</p>
+		</div>
+		<script type="mie/p5" name="moveTo (impulse)" base="3">
+if (mouse.presses()) {
+	player.speed = 8;
+	player.moveTo(mouse.x, mouse.y);
+}
+		</script>
+		<div>
 			<p>
 				The function can accept an
-				(x, y) position or object with (x, y) position properties. Speed can also be set
-				separately with the <code>sprite.speed</code> property.
+				(x, y) position or object with (x, y) position properties. Speed can also be specified.
 			</p>
 			<p>
-				Note that if the sprite encounters
-				resistance, its speed and direction will be affected and it may not reach the target position.
+				In this example, try moving the
+				player sprite close to the block and then barely touch it, all the player's speed will transfer to it, even
+				though the player didn't move that much. Pretty funny! Clearly <code>moveTo</code> wasn't meant to be used this
+				way.
 			</p>
 		</div>
-		<script type="mie/p5" name="moveTo" base="3">
-if (mouse.presses()) {
-	//        (position, speed)
-	player.moveTo(mouse, 8);
-}
-		</script>
-		<div>
-			<p>
-				Move the sprite indefinitely by setting it's direction and speed.
-			</p>
-			<p>
-				You can set a sprite's direction using an angle value or direction name: 'up', 'down', 'left', 'right',
-				'upLeft',
-				'upRight', 'downLeft', 'downRight'.
-			</p>
-		</div>
-		<script type="mie/p5" name="direction + speed" base="3">
-player.direction = 190;
-player.speed = 2;
-		</script>
-		<div>
-			<p>
-				The <code>move</code> function moves a sprite across a distance, in a direction, at a fixed speed.
-			</p>
-			<p>
-				Direction and speed can be set
-				separately.
-			</p>
-		</div>
-		<script type="mie/p5" name="move" base="3">
-if (kb.presses('left')) {
-	//    (distance, direction, speed)
-	player.move(50, 'left', 3);
-}
-		</script>
-		<div>
-			<p>
-				The sprite's x axis and y axis velocities can also be adjusted seperately. <code>sprite.velocity</code> is a
-				p5.js Vector, you can use any of the Vector functions on it.
-			</p>
-		</div>
-		<script type="mie/p5" name="velocity" base="3">
-if (kb.pressing('left')) player.vel.x = -3;
-else player.vel.x = 0;
+		<script type="mie/p5" name="moveTo (continuously)" base="3">
+//			  (position, speed)
+player.moveTo(mouse, 8);
 		</script>
 		<div>
 			<p>
@@ -393,11 +380,80 @@ else player.vel.x = 0;
 			</p>
 			<p>
 				In this example the player moves towards the mouse by 10% of the distance to
-				the mouse on every p5.js draw call.
+				the mouse on every p5.js draw call. Therefore, the force that the player exerts on the block is proportional to
+				the
+				distance it moves.
 			</p>
 		</div>
-		<script type="mie/p5" name="moveTowards" base="3">
+		<script type="mie/p5" name="moveTowards (continuously)" base="3">
 player.moveTowards(mouse, 0.10);
+		</script>
+		<div>
+			<p>
+				The <code>move</code> function moves a sprite across a distance, in a direction, at a fixed speed. Direction and
+				speed can be set
+				separately.
+			</p>
+			<p>
+				You can set a sprite's direction using an angle value or direction name: 'up', 'down', 'left', 'right',
+				'upLeft',
+				'upRight', 'downLeft', 'downRight'.
+			</p>
+		</div>
+		<script type="mie/p5" name="move (impulse)" base="3">
+if (kb.presses('left')) {
+	//    (distance, direction, speed)
+	player.move(30, 'left', 3);
+}
+		</script>
+		<div>
+			<p>
+				Move the sprite indefinitely by setting its direction and speed.
+			</p>
+		</div>
+		<script type="mie/p5" name="direction + speed (impulse)" base="3">
+if (kb.presses('left')) {
+	player.direction = 182;
+	player.speed = 3;
+}
+		</script>
+		<div>
+			<p>
+				Try starting both of the "speed + direction" examples at the same time. Hold down the left arrow key and observe
+				the difference between applying speed + direction as an impulse versus continuously.
+			</p>
+		</div>
+		<script type="mie/p5" name="direction + speed (continuously)" base="3">
+if (kb.pressing('left')) {
+	player.direction = 182;
+	player.speed = 3;
+}
+		</script>
+		<div>
+			<p>
+				All of the other movement examples on this page are based on changing the sprite's x axis and y axis velocities,
+				which can also be done directly. <code>sprite.velocity</code> is
+				a p5.js Vector, you can use any Vector functions on it.
+			</p>
+		</div>
+		<script type="mie/p5" name="velocity (continuously)" base="3">
+player.vel.x = -3;
+player.vel.y = 1;
+		</script>
+		<div>
+			<p>
+				Hopefully the examples on this page helped you understand some of the movement options available in p5play. But
+				they're just building blocks for more complex movement patterns.
+			</p>
+			<p>
+				You'll often need to experiment with them in creative ways
+				to find the best solutions for your game!
+			</p>
+		</div>
+		<script type="mie/p5" name="segmented motion" base="3">
+if (kb.pressing('left')) player.vel.x -= 0.2;
+else if (kb.pressing('right')) player.vel.x += 0.2;
+else player.vel.x = 0;
 		</script>
 	</div>
 	<div id="page-3" class="page">
@@ -1317,7 +1373,7 @@ function draw() {
 				limitation of the Box2D physics engine that p5play uses.
 			</p>
 		</div>
-		<script type="mie/p5" name="concave chain colliders" lines="9">
+		<script type="mie/p5" name="concave chain colliders" lines="11">
 function setup() {
 	new Canvas(500, 200);
 	world.gravity.y = 10;
@@ -1406,7 +1462,7 @@ function draw() {
 	<script src="https://cdn.jsdelivr.net/npm/p5@1/lib/p5.min.js"></script>
 	<!-- <script src="../v3/q5.js"></script> -->
 	<script src="../v3/planck.min.js"></script>
-	<script src="../v3/p5play.min.js"></script>
+	<script src="../v3/p5play.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.8.1/ace.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 	<script src="learn.js"></script>
