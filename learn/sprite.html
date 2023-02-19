@@ -464,6 +464,8 @@ else player.vel.x = 0;
 
 If you need an image to be loaded before your program starts, it's best to use [`loadImage`](https://p5js.org/reference/#/p5/loadImage) inside the p5.js `preload` function.
 
+`sprite.scale` changes the size of both the sprite's collider and visual appearance. A scale value of 2 doubles the size of the sprite.
+
 Try pressing the left mouse button. When the `sprite.debug` property is set to true you can see the sprite's physics body collider. You can make the size of the collider different from the size of the image!
 		</script>
 		<script type="mie/p5" name="image">
@@ -479,6 +481,9 @@ function setup() {
 
 function draw() {
 	clear();
+	if (kb.presses(2)) {
+		monster.scale = 2;
+	}
 	monster.debug = mouse.pressing();
 }
 		</script>
@@ -529,7 +534,7 @@ yybyyyybyy
 ..yyyyyy`;
 
 	let palette = {
-		'y': color(255, 220, 60),
+		'y': color(60, 220, 255),
 		'b': color(20)
 	};
 
@@ -1449,6 +1454,43 @@ function draw() {
 	clear();
 }
 //
+		</script>
+	</div>
+	<div id="page-13" class="page">
+		<script type="text/md">
+## scale
+
+Changing `sprite.scale` will scale the sprite's collider and visual appearance by the specified amount.
+
+Press a number key to see the sprite scale uniformly by that amount.
+
+Press "d" to double the sprite's scale.
+
+Press "x" or "y" to scale the sprite in that direction by a random amount. But note that if the sprite gets scaled unevenly, the image will get distorted and stay that way even when scaled uniformly again.
+		</script>
+		<script type="mie/p5">
+let sprite;
+
+function setup() {
+	new Canvas(500, 200);
+
+	sprite = new Sprite(250, 100, 80);
+	sprite.img = 'assets/monster.png';
+}
+
+function draw() {
+	clear();
+
+	for (let i = 0; i < 10; i++) {
+		if (kb.presses(i)) sprite.scale = i;
+	}
+
+	if (kb.presses('d')) sprite.scale *= 2;
+	if (kb.presses('x')) sprite.scale.x = random(0.1, 6);
+	if (kb.presses('y')) sprite.scale.y = random(0.1, 6);
+
+	allSprites.debug = mouse.pressing();
+}
 		</script>
 	</div>
 
