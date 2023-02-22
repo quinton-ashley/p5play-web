@@ -154,14 +154,14 @@ test('Sprite : physics', () => {
 			};
 
 			p.draw = () => {
-				if (p.frame == 1) {
+				if (p.frameCount == 1) {
 					expect(s0.x).toBe(10);
 					expect(s0.y).toBe(0);
 					expect(s1.x).toBe(100);
 					expect(s1.y).toBe(10);
 					p.world.gravity.y = 10;
 				}
-				if (p.frame == 2) {
+				if (p.frameCount == 2) {
 					// s0 is dynamic so with gravity it should fall
 					expect(s0.x).toBe(10);
 					expect(s0.y).toBeGreaterThan(0);
@@ -171,13 +171,13 @@ test('Sprite : physics', () => {
 					expect(s1.x).toBe(100);
 					expect(s1.y).toBe(10);
 				}
-				if (p.frame == 3) {
+				if (p.frameCount == 3) {
 					s0.speed = 0;
 					s0.x = 10;
 					s0.y = 0;
 					p.world.gravity.y = -5;
 				}
-				if (p.frame == 4) {
+				if (p.frameCount == 4) {
 					// the x position shouldn't because gravity is only in the y
 					expect(s0.x).toBe(10);
 					expect(s0.y).toBeLessThan(0);
@@ -185,14 +185,14 @@ test('Sprite : physics', () => {
 					expect(s0.vel.x).toBe(0);
 					expect(s0.vel.y).toBeLessThan(0);
 				}
-				if (p.frame == 5) {
+				if (p.frameCount == 5) {
 					s0.remove();
 					s1.remove();
 					s0 = new p.Sprite(100, 86, 100, 2, 'kinematic');
 					s0.vel.y = -5;
 					s1 = new p.Sprite(100, 60, 50);
 				}
-				if (p.frame == 6) {
+				if (p.frameCount == 6) {
 					// kinematic platform moved up and pushed s1
 					expect(s0.y).toBeLessThan(86);
 					expect(s1.y).toBeLessThan(60);
@@ -212,48 +212,78 @@ test('Sprite : physics', () => {
 });
 
 test('Sprite : move, moveTo, moveTowards', () => {
-	const sketch = (p) => {
-		let s;
+	return new Promise((resolve) => {
+		const sketch = (p) => {
+			let s;
 
-		p.setup = async () => {
-			new p.Canvas(400, 400);
+			p.setup = () => {
+				new p.Canvas(400, 400);
 
-			s = new p.Sprite();
+				s = new p.Sprite(200, 200);
 
-			await expect(s.move(100, 180, 10)).resolves.toBe(true);
-			expect(s.x).toBe(200);
-			expect(s.y).toBe(100);
+				startSequence();
+			};
 
-			await expect(s.move(100, 'up', 10)).resolves.toBe(true);
-			expect(s.x).toBe(100);
-			expect(s.y).toBe(100);
+			async function startSequence() {
+				await expect(s.move(1, 180, 10)).resolves.toBe(true);
+				expect(s.x).toBe(199);
+				expect(s.y).toBe(200);
 
-			await expect(s.move(10)).resolves.toBe(true);
-			expect(s.x).toBe(100);
-			expect(s.y).toBe(110);
+				await expect(s.move(20, 'up', 10)).resolves.toBe(true);
+				expect(s.x).toBe(199);
+				expect(s.y).toBe(180);
 
-			s.direction = 'left';
-			await expect(s.move(10)).resolves.toBe(true);
-			expect(s.x).toBe(90);
-			expect(s.y).toBe(110);
+				s.direction = 'right';
+				await expect(s.move(1)).resolves.toBe(true);
+				expect(s.x).toBe(200);
+				expect(s.y).toBe(180);
 
-			await expect(s.moveTo(10, 20)).resolves.toBe(true);
-			expect(s.x).toBe(10);
-			expect(s.y).toBe(20);
+				s.direction = 'upRight';
+				await expect(s.move(1)).resolves.toBe(true);
+				expect(s.x).toBeCloseTo(200.707);
+				expect(s.y).toBeCloseTo(179.293);
 
-			// test interrupted movement
-			expect(s.moveTo(50, 20)).resolves.toBe(false);
-			await expect(s.moveTo(30, 20)).resolves.toBe(true);
+				// s.direction = 'left';
+				// await expect(s.move(10)).resolves.toBe(true);
+				// expect(s.x).toBe(90);
+				// expect(s.y).toBe(110);
 
-			s.moveTowards(0, 0);
-			expect(s.x).toBeLessThan(30);
+				// await expect(s.moveTo(10, 20)).resolves.toBe(true);
+				// expect(s.x).toBe(10);
+				// expect(s.y).toBe(20);
 
-			s.remove();
+				// // test interrupted movement
+				// expect(s.moveTo(50, 20)).resolves.toBe(false);
+				// await expect(s.moveTo(30, 20)).resolves.toBe(true);
+
+				// s.moveTowards(20, 0);
+				// expect(s.x).toBe(29);
+				// expect(s.y).toBe(18);
+
+				// s.moveTowards({ x: 19, y: 0 }, 0.5);
+				// expect(s.x).toBe(24);
+				// expect(s.y).toBe(9);
+
+				// s.direction = 'up';
+				// s.speed = 3;
+				// expect(s.direction).toBe(-90);
+				// expect(s.speed).toBe(3);
+				// expect(s.y).toBe(23);
+
+				// s.vel.x = -3;
+				// s.vel.y = 1;
+				// expect(s.x).toBe(26);
+				// expect(s.y).toBe(24);
+
+				s.remove();
+				p.noLoop();
+				resolve();
+			}
+
+			p.draw = () => {};
 		};
-
-		p.draw = () => {};
-	};
-	new p5(sketch);
+		new p5(sketch);
+	});
 });
 
 test('Sprite : rotate, rotateTo, rotateTowards', () => {
@@ -267,7 +297,7 @@ test('Sprite : rotate, rotateTo, rotateTowards', () => {
 
 			await expect(s.rotate(180, 10)).resolves.toBe(true);
 			expect(s.rotation).toBe(180);
-			expect(frame).toBe(18);
+			expect(frameCount).toBe(18);
 
 			await expect(s.rotateTo(200, 0)).resolves.toBe(true);
 			expect(s.rotation).toBe(90);

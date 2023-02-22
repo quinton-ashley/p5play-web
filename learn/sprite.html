@@ -321,7 +321,7 @@ function draw() {
 				Try clicking around this mini-example.
 			</p>
 		</div>
-		<script type="mie/p5" name="teleport" base="3">
+		<script type="mie/p5" name="teleport 🛸" base="3">
 if (mouse.presses()) {
 	player.x = mouse.x;
 	player.y = mouse.y;
@@ -336,57 +336,32 @@ if (mouse.presses()) {
 				If you want a sprite to physically interact with other sprites while it's moving, don't teleport it!
 			</p>
 		</div>
-		<script type="mie/p5" name="teleport (continuously)" base="3">
+		<script type="mie/p5" name="teleport (continuously) 👎" base="3">
 player.x = mouse.x;
 player.y = mouse.y;
 		</script>
 		<div>
 			<p>
-				The <code>moveTo</code> function generates an impulse that moves a sprite to a position at a constant speed.
+				All of the other movement examples on this page are based on changing the sprite's x axis and y axis velocities,
+				which can also be done directly. <code>velocity</code> aka <code>vel</code> is
+				a p5.js Vector, you can use any Vector functions on it.
 			</p>
 			<p>
-				But note that if the sprite is acted on by a force like gravity or bumps into another sprite, its speed and
-				direction
-				will be affected and it may not reach the
-				target position.
+				You may have to restart this example if you missed what happened when the page loaded.
 			</p>
 		</div>
-		<script type="mie/p5" name="moveTo (impulse)" base="3">
-if (mouse.presses()) {
-	player.speed = 8;
-	player.moveTo(mouse.x, mouse.y);
-}
+		<script type="mie/p5" name="velocity (continuously)" base="3">
+player.vel.x = -3;
+player.vel.y = 1;
 		</script>
 		<div>
 			<p>
-				The function can accept an
-				(x, y) position or object with (x, y) position properties. Speed can also be specified.
-			</p>
-			<p>
-				In this example, try moving the
-				player sprite close to the block and then barely touch it, all the player's speed will transfer to it, even
-				though the player didn't move that much. Pretty funny! Clearly <code>moveTo</code> wasn't meant to be used this
-				way.
+				Move the sprite indefinitely by setting its <code>direction</code> and <code>speed</code>.
 			</p>
 		</div>
-		<script type="mie/p5" name="moveTo (continuously)" base="3">
-//			  (position, speed)
-player.moveTo(mouse, 8);
-		</script>
-		<div>
-			<p>
-				The <code>moveTowards</code> function moves a sprite towards a position, at a percentage of the distance to that
-				position.
-			</p>
-			<p>
-				In this example the player moves towards the mouse by 10% of the distance to
-				the mouse on every p5.js draw call. Therefore, the force that the player exerts on the block is proportional to
-				the
-				distance it moves.
-			</p>
-		</div>
-		<script type="mie/p5" name="moveTowards (continuously)" base="3">
-player.moveTowards(mouse, 0.10);
+		<script type="mie/p5" name="direction + speed (continuously)" base="3">
+player.direction = 187;
+player.speed = 3;
 		</script>
 		<div>
 			<p>
@@ -408,37 +383,51 @@ if (kb.presses('left')) {
 		</script>
 		<div>
 			<p>
-				Move the sprite indefinitely by setting its direction and speed.
+				The <code>moveTowards</code> function moves a sprite towards a position, at a percentage of the distance to that
+				position.
+			</p>
+			<p>
+				In this example the player moves towards the mouse by 10% of the distance to
+				the mouse on every p5.js draw call. Therefore, the force that the player exerts on the block is proportional to
+				the
+				distance it moves.
 			</p>
 		</div>
-		<script type="mie/p5" name="direction + speed (impulse)" base="3">
-if (kb.presses('left')) {
-	player.direction = 182;
-	player.speed = 3;
+		<script type="mie/p5" name="moveTowards (continuously)" base="3">
+player.moveTowards(mouse, 0.10);
+		</script>
+		<div>
+			<p>
+				The <code>moveTo</code> function generates an impulse that moves a sprite to a position at a constant speed.
+			</p>
+			<p>
+				But note that if the sprite is acted on by a force like gravity or bumps into another sprite, its speed and
+				direction
+				will be affected and it may not reach the
+				target position.
+			</p>
+			<p>
+				The function can accept an
+				(x, y) position or object with (x, y) position properties. Speed can also be specified inside the function.
+			</p>
+		</div>
+		<script type="mie/p5" name="moveTo (impulse)" base="3">
+if (mouse.presses()) {
+	//        (position, speed)
+	player.moveTo(mouse, 8);
 }
 		</script>
 		<div>
 			<p>
-				Try starting both of the "speed + direction" examples at the same time. Hold down the left arrow key and observe
-				the difference between applying speed + direction as an impulse versus continuously.
+				The <code>angleTo</code> function gets the angle between
+				the sprite and a position or object with (x, y) properties.
 			</p>
 		</div>
-		<script type="mie/p5" name="direction + speed (continuously)" base="3">
-if (kb.pressing('left')) {
-	player.direction = 182;
+		<script type="mie/p5" name="angleTo" base="3">
+if (mouse.pressing()) {
+	player.direction = player.angleTo(mouse);
 	player.speed = 3;
 }
-		</script>
-		<div>
-			<p>
-				All of the other movement examples on this page are based on changing the sprite's x axis and y axis velocities,
-				which can also be done directly. <code>sprite.velocity</code> is
-				a p5.js Vector, you can use any Vector functions on it.
-			</p>
-		</div>
-		<script type="mie/p5" name="velocity (continuously)" base="3">
-player.vel.x = -3;
-player.vel.y = 1;
 		</script>
 		<div>
 			<p>
@@ -460,7 +449,7 @@ else player.vel.x = 0;
 		<script type="text/md">
 ## Sprite image
 
-`sprite.img` or `sprite.image` can be set to a p5.Image or a url path to an image file.
+`sprite.image` or `sprite.img` can be set to a p5.Image or a url path to an image file.
 
 If you need an image to be loaded before your program starts, it's best to use [`loadImage`](https://p5js.org/reference/#/p5/loadImage) inside the p5.js `preload` function.
 

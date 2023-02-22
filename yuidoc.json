@@ -7,7 +7,6 @@
 	"options": {
 		"outdir": "docs",
 		"paths": ["v3"],
-		"ignorePaths": ["planck"],
-		"exclude": "demos,docs,game,jam,learn,logos,tests,theme,v2,v4,p5.play.js,p5play.min.js"
+		"exclude": "demos,docs,game,jam,learn,logos,testing,tests,theme,v2,v4,p5.play.js,p5play.min.js,planck.js,planck.min.js,q5.js"
 	}
 }

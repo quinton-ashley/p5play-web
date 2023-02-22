@@ -836,6 +836,8 @@ function Q5(scope, parent) {
 		ctx.fillStyle = col;
 	};
 	$.noFill = () => ($._doFill = false);
+	$.smooth = () => ($._smooth = true);
+	$.noSmooth = () => ($._smooth = false);
 	$.blendMode = (x) => (ctx.globalCompositeOperation = x);
 	$.strokeCap = (x) => (ctx.lineCap = x);
 	$.strokeJoin = (x) => (ctx.lineJoin = x);
