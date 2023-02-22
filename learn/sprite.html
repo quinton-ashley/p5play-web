@@ -408,8 +408,9 @@ player.moveTowards(mouse, 0.10);
 				target position.
 			</p>
 			<p>
-				The function can accept an
-				(x, y) position or object with (x, y) position properties. Speed can also be specified inside the function.
+				Any movement function that accepts an
+				object with x and y properties could instead be called with
+				(x, y) position numbers.
 			</p>
 		</div>
 		<script type="mie/p5" name="moveTo (impulse)" base="3">
@@ -421,10 +422,15 @@ if (mouse.presses()) {
 		<div>
 			<p>
 				The <code>angleTo</code> function gets the angle between
-				the sprite and a position or object with (x, y) properties.
+				the sprite and a position.
 			</p>
 			<p>
-				You may have to restart this example to see the sprite move.
+				If you're tempted to use <code>moveTo</code> repeatedly, without
+				waiting for the sprite to reach its target, consider using
+				this approach instead for better performance.
+			</p>
+			<p>
+				Restart this example to see the sprite move.
 			</p>
 		</div>
 		<script type="mie/p5" name="angleTo" base="3">
