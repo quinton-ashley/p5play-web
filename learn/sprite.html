@@ -450,8 +450,8 @@ if (mouse.pressing()) {
 			</p>
 		</div>
 		<script type="mie/p5" name="segmented motion" base="3">
-if (kb.pressing('left')) player.vel.x -= 0.2;
-else if (kb.pressing('right')) player.vel.x += 0.2;
+if (kb.pressing('left')) player.vel.x = -5;
+else if (kb.pressing('right')) player.vel.x = 5;
 else player.vel.x = 0;
 		</script>
 	</div>
