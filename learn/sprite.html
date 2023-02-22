@@ -321,7 +321,7 @@ function draw() {
 				Try clicking around this mini-example.
 			</p>
 		</div>
-		<script type="mie/p5" name="teleport 🛸" base="3">
+		<script type="mie/p5" name="teleport" base="3">
 if (mouse.presses()) {
 	player.x = mouse.x;
 	player.y = mouse.y;
@@ -347,7 +347,7 @@ player.y = mouse.y;
 				a p5.js Vector, you can use any Vector functions on it.
 			</p>
 			<p>
-				You may have to restart this example if you missed what happened when the page loaded.
+				You may have to restart this example to see the sprite move.
 			</p>
 		</div>
 		<script type="mie/p5" name="velocity (continuously)" base="3">
@@ -377,7 +377,7 @@ player.speed = 3;
 		</div>
 		<script type="mie/p5" name="move (impulse)" base="3">
 if (kb.presses('left')) {
-	//    (distance, direction, speed)
+	//   (distance, direction, speed)
 	player.move(30, 'left', 3);
 }
 		</script>
@@ -394,6 +394,7 @@ if (kb.presses('left')) {
 			</p>
 		</div>
 		<script type="mie/p5" name="moveTowards (continuously)" base="3">
+//             (position, tracking)
 player.moveTowards(mouse, 0.10);
 		</script>
 		<div>
@@ -422,6 +423,9 @@ if (mouse.presses()) {
 				The <code>angleTo</code> function gets the angle between
 				the sprite and a position or object with (x, y) properties.
 			</p>
+			<p>
+				You may have to restart this example to see the sprite move.
+			</p>
 		</div>
 		<script type="mie/p5" name="angleTo" base="3">
 if (mouse.pressing()) {
@@ -431,7 +435,7 @@ if (mouse.pressing()) {
 		</script>
 		<div>
 			<p>
-				Hopefully the examples on this page helped you understand some of the movement options available in p5play. But
+				Hopefully the examples on this page helped you understand some of the movement options available in p5play. But,
 				they're just building blocks for more complex movement patterns.
 			</p>
 			<p>

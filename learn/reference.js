@@ -17,7 +17,7 @@ let refs = {
 			'visible'
 		],
 		1: ['collider', 'dynamic', 'kinematic', 'static'],
-		2: ['move', 'moveTo', 'moveTowards', 'speed', 'direction', 'vel / velocity'],
+		2: ['vel / velocity', 'speed', 'direction', 'move', 'moveTo', 'moveTowards', 'angleTo'],
 		3: ['img / image', 'scale', 'debug'],
 		5: ['collides', 'colliding', 'collided'],
 		6: ['overlap', 'overlapping', 'overlapped', 'layer'],
