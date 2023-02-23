@@ -148,6 +148,16 @@ a.navLink {
 	margin-top: 8px;
 }
 
+@keyframes spin {
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+#topNav .logo:hover {
+	animation: spin 2s linear infinite;
+}
+
 #topNav img:not(.logo):hover {
 	height: 40px;
 	box-shadow: 2px 2px 10px var(--pink);
@@ -523,10 +533,6 @@ body.light .discord-logo {
 	filter: invert(1);
 }
 
-#learnLink {
-	display: none;
-}
-
 /* 
 .day-mode .night {
 	display: none;
@@ -562,8 +568,19 @@ body.light .discord-logo {
 		padding-right: 1%;
 	}
 
+	.minis>div,
 	.page>div,
 	.page>md {
 		width: 100%;
 	}
+
+	.mie.horiz .mie-main {
+		flex-direction: column;
+	}
+
+	.mie.horiz .mie-editor {
+		border-left: 0 solid #ccc;
+		border-top: 2px solid #ccc;
+	}
+
 }
