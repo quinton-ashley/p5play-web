@@ -2223,7 +2223,7 @@ function Q5(scope, parent) {
 	function isTouchUnaware() {
 		return $._touchStarted.isPlaceHolder && $._touchMoved.isPlaceHolder && $._touchEnded.isPlaceHolder;
 	}
-	$.canvas.ontouchstart = (e) => {
+	$._ontouchstart = (e) => {
 		$.touches = e.touches.map(getTouchInfo);
 		if (isTouchUnaware()) {
 			$.pmouseX = $.mouseX;
@@ -2240,7 +2240,7 @@ function Q5(scope, parent) {
 			e.preventDefault();
 		}
 	};
-	$.canvas.ontouchmove = (e) => {
+	$._ontouchmove = (e) => {
 		$.touches = e.touches.map(getTouchInfo);
 		if (isTouchUnaware()) {
 			$.pmouseX = $.mouseX;
@@ -2257,7 +2257,7 @@ function Q5(scope, parent) {
 			e.preventDefault();
 		}
 	};
-	$.canvas.ontouchend = $.canvas.ontouchcancel = (e) => {
+	$._ontouchend = (e) => {
 		$.touches = e.touches.map(getTouchInfo);
 		if (isTouchUnaware()) {
 			$.pmouseX = $.mouseX;
@@ -2273,6 +2273,9 @@ function Q5(scope, parent) {
 			e.preventDefault();
 		}
 	};
+	$.canvas.ontouchstart = (e) => $._ontouchstart(e);
+	$.canvas.ontouchmove = (e) => $._ontouchmove(e);
+	$.canvas.ontouchcancel = $.canvas.ontouchend = (e) => $._ontouchend(e);
 
 	$.hasSensorPermission =
 		(!window.DeviceOrientationEvent && !window.DeviceMotionEvent) ||

@@ -580,15 +580,6 @@ body.light .discord-logo {
 		width: 100%;
 	}
 
-	.mie.horiz .mie-main {
-		flex-direction: column;
-	}
-
-	.mie.horiz .mie-editor {
-		border-left: 0 solid #ccc;
-		border-top: 2px solid #ccc;
-	}
-
 	#topNav #logoLink {
 		order: -3;
 	}
