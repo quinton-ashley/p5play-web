@@ -397,27 +397,7 @@ if (typeof window.ace != 'undefined') {
 }
 
 @media screen and (max-width: 1030px) {
-	.mie-editor {
-		font-size: 32px;
-	}
 
-	.mie-title {
-		font-size: 32px;
-		height: 32px;
-	}
-
-	.mie-logo {
-		height: 32px;
-		padding-right: 4px;
-	}
-
-	.mie-play {
-		border-width: 14px 0 14px 18px;
-	}
-
-	.mie-edit {
-		font-size: 22px;
-	}
 }
 `;
 	document.head.append(style);

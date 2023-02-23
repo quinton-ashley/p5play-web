@@ -32,6 +32,7 @@ body.dark {
 
 html {
 	background-color: var(--margins);
+	margin: auto;
 }
 
 body {
@@ -540,20 +541,14 @@ body.light .discord-logo {
 		width: 98%;
 		padding-left: 1%;
 		padding-right: 1%;
-		/* font-size: 24px; */
 	}
 
 	#topNav {
 		display: flex;
 		align-items: center;
 		width: 100%;
-		/* font-size: 48px; */
 		overflow: scroll;
 		gap: 10px;
-	}
-
-	#learnLink {
-		display: block;
 	}
 
 	#logoLink {
@@ -561,46 +556,14 @@ body.light .discord-logo {
 		align-items: center;
 	}
 
-	#topNav .logo {
-		/* height: 64px; */
-		margin-right: 8px;
-		margin-top: 8px;
-	}
-
-	#topNav a.active,
-	#topNav a:hover {
-		/* font-size: 64px; */
-	}
-
-	h2 {
-		/* font-size: 48px; */
-	}
-
-	h3 {
-		/* font-size: 32px; */
-	}
-
 	.page {
 		width: 98%;
 		padding-left: 1%;
 		padding-right: 1%;
-		row-gap: 40px;
 	}
 
 	.page>div,
 	.page>md {
 		width: 100%;
-	}
-
-	.minis {
-		row-gap: 40px;
-	}
-
-	textarea {
-		/* font-size: 18px; */
-	}
-
-	.credits span {
-		font-size: 18px;
 	}
 }
