@@ -1475,14 +1475,15 @@ let sprite;
 function setup() {
 	new Canvas(500, 200);
 
-	sprite = new Sprite(250, 100, 80);
-	sprite.img = 'assets/monster.png';
+	sprite = new Sprite(250, 100, 90, 90);
+	sprite.img = 'assets/square.png';
+	sprite.debug = true;
 }
 
 function draw() {
 	clear();
 
-	for (let i = 0; i < 10; i++) {
+	for (let i = 1; i < 10; i++) {
 		if (kb.presses(i)) sprite.scale = i;
 	}
 
@@ -1490,7 +1491,8 @@ function draw() {
 	if (kb.presses('x')) sprite.scale.x = random(0.1, 6);
 	if (kb.presses('y')) sprite.scale.y = random(0.1, 6);
 
-	allSprites.debug = mouse.pressing();
+	if (kb.pressing('a')) sprite.ani.scale.x = 10;
+	else sprite.ani.scale.x = 1;
 }
 		</script>
 	</div>
@@ -1524,7 +1526,7 @@ function draw() {
 	<script src="https://cdn.jsdelivr.net/npm/p5@1/lib/p5.min.js"></script>
 	<!-- <script src="../v3/q5.js"></script> -->
 	<script src="../v3/planck.min.js"></script>
-	<script src="../v3/p5play.min.js"></script>
+	<script src="../v3/p5play.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.8.1/ace.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 	<script src="learn.js"></script>
