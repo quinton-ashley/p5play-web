@@ -526,6 +526,10 @@ body.light .discord-logo {
 	filter: invert(1);
 }
 
+#learnLink {
+	display: none;
+}
+
 /* 
 .day-mode .night {
 	display: none;
@@ -552,8 +556,14 @@ body.light .discord-logo {
 		gap: 10px;
 	}
 
-	#topNav a:not(.active):not(#darkMode) {
+	#topNav .socials,
+	#topNav .colon,
+	#topNav:not(.mainNav) a:not(.active):not(#darkMode) {
 		display: none;
+	}
+
+	#learnLink {
+		display: block;
 	}
 
 	#logoLink {
