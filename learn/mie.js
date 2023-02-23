@@ -93,7 +93,7 @@ mie.onload = () => {
 				editor.setOptions({
 					minLines: 1,
 					maxLines: lines,
-					// fontSize: '14px',
+					fontSize: '14px',
 					showFoldWidgets: false,
 					showGutter: props.gutter || false,
 					tabSize: 2,

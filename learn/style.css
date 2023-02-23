@@ -289,10 +289,6 @@ code {
 	margin-bottom: 0;
 }
 
-#topBreak {
-	margin-top: 2%;
-}
-
 .minis {
 	display: flex;
 	justify-content: space-between;
@@ -544,22 +540,16 @@ body.light .discord-logo {
 		width: 98%;
 		padding-left: 1%;
 		padding-right: 1%;
-		font-size: 24px;
+		/* font-size: 24px; */
 	}
 
 	#topNav {
 		display: flex;
 		align-items: center;
 		width: 100%;
-		font-size: 48px;
+		/* font-size: 48px; */
 		overflow: scroll;
 		gap: 10px;
-	}
-
-	#topNav .socials,
-	#topNav .colon,
-	#topNav:not(.mainNav) a:not(.active):not(#darkMode) {
-		display: none;
 	}
 
 	#learnLink {
@@ -568,25 +558,26 @@ body.light .discord-logo {
 
 	#logoLink {
 		display: flex;
+		align-items: center;
 	}
 
 	#topNav .logo {
-		height: 64px;
+		/* height: 64px; */
 		margin-right: 8px;
 		margin-top: 8px;
 	}
 
 	#topNav a.active,
 	#topNav a:hover {
-		font-size: 64px;
+		/* font-size: 64px; */
 	}
 
 	h2 {
-		font-size: 48px;
+		/* font-size: 48px; */
 	}
 
 	h3 {
-		font-size: 32px;
+		/* font-size: 32px; */
 	}
 
 	.page {
@@ -606,43 +597,10 @@ body.light .discord-logo {
 	}
 
 	textarea {
-		font-size: 18px;
+		/* font-size: 18px; */
 	}
 
 	.credits span {
 		font-size: 18px;
 	}
-
-	.text-small {
-		font-size: 16px;
-	}
-
-	.p5js-web-editor-brand+span {
-		font-size: 16px;
-	}
-
-	.bariol {
-		font-size: 28px;
-	}
-
-	.mies-play {
-		width: 32px;
-		height: 28px;
-		background-size: 32px 28px;
-	}
-
-	/* #editors {
-		gap: 48px;
-	}
-
-	.p5js-web-editor-brand,
-	.glitch-brand,
-	.codepen-brand,
-	.openprocessing-brand {
-		height: 64px;
-	}
-
-	.p5js-web-editor-brand {
-		margin-bottom: -20px;
-	} */
 }
