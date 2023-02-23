@@ -4,6 +4,8 @@ html {
 	--dark-pink: #a10d38;
 
 	--blue: #c0eeff;
+	--bright-blue: #f0ffff;
+	--dark-blue: #091920;
 
 	--primary: #000;
 	--secondary: #fff;
@@ -83,15 +85,127 @@ li {
 	padding: 5px;
 }
 
-nav a {
-	color: var(--pink);
+#topNav {
+	padding-top: 8px;
 }
 
-nav a.active,
-nav a:hover {
+#topNav {
+	user-select: none;
+}
+
+#topNav a,
+a.navLink {
+	font-size: 24px;
+	font-weight: bold;
+	user-select: none;
+	color: var(--pink);
+	text-decoration: none;
+	transition: 100ms;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+a.navLink {
+	text-align: center;
+	line-height: 1.5;
+}
+
+#topNav a.active,
+#topNav a:hover {
+	font-size: 34px;
+}
+
+#topNav a.active,
+#topNav a:hover {
 	color: #ed225d;
 	-webkit-text-stroke: 1px var(--pink);
 	text-shadow: 3px 3px 0px var(--blue);
+}
+
+#topNav img {
+	height: 32px;
+	vertical-align: bottom;
+}
+
+#topNav .socials img:not(.github) {
+	opacity: 80%;
+}
+
+#topNav .discord-logo {
+	height: 28px;
+	border-radius: 40%;
+}
+
+#topNav .github {
+	background-color: #aaa;
+	border-radius: 50%;
+}
+
+#topNav .logo {
+	height: 48px;
+	margin-right: 8px;
+	margin-top: 8px;
+}
+
+#topNav img:not(.logo):hover {
+	height: 40px;
+	box-shadow: 2px 2px 10px var(--pink);
+}
+
+#toc {
+	display: flex;
+	align-items: center;
+}
+
+.submenu {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+	flex-wrap: wrap;
+}
+
+#toc a,
+#refs div a:not(:first-child) {
+	background-color: var(--bright-blue);
+	color: var(--pink);
+	box-shadow: var(--blue) 3px 3px 0px;
+	height: min-content;
+	padding: 4px;
+	margin: 2px;
+}
+
+#toc #prevPage {
+	margin-right: 20px;
+}
+
+#toc #nextPage {
+	margin-left: 20px;
+}
+
+#toc a.navLink {
+	box-shadow: none;
+}
+
+#toc a.active,
+#toc a:hover,
+#refs div a:not(:first-child).active,
+#refs div a:not(:first-child):hover {
+	color: #eee;
+	background-color: var(--pink);
+	-webkit-text-stroke: none;
+}
+
+.dark #toc a,
+.dark #refs div a:not(:first-child) {
+	background-color: var(--dark-blue);
+}
+
+.dark #toc a.active,
+.dark #toc a:hover,
+.dark #refs div a:not(:first-child).active,
+.dark #refs div a:not(:first-child):hover {
+	background-color: var(--pink);
 }
 
 .socials:hover,
@@ -104,61 +218,8 @@ nav a:hover {
 	text-shadow: 4px 4px 0px var(--blue);
 }
 
-nav {
-	font-size: 24px;
-	font-weight: bold;
-	user-select: none;
-}
-
 .page h3 {
 	line-height: 32px;
-}
-
-nav img {
-	height: 32px;
-	vertical-align: bottom;
-}
-
-nav .socials img:not(.github) {
-	opacity: 80%;
-}
-
-nav .discord-logo {
-	height: 28px;
-	border-radius: 40%;
-}
-
-nav .github {
-	background-color: #aaa;
-	border-radius: 50%;
-}
-
-nav .logo {
-	height: 48px;
-	margin-right: 8px;
-	margin-top: 8px;
-}
-
-nav a {
-	text-decoration: none;
-	transition: 100ms;
-	padding-left: 5px;
-	padding-right: 5px;
-}
-
-#topNav {
-	padding-top: 8px;
-}
-
-#topNav a.active,
-#topNav a:hover {
-	font-size: 34px;
-	/* text-shadow: 2px 2px 10px#ed225d; */
-}
-
-#topNav img:not(.logo):hover {
-	height: 40px;
-	box-shadow: 2px 2px 10px var(--pink);
 }
 
 #darkModeIcon {
@@ -228,7 +289,7 @@ code {
 	margin-bottom: 0;
 }
 
-.top.break {
+#topBreak {
 	margin-top: 2%;
 }
 
@@ -482,19 +543,32 @@ body.light .discord-logo {
 		font-size: 24px;
 	}
 
-	nav {
-		font-size: 64px;
+	#topNav {
+		display: flex;
+		align-items: center;
+		width: 100%;
+		font-size: 48px;
+		overflow: scroll;
+		gap: 10px;
 	}
 
-	nav .logo {
-		height: 128px;
+	#topNav a:not(.active):not(#darkMode) {
+		display: none;
+	}
+
+	#logoLink {
+		display: flex;
+	}
+
+	#topNav .logo {
+		height: 64px;
 		margin-right: 8px;
 		margin-top: 8px;
 	}
 
 	#topNav a.active,
 	#topNav a:hover {
-		font-size: 80px;
+		font-size: 64px;
 	}
 
 	h2 {

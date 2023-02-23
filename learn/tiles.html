@@ -26,7 +26,7 @@
 		</a>
 	</nav>
 
-	<div class="top break"></div>
+	<div id="topBreak" class="break"></div>
 
 	<div id="page-0" class="page">
 		<div>
@@ -180,7 +180,14 @@ function draw() {
 	</div>
 
 	<div class="break"></div>
-	<nav id="pageNav"></nav>
+	<div id="toc">
+		<a id="prevPage" class="navLink">Prev Page</a>
+		<nav id="pageNav" class="submenu">
+			<a data-page="0" href="tiles.html?page=0">Tiles constructor</a>
+			<a data-page="1" href="tiles.html?page=1">Using tileSize</a>
+		</nav>
+		<a id="nextPage" class="navLink">Next Page</a>
+	</div>
 	<div class="break"></div>
 	<footer class="text-small">
 		Created by Quinton Ashley (@quinton-ashley) Copyright 2022-2023.

@@ -49,8 +49,7 @@ mie.ready = function () {
 	let pageNav = document.getElementById('pageNav');
 	let currentPage = 0;
 
-	let previousPage = document.createElement('a');
-	previousPage.innerText = 'Prev';
+	let previousPage = document.getElementById('prevPage');
 	previousPage.onclick = function () {
 		if (currentPage - 1 > -1) {
 			let i = currentPage - 1;
@@ -59,21 +58,8 @@ mie.ready = function () {
 			loadPage(i);
 		}
 	};
-	pageNav.appendChild(previousPage);
 
-	for (let i = 0; i < pages.length; i++) {
-		let a = document.createElement('a');
-		a.innerText = i;
-		a.onclick = function () {
-			let url = `?page=${i}`;
-			history.pushState({}, 'p5play : Sprite : ' + i, url);
-			loadPage(i);
-		};
-		pageNav.appendChild(a);
-	}
-
-	let nextPage = document.createElement('a');
-	nextPage.innerText = 'Next';
+	let nextPage = document.getElementById('nextPage');
 	nextPage.onclick = function () {
 		if (currentPage + 1 < pages.length) {
 			let i = currentPage + 1;
@@ -82,16 +68,16 @@ mie.ready = function () {
 			loadPage(i);
 		}
 	};
-	pageNav.appendChild(nextPage);
 
 	function loadPage(pageNum) {
 		pageNum = pageNum ?? args.page ?? 0;
 
 		for (let i = 0; i < pages.length; i++) {
-			if (i == pageNum) {
-				pageNav.children[i + 1].className = 'active';
+			let el = pageNav.children[i];
+			if (el.dataset.page == pageNum) {
+				el.className = 'active';
 			} else {
-				pageNav.children[i + 1].className = '';
+				el.className = '';
 			}
 		}
 		for (let mini of mie) {

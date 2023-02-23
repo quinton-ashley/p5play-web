@@ -29,26 +29,12 @@
 #refs h2 {
 	margin: 0;
 	padding-top: 0.83em;
-	padding-bottom: 5px;
+	padding-bottom: 0.83em;
 }
 
 #refs div a:first-child {
 	color: var(--primary);
 	width: 100%;
-}
-
-#refs div a:not(:first-child) {
-	background-color: #f0ffff;
-	color: var(--pink);
-	box-shadow: var(--blue) 3px 3px 0px;
-
-	height: min-content;
-	padding: 4px;
-	margin: 2px;
-}
-
-body.dark #refs div a:not(:first-child) {
-	background-color: #091920;
 }
 
 #refs div h2:hover {
@@ -62,3 +48,5 @@ body.dark #refs div a:not(:first-child) {
 #refs div:nth-child(7) {
 	width: 22%;
 }
+
+@media screen and (max-width: 1060px) {}
