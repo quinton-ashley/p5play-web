@@ -93,6 +93,8 @@ mie.ready = function () {
 		document.body.scrollTop = 0; // for Safari
 		document.documentElement.scrollTop = 0; // Chrome, Firefox, and Opera
 		currentPage = parseInt(pageNum);
+
+		document.getElementById('toc').style.display = 'flex';
 	}
 
 	loadPage();

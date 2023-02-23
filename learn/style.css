@@ -262,6 +262,10 @@ code {
 	border-radius: 5px;
 }
 
+#toc {
+	display: none;
+}
+
 .page {
 	display: none;
 	width: 100%;
