@@ -30,12 +30,16 @@ body.dark {
 	--margins: #242424;
 }
 
-html {
+html,
+body {
 	background-color: var(--margins);
-	margin: auto;
 }
 
 body {
+	margin: auto;
+}
+
+article {
 	background-color: var(--secondary);
 	color: var(--primary);
 	display: flex;
@@ -88,9 +92,6 @@ li {
 
 #topNav {
 	padding-top: 8px;
-}
-
-#topNav {
 	user-select: none;
 }
 
@@ -144,8 +145,6 @@ a.navLink {
 
 #topNav .logo {
 	height: 48px;
-	margin-right: 8px;
-	margin-top: 8px;
 }
 
 @keyframes spin {
@@ -549,7 +548,7 @@ body.light .discord-logo {
 		overflow-x: hidden;
 	}
 
-	body {
+	article {
 		width: 98%;
 		padding-left: 1%;
 		padding-right: 1%;
@@ -557,15 +556,10 @@ body.light .discord-logo {
 
 	#topNav {
 		display: flex;
-		align-items: center;
+		align-items: baseline;
 		width: 100%;
 		overflow: scroll;
 		gap: 10px;
-	}
-
-	#logoLink {
-		display: flex;
-		align-items: center;
 	}
 
 	.page {
@@ -581,10 +575,11 @@ body.light .discord-logo {
 	}
 
 	#topNav #logoLink {
+		white-space: nowrap;
 		order: -3;
 	}
 
-	#topNav span:first-of-type {
+	#topNav>span:first-of-type {
 		order: -2;
 	}
 

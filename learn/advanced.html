@@ -10,27 +10,31 @@
 </head>
 
 <body>
-	<nav id="topNav">
-		<a href="index.html" id="logoLink" class="active"><img src="../logo.svg" class="logo">p5play</a>
-		<span>:</span>
-		<a href="sprite.html">Sprite</a>
-		<a href="group.html">Group</a>
-		<a href="sprite_animation.html">Animation</a>
-		<a href="input_devices.html">Input</a>
-		<a href="tiles.html">Tiles</a>
-		<a href="camera.html">Camera</a>
-		<a href="advanced.html" class="active">Adv</a>
-	</nav>
-	<div class="break"></div>
-	<div id="page-0" class="page">
-		<script type="text/md">
+	<article>
+		<nav id="topNav">
+			<a href="../index.html" id="logoLink" class="active">
+				<img alt="p5play logo" src="../logo.svg" class="logo">
+				<span>p5play</span>
+			</a>
+			<span>:</span>
+			<a href="sprite.html">Sprite</a>
+			<a href="group.html">Group</a>
+			<a href="sprite_animation.html">Animation</a>
+			<a href="input_devices.html">Input</a>
+			<a href="tiles.html">Tiles</a>
+			<a href="camera.html">Camera</a>
+			<a href="advanced.html" class="active">Adv</a>
+		</nav>
+		<div class="break"></div>
+		<div id="page-0" class="page">
+			<script type="text/md">
 ## Advanced Topics
 
 These reference pages highlight some of the more advanced features of p5play.
 
 Please read all the other reference pages first!
 		</script>
-		<script type="text/md">
+			<script type="text/md">
 ## Canvas
 
 The `Canvas` class is a wrapper around the p5play's version of the p5.js `createCanvas` function, which is used to create a canvas element. p5play's version also provides a few extra features.
@@ -45,7 +49,7 @@ Another added feature is the "pixelated" preset. Use it for 8-bit or 16-bit styl
 
 By default, the "pixelated" preset scales the canvas to fit the screen while retaining its aspect ratio, but you can also define a custom scale by passing a number after the preset name. For example, "pixelated x2" will create a canvas that will be displayed at twice the size of the specified width and height.
 		</script>
-		<!-- <script type="mie/p5" title="pixelated preset">
+			<!-- <script type="mie/p5" title="pixelated preset">
 function setup() {
 	//       (width, height, preset)
 	new Canvas(256, 240, 'pixelated x2');
@@ -54,15 +58,15 @@ function draw() {
 	clear();
 }
 		</script> -->
-	</div>
-	<div id="page-1" class="page">
-		<script type="text/md">
+		</div>
+		<div id="page-1" class="page">
+			<script type="text/md">
 ## sprite.sleeping
 
 "Sleeping" sprites get temporarily ignored during physics simulation. A sprite starts "sleeping" when it stops moving and doesn't collide with anything that it wasn't already touching. Allowing non-moving sprites to sleep is good for performance but sometimes you may need to wake up a non-moving sprite. You can disable sleeping completely by setting `world.allowSleeping = false`, or on a per sprite basis by setting `sprite.allowSleeping = false`, or to wake up a sleeping sprite you can `sprite.sleeping = false`.
 		</script>
-		<div class="minis horiz">
-			<script type="mie/p5" name="sleeping" horiz>
+			<div class="minis horiz">
+				<script type="mie/p5" name="sleeping" horiz>
 let ball, floor;
 
 function setup() {
@@ -77,7 +81,7 @@ function draw() {
 	if (frame == 100)	floor.rotation = 10;
 }
 			</script>
-			<script type="mie/p5" name="wake up!" horiz>
+				<script type="mie/p5" name="wake up!" horiz>
 let ball, floor;
 
 function setup() {
@@ -95,17 +99,17 @@ function draw() {
 	}
 }
 			</script>
+			</div>
 		</div>
-	</div>
-	<div id="page-2" class="page">
-		<script type="text/md">
+		<div id="page-2" class="page">
+			<script type="text/md">
 ## Culling
 
 By default, sprites are removed when they go 10000 pixels offscreen relative to the camera's position. This is to prevent the world from getting too big, which would slow down the physics simulation.
 
 To change this, set `allSprites.autoCull = false` and use the `group.cull` function to set a different cull boundary. It can even cull sprites that don't have a physics collider.
 		</script>
-		<script type="mie/p5" name="cull">
+			<script type="mie/p5" name="cull">
 let balls;
 function setup() {
 	new Canvas(500, 192);
@@ -123,9 +127,9 @@ function draw() {
 	}
 }
 		</script>
-	</div>
-	<div id="page-3" class="page">
-		<script type="text/md">
+		</div>
+		<div id="page-3" class="page">
+			<script type="text/md">
 ## autoDraw, autoStep, and autoUpdate
 
 By default, after each time the p5.js draw function is run, p5play calls three functions in this order:
@@ -144,7 +148,7 @@ You can use the `sprite.draw` and `group.draw` functions to manually control whe
 
 Note that you will have to manually turn the camera on and off if you want to use it with manually drawn sprites.
 		</script>
-		<script type="mie/p5" name="world.step">
+			<script type="mie/p5" name="world.step">
 let ball, box;
 		
 function setup() {
@@ -171,7 +175,7 @@ function draw() {
 	}
 }
 		</script>
-		<script type="text/md">
+			<script type="text/md">
 ## world.step
 
 `world.step` checks for collisions and calculates the positions and velocities of all sprites after progressing the physics simulation by 1/60th of a second by default. Sprites can't be progressed forward in time individually.
@@ -180,30 +184,31 @@ Before you use `world.step` in your p5.js draw function, be sure to draw all the
 
 Set `world.autoStep = false` to disable automatic stepping. Then you can call `world.step` manually whenever you want to progress the physics simulation.
 		</script>
-		<script type="text/md">
+			<script type="text/md">
 ## sprite.update and group.update
 
 What does `sprite.update` do? It's responsible for updating the sprite's animation and mouse events. It also runs the user's custom update function if they set any.
 
 Why is this functionality seperated from the world step? Because on a pause screen the physics world could be paused, but pause menu UI animations and mouse events could still be updated.
 		</script>
-	</div>
+		</div>
 
-	<div class="break"></div>
-	<div id="toc">
-		<a id="prevPage" class="navLink">Prev Page</a>
-		<nav id="pageNav" class="submenu">
-			<a data-page="0" href="advanced.html?page=0">Canvas constructor</a>
-			<a data-page="1" href="advanced.html?page=1">Sleeping</a>
-			<a data-page="2" href="advanced.html?page=2">Culling</a>
-			<a data-page="3" href="advanced.html?page=3">autoDraw, autoStep, and autoUpdate</a>
-		</nav>
-		<a id="nextPage" class="navLink">Next Page</a>
-	</div>
-	<div class="break"></div>
-	<footer class="text-small">
-		Created by Quinton Ashley (@quinton-ashley) Copyright 2022-2023.
-	</footer>
+		<div class="break"></div>
+		<div id="toc">
+			<a id="prevPage" class="navLink">Prev Page</a>
+			<nav id="pageNav" class="submenu">
+				<a data-page="0" href="advanced.html?page=0">Canvas constructor</a>
+				<a data-page="1" href="advanced.html?page=1">Sleeping</a>
+				<a data-page="2" href="advanced.html?page=2">Culling</a>
+				<a data-page="3" href="advanced.html?page=3">autoDraw, autoStep, and autoUpdate</a>
+			</nav>
+			<a id="nextPage" class="navLink">Next Page</a>
+		</div>
+		<div class="break"></div>
+		<footer class="text-small">
+			Created by Quinton Ashley (@quinton-ashley) Copyright 2022-2023.
+		</footer>
+	</article>
 
 	<script src="../v3/q5.js"></script>
 	<script src="../v3/planck.min.js"></script>

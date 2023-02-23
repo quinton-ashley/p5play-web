@@ -10,26 +10,30 @@
 </head>
 
 <body>
-	<nav id="topNav">
-		<a href="index.html" id="logoLink" class="active"><img src="../logo.svg" class="logo">p5play</a>
-		<span>:</span>
-		<a href="sprite.html">Sprite</a>
-		<a href="group.html">Group</a>
-		<a href="sprite_animation.html">Animation</a>
-		<a href="input_devices.html" class="active">Input</a>
-		<a href="tiles.html">Tiles</a>
-		<a href="camera.html">Camera</a>
-		<a href="advanced.html">Adv</a>
-		<span class="colon">:</span>
-		<a id="darkMode" onclick="toggleDarkMode()">
-			<div id="darkModeIcon"></div>
-		</a>
-	</nav>
+	<article>
+		<nav id="topNav">
+			<a href="../index.html" id="logoLink" class="active">
+				<img alt="p5play logo" src="../logo.svg" class="logo">
+				<span>p5play</span>
+			</a>
+			<span>:</span>
+			<a href="sprite.html">Sprite</a>
+			<a href="group.html">Group</a>
+			<a href="sprite_animation.html">Animation</a>
+			<a href="input_devices.html" class="active">Input</a>
+			<a href="tiles.html">Tiles</a>
+			<a href="camera.html">Camera</a>
+			<a href="advanced.html">Adv</a>
+			<span class="colon">:</span>
+			<a id="darkMode" onclick="toggleDarkMode()">
+				<div id="darkModeIcon"></div>
+			</a>
+		</nav>
 
-	<div class="break"></div>
+		<div class="break"></div>
 
-	<div id="page-0" class="page">
-		<script type="text/md">
+		<div id="page-0" class="page">
+			<script type="text/md">
 ## Input Devices
 			
 Here are the input devices available in p5play:
@@ -42,7 +46,7 @@ These input devices all use the same simple functions for getting the state of a
 
 They also store the state of all their inputs as properties. For example, `kb.space` stores how many frames the user has been pressing the space key. It gets reset when the user releases the input.
 		</script>
-		<script type="mie/p5" name="hidden" base-0 hide>
+			<script type="mie/p5" name="hidden" base-0 hide>
 function setup() {
 	new Canvas(238, 100);
 	frameRate(30);
@@ -53,31 +57,31 @@ function draw() {
 	clear();
 }
 		</script>
-		<div class="minis">
-			<script type="mie/p5" name="presses" base="0">
+			<div class="minis">
+				<script type="mie/p5" name="presses" base="0">
 if (kb.presses('space')) {
 	background(0, 255, 0);
 }
 			</script>
-			<script type="mie/p5" name="pressing" base="0">
+				<script type="mie/p5" name="pressing" base="0">
 if (kb.pressing('space')) {
 	background(0, 255, 0);
 }
 			</script>
-			<script type="mie/p5" name="holding" base="0">
+				<script type="mie/p5" name="holding" base="0">
 if (kb.space >= 12) {
 	background(0, 255, 0);
 }
 			</script>
-			<script type="mie/p5" name="released" base="0">
+				<script type="mie/p5" name="released" base="0">
 if (kb.released('space')) {
 	background(0, 255, 0);
 }
 			</script>
+			</div>
 		</div>
-	</div>
-	<div id="page-1" class="page">
-		<script type="text/md">
+		<div id="page-1" class="page">
+			<script type="text/md">
 ## Keyboard
 			
 In PC games the WASD keys are commonly used to control the player character's movement. In p5play you can use the direction names 'up', 'down', 'left', and 'right' to detect WASD key and arrow key presses.
@@ -88,7 +92,7 @@ Using the IJKL keys for movement is common to support left handed players or sec
 			
 Some keyboards don't start with QWERTY on the top row. p5play maps other keyboard layouts to the standard English QWERTY layout. For example, the WASD keys for French AZERTY keyboard users are ZQSD. This can be disabled by setting `p5play.standardizeKeyboard` to false. [More info](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/code)
 		</script>
-		<script type="mie/p5" name="keyboard movement">
+			<script type="mie/p5" name="keyboard movement">
 let player;
 
 function setup() {
@@ -114,17 +118,17 @@ function draw() {
 	}
 }
 		</script>
-	</div>
-	<div id="page-2" class="page">
-		<div>
-			<h2>Multi-Input</h2>
-			<p>
-				This mini-sketch shows how one action can be performed by
-				either pressing the space key or clicking the mouse. The default mouse input
-				is 'left' for the left mouse button or normal click.
-			</p>
 		</div>
-		<script type="mie/p5" name="hidden" base-1 hide>
+		<div id="page-2" class="page">
+			<div>
+				<h2>Multi-Input</h2>
+				<p>
+					This mini-sketch shows how one action can be performed by
+					either pressing the space key or clicking the mouse. The default mouse input
+					is 'left' for the left mouse button or normal click.
+				</p>
+			</div>
+			<script type="mie/p5" name="hidden" base-1 hide>
 let sprite;
 
 function setup() {
@@ -137,16 +141,16 @@ function draw() {
 	sprite.color = 'yellow';
 }
 		</script>
-		<div class="horiz">
-			<script type="mie/p5" name="multi-input" base="1">
+			<div class="horiz">
+				<script type="mie/p5" name="multi-input" base="1">
 if (kb.pressing('space') || mouse.pressing()) {
 	sprite.color = 'red';
 }
 			</script>
+			</div>
 		</div>
-	</div>
-	<div id="page-3" class="page">
-		<script type="text/md">
+		<div id="page-3" class="page">
+			<script type="text/md">
 ## Sprite Mouse
 			
 Sprites with physics colliders have their own mouse object for detecting mouse inputs on the sprite.
@@ -155,8 +159,8 @@ Sprites with physics colliders have their own mouse object for detecting mouse i
 						
 Note that `mouse.x` is the x position of the mouse on the canvas and `sprite.mouse.x` is the x position of the mouse relative to the sprite.
 		</script>
-		<div class="horiz">
-			<script type="mie/p5" name="sprite.mouse">
+			<div class="horiz">
+				<script type="mie/p5" name="sprite.mouse">
 let sprite;
 
 function setup() {
@@ -184,10 +188,10 @@ function draw() {
 	}
 }
 			</script>
+			</div>
 		</div>
-	</div>
-	<div id="page-4" class="page">
-		<script type="text/md">
+		<div id="page-4" class="page">
+			<script type="text/md">
 ## Game Controllers
 
 The `contro` or `controllers` object provides the input state of game controller buttons:
@@ -200,7 +204,7 @@ The `contro` object is also an array that contains all the connected game contro
 
 Try it out! Press any button on your connected game controller for it to be detected by p5play.
 		</script>
-		<script type="mie/p5" name="controller test">
+			<script type="mie/p5" name="controller test">
 let sprite;
 
 function setup() {
@@ -223,24 +227,25 @@ function draw() {
 	sprite.y = 100 + contro.leftStick.y * 80;
 }
 		</script>
-	</div>
+		</div>
 
-	<div class="break"></div>
-	<div id="toc">
-		<a id="prevPage" class="navLink">Prev Page</a>
-		<nav id="pageNav" class="submenu">
-			<a data-page="0" href="input_devices.html?page=0">Detecting Input</a>
-			<a data-page="1" href="input_devices.html?page=1">Keyboard Input</a>
-			<a data-page="2" href="input_devices.html?page=2">Multi-Input</a>
-			<a data-page="3" href="input_devices.html?page=3">Mouse Clicks on Sprites</a>
-			<a data-page="4" href="input_devices.html?page=4">Game Controllers</a>
-		</nav>
-		<a id="nextPage" class="navLink">Next Page</a>
-	</div>
-	<div class="break"></div>
-	<footer class="text-small">
-		Created by Quinton Ashley (@quinton-ashley) Copyright 2022-2023.
-	</footer>
+		<div class="break"></div>
+		<div id="toc">
+			<a id="prevPage" class="navLink">Prev Page</a>
+			<nav id="pageNav" class="submenu">
+				<a data-page="0" href="input_devices.html?page=0">Detecting Input</a>
+				<a data-page="1" href="input_devices.html?page=1">Keyboard Input</a>
+				<a data-page="2" href="input_devices.html?page=2">Multi-Input</a>
+				<a data-page="3" href="input_devices.html?page=3">Mouse Clicks on Sprites</a>
+				<a data-page="4" href="input_devices.html?page=4">Game Controllers</a>
+			</nav>
+			<a id="nextPage" class="navLink">Next Page</a>
+		</div>
+		<div class="break"></div>
+		<footer class="text-small">
+			Created by Quinton Ashley (@quinton-ashley) Copyright 2022-2023.
+		</footer>
+	</article>
 
 	<script src="../v3/q5.js"></script>
 	<script src="../v3/planck.min.js"></script>

@@ -10,45 +10,49 @@
 </head>
 
 <body>
-	<nav id="topNav">
-		<a href="index.html" id="logoLink" class="active"><img src="../logo.svg" class="logo">p5play</a>
-		<span>:</span>
-		<a href="sprite.html">Sprite</a>
-		<a href="group.html">Group</a>
-		<a href="sprite_animation.html" class="active">Animation</a>
-		<a href="input_devices.html">Input</a>
-		<a href="tiles.html">Tiles</a>
-		<a href="camera.html">Camera</a>
-		<a href="advanced.html">Adv</a>
-		<span class="colon">:</span>
-		<a id="darkMode" onclick="toggleDarkMode()">
-			<div id="darkModeIcon"></div>
-		</a>
-	</nav>
+	<article>
+		<nav id="topNav">
+			<a href="../index.html" id="logoLink" class="active">
+				<img alt="p5play logo" src="../logo.svg" class="logo">
+				<span>p5play</span>
+			</a>
+			<span>:</span>
+			<a href="sprite.html">Sprite</a>
+			<a href="group.html">Group</a>
+			<a href="sprite_animation.html" class="active">Animation</a>
+			<a href="input_devices.html">Input</a>
+			<a href="tiles.html">Tiles</a>
+			<a href="camera.html">Camera</a>
+			<a href="advanced.html">Adv</a>
+			<span class="colon">:</span>
+			<a id="darkMode" onclick="toggleDarkMode()">
+				<div id="darkModeIcon"></div>
+			</a>
+		</nav>
 
-	<div class="break"></div>
+		<div class="break"></div>
 
-	<div id="page-0" class="page">
-		<div>
-			<h2>How to load animations</h2>
-			<p>
-				An animation is a series of images that are displayed one after the other at a fast enough rate to give the
-				appearance of motion.</p>
-			<p>
-				The <code>loadAni</code> function has a three different
-				modes: sequence, list,
-				and sprite sheet.
-			</p>
-			<p>
-				In this mini example, the ghost animation is loaded using a numbered sequence of
-				images given the path to the first image and the index of the last image in the sequence.
-			</p>
-			<p>
-				The <code>animation</code> function is similar to the p5.js <code>image</code> function. Use it in the p5.js
-				draw function to display an animation at a position.
-			</p>
-		</div>
-		<script type="mie/p5" name="sequence mode">
+		<div id="page-0" class="page">
+			<div>
+				<h2>How to load animations</h2>
+				<p>
+					An animation is a series of images that are displayed one after the other at a fast enough rate to give the
+					appearance of motion.</p>
+				<p>
+					The <code>loadAni</code> function has a three different
+					modes: sequence, list,
+					and sprite sheet.
+				</p>
+				<p>
+					In this mini example, the ghost animation is loaded using a numbered sequence of
+					images given the path to the first image and the index of the last image in the sequence.
+				</p>
+				<p>
+					The <code>animation</code> function is similar to the p5.js <code>image</code> function. Use it in the p5.js
+					draw function to display an animation at a position.
+				</p>
+			</div>
+			<script type="mie/p5" name="sequence mode">
 let ghostAni;
 
 function setup() {
@@ -62,20 +66,20 @@ function draw() {
 	animation(ghostAni, 250, 80);
 }
 		</script>
-		<div>
-			<p>
-				In this mini example the <code>loadAnimation</code> function is given a list of images.
-			</p>
-			<p>
-				The <code>ani.frameDelay</code> property defines how many frames an image in the animation is displayed before
-				the next image is displayed. The default is 4. Higher values make the animation play slower. A frame
-				delay of 1 would make the animation play as fast as possible.
-			</p>
-			<p>
-				Try it out! Try changing the frameDelay in this mini-example.
-			</p>
-		</div>
-		<script type="mie/p5" name="list mode">
+			<div>
+				<p>
+					In this mini example the <code>loadAnimation</code> function is given a list of images.
+				</p>
+				<p>
+					The <code>ani.frameDelay</code> property defines how many frames an image in the animation is displayed before
+					the next image is displayed. The default is 4. Higher values make the animation play slower. A frame
+					delay of 1 would make the animation play as fast as possible.
+				</p>
+				<p>
+					Try it out! Try changing the frameDelay in this mini-example.
+				</p>
+			</div>
+			<script type="mie/p5" name="list mode">
 let shapeShifterAni;
 
 function setup() {
@@ -99,25 +103,25 @@ function draw() {
 	animation(shapeShifterAni, 250, 80);
 }
 		</script>
-		<div>
-			<p>
-				This mini example loads an animation from a sprite sheet, which is a single image that contains
-				all the frames of an animation. Take a look at the sprite sheet in this sketch which is displayed just so you
-				can
-				see what one looks like.
-			</p>
-			<p>
-				Since the size of the character is the same for every frame
-				of animation, an atlas object can be used to specify the size of each
-				frame and how many frames of animation there are.
-			</p>
-			<p>
-				If you really need to use an animation when your program starts,
-				you should load it in the p5.js preload function
-				instead of setup.
-			</p>
-		</div>
-		<script type="mie/p5" name="sprite sheet mode">
+			<div>
+				<p>
+					This mini example loads an animation from a sprite sheet, which is a single image that contains
+					all the frames of an animation. Take a look at the sprite sheet in this sketch which is displayed just so you
+					can
+					see what one looks like.
+				</p>
+				<p>
+					Since the size of the character is the same for every frame
+					of animation, an atlas object can be used to specify the size of each
+					frame and how many frames of animation there are.
+				</p>
+				<p>
+					If you really need to use an animation when your program starts,
+					you should load it in the p5.js preload function
+					instead of setup.
+				</p>
+			</div>
+			<script type="mie/p5" name="sprite sheet mode">
 let splatAni;
 
 function setup() {
@@ -135,18 +139,18 @@ function draw() {
 }
 //
 </script>
-	</div>
-	<div id="page-1" class="page">
-		<div>
-			<h2>Animating</h2>
-			<p>
-				p5play gives you total control over your animations.
-			</p>
-			<p>
-				Try using your keyboard to test out some of the different ways to control animations!
-			</p>
 		</div>
-		<script type="mie/p5" name="splat" base-0>
+		<div id="page-1" class="page">
+			<div>
+				<h2>Animating</h2>
+				<p>
+					p5play gives you total control over your animations.
+				</p>
+				<p>
+					Try using your keyboard to test out some of the different ways to control animations!
+				</p>
+			</div>
+			<script type="mie/p5" name="splat" base-0>
 let ani;
 
 function setup() {
@@ -178,38 +182,39 @@ function draw() {
 }
 //
 		</script>
-	</div>
-	<div id="page-2" class="page">
-		<div>
-			<h2>Sprites with Animations</h2>
-			<p>
-				The <code>sprite.addAni</code> function can be used to add a previously loaded animation to a sprite or it can
-				load and add an animation to a sprite just like <code>loadAni</code>. By default the last animation added to the
-				sprite will be the animation the sprite displays.
-			</p>
-			<p>
-				Try pressing the left mouse button. When the
-				<code>sprite.debug</code> property is set to true you can
-				see the sprite's physics body collider.
-			</p>
-			<h2>Control a Sprite's Animation</h2>
-			<p>
-				<code>sprite.ani</code> stores the sprite's current animation,
-				which can be changed by setting it to the name of a different
-				animation.
-			</p>
-			<p>
-				<code>sprite.mirror</code> can be used to flip the sprite
-				horizontally or vertically.
-			</p>
-			<p>
-				Try pressing left and right to make the ghost move.
-			</p>
-			<p>
-				Try pressing the space bar to stop the animation.
-			</p>
 		</div>
-		<script type="mie/p5" name="sprites with animation" base-1>
+		<div id="page-2" class="page">
+			<div>
+				<h2>Sprites with Animations</h2>
+				<p>
+					The <code>sprite.addAni</code> function can be used to add a previously loaded animation to a sprite or it can
+					load and add an animation to a sprite just like <code>loadAni</code>. By default the last animation added to
+					the
+					sprite will be the animation the sprite displays.
+				</p>
+				<p>
+					Try pressing the left mouse button. When the
+					<code>sprite.debug</code> property is set to true you can
+					see the sprite's physics body collider.
+				</p>
+				<h2>Control a Sprite's Animation</h2>
+				<p>
+					<code>sprite.ani</code> stores the sprite's current animation,
+					which can be changed by setting it to the name of a different
+					animation.
+				</p>
+				<p>
+					<code>sprite.mirror</code> can be used to flip the sprite
+					horizontally or vertically.
+				</p>
+				<p>
+					Try pressing left and right to make the ghost move.
+				</p>
+				<p>
+					Try pressing the space bar to stop the animation.
+				</p>
+			</div>
+			<script type="mie/p5" name="sprites with animation" base-1>
 let ghost;
 
 function setup() {
@@ -245,25 +250,25 @@ function draw() {
 	}
 }
 		</script>
-	</div>
-	<div id="page-3" class="page">
-		<div>
-			<h2>Groups with Animations</h2>
-			<p>
-				If a group has only one animation, new group sprites will use that
-				animation. Otherwise by default the sprite gets the last animation
-				loaded.
-			</p>
-			<p>
-				Note that in this mini-example if you put splats too close together
-				they'll move apart until their colliders are no longer overlapping. The
-				size of the collider is taken from the size of the animation.
-			</p>
-			<p>
-				Try clicking the mouse to add new splats!
-			</p>
 		</div>
-		<script type="mie/p5" name="splats">
+		<div id="page-3" class="page">
+			<div>
+				<h2>Groups with Animations</h2>
+				<p>
+					If a group has only one animation, new group sprites will use that
+					animation. Otherwise by default the sprite gets the last animation
+					loaded.
+				</p>
+				<p>
+					Note that in this mini-example if you put splats too close together
+					they'll move apart until their colliders are no longer overlapping. The
+					size of the collider is taken from the size of the animation.
+				</p>
+				<p>
+					Try clicking the mouse to add new splats!
+				</p>
+			</div>
+			<script type="mie/p5" name="splats">
 let splats;
 
 function setup() {
@@ -281,46 +286,47 @@ function draw() {
 	}
 }
 		</script>
-	</div>
-	<div id="page-4" class="page">
-		<div>
-			<h2>Loading Multiple Animations from a SpriteSheet</h2>
-			<p>
-				Coming soon! This page will show you how to add multiple animations to a
-				sprite or group from the same spritesheet using the <code> sprite.addAnis</code> function.
-			</p>
 		</div>
-	</div>
-	<div id="page-5" class="page">
-		<div>
-			<h2>Animation Sequencing</h2>
-			<p>
-				Coming soon! This page will show you how to do animation sequences like this:
-			</p>
-			<code>
+		<div id="page-4" class="page">
+			<div>
+				<h2>Loading Multiple Animations from a SpriteSheet</h2>
+				<p>
+					Coming soon! This page will show you how to add multiple animations to a
+					sprite or group from the same spritesheet using the <code> sprite.addAnis</code> function.
+				</p>
+			</div>
+		</div>
+		<div id="page-5" class="page">
+			<div>
+				<h2>Animation Sequencing</h2>
+				<p>
+					Coming soon! This page will show you how to do animation sequences like this:
+				</p>
+				<code>
 				`sprite.ani = ['idle', 'whistle',
 				'tapFoot', 'idle', 'yawn', 'lieDown', 'sleep'];`
 			</code>
+			</div>
 		</div>
-	</div>
 
-	<div class="break"></div>
-	<div id="toc">
-		<a id="prevPage" class="navLink">Prev Page</a>
-		<nav id="pageNav" class="submenu">
-			<a data-page="0" href="sprite_animation.html?page=0">Loading Animations</a>
-			<a data-page="1" href="sprite_animation.html?page=1">Animation Controls</a>
-			<a data-page="2" href="sprite_animation.html?page=2">Sprites with Animations</a>
-			<a data-page="3" href="sprite_animation.html?page=3">Groups with Animations</a>
-			<a data-page="4" href="sprite_animation.html?page=4">Loading Multiple Animations</a>
-			<a data-page="5" href="sprite_animation.html?page=5">Sequencing</a>
-		</nav>
-		<a id="nextPage" class="navLink">Next Page</a>
-	</div>
-	<div class="break"></div>
-	<footer class="text-small">
-		Created by Quinton Ashley (@quinton-ashley) Copyright 2022-2023.
-	</footer>
+		<div class="break"></div>
+		<div id="toc">
+			<a id="prevPage" class="navLink">Prev Page</a>
+			<nav id="pageNav" class="submenu">
+				<a data-page="0" href="sprite_animation.html?page=0">Loading Animations</a>
+				<a data-page="1" href="sprite_animation.html?page=1">Animation Controls</a>
+				<a data-page="2" href="sprite_animation.html?page=2">Sprites with Animations</a>
+				<a data-page="3" href="sprite_animation.html?page=3">Groups with Animations</a>
+				<a data-page="4" href="sprite_animation.html?page=4">Loading Multiple Animations</a>
+				<a data-page="5" href="sprite_animation.html?page=5">Sequencing</a>
+			</nav>
+			<a id="nextPage" class="navLink">Next Page</a>
+		</div>
+		<div class="break"></div>
+		<footer class="text-small">
+			Created by Quinton Ashley (@quinton-ashley) Copyright 2022-2023.
+		</footer>
+	</article>
 
 	<script src="../v3/q5.js"></script>
 	<script src="../v3/planck.min.js"></script>
