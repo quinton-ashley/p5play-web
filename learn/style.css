@@ -583,4 +583,16 @@ body.light .discord-logo {
 		border-top: 2px solid #ccc;
 	}
 
+	#topNav #logoLink {
+		order: -3;
+	}
+
+	#topNav span:first-of-type {
+		order: -2;
+	}
+
+	#topNav a.active:not(#logoLink) {
+		order: -1;
+	}
+
 }
