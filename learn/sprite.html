@@ -349,9 +349,10 @@ player.y = mouse.y;
 		</script>
 			<div>
 				<p>
-					All of the other movement examples on this page are based on changing the sprite's x axis and y axis
-					velocities,
-					which can also be done directly. <code>velocity</code> aka <code>vel</code> is
+					All of the other movement examples on this page are based on
+					changing the sprite's x and y axis
+					velocities.
+					<code>velocity</code> aka <code>vel</code> is
 					a p5.js Vector, you can use any Vector functions on it.
 				</p>
 				<p>
@@ -366,6 +367,14 @@ player.vel.y = 1;
 				<p>
 					Move the sprite indefinitely by setting its <code>direction</code> and <code>speed</code>.
 				</p>
+				<p>
+					You can also set a sprite's direction using a direction name such as:
+					'up', 'down', 'left', 'right', 'upLeft', 'upRight',
+					'downLeft', 'downRight'.
+				</p>
+				<p>
+					Note that p5play converts these direction names to their corresponding angle values.
+				</p>
 			</div>
 			<script type="mie/p5" name="direction + speed (continuously)" base="3">
 player.direction = 187;
@@ -373,15 +382,9 @@ player.speed = 3;
 		</script>
 			<div>
 				<p>
-					The <code>move</code> function moves a sprite across a distance, in a direction, at a fixed speed. Direction
-					and
-					speed can be set
-					separately.
-				</p>
-				<p>
-					You can set a sprite's direction using an angle value or direction name: 'up', 'down', 'left', 'right',
-					'upLeft',
-					'upRight', 'downLeft', 'downRight'.
+					The <code>move</code> function moves a sprite across a fixed
+					distance. The direction and speed of the movement can
+					be specified as parameters to the function or set separately.
 				</p>
 			</div>
 			<script type="mie/p5" name="move (impulse)" base="3">
@@ -392,16 +395,14 @@ if (kb.presses('left')) {
 		</script>
 			<div>
 				<p>
-					The <code>moveTowards</code> function moves a sprite towards a position, at a percentage of the distance to
-					that
-					position.
+					The <code>moveTowards</code> function moves a sprite towards a
+					position, at a percentage of the distance to that position.
 				</p>
 				<p>
-					In this example the player moves towards the mouse by 10% of the distance to
-					the mouse on every p5.js draw call. Therefore, the force that the player exerts on the block is proportional
-					to
-					the
-					distance it moves.
+					In this example, the player moves 10% of the distance to
+					the mouse on every p5.js draw call. Its speed, and the force
+					it exerts on the block, is proportional to the distance it
+					moves.
 				</p>
 			</div>
 			<script type="mie/p5" name="moveTowards (continuously)" base="3">
