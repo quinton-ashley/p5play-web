@@ -2221,10 +2221,10 @@ function Q5(scope, parent) {
 		};
 	}
 	function isTouchUnaware() {
-		return $._touchStarted.isPlaceHolder && $._touchMoved.isPlaceHolder && $._touchEnded.isPlaceHolder;
+		return $._touchStartedFn.isPlaceHolder && $._touchMovedFn.isPlaceHolder && $._touchEndedFn.isPlaceHolder;
 	}
 	$._ontouchstart = (e) => {
-		$.touches = e.touches.map(getTouchInfo);
+		$.touches = [...e.touches].map(getTouchInfo);
 		if (isTouchUnaware()) {
 			$.pmouseX = $.mouseX;
 			$.pmouseY = $.mouseY;
@@ -2241,7 +2241,7 @@ function Q5(scope, parent) {
 		}
 	};
 	$._ontouchmove = (e) => {
-		$.touches = e.touches.map(getTouchInfo);
+		$.touches = [...e.touches].map(getTouchInfo);
 		if (isTouchUnaware()) {
 			$.pmouseX = $.mouseX;
 			$.pmouseY = $.mouseY;
@@ -2258,7 +2258,7 @@ function Q5(scope, parent) {
 		}
 	};
 	$._ontouchend = (e) => {
-		$.touches = e.touches.map(getTouchInfo);
+		$.touches = [...e.touches].map(getTouchInfo);
 		if (isTouchUnaware()) {
 			$.pmouseX = $.mouseX;
 			$.pmouseY = $.mouseY;
@@ -2449,6 +2449,7 @@ function Q5(scope, parent) {
 		'keyReleased',
 		'keyTyped',
 		'touchStarted',
+		'touchMoved',
 		'touchEnded'
 	];
 	for (let k of eventNames) {
