@@ -19,10 +19,11 @@
 	"scripts": {
 		"tests": "jest tests",
 		"docs": "yuidoc .;rm docs/assets/favicon.ico|rm docs/assets/favicon.ico;cp favicon.ico docs/assets/favicon.ico|cp favicon.png docs/assets/icon.png",
+		"min": "minify v3/p5play.js > v3/p5play.min.js && cp v3/p5play.min.js ../../pkg/p5.play/p5play.min.js",
 		"v": "npm version patch --force",
 		"V": "npm version minor --force",
 		"version": "git add -A",
 		"postversion": "git push"
 	},
-	"version": "1.1.396"
+	"version": "1.1.397"
 }
