@@ -155,7 +155,11 @@ if (kb.pressing('space') || mouse.pressing()) {
 			
 Sprites with physics colliders have their own mouse object for detecting mouse inputs on the sprite.
 			
-`sprite.mouse` objects are just like the `mouse` input object, except they have an additional function called `dragging` that detects when the user is holding a button while moving the mouse.
+`sprite.mouse` objects are just like the `mouse` input object, except they have additional functions.
+
+`hovers` and `hovering` detect when the user moves the mouse over a sprite.
+
+`dragging` detects when the user clicks and holds a mouse button on the sprite while moving the mouse.
 						
 Note that `mouse.x` is the x position of the mouse on the canvas and `sprite.mouse.x` is the x position of the mouse relative to the sprite.
 		</script>
@@ -172,12 +176,11 @@ function draw() {
 	clear();
 	sprite.color = 'yellow';
 
-	if (mouse.pressing()) {
-		sprite.color = 'red';
-	}
-	if (sprite.mouse.pressing()) {
-		sprite.color = 'green';
-	}
+	if (mouse.pressing()) sprite.color = 'red';
+
+	if (sprite.mouse.hovering()) sprite.color = 'blue';
+
+	if (sprite.mouse.pressing()) sprite.color = 'green';
 
 	if (sprite.mouse.dragging()) {
 		sprite.moveTowards(
@@ -235,8 +238,8 @@ function draw() {
 			<nav id="pageNav" class="submenu">
 				<a data-page="0" href="input_devices.html?page=0">Detecting Input</a>
 				<a data-page="1" href="input_devices.html?page=1">Keyboard Input</a>
-				<a data-page="2" href="input_devices.html?page=2">Multi-Input</a>
-				<a data-page="3" href="input_devices.html?page=3">Mouse Clicks on Sprites</a>
+				<a data-page="2" href="input_devices.html?page=2">Supporting Multiple Control Schemes</a>
+				<a data-page="3" href="input_devices.html?page=3">Mouse Interaction with Sprites</a>
 				<a data-page="4" href="input_devices.html?page=4">Game Controllers</a>
 			</nav>
 			<a id="nextPage" class="navLink">Next Page</a>
