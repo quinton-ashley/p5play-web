@@ -24,7 +24,7 @@
 			<a href="docs/classes/Sprite.html">Docs</a>
 			<a href="jam">Jam!</a>
 			<span>:</span>
-			<a id="darkMode" onclick="toggleDarkMode()">
+			<a id="darkMode" onclick="toggleDarkMode()" tabindex="0" role="button">
 				<div id="darkModeIcon"></div>
 			</a>
 			<span class="colon">:</span>
@@ -63,19 +63,18 @@
 					<a href="learn">"Learn" reference pages</a>!
 				</p>
 
-				<p style="opacity: 80%;">
+				<p id="shields">
 					<a aria-label="p5play GitHub page" href="https://github.com/quinton-ashley/p5play" target="_blank">
-						<img class="shields" src="https://img.shields.io/github/package-json/v/quinton-ashley/p5play.svg" alt="">
+						<img src="https://img.shields.io/github/package-json/v/quinton-ashley/p5play.svg" alt="">
 					</a>
 					<a aria-label="p5play license" href="https://github.com/quinton-ashley/p5play" target="_blank">
-						<img class="shields" src="https://img.shields.io/github/license/quinton-ashley/p5play.svg" alt="">
+						<img src="https://img.shields.io/github/license/quinton-ashley/p5play.svg" alt="">
 					</a>
 					<a aria-label="Patreon page of p5play" href="https://www.patreon.com/p5play" target="_blank">
-						<img class="shields" src="https://img.shields.io/badge/Patreon-@p5play-orange.svg" alt="">
+						<img src="https://img.shields.io/badge/Patreon-@p5play-orange.svg" alt="">
 					</a>
 					<a aria-label="p5play GitHub stars counter" href="https://github.com/quinton-ashley/p5play" target="_blank">
-						<img class="shields" src="https://img.shields.io/github/stars/quinton-ashley/p5play.svg?style=social"
-							alt="">
+						<img src="https://img.shields.io/github/stars/quinton-ashley/p5play.svg?style=social" alt="">
 					</a>
 				</p>
 			</div>
@@ -235,9 +234,9 @@ function dropSprite() {
 				<h2>Local Development</h2>
 				<p>
 					Use p5play on your own website by adding these links to your HTML file.
-					School firewall blocking p5play.org?
+					School firewall blocking p5play.org? See the
 					<a aria-label="FAQ school firewall blocking p5play"
-						href="https://github.com/quinton-ashley/p5play/wiki/FAQ#school-firewall-blocking-p5playorg">more info</a>
+						href="https://github.com/quinton-ashley/p5play/wiki/FAQ#school-firewall-blocking-p5playorg">FAQs</a>
 				</p>
 				<textarea aria-label="link tags for p5play and its dependencies" rows="5">&lt;script src=&quot;https://cdn.jsdelivr.net/npm/p5@1/lib/p5.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdn.jsdelivr.net/npm/p5@1/lib/addons/p5.sound.min.js&quot;&gt;&lt;/script&gt;
@@ -248,8 +247,8 @@ function dropSprite() {
 					p5play is also available on npm: <code>npm i p5.play</code>
 				</p>
 				<p>
-					Want to use p5play offline?
-					<a href="https://github.com/quinton-ashley/p5play/wiki/Get-Started" target="_blank">more info</a>
+					<a href="https://github.com/quinton-ashley/p5play/wiki/Get-Started" target="_blank">Want to use p5play
+						offline?</a>
 				</p>
 			</div>
 			<div class="break"></div>
@@ -369,9 +368,9 @@ function dropSprite() {
 		<div class="break"></div>
 		<footer class="text-small">p5play.org was created by Quinton Ashley (<a
 				href="https://github.com/quinton-ashley">@quinton-ashley</a>)
-			Copyright 2022-2023. Looking for the legacy
-			version of p5play?
-			<a href="../v2/index.html">Click here</a>.
+			Copyright 2022-2023. Looking for the
+			<a href="../v2/index.html">legacy
+				version</a> of p5play?
 		</footer>
 	</article>
 

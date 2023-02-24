@@ -289,8 +289,9 @@ code {
 	width: 100%;
 }
 
-.shields {
+#shields img {
 	height: 24px;
+	opacity: 80%;
 }
 
 .break {
@@ -568,6 +569,16 @@ body.light .discord-logo {
 		width: 100%;
 		overflow: scroll;
 		gap: 10px;
+	}
+
+	#shields {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 24px;
+	}
+
+	#shields img {
+		height: 28px;
 	}
 
 	.page {
