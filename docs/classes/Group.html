@@ -88,7 +88,7 @@
 
 
         <div class="foundat">
-            Defined in: <a href="../files/v3_p5play.js.html#l4154"><code>v3&#x2F;p5play.js:4154</code></a>
+            Defined in: <a href="../files/v3_p5play.js.html#l4168"><code>v3&#x2F;p5play.js:4168</code></a>
         </div>
 
 
@@ -131,7 +131,7 @@ a group.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l4154"><code>v3&#x2F;p5play.js:4154</code></a>
+        <a href="../files/v3_p5play.js.html#l4168"><code>v3&#x2F;p5play.js:4168</code></a>
         </p>
 
 
@@ -190,6 +190,10 @@ a group.</p>
                             </li>
                             <li class="index-item method">
                                 <a href="#method_colliding">colliding</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_contains">contains</a>
 
                             </li>
                             <li class="index-item method">
@@ -284,6 +288,10 @@ a group.</p>
 
                             </li>
                             <li class="index-item property">
+                                <a href="#property_idNum">idNum</a>
+
+                            </li>
+                            <li class="index-item property">
                                 <a href="#property_image">image</a>
 
                             </li>
@@ -293,6 +301,14 @@ a group.</p>
                             </li>
                             <li class="index-item property">
                                 <a href="#property_length">length</a>
+
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_parent">parent</a>
+
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_subgroups">subgroups</a>
 
                             </li>
                     </ul>
@@ -307,13 +323,7 @@ a group.</p>
 <div id="method_add" class="method item">
     <h3 class="name"><code>add</code></h3>
 
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-                <li class="arg">
-                        <code>s</code>
-                </li>
-            </ul><span class="paren">)</span>
-        </div>
+        <span class="paren">()</span>
 
 
 
@@ -325,7 +335,7 @@ a group.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l4783"><code>v3&#x2F;p5play.js:4783</code></a>
+        <a href="../files/v3_p5play.js.html#l4405"><code>v3&#x2F;p5play.js:4405</code></a>
         </p>
 
 
@@ -333,27 +343,13 @@ a group.</p>
     </div>
 
     <div class="description">
-        <p>Alias for push.</p>
+        <p>Alias for group.push</p>
+<p>Its better to use the group Sprite constructor instead.
+<code>new group.Sprite()</code> which both creates a group sprite using
+soft inheritance and adds it to the group.</p>
 
     </div>
 
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-                <li class="param">
-                        <code class="param-name">s</code>
-                        <span class="type"><a href="../classes/Sprite.html" class="crosslink">Sprite</a></span>
-
-
-                    <div class="param-description">
-                        <p>The sprite to be added</p>
-
-                    </div>
-
-                </li>
-            </ul>
-        </div>
 
 
 
@@ -382,7 +378,7 @@ a group.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l4990"><code>v3&#x2F;p5play.js:4990</code></a>
+        <a href="../files/v3_p5play.js.html#l5039"><code>v3&#x2F;p5play.js:5039</code></a>
         </p>
 
 
@@ -453,7 +449,7 @@ sprite.addAni(name, atlas);</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l5038"><code>v3&#x2F;p5play.js:5038</code></a>
+        <a href="../files/v3_p5play.js.html#l5087"><code>v3&#x2F;p5play.js:5087</code></a>
         </p>
 
 
@@ -493,7 +489,7 @@ sprite.addAni(name, atlas);</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l4613"><code>v3&#x2F;p5play.js:4613</code></a>
+        <a href="../files/v3_p5play.js.html#l4680"><code>v3&#x2F;p5play.js:4680</code></a>
         </p>
 
 
@@ -565,7 +561,7 @@ sprite.addAni(name, atlas);</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l4516"><code>v3&#x2F;p5play.js:4516</code></a>
+        <a href="../files/v3_p5play.js.html#l4583"><code>v3&#x2F;p5play.js:4583</code></a>
         </p>
 
 
@@ -640,7 +636,7 @@ with the target sprite or group.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l4482"><code>v3&#x2F;p5play.js:4482</code></a>
+        <a href="../files/v3_p5play.js.html#l4549"><code>v3&#x2F;p5play.js:4549</code></a>
         </p>
 
 
@@ -713,7 +709,7 @@ in an if statement or adding a callback as the second parameter.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l4499"><code>v3&#x2F;p5play.js:4499</code></a>
+        <a href="../files/v3_p5play.js.html#l4566"><code>v3&#x2F;p5play.js:4566</code></a>
         </p>
 
 
@@ -767,6 +763,37 @@ the group has been colliding with the target.</p>
 
 
 </div>
+<div id="method_contains" class="method item">
+    <h3 class="name"><code>contains</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5play.js.html#l4422"><code>v3&#x2F;p5play.js:4422</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Alias for group.includes</p>
+
+    </div>
+
+
+
+
+</div>
 <div id="method_cull" class="method item">
     <h3 class="name"><code>cull</code></h3>
 
@@ -803,7 +830,7 @@ the group has been colliding with the target.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l4815"><code>v3&#x2F;p5play.js:4815</code></a>
+        <a href="../files/v3_p5play.js.html#l4858"><code>v3&#x2F;p5play.js:4858</code></a>
         </p>
 
 
@@ -910,7 +937,7 @@ removed by default</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l4943"><code>v3&#x2F;p5play.js:4943</code></a>
+        <a href="../files/v3_p5play.js.html#l4986"><code>v3&#x2F;p5play.js:4986</code></a>
         </p>
 
 
@@ -950,7 +977,7 @@ removed by default</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l4743"><code>v3&#x2F;p5play.js:4743</code></a>
+        <a href="../files/v3_p5play.js.html#l4415"><code>v3&#x2F;p5play.js:4415</code></a>
         </p>
 
 
@@ -1006,7 +1033,7 @@ removed by default</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l4626"><code>v3&#x2F;p5play.js:4626</code></a>
+        <a href="../files/v3_p5play.js.html#l4693"><code>v3&#x2F;p5play.js:4693</code></a>
         </p>
 
 
@@ -1036,7 +1063,7 @@ removed by default</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l4683"><code>v3&#x2F;p5play.js:4683</code></a>
+        <a href="../files/v3_p5play.js.html#l4750"><code>v3&#x2F;p5play.js:4750</code></a>
         </p>
 
 
@@ -1066,7 +1093,7 @@ removed by default</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l4637"><code>v3&#x2F;p5play.js:4637</code></a>
+        <a href="../files/v3_p5play.js.html#l4704"><code>v3&#x2F;p5play.js:4704</code></a>
         </p>
 
 
@@ -1096,7 +1123,7 @@ removed by default</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l4660"><code>v3&#x2F;p5play.js:4660</code></a>
+        <a href="../files/v3_p5play.js.html#l4727"><code>v3&#x2F;p5play.js:4727</code></a>
         </p>
 
 
@@ -1132,7 +1159,7 @@ removed by default</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l4706"><code>v3&#x2F;p5play.js:4706</code></a>
+        <a href="../files/v3_p5play.js.html#l4773"><code>v3&#x2F;p5play.js:4773</code></a>
         </p>
 
 
@@ -1193,7 +1220,7 @@ removed by default</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l4598"><code>v3&#x2F;p5play.js:4598</code></a>
+        <a href="../files/v3_p5play.js.html#l4665"><code>v3&#x2F;p5play.js:4665</code></a>
         </p>
 
 
@@ -1271,7 +1298,7 @@ with the target sprite or group.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l4581"><code>v3&#x2F;p5play.js:4581</code></a>
+        <a href="../files/v3_p5play.js.html#l4648"><code>v3&#x2F;p5play.js:4648</code></a>
         </p>
 
 
@@ -1349,7 +1376,7 @@ frames the group has been overlapping with the target.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l4564"><code>v3&#x2F;p5play.js:4564</code></a>
+        <a href="../files/v3_p5play.js.html#l4631"><code>v3&#x2F;p5play.js:4631</code></a>
         </p>
 
 
@@ -1401,11 +1428,14 @@ in an if statement or adding a callback as the second parameter.</p>
         <div class="args">
             <span class="paren">(</span><ul class="args-list inline commas">
                 <li class="arg">
-                        <code>s</code>
+                        <code>sprites</code>
                 </li>
             </ul><span class="paren">)</span>
         </div>
 
+        <span class="returns-inline">
+            <span class="type">Number</span>
+        </span>
 
 
 
@@ -1416,7 +1446,7 @@ in an if statement or adding a callback as the second parameter.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l4763"><code>v3&#x2F;p5play.js:4763</code></a>
+        <a href="../files/v3_p5play.js.html#l4810"><code>v3&#x2F;p5play.js:4810</code></a>
         </p>
 
 
@@ -1424,8 +1454,12 @@ in an if statement or adding a callback as the second parameter.</p>
     </div>
 
     <div class="description">
-        <p>Adds a sprite to the group. Returns true if the sprite was added
-because it was not already in the group.</p>
+        <p>Its better to use the group Sprite constructor instead.
+<code>new group.Sprite()</code> which both creates a group sprite using
+soft inheritance and adds it to the group.</p>
+<p>Adds a sprite or multiple sprites to the group, whether they were
+already in the group or not, just like with the Array.push()
+method. Only sprites can be added to a group.</p>
 
     </div>
 
@@ -1434,12 +1468,12 @@ because it was not already in the group.</p>
 
             <ul class="params-list">
                 <li class="param">
-                        <code class="param-name">s</code>
+                        <code class="param-name">sprites</code>
                         <span class="type"><a href="../classes/Sprite.html" class="crosslink">Sprite</a></span>
 
 
                     <div class="param-description">
-                        <p>The sprite to be added</p>
+                        <p>The sprite or sprites to be added</p>
 
                     </div>
 
@@ -1447,6 +1481,15 @@ because it was not already in the group.</p>
             </ul>
         </div>
 
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">Number</span>:
+                    <p>the new length of the group</p>
+
+            </div>
+        </div>
 
 
 </div>
@@ -1474,7 +1517,7 @@ because it was not already in the group.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l4861"><code>v3&#x2F;p5play.js:4861</code></a>
+        <a href="../files/v3_p5play.js.html#l4904"><code>v3&#x2F;p5play.js:4904</code></a>
         </p>
 
 
@@ -1533,7 +1576,7 @@ group, but not from the sketch or any other groups it may be in.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l4902"><code>v3&#x2F;p5play.js:4902</code></a>
+        <a href="../files/v3_p5play.js.html#l4945"><code>v3&#x2F;p5play.js:4945</code></a>
         </p>
 
 
@@ -1564,7 +1607,7 @@ group, but not from the sketch or any other groups it may be in.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l4966"><code>v3&#x2F;p5play.js:4966</code></a>
+        <a href="../files/v3_p5play.js.html#l5009"><code>v3&#x2F;p5play.js:5009</code></a>
         </p>
 
 
@@ -1598,7 +1641,7 @@ more information.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l4422"><code>v3&#x2F;p5play.js:4422</code></a>
+        <a href="../files/v3_p5play.js.html#l4489"><code>v3&#x2F;p5play.js:4489</code></a>
         </p>
 
 
@@ -1624,7 +1667,7 @@ either add or remove sprites.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l4363"><code>v3&#x2F;p5play.js:4363</code></a>
+        <a href="../files/v3_p5play.js.html#l4430"><code>v3&#x2F;p5play.js:4430</code></a>
         </p>
 
 
@@ -1649,7 +1692,7 @@ either add or remove sprites.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l4376"><code>v3&#x2F;p5play.js:4376</code></a>
+        <a href="../files/v3_p5play.js.html#l4443"><code>v3&#x2F;p5play.js:4443</code></a>
         </p>
 
 
@@ -1674,7 +1717,7 @@ either add or remove sprites.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l4205"><code>v3&#x2F;p5play.js:4205</code></a>
+        <a href="../files/v3_p5play.js.html#l4256"><code>v3&#x2F;p5play.js:4256</code></a>
         </p>
 
 
@@ -1699,7 +1742,7 @@ either add or remove sprites.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l4389"><code>v3&#x2F;p5play.js:4389</code></a>
+        <a href="../files/v3_p5play.js.html#l4456"><code>v3&#x2F;p5play.js:4456</code></a>
         </p>
 
 
@@ -1724,7 +1767,7 @@ either add or remove sprites.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l4344"><code>v3&#x2F;p5play.js:4344</code></a>
+        <a href="../files/v3_p5play.js.html#l4387"><code>v3&#x2F;p5play.js:4387</code></a>
         </p>
 
 
@@ -1742,6 +1785,32 @@ remain false for the rest of the sketch, unless changed.</p>
 
 
 </div>
+<div id="property_idNum" class="property item">
+    <h3 class="name"><code>idNum</code></h3>
+    <span class="type">Number</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5play.js.html#l4211"><code>v3&#x2F;p5play.js:4211</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>Each group has a unique id number. Don't change it!
+Its useful for debugging.</p>
+
+    </div>
+
+
+
+</div>
 <div id="property_image" class="property item">
     <h3 class="name"><code>image</code></h3>
     <span class="type"><a href="../classes/SpriteAnimation.html" class="crosslink">SpriteAnimation</a></span>
@@ -1753,7 +1822,7 @@ remain false for the rest of the sketch, unless changed.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l4410"><code>v3&#x2F;p5play.js:4410</code></a>
+        <a href="../files/v3_p5play.js.html#l4477"><code>v3&#x2F;p5play.js:4477</code></a>
         </p>
 
 
@@ -1778,7 +1847,7 @@ remain false for the rest of the sketch, unless changed.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l4398"><code>v3&#x2F;p5play.js:4398</code></a>
+        <a href="../files/v3_p5play.js.html#l4465"><code>v3&#x2F;p5play.js:4465</code></a>
         </p>
 
 
@@ -1803,7 +1872,7 @@ remain false for the rest of the sketch, unless changed.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/v3_p5play.js.html#l4793"><code>v3&#x2F;p5play.js:4793</code></a>
+        <a href="../files/v3_p5play.js.html#l4836"><code>v3&#x2F;p5play.js:4836</code></a>
         </p>
 
 
@@ -1813,6 +1882,59 @@ remain false for the rest of the sketch, unless changed.</p>
         
     </div>
 
+
+
+</div>
+<div id="property_parent" class="property item">
+    <h3 class="name"><code>parent</code></h3>
+    <span class="type">Number</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5play.js.html#l4236"><code>v3&#x2F;p5play.js:4236</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>The parent group's id number.</p>
+
+    </div>
+
+        <p><strong>Default:</strong> undefined</p>
+
+
+</div>
+<div id="property_subgroups" class="property item">
+    <h3 class="name"><code>subgroups</code></h3>
+    <span class="type">Array</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/v3_p5play.js.html#l4226"><code>v3&#x2F;p5play.js:4226</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>Groups can have subgroups, which inherit the properties
+of their parent groups.</p>
+
+    </div>
+
+        <p><strong>Default:</strong> []</p>
 
 
 </div>

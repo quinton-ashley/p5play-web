@@ -36,9 +36,13 @@ test('Group', () => {
 			expect(g[0].life).toBe(100);
 
 			const spriteConstructedOutsideGroup = new p.Sprite();
-			const spriteAdded = g.push(spriteConstructedOutsideGroup);
-			expect(spriteAdded).toBe(true);
-			expect(g.includes(spriteConstructedOutsideGroup)).toBe(true);
+			let spriteAdded = g.push(spriteConstructedOutsideGroup);
+			expect(spriteAdded).toBe(3);
+			expect(g.at(-1)).toBe(spriteConstructedOutsideGroup);
+
+			spriteAdded = g.add(spriteConstructedOutsideGroup);
+			expect(spriteAdded).toBe(4);
+			expect(g.at(-1)).toBe(spriteConstructedOutsideGroup);
 
 			g.removeAll();
 

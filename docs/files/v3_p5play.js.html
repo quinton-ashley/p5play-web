@@ -114,6 +114,9 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 		emulated: false
 	};
 	this.p5play.standardizeKeyboard ??= false;
+	this.p5play.groups = [];
+	this.p5play.groupsCreated = 0;
+	this.p5play.spritesCreated = 0;
 
 	// change the angle mode to degrees
 	this.angleMode(&#x27;degrees&#x27;);
@@ -256,8 +259,16 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 	this.Sprite = class {
 		constructor(x, y, w, h, collider) {
 			this.p = pInst;
-			this.idNum = this.p.world.spritesCreated;
-			this.p.world.spritesCreated++;
+
+			/**
+			 * Each sprite has a unique id number. Don&#x27;t change it!
+			 * Its useful for debugging.
+			 *
+			 * @property idNum
+			 * @type {Number}
+			 */
+			this.idNum = this.p.p5play.spritesCreated;
+			this.p.p5play.spritesCreated++;
 
 			let args = [...arguments];
 
@@ -471,36 +482,37 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 			// this._vel extends p5.Vector
 			this._vel = pInst.createVector.call(pInst);
 
-			Object.defineProperty(this._vel, &#x27;x&#x27;, {
-				get() {
-					let val;
-					if (!_this.body) val = _this._velocity.x;
-					else val = _this.body.getLinearVelocity().x;
-					return fixRound(val / _this.tileSize);
-				},
-				set(val) {
-					val *= _this.tileSize;
-					if (_this.body) {
-						_this.body.setLinearVelocity(new pl.Vec2(val, _this.body.getLinearVelocity().y));
-					} else {
-						_this._velocity.x = val;
+			Object.defineProperties(this._vel, {
+				x: {
+					get() {
+						let val;
+						if (_this.body) val = _this.body.getLinearVelocity().x;
+						else val = _this._velocity.x;
+						return fixRound(val / _this.tileSize);
+					},
+					set(val) {
+						val *= _this.tileSize;
+						if (_this.body) {
+							_this.body.setLinearVelocity(new pl.Vec2(val, _this.body.getLinearVelocity().y));
+						} else {
+							_this._velocity.x = val;
+						}
 					}
-				}
-			});
-
-			Object.defineProperty(this._vel, &#x27;y&#x27;, {
-				get() {
-					let val;
-					if (!_this.body) val = _this._velocity.y;
-					else val = _this.body.getLinearVelocity().y;
-					return fixRound(val / _this.tileSize);
 				},
-				set(val) {
-					val *= _this.tileSize;
-					if (_this.body) {
-						_this.body.setLinearVelocity(new pl.Vec2(_this.body.getLinearVelocity().x, val));
-					} else {
-						_this._velocity.y = val;
+				y: {
+					get() {
+						let val;
+						if (_this.body) val = _this.body.getLinearVelocity().y;
+						else val = _this._velocity.y;
+						return fixRound(val / _this.tileSize);
+					},
+					set(val) {
+						val *= _this.tileSize;
+						if (_this.body) {
+							_this.body.setLinearVelocity(new pl.Vec2(_this.body.getLinearVelocity().x, val));
+						} else {
+							_this._velocity.y = val;
+						}
 					}
 				}
 			});
@@ -694,48 +706,43 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 				}
 			}
 
-			// custom group properties &quot;sprite group traits&quot;
-			// that are non-default sprite properties
+			// ignore these properties
+			let ignoreProps = [
+				&#x27;collider&#x27;,
+				&#x27;idNum&#x27;,
+				&#x27;p&#x27;,
+				&#x27;parent&#x27;,
+				&#x27;length&#x27;,
+				&#x27;_collides&#x27;,
+				&#x27;_colliding&#x27;,
+				&#x27;_collided&#x27;,
+				&#x27;_collisions&#x27;,
+				&#x27;_overlap&#x27;,
+				&#x27;_overlaps&#x27;,
+				&#x27;_overlapping&#x27;,
+				&#x27;_overlapped&#x27;,
+				&#x27;_overlappers&#x27;,
+				&#x27;animation&#x27;,
+				&#x27;animations&#x27;,
+				&#x27;autoCull&#x27;,
+				&#x27;Sprite&#x27;,
+				&#x27;GroupSprite&#x27;,
+				&#x27;Group&#x27;,
+				&#x27;Subgroup&#x27;,
+				&#x27;subgroups&#x27;,
+				&#x27;vel&#x27;,
+				&#x27;mirror&#x27;,
+				&#x27;mouse&#x27;
+			];
+
+			// the sprite should also inherit
+			// custom group properties, &quot;group traits&quot;
 			for (let g of this.groups) {
-				let traits = {};
 				let props = Object.keys(g);
 				for (let prop of props) {
-					if (!isNaN(prop) || prop[0] == &#x27;_&#x27;) continue;
-					traits[prop] = null;
-				}
-
-				// delete these traits
-				let deletes = [
-					&#x27;collider&#x27;,
-					&#x27;idNum&#x27;,
-					&#x27;p&#x27;,
-					&#x27;parent&#x27;,
-					&#x27;length&#x27;,
-					&#x27;_collides&#x27;,
-					&#x27;_colliding&#x27;,
-					&#x27;_collided&#x27;,
-					&#x27;_collisions&#x27;,
-					&#x27;_overlap&#x27;,
-					&#x27;_overlaps&#x27;,
-					&#x27;_overlapping&#x27;,
-					&#x27;_overlapped&#x27;,
-					&#x27;_overlappers&#x27;,
-					&#x27;animation&#x27;,
-					&#x27;animations&#x27;,
-					&#x27;autoCull&#x27;,
-					&#x27;Sprite&#x27;,
-					&#x27;GroupSprite&#x27;,
-					&#x27;Group&#x27;,
-					&#x27;SubGroup&#x27;,
-					&#x27;vel&#x27;,
-					&#x27;mirror&#x27;,
-					&#x27;mouse&#x27;
-				];
-				for (let d of deletes) {
-					delete traits[d];
-				}
-
-				for (let prop in traits) {
+					if (!isNaN(prop) || prop[0] == &#x27;_&#x27; || ignoreProps.includes(prop)) {
+						continue;
+					}
 					let val = g[prop];
 					if (val === undefined) continue;
 					if (typeof val == &#x27;function&#x27;) {
@@ -1176,28 +1183,29 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 		 */
 		_cloneBodyProps() {
 			let body = {};
-			let props = [...spriteProps];
-			let deletes = [
-				&#x27;w&#x27;,
-				&#x27;h&#x27;,
-				&#x27;width&#x27;,
-				&#x27;height&#x27;,
-				&#x27;shape&#x27;,
-				&#x27;d&#x27;,
-				&#x27;diameter&#x27;,
-				&#x27;dynamic&#x27;,
-				&#x27;static&#x27;,
-				&#x27;kinematic&#x27;,
-				&#x27;collider&#x27;,
+			let props = [
+				&#x27;bounciness&#x27;,
+				&#x27;density&#x27;,
+				&#x27;drag&#x27;,
+				&#x27;friction&#x27;,
 				&#x27;heading&#x27;,
-				&#x27;direction&#x27;
+				&#x27;isSuperFast&#x27;,
+				&#x27;mass&#x27;,
+				&#x27;rotation&#x27;,
+				&#x27;rotationDrag&#x27;,
+				&#x27;rotationLock&#x27;,
+				&#x27;rotationSpeed&#x27;,
+				&#x27;scale&#x27;,
+				&#x27;vel&#x27;,
+				&#x27;x&#x27;,
+				&#x27;y&#x27;
 			];
-			for (let del of deletes) {
-				let i = props.indexOf(del);
-				if (i &gt;= 0) props.splice(i, 1);
-			}
 			for (let prop of props) {
-				body[prop] = this[prop];
+				if (typeof this[prop] == &#x27;object&#x27;) {
+					body[prop] = Object.assign({}, this[prop]);
+				} else {
+					body[prop] = this[prop];
+				}
 			}
 			return body;
 		}
@@ -1317,10 +1325,7 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 		}
 
 		_reset() {
-			let bodyProps;
-			if (this._collider != &#x27;none&#x27;) {
-				bodyProps = this._cloneBodyProps();
-			}
+			let bodyProps = this._cloneBodyProps();
 
 			let v;
 			if (this._shape == &#x27;chain&#x27; || this._shape == &#x27;polygon&#x27;) {
@@ -1344,10 +1349,10 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 				if (this._hasOverlaps) {
 					this._createSensors();
 				}
-				for (let prop in bodyProps) {
-					if (bodyProps[prop] !== undefined) {
-						this[prop] = bodyProps[prop];
-					}
+			}
+			for (let prop in bodyProps) {
+				if (bodyProps[prop] !== undefined) {
+					this[prop] = bodyProps[prop];
 				}
 			}
 		}
@@ -1546,7 +1551,7 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 		 */
 		get drag() {
 			if (this.body) return this.body.getLinearDamping();
-			else return Infinity;
+			else return undefined;
 		}
 		set drag(val) {
 			if (this.body) this.body.setLinearDamping(val);
@@ -1594,6 +1599,7 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 		}
 		set dynamic(val) {
 			if (val) this.collider = &#x27;dynamic&#x27;;
+			else this.collider = &#x27;kinematic&#x27;;
 		}
 
 		/**
@@ -1753,6 +1759,7 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 		}
 		set kinematic(val) {
 			if (val) this.collider = &#x27;kinematic&#x27;;
+			else this.collider = &#x27;dynamic&#x27;;
 		}
 		/**
 		 * The mass of the sprite&#x27;s physics body.
@@ -1953,6 +1960,7 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 		}
 		set static(val) {
 			if (val) this.collider = &#x27;static&#x27;;
+			else this.collider = &#x27;dynamic&#x27;;
 		}
 
 		/**
@@ -2160,7 +2168,7 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 				this._diameter = val;
 			} else {
 				let bodyProps;
-				if (this._collider == &#x27;none&#x27;) {
+				if (this._collider != &#x27;none&#x27;) {
 					bodyProps = this._cloneBodyProps();
 				}
 				this._removeSensors();
@@ -2375,8 +2383,10 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 					let b = entry[0];
 					let f = entry[1] + 1;
 					this[event].set(b, f);
+					if (b instanceof this.p.Group) b[event].set(this, f);
 					if (f == 0) {
 						this[event].delete(b);
+						if (b instanceof this.p.Group) b[event].delete(this);
 						continue;
 					} else if (f == -1) {
 						contactType = eventTypes[event][2];
@@ -2401,7 +2411,7 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 		_draw() {
 			if (this.strokeWeight !== undefined) this.p.strokeWeight(this.strokeWeight);
 			if (this.animation &amp;&amp; this.debug != &#x27;colliders&#x27;) {
-				this.animation.draw(0, 0, 0, this._scale.x, this._scale.y);
+				this.animation.draw(0, 0, 0, this._scale._x, this._scale._y);
 			}
 			if (!this.animation || this.debug) {
 				if (this.debug &amp;&amp; this.debug != &#x27;colliders&#x27;) {
@@ -2979,7 +2989,8 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 			if (typeof x != &#x27;number&#x27;) {
 				facing = speed;
 				speed = y;
-				y = facing;
+				y = x.y;
+				x = x.x;
 			}
 
 			let angle = this.angleToFace(x, y, facing);
@@ -3006,7 +3017,7 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 			let cw = angle &gt; 0;
 			this.rotationSpeed = speed * (cw ? 1 : -1);
 
-			let frames = Math.ceil(absA / speed);
+			let frames = Math.floor(absA / speed) - 1;
 			this._rotateIdx ??= 0;
 			this._rotateIdx++;
 			let _rotateIdx = this._rotateIdx;
@@ -3018,8 +3029,11 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 						await pInst.delay();
 						frames--;
 					}
-
-					while (Math.abs(this.rotationSpeed) &lt; Math.abs(ang - this.rotation)) {
+					let limit = Math.abs(this.rotationSpeed) + 0.01;
+					while (
+						((cw &amp;&amp; ang &gt; this.rotation) || (!cw &amp;&amp; ang &lt; this.rotation)) &amp;&amp;
+						limit &lt; Math.abs(ang - this.rotation)
+					) {
 						await pInst.delay();
 					}
 					if (Math.abs(ang - this.rotation) &gt; 0.01) {
@@ -3836,7 +3850,7 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 			this.p.imageMode(&#x27;center&#x27;);
 			this.p.translate(this.x, this.y);
 			this.p.rotate(r || this.rotation);
-			this.p.scale(sx * this._scale.x, sy * this._scale.y);
+			this.p.scale(sx * this._scale._x, sy * this._scale._y);
 			let img = this[this.frame];
 			if (img !== undefined) {
 				if (this.spriteSheet) {
@@ -4231,7 +4245,7 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 							for (let k in _this) {
 								let x = _this[k];
 								if (!(x instanceof SpriteAnimation)) continue;
-								x[objProp][prop] = v;
+								x[objProp][prop] = val;
 							}
 						}
 					});
@@ -4274,7 +4288,6 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 				args = args.slice(1);
 			}
 			super(...args);
-			this.idNum = 0;
 			this.p = pInst;
 
 			if (typeof args[0] == &#x27;number&#x27;) return;
@@ -4284,12 +4297,50 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 				}
 			}
 
-			// if all sprites doesn&#x27;t exist yet,
-			// this group is the allSprites group
+			/**
+			 * Each group has a unique id number. Don&#x27;t change it!
+			 * Its useful for debugging.
+			 *
+			 * @property idNum
+			 * @type {Number}
+			 */
+			this.idNum = this.p.p5play.groupsCreated;
+			this.p.p5play.groups[this.idNum] = this;
+			this.p.p5play.groupsCreated++;
+
+			// if the allSprites group doesn&#x27;t exist yet,
+			// this group must be the allSprites group!
 			if (!this.p.allSprites) this._isAllSpritesGroup = true;
 
-			if (!this._isAllSpritesGroup) this.parent = 0;
-			if (parent) this.parent = parent.idNum;
+			/**
+			 * Groups can have subgroups, which inherit the properties
+			 * of their parent groups.
+			 *
+			 * @property subgroups
+			 * @type {Array}
+			 * @default []
+			 */
+			this.subgroups = [];
+
+			/**
+			 * The parent group&#x27;s id number.
+			 *
+			 * @property parent
+			 * @type {Number}
+			 * @default undefined
+			 */
+			if (parent instanceof this.p.Group) {
+				parent.subgroups.push(this);
+				let p = parent;
+				do {
+					p = this.p.p5play.groups[p.parent];
+					p.subgroups.push(this);
+				} while (!p._isAllSpritesGroup);
+				this.parent = parent.idNum;
+			} else if (!this._isAllSpritesGroup) {
+				this.p.allSprites.subgroups.push(this);
+				this.parent = 0;
+			}
 
 			/**
 			 * Keys are the animation label, values are SpriteAnimation objects.
@@ -4319,29 +4370,21 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 			this._collisions = new Map();
 			this._overlappers = new Map();
 
-			if (this.p.world) {
-				this.idNum = this.p.world.groupsCreated;
-				this.p.world.groups[this.idNum] = this;
-				this.p.world.groupsCreated++;
-			}
-
 			let _this = this;
 
-			class GroupSprite extends this.p.Sprite {
+			this.Sprite = class extends this.p.Sprite {
 				constructor() {
 					super(_this, ...arguments);
 				}
-			}
-			this.GroupSprite = GroupSprite;
-			this.Sprite = GroupSprite;
+			};
+			this.GroupSprite = this.Sprite;
 
-			class SubGroup extends this.p.Group {
+			this.Group = class extends this.p.Group {
 				constructor() {
 					super(_this, ...arguments);
 				}
-			}
-			this.SubGroup = SubGroup;
-			this.Group = SubGroup;
+			};
+			this.Subgroup = this.Group;
 
 			this.mouse = {
 				presses: null,
@@ -4370,8 +4413,8 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 					get() {
 						let val = _this[&#x27;_&#x27; + prop];
 						let i = _this.length - 1;
-						if (val === undefined &amp;&amp; this.p.world &amp;&amp; !_this._isAllSpritesGroup) {
-							let parent = this.p.world.groups[_this.parent];
+						if (val === undefined &amp;&amp; !_this._isAllSpritesGroup) {
+							let parent = this.p.p5play.groups[_this.parent];
 							if (parent) {
 								val = parent[prop];
 								i = parent.length - 1;
@@ -4403,8 +4446,8 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 						get() {
 							let val = _this[objProp][&#x27;_&#x27; + prop];
 							let i = _this.length - 1;
-							if (val === undefined &amp;&amp; _this.p.world &amp;&amp; !_this._isAllSpritesGroup) {
-								let parent = _this.p.world.groups[_this.parent];
+							if (val === undefined &amp;&amp; !_this._isAllSpritesGroup) {
+								let parent = _this.p.p5play.groups[_this.parent];
 								if (parent) {
 									val = parent[objProp][prop];
 									i = parent.length - 1;
@@ -4447,6 +4490,30 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 
 			this.autoDraw = true;
 			this.autoUpdate = true;
+
+			/**
+			 * Alias for group.push
+			 *
+			 * Its better to use the group Sprite constructor instead.
+			 * &#x60;new group.Sprite()&#x60; which both creates a group sprite using
+			 * soft inheritance and adds it to the group.
+			 *
+			 * @method add
+			 */
+			this.add = this.push;
+			/**
+			 * Check if a sprite is in the group.
+			 *
+			 * @method includes
+			 * @param {Sprite} sprite
+			 * @return {Number} index of the sprite or -1 if not found
+			 */
+			/**
+			 * Alias for group.includes
+			 *
+			 * @method contains
+			 */
+			this.contains = this.includes;
 		}
 
 		/**
@@ -4830,53 +4897,29 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 		}
 
 		/**
-		 * Check if a sprite is in the group.
+		 * Its better to use the group Sprite constructor instead.
+		 * &#x60;new group.Sprite()&#x60; which both creates a group sprite using
+		 * soft inheritance and adds it to the group.
 		 *
-		 * @method includes
-		 * @param {Sprite} sprite
-		 * @return {Number} index of the sprite or -1 if not found
-		 */
-
-		/**
-		 * Use group.includes(sprite) instead.
-		 *
-		 * @deprecated contains
-		 * @param {Sprite} sprite The sprite to search
-		 * @return {Number} Index or -1 if not found
-		 */
-		contains(sprite) {
-			console.warn(&#x27;Deprecated: use group.includes(sprite) instead of group.contains(sprite)&#x27;);
-			return this.indexOf(sprite) &gt; -1;
-		}
-
-		/**
-		 * Adds a sprite to the group. Returns true if the sprite was added
-		 * because it was not already in the group.
+		 * Adds a sprite or multiple sprites to the group, whether they were
+		 * already in the group or not, just like with the Array.push()
+		 * method. Only sprites can be added to a group.
 		 *
 		 * @method push
-		 * @param {Sprite} s The sprite to be added
+		 * @param {Sprite} sprites The sprite or sprites to be added
+		 * @returns {Number} the new length of the group
 		 */
-		push(s) {
-			if (!(s instanceof this.p.Sprite)) {
-				throw new Error(&#x27;you can only add sprites to a group&#x27;);
-			}
+		push(...sprites) {
+			for (let s of sprites) {
+				if (!(s instanceof this.p.Sprite)) {
+					throw new Error(&#x27;you can only add sprites to a group, no &#x27; + typeof s + &#x27;s&#x27;);
+				}
 
-			if (this.indexOf(s) == -1) {
 				super.push(s);
-				if (this.parent) this.p.world.groups[this.parent].push(s);
+				if (this.parent) this.p.p5play.groups[this.parent].push(s);
 				s.groups.push(this);
-				return true;
 			}
-		}
-
-		/**
-		 * Alias for push.
-		 *
-		 * @method add
-		 * @param {Sprite} s The sprite to be added
-		 */
-		add(s) {
-			this.push(s);
+			return this.length;
 		}
 
 		/**
@@ -5069,6 +5112,12 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 			if (this._autoUpdate) this._autoUpdate = null;
 		}
 
+		/**
+		 * Should only be called by the p5.play library on the allSprites
+		 * group during world.step()
+		 *
+		 * @private _step
+		 */
 		_step() {
 			for (let s of this) {
 				s._step();
@@ -5197,10 +5246,6 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 				}
 			};
 			this.resize();
-
-			this.groups = [this.p.allSprites];
-			this.groupsCreated = 1;
-			this.spritesCreated = 0;
 			this.contacts = [];
 
 			this.on(&#x27;begin-contact&#x27;, this._beginContact);
@@ -5672,7 +5717,7 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 					let t = tiles[row][col];
 					if (t == &#x27; &#x27; || t == &#x27;.&#x27;) continue;
 					let ani, g;
-					for (g of pInst.world.groups) {
+					for (g of pInst.p5play.groups) {
 						ani = g.animations[t];
 						if (ani) break;
 					}
@@ -5681,7 +5726,7 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 						continue;
 					}
 					let wasFound = false;
-					for (g of pInst.world.groups) {
+					for (g of pInst.p5play.groups) {
 						if (g.tile == t) {
 							wasFound = true;
 							break;
@@ -5730,31 +5775,52 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 
 	class Scale {
 		constructor() {
-			this._x = 1;
-			this._y = 1;
-			this._avg = 1;
+			let _this = this;
+			Object.defineProperties(this, {
+				x: {
+					get() {
+						return _this._x;
+					},
+					set(val) {
+						if (val == _this._x) return;
+						_this._x = val;
+						_this._avg = (_this._x + _this._y) * 0.5;
+					},
+					configurable: true,
+					enumerable: true
+				},
+				y: {
+					get() {
+						return _this._y;
+					},
+					set(val) {
+						if (val == _this._y) return;
+						_this._y = val;
+						_this._avg = (_this._x + _this._y) * 0.5;
+					},
+					configurable: true,
+					enumerable: true
+				},
+				_x: {
+					value: 1,
+					enumerable: false,
+					writable: true
+				},
+				_y: {
+					value: 1,
+					enumerable: false,
+					writable: true
+				},
+				_avg: {
+					value: 1,
+					enumerable: false,
+					writable: true
+				}
+			});
 		}
 
 		valueOf() {
 			return this._avg;
-		}
-
-		get x() {
-			return this._x;
-		}
-		set x(val) {
-			if (val == this._x) return;
-			this._x = val;
-			this._avg = (this._x + this._y) * 0.5;
-		}
-
-		get y() {
-			return this._y;
-		}
-		set y(val) {
-			if (val == this._y) return;
-			this._y = val;
-			this._avg = (this._x + this._y) * 0.5;
 		}
 	}
 
@@ -7484,7 +7550,7 @@ p5.prototype.registerMethod(&#x27;post&#x27;, function p5playPostDraw() {
 
 	if (this.p5play._fps) {
 		this.p5play._postDrawFrameTime = performance.now();
-		this.p5play._fps = Math.round(1000 / (this.p5play._postDrawFrameTime - this.p5play._preDrawFrameTime));
+		this.p5play._fps = Math.round(1000 / (this.p5play._postDrawFrameTime - this.p5play._preDrawFrameTime)) || 1;
 	}
 	this.p5play._inPostDraw = false;
 });
