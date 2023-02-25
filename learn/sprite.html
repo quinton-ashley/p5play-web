@@ -885,10 +885,12 @@ sprite.rotateTowards(mouse, 0.1, 0);
 			<script type="text/md">
 ## Movement sequencing
 
-You can wait for a movement to finish before continuing with the next movement. This is useful for making a sprite move in a sequence.
+These examples use a `Turtle` sprite which is just a regular sprite 
+that's green and shaped like a triangle for that classic turtle 
+programming look.
 
-The `move`, `moveTo`, `rotate`, and `rotateTo` functions all return a promise that resolves when the movement is finished. You can use the `await` keyword to wait for the promise to resolve before continuing with the next movement.
-		</script>
+You can wait for a movement to finish before continuing with the next movement. This is useful for making a sprite move in a sequence.
+			</script>
 			<script type="mie/p5" name="square sequence" horiz lines="14">
 let turtle;
 
@@ -908,14 +910,10 @@ async function squareSequence() {
 function draw() {
 	clear();
 }
-		</script>
-			<div>
-				<p>
-					These examples use a `Turtle` sprite which is just a regular sprite that's green and shaped like a triangle
-					for
-					that classic turtle programming look.
-				</p>
-			</div>
+			</script>
+			<script type="text/md">
+The `move`, `moveTo`, `rotate`, and `rotateTo` functions all return a promise that resolves when the movement is finished. You can use the `await` keyword to wait for the promise to resolve before continuing with the next movement.
+			</script>
 			<script type="mie/p5" name="random sequence" horiz lines="16">
 let turtle;
 
