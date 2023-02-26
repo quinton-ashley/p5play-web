@@ -4980,11 +4980,13 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 			let maxY = this.p.height + bottom + cy;
 
 			let culled = 0;
-			for (let s of this) {
+			for (let i = 0; i &lt; this.length; i++) {
+				let s = this[i];
 				if (s.x &lt; minX || s.y &lt; minY || s.x &gt; maxX || s.y &gt; maxY) {
 					culled++;
 					if (cb) cb(s, culled);
 					else s.remove();
+					if (s.removed) i--;
 				}
 			}
 			return culled;
@@ -5289,6 +5291,12 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 			this.autoStep = true;
 		}
 
+		/**
+		 * Resizes the world to the given width and height. Used when
+		 * the canvas is created or resized.
+		 *
+		 * @private resize
+		 */
 		resize(w, h) {
 			w ??= this.p.width;
 			h ??= this.p.height;
@@ -5332,7 +5340,7 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 		 * @method getSpritesAt
 		 * @param {Number} x
 		 * @param {Number} y
-		 * @returns
+		 * @returns {Array} an array of sprites
 		 */
 		getSpritesAt(x, y, group, cameraActiveWhenDrawn) {
 			cameraActiveWhenDrawn ??= true;
@@ -5371,7 +5379,7 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 		 * @method getSpriteAt
 		 * @param {Number} x
 		 * @param {Number} y
-		 * @returns
+		 * @returns {Sprite} a sprite
 		 */
 		getSpriteAt(x, y, group) {
 			let sprites = this.getSpritesAt(x, y, group);
@@ -5487,6 +5495,18 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 			return false;
 		}
 
+		/**
+		 * &quot;Sleeping&quot; sprites get temporarily ignored during physics
+		 * simulation. A sprite starts &quot;sleeping&quot; when it stops moving and
+		 * doesn&#x27;t collide with anything that it wasn&#x27;t already touching.
+		 *
+		 * This is a performance optimization that can be disabled for
+		 * every sprite in the world.
+		 *
+		 * @property allowSleeping
+		 * @type {Boolean}
+		 * @default true
+		 */
 		get allowSleeping() {
 			return this.getAllowSleeping();
 		}

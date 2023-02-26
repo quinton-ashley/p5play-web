@@ -120,7 +120,7 @@
             "plugin_for": [],
             "extension_for": [],
             "file": "v3/p5play.js",
-            "line": 5115,
+            "line": 5117,
             "description": "Look at the World reference pages before reading these docs.\n\nhttps://p5play.org/learn/world.html\n\nA `world` object is created automatically by p5play. There can only\nbe one world per p5.js instance.\n\nThis class extends `planck.World` and adds some p5play specific\nfeatures.",
             "is_constructor": 1
         },
@@ -133,7 +133,7 @@
             "plugin_for": [],
             "extension_for": [],
             "file": "v3/p5play.js",
-            "line": 5410,
+            "line": 5430,
             "description": "Look at the Camera reference pages before reading these docs.\n\nhttps://p5play.org/learn/camera.html\n\nA `camera` object is created automatically when p5play loads.\nCurrently, there can only be one camera per p5.js instance.\n\nA camera facilitates scrolling and zooming for scenes extending beyond\nthe canvas. A camera has a position, a zoom factor, and the mouse\ncoordinates relative to the view.\nThe camera is automatically created on the first draw cycle.\n\nIn p5.js terms the camera wraps the whole drawing cycle in a\ntransformation matrix but it can be disable anytime during the draw\ncycle for example to draw interface elements in an absolute position.",
             "is_constructor": 1,
             "params": [
@@ -163,7 +163,7 @@
             "plugin_for": [],
             "extension_for": [],
             "file": "v3/p5play.js",
-            "line": 5604,
+            "line": 5624,
             "description": "Look at the Tiles reference pages before reading these docs.\n\nhttps://p5play.org/learn/tiles.html",
             "is_constructor": 1,
             "params": [
@@ -203,7 +203,7 @@
             "plugin_for": [],
             "extension_for": [],
             "file": "v3/p5play.js",
-            "line": 5669,
+            "line": 5689,
             "description": "Look at the p5play reference pages before reading these docs.\n\nhttps://p5play.org/learn"
         },
         "InputDevice": {
@@ -215,7 +215,7 @@
             "plugin_for": [],
             "extension_for": [],
             "file": "v3/p5play.js",
-            "line": 6651,
+            "line": 6671,
             "description": "Look at the Input reference pages before reading these docs.\n\nhttps://p5play.org/learn/input_devices.html\n\nRoot class for storing the state of inputs (mouse, keyboard,\ngamepads).\n\n-3 means input was released after being held, pressed for 12 frames\n-2 means input was pressed and released on the same frame\n-1 means input was released\n0 means input is not pressed\n1 means input was pressed\n>1 means input is still being pressed\n12 means input was held\n>12 means input is being held"
         }
     },
@@ -2570,7 +2570,7 @@
         },
         {
             "file": "v3/p5play.js",
-            "line": 4904,
+            "line": 4906,
             "description": "If no input is given all sprites in the group are removed.\n\nIf a sprite or index is given, that sprite is removed from the\ngroup, but not from the sketch or any other groups it may be in.",
             "itemtype": "method",
             "name": "remove",
@@ -2589,7 +2589,7 @@
         },
         {
             "file": "v3/p5play.js",
-            "line": 4945,
+            "line": 4947,
             "description": "Removes all sprites from the group and destroys the group.",
             "itemtype": "method",
             "name": "removeAll",
@@ -2597,7 +2597,7 @@
         },
         {
             "file": "v3/p5play.js",
-            "line": 4954,
+            "line": 4956,
             "description": "Returns the highest depth in a group",
             "deprecated": true,
             "deprecationMessage": "maxDepth",
@@ -2609,7 +2609,7 @@
         },
         {
             "file": "v3/p5play.js",
-            "line": 4970,
+            "line": 4972,
             "description": "Returns the lowest depth in a group",
             "deprecated": true,
             "deprecationMessage": "minDepth",
@@ -2621,7 +2621,7 @@
         },
         {
             "file": "v3/p5play.js",
-            "line": 4986,
+            "line": 4988,
             "description": "Draws all the sprites in the group.",
             "itemtype": "method",
             "name": "draw",
@@ -2629,7 +2629,7 @@
         },
         {
             "file": "v3/p5play.js",
-            "line": 5009,
+            "line": 5011,
             "description": "Updates all the sprites in the group. See sprite.update for\nmore information.\n\nBy default, allSprites.update is called after every draw call.",
             "itemtype": "method",
             "name": "update",
@@ -2637,7 +2637,7 @@
         },
         {
             "file": "v3/p5play.js",
-            "line": 5026,
+            "line": 5028,
             "description": "Should only be called by the p5.play library on the allSprites\ngroup during world.step()",
             "access": "private",
             "tagname": "_step",
@@ -2645,7 +2645,7 @@
         },
         {
             "file": "v3/p5play.js",
-            "line": 5039,
+            "line": 5041,
             "description": "Adds an animation to the sprite. Use this function in the preload p5.js\nfunction. You don't need to name the animation if the sprite will only\nuse one animation. See SpriteAnimation for more information.",
             "example": [
                 "\nsprite.addAni(name, animation);\nsprite.addAni(name, frame1, frame2, frame3...);\nsprite.addAni(name, atlas);"
@@ -2668,7 +2668,7 @@
         },
         {
             "file": "v3/p5play.js",
-            "line": 5087,
+            "line": 5089,
             "description": "Add multiple animations",
             "itemtype": "method",
             "name": "addAnis",
@@ -2676,21 +2676,21 @@
         },
         {
             "file": "v3/p5play.js",
-            "line": 5141,
+            "line": 5143,
             "itemtype": "property",
             "name": "offset.x",
             "class": "World"
         },
         {
             "file": "v3/p5play.js",
-            "line": 5151,
+            "line": 5153,
             "itemtype": "property",
             "name": "offset.y",
             "class": "World"
         },
         {
             "file": "v3/p5play.js",
-            "line": 5165,
+            "line": 5167,
             "description": "Gravity force that affects all dynamic physics colliders.",
             "itemtype": "property",
             "name": "gravity.x",
@@ -2698,7 +2698,7 @@
         },
         {
             "file": "v3/p5play.js",
-            "line": 5170,
+            "line": 5172,
             "description": "Gravity force that affects all dynamic physics colliders.",
             "itemtype": "property",
             "name": "gravity.y",
@@ -2706,7 +2706,15 @@
         },
         {
             "file": "v3/p5play.js",
-            "line": 5218,
+            "line": 5205,
+            "description": "Resizes the world to the given width and height. Used when\nthe canvas is created or resized.",
+            "access": "private",
+            "tagname": "resize",
+            "class": "World"
+        },
+        {
+            "file": "v3/p5play.js",
+            "line": 5226,
             "description": "Performs a physics simulation step that advances all sprites'\nforward in time by 1/60th of a second if no timeStep is given.\n\nThis function is automatically called at the end of the p5.js draw\nloop, unless it was already called inside the draw loop.",
             "itemtype": "method",
             "name": "step",
@@ -2731,7 +2739,7 @@
         },
         {
             "file": "v3/p5play.js",
-            "line": 5240,
+            "line": 5248,
             "description": "Returns the sprites at a position.",
             "itemtype": "method",
             "name": "getSpritesAt",
@@ -2748,13 +2756,14 @@
                 }
             ],
             "return": {
-                "description": ""
+                "description": "an array of sprites",
+                "type": "Array"
             },
             "class": "World"
         },
         {
             "file": "v3/p5play.js",
-            "line": 5278,
+            "line": 5286,
             "description": "Returns the sprite at the top most layer position where\nthe mouse click occurs",
             "itemtype": "method",
             "name": "getSpriteAt",
@@ -2771,13 +2780,14 @@
                 }
             ],
             "return": {
-                "description": ""
+                "description": "a sprite",
+                "type": "Sprite"
             },
             "class": "World"
         },
         {
             "file": "v3/p5play.js",
-            "line": 5364,
+            "line": 5372,
             "description": "Used internally to find a contact callback between two sprites.",
             "access": "private",
             "tagname": "_findContactCB",
@@ -2805,7 +2815,17 @@
         },
         {
             "file": "v3/p5play.js",
-            "line": 5440,
+            "line": 5409,
+            "description": "\"Sleeping\" sprites get temporarily ignored during physics\nsimulation. A sprite starts \"sleeping\" when it stops moving and\ndoesn't collide with anything that it wasn't already touching.\n\nThis is a performance optimization that can be disabled for\nevery sprite in the world.",
+            "itemtype": "property",
+            "name": "allowSleeping",
+            "type": "{Boolean}",
+            "default": "true",
+            "class": "World"
+        },
+        {
+            "file": "v3/p5play.js",
+            "line": 5460,
             "description": "Camera zoom.\n\nA scale of 1 will be the normal size. Setting it to 2 will\nmake everything twice the size. .5 will make everything half\nsize.",
             "itemtype": "property",
             "name": "zoom",
@@ -2815,7 +2835,7 @@
         },
         {
             "file": "v3/p5play.js",
-            "line": 5453,
+            "line": 5473,
             "description": "Get the translated mouse position relative to the camera view.\nOffsetting and scaling the canvas will not change the sprites' position\nnor the mouseX and mouseY variables. Use this property to read the mouse\nposition if the camera moved or zoomed.",
             "itemtype": "property",
             "name": "mouse",
@@ -2824,7 +2844,7 @@
         },
         {
             "file": "v3/p5play.js",
-            "line": 5466,
+            "line": 5486,
             "itemtype": "property",
             "name": "mouse.x",
             "type": "{Number}",
@@ -2832,7 +2852,7 @@
         },
         {
             "file": "v3/p5play.js",
-            "line": 5470,
+            "line": 5490,
             "itemtype": "property",
             "name": "mouse.y",
             "type": "{Number}",
@@ -2840,7 +2860,7 @@
         },
         {
             "file": "v3/p5play.js",
-            "line": 5475,
+            "line": 5495,
             "description": "True if the camera is active.\nRead only property. Use the methods Camera.on() and Camera.off()\nto enable or disable the camera.",
             "itemtype": "property",
             "name": "active",
@@ -2850,7 +2870,7 @@
         },
         {
             "file": "v3/p5play.js",
-            "line": 5495,
+            "line": 5515,
             "description": "The camera's position. {x, y}",
             "itemtype": "property",
             "name": "pos",
@@ -2859,7 +2879,7 @@
         },
         {
             "file": "v3/p5play.js",
-            "line": 5504,
+            "line": 5524,
             "description": "The camera's position. Alias for pos.",
             "itemtype": "property",
             "name": "position",
@@ -2868,7 +2888,7 @@
         },
         {
             "file": "v3/p5play.js",
-            "line": 5514,
+            "line": 5534,
             "description": "The camera x position.",
             "itemtype": "property",
             "name": "x",
@@ -2877,7 +2897,7 @@
         },
         {
             "file": "v3/p5play.js",
-            "line": 5529,
+            "line": 5549,
             "description": "The camera y position.",
             "itemtype": "property",
             "name": "y",
@@ -2886,7 +2906,7 @@
         },
         {
             "file": "v3/p5play.js",
-            "line": 5544,
+            "line": 5564,
             "description": "Activates the camera.\nThe canvas will be drawn according to the camera position and scale until\ncamera.off() is called",
             "itemtype": "method",
             "name": "on",
@@ -2894,7 +2914,7 @@
         },
         {
             "file": "v3/p5play.js",
-            "line": 5560,
+            "line": 5580,
             "description": "Deactivates the camera.\nThe canvas will be drawn normally, ignoring the camera's position\nand scale until camera.on() is called",
             "itemtype": "method",
             "name": "off",
@@ -2902,13 +2922,13 @@
         },
         {
             "file": "v3/p5play.js",
-            "line": 5575,
+            "line": 5595,
             "description": "This planck function should've been named \"shouldContact\",\nbecause that's what it actually decides.\n\nHere we override it to allow for overlap events between sprites.",
             "class": "Camera"
         },
         {
             "file": "v3/p5play.js",
-            "line": 5677,
+            "line": 5697,
             "description": "Use of `new Tiles()` is preferred.",
             "deprecated": true,
             "itemtype": "method",
@@ -2917,7 +2937,7 @@
         },
         {
             "file": "v3/p5play.js",
-            "line": 5738,
+            "line": 5758,
             "description": "Deprecated. Use world.step and allSprites.update instead.",
             "deprecated": true,
             "itemtype": "method",
@@ -2926,7 +2946,7 @@
         },
         {
             "file": "v3/p5play.js",
-            "line": 5750,
+            "line": 5770,
             "description": "Use world.getSpritesAt instead",
             "deprecated": true,
             "itemtype": "method",
@@ -2935,7 +2955,7 @@
         },
         {
             "file": "v3/p5play.js",
-            "line": 5760,
+            "line": 5780,
             "description": "Use world.getSpriteAt instead",
             "deprecated": true,
             "itemtype": "method",
@@ -2944,7 +2964,7 @@
         },
         {
             "file": "v3/p5play.js",
-            "line": 5966,
+            "line": 5986,
             "description": "Gets a color from a color palette",
             "itemtype": "method",
             "name": "colorPal",
@@ -2967,7 +2987,7 @@
         },
         {
             "file": "v3/p5play.js",
-            "line": 5990,
+            "line": 6010,
             "description": "Create pixel art images from a string. Each character in the\ninput string represents a color value defined in the palette\nobject.",
             "itemtype": "method",
             "name": "spriteArt",
@@ -2998,7 +3018,7 @@
         },
         {
             "file": "v3/p5play.js",
-            "line": 6050,
+            "line": 6070,
             "description": "Deprecated, use sprite.draw() instead.\n\nallSprites.draw() is run automatically at the end of the p5.js\ndraw loop, unless a sprite or group is drawn separately within the\ndraw loop.",
             "deprecated": true,
             "itemtype": "method",
@@ -3007,7 +3027,7 @@
         },
         {
             "file": "v3/p5play.js",
-            "line": 6065,
+            "line": 6085,
             "description": "Deprecated, use group.draw() instead.\n\nallSprites.draw() is run automatically at the end of the p5.js\ndraw loop, unless a sprite or group is drawn separately within the\ndraw loop.",
             "deprecated": true,
             "itemtype": "method",
@@ -3016,7 +3036,7 @@
         },
         {
             "file": "v3/p5play.js",
-            "line": 6081,
+            "line": 6101,
             "description": "Use of `new Sprite()` is preferred.\n\nCreates a new sprite.",
             "deprecated": true,
             "itemtype": "method",
@@ -3029,7 +3049,7 @@
         },
         {
             "file": "v3/p5play.js",
-            "line": 6094,
+            "line": 6114,
             "description": "Use of `new Group()` is preferred.\n\nCreates a new group of sprites.",
             "deprecated": true,
             "itemtype": "method",
@@ -3042,7 +3062,7 @@
         },
         {
             "file": "v3/p5play.js",
-            "line": 6107,
+            "line": 6127,
             "description": "Loads an animation. Equivalent to `new SpriteAnimation()`\n\nLoad animations in the preload p5.js function if you need to use\nthem when your program starts.",
             "itemtype": "method",
             "name": "loadAni",
@@ -3054,7 +3074,7 @@
         },
         {
             "file": "v3/p5play.js",
-            "line": 6116,
+            "line": 6136,
             "description": "Alias for loadAni",
             "itemtype": "method",
             "name": "loadAnimation",
@@ -3066,7 +3086,7 @@
         },
         {
             "file": "v3/p5play.js",
-            "line": 6126,
+            "line": 6146,
             "description": "Displays an animation. Similar to the p5.js image function.",
             "itemtype": "method",
             "name": "animation",
@@ -3091,7 +3111,7 @@
         },
         {
             "file": "v3/p5play.js",
-            "line": 6140,
+            "line": 6160,
             "description": "Delay code execution in an async function for the specified time\nor if no input parameter is given, it waits for the next possible\nanimation frame.",
             "itemtype": "method",
             "name": "delay",
@@ -3113,14 +3133,14 @@
         },
         {
             "file": "v3/p5play.js",
-            "line": 6165,
+            "line": 6185,
             "deprecated": true,
             "deprecationMessage": "Use delay instead.",
             "class": "p5play"
         },
         {
             "file": "v3/p5play.js",
-            "line": 6172,
+            "line": 6192,
             "description": "Awaitable function for playing sounds.",
             "itemtype": "method",
             "name": "play",
@@ -3142,7 +3162,7 @@
         },
         {
             "file": "v3/p5play.js",
-            "line": 6195,
+            "line": 6215,
             "description": "Use of `new Canvas()` is preferred.\n\np5play adds some extra functionality to the p5.js createCanvas\nfunction.\n\nIn p5play, a canvas can be created with an aspect ratio in the\nformat `width:height`. For example `new Canvas('16:9')` will create\nthe largest possible canvas with a 16:9 aspect ratio.\n\nThis function also disables the default keydown responses for\nthe arrow keys, slash, and spacebar. This is to prevent the\nbrowser from scrolling the page when the user is playing a game\nusing common keyboard commands.",
             "itemtype": "method",
             "name": "createCanvas",
@@ -3162,7 +3182,7 @@
         },
         {
             "file": "v3/p5play.js",
-            "line": 6366,
+            "line": 6386,
             "description": "Just like the p5.js background function except it also accepts\na color pallette code.",
             "itemtype": "method",
             "name": "background",
@@ -3170,7 +3190,7 @@
         },
         {
             "file": "v3/p5play.js",
-            "line": 6384,
+            "line": 6404,
             "description": "Just like the p5.js fill function except it also accepts\na color pallette code.",
             "itemtype": "method",
             "name": "fill",
@@ -3178,7 +3198,7 @@
         },
         {
             "file": "v3/p5play.js",
-            "line": 6402,
+            "line": 6422,
             "description": "Just like the p5.js stroke function except it also accepts\na color pallette code.",
             "itemtype": "method",
             "name": "stroke",
@@ -3186,7 +3206,7 @@
         },
         {
             "file": "v3/p5play.js",
-            "line": 6426,
+            "line": 6446,
             "description": "Just like the p5.js loadImage function except it also caches images\nso that they are only loaded once. Multiple calls to loadImage with\nthe same path will return the same image object. It also adds the\nimage's url as a property of the image object.",
             "itemtype": "method",
             "name": "loadImage",
@@ -3219,7 +3239,7 @@
         },
         {
             "file": "v3/p5play.js",
-            "line": 6538,
+            "line": 6558,
             "description": "A FriendlyError is a custom error class that extends the native JS Error class.",
             "access": "private",
             "tagname": "FriendlyError",
@@ -3244,7 +3264,7 @@
         },
         {
             "file": "v3/p5play.js",
-            "line": 6587,
+            "line": 6607,
             "description": "A group of all the sprites.",
             "itemtype": "property",
             "name": "allSprites",
@@ -3252,7 +3272,7 @@
         },
         {
             "file": "v3/p5play.js",
-            "line": 6594,
+            "line": 6614,
             "description": "The planck physics world. Use this to change gravity and offset the\nsprite's coordinate system.",
             "itemtype": "property",
             "name": "world",
@@ -3260,7 +3280,7 @@
         },
         {
             "file": "v3/p5play.js",
-            "line": 6602,
+            "line": 6622,
             "description": "Deprecated, use the p5.js frameCount instead.\n\nThis property will be removed in v3.7.0",
             "deprecated": true,
             "itemtype": "property",
@@ -3269,7 +3289,7 @@
         },
         {
             "file": "v3/p5play.js",
-            "line": 6612,
+            "line": 6632,
             "description": "The default camera. Use this to pan and zoom the camera.",
             "itemtype": "property",
             "name": "camera",
@@ -3277,7 +3297,7 @@
         },
         {
             "file": "v3/p5play.js",
-            "line": 6619,
+            "line": 6639,
             "description": "Get user input from the mouse.\nStores the state of the left, center, or right mouse buttons.",
             "itemtype": "property",
             "name": "mouse",
@@ -3285,7 +3305,7 @@
         },
         {
             "file": "v3/p5play.js",
-            "line": 6625,
+            "line": 6645,
             "description": "Get user input from the keyboard.",
             "itemtype": "property",
             "name": "kb",
@@ -3293,7 +3313,7 @@
         },
         {
             "file": "v3/p5play.js",
-            "line": 6630,
+            "line": 6650,
             "description": "Alias for kb.",
             "itemtype": "property",
             "name": "keyboard",
@@ -3301,7 +3321,7 @@
         },
         {
             "file": "v3/p5play.js",
-            "line": 6635,
+            "line": 6655,
             "description": "Get user input from game controllers.",
             "itemtype": "property",
             "name": "contro",
@@ -3309,7 +3329,7 @@
         },
         {
             "file": "v3/p5play.js",
-            "line": 6640,
+            "line": 6660,
             "description": "Use this function to performance test your game code. FPS, amongst\nthe gaming community, refers to how many frames a game could render\nper second, not including the delay between when frames are shown\non the screen. The higher the FPS, the better the game is\nperforming.",
             "itemtype": "method",
             "name": "getFPS",
@@ -3321,7 +3341,7 @@
         },
         {
             "file": "v3/p5play.js",
-            "line": 6672,
+            "line": 6692,
             "description": "The amount of frames an input must be pressed to be considered held.\nDefault is 12.",
             "itemtype": "property",
             "name": "holdThreshold",
@@ -3330,7 +3350,7 @@
         },
         {
             "file": "v3/p5play.js",
-            "line": 6682,
+            "line": 6702,
             "description": "Initializes the input's values to zero.",
             "access": "private",
             "tagname": "init",
@@ -3338,7 +3358,7 @@
         },
         {
             "file": "v3/p5play.js",
-            "line": 6693,
+            "line": 6713,
             "description": "Attempt to auto-correct the user's input. Inheriting classes\noverride this method.",
             "access": "private",
             "tagname": "ac",
@@ -3346,7 +3366,7 @@
         },
         {
             "file": "v3/p5play.js",
-            "line": 6703,
+            "line": 6723,
             "itemtype": "method",
             "name": "presses",
             "params": [
@@ -3364,7 +3384,7 @@
         },
         {
             "file": "v3/p5play.js",
-            "line": 6714,
+            "line": 6734,
             "itemtype": "method",
             "name": "pressing",
             "params": [
@@ -3382,7 +3402,7 @@
         },
         {
             "file": "v3/p5play.js",
-            "line": 6726,
+            "line": 6746,
             "itemtype": "method",
             "name": "pressed",
             "params": [
@@ -3400,7 +3420,7 @@
         },
         {
             "file": "v3/p5play.js",
-            "line": 6735,
+            "line": 6755,
             "itemtype": "method",
             "name": "holds",
             "params": [
@@ -3418,7 +3438,7 @@
         },
         {
             "file": "v3/p5play.js",
-            "line": 6746,
+            "line": 6766,
             "itemtype": "method",
             "name": "holding",
             "params": [
@@ -3436,7 +3456,7 @@
         },
         {
             "file": "v3/p5play.js",
-            "line": 6757,
+            "line": 6777,
             "itemtype": "method",
             "name": "held",
             "params": [
@@ -3454,7 +3474,7 @@
         },
         {
             "file": "v3/p5play.js",
-            "line": 6768,
+            "line": 6788,
             "itemtype": "method",
             "name": "released",
             "params": [
@@ -3472,7 +3492,7 @@
         },
         {
             "file": "v3/p5play.js",
-            "line": 6812,
+            "line": 6832,
             "description": "The mouse's x position.",
             "itemtype": "property",
             "name": "x",
@@ -3481,7 +3501,7 @@
         },
         {
             "file": "v3/p5play.js",
-            "line": 6819,
+            "line": 6839,
             "description": "The mouse's y position.",
             "itemtype": "property",
             "name": "y",
@@ -3490,7 +3510,7 @@
         },
         {
             "file": "v3/p5play.js",
-            "line": 6827,
+            "line": 6847,
             "description": "The mouse's position.",
             "itemtype": "property",
             "name": "pos",
@@ -3498,7 +3518,7 @@
         },
         {
             "file": "v3/p5play.js",
-            "line": 6834,
+            "line": 6854,
             "description": "The mouse's position. Alias for pos.",
             "itemtype": "property",
             "name": "position",
@@ -3506,7 +3526,7 @@
         },
         {
             "file": "v3/p5play.js",
-            "line": 6850,
+            "line": 6870,
             "itemtype": "method",
             "name": "dragging",
             "params": [
@@ -3524,7 +3544,7 @@
         },
         {
             "file": "v3/p5play.js",
-            "line": 6870,
+            "line": 6890,
             "itemtype": "method",
             "name": "hovers",
             "return": {
@@ -3535,7 +3555,7 @@
         },
         {
             "file": "v3/p5play.js",
-            "line": 6878,
+            "line": 6898,
             "itemtype": "method",
             "name": "hovering",
             "return": {
@@ -3546,7 +3566,7 @@
         },
         {
             "file": "v3/p5play.js",
-            "line": 6886,
+            "line": 6906,
             "itemtype": "method",
             "name": "hovered",
             "return": {
@@ -3557,7 +3577,7 @@
         },
         {
             "file": "v3/p5play.js",
-            "line": 7023,
+            "line": 7043,
             "description": "Obsolete: Use kb.pressing(key) instead.",
             "deprecated": true,
             "obsolete": "keyIsDown",
@@ -3572,7 +3592,7 @@
         },
         {
             "file": "v3/p5play.js",
-            "line": 7036,
+            "line": 7056,
             "access": "private",
             "tagname": "_getKeyFromCode",
             "params": [
@@ -3589,7 +3609,7 @@
         },
         {
             "file": "v3/p5play.js",
-            "line": 7302,
+            "line": 7322,
             "description": "Updates the state of all controllers.",
             "class": "InputDevice"
         }
@@ -3677,67 +3697,59 @@
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " v3/p5play.js:5240"
+            "line": " v3/p5play.js:5248"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " v3/p5play.js:5278"
+            "line": " v3/p5play.js:5286"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " v3/p5play.js:5364"
+            "line": " v3/p5play.js:5372"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " v3/p5play.js:5966"
+            "line": " v3/p5play.js:5986"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " v3/p5play.js:5990"
+            "line": " v3/p5play.js:6010"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " v3/p5play.js:6081"
+            "line": " v3/p5play.js:6101"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " v3/p5play.js:6094"
+            "line": " v3/p5play.js:6114"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " v3/p5play.js:6107"
+            "line": " v3/p5play.js:6127"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " v3/p5play.js:6116"
+            "line": " v3/p5play.js:6136"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " v3/p5play.js:6140"
+            "line": " v3/p5play.js:6160"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " v3/p5play.js:6172"
+            "line": " v3/p5play.js:6192"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " v3/p5play.js:6640"
+            "line": " v3/p5play.js:6660"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " v3/p5play.js:6703"
+            "line": " v3/p5play.js:6723"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " v3/p5play.js:6714"
-        },
-        {
-            "message": "replacing incorrect tag: returns with return",
-            "line": " v3/p5play.js:6726"
-        },
-        {
-            "message": "replacing incorrect tag: returns with return",
-            "line": " v3/p5play.js:6735"
+            "line": " v3/p5play.js:6734"
         },
         {
             "message": "replacing incorrect tag: returns with return",
@@ -3745,15 +3757,19 @@
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " v3/p5play.js:6757"
+            "line": " v3/p5play.js:6755"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " v3/p5play.js:6768"
+            "line": " v3/p5play.js:6766"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " v3/p5play.js:6850"
+            "line": " v3/p5play.js:6777"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " v3/p5play.js:6788"
         },
         {
             "message": "replacing incorrect tag: returns with return",
@@ -3761,19 +3777,23 @@
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " v3/p5play.js:6878"
+            "line": " v3/p5play.js:6890"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " v3/p5play.js:6886"
+            "line": " v3/p5play.js:6898"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " v3/p5play.js:6906"
         },
         {
             "message": "unknown tag: obsolete",
-            "line": " v3/p5play.js:7023"
+            "line": " v3/p5play.js:7043"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " v3/p5play.js:7036"
+            "line": " v3/p5play.js:7056"
         },
         {
             "message": "Missing item type\np5play",
@@ -3913,51 +3933,55 @@
         },
         {
             "message": "Missing item type\nReturns the highest depth in a group",
-            "line": " v3/p5play.js:4954"
+            "line": " v3/p5play.js:4956"
         },
         {
             "message": "Missing item type\nReturns the lowest depth in a group",
-            "line": " v3/p5play.js:4970"
+            "line": " v3/p5play.js:4972"
         },
         {
             "message": "Missing item type\nShould only be called by the p5.play library on the allSprites\ngroup during world.step()",
-            "line": " v3/p5play.js:5026"
+            "line": " v3/p5play.js:5028"
+        },
+        {
+            "message": "Missing item type\nResizes the world to the given width and height. Used when\nthe canvas is created or resized.",
+            "line": " v3/p5play.js:5205"
         },
         {
             "message": "Missing item type\nUsed internally to find a contact callback between two sprites.",
-            "line": " v3/p5play.js:5364"
+            "line": " v3/p5play.js:5372"
         },
         {
             "message": "Missing item type\nThis planck function should've been named \"shouldContact\",\nbecause that's what it actually decides.\n\nHere we override it to allow for overlap events between sprites.",
-            "line": " v3/p5play.js:5575"
+            "line": " v3/p5play.js:5595"
         },
         {
             "message": "Missing item type",
-            "line": " v3/p5play.js:6165"
+            "line": " v3/p5play.js:6185"
         },
         {
             "message": "Missing item type\nA FriendlyError is a custom error class that extends the native JS Error class.",
-            "line": " v3/p5play.js:6538"
+            "line": " v3/p5play.js:6558"
         },
         {
             "message": "Missing item type\nInitializes the input's values to zero.",
-            "line": " v3/p5play.js:6682"
+            "line": " v3/p5play.js:6702"
         },
         {
             "message": "Missing item type\nAttempt to auto-correct the user's input. Inheriting classes\noverride this method.",
-            "line": " v3/p5play.js:6693"
+            "line": " v3/p5play.js:6713"
         },
         {
             "message": "Missing item type\nObsolete: Use kb.pressing(key) instead.",
-            "line": " v3/p5play.js:7023"
+            "line": " v3/p5play.js:7043"
         },
         {
             "message": "Missing item type",
-            "line": " v3/p5play.js:7036"
+            "line": " v3/p5play.js:7056"
         },
         {
             "message": "Missing item type\nUpdates the state of all controllers.",
-            "line": " v3/p5play.js:7302"
+            "line": " v3/p5play.js:7322"
         }
     ]
 }

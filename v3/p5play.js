@@ -5202,6 +5202,12 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			this.autoStep = true;
 		}
 
+		/**
+		 * Resizes the world to the given width and height. Used when
+		 * the canvas is created or resized.
+		 *
+		 * @private resize
+		 */
 		resize(w, h) {
 			w ??= this.p.width;
 			h ??= this.p.height;
@@ -5245,7 +5251,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		 * @method getSpritesAt
 		 * @param {Number} x
 		 * @param {Number} y
-		 * @returns
+		 * @returns {Array} an array of sprites
 		 */
 		getSpritesAt(x, y, group, cameraActiveWhenDrawn) {
 			cameraActiveWhenDrawn ??= true;
@@ -5284,7 +5290,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		 * @method getSpriteAt
 		 * @param {Number} x
 		 * @param {Number} y
-		 * @returns
+		 * @returns {Sprite} a sprite
 		 */
 		getSpriteAt(x, y, group) {
 			let sprites = this.getSpritesAt(x, y, group);
@@ -5400,6 +5406,18 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			return false;
 		}
 
+		/**
+		 * "Sleeping" sprites get temporarily ignored during physics
+		 * simulation. A sprite starts "sleeping" when it stops moving and
+		 * doesn't collide with anything that it wasn't already touching.
+		 *
+		 * This is a performance optimization that can be disabled for
+		 * every sprite in the world.
+		 *
+		 * @property allowSleeping
+		 * @type {Boolean}
+		 * @default true
+		 */
 		get allowSleeping() {
 			return this.getAllowSleeping();
 		}

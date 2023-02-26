@@ -280,6 +280,33 @@ function draw() {
 		boxes.removeAll();
 	}
 }
+			</script>
+		</div>
+		<div id="page-6" class="page">
+			<script type="text/md">
+## Culling
+
+By default, sprites are removed when they go 10000 pixels offscreen relative to the camera's position. This is to prevent the world from getting too big, which would slow down the physics simulation.
+
+To change this, set `allSprites.autoCull = false` and use the `group.cull` function to set a different cull boundary. It can even cull sprites that don't have a physics collider.
+			</script>
+			<script type="mie/p5" name="cull">
+let balls;
+function setup() {
+	new Canvas(500, 192);
+	balls = new Group();
+	balls.collider = 'none';
+	balls.direction = () => random(0, 360);
+	balls.speed = () => random(1, 5);
+	balls.d = 20;
+	balls.amount = 10;
+}
+function draw() {
+	clear();
+	if (balls.cull(-50)) {
+		new balls.Sprite();
+	}
+}
 		</script>
 		</div>
 
@@ -287,12 +314,13 @@ function draw() {
 		<div id="toc">
 			<a id="prevPage" class="navLink">Prev Page</a>
 			<nav id="pageNav" class="submenu">
-				<a data-page="0" href="group.html?page=0">Inheritance</a>
+				<a data-page="0" href="group.html?page=0">Soft and Dynamic Inheritance</a>
 				<a data-page="1" href="group.html?page=1">Arrow Setters</a>
 				<a data-page="2" href="group.html?page=2">Overlap</a>
 				<a data-page="3" href="group.html?page=3">allSprites</a>
 				<a data-page="4" href="group.html?page=4">Indexed Arrow Setters</a>
-				<a data-page="5" href="group.html?page=5">Sub Groups</a>
+				<a data-page="5" href="group.html?page=5">Subgroups</a>
+				<a data-page="6" href="group.html?page=6">Culling</a>
 			</nav>
 			<a id="nextPage" class="navLink">Next Page</a>
 		</div>
