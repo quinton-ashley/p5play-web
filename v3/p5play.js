@@ -67,12 +67,12 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 	/**
 	 * Returns an array with the line length, angle, and number of sides of a regular polygon
 	 *
-	 * @private
-	 * @param {String} n name of the regular polygon
+	 * @private getRegularPolygon
 	 * @param {Number} l side length
+	 * @param {String} n name of the regular polygon
 	 * @returns {Boolean} an array [line, angle, sides]
 	 */
-	function getRegularPolygon(n, l) {
+	function getRegularPolygon(l, n) {
 		if (n == 'triangle') l = [l, -120, 3];
 		else if (n == 'square') l = [l, -90, 4];
 		else if (n == 'pentagon') l = [l, -72, 5];
@@ -235,7 +235,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 					if (isColliderType(h)) {
 						collider = h;
 					} else {
-						w = getRegularPolygon(h, w);
+						w = getRegularPolygon(w, h);
 					}
 					h = undefined;
 				}
@@ -739,7 +739,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 					this._originMode = 'start';
 				}
 				if (typeof h == 'string') {
-					path = getRegularPolygon(h, w);
+					path = getRegularPolygon(w, h);
 					h = undefined;
 				} else {
 					path = w;
@@ -6264,6 +6264,9 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 				else scale = Number(args[2][1].slice(1));
 				ratio = [args[0], args[1]];
 			}
+			if (args[2][0] == 'fullscreen') {
+				isFullScreen = true;
+			}
 		}
 		if (ratio) {
 			let rW = Number(ratio[0]);
@@ -6336,12 +6339,15 @@ html, body {
 	margin: 0;
 	padding: 0;
 	overflow: hidden;
+	height: 100%;
 }
 main {
 	margin: auto;
 	display: flex;
+	flex-wrap: wrap;
 	align-content: center;
 	justify-content: center;
+	height: 100%;
 }`;
 		}
 		if (pixelated) {

@@ -289,6 +289,8 @@ function draw() {
 By default, sprites are removed when they go 10000 pixels offscreen relative to the camera's position. This is to prevent the world from getting too big, which would slow down the physics simulation.
 
 To change this, set `allSprites.autoCull = false` and use the `group.cull` function to set a different cull boundary. It can even cull sprites that don't have a physics collider.
+
+An optional last parameter can be used to specify a callback function that will be called when a sprite is culled. The default response to culling is to remove the sprite that exited the cull boundary but by setting your own function you can do something else. The callback function receives the sprite that was culled and a total count of how many sprites were culled on that frame.
 			</script>
 			<script type="mie/p5" name="cull">
 let balls;
