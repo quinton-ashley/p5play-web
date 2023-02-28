@@ -402,13 +402,16 @@ center p {
 	padding-bottom: 5px;
 }
 
-body.dark #patreon-brand svg {
-	filter: invert(90%);
-}
-
-#patreon-brand img {
+#patreon-brand img:nth-of-type(1) {
 	height: 40px;
 }
+
+body.dark #patreon-brand img:nth-of-type(2) {
+	filter: invert(90%);
+	height: 20px;
+}
+
+
 
 #crimson-brand {
 	background-color: #1d1e2b;
@@ -446,9 +449,15 @@ body.dark #patreon-brand svg {
 	width: 8%;
 }
 
+#depaul-brand {
+	background-color: rgb(66, 8, 17);
+	width: 20%;
+}
+
 #zenn-brand img,
 #nyuitp-brand img,
-#hunter-brand img {
+#hunter-brand img,
+#depaul-brand img {
 	width: 100%;
 }
 
@@ -493,6 +502,10 @@ body.dark #patreon-brand svg {
 /* #discord-brand:hover img {
 	filter: sepia(100%) saturate(1000%) hue-rotate(80deg) invert() brightness(140%);
 } */
+
+.glitch-brand {
+	filter: hue-rotate(180deg) invert() opacity(80%);
+}
 
 .bariol {
 	font-family: "bariol", "source sans pro", "helvetica";
