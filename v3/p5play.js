@@ -1300,6 +1300,19 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			this._color = this._parseColor(val);
 		}
 		/**
+		 * Alias for color. colour is the British English spelling.
+		 *
+		 * @property colour
+		 * @type {p5.Color}
+		 * @default random color
+		 */
+		get colour() {
+			return this._color;
+		}
+		set colour(val) {
+			this._color = this._parseColor(val);
+		}
+		/**
 		 * @deprecated shapeColor
 		 */
 		get shapeColor() {
