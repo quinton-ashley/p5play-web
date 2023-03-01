@@ -15,5 +15,5 @@ I recommend using Visual Studio Code with the Live Server extension for developm
 See the [LICENSING.md][] file.
 
 [licensing.md]: LICENSING.md
-[p5play project planning page]: https://github.com/molleindustria/p5play/projects/1?fullscreen=true
+[p5play project planning page]: https://github.com/quinton-ashley/p5play/projects/1
 [mie]: https://github.com/quinton-ashley/mie
