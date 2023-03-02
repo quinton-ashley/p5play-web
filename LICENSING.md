@@ -10,4 +10,4 @@ The JavaScript example code and non-logo images shown in the mini-editors on the
 
 The lessons on the p5play website are owned by Quinton Ashley, all rights reserved. They are publicly available to be read and referenced in your own projects, but you may not copy them to a greater extent than fair use allows without permission from Quinton Ashley.
 
-Any contributions made to the p5play v3 library or p5play.org become the intellectual property of Quinton Ashley. By contributing to the p5play and p5play-web repositories, you forfiet any copyright claims over your work for the benefit of the p5play community.
+Any contributions made to the p5play v3 library or p5play.org become the intellectual property of Quinton Ashley. By contributing to the p5play and p5play-web repositories, you forfiet any copyright claims over your work for the benefit of the p5play community. Any contributions to the p5play v3 library will be credited on the home page of p5play.org and in the p5play v3 changelog unless you'd prefer to make contributions anonymously.
