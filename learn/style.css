@@ -503,7 +503,7 @@ body.dark #patreon-brand img:nth-of-type(2) {
 	filter: sepia(100%) saturate(1000%) hue-rotate(80deg) invert() brightness(140%);
 } */
 
-.glitch-brand {
+.dark .glitch-brand {
 	filter: hue-rotate(180deg) invert() opacity(80%);
 }
 
