@@ -52,12 +52,12 @@
 				</h3>
 
 				<p>
-					Looking to turn your ideas into online games or interactive art? Check out p5play! It was originally designed
-					by Computer Science teachers to be an intuitive platform for beginners, making it a popular choice at schools
-					and universities around the world. But p5play v3 isn't just for the classroom. It's a powerful tool built on
+					Looking to turn your ideas into online games or interactive art? Check out p5play! It was designed
+					by Computer Science teachers to be intuitive for beginners, making it popular at schools
+					and universities around the world. But, p5play v3 isn't just for classroom use. It's a powerful tool built on
 					<a href="https://piqnt.com/planck.js/" target="_blank">planck.js</a>,
-					a port of Box2D, the same physics engine used by industry leaders to power beloved 2D
-					games like Tiny Wings and Angry Birds.
+					a port of Box2D - the same physics simulator used by industry
+					leaders in beloved games like Tiny Wings and Angry Birds.
 				</p>
 
 				<p>
@@ -87,13 +87,13 @@
 let tumbler, x, y, sides, len, angle;
 
 function setup() {
-	new Canvas(500, 400);
+	new Canvas(500, 350);
 	world.gravity.y = 10;
 
 	x = width * 0.5;
 	y = height * 0.5;
 	sides = 5;
-	len = height / sides;
+	len = 75;
 	angle = 360 / sides;
 
 	let la = [len, angle, len, -angle, len, angle, sides];
