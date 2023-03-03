@@ -193,7 +193,7 @@ function setup() {
 function draw() {
 	clear();
 }
-		</script>
+			</script>
 		</div>
 		<div id="page-1" class="page">
 			<script type="text/md">
@@ -235,25 +235,25 @@ function setup() {
 function draw() {
 	clear();
 }
-			</script>
+				</script>
 			</div>
 			<div class="minis">
 				<script type="mie/p5" name="anti-gravity" base="2">
 world.gravity.y = -1;
-			</script>
+				</script>
 				<script type="mie/p5" name="sloped floor" base="2">
 floor.rotation = 2;
-			</script>
+				</script>
 			</div>
 
 			<div class="minis">
 				<script type="mie/p5" name="rising platform" base="2">
 floor.collider = 'k';
 floor.velocity.y = -1;
-			</script>
+				</script>
 				<script type="mie/p5" name="whoops!" base="2">
 floor.collider = 'none';
-			</script>
+				</script>
 			</div>
 			<div class="break"></div>
 			<div>
@@ -263,7 +263,7 @@ floor.collider = 'none';
 Try creating a sprite named `peg` with a static collider and circle shape. Create a sprite `block` with a dynamic collider and box shape. Make the block fall from above and hit the peg, falling to the right side.
 
 Note that `world` is created when p5play loads but by default there is no gravity. Try setting `world.gravity.y` to a positive number. Each time the p5.js `draw` function finishes, sprites are automatically drawn and updated by default.
-		</script>
+				</script>
 				<script type="mie/p5" name="Level 1 Challenge Solution" hide-editor>
 let peg, block;
 
@@ -286,7 +286,7 @@ function setup() {
 function draw() {
 	clear();
 }
-			</script>
+				</script>
 			</div>
 			<script type="mie/p5" name="Level 1 Challenge" lines="13" horiz>
 let peg, block;
@@ -299,7 +299,7 @@ function setup() {
 function draw() {
 	clear();
 }
-		</script>
+			</script>
 		</div>
 		<div id="page-2" class="page">
 			<script type="mie/p5" name="idle player" lines="11" hide base-3>
@@ -318,7 +318,7 @@ function setup() {
 function draw() {
 	clear();
 }
-		</script>
+			</script>
 			<div>
 				<h2>Sprite movement</h2>
 				<p>
@@ -333,7 +333,7 @@ if (mouse.presses()) {
 	player.x = mouse.x;
 	player.y = mouse.y;
 }
-		</script>
+			</script>
 			<div>
 				<p>
 					The next example shows what happens if a sprite is teleported
@@ -346,7 +346,7 @@ if (mouse.presses()) {
 			<script type="mie/p5" name="teleport (continuously) 👎" base="3">
 player.x = mouse.x;
 player.y = mouse.y;
-		</script>
+			</script>
 			<div>
 				<p>
 					All of the other movement examples on this page are based on
@@ -360,9 +360,9 @@ player.y = mouse.y;
 				</p>
 			</div>
 			<script type="mie/p5" name="velocity (continuously)" base="3">
-player.vel.x = -3;
-player.vel.y = 1;
-		</script>
+player.vel.x = -2;
+player.vel.y = 0.1;
+			</script>
 			<div>
 				<p>
 					Move the sprite indefinitely by setting its <code>direction</code> and <code>speed</code>.
@@ -379,7 +379,7 @@ player.vel.y = 1;
 			<script type="mie/p5" name="direction + speed (continuously)" base="3">
 player.direction = 187;
 player.speed = 3;
-		</script>
+			</script>
 			<div>
 				<p>
 					The <code>move</code> function moves a sprite across a fixed
@@ -392,7 +392,7 @@ if (kb.presses('left')) {
 	//   (distance, direction, speed)
 	player.move(30, 'left', 3);
 }
-		</script>
+			</script>
 			<div>
 				<p>
 					The <code>moveTowards</code> function moves a sprite towards a
@@ -408,7 +408,7 @@ if (kb.presses('left')) {
 			<script type="mie/p5" name="moveTowards (continuously)" base="3">
 //             (position, tracking)
 player.moveTowards(mouse, 0.10);
-		</script>
+			</script>
 			<div>
 				<p>
 					The <code>moveTo</code> function generates an impulse that moves a sprite to a position at a constant speed.
@@ -430,7 +430,7 @@ if (mouse.presses()) {
 	//        (position, speed)
 	player.moveTo(mouse, 8);
 }
-		</script>
+			</script>
 			<div>
 				<p>
 					The <code>angleTo</code> function gets the angle between
@@ -450,7 +450,7 @@ if (mouse.pressing()) {
 	player.direction = player.angleTo(mouse);
 	player.speed = 3;
 }
-		</script>
+			</script>
 			<div>
 				<p>
 					Hopefully the examples on this page helped you understand some of the movement options available in p5play.
@@ -466,7 +466,7 @@ if (mouse.pressing()) {
 if (kb.pressing('left')) player.vel.x = -5;
 else if (kb.pressing('right')) player.vel.x = 5;
 else player.vel.x = 0;
-		</script>
+			</script>
 		</div>
 		<div id="page-3" class="page">
 			<script type="text/md">
@@ -479,7 +479,7 @@ If you need an image to be loaded before your program starts, it's best to use [
 `sprite.scale` changes the size of both the sprite's collider and visual appearance. A scale value of 2 doubles the size of the sprite.
 
 Try pressing the left mouse button. When the `sprite.debug` property is set to true you can see the sprite's physics body collider. You can make the size of the collider different from the size of the image!
-		</script>
+			</script>
 			<script type="mie/p5" name="image">
 let monster;
 
@@ -498,7 +498,7 @@ function draw() {
 	}
 	monster.debug = mouse.pressing();
 }
-		</script>
+			</script>
 			<script type="text/md">
 ## Make Pixel Art!
 			
@@ -569,7 +569,7 @@ Inside the Sprite constructor, `new Sprite()`, you can specify the sprite's posi
 As you saw on the previous Sprite reference pages, you don't need to add any inputs to the Sprite constructor to create a sprite. But, if you do want to set a sprite's size in the constructor you'll need to specify its position first.
 
 By default, if no inputs are given to the Sprite constructor, new sprites are positioned at the center of the canvas, with a width and height of 50 pixels, and a dynamic collider.
-			</script>
+				</script>
 				<script type="mie/p5" name="default sprite" lines="3" horiz>
 function setup() {
 	new Sprite();
@@ -578,7 +578,7 @@ function setup() {
 function draw() {
 	clear();
 }
-			</script>
+				</script>
 			</div>
 			<div class="minis horiz">
 				<script type="mie/p5" name="Ooo!" horiz lines="18">
@@ -604,7 +604,7 @@ function setup() {
 function draw() {
 	clear();
 }
-			</script>
+				</script>
 				<script type="mie/p5" name="ball on the floor" lines="10" horiz>
 let ball, floor;
 
@@ -620,7 +620,7 @@ function setup() {
 function draw() {
 	clear();
 }
-			</script>
+				</script>
 			</div>
 			<div class="break"></div>
 			<div>
@@ -640,7 +640,7 @@ function setup() {
 function draw() {
 	clear();
 }
-		</script>
+			</script>
 		</div>
 		<div id="page-5" class="page">
 			<script type="text/md">
@@ -651,7 +651,7 @@ On the first frame that a sprite collides with another sprite, the `collides` fu
 While a sprite is colliding with another sprite, the `colliding` function returns the number of frames the collision has occurred for.
 
 On the first frame after two sprites collided, the `collided` function returns true.
-		</script>
+			</script>
 			<script type="mie/p5" name="pillar stomp!" horiz>
 let player, pillar;
 
@@ -671,7 +671,7 @@ function draw() {
 		pillar.h -= 52;
 	}
 }
-		</script>
+			</script>
 			<script type="mie/p5" name="drop block" horiz>
 let block, floor;
 
@@ -694,7 +694,7 @@ function draw() {
 		block.vel.y = -9;
 	}
 }
-		</script>
+			</script>
 			<script type="mie/p5" name="break floor" horiz>
 let block, floor;
 
@@ -712,7 +712,7 @@ function draw() {
 		floor.collider = 'dynamic';
 	}
 }
-		</script>
+			</script>
 		</div>
 		<div id="page-6" class="page">
 			<div>
@@ -732,7 +732,7 @@ function setup() {
 function draw() {
 	clear();
 }
-		</script>
+			</script>
 			<div>
 				<h2>Layer</h2>
 				<p>By default sprites are drawn in the order they were created in. You can change the draw order by editing
@@ -741,7 +741,7 @@ function draw() {
 			<script type="mie/p5" name="layer" horiz lines=8 base=4>
 sprite1.layer = 2;
 sprite2.layer = 1;
-		</script>
+			</script>
 			<script type="text/md">
 ## overlaps, overlapping, and overlapped
 
@@ -753,7 +753,7 @@ On the first frame after two sprites overlapped, the `overlapped` function retur
 
 Note that physical interactions between sprites, including collisions and overlaps, can't be properly detected when a
 sprite is teleported, its position is directly changed!
-		</script>
+			</script>
 			<script type="mie/p5" name="collect coin">
 let player, coin;
 
@@ -771,7 +771,7 @@ function draw() {
 		
 	if (player.overlaps(coin)) coin.remove();
 }
-		</script>
+			</script>
 			<div class="break"></div>
 			<div>
 				<h2>Try it out!</h2>
@@ -797,7 +797,7 @@ function draw() {
 	
 	
 }
-		</script>
+			</script>
 		</div>
 		<div id="page-7" class="page">
 			<script type="mie/p5" base-5 hide>
@@ -813,7 +813,7 @@ function setup() {
 function draw() {
 	clear();
 }
-		</script>
+			</script>
 			<div>
 				<h2>Sprite rotation</h2>
 				<p>
@@ -827,7 +827,7 @@ function draw() {
 			<script type="mie/p5" name="rotation (teleport)" base="5">
 if (kb.pressing('space')) sprite.rotation = 90;
 else sprite.rotation = 0;
-		</script>
+			</script>
 			<div>
 				<p>
 					Changing the sprite's <code>rotationSpeed</code> directly is useful for sprites that rotate indefinitely.
@@ -835,7 +835,7 @@ else sprite.rotation = 0;
 			</div>
 			<script type="mie/p5" name="rotationSpeed" base="5">
 sprite.rotationSpeed = 1;
-		</script>
+			</script>
 			<div>
 				<p>
 					Use the <code>rotate</code> function to rotate a sprite by an amount.
@@ -849,7 +849,7 @@ sprite.rotationSpeed = 1;
 //                                 (angle, rotationSpeed)
 if (kb.presses('left')) sprite.rotate(-45, 3);
 if (kb.presses('right')) sprite.rotate(45, 3);
-		</script>
+			</script>
 			<div>
 				<p>
 					Use the <code>rotateTo</code> function to rotate a sprite so that it faces a position, which can also be given
@@ -866,7 +866,7 @@ if (kb.presses('right')) sprite.rotate(45, 3);
 			<script type="mie/p5" name="rotateTo" base="5">
 //                     (position, rotationSpeed, facing)
 if (mouse.presses()) sprite.rotateTo(mouse, 5, 0);
-		</script>
+			</script>
 			<div>
 				<p>
 					Use the <code>rotateTowards</code> function to rotate a sprite towards a position. The optional parameter
@@ -878,7 +878,7 @@ if (mouse.presses()) sprite.rotateTo(mouse, 5, 0);
 			<script type="mie/p5" name="rotateTowards" base="5">
 //           (position, tracking, facing)
 sprite.rotateTowards(mouse, 0.1, 0);
-		</script>
+			</script>
 
 		</div>
 		<div id="page-8" class="page">
@@ -935,7 +935,7 @@ async function randomSequence() {
 function draw() {
 	clear();
 }
-		</script>
+			</script>
 			<!-- <script type="mie/p5" name="move sequence" horiz>
 let turtle;
 
@@ -964,7 +964,7 @@ function draw() {
 ## Physical attributes
 
 Sprites have physical attributes that affect how they interact with the world. Take a look at the mini-examples to see these attributes in action.
-		</script>
+			</script>
 			<script type="mie/p5" base-6 hide>
 let sprite, floor;
 function setup() {
@@ -977,7 +977,7 @@ function setup() {
 function draw() {
 	clear();
 }
-		</script>
+			</script>
 			<script type="mie/p5" base-7 hide>
 let sprite, floor;
 function setup() {
@@ -990,42 +990,42 @@ function setup() {
 function draw() {
 	clear();
 }
-		</script>
+			</script>
 			<div class="minis">
 				<script type="mie/p5" name="low bounciness" base="7">
-			sprite.bounciness = 0.5;
-						</script>
+sprite.bounciness = 0.5;
+				</script>
 				<script type="mie/p5" name="full bounciness" base="7">
-			sprite.bounciness = 1;
-						</script>
+sprite.bounciness = 1;
+				</script>
 			</div>
 			<div class="minis">
 				<script type="mie/p5" name="0 friction" base="6">
 sprite.friction = 0;
-			</script>
+				</script>
 				<script type="mie/p5" name="high friction" base="6">
 sprite.friction = 10;
-			</script>
+				</script>
 				<script type="mie/p5" name="0 drag" base="6">
 sprite.drag = 0;
-			</script>
+				</script>
 				<script type="mie/p5" name="high drag" base="6">
 sprite.drag = 10;
-			</script>
+				</script>
 			</div>
 			<div class="minis">
 				<script type="mie/p5" name="low rotationDrag" base="7">
 sprite.rotationDrag = 1;
-			</script>
+				</script>
 				<script type="mie/p5" name="high rotationDrag" base="7">
 sprite.rotationDrag = 5;
-			</script>
+				</script>
 				<script type="mie/p5" name="no rotationLock" base="7">
 sprite.rotationLock = false
-			</script>
+				</script>
 				<script type="mie/p5" name="with rotationLock" base="7">
 sprite.rotationLock = true;
-			</script>
+				</script>
 			</div>
 			<div>
 				<p>
@@ -1054,7 +1054,7 @@ function setup() {
 function draw() {
 	clear();
 }
-		</script>
+			</script>
 			<div class="break"></div>
 			<div>
 				<h2>planck Bugs</h2>
@@ -1090,7 +1090,7 @@ function draw() {
 		}
 	}
 }
-		</script>
+			</script>
 			<div>
 				<p>
 					Hopefully the bug will be fixed in a future version of planck or p5play, but until then here's a workaround.
@@ -1120,7 +1120,7 @@ function draw() {
 		ball.vel.y = -4.8;
 	}
 }
-		</script>
+			</script>
 			<div>
 				<p>
 					Also, you may expect <code>friction</code> to affect circle physics colliders, but sadly it doesn't! Use the
@@ -1171,7 +1171,7 @@ function draw() {
 	clear();
 	rect(floor.x - 2, floor.y - 2, 4, 4);
 }
-		</script>
+			</script>
 			<div>
 				<p>
 					To use distance mode, provide the Sprite constructor an (x, y) position and an array of distance arrays. These
@@ -1202,7 +1202,7 @@ function draw() {
 	clear();
 	rect(ground.x - 2, ground.y - 2, 4, 4);
 }
-		</script>
+			</script>
 
 			<div>
 				<p>
@@ -1265,7 +1265,7 @@ function setup() {
 function draw() {
 	clear();
 }
-		</script>
+			</script>
 			<div>
 				<p>
 					If the start and end of a chain is at the same point and the resulting shape is convex, it automatically
@@ -1283,7 +1283,7 @@ function setup() {
 function draw() {
 	clear();
 }
-		</script>
+			</script>
 			<div>
 				<p>
 					Regardless of whether a sprite is a polygon or a chain, all
@@ -1307,7 +1307,7 @@ function setup() {
 function draw() {
 	clear();
 }
-		</script>
+			</script>
 			<div>
 				<p>
 					You can force a convex polygon to be a chain by setting <code>sprite.shape = 'chain'</code>
@@ -1337,7 +1337,7 @@ function setup() {
 function draw() {
 	clear();
 }
-		</script>
+			</script>
 			<div>
 				<p>
 					Here's the code for making a regular star with five points.
@@ -1360,7 +1360,7 @@ function setup() {
 function draw() {
 	clear();
 }
-		</script>
+			</script>
 			<div>
 				<p>
 					Now you can see how the p5play logo was made!
@@ -1385,7 +1385,7 @@ function setup() {
 function draw() {
 	clear();
 }
-		</script>
+			</script>
 			<div>
 				<p>
 					Note that closed chain colliders aren't so good at being dynamic colliders. This is a
@@ -1411,7 +1411,7 @@ function setup() {
 function draw() {
 	clear();
 }
-		</script>
+			</script>
 		</div>
 		<div id="page-12" class="page">
 			<div>
@@ -1468,7 +1468,7 @@ function draw() {
 	clear();
 }
 //
-		</script>
+			</script>
 		</div>
 		<div id="page-13" class="page">
 			<script type="text/md">
@@ -1481,7 +1481,7 @@ Press a number key to see the sprite scale uniformly by that amount.
 Press "d" to double the sprite's scale.
 
 Press "x" or "y" to scale the sprite in that direction by a random amount. But note that if the sprite gets scaled unevenly, the image will get distorted and stay that way even when scaled uniformly again.
-		</script>
+			</script>
 			<script type="mie/p5">
 let sprite;
 
@@ -1507,7 +1507,7 @@ function draw() {
 	if (kb.pressing('a')) sprite.ani.scale.x = 10;
 	else sprite.ani.scale.x = 1;
 }
-		</script>
+			</script>
 		</div>
 
 		<div class="break"></div>
@@ -1540,7 +1540,7 @@ function draw() {
 	<!-- <script src="https://cdn.jsdelivr.net/npm/p5@1/lib/p5.min.js"></script> -->
 	<script src="../v3/q5.min.js"></script>
 	<script src="../v3/planck.min.js"></script>
-	<script src="../v3/p5play.min.js"></script>
+	<script src="../v3/p5play.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.8.1/ace.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 	<script src="learn.js"></script>
