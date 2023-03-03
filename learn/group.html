@@ -12,7 +12,7 @@
 <body class="dark">
 	<article>
 		<nav id="topNav">
-			<a href="../index.html" id="logoLink" class="active">
+			<a href="index.html" id="logoLink" class="active">
 				<img alt="p5play logo" src="../logo.svg" class="logo">
 				<span>p5play</span>
 			</a>
@@ -290,7 +290,7 @@ By default, sprites are removed when they go 10000 pixels offscreen relative to 
 
 To change this, set `allSprites.autoCull = false` and use the `group.cull` function to set a different cull boundary. It can even cull sprites that don't have a physics collider.
 
-An optional last parameter can be used to specify a callback function that will be called when a sprite is culled. The default response to culling is to remove the sprite that exited the cull boundary but by setting your own function you can do something else. The callback function receives the sprite that was culled and a total count of how many sprites were culled on that frame.
+An optional last parameter can be used to specify a callback function that will be called when a sprite is culled. The default response to culling is to remove the sprite that exited the cull boundary but by setting your own function you can do something else. The callback function receives the sprite that was culled and a total count of how many sprites were culled on that frame. In this example the amount of balls decreases if more than one ball is culled in one frame.
 			</script>
 			<script type="mie/p5" name="cull">
 let balls;
@@ -309,7 +309,33 @@ function draw() {
 		new balls.Sprite();
 	}
 }
-		</script>
+			</script>
+			<script type="text/md">
+## life
+
+Another way to limit how long a sprite exists is to set its `life` property, which is the number of frames that the sprite exists for. When the sprite's life is up, it will be removed. This is useful for creating temporary objects like projectiles and force fields.
+
+Try out this little game! Click the mouse to create a beach ball and try keeping it in the air with the water stream.
+			</script>
+			<script type="mie/p5" name="life">
+let water;
+function setup() {
+	new Canvas(500, 192);
+	world.gravity.y = 10;
+
+	water = new Group();
+	water.d = 10;
+	water.direction = -90;
+	water.speed = 6;
+	water.life = 60;
+}
+function draw() {
+	clear();
+	new water.Sprite(mouse.x, mouse.y);
+
+	if (mouse.presses()) new Sprite(250, -200, 40);
+}
+			</script>
 		</div>
 
 		<div class="break"></div>
