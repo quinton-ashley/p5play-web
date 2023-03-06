@@ -1,3 +1,5 @@
+console.log('running platformer.js');
+
 // Creating sprite using sprite sheets for animation
 
 let instructions = 'This one is a bit tricky! Use wasd to move and jump.';
@@ -14,8 +16,8 @@ function preload() {
 
 	// Create the Player sprite and add it's animations
 	player = new Sprite(70, 200, 70, 94);
-	player.spriteSheet = loadImage('assets/player_spritesheet.png');
-	player.addImg('walk', [
+	player.spriteSheet = 'assets/player_spritesheet.png';
+	player.addAni('walk', [
 		[0, 0],
 		[71, 0],
 		[142, 0],
@@ -121,7 +123,7 @@ function draw() {
 		player.vel.x = 0;
 	}
 
-	if (player.ani.name == 'walk' && abs(player.vel.x) < 0.1 && (player.ani.frame == 11 || player.ani.frame == 6)) {
+	if (player.ani.name == 'walk' && abs(player.vel.x) < 0.1) {
 		player.ani = 'stand';
 	}
 
