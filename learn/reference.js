@@ -45,7 +45,8 @@ let refs = {
 		1: ['play', 'stop', 'rewind', 'loop', 'noLoop', 'frame', 'nextFrame', 'previousFrame', 'scale']
 	},
 	'Input_Devices.html': {
-		0: ['mouse', 'kb / keyboard', 'contro / controllers', 'presses', 'pressing', 'holds', 'holding', 'held', 'released']
+		0: ['mouse', 'presses', 'pressing', 'released', 'kb / keyboard'],
+		4: ['contro / controllers']
 	},
 	'Camera.html': {
 		0: ['x', 'y'],
@@ -57,6 +58,72 @@ let refs = {
 	World: {
 		'sprite.html?page=1': ['gravity'],
 		'advanced.html?page=1': ['allowSleeping']
+	},
+	'p5.js basics': {
+		'https://p5js.org/reference/#/p5': [
+			'let',
+			'const',
+			'===',
+			'>=',
+			'<',
+			'<=',
+			'if-else',
+			'function',
+			'return',
+			'boolean',
+			'string',
+			'number',
+			'object',
+			'for',
+			'while',
+			'console',
+			'random',
+			'round',
+			'sin',
+			'cos',
+			'max',
+			'min',
+			'dist'
+		]
+	},
+	'p5.js environment': {
+		'https://p5js.org/reference/#/p5': [
+			'width',
+			'height',
+			'frameCount',
+			'frameRate',
+			'noCursor',
+			'noLoop',
+			'loadImage',
+			'loadFont',
+			'loadJSON',
+			'storeItem',
+			'getItem',
+			'clearStorage'
+		]
+	},
+	'p5.js 2D': {
+		'https://p5js.org/reference/#/p5': [
+			'background',
+			'clear',
+			'fill',
+			'noFill',
+			'stroke',
+			'noStroke',
+			'circle',
+			'rect',
+			'line',
+			'image',
+			'tint',
+			'text',
+			'textAlign',
+			'textSize',
+			'textFont'
+		]
+	},
+	'p5.sound': {
+		'https://p5js.org/reference/#/p5': ['loadSound'],
+		'https://p5js.org/reference/#/p5.SoundFile': ['play', 'stop', 'loop', 'setVolume', 'pan']
 	}
 };
 
@@ -64,11 +131,19 @@ let refsDiv = document.getElementById('refs');
 
 for (let refPage in refs) {
 	let ref = refs[refPage];
-	let className = refPage.split('.')[0];
-	if (className == 'Sprite_Animation') className = 'SpriteAnimation';
-	if (className == 'Input_Devices') className = 'Input';
-	if (className == 'Canvas' || className == 'World') refPage = 'advanced.html';
-	refPage = refPage.toLowerCase();
+	let className = refPage;
+	let p5playRef = true;
+	if (className.slice(0, 2) != 'p5') {
+		className = className.split('.')[0];
+		if (className == 'Sprite_Animation') className = 'SpriteAnimation';
+		if (className == 'Input_Devices') className = 'Input';
+		if (className == 'Canvas' || className == 'World') refPage = 'advanced.html';
+		refPage = refPage.toLowerCase();
+	} else {
+		if (className == 'p5.js basics') className = 'JavaScript basics';
+		refPage = 'https://p5js.org/reference';
+		p5playRef = false;
+	}
 
 	let div = document.createElement('div');
 	let heading = document.createElement('a');
@@ -88,7 +163,12 @@ for (let refPage in refs) {
 		let topics = ref[pageNum];
 		for (let topic of topics) {
 			let a = document.createElement('a');
-			a.href = url;
+			if (p5playRef) {
+				a.href = url;
+			} else {
+				a.href = url + '/' + topic;
+				a.target = '_blank';
+			}
 			a.innerHTML = topic;
 			links.push(a);
 		}

@@ -305,10 +305,10 @@ function preload() {
 	hero.anis.frameDelay = 8;
 
 	hero.addAnis({
-		run: { line: 0, frames: 8 },
-		jump: { line: 1, frames: 6 },
-		roll: { line: 2, frames: 5 },
-		turn: { line: 3, frames: 7 }
+		run: { row: 0, frames: 8 },
+		jump: { row: 1, frames: 6 },
+		roll: { row: 2, frames: 5, frameDelay: 14 },
+		turn: { row: 3, frames: 7 }
 	});
 	hero.ani = 'run';
 }
