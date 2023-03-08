@@ -294,7 +294,7 @@ To load multiple animations from the same sprite sheet image, first set the `spr
 
 Next, use the `addAnimations` or `addAnis` function. They accept an object that uses animation names as keys and sprite sheet atlases as values.
 
-Using an atlas object is way easier than manually specifying the positions of every frame of animation!
+Using an atlas object is way easier than manually specifying the coordinates of every frame!
 
 Atlas objects can have the following properties:
 
@@ -302,15 +302,15 @@ Atlas objects can have the following properties:
 
 In this example the size of the hero sprite is set to 32x32 pixels in the `Sprite` constructor. That size is used as a multiplier to the row value given.
 
-I recommend making every frame in an animation the same size and putting them in order from left to right. If not you'll need to specify the position of each frame manually, which can be done using an array of coordinates instead of an atlas object, as shown in [this old demo](../demos/?file=platformer.js).
+If you'd like to truly appreciate how good p5play is, try comparing the code from my example to <a href="https://phaser.io/examples/v3/view/animation/create-animation-from-sprite-sheet" target="_blank">this Phaser demo</a>. Ha!
 
-If you'd like to truly appreciate how good p5play is at loading animations from sprite sheets, try comparing the code from my example to <a href="https://phaser.io/examples/v3/view/animation/create-animation-from-sprite-sheet" target="_blank">this Phaser demo</a>. Ha!
+I recommend making every frame in an animation the same size and putting them in order from left to right. If not you'll need to specify the position of each frame manually, which can be done using an array of coordinates instead of an atlas object, as shown in [this old demo](../demos/?file=platformer.js).
 
 ## anis
 
-Every sprite and group has an `anis` object that stores its animations, keys are animation names and values are animation objects. It works like groups do, utilizing the same soft and dynamic inheritance system.
+Every sprite and group has an `anis` object that stores its animations, keys are animation names and values are animation objects. It works like groups do, utilizing soft and dynamic inheritance.
 
-The `ani.offset` property is used to adjust the position of the animation relative to the sprite's position.
+The `ani.offset` property is used to adjust the position of an animation relative to the sprite's position.
 
 			</script>
 			<div class="minis horiz">
