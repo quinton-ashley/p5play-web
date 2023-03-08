@@ -111,8 +111,7 @@ function draw() {
 					see what one looks like.
 				</p>
 				<p>
-					Since the size of the character is the same for every frame
-					of animation, an atlas object can be used to specify the size of each
+					In sprite sheet mode, an atlas object can be used to specify the size of each
 					frame and how many frames of animation there are.
 				</p>
 				<p>
@@ -288,14 +287,67 @@ function draw() {
 		</script>
 		</div>
 		<div id="page-4" class="page">
-			<div>
-				<h2>Loading Multiple Animations from a SpriteSheet</h2>
-				<p>
-					Coming soon! This page will show you how to add multiple animations to a
-					sprite or group from the same spritesheet using the <code> sprite.addAnis</code> function.
-				</p>
-			</div>
-			<script type="mie/p5" name="hero">
+			<script type="text/md">
+## Sprite Sheets with Multiple Animations
+
+To load multiple animations from the same sprite sheet image, first set the `spriteSheet` property of the sprite or group.
+
+Next, use the `addAnimations` or `addAnis` function. They accept an object that uses animation names as keys and sprite sheet atlases as values.
+
+Using an atlas object is way easier than manually specifying the positions of every frame of animation!
+
+Atlas objects can have the following properties:
+
+`x`, `y`, `pos`, `w`/`width`, `h`/`height`, `size`/`frameSize`, `row`, `col`, `frames`/`frameCount`, `delay`/`frameDelay`, and `rotation`.
+
+In this example the size of the hero sprite is set to 32x32 pixels in the `Sprite` constructor. That size is used as a multiplier to the row value given.
+
+I recommend making every frame in an animation the same size and putting them in order from left to right. If not you'll need to specify the position of each frame manually, which can be done using an array of coordinates instead of an atlas object, as shown in [this old demo](../demos/?file=platformer.js).
+
+If you'd like to truly appreciate how good p5play is at loading animations from sprite sheets, try comparing the code from my example to <a href="https://phaser.io/examples/v3/view/animation/create-animation-from-sprite-sheet" target="_blank">this Phaser demo</a>. Ha!
+
+## anis
+
+Every sprite and group has an `anis` object that stores its animations, keys are animation names and values are animation objects. It works like groups do, utilizing the same soft and dynamic inheritance system.
+
+The `ani.offset` property is used to adjust the position of the animation relative to the sprite's position.
+
+			</script>
+			<div class="minis horiz">
+				<script type="mie/p5" name="hero demoMode" hide-editor>
+let hero;
+
+function preload() {
+	hero = new Sprite(125, 48, 32, 32);
+	hero.spriteSheet = 'assets/questKid.png';
+	hero.anis.offset.x = 2;
+	hero.anis.frameDelay = 32;
+	hero.anis.demoMode = true;
+
+	hero.addAnis({
+		run: { row: 0, frames: 8 },
+		jump: { row: 1, frames: 6 },
+		roll: { row: 2, frames: 5 },
+		turn: { row: 3, frames: 7 }
+	});
+	hero.ani = 'run';
+
+	hero.debug = true;
+}
+
+function setup() {
+	new Canvas(250, 96, 'pixelated x2');
+}
+
+function draw() {
+	clear();
+	if (kb.presses('r')) hero.ani = 'run';
+	if (kb.presses('j')) hero.ani = 'jump';
+	if (kb.presses('l')) hero.ani = 'roll';
+	if (kb.presses('t')) hero.ani = 'turn';
+}
+				</script>
+				<script type="mie/p5" name="hero">
 let hero;
 
 function preload() {
@@ -322,8 +374,10 @@ function draw() {
 	if (kb.presses('r')) hero.ani = 'run';
 	if (kb.presses('j')) hero.ani = 'jump';
 	if (kb.presses('l')) hero.ani = 'roll';
+	if (kb.presses('t')) hero.ani = 'turn';
 }
-			</script>
+				</script>
+			</div>
 		</div>
 		<div id="page-5" class="page">
 			<div>
@@ -346,7 +400,7 @@ function draw() {
 				<a data-page="1" href="sprite_animation.html?page=1">Animation Controls</a>
 				<a data-page="2" href="sprite_animation.html?page=2">Sprites with Animations</a>
 				<a data-page="3" href="sprite_animation.html?page=3">Groups with Animations</a>
-				<a data-page="4" href="sprite_animation.html?page=4">Loading Multiple Animations</a>
+				<a data-page="4" href="sprite_animation.html?page=4">Sprite Sheets with Multiple Animations</a>
 				<a data-page="5" href="sprite_animation.html?page=5">Sequencing</a>
 			</nav>
 			<a id="nextPage" class="navLink">Next Page</a>
@@ -359,7 +413,7 @@ function draw() {
 
 	<script src="../v3/q5.min.js"></script>
 	<script src="../v3/planck.min.js"></script>
-	<script src="../v3/p5play.min.js"></script>
+	<script src="../v3/p5play.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.8.1/ace.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 	<script src="learn.js"></script>

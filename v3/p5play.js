@@ -3350,7 +3350,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		return t;
 	};
 
-	let animationProps = ['frameDelay', 'frameSize', 'looping', 'offset', 'rotation', 'scale'];
+	let animationProps = ['frameDelay', 'frameSize', 'looping', 'offset', 'rotation', 'scale', 'demoMode'];
 
 	/**
 	 * Look at the Animation reference pages before reading these docs.
@@ -3429,6 +3429,8 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			this.offset = { x: owner.anis.offset.x || 0, y: owner.anis.offset.y || 0 };
 
 			this._frameDelay = owner.anis.frameDelay || 4;
+
+			this.demoMode = owner.anis.demoMode || false;
 
 			/**
 			 * True if the animation is currently playing.
@@ -3824,7 +3826,19 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			if (img !== undefined) {
 				if (this.spriteSheet) {
 					let { x, y, w, h } = img; // image info
-					this.p.image(this.spriteSheet, this.offset.x, this.offset.y, w, h, x, y, w, h);
+					if (!this.demoMode) {
+						this.p.image(this.spriteSheet, this.offset.x, this.offset.y, w, h, x, y, w, h);
+					} else {
+						this.p.image(
+							this.spriteSheet,
+							this.offset.x,
+							this.offset.y,
+							this.spriteSheet.w,
+							this.spriteSheet.h,
+							x - this.spriteSheet.w / 2 + w / 2,
+							y - this.spriteSheet.h / 2 + h / 2
+						);
+					}
 				} else {
 					this.p.image(img, this.offset.x, this.offset.y);
 				}

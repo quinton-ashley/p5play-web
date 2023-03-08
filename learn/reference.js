@@ -27,6 +27,7 @@ let refs = {
 		12: ['draw', 'update'],
 		'group.html?page=6': ['life'],
 		'sprite_animation.html?page=2': ['ani / animation', 'addAni / addAnimation', 'mirror'],
+		'sprite_animation.html?page=4': ['spriteSheet', 'anis / animations', 'addAnis / addAnimations'],
 		'tiles.html?page=0': ['tile'],
 		'tiles.html?page=1': ['tileSize'],
 		'advanced.html?page=1': ['allowSleeping', 'sleeping'],
@@ -42,7 +43,8 @@ let refs = {
 	},
 	'Sprite_Animation.html': {
 		0: ['animation', 'loadAni / loadAnimation', 'frameDelay'],
-		1: ['play', 'stop', 'rewind', 'loop', 'noLoop', 'frame', 'nextFrame', 'previousFrame', 'scale']
+		1: ['play', 'stop', 'rewind', 'loop', 'noLoop', 'frame', 'nextFrame', 'previousFrame', 'scale'],
+		4: ['offset']
 	},
 	'Input_Devices.html': {
 		0: ['mouse', 'presses', 'pressing', 'released', 'kb / keyboard'],
