@@ -27,7 +27,7 @@ let refs = {
 		12: ['draw', 'update'],
 		'group.html?page=6': ['life'],
 		'sprite_animation.html?page=2': ['ani / animation', 'addAni / addAnimation', 'mirror'],
-		'sprite_animation.html?page=4': ['spriteSheet', 'anis / animations', 'addAnis / addAnimations'],
+		'sprite_animation.html?page=4': ['spriteSheet', 'anis / animations', 'addAnis / addAnimations', 'pixelPerfect'],
 		'tiles.html?page=0': ['tile'],
 		'tiles.html?page=1': ['tileSize'],
 		'advanced.html?page=1': ['allowSleeping', 'sleeping'],

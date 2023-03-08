@@ -149,7 +149,7 @@ function draw() {
 					Try using your keyboard to test out some of the different ways to control animations!
 				</p>
 			</div>
-			<script type="mie/p5" name="splat" base-0>
+			<script type="mie/p5" name="splat">
 let ani;
 
 function setup() {
@@ -213,7 +213,7 @@ function draw() {
 					Try pressing the space bar to stop the animation.
 				</p>
 			</div>
-			<script type="mie/p5" name="sprites with animation" base-1>
+			<script type="mie/p5" name="sprites with animation">
 let ghost;
 
 function setup() {
@@ -312,6 +312,8 @@ Every sprite and group has an `anis` object that stores its animations, keys are
 
 The `ani.offset` property is used to adjust the position of an animation relative to the sprite's position.
 
+When `sprite.pixelPerfect` is set to true, the sprite will be drawn at integer coordinates, while retaining the precise position of its collider. This is useful for pixel art games!
+
 			</script>
 			<div class="minis horiz">
 				<script type="mie/p5" name="hero demoMode" hide-editor>
@@ -328,7 +330,8 @@ function preload() {
 		run: { row: 0, frames: 8 },
 		jump: { row: 1, frames: 6 },
 		roll: { row: 2, frames: 5 },
-		turn: { row: 3, frames: 7 }
+		turn: { row: 3, frames: 7 },
+		stand: { row: 3, frames: 1 }
 	});
 	hero.ani = 'run';
 
@@ -337,6 +340,7 @@ function preload() {
 
 function setup() {
 	new Canvas(250, 96, 'pixelated x2');
+	allSprites.pixelPerfect = true;
 }
 
 function draw() {
@@ -345,6 +349,8 @@ function draw() {
 	if (kb.presses('j')) hero.ani = 'jump';
 	if (kb.presses('l')) hero.ani = 'roll';
 	if (kb.presses('t')) hero.ani = 'turn';
+	if (kb.presses('s')) hero.ani = 'stand';
+	
 }
 				</script>
 				<script type="mie/p5" name="hero">
@@ -360,13 +366,15 @@ function preload() {
 		run: { row: 0, frames: 8 },
 		jump: { row: 1, frames: 6 },
 		roll: { row: 2, frames: 5, frameDelay: 14 },
-		turn: { row: 3, frames: 7 }
+		turn: { row: 3, frames: 7 },
+		stand: { row: 3, frames: 1 }
 	});
 	hero.ani = 'run';
 }
 
 function setup() {
 	new Canvas(125, 48, 'pixelated x4');
+	allSprites.pixelPerfect = true;
 }
 
 function draw() {
@@ -375,21 +383,77 @@ function draw() {
 	if (kb.presses('j')) hero.ani = 'jump';
 	if (kb.presses('l')) hero.ani = 'roll';
 	if (kb.presses('t')) hero.ani = 'turn';
+	if (kb.presses('s')) hero.ani = 'stand';
 }
 				</script>
 			</div>
 		</div>
 		<div id="page-5" class="page">
-			<div>
-				<h2>Animation Sequencing</h2>
-				<p>
-					Coming soon! This page will show you how to do animation sequences like this:
-				</p>
-				<code>
-				`sprite.ani = ['idle', 'whistle',
-				'tapFoot', 'idle', 'yawn', 'lieDown', 'sleep'];`
-			</code>
-			</div>
+			<script type="text/md">
+ ## Basic Animation Sequencing
+
+ `sprite.ani` can be set to an array of animation names, that will be played in sequence.
+
+ By default if looping is enabled, the last animation in the sequence will be looped.
+
+ To loop the entire sequence, use `'**'` as the last animation name.
+
+ To stop the sequence at the end, use `';;'` as the last animation name.
+
+			</script>
+			<script type="mie/p5" base-0 hide>
+let hero, floor;
+
+function preload() {
+	hero = new Sprite(62, 24, 32, 32);
+	hero.spriteSheet = '../learn/assets/questKid.png';
+	hero.anis.offset.x = 2;
+	hero.anis.offset.y = 2;
+	hero.anis.frameDelay = 8;
+
+	hero.addAnis({
+		run: { row: 0, frames: 8 },
+		jump: { row: 1, frames: 6 },
+		roll: { row: 2, frames: 5, frameDelay: 14 },
+		turn: { row: 3, frames: 7 },
+		stand: { row: 3, frames: 1 }
+	});
+	hero.ani = 'stand';
+}
+
+function setup() {
+	new Canvas(125, 48, 'pixelated x4');
+	world.gravity.y = 10;
+	allSprites.pixelPerfect = true;
+
+	floor = new Sprite(62.5, 48, 125, 8, 's');
+	floor.color = color(133, 228, 62);
+}
+
+function draw() {
+	clear();
+}
+			</script>
+			<script type="mie/p5" name="basic animation sequencing" base="0">
+if (kb.presses('up')) hero.ani = ['jump', 'stand'];
+if (kb.presses('down')) hero.ani = ['roll', 'stand'];
+
+if (kb.pressing('left')) hero.vel.x = -1;
+else if (kb.pressing('right')) hero.vel.x = 1;
+else hero.vel.x = 0;
+
+if (hero.ani.name != 'jump' && hero.ani.name != 'roll') {
+	if (kb.pressing('left')) {
+		hero.ani = 'run';
+		hero.mirror.x = true;
+	} else if (kb.pressing('right')) {
+		hero.ani = 'run';
+		hero.mirror.x = false;
+	} else {
+		hero.ani = 'stand';
+	}
+}
+			</script>
 		</div>
 
 		<div class="break"></div>
@@ -413,7 +477,7 @@ function draw() {
 
 	<script src="../v3/q5.min.js"></script>
 	<script src="../v3/planck.min.js"></script>
-	<script src="../v3/p5play.js"></script>
+	<script src="../v3/p5play.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.8.1/ace.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 	<script src="learn.js"></script>
