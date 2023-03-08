@@ -390,15 +390,13 @@ function draw() {
 		</div>
 		<div id="page-5" class="page">
 			<script type="text/md">
- ## Basic Animation Sequencing
+ ## Animation Sequencing
 
- `sprite.ani` can be set to an array of animation names, that will be played in sequence.
+ `sprite.ani` can be set to an animation object, animation name, or array of animation names that will be played in sequence.
 
- By default if looping is enabled, the last animation in the sequence will be looped.
+ By default if looping is enabled, the last animation in the sequence will be looped. To loop the entire sequence, use `'**'` as the last animation name. If instead you want the sequence to stop at the end, use `';;'` as the last animation name.
 
- To loop the entire sequence, use `'**'` as the last animation name.
-
- To stop the sequence at the end, use `';;'` as the last animation name.
+ This example shows how the hero character can be moved around the screen using WASD or the arrow keys!
 
 			</script>
 			<script type="mie/p5" base-0 hide>
@@ -434,7 +432,7 @@ function draw() {
 	clear();
 }
 			</script>
-			<script type="mie/p5" name="basic animation sequencing" base="0">
+			<script type="mie/p5" name="animation sequencing" base="0">
 if (kb.presses('up')) hero.ani = ['jump', 'stand'];
 if (kb.presses('down')) hero.ani = ['roll', 'stand'];
 
@@ -455,6 +453,15 @@ if (hero.ani.name != 'jump' && hero.ani.name != 'roll') {
 }
 			</script>
 		</div>
+		<div id="page-6" class="page">
+			<script type="text/md">
+## Advanced Animation Sequencing
+
+Behind the scenes, setting `sprite.ani` uses the `sprite.changeAni` async function. You can use this function directly to wait for animations to finish playing.
+
+Example coming soon!
+			</script>
+		</div>
 
 		<div class="break"></div>
 		<div id="toc">
@@ -466,6 +473,7 @@ if (hero.ani.name != 'jump' && hero.ani.name != 'roll') {
 				<a data-page="3" href="sprite_animation.html?page=3">Groups with Animations</a>
 				<a data-page="4" href="sprite_animation.html?page=4">Sprite Sheets with Multiple Animations</a>
 				<a data-page="5" href="sprite_animation.html?page=5">Sequencing</a>
+				<a data-page="6" href="sprite_animation.html?page=6">Advanced Sequencing</a>
 			</nav>
 			<a id="nextPage" class="navLink">Next Page</a>
 		</div>
