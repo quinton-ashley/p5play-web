@@ -292,7 +292,7 @@ function draw() {
 
 To load multiple animations from the same sprite sheet image, first set the `spriteSheet` property of the sprite or group.
 
-Next, use the `addAnimations` or `addAnis` function. They accept an object that uses animation names as keys and sprite sheet atlases as values.
+Next, use the `addAnimations` / `addAnis` function. They accept an object that uses animation names as keys and sprite sheet atlases as values.
 
 Using an atlas object is way easier than manually specifying the coordinates of every frame!
 
@@ -300,15 +300,17 @@ Atlas objects can have the following properties:
 
 `x`, `y`, `pos`, `w`/`width`, `h`/`height`, `size`/`frameSize`, `row`, `col`, `frames`/`frameCount`, `delay`/`frameDelay`, and `rotation`.
 
-In this example the size of the hero sprite is set to 32x32 pixels in the `Sprite` constructor. That size is used as a multiplier to the row value given.
+In the "hero" example the size of the hero sprite is set to 32x32 pixels in the `Sprite` constructor. That size is used as a multiplier to the row value given.
+
+Click this link to see the <a href="assets/questKid.png" target="_blank">full sprite sheet</a> used in the example.
 
 If you'd like to truly appreciate how good p5play is, try comparing the code from my example to <a href="https://phaser.io/examples/v3/view/animation/create-animation-from-sprite-sheet" target="_blank">this Phaser demo</a>. Ha!
 
-I recommend making every frame in an animation the same size and putting them in order from left to right. If not you'll need to specify the position of each frame manually, which can be done using an array of coordinates instead of an atlas object, as shown in [this old demo](../demos/?file=platformer.js).
+I recommend making every frame in an animation the same size and putting them in order from left to right. If not you'll need to manually specify the position of each frame, which can be done using an array of coordinates instead of an atlas object, as shown in [this old demo](../demos/?file=platformer.js).
 
 ## anis
 
-Every sprite and group has an `anis` object that stores its animations, keys are animation names and values are animation objects. It works like groups do, utilizing soft and dynamic inheritance.
+Every sprite and group has an `animations` / `anis` object that stores its animations. The keys are animation names and values are animation objects. It works like groups do, utilizing soft and dynamic inheritance.
 
 The `ani.offset` property is used to adjust the position of an animation relative to the sprite's position.
 
