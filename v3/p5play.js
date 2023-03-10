@@ -6281,7 +6281,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		let logo = document.createElement('img');
 		logo.src = 'https://p5play.org/v3/made_with_p5play.png';
 		logo.style =
-			'position: absolute; top: 50%; left: 50%; width: 512px; height: 256px; margin-left: -256px; margin-top: -128px; z-index: 1000; opacity: 0; transition: opacity 0.1s ease-in-out;';
+			'position: absolute; top: 50%; left: 50%; width: 40vh; height: 20vh; margin-left: -20vh; margin-top: -10vh; z-index: 1000; opacity: 0; transition: opacity 0.1s ease-in-out;';
 		document.body.append(p);
 		p.append(logo);
 		await pInst.delay(100);
@@ -6298,8 +6298,8 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 	{
 		let lh = location.hostname;
 		switch (lh) {
+			// case '127.0.0.1':
 			case 'localhost':
-			case '127.0.0.1':
 			case 'p5play.org':
 			case 'openprocessing.org':
 			case 'editor.p5js.org':
