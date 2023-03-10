@@ -5960,7 +5960,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 	{
 		let lh = location.hostname;
 		switch (lh) {
-			// case '127.0.0.1':
+			case '127.0.0.1':
 			case 'localhost':
 			case 'p5play.org':
 			case 'openprocessing.org':
