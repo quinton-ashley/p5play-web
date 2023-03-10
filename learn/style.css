@@ -115,9 +115,13 @@ a.navLink {
 
 #topNav a.active,
 #topNav a:hover {
-	color: #ed225d;
+	color: var(--pink);
 	-webkit-text-stroke: 1px var(--pink);
-	text-shadow: 3px 3px 0px var(--blue);
+	text-shadow: 3px 1.8px 0px var(--blue);
+}
+
+#topNav #logoLink:hover {
+	-webkit-text-stroke: 1.4px var(--pink);
 }
 
 #topNav a.active {
