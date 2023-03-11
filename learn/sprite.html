@@ -803,15 +803,14 @@ function draw() {
 				<h2>Switch between overlaps and collides</h2>
 				<p>
 					By default if you check for an overlap between two sprites,
-					the sprites will no longer collide. You can override
+					they will no longer collide. You can override
 					this by checking for a collision between the sprites.
 				</p>
 				<p>
-					In this example you can change whether the player collides or overlaps with the wall by pressing the space
-					bar.
+					In this example, pressing the space key temporarily allows the player to ghost through the wall.
 				</p>
 			</div>
-			<script type="mie/p5" name="ghosting">
+			<script type="mie/p5" name="ghost ability">
 let player, wall;
 
 function setup() {
