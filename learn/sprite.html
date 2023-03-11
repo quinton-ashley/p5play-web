@@ -798,6 +798,44 @@ function draw() {
 	
 }
 			</script>
+			<div class="break"></div>
+			<div>
+				<h2>Switch between overlaps and collides</h2>
+				<p>
+					By default if you check for an overlap between two sprites,
+					the sprites will no longer collide. You can override
+					this by checking for a collision between the sprites.
+				</p>
+				<p>
+					In this example you can change whether the player collides or overlaps with the wall by pressing the space
+					bar.
+				</p>
+			</div>
+			<script type="mie/p5" name="ghosting">
+let player, wall;
+
+function setup() {
+	new Canvas(500, 100);
+
+	wall = new Sprite(250, 50, 30, 100, 's');
+	wall.color = 'purple';
+	player = new Sprite(50, 50);
+}
+
+function draw() {
+	clear();
+	player.moveTowards(mouse);
+
+	if (kb.pressing('space')) {
+		player.overlaps(wall);
+		player.color = 'purple';
+	} else {
+		player.collides(wall);
+		player.color = 'orange';
+	}
+}
+
+			</script>
 		</div>
 		<div id="page-7" class="page">
 			<script type="mie/p5" base-5 hide>
@@ -852,7 +890,8 @@ if (kb.presses('right')) sprite.rotate(45, 3);
 			</script>
 			<div>
 				<p>
-					Use the <code>rotateTo</code> function to rotate a sprite so that it faces a position, which can also be given
+					Use the <code>rotateTo</code> function to rotate a sprite so that it faces a position, which can also be
+					given
 					in (x, y) coordinates. The optional
 					parameter following the position is the
 					rotation speed. The
@@ -1029,7 +1068,8 @@ sprite.rotationLock = true;
 			</div>
 			<div>
 				<p>
-					By default, <code>mass</code> is assigned based on the sprite's size. The larger the sprite, the more mass it
+					By default, <code>mass</code> is assigned based on the sprite's size. The larger the sprite, the more mass
+					it
 					has. Mass can
 					also be set manually.
 				</p>
@@ -1174,8 +1214,10 @@ function draw() {
 			</script>
 			<div>
 				<p>
-					To use distance mode, provide the Sprite constructor an (x, y) position and an array of distance arrays. These
-					arrays should contain [x, y] distances relative to the previous vertex. The (x, y) position will be the first
+					To use distance mode, provide the Sprite constructor an (x, y) position and an array of distance arrays.
+					These
+					arrays should contain [x, y] distances relative to the previous vertex. The (x, y) position will be the
+					first
 					vertex in the chain.
 				</p>
 				<p>
@@ -1206,7 +1248,8 @@ function draw() {
 
 			<div>
 				<p>
-					To use line mode, provide the Sprite constructor an (x,y) position and a list of line lengths and angles. Each
+					To use line mode, provide the Sprite constructor an (x,y) position and a list of line lengths and angles.
+					Each
 					angle is relative to the previous line's angle.
 				</p>
 				<p>

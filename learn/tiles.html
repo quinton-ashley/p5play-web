@@ -111,6 +111,12 @@ function setup() {
 
 function draw() {
 	clear();
+
+	for (let brick of bricks) {
+		if (brick.mouse.hovers()) {
+			brick.color = '#AA4A44';
+		}
+	}
 }
 		</script>
 		</div>
