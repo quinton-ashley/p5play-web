@@ -3,7 +3,7 @@ let instructions = 'Use the left and right arrow keys to move the player to pick
 let player, items;
 
 function setup() {
-	new Canvas(800, 200);
+	new Canvas(800, 400);
 	world.gravity.y = 10;
 
 	items = new Group();
@@ -17,7 +17,7 @@ function draw() {
 	background(255);
 	text(instructions, 20, 20);
 
-	if (frameCount % 80 == 0) {
+	if (frameCount % 40 == 0) {
 		new items.Sprite(random(10, width - 10), -10, 20, 20);
 	}
 
