@@ -45,9 +45,5 @@ function mousePressed() {
 			// Sprite(x, y, width, height)
 			sprite = new Sprite(x, 20, 20, 10);
 		}
-		// give the sprite a little spin
-		sprite.angularVelocity = random(-0.5, 0.5);
-		// bounciness, in a range from 0 to 1 (full bounce)
-		sprite.bounciness = 0.7;
 	}
 }

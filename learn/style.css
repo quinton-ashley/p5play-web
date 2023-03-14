@@ -558,6 +558,14 @@ body.light .discord-logo {
 	filter: invert(1);
 }
 
+.credits-lg {
+	font-size: 24px;
+}
+
+.credits-sm {
+	font-size: 16px;
+}
+
 /* 
 .day-mode .night {
 	display: none;

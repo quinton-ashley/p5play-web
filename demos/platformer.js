@@ -1,5 +1,3 @@
-console.log('running platformer.js');
-
 // Creating sprite using sprite sheets for animation
 
 let instructions = 'This one is a bit tricky! Use wasd to move and jump.';

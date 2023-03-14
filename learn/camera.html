@@ -73,7 +73,7 @@ UI or HUD sprites, represented by orange squares in this examples, should be dra
 `camera.zoom` can be used to zoom in and out.
 
 `mouse.x` stores the x position of the mouse in relation to the world, which can be larger than the canvas. `camera.mouse.x` stores the x position of the mouse in relation to the canvas.
-		</script>
+			</script>
 			<script type="mie/p5" name="overhead camera">
 let player;
 
@@ -112,6 +112,49 @@ function draw() {
 }
 		</script>
 		</div>
+		<div id="page-2" class="page">
+			<script type="text/md">
+## Mouse Events with the Camera
+
+In this example the camera is move left and right using a sin wave.
+
+The big sprite is drawn in the world space when the camera is on. The big sprite doesn't move, but it looks like it does because the camera is moving.
+
+The small sprite is drawn when the camera is off in the screen space (UI). If you wanted to make a UI element in your game, like a pause button sprite, you should make it when the camera is off.
+			</script>
+			<script type="mie/p5" name="mouse camera">
+let big, small;
+
+function setup() {
+	new Canvas(500, 200);
+	big = new Sprite(250, 100, 100, 100);
+	small = new Sprite(30, 30, 20, 20);
+}
+
+function draw() {
+	clear();
+
+	camera.on();
+	camera.x = sin(frameCount) * 200 + 250;
+
+	if (big.mouse.presses()) big.rotation += 10;
+
+	if (big.mouse.hovering()) big.color = '#ff0000';
+	else big.color = '#224477';
+
+	big.draw();
+
+	camera.off();
+
+	if (small.mouse.presses()) small.rotation += 10;
+
+	if (small.mouse.hovering()) small.color = '#ff0000';
+	else small.color = '#224477';
+
+	small.draw();
+}
+			</script>
+		</div>
 
 		<div class="break"></div>
 		<div id="toc">
@@ -119,6 +162,7 @@ function draw() {
 			<nav id="pageNav" class="submenu">
 				<a data-page="0" href="camera.html?page=0">Basic Camera</a>
 				<a data-page="1" href="camera.html?page=1">Camera On/Off</a>
+				<a data-page="2" href="camera.html?page=2">Mouse Events with the Camera</a>
 			</nav>
 			<a id="nextPage" class="navLink">Next Page</a>
 		</div>

@@ -13,15 +13,17 @@ function preload() {
 
 function setup() {
 	new Canvas(400, 600);
+	world.autoStep = false;
 
-	bird = new Sprite(birdImg, 0, height / 2, 24);
-
-	ground = new Sprite(groundImg, width / 2, 650, 'none');
+	ground = new Sprite(groundImg, 0, 650, 'none');
 
 	pipes = new Group();
 	pipes.image = pipeImg;
 	pipes.collider = 'static';
 
+	bird = new Sprite(birdImg, 0, 300, 24);
+
+	camera.x = 150;
 	gameOver = true;
 	canStartNewGame = true;
 }
@@ -29,8 +31,7 @@ function setup() {
 function draw() {
 	if (mouse.presses() || kb.presses('space')) {
 		if (canStartNewGame) newGame();
-		// FLAP
-		bird.vel.y = -9;
+		bird.vel.y = -9; // FLAP WINGS!
 	}
 
 	if (!gameOver) {
@@ -39,8 +40,7 @@ function draw() {
 		// prevent bird from going above the top of the screen (cheating!)
 		if (bird.y < 0) bird.y = 0;
 
-		// if the bird hits the ground, it dies
-		if (bird.overlaps(ground) || bird.overlaps(pipes)) die();
+		if (bird.y > 530 || bird.overlaps(pipes)) die();
 
 		// spawn pipes every 60 frames (1 second)
 		if (frameCount % 60 == 0) {
@@ -69,8 +69,6 @@ function draw() {
 		}
 	}
 
-	camera.x = bird.x + 150;
-
 	camera.off();
 
 	background(247, 134, 131);
@@ -78,13 +76,10 @@ function draw() {
 
 	camera.on();
 
-	ground.draw();
-	pipes.draw();
-	bird.draw();
-
-	if (!gameOver) updateSprites();
-
-	allSprites.debug = kb.pressing('d');
+	if (!gameOver) {
+		camera.x = bird.x + 150;
+		world.step();
+	}
 }
 
 async function die() {
@@ -97,10 +92,10 @@ function newGame() {
 	pipes.removeAll();
 	gameOver = false;
 	canStartNewGame = false;
-	bird.x = width * 0.7;
+	bird.x = 0;
 	bird.y = height / 2;
 	bird.vel.x = 4;
 	bird.vel.y = 0;
-	ground.x = width / 2;
+	ground.x = -150;
 	world.gravity.y = 24;
 }
