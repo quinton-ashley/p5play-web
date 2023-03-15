@@ -187,7 +187,6 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 		&#x27;debug&#x27;,
 		&#x27;diameter&#x27;,
 		&#x27;direction&#x27;,
-		// &#x27;directionLock&#x27;,
 		&#x27;drag&#x27;,
 		&#x27;dynamic&#x27;,
 		&#x27;friction&#x27;,
@@ -200,6 +199,7 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 		&#x27;layer&#x27;,
 		&#x27;life&#x27;,
 		&#x27;mass&#x27;,
+		&#x27;pixelPerfect&#x27;,
 		&#x27;resetAnimationsOnChange&#x27;,
 		&#x27;rotation&#x27;,
 		&#x27;rotationDrag&#x27;,
@@ -402,6 +402,8 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 			 */
 			this.visible = true;
 
+			this._aniChangeCount = 0;
+
 			/**
 			 * Contains all the collision callback functions for this sprite
 			 * when it comes in contact with other sprites or groups.
@@ -556,7 +558,7 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 			}
 			y ??= group.y;
 			if (y === undefined) y = this.p.height / this.p.allSprites.tileSize / 2;
-			w ??= group.w || group.width || group.diameter;
+			w ??= group.w || group.width || group.d || group.diameter;
 			h ??= group.h || group.height;
 
 			if (typeof x == &#x27;function&#x27;) x = x(group.length - 1);
@@ -570,13 +572,13 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 					this.addAni(ani);
 				} else {
 					if (typeof ani == &#x27;string&#x27;) this._changeAni(ani);
-					else this._animation = ani.clone();
+					else this._ani = ani.clone();
 				}
 				let ts = this.tileSize;
-				if (!w &amp;&amp; (this.ani.w != 1 || this.ani.h != 1)) {
-					w = this.ani.w / ts;
+				if (!w &amp;&amp; (this._ani.w != 1 || this._ani.h != 1)) {
+					w = this._ani.w / ts;
 					if (this.shape != &#x27;circle&#x27;) {
-						h = this.ani.h / ts;
+						h = this._ani.h / ts;
 					}
 				}
 			}
@@ -780,8 +782,9 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 			}
 			if (shouldCreateSensor &amp;&amp; !this._hasOverlaps) this._createSensors();
 
+			this._massUndefinedByUser = true;
 			if (w === undefined &amp;&amp; h === undefined) {
-				this._dimensionsUndefined = true;
+				this._dimensionsUndefinedByUser = true;
 			}
 		}
 
@@ -1193,7 +1196,6 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 				&#x27;friction&#x27;,
 				&#x27;heading&#x27;,
 				&#x27;isSuperFast&#x27;,
-				&#x27;mass&#x27;,
 				&#x27;rotation&#x27;,
 				&#x27;rotationDrag&#x27;,
 				&#x27;rotationLock&#x27;,
@@ -1203,6 +1205,9 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 				&#x27;x&#x27;,
 				&#x27;y&#x27;
 			];
+			if (!this._massUndefinedByUser || !this._dimensionsUndefinedByUser) {
+				props.push(&#x27;mass&#x27;);
+			}
 			for (let prop of props) {
 				if (typeof this[prop] == &#x27;object&#x27;) {
 					body[prop] = Object.assign({}, this[prop]);
@@ -1250,14 +1255,14 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 		 * @type {SpriteAnimation}
 		 */
 		get animation() {
-			return this._animation;
+			return this._ani;
 		}
 		set animation(val) {
 			this.changeAni(val);
 		}
 
 		get ani() {
-			return this._animation;
+			return this._ani;
 		}
 		set ani(val) {
 			this.changeAni(val);
@@ -1709,7 +1714,7 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 		 * @type {SpriteAnimation}
 		 */
 		get img() {
-			return this._animation.frameImage;
+			return this._ani?.frameImage;
 		}
 		set img(val) {
 			this.changeAni(val);
@@ -1722,7 +1727,7 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 		 * @type {SpriteAnimation}
 		 */
 		get image() {
-			return this._animation.frameImage;
+			return this._ani?.frameImage;
 		}
 		set image(val) {
 			this.changeAni(val);
@@ -1792,6 +1797,7 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 			let t = this.massData;
 			t.mass = val;
 			this.body.setMassData(t);
+			delete this._massUndefinedByUser;
 		}
 
 		get massData() {
@@ -1800,14 +1806,6 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 			t.center = scaleFrom(t.center, this.tileSize);
 			return t;
 		}
-		// set massData(val) {
-		// 	val.center = scaleTo(val.center);
-		// 	this.body.setMassData(val);
-		// }
-
-		// get next() {
-		// 	return this.body.getNext();
-		// }
 
 		/**
 		 * Verbose alias for sprite.prevPos
@@ -2070,7 +2068,7 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 		set w(val) {
 			if (val &lt; 0) val = 0.01;
 			if (val == this._w) return;
-			delete this._dimensionsUndefined;
+			delete this._dimensionsUndefinedByUser;
 			let scalarX = val / this._w;
 			this._w = val;
 			this._hw = val * 0.5;
@@ -2125,7 +2123,7 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 				return;
 			}
 			if (val == this._h) return;
-			delete this._dimensionsUndefined;
+			delete this._dimensionsUndefinedByUser;
 			let scalarY = val / this._h;
 			this._h = val;
 			this._hh = val * 0.5;
@@ -2373,7 +2371,7 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 		}
 
 		_update() {
-			if (this.animation) this.animation.update();
+			if (this._ani) this._ani.update();
 
 			for (let prop in this.mouse) {
 				if (this.mouse[prop] == -1) this.mouse[prop] = 0;
@@ -2401,7 +2399,7 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 					let v = a[event][k] + 1;
 					this[event][k] = v;
 					if (b instanceof this.p.Group) b[event][a._uid] = v;
-					if (v == 0) {
+					if (!b || v == 0) {
 						delete a[event][k];
 						if (b instanceof this.p.Group) delete b[event][a._uid];
 						continue;
@@ -2432,10 +2430,10 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 		 */
 		_draw() {
 			if (this.strokeWeight !== undefined) this.p.strokeWeight(this.strokeWeight);
-			if (this.animation &amp;&amp; this.debug != &#x27;colliders&#x27;) {
-				this.animation.draw(0, 0, 0, this._scale._x, this._scale._y);
+			if (this._ani &amp;&amp; this.debug != &#x27;colliders&#x27;) {
+				this._ani.draw(0, 0, 0, this._scale._x, this._scale._y);
 			}
-			if (!this.animation || this.debug) {
+			if (!this._ani || this.debug) {
 				if (this.debug &amp;&amp; this.debug != &#x27;colliders&#x27;) {
 					this.p.noFill();
 					this.p.stroke(0, 255, 0);
@@ -2488,9 +2486,12 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 				return;
 			}
 			x = fixRound(x);
-			x -= (this.w * this.tileSize) % 2 ? 0.5 : 0;
 			y = fixRound(y);
-			y -= (this.h * this.tileSize) % 2 ? 0.5 : 0;
+
+			if (this.pixelPerfect) {
+				if (this._w % 2 == 0 || Math.abs((x % 1) - 0.5) &gt; pl.Settings.linearSlop) x = Math.round(x);
+				if (this._h % 2 == 0 || Math.abs((y % 1) - 0.5) &gt; pl.Settings.linearSlop) y = Math.round(y);
+			}
 
 			// x += this.tileSize * 0.015;
 			// y += this.tileSize * 0.015;
@@ -3081,24 +3082,17 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 		 * completes
 		 */
 		async changeAni(anis) {
-			if (anis instanceof this.p.SpriteAnimation) anis = [anis];
-			else anis = [...arguments];
+			if (arguments.length &gt; 1) anis = [...arguments];
+			else if (anis instanceof this.p.SpriteAnimation) {
+				if (anis == this._ani) return;
+				anis = [anis];
+			} else if (!Array.isArray(anis)) {
+				if (anis == this._ani?.name) return;
+				anis = [anis];
+			}
 
-			let _ani = (name, start, end) =&gt; {
-				return new Promise((resolve) =&gt; {
-					this._changeAni(name);
-					if (start &lt; 0) start = this._animation.length + start;
-					if (start) this._animation.frame = start;
-
-					if (end !== undefined) this._animation.goToFrame(end);
-					else if (this.frame == this.lastFrame) resolve();
-
-					this._animation.onComplete = () =&gt; {
-						resolve();
-					};
-				});
-			};
-
+			this._aniChangeCount++;
+			let loop, stopOnLastAni;
 			for (let i = 0; i &lt; anis.length; i++) {
 				let ani = anis[i];
 				if (
@@ -3113,24 +3107,63 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 					ani = { name: ani };
 					anis[i] = ani;
 				}
-				if (ani.name[0] == &#x27;!&#x27;) {
-					ani.name = ani.name.slice(1);
-					ani.start = -1;
-					ani.end = 0;
+				if (ani.name.length &gt; 1) {
+					if (ani.name[0] == &#x27;!&#x27;) {
+						ani.name = ani.name.slice(1);
+						ani.start = -1;
+						ani.end = 0;
+					}
+					if (ani.name[0] == &#x27;&lt;&#x27; || ani.name[0] == &#x27;&gt;&#x27;) {
+						ani.name = ani.name.slice(1);
+						ani.flipX = true;
+					}
+					if (ani.name[0] == &#x27;^&#x27;) {
+						ani.name = ani.name.slice(1);
+						ani.flipY = true;
+					}
+					if (ani.name == &#x27;**&#x27;) {
+						loop = true;
+						anis = anis.slice(0, -1);
+					}
+					if (ani.name == &#x27;;;&#x27;) {
+						stopOnLastAni = true;
+						anis = anis.slice(0, -1);
+					}
 				}
 			}
+			let count = this._aniChangeCount;
 
-			// let count = ++this._aniChanged;
+			do {
+				for (let i = 0; i &lt; anis.length; i++) {
+					let ani = anis[i];
+					if (!ani.start &amp;&amp; anis.length &gt; 1) ani.start = 0;
+					await this._playSequencedAni(ani);
+				}
+			} while (loop &amp;&amp; count == this._aniChangeCount);
+			if (anis.length != 1 &amp;&amp; stopOnLastAni) this._ani.stop();
+		}
 
-			for (let i = 0; i &lt; anis.length; i++) {
-				let ani = anis[i];
-				// if () { // TODO repeat
-				// 	if (count == this._aniChanged) i = 0;
-				// 	continue;
-				// }
-				let { name, start, end } = ani;
-				await _ani(name, start, end);
-			}
+		_playSequencedAni(ani) {
+			return new Promise((resolve) =&gt; {
+				let { name, start, end, flipX, flipY } = ani;
+				this._changeAni(name);
+
+				if (flipX) this._ani.scale.x = -this._ani.scale.x;
+				if (flipY) this._ani.scale.y = -this._ani.scale.y;
+
+				if (start &lt; 0) start = this._ani.length + start;
+				if (start !== undefined) this._ani.frame = start;
+
+				if (end !== undefined) this._ani.goToFrame(end);
+				else if (this._ani.frame == this._ani.lastFrame) resolve();
+
+				this._ani._onComplete = this._ani._onChange = () =&gt; {
+					if (flipX) this._ani.scale.x = -this._ani.scale.x;
+					if (flipY) this._ani.scale.y = -this._ani.scale.y;
+					this._ani._onComplete = this._ani._onChange = null;
+					resolve();
+				};
+			});
 		}
 
 		/**
@@ -3159,6 +3192,8 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 		 * @param {String} label SpriteAnimation identifier
 		 */
 		_changeAni(label) {
+			if (this._ani?._onChange) this._ani._onChange();
+			if (this._ani?.onChange) this._ani.onChange();
 			let ani = this.animations[label];
 			if (!ani) {
 				for (let i = this.groups.length - 1; i &gt;= 0; i--) {
@@ -3174,10 +3209,10 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 				this.p.noLoop();
 				throw new FriendlyError(&#x27;Sprite.changeAnimation&#x27;, [label]);
 			}
-			this._animation = ani;
-			this.animation.name = label;
+			this._ani = ani;
+			this._ani.name = label;
 			// reset to frame 0 of that animation
-			if (this.resetAnimationsOnChange) this.animation.frame = 0;
+			if (this.resetAnimationsOnChange) this._ani.frame = 0;
 		}
 
 		/**
@@ -3232,6 +3267,18 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 			}
 			if (callback &amp;&amp; typeof callback != &#x27;function&#x27;) {
 				throw new FriendlyError(&#x27;Sprite.collide&#x27;, 1, [callback]);
+			}
+
+			if (this._overlap[target._uid] !== false) {
+				this._overlap[target._uid] = false;
+			}
+			if (target._overlap[this._uid] !== false) {
+				target._overlap[this._uid] = false;
+				if (target instanceof this.p.Group) {
+					for (let s of target) {
+						s._overlap[this._uid] = false;
+					}
+				}
 			}
 		}
 
@@ -3288,6 +3335,26 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 			return this._collisions[target._uid] == -1;
 		}
 
+		_removeContactsWith(target) {
+			if (target instanceof this.p.Group) {
+				for (let s of target) {
+					this._removeContactsWith(s);
+				}
+			} else {
+				this.__removeContactsWith(target);
+			}
+		}
+
+		__removeContactsWith(o) {
+			if (!this.body) return;
+			for (let ce = this.body.getContactList(); ce; ce = ce.next) {
+				let c = ce.contact;
+				if (c.m_fixtureA.m_body.sprite._uid == o._uid || c.m_fixtureB.m_body.sprite._uid == o._uid) {
+					this.p.world.destroyContact(c);
+				}
+			}
+		}
+
 		_ensureOverlap(target, callback) {
 			if (!target) {
 				throw new FriendlyError(&#x27;Sprite.overlap&#x27;, 2);
@@ -3299,17 +3366,29 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 				throw new FriendlyError(&#x27;Sprite.overlap&#x27;, 1, [callback]);
 			}
 			if (!this._hasOverlaps) this._createSensors();
-			if (target instanceof this.p.Sprite) {
-				if (!target._hasOverlaps) target._createSensors();
-			} else if (target instanceof this.p.Group) {
-				if (!target._hasOverlaps) {
+			if (!target._hasOverlaps) {
+				if (target instanceof this.p.Sprite) {
+					target._createSensors();
+				} else {
 					for (let s of target) {
 						if (!s._hasOverlaps) s._createSensors();
 					}
 					target._hasOverlaps = true;
 				}
 			}
-			this._overlap[target._uid] = true;
+			if (this._overlap[target._uid] != true) {
+				this._removeContactsWith(target);
+				this._overlap[target._uid] = true;
+			}
+			if (target._overlap[this._uid] != true) {
+				target._removeContactsWith(this);
+				target._overlap[this._uid] = true;
+				if (target instanceof this.p.Group) {
+					for (let s of target) {
+						s._overlap[this._uid] = true;
+					}
+				}
+			}
 		}
 
 		overlap(target, callback) {
@@ -3385,7 +3464,7 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 		 */
 		getAnimationLabel() {
 			console.warn(&#x27;sprite.getAnimationLabel is deprecated. Use sprite.animation.name instead.&#x27;);
-			return this.animation.name;
+			return this._ani.name;
 		}
 	};
 
@@ -3411,7 +3490,7 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 		return t;
 	};
 
-	let animationProps = [&#x27;frameDelay&#x27;, &#x27;frameSize&#x27;, &#x27;looping&#x27;, &#x27;offset&#x27;, &#x27;rotation&#x27;, &#x27;scale&#x27;];
+	let animationProps = [&#x27;frameDelay&#x27;, &#x27;frameSize&#x27;, &#x27;looping&#x27;, &#x27;offset&#x27;, &#x27;rotation&#x27;, &#x27;scale&#x27;, &#x27;demoMode&#x27;];
 
 	/**
 	 * Look at the Animation reference pages before reading these docs.
@@ -3452,13 +3531,13 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 			 */
 			this.name = &#x27;default&#x27;;
 
-			let parent;
+			let owner;
 
 			if (args[0] instanceof this.p.Sprite || args[0] instanceof this.p.Group) {
-				parent = args[0];
+				owner = args[0];
 				args = args.slice(1);
 			}
-			parent ??= this.p.allSprites;
+			owner ??= this.p.allSprites;
 
 			if (typeof args[0] == &#x27;string&#x27; &amp;&amp; (args[0].length == 1 || !args[0].includes(&#x27;.&#x27;))) {
 				this.name = args[0];
@@ -3487,9 +3566,11 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 			 * @example
 			 * offset.x = 16;
 			 */
-			this.offset = { x: parent.anis.offset.x || 0, y: parent.anis.offset.y || 0 };
+			this.offset = { x: owner.anis.offset.x || 0, y: owner.anis.offset.y || 0 };
 
-			this._frameDelay = parent.anis.frameDelay || 4;
+			this._frameDelay = owner.anis.frameDelay || 4;
+
+			this.demoMode = owner.anis.demoMode || false;
 
 			/**
 			 * True if the animation is currently playing.
@@ -3516,7 +3597,7 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 			 * @type {Boolean}
 			 * @default true
 			 */
-			this.looping = parent.anis.looping;
+			this.looping = owner.anis.looping;
 			this.looping ??= true;
 
 			/**
@@ -3539,12 +3620,15 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 			 */
 			this.frameChanged = false;
 
-			this.rotation = parent.anis.rotation || 0;
+			this.onComplete = this.onChange = null;
+			this._onComplete = this._onChange = null;
+
+			this.rotation = owner.anis.rotation || 0;
 			this._scale = new Scale();
 
 			if (args.length == 0 || typeof args[0] == &#x27;number&#x27;) return;
 
-			parent.addAni(this);
+			owner.addAni(this);
 
 			// list mode images can be added as a list of arguments or an array
 			if (Array.isArray(args[0]) &amp;&amp; typeof args[0][0] == &#x27;string&#x27;) {
@@ -3632,7 +3716,7 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 
 			// SpriteSheet mode
 			else if (typeof args[args.length - 1] != &#x27;string&#x27; &amp;&amp; !(args[args.length - 1] instanceof p5.Image)) {
-				let sheet = parent.spriteSheet;
+				let sheet = owner.spriteSheet;
 				let atlas;
 				if (args[0] instanceof p5.Image || typeof args[0] == &#x27;string&#x27;) {
 					if (args.length &gt;= 3) {
@@ -3692,10 +3776,12 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 						width,
 						height,
 						size,
-						pos,
+						row,
+						col,
 						line,
 						x,
 						y,
+						pos,
 						frames,
 						frameCount,
 						frameDelay,
@@ -3703,28 +3789,18 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 						delay,
 						rotation
 					} = atlas;
-					frameSize ??= size || parent.anis.frameSize;
+					frameSize ??= size || owner.anis.frameSize;
 					if (delay) _this.frameDelay = delay;
 					if (frameDelay) _this.frameDelay = frameDelay;
 					if (rotation) _this.rotation = rotation;
 					frameCount ??= frames || 1;
 					w ??= width;
 					h ??= height;
-					x ??= 0;
-					y ??= 0;
-					pos ??= line;
-					// if pos is a number or only y is defined but not x
-					// the animation&#x27;s first frame is at x = 0
-					// the line number is the location of the animation line
-					// given as a distance from the top of the image
-					if (typeof pos == &#x27;number&#x27;) {
-						y = pos;
-					} else if (pos) {
-						// pos is the location of the animation line
-						// given as a [row,column] coordinate pair of distances in tiles
-						// from the top left corner of the image
-						x = pos[0]; // column
-						y = pos[1]; // row
+					x ??= col || 0;
+					y ??= line || row || 0;
+					if (pos) {
+						x = pos[0];
+						y = pos[1];
 					}
 
 					if (typeof frameSize == &#x27;number&#x27;) {
@@ -3734,18 +3810,12 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 						h = frameSize[1];
 					}
 
-					let tileSize;
-					if (parent) tileSize = parent.tileSize;
-
-					// get the real dimensions and position of the frame
-					// in the sheet
-					x *= tileSize;
-					y *= tileSize;
+					let tileSize = owner.tileSize;
 
 					if (!w || !h) {
-						if (!parent._dimensionsUndefined) {
-							w = parent.w;
-							h = parent.h;
+						if (!owner._dimensionsUndefinedByUser) {
+							w = owner.w;
+							h = owner.h;
 						} else if (tileSize) {
 							w = h = tileSize;
 						} else if (frameCount) {
@@ -3761,6 +3831,16 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 					} else {
 						w *= tileSize;
 						h *= tileSize;
+					}
+
+					// get the real dimensions and position of the frame
+					// in the sheet
+					if (tileSize != 1) {
+						x *= tileSize;
+						y *= tileSize;
+					} else if (line !== undefined || row !== undefined || col !== undefined) {
+						x *= w;
+						y *= h;
 					}
 
 					// add all the frames in the animation to the frames array
@@ -3886,7 +3966,19 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 			if (img !== undefined) {
 				if (this.spriteSheet) {
 					let { x, y, w, h } = img; // image info
-					this.p.image(this.spriteSheet, this.offset.x, this.offset.y, w, h, x, y, w, h);
+					if (!this.demoMode) {
+						this.p.image(this.spriteSheet, this.offset.x, this.offset.y, w, h, x, y, w, h);
+					} else {
+						this.p.image(
+							this.spriteSheet,
+							this.offset.x,
+							this.offset.y,
+							this.spriteSheet.w,
+							this.spriteSheet.h,
+							x - this.spriteSheet.w / 2 + w / 2,
+							y - this.spriteSheet.h / 2 + h / 2
+						);
+					}
 				} else {
 					this.p.image(img, this.offset.x, this.offset.y);
 				}
@@ -3921,7 +4013,8 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 					if (this.endOnFirstFrame) this.frame = 0;
 					if (this.looping) this.targetFrame = -1;
 					else this.playing = false;
-					this.onComplete(); //fire when on last frame
+					if (this._onComplete) this._onComplete();
+					if (this.onComplete) this.onComplete(); //fire when on last frame
 					if (!this.looping) return;
 				}
 
@@ -3958,7 +4051,8 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 			if (frame !== undefined) this.frame = frame;
 			this.targetFrame = -1;
 			return new Promise((resolve) =&gt; {
-				this.onComplete = () =&gt; {
+				this._onComplete = () =&gt; {
+					this._onComplete = null;
 					resolve();
 				};
 			});
@@ -4014,16 +4108,6 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 		 */
 		noLoop() {
 			this.looping = false;
-		}
-
-		/**
-		 * fire when animation ends
-		 *
-		 * @method onComplete
-		 * @return {SpriteAnimation}
-		 */
-		onComplete() {
-			return undefined;
 		}
 
 		/**
@@ -4089,7 +4173,8 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 				this.playing = true;
 			}
 			return new Promise((resolve) =&gt; {
-				this.onComplete = () =&gt; {
+				this._onComplete = () =&gt; {
+					this._onComplete = null;
 					resolve();
 				};
 			});
@@ -4555,7 +4640,7 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 		 * @type {SpriteAnimation}
 		 */
 		get ani() {
-			return this._animation;
+			return this._ani;
 		}
 		set ani(val) {
 			this.addAni(val);
@@ -4568,7 +4653,7 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 		 * @type {SpriteAnimation}
 		 */
 		get animation() {
-			return this._animation;
+			return this._ani;
 		}
 		set animation(val) {
 			this.ani = val;
@@ -4590,7 +4675,7 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 		 * @type {SpriteAnimation}
 		 */
 		get img() {
-			return this._animation.frameImage;
+			return this._ani.frameImage;
 		}
 		set img(val) {
 			this.ani = val;
@@ -4602,7 +4687,7 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 		 * @type {SpriteAnimation}
 		 */
 		get image() {
-			return this._animation.frameImage;
+			return this._ani.frameImage;
 		}
 		set image(val) {
 			this.ani = val;
@@ -4661,6 +4746,21 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 			if (callback &amp;&amp; typeof callback != &#x27;function&#x27;) {
 				throw new FriendlyError(&#x27;Group.collide&#x27;, 1, [callback]);
 			}
+
+			if (this._overlap[target._uid] !== false) {
+				this._overlap[target._uid] = false;
+				for (let s of this) {
+					s._overlap[target._uid] = false;
+				}
+			}
+			if (target._overlap[this._uid] !== false) {
+				target._overlap[this._uid] = false;
+				if (target instanceof this.p.Group) {
+					for (let s of target) {
+						s._overlap[this._uid] = false;
+					}
+				}
+			}
 		}
 
 		collide(target, callback) {
@@ -4716,6 +4816,12 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 			return this._collisions[target._uid] == -1;
 		}
 
+		_removeContactsWith(o) {
+			for (let s of this) {
+				s._removeContactsWith(o);
+			}
+		}
+
 		_ensureOverlap(target, callback) {
 			if (!target) {
 				throw new FriendlyError(&#x27;Group.overlap&#x27;, 2);
@@ -4732,17 +4838,32 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 				}
 				this._hasOverlaps = true;
 			}
-			if (target instanceof this.p.Sprite) {
-				if (!target._hasOverlaps) target._createSensors();
-			} else if (target instanceof this.p.Group) {
-				if (!target._hasOverlaps) {
+			if (!target._hasOverlaps) {
+				if (target instanceof this.p.Sprite) {
+					target._createSensors();
+				} else {
 					for (let s of target) {
 						if (!s._hasOverlaps) s._createSensors();
 					}
 					target._hasOverlaps = true;
 				}
 			}
-			this._overlap[target._uid] = true;
+			if (this._overlap[target._uid] != true) {
+				this._removeContactsWith(target);
+				this._overlap[target._uid] = true;
+				for (let s of this) {
+					s._overlap[target._uid] = true;
+				}
+			}
+			if (target._overlap[this._uid] != true) {
+				target._removeContactsWith(this);
+				target._overlap[this._uid] = true;
+				if (target instanceof this.p.Group) {
+					for (let s of target) {
+						s._overlap[this._uid] = true;
+					}
+				}
+			}
 		}
 
 		overlap(target, callback) {
@@ -5182,10 +5303,10 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 					name = ani.name;
 				}
 				this.animations[name] = ani;
-				this._animation = ani;
+				this._ani = ani;
 
 				// only works if the animation was loaded in preload
-				if (this._dimensionsUndefined &amp;&amp; (ani.w != 1 || ani.h != 1)) {
+				if (this._dimensionsUndefinedByUser &amp;&amp; (ani.w != 1 || ani.h != 1)) {
 					this.w = ani.w;
 					this.h = ani.h;
 				}
@@ -6235,7 +6356,7 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 	};
 
 	/**
-	 * Loads an animation. Equivalent to &#x60;new SpriteAnimation()&#x60;
+	 * Alias for &#x60;new SpriteAnimation()&#x60;
 	 *
 	 * Load animations in the preload p5.js function if you need to use
 	 * them when your program starts.
@@ -6244,7 +6365,7 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 	 * @returns {SpriteAnimation}
 	 */
 	/**
-	 * Alias for loadAni
+	 * Alias for &#x60;new SpriteAnimation()&#x60;
 	 *
 	 * @method loadAnimation
 	 * @returns {SpriteAnimation}
@@ -6258,9 +6379,11 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 	 *
 	 * @method animation
 	 * @param {SpriteAnimation} ani Animation to be displayed
-	 * @param {Number} x X coordinate
-	 * @param {Number} y Y coordinate
-	 *
+	 * @param {Number} x position of the animation on the canvas
+	 * @param {Number} y position of the animation on the canvas
+	 * @param {Number} r rotation of the animation
+	 * @param {Number} sX scale of the animation in the x direction
+	 * @param {Number} sY scale of the animation in the y direction
 	 */
 	this.animation = function (ani, x, y, r, sX, sY) {
 		if (ani.visible) ani.update();
@@ -6316,6 +6439,53 @@ p5.prototype.registerMethod(&#x27;init&#x27;, function p5PlayInit() {
 			sound.onended(() =&gt; resolve());
 		});
 	};
+
+	this.p5play.playIntro = async function () {
+		if (document.getElementById(&#x27;p5play-intro&#x27;)) return;
+		pInst._incrementPreload();
+		let p = document.createElement(&#x27;div&#x27;);
+		p.id = &#x27;p5play-intro&#x27;;
+		p.style = &#x27;position: absolute; width: 100%; height: 100%; top: 0; left: 0; z-index: 1000; background-color: black;&#x27;;
+		let logo = document.createElement(&#x27;img&#x27;);
+		logo.src = &#x27;https://p5play.org/v3/made_with_p5play.png&#x27;;
+		logo.style =
+			&#x27;position: absolute; top: 50%; left: 50%; width: 40vh; height: 20vh; margin-left: -20vh; margin-top: -10vh; z-index: 1000; opacity: 0; transition: opacity 0.1s ease-in-out;&#x27;;
+		document.body.append(p);
+		p.append(logo);
+		await pInst.delay(100);
+		logo.style.opacity = &#x27;1&#x27;;
+		logo.style.transition = &#x27;scale 2s, opacity 0.4s ease-in-out&#x27;;
+		logo.style.scale = &#x27;1.1&#x27;;
+		await pInst.delay(1200);
+		logo.style.opacity = &#x27;0&#x27;;
+		await pInst.delay(400);
+		p.remove();
+		pInst._decrementPreload();
+	};
+
+	{
+		let lh = location.hostname;
+		switch (lh) {
+			case &#x27;127.0.0.1&#x27;:
+			case &#x27;localhost&#x27;:
+			case &#x27;p5play.org&#x27;:
+			case &#x27;openprocessing.org&#x27;:
+			case &#x27;preview.openprocessing.org&#x27;:
+			case &#x27;editor.p5js.org&#x27;:
+			case &#x27;codepen.io&#x27;:
+			case &#x27;cdpn.io&#x27;:
+			case &#x27;glitch.com&#x27;:
+			case &#x27;replit.com&#x27;:
+			case &#x27;stackblitz.com&#x27;:
+			case &#x27;jsfiddle.net&#x27;:
+				break;
+			default:
+				if (lh.endsWith(&#x27;stackblitz.io&#x27;) || lh.endsWith(&#x27;glitch.me&#x27;) || lh.endsWith(&#x27;repl.co&#x27;)) {
+					break;
+				}
+				this.p5play.playIntro();
+		}
+	}
 
 	let userDisabledP5Errors = p5.disableFriendlyErrors;
 	p5.disableFriendlyErrors = true;
@@ -6602,7 +6772,7 @@ canvas {
 			_img.w = _img.width;
 			_img.h = _img.height;
 			for (let cb of _img.cbs) {
-				cb();
+				cb(_img);
 			}
 			for (let i = 1; i &lt; _img.calls; i++) {
 				pInst._decrementPreload();
@@ -7459,8 +7629,8 @@ p5.prototype.registerMethod(&#x27;pre&#x27;, function p5playPreDraw() {
 	}
 
 	if (this.frameCount == 1) {
-		this.camera.x = this.world.hw;
-		this.camera.y = this.world.hh;
+		if (!this.camera.x) this.camera.x = this.world.hw;
+		if (!this.camera.y) this.camera.y = this.world.hh;
 		this.camera.init = true;
 
 		// this stops the right click menu from appearing
