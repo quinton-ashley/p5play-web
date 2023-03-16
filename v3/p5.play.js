@@ -5966,6 +5966,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			case 'openprocessing.org':
 			case 'preview.openprocessing.org':
 			case 'editor.p5js.org':
+			case 'preview.p5js.org':
 			case 'codepen.io':
 			case 'cdpn.io':
 			case 'glitch.com':
