@@ -1174,6 +1174,38 @@ sprite.friction = 500;
 sprite.rotationDrag = 5;
 			</script>
 			</div>
+			<script type="text/md">
+In this example the block's color is red when it is colliding with the moving platform. Although you might expect the block to stay red while being lifted by the platform, it blinks between red and blue.
+
+In real life when a person gets on an elevator and it rises, we would say that person would be colliding with the elevator floor the whole ride.
+
+In planck however, when colliders are displaced by other colliders, they constantly collide and uncollide with each other.
+
+			</script>
+			<script type="mie/p5" name="colliding bug" horiz>
+let block, platform;
+
+function setup() {
+	new Canvas(60, 400);
+	world.gravity.y = 10;
+
+	block = new Sprite(30, 30);
+	platform = new Sprite(30, 200, 60, 5, 'k');
+	platform.color = 'red';
+}
+
+function draw() {
+	clear();
+	platform.vel.y = cos(frame * 2.2) * 6;
+
+	if (block.colliding(platform)) {
+		block.color = 'red';
+	} else {
+		block.color = 'blue';
+	}
+}
+
+			</script>
 		</div>
 		<div id="page-10" class="page">
 			<div>
