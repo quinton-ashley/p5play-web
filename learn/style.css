@@ -581,6 +581,10 @@ body.light .discord-logo {
 	display: none;
 } */
 
+#auth {
+	display: none;
+}
+
 .login {
 	font-size: 32px;
 	font-weight: bold;
