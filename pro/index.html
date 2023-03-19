@@ -7,10 +7,6 @@
 	<title>p5play : AD$</title>
 	<link rel="icon" href="../favicon.png" />
 	<link rel="stylesheet" href="../learn/style.css">
-	<script src="
-	https://cdn.jsdelivr.net/npm/jwt-decode@3.1.2/build/jwt-decode.min.js
-	"></script>
-	<script src="index.js"></script>
 </head>
 
 <body class="dark">
@@ -33,10 +29,13 @@
 		</nav>
 		<div class="top big break"></div>
 
-		<div>
+		<div id="noauth">
 			<h2>p5play Ad Revenue Sharing Program</h2>
 			<p>
-				Coming soon! p5play will offer an Ad Revenue Sharing Program similar to Unity's.
+				Coming soon!
+			</p>
+			<p>
+				p5play will offer an Ad Revenue Sharing Program similar to Unity's.
 			</p>
 			<p>
 				If you choose to participate, you will receive 70% of the ad
@@ -44,8 +43,32 @@
 				or art project, while 30% of the ad revenue will be retained by
 				p5play (same split as Unity).
 			</p>
+			<div class="login">
+				<a class="btn"
+					href="https://p5play.auth.us-west-2.amazoncognito.com/signup?redirect_uri=https://p5play.org/pro&response_type=id_token&client_id=3oegfdhu2r7eo8nr371496718c">Sign
+					Up</a>
+				<a class="btn"
+					href="https://p5play.auth.us-west-2.amazoncognito.com/login?redirect_uri=https://p5play.org/pro&response_type=id_token&client_id=3oegfdhu2r7eo8nr371496718c">Login</a>
+			</div>
 		</div>
+		<div id="auth">
+			<h2>p5play ad revenue sharing program</h2>
+			<p>
+				Welcome <span id="username"></span>!
+			</p>
+		</div>
+		<div class="break"></div>
+		<footer class="text-small">
+			Created by Quinton Ashley (@quinton-ashley) Copyright 2022-2023.
+		</footer>
 	</article>
+
+	<script src="../main.js"></script>
+
+	<script src="
+		https://cdn.jsdelivr.net/npm/jwt-decode@3.1.2/build/jwt-decode.min.js
+		"></script>
+	<script src="pro.js"></script>
 </body>
 
 </html>

@@ -120,6 +120,10 @@ a.navLink {
 	text-shadow: 3px 1.8px 0px var(--blue);
 }
 
+#topNav #logoLink.active {
+	font-size: 42px;
+}
+
 #topNav #logoLink:hover {
 	-webkit-text-stroke: 1.4px var(--pink);
 }
@@ -183,6 +187,7 @@ a.navLink {
 	flex-wrap: wrap;
 }
 
+a.btn,
 #toc a,
 #refs div a:not(:first-child) {
 	background-color: var(--bright-blue);
@@ -214,6 +219,7 @@ a.navLink {
 	-webkit-text-stroke: none;
 }
 
+.dark a.btn,
 .dark #toc a,
 .dark #refs div a:not(:first-child) {
 	background-color: var(--dark-blue);
@@ -574,6 +580,11 @@ body.light .discord-logo {
 .night-mode .day {
 	display: none;
 } */
+
+.login {
+	font-size: 32px;
+	font-weight: bold;
+}
 
 @media screen and (max-width: 1060px) {
 

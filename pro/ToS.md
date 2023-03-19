@@ -1,10 +1,14 @@
-# Terms and Conditions for the p5play Ad Revenue Sharing Program
+# Terms of Service : p5play Ad Revenue Sharing Program
 
 ## Parties to the Agreement
 
 p5play is a sole proprietorship owned and operated by Quinton Ashley ("p5play"). p5play is a JavaScript game engine, that provides a platform for making games and art projects ("Content").
 
-This agreement ("Agreement") is entered into between p5play and any developer of p5play content who agrees to these terms and conditions ("Developer").
+This agreement ("Agreement") is entered into between p5play and you, a developer of p5play content who agrees to these terms and conditions ("Developer"). If you are a minor, under the age of 18, then your parent(s) or legal guardian(s) must also agree to these terms and conditions.
+
+By agreeing to these terms and conditions, you represent and warrant that you have the authority to enter into this Agreement and that you are fully able and competent to abide by all of its terms and conditions.
+
+If you are a parent or legal guardian of a minor Developer who is using p5play, then by agreeing to these terms and conditions, you represent and warrant that you have the authority to act on behalf of the minor Developer. You affirm that you have read, understand, and agree to these terms and conditions on behalf of the minor Developer. If you do not have the authority to act on behalf of the minor Developer or do not agree to these terms and conditions, then the minor Developer may not participate in the p5play Ad Revenue Sharing Program. As a parent or legal guardian, you are solely responsible for ensuring that the minor Developer complies with these terms and conditions.
 
 ## Participation
 
@@ -26,11 +30,7 @@ If a developer violates the intellectual property rights of another party in the
 
 ## Tax Reporting Requirements
 
-If you earn over $600 in a calendar year, p5play may request that you submit a W-9 form to receive further payments. You are responsible for complying with all applicable tax laws and regulations, and p5play will not be held liable for any failure to comply.
-
-## Additional Stipulation for Minors
-
-If you are a minor, under the age of 18, you must have your parent or legal guardian's consent to participate in the ad revenue sharing program. Your parent or legal guardian must also agree to the terms and conditions of the program.
+If you earn over $600 in a calendar year, p5play will request that you submit a W-9 form to receive further payments. You are responsible for complying with all applicable tax laws and regulations, and p5play will not be held liable for any failure to comply.
 
 ## Modifications to Terms and Conditions
 
