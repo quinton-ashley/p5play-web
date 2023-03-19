@@ -588,6 +588,9 @@ body.light .discord-logo {
 .login {
 	font-size: 32px;
 	font-weight: bold;
+	display: flex;
+	justify-content: center;
+	gap: 50px;
 }
 
 @media screen and (max-width: 1060px) {

@@ -22,7 +22,7 @@ p5play will not be responsible for any loss of revenue or damages resulting from
 
 ## Payment Terms
 
-Payments will be made only upon request. The minimum payout amount is $20 USD. Payments will only be made through PayPal or Venmo. By submitting your PayPal or Venmo username, you agree that it is accurate and up-to-date. p5play will not be responsible for payments that are sent to an incorrect PayPal or Venmo username. If the username you provide is incorrect, you will not receive any payments.
+Payments will be made only upon request. The minimum payout amount is $20 USD. Payments will only be made through PayPal or Venmo. By submitting your PayPal or Venmo username, you agree that it is accurate and up-to-date. p5play will not be responsible for payments that are sent to an incorrect PayPal or Venmo username. If you do not provide a valid PayPal or Venmo username or the username you provide is to another user's account, you will not receive any payments.
 
 ## Zero Tolerance for Intellectual Property Right Violations
 
