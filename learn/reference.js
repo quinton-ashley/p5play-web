@@ -61,7 +61,7 @@ let refs = {
 		'sprite.html?page=1': ['gravity'],
 		'advanced.html?page=1': ['allowSleeping']
 	},
-	'p5.js basics': {
+	'JavaScript basics': {
 		'https://p5js.org/reference/#/p5': [
 			'let',
 			'const',
@@ -88,7 +88,7 @@ let refs = {
 			'dist'
 		]
 	},
-	'p5.js environment': {
+	'q5.js environment': {
 		'https://p5js.org/reference/#/p5': [
 			'width',
 			'height',
@@ -104,7 +104,7 @@ let refs = {
 			'clearStorage'
 		]
 	},
-	'p5.js 2D': {
+	'q5.js 2D': {
 		'https://p5js.org/reference/#/p5': [
 			'background',
 			'clear',
@@ -123,7 +123,7 @@ let refs = {
 			'textFont'
 		]
 	},
-	'p5.sound': {
+	'q5.js sound': {
 		'https://p5js.org/reference/#/p5': ['loadSound'],
 		'https://p5js.org/reference/#/p5.SoundFile': ['play', 'stop', 'loop', 'setVolume', 'pan']
 	}
@@ -135,7 +135,7 @@ for (let refPage in refs) {
 	let ref = refs[refPage];
 	let className = refPage;
 	let p5playRef = true;
-	if (className.slice(0, 2) != 'p5') {
+	if (className.slice(0, 2) != 'q5') {
 		className = className.split('.')[0];
 		if (className == 'Sprite_Animation') className = 'SpriteAnimation';
 		if (className == 'Input_Devices') className = 'Input';
