@@ -205,13 +205,12 @@ collider that allows the sprite to move freely and be affected by
 gravity.
 
 `'static'` colliders can't be moved. `'kinematic'` colliders can be moved 
-programmatically but not by other sprites. Setting a sprite's collider
-type to `'none'` fully removes it from the physics simulation.
+programmatically but not by other sprites. They also won't collide with other kinematic colliders. Setting a sprite's collider
+type to `'none'` removes it from the physics simulation.
 
-You can also use the letters `'d'`, `'s'`, `'k'`, and `'n'` to
-set the collider type of a sprite.
+The collider type can also be set using the first letter of the collider type name: `'d'`, `'s'`, `'k'`, or `'n'`.
 
-You might have to replay these mini-sketches to see what happened!
+Click the reload icon on the top right corner of a mini example to replay it!
 			</script>
 			<div>
 				<script type="mie/p5" name="dynamic and static colliders" base-2 horiz lines="16">

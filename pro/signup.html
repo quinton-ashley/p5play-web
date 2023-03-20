@@ -79,7 +79,7 @@
 						<div>
 							<div> <span class="textDescription-customizable ">Sign up to create a new account</span>
 								<form name="signupform"
-									action="/signup?client_id=3oegfdhu2r7eo8nr371496718c&amp;response_type=code&amp;scope=email+openid+phone&amp;redirect_uri=https%3A%2F%2Fp5play.org%2Fpro%2Findex.html"
+									action="https://p5play.auth.us-west-2.amazoncognito.com/signup?client_id=3oegfdhu2r7eo8nr371496718c&amp;response_type=code&amp;scope=email+openid+phone&amp;redirect_uri=https%3A%2F%2Fp5play.org%2Fpro%2Findex.html"
 									method="post" class="cognito-asf" onsubmit="onSubmit(event, this, 'signUpButton')"><input
 										type="hidden" name="_csrf" value="15af2289-bf9e-47f4-be85-173d1cd3ba38">
 
@@ -135,8 +135,9 @@
 									<div style="display: none;">
 										<label class="label-customizable">Today's Date</label>
 										<div>
-											<input id="todaysDate" type="date" name="requiredAttributes[updated_at]"
+											<input id="todaysDate" type="text" name="requiredAttributes[updated_at]"
 												class="form-control inputField-customizable" required="" aria-label="Today's Date">
+
 										</div>
 									</div>
 									<label class="label-customizable">Email</label>
@@ -147,146 +148,8 @@
 									</div>
 									<label class="label-customizable">Password</label>
 									<br>
-									<input name="password" onkeyup="checkPasswordMatch();" type="password" value=""
-										class="form-control inputField-customizable" placeholder="Password" required=""
-										aria-label="Password">
-									<br>
-									<div>
-										<div>
-											<div class="checkPassword-lowerletter passwordCheck-notValid-customizable">
-												<span aria-hidden="true" class="check-lowerletter">✖</span>
-												<span class="checkPasswordText-lowerletter">Password must contain a lower case letter</span>
-											</div>
-											<div class="checkPassword-upperletter passwordCheck-notValid-customizable">
-												<span aria-hidden="true" class="check-upperletter">✖</span>
-												<span class="checkPasswordText-upperletter">Password must contain an upper case letter</span>
-											</div>
-											<div class="checkPassword-numbers passwordCheck-notValid-customizable">
-												<span aria-hidden="true" class="check-numbers">✖</span>
-												<span class="checkPasswordText-numbers">Password must contain a number</span>
-											</div>
-											<div class="checkPassword-length passwordCheck-notValid-customizable">
-												<span aria-hidden="true" class="check-length">✖</span>
-												<span class="checkPasswordText-length">Password must contain at least 8 characters</span>
-											</div>
-											<div class="checkPassword-matches">
-												<span aria-hidden="true" class="check-matches"></span>
-												<span class="checkPasswordText-matches"></span>
-											</div>
-											<div class="checkPassword-symbols passwordCheck-notValid-customizable">
-												<span aria-hidden="true" class="check-symbols">✖</span>
-												<span class="checkPasswordText-symbols">Password must contain a special character or a
-													space</span>
-											</div>
-											<div class="checkPassword-valid-spaces passwordCheck-valid-customizable">
-												<span aria-hidden="true" class="check-valid-spaces">✓</span>
-												<span class="checkPasswordText-valid-spaces">Password must not contain a leading or trailing
-													space</span>
-											</div>
-										</div>
-									</div> <button type="submit" name="signUpButton"
-										class="btn btn-primary signUpButton submitButton-customizable" disabled="">Sign up</button>
-									<br>
-									<p class="redirect-customizable"><span>Already have an account?</span>&nbsp;<a
-											href="/login?client_id=3oegfdhu2r7eo8nr371496718c&amp;response_type=code&amp;scope=email+openid+phone&amp;redirect_uri=https%3A%2F%2Fp5play.org%2Fpro%2Findex.html">Sign
-											in</a></p>
-								</form>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="modal-content background-customizable modal-content-mobile visible-xs visible-sm">
-				<div>
-					<div>
-						<div class="banner-customizable">
-							<center>
-								<img alt="logo" class="logo-customizable"
-									src="https://dpp0gtxikpq3y.cloudfront.net/us-west-2_kBmVbHkwg/ALL/20230319153027/assets/images/image.jpg">
-							</center>
-						</div>
-					</div>
-				</div>
-				<div class="modal-body">
-					<div>
-						<div> </div>
-					</div>
-					<div>
-						<div> </div>
-					</div>
-					<div>
-						<div>
-							<div> <span class="textDescription-customizable ">Sign up with a new account</span>
-								<form name="signupform"
-									action="/signup?client_id=3oegfdhu2r7eo8nr371496718c&amp;response_type=code&amp;scope=email+openid+phone&amp;redirect_uri=https%3A%2F%2Fp5play.org%2Fpro%2Findex.html"
-									method="post" class="cognito-asf" onsubmit="onSubmit(event, this, 'signUpButton')"><input
-										type="hidden" name="_csrf" value="15af2289-bf9e-47f4-be85-173d1cd3ba38">
-									<label class="label-customizable">Email</label>
-									<div>
-										<input name="username" onkeyup="checkPasswordMatch();" type="email" value="" autocapitalize="none"
-											class="form-control inputField-customizable" placeholder="name@host.com" required=""
-											aria-label="Email">
-									</div>
-									<div>
-										<label class="label-customizable">Birthday</label>
-										<div>
-											<input type="text" name="requiredAttributes[birthdate]"
-												class="form-control inputField-customizable" required="" aria-label="Birthday">
-										</div>
-									</div>
-									<div>
-										<label class="label-customizable">Address</label>
-										<div>
-											<input type="text" name="requiredAttributes[address]" class="form-control inputField-customizable"
-												required="" aria-label="Address">
-										</div>
-									</div>
-									<div>
-										<label class="label-customizable">Gender</label>
-										<div>
-											<input type="text" name="requiredAttributes[gender]" class="form-control inputField-customizable"
-												required="" aria-label="Gender">
-										</div>
-									</div>
-									<div>
-										<label class="label-customizable">Update at</label>
-										<div>
-											<input type="text" name="requiredAttributes[updated_at]"
-												class="form-control inputField-customizable" required="" aria-label="Update at">
-										</div>
-									</div>
-									<div>
-										<label class="label-customizable">Given name</label>
-										<div>
-											<input type="text" name="requiredAttributes[given_name]"
-												class="form-control inputField-customizable" required="" aria-label="Given name">
-										</div>
-									</div>
-									<div>
-										<label class="label-customizable">Middle name</label>
-										<div>
-											<input type="text" name="requiredAttributes[middle_name]"
-												class="form-control inputField-customizable" required="" aria-label="Middle name">
-										</div>
-									</div>
-									<div>
-										<label class="label-customizable">Locale</label>
-										<div>
-											<input type="text" name="requiredAttributes[locale]" class="form-control inputField-customizable"
-												required="" aria-label="Locale">
-										</div>
-									</div>
-									<div>
-										<label class="label-customizable">Family name</label>
-										<div>
-											<input type="text" name="requiredAttributes[family_name]"
-												class="form-control inputField-customizable" required="" aria-label="Family name">
-										</div>
-									</div>
-									<label class="label-customizable">Password</label>
-									<br>
-									<input name="password" onkeyup="checkPasswordMatch();" type="password" value=""
-										class="form-control inputField-customizable" placeholder="Password" required=""
+									<input type="password" autocomplete="new-password" name="password" onkeyup="checkPasswordMatch();"
+										value="" class="form-control inputField-customizable" placeholder="Password" required=""
 										aria-label="Password">
 									<br>
 									<div>
@@ -350,7 +213,7 @@
 
 		document.getElementById("localeInput").value = navigator.languages[0] || navigator.language || navigator.userLanguage;
 
-		document.getElementById("todaysDate").value = new Date().toISOString().slice(0, 10);
+		document.getElementById("todaysDate").value = Math.floor(new Date().getTime() / 1000);
 
 		function checkPasswordHelper(password) {
 			var passwordPolicy = [];
@@ -491,6 +354,8 @@
 			var doesConfirmPasswordMatch = checkConfirmPasswordMatches(password, confirmPassword)
 			$('button[name="reset_password"]').prop("disabled", !(checkPasswordHelper(password) && doesConfirmPasswordMatch));
 		}
+
+		document.getElementById('')
 	</script>
 	<div class="fwcim-container"></div>
 </body>
