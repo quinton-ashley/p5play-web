@@ -4,10 +4,8 @@ if (!params) params = '?' + location.hash.slice(1);
 const urlParams = new URLSearchParams(params);
 const idToken = urlParams.get('id_token');
 
-// Log the id_token to the console
-console.log(idToken);
-
 if (idToken) {
+	window.history.pushState(null, '', location.href.split(/[?#]/)[0]);
 	let user = jwt_decode(idToken);
 	console.log(user);
 
