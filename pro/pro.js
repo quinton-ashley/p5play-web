@@ -2,10 +2,11 @@
 (async () => {
 	const log = console.log;
 
-	let idToken = localStorage.getItem('idToken');
 	let user;
+	let idToken = localStorage.getItem('idToken');
 
-	if (idToken) user = jwt_decode(idToken);
+	if (idToken && idToken != 'null') user = jwt_decode(idToken);
+	else idToken = null;
 
 	if (!idToken || user.exp < Date.now() / 1000) {
 		// get the AWS Cognito id_token from the URL
