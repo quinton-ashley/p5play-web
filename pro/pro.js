@@ -16,6 +16,7 @@
 		idToken = urlParams.get('id_token');
 		localStorage.setItem('idToken', idToken);
 		if (!idToken) return;
+		user = jwt_decode(idToken);
 
 		// hide the token from the URL
 		window.history.pushState(null, '', location.href.split(/[?#]/)[0]);
@@ -38,7 +39,8 @@
 		await fetch(apiUrl + '/getUserData', {
 			method: 'GET',
 			headers: {
-				Authorization: `Bearer ${idToken}`
+				Authorization: `Bearer ${idToken}`,
+				'Content-Type': 'application/json'
 			}
 		})
 	).json();
