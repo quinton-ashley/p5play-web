@@ -2,20 +2,26 @@
 (async () => {
 	const log = console.log;
 
-	// get the AWS Cognito id_token from the URL
-	let params = location.search;
-	if (!params) params = '?' + location.hash.slice(1);
-	const urlParams = new URLSearchParams(params);
-	const idToken = urlParams.get('id_token');
+	let idToken = localStorage.getItem('idToken');
+	let user;
+
+	if (idToken) user = jwt_decode(idToken);
+
+	if (!idToken || user.exp < Date.now() / 1000) {
+		// get the AWS Cognito id_token from the URL
+		let params = location.search;
+		if (!params) params = '?' + location.hash.slice(1);
+		const urlParams = new URLSearchParams(params);
+		idToken = urlParams.get('id_token');
+		localStorage.setItem('idToken', idToken);
+		if (!idToken) return;
+
+		// hide the token from the URL
+		window.history.pushState(null, '', location.href.split(/[?#]/)[0]);
+	}
 
 	window.idToken = idToken; // for debugging
 
-	if (!idToken) return;
-
-	// hide the token from the URL
-	window.history.pushState(null, '', location.href.split(/[?#]/)[0]);
-
-	let user = jwt_decode(idToken);
 	log(user);
 
 	// show section of page that requires authentication
