@@ -1,4 +1,32 @@
-/**
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: p5play.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: p5play.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
  * p5play
  * @version 3.7
  * @author quinton-ashley
@@ -39,7 +67,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 	const scaleFrom = (x, y, tileSize) => new pl.Vec2((x / tileSize) * plScale, (y / tileSize) * plScale);
 	const scaleXFrom = (x, tileSize) => (x / tileSize) * plScale;
 
-	const fixRound = (val) => (Math.abs(val - Math.round(val)) <= pl.Settings.linearSlop ? Math.round(val) : val);
+	const fixRound = (val) => (Math.abs(val - Math.round(val)) &lt;= pl.Settings.linearSlop ? Math.round(val) : val);
 	const isArrowFunction = (fn) =>
 		!/^(?:(?:\/\*[^(?:\*\/)]*\*\/\s*)|(?:\/\/[^\r\n]*))*\s*(?:(?:(?:async\s(?:(?:\/\*[^(?:\*\/)]*\*\/\s*)|(?:\/\/[^\r\n]*))*\s*)?function|class)(?:\s|(?:(?:\/\*[^(?:\*\/)]*\*\/\s*)|(?:\/\/[^\r\n]*))*)|(?:[_$\w][\w0-9_$]*\s*(?:\/\*[^(?:\*\/)]*\*\/\s*)*\s*\()|(?:\[\s*(?:\/\*[^(?:\*\/)]*\*\/\s*)*\s*(?:(?:['][^']+['])|(?:["][^"]+["]))\s*(?:\/\*[^(?:\*\/)]*\*\/\s*)*\s*\]\())/.test(
 			fn.toString()
@@ -138,9 +166,9 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 
 	this.Sprite = class {
 		/**
-		 * <a href="https://p5play.org/learn/sprite.html">
+		 * &lt;a href="https://p5play.org/learn/sprite.html">
 		 * Look at the Sprite reference pages before reading these docs.
-		 * </a>
+		 * &lt;/a>
 		 *
 		 * The Sprite constructor can be used in many different ways.
 		 * Every sprite you create is added to the `allSprites`
@@ -184,7 +212,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 
 			let group, ani;
 
-			if (args[0] !== undefined && args[0] instanceof this.p.Group) {
+			if (args[0] !== undefined &amp;&amp; args[0] instanceof this.p.Group) {
 				group = args[0];
 				args = args.slice(1);
 			}
@@ -192,8 +220,8 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			if (!args.length) this._noArgs = true;
 
 			if (
-				args[0] !== undefined &&
-				isNaN(args[0]) &&
+				args[0] !== undefined &amp;&amp;
+				isNaN(args[0]) &amp;&amp;
 				(typeof args[0] == 'string' || args[0] instanceof this.p.SpriteAnimation || args[0] instanceof p5.Image)
 			) {
 				// shift
@@ -201,7 +229,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 				args = args.slice(1);
 			}
 
-			if (args.length == 1 && typeof args[0] == 'number') {
+			if (args.length == 1 &amp;&amp; typeof args[0] == 'number') {
 				throw new FriendlyError('Sprite', 0, [args[0]]);
 			}
 
@@ -224,7 +252,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			// collider type or the name of a regular polygon)
 			if (Array.isArray(w) || typeof h == 'string') {
 				if (!isNaN(w)) w = Number(w);
-				if (typeof w != 'number' && Array.isArray(w[0])) {
+				if (typeof w != 'number' &amp;&amp; Array.isArray(w[0])) {
 					this._originMode = 'start';
 				}
 				if (h !== undefined) {
@@ -430,13 +458,13 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 
 			this.mirror = {
 				get x() {
-					return _this._mirror.x < 0;
+					return _this._mirror.x &lt; 0;
 				},
 				set x(val) {
 					_this._mirror.x = val ? -1 : 1;
 				},
 				get y() {
-					return _this._mirror.y < 0;
+					return _this._mirror.y &lt; 0;
 				},
 				set y(val) {
 					_this._mirror.y = val ? -1 : 1;
@@ -476,7 +504,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 					else this._ani = ani.clone();
 				}
 				let ts = this.tileSize;
-				if (!w && (this._ani.w != 1 || this._ani.h != 1)) {
+				if (!w &amp;&amp; (this._ani.w != 1 || this._ani.h != 1)) {
 					w = this._ani.w / ts;
 					if (this.shape != 'circle') {
 						h = this._ani.h / ts;
@@ -492,7 +520,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			} else {
 				this.w = w || (this.tileSize > 1 ? 1 : 50);
 				this.h = h || this.w;
-				if (w !== undefined && h === undefined) this._shape = 'circle';
+				if (w !== undefined &amp;&amp; h === undefined) this._shape = 'circle';
 				else this._shape = 'box';
 			}
 
@@ -675,10 +703,10 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 					break;
 				}
 			}
-			if (shouldCreateSensor && !this._hasSensors) this.addDefaultSensors();
+			if (shouldCreateSensor &amp;&amp; !this._hasSensors) this.addDefaultSensors();
 
 			this._massUndefinedByUser = true;
-			if (w === undefined && h === undefined) {
+			if (w === undefined &amp;&amp; h === undefined) {
 				this._dimensionsUndefinedByUser = true;
 			}
 		}
@@ -754,7 +782,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			let args = [...arguments];
 			let path, shape;
 
-			if (args.length < 3) {
+			if (args.length &lt; 3) {
 				offsetX = 0;
 				offsetY = 0;
 				w = args[0];
@@ -765,7 +793,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			offsetX ??= 0;
 			offsetY ??= 0;
 			w ??= this._w;
-			if (!this.body && this.shape && this.shape != 'circle') {
+			if (!this.body &amp;&amp; this.shape &amp;&amp; this.shape != 'circle') {
 				h ??= this._h;
 			}
 
@@ -773,7 +801,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			// collider type or the name of a regular polygon)
 			if (Array.isArray(w) || typeof h == 'string') {
 				if (!isNaN(w)) w = Number(w);
-				if (typeof w != 'number' && Array.isArray(w[0])) {
+				if (typeof w != 'number' &amp;&amp; Array.isArray(w[0])) {
 					this._originMode = 'start';
 				}
 				if (typeof h == 'string') {
@@ -783,7 +811,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 					path = w;
 				}
 			} else {
-				if (w !== undefined && h === undefined) shape ??= 'circle';
+				if (w !== undefined &amp;&amp; h === undefined) shape ??= 'circle';
 				shape ??= 'box';
 			}
 
@@ -816,8 +844,8 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 				let usesVertices = Array.isArray(path[0]);
 
 				function checkVert() {
-					if (vert.x < min.x) min.x = vert.x;
-					if (vert.y < min.y) min.y = vert.y;
+					if (vert.x &lt; min.x) min.x = vert.x;
+					if (vert.y &lt; min.y) min.y = vert.y;
 					if (vert.x > max.x) max.x = vert.x;
 					if (vert.y > max.y) max.y = vert.y;
 				}
@@ -837,9 +865,9 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 							vecs.pop();
 						}
 					}
-					for (let i = 0; i < path.length; i++) {
+					for (let i = 0; i &lt; path.length; i++) {
 						if (this._vertexMode) {
-							if (i == 0 && !this.body) continue;
+							if (i == 0 &amp;&amp; !this.body) continue;
 							// verts are relative to the first vert
 							vert.x = path[i][0] - x;
 							vert.y = path[i][1] - y;
@@ -857,8 +885,8 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 					let mod = rep > 0 ? 1 : -1;
 					rep = Math.abs(rep);
 					let ang = 0;
-					for (let i = 0; i < rep; i++) {
-						for (let j = 0; j < path.length - 1; j += 2) {
+					for (let i = 0; i &lt; rep; i++) {
+						for (let j = 0; j &lt; path.length - 1; j += 2) {
 							let len = path[j];
 							ang += path[j + 1];
 							vert.x += len * this.p.cos(ang);
@@ -872,8 +900,8 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 				}
 
 				if (
-					Math.abs(Math.abs(vecs[0].x) - Math.abs(vecs[vecs.length - 1].x)) <= pl.Settings.linearSlop &&
-					Math.abs(Math.abs(vecs[0].y) - Math.abs(vecs[vecs.length - 1].y)) <= pl.Settings.linearSlop
+					Math.abs(Math.abs(vecs[0].x) - Math.abs(vecs[vecs.length - 1].x)) &lt;= pl.Settings.linearSlop &amp;&amp;
+					Math.abs(Math.abs(vecs[0].y) - Math.abs(vecs[vecs.length - 1].y)) &lt;= pl.Settings.linearSlop
 				) {
 					shape = 'polygon';
 					this._originMode = 'center';
@@ -887,12 +915,12 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 				this._hh = h * 0.5;
 
 				let isConvex = false;
-				if (shape == 'polygon' && this._isConvexPoly(vecs.slice(0, -1))) {
+				if (shape == 'polygon' &amp;&amp; this._isConvexPoly(vecs.slice(0, -1))) {
 					isConvex = true;
 				}
 
 				if (this._originMode == 'start') {
-					for (let i = 0; i < vecs.length; i++) {
+					for (let i = 0; i &lt; vecs.length; i++) {
 						vecs[i] = scaleTo(vecs[i].x, vecs[i].y, this.tileSize);
 					}
 				} else {
@@ -907,7 +935,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 					let vl = vecs.length;
 					// last vertex is same as first
 					if (shape == 'polygon' || isConvex) vl--;
-					for (let i = 0; i < vl; i++) {
+					for (let i = 0; i &lt; vl; i++) {
 						sumX += vecs[i].x;
 						sumY += vecs[i].y;
 					}
@@ -923,7 +951,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 					// centerX = this._hw - min.x;
 					// centerY = this._hh - min.y;
 
-					if (this._vertexMode && usesVertices) {
+					if (this._vertexMode &amp;&amp; usesVertices) {
 						if (!this.body) {
 							// repositions the sprite's x, y coordinates
 							// to be in the center of the shape
@@ -935,7 +963,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 						}
 					}
 
-					for (let i = 0; i < vecs.length; i++) {
+					for (let i = 0; i &lt; vecs.length; i++) {
 						let vec = vecs[i];
 						vecs[i] = scaleTo(vec.x + offsetX - centerX, vec.y + offsetY - centerY, this.tileSize);
 					}
@@ -1294,7 +1322,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			if (val instanceof p5.Color) {
 				return val;
 			} else if (typeof val != 'object') {
-				if (typeof val == 'string' && val.length == 1) {
+				if (typeof val == 'string' &amp;&amp; val.length == 1) {
 					return this.p.colorPal(val);
 				} else {
 					return this.p.color(val);
@@ -1444,7 +1472,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		 * @default 0 ("right")
 		 */
 		get direction() {
-			if (this.body && (this.vel.x !== 0 || this.vel.y !== 0)) {
+			if (this.body &amp;&amp; (this.vel.x !== 0 || this.vel.y !== 0)) {
 				return this.p.atan2(this.vel.y, this.vel.x);
 			}
 			if (!this._direction) return this.rotation;
@@ -1793,11 +1821,11 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			return this._scale;
 		}
 		set scale(val) {
-			if (val <= 0) val = 0.01;
+			if (val &lt;= 0) val = 0.01;
 			if (typeof val === 'number') {
 				val = { x: val, y: val };
 			}
-			if (val.x == this._scale._x && val.y == this._scale._y) return;
+			if (val.x == this._scale._x &amp;&amp; val.y == this._scale._y) return;
 
 			let scalars = {
 				x: val.x / this._scale._x,
@@ -1885,7 +1913,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			if (s.m_type == 'polygon') v.unshift(v.at(-1));
 			let x = this.x;
 			let y = this.y;
-			for (let i = 0; i < v.length; i++) {
+			for (let i = 0; i &lt; v.length; i++) {
 				let arr = [fixRound((v[i].x / this.tileSize) * plScale + x), fixRound((v[i].y / this.tileSize) * plScale + y)];
 				if (output2DArrays) v[i] = arr;
 				else v[i] = pInst.createVector(arr[0], arr[1]);
@@ -1950,7 +1978,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			return this._w;
 		}
 		set w(val) {
-			if (val < 0) val = 0.01;
+			if (val &lt; 0) val = 0.01;
 			if (val == this._w) return;
 			delete this._dimensionsUndefinedByUser;
 			let scalarX = val / this._w;
@@ -1997,7 +2025,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			return this._h;
 		}
 		set h(val) {
-			if (val < 0) val = 0.01;
+			if (val &lt; 0) val = 0.01;
 			if (this.shape == 'circle') {
 				this.w = val;
 				return;
@@ -2048,7 +2076,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			return this._diameter;
 		}
 		set d(val) {
-			if (val < 0) {
+			if (val &lt; 0) {
 				this.remove();
 				return;
 			}
@@ -2149,22 +2177,22 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		 * @returns true if the polygon is convex
 		 */
 		_isConvexPoly(vecs) {
-			loopk: for (let k = 0; k < 2; k++) {
+			loopk: for (let k = 0; k &lt; 2; k++) {
 				if (k == 1) vecs = vecs.reverse();
-				for (let i = 0; i < vecs.length; ++i) {
+				for (let i = 0; i &lt; vecs.length; ++i) {
 					const i1 = i;
-					const i2 = i < vecs.length - 1 ? i1 + 1 : 0;
+					const i2 = i &lt; vecs.length - 1 ? i1 + 1 : 0;
 					const p = vecs[i1];
 					const e = pl.Vec2.sub(vecs[i2], p);
 
-					for (let j = 0; j < vecs.length; ++j) {
+					for (let j = 0; j &lt; vecs.length; ++j) {
 						if (j == i1 || j == i2) {
 							continue;
 						}
 
 						const v = pl.Vec2.sub(vecs[j], p);
 						const c = pl.Vec2.cross(e, v);
-						if (c < 0.0) {
+						if (c &lt; 0.0) {
 							if (k == 0) continue loopk;
 							else return false;
 						}
@@ -2253,7 +2281,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		}
 
 		_step() {
-			if (!this.body && !this.removed) {
+			if (!this.body &amp;&amp; !this.removed) {
 				this.rotation += this._rotationSpeed;
 				this.x += this.vel.x;
 				this.y += this.vel.y;
@@ -2287,7 +2315,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 				}
 			}
 			if (this.removed) {
-				if (Object.keys(this._collisions).length == 0 && Object.keys(this._overlappers).length == 0) {
+				if (Object.keys(this._collisions).length == 0 &amp;&amp; Object.keys(this._overlappers).length == 0) {
 					delete this.p.p5play.sprites[this._uid];
 				}
 			}
@@ -2300,11 +2328,11 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		 */
 		_draw() {
 			if (this.strokeWeight !== undefined) this.p.strokeWeight(this.strokeWeight);
-			if (this._ani && this.debug != 'colliders') {
+			if (this._ani &amp;&amp; this.debug != 'colliders') {
 				this._ani.draw(0, 0, 0, this._scale._x, this._scale._y);
 			}
 			if (!this._ani || this.debug) {
-				if (this.debug && this.debug != 'colliders') {
+				if (this.debug &amp;&amp; this.debug != 'colliders') {
 					this.p.noFill();
 					this.p.stroke(0, 255, 0);
 					this.p.line(0, -2, 0, 2);
@@ -2346,11 +2374,11 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			// skip drawing for out-of-view bodies, but
 			// edges can be very long, so they still should be drawn
 			if (
-				this.shape != 'chain' &&
-				this.p.camera.active &&
-				(x + this.w < this.p.camera.bound.min.x ||
+				this.shape != 'chain' &amp;&amp;
+				this.p.camera.active &amp;&amp;
+				(x + this.w &lt; this.p.camera.bound.min.x ||
 					x - this.w > this.p.camera.bound.max.x ||
-					y + this.h < this.p.camera.bound.min.y ||
+					y + this.h &lt; this.p.camera.bound.min.y ||
 					y - this.h > this.p.camera.bound.max.y)
 			) {
 				return;
@@ -2399,7 +2427,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 				}
 				let v = sh.m_vertices;
 				this.p.beginShape();
-				for (let i = 0; i < v.length; i++) {
+				for (let i = 0; i &lt; v.length; i++) {
 					this.p.vertex(v[i].x * plScale, v[i].y * plScale);
 				}
 				if (sh.m_type != 'chain') this.p.endShape('close');
@@ -2444,8 +2472,8 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		 * sprite.applyForce({x, y}, {x: originX, y: originY});
 		 */
 		applyForce(x, y, originX, originY) {
-			if (!this.body || (!x && !y)) return;
-			if (arguments.length == 2 && typeof y != 'number') {
+			if (!this.body || (!x &amp;&amp; !y)) return;
+			if (arguments.length == 2 &amp;&amp; typeof y != 'number') {
 				originX = y;
 			}
 			let forceVector = new pl.Vec2(this._args2Vec(x, y));
@@ -2474,7 +2502,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		 */
 		applyImpulse(x, y, originX, originY) {
 			if (!this.body) return;
-			if (arguments.length == 2 && typeof y != 'number') {
+			if (arguments.length == 2 &amp;&amp; typeof y != 'number') {
 				originX = y;
 			}
 			let impulseVector = new pl.Vec2(this._args2Vec(x, y));
@@ -2568,7 +2596,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		moveTowards(x, y, tracking) {
 			if (typeof x != 'number') {
 				let obj = x;
-				if (obj == this.p.mouse && !this.p.mouse.active) return;
+				if (obj == this.p.mouse &amp;&amp; !this.p.mouse.active) return;
 				if (obj.x === undefined || obj.y === undefined) {
 					console.error(
 						'sprite.moveTowards/moveAway ERROR: movement destination not defined, object given with no x or y properties'
@@ -2579,15 +2607,15 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 				y = obj.y;
 				x = obj.x;
 			}
-			if (x === undefined && y === undefined) return;
+			if (x === undefined &amp;&amp; y === undefined) return;
 			tracking ??= 0.1;
 
 			// let vec = new pl.Vec2(0, 0);
-			if (x !== undefined && x !== null) {
+			if (x !== undefined &amp;&amp; x !== null) {
 				// vec.x = (destX - this.x) * tracking * this.tileSize * this.mass;
 				this.vel.x = (x - this.x) * tracking * this.tileSize;
 			}
-			if (y !== undefined && y !== null) {
+			if (y !== undefined &amp;&amp; y !== null) {
 				// vec.y = (destY - this.y) * tracking * this.tileSize * this.mass;
 				this.vel.y = (y - this.y) * tracking * this.tileSize;
 			}
@@ -2642,7 +2670,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			distance ??= 1;
 			let x = this.x + this.p.cos(this.direction) * distance;
 			let y = this.y + this.p.sin(this.direction) * distance;
-			if (dirNameMode && this.tileSize > 1) {
+			if (dirNameMode &amp;&amp; this.tileSize > 1) {
 				x = Math.round(x);
 				y = Math.round(y);
 			} else if (this.direction % 90 == 0) {
@@ -2667,7 +2695,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			}
 			if (typeof x != 'number') {
 				let obj = x;
-				if (obj == this.p.mouse && !this.p.mouse.active) return;
+				if (obj == this.p.mouse &amp;&amp; !this.p.mouse.active) return;
 				if (obj.x === undefined || obj.y === undefined) {
 					console.error(
 						'sprite.moveTo ERROR: movement destination not defined, object given with no x or y properties'
@@ -2695,12 +2723,12 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			}
 
 			this._destIdx++;
-			if (!x && !y) return true;
+			if (!x &amp;&amp; !y) return true;
 
 			if (this.speed) speed ??= this.speed;
 			if (this.tileSize > 1) speed ??= 0.1;
 			speed ??= 1;
-			if (speed <= 0) {
+			if (speed &lt;= 0) {
 				console.warn('sprite.move: speed should be a positive number');
 				return;
 			}
@@ -2740,10 +2768,10 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 					// check if the sprite has reached its destination
 					distX = Math.abs(this.x - this._dest.x);
 					distY = Math.abs(this.y - this._dest.y);
-				} while ((x && distX > margin) || (y && distY > margin));
+				} while ((x &amp;&amp; distX > margin) || (y &amp;&amp; distY > margin));
 				// stop moving the sprite, snap to destination
-				if (distX < margin) this.x = this._dest.x;
-				if (distY < margin) this.y = this._dest.y;
+				if (distX &lt; margin) this.x = this._dest.x;
+				if (distY &lt; margin) this.y = this._dest.y;
 				this.vel.x = 0;
 				this.vel.y = 0;
 				return true;
@@ -2798,7 +2826,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		angleTo(x, y) {
 			if (typeof x == 'object') {
 				let obj = x;
-				if (obj == this.p.mouse && !this.p.mouse.active) return 0;
+				if (obj == this.p.mouse &amp;&amp; !this.p.mouse.active) return 0;
 				if (obj.x === undefined || obj.y === undefined) {
 					console.error(
 						'sprite.angleTo ERROR: rotation destination not defined, object given with no x or y properties'
@@ -2829,7 +2857,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 				y = x.y;
 				x = x.x;
 			}
-			if (Math.abs(x - this.x) < 0.01 && Math.abs(y - this.y) < 0.01) {
+			if (Math.abs(x - this.x) &lt; 0.01 &amp;&amp; Math.abs(y - this.y) &lt; 0.01) {
 				return 0;
 			}
 			let ang = this.angleTo(x, y);
@@ -2837,9 +2865,9 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			ang += facing;
 			let dist1 = ang - (this.rotation % 360);
 			let dist2 = 360 - Math.abs(dist1);
-			dist2 *= dist1 < 0 ? 1 : -1;
+			dist2 *= dist1 &lt; 0 ? 1 : -1;
 
-			return Math.abs(dist1) < Math.abs(dist2) ? dist1 : dist2;
+			return Math.abs(dist1) &lt; Math.abs(dist2) ? dist1 : dist2;
 		}
 
 		/**
@@ -2898,8 +2926,8 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 					}
 					let limit = Math.abs(this.rotationSpeed) + 0.01;
 					while (
-						((cw && ang > this.rotation) || (!cw && ang < this.rotation)) &&
-						limit < Math.abs(ang - this.rotation)
+						((cw &amp;&amp; ang > this.rotation) || (!cw &amp;&amp; ang &lt; this.rotation)) &amp;&amp;
+						limit &lt; Math.abs(ang - this.rotation)
 					) {
 						await pInst.delay();
 					}
@@ -2936,12 +2964,12 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 
 			this._aniChangeCount++;
 			let loop, stopOnLastAni;
-			for (let i = 0; i < anis.length; i++) {
+			for (let i = 0; i &lt; anis.length; i++) {
 				let ani = anis[i];
 				if (
 					ani instanceof this.p.SpriteAnimation ||
 					ani instanceof p5.Image ||
-					(typeof ani == 'string' && ani.length != 1 && ani.includes('.'))
+					(typeof ani == 'string' &amp;&amp; ani.length != 1 &amp;&amp; ani.includes('.'))
 				) {
 					ani = this.addAni(ani);
 					anis[i] = ani;
@@ -2956,7 +2984,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 						ani.start = -1;
 						ani.end = 0;
 					}
-					if (ani.name[0] == '<' || ani.name[0] == '>') {
+					if (ani.name[0] == '&lt;' || ani.name[0] == '>') {
 						ani.name = ani.name.slice(1);
 						ani.flipX = true;
 					}
@@ -2977,13 +3005,13 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			let count = this._aniChangeCount;
 
 			do {
-				for (let i = 0; i < anis.length; i++) {
+				for (let i = 0; i &lt; anis.length; i++) {
 					let ani = anis[i];
-					if (!ani.start && anis.length > 1) ani.start = 0;
+					if (!ani.start &amp;&amp; anis.length > 1) ani.start = 0;
 					await this._playSequencedAni(ani);
 				}
-			} while (loop && count == this._aniChangeCount);
-			if (anis.length != 1 && stopOnLastAni) this._ani.stop();
+			} while (loop &amp;&amp; count == this._aniChangeCount);
+			if (anis.length != 1 &amp;&amp; stopOnLastAni) this._ani.stop();
 		}
 
 		_playSequencedAni(ani) {
@@ -2994,7 +3022,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 				if (flipX) this._ani.scale.x = -this._ani.scale.x;
 				if (flipY) this._ani.scale.y = -this._ani.scale.y;
 
-				if (start < 0) start = this._ani.length + start;
+				if (start &lt; 0) start = this._ani.length + start;
 				if (start !== undefined) this._ani.frame = start;
 
 				if (end !== undefined) this._ani.goToFrame(end);
@@ -3082,7 +3110,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 
 			// all of p5play's references to the sprite can be removed
 			// only if the sprite is not colliding or overlapping with anything
-			if (Object.keys(this._collisions).length == 0 && Object.keys(this._overlappers).length == 0) {
+			if (Object.keys(this._collisions).length == 0 &amp;&amp; Object.keys(this._overlappers).length == 0) {
 				delete this.p.p5play.sprites[this._uid];
 			}
 		}
@@ -3102,10 +3130,10 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			if (!target) {
 				throw new FriendlyError('Sprite.collide', 2);
 			}
-			if (!(target instanceof this.p.Sprite) && !(target instanceof this.p.Group)) {
+			if (!(target instanceof this.p.Sprite) &amp;&amp; !(target instanceof this.p.Group)) {
 				throw new FriendlyError('Sprite.collide', 0, [target]);
 			}
-			if (callback && typeof callback != 'function') {
+			if (callback &amp;&amp; typeof callback != 'function') {
 				throw new FriendlyError('Sprite.collide', 1, [callback]);
 			}
 
@@ -3196,10 +3224,10 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			if (!target) {
 				throw new FriendlyError('Sprite.overlap', 2);
 			}
-			if (!(target instanceof this.p.Sprite) && !(target instanceof this.p.Group)) {
+			if (!(target instanceof this.p.Sprite) &amp;&amp; !(target instanceof this.p.Group)) {
 				throw new FriendlyError('Sprite.overlap', 0, [target]);
 			}
-			if (callback && typeof callback != 'function') {
+			if (callback &amp;&amp; typeof callback != 'function') {
 				throw new FriendlyError('Sprite.overlap', 1, [callback]);
 			}
 			if (!this._hasSensors) this.addDefaultSensors();
@@ -3331,9 +3359,9 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 
 	this.SpriteAnimation = class extends Array {
 		/**
-		 * <a href="https://p5play.org/learn/sprite_animation.html">
+		 * &lt;a href="https://p5play.org/learn/sprite_animation.html">
 		 * Look at the Animation reference pages before reading these docs.
-		 * </a>
+		 * &lt;/a>
 		 *
 		 * A SpriteAnimation object contains a series of images (p5.Image objects)
 		 * that can be displayed sequentially.
@@ -3373,7 +3401,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			}
 			owner ??= this.p.allSprites;
 
-			if (typeof args[0] == 'string' && (args[0].length == 1 || !args[0].includes('.'))) {
+			if (typeof args[0] == 'string' &amp;&amp; (args[0].length == 1 || !args[0].includes('.'))) {
 				this.name = args[0];
 				args = args.slice(1);
 			}
@@ -3457,14 +3485,14 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			owner.addAni(this);
 
 			// list mode images can be added as a list of arguments or an array
-			if (Array.isArray(args[0]) && typeof args[0][0] == 'string') {
+			if (Array.isArray(args[0]) &amp;&amp; typeof args[0][0] == 'string') {
 				args = [...args[0]];
 			}
 
 			// sequence mode
 			if (
-				args.length == 2 &&
-				typeof args[0] == 'string' &&
+				args.length == 2 &amp;&amp;
+				typeof args[0] == 'string' &amp;&amp;
 				(typeof args[1] == 'string' || typeof args[1] == 'number')
 			) {
 				let from = args[0];
@@ -3475,7 +3503,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 				// print("sequence mode "+from+" -> "+to);
 
 				// make sure the extensions are fine
-				if (from.slice(-4) != '.png' || (to && to.slice(-4) != '.png')) {
+				if (from.slice(-4) != '.png' || (to &amp;&amp; to.slice(-4) != '.png')) {
 					throw new FriendlyError('SpriteAnimation', 0, [from]);
 				}
 
@@ -3501,7 +3529,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 
 				// images don't belong to the same sequence
 				// they are just two separate images with numbers
-				if (to && prefix1 != prefix2) {
+				if (to &amp;&amp; prefix1 != prefix2) {
 					this.push(this.p.loadImage(from));
 					this.push(this.p.loadImage(to));
 				} else {
@@ -3514,7 +3542,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 					num2 ??= parseInt(to.slice(-4 - digits2, -4), 10);
 
 					// swap if inverted
-					if (num2 < num1) {
+					if (num2 &lt; num1) {
 						let t = num2;
 						num2 = num1;
 						num1 = t;
@@ -3523,7 +3551,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 					let fileName;
 					if (!to || digits1 == digits2) {
 						// load all images
-						for (let i = num1; i <= num2; i++) {
+						for (let i = num1; i &lt;= num2; i++) {
 							// Use nf() to number format 'i' into the amount of digits
 							// ex: 14 with 4 digits is 0014
 							fileName = prefix1 + this.p.nf(i, digits1) + '.png';
@@ -3531,7 +3559,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 						}
 					} // case: case img1, img2
 					else {
-						for (let i = num1; i <= num2; i++) {
+						for (let i = num1; i &lt;= num2; i++) {
 							// Use nf() to number format 'i' into four digits
 							fileName = prefix1 + i + '.png';
 							this.push(this.p.loadImage(fileName));
@@ -3541,7 +3569,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			} // end sequence mode
 
 			// SpriteSheet mode
-			else if (typeof args[args.length - 1] != 'string' && !(args[args.length - 1] instanceof p5.Image)) {
+			else if (typeof args[args.length - 1] != 'string' &amp;&amp; !(args[args.length - 1] instanceof p5.Image)) {
 				let sheet = owner.spriteSheet;
 				let atlas;
 				if (args[0] instanceof p5.Image || typeof args[0] == 'string') {
@@ -3556,7 +3584,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 
 				let _this = this;
 
-				if (sheet instanceof p5.Image && sheet.width != 1 && sheet.height != 1) {
+				if (sheet instanceof p5.Image &amp;&amp; sheet.width != 1 &amp;&amp; sheet.height != 1) {
 					this.spriteSheet = sheet;
 					_generateSheetFrames();
 				} else {
@@ -3581,7 +3609,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 							if (Array.isArray(atlas.frames)) {
 								frames = atlas.frames;
 								delete atlas.frames;
-								for (let i = 0; i < frames.length; i++) {
+								for (let i = 0; i &lt; frames.length; i++) {
 									frames[i] = {
 										pos: frames[i]
 									};
@@ -3648,7 +3676,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 							w = _this.spriteSheet.width / frameCount;
 							h = _this.spriteSheet.height;
 						} else {
-							if (_this.spriteSheet.width < _this.spriteSheet.height) {
+							if (_this.spriteSheet.width &lt; _this.spriteSheet.height) {
 								w = h = _this.spriteSheet.width;
 							} else {
 								w = h = _this.spriteSheet.height;
@@ -3670,7 +3698,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 					}
 
 					// add all the frames in the animation to the frames array
-					for (let i = 0; i < frameCount; i++) {
+					for (let i = 0; i &lt; frameCount; i++) {
 						_this.push({ x, y, w, h });
 						x += w;
 						if (x >= _this.spriteSheet.width) {
@@ -3683,7 +3711,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			} // end SpriteSheet mode
 			else {
 				// list of images
-				for (let i = 0; i < args.length; i++) {
+				for (let i = 0; i &lt; args.length; i++) {
 					if (args[i] instanceof p5.Image) this.push(args[i]);
 					else this.push(this.p.loadImage(args[i]));
 				}
@@ -3702,7 +3730,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			return this._frameDelay;
 		}
 		set frameDelay(val) {
-			if (val <= 0) val = 1;
+			if (val &lt;= 0) val = 1;
 			this._frameDelay = val;
 		}
 		/**
@@ -3745,7 +3773,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		clone() {
 			let ani = new this.p.SpriteAnimation();
 			ani.spriteSheet = this.spriteSheet;
-			for (let i = 0; i < this.length; i++) {
+			for (let i = 0; i &lt; this.length; i++) {
 				ani.push(this[i]);
 			}
 			ani.offset.x = this.offset.x;
@@ -3828,10 +3856,10 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 				this.frame = 0;
 			}
 
-			if (this.playing && this.cycles % this.frameDelay === 0) {
+			if (this.playing &amp;&amp; this.cycles % this.frameDelay === 0) {
 				this.frameChanged = true;
 
-				if ((this.targetFrame == -1 && this.frame == this.lastFrame) || this.frame == this.targetFrame) {
+				if ((this.targetFrame == -1 &amp;&amp; this.frame == this.lastFrame) || this.frame == this.targetFrame) {
 					if (this.endOnFirstFrame) this.frame = 0;
 					if (this.looping) this.targetFrame = -1;
 					else this.playing = false;
@@ -3841,13 +3869,13 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 				}
 
 				//going to target frame up
-				if (this.targetFrame > this.frame && this.targetFrame !== -1) {
+				if (this.targetFrame > this.frame &amp;&amp; this.targetFrame !== -1) {
 					this.frame++;
 				}
 				//going to target frame down
-				else if (this.targetFrame < this.frame && this.targetFrame !== -1) {
+				else if (this.targetFrame &lt; this.frame &amp;&amp; this.targetFrame !== -1) {
 					this.frame--;
-				} else if (this.targetFrame === this.frame && this.targetFrame !== -1) {
+				} else if (this.targetFrame === this.frame &amp;&amp; this.targetFrame !== -1) {
 					this.playing = false;
 				} else if (this.looping) {
 					//advance frame
@@ -3857,7 +3885,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 					} else this.frame++;
 				} else {
 					//if next frame is too high
-					if (this.frame < this.lastFrame) this.frame++;
+					if (this.frame &lt; this.lastFrame) this.frame++;
 				}
 			}
 		}
@@ -3931,7 +3959,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		 *
 		 */
 		nextFrame() {
-			if (this.frame < this.length - 1) this.frame = this.frame + 1;
+			if (this.frame &lt; this.length - 1) this.frame = this.frame + 1;
 			else if (this.looping) this.frame = 0;
 
 			this.targetFrame = -1;
@@ -3957,7 +3985,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		 * @returns [Promise] a promise that resolves when the animation completes
 		 */
 		goToFrame(toFrame) {
-			if (toFrame < 0 || toFrame >= this.length) {
+			if (toFrame &lt; 0 || toFrame >= this.length) {
 				return;
 			}
 
@@ -4054,7 +4082,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		 */
 		get frames() {
 			let frames = [];
-			for (let i = 0; i < this.length; i++) {
+			for (let i = 0; i &lt; this.length; i++) {
 				frames.push(this[i]);
 			}
 			return frames;
@@ -4134,9 +4162,9 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 
 	this.Group = class extends Array {
 		/**
-		 * <a href="https://p5play.org/learn/group.html">
+		 * &lt;a href="https://p5play.org/learn/group.html">
 		 * Look at the Group reference pages before reading these docs.
-		 * </a>
+		 * &lt;/a>
 		 *
 		 * A Group is a collection of sprites with similar traits and behaviors.
 		 *
@@ -4286,7 +4314,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 					get() {
 						let val = _this['_' + prop];
 						let i = _this.length - 1;
-						if (val === undefined && !_this._isAllSpritesGroup) {
+						if (val === undefined &amp;&amp; !_this._isAllSpritesGroup) {
 							let parent = this.p.p5play.groups[_this.parent];
 							if (parent) {
 								val = parent[prop];
@@ -4299,7 +4327,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 						_this['_' + prop] = val;
 
 						// change the prop in all the sprite of this group
-						for (let i = 0; i < _this.length; i++) {
+						for (let i = 0; i &lt; _this.length; i++) {
 							let s = _this[i];
 							let v = val;
 							if (typeof val == 'function') v = val(i);
@@ -4319,7 +4347,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 						get() {
 							let val = _this[objProp]['_' + prop];
 							let i = _this.length - 1;
-							if (val === undefined && !_this._isAllSpritesGroup) {
+							if (val === undefined &amp;&amp; !_this._isAllSpritesGroup) {
 								let parent = _this.p.p5play.groups[_this.parent];
 								if (parent) {
 									val = parent[objProp][prop];
@@ -4332,7 +4360,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 							_this[objProp]['_' + prop] = val;
 
 							// change the prop in all the sprite of this group
-							for (let i = 0; i < _this.length; i++) {
+							for (let i = 0; i &lt; _this.length; i++) {
 								let s = _this[i];
 								let v = val;
 								if (typeof val == 'function') v = val(i);
@@ -4400,7 +4428,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		 */
 		_getTopLayer() {
 			if (this.length == 0) return 0;
-			if (this.length == 1 && this[0].layer === undefined) return 0;
+			if (this.length == 1 &amp;&amp; this[0].layer === undefined) return 0;
 			let max = this[0].layer;
 			for (let s of this) {
 				if (s.layer > max) max = s.layer;
@@ -4472,7 +4500,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			let diff = val - this.length;
 			let shouldAdd = diff > 0;
 			diff = Math.abs(diff);
-			for (let i = 0; i < diff; i++) {
+			for (let i = 0; i &lt; diff; i++) {
 				if (shouldAdd) new this.Sprite();
 				else this[this.length - 1].remove();
 			}
@@ -4509,10 +4537,10 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			if (!target) {
 				throw new FriendlyError('Group.collide', 2);
 			}
-			if (!(target instanceof this.p.Sprite) && !(target instanceof this.p.Group)) {
+			if (!(target instanceof this.p.Sprite) &amp;&amp; !(target instanceof this.p.Group)) {
 				throw new FriendlyError('Group.collide', 0, [target]);
 			}
-			if (callback && typeof callback != 'function') {
+			if (callback &amp;&amp; typeof callback != 'function') {
 				throw new FriendlyError('Group.collide', 1, [callback]);
 			}
 
@@ -4592,10 +4620,10 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			if (!target) {
 				throw new FriendlyError('Group.overlap', 2);
 			}
-			if (!(target instanceof this.p.Sprite) && !(target instanceof this.p.Group)) {
+			if (!(target instanceof this.p.Sprite) &amp;&amp; !(target instanceof this.p.Group)) {
 				throw new FriendlyError('Group.overlap', 0, [target]);
 			}
-			if (callback && typeof callback != 'function') {
+			if (callback &amp;&amp; typeof callback != 'function') {
 				throw new FriendlyError('Group.overlap', 1, [callback]);
 			}
 			if (!this._hasSensors) {
@@ -4709,7 +4737,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		moveTo(x, y, speed) {
 			if (typeof x != 'number') {
 				let obj = x;
-				if (obj == this.p.mouse && !this.p.mouse.active) return;
+				if (obj == this.p.mouse &amp;&amp; !this.p.mouse.active) return;
 				speed = y;
 				y = obj.y;
 				x = obj.x;
@@ -4731,12 +4759,12 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		moveTowards(x, y, tracking) {
 			if (typeof x != 'number') {
 				let obj = x;
-				if (obj == this.p.mouse && !this.p.mouse.active) return;
+				if (obj == this.p.mouse &amp;&amp; !this.p.mouse.active) return;
 				tracking = y;
 				y = obj.y;
 				x = obj.x;
 			}
-			if (x === undefined && y === undefined) return;
+			if (x === undefined &amp;&amp; y === undefined) return;
 			this.resetCentroid();
 			for (let s of this) {
 				if (s.distCentroid === undefined) this.resetDistancesFromCentroid();
@@ -4753,12 +4781,12 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		moveAway(x, y, tracking) {
 			if (typeof x != 'number') {
 				let obj = x;
-				if (obj == this.p.mouse && !this.p.mouse.active) return;
+				if (obj == this.p.mouse &amp;&amp; !this.p.mouse.active) return;
 				tracking = y;
 				y = obj.y;
 				x = obj.x;
 			}
-			if (x === undefined && y === undefined) return;
+			if (x === undefined &amp;&amp; y === undefined) return;
 			this.resetCentroid();
 			for (let s of this) {
 				if (s.distCentroid === undefined) this.resetDistancesFromCentroid();
@@ -4870,7 +4898,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			if (isNaN(top) || isNaN(bottom) || isNaN(left) || isNaN(right)) {
 				throw new TypeError('The culling boundary must be defined with numbers');
 			}
-			if (cb && typeof cb != 'function') {
+			if (cb &amp;&amp; typeof cb != 'function') {
 				throw new TypeError('The callback to group.cull must be a function');
 			}
 
@@ -4883,9 +4911,9 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			let maxY = this.p.height + bottom + cy;
 
 			let culled = 0;
-			for (let i = 0; i < this.length; i++) {
+			for (let i = 0; i &lt; this.length; i++) {
 				let s = this[i];
-				if (s.x < minX || s.y < minY || s.x > maxX || s.y > maxY) {
+				if (s.x &lt; minX || s.y &lt; minY || s.x > maxX || s.y > maxY) {
 					culled++;
 					if (cb) cb(s, culled);
 					else s.remove();
@@ -4947,15 +4975,15 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		draw() {
 			let g = [...this];
 			g.sort((a, b) => a.layer - b.layer);
-			for (let i = 0; i < g.length; i++) {
+			for (let i = 0; i &lt; g.length; i++) {
 				let sprite = g[i];
-				if (sprite.life-- < 0) {
+				if (sprite.life-- &lt; 0) {
 					sprite.remove();
 					g.splice(i, 1);
 					i--;
 					continue;
 				}
-				if (sprite.visible && (!this.p.p5play._inPostDraw || sprite.autoDraw)) {
+				if (sprite.visible &amp;&amp; (!this.p.p5play._inPostDraw || sprite.autoDraw)) {
 					sprite.draw();
 				}
 			}
@@ -5021,7 +5049,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 				this._ani = ani;
 
 				// only works if the animation was loaded in preload
-				if (this._dimensionsUndefinedByUser && (ani.w != 1 || ani.h != 1)) {
+				if (this._dimensionsUndefinedByUser &amp;&amp; (ani.w != 1 || ani.h != 1)) {
 					this.w = ani.w;
 					this.h = ani.h;
 				}
@@ -5059,9 +5087,9 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 
 	this.World = class extends pl.World {
 		/**
-		 * <a href="https://p5play.org/learn/world.html">
+		 * &lt;a href="https://p5play.org/learn/world.html">
 		 * Look at the World reference pages before reading these docs.
-		 * </a>
+		 * &lt;/a>
 		 *
 		 * A `world` object is created automatically by p5play. There can only
 		 * be one world per p5.js instance.
@@ -5272,19 +5300,19 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			b[t][a._uid] = 0;
 
 			for (let g of b.groups) {
-				if (!a[t][g._uid] || a[t][g._uid] < 0) {
+				if (!a[t][g._uid] || a[t][g._uid] &lt; 0) {
 					g[t][a._uid] = 0;
 					a[t][g._uid] = 0;
 				}
 			}
 
 			for (let g of a.groups) {
-				if (!b[t][g._uid] || b[t][g._uid] < 0) {
+				if (!b[t][g._uid] || b[t][g._uid] &lt; 0) {
 					g[t][b._uid] = 0;
 					b[t][g._uid] = 0;
 				}
 				for (let g2 of b.groups) {
-					if (!g[t][g2._uid] || g[t][g2._uid] < 0) {
+					if (!g[t][g2._uid] || g[t][g2._uid] &lt; 0) {
 						g[t][g2._uid] = 0;
 						g2[t][g._uid] = 0;
 					}
@@ -5395,9 +5423,9 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 
 	this.Camera = class {
 		/**
-		 * <a href="https://p5play.org/learn/camera.html">
+		 * &lt;a href="https://p5play.org/learn/camera.html">
 		 * Look at the Camera reference pages before reading these docs.
-		 * </a>
+		 * &lt;/a>
 		 *
 		 * A `camera` object is created automatically when p5play loads.
 		 * Currently, there can only be one camera per p5.js instance.
@@ -5560,7 +5588,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 
 		// sensors overlap (returning true doesn't mean they will collide it means
 		// they're included in begin contact and end contact events)
-		if (a.m_isSensor && b.m_isSensor) return true;
+		if (a.m_isSensor &amp;&amp; b.m_isSensor) return true;
 		// ignore contact events between a sensor and a non-sensor
 		if (a.m_isSensor || b.m_isSensor) return false;
 		// else test if the two non-sensor colliders should overlap
@@ -5578,9 +5606,9 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 
 	class Tiles {
 		/**
-		 * <a href="https://p5play.org/learn/tiles.html">
+		 * &lt;a href="https://p5play.org/learn/tiles.html">
 		 * Look at the Tiles reference pages before reading these docs.
-		 * </a>
+		 * &lt;/a>
 		 *
 		 * @param {String} tiles
 		 * @param {Number} x
@@ -5596,8 +5624,8 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			w ??= 1;
 			h ??= 1;
 
-			for (let row = 0; row < tiles.length; row++) {
-				for (let col = 0; col < tiles[row].length; col++) {
+			for (let row = 0; row &lt; tiles.length; row++) {
+				for (let col = 0; col &lt; tiles[row].length; col++) {
 					let t = tiles[row][col];
 					if (t == ' ' || t == '.') continue;
 					let ani, g;
@@ -5792,7 +5820,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 	// 	while (fixture) {
 	// 		const shape = fixture.getShape();
 	// 		const childCount = shape.getChildCount(); //only for chains
-	// 		for (let child = 0; child < childCount; ++child) {
+	// 		for (let child = 0; child &lt; childCount; ++child) {
 	// 			shape.computeAABB(shapeAABB, body.body.m_xf, child);
 	// 			unionTo(aabb, shapeAABB);
 	// 		}
@@ -5835,8 +5863,8 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 	// 	};
 
 	// 	def.callback = (fixture, point, normal, fraction) => {
-	// 		if (def.ignore.length > 0) for (let i = 0; i < def.ignore.length; i++) if (def.ignore[i] === fixture) return -1;
-	// 		if (def.mode == def.NEAREST && def.points.length == 1) {
+	// 		if (def.ignore.length > 0) for (let i = 0; i &lt; def.ignore.length; i++) if (def.ignore[i] === fixture) return -1;
+	// 		if (def.mode == def.NEAREST &amp;&amp; def.points.length == 1) {
 	// 			def.fixtures[0] = fixture;
 	// 			def.points[0] = scaleFrom(point);
 	// 			def.normals[0] = normal;
@@ -5976,10 +6004,10 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		let img = pInst.createImage(w * scale, h * scale);
 		img.loadPixels();
 
-		for (let i = 0; i < lines.length; i++) {
-			for (let j = 0; j < lines[i].length; j++) {
-				for (let sX = 0; sX < scale; sX++) {
-					for (let sY = 0; sY < scale; sY++) {
+		for (let i = 0; i &lt; lines.length; i++) {
+			for (let j = 0; j &lt; lines[i].length; j++) {
+				for (let sX = 0; sX &lt; scale; sX++) {
+					for (let sY = 0; sY &lt; scale; sY++) {
 						let c = this.colorPal(lines[i][j], palette);
 						img.set(j * scale + sX, i * scale + sY, c);
 					}
@@ -6230,14 +6258,14 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			args[0] = window.innerWidth;
 			args[1] = window.innerHeight;
 			isFullScreen = true;
-		} else if (typeof args[0] == 'number' && typeof args[1] != 'number') {
+		} else if (typeof args[0] == 'number' &amp;&amp; typeof args[1] != 'number') {
 			args[2] = args[1];
 			args[1] = args[0];
 		}
 		let scale;
 		if (typeof args[2] == 'string') {
 			args[2] = args[2].toLowerCase();
-			if (args[2] != 'p2d' && args[2] != 'webgl') {
+			if (args[2] != 'p2d' &amp;&amp; args[2] != 'webgl') {
 				args[2] = args[2].split(' ');
 			}
 			if (args[2][0] == 'pixelated') {
@@ -6272,7 +6300,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 				args[1] = h;
 			}
 		}
-		if (args.length < 3) args[2] = 'p2d';
+		if (args.length &lt; 3) args[2] = 'p2d';
 		let can = _createCanvas.call(pInst, ...args);
 		this.canvas.tabIndex = 0;
 		this.canvas.addEventListener('keydown', function (e) {
@@ -6353,7 +6381,7 @@ canvas {
 		if (idx > -1) {
 			let version = navigator.userAgent.substring(idx + 10, idx + 12);
 			this.p5play.version = version;
-			if (version < 16) {
+			if (version &lt; 16) {
 				pInst.pixelDensity(1);
 			}
 			this.p5play.os.platform = 'iOS';
@@ -6380,7 +6408,7 @@ canvas {
 	this.background = function () {
 		let args = arguments;
 		let c;
-		if (args.length == 1 && (typeof args[0] == 'string' || args[0] instanceof p5.Color)) {
+		if (args.length == 1 &amp;&amp; (typeof args[0] == 'string' || args[0] instanceof p5.Color)) {
 			c = this.colorPal(args[0]);
 		}
 		if (c !== undefined) _background.call(this, c);
@@ -6453,7 +6481,7 @@ canvas {
 		}
 		if (img) {
 			// if not finished loading, add callback to the list
-			if ((img.width == 1 && img.height == 1) || !img.pixels.length) {
+			if ((img.width == 1 &amp;&amp; img.height == 1) || !img.pixels.length) {
 				if (cb) {
 					img.cbs.push(cb);
 					img.calls++;
@@ -6476,7 +6504,7 @@ canvas {
 			for (let cb of _img.cbs) {
 				cb(_img);
 			}
-			for (let i = 1; i < _img.calls; i++) {
+			for (let i = 1; i &lt; _img.calls; i++) {
 				pInst._decrementPreload();
 			}
 			// delete _img.calls;
@@ -6491,7 +6519,7 @@ canvas {
 		img.url = url;
 		pInst.p5play.images[url] = img;
 		// setTimeout(() => {
-		// 	if (!img.width && !img.height) {
+		// 	if (!img.width &amp;&amp; !img.height) {
 		// 		console.warn('Image may have failed to load: ' + url);
 		// 	}
 		// }, 3000);
@@ -6627,9 +6655,9 @@ canvas {
 
 	class InputDevice {
 		/**
-		 * <a href="https://p5play.org/learn/input_devices.html">
+		 * &lt;a href="https://p5play.org/learn/input_devices.html">
 		 * Look at the Input reference pages before reading these docs.
-		 * </a>
+		 * &lt;/a>
 		 *
 		 * Root class for storing the state of inputs (mouse, keyboard,
 		 * gamepads).
@@ -6740,7 +6768,7 @@ canvas {
 		released(inp) {
 			inp ??= this.default;
 			if (this[inp] === undefined) inp = this.ac(inp);
-			return this[inp] <= -1;
+			return this[inp] &lt;= -1;
 		}
 
 		releases(inp) {
@@ -6750,9 +6778,9 @@ canvas {
 
 	class Mouse extends InputDevice {
 		/**
-		 * <a href="https://p5play.org/learn/input_devices.html">
+		 * &lt;a href="https://p5play.org/learn/input_devices.html">
 		 * Look at the Input reference pages before reading these docs.
-		 * </a>
+		 * &lt;/a>
 		 */
 		constructor() {
 			super();
@@ -6956,7 +6984,7 @@ canvas {
 				if (inp == 40) return 'ArrowDown';
 				if (inp == 37) return 'ArrowLeft';
 				if (inp == 39) return 'ArrowRight';
-				if (inp < 10) return inp + '';
+				if (inp &lt; 10) return inp + '';
 				throw new Error(
 					'Use key names with the keyboard input functions, not key codes! If you are trying to detect if the user pressed a number key make it a string. For example: "5"'
 				);
@@ -7023,7 +7051,7 @@ canvas {
 	 */
 	function _getKeyFromCode(e) {
 		let code = e.code;
-		if (code.length == 4 && code.slice(0, 3) == 'Key') {
+		if (code.length == 4 &amp;&amp; code.slice(0, 3) == 'Key') {
 			return code[3].toLowerCase();
 		}
 		return e.key;
@@ -7055,7 +7083,7 @@ canvas {
 		let k = simpleKeyControls[key];
 		if (k) keys.push(k);
 		for (let k of keys) {
-			if (!this.kb[k] || this.kb[k] < 0) {
+			if (!this.kb[k] || this.kb[k] &lt; 0) {
 				this.kb[k] = 1;
 			}
 		}
@@ -7384,11 +7412,11 @@ p5.prototype.registerMethod('post', function p5playPostDraw() {
 	}
 
 	for (let btn of ['left', 'center', 'right']) {
-		if (this.mouse[btn] < 0) this.mouse[btn] = 0;
+		if (this.mouse[btn] &lt; 0) this.mouse[btn] = 0;
 		else if (this.mouse[btn] > 0) this.mouse[btn]++;
 
 		if (this.world.mouseSprite) {
-			if (this.world.mouseSprite.mouse[btn] < 0) {
+			if (this.world.mouseSprite.mouse[btn] &lt; 0) {
 				this.world.mouseSprite.mouse[btn] = 0;
 			}
 		}
@@ -7396,7 +7424,7 @@ p5.prototype.registerMethod('post', function p5playPostDraw() {
 
 	for (let k in this.kb) {
 		if (k == 'holdThreshold') continue;
-		if (this.kb[k] < 0) this.kb[k] = 0;
+		if (this.kb[k] &lt; 0) this.kb[k] = 0;
 		else if (this.kb[k] > 0) this.kb[k]++;
 	}
 
@@ -7452,7 +7480,7 @@ p5.prototype.registerMethod('post', function p5playPostDraw() {
 		}
 
 		for (let s of this.world.mouseSprites) {
-			if ((!this.world.mouseSprite?.mouse.draggable || s != ms) && !sprites.includes(s)) {
+			if ((!this.world.mouseSprite?.mouse.draggable || s != ms) &amp;&amp; !sprites.includes(s)) {
 				s.mouse.hover = -1;
 				s.mouse.left = 0;
 				s.mouse.center = 0;
@@ -7471,3 +7499,26 @@ p5.prototype.registerMethod('post', function p5playPostDraw() {
 	}
 	this.p5play._inPostDraw = false;
 });
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Camera_Camera.html">Camera</a></li><li><a href="Group_Group.html">Group</a></li><li><a href="InputDevice.html">InputDevice</a></li><li><a href="Mouse.html">Mouse</a></li><li><a href="Sprite_Sprite.html">Sprite</a></li><li><a href="SpriteAnimation_SpriteAnimation.html">SpriteAnimation</a></li><li><a href="Tiles.html">Tiles</a></li><li><a href="World_World.html">World</a></li></ul><h3>Global</h3><ul><li><a href="global.html#allSprites">allSprites</a></li><li><a href="global.html#animation">animation</a></li><li><a href="global.html#background">background</a></li><li><a href="global.html#camera">camera</a></li><li><a href="global.html#colorPal">colorPal</a></li><li><a href="global.html#contro">contro</a></li><li><a href="global.html#controllers">controllers</a></li><li><a href="global.html#createCanvas">createCanvas</a></li><li><a href="global.html#createGroup">createGroup</a></li><li><a href="global.html#createSprite">createSprite</a></li><li><a href="global.html#createTiles">createTiles</a></li><li><a href="global.html#delay">delay</a></li><li><a href="global.html#drawSprites">drawSprites</a></li><li><a href="global.html#fill">fill</a></li><li><a href="global.html#getFPS">getFPS</a></li><li><a href="global.html#kb">kb</a></li><li><a href="global.html#keyIsDown">keyIsDown</a></li><li><a href="global.html#keyboard">keyboard</a></li><li><a href="global.html#loadAni">loadAni</a></li><li><a href="global.html#loadAnimation">loadAnimation</a></li><li><a href="global.html#loadImage">loadImage</a></li><li><a href="global.html#mouse">mouse</a></li><li><a href="global.html#play">play</a></li><li><a href="global.html#sleep">sleep</a></li><li><a href="global.html#spriteArt">spriteArt</a></li><li><a href="global.html#stroke">stroke</a></li><li><a href="global.html#updateSprites">updateSprites</a></li><li><a href="global.html#world">world</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Sat Mar 25 2023 17:13:18 GMT-0500 (Colombia Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
