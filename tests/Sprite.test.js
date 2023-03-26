@@ -8,6 +8,9 @@ global.planck = require('planck');
 require('../v3/p5play.js');
 
 test('Sprite : constructors', () => {
+	// p is a p5.js instance
+	// it gets its own instance of p5play
+	// and its own planck physics world
 	const sketch = (p) => {
 		let s;
 
@@ -15,6 +18,7 @@ test('Sprite : constructors', () => {
 			new p.Canvas(400, 400);
 			p.noLoop();
 
+			// test default constructor
 			s = new p.Sprite();
 			expect(s).toBeInstanceOf(p.Sprite);
 			expect(s.shape).toBe('box');
@@ -29,6 +33,7 @@ test('Sprite : constructors', () => {
 
 			expect(() => new p.Sprite(10)).toThrow();
 
+			// test constructor with position (x, y)
 			s = new p.Sprite(0, 0);
 			expect(s.shape).toBe('box');
 			expect(s.x).toBe(0);
@@ -37,6 +42,7 @@ test('Sprite : constructors', () => {
 			expect(s.h).toBe(50);
 			s.remove();
 
+			// test constructor with position (x, y) and diameter	(d)
 			s = new p.Sprite(0, 0, 40);
 			expect(s.shape).toBe('circle');
 			expect(s.x).toBe(0);
@@ -47,6 +53,7 @@ test('Sprite : constructors', () => {
 			expect(s.h).toBe(40);
 			s.remove();
 
+			// test constructor with position (x, y) and size (w, h)
 			s = new p.Sprite(0, 0, 40, 60);
 			expect(s.shape).toBe('box');
 			expect(s.x).toBe(0);
@@ -55,6 +62,7 @@ test('Sprite : constructors', () => {
 			expect(s.h).toBe(60);
 			s.remove();
 
+			// test special Turtle sprite constructor
 			s = new p.Turtle();
 			expect(s.shape).toBe('polygon');
 			expect(s.x).toBe(25);
@@ -73,12 +81,14 @@ test('Sprite : properties', () => {
 			new p.Canvas(400, 400);
 			p.noLoop();
 
+			// test x, y
 			s = new p.Sprite();
 			s.x = 5;
 			expect(s.x).toBe(5);
 			s.y = 10;
 			expect(s.y).toBe(10);
 
+			// test width, height (w, h)
 			s.w = 15;
 			expect(s.w).toBe(15);
 			expect(s.hw).toBe(7.5);
@@ -122,12 +132,14 @@ test('Sprite : properties', () => {
 			s.text = 'hello';
 			expect(s.text).toBe('hello');
 
+			// test change shape to circle
 			s.d = 20;
 			expect(s.shape).toBe('circle');
 			expect(s.d).toBe(20);
 			expect(s.w).toBe(20);
 			expect(s.h).toBe(20);
 
+			// test change collider type
 			s.collider = 'static';
 			expect(s.collider).toBe('static');
 			s.collider = 'dynamic';
@@ -142,6 +154,8 @@ test('Sprite : properties', () => {
 });
 
 test('Sprite : physics', () => {
+	// tests that use the p5.js draw function
+	// must be wrapped in a promise
 	return new Promise((resolve) => {
 		const sketch = (p) => {
 			let s0, s1;
@@ -292,6 +306,7 @@ test('Sprite : rotate, rotateTo, rotateTowards', () => {
 
 		p.setup = async () => {
 			new p.Canvas(400, 400);
+			p.noLoop();
 
 			s = new p.Sprite();
 
@@ -307,8 +322,6 @@ test('Sprite : rotate, rotateTo, rotateTowards', () => {
 
 			s.remove();
 		};
-
-		p.draw = () => {};
 	};
 	new p5(sketch);
 });
