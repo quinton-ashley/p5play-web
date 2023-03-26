@@ -12,7 +12,9 @@
 	"devDependencies": {
 		"canvas": "^2.10.2",
 		"jest-cli": "^29.3.1",
-		"jest-environment-jsdom": "^29.3.1"
+		"jest-environment-jsdom": "^29.3.1",
+		"minami": "^1.2.3",
+		"taffydb": "^2.7.3"
 	},
 	"homepage": "https://github.com/quintos/p5play-web",
 	"scripts": {
@@ -24,5 +26,5 @@
 		"version": "git add -A",
 		"postversion": "git push"
 	},
-	"version": "1.1.466"
+	"version": "1.1.467"
 }
