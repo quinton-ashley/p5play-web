@@ -184,36 +184,29 @@ function draw() {
 		</script>
 		</div>
 		<div id="page-2" class="page">
-			<div>
-				<h2>Sprites with Animations</h2>
-				<p>
-					The <code>sprite.addAni</code> function can be used to add a previously loaded animation to a sprite or it can
-					load and add an animation to a sprite just like <code>loadAni</code>. By default the last animation added to
-					the
-					sprite will be the animation the sprite displays.
-				</p>
-				<p>
-					Try pressing the left mouse button. When the
-					<code>sprite.debug</code> property is set to true you can
-					see the sprite's physics body collider.
-				</p>
-				<h2>Control a Sprite's Animation</h2>
-				<p>
-					<code>sprite.ani</code> stores the sprite's current animation,
-					which can be changed by setting it to the name of a different
-					animation.
-				</p>
-				<p>
-					<code>sprite.mirror</code> can be used to flip the sprite
-					horizontally or vertically.
-				</p>
-				<p>
-					Try pressing left and right to make the ghost move.
-				</p>
-				<p>
-					Try pressing the space bar to stop the animation.
-				</p>
-			</div>
+			<script type="text/md">
+## Sprites with Animations
+
+The `sprite.addAni` function works just like `loadAni`, except it also adds the animation to the sprite. You can also use it to add a previously loaded animation to a sprite. By default the last animation added to the sprite will be the animation the sprite displays.
+
+Try pressing the left mouse button. When the
+`sprite.debug` property is set to true you can
+see the sprite's physics body collider.
+
+## Control a Sprite's Animation</h2>
+
+`sprite.ani` stores the sprite's current animation,
+which can be changed by setting it to the name of a different
+animation.
+
+`sprite.mirror` can be used to flip the sprite
+horizontally or vertically.
+
+Try pressing left and right to make the ghost move.
+
+Try pressing the space bar to stop the animation.
+
+			</script>
 			<script type="mie/p5" name="sprites with animation">
 let ghost;
 
@@ -376,7 +369,7 @@ function preload() {
 }
 
 function setup() {
-	new Canvas(125, 48, 'pixelated x4');
+	new Canvas(124, 48, 'pixelated x4');
 	allSprites.pixelPerfect = true;
 }
 

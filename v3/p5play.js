@@ -484,7 +484,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 				}
 			}
 
-			this.mouse = new SpriteMouse();
+			this.mouse = new this.p._SpriteMouse();
 
 			if (this.collider != 'none') {
 				if (this._vertexMode) this.addCollider(w, h);
@@ -5576,7 +5576,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		return true;
 	};
 
-	class Tiles {
+	this.Tiles = class {
 		/**
 		 * <a href="https://p5play.org/learn/tiles.html">
 		 * Look at the Tiles reference pages before reading these docs.
@@ -5637,8 +5637,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 				}
 			}
 		}
-	}
-	this.Tiles = Tiles;
+	};
 
 	/**
 	 * Use of `new Tiles()` is preferred.
@@ -6625,7 +6624,7 @@ canvas {
 	 */
 	this.camera = new this.Camera();
 
-	class InputDevice {
+	this.InputDevice = class {
 		/**
 		 * <a href="https://p5play.org/learn/input_devices.html">
 		 * Look at the Input reference pages before reading these docs.
@@ -6746,9 +6745,9 @@ canvas {
 		releases(inp) {
 			return this.released(inp);
 		}
-	}
+	};
 
-	class Mouse extends InputDevice {
+	this._Mouse = class extends this.InputDevice {
 		/**
 		 * <a href="https://p5play.org/learn/input_devices.html">
 		 * Look at the Input reference pages before reading these docs.
@@ -6826,7 +6825,7 @@ canvas {
 			this.draggable = true;
 			return this[inp] >= this.holdThreshold ? this[inp] : 0;
 		}
-	}
+	};
 
 	/**
 	 * Get user input from the mouse.
@@ -6834,9 +6833,9 @@ canvas {
 	 *
 	 * @type {Mouse}
 	 */
-	this.mouse = new Mouse();
+	this.mouse = new this._Mouse();
 
-	class SpriteMouse extends Mouse {
+	this._SpriteMouse = class extends this._Mouse {
 		constructor() {
 			super();
 			this.hover = 0;
@@ -6862,7 +6861,7 @@ canvas {
 		hovered() {
 			return this.hover == -1;
 		}
-	}
+	};
 
 	const _onmousedown = this._onmousedown;
 
@@ -6943,7 +6942,7 @@ canvas {
 		_ontouchend.call(this, e);
 	};
 
-	class KeyBoard extends InputDevice {
+	this._KeyBoard = class extends this.InputDevice {
 		constructor() {
 			super();
 			this.default = ' ';
@@ -6971,14 +6970,15 @@ canvas {
 		get spacebar() {
 			return this[' '];
 		}
-	}
+	};
 
 	/**
 	 * Get user input from the keyboard.
 	 *
 	 * @type {KeyBoard}
 	 */
-	this.kb = new KeyBoard();
+	this.kb = new this._KeyBoard();
+	delete this._KeyBoard;
 
 	/**
 	 * Alias for kb.
@@ -7082,7 +7082,7 @@ canvas {
 		_onkeyup.call(this, e);
 	};
 
-	class Contro extends InputDevice {
+	this._Contro = class extends this.InputDevice {
 		constructor(gp) {
 			super();
 			let inputs = [
@@ -7199,9 +7199,9 @@ canvas {
 
 			return true; // update completed
 		}
-	}
+	};
 
-	class Contros extends Array {
+	this._Contros = class extends Array {
 		constructor() {
 			super();
 			let _this = this;
@@ -7279,7 +7279,7 @@ canvas {
 		_addContro(gp) {
 			if (!gp) return;
 			log('controller ' + this.length + ' connected: ' + gp.id);
-			this.push(new Contro(gp));
+			this.push(new pInst._Contro(gp));
 		}
 
 		/**
@@ -7292,14 +7292,15 @@ canvas {
 				c._update();
 			}
 		}
-	}
+	};
 
 	/**
 	 * Get user input from game controllers.
 	 *
 	 * @type {Contros}
 	 */
-	this.contro = new Contros();
+	this.contro = new this._Contros();
+	delete this._Contros;
 
 	/**
 	 * Alias for contro
