@@ -3,8 +3,8 @@
  */
 
 const log = console.log;
-global.p5 = require('p5');
-global.planck = require('planck');
+global.p5 = require('../v3/q5.js');
+global.planck = require('../v3/planck.min.js');
 require('../v3/p5play.js');
 
 test('Canvas : constructors', () => {
@@ -12,7 +12,11 @@ test('Canvas : constructors', () => {
 		p.setup = () => {
 			expect(p).toHaveProperty('Canvas');
 
-			new p.Canvas(100, 100);
+			new p.Canvas(50, 120);
+
+			expect(p).toHaveProperty('canvas');
+			expect(p.width).toBe(50);
+			expect(p.height).toBe(120);
 		};
 	};
 	new p5(sketch);

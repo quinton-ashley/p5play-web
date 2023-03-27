@@ -5,16 +5,17 @@
 		"Paolo Pedercini <info@molleindustria.it>"
 	],
 	"description": "The website for p5play",
-	"dependencies": {
-		"p5": "^1.5.0",
-		"planck": "^1.0.0-alpha.4"
-	},
 	"devDependencies": {
 		"canvas": "^2.10.2",
 		"jest-cli": "^29.3.1",
 		"jest-environment-jsdom": "^29.3.1",
 		"minami": "^1.2.3",
 		"taffydb": "^2.7.3"
+	},
+	"jest": {
+		"testEnvironmentOptions": {
+			"resources": "usable"
+		}
 	},
 	"homepage": "https://github.com/quintos/p5play-web",
 	"scripts": {
@@ -26,5 +27,8 @@
 		"version": "git add -A",
 		"postversion": "git push"
 	},
-	"version": "1.1.472"
+	"version": "1.1.473",
+	"dependencies": {
+		"p5": "^1.6.0"
+	}
 }

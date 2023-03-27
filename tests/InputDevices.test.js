@@ -3,8 +3,8 @@
  */
 
 const log = console.log;
-global.p5 = require('p5');
-global.planck = require('planck');
+global.p5 = require('../v3/q5.js');
+global.planck = require('../v3/planck.min.js');
 require('../v3/p5play.js');
 
 test('InputDevices : mouse', () => {

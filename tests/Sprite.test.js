@@ -3,8 +3,8 @@
  */
 
 const log = console.log;
-global.p5 = require('p5');
-global.planck = require('planck');
+global.p5 = require('../v3/q5.js');
+global.planck = require('../v3/planck.min.js');
 require('../v3/p5play.js');
 
 test('Sprite : constructors', () => {
@@ -22,6 +22,7 @@ test('Sprite : constructors', () => {
 			s = new p.Sprite();
 			expect(s).toBeInstanceOf(p.Sprite);
 			expect(s.shape).toBe('box');
+			expect(s.pos).toBeInstanceOf(p5.Vector);
 			expect(s.x).toBe(200);
 			expect(s.y).toBe(200);
 			expect(s.width).toBe(50);
@@ -102,7 +103,8 @@ test('Sprite : properties', () => {
 				s.hh = 10;
 			}).toThrow();
 
-			expect(s.vel instanceof p5.Vector).toBe(true);
+			expect(s).toBeInstanceOf(p.Sprite);
+			expect(s.vel).toBeInstanceOf(p5.Vector);
 			expect(typeof s.vel.__lookupGetter__('x') == 'function').toBe(true);
 			expect(typeof s.vel.__lookupGetter__('y') == 'function').toBe(true);
 
@@ -154,8 +156,8 @@ test('Sprite : properties', () => {
 });
 
 test('Sprite : physics', () => {
-	// tests that use the p5.js draw function
-	// must be wrapped in a promise
+	// tests that use the p5.js preload or draw functions
+	// or any async functions must be wrapped in a Promise
 	return new Promise((resolve) => {
 		const sketch = (p) => {
 			let s0, s1;
@@ -289,7 +291,6 @@ test('Sprite : move, moveTo, moveTowards', () => {
 				// expect(s.x).toBe(26);
 				// expect(s.y).toBe(24);
 
-				s.remove();
 				p.noLoop();
 				resolve();
 			}
