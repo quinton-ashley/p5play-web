@@ -70,7 +70,9 @@ The player and environment of your game should be drawn with the camera on.
 
 UI or HUD sprites, represented by orange squares in this examples, should be drawn when the camera is off.
 
-`camera.zoom` can be used to zoom in and out.
+`camera.zoom` can be used to zoom the camera in and out.
+
+`camera.zoomTo(target, speed)` is an async function that can be used to smoothly zoom the camera in and out. It takes an optional second parameter, the amount it will zoom per frame.
 
 `mouse.x` stores the x position of the mouse in relation to the world, which can be larger than the canvas. `camera.mouse.x` stores the x position of the mouse in relation to the canvas.
 			</script>
@@ -81,7 +83,9 @@ function setup() {
 	new Canvas(500, 240);
 	player = new Sprite();
 	player.d = 80;
-	player.color = 'magenta'
+	player.color = 'magenta';
+
+	camera.zoom = 0.5;
 }
 
 function draw() {
@@ -100,8 +104,8 @@ function draw() {
 	camera.x = player.x;
 	camera.y = player.y;
 
-	if (mouse.pressing()) camera.zoom = 1;
-	else camera.zoom = 0.5;
+	if (mouse.presses()) camera.zoomTo(1);
+	else if (mouse.released()) camera.zoomTo(0.5);
 
 	camera.off();
 

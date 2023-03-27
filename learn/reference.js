@@ -52,7 +52,7 @@ let refs = {
 	},
 	'Camera.html': {
 		0: ['x', 'y'],
-		1: ['zoom', 'on', 'off', 'mouse']
+		1: ['zoom', 'zoomTo', 'on', 'off', 'mouse']
 	},
 	Canvas: {
 		'advanced.html?page=0': ['"w:h" aspect ratio', '"pixelated" preset']
