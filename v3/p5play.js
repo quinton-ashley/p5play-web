@@ -5419,19 +5419,11 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			this.p = pInst;
 			let _this = this;
 
+			// camera position
 			this._pos = { x: 0, y: 0 };
 
-			/**
-			 * Camera zoom.
-			 *
-			 * A scale of 1 will be the normal size. Setting it to 2 will
-			 * make everything twice the size. .5 will make everything half
-			 * size.
-			 *
-			 * @type {Number}
-			 * @default 1
-			 */
-			this.zoom = zoom || 1;
+			// camera translation
+			this.__pos = { x: 0, y: 0 };
 
 			/**
 			 * Get the translated mouse position relative to the camera view.
@@ -5467,8 +5459,12 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 				max: { x: 0, y: 0 }
 			};
 
-			if (x) this.x = x;
-			if (y) this.y = y;
+			this._moveIdx = -1;
+			this._zoomIdx = -1;
+
+			this._zoom = zoom || 1;
+			this.x = x || 0;
+			this.y = y || 0;
 		}
 
 		/**
@@ -5497,10 +5493,13 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			return this._pos.x;
 		}
 		set x(val) {
-			if (this.p.allSprites.pixelPerfect) val = Math.round(val);
 			this._pos.x = val;
-			this.bound.min.x = this.x - this.p.world.hw / this.zoom - 100;
-			this.bound.max.x = this.x + this.p.world.hw / this.zoom + 100;
+			let x = -val + this.p.world.hw / this._zoom;
+			if (this.p.allSprites.pixelPerfect) x = Math.round(x);
+			this.__pos.x = x;
+
+			this.bound.min.x = val - this.p.world.hw / this._zoom - 100;
+			this.bound.max.x = val + this.p.world.hw / this._zoom + 100;
 		}
 
 		/**
@@ -5512,10 +5511,93 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			return this._pos.y;
 		}
 		set y(val) {
-			if (this.p.allSprites.pixelPerfect) val = Math.round(val);
 			this._pos.y = val;
-			this.bound.min.y = this.y - this.p.world.hh / this.zoom - 100;
-			this.bound.max.y = this.y + this.p.world.hh / this.zoom + 100;
+			let y = -val + this.p.world.hh / this._zoom;
+			if (this.p.allSprites.pixelPerfect) y = Math.round(y);
+			this.__pos.y = y;
+
+			this.bound.min.y = val - this.p.world.hh / this._zoom - 100;
+			this.bound.max.y = val + this.p.world.hh / this._zoom + 100;
+		}
+
+		/**
+		 * Camera zoom.
+		 *
+		 * A scale of 1 will be the normal size. Setting it to 2 will
+		 * make everything twice the size. .5 will make everything half
+		 * size.
+		 *
+		 * @type {Number}
+		 * @default 1
+		 */
+		get zoom() {
+			return this._zoom;
+		}
+		set zoom(val) {
+			this._zoom = val;
+			let x = -this._pos.x + this.p.world.hw / val;
+			let y = -this._pos.y + this.p.world.hh / val;
+			if (this.p.allSprites.pixelPerfect) {
+				x = Math.round(x);
+				y = Math.round(y);
+			}
+			this.__pos.x = x;
+			this.__pos.y = y;
+		}
+
+		/**
+		 * Move the camera to a position at a given speed.
+		 *
+		 * @param {Number} x
+		 * @param {Number} y
+		 * @param {Number} speed The amount of movement per frame.
+		 * @returns {Promise} A promise that resolves when the camera reaches the destination.
+		 */
+		moveTo(x, y, speed) {
+			let dx = x - this._pos.x;
+			let dy = y - this._pos.y;
+			let dist = Math.sqrt(dx * dx + dy * dy);
+			if (dist == 0) return Promise.resolve();
+			let frames = Math.round(dist / speed);
+			speed /= dist;
+			let speedX = dx * speed;
+			let speedY = dy * speed;
+
+			this._moveIdx++;
+			let moveIdx = this._moveIdx;
+			return (async () => {
+				for (let i = 0; i < frames; i++) {
+					if (moveIdx != this._moveIdx) return;
+					this.x += speedX;
+					this.y += speedY;
+					await this.p.delay();
+				}
+				this.x = x;
+				this.y = y;
+			})();
+		}
+
+		/**
+		 * Zoom the camera to a scale at a given speed.
+		 * @param {Number} target The target zoom.
+		 * @param {Number} speed The amount of zoom per frame.
+		 * @returns {Promise} A promise that resolves when the camera reaches the target zoom.
+		 */
+		zoomTo(target, speed) {
+			let delta = Math.abs(target - this._zoom);
+			let frames = Math.round(delta / speed);
+			if (target < this.zoom) speed = -speed;
+
+			this._zoomIdx++;
+			let zoomIdx = this._zoomIdx;
+			return (async () => {
+				for (let i = 0; i < frames; i++) {
+					if (zoomIdx != this._zoomIdx) return;
+					this.zoom += speed;
+					await this.p.delay();
+				}
+				this.zoom = target;
+			})();
 		}
 
 		/**
@@ -5527,8 +5609,8 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		on() {
 			if (!this.active) {
 				this.p.push();
-				this.p.scale(this.zoom);
-				this.p.translate(-this.x + this.p.world.hw / this.zoom, -this.y + this.p.world.hh / this.zoom);
+				this.p.scale(this._zoom);
+				this.p.translate(this.__pos.x, this.__pos.y);
 				this.active = true;
 			}
 		}
