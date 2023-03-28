@@ -154,25 +154,22 @@ sprite.text = "p5";
 			</div>
 			<div class="break"></div>
 			<div>
-				<div>
-					<h2>Try it out!</h2>
+				<script type="text/md">
+## Try it out!
 
-					<p>
-						Try turning the sprite named <code>ball</code> into a blue circle with a diameter of 30 and place it at the
-						top right corner of the
-						canvas.
-					</p>
-				</div>
+Try turning the sprite named <code>ball</code> into a blue circle with a diameter of 30 and place it at the top right corner of the canvas.
+
+				</script>
 				<script type="mie/p5" name="Level 0 Challenge Solution" hide-editor>
 let ball;
 
 function setup() {
-	new Canvas(500, 60);
+	new Canvas(460, 60);
 	ball = new Sprite();
 	ball.diameter = 30;
 	ball.color = 'blue';
-	ball.x = 485;
-	ball.y = 15;
+	ball.x = 444;
+	ball.y = 16;
 }
 
 function draw() {
@@ -212,8 +209,7 @@ The collider type can also be set using the first letter of the collider type na
 
 Click the reload icon on the top right corner of a mini example to replay it!
 			</script>
-			<div>
-				<script type="mie/p5" name="dynamic and static colliders" base-2 horiz lines="16">
+			<script type="mie/p5" name="dynamic and static colliders" base-2 horiz lines="16">
 let ball, floor;
 
 function setup() {
@@ -234,8 +230,7 @@ function setup() {
 function draw() {
 	clear();
 }
-				</script>
-			</div>
+			</script>
 			<div class="minis">
 				<script type="mie/p5" name="anti-gravity" base="2">
 world.gravity.y = -1;
@@ -267,7 +262,7 @@ Note that `world` is created when p5play loads but by default there is no gravit
 let peg, block;
 
 function setup() {
-	new Canvas(500, 60);
+	new Canvas(460, 60);
 	world.gravity.y = 10;
 
 	peg = new Sprite();
@@ -278,7 +273,7 @@ function setup() {
 	block = new Sprite();
 	block.w = 30;
 	block.h = 30;
-	block.x = 252;
+	block.x = 236;
 	block.y = 0;
 }
 

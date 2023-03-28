@@ -347,10 +347,13 @@ if (typeof window.ace != 'undefined') {
 
 .mie.vert .mie-editor {
 	border-top: 2px solid #ccc;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
 }
 
 .mie.horiz .mie-editor {
 	border-left: 2px solid #ccc;
+	border-bottom-right-radius: 10px;
 }
 
 .mie-edit,

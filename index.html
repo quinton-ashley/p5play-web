@@ -43,12 +43,12 @@
 		</nav>
 		<div class="break"></div>
 
-		<div class="page" style="display: flex;">
-			<div>
+		<div id="home" class="page" style="display: flex;">
+			<div id="home-info">
 				<h3 style="line-height: 32px;">
-					<a class="superLink" href="https://github.com/quinton-ashley/p5play"
-						style="font-size: 48px; vertical-align: super;" target="_blank">p5play</a> is a JavaScript game engine that
-					uses <a href="http://p5js.org/" target="_blank">p5.js</a> for rendering and <a
+					<a class="superLink" href="https://github.com/quinton-ashley/p5play" target="_blank">p5play</a> is a
+					JavaScript game engine that
+					uses <a href="http://p5js.org/" target="_blank">p5.js</a> for graphics and <a
 						href="https://piqnt.com/planck.js/" target="_blank">Box2D</a> for physics.
 				</h3>
 
@@ -88,7 +88,7 @@
 let tumbler, x, y, sides, len, angle;
 
 function setup() {
-	new Canvas(500, 350);
+	new Canvas(450, 350);
 	world.gravity.y = 10;
 
 	x = width * 0.5;
@@ -128,12 +128,11 @@ function dropSprite() {
 
 			<div class="break"></div>
 
-
 			<div>
 				<h2>Join the community</h2>
 				<p>
-					Ask questions and meet other people making interactive art and games with p5play on our <a
-						href="https://discord.gg/3UTbqUgmPF" target="_blank">community Discord server</a>.
+					Ask questions and meet other people making interactive art and games with p5play on our
+					<a href="https://discord.gg/3UTbqUgmPF" target="_blank">community Discord server</a>.
 				</p>
 				<a id="discord-brand" class="superLink" href="https://discord.gg/3UTbqUgmPF" target="_blank">
 					<!-- <span>p5play</span> -->
@@ -143,8 +142,29 @@ function dropSprite() {
 				</a>
 			</div>
 			<div>
+				<h2>Support this project</h2>
+				<p>
+					p5play is <a href="https://github.com/quinton-ashley/p5play-web/blob/main/LICENSING.md">open source
+						licensed</a> under the GPL: it's free!
+				</p>
+				<p>
+					But if you use p5play professionally, please <a href="https://www.patreon.com/p5play">support the project on
+						Patreon</a>! 🤝
+				</p>
+				<p>
+					<a aria-label="Patreon page for p5play" id="patreon-brand" href="https://www.patreon.com/p5play">
+						<img src="https://www.svgrepo.com/download/354168/patreon.svg" alt="">
+						<img src="assets/patreon_brand.svg" alt="patreon brand" height="28px">
+					</a>
+				</p>
+			</div>
+			<div>
 				<h2 id="no-installation-required!">No installation required!</h2>
-				<p>Use one of these online code editor templates.</p>
+				<p>
+					You can use any of these online code editor templates.
+					However, I suggest avoiding the p5.js web editor, it has a
+					lot of problems. I recommend using OpenProcessing.
+				</p>
 				<div id="editors">
 					<a href="https://openprocessing.org/sketch/1717172" target="_blank">
 						<img alt="OpenProcessing logo" class="openprocessing-brand"
@@ -169,23 +189,6 @@ function dropSprite() {
 				</div>
 			</div>
 			<div>
-				<h2>Support this project</h2>
-				<p>
-					p5play is <a href="https://github.com/quinton-ashley/p5play-web/blob/main/LICENSING.md">open source
-						licensed</a> under the GPL: it's free!
-				</p>
-				<p>
-					But if you use p5play professionally, please <a href="https://www.patreon.com/p5play">support the project on
-						Patreon</a>! 🤝
-				</p>
-				<p>
-					<a aria-label="Patreon page for p5play" id="patreon-brand" href="https://www.patreon.com/p5play">
-						<img src="https://www.svgrepo.com/download/354168/patreon.svg" alt="">
-						<img src="assets/patreon_brand.svg" alt="patreon brand" height="28px">
-					</a>
-				</p>
-			</div>
-			<div>
 				<h2>Local Development</h2>
 				<p>
 					Use p5play on your own website by adding these links to your HTML file.
@@ -206,6 +209,7 @@ function dropSprite() {
 						offline?</a>
 				</p>
 			</div>
+
 			<div class="break"></div>
 			<div class="full">
 				<div id="user-brands">
@@ -247,34 +251,136 @@ function dropSprite() {
 					</a>
 				</div>
 			</div>
-		</div>
 
-		<div class="break"></div>
+			<div class="break"></div>
 
-		<div class="credits">
-			<div class="credits-lg">
-				Creator of p5play : <strong>Quinton Ashley</strong> | <a
-					href="https://openprocessing.org/user/350295?view=activity&o=35">@quinton-ashley</a> | <a
-					href="mailto:info@p5play.org">info@p5play.org</a>
+			<div class="testimonial">
+				<div class="testimonial-text">
+					<p>
+						<span>“</span>I have found the p5play library to be an invaluable resource for introducing students to
+						game
+						design and
+						development.
+						Our team chose to use this library for our Game Design Summer Program due to its many customizable
+						features,
+						well
+						documented resources, and easy-to-use API which make it accessible for students of all ages and skill
+						levels.
+					</p>
+					<p>
+						Due to the many methods and properties included in this library, students are able to quickly bring their
+						game
+						visions
+						to life with code. These games range from basic catcher games to games with multiple levels and
+						challenging
+						features.
+					</p>
+					<p>
+						In addition to the library's well-documented resources, p5play offers a wealth of support and inspiration
+						for
+						the
+						students and teachers in their community. This includes their interactive learn pages that allow students
+						to
+						tinker with
+						different properties and methods in the library, their tri-annual Game Jam event, and their Discord
+						channel
+						filled with
+						many great resources and opportunities to find support.
+					</p>
+					<p>
+						Our Girls Who Code team highly recommends this library to anyone interested in game development. We can't
+						wait
+						to see
+						all of the games our students create this summer with this incredible library!<span>”</span>
+					</p>
+				</div>
+				<div class="testimonial-bio">
+					<img src="assets/ashley_goetz.jpg" alt="Amy">
+					<div>
+						<div class="name">Ashley Goetz</div>
+						<div>Curriculum Developer at</div>
+						<div>
+							<a href="https://girlswhocode.com/" target="_blank">Girls Who Code</a>
+						</div>
+					</div>
+				</div>
 			</div>
-			<div>
-				Creator of p5.play v1 : <strong>Paolo Pedercini</strong> |
-				<a href="http://molleindustria.org/" target="_blank">molleindustria.org</a> | <a
-					href="mailto:info@molleindustria.it">info@molleindustria.it</a>
+			<div class="testimonial">
+				<div class="testimonial-text">
+					<p>
+						<span>“</span>I absolutely love what you've done with the Learn pages,
+						what a cool reference for important sprite properties, looking
+						forward to seeing more of that. Digging through the source a
+						bit I'd say [p5play v3] retains a ton of the appeal of
+						earlier versions and I was able to orient pretty quick.<span>”</span>
+					</p>
+				</div>
+				<div class="testimonial-bio">
+					<img src="assets/brad_buchanan.jpg" alt="Brad">
+					<div>
+						<div class="name">Bradley C Buchanan</div>
+						<div>
+							Software Manager at
+							<a href="https://discord.com" target="_blank">Discord</a>
+						</div>
+						<div>
+							Former Software Manager at
+							<a href="https://google.com" target="_blank">Google</a>
+						</div>
+						<div>
+							Former Software Manager at
+							<a href="https://code.org/" target="_blank">Code.org</a>
+						</div>
+					</div>
+				</div>
 			</div>
-			<div>
-				Current Contributors: Oliver Zell, Caleb Foss, and Bobby S.
+			<div class="testimonial">
+				<div class="testimonial-text">
+					<p>
+						<span>“</span>Thank you so much for all the work. With this proper physics integration, I may start using
+						p5play
+						again in my classes!<span>”</span>
+					</p>
+				</div>
+				<div class="testimonial-bio">
+					<img src="assets/paolo_pedercini.jpg" alt="Paolo">
+					<div>
+						<div class="name">Paolo Pedercini</div>
+						<div>Creator of p5.play v1</div>
+						<div> Professor at
+							<a href="https://www.cmu.edu/" target="_blank">Carnegie Mellon</a>
+						</div>
+					</div>
+				</div>
 			</div>
-			<div class="credits-sm">
-				Huge thanks to my student testers: Chayarat Wangweera, Zhiyuan Guo, Aarnav Gupta, and Carter Noa!
+
+			<div class="break"></div>
+
+			<div class="credits full">
+				<div class="credits-lg">
+					Creator of p5play : <strong>Quinton Ashley</strong> | <a
+						href="https://openprocessing.org/user/350295?view=activity&o=35">@quinton-ashley</a> | <a
+						href="mailto:info@p5play.org">info@p5play.org</a>
+				</div>
+				<div>
+					Creator of p5.play v1 : <strong>Paolo Pedercini</strong> |
+					<a href="http://molleindustria.org/" target="_blank">molleindustria.org</a> | <a
+						href="mailto:info@molleindustria.it">info@molleindustria.it</a>
+				</div>
+				<div>
+					Current Contributors: Oliver Zell, Caleb Foss, and Bobby S.
+				</div>
+				<div class="credits-sm">
+					Huge thanks to my student testers: Chayarat Wangweera, Zhiyuan Guo, Aarnav Gupta, and Carter Noa!
+				</div>
 			</div>
+			<div class="break"></div>
+			<footer class="text-small">p5play.org was created by Quinton Ashley.
+				Copyright ©2022-2023. Looking for the
+				<a href="../v2/index.html">legacy
+					version</a> of p5play?
+			</footer>
 		</div>
-		<div class="break"></div>
-		<footer class="text-small">p5play.org was created by Quinton Ashley.
-			Copyright ©2022-2023. Looking for the
-			<a href="../v2/index.html">legacy
-				version</a> of p5play?
-		</footer>
 	</article>
 
 	<script src="v3/q5.min.js"></script>

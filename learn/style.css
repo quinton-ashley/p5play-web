@@ -27,7 +27,7 @@ body.dark {
 
 	--bright: #eee;
 	--dark: #66615a;
-	--margins: #242424;
+	--margins: #000;
 }
 
 html,
@@ -40,12 +40,12 @@ body {
 }
 
 article {
-	background-color: var(--secondary);
+	/* background-color: var(--secondary); */
 	color: var(--primary);
 	display: flex;
 	margin: auto;
-	padding-left: 15px;
-	padding-right: 15px;
+	/* padding-left: 15px; */
+	/* padding-right: 15px; */
 	justify-content: center;
 	flex-wrap: wrap;
 	font-family: sans-serif;
@@ -80,6 +80,7 @@ a {
 	color: var(--pink);
 	text-decoration: none;
 	cursor: pointer;
+	font-weight: bold;
 }
 
 a:hover {
@@ -91,7 +92,8 @@ li {
 }
 
 #topNav {
-	padding-top: 8px;
+	width: 100%;
+	margin-top: 16px;
 	user-select: none;
 }
 
@@ -106,6 +108,7 @@ a.navLink {
 	transition: 100ms;
 	padding-left: 8px;
 	padding-right: 8px;
+	vertical-align: middle;
 }
 
 a.navLink {
@@ -121,7 +124,8 @@ a.navLink {
 }
 
 #topNav #logoLink.active {
-	font-size: 42px;
+	font-size: 48px;
+	margin-bottom: 10px;
 }
 
 #topNav #logoLink:hover {
@@ -132,7 +136,7 @@ a.navLink {
 	font-size: 34px;
 }
 
-#topNav a:hover:not(:first-child) {
+#topNav a:hover {
 	scale: 1.2;
 	translate: 0 -2px;
 }
@@ -174,6 +178,10 @@ a.navLink {
 	box-shadow: 2px 2px 10px var(--pink);
 }
 
+#home-info {
+	width: 49%;
+}
+
 #toc {
 	display: flex;
 	align-items: center;
@@ -189,7 +197,7 @@ a.navLink {
 
 a.btn,
 #toc a,
-#refs div a:not(:first-child) {
+#refs div:not(:first-child) a:not(:first-child) {
 	background-color: var(--bright-blue);
 	color: var(--pink);
 	box-shadow: var(--blue) 3px 3px 0px;
@@ -212,8 +220,8 @@ a.btn,
 
 #toc a.active,
 #toc a:hover,
-#refs div a:not(:first-child).active,
-#refs div a:not(:first-child):hover {
+#refs>div:not(:first-child) a:not(:first-child).active,
+#refs>div:not(:first-child) a:not(:first-child):hover {
 	color: #eee;
 	background-color: var(--pink);
 	-webkit-text-stroke: none;
@@ -221,14 +229,14 @@ a.btn,
 
 .dark a.btn,
 .dark #toc a,
-.dark #refs div a:not(:first-child) {
+.dark #refs>div:not(:first-child) a:not(:first-child) {
 	background-color: var(--dark-blue);
 }
 
 .dark #toc a.active,
 .dark #toc a:hover,
-.dark #refs div a:not(:first-child).active,
-.dark #refs div a:not(:first-child):hover {
+.dark #refs>div:not(:first-child) a:not(:first-child).active,
+.dark #refs>div:not(:first-child) a:not(:first-child):hover {
 	background-color: var(--pink);
 }
 
@@ -238,8 +246,9 @@ a.btn,
 }
 
 .superLink {
+	font-size: 32px;
+	/* vertical-align: super; */
 	color: var(--pink);
-	text-shadow: 4px 4px 0px var(--blue);
 }
 
 .page h3 {
@@ -289,14 +298,48 @@ code {
 	row-gap: 20px;
 }
 
-.page>div,
-.page>md {
-	/* flex: 1; */
+.page>md,
+.page>div {
+	width: 45%;
+}
+
+.page>.break,
+.page>.minis,
+.page>.mie {
 	width: 49%;
 }
 
+#home #mie-0 {
+	width: 45%;
+}
+
+#topNav,
+.page>md,
+.page>div:not(.mie):not(.break):not(.minis) {
+	padding: 2%;
+	border: 2px solid var(--dark);
+	border-radius: 10px;
+	background-color: var(--secondary);
+}
+
+#topNav {
+	border-color: var(--blue);
+	padding: 1%;
+}
+
+.page>md>:first-child,
+.page>div:not(.mie):not(.break):not(.minis)>:first-child,
+.page>div>md>h2 {
+	margin-top: 0;
+}
+
+.page>md>:last-child,
+.page>div:not(.mie):not(.break):not(.minis)>:last-child {
+	margin-bottom: 0;
+}
+
 .page>.full {
-	width: 100%;
+	width: 96%;
 }
 
 #shields img {
@@ -522,7 +565,7 @@ body.dark #patreon-brand img:nth-of-type(2) {
 	font-weight: 300;
 	line-height: 1;
 	color: var(--primary);
-	font-size: 32px;
+	font-size: 28px;
 }
 
 #editors {
@@ -593,6 +636,117 @@ body.light .discord-logo {
 	gap: 50px;
 }
 
+#testimonials {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	gap: 20px;
+}
+
+.testimonial {
+	width: 45%;
+	background-color: #eee;
+	border-radius: 10px;
+	padding: 2%;
+}
+
+.dark .testimonial {
+	background-color: #242424;
+}
+
+.testimonial-text {
+	max-height: 168px;
+	overflow-y: scroll;
+}
+
+.testimonial-text :first-child {
+	margin-top: 0;
+}
+
+.testimonial-text::after {
+	display: absolute;
+	z-index: 1000;
+	background: linear-gradient(rgba(255, 255, 255, 0) 90%, rgba(255, 255, 255, 1) 100%);
+}
+
+/* 
+.dark .testimonial-text::after {
+	display: absolute;
+	bottom: 0;
+	background: linear-gradient(rgba(19, 21, 22, 0) 90%, rgba(19, 21, 22, 1) 100%);
+} */
+
+.testimonial-bio {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 16px;
+}
+
+.testimonial-text span {
+	padding-right: 2px;
+}
+
+.testimonial-bio>div {
+	line-height: 1.25;
+}
+
+.testimonial-bio .name {
+	margin-bottom: 10px;
+}
+
+.testimonial-text span,
+.testimonial-bio .name {
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.testimonial img {
+	width: 128px;
+	height: 128px;
+}
+
+#otherLinks {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	gap: 4%;
+}
+
+#refs {
+	display: flex;
+	flex-direction: row;
+	align-items: flex-start;
+}
+
+#refs>div {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	gap: 4px;
+	align-content: start;
+}
+
+#refs div h2 {
+	width: 100%;
+}
+
+#refs div h2 a {
+	color: var(--primary);
+}
+
+#refs div:not(:first-child) h2 a:hover {
+	color: var(--pink);
+	text-decoration: underline;
+}
+
+#refs>div:nth-child(5),
+#refs>div:nth-child(6),
+#refs>div:nth-child(7),
+#refs>div:nth-child(8) {
+	width: 19.75%;
+}
+
 @media screen and (max-width: 1060px) {
 
 	html,
@@ -624,16 +778,24 @@ body.light .discord-logo {
 		height: 28px;
 	}
 
-	.page {
-		width: 98%;
-		padding-left: 1%;
-		padding-right: 1%;
+	.mie {
+		width: max-content;
 	}
 
 	.minis>div,
 	.page>div,
 	.page>md {
+		width: 96%;
+	}
+
+	.page>.break,
+	.page>.minis,
+	.page>.mie {
 		width: 100%;
+	}
+
+	.minis>.mie {
+		width: 49%;
 	}
 
 	#topNav #logoLink {
@@ -647,6 +809,19 @@ body.light .discord-logo {
 
 	#topNav a.active:not(#logoLink) {
 		order: -1;
+	}
+
+	#refs>div,
+	#refs>div:nth-child(5),
+	#refs>div:nth-child(6),
+	#refs>div:nth-child(7),
+	#refs>div:nth-child(8) {
+		width: 45%;
+	}
+
+	#refs>div:nth-child(1),
+	#refs>div:nth-child(2) {
+		width: 96%;
 	}
 
 }

@@ -15,7 +15,10 @@
 		const urlParams = new URLSearchParams(params);
 		idToken = urlParams.get('id_token');
 		localStorage.setItem('idToken', idToken);
-		if (!idToken) return;
+		if (!idToken) {
+			document.getElementById('noauth').style.display = 'flex';
+			return;
+		}
 		user = jwt_decode(idToken);
 
 		// hide the token from the URL

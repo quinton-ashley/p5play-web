@@ -148,9 +148,9 @@ for (let refPage in refs) {
 	}
 
 	let div = document.createElement('div');
-	let heading = document.createElement('a');
-	heading.href = refPage;
-	heading.innerHTML = '<h2>' + className + '</h2>';
+	if (className == 'Sprite') div.className = 'full';
+	let heading = document.createElement('h2');
+	heading.innerHTML = `<a href="${refPage}">${className}</a>`;
 	div.append(heading);
 	refsDiv.append(div);
 
