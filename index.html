@@ -45,7 +45,7 @@
 
 		<div id="home" class="page" style="display: flex;">
 			<div id="home-info">
-				<h3 style="line-height: 32px;">
+				<h3>
 					<a class="superLink" href="https://github.com/quinton-ashley/p5play" target="_blank">p5play</a> is a
 					JavaScript game engine that
 					uses <a href="http://p5js.org/" target="_blank">p5.js</a> for graphics and <a
@@ -72,11 +72,11 @@
 					<a aria-label="p5play GitHub page" href="https://github.com/quinton-ashley/p5play" target="_blank">
 						<img src="https://img.shields.io/github/package-json/v/quinton-ashley/p5play.svg" alt="">
 					</a>
-					<a aria-label="p5play license" href="https://github.com/quinton-ashley/p5play-web/blob/main/LICENSING.md"
+					<!-- <a aria-label="p5play license" href="https://github.com/quinton-ashley/p5play-web/blob/main/LICENSING.md"
 						target="_blank">
 						<img src="https://img.shields.io/github/license/quinton-ashley/p5play.svg" alt="">
-					</a>
-					<a aria-label="Patreon page of p5play" href="https://www.patreon.com/p5play" target="_blank">
+					</a> -->
+					<a href="https://www.patreon.com/p5play" target="_blank" aria-label="Patreon page of p5play">
 						<img src="https://img.shields.io/badge/Patreon-@p5play-orange.svg" alt="">
 					</a>
 					<a aria-label="p5play GitHub stars counter" href="https://github.com/quinton-ashley/p5play" target="_blank">
@@ -88,7 +88,7 @@
 let tumbler, x, y, sides, len, angle;
 
 function setup() {
-	new Canvas(450, 350);
+	new Canvas(500, 375);
 	world.gravity.y = 10;
 
 	x = width * 0.5;
@@ -134,8 +134,7 @@ function dropSprite() {
 					Ask questions and meet other people making interactive art and games with p5play on our
 					<a href="https://discord.gg/3UTbqUgmPF" target="_blank">community Discord server</a>.
 				</p>
-				<a id="discord-brand" class="superLink" href="https://discord.gg/3UTbqUgmPF" target="_blank">
-					<!-- <span>p5play</span> -->
+				<a id="discord-brand" href="https://discord.gg/3UTbqUgmPF" target="_blank">
 					<img class="discord-brand"
 						src="https://assets-global.website-files.com/6257adef93867e50d84d30e2/62594fdd2eb6504fca0545cb_364fc8a0ee7fcebf47ca6ebd16ec12f1%20(1).svg"
 						alt="Discord brand">
@@ -152,7 +151,7 @@ function dropSprite() {
 						Patreon</a>! 🤝
 				</p>
 				<p>
-					<a aria-label="Patreon page for p5play" id="patreon-brand" href="https://www.patreon.com/p5play">
+					<a id="patreon-brand" href="https://www.patreon.com/p5play" aria-label="Patreon page for p5play">
 						<img src="https://www.svgrepo.com/download/354168/patreon.svg" alt="">
 						<img src="assets/patreon_brand.svg" alt="patreon brand" height="28px">
 					</a>

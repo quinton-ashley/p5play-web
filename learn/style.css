@@ -178,10 +178,6 @@ a.navLink {
 	box-shadow: 2px 2px 10px var(--pink);
 }
 
-#home-info {
-	width: 49%;
-}
-
 #toc {
 	display: flex;
 	align-items: center;
@@ -247,12 +243,12 @@ a.btn,
 
 .superLink {
 	font-size: 32px;
-	/* vertical-align: super; */
 	color: var(--pink);
 }
 
 .page h3 {
 	line-height: 32px;
+	font-size: 20px;
 }
 
 #darkModeIcon {
@@ -307,10 +303,6 @@ code {
 .page>.minis,
 .page>.mie {
 	width: 49%;
-}
-
-#home #mie-0 {
-	width: 45%;
 }
 
 #topNav,
@@ -538,12 +530,6 @@ body.dark #patreon-brand img:nth-of-type(2) {
 	margin-bottom: -10px;
 }
 
-#discord-brand span {
-	font-size: 28px;
-	font-weight: bold;
-	margin-right: 14px;
-}
-
 #discord-brand:hover span {
 	color: var(--pink);
 }
@@ -551,10 +537,6 @@ body.dark #patreon-brand img:nth-of-type(2) {
 #discord-brand:hover {
 	text-decoration: none;
 }
-
-/* #discord-brand:hover img {
-	filter: sepia(100%) saturate(1000%) hue-rotate(80deg) invert() brightness(140%);
-} */
 
 .dark .glitch-brand {
 	filter: hue-rotate(180deg) invert() opacity(80%);
@@ -579,7 +561,8 @@ body.dark #patreon-brand img:nth-of-type(2) {
 .glitch-brand,
 .codepen-brand,
 .replit-brand,
-#discord-brand {
+#discord-brand,
+#patreon-brand {
 	border-bottom: 1px solid transparent;
 }
 
