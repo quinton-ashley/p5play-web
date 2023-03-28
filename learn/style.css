@@ -11,11 +11,11 @@ html {
 	--secondary: #fff;
 	--bright: #000;
 	--dark: #d1cdc9;
-	--margins: #eee;
+	--background: #eee;
 }
 
 html:has(body.dark) {
-	--margins: #242424;
+	--background: #242424;
 }
 
 body.dark {
@@ -27,12 +27,12 @@ body.dark {
 
 	--bright: #eee;
 	--dark: #66615a;
-	--margins: #000;
+	--background: #000;
 }
 
 html,
 body {
-	background-color: var(--margins);
+	background-color: var(--background);
 }
 
 body {
@@ -584,9 +584,9 @@ body.dark #patreon-brand img:nth-of-type(2) {
 	margin-bottom: -6px;
 }
 
-body.light .codepen-brand,
-body.light .discord-brand,
-body.light .discord-logo {
+.light .codepen-brand,
+.light .discord-brand,
+.light .discord-logo {
 	filter: invert(1);
 }
 
@@ -597,15 +597,6 @@ body.light .discord-logo {
 .credits-sm {
 	font-size: 16px;
 }
-
-/* 
-.day-mode .night {
-	display: none;
-}
-
-.night-mode .day {
-	display: none;
-} */
 
 #auth {
 	display: none;
@@ -619,24 +610,6 @@ body.light .discord-logo {
 	gap: 50px;
 }
 
-#testimonials {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
-	gap: 20px;
-}
-
-.testimonial {
-	width: 45%;
-	background-color: #eee;
-	border-radius: 10px;
-	padding: 2%;
-}
-
-.dark .testimonial {
-	background-color: #242424;
-}
-
 .testimonial-text {
 	max-height: 168px;
 	overflow-y: scroll;
@@ -646,11 +619,11 @@ body.light .discord-logo {
 	margin-top: 0;
 }
 
-.testimonial-text::after {
+/* .testimonial-text::after {
 	display: absolute;
 	z-index: 1000;
 	background: linear-gradient(rgba(255, 255, 255, 0) 90%, rgba(255, 255, 255, 1) 100%);
-}
+} */
 
 /* 
 .dark .testimonial-text::after {
@@ -684,9 +657,10 @@ body.light .discord-logo {
 	font-weight: bold;
 }
 
-.testimonial img {
+.testimonial-bio img {
 	width: 128px;
 	height: 128px;
+	border-radius: 10px;
 }
 
 #otherLinks {
