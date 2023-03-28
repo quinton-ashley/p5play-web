@@ -82,7 +82,7 @@ function setup() {
 
 function draw() {
 	clear();
-	if (frame == 100)	floor.rotation = 10;
+	if (frameCount == 100)	floor.rotation = 10;
 }
 			</script>
 				<script type="mie/p5" name="wake up!" horiz>
@@ -97,7 +97,7 @@ function setup() {
 
 function draw() {
 	clear();
-	if (frame == 100)	{
+	if (frameCount == 100)	{
 		ball.sleeping = false;
 		floor.rotation = 10;
 	}
