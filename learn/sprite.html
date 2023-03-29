@@ -16,7 +16,7 @@
 				<img alt="p5play logo" src="../logo.svg" class="logo">
 				<span>p5play</span>
 			</a>
-			<span>:</span>
+			<hr>
 			<a href="sprite.html" class="active">Sprite</a>
 			<a href="group.html">Group</a>
 			<a href="sprite_animation.html">Animation</a>
@@ -24,7 +24,7 @@
 			<a href="tiles.html">Tiles</a>
 			<a href="camera.html">Camera</a>
 			<a href="advanced.html">Adv</a>
-			<span class="colon">:</span>
+			<hr>
 			<a id="darkMode" onclick="toggleDarkMode()" tabindex="0" role="button">
 				<div id="darkModeIcon"></div>
 			</a>
@@ -153,7 +153,7 @@ sprite.text = "p5";
 			</script>
 			</div>
 			<div class="break"></div>
-			<div>
+			<div class="minis horiz">
 				<script type="text/md">
 ## Try it out!
 
@@ -164,11 +164,11 @@ Try turning the sprite named <code>ball</code> into a blue circle with a diamete
 let ball;
 
 function setup() {
-	new Canvas(460, 60);
+	new Canvas(500, 60);
 	ball = new Sprite();
 	ball.diameter = 30;
 	ball.color = 'blue';
-	ball.x = 444;
+	ball.x = 480;
 	ball.y = 16;
 }
 

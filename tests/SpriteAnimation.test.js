@@ -8,10 +8,10 @@ global.planck = require('../v3/planck.min.js');
 require('../v3/p5play.js');
 
 // path to my VSCode Live Server
-let host = 'http://127.0.0.1:5501';
+// let host = 'http://127.0.0.1:5501';
 
 // alternatively images can be loaded from p5play.org
-// let host = 'https://p5play.org';
+let host = 'https://p5play.org';
 
 test('SpriteAnimation : properties', () => {
 	const sketch = (p) => {
@@ -114,8 +114,6 @@ test('SpriteAnimation : Sequence mode', () => {
 	});
 });
 
-// TODO: add tests for SpriteSheet mode here
-// test using an atlas object
 test('SpriteAnimation : SpriteSheet mode', () => {
 	return new Promise((resolve) => {
 		const sketch = (p) => {
@@ -127,11 +125,53 @@ test('SpriteAnimation : SpriteSheet mode', () => {
 				new p.Canvas(400, 400);
 				p.noLoop();
 
-				//...
+				const owner = {
+					spriteSheet: spritesheet0,
+					anis: {
+						frameSize: 2,
+						w: 5,
+						h: 5
+					},
+					tileSize: 1,
+					_dimensionsUndefinedByUser: true
+				};
+
+				const spriteAnimation = new p.SpriteAnimation(owner, owner.spriteSheet);
+				expect(spriteAnimation.frames.length).toBe(2);
 
 				resolve();
 			};
 		};
 		new p5(sketch);
 	});
+});
+
+test('SpriteAnimations', () => {
+	const sketch = (p) => {
+		p.setup = () => {
+			new p.Canvas(400, 400);
+			p.noLoop();
+
+			const group = new p.SpriteAnimation();
+
+			// test setting and getting a custom property
+			group.duration = 100;
+			expect(group.duration).toBe(100);
+
+			// test setting and getting an object property
+			group.offset.x = 50;
+			expect(group.offset.x).toBe(50);
+
+			const sprite1 = new p.SpriteAnimation();
+			const sprite2 = new p.SpriteAnimation();
+			group.sprite1 = sprite1;
+			group.sprite2 = sprite2;
+
+			expect(sprite1.offset.x).toBe(0);
+			expect(sprite2.offset.x).toBe(0);
+
+			resolve();
+		};
+	};
+	new p5(sketch);
 });

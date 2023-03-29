@@ -5089,8 +5089,6 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		constructor() {
 			super(new pl.Vec2(0, 0), true);
 			this.p = pInst;
-			this.width = this.p.width;
-			this.height = this.p.height;
 			this._offset = { x: -0, y: -0 };
 			let _this = this;
 			this.offset = {

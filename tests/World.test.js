@@ -14,6 +14,13 @@ test('World : properties', () => {
 			p.noLoop();
 
 			expect(p).toHaveProperty('world');
+			expect(p.world).toBeInstanceOf(p.World);
+
+			expect(p.world.hw).toBe(200);
+			expect(p.world.hh).toBe(200);
+			expect(p.world.mouseSprite).toBeNull();
+			expect(p.world.mouseSprites).toEqual([]);
+			expect(p.world.autoStep).toEqual(true);
 
 			// check default values
 			expect(p.world.gravity.x).toBe(0);
@@ -37,6 +44,47 @@ test('World : properties', () => {
 
 			p.world.velocityThreshold = 0.5;
 			expect(p.world.velocityThreshold).toEqual(0.5);
+		};
+	};
+	new p5(sketch);
+});
+
+test('World : resize method', () => {
+	const sketch = (p) => {
+		p.setup = () => {
+			new p.Canvas(400, 400);
+			p.noLoop();
+
+			// Check that the world's origin has been set correctly
+			expect(p.world.origin).toEqual({ x: 200, y: 200 });
+			// Check that the world's half-width and half-height have been set correctly
+			expect(p.world.hw).toEqual(200);
+			expect(p.world.hh).toEqual(200);
+
+			// Make it resize with specific width and height..
+			p.world.resize(500, 300);
+
+			// Check that the world's origin has been set correctly
+			expect(p.world.origin).toEqual({ x: 250, y: 150 });
+			// Check that the world's half-width and half-height have been set correctly
+			expect(p.world.hw).toEqual(250);
+			expect(p.world.hh).toEqual(150);
+
+			// Adjust the origin if tile size is not 1..
+			p.allSprites.tileSize = 2;
+
+			// Call the resize method with specific width and height values
+			p.world.resize(500, 300);
+
+			// Check that the world's origin has been set correctly, with the tile size taken into account
+			expect(p.world.origin).toEqual({ x: 249, y: 149 });
+
+			// Check that the world's half-width and half-height have been set correctly
+			expect(p.world.hw).toEqual(250);
+			expect(p.world.hh).toEqual(150);
+
+			// Reset the tile size to 1 for subsequent tests
+			p.allSprites.tileSize = 1;
 		};
 	};
 	new p5(sketch);

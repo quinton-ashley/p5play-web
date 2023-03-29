@@ -18,17 +18,17 @@
 				<img alt="p5play logo" src="logo.svg" class="logo" width="48px" height="48px">
 				<span>p5play</span>
 			</a>
-			<span>:</span>
+			<hr>
 			<a href="learn">Learn</a>
 			<a href="docs/Sprite_Sprite.html">Docs</a>
 			<a href="jam">Jam!</a>
 			<a href="pro">AD$</a>
 			<a href="about">About</a>
-			<span>:</span>
+			<hr>
 			<a id="darkMode" onclick="toggleDarkMode()" tabindex="0" role="button">
 				<div id="darkModeIcon"></div>
 			</a>
-			<span class="colon">:</span>
+			<hr>
 			<a class="socials" href="https://discord.gg/3UTbqUgmPF" target="_blank">
 				<img class="discord-logo"
 					src="https://assets-global.website-files.com/6257adef93867e50d84d30e2/62595384f934b806f37f4956_145dc557845548a36a82337912ca3ac5.svg"
@@ -88,7 +88,7 @@
 let tumbler, x, y, sides, len, angle;
 
 function setup() {
-	new Canvas(500, 375);
+	new Canvas(500, 364);
 	world.gravity.y = 10;
 
 	x = width * 0.5;
@@ -195,7 +195,7 @@ function dropSprite() {
 					<a aria-label="FAQ school firewall blocking p5play"
 						href="https://github.com/quinton-ashley/p5play/wiki/FAQ#school-firewall-blocking-p5playorg">FAQs</a>
 				</p>
-				<textarea aria-label="link tags for p5play and its dependencies" rows="5">&lt;script src=&quot;https://cdn.jsdelivr.net/npm/p5@1/lib/p5.min.js&quot;&gt;&lt;/script&gt;
+				<textarea id="lib-links" aria-label="link tags for p5play and its dependencies" rows="5">&lt;script src=&quot;https://cdn.jsdelivr.net/npm/p5@1/lib/p5.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdn.jsdelivr.net/npm/p5@1/lib/addons/p5.sound.min.js&quot;&gt;&lt;/script&gt;
 
 &lt;script src=&quot;https://p5play.org/v3/planck.min.js&quot;&gt;&lt;/script&gt;
@@ -388,6 +388,278 @@ function dropSprite() {
 
 	<script src="main.js"></script>
 	<script src="learn/mie.js"></script>
+	<style>
+		@font-face {
+			font-family: "bariol";
+			src: url("https://openprocessing.org/assets/fonts/Bariol_Webfont/Bariol_Light_Webfont/bariol_light-webfont.eot");
+			src: url("https://openprocessing.org/assets/fonts/Bariol_Webfont/Bariol_Light_Webfont/bariol_light-webfont.eot?#iefix") format("embedded-opentype"), url("https://openprocessing.org/assets/fonts/Bariol_Webfont/Bariol_Light_Webfont/bariol_light-webfont.woff") format("woff"), url("https://openprocessing.org/assets/fonts/Bariol_Webfont/Bariol_Light_Webfont/bariol_light-webfont.ttf") format("truetype"), url("https://openprocessing.org/assets/fonts/Bariol_Webfont/Bariol_Light_Webfont/bariol_light-webfont.svg#bariol_lightlight") format("svg");
+			font-display: fallback;
+		}
+
+		.page h3 {
+			line-height: 32px;
+			font-size: 20px;
+		}
+
+		#discord-brand {
+			color: var(--primary);
+			display: flex;
+			align-items: center;
+			width: fit-content;
+		}
+
+		#user-brands {
+			display: flex;
+			align-items: center;
+			justify-content: space-around;
+			flex-wrap: wrap;
+			gap: 32px;
+		}
+
+		#user-brands a,
+		.brand {
+			padding: 8px;
+			border-radius: 8px;
+		}
+
+		#patreon-brand {
+			display: flex;
+			align-items: center;
+			gap: 24px;
+			width: min-content;
+			padding-top: 5px;
+			padding-bottom: 5px;
+		}
+
+		#patreon-brand img:nth-of-type(1) {
+			height: 40px;
+		}
+
+		body.dark #patreon-brand img:nth-of-type(2) {
+			filter: invert(90%);
+			height: 20px;
+		}
+
+		#crimson-brand {
+			background-color: #1d1e2b;
+		}
+
+		#girlswhocode-brand {
+			background-color: #e5f8ff;
+		}
+
+		#codeorg-brand {
+			background-color: #00adbc;
+		}
+
+		#hunter-brand {
+			background-color: #fff;
+			max-width: 20%;
+		}
+
+		#nyuitp-brand {
+			background-color: #57068c;
+			width: 25%;
+		}
+
+		#lsu-brand {
+			background-color: #502e81;
+			width: 16%;
+		}
+
+		#ttu-brand {
+			background-color: #d60000;
+		}
+
+		#zenn-brand {
+			background-color: #f5f5f5;
+			width: 8%;
+		}
+
+		#depaul-brand {
+			background-color: rgb(66, 8, 17);
+			width: 20%;
+		}
+
+		#zenn-brand img,
+		#nyuitp-brand img,
+		#hunter-brand img,
+		#depaul-brand img {
+			width: 100%;
+		}
+
+		#discord-brand img {
+			opacity: 82%;
+			height: 56px
+		}
+
+		.codepen-brand {
+			opacity: 82%;
+		}
+
+		.openprocessing-brand,
+		.glitch-brand {
+			color: var(--primary);
+			height: 32px;
+		}
+
+		.openprocessing-brand {
+			height: 40px;
+		}
+
+		.p5js-web-editor-brand {
+			height: 40px;
+			margin-bottom: -10px;
+		}
+
+		#discord-brand:hover span {
+			color: var(--pink);
+		}
+
+		#discord-brand:hover {
+			text-decoration: none;
+		}
+
+		.dark .glitch-brand {
+			filter: hue-rotate(180deg) invert() opacity(80%);
+		}
+
+		.bariol {
+			font-family: "bariol", "source sans pro", "helvetica";
+			font-weight: 300;
+			line-height: 1;
+			color: var(--primary);
+			font-size: 28px;
+		}
+
+		.glitch-brand,
+		.codepen-brand,
+		.replit-brand,
+		#discord-brand,
+		#patreon-brand {
+			border-bottom: 1px solid transparent;
+		}
+
+		.glitch-brand:hover,
+		.codepen-brand:hover,
+		.replit-brand:hover,
+		#discord-brand:hover,
+		#patreon-brand:hover {
+			color: var(--pink);
+			border-bottom: 1px solid var(--pink);
+		}
+
+		.replit-brand {
+			margin-right: 16px;
+			transform: scale(1.5);
+		}
+
+		.light .codepen-brand,
+		.light .discord-brand,
+		.light .discord-logo {
+			filter: invert(1);
+		}
+
+		#lib-links {
+			width: 100%;
+			font-family: monospace;
+			white-space: pre;
+			overflow-wrap: normal;
+			overflow-x: scroll;
+			background-color: var(--secondary);
+			color: var(--primary);
+		}
+
+		.testimonial-text {
+			max-height: 168px;
+			overflow-y: scroll;
+		}
+
+		.testimonial-text :first-child {
+			margin-top: 0;
+		}
+
+		/* .testimonial-text::after {
+	display: absolute;
+	z-index: 1000;
+	background: linear-gradient(rgba(255, 255, 255, 0) 90%, rgba(255, 255, 255, 1) 100%);
+} */
+
+		/* 
+.dark .testimonial-text::after {
+	display: absolute;
+	bottom: 0;
+	background: linear-gradient(rgba(19, 21, 22, 0) 90%, rgba(19, 21, 22, 1) 100%);
+} */
+
+		.testimonial-bio {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 16px;
+			margin-top: 10px;
+		}
+
+		.testimonial-text span {
+			padding-right: 2px;
+		}
+
+		.testimonial-bio>div {
+			line-height: 1.25;
+		}
+
+		.testimonial-bio .name {
+			margin-bottom: 10px;
+		}
+
+		.testimonial-text span,
+		.testimonial-bio .name {
+			font-size: 20px;
+			font-weight: bold;
+		}
+
+		.testimonial-bio img {
+			width: 128px;
+			height: 128px;
+			border-radius: 10px;
+		}
+
+		#shields img {
+			height: 24px;
+			opacity: 80%;
+		}
+
+		#topNav .socials img:not(.github) {
+			opacity: 80%;
+		}
+
+		#topNav .discord-logo {
+			height: 28px;
+			border-radius: 40%;
+		}
+
+		#topNav .github {
+			background-color: #aaa;
+			border-radius: 50%;
+		}
+
+		.credits div {
+			width: 100%;
+			font-weight: 500;
+			text-align: center;
+			margin: 20px;
+			margin-left: 0;
+		}
+
+		.credits-lg {
+			font-size: 24px;
+		}
+
+		.credits-sm {
+			font-size: 16px;
+		}
+
+	</style>
 </body>
 
 </html>

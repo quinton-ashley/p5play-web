@@ -285,10 +285,10 @@ if (typeof window.ace != 'undefined') {
 .mie {
 	display: flex;
 	flex-direction: column;
-	border: 2px solid #ccc;
 	border-radius: 10px;
 	font-family: sans-serif;
 	box-sizing: border-box;
+	padding: 6px;
 }
 
 .mie * {
@@ -307,6 +307,7 @@ if (typeof window.ace != 'undefined') {
 
 .mie-title {
 	padding: 4px;
+	padding-bottom: 6px;
 	text-align: left;
 	border-bottom: 2px solid #ccc;
 }
@@ -366,6 +367,7 @@ if (typeof window.ace != 'undefined') {
 
 .mie-play {
 	margin-top: 2px;
+	margin-right: 2px;
 	width: 18px;
 	height: 16px;
 	background-size: 18px 16px;
