@@ -179,9 +179,7 @@ a.navLink {
 }
 
 #topNav>hr {
-	background-color: var(--blue);
-	border: 0;
-	width: 2px;
+	border: 1px solid var(--blue);
 	height: 28px;
 	display: inline-block;
 	vertical-align: middle;
@@ -462,7 +460,7 @@ footer {
 		order: -3;
 	}
 
-	#topNav>span:first-of-type {
+	#topNav>hr:first-of-type {
 		order: -2;
 	}
 
