@@ -184,7 +184,8 @@ function draw() {
 		</script>
 		</div>
 		<div id="page-2" class="page">
-			<script type="text/md">
+			<div class="minis horiz">
+				<script type="text/md">
 ## Sprites with Animations
 
 The `sprite.addAni` function works just like `loadAni`, except it also adds the animation to the sprite. You can also use it to add a previously loaded animation to a sprite. By default the last animation added to the sprite will be the animation the sprite displays.
@@ -192,7 +193,8 @@ The `sprite.addAni` function works just like `loadAni`, except it also adds the 
 Try pressing the left mouse button. When the
 `sprite.debug` property is set to true you can
 see the sprite's physics body collider.
-
+				</script>
+				<script type="text/md">
 ## Control a Sprite's Animation</h2>
 
 `sprite.ani` stores the sprite's current animation,
@@ -206,7 +208,8 @@ Try pressing left and right to make the ghost move.
 
 Try pressing the space bar to stop the animation.
 
-			</script>
+				</script>
+			</div>
 			<script type="mie/p5" name="sprites with animation">
 let ghost;
 
@@ -281,7 +284,8 @@ function draw() {
 		</script>
 		</div>
 		<div id="page-4" class="page">
-			<script type="text/md">
+			<div class="minis">
+				<script type="text/md">
 ## Sprite Sheets with Multiple Animations
 
 To load multiple animations from the same sprite sheet image, first set the `spriteSheet` property of the sprite or group.
@@ -301,7 +305,8 @@ Click this link to see the <a href="assets/questKid.png" target="_blank">full sp
 If you'd like to truly appreciate how good p5play is, try comparing the code from my example to <a href="https://phaser.io/examples/v3/view/animation/create-animation-from-sprite-sheet" target="_blank">this Phaser demo</a>. Ha!
 
 I recommend making every frame in an animation the same size and putting them in order from left to right. If not you'll need to manually specify the position of each frame, which can be done using an array of coordinates instead of an atlas object, as shown in [this old demo](../demos/?file=platformer.js).
-
+				</script>
+				<script type="text/md">
 ## anis
 
 Every sprite and group has an `animations` / `anis` object that stores its animations. The keys are animation names and values are animation objects. It works like groups do, utilizing soft and dynamic inheritance.
@@ -310,7 +315,8 @@ The `ani.offset` property is used to adjust the position of an animation relativ
 
 When `sprite.pixelPerfect` is set to true, the sprite will be drawn at integer coordinates, while retaining the precise position of its collider. This is useful for pixel art games!
 
-			</script>
+				</script>
+			</div>
 			<div class="minis horiz">
 				<script type="mie/p5" name="hero demoMode" hide-editor>
 let hero;
