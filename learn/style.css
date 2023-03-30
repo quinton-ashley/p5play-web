@@ -403,7 +403,7 @@ footer {
 	gap: 50px;
 }
 
-@media screen and (max-width: 1050px) {
+@media screen and (max-width: 1030px) {
 
 	html,
 	body {
@@ -442,6 +442,7 @@ footer {
 		width: 100%;
 	}
 
+	.page>md,
 	.page>div:not(.mie):not(.break) {
 		width: 100%;
 		padding: 20px;
@@ -450,6 +451,10 @@ footer {
 
 	.minis>.mie {
 		width: 49%;
+	}
+
+	.minis {
+		padding: 0 !important;
 	}
 
 	#topNav #logoLink {
