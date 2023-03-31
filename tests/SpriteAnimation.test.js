@@ -169,8 +169,6 @@ test('SpriteAnimations', () => {
 
 			expect(sprite1.offset.x).toBe(0);
 			expect(sprite2.offset.x).toBe(0);
-
-			resolve();
 		};
 	};
 	new p5(sketch);
