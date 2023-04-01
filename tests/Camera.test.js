@@ -51,7 +51,7 @@ test('Camera', () => {
 	};
 });
 
-test('Camera: ZoomTo On & Off Methods', () => {
+test('Camera: zoomTo', () => {
 	return new Promise((resolve) => {
 		const sketch = (p) => {
 			p.setup = () => {
