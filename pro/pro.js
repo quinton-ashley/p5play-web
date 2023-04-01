@@ -38,9 +38,7 @@
 
 	let apiUrl = 'https://ntaknarhb9.execute-api.us-west-2.amazonaws.com/prod';
 
-	console.log(idToken);
-
-	let userData = await (
+	let res = await (
 		await fetch(apiUrl + '/getUserData', {
 			method: 'GET',
 			headers: {
@@ -50,5 +48,5 @@
 		})
 	).json();
 
-	log(userData);
+	log(res);
 })();
