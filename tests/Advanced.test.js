@@ -17,6 +17,22 @@ test('Canvas : constructors', () => {
 			expect(p).toHaveProperty('canvas');
 			expect(p.width).toBe(50);
 			expect(p.height).toBe(120);
+
+			// Check the constructor with another property,,
+			new p.Canvas(100, 240);
+
+			expect(p).toHaveProperty('canvas');
+			expect(p.width).toBe(100);
+			expect(p.height).toBe(240);
+
+			// Check with default property..
+			new p.Canvas();
+			const defaultCanvasWidth = 1024;
+			const defaultCanvasHeight = 768;
+			
+			expect(p).toHaveProperty('canvas');
+			expect(p.width).toBe(defaultCanvasWidth);
+			expect(p.height).toBe(defaultCanvasHeight);
 		};
 	};
 	new p5(sketch);
