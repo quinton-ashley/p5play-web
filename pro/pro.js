@@ -38,11 +38,13 @@
 
 	let apiUrl = 'https://ntaknarhb9.execute-api.us-west-2.amazonaws.com/prod';
 
+	console.log(idToken);
+
 	let userData = await (
 		await fetch(apiUrl + '/getUserData', {
 			method: 'GET',
 			headers: {
-				Authorization: `Bearer ${idToken}`,
+				Authorization: idToken,
 				'Content-Type': 'application/json'
 			}
 		})
