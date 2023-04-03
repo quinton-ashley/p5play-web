@@ -50,8 +50,63 @@ test('InputDevice : mouse', () => {
 				}
 
 				// TODO: continue tests by creating MouseEvents..
+				if (p.frameCount == 3) {
+					// Test left button..
+					evt = new MouseEvent('mousedown', {
+						view: window,
+						bubbles: true,
+						cancelable: true,
+						clientX: 10,
+						clientY: 20,
+						button: 0
+					});
+					p.canvas.dispatchEvent(evt);
+					expect(p.mouse.left).toBe(1);
+				}
 
-				if (p.frameCount == 10) {
+				if (p.frameCount == 4) {
+					// Test left button finish click..
+					evt = new MouseEvent('mouseup', {
+						view: window,
+						bubbles: true,
+						cancelable: true,
+						clientX: 10,
+						clientY: 20,
+						button: 0
+					});
+					p.canvas.dispatchEvent(evt);
+					expect(p.mouse.left).toBe(-1);
+				}
+
+				if (p.frameCount == 5) {
+					// Test right button
+					evt = new MouseEvent('mousedown', {
+						view: window,
+						bubbles: true,
+						cancelable: true,
+						clientX: 30,
+						clientY: 40,
+						button: 2
+					});
+					p.canvas.dispatchEvent(evt);
+					expect(p.mouse.right).toBe(1);
+				}
+
+				if (p.frameCount == 6) {
+					// Test right button finish click..
+					evt = new MouseEvent('mouseup', {
+						view: window,
+						bubbles: true,
+						cancelable: true,
+						clientX: 30,
+						clientY: 40,
+						button: 2
+					});
+					p.canvas.dispatchEvent(evt);
+					expect(p.mouse.right).toBe(-1);
+				}
+
+				if (p.frameCount == 7) {
 					p.noLoop();
 					resolve();
 				}
@@ -71,10 +126,64 @@ test('InputDevice : keyboard', () => {
 			};
 
 			p.draw = () => {
-				// TODO: test using KeyboardEvents..
+				if (p.frameCount == 1) {
+					// trigger a keydown event for the 'a' key..
+					let evt = new KeyboardEvent('keydown', {
+						view: window,
+						bubbles: true,
+						cancelable: true,
+						key: 'a'
+					});
+					p.canvas.dispatchEvent(evt);
 
-				p.noLoop();
-				resolve();
+					expect(p.kb.a).toBe(1);
+				}
+
+				if (p.frameCount == 2) {
+					// trigger keydown event for the 'space' key..
+					evt = new KeyboardEvent('keydown', {
+						view: window,
+						bubbles: true,
+						cancelable: true,
+						key: ' '
+					});
+					p.canvas.dispatchEvent(evt);
+
+					// check that the 'space' key is down..
+					expect(p.kb[' ']).toBe(1);
+
+					// trigger keyup event for the 'space' key..
+					evt = new KeyboardEvent('keyup', {
+						view: window,
+						bubbles: true,
+						cancelable: true,
+						key: ' '
+					});
+					p.canvas.dispatchEvent(evt);
+
+					// check that the 'space' key is up..
+					expect(p.kb[' ']).toBe(-2);
+				}
+
+				if (p.frameCount == 3) {
+					expect(p.kb.a).toBe(3);
+
+					// trigger a keyup event for the 'a' key..
+					evt = new KeyboardEvent('keyup', {
+						view: window,
+						bubbles: true,
+						cancelable: true,
+						key: 'a'
+					});
+					p.canvas.dispatchEvent(evt);
+
+					expect(p.kb.a).toBe(-1);
+				}
+
+				if (p.frameCount == 4) {
+					p.noLoop();
+					resolve();
+				}
 			};
 		};
 		new p5(sketch);
