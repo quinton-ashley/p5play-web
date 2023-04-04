@@ -140,14 +140,12 @@ function draw() {
 	clear();
 	sprite.color = 'yellow';
 }
-		</script>
-			<div class="horiz">
-				<script type="mie/p5" name="multi-input" base="1">
+			</script>
+			<script type="mie/p5" name="multi-input" base="1">
 if (kb.pressing('space') || mouse.pressing()) {
 	sprite.color = 'red';
 }
 			</script>
-			</div>
 		</div>
 		<div id="page-3" class="page">
 			<script type="text/md">
@@ -162,9 +160,8 @@ Sprites with physics colliders have their own mouse object for detecting mouse i
 `dragging` detects when the user clicks and holds a mouse button on the sprite while moving the mouse.
 						
 Note that `mouse.x` is the x position of the mouse on the canvas and `sprite.mouse.x` is the x position of the mouse relative to the sprite.
-		</script>
-			<div class="horiz">
-				<script type="mie/p5" name="sprite.mouse">
+			</script>
+			<script type="mie/p5" name="sprite.mouse">
 let sprite;
 
 function setup() {
@@ -191,7 +188,6 @@ function draw() {
 	}
 }
 			</script>
-			</div>
 		</div>
 		<div id="page-4" class="page">
 			<script type="text/md">
