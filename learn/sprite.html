@@ -932,6 +932,27 @@ if (mouse.presses()) sprite.rotateTo(mouse, 5, 0);
 //           (position, tracking, facing)
 sprite.rotateTowards(mouse, 0.1, 0);
 			</script>
+			<div>
+				<p>
+					Use the <code>offsetCenter</code> function to change a sprite's center of rotation.
+				</p>
+			</div>
+			<script type="mie/p5" name="offsetCenter">
+function setup() {
+	new Canvas(500, 200);
+
+	let flipper = new Sprite(250, 100, 200, 20, 'k');
+	flipper.debug = true;
+	flipper.rotationSpeed = 1;
+	flipper.offsetCenter(40, 0);
+}
+
+function draw() {
+	clear();
+	if (mouse.presses()) new Sprite(mouse.x, mouse.y, 10);
+}
+
+			</script>
 
 		</div>
 		<div id="page-8" class="page">
