@@ -343,7 +343,7 @@ player.y = mouse.y;
 			</script>
 			<div>
 				<p>
-					All of the other movement examples on this page are based on
+					All of the other movement methods on this page work by
 					changing the sprite's x and y axis
 					velocities.
 					<code>velocity</code> aka <code>vel</code> is
@@ -835,7 +835,21 @@ function draw() {
 let sprite;
 
 function setup() {
-	new Canvas(238, 80);
+	new Canvas(60, 80);
+
+	sprite = new Sprite();
+	sprite.h = 20;
+}
+
+function draw() {
+	clear();
+}
+			</script>
+			<script type="mie/p5" base-8 hide>
+let sprite;
+
+function setup() {
+	new Canvas(500, 80);
 
 	sprite = new Sprite();
 	sprite.h = 20;
@@ -861,7 +875,7 @@ else sprite.rotation = 0;
 			</script>
 			<div>
 				<p>
-					Changing the sprite's <code>rotationSpeed</code> directly is useful for sprites that rotate indefinitely.
+					All of the other rotation methods on this page work by changing the sprite's <code>rotationSpeed</code>.
 				</p>
 			</div>
 			<script type="mie/p5" name="rotationSpeed" base="5">
@@ -872,38 +886,45 @@ sprite.rotationSpeed = 1;
 					Use the <code>rotate</code> function to rotate a sprite by an amount.
 				</p>
 				<p>
-					The optional second parameter is the speed at which the sprite rotates per frame. Try changing the speed of
-					rotation in this mini example.
+					The optional second parameter is the speed at which the sprite rotates per frame.
 				</p>
 			</div>
 			<script type="mie/p5" name="rotate" base="5">
 //                                 (angle, rotationSpeed)
-if (kb.presses('left')) sprite.rotate(-45, 3);
-if (kb.presses('right')) sprite.rotate(45, 3);
+if (kb.presses('space')) sprite.rotate(15, 3);
 			</script>
 			<div>
 				<p>
-					Use the <code>rotateTo</code> function to rotate a sprite so that it faces a position, which can also be
-					given
-					in (x, y) coordinates. The optional
-					parameter following the position is the
-					rotation speed. The
-					optional parameter at the end is the angle at which the sprite should be facing the target position.
+					Use the <code>rotateTo</code> function to rotate a sprite to an angle. Rotation
+					speed can be given as an optional second parameter.
 				</p>
 				<p>
-					Try setting the second parameter to 90! When you click, the long side of the sprite will rotate to face the
+					Alternatively, if the function is given
+					an object with x, y coordinates, the sprite will rotate to face that position. The "facing" angle is
+					the angle that the sprite should be at when facing
+					the target position. Try
+					changing it from 0 to 90. When you click, the long side of the sprite will rotate to face the
 					mouse.
 				</p>
 			</div>
-			<script type="mie/p5" name="rotateTo" base="5">
-//                     (position, rotationSpeed, facing)
+			<div class="minis horiz">
+				<script type="mie/p5" name="rotateTo (an angle)" base="5">
+//          (angle, rotationSpeed)
+if (kb.presses('left')) sprite.rotateTo(-90, 5);
+if (kb.presses('right')) sprite.rotateTo(0, 5);
+				</script>
+				<script type="mie/p5" name="rotateTo (face a position)" base="8">
+//                                (pos, speed, facing)
 if (mouse.presses()) sprite.rotateTo(mouse, 5, 0);
-			</script>
+				</script>
+			</div>
 			<div>
 				<p>
-					Use the <code>rotateTowards</code> function to rotate a sprite towards a position. The optional parameter
-					after
-					the position is the tracking speed, a percent of the
+					Use the <code>rotateTowards</code> function to rotate a sprite towards an angle or towards facing a position.
+				</p>
+				<p>
+					The optional second parameter
+					is the tracking speed, a percent of the
 					distance the sprite moves on each frame to the target rotation angle, 0.1 (10%) by default.
 				</p>
 			</div>
