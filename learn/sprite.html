@@ -1232,7 +1232,7 @@ function setup() {
 
 function draw() {
 	clear();
-	platform.vel.y = cos(frame * 2.2) * 6;
+	platform.vel.y = cos(frameCount * 2.2) * 6;
 
 	if (block.colliding(platform)) {
 		block.color = 'red';
