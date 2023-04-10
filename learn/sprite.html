@@ -934,10 +934,14 @@ sprite.rotateTowards(mouse, 0.1, 0);
 			</script>
 			<div>
 				<p>
-					Use the <code>offsetCenter</code> function to change a sprite's center of rotation.
+					Use the <code>offset</code> property to move the sprite's physics body relative to its center.
+				</p>
+				<p>
+					When <code>sprite.debug</code> is true, the center of the sprite is marked with a small green crosshair. The
+					center point is where the sprite's x and y coordinates are located. It is also the center of rotation.
 				</p>
 			</div>
-			<script type="mie/p5" name="offsetCenter">
+			<script type="mie/p5" name="offset">
 function setup() {
 	new Canvas(500, 200);
 

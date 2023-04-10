@@ -1768,11 +1768,11 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		}
 
 		/**
-		 * Offset the sprite, relative to the origin of its physics body.
+		 * Offsetting the sprite moves the sprite's physics body relative
+		 * to its center.
 		 *
 		 * The sprite's x and y properties represent its center in world
-		 * coordinates. This point is also the sprite's center of rotation
-		 * and where its images and animations are drawn.
+		 * coordinates. This point is also the sprite's center of rotation.
 		 *
 		 * @type {object}
 		 */
