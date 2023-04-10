@@ -39,8 +39,8 @@ test('World : properties', () => {
 
 			p.world.offset.x = 10;
 			p.world.offset.y = 20;
-			expect(p.world.offset.x).toEqual(-10);
-			expect(p.world.offset.y).toEqual(-20);
+			expect(p.world.offset.x).toEqual(10);
+			expect(p.world.offset.y).toEqual(20);
 
 			p.world.velocityThreshold = 0.5;
 			expect(p.world.velocityThreshold).toEqual(0.5);
