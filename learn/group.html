@@ -124,8 +124,8 @@ function setup() {
 
 	gems = new Group();
 	gems.diameter = 10;
-	gems.x = () => random(0, width);
-	gems.y = () => random(0, height);
+	gems.x = () => random(0, canvas.w);
+	gems.y = () => random(0, canvas.h);
 	gems.amount = 80;
 
 	player = new Sprite();
@@ -159,8 +159,8 @@ function setup() {
 
 	gems = new Group();
 	gems.diameter = 10;
-	gems.x = () => random(0, width);
-	gems.y = () => random(0, height);
+	gems.x = () => random(0, canvas.w);
+	gems.y = () => random(0, canvas.h);
 	gems.amount = 80;
 
 	player = new Sprite();
