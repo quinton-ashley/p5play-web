@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>p5play : Advanced</title>
+	<title>p5play : World</title>
 	<link rel="icon" href="../logo.svg" />
 	<link rel="stylesheet" href="style.css">
 </head>
@@ -17,60 +17,34 @@
 				<span>p5play</span>
 			</a>
 			<hr>
-			<a href="sprite.html">Sprite</a>
-			<a href="group.html">Group</a>
-			<a href="sprite_animation.html">Animation</a>
-			<a href="input_devices.html">Input</a>
-			<a href="tiles.html">Tiles</a>
-			<a href="camera.html">Camera</a>
-			<a href="advanced.html" class="active">Adv</a>
+			<a href="canvas.html">Canvas</a>
+			<a href="world.html" class="active">World</a>
 			<hr>
 			<a id="darkMode" onclick="toggleDarkMode()" tabindex="0" role="button">
 				<div id="darkModeIcon"></div>
 			</a>
 		</nav>
 		<div class="break"></div>
+
 		<div id="page-0" class="page">
-			<script type="text/md">
-## Advanced Topics
+			<div class="minis horiz">
+				<script type="text/md">
+## World
 
-These reference pages highlight some of the more advanced features of p5play.
+Each instance of p5play has its own `world` object, that can be used to control the physics simulation.
 
-You should probably read the other reference pages first!
-		</script>
-			<script type="text/md">
-## Canvas
+The most important property of this object is `gravity`, which has x and y components.
+				</script>
+				<script type="text/md">
+## Sleeping
 
-The `Canvas` class is a wrapper around p5play's version of the p5.js `createCanvas` function, which is used to create an HTML5 canvas element. p5play's version also provides a few extra features.
+`world.allowSleeping` is true by default.
 
-If no parameters are passed to `new Canvas()`, it will create a canvas that fills the entire window.
+A sprite starts "sleeping" when it stops moving and doesn't collide with anything new. "Sleeping" sprites get ignored during physics simulation, which usually prevents the Box2D physics engine solver from having to make unnecessary calculations. While this is good for performance, sometimes it can cause problems.
 
-Use `canvas.w` and `canvas.h` to get the width and height of the canvas.
-
-You can also pass an aspect ratio to the Canvas constructor. This will create the largest possible canvas that fits within the window, while maintaining the given aspect ratio. For example, `new Canvas('2:1')` will create a canvas that is twice as wide as it is tall.
-
-Another added feature is the "pixelated" preset. Use it for 8-bit or 16-bit style games!
-
-`new Canvas(256, 240, 'pixelated')`
-
-By default, the "pixelated" preset scales the canvas to fit the screen while retaining its aspect ratio, but you can also define a custom scale by passing a number after the preset name. For example, "pixelated x2" will create a canvas that will be displayed at twice the size of the specified width and height.
-		</script>
-			<!-- <script type="mie/p5" title="pixelated preset">
-function setup() {
-	//       (width, height, preset)
-	new Canvas(256, 240, 'pixelated x2');
-}
-function draw() {
-	clear();
-}
-		</script> -->
-		</div>
-		<div id="page-1" class="page">
-			<script type="text/md">
-## sprite.sleeping
-
-"Sleeping" sprites get temporarily ignored during physics simulation. A sprite starts "sleeping" when it stops moving and doesn't collide with anything that it wasn't already touching. Allowing non-moving sprites to sleep is good for performance but sometimes you may need to wake up a non-moving sprite. You can disable sleeping completely by setting `world.allowSleeping = false`, or on a per sprite basis by setting `sprite.allowSleeping = false`, or to wake up a sleeping sprite you can `sprite.sleeping = false`.
-		</script>
+You can wake up a sleeping sprite by setting `sprite.sleeping` to false. You can also disable sleeping on a per sprite basis by setting `sprite.allowSleeping` to false.
+				</script>
+			</div>
 			<div class="minis horiz">
 				<script type="mie/p5" name="sleeping" horiz>
 let ball, floor;
@@ -107,14 +81,7 @@ function draw() {
 			</script>
 			</div>
 		</div>
-		<div id="page-2" class="page">
-			<div>
-				<p>
-					The Culling page was moved, now it's one of the Group reference pages.
-				</p>
-			</div>
-		</div>
-		<div id="page-3" class="page">
+		<div id="page-1" class="page">
 			<script type="text/md">
 ## autoDraw, autoStep, and autoUpdate
 
@@ -133,7 +100,7 @@ In the mini-example, try pressing space to toggle slow-motion!
 You can use the `sprite.draw` and `group.draw` functions to manually control when individual sprites and groups are drawn inside the p5.js draw loop. Any sprites not drawn manually will be automatically drawn at the end of the p5.js draw loop unless the sprite's autoDraw property is set to false directly or by one of its parent groups. To prevent automatic drawing completely set `allSprites.autoDraw = false`.
 
 Note that you will have to manually turn the camera on and off if you want to use it with manually drawn sprites.
-		</script>
+			</script>
 			<script type="mie/p5" name="world.step">
 let ball, box;
 		
@@ -160,7 +127,7 @@ function draw() {
 		background(0);
 	}
 }
-		</script>
+			</script>
 			<script type="text/md">
 ## world.step
 
@@ -169,24 +136,22 @@ function draw() {
 Before you use `world.step` in your p5.js draw function, be sure to draw all the sprites. Otherwise, they will be drawn in the wrong position!
 
 Set `world.autoStep = false` to disable automatic stepping. Then you can call `world.step` manually whenever you want to progress the physics simulation.
-		</script>
+			</script>
 			<script type="text/md">
 ## sprite.update and group.update
 
 What does `sprite.update` do? It's responsible for updating the sprite's animation and mouse events. It also runs the user's custom update function if they set any. To prevent automatic updating completely set `allSprites.autoUpdate = false`.
 
 Why is this functionality seperated from the world step? Because on a pause screen the physics world could be paused, but pause menu UI animations and mouse events could still be updated.
-		</script>
+			</script>
 		</div>
 
 		<div class="break"></div>
 		<div id="toc">
 			<a id="prevPage" class="navLink">Prev Page</a>
 			<nav id="pageNav" class="submenu">
-				<a data-page="0" href="advanced.html?page=0">Canvas constructor</a>
-				<a data-page="1" href="advanced.html?page=1">Sleeping</a>
-				<a data-page="2" href="advanced.html?page=2">Culling</a>
-				<a data-page="3" href="advanced.html?page=3">autoDraw, autoStep, and autoUpdate</a>
+				<a data-page="0" href="world.html?page=0">Sleeping</a>
+				<a data-page="1" href="world.html?page=1">autoDraw, autoStep, and autoUpdate</a>
 			</nav>
 			<a id="nextPage" class="navLink">Next Page</a>
 		</div>

@@ -54,14 +54,14 @@ let refs = {
 		0: ['x', 'y'],
 		1: ['zoom', 'zoomTo', 'on', 'off', 'mouse']
 	},
-	Canvas: {
+	'Canvas.html': {
 		'advanced.html?page=0': ['"w:h" aspect ratio', '"pixelated" preset']
 	},
-	World: {
+	'World.html': {
 		'sprite.html?page=1': ['gravity'],
 		'advanced.html?page=1': ['allowSleeping']
 	},
-	'JavaScript basics': {
+	'q5.js basics': {
 		'https://p5js.org/reference/#/p5': [
 			'let',
 			'const',
@@ -139,10 +139,9 @@ for (let refPage in refs) {
 		className = className.split('.')[0];
 		if (className == 'Sprite_Animation') className = 'SpriteAnimation';
 		if (className == 'Input_Devices') className = 'Input';
-		if (className == 'Canvas' || className == 'World') refPage = 'advanced.html';
 		refPage = refPage.toLowerCase();
 	} else {
-		if (className == 'p5.js basics') className = 'JavaScript basics';
+		if (className == 'q5.js basics') className = 'JavaScript basics';
 		refPage = 'https://p5js.org/reference';
 		p5playRef = false;
 	}
