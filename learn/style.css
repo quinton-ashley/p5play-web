@@ -118,7 +118,7 @@ li {
 }
 
 #topNav {
-	font-family: Mont;
+	font-family: Mont, sans-serif;
 	letter-spacing: .02em;
 	width: 100%;
 	margin-top: 16px;
