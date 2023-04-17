@@ -137,7 +137,7 @@ for (let refPage in refs) {
 	let p5playRef = true;
 	if (className.slice(0, 2) != 'q5') {
 		className = className.split('.')[0];
-		if (className == 'Sprite_Animation') className = 'SpriteAnimation';
+		if (className == 'Sprite_Animation') className = 'Animation';
 		if (className == 'Input_Devices') className = 'Input';
 		refPage = refPage.toLowerCase();
 	} else {

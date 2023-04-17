@@ -7483,11 +7483,11 @@ canvas {
 	 */
 	this.getFPS ??= () => this.p5play._fps;
 
-	this.loadAds = (provider, opt) => {
+	this.loadAds = (opt) => {
 		opt ??= {};
 		if (window.webkit !== undefined) {
 			// iOS
-			window.webkit.messageHandlers.p5play.postMessage(JSON.stringify(opt));
+			webkit.messageHandlers.loadAds.postMessage(JSON.stringify(opt));
 		}
 	};
 

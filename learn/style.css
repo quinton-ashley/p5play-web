@@ -1,11 +1,13 @@
 html {
 	--pink: #ed225d;
-	--bright-pink: #ff1c5c;
-	--dark-pink: #a10d38;
-
 	--blue: #c0eeff;
-	--bright-blue: #f0ffff;
-	--dark-blue: #091920;
+
+	--pink0: #ed225d;
+	--pink1: #ff1c5c;
+
+	--blue0: #c0eeff;
+	--blue1: #2880c2;
+	--blue2: #f0f8ff;
 
 	--primary: #000;
 	--secondary: #fff;
@@ -19,10 +21,13 @@ html:has(body.dark) {
 }
 
 body.dark {
-	--pink: #e8366a;
-	--blue: #0085C2;
+	--pink0: #ff1c5c;
 
-	--primary: #cdc8c2;
+	--blue0: #69aada;
+	--blue1: #c0eeff;
+	--blue2: #002340;
+
+	--primary: #e1ddd7;
 	--secondary: #131516;
 
 	--bright: #eee;
@@ -48,6 +53,11 @@ article {
 	font-family: sans-serif;
 	width: 1030px;
 	font-size: 18px;
+}
+
+@font-face {
+	font-family: Mont;
+	src: url('fonts/mont/Mont-HeavyDEMO.otf');
 }
 
 #darkModeIcon {
@@ -78,7 +88,7 @@ body.dark #darkModeIcon {
 }
 
 .ace_numeric {
-	color: var(--bright-pink) !important;
+	color: var(--pink1) !important;
 }
 
 .ace_scroller,
@@ -91,13 +101,14 @@ body.dark #darkModeIcon {
 }
 
 a {
-	color: var(--pink);
+	color: var(--blue1);
 	text-decoration: none;
 	cursor: pointer;
 	font-weight: bold;
 }
 
 a:hover {
+	color: var(--pink);
 	text-decoration: underline;
 }
 
@@ -106,6 +117,8 @@ li {
 }
 
 #topNav {
+	font-family: Mont;
+	letter-spacing: .02em;
 	width: 100%;
 	margin-top: 16px;
 	user-select: none;
@@ -117,7 +130,9 @@ a.navLink {
 	font-size: 24px;
 	font-weight: bold;
 	user-select: none;
-	color: var(--pink);
+	color: var(--blue1);
+	/* 	-webkit-text-stroke: 1.6px var(--pink); */
+	/* 	text-shadow: 3px 1.8px 0px var(--blue1); */
 	text-decoration: none;
 	transition: 100ms;
 	padding-left: 8px;
@@ -133,17 +148,16 @@ a.navLink {
 #topNav a.active,
 #topNav a:hover {
 	color: var(--pink);
-	-webkit-text-stroke: 1px var(--pink);
-	text-shadow: 3px 1.8px 0px var(--blue);
+	text-shadow: 2px 2px 0px var(--blue0);
+}
+
+#topNav #logoLink:hover {
+	color: transparent;
+	-webkit-text-stroke: 1.6px var(--pink);
 }
 
 #topNav #logoLink.active {
 	font-size: 48px;
-	margin-bottom: 10px;
-}
-
-#topNav #logoLink:hover {
-	-webkit-text-stroke: 1.4px var(--pink);
 }
 
 #topNav a.active {
@@ -157,7 +171,7 @@ a.navLink {
 
 #topNav img {
 	height: 32px;
-	vertical-align: bottom;
+	vertical-align: middle;
 }
 
 #topNav .logo {
@@ -179,7 +193,7 @@ a.navLink {
 }
 
 #topNav>hr {
-	border: 1px solid var(--blue);
+	border: 1px solid var(--blue0);
 	height: 28px;
 	display: inline-block;
 	vertical-align: middle;
@@ -201,12 +215,11 @@ a.navLink {
 a.btn,
 #toc a,
 #refs div:not(:first-child) a:not(:first-child) {
-	background-color: var(--bright-blue);
-	border: 2px solid var(--bright-blue);
-	color: var(--pink);
-	box-shadow: var(--blue) 3px 3px 0px;
+	background-color: var(--blue2);
+	color: var(--blue1);
+	box-shadow: var(--blue0) 3px 3px 0px;
 	height: min-content;
-	padding: 4px;
+	padding: 6px;
 	margin: 2px;
 }
 
@@ -218,34 +231,20 @@ a.btn,
 	margin-left: 20px;
 }
 
-#toc a.navLink {
-	box-shadow: none;
-}
-
 #toc a.active,
 #toc a:hover,
 #refs>div:not(:first-child) a:not(:first-child).active,
-#refs>div:not(:first-child) a:not(:first-child):hover {
-	/* color: #eee; */
-	/* background-color: var(--pink); */
-	border-color: var(--pink);
+#refs div:not(:first-child) a:not(:first-child):hover {
+	color: var(--pink);
+	box-shadow: var(--pink) 3px 3px 0px;
+}
+
+a.btn:hover,
+#toc a:hover,
+#refs div:not(:first-child) a:not(:first-child):hover {
+	scale: 1.05;
+	color: var(--pink);
 	text-decoration: none;
-	-webkit-text-stroke: none;
-}
-
-.dark a.btn,
-.dark #toc a,
-.dark #refs>div:not(:first-child) a:not(:first-child) {
-	background-color: var(--dark-blue);
-	border-color: var(--dark-blue);
-}
-
-.dark #toc a.active,
-.dark #toc a:hover,
-.dark #refs>div:not(:first-child) a:not(:first-child).active,
-.dark #refs>div:not(:first-child) a:not(:first-child):hover {
-	border-color: var(--pink);
-	/* background-color: var(--pink); */
 }
 
 .socials:hover,
@@ -309,7 +308,7 @@ code {
 }
 
 #topNav {
-	border-color: var(--blue);
+	border-color: var(--blue0);
 	padding: 1%;
 }
 
@@ -334,7 +333,7 @@ code {
 	margin-top: 2%;
 	margin-bottom: 2%;
 	border: var(--pink) 2px solid;
-	box-shadow: 4px 4px 0px var(--blue);
+	box-shadow: 4px 4px 0px var(--blue0);
 }
 
 .page>.break {
