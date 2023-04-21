@@ -6312,6 +6312,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 	{
 		let lh = location.hostname;
 		switch (lh) {
+			case '':
 			case '127.0.0.1':
 			case 'localhost':
 			case 'p5play.org':
@@ -7369,10 +7370,10 @@ canvas {
 			window.addEventListener('gamepadconnected', (e) => {
 				_this._addContro(e.gamepad);
 			});
-			// TODO
-			// window.addEventListener('gamepaddisconnected', (e) => {
-			// 	_this._removeContro(e.gamepad);
-			// });
+
+			window.addEventListener('gamepaddisconnected', (e) => {
+				_this._removeContro(e.gamepad);
+			});
 
 			this.default = 'a';
 
@@ -7441,6 +7442,17 @@ canvas {
 			if (!gp) return;
 			log('controller ' + this.length + ' connected: ' + gp.id);
 			this.push(new pInst._Contro(gp));
+		}
+
+		_removeContro(gp) {
+			if (!gp) return;
+			log('controller ' + this.length + ' disconnected: ' + gp.id);
+			for (let i = 0; i < this.length; i++) {
+				if (this[i].gamepad.index === gp.index) {
+					this.splice(i, 1);
+					break;
+				}
+			}
 		}
 
 		/**

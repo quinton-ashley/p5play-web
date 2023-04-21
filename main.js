@@ -1,3 +1,8 @@
+/**
+ * main.js for p5play.org
+ *
+ * handles dark mode toggling
+ */
 {
 	let pref = localStorage.getItem('darkMode');
 	pref ??= window.matchMedia('prefers-color-scheme: dark').matches ? 'dark' : 'light';
