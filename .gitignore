@@ -4,6 +4,10 @@ package-lock.json
 dev
 v4
 
+# old
+demos
+v2
+
 # Logs
 logs
 *.log
