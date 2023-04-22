@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>p5play</title>
+  <link rel="icon" href="../main/favicon.png" />
+  <link rel="stylesheet" href="editor.css" />
+</head>
+
+<body>
+  <nav>
+    <div>
+      <img id="logo" src="../main/logo.svg" slot="icon">
+
+      <btn class="btn-container" onclick="selectProjectFolder();">
+        <img src="icons/folder-open.svg">
+        <div id="selectProjectFolder"></div>
+      </btn>
+    </div>
+
+    <div id="tab-btns">
+      <btn data-tab="desktop">
+        <img src="icons/display.svg">
+      </btn>
+
+      <btn data-tab="mobile">
+        <img src="icons/mobile-screen-button.svg">
+      </btn>
+
+      <btn data-tab="editor">
+        <img src="icons/hammer.svg">
+      </btn>
+
+      <btn data-tab="share">
+        <img src="icons/share-from-square.svg">
+      </btn>
+
+      <btn data-tab="book">
+        <img src="icons/book-open.svg">
+      </btn>
+    </div>
+
+  </nav>
+
+  <div id="welcome" class="tab">
+    <img class="logo-big" src="../main/logo.svg" slot="icon">
+    <div>
+      <h1>
+        p5play editor
+      </h1>
+      <h4>
+        Coming soon!
+      </h4>
+      <p>For now I recommend using <a href="https://openprocessing.org/sketch/1717172">OpenProcessing</a>.</p>
+    </div>
+  </div>
+
+  <div id="desktop" class="tab">
+    <p>desktop</p>
+  </div>
+
+  <div id="mobile" class="tab">
+    <div id="qr">
+      <img src="../main/logo.svg" slot="icon">
+    </div>
+  </div>
+
+  <div id="editor" class="tab">
+    <p>editor</p>
+  </div>
+
+  <div id="share" class="tab">
+    <p>
+      coming soon!
+    </p>
+    <btn id="buildIOS">
+      <img src="icons/app-store-ios.svg">
+    </btn>
+
+    <btn id="buildAndroid">
+      <img src="icons/google-play.svg">
+    </btn>
+  </div>
+
+  <div id="book" class="tab">
+    <iframe src="../learn/index.html" frameborder="0"></iframe>
+  </div>
+
+</body>
+<script src="editor.js"></script>
+
+</html>

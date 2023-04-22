@@ -1,34 +1,77 @@
 {
 	"name": "p5play-web",
+	"productName": "p5play-editor",
 	"author": "quinton-ashley <qashto@gmail.com>",
 	"contributors": [
 		"Paolo Pedercini <info@molleindustria.it>"
 	],
+	"config": {
+		"forge": {
+			"packagerConfig": {
+				"icon": "app/logo.png"
+			},
+			"rebuildConfig": {},
+			"makers": [
+				{
+					"name": "@electron-forge/maker-squirrel",
+					"config": {}
+				},
+				{
+					"name": "@electron-forge/maker-zip",
+					"platforms": [
+						"darwin"
+					]
+				},
+				{
+					"name": "@electron-forge/maker-deb",
+					"config": {}
+				},
+				{
+					"name": "@electron-forge/maker-rpm",
+					"config": {}
+				}
+			]
+		}
+	},
 	"description": "The website for p5play",
+	"dependencies": {
+		"@bitjson/qr-code": "^1.0.2",
+		"electron-squirrel-startup": "^1.0.0",
+		"express": "^4.18.2"
+	},
 	"devDependencies": {
+		"@electron-forge/cli": "^6.1.1",
+		"@electron-forge/maker-deb": "^6.1.1",
+		"@electron-forge/maker-rpm": "^6.1.1",
+		"@electron-forge/maker-squirrel": "^6.1.1",
+		"@electron-forge/maker-zip": "^6.1.1",
 		"canvas": "^2.10.2",
+		"electron": "24.1.1",
 		"jest-cli": "^29.3.1",
 		"jest-environment-jsdom": "^29.3.1",
 		"minami": "^1.2.3",
 		"taffydb": "^2.7.3"
 	},
+	"homepage": "https://github.com/quintos/p5play-web",
 	"jest": {
 		"testEnvironmentOptions": {
 			"resources": "usable"
 		}
 	},
-	"homepage": "https://github.com/quintos/p5play-web",
+	"license": "NONE",
+	"main": "app/app.js",
 	"scripts": {
 		"tests": "jest tests",
-		"docs": "jsdoc --configure jsdoc.json",
+		"docs": "jsdoc --configure jsdoc.json && rm -rf docs/fonts",
 		"min": "minify v3/p5play.js > v3/p5play.min.js && cp v3/p5play.min.js ../../pkg/p5.play/p5play.min.js",
 		"v": "npm version patch --force",
 		"V": "npm version minor --force",
 		"version": "git add -A",
-		"postversion": "git push"
+		"postversion": "git push",
+		"start": "electron-forge start",
+		"package": "electron-forge package",
+		"make": "electron-forge make",
+		"publish": "electron-forge publish"
 	},
-	"version": "1.1.506",
-	"dependencies": {
-		"p5": "^1.6.0"
-	}
+	"version": "1.1.507"
 }

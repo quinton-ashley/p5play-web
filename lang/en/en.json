@@ -1,0 +1,11 @@
+{
+	"DOM": {
+		"selectProjectFolder": "Select your p5play project folder"
+	},
+	"msgs": {
+		"selectProjectFolder": "Select your p5play project folder",
+		"error": "ERROR",
+		"err0": "No folder selected",
+		"err1": "No index.html file found in your project folder"
+	}
+}

@@ -1,4 +1,4 @@
-# Terms of Service : p5play Ad Revenue Sharing Program
+# Terms of Service : p5play Pro Membership
 
 ## Parties to the Agreement
 
@@ -8,7 +8,7 @@ This agreement ("Agreement") is entered into between p5play and you, a developer
 
 By agreeing to these terms and conditions, you represent and warrant that you have the authority to enter into this Agreement and that you are fully able and competent to abide by all of its terms and conditions.
 
-If you are a parent or legal guardian of a minor Developer who is using p5play, then by agreeing to these terms and conditions, you represent and warrant that you have the authority to act on behalf of the minor Developer. You affirm that you have read, understand, and agree to these terms and conditions on behalf of the minor Developer. If you do not have the authority to act on behalf of the minor Developer or do not agree to these terms and conditions, then the minor Developer may not participate in the p5play Ad Revenue Sharing Program. As a parent or legal guardian, you are solely responsible for ensuring that the minor Developer complies with these terms and conditions.
+If you are a parent or legal guardian of a minor Developer who is using p5play, then by agreeing to these terms and conditions, you represent and warrant that you have the authority to act on behalf of the minor Developer. You affirm that you have read, understand, and agree to these terms and conditions on behalf of the minor Developer. If you do not have the authority to act on behalf of the minor Developer or do not agree to these terms and conditions, then the minor Developer may not participate in the p5play Pro Membership. As a parent or legal guardian, you are solely responsible for ensuring that the minor Developer complies with these terms and conditions.
 
 ## Participation
 
