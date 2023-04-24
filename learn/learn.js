@@ -17,17 +17,6 @@ function toggleDarkMode() {
 	document.body.className = pref;
 }
 
-{
-	let tags = document.getElementsByTagName('script');
-
-	for (let tag of tags) {
-		if (tag.type != 'text/md') continue;
-		let md = document.createElement('md');
-		md.innerHTML = marked.parse(tag.innerHTML || 'error');
-		tag.after(md);
-	}
-}
-
 let args = {};
 
 {
@@ -40,65 +29,105 @@ let args = {};
 	}
 }
 
-window.mie = {
-	autoLoad: false
-};
-
-mie.ready = function () {
-	let pages = document.getElementsByClassName('page');
-	let pageNav = document.getElementById('pageNav');
-	let currentPage = 0;
-
-	let previousPage = document.getElementById('prevPage');
-	previousPage.onclick = function () {
-		if (currentPage - 1 > -1) {
-			let i = currentPage - 1;
-			let url = `?page=${i}`;
-			history.pushState({}, 'p5play : Sprite : ' + i, url);
-			loadPage(i);
-		}
-	};
-
-	let nextPage = document.getElementById('nextPage');
-	nextPage.onclick = function () {
-		if (currentPage + 1 < pages.length) {
-			let i = currentPage + 1;
-			let url = `?page=${i}`;
-			history.pushState({}, 'p5play : Sprite : ' + i, url);
-			loadPage(i);
-		}
-	};
-
-	function loadPage(pageNum) {
-		pageNum = pageNum ?? args.page ?? 0;
-
-		for (let i = 0; i < pages.length; i++) {
-			let el = pageNav.children[i];
-			if (el.dataset.page == pageNum) {
-				el.className = 'active';
-			} else {
-				el.className = '';
-			}
-		}
-		for (let mini of mie) {
-			mini.remove();
-		}
-		for (let page of pages) {
-			page.style.display = 'none';
-		}
-		let page = document.getElementById('page-' + pageNum);
-		page.style.display = 'flex';
-		mie.loadMinis(page);
-		setEditorThemes();
-		document.body.scrollTop = 0; // for Safari
-		document.documentElement.scrollTop = 0; // Chrome, Firefox, and Opera
-		currentPage = parseInt(pageNum);
-
-		document.getElementById('toc').style.display = 'flex';
+async function start() {
+	function loadScript(src) {
+		return new Promise(function (resolve) {
+			let script = document.createElement('script');
+			script.src = src;
+			script.onload = resolve;
+			document.body.appendChild(script);
+		});
 	}
 
-	loadPage();
-};
+	async function loadScripts(sources) {
+		for (let src of sources) await loadScript(src);
+	}
+
+	if (navigator.onLine) {
+		await loadScripts([
+			'https://cdn.jsdelivr.net/npm/ace-builds@1.18.0/src-min-noconflict/ace.min.js',
+			'https://cdn.jsdelivr.net/npm/ace-builds@1.18.0/src-min-noconflict/ext-language_tools.js',
+			'https://cdn.jsdelivr.net/npm/marked/marked.min.js'
+		]);
+	} else {
+		await loadScripts([
+			'ace/ace.min.js',
+			'ace/ext-language_tools.js',
+			'ace/mode-javascript.js',
+			'ace/theme-dracula.js',
+			'ace/theme-xcode.js',
+			'marked/marked.min.js'
+		]);
+	}
+
+	let tags = document.getElementsByTagName('script');
+
+	for (let tag of tags) {
+		if (tag.type != 'text/md') continue;
+		let md = document.createElement('md');
+		md.innerHTML = marked.parse(tag.innerHTML || 'error');
+		tag.after(md);
+	}
+
+	mie.ready = function () {
+		let pages = document.getElementsByClassName('page');
+		let pageNav = document.getElementById('pageNav');
+		let currentPage = 0;
+
+		let previousPage = document.getElementById('prevPage');
+		previousPage.onclick = function () {
+			if (currentPage - 1 > -1) {
+				let i = currentPage - 1;
+				let url = `?page=${i}`;
+				history.pushState({}, 'p5play : Sprite : ' + i, url);
+				loadPage(i);
+			}
+		};
+
+		let nextPage = document.getElementById('nextPage');
+		nextPage.onclick = function () {
+			if (currentPage + 1 < pages.length) {
+				let i = currentPage + 1;
+				let url = `?page=${i}`;
+				history.pushState({}, 'p5play : Sprite : ' + i, url);
+				loadPage(i);
+			}
+		};
+
+		function loadPage(pageNum) {
+			pageNum = pageNum ?? args.page ?? 0;
+
+			for (let i = 0; i < pages.length; i++) {
+				let el = pageNav.children[i];
+				if (el.dataset.page == pageNum) {
+					el.className = 'active';
+				} else {
+					el.className = '';
+				}
+			}
+			for (let mini of mie) {
+				mini.remove();
+			}
+			for (let page of pages) {
+				page.style.display = 'none';
+			}
+			let page = document.getElementById('page-' + pageNum);
+			page.style.display = 'flex';
+			mie.loadMinis(page);
+			setEditorThemes();
+			document.body.scrollTop = 0; // for Safari
+			document.documentElement.scrollTop = 0; // Chrome, Firefox, and Opera
+			currentPage = parseInt(pageNum);
+
+			document.getElementById('toc').style.display = 'flex';
+		}
+
+		loadPage();
+	};
+
+	mie.load();
+}
+start();
 
 function setEditorThemes() {
 	if (document.body.className == 'dark') {

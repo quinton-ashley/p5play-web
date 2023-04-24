@@ -101,6 +101,11 @@ body.dark #darkModeIcon {
 	border-color: var(--primary) !important;
 }
 
+.mie.p5 .mie-logo {
+	width: 36px;
+	background-image: url("../assets/p5js.svg");
+}
+
 a {
 	color: var(--blue1);
 	text-decoration: none;

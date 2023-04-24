@@ -30,9 +30,10 @@ nav div {
   gap: 10px;
 }
 
-btn {
+btn,
+#sketchSelector {
   /* display: none; */
-  height: 34px;
+  height: 32px;
   font-size: 16px;
   font-weight: bold;
   line-height: 1;
@@ -44,7 +45,12 @@ btn {
   max-width: fit-content;
   scale: 1;
   transition: .2s;
+  border: none;
   border-radius: 5px;
+}
+
+#sketchSelector {
+  height: 64px;
 }
 
 .btn-container {
@@ -53,7 +59,8 @@ btn {
   gap: 10px;
 }
 
-btn:hover {
+btn:hover,
+#sketchSelector:hover {
   background-color: #66615a;
   color: #fff;
   scale: 1.05;
@@ -96,6 +103,10 @@ btn img {
   display: none;
   width: 100vw;
   height: calc(100vh - 86px);
+}
+
+#editor {
+  display: flex;
 }
 
 #welcome {

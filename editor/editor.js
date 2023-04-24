@@ -11,12 +11,43 @@ let serverRunning = false;
 
 let activeTabBtn = {};
 let activeTab = document.getElementById('welcome');
+let openProjectLabel = document.getElementById('openProjectLabel');
+let sketchSelector = document.getElementById('sketchSelector');
 
 let desktop = typeof window.ipc !== 'undefined';
 
+function loadScript(src) {
+	return new Promise(function (resolve) {
+		let script = document.createElement('script');
+		script.src = src;
+		script.onload = resolve;
+		document.body.appendChild(script);
+	});
+}
+
+async function loadScripts(sources) {
+	for (let src of sources) await loadScript(src);
+}
+
 async function start() {
+	if (!desktop && navigator.onLine) {
+		await loadScripts([
+			'https://cdn.jsdelivr.net/npm/ace-builds@1.18.0/src-min-noconflict/ace.min.js',
+			'https://cdn.jsdelivr.net/npm/ace-builds@1.18.0/src-min-noconflict/ext-language_tools.js'
+		]);
+		loadScript('https://cdn.jsdelivr.net/npm/@bitjson/qr-code@1.0.2/dist/qr-code.js');
+	} else {
+		await loadScripts([
+			'../learn/ace/ace.min.js',
+			'../learn/ace/ext-language_tools.js',
+			'../learn/ace/mode-javascript.js',
+			'../learn/ace/theme-dracula.js',
+			'../learn/ace/theme-xcode.js',
+			'../node_modules/@bitjson/qr-code/dist/qr-code.js'
+		]);
+	}
+
 	if (desktop) {
-		document.body.innerHTML += `<script src="../node_modules/@bitjson/qr-code/dist/qr-code.js"></script>`;
 		ipAddress = await ipc.invoke('getIpAddress');
 		homeDir = await ipc.invoke('getHomeDir');
 	}
@@ -34,7 +65,7 @@ async function start() {
 		});
 	}
 
-	lang = await (await fetch('../lang/en/en.json')).json();
+	lang = await (await fetch('../lang/en/editor.json')).json();
 	for (let key in lang.DOM) {
 		let el = document.getElementById(key);
 		if (el) el.innerHTML += lang.DOM[key];
@@ -43,14 +74,17 @@ async function start() {
 }
 start();
 
-async function selectProjectFolder() {
-	if (!desktop) return;
+async function openProject() {
+	if (!desktop) {
+		webFolderSelector.click();
+		return;
+	}
 
-	let dir = await ipc.invoke('selectFolder', lang.selectProjectFolder);
+	let dir = await ipc.invoke('selectFolder', lang.openProject);
 	if (!dir) return alert(lang.error + ': ' + lang.err0);
 	proj = dir;
 
-	let selector = document.getElementById('selectProjectFolder');
+	let selector = document.getElementById('openProject');
 	selector.innerText = proj.replace(homeDir, '~');
 
 	document.getElementById('#options').style.display = 'flex';
@@ -93,3 +127,42 @@ async function startServer() {
 }
 
 async function buildIOS() {}
+
+/* WEB */
+
+let webFolderSelector = document.getElementById('webFolderSelector');
+webFolderSelector.addEventListener('change', webLoadFiles);
+
+// sketchSelector.addEventListener('change', function () {
+// 	localStorage['sketch'] = this.value;
+// 	loadSketch(webFolderSelector.files[this.value]);
+// });
+
+async function loadSketch(file) {
+	let sketch = await file.text();
+	log(sketch);
+}
+
+async function webLoadFiles() {
+	if (!this.files.length) {
+		alert('ERROR: There are no files in that folder.');
+		return;
+	}
+
+	openProjectLabel.innerHTML = this.files[0].webkitRelativePath.split('/')[0];
+
+	log(this.files);
+
+	for (let i = 0; i < this.files.length; i++) {
+		let file = this.files[i];
+
+		let path = file.webkitRelativePath;
+		path = path.slice(path.indexOf('/') + 1);
+
+		if (path.startsWith('node_modules')) continue;
+
+		if (file.type == 'text/javascript') {
+			sketchSelector.innerHTML += `<option value="${i}">${path}</option>`;
+		}
+	}
+}

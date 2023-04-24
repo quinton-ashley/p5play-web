@@ -7,7 +7,7 @@ mie.lang ??= {
 };
 mie.bases = {};
 
-mie.onload = () => {
+mie.load = () => {
 	class MiniEditor {
 		constructor(script) {
 			this.id = mie.length;
@@ -81,7 +81,7 @@ mie.onload = () => {
 			main.append(preview);
 			this.previewElem = preview;
 
-			if (mie.editorEnabled) {
+			if (!mie.editorDisabled) {
 				let ed = document.createElement('div');
 				ed.id = 'mie-editor-' + this.id;
 				ed.className = 'mie-editor';
@@ -91,6 +91,7 @@ mie.onload = () => {
 
 				let editor = ace.edit('mie-editor-' + this.id);
 				editor.setOptions({
+					mode: 'ace/mode/javascript',
 					minLines: 1,
 					maxLines: lines,
 					fontSize: '14px',
@@ -203,7 +204,7 @@ mie.onload = () => {
 		get: () => mie._theme,
 		set: (theme) => {
 			mie._theme = theme;
-			if (!mie.editorEnabled) return;
+			if (mie.editorDisabled) return;
 			if (theme == 'dark') {
 				for (let mini of mie) {
 					mini.editor.setTheme('ace/theme/dracula');
@@ -270,13 +271,14 @@ mie.lang.p5.remove = function () {
 	if (this.player?.remove) this.player.remove();
 };
 
-if (typeof window.ace != 'undefined') {
-	mie.editorEnabled = true;
-	ace.config.set('basePath', 'https://cdnjs.cloudflare.com/ajax/libs/ace/1.9.5/');
-	ace.config.loadModule('ace/ext/language_tools', mie.onload);
-} else {
-	console.log('mie will run without the ace editor, which was not loaded.');
-	mie.onload();
+if (mie.autoLoad !== false) {
+	if (typeof window.ace != 'undefined') {
+		mie.load();
+	} else {
+		console.log('mie will run without the ace editor, which was not loaded.');
+		mie.editorDisabled = true;
+		mie.load();
+	}
 }
 
 {

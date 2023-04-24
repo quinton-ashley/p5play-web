@@ -53,7 +53,7 @@ const createWindow = () => {
 		}
 	});
 
-	mainWindow.loadFile(path.join(__dirname, 'editor/index.html'));
+	mainWindow.loadFile(path.join(__dirname, '../editor/index.html'));
 
 	mainWindow.webContents.openDevTools();
 };
