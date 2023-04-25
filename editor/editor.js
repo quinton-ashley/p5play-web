@@ -53,19 +53,6 @@ async function start() {
 		homeDir = await ipc.invoke('getHomeDir');
 	}
 
-	let tabBtns = document.getElementById('tab-btns');
-	for (let i = 0; i < tabBtns.children.length; i++) {
-		let tabBtn = tabBtns.children[i];
-		tabBtn.addEventListener('click', function () {
-			activeTabBtn.className = '';
-			this.className = 'active';
-			activeTabBtn = this;
-			activeTab.style.display = 'none';
-			activeTab = document.getElementById(this.dataset.tab);
-			activeTab.style.display = 'flex';
-		});
-	}
-
 	lang = await (await fetch('../lang/en/editor.json')).json();
 	for (let key in lang.DOM) {
 		let el = document.getElementById(key);
@@ -165,6 +152,9 @@ async function webOpenProject() {
 	// put folder name in openProject button
 	openProjectLabel.innerHTML = this.files[0].webkitRelativePath.split('/')[0];
 
+	// document.getElementById('openProject').style.display = 'none';
+	// document.getElementById('navBtns').style.display = 'flex';
+
 	log(this.files);
 
 	for (let i = 0; i < this.files.length; i++) {
@@ -176,13 +166,13 @@ async function webOpenProject() {
 		if (path.startsWith('node_modules')) continue;
 
 		if (file.type == 'text/javascript') {
-			codeNav.innerHTML += `<tab title="${i}">${path}</tab>`;
+			codeNav.innerHTML += `<tab data-value="${i}">${path}</tab>`;
 		}
 	}
 
 	let tabs = document.querySelectorAll('#codeNav tab');
 	tabs[0].className = 'active';
 
-	let file = this.files[tabs[0].title];
+	let file = this.files[tabs[0].dataset.value];
 	loadSketch(file);
 }

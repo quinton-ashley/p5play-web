@@ -17,6 +17,7 @@ html {
 }
 
 body {
+  display: flex;
   color: var(--primary);
   background: var(--bg);
   margin: 0;
@@ -51,22 +52,18 @@ nav {
 
 #topNav {
   background: var(--secondary);
-  justify-content: space-between;
+  overflow-x: scroll;
+  justify-content: center;
 }
 
-#topNav div {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-btn,
-#sketchSelector {
-  height: 32px;
+btn {
+  height: 24px;
+  padding: 6px;
+  padding-left: 12px;
+  padding-right: 12px;
   font-size: 16px;
   font-weight: bold;
   line-height: 1;
-  padding: 16px;
   color: var(--primary);
   background-color: var(--dark);
   vertical-align: middle;
@@ -76,6 +73,20 @@ btn,
   transition: .2s;
   border: none;
   border-radius: 5px;
+}
+
+btn img {
+  width: 24px;
+  height: 24px;
+  filter: invert();
+}
+
+#topNav btn {
+  width: 20%;
+}
+
+#openProject {
+  display: flex;
 }
 
 #sketchSelector {
@@ -88,8 +99,7 @@ btn,
   gap: 10px;
 }
 
-btn:hover,
-#sketchSelector:hover {
+btn:hover {
   background-color: var(--light);
   color: #fff;
   scale: 1.05;
@@ -104,12 +114,6 @@ btn.active {
   background-color: var(--light);
 }
 
-btn img {
-  width: 32px;
-  height: 32px;
-  filter: invert();
-}
-
 #logo {
   width: 48px;
   height: 48px;
@@ -121,22 +125,11 @@ btn img {
 }
 
 .na {
-  /* black and white filter */
   filter: saturate(0);
 }
 
 #selector {
   display: block;
-}
-
-.tab {
-  display: none;
-  width: 100vw;
-  height: calc(100vh - 86px);
-}
-
-#editor {
-  display: flex;
 }
 
 #scene {
@@ -149,15 +142,15 @@ btn img {
   background-color: var(--dark);
 }
 
-#code {
+#editor {
   width: 29.75%;
 }
 
-#code nav {
+#codeNav {
   overflow-x: scroll;
 }
 
-#code tab {
+#codeNav tab {
   background-color: var(--secondary);
   font-size: 16px;
   line-height: 1;
@@ -166,17 +159,36 @@ btn img {
   cursor: pointer;
 }
 
-#code tab:hover,
-#code tab.active {
+#codeNav tab:hover,
+#codeNav tab.active {
   background-color: var(--dark);
 }
 
-#codeEditor {
-  padding: 10px;
+pre {
+  margin: 0;
+}
+
+.ace_editor {
+  height: calc(100vh - 122px);
+  /* border-radius: 5px; */
+}
+
+.ace_scroller,
+.ace_active-line {
+  background-color: var(--secondary) !important;
+}
+
+.mie .ace_cursor {
+  border-color: var(--primary) !important;
+}
+
+.ace_numeric {
+  color: var(--pink1) !important;
 }
 
 #scene {
   display: flex;
+  height: 100vh;
 }
 
 #welcome,
@@ -213,26 +225,4 @@ btn img {
   margin: 2em auto;
   background-color: var(--secondary);
   border-radius: 5px;
-}
-
-pre {
-  margin: 0;
-}
-
-.ace_editor {
-  height: calc(100vh - 122px);
-  border-radius: 5px;
-}
-
-.ace_scroller,
-.ace_active-line {
-  background-color: var(--secondary) !important;
-}
-
-.mie .ace_cursor {
-  border-color: var(--primary) !important;
-}
-
-.ace_numeric {
-  color: var(--pink1) !important;
 }

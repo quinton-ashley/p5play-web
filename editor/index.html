@@ -4,24 +4,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>p5play</title>
+  <title>p5play editor</title>
   <link rel="icon" href="../main/favicon.png" />
   <link rel="stylesheet" href="editor.css" />
 </head>
 
 <body>
-  <nav id="topNav">
-    <div>
+  <div id="editor">
+    <nav id="topNav">
       <img id="logo" src="../main/logo.svg" slot="icon">
 
-      <btn class="btn-container" onclick="openProject();">
-        <img src="icons/folder-open.svg">
-        <div id="openProjectLabel"></div>
-        <input type="file" id="webFolderSelector" webkitdirectory multiple hidden />
-      </btn>
-    </div>
-
-    <div id="tab-btns">
       <btn data-tab="editor" class="active">
         <img src="icons/hammer.svg">
       </btn>
@@ -41,63 +33,36 @@
       <btn data-tab="book">
         <img src="icons/book-open.svg">
       </btn>
-    </div>
 
-  </nav>
-
-  <div id="editor" class="tab">
-    <div id="code">
-      <nav id="codeNav"></nav>
-      <pre id="codeEditor"></pre>
-    </div>
-    <div id="slider"></div>
-    <div id="scene">
-      <img class="logo-big" src="../main/logo.svg" slot="icon">
-      <div>
-        <h1>
-          p5play editor
-        </h1>
-        <h4>
-          Coming soon!
-        </h4>
-        <p>For now I recommend using <a href="https://openprocessing.org/sketch/1717172">OpenProcessing</a>.</p>
-      </div>
-    </div>
-
+    </nav>
+    <nav id="codeNav">
+      <btn id="openProject" class="btn-container" onclick="openProject();">
+        <img src="icons/folder-open.svg">
+        <div id="openProjectLabel"></div>
+        <input type="file" id="webFolderSelector" webkitdirectory multiple hidden />
+      </btn>
+    </nav>
+    <pre id="codeEditor"></pre>
   </div>
 
-  <div id="desktop" class="tab">
-    <p>desktop</p>
-  </div>
+  <div id="slider"></div>
 
-  <div id="mobile" class="tab">
-    <p>
-      coming soon!
-    </p>
-    <div id="qr">
-      <img src="../main/logo.svg" slot="icon">
+  <div id="scene">
+    <img class="logo-big" src="../main/logo.svg" slot="icon">
+    <div>
+      <h1>
+        p5play editor
+      </h1>
+      <h4>
+        Coming soon!
+      </h4>
+      <p>For now I recommend using <a href="https://openprocessing.org/sketch/1717172">OpenProcessing</a>.</p>
     </div>
-    <p>
-      Only available in the desktop p5play editor app.
-    </p>
   </div>
 
-  <div id="share" class="tab">
-    <p>
-      coming soon!
-    </p>
-    <btn id="buildIOS">
-      <img src="icons/app-store-ios.svg">
-    </btn>
-
-    <btn id="buildAndroid">
-      <img src="icons/google-play.svg">
-    </btn>
-  </div>
-
-  <div id="book" class="tab">
+  <!-- <div id="book" class="tab">
     <iframe src="../learn/index.html" frameborder="0"></iframe>
-  </div>
+  </div> -->
 
 </body>
 
