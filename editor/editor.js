@@ -10,9 +10,10 @@ let proj;
 let serverRunning = false;
 
 let activeTabBtn = {};
-let activeTab = document.getElementById('welcome');
+let activeTab = document.getElementById('editor');
 let openProjectLabel = document.getElementById('openProjectLabel');
-let sketchSelector = document.getElementById('sketchSelector');
+let codeNav = document.getElementById('codeNav');
+let codeEditor = document.getElementById('codeEditor');
 
 let desktop = typeof window.ipc !== 'undefined';
 
@@ -131,24 +132,37 @@ async function buildIOS() {}
 /* WEB */
 
 let webFolderSelector = document.getElementById('webFolderSelector');
-webFolderSelector.addEventListener('change', webLoadFiles);
-
-// sketchSelector.addEventListener('change', function () {
-// 	localStorage['sketch'] = this.value;
-// 	loadSketch(webFolderSelector.files[this.value]);
-// });
+webFolderSelector.addEventListener('change', webOpenProject);
 
 async function loadSketch(file) {
-	let sketch = await file.text();
-	log(sketch);
+	let code = await file.text();
+	log(code);
+
+	let idNum = codeEditor.children.length;
+
+	let ed = document.createElement('div');
+	ed.id = 'editor' + idNum;
+	ed.innerHTML = code;
+	codeEditor.append(ed);
+
+	let editor = ace.edit('editor' + idNum);
+	editor.setOptions({
+		mode: 'ace/mode/javascript',
+		fontSize: '14px',
+		showFoldWidgets: false,
+		showGutter: false,
+		tabSize: 2
+	});
+	editor.setTheme('ace/theme/dracula');
 }
 
-async function webLoadFiles() {
+async function webOpenProject() {
 	if (!this.files.length) {
 		alert('ERROR: There are no files in that folder.');
 		return;
 	}
 
+	// put folder name in openProject button
 	openProjectLabel.innerHTML = this.files[0].webkitRelativePath.split('/')[0];
 
 	log(this.files);
@@ -162,7 +176,13 @@ async function webLoadFiles() {
 		if (path.startsWith('node_modules')) continue;
 
 		if (file.type == 'text/javascript') {
-			sketchSelector.innerHTML += `<option value="${i}">${path}</option>`;
+			codeNav.innerHTML += `<tab title="${i}">${path}</tab>`;
 		}
 	}
+
+	let tabs = document.querySelectorAll('#codeNav tab');
+	tabs[0].className = 'active';
+
+	let file = this.files[tabs[0].title];
+	loadSketch(file);
 }

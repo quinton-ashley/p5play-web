@@ -10,7 +10,7 @@
 </head>
 
 <body>
-  <nav>
+  <nav id="topNav">
     <div>
       <img id="logo" src="../main/logo.svg" slot="icon">
 
@@ -19,18 +19,10 @@
         <div id="openProjectLabel"></div>
         <input type="file" id="webFolderSelector" webkitdirectory multiple hidden />
       </btn>
-
-      <div>
-        <h2 style="margin:0;">p5play editor coming soon!</h2>
-        <p>
-          For now I recommend using <a href="https://openprocessing.org/sketch/1717172">OpenProcessing</a>.
-        </p>
-      </div>
-
     </div>
 
     <div id="tab-btns">
-      <btn data-tab="editor">
+      <btn data-tab="editor" class="active">
         <img src="icons/hammer.svg">
       </btn>
 
@@ -53,33 +45,25 @@
 
   </nav>
 
-  <!-- <div id="welcome" class="tab">
-    <img class="logo-big" src="../main/logo.svg" slot="icon">
-    <div>
-      <h1>
-        p5play editor
-      </h1>
-      <h4>
-        Coming soon!
-      </h4>
-      <p>For now I recommend using <a href="https://openprocessing.org/sketch/1717172">OpenProcessing</a>.</p>
-    </div>
-  </div> -->
-
   <div id="editor" class="tab">
-    <div id="scene">
-
-    </div>
     <div id="code">
-      <nav>
-        <tab>
-          sketch.js
-        </tab>
-      </nav>
+      <nav id="codeNav"></nav>
+      <pre id="codeEditor"></pre>
+    </div>
+    <div id="slider"></div>
+    <div id="scene">
+      <img class="logo-big" src="../main/logo.svg" slot="icon">
       <div>
-
+        <h1>
+          p5play editor
+        </h1>
+        <h4>
+          Coming soon!
+        </h4>
+        <p>For now I recommend using <a href="https://openprocessing.org/sketch/1717172">OpenProcessing</a>.</p>
       </div>
     </div>
+
   </div>
 
   <div id="desktop" class="tab">
@@ -87,9 +71,15 @@
   </div>
 
   <div id="mobile" class="tab">
+    <p>
+      coming soon!
+    </p>
     <div id="qr">
       <img src="../main/logo.svg" slot="icon">
     </div>
+    <p>
+      Only available in the desktop p5play editor app.
+    </p>
   </div>
 
   <div id="share" class="tab">

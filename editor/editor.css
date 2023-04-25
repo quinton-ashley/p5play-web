@@ -2,29 +2,59 @@ html {
   --pink: #ed225d;
   --blue: #c0eeff;
 
-  --dark-blue: #2d7bb6;
+  --pink0: #ed225d;
+  --pink1: #ff1c5c;
+
+  --blue1: #2d7bb6;
+
+  --bg: #000;
 
   --primary: #eee;
-  --secondary: #333;
+  --secondary: #131516;
+
+  --dark: #333;
+  --light: #4a4845;
 }
 
 body {
   color: var(--primary);
-  background: #000;
+  background: var(--bg);
   margin: 0;
+  padding: 0;
   height: 100vh;
+  overflow: hidden;
+  -webkit-touch-callout: none;
+  -webkit-text-size-adjust: none;
+  overscroll-behavior: none;
   font-family: sans-serif;
+}
+
+a {
+  color: var(--blue1);
+  text-decoration: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+a:hover {
+  color: var(--pink0);
+  text-decoration: underline;
 }
 
 nav {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   padding: 10px;
   gap: 10px;
+  user-select: none;
 }
 
-nav div {
+#topNav {
+  background: var(--secondary);
+  justify-content: space-between;
+}
+
+#topNav div {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -32,14 +62,13 @@ nav div {
 
 btn,
 #sketchSelector {
-  /* display: none; */
   height: 32px;
   font-size: 16px;
   font-weight: bold;
   line-height: 1;
   padding: 16px;
   color: var(--primary);
-  background-color: var(--secondary);
+  background-color: var(--dark);
   vertical-align: middle;
   cursor: pointer;
   max-width: fit-content;
@@ -61,7 +90,7 @@ btn,
 
 btn:hover,
 #sketchSelector:hover {
-  background-color: #66615a;
+  background-color: var(--light);
   color: #fff;
   scale: 1.05;
 }
@@ -72,6 +101,7 @@ btn:active {
 
 btn.active {
   color: var(--pink);
+  background-color: var(--light);
 }
 
 btn img {
@@ -109,11 +139,48 @@ btn img {
   display: flex;
 }
 
-#welcome {
+#scene {
+  width: 69.75%;
+}
+
+#slider {
+  cursor: col-resize;
+  width: 0.5%;
+  background-color: var(--dark);
+}
+
+#code {
+  width: 29.75%;
+}
+
+#code nav {
+  overflow-x: scroll;
+}
+
+#code tab {
+  background-color: var(--secondary);
+  font-size: 16px;
+  line-height: 1;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#code tab:hover,
+#code tab.active {
+  background-color: var(--dark);
+}
+
+#codeEditor {
+  padding: 10px;
+}
+
+#scene {
   display: flex;
 }
 
 #welcome,
+#scene,
 #share,
 #mobile {
   justify-content: center;
@@ -146,4 +213,26 @@ btn img {
   margin: 2em auto;
   background-color: var(--secondary);
   border-radius: 5px;
+}
+
+pre {
+  margin: 0;
+}
+
+.ace_editor {
+  height: calc(100vh - 122px);
+  border-radius: 5px;
+}
+
+.ace_scroller,
+.ace_active-line {
+  background-color: var(--secondary) !important;
+}
+
+.mie .ace_cursor {
+  border-color: var(--primary) !important;
+}
+
+.ace_numeric {
+  color: var(--pink1) !important;
 }
