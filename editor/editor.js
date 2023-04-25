@@ -170,9 +170,28 @@ async function webOpenProject() {
 		}
 	}
 
+	document.getElementById('welcome').remove();
+
 	let tabs = document.querySelectorAll('#codeNav tab');
 	tabs[0].className = 'active';
 
 	let file = this.files[tabs[0].dataset.value];
 	loadSketch(file);
+}
+
+function setup() {
+	let scene = document.getElementById('scene');
+	new Canvas(scene.offsetWidth, scene.offsetHeight);
+
+	// tray that will hold the user's sprites and group sprites
+	fill('#303030');
+	rect(0, height - 168, width, 8);
+
+	fill('#131516');
+	for (let i = 0; i < 12; i++) {
+		let x = 10 + i * 156;
+		let y = height - 148;
+
+		rect(x, y, 140, 140, 5);
+	}
 }

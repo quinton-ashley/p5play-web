@@ -42,22 +42,25 @@
         <input type="file" id="webFolderSelector" webkitdirectory multiple hidden />
       </btn>
     </nav>
+    <div id="welcome">
+      <img class="logo-big" src="../main/logo.svg" slot="icon">
+      <div>
+        <h1>
+          p5play editor
+        </h1>
+        <h4>
+          Coming soon!
+        </h4>
+        <p>For now I recommend using <a href="https://openprocessing.org/sketch/1717172">OpenProcessing</a>.</p>
+      </div>
+    </div>
     <pre id="codeEditor"></pre>
   </div>
 
   <div id="slider"></div>
 
   <div id="scene">
-    <img class="logo-big" src="../main/logo.svg" slot="icon">
-    <div>
-      <h1>
-        p5play editor
-      </h1>
-      <h4>
-        Coming soon!
-      </h4>
-      <p>For now I recommend using <a href="https://openprocessing.org/sketch/1717172">OpenProcessing</a>.</p>
-    </div>
+    <main></main>
   </div>
 
   <!-- <div id="book" class="tab">
@@ -66,6 +69,9 @@
 
 </body>
 
+<script src="../v3/q5.min.js"></script>
+<script src="../v3/planck.min.js"></script>
+<script src="../v3/p5play.js"></script>
 <script src="editor.js"></script>
 
 </html>
