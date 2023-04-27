@@ -37,7 +37,8 @@
 	"dependencies": {
 		"@bitjson/qr-code": "^1.0.2",
 		"electron-squirrel-startup": "^1.0.0",
-		"express": "^4.18.2"
+		"express": "^4.18.2",
+		"p5": "^1.6.0"
 	},
 	"devDependencies": {
 		"@electron-forge/cli": "^6.1.1",
@@ -73,5 +74,5 @@
 		"make": "electron-forge make",
 		"publish": "electron-forge publish"
 	},
-	"version": "1.1.514"
+	"version": "1.1.515"
 }

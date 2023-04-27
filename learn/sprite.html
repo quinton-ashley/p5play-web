@@ -967,7 +967,7 @@ These examples use a `Turtle` sprite which is just a regular sprite
 that's green and shaped like a triangle for that classic turtle 
 programming look.
 
-You can wait for a movement to finish before continuing with the next movement. This is useful for making a sprite move in a sequence.
+You can use the `await` keyword inside an `async` function to wait for a movement to finish before continuing with the next movement. This is useful for making a sprite move in a sequence.
 			</script>
 			<script type="mie/p5" name="square sequence" horiz lines="14">
 let turtle;
@@ -990,14 +990,17 @@ function draw() {
 }
 			</script>
 			<script type="text/md">
-The `move`, `moveTo`, `rotate`, and `rotateTo` functions all return a promise that resolves when the movement is finished. You can use the `await` keyword to wait for the promise to resolve before continuing with the next movement.
+The `move`, `moveTo`, `rotate`, and `rotateTo` functions all return a `Promise` that resolves to true when the movement is finished.
+
+But, if the sprite's movement is interupted by a new movement or a collision that significantly changes the sprite's trajectory, the promise will resolve to false. 
 			</script>
-			<script type="mie/p5" name="random sequence" horiz lines="16">
-let turtle;
+			<script type="mie/p5" name="random sequence" horiz lines="17">
+let turtle, ball;
 
 function setup() {
 	new Canvas(160, 304);
 	turtle = new Turtle(30);
+	ball = new Sprite(80, 152, 50);
 
 	randomSequence();
 }
@@ -1006,7 +1009,7 @@ async function randomSequence() {
 	let x = random(0, width);
 	let y = random(0, height);
 	await turtle.rotateTo(x, y, 5);
-	await turtle.moveTo(x, y, 5);
+	await turtle.moveTo(x, y, 3);
 	randomSequence();
 }
 
@@ -1596,7 +1599,7 @@ Press "d" to double the sprite's scale.
 
 Press "x" or "y" to scale the sprite in that direction by a random amount. But note that if the sprite gets scaled unevenly, the image will get distorted and stay that way even when scaled uniformly again.
 			</script>
-			<script type="mie/p5">
+			<script type="mie/p5" name="scaling">
 let sprite;
 
 function setup() {
@@ -1623,6 +1626,63 @@ function draw() {
 }
 			</script>
 		</div>
+		<div id="page-14" class="page">
+			<script type="text/md">
+## Combo Colliders
+	
+By using the `addCollider` function you can add multiple colliders to a sprite.
+
+But only use this feature when it's really necessary for gameplay!
+
+Usually if something requires a lot of colliders, like the walls of a maze, you should just create multiple sprites, each with their own collider.
+
+Also, even if a sprite's image is complex, typically a box or circle will be just fine for physics interactions, especially for small sprites.
+
+Yet sometimes, you will truly need to create a sprite with multiple colliders. For example, if you want to model a pinball flipper!
+			</script>
+			<script type="mie/p5" name="pinball flipper" horiz>
+let ball, flipper;
+
+function setup() {
+	new Canvas(196, 500);
+	world.gravity.y = 10;
+
+	ball = new Sprite(100, -20, 30);
+
+	flipper = new Sprite(160, 400, [
+		[0, -25],
+		[-100, 12.5],
+		[0, 25],
+		[100, 12.5],
+		[0, -25]
+	], 'k');
+
+	flipper.addCollider(-60, 0, 25);
+	flipper.addCollider(40, 0, 50);
+	
+	flipper.offset.x = -40;
+	flipper.rotation = -20;
+	flipper.debug = true;
+}
+
+function draw() {
+	background(150);
+
+	if (kb.presses('space')) {
+		flipper.rotateTo(20, 8);
+	}
+	if (kb.pressed('space')) {
+		flipper.rotateTo(-20, 8);
+	}
+
+	if (frameCount % 100 == 0) {
+	  ball.life = 200;
+		let x = random(50, 140);
+		ball = new Sprite(x, -100, 30);
+	}
+}
+			</script>
+		</div>
 
 		<div class="break"></div>
 		<div id="toc">
@@ -1642,6 +1702,7 @@ function draw() {
 				<a data-page="11" href="sprite.html?page=11">Polygons</a>
 				<a data-page="12" href="sprite.html?page=12">Custom Draw</a>
 				<a data-page="13" href="sprite.html?page=13">Scaling</a>
+				<a data-page="14" href="sprite.html?page=14">Combo Colliders</a>
 			</nav>
 			<a id="nextPage" class="navLink">Next Page</a>
 		</div>
