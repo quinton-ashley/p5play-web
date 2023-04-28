@@ -2,11 +2,12 @@
 p5play
 
 created by Paolo Pedercini @molleindustria, 2015
-https://molleindustria.org/
-
-upgraded and maintained by Quinton Ashley @quinton-ashley, 2022
-https://quintos.org
+with contributions from Quinton Ashley @quinton-ashley, 2022
 */
+
+console.error(
+	'p5.play version 2 is outdated and is no longer being maintained. Please consider upgrading to p5play version 3! https://p5play.org'
+);
 
 (function (root, factory) {
 	if (typeof module === 'object') module.exports = factory(require('p5')); // CommonJS
