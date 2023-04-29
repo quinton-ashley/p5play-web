@@ -337,7 +337,7 @@ if (mouse.presses()) {
 					If you want a sprite to physically interact with other sprites while it's moving, don't teleport it!
 				</p>
 			</div>
-			<script type="mie/p5" name="teleport (continuously) 👎" base="3">
+			<script type="mie/p5" name="teleport : continuously 👎" base="3">
 player.x = mouse.x;
 player.y = mouse.y;
 			</script>
@@ -353,7 +353,7 @@ player.y = mouse.y;
 					You may have to restart this example to see the sprite move.
 				</p>
 			</div>
-			<script type="mie/p5" name="velocity (continuously)" base="3">
+			<script type="mie/p5" name="velocity : continuously" base="3">
 player.vel.x = -2;
 player.vel.y = 0.1;
 			</script>
@@ -370,7 +370,7 @@ player.vel.y = 0.1;
 					Note that p5play converts these direction names to their corresponding angle values.
 				</p>
 			</div>
-			<script type="mie/p5" name="direction + speed (continuously)" base="3">
+			<script type="mie/p5" name="direction + speed : continuously" base="3">
 player.direction = 187;
 player.speed = 3;
 			</script>
@@ -381,7 +381,7 @@ player.speed = 3;
 					be specified as parameters to the function or set separately.
 				</p>
 			</div>
-			<script type="mie/p5" name="move (impulse)" base="3">
+			<script type="mie/p5" name="move : impulse" base="3">
 if (kb.presses('left')) {
 	//   (distance, direction, speed)
 	player.move(30, 'left', 3);
@@ -399,7 +399,7 @@ if (kb.presses('left')) {
 					moves.
 				</p>
 			</div>
-			<script type="mie/p5" name="moveTowards (continuously)" base="3">
+			<script type="mie/p5" name="moveTowards : continuously" base="3">
 //             (position, tracking)
 player.moveTowards(mouse, 0.10);
 			</script>
@@ -419,7 +419,7 @@ player.moveTowards(mouse, 0.10);
 					(x, y) position numbers.
 				</p>
 			</div>
-			<script type="mie/p5" name="moveTo (impulse)" base="3">
+			<script type="mie/p5" name="moveTo : impulse" base="3">
 if (mouse.presses()) {
 	//        (position, speed)
 	player.moveTo(mouse, 8);
@@ -554,7 +554,7 @@ function draw() {
 					</script>
 		</div>
 		<div id="page-4" class="page">
-			<div>
+			<div class="minis horiz">
 				<script type="text/md">
 ## Create Sprites faster
 
@@ -564,14 +564,14 @@ As you saw on the previous Sprite reference pages, you don't need to add any inp
 
 By default, if no inputs are given to the Sprite constructor, new sprites are positioned at the center of the canvas, with a width and height of 50 pixels, and a dynamic collider.
 				</script>
-				<script type="mie/p5" name="default sprite" lines="3" horiz>
+				<script type="mie/p5" name="default sprite" lines="5" horiz>
 function setup() {
+	new Canvas(100, 100);
+
 	new Sprite();
 }
 
-function draw() {
-	clear();
-}
+function draw() {}
 				</script>
 			</div>
 			<div class="minis horiz">
@@ -992,7 +992,7 @@ function draw() {
 			<script type="text/md">
 The `move`, `moveTo`, `rotate`, and `rotateTo` functions all return a `Promise` that resolves to true when the movement is finished.
 
-But, if the sprite's movement is interupted by a new movement or a collision that significantly changes the sprite's trajectory, the promise will resolve to false. 
+But, if the sprite's movement is interrupted by a new movement or a collision that significantly changes the sprite's trajectory, the promise will resolve to false. 
 			</script>
 			<script type="mie/p5" name="random sequence" horiz lines="17">
 let turtle, ball;
