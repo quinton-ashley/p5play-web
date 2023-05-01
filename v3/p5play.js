@@ -41,52 +41,55 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 	const isSlop = (val) => Math.abs(val) <= pl.Settings.linearSlop;
 	const fixRound = (val) => (Math.abs(val - Math.round(val)) <= pl.Settings.linearSlop ? Math.round(val) : val);
 
-	const spriteProps = [
-		'autoDraw',
-		'autoUpdate',
-		'bounciness',
-		'collider',
-		'color',
-		'density',
-		'd',
-		'debug',
-		'diameter',
-		'direction',
-		'drag',
-		'dynamic',
-		'friction',
-		'fill',
-		'h',
-		'height',
-		'heading',
-		'isSuperFast',
-		'kinematic',
-		'layer',
-		'life',
-		'mass',
-		'mirror',
-		'offset',
-		'pixelPerfect',
-		'resetAnimationsOnChange',
-		'rotation',
-		'rotationDrag',
-		'rotationLock',
-		'rotationSpeed',
-		'scale',
-		'shape',
-		'speed',
-		'static',
-		'stroke',
-		'strokeWeight',
-		'text',
-		'textColor',
-		'tileSize',
-		'visible',
-		'w',
-		'width',
-		'x',
-		'y'
-	];
+	// type is null if the sprite property is a repeat of another property
+	const spritePropTypes = {
+		autoDraw: 'boolean',
+		autoUpdate: 'boolean',
+		bounciness: 'Float64',
+		collider: 'string',
+		color: 'p5.Color',
+		density: 'Float64',
+		d: null,
+		debug: 'boolean',
+		diameter: null,
+		direction: 'Float64',
+		drag: 'Float64',
+		dynamic: null,
+		friction: 'Float64',
+		fill: null,
+		h: 'Float64',
+		height: null,
+		heading: null,
+		isSuperFast: 'boolean',
+		kinematic: null,
+		layer: 'Float64',
+		life: 'Int32',
+		mass: 'Float64',
+		mirror: 'Vec2_boolean',
+		offset: 'Vec2',
+		pixelPerfect: 'boolean',
+		resetAnimationsOnChange: 'boolean',
+		rotation: 'Float64',
+		rotationDrag: 'Float64',
+		rotationLock: 'boolean',
+		rotationSpeed: 'Float64',
+		scale: 'Vec2',
+		shape: 'string',
+		speed: 'Float64',
+		static: null,
+		stroke: 'p5.Color',
+		strokeWeight: 'Float64',
+		text: 'string',
+		textColor: 'p5.Color',
+		tileSize: 'Float64',
+		visible: 'boolean',
+		w: 'Float64',
+		width: null,
+		x: 'Float64',
+		y: 'Float64'
+	};
+
+	const spriteProps = Object.keys(spritePropTypes).filter((key) => spritePropTypes[key] !== null);
 
 	const eventTypes = {
 		_collisions: ['_collides', '_colliding', '_collided'],
@@ -399,6 +402,8 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 				}
 			};
 
+			this._heading = 'right';
+
 			/**
 			 * By default sprites are drawn in the order they were created in.
 			 * You can change the draw order by editing sprite's layer
@@ -649,7 +654,12 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			 */
 			this.strokeWeight;
 
-			this.color ??= this.p.color(this.p.random(30, 245), this.p.random(30, 245), this.p.random(30, 245));
+			// "random" color that's not too dark or too light
+			this.color ??= this.p.color(
+				Math.round(this.p.random(30, 245)),
+				Math.round(this.p.random(30, 245)),
+				Math.round(this.p.random(30, 245))
+			);
 
 			this.textColor ??= this.p.color(0);
 			this.textSize ??= this.tileSize == 1 ? (this.p.canvas ? this.p.textSize() : 12) : 0.8;
@@ -5745,6 +5755,188 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			return this._avg;
 		}
 	}
+
+	/**
+	 * Work in Progress! Not ready for public use yet.
+	 *
+	 * A `netcode` object is created automatically when p5play loads.
+	 *
+	 * "Netcode is a blanket term most commonly used by
+	 * gamers relating to networking in online games, often referring to
+	 * synchronization issues between clients and servers. Players often
+	 * infer "bad netcodes" when they experience lag or when their inputs
+	 * are dropped." - Wikipedia
+	 *
+	 * The methods of this class can help p5play developers create online
+	 * multiplayer games and servers.
+	 *
+	 * My next step for this is to have p5play watch for which properties
+	 * of a sprite have changed, and only send those properties over the
+	 * network. This will reduce the amount of data that needs to be sent
+	 * over the network, and will make the game run faster.
+	 */
+	this.Netcode = class {
+		constructor() {}
+
+		startServer() {
+			this.watch = true;
+		}
+
+		connect() {}
+
+		/**
+		 * Converts standard p5play sprite properties to a binary
+		 * representation, which is smaller than serializing the data with
+		 * JSON.stringify.
+		 *
+		 * This function can be used to send the sprite data over the
+		 * network.
+		 *
+		 * @param {Sprite} sprite
+		 * @param {Array} props - sprite properties that should be converted
+		 * to binary. Defaults to all sprite properties.
+		 */
+		spriteToBinary(sprite, props) {
+			// calculate size of buffer first
+			let size = 0;
+
+			props ??= spriteProps;
+
+			for (let i = 0; i < props.length; i++) {
+				const prop = props[i];
+				const type = spritePropTypes[prop];
+
+				const val = sprite[prop];
+				if (val === undefined || val === null) {
+					log(prop);
+					continue;
+				}
+
+				size += 1;
+
+				if (type == 'boolean') {
+					size += 1;
+				} else if (type == 'Float64') {
+					size += 8;
+				} else if (type == 'string') {
+					const encoded = new TextEncoder().encode(val);
+					size += encoded.length + 2;
+				} else if (type == 'p5.Color') {
+					size += 4;
+				} else if (type == 'Vec2') {
+					size += 16;
+				} else if (type == 'Vec2_boolean') {
+					size += 2;
+				} else if (type == 'Int32') {
+					size += 4;
+				}
+			}
+
+			const buffer = new ArrayBuffer(size);
+			const data = new DataView(buffer);
+
+			let o = 0; // byte offset
+			for (let i = 0; i < props.length; i++) {
+				const prop = spriteProps[i];
+				const type = spritePropTypes[prop];
+
+				const val = sprite[prop];
+				if (val === undefined || val === null) continue;
+
+				data.setUint8(o, i);
+				o += 1;
+
+				if (type == 'boolean') {
+					data.setUint8(o, val ? 1 : 0);
+					o += 1;
+				} else if (type == 'Float64') {
+					data.setFloat64(o, val);
+					o += 8;
+				} else if (type == 'string') {
+					const encoded = new TextEncoder().encode(val);
+					data.setUint16(o, encoded.length);
+					o += 2;
+					for (let j = 0; j < encoded.length; j++) {
+						data.setUint8(o, encoded[j]);
+						o += 1;
+					}
+				} else if (type == 'p5.Color') {
+					data.setUint8(o, val.levels[0]); // r
+					data.setUint8(o + 1, val.levels[1]); // g
+					data.setUint8(o + 2, val.levels[2]); // b
+					data.setUint8(o + 3, val.levels[3]); // a
+					o += 4;
+				} else if (type == 'Vec2') {
+					data.setFloat64(o, val.x);
+					data.setFloat64(o + 8, val.y);
+					o += 16;
+				} else if (type == 'Vec2_boolean') {
+					data.setUint8(o, val.x ? 1 : 0);
+					data.setUint8(o + 1, val.y ? 1 : 0);
+					o += 2;
+				} else if (type == 'Int32') {
+					data.setInt32(o, val);
+					o += 4;
+				}
+			}
+			return new Uint8Array(buffer);
+		}
+
+		/**
+		 * Converts binary data back into a JS object that can
+		 */
+		binaryToSprite(binary, sprite) {
+			const data = new DataView(binary.buffer);
+			let o = 0;
+
+			while (o !== data.byteLength) {
+				const propId = data.getUint8(o);
+				o += 1;
+
+				const propName = spriteProps[propId];
+				const propType = spritePropTypes[propName];
+				if (propType === null) continue;
+
+				if (propType === 'boolean') {
+					sprite[propName] = data.getUint8(o) !== 0;
+					o += 1;
+				} else if (propType === 'Float64') {
+					sprite[propName] = data.getFloat64(o);
+					o += 8;
+				} else if (propType === 'string') {
+					const strLength = data.getUint16(o);
+					o += 2;
+					const strBytes = new Uint8Array(data.buffer, o, strLength);
+					sprite[propName] = new TextDecoder().decode(strBytes);
+					o += strLength;
+				} else if (propType === 'p5.Color') {
+					const r = data.getUint8(o);
+					const g = data.getUint8(o + 1);
+					const b = data.getUint8(o + 2);
+					const a = data.getUint8(o + 3);
+					sprite[propName] = color(r, g, b, a);
+					o += 4;
+				} else if (propType === 'Vec2') {
+					const x = data.getFloat64(o);
+					const y = data.getFloat64(o + 8);
+					sprite[propName] = createVector(x, y);
+					o += 16;
+				} else if (propType === 'Vec2_boolean') {
+					const x = data.getUint8(o);
+					const y = data.getUint8(o + 1);
+					sprite[propName] = createVector(x, y);
+					o += 2;
+				} else if (propType === 'Int32') {
+					sprite[propName] = data.getInt32(o);
+					o += 4;
+				}
+			}
+
+			return sprite;
+		}
+	};
+
+	this.netcode = new this.Netcode();
 
 	function isArrowFunction(fn) {
 		return !/^(?:(?:\/\*[^(?:\*\/)]*\*\/\s*)|(?:\/\/[^\r\n]*))*\s*(?:(?:(?:async\s(?:(?:\/\*[^(?:\*\/)]*\*\/\s*)|(?:\/\/[^\r\n]*))*\s*)?function|class)(?:\s|(?:(?:\/\*[^(?:\*\/)]*\*\/\s*)|(?:\/\/[^\r\n]*))*)|(?:[_$\w][\w0-9_$]*\s*(?:\/\*[^(?:\*\/)]*\*\/\s*)*\s*\()|(?:\[\s*(?:\/\*[^(?:\*\/)]*\*\/\s*)*\s*(?:(?:['][^']+['])|(?:["][^"]+["]))\s*(?:\/\*[^(?:\*\/)]*\*\/\s*)*\s*\]\())/.test(
