@@ -47,7 +47,7 @@ async function start() {
 		await loadScripts([
 			'https://cdn.jsdelivr.net/npm/ace-builds@1.18.0/src-min-noconflict/ace.min.js',
 			'https://cdn.jsdelivr.net/npm/ace-builds@1.18.0/src-min-noconflict/ext-language_tools.js',
-			'https://cdn.jsdelivr.net/npm/marked/marked.min.js'
+			'https://cdn.jsdelivr.net/npm/marked@4.3.0/marked.min.js'
 		]);
 	} else {
 		await loadScripts([
