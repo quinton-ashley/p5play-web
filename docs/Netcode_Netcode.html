@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Tiles - Documentation</title>
+    <title>Netcode - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -29,7 +29,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">Tiles</h1>
+    <h1 class="page-title">Netcode</h1>
     
 
     
@@ -42,7 +42,7 @@
 <header>
     
         <h2>
-        Tiles
+        Netcode
         </h2>
         
     
@@ -56,16 +56,30 @@
 
     
 
-    <h4 class="name" id="Tiles"><span class="type-signature"></span>new Tiles<span class="signature">(tiles, x, y, w, h)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="Netcode"><span class="type-signature"></span>new Netcode<span class="signature">()</span><span class="type-signature"></span></h4>
 
     
 
 
 
 <div class="description">
-    <a href="https://p5play.org/learn/tiles.html">
-Look at the Tiles reference pages before reading these docs.
-</a>
+    Work in Progress! Not ready for public use yet.
+
+A `netcode` object is created automatically when p5play loads.
+
+"Netcode is a blanket term most commonly used by
+gamers relating to networking in online games, often referring to
+synchronization issues between clients and servers. Players often
+infer "bad netcodes" when they experience lag or when their inputs
+are dropped." - Wikipedia
+
+The methods of this class can help p5play developers create online
+multiplayer games and servers.
+
+My next step for this is to have p5play watch for which properties
+of a sprite have changed, and only send those properties over the
+network. This will reduce the amount of data that needs to be sent
+over the network, and will make the game run faster.
 </div>
 
 
@@ -101,7 +115,318 @@ Look at the Tiles reference pages before reading these docs.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line5808">line 5808</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line5977">line 5977</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+<div class="section-method">
+
+    
+
+    <h4 class="name" id="binaryToSprite"><span class="type-signature"></span>binaryToSprite<span class="signature">(binary, offset<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {<a href="Sprite.html">Sprite</a>}</span></h4>
+
+    
+
+
+
+<div class="description">
+    Converts binary data, assigning the values to a sprite.
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line6114">line 6114</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>binary</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><code>Uint8Array</code></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">
+                binary data
+                
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>offset</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><code>number</code></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">
+                byte offset
+                
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="section-returns">
+<h5>Returns:</h5>
+
+        
+
+<dl class="param-type">
+    <dt>
+        Type:
+    </dt>
+    <dd>
+        
+<span class="param-type"><code><a href="Sprite.html">Sprite</a></code></span>
+
+
+    </dd>
+</dl>
+
+
+<div class="param-desc">
+    the sprite
+</div>
+
+    
+</div>
+
+
+
+</div>
+        
+            
+<div class="section-method">
+
+    
+
+    <h4 class="name" id="spriteToBinary"><span class="type-signature"></span>spriteToBinary<span class="signature">(sprite)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    Converts a sprite to a binary representation, which is smaller
+than serializing the data with JSON.stringify.
+
+This function is intended to be used to send sprite data over
+a network.
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line6008">line 6008</a>
     </li></ul></dd>
     
 
@@ -145,13 +470,13 @@ Look at the Tiles reference pages before reading these docs.
 
         <tr>
             
-                <td class="name"><code>tiles</code></td>
+                <td class="name"><code>sprite</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type"><code>String</code></span>
+<span class="param-type"><code><a href="Sprite.html">Sprite</a></code></span>
 
 
             
@@ -162,111 +487,7 @@ Look at the Tiles reference pages before reading these docs.
             
 
             <td class="description last">
-                
-                
-            </td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>x</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><code>Number</code></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">
-                
-                
-            </td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>y</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><code>Number</code></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">
-                
-                
-            </td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>w</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><code>Number</code></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">
-                
-                
-            </td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>h</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><code>Number</code></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">
-                
+                to binary. Defaults to all sprite properties.
                 
             </td>
         </tr>
@@ -291,21 +512,7 @@ Look at the Tiles reference pages before reading these docs.
 
 
 </div>
-    
-    </div>
-
-    
-
-    
-
-    
-
-     
-
-    
-
-    
-
+        
     
 
     
