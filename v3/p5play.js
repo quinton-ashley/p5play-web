@@ -88,8 +88,18 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			this.idNum;
 
 			/**
-			 * An array of properties that were changed since the last
-			 * frame. Used internally for netcode.
+			 * If set to true, p5play will record all changes to the sprite's
+			 * properties in its `mod` array.
+			 *
+			 * @type {Boolean}
+			 * @default undefined
+			 */
+			this.watch;
+
+			/**
+			 * An array of booleans that indicate which properties were
+			 * changed since the last frame. Used to only send modified
+			 * sprite data in binary netcode.
 			 *
 			 * @type {Array}
 			 */
@@ -468,6 +478,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			 * @type {object}
 			 */
 			this.prevPos = { x, y };
+			this.prevRotation = 0;
 
 			this._dest = { x, y };
 			this._destIdx = 0;
@@ -1713,6 +1724,13 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			this.prevPos = val;
 		}
 
+		get previousRotation() {
+			return this.prevRotation;
+		}
+		set previousRotation(val) {
+			this.prevRotation = val;
+		}
+
 		/**
 		 * Set to true to display the sprite pixel perfect.
 		 * This is useful when using pixel art.
@@ -2313,8 +2331,18 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 				this.rotation += this._rotationSpeed;
 				this.x += this.vel.x;
 				this.y += this.vel.y;
-				return;
 			}
+
+			if (this.watch) {
+				if (this.x != this.prevX) this.mod[0] = this.mod[2] = true;
+				if (this.y != this.prevY) this.mod[1] = this.mod[2] = true;
+				if (this.rotation != this.prevRotation) {
+					this.mod[3] = this.mod[4] = true;
+				}
+			}
+
+			if (!this.body && !this.removed) return;
+
 			// for each type of collision and overlap event
 			let a = this;
 			for (let event in eventTypes) {
@@ -3415,7 +3443,6 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		vel: 'Vec2', // 2
 		rotation: 'number', // 3
 		rotationSpeed: 'number', // 4
-
 		ani: 'string', // 5
 		autoDraw: 'boolean', // 6
 		allowSleeping: 'boolean', // 7
@@ -5364,6 +5391,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			for (let s of this.p.allSprites) {
 				s.prevPos.x = s.x;
 				s.prevPos.y = s.y;
+				s.prevRotation = s.rotation;
 			}
 			super.step(timeStep || 1 / (this.p._targetFrameRate || 60), velocityIterations || 8, positionIterations || 3);
 			let sprites = Object.values(this.p.p5play.sprites);
@@ -5989,11 +6017,9 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			};
 		}
 
-		// startServer() {
-		// 	this.watch = true;
-		// }
-
 		// connect() {}
+
+		// disconnect() {}
 
 		/**
 		 * Converts a sprite to a binary representation, which is smaller
@@ -6006,13 +6032,13 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		 * to binary. Defaults to all sprite properties.
 		 */
 		spriteToBinary(sprite) {
-			// calculate size of buffer first
-			let size = 27;
-
 			const props = pInst.Sprite.props;
 
-			for (let i = 5; i < props.length; i++) {
-				if (sprite.mod[i] === false) continue;
+			// initial size is 2 bytes for sprite id and 1 for the ending byte
+			let size = 3;
+			// calculate size of buffer
+			for (let i = 0; i < props.length; i++) {
+				if (sprite.watch && !sprite.mod[i]) continue;
 				const prop = props[i];
 				const type = pInst.Sprite.propTypes[prop];
 
@@ -6027,22 +6053,17 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 					size += this.typeSizes[type] + 1;
 				}
 			}
+			if (size == 3) return null; // no data to send
 
 			const buffer = new ArrayBuffer(size);
 			const data = new DataView(buffer);
 			data.setFloat16 = (o, v) => data.setUint16(o, encodeFloat16(v));
 
 			data.setUint16(0, sprite._uid);
-			data.setFloat64(2, sprite.x);
-			data.setFloat64(10, sprite.y);
-			data.setFloat16(18, sprite.vel.x);
-			data.setFloat16(20, sprite.vel.y);
-			data.setFloat16(22, sprite.rotation);
-			data.setFloat16(24, sprite.rotationSpeed);
 
-			let o = 26; // byte offset
-			for (let i = 5; i < props.length; i++) {
-				if (sprite.mod[i] === false) continue;
+			let o = 2; // byte offset
+			for (let i = 0; i < props.length; i++) {
+				if (sprite.watch && !sprite.mod[i]) continue;
 				const prop = props[i];
 				const type = pInst.Sprite.propTypes[prop];
 
@@ -6097,9 +6118,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			data.setUint8(o, 255);
 
 			sprite.watch = true;
-			for (let i = 5; i < props.length; i++) {
-				sprite.mod[i] = false;
-			}
+			sprite.mod = [];
 
 			return new Uint8Array(buffer);
 		}
@@ -6121,14 +6140,8 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			let o = offset || 0;
 
 			let uid = data.getUint16(o);
+			o += 2;
 			let sprite = pInst.p5play.sprites[uid] || new pInst.Sprite();
-			sprite.x = data.getFloat64(o + 2);
-			sprite.y = data.getFloat64(o + 10);
-			sprite.vel.x = data.getFloat16(o + 18);
-			sprite.vel.y = data.getFloat16(o + 20);
-			sprite.rotation = data.getFloat16(o + 22);
-			sprite.rotationSpeed = data.getFloat16(o + 24);
-			o += 26;
 
 			while (o !== data.byteLength) {
 				const propId = data.getUint8(o);
