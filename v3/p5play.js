@@ -6512,15 +6512,15 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 	this.p5play.playIntro = async function () {
 		if (document.getElementById('p5play-intro')) return;
 		pInst._incrementPreload();
-		let p = document.createElement('div');
-		p.id = 'p5play-intro';
-		p.style = 'position: absolute; width: 100%; height: 100%; top: 0; left: 0; z-index: 1000; background-color: black;';
+		let d = document.createElement('div');
+		d.id = 'p5play-intro';
+		d.style = 'position: absolute; width: 100%; height: 100%; top: 0; left: 0; z-index: 1000; background-color: black;';
 		let logo = document.createElement('img');
 		logo.src = 'https://p5play.org/v3/made_with_p5play.png';
 		logo.style =
 			'position: absolute; top: 50%; left: 50%; width: 40vh; height: 20vh; margin-left: -20vh; margin-top: -10vh; z-index: 1000; opacity: 0; transition: opacity 0.1s ease-in-out;';
-		document.body.append(p);
-		p.append(logo);
+		document.body.append(d);
+		d.append(logo);
 		await pInst.delay(100);
 		logo.style.opacity = '1';
 		logo.style.transition = 'scale 2s, opacity 0.4s ease-in-out';
@@ -6528,7 +6528,9 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		await pInst.delay(1200);
 		logo.style.opacity = '0';
 		await pInst.delay(400);
-		p.remove();
+		d.style.display = 'none';
+		d.remove();
+		document.getElementById('p5play-intro')?.remove();
 		pInst._decrementPreload();
 	};
 

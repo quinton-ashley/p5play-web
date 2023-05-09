@@ -34,19 +34,19 @@
 	document.getElementById('auth').style.display = 'block';
 
 	// Set the user's name in the page
-	document.getElementById('username').innerHTML = user.email;
+	document.getElementById('username').innerHTML = user.email.split('@')[0];
 
 	let apiUrl = 'https://ntaknarhb9.execute-api.us-west-2.amazonaws.com/prod';
 
-	let res = await (
-		await fetch(apiUrl + '/getUserData', {
-			method: 'GET',
-			headers: {
-				Authorization: idToken,
-				'Content-Type': 'application/json'
-			}
-		})
-	).json();
+	// let res = await (
+	// 	await fetch(apiUrl + '/getUserData', {
+	// 		method: 'GET',
+	// 		headers: {
+	// 			Authorization: idToken,
+	// 			'Content-Type': 'application/json'
+	// 		}
+	// 	})
+	// ).json();
 
-	log(res);
+	// log(res);
 })();
