@@ -118,7 +118,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 
 			if (
 				args[0] !== undefined &&
-				isNaN(args[0]) &&
+				Number.isNaN(args[0]) &&
 				(typeof args[0] == 'string' || args[0] instanceof this.p.SpriteAnimation || args[0] instanceof p5.Image)
 			) {
 				// shift
@@ -148,7 +148,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			// if (w is chain array) or (diameter/side length and h is a
 			// collider type or the name of a regular polygon)
 			if (Array.isArray(w) || typeof h == 'string') {
-				if (!isNaN(w)) w = Number(w);
+				if (!Number.isNaN(w)) w = Number(w);
 				if (typeof w != 'number' && Array.isArray(w[0])) {
 					this._originMode = 'start';
 				}
@@ -163,7 +163,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 					}
 					h = undefined;
 				}
-			} else if (isNaN(w)) {
+			} else if (Number.isNaN(w)) {
 				collider = w;
 				w = undefined;
 			}
@@ -506,19 +506,12 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			this.vel.x = gvx;
 			this.vel.y = gvy;
 
-			/**
-			 * If false, animations will always start playing from the frame
-			 * they were stopped at. If true, when the sprite changes the
-			 * animation its currently displaying, it will start playing
-			 * from frame 0.
-			 *
-			 * @type {SpriteAnimation}
-			 * @default false
-			 */
-
 			// copy properties from group
+			// skip props that were already set above
 			for (let prop of this.p.Sprite.propsAll) {
-				if (prop == 'ani' || prop == 'collider' || prop == 'x' || prop == 'y' || prop == 'vel') continue;
+				if (prop == 'ani' || prop == 'collider' || prop == 'x' || prop == 'y' || prop == 'vel' || prop == 'velocity') {
+					continue;
+				}
 				let val = group[prop];
 				if (val === undefined) continue;
 				if (typeof val == 'function') val = val(group.length - 1);
@@ -564,7 +557,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			for (let g of this.groups) {
 				let props = Object.keys(g);
 				for (let prop of props) {
-					if (!isNaN(prop) || prop[0] == '_' || ignoreProps.includes(prop)) {
+					if (!Number.isNaN(prop) || prop[0] == '_' || ignoreProps.includes(prop)) {
 						continue;
 					}
 					let val = g[prop];
@@ -699,7 +692,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			// if (w is chain array) or (diameter/side length and h is a
 			// collider type or the name of a regular polygon)
 			if (Array.isArray(w) || typeof h == 'string') {
-				if (!isNaN(w)) w = Number(w);
+				if (!Number.isNaN(w)) w = Number(w);
 				if (typeof w != 'number' && Array.isArray(w[0])) {
 					this._originMode = 'start';
 				}
@@ -2650,6 +2643,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		 * @param {Number} tracking [optional] 1 represents 1:1 tracking, the mouse moves to the destination immediately, 0 represents no tracking. Default is 0.1 (10% tracking).
 		 */
 		moveTowards(x, y, tracking) {
+			if (x === undefined || x === null) return;
 			if (typeof x != 'number') {
 				let obj = x;
 				if (obj == this.p.mouse && !this.p.mouse.active) return;
@@ -2713,7 +2707,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		 * sprite.move(directionName, speed, distance); // deprecated usage
 		 */
 		move(distance, direction, speed) {
-			let dirNameMode = isNaN(arguments[0]);
+			let dirNameMode = Number.isNaN(arguments[0]);
 			if (dirNameMode) {
 				direction = arguments[0];
 				speed = arguments[1];
@@ -2724,10 +2718,12 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 					);
 				}
 			} else {
-				dirNameMode = isNaN(direction);
+				dirNameMode = Number.isNaN(direction);
 			}
+			if (!distance) return;
+
 			if (direction !== undefined) this.direction = direction;
-			distance ??= 1;
+
 			let x = this.x + this.p.cos(this.direction) * distance;
 			let y = this.y + this.p.sin(this.direction) * distance;
 			if (dirNameMode && this.tileSize > 1) {
@@ -2750,10 +2746,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		 * or to false if the sprite will not reach its destination
 		 */
 		moveTo(x, y, speed) {
-			if (typeof x == 'undefined') {
-				console.error('sprite.move ERROR: movement direction or destination not defined');
-				return;
-			}
+			if (x === undefined || x === null) return;
 			if (typeof x != 'number') {
 				let obj = x;
 				if (obj == this.p.mouse && !this.p.mouse.active) return;
@@ -2986,7 +2979,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		 */
 		rotate(angle, speed) {
 			if (this.__collider == 1) throw new FriendlyError(0);
-			if (isNaN(angle)) throw new FriendlyError(1, [angle]);
+			if (Number.isNaN(angle)) throw new FriendlyError(1, [angle]);
 			if (angle == 0) return;
 			let absA = Math.abs(angle);
 			speed ??= 1;
@@ -3662,7 +3655,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			) {
 				let from = args[0];
 				let to, num2;
-				if (!isNaN(args[1])) num2 = Number(args[1]);
+				if (!Number.isNaN(args[1])) num2 = Number(args[1]);
 				else to = args[1];
 
 				// print("sequence mode "+from+" -> "+to);
@@ -3677,13 +3670,13 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 
 				// skip extension work backwards to find the numbers
 				for (let i = from.length - 5; i >= 0; i--) {
-					if (!isNaN(from.charAt(i))) digits1++;
+					if (!Number.isNaN(from.charAt(i))) digits1++;
 					else break;
 				}
 
 				if (to) {
 					for (let i = to.length - 5; i >= 0; i--) {
-						if (!isNaN(to.charAt(i))) digits2++;
+						if (!Number.isNaN(to.charAt(i))) digits2++;
 						else break;
 					}
 				}
@@ -5067,7 +5060,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 				cb = bottom;
 				top = bottom = left = right = size;
 			}
-			if (isNaN(top) || isNaN(bottom) || isNaN(left) || isNaN(right)) {
+			if (Number.isNaN(top) || Number.isNaN(bottom) || Number.isNaN(left) || Number.isNaN(right)) {
 				throw new TypeError('The culling boundary must be defined with numbers');
 			}
 			if (cb && typeof cb != 'function') {
@@ -5272,6 +5265,9 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		constructor() {
 			super(new pl.Vec2(0, 0), true);
 			this.p = pInst;
+
+			this.mod = [];
+
 			this._offset = { x: 0, y: 0 };
 			let _this = this;
 			this.offset = {
@@ -5306,24 +5302,30 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			 *
 			 * @type.y
 			 */
-			this.gravity = {
+			this._gravity = {
 				get x() {
 					return _this.m_gravity.x;
 				},
 				set x(val) {
+					val = Math.round(val || 0);
+					if (val == _this.m_gravity.x) return;
+					this.mod[0] = true;
 					for (let s of _this.p.allSprites) {
 						s.sleeping = false;
 					}
-					_this.m_gravity.x = _this.p.round(val || 0);
+					_this.m_gravity.x = val;
 				},
 				get y() {
 					return _this.m_gravity.y;
 				},
 				set y(val) {
+					val = Math.round(val || 0);
+					if (val == _this.m_gravity.y) return;
+					this.mod[0] = true;
 					for (let s of _this.p.allSprites) {
 						s.sleeping = false;
 					}
-					_this.m_gravity.y = _this.p.round(val || 0);
+					_this.m_gravity.y = val;
 				}
 			};
 
@@ -5334,6 +5336,14 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			this.mouseSprites = [];
 
 			this.autoStep = true;
+		}
+
+		get gravity() {
+			return this._gravity;
+		}
+		set gravity(val) {
+			this._gravity.x = val.x;
+			this._gravity.y = val.y;
 		}
 
 		/**
@@ -6015,11 +6025,12 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 				Vec2: 4,
 				Float64: 8
 			};
+			this.player = 0;
 		}
 
-		// connect() {}
+		connect() {}
 
-		// disconnect() {}
+		disconnect() {}
 
 		/**
 		 * Converts a sprite to a binary representation, which is smaller
@@ -6043,7 +6054,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 				const type = pInst.Sprite.propTypes[prop];
 
 				let val = sprite[prop];
-				if (prop == 'ani') val = val.name;
+				if (prop == 'ani') val = val?.name;
 				if (val === undefined || val === null) continue;
 
 				if (type == 'string') {
@@ -6197,6 +6208,8 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 
 			return sprite;
 		}
+
+		inputToJSON() {}
 	};
 
 	this.netcode = new this.Netcode();
@@ -7337,7 +7350,7 @@ canvas {
 
 		ac(inp) {
 			if (inp.length == 1) return inp.toLowerCase();
-			if (!isNaN(inp)) {
+			if (!Number.isNaN(inp)) {
 				if (inp == 38) return 'ArrowUp';
 				if (inp == 40) return 'ArrowDown';
 				if (inp == 37) return 'ArrowLeft';
@@ -7707,6 +7720,13 @@ canvas {
 	 */
 	this.controllers = this.contro;
 
+	this.inputs = [];
+	this.inputs[this.netcode.player] = {
+		mouse: this.mouse,
+		kb: this.kb,
+		contro: this.contro
+	};
+
 	if (!this.getFPS) this.p5play._fps = 60;
 
 	/**
@@ -7774,23 +7794,17 @@ p5.prototype.registerMethod('post', function p5playPostDraw() {
 		this.allSprites.draw();
 		this.camera.off();
 	}
-	if (this.allSprites._autoDraw === null) {
-		this.allSprites._autoDraw = true;
-	}
+	this.allSprites._autoDraw ??= true;
 
 	if (this.world.autoStep) {
 		this.world.step();
 	}
-	if (this.world.autoStep === null) {
-		this.world.autoStep = true;
-	}
+	this.world.autoStep ??= true;
 
 	if (this.allSprites._autoUpdate) {
 		this.allSprites.update();
 	}
-	if (this.allSprites._autoUpdate === null) {
-		this.allSprites._autoUpdate = true;
-	}
+	this.allSprites._autoUpdate ??= true;
 
 	for (let s of this.allSprites) {
 		s.autoDraw ??= true;
