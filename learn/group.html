@@ -338,6 +338,33 @@ function draw() {
 }
 			</script>
 		</div>
+		<div id="page-7" class="page">
+			<script type="text/md">
+## Custom Properties
+
+You can add your own properties to sprites and groups, just like with any other JavaScript object!
+
+Also when you add custom properties to a group, they will be inherited by new group sprites. You can even use arrow functions as property setters.
+			</script>
+			<script type="mie/p5" name="custom properties" lines="10">
+function setup() {
+	new Canvas(500, 60);
+
+	ghosts = new Group();
+	ghosts.strength = 'high';
+	ghosts.health = () => round(random(40, 70));
+
+	let g = new ghosts.Sprite();
+	g.text = g.health;
+}
+
+function draw() {
+	clear();
+}
+
+			</script>
+
+		</div>
 
 		<div class="break"></div>
 		<div id="toc">
@@ -350,6 +377,7 @@ function draw() {
 				<a data-page="4" href="group.html?page=4">Indexed Arrow Setters</a>
 				<a data-page="5" href="group.html?page=5">Subgroups</a>
 				<a data-page="6" href="group.html?page=6">Culling</a>
+				<a data-page="7" href="group.html?page=7">Custom Properties</a>
 			</nav>
 			<a id="nextPage" class="navLink">Next Page</a>
 		</div>
