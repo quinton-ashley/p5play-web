@@ -10,29 +10,28 @@
 </head>
 
 <body>
-  <div id="editor">
+  <div id="main">
     <nav id="topNav">
-      <img id="logo" src="../main/logo.svg" slot="icon">
+      <a href="https://p5play.org" class="externalLink">
+        <img id="logo" src="../main/logo.svg" slot="icon">
+      </a>
+      <div id="zones">
+        <btn data-zone="sceneEditor" class="na" title="level editor coming soon!">
+          <img src="icons/hammer.svg">
+        </btn>
 
-      <btn data-tab="editor" class="active">
-        <img src="icons/hammer.svg">
-      </btn>
+        <btn data-zone="desktop" title="desktop">
+          <img src="icons/display.svg">
+        </btn>
 
-      <btn data-tab="desktop">
-        <img src="icons/display.svg">
-      </btn>
+        <btn data-zone="mobile" title="mobile">
+          <img src="icons/mobile-screen-button.svg">
+        </btn>
 
-      <btn data-tab="mobile">
-        <img src="icons/mobile-screen-button.svg">
-      </btn>
-
-      <btn data-tab="share">
-        <img src="icons/share-from-square.svg">
-      </btn>
-
-      <btn data-tab="book">
-        <img src="icons/book-open.svg">
-      </btn>
+        <btn data-zone="share" class="na" title="share">
+          <img src="icons/share-from-square.svg">
+        </btn>
+      </div>
 
     </nav>
     <nav id="codeNav">
@@ -42,30 +41,17 @@
         <input type="file" id="webFolderSelector" webkitdirectory multiple hidden />
       </btn>
     </nav>
-    <div id="welcome">
-      <img class="logo-big" src="../main/logo.svg" slot="icon">
-      <div>
-        <h1>
-          p5play editor
-        </h1>
-        <h4>
-          Coming soon!
-        </h4>
-        <p>For now I recommend using <a href="https://openprocessing.org/sketch/1717172">OpenProcessing</a>.</p>
-      </div>
-    </div>
     <pre id="codeEditor"></pre>
+    <div id="mobile">
+      <div id="qr"></div>
+    </div>
   </div>
 
   <div id="slider"></div>
 
-  <div id="scene">
+  <div id="sceneEditor">
     <main></main>
   </div>
-
-  <!-- <div id="book" class="tab">
-    <iframe src="../learn/index.html" frameborder="0"></iframe>
-  </div> -->
 
 </body>
 

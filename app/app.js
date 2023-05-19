@@ -1,8 +1,9 @@
 const log = console.log;
-const { app, ipcMain, dialog, shell, BrowserWindow } = require('electron');
-const { access } = require('node:fs/promises');
+const { app, BrowserWindow, dialog, exec, ipcMain, shell } = require('electron');
+const fs = require('node:fs/promises');
 const path = require('path');
 const os = require('os');
+const mime = require('mime-types');
 
 const express = require('express');
 const xp = express();
@@ -26,7 +27,7 @@ function getIpAddress() {
 }
 
 async function startServer(event, projectFolder) {
-	if (!(await access(projectFolder + '/index.html'))) {
+	if (!(await fs.access(projectFolder + '/index.html'))) {
 		return;
 	}
 
@@ -38,15 +39,12 @@ async function startServer(event, projectFolder) {
 	return true;
 }
 
-function openBrowser(event, url) {
-	shell.openExternal(url);
-}
-
 const createWindow = () => {
 	const mainWindow = new BrowserWindow({
-		// width: 800,
-		width: 1400,
-		height: 600,
+		useContentSize: true,
+		width: 500,
+		height: 132,
+		resizable: true,
 		icon: 'logo.png',
 		webPreferences: {
 			preload: path.join(__dirname, 'bridge.js')
@@ -58,23 +56,81 @@ const createWindow = () => {
 	mainWindow.webContents.openDevTools();
 };
 
+async function readDirRecursive(dir) {
+	let items = await fs.readdir(dir, { withFileTypes: true });
+	let files = [];
+
+	for (let item of items) {
+		if (item.name[0] == '.') continue;
+
+		let fullPath = path.join(dir, item.name);
+
+		if (item.isDirectory()) {
+			if (item.name == 'node_modules') continue;
+			let dirFiles = await readDirRecursive(fullPath);
+			files.push(...dirFiles);
+		} else {
+			let fileType = mime.lookup(fullPath) || 'text/plain';
+			let stats = await fs.stat(fullPath);
+			files.push({
+				name: item.name,
+				path: fullPath.slice(dir.length + 1),
+				isFile: true,
+				type: fileType,
+				size: stats.size,
+				lastModified: stats.mtime.getTime()
+			});
+		}
+	}
+
+	return files;
+}
+
 async function selectFolder(event, title) {
 	const result = await dialog.showOpenDialog({
 		title: title || 'Select a folder',
 		properties: ['openDirectory']
 	});
-	return result.filePaths[0];
+
+	if (result.filePaths.length === 0) {
+		return null; // User did not select a folder
+	}
+
+	let dir = result.filePaths[0];
+	let files = await readDirRecursive(dir);
+	dir = dir.replace(/\\/g, '/');
+
+	return { dir, files };
+}
+
+async function readFile(event, fullPath) {
+	return await fs.readFile(fullPath, 'utf-8');
+}
+
+function resizeWindow(event, width, height) {
+	const fw = BrowserWindow.getFocusedWindow();
+
+	const { w, h } = fw.getSize();
+	if (width < w && height < h) return;
+
+	fw.setContentSize(width, height, true);
+}
+
+function openInBrowser(event, url) {
+	shell.openExternal(url);
 }
 
 app.on('ready', () => {
 	const ipAddress = getIpAddress();
 	const homeDir = os.homedir();
-
 	ipcMain.handle('getIpAddress', () => ipAddress);
 	ipcMain.handle('getHomeDir', () => homeDir);
+
 	ipcMain.handle('selectFolder', selectFolder);
 	ipcMain.handle('startServer', startServer);
-	ipcMain.handle('openBrowser', openBrowser);
+	ipcMain.handle('resizeWindow', resizeWindow);
+	ipcMain.handle('readFile', readFile);
+	ipcMain.handle('openInBrowser', openInBrowser);
 
 	createWindow();
 });

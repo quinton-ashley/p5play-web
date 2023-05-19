@@ -22,6 +22,7 @@ body {
   background: var(--bg);
   margin: 0;
   padding: 0;
+  width: 100%;
   height: 100vh;
   overflow: hidden;
   -webkit-touch-callout: none;
@@ -57,10 +58,10 @@ nav {
 }
 
 btn {
-  height: 24px;
+  height: 32px;
   padding: 6px;
-  padding-left: 12px;
-  padding-right: 12px;
+  padding-left: 18px;
+  padding-right: 18px;
   font-size: 16px;
   font-weight: bold;
   line-height: 1;
@@ -76,17 +77,21 @@ btn {
 }
 
 btn img {
-  width: 24px;
-  height: 24px;
+  width: 32px;
+  height: 32px;
   filter: invert();
 }
 
-#topNav btn {
-  width: 20%;
+#zones {
+  display: none;
+  gap: 10px;
 }
 
 #openProject {
   display: flex;
+  max-width: 100%;
+  width: 100%;
+  justify-content: center;
 }
 
 #sketchSelector {
@@ -99,19 +104,24 @@ btn img {
   gap: 10px;
 }
 
-btn:hover {
+btn:not(.na):hover {
   background-color: var(--light);
   color: #fff;
   scale: 1.05;
 }
 
-btn:active {
+btn:not(.na):active {
   background-color: var(--secondary);
 }
 
-btn.active {
+btn:not(.na).active {
   color: var(--pink);
   background-color: var(--light);
+}
+
+btn.na {
+  cursor: default;
+  filter: brightness(0.6);
 }
 
 #logo {
@@ -132,18 +142,9 @@ btn.active {
   display: block;
 }
 
-#scene {
-  width: 69.75%;
-}
-
-#slider {
-  cursor: col-resize;
-  width: 0.5%;
-  background-color: var(--dark);
-}
-
-#editor {
-  width: 29.75%;
+#main {
+  width: 30%;
+  min-width: 500px;
 }
 
 #codeNav {
@@ -168,10 +169,13 @@ pre {
   margin: 0;
 }
 
-#welcome,
 .ace_editor {
+  display: none;
   height: calc(100vh - 124px);
-  /* border-radius: 5px; */
+}
+
+.ace_editor.active {
+  display: block;
 }
 
 .ace_scroller,
@@ -185,11 +189,6 @@ pre {
 
 .ace_numeric {
   color: var(--pink1) !important;
-}
-
-#scene {
-  display: flex;
-  height: 100vh;
 }
 
 #welcome {
@@ -226,4 +225,17 @@ pre {
   margin: 2em auto;
   background-color: var(--secondary);
   border-radius: 5px;
+}
+
+#slider {
+  cursor: col-resize;
+  width: 5px;
+  background-color: var(--dark);
+}
+
+#sceneEditor {
+  display: none;
+  height: 100vh;
+  min-width: calc(100% - 505px);
+  max-width: 70%;
 }

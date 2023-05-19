@@ -1,21 +1,196 @@
 const log = console.log;
+let desktop = typeof window.ipc !== 'undefined';
 
 const qrDiv = document.getElementById('qr');
+const openProjectLabel = document.getElementById('openProjectLabel');
+const codeNav = document.getElementById('codeNav');
+const codeEditors = document.getElementById('codeEditor');
+const sceneEditor = document.getElementById('sceneEditor');
+let webFolderSelector = document.getElementById('webFolderSelector');
 
-let ipAddress;
-let homeDir;
+let codeNavTabs = [];
 
-let lang;
-let proj;
+let ipAddress, homeDir, lang, proj;
 let serverRunning = false;
 
-let activeTabBtn = {};
-let activeTab = document.getElementById('editor');
-let openProjectLabel = document.getElementById('openProjectLabel');
-let codeNav = document.getElementById('codeNav');
-let codeEditor = document.getElementById('codeEditor');
+let activeZoneBtn = {};
+let activeZone = null;
 
-let desktop = typeof window.ipc !== 'undefined';
+async function openProject() {
+	if (!desktop) return webFolderSelector.click();
+
+	let { dir, files } = await ipc.invoke('selectFolder', lang.openProject);
+	if (!files) return alert(lang.error + ': ' + lang.err0);
+
+	proj = dir;
+	openProjectLabel.innerText = dir.replace(homeDir, '~');
+
+	_openProject(files);
+}
+
+async function _openProject(files) {
+	if (!files.length) {
+		alert('ERROR: There are no files in that folder.');
+		return;
+	}
+	log(files);
+
+	document.getElementById('zones').style.display = 'flex';
+
+	let hasJS = false;
+	for (let i = 0; i < files.length; i++) {
+		let file = files[i];
+		if (!file.type.endsWith('javascript')) continue;
+
+		let path;
+		if (desktop) {
+			path = file.path;
+		} else {
+			path = file.webkitRelativePath;
+			if (!hasJS) openProjectLabel.innerText = path.slice(0, path.indexOf('/'));
+			path = path.slice(path.indexOf('/') + 1);
+		}
+		if (path.startsWith('node_modules')) continue;
+
+		hasJS = true;
+		let tab = document.createElement('tab');
+		tab.dataset.value = i;
+		tab.innerText = path;
+		tab.addEventListener('click', () => {
+			let ed = codeEditors.querySelector('#editor' + i);
+			if (ed) {
+				if (!ed.classList.contains('active')) {
+					ed.select();
+				} else {
+					ed.classList.remove('active');
+					tab.classList.remove('active');
+					resetMain();
+				}
+				return;
+			}
+			loadCodeEditor(files[i], i);
+		});
+		codeNav.appendChild(tab);
+	}
+
+	if (!hasJS) {
+		alert('ERROR: There are no JavaScript files in that folder.');
+		return;
+	}
+
+	codeNavTabs = document.querySelectorAll('#codeNav > tab');
+
+	if (!desktop) loadCodeEditor(files[0], 0);
+}
+
+function resetMain() {
+	ipc.invoke('resizeWindow', 500, 132);
+}
+
+function expandMain() {
+	ipc.invoke('resizeWindow', 500, 600);
+}
+
+/* MOBILE */
+
+async function startServer() {
+	if (serverRunning) return;
+
+	let res = await ipc.invoke('startServer', proj);
+	if (!res) return alert(lang.error + ': ' + lang.err1);
+	serverRunning = true;
+
+	if (document.body.offsetHeight < 200) expandMain();
+
+	qrDiv.innerHTML = '';
+	let qr0 = document.createElement('qr-code');
+	qr0.id = 'qr0';
+	qr0.innerHTML = `<img src="../main/logo.svg" slot="icon">`;
+	qr0.contents = 'p5play://' + ipAddress + ':7529';
+	qr0.moduleColor = '#ed225d';
+	qr0.positionRingColor = '#ed225d';
+	qr0.positionCenterColor = '#c0eeff';
+	qr0.maskXToYRatio = '1';
+	qr0.addEventListener('codeRendered', () => {
+		qr0.animateQRCode((targets, _x, _y, _count, entity) => ({
+			targets,
+			from: entity === 'module' ? Math.random() * 200 : 200,
+			duration: 500,
+			easing: 'cubic-bezier(1,1,0,.5)',
+			web: {
+				opacity: [0, 1],
+				scale: [0.3, 1.13, 0.93, 1]
+			}
+		}));
+	});
+	qrDiv.append(qr0);
+}
+
+async function buildIOS() {}
+
+/* CODE EDITOR */
+
+async function loadCodeEditor(file, idx) {
+	let code;
+	if (desktop) {
+		code = await ipc.invoke('readFile', proj + '/' + file.path);
+	} else {
+		code = await file.text();
+	}
+
+	if (!code) {
+		alert('ERROR: There was an error reading the file.');
+		return;
+	}
+
+	log(code);
+
+	let ed = document.createElement('div');
+	ed.id = 'editor' + idx;
+	ed.innerHTML = code;
+	codeEditors.append(ed);
+
+	const editor = ace.edit('editor' + idx);
+	editor.setOptions({
+		mode: 'ace/mode/javascript',
+		fontSize: '14px',
+		showFoldWidgets: false,
+		showGutter: false,
+		tabSize: 2,
+		wrap: true
+	});
+	editor.setTheme('ace/theme/dracula');
+
+	ed.select = () => {
+		for (let tab of codeNavTabs) tab.classList.remove('active');
+		for (let ed of codeEditors.children) ed.classList.remove('active');
+		ed.classList.add('active');
+		codeNavTabs[idx].classList.add('active');
+		if (desktop && document.body.offsetHeight < 200) expandMain();
+	};
+	ed.select();
+}
+
+/* SCENE EDITOR */
+
+// function setup() {
+// 	new Canvas(sceneEditor.offsetWidth, sceneEditor.offsetHeight);
+// 	noStroke();
+
+// 	// tray that will hold the user's sprites and group sprites
+// 	fill('#303030');
+// 	rect(0, height - 160, width, 5);
+
+// 	fill('#131516');
+// 	for (let i = 0; i < 12; i++) {
+// 		let x = 10 + i * 156;
+// 		let y = height - 148;
+
+// 		rect(x, y, 140, 140, 5);
+// 	}
+// }
+
+/* UTILS */
 
 function loadScript(src) {
 	return new Promise(function (resolve) {
@@ -51,6 +226,19 @@ async function start() {
 	if (desktop) {
 		ipAddress = await ipc.invoke('getIpAddress');
 		homeDir = await ipc.invoke('getHomeDir');
+		resetMain();
+
+		const externalLinks = document.getElementsByClassName('externalLink');
+
+		for (const link of externalLinks) {
+			link.addEventListener('click', function (event) {
+				event.preventDefault();
+				const href = this.getAttribute('href');
+				ipc.invoke('openInBrowser', href);
+			});
+		}
+	} else {
+		webFolderSelector.addEventListener('change', () => _openProject(webFolderSelector.files));
 	}
 
 	lang = await (await fetch('../lang/en/editor.json')).json();
@@ -61,137 +249,3 @@ async function start() {
 	lang = lang.msgs;
 }
 start();
-
-async function openProject() {
-	if (!desktop) {
-		webFolderSelector.click();
-		return;
-	}
-
-	let dir = await ipc.invoke('selectFolder', lang.openProject);
-	if (!dir) return alert(lang.error + ': ' + lang.err0);
-	proj = dir;
-
-	let selector = document.getElementById('openProject');
-	selector.innerText = proj.replace(homeDir, '~');
-
-	document.getElementById('#options').style.display = 'flex';
-}
-
-async function startServer() {
-	if (!desktop) return;
-
-	if (serverRunning) {
-		ipc.invoke('openBrowser', 'http://127.0.0.1:7529');
-		return;
-	}
-
-	let res = await ipc.invoke('startServer', proj);
-	if (!res) return alert(lang.error + ': ' + lang.err1);
-	serverRunning = true;
-
-	qrDiv.innerHTML = '';
-	let qr0 = document.createElement('qr-code');
-	qr0.id = 'qr0';
-	qr0.innerHTML = `<img src="../main/logo.svg" slot="icon">`;
-	qr0.contents = 'p5play://' + ipAddress + ':7529';
-	qr0.moduleColor = '#ed225d';
-	qr0.positionRingColor = '#ed225d';
-	qr0.positionCenterColor = '#c0eeff';
-	qr0.maskXToYRatio = '1';
-	qr0.addEventListener('codeRendered', () => {
-		qr0.animateQRCode((targets, _x, _y, _count, entity) => ({
-			targets,
-			from: entity === 'module' ? Math.random() * 200 : 200,
-			duration: 500,
-			easing: 'cubic-bezier(1,1,0,.5)',
-			web: {
-				opacity: [0, 1],
-				scale: [0.3, 1.13, 0.93, 1]
-			}
-		}));
-	});
-	qrDiv.append(qr0);
-}
-
-async function buildIOS() {}
-
-/* WEB */
-
-let webFolderSelector = document.getElementById('webFolderSelector');
-webFolderSelector.addEventListener('change', webOpenProject);
-
-async function loadSketch(file) {
-	let code = await file.text();
-	log(code);
-
-	let idNum = codeEditor.children.length;
-
-	let ed = document.createElement('div');
-	ed.id = 'editor' + idNum;
-	ed.innerHTML = code;
-	codeEditor.append(ed);
-
-	let editor = ace.edit('editor' + idNum);
-	editor.setOptions({
-		mode: 'ace/mode/javascript',
-		fontSize: '14px',
-		showFoldWidgets: false,
-		showGutter: false,
-		tabSize: 2
-	});
-	editor.setTheme('ace/theme/dracula');
-}
-
-async function webOpenProject() {
-	if (!this.files.length) {
-		alert('ERROR: There are no files in that folder.');
-		return;
-	}
-
-	// put folder name in openProject button
-	openProjectLabel.innerHTML = this.files[0].webkitRelativePath.split('/')[0];
-
-	// document.getElementById('openProject').style.display = 'none';
-	// document.getElementById('navBtns').style.display = 'flex';
-
-	log(this.files);
-
-	for (let i = 0; i < this.files.length; i++) {
-		let file = this.files[i];
-
-		let path = file.webkitRelativePath;
-		path = path.slice(path.indexOf('/') + 1);
-
-		if (path.startsWith('node_modules')) continue;
-
-		if (file.type == 'text/javascript') {
-			codeNav.innerHTML += `<tab data-value="${i}">${path}</tab>`;
-		}
-	}
-
-	document.getElementById('welcome').remove();
-
-	let tabs = document.querySelectorAll('#codeNav tab');
-	tabs[0].className = 'active';
-
-	let file = this.files[tabs[0].dataset.value];
-	loadSketch(file);
-}
-
-function setup() {
-	let scene = document.getElementById('scene');
-	new Canvas(scene.offsetWidth, scene.offsetHeight);
-
-	// tray that will hold the user's sprites and group sprites
-	fill('#303030');
-	rect(0, height - 168, width, 8);
-
-	fill('#131516');
-	for (let i = 0; i < 12; i++) {
-		let x = 10 + i * 156;
-		let y = height - 148;
-
-		rect(x, y, 140, 140, 5);
-	}
-}
