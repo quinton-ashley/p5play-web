@@ -58,6 +58,9 @@ nav {
 }
 
 btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 32px;
   padding: 6px;
   padding-left: 18px;
@@ -76,15 +79,52 @@ btn {
   border-radius: 5px;
 }
 
-btn img {
-  width: 32px;
-  height: 32px;
-  filter: invert();
-}
-
-#zones {
+#zoneBtns {
   display: none;
   gap: 10px;
+}
+
+icon {
+  display: block;
+  background-color: #eee;
+  width: 32px;
+  height: 32px;
+}
+
+.android {
+  -webkit-mask: url('icons/android.svg') no-repeat;
+}
+
+.app-store-ios {
+  -webkit-mask: url('icons/app-store-ios.svg') no-repeat;
+}
+
+.apple {
+  -webkit-mask: url('icons/apple.svg') no-repeat;
+}
+
+.book-open {
+  -webkit-mask: url('icons/book-open.svg') no-repeat;
+}
+
+.display {
+  -webkit-mask: url('icons/display.svg') no-repeat;
+}
+
+.hammer {
+  -webkit-mask: url('icons/hammer.svg') no-repeat;
+}
+
+.folder-open {
+  -webkit-mask: url('icons/folder-open.svg') no-repeat;
+}
+
+.mobile-screen-button {
+  -webkit-mask: url('icons/mobile-screen-button.svg') no-repeat center;
+}
+
+.share-from-square {
+  -webkit-mask: url('icons/share-from-square.svg') no-repeat;
 }
 
 #openProject {
@@ -122,6 +162,14 @@ btn:not(.na).active {
 btn.na {
   cursor: default;
   filter: brightness(0.6);
+}
+
+.zone {
+  display: none;
+}
+
+.zone.active {
+  display: block;
 }
 
 #logo {
@@ -169,13 +217,21 @@ pre {
   margin: 0;
 }
 
-.ace_editor {
-  display: none;
+#main .zone.active,
+.ace_editor.active {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
   height: calc(100vh - 124px);
 }
 
 .ace_editor.active {
   display: block;
+}
+
+.ace_editor {
+  display: none;
 }
 
 .ace_scroller,

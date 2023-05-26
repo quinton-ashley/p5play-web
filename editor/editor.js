@@ -1,20 +1,31 @@
 const log = console.log;
 let desktop = typeof window.ipc !== 'undefined';
 
-const qrDiv = document.getElementById('qr');
-const openProjectLabel = document.getElementById('openProjectLabel');
-const codeNav = document.getElementById('codeNav');
-const codeEditors = document.getElementById('codeEditor');
-const sceneEditor = document.getElementById('sceneEditor');
-let webFolderSelector = document.getElementById('webFolderSelector');
+let ids = [
+	'codeZone',
+	'sceneZone',
+	'mobileZone',
+	'shareZone',
+
+	'sceneZoneBtn',
+	'fullscreenBtn',
+	'mobileZoneBtn',
+	'shareZoneBtn',
+
+	'codeNav',
+	'openProjectLabel',
+	'qrDiv',
+	'webFolderSelector'
+];
+
+for (let id of ids) {
+	window[id] = document.getElementById(id);
+}
 
 let codeNavTabs = [];
 
-let ipAddress, homeDir, lang, proj;
+let ipAddress, homeDir, lang, proj, activeZone, activeZoneBtn;
 let serverRunning = false;
-
-let activeZoneBtn = {};
-let activeZone = null;
 
 async function openProject() {
 	if (!desktop) return webFolderSelector.click();
@@ -35,7 +46,7 @@ async function _openProject(files) {
 	}
 	log(files);
 
-	document.getElementById('zones').style.display = 'flex';
+	document.getElementById('zoneBtns').style.display = 'flex';
 
 	let hasJS = false;
 	for (let i = 0; i < files.length; i++) {
@@ -57,7 +68,7 @@ async function _openProject(files) {
 		tab.dataset.value = i;
 		tab.innerText = path;
 		tab.addEventListener('click', () => {
-			let ed = codeEditors.querySelector('#editor' + i);
+			let ed = codeZone.querySelector('#editor' + i);
 			if (ed) {
 				if (!ed.classList.contains('active')) {
 					ed.select();
@@ -68,6 +79,7 @@ async function _openProject(files) {
 				}
 				return;
 			}
+			activateZone('codeZone');
 			loadCodeEditor(files[i], i);
 		});
 		codeNav.appendChild(tab);
@@ -94,8 +106,6 @@ function expandMain() {
 /* MOBILE */
 
 async function startServer() {
-	if (serverRunning) return;
-
 	let res = await ipc.invoke('startServer', proj);
 	if (!res) return alert(lang.error + ': ' + lang.err1);
 	serverRunning = true;
@@ -148,7 +158,7 @@ async function loadCodeEditor(file, idx) {
 	let ed = document.createElement('div');
 	ed.id = 'editor' + idx;
 	ed.innerHTML = code;
-	codeEditors.append(ed);
+	codeZone.append(ed);
 
 	const editor = ace.edit('editor' + idx);
 	editor.setOptions({
@@ -162,8 +172,7 @@ async function loadCodeEditor(file, idx) {
 	editor.setTheme('ace/theme/dracula');
 
 	ed.select = () => {
-		for (let tab of codeNavTabs) tab.classList.remove('active');
-		for (let ed of codeEditors.children) ed.classList.remove('active');
+		activateZone('codeZone');
 		ed.classList.add('active');
 		codeNavTabs[idx].classList.add('active');
 		if (desktop && document.body.offsetHeight < 200) expandMain();
@@ -174,7 +183,7 @@ async function loadCodeEditor(file, idx) {
 /* SCENE EDITOR */
 
 // function setup() {
-// 	new Canvas(sceneEditor.offsetWidth, sceneEditor.offsetHeight);
+// 	new Canvas(sceneZone.offsetWidth, sceneZone.offsetHeight);
 // 	noStroke();
 
 // 	// tray that will hold the user's sprites and group sprites
@@ -249,3 +258,30 @@ async function start() {
 	lang = lang.msgs;
 }
 start();
+
+const zones = document.getElementsByClassName('zone');
+
+function activateZone(zone) {
+	for (let tab of codeNavTabs) tab.classList.remove('active');
+	for (let ed of codeZone.children) ed.classList.remove('active');
+	activeZone?.classList.remove('active');
+	activeZoneBtn?.classList.remove('active');
+	activeZone = window[zone];
+	activeZoneBtn = window[zone + 'Btn'];
+	window[zone + 'Btn']?.classList.add('active');
+	window[zone].classList.add('active');
+}
+
+fullscreenBtn.addEventListener('click', () => {
+	if (!serverRunning) startServer();
+	ipc.invoke('openInBrowser', 'http://localhost:7529');
+});
+
+mobileZoneBtn.addEventListener('click', () => {
+	activateZone('mobileZone');
+	if (!serverRunning) startServer();
+});
+
+shareZoneBtn.addEventListener('click', () => {
+	activateZone('shareZone');
+});

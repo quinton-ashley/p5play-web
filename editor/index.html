@@ -15,41 +15,47 @@
       <a href="https://p5play.org" class="externalLink">
         <img id="logo" src="../main/logo.svg" slot="icon">
       </a>
-      <div id="zones">
-        <btn data-zone="sceneEditor" class="na" title="level editor coming soon!">
-          <img src="icons/hammer.svg">
+      <div id="zoneBtns">
+        <btn id="sceneZoneBtn" class="na" title="level editor coming soon!">
+          <icon class="hammer"></icon>
         </btn>
 
-        <btn data-zone="desktop" title="desktop">
-          <img src="icons/display.svg">
+        <btn id="fullscreenBtn" title="fullscreen">
+          <icon class="display"></icon>
         </btn>
 
-        <btn data-zone="mobile" title="mobile">
-          <img src="icons/mobile-screen-button.svg">
+        <btn id="mobileZoneBtn" title="mobile">
+          <icon class="mobile-screen-button"></icon>
         </btn>
 
-        <btn data-zone="share" class="na" title="share">
-          <img src="icons/share-from-square.svg">
+        <btn id="shareZoneBtn" title="share">
+          <icon class="share-from-square"></icon>
         </btn>
       </div>
 
     </nav>
     <nav id="codeNav">
       <btn id="openProject" class="btn-container" onclick="openProject();">
-        <img src="icons/folder-open.svg">
+        <icon class="folder-open"></icon>
         <div id="openProjectLabel"></div>
         <input type="file" id="webFolderSelector" webkitdirectory multiple hidden />
       </btn>
     </nav>
-    <pre id="codeEditor"></pre>
-    <div id="mobile">
-      <div id="qr"></div>
+
+    <pre id="codeZone" class="zone"></pre>
+
+    <div id="mobileZone" class="zone">
+      <div id="qrDiv"></div>
+    </div>
+
+    <div id="shareZone" class="zone">
+      coming soon!
     </div>
   </div>
 
   <div id="slider"></div>
 
-  <div id="sceneEditor">
+  <div id="sceneZone">
     <main></main>
   </div>
 

@@ -7,6 +7,7 @@ const mime = require('mime-types');
 
 const express = require('express');
 const xp = express();
+let server;
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) {
@@ -26,17 +27,17 @@ function getIpAddress() {
 	return ipAddress;
 }
 
-async function startServer(event, projectFolder) {
-	if (!(await fs.access(projectFolder + '/index.html'))) {
-		return;
-	}
+function startServer(event, projectFolder) {
+	return new Promise((resolve, reject) => {
+		if (server) resolve(true);
 
-	xp.use(express.static(projectFolder));
+		xp.use(express.static(projectFolder));
 
-	xp.listen(7529, () => {
-		console.log('Server started on port 7529');
+		server = xp.listen(7529, () => {
+			console.log('Server started on port 7529');
+			resolve(true);
+		});
 	});
-	return true;
 }
 
 const createWindow = () => {
@@ -137,4 +138,8 @@ app.on('ready', () => {
 
 app.on('window-all-closed', () => {
 	app.quit();
+});
+
+app.on('before-quit', () => {
+	if (server) server.close();
 });
