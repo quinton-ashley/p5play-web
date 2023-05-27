@@ -29,6 +29,10 @@ let args = {};
 	}
 }
 
+let pages = document.getElementsByClassName('page');
+let pageNav = document.getElementById('pageNav');
+let currentPage = 0;
+
 async function start() {
 	function loadScript(src) {
 		return new Promise(function (resolve) {
@@ -60,20 +64,7 @@ async function start() {
 		]);
 	}
 
-	let tags = document.getElementsByTagName('script');
-
-	for (let tag of tags) {
-		if (tag.type != 'text/md') continue;
-		let md = document.createElement('md');
-		md.innerHTML = marked.parse(tag.innerHTML || 'error');
-		tag.after(md);
-	}
-
-	mie.ready = function () {
-		let pages = document.getElementsByClassName('page');
-		let pageNav = document.getElementById('pageNav');
-		let currentPage = 0;
-
+	if (pageNav) {
 		let previousPage = document.getElementById('prevPage');
 		previousPage.onclick = function () {
 			if (currentPage - 1 > -1) {
@@ -94,40 +85,51 @@ async function start() {
 			}
 		};
 
-		function loadPage(pageNum) {
-			pageNum = pageNum ?? args.page ?? 0;
-
-			for (let i = 0; i < pages.length; i++) {
-				let el = pageNav.children[i];
-				if (el.dataset.page == pageNum) {
-					el.className = 'active';
-				} else {
-					el.className = '';
-				}
-			}
-			for (let mini of mie) {
-				mini.remove();
-			}
-			for (let page of pages) {
-				page.style.display = 'none';
-			}
-			let page = document.getElementById('page-' + pageNum);
-			page.style.display = 'flex';
-			mie.loadMinis(page);
-			setEditorThemes();
-			document.body.scrollTop = 0; // for Safari
-			document.documentElement.scrollTop = 0; // Chrome, Firefox, and Opera
-			currentPage = parseInt(pageNum);
-
-			document.getElementById('toc').style.display = 'flex';
-		}
-
+		mie.load();
 		loadPage();
-	};
+	}
 
-	mie.load();
+	let file = location.pathname;
+	file = file.slice(file.lastIndexOf('/') + 1, -5);
+	let trans = await (await fetch(`../en/learn/${file}.md`)).text();
+	trans = trans.split('\n# ');
+	trans[0] = trans[0].slice(2);
+
+	for (let tran of trans) {
+		let splitIdx = tran.indexOf('\n');
+		let md = document.getElementById('md' + tran.slice(0, splitIdx));
+		if (md) md.innerHTML = marked.parse(tran.slice(splitIdx + 1));
+	}
 }
 start();
+
+function loadPage(pageNum) {
+	pageNum = pageNum ?? args.page ?? 0;
+
+	for (let i = 0; i < pages.length; i++) {
+		let el = pageNav.children[i];
+		if (el.dataset.page == pageNum) {
+			el.className = 'active';
+		} else {
+			el.className = '';
+		}
+	}
+	for (let mini of mie) {
+		mini.remove();
+	}
+	for (let page of pages) {
+		page.style.display = 'none';
+	}
+	let page = document.getElementById('page-' + pageNum);
+	page.style.display = 'flex';
+	mie.loadMinis(page);
+	setEditorThemes();
+	document.body.scrollTop = 0; // for Safari
+	document.documentElement.scrollTop = 0; // Chrome, Firefox, and Opera
+	currentPage = parseInt(pageNum);
+
+	document.getElementById('toc').style.display = 'flex';
+}
 
 function setEditorThemes() {
 	if (document.body.className == 'dark') {
