@@ -10,5 +10,60 @@
 			"err0": "No folder selected",
 			"err1": "No index.html file found in your project folder"
 		}
+	},
+	"learn": {
+		"DOM": {
+			"prevPage": "Página anterior",
+			"nextPage": "Siguiente página",
+			"credits": "Creado por Quinton Ashley (@quinton-ashley) derechos de autor 2022-2023"
+		},
+		"camera": ["Uso Básico", "Encendido/Apagado", "Eventos del Ratón con la Cámara"],
+		"canvas": ["Constructor de Lienzo", "Modo Pixelado"],
+		"group": [
+			"Heredencia Suave y Dinámica",
+			"Establecedores de Flecha",
+			"Superposiciones",
+			"todos los Sprites",
+			"Establecedores de Flecha Indexados",
+			"Subgrupos",
+			"Recorte",
+			"Propiedades Personalizadas"
+		],
+		"input_devices": [
+			"Detección de Entrada",
+			"Teclado",
+			"Varios Esquemas de Control",
+			"Ratón",
+			"Controladores de Juego",
+			"Táctil"
+		],
+		"sprite": [
+			"Propiedades Básicas",
+			"Física",
+			"Movimiento",
+			"Sprites con Imágenes",
+			"Constructor de Sprite",
+			"Colisiones",
+			"Superposiciones",
+			"Rotación",
+			"Secuenciación de Movimiento",
+			"Atributos Físicos",
+			"Cadenas",
+			"Polígonos",
+			"Dibujo Personalizado",
+			"Escalado",
+			"Combos de Colisionadores"
+		],
+		"sprite_animation": [
+			"Cargando Animaciones",
+			"Controles de Animación",
+			"Sprites con Animaciones",
+			"Grupos con Animaciones",
+			"Hojas de Sprite con Múltiples Animaciones",
+			"Secuenciación",
+			"Secuenciación Avanzada"
+		],
+		"tiles": ["Constructor de Azulejos", "Uso de tamaño de Azulejo"],
+		"world": ["Durmiendo", "Controlando el Tiempo"]
 	}
 }

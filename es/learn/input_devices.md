@@ -53,3 +53,9 @@ También proporciona las posiciones del eje `x` y `y` de los sticks analógicos:
 El objeto `contro` también es un array que contiene todos los controladores de juegos conectados detectados por tu navegador web. Accede a los controladores conectados por índice. Por ejemplo, `contro[0]` y `contro[1]` son los primeros y segundos controladores. Por defecto `contro` hace referencia a `contro[0]`.
 
 ¡Pruébalo! Presiona cualquier botón en tu controlador de juegos conectado para que sea detectado por p5play.
+
+# 5-0
+
+## Tocar
+
+Ejemplo próximamente!

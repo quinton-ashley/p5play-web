@@ -10,5 +10,53 @@
 			"err0": "No folder selected",
 			"err1": "No index.html file found in your project folder"
 		}
+	},
+	"learn": {
+		"DOM": {
+			"prevPage": "Previous Page",
+			"nextPage": "Next Page",
+			"credits": "Created by Quinton Ashley (@quinton-ashley) Copyright 2022-2023"
+		},
+		"camera": ["Basic Usage", "On/Off", "Mouse Events with the Camera"],
+		"canvas": ["Canvas constructor", "Pixelated Mode"],
+		"group": [
+			"Soft and Dynamic Inheritance",
+			"Arrow Setters",
+			"Overlaps",
+			"allSprites",
+			"Indexed Arrow Setters",
+			"Subgroups",
+			"Culling",
+			"Custom Properties"
+		],
+		"input_devices": ["Detecting Input", "Keyboard", "Multiple Control Schemes", "Mouse", "Game Controllers", "Touch"],
+		"sprite": [
+			"Basic Properties",
+			"Physics",
+			"Movement",
+			"Sprites with Images",
+			"Sprite Constructor",
+			"Collisions",
+			"Overlaps",
+			"Rotation",
+			"Movement Sequencing",
+			"Physical Attributes",
+			"Chains",
+			"Polygons",
+			"Custom Draw",
+			"Scaling",
+			"Combo Colliders"
+		],
+		"sprite_animation": [
+			"Loading Animations",
+			"Animation Controls",
+			"Sprites with Animations",
+			"Groups with Animations",
+			"Sprite Sheets with Multiple Animations",
+			"Sequencing",
+			"Advanced Sequencing"
+		],
+		"tiles": ["Tiles constructor", "Using tileSize"],
+		"world": ["Sleeping", "Controlling Time"]
 	}
 }

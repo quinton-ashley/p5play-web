@@ -20,7 +20,7 @@ Nota que los espacios " " o puntos "." se utilizan para indicar que no se deben 
 
 # 1-0
 
-## Coordenadas de azulejos
+## Coordenadas de Azulejos
 
 Puedes cambiar el valor en píxeles de los valores de coordenadas para todos los sprites configurando `allSprites.tileSize`. Por ejemplo, si el tamaño del azulejo es 8, entonces una posición x/y de 1 representa 8 píxeles, 2 representa 16 píxeles, 3 representa 24 píxeles, etc. Nota que esta configuración también afecta a cómo se especifican las coordenadas de animación.
 
