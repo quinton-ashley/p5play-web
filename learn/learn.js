@@ -26,7 +26,7 @@ async function translatePage(langCode, pageGroup, page) {
 	}
 
 	async function loadTranslationMD() {
-		let file = '../' + langCode;
+		let file = '../lang/' + langCode;
 		if (pageGroup) file += '/' + pageGroup;
 		file += '/' + page + '.md';
 
@@ -42,7 +42,7 @@ async function translatePage(langCode, pageGroup, page) {
 	}
 
 	async function loadTranslationJSON() {
-		let file = `../${langCode}/${langCode}.json`;
+		let file = `../lang/${langCode}/${langCode}.json`;
 		let lang = await (await fetch(file)).json();
 		lang = lang[pageGroup];
 
@@ -51,7 +51,7 @@ async function translatePage(langCode, pageGroup, page) {
 			if (el) el.innerHTML = lang.DOM[label];
 		}
 
-		if (pageGroup == 'learn') {
+		if (pageGroup == 'learn' && page != 'index') {
 			lang = lang[page];
 			for (let pageBtn of pageNav.children) {
 				pageBtn.innerHTML = lang[pageBtn.dataset.page];
