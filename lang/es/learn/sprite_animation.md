@@ -38,7 +38,7 @@ p5play te da control total sobre tus animaciones.
 
 ## Sprites con Animaciones
 
-La función `sprite.addAni` funciona igual que `loadAni`, excepto que también añade la animación al sprite. También puedes utilizarla para añadir una animación previamente cargada a un sprite. Por defecto, la última animación añadida al sprite será la animación que muestre el sprite.
+La función sprite.addAni puede agregar una animación a un sprite. También puede cargar la animación, al igual que loadAni. Como un primer parámetro de entrada opcional, puedes proporcionar un nombre para la animación.
 
 Intenta presionar el botón izquierdo del ratón. Cuando la propiedad `sprite.debug` está configurada como verdadera, puedes ver el colisionador del cuerpo físico del sprite.
 

@@ -38,7 +38,7 @@ Try using your keyboard to test out some of the different ways to control animat
 
 ## Sprites with Animations
 
-The `sprite.addAni` function works just like `loadAni`, except it also adds the animation to the sprite. You can also use it to add a previously loaded animation to a sprite. By default the last animation added to the sprite will be the animation the sprite displays.
+The `sprite.addAni` function can add an animation to a sprite. It can also load the animation, just like `loadAni`. As an optional first input parameter, you can provide a name for the animation.
 
 Try pressing the left mouse button. When the
 `sprite.debug` property is set to true you can

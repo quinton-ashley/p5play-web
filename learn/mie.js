@@ -51,7 +51,10 @@ mie.load = () => {
 			logo.className = 'mie-logo';
 			title.append(logo);
 			let span = document.createElement('span');
-			span.innerHTML += props.name || props.title || 'sketch';
+			let name;
+			if (props.id) name = props.id.replace(/-/g, ' ');
+			else name = props.name || props.title || 'sketch';
+			span.innerHTML += name;
 			title.append(span);
 			mini.append(title);
 

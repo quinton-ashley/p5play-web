@@ -4,7 +4,7 @@
 
 Looking to turn your ideas into online games or interactive art? Check out p5play! It was designed by Computer Science teachers to be intuitive for beginners, making it popular at schools and universities around the world. But, p5play v3 isn't just for classroom use. It's a powerful tool built on [planck.js](https://piqnt.com/planck.js/), a port of Box2D - the same physics simulator used by industry leaders in beloved games like Tiny Wings and Angry Birds.
 
-Get started by reading the ["Learn" reference pages](learn)!
+Get started by reading the ["Learn" reference pages!](learn)
 
 # 1
 

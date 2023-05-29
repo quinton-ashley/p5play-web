@@ -1,31 +1,38 @@
+const log = console.log;
 const fs = require('fs/promises');
 const path = require('path');
+const prettier = require('prettier');
+const { JSDOM } = require('jsdom');
+const marked = require('../learn/marked/marked.min.js');
 
 const langCode = process.argv[2];
 
-const getPagesInDirectory = (dir) => {
-	return fs.readdirSync(dir).filter((file) => path.extname(file) === '.html');
-};
-
 async function main() {
 	if (!langCode) {
-		console.error('Please provide a language code (ISO 639-1) as an argument.');
+		console.error('Please provide a two letter language code (ISO 639-1), for example: node main/build.js es');
 		process.exit(1);
 	}
 
-	// Translate the index.html page
 	await translatePage('index');
 
-	// Get the list of pages in the "learn" directory
-	const learnPages = getPagesInDirectory('../learn');
-
-	// Translate each page in the "learn" directory
-	for (const page of learnPages) {
+	const pages = await getPagesInDirectory('learn');
+	for (const page of pages) {
 		await translatePage('learn', page);
 	}
+	log('Done!');
 }
 
-main();
+async function getPagesInDirectory(dir) {
+	let files = await fs.readdir('./' + dir);
+	const fileNames = [];
+	for (const file of files) {
+		if (file.endsWith('.html')) {
+			// removes the '.html' extension
+			fileNames.push(file.slice(0, -5));
+		}
+	}
+	return fileNames;
+}
 
 async function translatePage(pageGroup, page) {
 	if (!page) {
@@ -42,8 +49,11 @@ async function translatePage(pageGroup, page) {
 
 	let html = await fs.readFile(htmlFilePath, 'utf8');
 
+	let dom = new JSDOM(html);
+	let document = dom.window.document;
+
 	async function loadTranslationMD() {
-		let file = `../${langCode}`;
+		let file = `./lang/${langCode}`;
 		if (pageGroup) file += `/${pageGroup}`;
 		file += `/${page}.md`;
 
@@ -53,33 +63,65 @@ async function translatePage(pageGroup, page) {
 
 		for (let tran of trans) {
 			let splitIdx = tran.indexOf('\n');
-			let mdID = 'md' + tran.slice(0, splitIdx);
-			let regex = new RegExp(`(<[^>]* id="${mdID}">).*?(<\\/[^>]*>)`, 's');
-			html = html.replace(regex, `$1${marked(tran.slice(splitIdx + 1))}$2`);
+			let id = tran.slice(0, splitIdx);
+			if (!isNaN(id[0])) id = 'md' + id;
+			let md = document.getElementById(id);
+			if (md) md.innerHTML = marked.parse(tran.slice(splitIdx + 1));
 		}
 	}
 
 	async function loadTranslationJSON() {
-		let file = `../${langCode}/${langCode}.json`;
+		let file = `./lang/${langCode}/${langCode}.json`;
 		let lang = JSON.parse(await fs.readFile(file, 'utf8'));
-		lang = lang[pageGroup];
+		lang = lang[pageGroup || page];
+
+		if (!lang) return;
 
 		for (let label in lang.DOM) {
-			let regex = new RegExp(`(<[^>]* id="${label}">).*?(<\\/[^>]*>)`, 's');
-			html = html.replace(regex, `$1${lang.DOM[label]}$2`);
+			let el = document.getElementById(label);
+			if (el) el.innerHTML = lang.DOM[label];
 		}
 
-		if (pageGroup == 'learn') {
+		if (pageGroup == 'learn' && page != 'index') {
+			const pageNav = document.getElementById('pageNav');
 			lang = lang[page];
-			for (let pageBtn in lang) {
-				let regex = new RegExp(`(<[^>]* data-page="${pageBtn}">).*?(<\\/[^>]*>)`, 's');
-				html = html.replace(regex, `$1${lang[pageBtn]}$2`);
+			for (let pageBtn of pageNav.children) {
+				pageBtn.innerHTML = lang[pageBtn.dataset.page];
 			}
 		}
 	}
 
 	await Promise.all([loadTranslationMD(), loadTranslationJSON()]);
 
-	// After changes, we can write the new HTML content back to the file
+	htmlFilePath = `./lang/${langCode}` + htmlFilePath.slice(1);
+
+	// Extract scripts
+	let scripts = Array.from(document.querySelectorAll('script[type="mie/p5"]'));
+	let scriptTexts = [];
+
+	for (let i = 0; i < scripts.length; i++) {
+		scriptTexts[i] = scripts[i].textContent;
+		scripts[i].textContent = '';
+	}
+
+	// Format HTML without scripts
+	html = prettier.format(dom.serialize(), {
+		parser: 'html'
+	});
+
+	// Re-insert scripts
+	dom = new JSDOM(html);
+	document = dom.window.document;
+	scripts = Array.from(document.querySelectorAll('script[type="mie/p5"]'));
+
+	for (let i = 0; i < scripts.length; i++) {
+		scripts[i].textContent = scriptTexts[i];
+	}
+
+	html = dom.serialize();
+
 	await fs.writeFile(htmlFilePath, html);
+	log(path.resolve(htmlFilePath));
 }
+
+main();
