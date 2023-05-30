@@ -22,8 +22,8 @@ También puedes pasar una proporción de aspecto al constructor de Canvas. Esto 
 
 ## modo pixelado
 
-Otra característica añadida es el preset "pixelado". ¡Úsalo para juegos de estilo 8-bit o 16-bit!
+Otra característica añadida es el preset "pixelado". ¡Úsalo para crear juegos retro al estilo de 8-bit o 16-bit!
 
-`new Canvas(256, 240, 'pixelado')`
+Por defecto, el preset "pixelado" escala el canvas para que se ajuste a la pantalla mientras mantiene su proporción de aspecto, pero también puedes definir una escala personalizada pasando un número después del nombre del preset.
 
-Por defecto, el preset "pixelado" escala el canvas para que se ajuste a la pantalla mientras mantiene su proporción de aspecto, pero también puedes definir una escala personalizada pasando un número después del nombre del preset. Por ejemplo, "pixelado x2" creará un canvas que se mostrará al doble del tamaño del ancho y la altura especificados.
+Por ejemplo, "pixelado x2" creará un canvas que se mostrará al doble del tamaño del ancho y la altura especificados.

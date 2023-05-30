@@ -18,7 +18,7 @@ You can wake up a sleeping sprite by setting `sprite.sleeping` to false. You can
 
 # 1-0
 
-## Time Manipulation
+## Controlling Time
 
 By default, after each time the p5.js draw function is run, p5play calls three functions in this order:
 

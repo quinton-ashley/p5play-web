@@ -84,7 +84,7 @@ Haz clic en este enlace para ver la [hoja de sprites completa](assets/questKid.p
 
 Si realmente quieres apreciar lo bueno que es p5play, intenta comparar el código de mi ejemplo con [esta demo de Phaser](https://phaser.io/examples/v3/view/animation/create-animation-from-sprite-sheet). ¡Ja!
 
-Recomiendo hacer que cada frame en una animación tenga el mismo tamaño y ponerlos en orden de izquierda a derecha. Si no, tendrás que especificar manualmente la posición de cada frame, lo cual se puede hacer utilizando una matriz de coordenadas en lugar de un objeto atlas, como se muestra en [esta antigua demo](../demos/?file=platformer.js).
+Recomiendo hacer que cada frame en una animación tenga el mismo tamaño y ponerlos en orden de izquierda a derecha. Si no, tendrás que especificar manualmente la posición de cada frame, lo cual se puede hacer utilizando una matriz de coordenadas en lugar de un objeto atlas.
 
 # 4-1
 

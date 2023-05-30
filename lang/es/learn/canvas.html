@@ -61,28 +61,47 @@
         <md id="md1-0"><h2 id="modo-pixelado">modo pixelado</h2>
           <p>
             Otra característica añadida es el preset "pixelado". ¡Úsalo para
-            juegos de estilo 8-bit o 16-bit!
+            crear juegos retro al estilo de 8-bit o 16-bit!
           </p>
-          <p><code>new Canvas(256, 240, 'pixelado')</code></p>
           <p>
             Por defecto, el preset "pixelado" escala el canvas para que se
             ajuste a la pantalla mientras mantiene su proporción de aspecto,
             pero también puedes definir una escala personalizada pasando un
-            número después del nombre del preset. Por ejemplo, "pixelado x2"
-            creará un canvas que se mostrará al doble del tamaño del ancho y la
-            altura especificados.
+            número después del nombre del preset.
+          </p>
+          <p>
+            Por ejemplo, "pixelado x2" creará un canvas que se mostrará al doble
+            del tamaño del ancho y la altura especificados.
           </p>
         </md>
-      </div>
-      <!-- <script type="mie/p5" id="pixelated-preset">
+        <div class="minis horiz">
+          <script type="mie/p5" id="normal sized pixels" lines="9" hide-editor="">
 function setup() {
-	//       (width, height, preset)
-	new Canvas(256, 240, 'pixelated x2');
+  new Canvas(500, 20);
+
+  noStroke();
+  fill(0);
+  for (let i = 0; i < 120; i++) {
+    rect(i, i % 5, 1, 1);
+  }
 }
-function draw() {
-	clear();
+function draw() {}
+      </script>
+          <script type="mie/p5" id="pixelated-preset" lines="10">
+function setup() {
+  //       (width, height, preset)
+  new Canvas(120, 5, 'pixelated x4');
+
+  noStroke();
+  fill(0);
+  for (let i = 0; i < 120; i++) {
+    rect(i, i % 5, 1, 1);
+  }
 }
-		</script> -->
+function draw() {}
+      </script>
+        </div>
+      </div>
 
       <div class="break"></div>
       <div id="toc">
