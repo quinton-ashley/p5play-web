@@ -1,0 +1,213 @@
+<!DOCTYPE html><html lang="es"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>p5play : Camera</title>
+    <link rel="icon" href="../main/favicon.png">
+    <link rel="stylesheet" href="../../../learn/style.css">
+  </head>
+
+  <body class="dark">
+    <article>
+      <nav id="topNav">
+        <a href="index.html" id="logoLink" class="active">
+          <img alt="p5play logo" src="../../../learn/../main/logo.svg" class="logo">
+          <span>p5play</span>
+        </a>
+        <hr>
+        <a href="sprite.html">Sprite</a>
+        <a href="group.html">Group</a>
+        <a href="sprite_animation.html">Ani</a>
+        <a href="input_devices.html">Input</a>
+        <a href="tiles.html">Tiles</a>
+        <a href="camera.html" class="active">Camera</a>
+        <a href="canvas.html">...</a>
+        <hr>
+        <a id="darkMode" onclick="toggleDarkMode()" tabindex="0" role="button">
+          <div id="darkModeIcon"></div>
+        </a>
+      </nav>
+
+      <div class="break"></div>
+
+      <div id="page-0" class="page">
+        <md id="md0-0"><h2 id="cámara">Cámara</h2>
+          <p>
+            En este ejemplo, la cámara sigue el movimiento del eje x del
+            jugador.
+          </p>
+        </md>
+        <script type="mie/p5" id="sidescrolling-camera">
+let player, floor;
+
+function setup() {
+	new Canvas(500, 240);
+	world.gravity.y = 10;
+	player = new Sprite(50, 0);
+	floor = new Sprite(250, 200, 500, 40, 'static');
+}
+
+function draw() {
+	clear();
+	if (kb.presses("right")) {
+		player.vel.y = -4;
+		player.vel.x = 3;
+	}
+
+	camera.x = player.x;
+}
+			</script>
+      </div>
+      <div id="page-1" class="page">
+        <md id="md1-0"><h2 id="cámara-encendidaapagada">Cámara Encendida/Apagada</h2>
+          <p>
+            Por defecto, <code>allSprites.draw()</code> se llama al final del
+            bucle de dibujo de p5.js. Sin embargo, si quieres controlar cuándo
+            se dibujan los sprites y los grupos, puedes dibujarlos por separado.
+          </p>
+          <p>
+            El jugador y el entorno de tu juego deben ser dibujados con la
+            cámara encendida.
+          </p>
+          <p>
+            Los sprites de la IU o HUD, representados por cuadrados naranjas en
+            estos ejemplos, deben ser dibujados cuando la cámara está apagada.
+          </p>
+          <p>
+            <code>camera.zoom</code> se puede utilizar para acercar y alejar la
+            cámara.
+          </p>
+          <p>
+            <code>camera.zoomTo(target, speed)</code> es una función asincrónica
+            que se puede utilizar para acercar y alejar suavemente la cámara.
+            Acepta un segundo parámetro opcional, la cantidad que se acercará o
+            alejará por frame.
+          </p>
+          <p>
+            <code>mouse.x</code> almacena la posición x del ratón en relación
+            con el mundo, que puede ser mayor que el canvas.
+            <code>camera.mouse.x</code> almacena la posición x del ratón en
+            relación con el canvas.
+          </p>
+        </md>
+        <script type="mie/p5" id="overhead-camera">
+let player;
+
+function setup() {
+	new Canvas(500, 240);
+	player = new Sprite();
+	player.d = 80;
+	player.color = 'magenta';
+
+	camera.zoom = 0.5;
+}
+
+function draw() {
+	background(0);
+
+	camera.on();
+
+	for (let i = 0; i < 10; i++) {
+		fill(i * 20, 200, 200); // blue to gray
+		rect(-250 + i * 50, -250 + i * 100, 750, 50);
+	}
+
+	player.moveTowards(mouse, 0.01);
+	player.draw();
+
+	camera.x = player.x;
+	camera.y = player.y;
+
+	if (mouse.presses()) camera.zoomTo(1);
+	else if (mouse.released()) camera.zoomTo(0.5);
+
+	camera.off();
+
+	fill('orange');
+	for (let i = 1; i < 12; i++) {
+		rect(i * 40, 200, 35, 35);
+	}
+}
+			</script>
+      </div>
+      <div id="page-2" class="page">
+        <md id="md2-0"><h2 id="eventos-de-ratón-con-la-cámara">
+            Eventos de Ratón con la Cámara
+          </h2>
+          <p>
+            En este ejemplo, la cámara se mueve hacia la izquierda y hacia la
+            derecha utilizando una onda senoidal.
+          </p>
+          <p>
+            El sprite grande se dibuja en el espacio del mundo cuando la cámara
+            está encendida. El sprite grande no se mueve, pero parece que lo
+            hace porque la cámara se está moviendo.
+          </p>
+          <p>
+            El sprite pequeño se dibuja cuando la cámara está apagada en el
+            espacio de la pantalla (UI). Si quisieras hacer un elemento de UI en
+            tu juego, como un sprite de botón de pausa, deberías hacerlo cuando
+            la cámara está apagada.
+          </p>
+        </md>
+        <script type="mie/p5" id="mouse-camera">
+let big, small;
+
+function setup() {
+	new Canvas(500, 200);
+	big = new Sprite(250, 100, 100, 100);
+	small = new Sprite(30, 30, 20, 20);
+}
+
+function draw() {
+	clear();
+
+	camera.on();
+	camera.x = sin(frameCount) * 200 + 250;
+
+	if (big.mouse.presses()) big.rotation += 10;
+
+	if (big.mouse.hovering()) big.color = '#ff0000';
+	else big.color = '#224477';
+
+	big.draw();
+
+	camera.off();
+
+	if (small.mouse.presses()) small.rotation += 10;
+
+	if (small.mouse.hovering()) small.color = '#ff0000';
+	else small.color = '#224477';
+
+	small.draw();
+}
+			</script>
+      </div>
+
+      <div class="break"></div>
+      <div id="toc">
+        <a id="prevPage" class="navLink">Página anterior</a>
+        <nav id="pageNav" class="submenu">
+          <a data-page="0" href="camera.html?page=0">Uso Básico</a>
+          <a data-page="1" href="camera.html?page=1">Encendido/Apagado</a>
+          <a data-page="2" href="camera.html?page=2">Eventos del Ratón con la Cámara</a>
+        </nav>
+        <a id="nextPage" class="navLink">Siguiente página</a>
+      </div>
+      <div class="break"></div>
+      <footer id="credits" class="text-small">
+        Creado por Quinton Ashley (@quinton-ashley) derechos de autor 2022-2023
+      </footer>
+    </article>
+
+    <script src="../../../learn/../v3/q5.min.js"></script>
+    <script src="../../../learn/../v3/planck.min.js"></script>
+    <script src="../../../learn/../v3/p5play.js"></script>
+
+    <script>
+      window.mie = { autoLoad: false };
+    </script>
+    <script src="../../../learn/mie.js"></script>
+    <script src="../../../learn/learn.js"></script>
+  
+
+</body></html>

@@ -26,9 +26,15 @@ In markdown, a single hash `#` is used for h1 headers (the biggest headers in HT
 
 ## Testing your translation
 
-If you'd like to test your translation, you'll need to use the `main/build.js` nodejs script. Install nodejs first if you don't already have it.
+If you'd like to test your translation, you'll need to use the `main/build.js` nodejs script.
 
-Then, in the `p5play-web` directory, run the following command:
+nodejs let's you run JavaScript code outside of a browser, in the terminal (also called the command line). You can install nodejs from [nodejs.org](https://nodejs.org/en/
+
+The `main/build.js` script uses nodejs to read the `json` and `md` files in the `lang` directory and generate the HTML files for the website.
+
+On macOS the default terminal is called "Terminal" and is located in the Utilities folder inside the Applications folder. On Windows, the default terminal is called "Command Prompt" and is located in the Accessories folder inside the Start Menu.
+
+Open `p5play-web` directory in your terminal. Then, run the following command:
 
 ```bash
 node main/build.js [languageCode]

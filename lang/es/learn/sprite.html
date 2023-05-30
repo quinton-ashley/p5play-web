@@ -1,0 +1,1801 @@
+<!DOCTYPE html><html lang="es"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>p5play : Sprite</title>
+    <link rel="icon" href="../main/logo.svg">
+    <link rel="stylesheet" href="../../../learn/style.css">
+  </head>
+
+  <body class="dark">
+    <article>
+      <nav id="topNav">
+        <a href="index.html" id="logoLink" class="active">
+          <img alt="p5play logo" src="../../../learn/../main/logo.svg" class="logo">
+          <span>p5play</span>
+        </a>
+        <hr>
+        <a href="sprite.html" class="active">Sprite</a>
+        <a href="group.html">Group</a>
+        <a href="sprite_animation.html">Ani</a>
+        <a href="input_devices.html">Input</a>
+        <a href="tiles.html">Tiles</a>
+        <a href="camera.html">Camera</a>
+        <a href="canvas.html">...</a>
+        <hr>
+        <a id="darkMode" onclick="toggleDarkMode()" tabindex="0" role="button">
+          <div id="darkModeIcon"></div>
+        </a>
+      </nav>
+
+      <div class="break"></div>
+
+      <div id="page-0" class="page">
+        <md id="md0-0"><h2 id="configuración">Configuración</h2>
+          <p>
+            El código dentro de la función <code>setup</code> de p5.js (o q5.js)
+            se ejecuta cuando comienza el programa. El constructor
+            <code>new Canvas()</code> crea una sección de la pantalla en la que
+            el programa puede dibujar.
+          </p>
+          <p>
+            La función <code>draw</code> de p5.js se ejecuta 60 veces por
+            segundo por defecto. La función <code>background</code> se puede
+            usar para llenar el canvas con un color cada vez que se dibuja.
+          </p>
+          <p>
+            ¡Intenta cambiar el ancho y la altura del canvas (los números dentro
+            del constructor <code>Canvas</code>), luego reinicia el programa de
+            ejemplo!
+          </p>
+        </md>
+        <script type="mie/p5" id="p5.js-setup-and-draw">
+function setup() {
+	new Canvas(250, 100);
+}
+
+function draw() {
+	background('blue');
+}
+			</script>
+        <div class="break"></div>
+        <md id="md0-1"><h2 id="¿qué-es-un-sprite">¿Qué es un sprite?</h2>
+          <p>¡Un sprite es un fantasma!</p>
+          <p>
+            Los desarrolladores de videojuegos usan la palabra "sprite" para
+            referirse a personajes, objetos, o cualquier otra cosa que se mueva
+            sobre un fondo.
+          </p>
+          <p>El constructor <code>new Sprite()</code> crea un sprite.</p>
+          <p>
+            ¡Intenta editar las propiedades de los sprites de caja y círculo en
+            los mini ejemplos de abajo!
+          </p>
+        </md>
+        <div class="minis horiz">
+          <script type="mie/p5" id="box" base-0="" horiz="" lines="9">
+let sprite;
+
+function setup() {
+	new Canvas(238, 100);
+
+	sprite = new Sprite();
+	sprite.width = 50;
+	sprite.height = 50;
+}
+
+function draw() {
+	clear();
+}
+				</script>
+          <script type="mie/p5" id="circle" base-1="" horiz="" lines="8">
+let sprite;
+
+function setup() {
+	new Canvas(238, 100);
+
+	sprite = new Sprite();
+	sprite.diameter = 50;
+}
+
+function draw() {
+	clear();
+}
+				</script>
+        </div>
+        <div class="minis">
+          <script type="mie/p5" id="x">
+sprite.x = 150;
+				</script>
+          <script type="mie/p5" id="y" base="1">
+sprite.y = 30;
+				</script>
+          <script type="mie/p5" id="position">
+sprite.pos = {x: 50, y: 0};
+				</script>
+          <script type="mie/p5" id="rotation">
+sprite.rotation = 45;
+				</script>
+          <script type="mie/p5" id="color" base="1">
+sprite.color = 'pink';
+sprite.stroke = 'red';
+				</script>
+          <script type="mie/p5" id="textColor">
+sprite.textColor = 'blue';
+sprite.text = "Hello!";
+				</script>
+        </div>
+
+        <div class="minis">
+          <script type="mie/p5" id="width">
+sprite.w = 200;
+				</script>
+          <script type="mie/p5" id="height">
+sprite.h = 80;
+				</script>
+          <script type="mie/p5" id="diameter" base="1">
+sprite.d = 40;
+				</script>
+          <script type="mie/p5" id="radius">
+sprite.r = 40;
+				</script>
+          <script type="mie/p5" id="textSize">
+sprite.textSize = 40;
+sprite.text = "p5";
+				</script>
+          <script type="mie/p5" id="visible">
+sprite.visible = false;
+				</script>
+        </div>
+        <div class="break"></div>
+        <div class="minis horiz">
+          <md id="md0-2"><h2 id="¡pruébalo">¡Pruébalo!</h2>
+            <p>
+              Intenta convertir el sprite llamado <code>ball</code> en un
+              círculo azul con un diámetro de 30 y colócalo en la esquina
+              superior derecha del canvas.
+            </p>
+          </md>
+          <script type="mie/p5" id="Level-0-Challenge-Solution" hide-editor="">
+let ball;
+
+function setup() {
+	new Canvas(500, 60);
+	ball = new Sprite();
+	ball.diameter = 30;
+	ball.color = 'blue';
+	ball.x = 480;
+	ball.y = 16;
+}
+
+function draw() {
+	clear();
+}
+				</script>
+        </div>
+        <script type="mie/p5" id="Level-0-Challenge" lines="13" horiz="">
+let ball;
+
+function setup() {
+	new Canvas(200, 256);
+	ball = new Sprite();
+	// write your code here!
+  
+}
+
+function draw() {
+	clear();
+}
+			</script>
+      </div>
+      <div id="page-1" class="page">
+        <md id="md1-0"><h2 id="física-de-los-sprites">Física de los sprites</h2>
+          <p>
+            El colisionador de un sprite se utiliza para detectar colisiones con
+            otros sprites. Por defecto, los sprites tienen un colisionador de
+            física <code>'dynamic'</code> que permite que el sprite se mueva
+            libremente y sea afectado por la gravedad.
+          </p>
+          <p>
+            Los colisionadores <code>'static'</code> no pueden moverse. Los
+            colisionadores <code>'kinematic'</code> pueden moverse
+            programáticamente pero no por otros sprites. Además, no colisionarán
+            con otros colisionadores kinemáticos. Establecer el tipo de
+            colisionador de un sprite a <code>'none'</code> lo elimina de la
+            simulación física.
+          </p>
+          <p>
+            El tipo de colisionador también puede establecerse usando la primera
+            letra del nombre del tipo de colisionador: <code>'d'</code>,
+            <code>'s'</code>, <code>'k'</code>, o <code>'n'</code>.
+          </p>
+          <p>
+            ¡Haz clic en el icono de recargar en la esquina superior derecha de
+            un mini ejemplo para volver a reproducirlo!
+          </p>
+        </md>
+        <script type="mie/p5" id="dynamic-and-static-colliders" base-2="" horiz="" lines="16">
+let ball, floor;
+
+function setup() {
+	new Canvas(238, 200);
+	world.gravity.y = 10;
+
+	ball = new Sprite();
+	ball.diameter = 50;
+	ball.y = 30;
+
+	floor = new Sprite();
+	floor.y = 190;
+	floor.w = 238;
+	floor.h = 5;
+	floor.collider = 'static';
+}
+
+function draw() {
+	clear();
+}
+			</script>
+        <div class="minis">
+          <script type="mie/p5" id="anti-gravity" base="2">
+world.gravity.y = -1;
+				</script>
+          <script type="mie/p5" id="sloped-floor" base="2">
+floor.rotation = 2;
+				</script>
+        </div>
+
+        <div class="minis">
+          <script type="mie/p5" id="rising-platform" base="2">
+floor.collider = 'k';
+floor.velocity.y = -1;
+				</script>
+          <script type="mie/p5" id="whoops!" base="2">
+floor.collider = 'none';
+				</script>
+        </div>
+        <div class="break"></div>
+        <div class="minis horiz">
+          <md id="md1-1"><h2 id="¡pruébalo">¡Pruébalo!</h2>
+            <p>
+              Intenta crear un sprite llamado <code>peg</code> con un
+              colisionador estático y forma de círculo. Crea un sprite
+              <code>block</code> con un colisionador dinámico y forma de caja.
+              Haz que el bloque caiga desde arriba y golpee el peg, cayendo
+              hacia el lado derecho.
+            </p>
+            <p>
+              Nota que <code>world</code> se crea cuando se carga p5play pero
+              por defecto no hay gravedad. Intenta establecer
+              <code>world.gravity.y</code> en un número positivo. Cada vez que
+              la función <code>draw</code> de p5.js termina, los sprites se
+              dibujan y actualizan automáticamente por defecto.
+            </p>
+          </md>
+          <script type="mie/p5" id="Level-1-Challenge-Solution" hide-editor="">
+let peg, block;
+
+function setup() {
+	new Canvas(460, 60);
+	world.gravity.y = 10;
+
+	peg = new Sprite();
+	peg.diameter = 10;
+	peg.y = 40;
+	peg.collider = 'static';
+
+	block = new Sprite();
+	block.w = 30;
+	block.h = 30;
+	block.x = 236;
+	block.y = 0;
+}
+
+function draw() {
+	clear();
+}
+				</script>
+        </div>
+        <script type="mie/p5" id="Level-1-Challenge" lines="13" horiz="">
+let peg, block;
+
+function setup() {
+	new Canvas(200, 364);
+
+}
+
+function draw() {
+	clear();
+}
+			</script>
+      </div>
+      <div id="page-2" class="page">
+        <script type="mie/p5" id="idle-player" lines="11" hide="" base-3="">
+let player, block;
+
+function setup() {
+	new Canvas(500, 100);
+
+	player = new Sprite();
+	player.diameter = 50;
+	player.x = 400;
+
+	block = new Sprite();
+}
+
+function draw() {
+	clear();
+}
+			</script>
+        <md id="md2-0"><h2 id="movimiento-de-los-sprites">Movimiento de los sprites</h2>
+          <p>¡Cambiar la posición de un sprite lo teletransporta!</p>
+          <p>Intenta hacer clic alrededor de este mini-ejemplo.</p>
+        </md>
+        <script type="mie/p5" id="teleport" base="3">
+if (mouse.presses()) {
+	player.x = mouse.x;
+	player.y = mouse.y;
+}
+			</script>
+        <md id="md2-1"><p>
+            El siguiente ejemplo muestra qué sucede si un sprite se
+            teletransporta cada vez que la función de dibujo de p5.js renderiza
+            un frame.
+          </p>
+          <p>
+            Si quieres que un sprite interactúe físicamente con otros sprites
+            mientras se mueve, ¡no lo teletransportes!
+          </p>
+        </md>
+        <script type="mie/p5" id="teleport-:-continuously-👎" base="3">
+player.x = mouse.x;
+player.y = mouse.y;
+			</script>
+        <md id="md2-2"><p>
+            Todos los otros métodos de movimiento en esta página funcionan
+            cambiando las velocidades de los ejes x e y del sprite.
+            <code>velocity</code> también conocida como <code>vel</code> es un
+            Vector de p5.js, puedes usar cualquier función de Vector en él.
+          </p>
+          <p>
+            Puede que tengas que reiniciar este ejemplo para ver moverse al
+            sprite.
+          </p>
+        </md>
+        <script type="mie/p5" id="velocity-:-continuously" base="3">
+player.vel.x = -2;
+player.vel.y = 0.1;
+			</script>
+        <md id="md2-3"><p>
+            Mueve el sprite indefinidamente estableciendo su
+            <code>direction</code> y <code>speed</code>.
+          </p>
+          <p>
+            También puedes establecer la dirección de un sprite usando un nombre
+            de dirección como: 'up', 'down', 'left', 'right', 'upLeft',
+            'upRight', 'downLeft', 'downRight'.
+          </p>
+          <p>
+            Nota que p5play convierte estos nombres de dirección a sus
+            correspondientes valores de ángulo.
+          </p>
+        </md>
+        <script type="mie/p5" id="direction-+-speed-:-continuously" base="3">
+player.direction = 187;
+player.speed = 3;
+			</script>
+        <md id="md2-4"><p>
+            La función <code>move</code> mueve un sprite a través de una
+            distancia fija. La dirección y la velocidad del movimiento pueden
+            especificarse como parámetros de la función o establecerse por
+            separado.
+          </p>
+        </md>
+        <script type="mie/p5" id="move-:-impulse" base="3">
+if (kb.presses('left')) {
+	//   (distance, direction, speed)
+	player.move(30, 'left', 3);
+}
+			</script>
+        <md id="md2-5"><p>
+            La función <code>moveTowards</code> mueve un sprite hacia una
+            posición, a un porcentaje de la distancia a esa posición.
+          </p>
+          <p>
+            En este ejemplo, el jugador se mueve el 10% de la distancia al ratón
+            en cada llamada de dibujo de p5.js. Su velocidad, y la fuerza que
+            ejerce sobre el bloque, es proporcional a la distancia que se mueve.
+          </p>
+        </md>
+        <script type="mie/p5" id="moveTowards-:-continuously" base="3">
+//             (position, tracking)
+player.moveTowards(mouse, 0.10);
+			</script>
+        <md id="md2-6"><p>
+            La función <code>moveTo</code> genera un impulso que mueve un sprite
+            a una posición a una velocidad constante.
+          </p>
+          <p>
+            Pero ten en cuenta que si el sprite es actuado por una fuerza como
+            la gravedad o choca con otro sprite, su velocidad y dirección se
+            verán afectadas y puede que no llegue a la posición objetivo.
+          </p>
+          <p>
+            Cualquier función de movimiento que acepte un objeto con propiedades
+            x e y podría en su lugar ser llamada con números de posición (x, y).
+          </p>
+        </md>
+        <script type="mie/p5" id="moveTo-:-impulse" base="3">
+if (mouse.presses()) {
+	//        (position, speed)
+	player.moveTo(mouse, 8);
+}
+			</script>
+        <md id="md2-7"><p>
+            La función <code>angleTo</code> obtiene el ángulo entre el sprite y
+            una posición.
+          </p>
+          <p>
+            Si te sientes tentado a usar <code>moveTo</code> repetidamente, sin
+            esperar a que el sprite llegue a su objetivo, considera usar este
+            enfoque en su lugar para un mejor rendimiento.
+          </p>
+          <p>Reinicia este ejemplo para ver moverse al sprite.</p>
+        </md>
+        <script type="mie/p5" id="angleTo" base="3">
+if (mouse.pressing()) {
+	player.direction = player.angleTo(mouse);
+	player.speed = 3;
+}
+			</script>
+        <md id="md2-8"><p>
+            Esperamos que los ejemplos en esta página te ayuden a entender
+            algunas de las opciones de movimiento disponibles en p5play. Pero,
+            son solo bloques de construcción para patrones de movimiento más
+            complejos.
+          </p>
+          <p>
+            ¡A menudo necesitarás experimentar con ellos de maneras creativas
+            para encontrar las mejores soluciones para tu juego!
+          </p>
+        </md>
+        <script type="mie/p5" id="segmented-motion" base="3">
+if (kb.pressing('left')) player.vel.x = -5;
+else if (kb.pressing('right')) player.vel.x = 5;
+else player.vel.x = 0;
+			</script>
+      </div>
+      <div id="page-3" class="page">
+        <md id="md3-0"><h2 id="imagen-de-sprite">Imagen de sprite</h2>
+          <p>
+            <code>sprite.image</code> o <code>sprite.img</code> puede
+            establecerse en una p5.Image o una ruta de url a un archivo de
+            imagen.
+          </p>
+          <p>
+            Si necesitas que una imagen se cargue antes de que comience tu
+            programa, es mejor usar
+            <a href="https://p5js.org/reference/#/p5/loadImage"><code>loadImage</code></a>
+            dentro de la función <code>preload</code> de p5.js.
+          </p>
+          <p>
+            <code>sprite.scale</code> cambia el tamaño tanto del colisionador
+            del sprite como de su apariencia visual. Un valor de escala de 2
+            duplica el tamaño del sprite.
+          </p>
+          <p>
+            Intenta presionar el botón izquierdo del ratón. Cuando la propiedad
+            <code>sprite.debug</code> está establecida en true puedes ver el
+            colisionador del cuerpo físico del sprite. ¡Puedes hacer que el
+            tamaño del colisionador sea diferente del tamaño de la imagen!
+          </p>
+        </md>
+        <script type="mie/p5" id="image">
+let monster;
+
+function setup() {
+	new Canvas(500, 120);
+
+	monster = new Sprite();
+	monster.img = 'assets/monster.png';
+	monster.diameter = 70;
+}
+
+function draw() {
+	clear();
+	if (kb.presses(2)) {
+		monster.scale = 2;
+	}
+	monster.debug = mouse.pressing();
+}
+			</script>
+        <md id="md3-1"><h2 id="¡haz-pixel-art">¡Haz Pixel Art!</h2>
+          <p>
+            Puedes usar la función <code>spriteArt</code> para crear imágenes de
+            pixel art para tus sprites. Toma una cadena como entrada y devuelve
+            una imagen. Cada carácter en la cadena representa el valor de color
+            de un píxel en la imagen.
+          </p>
+          <p>
+            El segundo parámetro de entrada a la función
+            <code>spriteArt</code> es la escala de la imagen.
+          </p>
+        </md>
+        <script type="mie/p5" id="smiley" lines="15">
+let smiley;
+
+function setup() {
+	new Canvas(500, 120);
+	let smileText = `
+..yyyyyy
+.yybyybyy
+yyyyyyyyyy
+yybyyyybyy
+.yybbbbyy
+..yyyyyy`;
+
+	smiley = new Sprite();
+	smiley.img = spriteArt(smileText, 16);
+}
+
+function draw() {
+	clear();
+}
+			</script>
+        <md id="md3-2"><p>
+            La paleta predeterminada usa colores predeterminados de p5.js pero
+            ¡también puedes cambiar la paleta de colores!
+          </p>
+        </md>
+        <script type="mie/p5" id="blue-smiley" lines="20">
+let smiley;
+
+function setup() {
+	new Canvas(500, 120);
+	let smileText = `
+..yyyyyy
+.yybyybyy
+yyyyyyyyyy
+yybyyyybyy
+.yybbbbyy
+..yyyyyy`;
+
+	let palette = {
+		'y': color(60, 220, 255),
+		'b': color(20)
+	};
+
+	smiley = new Sprite();
+	smiley.img = spriteArt(smileText, 16, palette);
+}
+
+function draw() {
+	clear();
+}
+			</script>
+      </div>
+      <div id="page-4" class="page">
+        <div class="minis horiz">
+          <md id="md4-0"><h2 id="crea-sprites-más-rápido">Crea Sprites más rápido</h2>
+            <p>
+              Dentro del constructor de Sprite, <code>new Sprite()</code>,
+              puedes especificar la posición, el tamaño y el tipo de
+              colisionador del sprite.
+            </p>
+            <p>
+              Como viste en las páginas de referencia de Sprite anteriores, no
+              necesitas agregar ninguna entrada al constructor de Sprite para
+              crear un sprite. Pero si quieres establecer el tamaño de un sprite
+              en el constructor, necesitarás especificar su posición primero.
+            </p>
+            <p>
+              Por defecto, si no se dan entradas al constructor de Sprite, los
+              nuevos sprites se posicionan en el centro del lienzo, con un ancho
+              y altura de 50 píxeles, y un colisionador dinámico.
+            </p>
+          </md>
+          <script type="mie/p5" id="default-sprite" lines="5" horiz="">
+function setup() {
+	new Canvas(100, 100);
+
+	new Sprite();
+}
+
+function draw() {}
+				</script>
+        </div>
+        <div class="minis horiz">
+          <script type="mie/p5" id="Ooo!" horiz="" lines="18">
+let box, circle;
+
+function setup() {
+	new Canvas(50, 200);
+	world.gravity.y = 10;
+
+	//             	( x,  y,  w,  h, collider)
+	box = new Sprite(25, 70, 10, 90, 'static');
+	// same as setting the values separately
+	// box.x = 25;
+	// box.y = 70;
+	// box.width = 10;
+	// box.height = 90;
+	// box.collider = 'static';
+
+	// 					 	     ( x,   y,  d, collider)
+	circle = new Sprite(25, 140, 10, 'static');
+}
+
+function draw() {
+	clear();
+}
+				</script>
+          <script type="mie/p5" id="ball-on-the-floor" lines="10" horiz="">
+let ball, floor;
+
+function setup() {
+	new Canvas(80, 160);
+	world.gravity.y = 10;
+	
+	ball = new Sprite(40, 30, 50);
+
+	floor = new Sprite(40, 155, 80, 5, 'static');
+}
+
+function draw() {
+	clear();
+}
+				</script>
+        </div>
+        <div class="break"></div>
+        <md id="md4-1"><h2 id="¡pruébalo">¡Pruébalo!</h2>
+          <p>Intenta crear dos sprites usando el constructor de sprite.</p>
+        </md>
+        <script type="mie/p5" id="Level-4-Challenge" lines="13" horiz="">
+let sprite1, sprite2;
+
+function setup() {
+	new Canvas(50, 256);
+
+}
+
+function draw() {
+	clear();
+}
+			</script>
+      </div>
+      <div id="page-5" class="page">
+        <md id="md5-0"><h2 id="colisiones">Colisiones</h2>
+          <p>
+            En el primer fotograma en que un sprite colisiona con otro sprite,
+            la función <code>collides</code> devuelve true.
+          </p>
+          <p>
+            Mientras un sprite está colisionando con otro sprite, la función
+            <code>colliding</code> devuelve el número de fotogramas que ha
+            ocurrido la colisión.
+          </p>
+          <p>
+            En el primer fotograma después de que dos sprites colisionaron, la
+            función <code>collided</code> devuelve true.
+          </p>
+        </md>
+        <script type="mie/p5" id="pillar-stomp!" horiz="">
+let player, pillar;
+
+function setup() {
+	new Canvas(60, 342);
+	world.gravity.y = 10;
+	
+	pillar = new Sprite(30, 362, 30, 500, 'static');
+	player = new Sprite(30, 0, 50);
+}
+
+function draw() {
+	clear();
+
+	if (player.collides(pillar)) {
+		player.vel.y = -5;
+		pillar.h -= 52;
+	}
+}
+			</script>
+        <script type="mie/p5" id="drop-block" horiz="">
+let block, floor;
+
+function setup() {
+	new Canvas(60, 342);
+	world.gravity.y = 10;
+	
+	block = new Sprite(30, 30);
+	floor = new Sprite(30, 300, 60, 5, 'static');
+	floor.color = 'red';
+}
+
+function draw() {
+	clear();
+	if (block.colliding(floor)) {
+		block.color = 'red';
+	} else block.color = 'blue';
+
+	if (block.colliding(floor) > 60) {
+		block.vel.y = -9;
+	}
+}
+			</script>
+        <script type="mie/p5" id="break-floor" horiz="">
+let block, floor;
+
+function setup() {
+	new Canvas(60, 342);
+	world.gravity.y = 10;
+	
+	block = new Sprite(30, 30);
+	floor = new Sprite(30, 300, 60, 5, 'static');
+}
+
+function draw() {
+	clear();
+	if (block.collided(floor)) {
+		floor.collider = 'dynamic';
+	}
+}
+			</script>
+      </div>
+      <div id="page-6" class="page">
+        <md id="md6-0"><h2 id="superposiciones">Superposiciones</h2>
+          <p>
+            ¡Los sprites colisionan por defecto, pero también pueden
+            superponerse!
+          </p>
+        </md>
+        <script type="mie/p5" id="overlap" horiz="" lines="8" base-4="">
+function setup() {
+	new Canvas(200, 128);
+
+	sprite1 = new Sprite(90, 50);
+	sprite2 = new Sprite(115, 75);
+
+	sprite1.overlaps(sprite2);
+}
+
+function draw() {
+	clear();
+}
+			</script>
+        <md id="md6-1"><h2 id="capa">Capa</h2>
+          <p>
+            Por defecto, los sprites se dibujan en el orden en que fueron
+            creados. Puedes cambiar el orden de dibujo editando la propiedad
+            <code>.layer</code> del sprite. Los sprites con el valor de capa más
+            alto se dibujan primero.
+          </p>
+        </md>
+        <script type="mie/p5" id="layer" horiz="" lines="8" base="4">
+sprite1.layer = 2;
+sprite2.layer = 1;
+			</script>
+        <md id="md6-2"><p>
+            En el primer fotograma en que un sprite se superpone con otro
+            sprite, la función <code>overlaps</code> devuelve true.
+          </p>
+          <p>
+            Mientras un sprite se superpone con otro sprite, la función
+            <code>overlapping</code> devuelve el número de fotogramas que ha
+            ocurrido la superposición.
+          </p>
+          <p>
+            En el primer fotograma después de que dos sprites se superpongan, la
+            función <code>overlapped</code> devuelve true.
+          </p>
+          <p>
+            Ten en cuenta que las interacciones físicas entre sprites,
+            incluyendo colisiones y superposiciones, no pueden detectarse
+            correctamente cuando un sprite es teletransportado, ¡su posición
+            cambia directamente!
+          </p>
+        </md>
+        <script type="mie/p5" id="collect-coin">
+let player, coin;
+
+function setup() {
+	new Canvas(500, 100);
+
+	coin = new Sprite(400, 50, 30);
+	coin.color = 'yellow';
+	player = new Sprite(50, 50);
+}
+
+function draw() {
+	clear();
+	player.moveTowards(mouse);
+		
+	if (player.overlaps(coin)) coin.remove();
+}
+			</script>
+        <div class="break"></div>
+        <md id="md6-3"><h2 id="¡pruébalo">¡Pruébalo!</h2>
+          <p>
+            Intenta hacer que el sprite azul cambie a rojo solo si se superpone
+            con el sprite rojo.
+          </p>
+        </md>
+        <script type="mie/p5" id="Level-6-Challenge" lines="20" horiz="">
+let sprite1, sprite2;
+
+function setup() {
+	new Canvas(100, 400);
+	sprite1 = new Sprite(50, 50);
+	sprite1.color = 'blue';
+	sprite2 = new Sprite(50, 300);
+	sprite2.color = 'red';
+}
+
+function draw() {
+	clear();
+	sprite1.moveTowards(mouse);
+
+	
+	
+}
+			</script>
+        <div class="break"></div>
+        <md id="md6-4"><h2 id="cambiar-entre-superposiciones-y-colisiones">
+            Cambiar entre superposiciones y colisiones
+          </h2>
+          <p>
+            Por defecto, si compruebas si hay una superposición entre dos
+            sprites, ya no colisionarán. Puedes anular esto comprobando si hay
+            una colisión entre los sprites.
+          </p>
+          <p>
+            En este ejemplo, al presionar la tecla de espacio se permite
+            temporalmente al jugador atravesar la pared como un fantasma.
+          </p>
+        </md>
+        <script type="mie/p5" id="ghost-ability">
+let player, wall;
+
+function setup() {
+	new Canvas(500, 100);
+
+	wall = new Sprite(250, 50, 30, 400, 's');
+	wall.color = 'purple';
+	player = new Sprite(50, 50);
+}
+
+function draw() {
+	clear();
+	player.moveTowards(mouse);
+
+	if (kb.pressing('space')) {
+		player.overlaps(wall);
+		player.color = 'purple';
+	} else {
+		player.collides(wall);
+		player.color = 'orange';
+	}
+}
+
+			</script>
+      </div>
+      <div id="page-7" class="page">
+        <script type="mie/p5" base-5="" hide="">
+let sprite;
+
+function setup() {
+	new Canvas(60, 80);
+
+	sprite = new Sprite();
+	sprite.h = 20;
+}
+
+function draw() {
+	clear();
+}
+			</script>
+        <script type="mie/p5" base-8="" hide="">
+let sprite;
+
+function setup() {
+	new Canvas(500, 80);
+
+	sprite = new Sprite();
+	sprite.h = 20;
+}
+
+function draw() {
+	clear();
+}
+			</script>
+        <md id="md7-0"><h2 id="rotación-de-sprite">Rotación de Sprite</h2>
+          <p>
+            Cambiar directamente la propiedad <code>rotation</code> de un sprite
+            lo teletransportará al ángulo de rotación especificado.
+          </p>
+          <p>
+            ¡No teletransportes un sprite si quieres que interactúe físicamente
+            con otros sprites mientras está rotando!
+          </p>
+        </md>
+        <script type="mie/p5" id="rotation-(teleport)" base="5">
+if (kb.pressing('space')) sprite.rotation = 90;
+else sprite.rotation = 0;
+			</script>
+        <md id="md7-1"><p>
+            Todos los otros métodos de rotación en esta página funcionan
+            cambiando la <code>rotationSpeed</code> del sprite.
+          </p>
+        </md>
+        <script type="mie/p5" id="rotationSpeed" base="5">
+sprite.rotationSpeed = 1;
+			</script>
+        <md id="md7-2"><p>
+            Usa la función <code>rotate</code> para rotar un sprite una
+            cantidad.
+          </p>
+          <p>
+            El segundo parámetro opcional es la velocidad a la que rota el
+            sprite por fotograma.
+          </p>
+        </md>
+        <script type="mie/p5" id="rotate" base="5">
+//                                 (angle, rotationSpeed)
+if (kb.presses('space')) sprite.rotate(15, 3);
+			</script>
+        <md id="md7-3"><p>
+            Usa la función <code>rotateTo</code> para rotar un sprite a un
+            ángulo. La velocidad de rotación se puede dar como un segundo
+            parámetro opcional.
+          </p>
+          <p>
+            Alternativamente, si a la función se le da un objeto con coordenadas
+            x, y, el sprite girará para enfrentar esa posición. El ángulo "de
+            frente" es el ángulo en el que debería estar el sprite cuando está
+            enfrentando la posición objetivo. Intenta cambiarlo de 0 a 90.
+            Cuando hagas clic, el lado largo del sprite girará para enfrentar el
+            ratón.
+          </p>
+        </md>
+        <div class="minis horiz">
+          <script type="mie/p5" id="rotateTo-(an-angle)" base="5">
+//          (angle, rotationSpeed)
+if (kb.presses('left')) sprite.rotateTo(-90, 5);
+if (kb.presses('right')) sprite.rotateTo(0, 5);
+				</script>
+          <script type="mie/p5" id="rotateTo-(face-a-position)" base="8">
+//                                (pos, speed, facing)
+if (mouse.presses()) sprite.rotateTo(mouse, 5, 0);
+				</script>
+        </div>
+        <md id="md7-4"><p>
+            Usa la función <code>rotateTowards</code> para girar un sprite hacia
+            un ángulo o hacia una posición.
+          </p>
+          <p>
+            El segundo parámetro opcional es la velocidad de seguimiento, un
+            porcentaje de la distancia que el sprite se mueve en cada fotograma
+            al ángulo de rotación objetivo, 0.1 (10%) por defecto.
+          </p>
+        </md>
+        <script type="mie/p5" id="rotateTowards" base="5">
+//           (position, tracking, facing)
+sprite.rotateTowards(mouse, 0.1, 0);
+			</script>
+        <md id="md7-5"><p>
+            Usa la propiedad <code>offset</code> para mover el cuerpo físico del
+            sprite en relación con su centro.
+          </p>
+          <p>
+            Cuando <code>sprite.debug</code> es true, el centro del sprite está
+            marcado con una pequeña cruz verde. El punto central es donde se
+            encuentran las coordenadas x e y del sprite. También es el centro de
+            rotación.
+          </p>
+        </md>
+        <script type="mie/p5" id="offset">
+function setup() {
+	new Canvas(500, 200);
+
+	let flipper = new Sprite(250, 100, 200, 20, 'k');
+	flipper.debug = true;
+	flipper.rotationSpeed = 1;
+	flipper.offset.x = 40;
+}
+
+function draw() {
+	clear();
+	if (mouse.presses()) new Sprite(mouse.x, mouse.y, 10);
+}
+
+			</script>
+      </div>
+      <div id="page-8" class="page">
+        <md id="md8-0"><h2 id="secuenciación-de-movimientos">
+            Secuenciación de movimientos
+          </h2>
+          <p>
+            Estos ejemplos utilizan un sprite <code>Turtle</code> que es
+            simplemente un sprite regular que es verde y tiene forma de
+            triángulo para ese aspecto clásico de la programación de tortugas.
+          </p>
+          <p>
+            Puedes usar la palabra clave <code>await</code> dentro de una
+            función <code>async</code> para esperar a que un movimiento termine
+            antes de continuar con el siguiente movimiento. Esto es útil para
+            hacer que un sprite se mueva en secuencia.
+          </p>
+        </md>
+        <script type="mie/p5" id="square-sequence" horiz="" lines="14">
+let turtle;
+
+function setup() {
+	new Canvas(160, 160);
+	turtle = new Turtle(30);
+
+	squareSequence();
+}
+
+async function squareSequence() {
+	await turtle.move(100);
+	await turtle.rotate(90);
+	squareSequence();
+}
+
+function draw() {
+	clear();
+}
+			</script>
+        <md id="md8-1"><p>
+            Las funciones <code>move</code>, <code>moveTo</code>,
+            <code>rotate</code>, y <code>rotateTo</code> todas devuelven una
+            <code>Promise</code> que se resuelve a true cuando el movimiento ha
+            terminado.
+          </p>
+          <p>
+            Pero, si el movimiento del sprite se interrumpe por un nuevo
+            movimiento o una colisión que cambia significativamente la
+            trayectoria del sprite, la promesa se resolverá a false.
+          </p>
+        </md>
+        <script type="mie/p5" id="random-sequence" horiz="" lines="17">
+let turtle, ball;
+
+function setup() {
+	new Canvas(160, 304);
+	turtle = new Turtle(30);
+	ball = new Sprite(80, 152, 50);
+
+	randomSequence();
+}
+
+async function randomSequence() {
+	let x = random(0, width);
+	let y = random(0, height);
+	await turtle.rotateTo(x, y, 5);
+	await turtle.moveTo(x, y, 3);
+	randomSequence();
+}
+
+function draw() {
+	clear();
+}
+			</script>
+        <!-- <script type="mie/p5" id="move-sequence" horiz>
+let turtle;
+
+function setup() {
+	new Canvas(160, 400);
+	turtle = new Sprite(30, 30, 25, 25);
+	turtle.color = 'red';
+
+	exampleSequence();
+}
+
+async function exampleSequence() {
+	while (true) {
+		await turtle.rotate(90, 2);
+		await turtle.move('up', 2, 50);
+	}
+}
+
+function draw() {
+	clear();
+}
+		</script> -->
+      </div>
+      <div id="page-9" class="page">
+        <md id="md9-0"><h2 id="atributos-físicos">Atributos físicos</h2>
+          <p>
+            Los Sprites tienen atributos físicos que afectan cómo interactúan
+            con el mundo. Echa un vistazo a los mini-ejemplos para ver estos
+            atributos en acción.
+          </p>
+        </md>
+        <script type="mie/p5" base-6="" hide="">
+let sprite, floor;
+function setup() {
+	new Canvas(238, 100);
+	world.gravity.y = 10;
+	sprite = new Sprite(26, 0, 40, 40);
+	floor = new Sprite(119, 88, 238, 5, 's');
+	floor.rotation = 5;
+}
+function draw() {
+	clear();
+}
+			</script>
+        <script type="mie/p5" base-7="" hide="">
+let sprite, floor;
+function setup() {
+	new Canvas(238, 100);
+	world.gravity.y = 10;
+	sprite = new Sprite(26, 0, 40);
+	floor = new Sprite(119, 88, 238, 5, 's');
+	floor.rotation = 5;
+}
+function draw() {
+	clear();
+}
+			</script>
+        <div class="minis">
+          <script type="mie/p5" id="low-bounciness" base="7">
+sprite.bounciness = 0.5;
+				</script>
+          <script type="mie/p5" id="full-bounciness" base="7">
+sprite.bounciness = 1;
+				</script>
+        </div>
+        <div class="minis">
+          <script type="mie/p5" id="0-friction" base="6">
+sprite.friction = 0;
+				</script>
+          <script type="mie/p5" id="high-friction" base="6">
+sprite.friction = 10;
+				</script>
+          <script type="mie/p5" id="0-drag" base="6">
+sprite.drag = 0;
+				</script>
+          <script type="mie/p5" id="high-drag" base="6">
+sprite.drag = 10;
+				</script>
+        </div>
+        <div class="minis">
+          <script type="mie/p5" id="low-rotationDrag" base="7">
+sprite.rotationDrag = 1;
+				</script>
+          <script type="mie/p5" id="high-rotationDrag" base="7">
+sprite.rotationDrag = 5;
+				</script>
+          <script type="mie/p5" id="no-rotationLock" base="7">
+sprite.rotationLock = false
+				</script>
+          <script type="mie/p5" id="with-rotationLock" base="7">
+sprite.rotationLock = true;
+				</script>
+        </div>
+        <md id="md9-1"><p>
+            Por defecto, la <code>mass</code> se asigna en función del tamaño
+            del sprite. Cuanto mayor sea el sprite, más masa tendrá. La masa
+            también puede ser ajustada manualmente.
+          </p>
+          <p>
+            Intenta cambiar la masa de uno de los sprites en este mini-ejemplo.
+          </p>
+        </md>
+        <script type="mie/p5" id="mass" lines="13">
+let platform, pin, a, b;
+function setup() {
+	new Canvas(238, 100);
+	world.gravity.y = 10;
+
+	platform = new Sprite(121, 88, 232, 5);
+	pin = new Sprite(121, 93, 5, 's');
+
+	a = new Sprite(26, 0, 40, 40);
+	a.mass = 2;
+	b = new Sprite(216, 0, 40, 40);
+	b.mass = 2;
+}
+function draw() {
+	clear();
+}
+			</script>
+        <div class="break"></div>
+        <md id="md9-2"><h2 id="bugs-en-planck">Bugs en planck</h2>
+          <p>
+            p5play usa el motor de física planck, que normalmente ofrece
+            interacciones físicas de apariencia realista, pero no es perfecto.
+          </p>
+          <p>
+            En este mini-ejemplo, la bola tiene una <code>bounciness</code> de
+            1, así que cada vez que la bola rebota debería volver a su posición
+            inicial. Sin embargo, debido a un bug en planck, la bola rebota cada
+            vez más alto cada vez que golpea el suelo.
+          </p>
+        </md>
+        <script type="mie/p5" id="full-bounce-error" lines="10" horiz="">
+let ball, ground;
+function setup() {
+	new Canvas(32, 192);
+	world.gravity.y = 10;
+
+	ball = new Sprite(16, 100, 8);
+	ball.bounciness = 1;
+
+	ground = new Sprite(16, 184, 32, 16, 's');
+}
+
+function draw() {
+	background(0);
+
+	fill(100);
+	for (let i = 0; i < width / 32; i++) {
+		for (let j = 0; j < height / 32; j++) {
+			rect(i * 32, j * 32, 32, 32);
+		}
+	}
+}
+			</script>
+        <md id="md9-3"><p>
+            Esperemos que el bug se solucione en una futura versión de planck o
+            p5play, pero hasta entonces aquí tienes una solución alternativa.
+          </p>
+          <p>
+            El bug de <code>bounciness</code> es más notorio cuando un
+            colisionador rebota en una superficie plana. Aquí tienes una
+            solución alternativa que sobrescribe la velocidad y de la bola
+            después de que colisiona con el suelo.
+          </p>
+        </md>
+        <script type="mie/p5" id="full-bounce-workaround" horiz="">
+let ball, ground;
+function setup() {
+	new Canvas(32, 192);
+	world.gravity.y = 10;
+
+	ball = new Sprite(16, 100, 8);
+	ball.bounciness = 1;
+
+	ground = new Sprite(16, 184, 32, 16, 's');
+}
+
+function draw() {
+	clear();
+
+	if (ball.collided(ground)) {
+		ball.vel.y = -4.8;
+	}
+}
+			</script>
+        <md id="md9-4"><p>
+            Además, podrías esperar que la <code>friction</code> afectara a los
+            colisionadores de física circulares, ¡pero tristemente no lo hace!
+            Utiliza la propiedad <code>rotationDrag</code> en su lugar.
+          </p>
+        </md>
+        <div class="minis">
+          <script type="mie/p5" id="circle-friction?" base="7">
+sprite.friction = 500;
+				</script>
+          <script type="mie/p5" id="circle-rotationDrag" base="7">
+sprite.rotationDrag = 5;
+				</script>
+        </div>
+        <md id="md9-5"><p>
+            En este ejemplo, el color del bloque es rojo cuando está
+            colisionando con la plataforma móvil. Aunque podrías esperar que el
+            bloque se mantenga rojo mientras está siendo levantado por la
+            plataforma, parpadea entre rojo y azul.
+          </p>
+          <p>
+            En la vida real, cuando una persona sube a un ascensor y este sube,
+            diríamos que esa persona estaría colisionando con el suelo del
+            ascensor durante todo el trayecto.
+          </p>
+          <p>
+            En planck, sin embargo, cuando los colisionadores son desplazados
+            por otros colisionadores, constantemente colisionan y dejan de
+            colisionar entre sí.
+          </p>
+        </md>
+        <script type="mie/p5" id="colliding-bug" horiz="">
+let block, platform;
+
+function setup() {
+	new Canvas(60, 400);
+	world.gravity.y = 10;
+
+	block = new Sprite(30, 30);
+	platform = new Sprite(30, 200, 60, 5, 'k');
+	platform.color = 'red';
+}
+
+function draw() {
+	clear();
+	platform.vel.y = cos(frameCount * 2.2) * 6;
+
+	if (block.colliding(platform)) {
+		block.color = 'red';
+	} else {
+		block.color = 'blue';
+	}
+}
+
+			</script>
+      </div>
+      <div id="page-10" class="page">
+        <md id="md10-0"><h2 id="colisionadores-de-cadena">Colisionadores de Cadena</h2>
+          <p>
+            Hay tres modos de cadena diferentes: vértice, distancia y línea.
+          </p>
+          <p>
+            Para usar el modo vértice, proporciona al constructor Sprite un
+            array de arrays de vértices. Cada array de vértices debe contener
+            coordenadas [x, y]. En estos mini-ejemplos, la posición (x, y) del
+            sprite está resaltada por un pequeño cuadrado negro.
+          </p>
+          <p>
+            ¡Intenta cambiar los vértices del sprite de cadena en el
+            mini-ejemplo para que la bola se quede en el suelo!
+          </p>
+        </md>
+        <script type="mie/p5" id="vertex-mode" lines="12">
+let floor, ball;
+
+function setup() {
+	new Canvas(500, 200);
+	world.gravity.y = 10;
+
+	//                ([vertex0, vertex1, vertex2, ...])
+	floor = new Sprite([[20, 60], [200, 140], [450, 180]]);
+	floor.collider = 'static';
+
+	ball = new Sprite(40, 0, 20);
+}
+
+function draw() {
+	clear();
+	rect(floor.x - 2, floor.y - 2, 4, 4);
+}
+			</script>
+        <md id="md10-1"><p>
+            Para usar el modo distancia, proporciona al constructor Sprite una
+            posición (x, y) y un array de arrays de distancia. Estos arrays
+            deben contener distancias [x, y] relativas al vértice anterior. La
+            posición (x, y) será el primer vértice de la cadena.
+          </p>
+          <p>El modo distancia es el mejor para crear cadenas súper largas.</p>
+          <p>
+            Intenta añadir 5 distancias para hacer que el suelo suba y baje en
+            una cadena de suelo rocoso.
+          </p>
+        </md>
+        <script type="mie/p5" id="distance-mode" lines="12">
+let ground, ball;
+
+function setup() {
+	new Canvas(500, 200);
+	world.gravity.y = 10;
+
+	//                 (x, y, [distance0, distance1, ...])
+	ground = new Sprite(30, 90, [[20, 20], [60, -10], [50, 10]], 'static');
+
+	ball = new Sprite(40, 0, 20);
+}
+	
+function draw() {
+	clear();
+	rect(ground.x - 2, ground.y - 2, 4, 4);
+}
+			</script>
+
+        <md id="md10-2"><p>
+            Para usar el modo línea, proporciona al constructor Sprite una
+            posición (x,y) y una lista de longitudes de línea y ángulos. Cada
+            ángulo es relativo al ángulo de la línea anterior.
+          </p>
+          <p>
+            Es mejor usar el modo línea para cadenas pequeñas y/o simétricas.
+          </p>
+          <p>
+            Nota que la posición (x, y) de la cadena del modo línea se ubica en
+            el promedio de todos sus vértices, lo cual puede no ser un punto en
+            la cadena.
+          </p>
+          <p>¡Intenta cambiar las longitudes de estas líneas y sus ángulos!</p>
+        </md>
+        <script type="mie/p5" id="line-mode" lines="12">
+let shelf, orb;
+
+function setup() {
+	new Canvas(500, 200);
+	world.gravity.y = 10;
+
+	//                (x, y, [length0, angle0, length1, ...])
+	shelf = new Sprite(250, 100, [50, 20, 50, -20, 50, -20], 'static');
+
+	orb = new Sprite(200, 0, 20);
+}
+	
+function draw() {
+	clear();
+	rect(shelf.x - 2, shelf.y - 2, 4, 4);
+}
+			</script>
+      </div>
+      <div id="page-11" class="page">
+        <md id="md11-0"><h2 id="colisionadores-de-polígonos">Colisionadores de Polígonos</h2>
+          <p>
+            Los polígonos regulares pueden crearse proporcionando al constructor
+            Sprite una longitud de lado y el nombre del polígono.
+          </p>
+          <p>
+            Estos son los nombres que puedes usar: triángulo, cuadrado,
+            pentágono, hexágono, septágono, octágono, eneágono, decágono,
+            hendecágono y dodecágono.
+          </p>
+        </md>
+        <script type="mie/p5" id="pentagon" lines="6">
+function setup() {
+	new Canvas(500, 200);
+
+	//        ( x,  y, sideLength, polygonName)
+	new Sprite(250, 100, 80, 'pentagon');
+}
+	
+function draw() {
+	clear();
+}
+			</script>
+        <md id="md11-1"><p>
+            Si el inicio y el final de una cadena están en el mismo punto y la
+            forma resultante es convexa, ¡se convierte automáticamente en un
+            polígono!
+          </p>
+        </md>
+        <script type="mie/p5" id="irregular-polygon:-vertex-mode" lines="5">
+function setup() {
+	new Canvas(500, 200);
+
+	new Sprite([[8, 8], [140, 192], [300, 90], [8, 8]]);
+}
+
+function draw() {
+	clear();
+}
+			</script>
+        <md id="md11-2"><p>
+            Independientemente de si un sprite es un polígono o una cadena,
+            todos los cuerpos físicos que comienzan y terminan en el mismo punto
+            tienen su posición (x, y) ubicada en el centro de la forma, no en el
+            primer vértice. Esta posición se calcula promediando todos los
+            vértices de la forma.
+          </p>
+        </md>
+        <script type="mie/p5" id="irregular-polygon:-distance-mode" lines="9">
+function setup() {
+	new Canvas(500, 200);
+
+	new Sprite(250, 100, [
+		[100, 40],
+		[-100, 40],
+		[0, -80]
+	]);
+}
+
+function draw() {
+	clear();
+}
+			</script>
+        <md id="md11-3"><p>
+            Puedes forzar a que un polígono convexo sea una cadena estableciendo
+            <code>sprite.shape = 'chain'</code>
+          </p>
+          <p>
+            Los polígonos regulares pueden crearse a partir de una lista con la
+            longitud de línea, ángulo y repetición.
+          </p>
+          <p>
+            La fórmula para el ángulo de un polígono regular es 360 / n, donde n
+            es el número de lados. Haz que ese ángulo sea negativo para orientar
+            el polígono con uno de sus bordes en la parte superior.
+          </p>
+          <p>¡Intenta hacer una cadena en forma de cuadrado!</p>
+        </md>
+        <script type="mie/p5" id="pentagon-chain" lines="7">
+function setup() {
+	new Canvas(500, 200);
+
+	//               (x, y, [length, angle, repeat])
+	let s = new Sprite(250, 100, [80, -72, 5]);
+	s.shape = 'chain';
+}
+	
+function draw() {
+	clear();
+}
+			</script>
+        <md id="md11-4"><p>
+            Aquí está el código para hacer una estrella regular con cinco
+            puntos.
+          </p>
+          <p>
+            Nota que debido a que la estrella es una forma cóncava, no puede
+            tener un colisionador de polígono.
+          </p>
+          <p>¡Intenta cambiar el número de puntos!</p>
+        </md>
+        <script type="mie/p5" id="star" lines="6">
+function setup() {
+	new Canvas(500, 200);
+
+	//        ( x,  y, [l0, a0, l1, a1, repeat])
+	new Sprite(250, 100, [60, -72, 60, 144, 5]);
+}
+
+function draw() {
+	clear();
+}
+			</script>
+        <md id="md11-5"><p>¡Ahora puedes ver cómo se hizo el logotipo de p5play!</p>
+          <p>
+            Incluso las cadenas cerradas como esta están hechas de líneas y
+            están vacías por dentro. En el ejemplo de la página principal de
+            p5play, puedes ver cómo los colisionadores de cadena pueden contener
+            muchos otros sprites dentro de ellos!
+          </p>
+        </md>
+        <script type="mie/p5" id="p5play-logo" lines="8">
+function setup() {
+	new Canvas(500, 200);
+	world.gravity.y = 10;
+
+	new Sprite(250, 100, [40, 72, 40, -72, 40, 72, 5], 's');
+
+	new Sprite(251, 50, 20, 'pentagon');
+}
+
+function draw() {
+	clear();
+}
+			</script>
+        <md id="md11-6"><p>
+            Nota que los colisionadores de cadena cerrada no son tan buenos para
+            ser colisionadores dinámicos. Esta es una limitación del motor de
+            física Box2D que utiliza p5play.
+          </p>
+        </md>
+        <script type="mie/p5" id="concave-chain-colliders" lines="11">
+function setup() {
+	new Canvas(500, 200);
+	world.gravity.y = 10;
+
+	new Sprite([
+		[200, 50],
+		[300, 50],
+		[300, 100],
+		[280, 70],
+		[200, 50]
+	]);
+
+	new Sprite(250, 190, 500, 10, 's');
+}
+
+function draw() {
+	clear();
+}
+			</script>
+      </div>
+      <div id="page-12" class="page">
+        <md id="md12-0"><h2 id="dibujo-personalizado">Dibujo personalizado</h2>
+          <p>
+            A veces no podrás usar animaciones predibujadas para obtener el tipo
+            de efecto visual que quieres para un sprite en movimiento.
+          </p>
+          <p>
+            Afortunadamente, puedes personalizar la función
+            <code>draw</code> del sprite y hacer que muestre cualquier cosa que
+            quieras!
+          </p>
+          <p>
+            Ten en cuenta que dentro de la función de dibujo del sprite, el
+            centro del sprite se traduce a la posición (0, 0).
+          </p>
+          <p>
+            Este mini ejemplo rota la elipse del sprite en la dirección en la
+            que se está moviendo y hace que la elipse se estire en esa dirección
+            proporcionalmente a su velocidad. ¡Un poco complicado!
+          </p>
+          <h2 id="actualización-personalizada">Actualización personalizada</h2>
+          <p>
+            También puedes definir una función de actualización personalizada
+            para un sprite que se ejecuta al final del bucle de dibujo o cuando
+            se llama a updateSprites. Puedes poner cualquier comportamiento
+            específico del sprite que quieras allí.
+          </p>
+        </md>
+        <script type="mie/p5" id="custom-draw">
+let face, stretchy;
+
+function setup() {
+	new Canvas(500, 200);
+
+	face = loadImage('assets/face.png');
+	stretchy = new Sprite();
+	
+	stretchy.draw = () => {
+		fill(237, 205, 0);
+
+		push();
+		rotate(stretchy.direction);
+		ellipse(0, 0, 100 + stretchy.speed, 100 - stretchy.speed);
+		pop();
+
+		image(face, stretchy.vel.x * 2, stretchy.vel.y * 2);
+	};
+
+	stretchy.update = () => {
+		stretchy.moveTowards(mouse, 0.07);
+	};
+}
+
+function draw() {
+	clear();
+}
+//
+			</script>
+      </div>
+      <div id="page-13" class="page">
+        <md id="md13-0"><h2 id="escala">escala</h2>
+          <p>
+            Cambiar <code>sprite.scale</code> escalará el colisionador del
+            sprite y la apariencia visual por la cantidad especificada.
+          </p>
+          <p>
+            Presiona una tecla numérica para ver el sprite escalar uniformemente
+            por esa cantidad.
+          </p>
+          <p>Presiona "d" para duplicar la escala del sprite.</p>
+          <p>
+            Presiona "x" o "y" para escalar el sprite en esa dirección por una
+            cantidad aleatoria. Pero ten en cuenta que si el sprite se escala de
+            manera desigual, la imagen se distorsionará y permanecerá así
+            incluso cuando se escale uniformemente de nuevo.
+          </p>
+        </md>
+        <script type="mie/p5" id="scaling">
+let sprite;
+
+function setup() {
+	new Canvas(500, 200);
+
+	sprite = new Sprite(250, 100, 90, 90);
+	sprite.img = 'assets/square.png';
+	sprite.debug = true;
+}
+
+function draw() {
+	clear();
+
+	for (let i = 1; i < 10; i++) {
+		if (kb.presses(i)) sprite.scale = i;
+	}
+
+	if (kb.presses('d')) sprite.scale *= 2;
+	if (kb.presses('x')) sprite.scale.x = random(0.1, 6);
+	if (kb.presses('y')) sprite.scale.y = random(0.1, 6);
+
+	if (kb.pressing('a')) sprite.ani.scale.x = 10;
+	else sprite.ani.scale.x = 1;
+}
+			</script>
+      </div>
+      <div id="page-14" class="page">
+        <md id="md14-0"><h2 id="colisionadores-combo">Colisionadores Combo</h2>
+          <p>
+            Usando la función <code>addCollider</code>, puedes agregar varios
+            colisionadores a un sprite.
+          </p>
+          <p>
+            ¡Pero solo usa esta función cuando realmente sea necesario para el
+            juego!
+          </p>
+          <p>
+            Normalmente, si algo requiere muchos colisionadores, como las
+            paredes de un laberinto, simplemente deberías crear varios sprites,
+            cada uno con su propio colisionador.
+          </p>
+          <p>
+            Además, incluso si la imagen de un sprite es compleja, típicamente
+            una caja o círculo será suficiente para las interacciones físicas,
+            especialmente para sprites pequeños.
+          </p>
+          <p>
+            Sin embargo, a veces, realmente necesitarás crear un sprite con
+            varios colisionadores. ¡Por ejemplo, si quieres modelar un flipper
+            de pinball!
+          </p>
+        </md>
+        <script type="mie/p5" id="pinball-flipper" horiz="">
+let ball, flipper;
+
+function setup() {
+	new Canvas(196, 500);
+	world.gravity.y = 10;
+
+	ball = new Sprite(100, -20, 30);
+
+	flipper = new Sprite(160, 400, [
+		[0, -25],
+		[-100, 12.5],
+		[0, 25],
+		[100, 12.5],
+		[0, -25]
+	], 'k');
+
+	flipper.addCollider(-60, 0, 25);
+	flipper.addCollider(40, 0, 50);
+	
+	flipper.offset.x = -40;
+	flipper.rotation = -20;
+	flipper.debug = true;
+}
+
+function draw() {
+	background(150);
+
+	if (kb.presses('space')) {
+		flipper.rotateTo(20, 8);
+	}
+	if (kb.pressed('space')) {
+		flipper.rotateTo(-20, 8);
+	}
+
+	if (frameCount % 100 == 0) {
+	  ball.life = 200;
+		let x = random(50, 140);
+		ball = new Sprite(x, -100, 30);
+	}
+}
+			</script>
+      </div>
+
+      <div class="break"></div>
+      <div id="toc">
+        <a id="prevPage" class="navLink">Página anterior</a>
+        <nav id="pageNav" class="submenu">
+          <a data-page="0" href="sprite.html?page=0">Propiedades Básicas</a>
+          <a data-page="1" href="sprite.html?page=1">Física</a>
+          <a data-page="2" href="sprite.html?page=2">Movimiento</a>
+          <a data-page="3" href="sprite.html?page=3">Sprites con Imágenes</a>
+          <a data-page="4" href="sprite.html?page=4">Constructor de Sprite</a>
+          <a data-page="5" href="sprite.html?page=5">Colisiones</a>
+          <a data-page="6" href="sprite.html?page=6">Superposiciones</a>
+          <a data-page="7" href="sprite.html?page=7">Rotación</a>
+          <a data-page="8" href="sprite.html?page=8">Secuenciación de Movimiento</a>
+          <a data-page="9" href="sprite.html?page=9">Atributos Físicos</a>
+          <a data-page="10" href="sprite.html?page=10">Cadenas</a>
+          <a data-page="11" href="sprite.html?page=11">Polígonos</a>
+          <a data-page="12" href="sprite.html?page=12">Dibujo Personalizado</a>
+          <a data-page="13" href="sprite.html?page=13">Escalado</a>
+          <a data-page="14" href="sprite.html?page=14">Combos de Colisionadores</a>
+        </nav>
+        <a id="nextPage" class="navLink">Siguiente página</a>
+      </div>
+      <div class="break"></div>
+      <footer id="credits" class="text-small">
+        Creado por Quinton Ashley (@quinton-ashley) derechos de autor 2022-2023
+      </footer>
+    </article>
+
+    <!-- <script src="https://cdn.jsdelivr.net/npm/p5@1/lib/p5.min.js"></script> -->
+    <script src="../../../learn/../v3/q5.min.js"></script>
+    <script src="../../../learn/../v3/planck.min.js"></script>
+    <script src="../../../learn/../v3/p5play.min.js"></script>
+    <script>
+      window.mie = { autoLoad: false };
+    </script>
+    <script src="../../../learn/mie.js"></script>
+    <script src="../../../learn/learn.js"></script>
+  
+
+</body></html>

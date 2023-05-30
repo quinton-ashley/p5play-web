@@ -1,0 +1,436 @@
+<!DOCTYPE html><html lang="es"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>p5play : Group</title>
+    <link rel="icon" href="../main/favicon.png">
+    <link rel="stylesheet" href="../../../learn/style.css">
+  </head>
+
+  <body class="dark">
+    <article>
+      <nav id="topNav">
+        <a href="index.html" id="logoLink" class="active">
+          <img alt="p5play logo" src="../../../learn/../main/logo.svg" class="logo">
+          <span>p5play</span>
+        </a>
+        <hr>
+        <a href="sprite.html">Sprite</a>
+        <a href="group.html" class="active">Group</a>
+        <a href="sprite_animation.html">Ani</a>
+        <a href="input_devices.html">Input</a>
+        <a href="tiles.html">Tiles</a>
+        <a href="camera.html">Camera</a>
+        <a href="canvas.html">...</a>
+        <hr>
+        <a id="darkMode" onclick="toggleDarkMode()" tabindex="0" role="button">
+          <div id="darkModeIcon"></div>
+        </a>
+      </nav>
+      <div class="break"></div>
+      <div id="page-0" class="page">
+        <md id="md0-0"><h2 id="¿qué-es-un-grupo">¿Qué es un Grupo?</h2>
+          <p>
+            En p5play, un Grupo es una colección y un plano para sprites con
+            características y comportamientos similares. ¡Por ejemplo los puntos
+            en Pac-Man!
+          </p>
+          <p>
+            La propiedad <code>group.length</code> se puede usar para comprobar
+            cuántos sprites hay en un grupo. En este ejemplo, la condición del
+            bucle while es verdadera siempre que el grupo de puntos tenga menos
+            de 24 sprites.
+          </p>
+          <p>
+            En el mini ejemplo, <code>new dots.Sprite</code> crea un sprite que
+            hereda el color del grupo de puntos, la posición y y el diámetro. A
+            cada punto se le asigna una posición x única.
+          </p>
+          <p>
+            Llamo a esto "herencia suave" porque un grupo actúa como un plano
+            para los nuevos sprites del grupo.
+          </p>
+        </md>
+        <script type="mie/p5" id="dots" lines="15" base-0="">
+let dots;
+
+function setup() {
+	new Canvas(500, 50);
+
+	dots = new Group();
+	dots.color = 'yellow';
+	dots.y = 25;
+	dots.diameter = 10;
+	
+	while (dots.length < 24) {
+		let dot = new dots.Sprite();
+		dot.x = dots.length * 20;
+	}
+}
+
+function draw() {
+	clear();
+}
+			</script>
+        <md id="md0-1"><p>
+            Puedes acceder a un sprite en un grupo por índice porque los grupos
+            son arrays. Puedes usar cualquiera de los métodos estándar de array
+            de JavaScript en un grupo.
+          </p>
+        </md>
+        <script type="mie/p5" id="green-dot" base="0">
+dots[5].color = 'green';
+			</script>
+        <md id="md0-2"><p>
+            ¡Establecer una propiedad de un grupo a un valor diferente afectará
+            a todos los sprites en el grupo! Llamo a esto "herencia dinámica".
+          </p>
+        </md>
+        <script type="mie/p5" id="green-dots" base="0">
+dots.color = 'green';
+			</script>
+        <md id="md0-3"><p>
+            Usar funciones de movimiento como <code>group.moveTowards</code>,
+            hará que todos los sprites en un grupo se muevan.
+          </p>
+        </md>
+        <script type="mie/p5" id="moving-dots" base="0">
+dots.moveTowards(mouse);
+			</script>
+      </div>
+      <div id="page-1" class="page">
+        <md id="md1-0"><h2 id="establecedores-de-propiedades-de-función-de-flecha">
+            Establecedores de propiedades de función de flecha
+          </h2>
+          <p>
+            En p5play, cuando estableces una propiedad de sprite en un grupo a
+            una función de flecha, cada nuevo sprite creado usando ese grupo
+            utilizará la función para evaluar la propiedad.
+          </p>
+          <p>
+            Cuando <code>group.amount</code> se ajusta, el grupo creará o
+            eliminará automáticamente sprites para coincidir con la cantidad
+            establecida.
+          </p>
+          <p>
+            En este mini ejemplo, a cada sprite de gema se le asigna una
+            posición x e y aleatoria.
+          </p>
+        </md>
+        <script type="mie/p5" id="push-gems" horiz="">
+let player, gems;
+
+function setup() {
+	new Canvas(160, 352);
+
+	gems = new Group();
+	gems.diameter = 10;
+	gems.x = () => random(0, canvas.w);
+	gems.y = () => random(0, canvas.h);
+	gems.amount = 80;
+
+	player = new Sprite();
+}
+
+function draw() {
+	clear();
+	player.moveTowards(mouse);
+}
+			</script>
+      </div>
+      <div id="page-2" class="page">
+        <md id="md2-0"><h2 id="superposición-de-grupo">Superposición de grupo</h2>
+          <p>
+            La función de superposición no es sólo para manejar si dos sprites
+            se superponen. También puedes comprobar si un sprite se superpone
+            con un sprite en un grupo.
+          </p>
+          <p>
+            En este mini ejemplo, la función collect recibe como entradas al
+            jugador y la gema en el grupo de gemas con la que el sprite del
+            jugador se está superponiendo. Esa gema se elimina.
+          </p>
+          <p>
+            También puedes usar las funciones de superposición y colisión en
+            grupos.
+          </p>
+        </md>
+        <script type="mie/p5" id="collect-gems" horiz="">
+let player, gems;
+
+function setup() {
+	new Canvas(160, 456);
+
+	gems = new Group();
+	gems.diameter = 10;
+	gems.x = () => random(0, canvas.w);
+	gems.y = () => random(0, canvas.h);
+	gems.amount = 80;
+
+	player = new Sprite();
+
+	player.overlaps(gems, collect);
+}
+
+function collect(player, gem) {
+	gem.remove();
+}
+
+function draw() {
+	clear();
+	player.moveTowards(mouse);
+}
+			</script>
+      </div>
+      <div id="page-3" class="page">
+        <md id="md3-0"><h2 id="grupo-allsprites">Grupo allSprites</h2>
+          <p>
+            p5play crea un grupo <code>allSprites</code> que contiene todos los
+            sprites en un sketch.
+          </p>
+        </md>
+        <script type="mie/p5" id="allSprites" horiz="">
+let box, circle;
+
+function setup() {
+	new Canvas(50, 228);
+	box = new Sprite(25, 70, 10, 90);
+	circle = new Sprite(25, 140, 10);
+}
+
+function draw() {
+	clear();
+	allSprites.moveTowards(mouse);
+}
+			</script>
+      </div>
+      <div id="page-4" class="page">
+        <md id="md4-0"><h2 id="establecedores-de-funciones-de-flecha-indexados">
+            Establecedores de funciones de flecha indexados
+          </h2>
+          <p>
+            ¡Incluso puedes usar su índice al evaluar una propiedad de sprite de
+            grupo!
+          </p>
+          <p>
+            <code>i</code> es el índice del sprite en el grupo, que se da como
+            un parámetro de entrada a las funciones de propiedad del grupo
+            cuando se evalúan.
+          </p>
+        </md>
+        <script type="mie/p5" id="doors">
+let doors, rail;
+
+function setup() {
+	new Canvas(500, 150);
+
+	doors = new Group();
+	doors.x = (i) => i * 55;
+	doors.y = (i) => 100 - i * 5;
+	doors.height = 100;
+	doors.amount = 10;
+
+	rail = new Sprite(250, 20, 500, 5);
+	rail.color = 'grey';
+	rail.rotation = -5;
+}
+
+function draw() {
+	clear();
+}
+			</script>
+      </div>
+      <div id="page-5" class="page">
+        <md id="md5-0"><h2 id="sub-grupos">Sub Grupos</h2>
+          <p>
+            En este mini ejemplo hay dos subgrupos del grupo <code>boxes</code>:
+            <code>smallBoxes</code> y <code>bigBoxes</code>.
+          </p>
+          <p>
+            Los nuevos sprites creados usando el grupo
+            <code>bigBoxes</code> heredarán rasgos del grupo
+            <code>boxes</code> pero no del grupo <code>smallBoxes</code>.
+          </p>
+          <p>
+            El grupo <code>boxes</code> contiene todos los sprites en los grupos
+            <code>smallBoxes</code> y <code>bigBoxes</code>.
+          </p>
+          <p>
+            La función <code>group.removeAll</code> se puede usar para eliminar
+            todos los sprites de un grupo.
+          </p>
+        </md>
+        <script type="mie/p5" id="SubGroup" horiz="">
+let boxes, smallBoxes, bigBoxes;
+
+function setup() {
+	new Canvas(100, 528);
+
+	boxes = new Group();
+	boxes.h = 10;
+
+	smallBoxes = new boxes.Group();
+	smallBoxes.w = 20;
+
+	bigBoxes = new boxes.Group();
+	bigBoxes.w = 60;
+}
+
+function draw() {
+	clear();
+
+	if (mouse.presses('left')) {
+		new smallBoxes.Sprite(mouse.x, mouse.y);
+	}
+	if (mouse.presses('right')) {
+		new bigBoxes.Sprite(mouse.x, mouse.y);
+	}
+	if (kb.presses('space')) {
+		boxes.removeAll();
+	}
+}
+			</script>
+      </div>
+      <div id="page-6" class="page">
+        <md id="md6-0"><h2 id="culling">Culling</h2>
+          <p>
+            Por defecto, los sprites se eliminan cuando se van 10000 píxeles
+            fuera de la pantalla en relación con la posición de la cámara. Esto
+            es para evitar que el mundo se haga demasiado grande, lo que
+            ralentizaría la simulación física.
+          </p>
+          <p>
+            Para cambiar esto, establece
+            <code>allSprites.autoCull = false</code> y usa la función
+            <code>group.cull</code> para establecer un límite de culling
+            diferente. Incluso puede cull sprites que no tienen un collider
+            físico.
+          </p>
+          <p>
+            Un último parámetro opcional se puede utilizar para especificar una
+            función de callback que se llamará cuando un sprite sea cullado. La
+            respuesta por defecto al culling es eliminar el sprite que salió del
+            límite de culling pero al establecer tu propia función puedes hacer
+            algo más. La función de callback recibe el sprite que fue cullado y
+            un recuento total de cuántos sprites fueron cullados en ese
+            fotograma. En este ejemplo, la cantidad de bolas disminuye si más de
+            una bola es cullada en un fotograma.
+          </p>
+        </md>
+        <script type="mie/p5" id="cull">
+let balls;
+function setup() {
+	new Canvas(500, 192);
+	balls = new Group();
+	balls.collider = 'none';
+	balls.direction = () => random(0, 360);
+	balls.speed = () => random(1, 5);
+	balls.d = 20;
+	balls.amount = 10;
+}
+function draw() {
+	clear();
+	if (balls.cull(-50)) {
+		new balls.Sprite();
+	}
+}
+			</script>
+        <md id="md6-1"><h2 id="vida">vida</h2>
+          <p>
+            Otra forma de limitar cuánto tiempo existe un sprite es establecer
+            su propiedad <code>life</code>, que es el número de fotogramas que
+            el sprite existe. Cuando la vida del sprite se acaba, será
+            eliminado. Esto es útil para crear objetos temporales como
+            proyectiles y campos de fuerza.
+          </p>
+          <p>
+            ¡Prueba este pequeño juego! Haz clic con el ratón para crear una
+            pelota de playa e intenta mantenerla en el aire con el chorro de
+            agua.
+          </p>
+        </md>
+        <script type="mie/p5" id="life">
+let water;
+function setup() {
+	new Canvas(500, 192);
+	noCursor();
+	world.gravity.y = 10;
+
+	water = new Group();
+	water.color = 'blue';
+	water.mass = 3;
+	water.vel.y = -6;
+	water.life = 60;
+}
+function draw() {
+	clear();
+	new water.Sprite(mouse.x, mouse.y, 10);
+
+	if (mouse.presses()) new Sprite(250, -200, 40);
+}
+			</script>
+      </div>
+      <div id="page-7" class="page">
+        <md id="md7-0"><h2 id="propiedades-personalizadas">Propiedades Personalizadas</h2>
+          <p>
+            ¡Puedes añadir tus propias propiedades a los sprites y grupos, al
+            igual que con cualquier otro objeto de JavaScript!
+          </p>
+          <p>
+            Además, cuando añades propiedades personalizadas a un grupo, serán
+            heredadas por los nuevos sprites del grupo. Incluso puedes usar
+            funciones de flecha como establecedores de propiedades.
+          </p>
+        </md>
+        <script type="mie/p5" id="custom-properties" lines="10">
+function setup() {
+	new Canvas(500, 60);
+
+	ghosts = new Group();
+	ghosts.strength = 'high';
+	ghosts.health = () => round(random(40, 70));
+
+	let g = new ghosts.Sprite();
+	g.text = g.health;
+}
+
+function draw() {
+	clear();
+}
+
+			</script>
+      </div>
+
+      <div class="break"></div>
+      <div id="toc">
+        <a id="prevPage" class="navLink">Página anterior</a>
+        <nav id="pageNav" class="submenu">
+          <a data-page="0" href="group.html?page=0">Heredencia Suave y Dinámica</a>
+          <a data-page="1" href="group.html?page=1">Establecedores de Flecha</a>
+          <a data-page="2" href="group.html?page=2">Superposiciones</a>
+          <a data-page="3" href="group.html?page=3">todos los Sprites</a>
+          <a data-page="4" href="group.html?page=4">Establecedores de Flecha Indexados</a>
+          <a data-page="5" href="group.html?page=5">Subgrupos</a>
+          <a data-page="6" href="group.html?page=6">Recorte</a>
+          <a data-page="7" href="group.html?page=7">Propiedades Personalizadas</a>
+        </nav>
+        <a id="nextPage" class="navLink">Siguiente página</a>
+      </div>
+      <div class="break"></div>
+      <footer id="credits" class="text-small">
+        Creado por Quinton Ashley (@quinton-ashley) derechos de autor 2022-2023
+      </footer>
+    </article>
+
+    <!-- <script src="https://cdn.jsdelivr.net/npm/p5@1/lib/p5.js"></script> -->
+    <script src="../../../learn/../v3/q5.min.js"></script>
+    <script src="../../../learn/../v3/planck.min.js"></script>
+    <script src="../../../learn/../v3/p5play.min.js"></script>
+
+    <script>
+      window.mie = { autoLoad: false };
+    </script>
+    <script src="../../../learn/mie.js"></script>
+    <script src="../../../learn/learn.js"></script>
+  
+
+</body></html>
