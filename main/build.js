@@ -128,7 +128,7 @@ async function translatePage(pageGroup, page) {
 		if (langNav) {
 			// remove active class from english link
 			langNav.children[0].classList.remove('active');
-			langNav.children[0].href = prefix + (pageGroup || '');
+			langNav.children[0].href = prefix;
 			// add active class to current language link
 			langNav.querySelector(`[lang="${langCode}"]`).classList.add('active');
 		}
