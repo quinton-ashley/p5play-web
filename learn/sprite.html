@@ -551,7 +551,8 @@ function draw() {
 			</script>
       <md id="md3-2">
         <p>
-          The default palette uses p5.js default colors but you can change the
+          The default palette uses default <a href="https://p5js.org/reference/#/p5/color">p5.js colors</a> but you
+          can change the
           color palette too!
         </p>
       </md>
@@ -828,16 +829,22 @@ function draw() {
           Try making the blue sprite change to red only if it's overlapping
           with the red sprite.
         </p>
+        <p>
+          Note that the sprites in this example are given custom shades of blue and red by using the <a
+            href="https://p5js.org/reference/#/p5/color">p5.js color</a> function.
+        </p>
       </md>
       <script type="mie/p5" id="Level-6-Challenge" lines="20" horiz="">
 let sprite1, sprite2;
 
 function setup() {
 	new Canvas(100, 400);
+
 	sprite1 = new Sprite(50, 50);
-	sprite1.color = 'blue';
+	sprite1.color = color(40, 140, 255);
+
 	sprite2 = new Sprite(50, 300);
-	sprite2.color = 'red';
+	sprite2.color = color(255, 30, 10);
 }
 
 function draw() {

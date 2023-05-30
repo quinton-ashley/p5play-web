@@ -133,7 +133,7 @@ The second input parameter to the `spriteArt` function is the scale of the image
 
 # 3-2
 
-The default palette uses p5.js default colors but you can change the color palette too!
+The default palette uses default [p5.js colors](https://p5js.org/reference/#/p5/color) but you can customize the color palette too!
 
 # 4-0
 
@@ -189,6 +189,8 @@ sprite is teleported, its position is directly changed!
 ## Try it out!
 
 Try making the blue sprite change to red only if it's overlapping with the red sprite.
+
+Note that this example uses custom shades of blue and red by utilizing the [p5.js color](https://p5js.org/reference/#/p5/color) function.
 
 # 6-4
 
