@@ -44,7 +44,7 @@ El tipo de colisionador también puede establecerse usando la primera letra del 
 
 Intenta crear un sprite llamado `peg` con un colisionador estático y forma de círculo. Crea un sprite `block` con un colisionador dinámico y forma de caja. Haz que el bloque caiga desde arriba y golpee el peg, cayendo hacia el lado derecho.
 
-Nota que `world` se crea cuando se carga p5play pero por defecto no hay gravedad. Intenta establecer `world.gravity.y` en un número positivo. Cada vez que la función `draw` de p5.js termina, los sprites se dibujan y actualizan automáticamente por defecto.
+Nota que `world` se crea cuando se carga p5play pero por defecto no hay gravedad. Intenta establecer `world.gravity.y` en un número positivo. Por defecto, cada vez que la función `draw` de p5.js termina, los sprites se actualizan y dibujan automáticamente.
 
 # 2-0
 
@@ -94,11 +94,9 @@ Cualquier función de movimiento que acepte un objeto con propiedades x e y podr
 
 # 2-7
 
-La función `angleTo` obtiene el ángulo entre el sprite y una posición.
+Si quieres que un sprite siga a otro sprite, es posible que te sientas tentado a usar `moveTo` repetidamente sin esperar a que el sprite alcance su destino. Sin embargo, para obtener un mejor rendimiento, prueba a utilizar la función `angleTo`, que obtiene el ángulo entre un sprite y una posición. Este ángulo se puede utilizar para cambiar la dirección en la que se mueve el sprite.
 
-Si te sientes tentado a usar `moveTo` repetidamente, sin esperar a que el sprite llegue a su objetivo, considera usar este enfoque en su lugar para un mejor rendimiento.
-
-Reinicia este ejemplo para ver moverse al sprite.
+En este ejemplo, se utiliza la función [dist](https://p5js.org/reference/#/p5/dist) de p5.js para calcular la distancia entre el jugador y su aliado.
 
 # 2-8
 

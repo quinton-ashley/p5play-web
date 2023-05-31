@@ -69,7 +69,8 @@ function draw() {
           Video game developers use the word "sprite" to refer to characters,
           items, or anything else that moves above a background.
         </p>
-        <p>The <code>new Sprite()</code> constructor creates a sprite.</p>
+        <p>The <code>new Sprite()</code> constructor creates a sprite, which is a JavaScript object with properties
+          that describe the sprite's position, size, and appearance.</p>
         <p>
           Try editing the properties of the box and circle sprites in the mini
           examples below!
@@ -270,9 +271,9 @@ floor.collider = 'none';
           <p>
             Note that <code>world</code> is created when p5play loads but by
             default there is no gravity. Try setting
-            <code>world.gravity.y</code> to a positive number. Each time the
+            <code>world.gravity.y</code> to a positive number. By default, each time the
             p5.js <code>draw</code> function finishes, sprites are
-            automatically drawn and updated by default.
+            updated and drawn automatically.
           </p>
         </md>
         <script type="mie/p5" id="Level-1-Challenge-Solution" hide-editor="">
@@ -314,7 +315,7 @@ function draw() {
     </div>
     <div id="page-2" class="page">
       <script type="mie/p5" id="idle-player" lines="11" hide="" base-3="">
-let player, block;
+let player, ally;
 
 function setup() {
 	new Canvas(500, 100);
@@ -323,7 +324,7 @@ function setup() {
 	player.diameter = 50;
 	player.x = 400;
 
-	block = new Sprite();
+	ally = new Sprite();
 }
 
 function draw() {
@@ -438,20 +439,28 @@ if (mouse.presses()) {
 			</script>
       <md id="md2-7">
         <p>
-          The <code>angleTo</code> function gets the angle between the sprite
-          and a position.
+          If you want a sprite to follow another sprite, you may be tempted to use <code>moveTo</code> repeatedly,
+          without
+          waiting for the sprite to reach its destination. But for better performance, try using the
+          <code>angleTo</code> function, which gets the angle between a sprite and a position. This angle can be used to
+          change the direction that the sprite moves in.
         </p>
         <p>
-          If you're tempted to use <code>moveTo</code> repeatedly, without
-          waiting for the sprite to reach its target, consider using this
-          approach instead for better performance.
+          In this example, the <a href="https://p5js.org/reference/#/p5/dist">p5.js dist</a> function is used to
+          calculate the distance between the player and its ally.
         </p>
-        <p>Restart this example to see the sprite move.</p>
       </md>
       <script type="mie/p5" id="angleTo" base="3">
-if (mouse.pressing()) {
-	player.direction = player.angleTo(mouse);
-	player.speed = 3;
+player.moveTowards(mouse);
+ally.collider = 'none';
+
+let distance = dist(player.x, player.y, ally.x, ally.y);
+
+if (distance > 80) {
+  ally.direction = ally.angleTo(player);
+  ally.speed = 2;
+} else if (distance < 70) {
+  ally.speed = 0;
 }
 			</script>
       <md id="md2-8">

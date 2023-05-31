@@ -16,7 +16,7 @@ A sprite is a ghost!
 
 Video game developers use the word "sprite" to refer to characters, items, or anything else that moves above a background.
 
-The `new Sprite()` constructor creates a sprite.
+The `new Sprite()` constructor creates a sprite, which is a JavaScript object that has properties which describe the sprite's position, size, and appearance.
 
 Try editing the properties of the box and circle sprites in the mini examples below!
 
@@ -49,7 +49,7 @@ Click the reload icon on the top right corner of a mini example to replay it!
 
 Try creating a sprite named `peg` with a static collider and circle shape. Create a sprite `block` with a dynamic collider and box shape. Make the block fall from above and hit the peg, falling to the right side.
 
-Note that `world` is created when p5play loads but by default there is no gravity. Try setting `world.gravity.y` to a positive number. Each time the p5.js `draw` function finishes, sprites are automatically drawn and updated by default.
+Note that `world` is created when p5play loads but by default there is no gravity. Try setting `world.gravity.y` to a positive number. By default, each time the p5.js `draw` function finishes, sprites are automatically drawn and updated.
 
 # 2-0
 
@@ -99,11 +99,9 @@ Any movement function that accepts an object with x and y properties could inste
 
 # 2-7
 
-The `angleTo` function gets the angle between the sprite and a position.
+If you want a sprite to follow another sprite, you may be tempted to use `moveTo` repeatedly, without waiting for the sprite to reach its destination. But for better performance, try using the `angleTo` function, which gets the angle between a sprite and a position. This angle can be used to change the direction that the sprite moves in.
 
-If you're tempted to use `moveTo` repeatedly, without waiting for the sprite to reach its target, consider using this approach instead for better performance.
-
-Restart this example to see the sprite move.
+In this example, the [p5.js dist](https://p5js.org/reference/#/p5/dist) function is used to calculate the distance between the player and its ally.
 
 # 2-8
 
