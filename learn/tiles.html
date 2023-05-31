@@ -1,74 +1,70 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>p5play : Tiles</title>
+    <link rel="icon" href="../main/favicon.png">
+    <link rel="stylesheet" href="style.css">
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>p5play : Tiles</title>
-  <link rel="icon" href="../main/favicon.png">
-  <link rel="stylesheet" href="style.css">
-</head>
+  <body class="dark">
+    <article>
+      <nav id="topNav">
+        <a href="index.html" id="logoLink" class="active">
+          <img alt="p5play logo" src="../main/logo.svg" class="logo">
+          <span>p5play</span>
+        </a>
+        <hr>
+        <a href="sprite.html">Sprite</a>
+        <a href="group.html">Group</a>
+        <a href="sprite_animation.html">Ani</a>
+        <a href="input_devices.html">Input</a>
+        <a href="tiles.html" class="active">Tiles</a>
+        <a href="camera.html">Camera</a>
+        <a href="canvas.html">...</a>
+        <hr>
+        <a id="darkMode" onclick="toggleDarkMode()" tabindex="0" role="button">
+          <div id="darkModeIcon"></div>
+        </a>
+      </nav>
 
-<body class="dark">
-  <article>
-    <nav id="topNav">
-      <a href="index.html" id="logoLink" class="active">
-        <img alt="p5play logo" src="../main/logo.svg" class="logo">
-        <span>p5play</span>
-      </a>
-      <hr>
-      <a href="sprite.html">Sprite</a>
-      <a href="group.html">Group</a>
-      <a href="sprite_animation.html">Ani</a>
-      <a href="input_devices.html">Input</a>
-      <a href="tiles.html" class="active">Tiles</a>
-      <a href="camera.html">Camera</a>
-      <a href="canvas.html">...</a>
-      <hr>
-      <a id="darkMode" onclick="toggleDarkMode()" tabindex="0" role="button">
-        <div id="darkModeIcon"></div>
-      </a>
-    </nav>
+      <div class="break"></div>
 
-    <div class="break"></div>
-
-    <div id="page-0" class="page">
-      <md id="md0-0">
-        <h2 id="tiles">Tiles</h2>
-        <p>
-          For the original Super Mario Bros. lead developer, Shigeru Miyamoto,
-          and level designer, Takashi Tezuka,
-          <a href="https://www.youtube.com/watch?v=DLoRd6_a1CI">used graph paper to plot out the levels</a>
-          and then had their team of programmers type the coordinates of every
-          sprite in the game. That's a lot of work!
-        </p>
-        <p>
-          Fortunately for you, in p5play the <code>Tiles</code> constructor
-          can make sprites on a grid based on the positions of characters in a
-          string!
-        </p>
-        <p>
-          The first input parameter is a string or array of strings, each line
-          or string in the array representing a row of tiles.
-        </p>
-        <p>
-          The second and third input parameters are the x and y coordinates of
-          the top left (first) tile in the tiles grid.
-        </p>
-        <p>
-          The fourth and fifth input parameters are the width and height
-          respectively of each tile and any spacing you might want to add
-          between tiles.
-        </p>
-        <h2 id="try-it-out">Try it out!</h2>
-        <p>Try editing the "P5" brick layout.</p>
-        <p>
-          Note that spaces " " or periods "." are used to indicate that no
-          sprites should be made at that position on the tiles grid. In this
-          example, the "=" character is used for <code>bricks</code>.
-        </p>
-      </md>
-      <script type="mie/p5" title="tiles" lines="29">
+      <div id="page-0" class="page">
+        <md id="md0-0"><h2 id="tiles">Tiles</h2>
+          <p>
+            For the original Super Mario Bros. lead developer, Shigeru Miyamoto,
+            and level designer, Takashi Tezuka,
+            <a href="https://www.youtube.com/watch?v=DLoRd6_a1CI">used graph paper to plot out the levels</a>
+            and then had their team of programmers type the coordinates of every
+            sprite in the game. That's a lot of work!
+          </p>
+          <p>
+            Fortunately for you, in p5play the <code>Tiles</code> constructor
+            can make sprites on a grid based on the positions of characters in a
+            string!
+          </p>
+          <p>
+            The first input parameter is a string or array of strings, each line
+            or string in the array representing a row of tiles.
+          </p>
+          <p>
+            The second and third input parameters are the x and y coordinates of
+            the top left (first) tile in the tiles grid.
+          </p>
+          <p>
+            The fourth and fifth input parameters are the width and height
+            respectively of each tile and any spacing you might want to add
+            between tiles.
+          </p>
+          <h2 id="try-it-out">Try it out!</h2>
+          <p>Try editing the "P5" brick layout.</p>
+          <p>
+            Note that spaces " " or periods "." are used to indicate that no
+            sprites should be made at that position on the tiles grid. In this
+            example, the "=" character is used for <code>bricks</code>.
+          </p>
+        </md>
+        <script type="mie/p5" title="tiles" lines="29">
 let bricks;
 
 function setup() {
@@ -109,37 +105,36 @@ function draw() {
 	}
 }
 			</script>
-    </div>
-    <div id="page-1" class="page">
-      <md id="md1-0">
-        <h2 id="tile-coordinates">Tile coordinates</h2>
-        <p>
-          You can change the pixel value of coordinate values for all sprites
-          by setting <code>allSprites.tileSize</code>. For example, the tile
-          size is 8, then an x/y position of 1 represents 8 pixels, 2
-          represents 16 pixels, 3 represents 24 pixels, etc. Note this setting
-          affects how animation coordinates are specified too.
-        </p>
-        <p>
-          In this mini-example grid lines are drawn purely for visual
-          reference.
-        </p>
-        <p>
-          Also note that simply using the <code>move</code> function with the
-          heading "up" causes the player to move up a distance of 1 tile.
-        </p>
-        <p>
-          With just two collision rules the player can push around the blocks
-          and blocks can push each other too. They snap to the grid after
-          moving.
-        </p>
-        <p>
-          What's really nice is that you can set <code>tileSize</code> on a
-          per sprite basis. If set for a group then all sprites in that group
-          will use that tile size!
-        </p>
-      </md>
-      <script type="mie/p5" id="group.tileSize">
+      </div>
+      <div id="page-1" class="page">
+        <md id="md1-0"><h2 id="tile-coordinates">Tile coordinates</h2>
+          <p>
+            You can change the pixel value of coordinate values for all sprites
+            by setting <code>allSprites.tileSize</code>. For example, the tile
+            size is 8, then an x/y position of 1 represents 8 pixels, 2
+            represents 16 pixels, 3 represents 24 pixels, etc. Note this setting
+            affects how animation coordinates are specified too.
+          </p>
+          <p>
+            In this mini-example grid lines are drawn purely for visual
+            reference.
+          </p>
+          <p>
+            Also note that simply using the <code>move</code> function with the
+            heading "up" causes the player to move up a distance of 1 tile.
+          </p>
+          <p>
+            With just two collision rules the player can push around the blocks
+            and blocks can push each other too. They snap to the grid after
+            moving.
+          </p>
+          <p>
+            What's really nice is that you can set <code>tileSize</code> on a
+            per sprite basis. If set for a group then all sprites in that group
+            will use that tile size!
+          </p>
+        </md>
+        <script type="mie/p5" id="group.tileSize">
 let player, blocks;
 let gridSize = 32;
 
@@ -179,34 +174,32 @@ function draw() {
 	if (kb.presses('right')) player.move('right');
 }
 			</script>
-    </div>
-
-    <div class="break"></div>
-    <div id="toc">
-      <a id="prevPage" class="navLink">Previous Page</a>
-      <div id="pageNav" class="submenu">
-        <a data-page="0" href="tiles.html?page=0">Tiles constructor</a>
-        <a data-page="1" href="tiles.html?page=1">Using tileSize</a>
       </div>
-      <a id="nextPage" class="navLink">Next Page</a>
-    </div>
-    <div class="break"></div>
-    <footer id="credits" class="text-small">
-      Created by Quinton Ashley (@quinton-ashley) Copyright 2022-2023
-    </footer>
-  </article>
 
-  <script src="../v3/q5.min.js"></script>
-  <script src="../v3/planck.min.js"></script>
-  <script src="../v3/p5play.min.js"></script>
+      <div class="break"></div>
+      <div id="toc">
+        <a id="prevPage" class="navLink">Previous Page</a>
+        <div id="pageNav" class="submenu">
+          <a data-page="0" href="tiles.html?page=0">Tiles constructor</a>
+          <a data-page="1" href="tiles.html?page=1">Using tileSize</a>
+        </div>
+        <a id="nextPage" class="navLink">Next Page</a>
+      </div>
+      <div class="break"></div>
+      <footer id="credits" class="text-small">
+        Created by Quinton Ashley (@quinton-ashley) Copyright 2022-2023
+      </footer>
+    </article>
 
-  <script>
-    window.mie = { autoLoad: false };
-  </script>
-  <script src="mie.js"></script>
-  <script src="learn.js"></script>
+    <script src="../v3/q5.min.js"></script>
+    <script src="../v3/planck.min.js"></script>
+    <script src="../v3/p5play.min.js"></script>
 
+    <script>
+      window.mie = { autoLoad: false };
+    </script>
+    <script src="mie.js"></script>
+    <script src="learn.js"></script>
+  
 
-</body>
-
-</html>
+</body></html>

@@ -16,9 +16,9 @@ La función `draw` de p5.js se ejecuta 60 veces por segundo por defecto. La func
 
 Los desarrolladores de videojuegos usan la palabra "sprite" para referirse a personajes, objetos, o cualquier otra cosa que se mueva sobre un fondo.
 
-El constructor `new Sprite()` crea un sprite.
+El constructor new Sprite() crea un objeto sprite, el cual contiene variables que definen la posición, tamaño y apariencia de un sprite.
 
-¡Intenta editar las propiedades de los sprites de caja y círculo en los mini ejemplos de abajo!
+¡Intenta editar las propiedades de los sprites de caja y círculo en los mini ejemplos a continuación!
 
 # 0-2
 

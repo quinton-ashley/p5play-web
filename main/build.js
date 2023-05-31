@@ -93,7 +93,9 @@ async function translatePage(pageGroup, page) {
 
 	await Promise.all([loadTranslationMD(), loadTranslationJSON()]);
 
-	htmlFilePath = `./lang/${langCode}` + htmlFilePath.slice(1);
+	if (langCode != 'en') {
+		htmlFilePath = `./lang/${langCode}` + htmlFilePath.slice(1);
+	}
 
 	// Extract scripts
 	let scripts = Array.from(document.querySelectorAll('script[type="mie/p5"]'));

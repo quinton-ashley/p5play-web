@@ -1,6 +1,6 @@
 # 0-0
 
-## Setup
+## p5.js Setup
 
 The code inside the p5.js (or q5.js) `setup` function runs when the program starts. The `new Canvas()` constructor creates a section of the screen that the program can draw on.
 
@@ -16,7 +16,7 @@ A sprite is a ghost!
 
 Video game developers use the word "sprite" to refer to characters, items, or anything else that moves above a background.
 
-The `new Sprite()` constructor creates a sprite, which is a JavaScript object that has properties which describe the sprite's position, size, and appearance.
+The `new Sprite()` constructor creates a sprite object, which contains variables that define a sprite’s position, size, and appearance.
 
 Try editing the properties of the box and circle sprites in the mini examples below!
 
