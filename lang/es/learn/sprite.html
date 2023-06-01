@@ -263,15 +263,19 @@ floor.collider = 'none';
               Intenta crear un sprite llamado <code>peg</code> con un
               colisionador estático y forma de círculo. Crea un sprite
               <code>block</code> con un colisionador dinámico y forma de caja.
-              Haz que el bloque caiga desde arriba y golpee el peg, cayendo
-              hacia el lado derecho.
+              Posiciona el bloque de modo que golpee el clavo y caiga hacia la
+              derecha.
             </p>
             <p>
-              Nota que <code>world</code> se crea cuando se carga p5play pero
-              por defecto no hay gravedad. Intenta establecer
-              <code>world.gravity.y</code> en un número positivo. Por defecto,
-              cada vez que la función <code>draw</code> de p5.js termina, los
-              sprites se actualizan y dibujan automáticamente.
+              Cada vez que la función <code>draw</code> de p5.js termina, los
+              sprites se dibujan y actualizan automáticamente. Nota que
+              <code>world</code> se crea cuando se carga p5play pero por defecto
+              no hay gravedad. Intenta establecer
+              <code>world.gravity.y</code> en un número positivo.
+            </p>
+            <p>
+              Para un desafío adicional, intenta restablecer la posición
+              original del bloque después de que caiga.
             </p>
           </md>
           <script type="mie/p5" id="Level-1-Challenge-Solution" hide-editor="">

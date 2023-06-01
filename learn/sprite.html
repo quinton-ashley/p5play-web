@@ -260,15 +260,19 @@ floor.collider = 'none';
             <p>
               Try creating a sprite named <code>peg</code> with a static
               collider and circle shape. Create a sprite <code>block</code> with
-              a dynamic collider and box shape. Make the block fall from above
-              and hit the peg, falling to the right side.
+              a dynamic collider and box shape. Position the block so that it
+              hits the peg and falls to the right.
             </p>
             <p>
-              Note that <code>world</code> is created when p5play loads but by
-              default there is no gravity. Try setting
-              <code>world.gravity.y</code> to a positive number. By default,
-              each time the p5.js <code>draw</code> function finishes, sprites
-              are automatically drawn and updated.
+              Each time the p5.js <code>draw</code> function finishes, sprites
+              are automatically drawn and updated. Note that
+              <code>world</code> is created when p5play loads but by default
+              there's no gravity. Try setting <code>world.gravity.y</code> to a
+              positive number.
+            </p>
+            <p>
+              For an extra challenge, try resetting the block to its original
+              position after it falls.
             </p>
           </md>
           <script type="mie/p5" id="Level-1-Challenge-Solution" hide-editor="">

@@ -42,9 +42,11 @@ El tipo de colisionador también puede establecerse usando la primera letra del 
 
 ## ¡Pruébalo!
 
-Intenta crear un sprite llamado `peg` con un colisionador estático y forma de círculo. Crea un sprite `block` con un colisionador dinámico y forma de caja. Haz que el bloque caiga desde arriba y golpee el peg, cayendo hacia el lado derecho.
+Intenta crear un sprite llamado `peg` con un colisionador estático y forma de círculo. Crea un sprite `block` con un colisionador dinámico y forma de caja. Posiciona el bloque de modo que golpee el clavo y caiga hacia la derecha.
 
-Nota que `world` se crea cuando se carga p5play pero por defecto no hay gravedad. Intenta establecer `world.gravity.y` en un número positivo. Por defecto, cada vez que la función `draw` de p5.js termina, los sprites se actualizan y dibujan automáticamente.
+Cada vez que la función `draw` de p5.js termina, los sprites se dibujan y actualizan automáticamente. Nota que `world` se crea cuando se carga p5play pero por defecto no hay gravedad. Intenta establecer `world.gravity.y` en un número positivo.
+
+Para un desafío adicional, intenta restablecer la posición original del bloque después de que caiga.
 
 # 2-0
 

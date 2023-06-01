@@ -47,9 +47,11 @@ Click the reload icon on the top right corner of a mini example to replay it!
 
 ## Try it out!
 
-Try creating a sprite named `peg` with a static collider and circle shape. Create a sprite `block` with a dynamic collider and box shape. Make the block fall from above and hit the peg, falling to the right side.
+Try creating a sprite named `peg` with a static collider and circle shape. Create a sprite `block` with a dynamic collider and box shape. Position the block so that it hits the peg and falls to the right.
 
-Note that `world` is created when p5play loads but by default there is no gravity. Try setting `world.gravity.y` to a positive number. By default, each time the p5.js `draw` function finishes, sprites are automatically drawn and updated.
+Each time the p5.js `draw` function finishes, sprites are automatically drawn and updated. Note that `world` is created when p5play loads but by default there's no gravity. Try setting `world.gravity.y` to a positive number.
+
+For an extra challenge, try resetting the block to its original position after it falls.
 
 # 2-0
 
