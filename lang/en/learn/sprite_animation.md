@@ -85,9 +85,9 @@ Atlas objects can have the following properties:
 
 In the "hero" example the size of the hero sprite is set to 32x32 pixels in the `Sprite` constructor. That size is used as a multiplier to the row value given.
 
-Click this link to see the <a href="assets/questKid.png" target="_blank">full sprite sheet</a> used in the example.
+Click this link to see the full [questKid](assets/questKid.png) sprite sheet used in the example.
 
-If you'd like to truly appreciate how good p5play is, try comparing the code from my example to <a href="https://phaser.io/examples/v3/view/animation/create-animation-from-sprite-sheet" target="_blank">this Phaser demo</a>. Ha!
+If you'd like to truly appreciate how good p5play is, try comparing the code from my example to [this Phaser demo](https://phaser.io/examples/v3/view/animation/create-animation-from-sprite-sheet). Ha!
 
 I recommend making every frame in an animation the same size and putting them in order from left to right. If not you'll need to manually specify the position of each frame, which can be done using an array of coordinates instead of an atlas object.
 

@@ -1,0 +1,122 @@
+<!DOCTYPE html><html lang="ja"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>p5play : Canvas</title>
+    <link rel="icon" href="../main/logo.svg">
+    <link rel="stylesheet" href="../../../learn/style.css">
+  </head>
+
+  <body class="dark">
+    <article>
+      <nav id="topNav">
+        <a href="index.html" id="logoLink" class="active">
+          <img alt="p5play logo" src="../../../learn/../main/logo.svg" class="logo">
+          <span>p5play</span>
+        </a>
+        <hr>
+        <a href="canvas.html" class="active">Canvas</a>
+        <a href="world.html">World</a>
+        <hr>
+        <a id="darkMode" onclick="toggleDarkMode()" tabindex="0" role="button">
+          <div id="darkModeIcon"></div>
+        </a>
+      </nav>
+      <div class="break"></div>
+      <div id="page-0" class="page">
+        <md id="md0-0"><h2 id="高度なトピック">高度なトピック</h2>
+          <p>
+            これらのリファレンスページでは、p5play
+            のより高度な機能のいくつかを強調しています。
+          </p>
+          <p>他のリファレンスページを先に読むことをお勧めします！</p>
+        </md>
+        <md id="md0-1"><h2 id="canvas">Canvas</h2>
+          <p>
+            <code>Canvas</code>クラスは、p5play バージョンの p5.js
+            の<code>createCanvas</code>関数のラッパーで、HTML5
+            のキャンバス要素を作成するために使用されます。 p5play
+            のバージョンにはいくつかの追加機能も提供されます。
+          </p>
+          <p>
+            <code>new Canvas()</code>にパラメータが渡されない場合、ウィンドウ全体を埋めるキャンバスが作成されます。
+          </p>
+          <p>
+            <code>canvas.w</code>と<code>canvas.h</code>を使用してキャンバスの幅と高さを取得します。
+          </p>
+          <p>
+            また、Canvas
+            コンストラクタにアスペクト比を渡すこともできます。これにより、指定されたアスペクト比を維持しながら、ウィンドウに収まる最大のキャンバスが作成されます。例えば、<code>new Canvas('2:1')</code>は、幅が高さの 2 倍のキャンバスを作成します。
+          </p>
+        </md>
+      </div>
+      <div id="page-1" class="page">
+        <md id="md1-0"><h2 id="pixelated-モード">pixelated モード</h2>
+          <p>
+            追加された機能のもう 1 つは、"pixelated"プリセットです。8 ビットや
+            16 ビットスタイルのレトロなゲームを作るために使用します！
+          </p>
+          <p>
+            デフォルトでは、"pixelated"プリセットはキャンバスを画面に合わせてスケーリングし、そのアスペクト比を維持しますが、プリセット名の後に乗数を渡すことでカスタムスケールを定義することもできます。
+          </p>
+          <p>
+            たとえば、"pixelated x2"は、指定された幅と高さの 2
+            倍のサイズで表示されるキャンバスを作成します。
+          </p>
+        </md>
+        <div class="minis horiz">
+          <script type="mie/p5" id="normal sized pixels" lines="9" hide-editor="">
+function setup() {
+  new Canvas(500, 20);
+
+  noStroke();
+  fill(0);
+  for (let i = 0; i < 120; i++) {
+    rect(i, i % 5, 1, 1);
+  }
+}
+function draw() {}
+      </script>
+          <script type="mie/p5" id="pixelated-preset" lines="10">
+function setup() {
+  //       (width, height, preset)
+  new Canvas(120, 5, 'pixelated x4');
+
+  noStroke();
+  fill(0);
+  for (let i = 0; i < 120; i++) {
+    rect(i, i % 5, 1, 1);
+  }
+}
+function draw() {}
+      </script>
+        </div>
+      </div>
+
+      <div class="break"></div>
+      <div id="toc">
+        <a id="prevPage" class="navLink">前のページ</a>
+        <div id="pageNav" class="submenu">
+          <a data-page="0" href="canvas.html?page=0">キャンバスコンストラクタ</a>
+          <a data-page="1" href="canvas.html?page=1">ピクセル化モード</a>
+        </div>
+        <a id="nextPage" class="navLink">次のページ</a>
+      </div>
+      <div class="break"></div>
+      <footer id="credits" class="text-small">
+        クリントン・アシュリー（@quinton-ashley）によって作成されました 著作権
+        2022-2023
+      </footer>
+    </article>
+
+    <script src="../../../learn/../v3/q5.min.js"></script>
+    <script src="../../../learn/../v3/planck.min.js"></script>
+    <script src="../../../learn/../v3/p5play.min.js"></script>
+
+    <script>
+      window.mie = { autoLoad: false };
+    </script>
+    <script src="../../../learn/mie.js"></script>
+    <script src="../../../learn/learn.js"></script>
+  
+
+</body></html>

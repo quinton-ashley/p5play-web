@@ -1,0 +1,511 @@
+<!DOCTYPE html><html lang="ja"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>p5play : Animation</title>
+    <link rel="icon" href="../main/favicon.png">
+    <link rel="stylesheet" href="../../../learn/style.css">
+  </head>
+
+  <body class="dark">
+    <article>
+      <nav id="topNav">
+        <a href="index.html" id="logoLink" class="active">
+          <img alt="p5play logo" src="../../../learn/../main/logo.svg" class="logo">
+          <span>p5play</span>
+        </a>
+        <hr>
+        <a href="sprite.html">Sprite</a>
+        <a href="group.html">Group</a>
+        <a href="sprite_animation.html" class="active">Ani</a>
+        <a href="input_devices.html">Input</a>
+        <a href="tiles.html">Tiles</a>
+        <a href="camera.html">Camera</a>
+        <a href="canvas.html">...</a>
+        <hr>
+        <a id="darkMode" onclick="toggleDarkMode()" tabindex="0" role="button">
+          <div id="darkModeIcon"></div>
+        </a>
+      </nav>
+
+      <div class="break"></div>
+
+      <div id="page-0" class="page">
+        <md id="md0-0"><h2 id="アニメーションの読み込み方法">
+            アニメーションの読み込み方法
+          </h2>
+          <p>
+            アニメーションは、十分な速度で連続して表示される一連の画像で、運動の様子を表現します。
+          </p>
+          <p>
+            <code>loadAni</code>関数には、シーケンス、リスト、スプライトシートの
+            3 つのモードがあります。
+          </p>
+          <p>
+            このミニ例では、クラウドブリージングアニメーションは、最初の画像へのパスとシーケンス内の最後の画像のインデックスが指定された番号付き画像のシーケンスを使用して読み込まれます。
+          </p>
+          <p>
+            <code>animation</code>関数は p5.js
+            の<code>image</code>関数に似ています。 p5.js の draw
+            関数で使用して、位置にアニメーションを表示します。
+          </p>
+        </md>
+        <script type="mie/p5" id="sequence-mode">
+let cloudAni;
+
+function setup() {
+	new Canvas(500, 160);
+
+	cloudAni = loadAni('assets/cloud_breathing1.png', 9);
+}
+
+function draw() {
+	clear();
+	animation(cloudAni, 250, 80);
+}
+			</script>
+        <md id="md0-1"><p>
+            このミニ例では、<code>loadAnimation</code>関数に画像のリストが与えられます。
+          </p>
+          <p>
+            <code>ani.frameDelay</code>プロパティは、アニメーションの画像が次の画像が表示される前に表示されるフレーム数を定義します。
+            デフォルトは 4 です。
+            値が大きいほどアニメーションの再生速度が遅くなります。
+            フレームディレイが 1
+            の場合、アニメーションは可能な限り早く再生されます。
+          </p>
+          <p>
+            試してみてください！ このミニ例の frameDelay
+            を変更してみてください。
+          </p>
+        </md>
+        <script type="mie/p5" id="list-mode">
+let shapeShifterAni;
+
+function setup() {
+	new Canvas(500, 160);
+
+	shapeShifterAni = loadAnimation(
+		'assets/asterisk.png',
+		'assets/triangle.png',
+		'assets/square.png',
+		'assets/cloud.png',
+		'assets/star.png',
+		'assets/mess.png',
+		'assets/monster.png'
+	);
+
+	shapeShifterAni.frameDelay = 10;
+}
+
+function draw() {
+	clear();
+	animation(shapeShifterAni, 250, 80);
+}
+			</script>
+        <md id="md0-2"><p>
+            このミニ例では、スプライトシートからアニメーションを読み込みます。スプライトシートとは、アニメーションのすべてのフレームを含む単一の画像です。このスケッチのスプライトシートを見て、それがどのように見えるかを確認してください。
+          </p>
+          <p>
+            スプライトシートモードでは、アトラスオブジェクトを使用して各フレームのサイズとアニメーションのフレーム数を指定できます。
+          </p>
+          <p>
+            プログラムが開始したときにアニメーションを本当に必要とする場合は、setup
+            の代わりに p5.js の preload 関数で読み込む必要があります。
+          </p>
+        </md>
+        <script type="mie/p5" id="sprite-sheet-mode">
+let splatAni;
+
+function setup() {
+	new Canvas(500, 200);
+
+	splatAni = loadAnimation('assets/explode_sprite_sheet.png', { frameSize: [171, 158], frames: 11 });
+}
+
+function draw() {
+	clear();
+	animation(splatAni, 100, 100);
+
+	scale(0.6);
+	image(splatAni.spriteSheet, 320, 80, 500, 154);
+}
+//
+			</script>
+      </div>
+      <div id="page-1" class="page">
+        <md id="md1-0"><h2 id="アニメーション">アニメーション</h2>
+          <p>p5play はアニメーションに対する完全な制御を提供します。</p>
+          <p>
+            キーボードを使用して、アニメーションを制御するさまざまな方法を試してみてください！
+          </p>
+        </md>
+        <script type="mie/p5" id="splat">
+let ani;
+
+function setup() {
+	new Canvas(500, 160);
+
+	ani = loadAni('assets/asterisk_explode0001.png', 11);
+}
+
+function draw() {
+	clear();
+
+	if (kb.presses('p')) ani.play();
+	if (kb.presses('o')) ani.play(0);
+	if (kb.presses('ArrowDown')) ani.frameDelay--;
+	if (kb.presses('ArrowUp')) ani.frameDelay++;
+	if (kb.presses('s')) ani.stop();
+	if (kb.presses('r')) ani.rewind();
+	if (kb.presses('l')) ani.loop();
+	if (kb.presses('n')) ani.noLoop();
+	if (kb.presses('ArrowLeft')) ani.previousFrame();
+	if (kb.presses('ArrowRight')) ani.nextFrame();
+	if (kb.presses('5')) ani.frame = 5;
+	if (kb.pressing('x')) ani.scale.x = -1;
+	if (kb.pressing('y')) ani.scale.y = -1;
+	if (kb.pressing('1')) ani.scale = 1;
+	if (kb.pressing('2')) ani.scale = 2;
+
+	animation(ani, 250, 80);
+}
+			</script>
+      </div>
+      <div id="page-2" class="page">
+        <div class="minis horiz">
+          <md id="md2-0"><h2 id="アニメーション付きスプライト">
+              アニメーション付きスプライト
+            </h2>
+            <p>
+              <code>sprite.addAni</code>関数を使用して、スプライトにアニメーションを追加できます。
+              また、<code>loadAni</code>と同様にアニメーションを読み込むこともできます。
+              最初の入力パラメータとしてオプションで、アニメーションの名前を指定できます。
+            </p>
+            <p>
+              左マウスボタンを押してみてください。
+              <code>sprite.debug</code>プロパティが true に設定されていると、
+              スプライトの物理ボディコライダーを見ることができます。
+            </p>
+          </md>
+          <md id="md2-1"><h2 id="スプライトのアニメーションを制御する">
+              スプライトのアニメーションを制御する
+            </h2>
+            <p>
+              <code>sprite.ani</code>にはスプライトの現在のアニメーションが格納されており、 異なる
+              アニメーションの名前に設定することで変更できます。
+            </p>
+            <p>
+              <code>sprite.mirror</code>はスプライトを
+              水平または垂直に反転させるために使用できます。
+            </p>
+            <p>左と右を押してゴーストを動かしてみてください。</p>
+            <p>スペースバーを押してアニメーションを停止してみてください。</p>
+          </md>
+        </div>
+        <script type="mie/p5" id="sprites-with-animation">
+let ghost;
+
+function setup() {
+	new Canvas(500, 160);
+	ghost = new Sprite(250, 80, 120);
+
+	ghost.addAni('fly', 'assets/ghost_walk01.png', 3);
+	ghost.addAni('idle', 'assets/ghost_standing01.png', 7);
+}
+
+function draw() {
+	clear();
+
+	ghost.debug = mouse.pressing();
+
+	if (kb.pressing('left')) {
+		ghost.ani = 'fly';
+		ghost.vel.x = -2;
+		ghost.mirror.x = true;
+	} else if (kb.pressing('right')) {
+		ghost.ani = 'fly';
+		ghost.vel.x = 2;
+		ghost.mirror.x = false;
+	} else {
+		ghost.ani = 'idle';
+		ghost.vel.x = 0;
+	}
+
+	if (kb.pressing('space')) {
+		ghost.ani.stop();
+	} else {
+		ghost.ani.play();
+	}
+}
+			</script>
+      </div>
+      <div id="page-3" class="page">
+        <md id="md3-0"><h2 id="アニメーション付きグループ">アニメーション付きグループ</h2>
+          <p>
+            グループに 1
+            つのアニメーションしかない場合、新しいグループスプライトはそのアニメーションを使用します。
+            それ以外の場合、スプライトはデフォルトで最後に読み込まれたアニメーションを取得します。
+          </p>
+          <p>
+            このミニ例では、スプラットをあまりにも近づけると、そのコライダーが重ならなくなるまで離れて動きます。
+            コライダーのサイズはアニメーションのサイズから取得されます。
+          </p>
+          <p>マウスをクリックして新しいスプラットを追加してみてください！</p>
+        </md>
+        <script type="mie/p5" id="splats">
+let splats;
+
+function setup() {
+	new Canvas(500, 160);
+
+	splats = new Group();
+	splats.addAni('assets/asterisk_explode0001.png', 11);
+}
+
+function draw() {
+	clear();
+
+	if (mouse.presses()) {
+		new splats.Sprite(mouse.x, mouse.y);
+	}
+}
+			</script>
+      </div>
+      <div id="page-4" class="page">
+        <div class="minis">
+          <md id="md4-0"><h2 id="複数のアニメーションを持つスプライトシート">
+              複数のアニメーションを持つスプライトシート
+            </h2>
+            <p>
+              同じスプライトシート画像から複数のアニメーションを読み込むには、まずスプライトまたはグループの<code>spriteSheet</code>プロパティを設定します。
+            </p>
+            <p>
+              次に、<code>addAnimations</code> /
+              <code>addAnis</code>関数を使用します。
+              彼らはアニメーション名をキーとして、スプライトシートアトラスを値として使用するオブジェクトを受け入れます。
+            </p>
+            <p>
+              アトラスオブジェクトを使用する方が、各フレームの座標を手動で指定するよりもはるかに簡単です！
+            </p>
+            <p>アトラスオブジェクトは次のプロパティを持つことができます：</p>
+            <p>
+              <code>x</code>、<code>y</code>、<code>pos</code>、<code>w</code>/<code>width</code>、<code>h</code>/<code>height</code>、<code>size</code>/<code>frameSize</code>、<code>row</code>、<code>col</code>、<code>frames</code>/<code>frameCount</code>、<code>delay</code>/<code>frameDelay</code>、そして<code>rotation</code>。
+            </p>
+            <p>
+              "hero"例では、<code>Sprite</code>コンストラクタでヒーロースプライトのサイズが
+              32x32 ピクセルに設定されています。
+              そのサイズは与えられた行値の乗数として使用されます。
+            </p>
+            <p>
+              このリンクをクリックして、例で使用されている<a href="assets/questKid.png">完全なスプライトシート</a>を見てください。
+            </p>
+            <p>
+              あなたが本当に p5play
+              がどれだけ良いかを感謝したいなら、私の例のコードを<a href="https://phaser.io/examples/v3/view/animation/create-animation-from-sprite-sheet">この Phaser デモ</a>と比較してみてください。 ハ！
+            </p>
+            <p>
+              アニメーションの各フレームを同じサイズにして左から右に順に並べることをお勧めします。
+              そうでなければ、各フレームの位置を手動で指定する必要があります。これは、アトラスオブジェクトの代わりに座標の配列を使用して行うことができます。
+            </p>
+          </md>
+          <md id="md4-1"><h2 id="anis">anis</h2>
+            <p>
+              すべてのスプライトとグループには、そのアニメーションを格納する<code>animations</code>
+              /
+              <code>anis</code>オブジェクトがあります。キーはアニメーションの名前で、値はアニメーションオブジェクトです。これはグループが動作するのと同じように、ソフトとダイナミックな継承を利用します。
+            </p>
+            <p>
+              <code>ani.offset</code>プロパティは、アニメーションの位置をスプライトの位置に対して調整するために使用されます。
+            </p>
+            <p>
+              <code>sprite.pixelPerfect</code>が true
+              に設定されている場合、スプライトは整数の座標に描画されますが、その衝突体の正確な位置は保持されます。これはピクセルアートゲームに役立ちます！
+            </p>
+          </md>
+        </div>
+        <div class="minis horiz">
+          <script type="mie/p5" id="hero-demoMode" hide-editor="">
+let hero;
+
+function preload() {
+	hero = new Sprite(125, 48, 32, 32);
+	hero.spriteSheet = 'assets/questKid.png';
+	hero.anis.offset.x = 2;
+	hero.anis.frameDelay = 32;
+	hero.anis.demoMode = true;
+
+	hero.addAnis({
+		run: { row: 0, frames: 8 },
+		jump: { row: 1, frames: 6 },
+		roll: { row: 2, frames: 5 },
+		turn: { row: 3, frames: 7 },
+		stand: { row: 3, frames: 1 }
+	});
+	hero.ani = 'run';
+
+	hero.debug = true;
+}
+
+function setup() {
+	new Canvas(250, 96, 'pixelated x2');
+	allSprites.pixelPerfect = true;
+}
+
+function draw() {
+	clear();
+	if (kb.presses('r')) hero.ani = 'run';
+	if (kb.presses('j')) hero.ani = 'jump';
+	if (kb.presses('l')) hero.ani = 'roll';
+	if (kb.presses('t')) hero.ani = 'turn';
+	if (kb.presses('s')) hero.ani = 'stand';
+	
+}
+				</script>
+          <script type="mie/p5" id="hero">
+let hero;
+
+function preload() {
+	hero = new Sprite(62, 24, 32, 32);
+	hero.spriteSheet = 'assets/questKid.png';
+	hero.anis.offset.x = 2;
+	hero.anis.frameDelay = 8;
+
+	hero.addAnis({
+		run: { row: 0, frames: 8 },
+		jump: { row: 1, frames: 6 },
+		roll: { row: 2, frames: 5, frameDelay: 14 },
+		turn: { row: 3, frames: 7 },
+		stand: { row: 3, frames: 1 }
+	});
+	hero.ani = 'run';
+}
+
+function setup() {
+	new Canvas(124, 48, 'pixelated x4');
+	allSprites.pixelPerfect = true;
+}
+
+function draw() {
+	clear();
+	if (kb.presses('r')) hero.ani = 'run';
+	if (kb.presses('j')) hero.ani = 'jump';
+	if (kb.presses('l')) hero.ani = 'roll';
+	if (kb.presses('t')) hero.ani = 'turn';
+	if (kb.presses('s')) hero.ani = 'stand';
+}
+				</script>
+        </div>
+      </div>
+      <div id="page-5" class="page">
+        <md id="md5-0"><h2 id="アニメーションのシーケンシング">
+            アニメーションのシーケンシング
+          </h2>
+          <p>
+            <code>sprite.ani</code>は、アニメーションオブジェクト、アニメーションの名前、または順序に再生されるアニメーションの名前の配列に設定することができます。
+          </p>
+          <p>
+            デフォルトでは、ループが有効になっている場合、シーケンスの最後のアニメーションがループされます。シーケンス全体をループするには、最後のアニメーション名として<code>'**'</code>を使用します。代わりに、シーケンスを最後に停止させたい場合は、最後のアニメーション名として<code>';;'</code>を使用します。
+          </p>
+          <p>
+            この例では、ヒーローキャラクターを WASD
+            または矢印キーを使用して画面上を移動させる方法を示しています！
+          </p>
+        </md>
+        <script type="mie/p5" base-0="" hide="">
+let hero, floor;
+
+function preload() {
+	hero = new Sprite(62, 24, 32, 32);
+	hero.spriteSheet = '../learn/assets/questKid.png';
+	hero.anis.offset.x = 2;
+	hero.anis.offset.y = 2;
+	hero.anis.frameDelay = 8;
+
+	hero.addAnis({
+		run: { row: 0, frames: 8 },
+		jump: { row: 1, frames: 6 },
+		roll: { row: 2, frames: 5, frameDelay: 14 },
+		turn: { row: 3, frames: 7 },
+		stand: { row: 3, frames: 1 }
+	});
+	hero.ani = 'stand';
+}
+
+function setup() {
+	new Canvas(125, 48, 'pixelated x4');
+	world.gravity.y = 10;
+	allSprites.pixelPerfect = true;
+
+	floor = new Sprite(62.5, 48, 125, 8, 's');
+	floor.color = color(133, 228, 62);
+}
+
+function draw() {
+	clear();
+}
+			</script>
+        <script type="mie/p5" id="animation-sequencing" base="0">
+if (kb.presses('up')) hero.ani = ['jump', 'stand'];
+if (kb.presses('down')) hero.ani = ['roll', 'stand'];
+
+if (kb.pressing('left')) hero.vel.x = -1;
+else if (kb.pressing('right')) hero.vel.x = 1;
+else hero.vel.x = 0;
+
+if (hero.ani.name != 'jump' && hero.ani.name != 'roll') {
+	if (kb.pressing('left')) {
+		hero.ani = 'run';
+		hero.mirror.x = true;
+	} else if (kb.pressing('right')) {
+		hero.ani = 'run';
+		hero.mirror.x = false;
+	} else {
+		hero.ani = 'stand';
+	}
+}
+			</script>
+      </div>
+      <div id="page-6" class="page">
+        <md id="md6-0"><h2 id="高度なアニメーションのシーケンシング">
+            高度なアニメーションのシーケンシング
+          </h2>
+          <p>
+            裏側では、<code>sprite.ani</code>の設定は<code>sprite.changeAni</code>非同期関数を使用します。この関数を直接使用して、アニメーションが再生を終えるのを待つことができます。
+          </p>
+          <p>例は近日公開予定！</p>
+        </md>
+      </div>
+
+      <div class="break"></div>
+      <div id="toc">
+        <a id="prevPage" class="navLink">前のページ</a>
+        <div id="pageNav" class="submenu">
+          <a data-page="0" href="sprite_animation.html?page=0">アニメーションのロード</a>
+          <a data-page="1" href="sprite_animation.html?page=1">アニメーションコントロール</a>
+          <a data-page="2" href="sprite_animation.html?page=2">アニメーション付きスプライト</a>
+          <a data-page="3" href="sprite_animation.html?page=3">アニメーション付きグループ</a>
+          <a data-page="4" href="sprite_animation.html?page=4">複数のアニメーションを持つスプライトシート</a>
+          <a data-page="5" href="sprite_animation.html?page=5">シーケンス化</a>
+          <a data-page="6" href="sprite_animation.html?page=6">高度なシーケンス化</a>
+        </div>
+        <a id="nextPage" class="navLink">次のページ</a>
+      </div>
+      <div class="break"></div>
+      <footer id="credits" class="text-small">
+        クリントン・アシュリー（@quinton-ashley）によって作成されました 著作権
+        2022-2023
+      </footer>
+    </article>
+
+    <script src="../../../learn/../v3/q5.min.js"></script>
+    <script src="../../../learn/../v3/planck.min.js"></script>
+    <script src="../../../learn/../v3/p5play.min.js"></script>
+
+    <script>
+      window.mie = { autoLoad: false };
+    </script>
+    <script src="../../../learn/mie.js"></script>
+    <script src="../../../learn/learn.js"></script>
+  
+
+</body></html>
