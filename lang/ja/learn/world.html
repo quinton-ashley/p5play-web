@@ -25,30 +25,29 @@
 
       <div id="page-0" class="page">
         <div class="minis horiz">
-          <md id="md0-0"><h2 id="world">World</h2>
+          <md id="md0-0"><h2 id="ワールド">ワールド</h2>
             <p>
-              Each instance of p5play has its own <code>world</code> object,
-              that can be used to control the physics simulation.
+              p5play
+              の各インスタンスには、物理シミュレーションを制御するために使用できる独自の
+              <code>world</code> オブジェクトがあります。
             </p>
             <p>
-              The most important property of this object is
-              <code>gravity</code>, which has x and y components.
+              このオブジェクトの最も重要なプロパティは
+              <code>gravity</code> で、x 成分と y 成分を持っています。
             </p>
           </md>
-          <md id="md0-1"><h2 id="sleeping">Sleeping</h2>
-            <p><code>world.allowSleeping</code> is true by default.</p>
+          <md id="md0-1"><h2 id="スリープ">スリープ</h2>
+            <p><code>world.allowSleeping</code> はデフォルトで true です。</p>
             <p>
-              A sprite starts "sleeping" when it stops moving and doesn't
-              collide with anything new. "Sleeping" sprites get ignored during
-              physics simulation, which usually prevents the Box2D physics
-              engine solver from having to make unnecessary calculations. While
-              this is good for performance, sometimes it can cause problems.
+              スプライトは、動きを止めて新たに何も衝突しないときに "sleeping"
+              状態になります。 "Sleeping"
+              スプライトは物理シミュレーション中に無視されるため、通常は Box2D
+              物理エンジンソルバが不必要な計算を行う必要がなくなります。これはパフォーマンスには良いですが、場合によっては問題を引き起こすこともあります。
             </p>
             <p>
-              You can wake up a sleeping sprite by setting
-              <code>sprite.sleeping</code> to false. You can also disable
-              sleeping on a per sprite basis by setting
-              <code>sprite.allowSleeping</code> to false.
+              スプライトを起こすには <code>sprite.sleeping</code> を false
+              に設定します。また、 <code>sprite.allowSleeping</code> を false
+              に設定することで、スプライトごとにスリープを無効にすることもできます。
             </p>
           </md>
         </div>
@@ -89,40 +88,41 @@ function draw() {
         </div>
       </div>
       <div id="page-1" class="page">
-        <md id="md1-0"><h2 id="controlling-time">Controlling Time</h2>
+        <md id="md1-0"><h2 id="時間の制御">時間の制御</h2>
           <p>
-            By default, after each time the p5.js draw function is run, p5play
-            calls three functions in this order:
+            デフォルトでは、p5.js の draw 関数が実行されるたびに、p5play
+            は以下の 3 つの関数をこの順序で呼び出します：
           </p>
           <ul>
-            <li><code>allSprites.draw()</code> : draws all sprites</li>
             <li>
-              <code>world.step()</code> : progresses the physics simulation
+              <code>allSprites.draw()</code> ： すべてのスプライトを描画します
             </li>
+            <li><code>world.step()</code> ： 物理シミュレーションを進めます</li>
             <li>
-              <code>allSprites.update()</code> : updates sprite.ani and
-              sprite.mouse
+              <code>allSprites.update()</code> ： sprite.ani と sprite.mouse
+              を更新します
             </li>
           </ul>
           <p>
-            But you can also take manual control of these processes by calling
-            them yourself.
-          </p>
-          <p>In the mini-example, try pressing space to toggle slow-motion!</p>
-          <h2 id="spritedraw-and-groupdraw">sprite.draw and group.draw</h2>
-          <p>
-            You can use the <code>sprite.draw</code> and
-            <code>group.draw</code> functions to manually control when
-            individual sprites and groups are drawn inside the p5.js draw loop.
-            Any sprites not drawn manually will be automatically drawn at the
-            end of the p5.js draw loop unless the sprite's autoDraw property is
-            set to false directly or by one of its parent groups. To prevent
-            automatic drawing completely set
-            <code>allSprites.autoDraw = false</code>.
+            しかし、これらのプロセスを自分で呼び出すことで手動で制御することもできます。
           </p>
           <p>
-            Note that you will have to manually turn the camera on and off if
-            you want to use it with manually drawn sprites.
+            ミニ例では、スペースを押してスローモーションを切り替えてみてください！
+          </p>
+          <h2 id="spritedraw-と-groupdraw">sprite.draw と group.draw</h2>
+          <p>
+            p5.js の draw
+            ループ内で個々のスプライトとグループを描画するタイミングを手動で制御するために、<code>sprite.draw</code>
+            と
+            <code>group.draw</code>
+            関数を使用できます。手動で描画されなかったスプライトは、スプライトの
+            autoDraw プロパティが直接または親グループのいずれかによって false
+            に設定されていない限り、p5.js の draw
+            ループの終わりに自動的に描画されます。自動描画を完全に防ぐには
+            <code>allSprites.autoDraw = false</code> を設定します。
+          </p>
+          <p>
+            手動で描画したスプライトを使ってカメラをオンにしたりオフにしたりする場合は、手動でオンオフを切り替える必要があります。
           </p>
         </md>
         <script type="mie/p5" id="world.step">
@@ -154,35 +154,33 @@ function draw() {
 			</script>
         <md id="md1-1"><h2 id="worldstep">world.step</h2>
           <p>
-            <code>world.step</code> checks for collisions and calculates the
-            positions and velocities of all sprites after progressing the
-            physics simulation by 1/60th of a second by default. Sprites can't
-            be progressed forward in time individually.
+            <code>world.step</code> は、デフォルトで 1/60
+            秒進行した物理シミュレーションの後で、すべてのスプライトの衝突をチェックし、位置と速度を計算します。スプライトは個別に時間を進めることはできません。
           </p>
           <p>
-            Before you use <code>world.step</code> in your p5.js draw function,
-            be sure to draw all the sprites. Otherwise, they will be drawn in
-            the wrong position!
+            p5.js の draw 関数で
+            <code>world.step</code>
+            を使用する前に、すべてのスプライトを描画しておくことが重要です。そうしないと、スプライトが間違った位置に描画されます！
           </p>
           <p>
-            Set <code>world.autoStep = false</code> to disable automatic
-            stepping. Then you can call <code>world.step</code> manually
-            whenever you want to progress the physics simulation.
+            自動ステップを無効にするには
+            <code>world.autoStep = false</code>
+            を設定します。それから、物理シミュレーションを進行させたいときにいつでも手動で
+            <code>world.step</code> を呼び出すことができます。
           </p>
         </md>
-        <md id="md1-2"><h2 id="spriteupdate-and-groupupdate">
-            sprite.update and group.update
+        <md id="md1-2"><h2 id="spriteupdate-と-groupupdate">
+            sprite.update と group.update
           </h2>
           <p>
-            What does <code>sprite.update</code> do? It's responsible for
-            updating the sprite's animation and mouse events. It also runs the
-            user's custom update function if they set any. To prevent automatic
-            updating completely set <code>allSprites.autoUpdate = false</code>.
+            <code>sprite.update</code>
+            は何をしますか？これは、スプライトのアニメーションとマウスイベントの更新を担当します。また、ユーザーが何かを設定した場合は、ユーザーのカスタム更新関数も実行します。完全な自動更新を防ぐには
+            <code>allSprites.autoUpdate = false</code> を設定します。
           </p>
           <p>
-            Why is this functionality seperated from the world step? Because on
-            a pause screen the physics world could be paused, but pause menu UI
-            animations and mouse events could still be updated.
+            なぜこの機能はワールドステップから分離されているのですか？というのも、一時停止画面では物理ワールドが一時停止している可能性がありますが、一時停止メニューの
+            UI
+            アニメーションとマウスイベントは引き続き更新される可能性があるからです。
           </p>
         </md>
       </div>

@@ -52,4 +52,4 @@ Set `world.autoStep = false` to disable automatic stepping. Then you can call `w
 
 What does `sprite.update` do? It's responsible for updating the sprite's animation and mouse events. It also runs the user's custom update function if they set any. To prevent automatic updating completely set `allSprites.autoUpdate = false`.
 
-Why is this functionality seperated from the world step? Because on a pause screen the physics world could be paused, but pause menu UI animations and mouse events could still be updated.
+Why is this functionality separated from the world step? Because on a pause screen the physics world could be paused, but pause menu UI animations and mouse events could still be updated.

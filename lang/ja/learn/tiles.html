@@ -30,38 +30,32 @@
       <div class="break"></div>
 
       <div id="page-0" class="page">
-        <md id="md0-0"><h2 id="tiles">Tiles</h2>
+        <md id="md0-0"><h2 id="タイル">タイル</h2>
           <p>
-            For the original Super Mario Bros. lead developer, Shigeru Miyamoto,
-            and level designer, Takashi Tezuka,
-            <a href="https://www.youtube.com/watch?v=DLoRd6_a1CI">used graph paper to plot out the levels</a>
-            and then had their team of programmers type the coordinates of every
-            sprite in the game. That's a lot of work!
+            オリジナルのスーパーマリオブラザーズのリードデベロッパーである宮本茂とレベルデザイナーの手塚卓志は、<a href="https://www.youtube.com/watch?v=DLoRd6_a1CI">グラフ用紙を使用してレベルをプロットし</a>、ゲーム内のすべてのスプライトの座標をプログラマーのチームに入力させました。それはたくさんの作業です！
           </p>
           <p>
-            Fortunately for you, in p5play the <code>Tiles</code> constructor
-            can make sprites on a grid based on the positions of characters in a
-            string!
+            幸いなことに、p5play
+            では、<code>Tiles</code>コンストラクタを使って、文字列の文字の位置に基づいてグリッド上にスプライトを作ることができます！
           </p>
           <p>
-            The first input parameter is a string or array of strings, each line
-            or string in the array representing a row of tiles.
+            最初の入力パラメータは文字列または文字列の配列で、配列の各行または文字列はタイルの行を表します。
           </p>
           <p>
-            The second and third input parameters are the x and y coordinates of
-            the top left (first) tile in the tiles grid.
+            2 番目と 3
+            番目の入力パラメータは、タイルグリッドの左上（最初の）タイルの x
+            座標と y 座標です。
           </p>
           <p>
-            The fourth and fifth input parameters are the width and height
-            respectively of each tile and any spacing you might want to add
-            between tiles.
+            4 番目と 5
+            番目の入力パラメータは、各タイルの幅と高さ、そしてタイル間に追加したいスペースです。
           </p>
-          <h2 id="try-it-out">Try it out!</h2>
-          <p>Try editing the "P5" brick layout.</p>
+          <h2 id="試してみてください！">試してみてください！</h2>
+          <p>"P5"ブロックのレイアウトを編集してみてください。</p>
           <p>
-            Note that spaces " " or periods "." are used to indicate that no
-            sprites should be made at that position on the tiles grid. In this
-            example, the "=" character is used for <code>bricks</code>.
+            スペース " " やピリオド "."
+            は、タイルグリッドのその位置にスプライトを作らないことを示すために使用されます。この例では、"="
+            文字は <code>bricks</code> に使用されます。
           </p>
         </md>
         <script type="mie/p5" title="tiles" lines="29">
@@ -107,31 +101,27 @@ function draw() {
 			</script>
       </div>
       <div id="page-1" class="page">
-        <md id="md1-0"><h2 id="tile-coordinates">Tile coordinates</h2>
+        <md id="md1-0"><h2 id="タイル座標">タイル座標</h2>
           <p>
-            You can change the pixel value of coordinate values for all sprites
-            by setting <code>allSprites.tileSize</code>. For example, the tile
-            size is 8, then an x/y position of 1 represents 8 pixels, 2
-            represents 16 pixels, 3 represents 24 pixels, etc. Note this setting
-            affects how animation coordinates are specified too.
+            すべてのスプライトの座標値のピクセル値を変更するには、<code>allSprites.tileSize</code>を設定します。例えば、タイルのサイズが
+            8 の場合、x/y の位置 1 は 8 ピクセル、2 は 16 ピクセル、3 は 24
+            ピクセルを表します。この設定はアニメーション座標の指定方法にも影響します。
           </p>
           <p>
-            In this mini-example grid lines are drawn purely for visual
-            reference.
+            このミニ例では、視覚的な参照のためにグリッド線が描かれています。
           </p>
           <p>
-            Also note that simply using the <code>move</code> function with the
-            heading "up" causes the player to move up a distance of 1 tile.
+            また、単純に<code>move</code>関数をヘディング "up"
+            で使用すると、プレイヤーは 1 タイルの距離を上に移動します。
           </p>
           <p>
-            With just two collision rules the player can push around the blocks
-            and blocks can push each other too. They snap to the grid after
-            moving.
+            2
+            つの衝突ルールだけで、プレイヤーはブロックを押して動かすことができ、ブロックも互いに押し合うことができます。移動した後にグリッドにスナップします。
           </p>
           <p>
-            What's really nice is that you can set <code>tileSize</code> on a
-            per sprite basis. If set for a group then all sprites in that group
-            will use that tile size!
+            本当に素晴らしいのは、スプライトごとに
+            <code>tileSize</code>
+            を設定できることです。グループに設定すると、そのグループのすべてのスプライトがそのタイルサイズを使用します！
           </p>
         </md>
         <script type="mie/p5" id="group.tileSize">
