@@ -1372,7 +1372,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			if (this.vel.x !== 0 || this.vel.y !== 0) {
 				return this.p.atan2(this.vel.y, this.vel.x);
 			}
-			if (!this._direction) return this.rotation;
+			if (this._direction === undefined) return this.rotation;
 			return this._direction;
 		}
 		set direction(val) {

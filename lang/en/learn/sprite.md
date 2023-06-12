@@ -246,6 +246,8 @@ programming look.
 
 You can use the `await` keyword inside an `async` function to wait for a movement to finish before continuing with the next movement. This is useful for making a sprite move in a sequence.
 
+The `delay` function can be used to wait for a specified number of milliseconds. 1000 milliseconds is equal to 1 second!
+
 # 8-1
 
 The `move`, `moveTo`, `rotate`, and `rotateTo` functions all return a `Promise` that resolves to true when the movement is finished.
