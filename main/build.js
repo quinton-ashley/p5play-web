@@ -63,8 +63,8 @@ async function translatePage(pageGroup, page) {
 
 		for (let tran of trans) {
 			let splitIdx = tran.indexOf('\n');
-			let id = tran.slice(0, splitIdx);
-			if (!isNaN(id[0])) id = 'md' + id;
+			let id = tran.slice(0, splitIdx - 1);
+			if (!isNaN(id)) id = 'md' + id;
 			let md = document.getElementById(id);
 			if (md) md.innerHTML = marked.parse(tran.slice(splitIdx + 1));
 		}
