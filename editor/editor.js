@@ -250,7 +250,8 @@ async function start() {
 		webFolderSelector.addEventListener('change', () => _openProject(webFolderSelector.files));
 	}
 
-	lang = await (await fetch('../lang/en/editor.json')).json();
+	lang = await (await fetch('../lang/en/en.json')).json();
+	lang = lang.editor;
 	for (let key in lang.DOM) {
 		let el = document.getElementById(key);
 		if (el) el.innerHTML += lang.DOM[key];
