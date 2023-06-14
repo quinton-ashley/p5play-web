@@ -40,23 +40,6 @@ function startServer(event, projectFolder) {
 	});
 }
 
-const createWindow = () => {
-	const mainWindow = new BrowserWindow({
-		useContentSize: true,
-		width: 500,
-		height: 132,
-		resizable: true,
-		icon: 'logo.png',
-		webPreferences: {
-			preload: path.join(__dirname, 'bridge.js')
-		}
-	});
-
-	mainWindow.loadFile(path.join(__dirname, '../editor/index.html'));
-
-	mainWindow.webContents.openDevTools();
-};
-
 async function readDirRecursive(dir) {
 	let items = await fs.readdir(dir, { withFileTypes: true });
 	let files = [];
@@ -121,6 +104,15 @@ function openInBrowser(event, url) {
 	shell.openExternal(url);
 }
 
+function createGameWindow(event, url) {
+	const gameWindow = new BrowserWindow({
+		fullscreen: true,
+		resizable: true
+	});
+
+	gameWindow.loadURL(url);
+}
+
 app.on('ready', () => {
 	const ipAddress = getIpAddress();
 	const homeDir = os.homedir();
@@ -132,8 +124,22 @@ app.on('ready', () => {
 	ipcMain.handle('resizeWindow', resizeWindow);
 	ipcMain.handle('readFile', readFile);
 	ipcMain.handle('openInBrowser', openInBrowser);
+	ipcMain.handle('createGameWindow', createGameWindow);
 
-	createWindow();
+	const mainWindow = new BrowserWindow({
+		useContentSize: true,
+		width: 500,
+		height: 132,
+		resizable: true,
+		icon: 'logo.png',
+		webPreferences: {
+			preload: path.join(__dirname, 'bridge.js')
+		}
+	});
+
+	mainWindow.loadFile(path.join(__dirname, '../editor/index.html'));
+
+	mainWindow.webContents.openDevTools();
 });
 
 app.on('window-all-closed', () => {

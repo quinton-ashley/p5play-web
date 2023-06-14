@@ -1,137 +1,130 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>p5play : Learn</title>
+    <link rel="icon" href="../main/logo.svg">
+    <link rel="stylesheet" href="style.css">
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>p5play : Learn</title>
-  <link rel="icon" href="../main/logo.svg">
-  <link rel="stylesheet" href="style.css">
-</head>
+  <body class="dark">
+    <article>
+      <nav id="topNav">
+        <a href="../index.html" id="logoLink" class="active">
+          <img alt="p5play logo" src="../main/logo.svg" class="logo">
+          <span>p5play</span>
+        </a>
+        <hr>
+        <a href="sprite.html">Sprite</a>
+        <a href="group.html">Group</a>
+        <a href="sprite_animation.html">Animation</a>
+        <a href="input_devices.html">Input</a>
+        <a href="tiles.html">Tiles</a>
+        <a href="camera.html">Camera</a>
+        <a href="canvas.html">...</a>
+        <hr>
+        <a id="darkMode" onclick="toggleDarkMode()" tabindex="0" role="button">
+          <div id="darkModeIcon"></div>
+        </a>
+      </nav>
 
-<body class="dark">
-  <article>
-    <nav id="topNav">
-      <a href="../index.html" id="logoLink" class="active">
-        <img alt="p5play logo" src="../main/logo.svg" class="logo">
-        <span>p5play</span>
-      </a>
-      <hr>
-      <a href="sprite.html">Sprite</a>
-      <a href="group.html">Group</a>
-      <a href="sprite_animation.html">Animation</a>
-      <a href="input_devices.html">Input</a>
-      <a href="tiles.html">Tiles</a>
-      <a href="camera.html">Camera</a>
-      <a href="canvas.html">...</a>
-      <hr>
-      <a id="darkMode" onclick="toggleDarkMode()" tabindex="0" role="button">
-        <div id="darkModeIcon"></div>
-      </a>
-    </nav>
-
-    <div id="langBreak">
-      <div class="break"></div>
-      <nav id="langNav">
-        <a href="#" lang="en" class="active" title="English">English</a>
-        <!-- <a href="lang/zh" lang="zh" title="Chinese">中文</a> -->
-        <a href="../lang/es/learn" lang="es" title="Spanish">Español</a>
-        <!-- <a href="lang/ru" lang="ru" title="Russian">Русский</a>
+      <div id="langBreak">
+        <div class="break"></div>
+        <nav id="langNav">
+          <a href="#" lang="en" class="active" title="English">English</a>
+          <!-- <a href="lang/zh" lang="zh" title="Chinese">中文</a> -->
+          <a href="../lang/es/learn" lang="es" title="Spanish">Español</a>
+          <!-- <a href="lang/ru" lang="ru" title="Russian">Русский</a>
         <a href="lang/de" lang="de" title="German">Deutsch</a> -->
-        <a href="lang/ja" lang="ja" title="Japanese">日本語</a>
-        <!-- <a href="lang/pt" lang="pt" title="Portuguese">Português</a>
+          <a href="lang/ja" lang="ja" title="Japanese">日本語</a>
+          <!-- <a href="lang/pt" lang="pt" title="Portuguese">Português</a>
         <a href="lang/fr" lang="fr" title="French">Français</a>
         <a href="lang/ko" lang="ko" title="Korean">한국어</a>
         <a href="lang/hi" lang="hi" title="Hindi">हिन्दी</a>
         <a href="lang/ar" lang="ar" title="Arabic">العربية</a>
         <a href="lang/it" lang="it" title="Italian">Italiano</a> -->
-      </nav>
+        </nav>
+        <div class="break"></div>
+      </div>
+
+      <div id="refs" class="page">
+        <md id="md0-0" class="full"><h2 id="reference">Reference</h2>
+          <p>
+            These "Learn" reference pages provide interactive mini-examples for
+            p5play's most important features. They were written by Quinton
+            Ashley, creator of p5play v3 and are offered as a public resource
+            for the p5play community.
+          </p>
+          <p>
+            Can't find what you're looking for? Try the full
+            <a href="../docs/classes/Sprite.html">p5play</a>,
+            <a href="https://p5js.org/reference/">p5.js</a>, or
+            <a href="https://p5js.org/reference/#/libraries/p5.sound">p5.sound</a>
+            documentation or look at some
+            <a href="https://openprocessing.org/user/350295?o=35&amp;view=sketches">demos</a>.
+          </p>
+        </md>
+      </div>
+
       <div class="break"></div>
-    </div>
+      <footer id="credits" class="text-small">
+        Created by Quinton Ashley (@quinton-ashley) Copyright 2022-2023
+      </footer>
+    </article>
 
-    <div id="refs" class="page">
-      <md id="md0-0" class="full">
-        <h2 id="reference">Reference</h2>
-        <p>
-          These "Learn" reference pages provide interactive mini-examples for
-          p5play's most important features. They were written by Quinton
-          Ashley, creator of p5play v3 and are offered as a public resource
-          for the p5play community.
-        </p>
-        <p>
-          Can't find what you're looking for? Try the full
-          <a href="../docs/classes/Sprite.html">p5play</a>,
-          <a href="https://p5js.org/reference/">p5.js</a>, or
-          <a href="https://p5js.org/reference/#/libraries/p5.sound">p5.sound</a>
-          documentation or look at some
-          <a href="https://openprocessing.org/user/350295?o=35&amp;view=sketches">demos</a>.
-        </p>
-      </md>
-    </div>
+    <script src="../main/main.js"></script>
+    <script src="learn.js"></script>
+    <script src="reference.js"></script>
 
-    <div class="break"></div>
-    <footer id="credits" class="text-small">
-      Created by Quinton Ashley (@quinton-ashley) Copyright 2022-2023
-    </footer>
-  </article>
-
-  <script src="../main/main.js"></script>
-  <script src="learn.js"></script>
-  <script src="reference.js"></script>
-
-  <style>
-    #refs {
-      display: flex;
-      flex-direction: row;
-      align-items: flex-start;
-    }
-
-    #refs>div {
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      gap: 4px;
-      align-content: start;
-    }
-
-    #refs div h2 {
-      width: 100%;
-    }
-
-    #refs div h2 a {
-      color: var(--primary);
-    }
-
-    #refs div:not(:first-child) h2 a:hover {
-      color: var(--pink);
-      text-decoration: underline;
-    }
-
-    #refs>div:nth-child(5),
-    #refs>div:nth-child(6),
-    #refs>div:nth-child(7),
-    #refs>div:nth-child(8) {
-      width: 19.75%;
-    }
-
-    @media screen and (max-width: 1030px) {
-
-      #refs>div,
-      #refs>div:nth-child(5),
-      #refs>div:nth-child(6),
-      #refs>div:nth-child(7),
-      #refs>div:nth-child(8) {
-        width: 45%;
+    <style>
+      #refs {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
       }
 
-      #refs>div:nth-child(1),
-      #refs>div:nth-child(2) {
-        width: 96%;
+      #refs > div {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 4px;
+        align-content: start;
       }
-    }
-  </style>
 
+      #refs div h2 {
+        width: 100%;
+      }
 
-</body>
+      #refs div h2 a {
+        color: var(--primary);
+      }
 
-</html>
+      #refs div:not(:first-child) h2 a:hover {
+        color: var(--pink);
+        text-decoration: underline;
+      }
+
+      #refs > div:nth-child(5),
+      #refs > div:nth-child(6),
+      #refs > div:nth-child(7),
+      #refs > div:nth-child(8) {
+        width: 19.75%;
+      }
+
+      @media screen and (max-width: 1030px) {
+        #refs > div,
+        #refs > div:nth-child(5),
+        #refs > div:nth-child(6),
+        #refs > div:nth-child(7),
+        #refs > div:nth-child(8) {
+          width: 45%;
+        }
+
+        #refs > div:nth-child(1),
+        #refs > div:nth-child(2) {
+          width: 96%;
+        }
+      }
+    </style>
+  
+
+</body></html>

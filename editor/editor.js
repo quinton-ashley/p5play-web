@@ -275,7 +275,7 @@ function activateZone(zone) {
 
 fullscreenBtn.addEventListener('click', () => {
 	if (!serverRunning) startServer();
-	ipc.invoke('openInBrowser', 'http://localhost:7529');
+	ipc.invoke('createGameWindow', 'http://localhost:7529');
 });
 
 mobileZoneBtn.addEventListener('click', () => {

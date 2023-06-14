@@ -101,15 +101,11 @@ Any movement function that accepts an object with x and y properties could inste
 
 # 2-7
 
-If you want a sprite to follow another sprite, you may be tempted to use `moveTo` repeatedly, without waiting for the sprite to reach its destination. But for better performance, try using the `angleTo` function, which gets the angle between a sprite and a position. This angle can be used to change the direction that the sprite moves in.
+Hopefully the examples on this page helped you understand some of the movement options available in p5play.
 
-In this example, the [p5.js dist](https://p5js.org/reference/#/p5/dist) function is used to calculate the distance between the player and its ally.
+But, note that the `move` functions shown on this page will override any other forces acting on the sprite, such as gravity, forcing the sprite to move in a new direction. That might not be what you want!
 
-# 2-8
-
-Hopefully the examples on this page helped you understand some of the movement options available in p5play. But, they're just building blocks for more complex movement patterns.
-
-You'll often need to experiment with them in creative ways to find the best solutions for your game!
+Learn more about sprite movement in p5play by reading the "Movement Sequencing" and "Advanced Movement" pages.
 
 # 3-0
 
@@ -405,3 +401,17 @@ Usually if something requires a lot of colliders, like the walls of a maze, you 
 Also, even if a sprite's image is complex, typically a box or circle will be just fine for physics interactions, especially for small sprites.
 
 Yet sometimes, you will truly need to create a sprite with multiple colliders. For example, if you want to model a pinball flipper!
+
+# 15-0
+
+If you want a sprite to follow another sprite, you may be tempted to use `moveTo` repeatedly, without waiting for the sprite to reach its destination. But for better performance, try using the `angleTo` function, which gets the angle between a sprite and a position. This angle can be used to change the direction that the sprite moves in.
+
+In this example, the [p5.js dist](p5.js dist) function is used to calculate the distance between the player and its ally.
+
+# 15-1
+
+The `move` functions override a sprite's velocities, but what if you want a sprite to respect other forces acting on it, such as gravity?
+
+You can add or subtract from a sprite's velocities directly, or use the `applyImpulse` and `applyForce` functions.
+
+Examples coming soon!
