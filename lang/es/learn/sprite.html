@@ -317,7 +317,7 @@ function draw() {
       </div>
       <div id="page-2" class="page">
         <script type="mie/p5" id="idle-player" lines="11" hide="" base-3="">
-let player, ally;
+let player, block;
 
 function setup() {
 	new Canvas(500, 100);
@@ -326,7 +326,7 @@ function setup() {
 	player.diameter = 50;
 	player.x = 400;
 
-	ally = new Sprite();
+	block = new Sprite();
 }
 
 function draw() {
@@ -438,42 +438,17 @@ if (mouse.presses()) {
 }
 			</script>
         <md id="md2-7"><p>
-            Si quieres que un sprite siga a otro sprite, es posible que te
-            sientas tentado a usar <code>moveTo</code> repetidamente sin esperar
-            a que el sprite alcance su destino. Sin embargo, para obtener un
-            mejor rendimiento, prueba a utilizar la función
-            <code>angleTo</code>, que obtiene el ángulo entre un sprite y una
-            posición. Este ángulo se puede utilizar para cambiar la dirección en
-            la que se mueve el sprite.
-          </p>
-          <p>
-            En este ejemplo, se utiliza la función
-            <a href="https://p5js.org/reference/#/p5/dist">dist</a> de p5.js
-            para calcular la distancia entre el jugador y su aliado.
-          </p>
-        </md>
-        <script type="mie/p5" id="angleTo" base="3">
-player.moveTowards(mouse);
-ally.collider = 'none';
-
-let distance = dist(player.x, player.y, ally.x, ally.y);
-
-if (distance > 80) {
-  ally.direction = ally.angleTo(player);
-  ally.speed = 2;
-} else if (distance < 70) {
-  ally.speed = 0;
-}
-			</script>
-        <md id="md2-8"><p>
             Esperamos que los ejemplos en esta página te ayuden a entender
-            algunas de las opciones de movimiento disponibles en p5play. Pero,
-            son solo bloques de construcción para patrones de movimiento más
-            complejos.
+            algunas de las opciones de movimiento disponibles en p5play.
           </p>
           <p>
-            ¡A menudo necesitarás experimentar con ellos de maneras creativas
-            para encontrar las mejores soluciones para tu juego!
+            Ten en cuenta que las funciones move, moveTo y moveTowards anulan el
+            movimiento actual de un sprite, obligándolo a moverse en una nueva
+            dirección. ¡Eso podría no ser siempre lo que quieres!
+          </p>
+          <p>
+            Para aprender más sobre el movimiento de sprites, lee las páginas de
+            "Secuenciación de Movimientos" y "Movimiento Avanzado".
           </p>
         </md>
         <script type="mie/p5" id="segmented-motion" base="3">
@@ -1049,7 +1024,7 @@ function draw() {
             hacer que un sprite se mueva en secuencia.
           </p>
         </md>
-        <script type="mie/p5" id="square-sequence" horiz="" lines="14">
+        <script type="mie/p5" id="square-sequence" horiz="" lines="15">
 let turtle;
 
 function setup() {
@@ -1062,6 +1037,7 @@ function setup() {
 async function squareSequence() {
 	await turtle.move(100);
 	await turtle.rotate(90);
+  await delay(1000);
 	squareSequence();
 }
 
@@ -1783,6 +1759,81 @@ function draw() {
 }
 			</script>
       </div>
+      <div id="page-15" class="page">
+        <md id="md15-0"><p>
+            Si quieres que un sprite siga a otro sprite, es posible que te
+            sientas tentado a usar <code>moveTo</code> repetidamente sin esperar
+            a que el sprite alcance su destino. Sin embargo, para obtener un
+            mejor rendimiento, prueba a utilizar la función
+            <code>angleTo</code>, que obtiene el ángulo entre un sprite y una
+            posición. Este ángulo se puede utilizar para cambiar la dirección en
+            la que se mueve el sprite.
+          </p>
+          <p>
+            En este ejemplo, se utiliza la función
+            <a href="https://p5js.org/reference/#/p5/dist">dist</a> de p5.js
+            para calcular la distancia entre el jugador y su aliado.
+          </p>
+        </md>
+        <script type="mie/p5" base-8="" hidden="">
+let player, ally;
+
+function setup() {
+	new Canvas(500, 100);
+	player = new Sprite(400, 50, 20);
+	ally = new Sprite(200, 50, 20, 20, 'n');
+}
+
+function draw() {
+	clear();
+}
+        </script>
+        <script type="mie/p5" id="angleTo" base="8">
+player.moveTowards(mouse);
+
+let distance = dist(player.x, player.y, ally.x, ally.y);
+
+if (distance > 40) {
+  ally.direction = ally.angleTo(player);
+  ally.speed = 2;
+} else if (distance < 30) {
+  ally.speed = 0;
+}
+      </script>
+        <md id="md15-1"><p>
+            Las funciones move anulan las velocidades de un sprite, pero ¿qué
+            pasa si quieres que un sprite respete otras fuerzas que actúan sobre
+            él, como la gravedad?
+          </p>
+          <p>
+            Puedes sumar o restar directamente a las velocidades de un sprite, o
+            usar las funciones <code>applyForce</code>.
+          </p>
+        </md>
+        <script type="mie/p5" id="applyForce" horiz="">
+let player;
+
+function setup() {
+  new Canvas(160, 400);
+  world.gravity.y = 2;
+  player = new Sprite(150, 50, 10);
+  new Sprite(2, 200, 4, 400, 's');
+}
+
+function draw() {
+  clear();
+
+  if (kb.pressing('left')) {
+    player.applyForce(-5, 0);
+  }
+
+  if (player.y > 400) {
+    player.pos = {x: 150, y: 0};
+    player.speed = 0;
+  }
+}
+      </script>
+      </div>
 
       <div class="break"></div>
       <div id="toc">
@@ -1803,6 +1854,7 @@ function draw() {
           <a data-page="12" href="sprite.html?page=12">Dibujo Personalizado</a>
           <a data-page="13" href="sprite.html?page=13">Escalado</a>
           <a data-page="14" href="sprite.html?page=14">Combos de Colisionadores</a>
+          <a data-page="15" href="sprite.html?page=15">Movimiento Avanzada</a>
         </div>
         <a id="nextPage" class="navLink">Siguiente página</a>
       </div>

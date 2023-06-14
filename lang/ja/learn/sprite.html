@@ -308,7 +308,7 @@ function draw() {
       </div>
       <div id="page-2" class="page">
         <script type="mie/p5" id="idle-player" lines="11" hide="" base-3="">
-let player, ally;
+let player, block;
 
 function setup() {
 	new Canvas(500, 100);
@@ -317,7 +317,7 @@ function setup() {
 	player.diameter = 50;
 	player.x = 400;
 
-	ally = new Sprite();
+	block = new Sprite();
 }
 
 function draw() {
@@ -419,31 +419,13 @@ if (mouse.presses()) {
 }
 			</script>
         <md id="md2-7"><p>
-            スプライトを別のスプライトに追従させたい場合、<code>moveTo</code>を何度も使用し、スプライトが目的地に到達するのを待たないで使うことが考えられます。しかし、パフォーマンスを向上させるためには、<code>angleTo</code>関数を試してみてください。これは、スプライトと位置との間の角度を取得します。この角度は、スプライトが移動する方向を変更するために使用できます。
+            このページの例示が、p5play
+            で利用可能な移動オプションの一部を理解するのに役立つことを願っています。
           </p>
           <p>
-            この例では、<a href="https://p5js.org/reference/#/p5/dist">p5.js dist</a>関数が使用されて、プレイヤーとその味方との間の距離を計算しています。
-          </p>
-        </md>
-        <script type="mie/p5" id="angleTo" base="3">
-player.moveTowards(mouse);
-ally.collider = 'none';
-
-let distance = dist(player.x, player.y, ally.x, ally.y);
-
-if (distance > 80) {
-  ally.direction = ally.angleTo(player);
-  ally.speed = 2;
-} else if (distance < 70) {
-  ally.speed = 0;
-}
-			</script>
-        <md id="md2-8"><p>
-            このページの例が、p5play
-            で利用可能な移動オプションの一部を理解するのに役立ったことを願っています。しかし、これらはより複雑な移動パターンのためのビルディングブロックに過ぎません。
-          </p>
-          <p>
-            あなたのゲームのための最適な解決策を見つけるためには、しばしばそれらを創造的な方法で試す必要があります！
+            ただし、<code>move</code>、<code>moveTo</code>、および
+            <code>moveTowards</code>
+            関数は、スプライトの現在の動きを上書きし、新たな方向に動かすことを強制します。これが必ずしも望む結果であるとは限りません！重力など、それに作用する他の力を考慮に入れてスプライトを移動させる方法を学ぶには、高度なスプライト移動に関するページを読んでください。
           </p>
         </md>
         <script type="mie/p5" id="segmented-motion" base="3">
@@ -989,7 +971,7 @@ function draw() {
             <code>async</code>関数内で<code>await</code>キーワードを使用すると、次の移動を続ける前に移動が終了するのを待つことができます。これは、スプライトを順番に動かすのに便利です。
           </p>
         </md>
-        <script type="mie/p5" id="square-sequence" horiz="" lines="14">
+        <script type="mie/p5" id="square-sequence" horiz="" lines="15">
 let turtle;
 
 function setup() {
@@ -1002,6 +984,7 @@ function setup() {
 async function squareSequence() {
 	await turtle.move(100);
 	await turtle.rotate(90);
+  await delay(1000);
 	squareSequence();
 }
 
@@ -1663,6 +1646,72 @@ function draw() {
 }
 			</script>
       </div>
+      <div id="page-15" class="page">
+        <md id="md15-0"><p>
+            スプライトを別のスプライトに追従させたい場合、<code>moveTo</code>を何度も使用し、スプライトが目的地に到達するのを待たないで使うことが考えられます。しかし、パフォーマンスを向上させるためには、<code>angleTo</code>関数を試してみてください。これは、スプライトと位置との間の角度を取得します。この角度は、スプライトが移動する方向を変更するために使用できます。
+          </p>
+          <p>
+            この例では、<a href="https://p5js.org/reference/#/p5/dist">p5.js dist</a>関数が使用されて、プレイヤーとその味方との間の距離を計算しています。
+          </p>
+        </md>
+        <script type="mie/p5" base-8="" hidden="">
+let player, ally;
+
+function setup() {
+	new Canvas(500, 100);
+	player = new Sprite(400, 50, 20);
+	ally = new Sprite(200, 50, 20, 20, 'n');
+}
+
+function draw() {
+	clear();
+}
+        </script>
+        <script type="mie/p5" id="angleTo" base="8">
+player.moveTowards(mouse);
+
+let distance = dist(player.x, player.y, ally.x, ally.y);
+
+if (distance > 40) {
+  ally.direction = ally.angleTo(player);
+  ally.speed = 2;
+} else if (distance < 30) {
+  ally.speed = 0;
+}
+      </script>
+        <md id="md15-1"><p>
+            <code>move</code>
+            関数はスプライトの速度を上書きしますが、重力のような他の力が作用するのを尊重させたい場合はどうすればよいでしょうか？
+          </p>
+          <p>
+            スプライトの速度を直接加算または減算することができます、または
+            <code>applyForce</code> 関数を使用することもできます。
+          </p>
+        </md>
+        <script type="mie/p5" id="applyForce" horiz="">
+let player;
+
+function setup() {
+  new Canvas(160, 400);
+  world.gravity.y = 2;
+  player = new Sprite(150, 50, 10);
+  new Sprite(2, 200, 4, 400, 's');
+}
+
+function draw() {
+  clear();
+
+  if (kb.pressing('left')) {
+    player.applyForce(-5, 0);
+  }
+
+  if (player.y > 400) {
+    player.pos = {x: 150, y: 0};
+    player.speed = 0;
+  }
+}
+      </script>
+      </div>
 
       <div class="break"></div>
       <div id="toc">
@@ -1683,6 +1732,7 @@ function draw() {
           <a data-page="12" href="sprite.html?page=12">カスタム描画</a>
           <a data-page="13" href="sprite.html?page=13">スケーリング</a>
           <a data-page="14" href="sprite.html?page=14">コンボコライダー</a>
+          <a data-page="15" href="sprite.html?page=15">高度な動き</a>
         </div>
         <a id="nextPage" class="navLink">次のページ</a>
       </div>

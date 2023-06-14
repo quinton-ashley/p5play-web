@@ -1,1 +1,1 @@
-Translate to Japanese but don't give me the finished markdown, I want markdown code. Don't translate brand names or variable names. Don't explain the work you did or preface it. Here's the file:
+Translate to Japanese and provide the translation as markdown code wrapped in triple backticks (```). Don't translate brand names or variable names. Don't explain the work you did or preface it. Here's the file:

@@ -101,11 +101,9 @@ Any movement function that accepts an object with x and y properties could inste
 
 # 2-7
 
-Hopefully the examples on this page helped you understand some of the movement options available in p5play.
+Hopefully the examples on this page helped you understand some of the sprite movement options available in p5play.
 
-But, note that the `move` functions shown on this page will override any other forces acting on the sprite, such as gravity, forcing the sprite to move in a new direction. That might not be what you want!
-
-Learn more about sprite movement in p5play by reading the "Movement Sequencing" and "Advanced Movement" pages.
+But, note that the `move`, `moveTo`, and `moveTowards` functions override a sprite's current motion, forcing it to move in a new direction. That might not always be what you want! Read the page on advanced sprite movement to learn how to move a sprite with respect to other forces acting on it, such as gravity.
 
 # 3-0
 
@@ -404,6 +402,8 @@ Yet sometimes, you will truly need to create a sprite with multiple colliders. F
 
 # 15-0
 
+## Advanced Movement
+
 If you want a sprite to follow another sprite, you may be tempted to use `moveTo` repeatedly, without waiting for the sprite to reach its destination. But for better performance, try using the `angleTo` function, which gets the angle between a sprite and a position. This angle can be used to change the direction that the sprite moves in.
 
 In this example, the [p5.js dist](p5.js dist) function is used to calculate the distance between the player and its ally.
@@ -412,6 +412,4 @@ In this example, the [p5.js dist](p5.js dist) function is used to calculate the 
 
 The `move` functions override a sprite's velocities, but what if you want a sprite to respect other forces acting on it, such as gravity?
 
-You can add or subtract from a sprite's velocities directly, or use the `applyImpulse` and `applyForce` functions.
-
-Examples coming soon!
+You can add or subtract from a sprite's velocities directly, or use the `applyForce` function.

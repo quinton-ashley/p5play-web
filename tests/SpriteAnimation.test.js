@@ -99,7 +99,7 @@ test('SpriteAnimation : Sequence mode', () => {
 		const sketch = (p) => {
 			let ani0;
 			p.preload = () => {
-				ani0 = new p.SpriteAnimation(host + '/learn/assets/cloud_breathing0001.png', 9);
+				ani0 = new p.SpriteAnimation(host + '/learn/assets/cloud_breathing1.png', 9);
 			};
 			p.setup = () => {
 				new p.Canvas(400, 400);

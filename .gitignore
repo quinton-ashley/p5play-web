@@ -1,5 +1,5 @@
 node_modules
-testing/test.js
+testing/test*
 package-lock.json
 dev
 v4

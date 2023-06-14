@@ -45,7 +45,8 @@
 			"Polygons",
 			"Custom Draw",
 			"Scaling",
-			"Combo Colliders"
+			"Combo Colliders",
+			"Advanced Movement"
 		],
 		"sprite_animation": [
 			"Loading Animations",

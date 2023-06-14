@@ -96,15 +96,11 @@ Cualquier función de movimiento que acepte un objeto con propiedades x e y podr
 
 # 2-7
 
-Si quieres que un sprite siga a otro sprite, es posible que te sientas tentado a usar `moveTo` repetidamente sin esperar a que el sprite alcance su destino. Sin embargo, para obtener un mejor rendimiento, prueba a utilizar la función `angleTo`, que obtiene el ángulo entre un sprite y una posición. Este ángulo se puede utilizar para cambiar la dirección en la que se mueve el sprite.
+Esperamos que los ejemplos en esta página te ayuden a entender algunas de las opciones de movimiento disponibles en p5play.
 
-En este ejemplo, se utiliza la función [dist](https://p5js.org/reference/#/p5/dist) de p5.js para calcular la distancia entre el jugador y su aliado.
+Ten en cuenta que las funciones move, moveTo y moveTowards anulan el movimiento actual de un sprite, obligándolo a moverse en una nueva dirección. ¡Eso podría no ser siempre lo que quieres!
 
-# 2-8
-
-Esperamos que los ejemplos en esta página te ayuden a entender algunas de las opciones de movimiento disponibles en p5play. Pero, son solo bloques de construcción para patrones de movimiento más complejos.
-
-¡A menudo necesitarás experimentar con ellos de maneras creativas para encontrar las mejores soluciones para tu juego!
+Para aprender más sobre el movimiento de sprites, lee las páginas de "Secuenciación de Movimientos" y "Movimiento Avanzado".
 
 # 3-0
 
@@ -397,3 +393,15 @@ Normalmente, si algo requiere muchos colisionadores, como las paredes de un labe
 Además, incluso si la imagen de un sprite es compleja, típicamente una caja o círculo será suficiente para las interacciones físicas, especialmente para sprites pequeños.
 
 Sin embargo, a veces, realmente necesitarás crear un sprite con varios colisionadores. ¡Por ejemplo, si quieres modelar un flipper de pinball!
+
+# 15-0
+
+Si quieres que un sprite siga a otro sprite, es posible que te sientas tentado a usar `moveTo` repetidamente sin esperar a que el sprite alcance su destino. Sin embargo, para obtener un mejor rendimiento, prueba a utilizar la función `angleTo`, que obtiene el ángulo entre un sprite y una posición. Este ángulo se puede utilizar para cambiar la dirección en la que se mueve el sprite.
+
+En este ejemplo, se utiliza la función [dist](https://p5js.org/reference/#/p5/dist) de p5.js para calcular la distancia entre el jugador y su aliado.
+
+# 15-1
+
+Las funciones move anulan las velocidades de un sprite, pero ¿qué pasa si quieres que un sprite respete otras fuerzas que actúan sobre él, como la gravedad?
+
+Puedes sumar o restar directamente a las velocidades de un sprite, o usar las funciones `applyForce`.
