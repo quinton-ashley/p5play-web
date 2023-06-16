@@ -16,7 +16,7 @@
 
 ## このプロジェクトをサポートする 🤝
 
-p5play は GPL の下で[オープンソースライセンス](https://github.com/quinton-ashley/p5play-web/blob/assets/LICENSING.md)されています：それは無料です！
+p5play は GPL の下で[オープンソースライセンス](https://github.com/quinton-ashley/p5play-web/blob/main/LICENSING.md)されています：それは無料です！
 
 しかし、あなたがプロとして p5play を使用しているなら、[Patreon でプロジェクトをサポートしてください](https://www.patreon.com/p5play)！
 

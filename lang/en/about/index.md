@@ -16,4 +16,4 @@ If you want more info about why I made p5play (v3), read the ["p5play Version 3"
 
 If you'd like to see some demos of games and art I've made with p5play, check out my [OpenProcessing page](https://openprocessing.org/user/350295?o=35&view=sketches).
 
-By using p5play you agree to the [End User License Agreement (EULA)](https://github.com/quinton-ashley/p5play/blob/assets/EULA.md).
+By using p5play you agree to the [End User License Agreement (EULA)](https://github.com/quinton-ashley/p5play/blob/main/EULA.md).
