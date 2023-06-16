@@ -43,13 +43,13 @@ On macOS the default terminal is called "Terminal" and is located in the Utiliti
 Open `p5play-web` directory in your terminal. Then, run the following command:
 
 ```bash
-node main/build.js [languageCode]
+node lang/build.js [languageCode]
 ```
 
 Use the same language code that you did for the folder name in the `lang` directory. For example, to build the Spanish translation, you would run:
 
 ```
-node main/build.js es
+node lang/build.js es
 ```
 
 ## Publishing your translation

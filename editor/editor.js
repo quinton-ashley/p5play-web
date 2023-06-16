@@ -51,7 +51,8 @@ async function _openProject(files) {
 	let hasJS = false;
 	for (let i = 0; i < files.length; i++) {
 		let file = files[i];
-		if (!file.type.endsWith('javascript')) continue;
+		let ext = file.type.split('/')[1];
+		if (ext != 'javascript' && ext != 'json' && ext != 'html' && ext != 'markdown' && ext != 'text') continue;
 
 		let path;
 		if (desktop) {
@@ -62,6 +63,7 @@ async function _openProject(files) {
 			path = path.slice(path.indexOf('/') + 1);
 		}
 		if (path.startsWith('node_modules')) continue;
+		if (path.includes('package-lock')) continue;
 
 		hasJS = true;
 		let tab = document.createElement('tab');
@@ -115,7 +117,7 @@ async function startServer() {
 	qrDiv.innerHTML = '';
 	let qr0 = document.createElement('qr-code');
 	qr0.id = 'qr0';
-	qr0.innerHTML = `<img src="../main/logo.svg" slot="icon">`;
+	qr0.innerHTML = `<img src="../assets/logo.svg" slot="icon">`;
 	qr0.contents = 'p5play://' + ipAddress + ':7529';
 	qr0.moduleColor = '#ed225d';
 	qr0.positionRingColor = '#ed225d';
@@ -155,14 +157,17 @@ async function loadCodeEditor(file, idx) {
 
 	log(code);
 
-	let ed = document.createElement('div');
+	let ed = document.createElement('script');
+	ed.type = 'text/plain';
 	ed.id = 'editor' + idx;
 	ed.innerHTML = code;
 	codeZone.append(ed);
 
+	let mode = file.type.split('/')[1];
+
 	const editor = ace.edit('editor' + idx);
 	editor.setOptions({
-		mode: 'ace/mode/javascript',
+		mode: 'ace/mode/' + mode,
 		fontSize: '14px',
 		showFoldWidgets: false,
 		showGutter: false,

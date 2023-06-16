@@ -66,7 +66,7 @@
 	"main": "app/app.js",
 	"scripts": {
 		"tests": "jest tests",
-		"docs": "jsdoc --configure main/jsdoc.json && rm -rf docs/fonts",
+		"docs": "jsdoc --configure docs/jsdoc.json && rm -rf docs/fonts",
 		"min": "minify v3/p5play.js > v3/p5play.min.js && cp v3/p5play.min.js ../../pkg/p5play/p5play.min.js",
 		"v": "npm version patch --force",
 		"V": "npm version minor --force",
@@ -77,5 +77,5 @@
 		"make": "electron-forge make",
 		"publish": "electron-forge publish"
 	},
-	"version": "1.1.553"
+	"version": "1.1.554"
 }

@@ -16,7 +16,7 @@ Haz preguntas y conoce a otras personas que crean arte interactivo y juegos con 
 
 ## Apoya este proyecto 🤝
 
-p5play tiene una [licencia de código abierto](https://github.com/quinton-ashley/p5play-web/blob/main/LICENSING.md) bajo GPL: ¡es gratis!
+p5play tiene una [licencia de código abierto](https://github.com/quinton-ashley/p5play-web/blob/assets/LICENSING.md) bajo GPL: ¡es gratis!
 
 Pero si usas p5play profesionalmente, por favor, ¡[apoya el proyecto en Patreon](https://www.patreon.com/p5play)!
 

@@ -106,9 +106,17 @@ md {
 }
 
 .mie.p5 .mie-logo {
-	width: 36px;
-	background-image: url("../assets/p5js.svg");
+	width: 16px !important;
+	background-image: url('../assets/favicon.png') !important;
 }
+
+/* .mie.p5 .mie-logo::before {
+	font-family: Mont;
+	font-size: 16px;
+	vertical-align: bottom;
+	color: var(--pink0);
+	content: 'p5play';
+} */
 
 a {
 	color: var(--blue1);

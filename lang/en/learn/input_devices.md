@@ -18,7 +18,7 @@ They also store the state of all their inputs as properties. For example, `kb.sp
 
 In PC games the WASD keys are commonly used to control the player character's movement. In p5play you can use the direction names 'up', 'down', 'left', and 'right' to detect WASD key and arrow key presses.
 
-If you want to use WASD and the arrow keys seperately you can use these key names to detect arrow key presses: 'ArrowUp', 'ArrowDown', 'ArrowLeft' and 'ArrowRight'.
+If you want to use WASD and the arrow keys separately you can use these key names to detect arrow key presses: 'ArrowUp', 'ArrowDown', 'ArrowLeft' and 'ArrowRight'.
 Using the IJKL keys for movement is common to support left handed players or second players in local two player games. These keys can be referenced using: 'up2', 'down2', 'left2', and 'right2'.
 Some keyboards don't start with QWERTY on the top row. p5play maps other keyboard layouts to the standard English QWERTY layout. For example, the WASD keys for French AZERTY keyboard users are ZQSD. This can be disabled by setting `p5play.standardizeKeyboard` to false. [More info](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/code)
 
@@ -46,7 +46,7 @@ Note that `mouse.x` is the x position of the mouse on the canvas and `sprite.mou
 
 The `contro` or `controllers` object provides the input state of game controller buttons:
 
-"a", "b", "x", "y", "l" (left bumper), "r" (right bumper), "lt" (left trigger), "rt" (right trigger), "up", "down", "left", "right" (dpad), "start", and "select"
+"a", "b", "x", "y", "l" (left bumper), "r" (right bumper), "lt" (left trigger), "rt" (right trigger), "up", "down", "left", "right" (D-pad), "start", and "select"
 
 It also provides the `x` and `y` axis positions of the analog sticks: `leftStick` and `rightStick`. The axis values range between -1 and 1, where 0 is the center.
 

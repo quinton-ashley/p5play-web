@@ -1,8 +1,8 @@
 # 0-0
 
-## p5.js Setup
+## Setup and Draw
 
-The code inside the p5.js (or q5.js) `setup` function runs when the program starts. The `new Canvas()` constructor creates a section of the screen that the program can draw on.
+The code inside the [p5.js](https://p5js.org) (or [q5.js](https://github.com/quinton-ashley/q5.js)) `setup` function runs when the program starts. The `new Canvas()` constructor creates a section of the screen that the program can draw on.
 
 The p5.js `draw` function is run 60 times per second by default. The `background` function can be used to fill the canvas with a color each time it is drawn.
 
@@ -282,9 +282,9 @@ Also, you may expect `friction` to affect circle physics colliders, but sadly it
 
 In this example the block's color is red when it is colliding with the moving platform. Although you might expect the block to stay red while being lifted by the platform, it blinks between red and blue.
 
-In real life when a person gets on an elevator and it rises, we would say that person would be colliding with the elevator floor the whole ride.
+In real life when a person gets on an elevator and it rises, we would say that person was colliding with the elevator floor.
 
-In planck however, when colliders are displaced by other colliders, they constantly collide and uncollide with each other.
+In planck however, when a collider is displaced by another collider, they constantly collide and separate from each other.
 
 # 10-0
 
@@ -318,7 +318,7 @@ Try changing the lengths of these lines and their angles!
 
 ## Polygon Colliders
 
-Regular polyons can be created by providing the Sprite constructor with a side length and the name of the polygon.
+Regular polygons can be created by providing the Sprite constructor with a side length and the name of the polygon.
 
 Here are the names you can use: triangle, square, pentagon, hexagon, septagon, octagon, enneagon, decagon, hendecagon, and dodecagon.
 
