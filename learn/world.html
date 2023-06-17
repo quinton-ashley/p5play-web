@@ -100,8 +100,8 @@ function draw() {
               <code>world.step()</code> : progresses the physics simulation
             </li>
             <li>
-              <code>allSprites.update()</code> : updates sprite.ani and
-              sprite.mouse
+              <code>allSprites.update()</code> : updates animations and mouse
+              events
             </li>
           </ul>
           <p>
@@ -115,14 +115,14 @@ function draw() {
             <code>group.draw</code> functions to manually control when
             individual sprites and groups are drawn inside the p5.js draw loop.
             Any sprites not drawn manually will be automatically drawn at the
-            end of the p5.js draw loop unless the sprite's autoDraw property is
+            end of the p5.js draw loop, unless the sprite's autoDraw property is
             set to false directly or by one of its parent groups. To prevent
             automatic drawing completely set
             <code>allSprites.autoDraw = false</code>.
           </p>
           <p>
-            Note that you will have to manually turn the camera on and off if
-            you want to use it with manually drawn sprites.
+            Note that if you want to manually draw sprites you'll also have to
+            manually turn the camera on and off.
           </p>
         </md>
         <script type="mie/p5" id="world.step">
@@ -154,10 +154,10 @@ function draw() {
 			</script>
         <md id="md1-1"><h2 id="worldstep">world.step</h2>
           <p>
-            <code>world.step</code> checks for collisions and calculates the
-            positions and velocities of all sprites after progressing the
-            physics simulation by 1/60th of a second by default. Sprites can't
-            be progressed forward in time individually.
+            The <code>world.step</code> function checks for collisions and
+            calculates the positions and velocities of all sprites after
+            progressing the physics simulation by 1/60th of a second by default.
+            Sprites can't be progressed forward in time individually.
           </p>
           <p>
             Before you use <code>world.step</code> in your p5.js draw function,
@@ -176,13 +176,13 @@ function draw() {
           <p>
             What does <code>sprite.update</code> do? It's responsible for
             updating the sprite's animation and mouse events. It also runs the
-            user's custom update function if they set any. To prevent automatic
+            user's custom update functions if they set any. To prevent automatic
             updating completely set <code>allSprites.autoUpdate = false</code>.
           </p>
           <p>
             Why is this functionality separated from the world step? Because on
             a pause screen the physics world could be paused, but pause menu UI
-            animations and mouse events could still be updated.
+            animations and mouse events could still be processed.
           </p>
         </md>
       </div>

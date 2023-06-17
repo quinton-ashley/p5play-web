@@ -294,20 +294,20 @@ function draw() {
             getting too big, which would slow down the physics simulation.
           </p>
           <p>
-            To change this, set <code>allSprites.autoCull = false</code> and use
+            To change this, set <code>allSprites.autoCull = false</code>. Use
             the <code>group.cull</code> function to set a different cull
-            boundary. It can even cull sprites that don't have a physics
-            collider.
+            boundary, and note that it can even cull sprites that don't have a
+            physics collider.
           </p>
           <p>
             An optional last parameter can be used to specify a callback
             function that will be called when a sprite is culled. The default
             response to culling is to remove the sprite that exited the cull
-            boundary but by setting your own function you can do something else.
-            The callback function receives the sprite that was culled and a
-            total count of how many sprites were culled on that frame. In this
-            example the amount of balls decreases if more than one ball is
-            culled in one frame.
+            boundary, but by setting your own function you can do something
+            else. The callback function receives the sprite that was culled and
+            a total count of how many sprites were culled on that frame. Note
+            that in this example, the amount of balls decreases if more than one
+            ball is culled in one frame.
           </p>
         </md>
         <script type="mie/p5" id="cull">

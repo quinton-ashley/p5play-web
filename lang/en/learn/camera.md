@@ -24,8 +24,8 @@ UI or HUD sprites, represented by orange squares in this examples, should be dra
 
 ## Mouse Events with the Camera
 
-In this example the camera is move left and right using a sin wave.
+In this example the camera is moving left and right using a sin wave.
 
 The big sprite is drawn in the world space when the camera is on. The big sprite doesn't move, but it looks like it does because the camera is moving.
 
-The small sprite is drawn when the camera is off in the screen space (UI). If you wanted to make a UI element in your game, like a pause button sprite, you should make it when the camera is off.
+The small sprite is drawn when the camera is off. If you wanted to make a UI element in your game, like a pause button sprite, you should make it when the camera is off.

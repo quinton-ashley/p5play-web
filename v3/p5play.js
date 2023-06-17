@@ -6587,7 +6587,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 	 * the largest possible canvas with a 16:9 aspect ratio.
 	 *
 	 * This function also disables the default keydown responses for
-	 * the arrow keys, slash, and spacebar. This is to prevent the
+	 * the arrow keys, slash, and space. This is to prevent the
 	 * browser from scrolling the page when the user is playing a game
 	 * using common keyboard commands.
 	 *

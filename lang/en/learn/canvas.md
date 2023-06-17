@@ -22,8 +22,8 @@ You can also pass an aspect ratio to the Canvas constructor. This will create th
 
 ## pixelated mode
 
-Another added feature is the "pixelated" preset. Use it for making 8-bit or 16-bit style retro games!
+Another `Canvas` feature is the `"pixelated"` preset. Use it for making 8-bit or 16-bit style retro games!
 
-By default, the "pixelated" preset scales the canvas to fit the screen while retaining its aspect ratio, but you can also define a custom scale by passing a multiplier after the preset name.
+By default, the `"pixelated"` preset scales the canvas to fit the screen while retaining its aspect ratio, but you can also define a custom scale by passing a multiplier after the preset name.
 
-For example, "pixelated x2" will create a canvas that's displayed at twice the size of the specified width and height.
+For example, `"pixelated x2"` will create a canvas that's displayed at twice the size of the specified width and height.
