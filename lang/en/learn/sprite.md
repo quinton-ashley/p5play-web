@@ -137,7 +137,7 @@ Inside the Sprite constructor, `new Sprite()`, you can specify the sprite's posi
 
 As you saw on the previous Sprite reference pages, you don't need to add any inputs to the Sprite constructor to create a sprite. But, if you do want to set a sprite's size in the constructor you'll need to specify its position first.
 
-By default, if no inputs are given to the Sprite constructor, new sprites are positioned at the center of the canvas, with a width and height of 50 pixels, and a dynamic collider.
+By default, if no inputs are given to the Sprite constructor, a new sprite is positioned at the center of the canvas, with a width and height of 50 pixels, and a dynamic collider.
 
 # 4-1
 

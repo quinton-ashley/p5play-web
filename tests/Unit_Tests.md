@@ -1,6 +1,6 @@
 # p5play Unit Tests
 
-The Jest unit tests in this folder ensure exisiting p5play functions are working as documented.
+The Jest unit tests in this folder ensure existing p5play functions are working as documented.
 
 Here is the command to run the tests:
 
