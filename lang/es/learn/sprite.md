@@ -270,10 +270,6 @@ El bug de `bounciness` es más notorio cuando un colisionador rebota en una supe
 
 # 9-4
 
-Además, podrías esperar que la `friction` afectara a los colisionadores de física circulares, ¡pero tristemente no lo hace! Utiliza la propiedad `rotationDrag` en su lugar.
-
-# 9-5
-
 En este ejemplo, el color del bloque es rojo cuando está colisionando con la plataforma móvil. Aunque podrías esperar que el bloque se mantenga rojo mientras está siendo levantado por la plataforma, parpadea entre rojo y azul.
 
 En la vida real, cuando una persona sube a un ascensor y este sube, diríamos que esa persona estaría colisionando con el suelo del ascensor durante todo el trayecto.

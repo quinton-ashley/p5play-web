@@ -91,6 +91,8 @@ async function readFile(event, fullPath) {
 	return await fs.readFile(fullPath, 'utf-8');
 }
 
+// shell.showItemInFolder('C:Users/sdkca');
+
 function resizeWindow(event, width, height) {
 	const fw = BrowserWindow.getFocusedWindow();
 
