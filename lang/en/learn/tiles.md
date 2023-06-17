@@ -26,8 +26,8 @@ You can change the pixel value of coordinate values for all sprites by setting `
 
 In this mini-example grid lines are drawn purely for visual reference.
 
-Also note that simply using the `move` function with the heading "up" causes the player to move up a distance of 1 tile.
+In this example, moving a sprite across a distance of 1 tile causes it to move 32 pixels.
 
-With just two collision rules the player can push around the blocks and blocks can push each other too. They snap to the grid after moving.
+With just two collision rules the player can push around the blocks and blocks can push each other too. They snap to the tile grid after moving.
 
 What's really nice is that you can set `tileSize` on a per sprite basis. If set for a group then all sprites in that group will use that tile size!
