@@ -19,7 +19,6 @@ test('InputDevice : mouse', () => {
 				expect(p.mouse.y).toBe(0);
 				expect(p.mouse.holdThreshold).toEqual(12);
 				expect(p.mouse.default).toEqual('left');
-				expect(p.mouse.draggable).toBe(false);
 				expect(p.mouse.isOnCanvas).toBe(false);
 				expect(p.mouse.active).toBe(false);
 

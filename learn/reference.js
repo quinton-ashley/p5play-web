@@ -30,7 +30,7 @@ let refs = {
 		'sprite_animation.html?page=4': ['spriteSheet', 'anis / animations', 'addAnis / addAnimations', 'pixelPerfect'],
 		'tiles.html?page=0': ['tile'],
 		'tiles.html?page=1': ['tileSize'],
-		'advanced.html?page=1': ['allowSleeping', 'sleeping'],
+		'world.html?page=0': ['allowSleeping', 'sleeping'],
 		'input_devices.html?page=3': ['mouse']
 	},
 	'Group.html': {
@@ -39,7 +39,7 @@ let refs = {
 		2: ['overlap functions', 'remove'],
 		3: ['allSprites'],
 		5: ['removeAll', 'SubGroup'],
-		'advanced.html?page=1': ['autoCull', 'cull']
+		'group.html?page=6': ['autoCull', 'cull']
 	},
 	'Sprite_Animation.html': {
 		0: ['animation', 'loadAni / loadAnimation', 'frameDelay'],
@@ -55,11 +55,12 @@ let refs = {
 		1: ['zoom', 'zoomTo', 'on', 'off', 'mouse']
 	},
 	'Canvas.html': {
-		'advanced.html?page=0': ['"w:h" aspect ratio', '"pixelated" preset']
+		0: ['w', 'h', '"w:h"'],
+		1: ['"pixelated"']
 	},
 	'World.html': {
-		'sprite.html?page=1': ['gravity'],
-		'advanced.html?page=1': ['allowSleeping']
+		0: ['gravity', 'allowSleeping'],
+		1: ['autoStep', 'step']
 	},
 	'q5.js basics': {
 		'https://p5js.org/reference/#/p5': [
