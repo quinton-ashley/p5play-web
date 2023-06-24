@@ -6,6 +6,7 @@ const { JSDOM } = require('jsdom');
 const marked = require('../learn/marked/marked.min.js');
 
 const langCode = process.argv[2];
+const specificPage = process.argv[3];
 
 async function main() {
 	if (!langCode) {
@@ -13,10 +14,13 @@ async function main() {
 		process.exit(1);
 	}
 
-	await translatePage('index');
+	if (!specificPage) {
+		await translatePage('index');
+	}
 
 	const pages = await getPagesInDirectory('learn');
 	for (const page of pages) {
+		if (specificPage && page != specificPage) continue;
 		await translatePage('learn', page);
 	}
 	log('Done!');

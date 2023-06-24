@@ -29,7 +29,14 @@
 			"Culling",
 			"Custom Properties"
 		],
-		"input_devices": ["Detecting Input", "Keyboard", "Multiple Control Schemes", "Mouse", "Game Controllers", "Touch"],
+		"input_devices": [
+			"Detecting Input",
+			"Keyboard",
+			"Multiple Control Schemes",
+			"Sprite Mouse",
+			"Game Controllers",
+			"Touch"
+		],
 		"sprite": [
 			"Basic Properties",
 			"Physics",
@@ -58,6 +65,7 @@
 			"Advanced Sequencing"
 		],
 		"tiles": ["Tiles constructor", "Using tileSize"],
-		"world": ["Sleeping", "Controlling Time"]
+		"world": ["Sleeping", "Controlling Time"],
+		"joints": ["DistanceJoint", "WheelJoint", "RevoluteJoint", "PrismaticJoint"]
 	}
 }

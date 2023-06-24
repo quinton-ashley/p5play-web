@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>p5play : Joints</title>
+	<link rel="icon" href="../assets/logo.svg">
+	<link rel="stylesheet" href="style.css">
+</head>
+
+<body class="dark">
+	<article>
+		<nav id="topNav">
+			<a href="index.html" id="logoLink" class="active">
+				<img alt="p5play logo" src="../assets/logo.svg" class="logo">
+				<span>p5play</span>
+			</a>
+			<hr>
+			<a href="canvas.html">Canvas</a>
+			<a href="world.html">World</a>
+			<a href="joints.html" class="active">Joint</a>
+			<hr>
+			<a id="darkMode" onclick="toggleDarkMode()" tabindex="0" role="button">
+				<div id="darkModeIcon"></div>
+			</a>
+		</nav>
+		<div class="break"></div>
+		<div id="page-0" class="page">
+			<div class="minis horiz">
+				<md id="md0-0">
+					<h2 id="joints">Joints</h2>
+					<p>
+						A joint connects the physics colliders of two sprites, limiting
+						their movement relative to each other.
+					</p>
+					<p>
+						Joint constructors accept two sprites as input. At least one of
+						the sprites in a joint must have a dynamic physics collider.
+					</p>
+				</md>
+				<md id="md0-1">
+					<h2 id="distancejoint">DistanceJoint</h2>
+					<p>
+						By default, a <code>DistanceJoint</code> is attached at the center
+						of each sprite that it's connected to. To shift the joint's
+						attachment points, edit its <code>offsetA</code> and
+						<code>offsetB</code> vectors.
+					</p>
+					<p>
+						Adjusting the joint's <code>springiness</code> ratio changes the
+						amount it can stretch and compress.
+					</p>
+					<p>
+						<code>0.0</code> = steel rod (default)<br><code>0.2</code> =
+						stiff spring<br><code>0.4</code> = tight spring<br><code>0.6</code>
+						= bouncy spring<br><code>0.8</code> = slinky<br><code>1.0</code>
+						= bungee cord
+					</p>
+					<p>
+						You can also adjust the joints's <code>damping</code> ratio to
+						change how quickly it loses vibrational energy.
+					</p>
+				</md>
+			</div>
+			<script type="mie/p5" id="distance-joint" lines="13">
+let s0, s1, j;
+function setup() {
+	new Canvas(500, 500);
+	world.gravity.y = 10;
+
+	s0 = new Sprite(250, 0, 10, 50, 'k');
+	s1 = new Sprite(100, 20, 20);
+
+	j = new DistanceJoint(s0, s1);
+	j.offsetA.y = 25;
+
+	j.springiness = 0; // try changing this!
+}
+
+function draw() {
+	clear();
+	s0.moveTowards(mouse);
+}
+      </script>
+		</div>
+		<div id="page-1" class="page">
+			<md id="md1-0">
+				<h2 id="wheeljoint">WheelJoint</h2>
+				<p>
+					A <code>WheelJoint</code> connects a vehicle body to a wheel. Use
+					wheel joints to create drive-able vehicles!
+				</p>
+				<p>
+					Every wheel joint has a motor, which can be enabled by setting
+					<code>speed</code> to your desired motor speed,
+					<code>maxTorque</code> to the motor's power, or
+					<code>motorEnabled</code> to <code>true</code>.
+				</p>
+				<p>
+					Disabling a wheel joint motor is like putting a car in neutral, it
+					causes the wheel to roll freely. The joint's speed must be set to
+					zero for the wheel to brake.
+				</p>
+				<p>
+					Try driving the car in this example. Can you make it to the end of
+					the road?
+				</p>
+				<p>
+					The car in this example only has the rear wheel drive, how could you
+					add front wheel drive to make the car a 4x4?
+				</p>
+			</md>
+
+			<script type="mie/p5" id="car">
+let car, wheelsFront, wheelsRear, axleFront, axleRear;
+
+function setup() {
+	new Canvas(500, 250);
+	world.gravity.y = 10;
+
+	car = new Sprite(250, 140, 100, 30);
+	wheelsFront = new Sprite(280, 160, 20);
+	wheelsRear = new Sprite(220, 160, 20);
+
+	axleFront = new WheelJoint(car, wheelsFront);
+	axleRear = new WheelJoint(car, wheelsRear);
+
+	let grade = [[400, 0]];
+	for (let i = 0; i < 100; i++) {
+		grade.push([random(50, 200), random(-30, 30)]);
+	}
+	let ground = new Sprite(30, 200, grade, 's');
+	ground.color = 'black';
+}
+
+function draw() {
+	background(200);
+
+	if (kb.pressing('left')) axleRear.speed--;
+	else if (kb.pressing('right')) axleRear.speed++;
+	else if (kb.pressing('down')) axleRear.speed = 0;
+	else axleRear.enableMotor = false;
+	
+	camera.x = car.x + 150;
+	camera.y = car.y;
+}
+			</script>
+		</div>
+		<div id="page-2" class="page">
+			<md id="md2-0">
+				<h2 id="revolutejoint">RevoluteJoint</h2>
+				<p>
+					A <code>RevoluteJoint</code> enables one or two sprites to rotate
+					around the same attachment point.
+				</p>
+				<p>Use revolute joints to create seesaws, pendulums, and doors.</p>
+				<p>
+					Revolute joints with a small <code>maxTorque</code> and default
+					<code>speed</code> of zero can resist being moved. Try clicking
+					around this example to drop small boxes on the seesaw.
+				</p>
+			</md>
+			<script type="mie/p5" id="seesaw">
+let s0, s1, j;
+function setup() {
+	new Canvas(500, 200);
+	world.gravity.y = 10;
+
+	s0 = new Sprite(250, 100, 30, 30, 'k');
+	s1 = new Sprite(250, 100, 400, 20);
+
+	j = new RevoluteJoint(s0, s1);
+	j.maxTorque = 0.1;
+
+	j.lowerLimit = -20;
+	j.upperLimit = 20;
+}
+
+function draw() {
+	clear();
+	if (mouse.presses()) new Sprite(mouse.x, mouse.y, 6, 6)
+}
+			</script>
+		</div>
+		<div id="page-3" class="page">
+			<md id="md3-0">
+				<h2 id="prismaticjoint">PrismaticJoint</h2>
+				<p>Coming soon!</p>
+			</md>
+		</div>
+
+		<div class="break"></div>
+		<div id="toc">
+			<a id="prevPage" class="navLink">Previous Page</a>
+			<div id="pageNav" class="submenu">
+				<a data-page="0" href="joints.html?page=0">DistanceJoint</a>
+				<a data-page="1" href="joints.html?page=1">WheelJoint</a>
+				<a data-page="2" href="joints.html?page=2">RevoluteJoint</a>
+				<a data-page="3" href="joints.html?page=3">PrismaticJoint</a>
+			</div>
+			<a id="nextPage" class="navLink">Next Page</a>
+		</div>
+		<div class="break"></div>
+		<footer id="credits" class="text-small">
+			Created by Quinton Ashley (@quinton-ashley) Copyright 2022-2023
+		</footer>
+	</article>
+
+	<script src="../v3/q5.min.js"></script>
+	<script src="../v3/planck.min.js"></script>
+	<script src="../v3/p5play.min.js"></script>
+
+	<script>
+		window.mie = { autoLoad: false };
+	</script>
+	<script src="mie.js"></script>
+	<script src="learn.js"></script>
+
+
+</body>
+
+</html>
