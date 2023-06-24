@@ -5913,7 +5913,11 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		/**
 		 * EXPERIMENTAL! Subject to change.
 		 *
-		 * Creates a joint between two sprites.
+		 * All other joint classes extend this class.
+		 *
+		 * Don't create a joint with this class directly,
+		 * use DistanceJoint, WheelJoint, RevoluteJoint or
+		 * PrismaticJoint.
 		 *
 		 * @param {Sprite} spriteA
 		 * @param {Sprite} spriteB
@@ -5936,6 +5940,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			 */
 			this.spriteB = spriteB;
 
+			type ??= 'distance';
 			/**
 			 * The type of joint. Can be one of:
 			 *
@@ -5947,6 +5952,17 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			 * @readonly
 			 */
 			this.type = type;
+
+			if (type == 'distance') {
+				let j = pl.DistanceJoint(
+					{},
+					spriteA.body,
+					spriteB.body,
+					spriteA.body.getWorldCenter(),
+					spriteB.body.getWorldCenter()
+				);
+				this._createJoint(j);
+			}
 
 			let _this = this;
 
@@ -6079,7 +6095,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		 *
 		 * Springiness is a user friendly wrapper around Box2D's spring
 		 * frequency joint parameter. It's 0-1 ratio is piecewise mapped
-		 * to the reversed range of 30-0.2hz, except 0 remains 0.
+		 * to the range of 30-0.2hz, except 0 remains 0.
 		 *
 		 * 0.0 -> 0hz (perfectly rigid)
 		 * >0.0-0.1 -> 30hz-4hz (steel rod)
@@ -6243,6 +6259,8 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 
 	this.DistanceJoint = class extends this.Joint {
 		/**
+		 * EXPERIMENTAL! Subject to change.
+		 *
 		 * Distance joints are used to constrain the distance
 		 * between two sprites.
 		 *
@@ -6251,20 +6269,13 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		 */
 		constructor(spriteA, spriteB) {
 			super(...arguments, 'distance');
-
-			let j = pl.DistanceJoint(
-				{},
-				spriteA.body,
-				spriteB.body,
-				spriteA.body.getWorldCenter(),
-				spriteB.body.getWorldCenter()
-			);
-			this._createJoint(j);
 		}
 	};
 
 	this.WheelJoint = class extends this.Joint {
 		/**
+		 * EXPERIMENTAL! Subject to change.
+		 *
 		 * Wheel joints can be used to create vehicles!
 		 *
 		 * @param {Sprite} spriteA the vehicle body
@@ -6290,6 +6301,8 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 
 	this.RevoluteJoint = class extends this.Joint {
 		/**
+		 * EXPERIMENTAL! Subject to change.
+		 *
 		 * Revolute joints work like hinges.
 		 *
 		 * @param {Sprite} spriteA
