@@ -29,7 +29,8 @@
       <div class="break"></div>
       <div id="page-0" class="page">
         <div class="minis horiz">
-          <md id="md0-0"><h2 id="joints">Joints</h2>
+          <md id="md0-0">
+            <h2 id="joints">Joints</h2>
             <p>
               A joint connects the physics colliders of two sprites, limiting
               their movement relative to each other.
@@ -39,7 +40,8 @@
               the sprites in a joint must have a dynamic physics collider.
             </p>
           </md>
-          <md id="md0-1"><h2 id="distancejoint">DistanceJoint</h2>
+          <md id="md0-1">
+            <h2 id="distancejoint">DistanceJoint</h2>
             <p>
               By default, a <code>DistanceJoint</code> is attached at the center
               of each sprite that it's connected to. To shift the joint's
@@ -84,7 +86,8 @@ function draw() {
       </script>
       </div>
       <div id="page-1" class="page">
-        <md id="md1-0"><h2 id="wheeljoint">WheelJoint</h2>
+        <md id="md1-0">
+          <h2 id="wheeljoint">WheelJoint</h2>
           <p>
             A <code>WheelJoint</code> connects a vehicle body to a wheel. Use
             wheel joints to create drive-able vehicles!
@@ -146,7 +149,8 @@ function draw() {
 			</script>
       </div>
       <div id="page-2" class="page">
-        <md id="md2-0"><h2 id="revolutejoint">RevoluteJoint</h2>
+        <md id="md2-0">
+          <h2 id="revolutejoint">RevoluteJoint</h2>
           <p>
             A <code>RevoluteJoint</code> enables one or two sprites to rotate
             around the same attachment point.
@@ -171,8 +175,9 @@ function setup() {
 	j = new RevoluteJoint(s0, s1);
 	j.maxTorque = 0.1;
 
-	j.lowerLimit = -20;
-	j.upperLimit = 20;
+  // try changing the limits!
+	j.lowerLimit;
+	j.upperLimit;
 }
 
 function draw() {
@@ -182,7 +187,8 @@ function draw() {
 			</script>
       </div>
       <div id="page-3" class="page">
-        <md id="md3-0"><h2 id="prismaticjoint">PrismaticJoint</h2>
+        <md id="md3-0">
+          <h2 id="prismaticjoint">PrismaticJoint</h2>
           <p>Coming soon!</p>
         </md>
       </div>
