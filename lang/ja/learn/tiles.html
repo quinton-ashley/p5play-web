@@ -14,13 +14,9 @@
           <span>p5play</span>
         </a>
         <hr>
-        <a href="sprite.html">Sprite</a>
-        <a href="group.html">Group</a>
-        <a href="sprite_animation.html">Ani</a>
-        <a href="input_devices.html">Input</a>
+        <a href="canvas.html">Canvas</a>
         <a href="tiles.html" class="active">Tiles</a>
-        <a href="camera.html">Camera</a>
-        <a href="canvas.html">...</a>
+        <a href="world.html">World</a>
         <hr>
         <a id="darkMode" onclick="toggleDarkMode()" tabindex="0" role="button">
           <div id="darkModeIcon"></div>
@@ -143,10 +139,10 @@ function setup() {
 	new blocks.Sprite(6, 0);
 
 	player.collides(blocks, (player, block) => {
-		block.move(player.heading);
+		block.move(1, player.heading);
 	});
 	blocks.collides(blocks, (b, block) => {
-		block.move(player.heading);
+		block.move(1, player.heading);
 	});
 }
 
@@ -158,10 +154,10 @@ function draw() {
 		}
 	}
 
-	if (kb.presses('up')) player.move('up');
-	if (kb.presses('down')) player.move('down');
-	if (kb.presses('left')) player.move('left');
-	if (kb.presses('right')) player.move('right');
+	if (kb.presses('up')) player.move(1, 'up');
+	if (kb.presses('down')) player.move(1, 'down');
+	if (kb.presses('left')) player.move(1, 'left');
+	if (kb.presses('right')) player.move(1, 'right');
 }
 			</script>
       </div>

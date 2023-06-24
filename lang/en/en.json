@@ -37,6 +37,7 @@
 			"Game Controllers",
 			"Touch"
 		],
+		"joints": ["DistanceJoint", "WheelJoint", "RevoluteJoint", "PrismaticJoint"],
 		"sprite": [
 			"Basic Properties",
 			"Physics",
@@ -65,7 +66,6 @@
 			"Advanced Sequencing"
 		],
 		"tiles": ["Tiles constructor", "Using tileSize"],
-		"world": ["Sleeping", "Controlling Time"],
-		"joints": ["DistanceJoint", "WheelJoint", "RevoluteJoint", "PrismaticJoint"]
+		"world": ["Sleeping", "Controlling Time"]
 	}
 }

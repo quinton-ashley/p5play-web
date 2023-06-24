@@ -37,6 +37,7 @@
 			"Controladores de Juego",
 			"Táctil"
 		],
+		"joints": [],
 		"sprite": [
 			"Propiedades Básicas",
 			"Física",
