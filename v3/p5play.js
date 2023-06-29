@@ -5916,7 +5916,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		 * All other joint classes extend this class.
 		 *
 		 * Don't create a joint with this class directly,
-		 * use DistanceJoint, WheelJoint, RevoluteJoint or
+		 * use GlueJoint, DistanceJoint, WheelJoint, RevoluteJoint or
 		 * PrismaticJoint.
 		 *
 		 * @param {Sprite} spriteA
@@ -5940,11 +5940,11 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			 */
 			this.spriteB = spriteB;
 
-			type ??= 'distance';
+			type ??= 'glue';
 			/**
 			 * The type of joint. Can be one of:
 			 *
-			 * `distance`, `wheel`, `revolute`, `prismatic`.
+			 * "glue", "distance", "wheel", "revolute", "prismatic".
 			 *
 			 * Can't be changed after the joint is created.
 			 *
@@ -5953,14 +5953,8 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			 */
 			this.type = type;
 
-			if (type == 'distance') {
-				let j = pl.DistanceJoint(
-					{},
-					spriteA.body,
-					spriteB.body,
-					spriteA.body.getWorldCenter(),
-					spriteB.body.getWorldCenter()
-				);
+			if (type == 'glue') {
+				let j = pl.WeldJoint({}, spriteA.body, spriteB.body, spriteA.body.getWorldCenter());
 				this._createJoint(j);
 			}
 
@@ -5986,9 +5980,13 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			}
 
 			let removeProps = [];
-			if (type == 'distance' || type == 'rope') {
+			if (type == 'glue') {
+				removeProps.push('speed');
+			}
+			if (type == 'distance' || type == 'glue' || type == 'rope') {
 				removeProps.push('motorSpeed', 'maxTorque', 'enableMotor');
-			} else if (type == 'revolute') {
+			}
+			if (type == 'revolute' || type == 'glue') {
 				removeProps.push('offsetB');
 			} else if (type == 'wheel') {
 				removeProps.push('offsetA');
@@ -6025,6 +6023,8 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 					this.spriteB.x + this.offsetB.x,
 					this.spriteB.y + this.offsetB.y
 				);
+			} else if (this.type == 'glue') {
+				this._draw(this.spriteA.x + this.offsetA.x, this.spriteA.y + this.offsetA.y, this.spriteB.x, this.spriteB.y);
 			} else if (this.type == 'revolute') {
 				this._draw(this.spriteA.x + this.offsetA.x, this.spriteA.y + this.offsetA.y);
 			}
@@ -6255,6 +6255,26 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		// set stiffness(val) {
 		// 	this._j.setMaxMotorForce(map(val, 0, 1, 100, 0));
 		// }
+
+		remove() {
+			if (this._removed) return;
+			this.spriteA.joints.splice(this.spriteA.joints.indexOf(this), 1);
+			this.spriteB.joints.splice(this.spriteB.joints.indexOf(this), 1);
+			this.p.world.destroyJoint(this._j);
+			this._removed = true;
+		}
+	};
+
+	this.GlueJoint = class extends this.Joint {
+		/**
+		 * Glue joints are used to glue two sprites together.
+		 *
+		 * @param {Sprite} spriteA
+		 * @param {Sprite} spriteB
+		 */
+		constructor(spriteA, spriteB) {
+			super(...arguments, 'glue');
+		}
 	};
 
 	this.DistanceJoint = class extends this.Joint {
@@ -6269,6 +6289,15 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		 */
 		constructor(spriteA, spriteB) {
 			super(...arguments, 'distance');
+
+			let j = pl.DistanceJoint(
+				{},
+				spriteA.body,
+				spriteB.body,
+				spriteA.body.getWorldCenter(),
+				spriteB.body.getWorldCenter()
+			);
+			this._createJoint(j);
 		}
 	};
 
@@ -6403,15 +6432,6 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 				this._j.enableLimit(true);
 			}
 			this._j.setLimits(this._j.getLowerLimit(), val);
-		}
-	};
-
-	this.WeldJoint = class extends this.Joint {
-		constructor(spriteA, spriteB) {
-			super(...arguments, 'weld');
-
-			let j = pl.WeldJoint({}, spriteA.body, spriteB.body, spriteA.body.getWorldCenter());
-			this._createJoint(j);
 		}
 	};
 

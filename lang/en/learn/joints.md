@@ -6,7 +6,25 @@ A joint connects the physics colliders of two sprites, limiting their movement r
 
 Joint constructors accept two sprites as input. At least one of the sprites in a joint must have a dynamic physics collider.
 
+Every sprite has a `sprite.joints` array, which contains all the joints it's currently connected to.
+
 # 0-1
+
+## GlueJoint
+
+Do you like crafting in Legend of Zelda: Tears of the Kingdom? Then you'll love glue joints!
+
+A `GlueJoint` is the simplest type of joint, it just glues two sprites together. The sprites don't have to be touching and they won't un-glue unless you remove the joint.
+
+But wait, why use a glue joint instead of `sprite.addCollider`?
+
+- each sprite can have its own physics properties
+- each sprite can detect collisions separately
+- removing a joint doesn't remove the sprites
+
+Try gluing and un-gluing the stick and ball sprite in the mini example. If you want a challenge, throw the ball straight up in the air and try to stick it to the top of the stick!
+
+# 1-1
 
 ## DistanceJoint
 
@@ -23,7 +41,7 @@ Adjusting the joint's `springiness` ratio changes the amount it can stretch and 
 
 You can also adjust the joints's `damping` ratio to change how quickly it loses vibrational energy.
 
-# 1-0
+# 2-0
 
 ## WheelJoint
 
@@ -37,7 +55,7 @@ Try driving the car in this example. Can you make it to the end of the road?
 
 The car in this example only has the rear wheel drive, how could you add front wheel drive to make the car a 4x4?
 
-# 2-0
+# 3-0
 
 ## RevoluteJoint
 
@@ -47,7 +65,7 @@ Use revolute joints to create seesaws, pendulums, and doors.
 
 Revolute joints with a small `maxTorque` and default `speed` of zero can resist being moved. Try clicking around this example to drop small boxes on the seesaw. How many boxes can you put on the seesaw before it tips?
 
-# 3-0
+# 4-0
 
 ## PrismaticJoint
 

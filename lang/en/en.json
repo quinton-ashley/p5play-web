@@ -37,7 +37,7 @@
 			"Game Controllers",
 			"Touch"
 		],
-		"joints": ["DistanceJoint", "WheelJoint", "RevoluteJoint", "PrismaticJoint"],
+		"joints": ["GlueJoint", "DistanceJoint", "WheelJoint", "RevoluteJoint", "PrismaticJoint"],
 		"sprite": [
 			"Basic Properties",
 			"Physics",

@@ -87,7 +87,7 @@ In the "hero" example the size of the hero sprite is set to 32x32 pixels in the 
 
 Click this link to see the full [questKid](assets/questKid.png) sprite sheet used in the example.
 
-If you'd like to truly appreciate how good p5play is, try comparing the code from my example to [this Phaser demo](https://phaser.io/examples/v3/view/animation/create-animation-from-sprite-sheet). Ha!
+If you'd like to truly appreciate how good p5play is, try comparing the code from my example to [this Phaser demo](https://labs.phaser.io/view.html?src=src/animation/create%20animation%20from%20sprite%20sheet.js). Ha!
 
 I recommend making every frame in an animation the same size and putting them in order from left to right. If not you'll need to manually specify the position of each frame, which can be done using an array of coordinates instead of an atlas object.
 

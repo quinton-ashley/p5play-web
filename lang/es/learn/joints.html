@@ -28,66 +28,132 @@
       </nav>
       <div class="break"></div>
       <div id="page-0" class="page">
-        <div class="minis horiz">
-          <md id="md0-0">
-            <h2 id="joints">Joints</h2>
-            <p>
-              A joint connects the physics colliders of two sprites, limiting
-              their movement relative to each other.
-            </p>
-            <p>
-              Joint constructors accept two sprites as input. At least one of
-              the sprites in a joint must have a dynamic physics collider.
-            </p>
-          </md>
-          <md id="md0-1">
-            <h2 id="distancejoint">DistanceJoint</h2>
-            <p>
-              By default, a <code>DistanceJoint</code> is attached at the center
-              of each sprite that it's connected to. To shift the joint's
-              attachment points, edit its <code>offsetA</code> and
-              <code>offsetB</code> vectors.
-            </p>
-            <p>
-              Adjusting the joint's <code>springiness</code> ratio changes the
-              amount it can stretch and compress.
-            </p>
-            <p>
-              <code>0.0</code> = steel rod (default)<br><code>0.2</code> =
-              stiff spring<br><code>0.4</code> = tight spring<br><code>0.6</code>
-              = bouncy spring<br><code>0.8</code> = slinky<br><code>1.0</code>
-              = bungee cord
-            </p>
-            <p>
-              You can also adjust the joints's <code>damping</code> ratio to
-              change how quickly it loses vibrational energy.
-            </p>
-          </md>
-        </div>
-        <script type="mie/p5" id="distance-joint" lines="13">
-let s0, s1, j;
+        <md id="md0-0"><h2 id="joints">Joints</h2>
+          <p>
+            A joint connects the physics colliders of two sprites, limiting
+            their movement relative to each other.
+          </p>
+          <p>
+            Joint constructors accept two sprites as input. At least one of the
+            sprites in a joint must have a dynamic physics collider.
+          </p>
+          <p>
+            Every sprite has a <code>sprite.joints</code> array, which contains
+            all the joints it's currently connected to.
+          </p>
+        </md>
+        <script type="mie/p5" id="glue" lines="12" horiz="">
+let floor, spriteA, spriteB, j;
+
 function setup() {
-	new Canvas(500, 500);
+  new Canvas(100, 200);
+  world.gravity.y = 10;
+  floor = new Sprite(50, 180, 100, 10, 's');
+
+  spriteA = new Sprite(65, 40, 30, 30);
+  spriteB = new Sprite(85, 60, 30, 30);
+
+  j = new GlueJoint(spriteA, spriteB);
+}
+
+function draw() {
+  clear();
+}
+      </script>
+        <md id="md0-1"><h2 id="gluejoint">GlueJoint</h2>
+          <p>
+            Do you like crafting in Legend of Zelda: Tears of the Kingdom? Then
+            you'll love glue joints!
+          </p>
+          <p>
+            A <code>GlueJoint</code> is the simplest type of joint, it just
+            glues two sprites together. The sprites don't have to be touching
+            and they won't un-glue unless you remove the joint.
+          </p>
+          <p>
+            But wait, why use a glue joint instead of
+            <code>sprite.addCollider</code>?
+          </p>
+          <ul>
+            <li>each sprite can have its own physics properties</li>
+            <li>each sprite can detect collisions separately</li>
+            <li>removing a joint doesn't remove the sprites</li>
+          </ul>
+          <p>
+            Try gluing and un-gluing the stick and ball sprite in the mini
+            example. If you want a challenge, throw the ball straight up in the
+            air and try to stick it to the top of the stick!
+          </p>
+        </md>
+        <script type="mie/p5" id="glue-and-unglue">
+let floor, stick, ball, j;
+
+function setup() {
+	new Canvas(500, 400);
 	world.gravity.y = 10;
-
-	s0 = new Sprite(250, 0, 10, 50, 'k');
-	s1 = new Sprite(100, 20, 20);
-
-	j = new DistanceJoint(s0, s1);
-	j.offsetA.y = 25;
-
-	j.springiness = 0; // try changing this!
+  floor = new Sprite(250, 400, 10000, 10, 's');
+	stick = new Sprite(200, 100, 10, 120);
+	ball = new Sprite(300, 200, 20);
 }
 
 function draw() {
 	clear();
-	s0.moveTowards(mouse);
+	stick.moveTowards(mouse);
+
+	if (mouse.presses()) {
+		if (stick.joints.length > 0) j.remove();
+		else j = new GlueJoint(stick, ball);
+	}
 }
       </script>
       </div>
       <div id="page-1" class="page">
         <md id="md1-0">
-          <h2 id="wheeljoint">WheelJoint</h2>
+          <h2 id="distancejoint">DistanceJoint</h2>
+          <p>
+            By default, a <code>DistanceJoint</code> is attached at the center
+            of each sprite that it's connected to. To shift the joint's
+            attachment points, edit its <code>offsetA</code> and
+            <code>offsetB</code> vectors.
+          </p>
+          <p>
+            Adjusting the joint's <code>springiness</code> ratio changes the
+            amount it can stretch and compress.
+          </p>
+          <p>
+            <code>0.0</code> = steel rod (default)<br><code>0.2</code> = stiff
+            spring<br><code>0.4</code> = tight spring<br><code>0.6</code> =
+            bouncy spring<br><code>0.8</code> = slinky<br><code>1.0</code>
+            = bungee cord
+          </p>
+          <p>
+            You can also adjust the joints's <code>damping</code> ratio to
+            change how quickly it loses vibrational energy.
+          </p>
+        </md>
+        <script type="mie/p5" id="swing" lines="13">
+let sA, sB, j;
+function setup() {
+	new Canvas(500, 500);
+	world.gravity.y = 10;
+
+	sA = new Sprite(250, 0, 10, 50, 'k');
+	sB = new Sprite(100, 20, 20);
+
+	j = new DistanceJoint(sA, sB);
+	j.offsetA.y = 25;
+
+	j.springiness = 0.6; // try changing this!
+}
+
+function draw() {
+	clear();
+	sA.moveTowards(mouse);
+}
+      </script>
+      </div>
+      <div id="page-2" class="page">
+        <md id="md2-0"><h2 id="wheeljoint">WheelJoint</h2>
           <p>
             A <code>WheelJoint</code> connects a vehicle body to a wheel. Use
             wheel joints to create drive-able vehicles!
@@ -148,9 +214,8 @@ function draw() {
 }
 			</script>
       </div>
-      <div id="page-2" class="page">
-        <md id="md2-0">
-          <h2 id="revolutejoint">RevoluteJoint</h2>
+      <div id="page-3" class="page">
+        <md id="md3-0"><h2 id="revolutejoint">RevoluteJoint</h2>
           <p>
             A <code>RevoluteJoint</code> enables one or two sprites to rotate
             around the same attachment point.
@@ -186,9 +251,8 @@ function draw() {
 }
 			</script>
       </div>
-      <div id="page-3" class="page">
-        <md id="md3-0">
-          <h2 id="prismaticjoint">PrismaticJoint</h2>
+      <div id="page-4" class="page">
+        <md id="md4-0"><h2 id="prismaticjoint">PrismaticJoint</h2>
           <p>Coming soon!</p>
         </md>
       </div>
@@ -201,6 +265,7 @@ function draw() {
           <a data-page="1" href="joints.html?page=1">undefined</a>
           <a data-page="2" href="joints.html?page=2">undefined</a>
           <a data-page="3" href="joints.html?page=3">undefined</a>
+          <a data-page="4" href="joints.html?page=4">undefined</a>
         </div>
         <a id="nextPage" class="navLink">Siguiente página</a>
       </div>

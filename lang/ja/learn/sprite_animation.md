@@ -87,7 +87,7 @@ p5play はアニメーションに対する完全な制御を提供します。
 
 このリンクをクリックして、例で使用されている[完全なスプライトシート](assets/questKid.png)を見てください。
 
-あなたが本当に p5play がどれだけ良いかを感謝したいなら、私の例のコードを[この Phaser デモ](https://phaser.io/examples/v3/view/animation/create-animation-from-sprite-sheet)と比較してみてください。 ハ！
+あなたが本当に p5play がどれだけ良いかを感謝したいなら、私の例のコードを[この Phaser デモ](https://labs.phaser.io/view.html?src=src/animation/create%20animation%20from%20sprite%20sheet.js)と比較してみてください。 ハ！
 
 アニメーションの各フレームを同じサイズにして左から右に順に並べることをお勧めします。 そうでなければ、各フレームの位置を手動で指定する必要があります。これは、アトラスオブジェクトの代わりに座標の配列を使用して行うことができます。
 
