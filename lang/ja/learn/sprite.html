@@ -18,8 +18,8 @@
         <a href="group.html">Group</a>
         <a href="sprite_animation.html">Ani</a>
         <a href="input_devices.html">Input</a>
-        <a href="tiles.html">Tiles</a>
         <a href="camera.html">Camera</a>
+        <a href="joints.html">Joints</a>
         <a href="canvas.html">...</a>
         <hr>
         <a id="darkMode" onclick="toggleDarkMode()" tabindex="0" role="button">
@@ -1540,7 +1540,7 @@ function draw() {
 		if (kb.presses(i)) sprite.scale = i;
 	}
 
-	if (kb.presses('d')) sprite.scale *= 2;
+	if (mouse.presses()) sprite.scale *= 2;
 	if (kb.presses('x')) sprite.scale.x = random(0.1, 6);
 	if (kb.presses('y')) sprite.scale.y = random(0.1, 6);
 
@@ -1595,10 +1595,10 @@ function setup() {
 function draw() {
 	background(150);
 
-	if (kb.presses('space')) {
+	if (mouse.presses()) {
 		flipper.rotateTo(20, 8);
 	}
-	if (kb.pressed('space')) {
+	if (mouse.pressed()) {
 		flipper.rotateTo(-20, 8);
 	}
 

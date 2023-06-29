@@ -382,7 +382,7 @@ Changing `sprite.scale` will scale the sprite's collider and visual appearance b
 
 Press a number key to see the sprite scale uniformly by that amount.
 
-Press "d" to double the sprite's scale.
+Click your mouse or touch tap to double the sprite's scale.
 
 Press "x" or "y" to scale the sprite in that direction by a random amount. But note that if the sprite gets scaled unevenly, the image will get distorted and stay that way even when scaled uniformly again.
 

@@ -48,7 +48,15 @@ let refs = {
 	},
 	'Input_Devices.html': {
 		0: ['mouse', 'presses', 'pressing', 'released', 'kb / keyboard'],
-		4: ['contro / controllers']
+		4: ['contro / controllers'],
+		5: ['touches']
+	},
+	'Joints.html': {
+		0: ['GlueJoint'],
+		1: ['DistanceJoint'],
+		2: ['WheelJoint'],
+		3: ['RevoluteJoint'],
+		4: ['PrismaticJoint']
 	},
 	'Camera.html': {
 		0: ['x', 'y'],
@@ -57,6 +65,10 @@ let refs = {
 	'Canvas.html': {
 		0: ['w', 'h', '"w:h"'],
 		1: ['"pixelated"']
+	},
+	'Tiles.html': {
+		0: ['Tiles'],
+		1: ['tileSize']
 	},
 	'World.html': {
 		0: ['gravity', 'allowSleeping'],
