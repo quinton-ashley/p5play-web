@@ -2,15 +2,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>p5play : Animation</title>
-    <link rel="icon" href="../assets/favicon.png">
-    <link rel="stylesheet" href="../../../learn/style.css">
+    <link rel="icon" href="/assets/favicon.png">
+    <link rel="stylesheet" href="/learn/style.css">
   </head>
 
   <body class="dark">
     <article>
       <nav id="topNav">
         <a href="index.html" id="logoLink" class="active">
-          <img alt="p5play logo" src="../../../learn/../assets/logo.svg" class="logo">
+          <img alt="p5play logo" src="/assets/logo.svg" class="logo">
           <span>p5play</span>
         </a>
         <hr>
@@ -57,7 +57,7 @@ let cloudAni;
 function setup() {
 	new Canvas(500, 160);
 
-	cloudAni = loadAni('assets/cloud_breathing1.png', 9);
+	cloudAni = loadAni('/learn/assets/cloud_breathing1.png', 9);
 }
 
 function draw() {
@@ -86,13 +86,13 @@ function setup() {
 	new Canvas(500, 160);
 
 	shapeShifterAni = loadAnimation(
-		'assets/asterisk.png',
-		'assets/triangle.png',
-		'assets/square.png',
-		'assets/cloud.png',
-		'assets/star.png',
-		'assets/mess.png',
-		'assets/monster.png'
+		'/learn/assets/asterisk.png',
+		'/learn/assets/triangle.png',
+		'/learn/assets/square.png',
+		'/learn/assets/cloud.png',
+		'/learn/assets/star.png',
+		'/learn/assets/mess.png',
+		'/learn/assets/monster.png'
 	);
 
 	shapeShifterAni.frameDelay = 10;
@@ -126,7 +126,7 @@ let splatAni;
 function setup() {
 	new Canvas(500, 200);
 
-	splatAni = loadAnimation('assets/explode_sprite_sheet.png', { frameSize: [171, 158], frames: 11 });
+	splatAni = loadAnimation('/learn/assets/explode_sprite_sheet.png', { frameSize: [171, 158], frames: 11 });
 }
 
 function draw() {
@@ -153,7 +153,7 @@ let ani;
 function setup() {
 	new Canvas(500, 160);
 
-	ani = loadAni('assets/asterisk_explode0001.png', 11);
+	ani = loadAni('/learn/assets/asterisk_explode0001.png', 11);
 }
 
 function draw() {
@@ -222,8 +222,8 @@ function setup() {
 	new Canvas(500, 160);
 	ghost = new Sprite(250, 80, 120);
 
-	ghost.addAni('fly', 'assets/ghost_walk01.png', 3);
-	ghost.addAni('idle', 'assets/ghost_standing01.png', 7);
+	ghost.addAni('fly', '/learn/assets/ghost_walk01.png', 3);
+	ghost.addAni('idle', '/learn/assets/ghost_standing01.png', 7);
 }
 
 function draw() {
@@ -273,7 +273,7 @@ function setup() {
 	new Canvas(500, 160);
 
 	splats = new Group();
-	splats.addAni('assets/asterisk_explode0001.png', 11);
+	splats.addAni('/learn/assets/asterisk_explode0001.png', 11);
 }
 
 function draw() {
@@ -365,7 +365,7 @@ let hero;
 
 function preload() {
 	hero = new Sprite(125, 48, 32, 32);
-	hero.spriteSheet = 'assets/questKid.png';
+	hero.spriteSheet = '/learn/assets/questKid.png';
 	hero.anis.offset.x = 2;
 	hero.anis.frameDelay = 32;
 	hero.anis.demoMode = true;
@@ -402,7 +402,7 @@ let hero;
 
 function preload() {
 	hero = new Sprite(62, 24, 32, 32);
-	hero.spriteSheet = 'assets/questKid.png';
+	hero.spriteSheet = '/learn/assets/questKid.png';
 	hero.anis.offset.x = 2;
 	hero.anis.frameDelay = 8;
 
@@ -541,15 +541,15 @@ if (hero.ani.name != 'jump' && hero.ani.name != 'roll') {
       </footer>
     </article>
 
-    <script src="../../../learn/../v3/q5.min.js"></script>
-    <script src="../../../learn/../v3/planck.min.js"></script>
-    <script src="../../../learn/../v3/p5play.min.js"></script>
+    <script src="/v3/q5.min.js"></script>
+    <script src="/v3/planck.min.js"></script>
+    <script src="/v3/p5play.min.js"></script>
 
     <script>
       window.mie = { autoLoad: false };
     </script>
-    <script src="../../../learn/mie.js"></script>
-    <script src="../../../learn/learn.js"></script>
+    <script src="/learn/mie.js"></script>
+    <script src="/learn/learn.js"></script>
   
 
 </body></html>

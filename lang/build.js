@@ -106,35 +106,22 @@ async function translatePage(pageGroup, page) {
 	let scriptTexts = [];
 
 	for (let i = 0; i < scripts.length; i++) {
-		scriptTexts[i] = scripts[i].textContent;
+		let t = scripts[i].textContent;
+		if (langCode != 'en') {
+			t = t.replaceAll("'assets", "'/learn/assets");
+		}
+		scriptTexts[i] = t;
 		scripts[i].textContent = '';
 	}
 
 	if (langCode != 'en') {
-		// change html langugage
+		// change website language
 		document.documentElement.lang = langCode;
-		// fix all relative sources
-		let stylesheets = Array.from(document.querySelectorAll('link[rel="stylesheet"]'));
-		let scripts = Array.from(document.querySelectorAll('script[src]'));
-		let images = Array.from(document.querySelectorAll('img[src]'));
-		// let links = Array.from(document.querySelectorAll('a[href]'));
 
-		let prefix = '../../';
-		if (pageGroup) prefix += '../' + pageGroup + '/';
-		let els = [...stylesheets, ...scripts, ...images];
-		for (let el of els) {
-			if (el.href && !el.href.startsWith('http')) {
-				el.href = prefix + el.href;
-			}
-			if (el.src && !el.src.startsWith('http')) {
-				el.src = prefix + el.src;
-			}
-		}
 		let langNav = document.getElementById('langNav');
 		if (langNav) {
 			// remove active class from english link
 			langNav.children[0].classList.remove('active');
-			langNav.children[0].href = prefix;
 			// add active class to current language link
 			langNav.querySelector(`[lang="${langCode}"]`).classList.add('active');
 		}

@@ -2,15 +2,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>p5play : Sprite</title>
-    <link rel="icon" href="../assets/logo.svg">
-    <link rel="stylesheet" href="../../../learn/style.css">
+    <link rel="icon" href="/assets/logo.svg">
+    <link rel="stylesheet" href="/learn/style.css">
   </head>
 
   <body class="dark">
     <article>
       <nav id="topNav">
         <a href="index.html" id="logoLink" class="active">
-          <img alt="p5play logo" src="../../../learn/../assets/logo.svg" class="logo">
+          <img alt="p5play logo" src="/assets/logo.svg" class="logo">
           <span>p5play</span>
         </a>
         <hr>
@@ -489,7 +489,7 @@ function setup() {
 	new Canvas(500, 120);
 
 	monster = new Sprite();
-	monster.img = 'assets/monster.png';
+	monster.img = '/learn/assets/monster.png';
 	monster.diameter = 70;
 }
 
@@ -1584,7 +1584,7 @@ let face, stretchy;
 function setup() {
 	new Canvas(500, 200);
 
-	face = loadImage('assets/face.png');
+	face = loadImage('/learn/assets/face.png');
 	stretchy = new Sprite();
 	
 	stretchy.draw = () => {
@@ -1634,7 +1634,7 @@ function setup() {
 	new Canvas(500, 200);
 
 	sprite = new Sprite(250, 100, 90, 90);
-	sprite.img = 'assets/square.png';
+	sprite.img = '/learn/assets/square.png';
 	sprite.debug = true;
 }
 
@@ -1829,14 +1829,14 @@ function draw() {
     </article>
 
     <!-- <script src="https://cdn.jsdelivr.net/npm/p5@1/lib/p5.min.js"></script> -->
-    <script src="../../../learn/../v3/q5.min.js"></script>
-    <script src="../../../learn/../v3/planck.min.js"></script>
-    <script src="../../../learn/../v3/p5play.min.js"></script>
+    <script src="/v3/q5.min.js"></script>
+    <script src="/v3/planck.min.js"></script>
+    <script src="/v3/p5play.min.js"></script>
     <script>
       window.mie = { autoLoad: false };
     </script>
-    <script src="../../../learn/mie.js"></script>
-    <script src="../../../learn/learn.js"></script>
+    <script src="/learn/mie.js"></script>
+    <script src="/learn/learn.js"></script>
   
 
 </body></html>
