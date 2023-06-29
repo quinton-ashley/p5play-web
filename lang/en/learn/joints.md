@@ -47,7 +47,7 @@ You can also adjust the joints's `damping` ratio to change how quickly it loses 
 
 A `WheelJoint` connects a vehicle body to a wheel. Use wheel joints to create drive-able vehicles!
 
-Every wheel joint has a motor, which can be enabled by setting `speed` to your desired motor speed, `maxTorque` to the motor's power, or `motorEnabled` to `true`.
+Every wheel joint has a motor, which can be enabled by setting the joint's `speed` to the desired motor speed, `maxPower` to a positive value, or `motorEnabled` to true.
 
 Disabling a wheel joint motor is like putting a car in neutral, it causes the wheel to roll freely. The joint's speed must be set to zero for the wheel to brake.
 
@@ -61,7 +61,9 @@ The car in this example only has the rear wheel drive, how could you add front w
 
 A `HingeJoint` enables one or two sprites to rotate around the same attachment point.
 
-Hinge joints with a small `maxTorque` and default `speed` of zero can resist being moved. Try clicking around this example to drop small boxes on the seesaw. How many boxes can you put on the seesaw before it tips?
+Hinge joints with a small `maxPower` and default `speed` of zero apply braking force to resist being moved.
+
+Try clicking around this example to drop small boxes on the seesaw. How many boxes can you put on the seesaw before it tips?
 
 # 4-0
 
@@ -70,4 +72,8 @@ Hinge joints with a small `maxTorque` and default `speed` of zero can resist bei
 A `SliderJoint` constrains the motion of two sprites to sliding
 along a common axis, without rotation.
 
-How many boxes can you stack on the scale?
+The joint's `range` determines how far apart the connected sprites can be from each other. Changing the joint's `angle` changes the direction the sprites can slide in.
+
+By default the joint's motor is enabled with a `speed` of 0, so `maxPower` determines how much the joint can resist sliding.
+
+Try dropping boxes on the scale by clicking with your mouse. How many boxes can you stack on the scale before it reaches its limit? Try changing its angle too.

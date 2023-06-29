@@ -159,10 +159,10 @@ function draw() {
             wheel joints to create drive-able vehicles!
           </p>
           <p>
-            Every wheel joint has a motor, which can be enabled by setting
-            <code>speed</code> to your desired motor speed,
-            <code>maxTorque</code> to the motor's power, or
-            <code>motorEnabled</code> to <code>true</code>.
+            Every wheel joint has a motor, which can be enabled by setting the
+            joint's <code>speed</code> to the desired motor speed,
+            <code>maxPower</code> to a positive value, or
+            <code>motorEnabled</code> to true.
           </p>
           <p>
             Disabling a wheel joint motor is like putting a car in neutral, it
@@ -221,10 +221,13 @@ function draw() {
             around the same attachment point.
           </p>
           <p>
-            Hinge joints with a small <code>maxTorque</code> and default
-            <code>speed</code> of zero can resist being moved. Try clicking
-            around this example to drop small boxes on the seesaw. How many
-            boxes can you put on the seesaw before it tips?
+            Hinge joints with a small <code>maxPower</code> and default
+            <code>speed</code> of zero apply braking force to resist being
+            moved.
+          </p>
+          <p>
+            Try clicking around this example to drop small boxes on the seesaw.
+            How many boxes can you put on the seesaw before it tips?
           </p>
         </md>
         <script type="mie/p5" id="seesaw">
@@ -237,7 +240,7 @@ function setup() {
 	s1 = new Sprite(250, 100, 400, 20);
 
 	j = new HingeJoint(s0, s1);
-	j.maxTorque = 0.1;
+	j.maxPower = 0.1;
 
   // try changing the limits!
 	j.lowerLimit;
@@ -256,20 +259,35 @@ function draw() {
             A <code>SliderJoint</code> constrains the motion of two sprites to
             sliding along a common axis, without rotation.
           </p>
-          <p>How many boxes can you stack on the scale?</p>
+          <p>
+            The joint's <code>range</code> determines how far apart the
+            connected sprites can be from each other. Changing the joint's
+            <code>angle</code> changes the direction the sprites can slide in.
+          </p>
+          <p>
+            By default the joint's motor is enabled with a <code>speed</code> of
+            0, so <code>maxPower</code> determines how much the joint can resist
+            sliding.
+          </p>
+          <p>
+            Try dropping boxes on the scale by clicking with your mouse. How
+            many boxes can you stack on the scale before it reaches its limit?
+            Try changing its angle too.
+          </p>
         </md>
         <script type="mie/p5" id="weight scale" horiz="">
 let floor, scale, j;
 
 function setup() {
-	new Canvas(120, 380);
+	new Canvas(120, 432);
 	world.gravity.y = 10;
 
-	floor = new Sprite(60, 380, 500, 20, 's');
+	floor = new Sprite(60, 380, 500, 20, 's')
 	scale = new Sprite(60, 200, 90, 10);
 
 	j = new SliderJoint(floor, scale);
 	j.range = 200;
+	j.angle = 90;
 }
 
 function draw() {
@@ -278,7 +296,10 @@ function draw() {
 	if (mouse.presses()) {
 		new Sprite(mouse.x, mouse.y, 20, 20);
 	}
+	if (kb.pressing('space')) j.speed = -500;
+	else j.speed = 0;
 }
+
       </script>
       </div>
 
