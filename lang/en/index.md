@@ -2,7 +2,7 @@
 
 ### [p5play](https://github.com/quinton-ashley/p5play) is a JavaScript game engine that uses [p5.js](http://p5js.org/) for graphics and [Box2D](https://piqnt.com/planck.js/) for physics.
 
-Looking to turn your ideas into online games or interactive art? Check out p5play! It was designed by Computer Science teachers to be intuitive for beginners, making it popular at schools and universities around the world. But, p5play v3 isn't just for classroom use. It's a powerful tool built on [planck.js](https://piqnt.com/planck.js/), a port of Box2D - the same physics simulator used by industry leaders in beloved games like Tiny Wings and Angry Birds.
+Looking to turn your ideas into online games or interactive art? Check out p5play! It was designed by Computer Science teachers to be intuitive for beginners, making it popular at schools and universities around the world. But, p5play v3 isn't just for classroom use. It's packed with awesome features and uses the same physics simulator that powers beloved games like Tiny Wings, Shovel Knight, Limbo, Happy Wheels, and Angry Birds.
 
 Get started by reading the ["Learn" reference pages!](learn)
 
