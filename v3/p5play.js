@@ -6501,6 +6501,13 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 	this.PrismaticJoint = this.SliderJoint;
 
 	this.RopeJoint = class extends this.Joint {
+		/**
+		 * Rope joints are kinda bad, you should probably
+		 * use a glue or distance joint instead.
+		 *
+		 * @param {Sprite} spriteA
+		 * @param {Sprite} spriteB
+		 */
 		constructor(spriteA, spriteB) {
 			super(...arguments, 'rope');
 
@@ -6516,6 +6523,9 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			this._createJoint(j);
 		}
 
+		/**
+		 * The maximum length of the rope.
+		 */
 		get maxLength() {
 			return this._j.getMaxLength();
 		}
