@@ -55,8 +55,8 @@ let refs = {
 		0: ['GlueJoint'],
 		1: ['DistanceJoint'],
 		2: ['WheelJoint'],
-		3: ['RevoluteJoint'],
-		4: ['PrismaticJoint']
+		3: ['HingeJoint'],
+		4: ['SliderJoint']
 	},
 	'Camera.html': {
 		0: ['x', 'y'],
