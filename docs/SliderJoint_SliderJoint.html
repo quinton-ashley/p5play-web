@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>WheelJoint - Documentation</title>
+    <title>SliderJoint - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -29,7 +29,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">WheelJoint</h1>
+    <h1 class="page-title">SliderJoint</h1>
     
 
     
@@ -42,7 +42,7 @@
 <header>
     
         <h2>
-        WheelJoint
+        SliderJoint
         </h2>
         
     
@@ -56,16 +56,15 @@
 
     
 
-    <h4 class="name" id="WheelJoint"><span class="type-signature"></span>new WheelJoint<span class="signature">(spriteA, spriteB)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="SliderJoint"><span class="type-signature"></span>new SliderJoint<span class="signature">(spriteA, spriteB)</span><span class="type-signature"></span></h4>
 
     
 
 
 
 <div class="description">
-    EXPERIMENTAL! Subject to change.
-
-Wheel joints can be used to create vehicles!
+    A slider joint constrains the motion of two sprites to sliding
+along a common axis, without rotation. Aka a prismatic joint.
 </div>
 
 
@@ -101,7 +100,7 @@ Wheel joints can be used to create vehicles!
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line6296">line 6296</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line6418">line 6418</a>
     </li></ul></dd>
     
 
@@ -162,7 +161,7 @@ Wheel joints can be used to create vehicles!
             
 
             <td class="description last">
-                the vehicle body
+                
                 
             </td>
         </tr>
@@ -188,7 +187,7 @@ Wheel joints can be used to create vehicles!
             
 
             <td class="description last">
-                the wheel
+                
                 
             </td>
         </tr>
@@ -226,6 +225,250 @@ Wheel joints can be used to create vehicles!
 
     
 
+    
+        <h3 class="subsection-title">Members</h3>
+
+        
+            
+<div class="section-members">
+<h4 class="name" id="lowerLimit"><span class="type-signature"></span>lowerLimit<span class="type-signature"> :Number</span></h4>
+
+
+
+
+<div class="description">
+    The mathematical lower (not positionally lower)
+limit of translation.
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy">
+            <li>undefined</li>
+        </ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line6466">line 6466</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type"><code>Number</code></span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+</div>
+
+        
+            
+<div class="section-members">
+<h4 class="name" id="range"><span class="type-signature"></span>range<span class="type-signature"> :Number</span></h4>
+
+
+
+
+<div class="description">
+    The joint's range of translation. Setting the range
+changes the joint's upper and lower limits.
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy">
+            <li>undefined</li>
+        </ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line6450">line 6450</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type"><code>Number</code></span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+</div>
+
+        
+            
+<div class="section-members">
+<h4 class="name" id="upperLimit"><span class="type-signature"></span>upperLimit<span class="type-signature"> :Number</span></h4>
+
+
+
+
+<div class="description">
+    The mathematical upper (not positionally higher)
+limit of translation.
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy">
+            <li>undefined</li>
+        </ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line6484">line 6484</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type"><code>Number</code></span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+</div>
+
+        
     
 
     

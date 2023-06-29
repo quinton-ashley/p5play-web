@@ -215,14 +215,13 @@ function draw() {
 			</script>
       </div>
       <div id="page-3" class="page">
-        <md id="md3-0"><h2 id="revolutejoint">RevoluteJoint</h2>
+        <md id="md3-0"><h2 id="hingejoint">HingeJoint</h2>
           <p>
-            A <code>RevoluteJoint</code> enables one or two sprites to rotate
+            A <code>HingeJoint</code> enables one or two sprites to rotate
             around the same attachment point.
           </p>
-          <p>Use revolute joints to create seesaws, pendulums, and doors.</p>
           <p>
-            Revolute joints with a small <code>maxTorque</code> and default
+            Hinge joints with a small <code>maxTorque</code> and default
             <code>speed</code> of zero can resist being moved. Try clicking
             around this example to drop small boxes on the seesaw. How many
             boxes can you put on the seesaw before it tips?
@@ -237,7 +236,7 @@ function setup() {
 	s0 = new Sprite(250, 100, 30, 30, 'k');
 	s1 = new Sprite(250, 100, 400, 20);
 
-	j = new RevoluteJoint(s0, s1);
+	j = new HingeJoint(s0, s1);
 	j.maxTorque = 0.1;
 
   // try changing the limits!
@@ -249,12 +248,38 @@ function draw() {
 	clear();
 	if (mouse.presses()) new Sprite(mouse.x, mouse.y, 6, 6)
 }
-			</script>
+			  </script>
       </div>
       <div id="page-4" class="page">
-        <md id="md4-0"><h2 id="prismaticjoint">PrismaticJoint</h2>
-          <p>Coming soon!</p>
+        <md id="md4-0"><h2 id="sliderjoint">SliderJoint</h2>
+          <p>
+            A <code>SliderJoint</code> constrains the motion of two sprites to
+            sliding along a common axis, without rotation.
+          </p>
+          <p>How many boxes can you stack on the scale?</p>
         </md>
+        <script type="mie/p5" id="weight scale" horiz="">
+let floor, scale, j;
+
+function setup() {
+	new Canvas(120, 380);
+	world.gravity.y = 10;
+
+	floor = new Sprite(60, 380, 500, 20, 's');
+	scale = new Sprite(60, 200, 90, 10);
+
+	j = new SliderJoint(floor, scale);
+	j.range = 200;
+}
+
+function draw() {
+	clear();
+
+	if (mouse.presses()) {
+		new Sprite(mouse.x, mouse.y, 20, 20);
+	}
+}
+      </script>
       </div>
 
       <div class="break"></div>
@@ -264,8 +289,8 @@ function draw() {
           <a data-page="0" href="joints.html?page=0">GlueJoint</a>
           <a data-page="1" href="joints.html?page=1">DistanceJoint</a>
           <a data-page="2" href="joints.html?page=2">WheelJoint</a>
-          <a data-page="3" href="joints.html?page=3">RevoluteJoint</a>
-          <a data-page="4" href="joints.html?page=4">PrismaticJoint</a>
+          <a data-page="3" href="joints.html?page=3">HingeJoint</a>
+          <a data-page="4" href="joints.html?page=4">SliderJoint</a>
         </div>
         <a id="nextPage" class="navLink">Next Page</a>
       </div>

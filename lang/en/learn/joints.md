@@ -57,16 +57,17 @@ The car in this example only has the rear wheel drive, how could you add front w
 
 # 3-0
 
-## RevoluteJoint
+## HingeJoint
 
-A `RevoluteJoint` enables one or two sprites to rotate around the same attachment point.
+A `HingeJoint` enables one or two sprites to rotate around the same attachment point.
 
-Use revolute joints to create seesaws, pendulums, and doors.
-
-Revolute joints with a small `maxTorque` and default `speed` of zero can resist being moved. Try clicking around this example to drop small boxes on the seesaw. How many boxes can you put on the seesaw before it tips?
+Hinge joints with a small `maxTorque` and default `speed` of zero can resist being moved. Try clicking around this example to drop small boxes on the seesaw. How many boxes can you put on the seesaw before it tips?
 
 # 4-0
 
-## PrismaticJoint
+## SliderJoint
 
-Coming soon!
+A `SliderJoint` constrains the motion of two sprites to sliding
+along a common axis, without rotation.
+
+How many boxes can you stack on the scale?

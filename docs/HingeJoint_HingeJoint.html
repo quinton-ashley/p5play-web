@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>WheelJoint - Documentation</title>
+    <title>HingeJoint - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -29,7 +29,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">WheelJoint</h1>
+    <h1 class="page-title">HingeJoint</h1>
     
 
     
@@ -42,7 +42,7 @@
 <header>
     
         <h2>
-        WheelJoint
+        HingeJoint
         </h2>
         
     
@@ -56,7 +56,7 @@
 
     
 
-    <h4 class="name" id="WheelJoint"><span class="type-signature"></span>new WheelJoint<span class="signature">(spriteA, spriteB)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="HingeJoint"><span class="type-signature"></span>new HingeJoint<span class="signature">(spriteA, spriteB)</span><span class="type-signature"></span></h4>
 
     
 
@@ -65,7 +65,9 @@
 <div class="description">
     EXPERIMENTAL! Subject to change.
 
-Wheel joints can be used to create vehicles!
+Hinge joints attach two sprites together at a pivot point,
+constraining them to rotate around this point, like a hinge.
+Aka a revolute joint.
 </div>
 
 
@@ -101,7 +103,7 @@ Wheel joints can be used to create vehicles!
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line6296">line 6296</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line6325">line 6325</a>
     </li></ul></dd>
     
 
@@ -162,7 +164,7 @@ Wheel joints can be used to create vehicles!
             
 
             <td class="description last">
-                the vehicle body
+                
                 
             </td>
         </tr>
@@ -188,7 +190,7 @@ Wheel joints can be used to create vehicles!
             
 
             <td class="description last">
-                the wheel
+                
                 
             </td>
         </tr>
@@ -226,6 +228,327 @@ Wheel joints can be used to create vehicles!
 
     
 
+    
+        <h3 class="subsection-title">Members</h3>
+
+        
+            
+<div class="section-members">
+<h4 class="name" id="angle"><span class="type-signature">(readonly) </span>angle<span class="type-signature"> :Number</span></h4>
+
+
+
+
+<div class="description">
+    The joint's current angle of rotation.
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy">
+            <li>0</li>
+        </ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line6402">line 6402</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type"><code>Number</code></span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+</div>
+
+        
+            
+<div class="section-members">
+<h4 class="name" id="lowerLimit"><span class="type-signature"></span>lowerLimit<span class="type-signature"> :Number</span></h4>
+
+
+
+
+<div class="description">
+    The lower limit of rotation.
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy">
+            <li>undefined</li>
+        </ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line6359">line 6359</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type"><code>Number</code></span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+</div>
+
+        
+            
+<div class="section-members">
+<h4 class="name" id="range"><span class="type-signature"></span>range<span class="type-signature"> :Number</span></h4>
+
+
+
+
+<div class="description">
+    The joint's range of rotation. Setting the range
+changes the joint's upper and lower limits.
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy">
+            <li>undefined</li>
+        </ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line6344">line 6344</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type"><code>Number</code></span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+</div>
+
+        
+            
+<div class="section-members">
+<h4 class="name" id="upperLimit"><span class="type-signature"></span>upperLimit<span class="type-signature"> :Number</span></h4>
+
+
+
+
+<div class="description">
+    The upper limit of rotation.
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy">
+            <li>undefined</li>
+        </ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line6380">line 6380</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type"><code>Number</code></span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+</div>
+
+        
     
 
     
