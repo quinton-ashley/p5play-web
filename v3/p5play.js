@@ -6345,6 +6345,22 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		}
 
 		/**
+		 * The joint's range of rotation. Setting the range
+		 * changes the joint's upper and lower limits.
+		 *
+		 * @type {Number}
+		 * @default undefined
+		 */
+		get range() {
+			return this.upperLimit - this.lowerLimit;
+		}
+		set range(val) {
+			val /= 2;
+			this.upperLimit = val;
+			this.lowerLimit = -val;
+		}
+
+		/**
 		 * The lower limit of rotation.
 		 *
 		 * @type {Number}
@@ -6400,6 +6416,22 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 				spriteB.body.getWorldCenter()
 			);
 			this._createJoint(j);
+		}
+
+		/**
+		 * The joint's range of translation. Setting the range
+		 * changes the joint's upper and lower limits.
+		 *
+		 * @type {Number}
+		 * @default undefined
+		 */
+		get range() {
+			return this.upperLimit - this.lowerLimit;
+		}
+		set range(val) {
+			val /= 2;
+			this.upperLimit = val;
+			this.lowerLimit = -val;
 		}
 
 		/**
