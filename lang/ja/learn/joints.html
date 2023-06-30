@@ -170,12 +170,14 @@ function draw() {
             zero for the wheel to brake.
           </p>
           <p>
-            Try driving the car in this example. Can you make it to the end of
-            the road?
+            By default, wheel joints have a <code>maxPower</code> of 1000,
+            <code>springiness</code> of 0.1, <code>damping</code> of 0.7, and
+            angle of attachment <code>angle</code> of 90 degrees.
           </p>
           <p>
-            The car in this example only has the rear wheel drive, how could you
-            add front wheel drive to make the car a 4x4?
+            Try driving the car in this example! Can you make it to the end of
+            the road? Customize the car by changing the position of its wheels
+            and the angle at which they're attached.
           </p>
         </md>
 
@@ -186,9 +188,9 @@ function setup() {
 	new Canvas(500, 250);
 	world.gravity.y = 10;
 
-	car = new Sprite(250, 140, 100, 30);
-	wheelsFront = new Sprite(280, 160, 20);
-	wheelsRear = new Sprite(220, 160, 20);
+	car = new Sprite(250, 120, 100, 30);
+	wheelsFront = new Sprite(280, 140, 20);
+	wheelsRear = new Sprite(220, 140, 20);
 
 	axleFront = new WheelJoint(car, wheelsFront);
 	axleRear = new WheelJoint(car, wheelsRear);

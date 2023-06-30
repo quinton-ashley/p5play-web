@@ -51,9 +51,9 @@ Every wheel joint has a motor, which can be enabled by setting the joint's `spee
 
 Disabling a wheel joint motor is like putting a car in neutral, it causes the wheel to roll freely. The joint's speed must be set to zero for the wheel to brake.
 
-Try driving the car in this example. Can you make it to the end of the road?
+By default, wheel joints have a `maxPower` of 1000, `springiness` of 0.1, `damping` of 0.7, and angle of attachment `angle` of 90 degrees.
 
-The car in this example only has the rear wheel drive, how could you add front wheel drive to make the car a 4x4?
+Try driving the car in this example! Can you make it to the end of the road? Customize the car by changing the position of its wheels and the angle at which they're attached.
 
 # 3-0
 
