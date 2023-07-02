@@ -1,62 +1,67 @@
-<!DOCTYPE html><html lang="es"><head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>p5play : World</title>
-    <link rel="icon" href="/assets/logo.svg">
-    <link rel="stylesheet" href="/learn/style.css">
-  </head>
+<!DOCTYPE html>
+<html lang="es">
 
-  <body class="dark">
-    <article>
-      <nav id="topNav">
-        <a href="index.html" id="logoLink" class="active">
-          <img alt="p5play logo" src="/assets/logo.svg" class="logo">
-          <span>p5play</span>
-        </a>
-        <hr>
-        <a href="canvas.html">Canvas</a>
-        <a href="tiles.html">Tiles</a>
-        <a href="world.html" class="active">World</a>
-        <hr>
-        <a id="darkMode" onclick="toggleDarkMode()" tabindex="0" role="button">
-          <div id="darkModeIcon"></div>
-        </a>
-      </nav>
-      <div class="break"></div>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>p5play : World</title>
+  <link rel="icon" href="/assets/p5play_logo.svg">
+  <link rel="stylesheet" href="/learn/style.css">
+</head>
 
-      <div id="page-0" class="page">
-        <div class="minis horiz">
-          <md id="md0-0"><h2 id="mundo">Mundo</h2>
-            <p>
-              Cada instancia de p5play tiene su propio objeto
-              <code>world</code>, que se puede utilizar para controlar la
-              simulación física.
-            </p>
-            <p>
-              La propiedad más importante de este objeto es
-              <code>gravity</code>, que tiene componentes x e y.
-            </p>
-          </md>
-          <md id="md0-1"><h2 id="dormir">Dormir</h2>
-            <p><code>world.allowSleeping</code> es verdadero por defecto.</p>
-            <p>
-              Un sprite comienza a "dormir" cuando deja de moverse y no
-              colisiona con nada nuevo. Los sprites "durmiendo" son ignorados
-              durante la simulación física, lo que generalmente evita que el
-              motor de física Box2D tenga que hacer cálculos innecesarios.
-              Aunque esto es bueno para el rendimiento, a veces puede causar
-              problemas.
-            </p>
-            <p>
-              Puedes despertar un sprite que duerme estableciendo
-              <code>sprite.sleeping</code> en falso. También puedes desactivar
-              el dormir en base a cada sprite estableciendo
-              <code>sprite.allowSleeping</code> en falso.
-            </p>
-          </md>
-        </div>
-        <div class="minis horiz">
-          <script type="mie/p5" id="sleeping" horiz="">
+<body class="dark">
+  <article>
+    <nav id="topNav">
+      <a href="index.html" id="logoLink" class="active">
+        <img alt="p5play logo" src="/assets/p5play_logo.svg" class="logo">
+        <span>p5play</span>
+      </a>
+      <hr>
+      <a href="canvas.html">Canvas</a>
+      <a href="tiles.html">Tiles</a>
+      <a href="world.html" class="active">World</a>
+      <hr>
+      <a id="darkMode" onclick="toggleDarkMode()" tabindex="0" role="button">
+        <div id="darkModeIcon"></div>
+      </a>
+    </nav>
+    <div class="break"></div>
+
+    <div id="page-0" class="page">
+      <div class="minis horiz">
+        <md id="md0-0">
+          <h2 id="mundo">Mundo</h2>
+          <p>
+            Cada instancia de p5play tiene su propio objeto
+            <code>world</code>, que se puede utilizar para controlar la
+            simulación física.
+          </p>
+          <p>
+            La propiedad más importante de este objeto es
+            <code>gravity</code>, que tiene componentes x e y.
+          </p>
+        </md>
+        <md id="md0-1">
+          <h2 id="dormir">Dormir</h2>
+          <p><code>world.allowSleeping</code> es verdadero por defecto.</p>
+          <p>
+            Un sprite comienza a "dormir" cuando deja de moverse y no
+            colisiona con nada nuevo. Los sprites "durmiendo" son ignorados
+            durante la simulación física, lo que generalmente evita que el
+            motor de física Box2D tenga que hacer cálculos innecesarios.
+            Aunque esto es bueno para el rendimiento, a veces puede causar
+            problemas.
+          </p>
+          <p>
+            Puedes despertar un sprite que duerme estableciendo
+            <code>sprite.sleeping</code> en falso. También puedes desactivar
+            el dormir en base a cada sprite estableciendo
+            <code>sprite.allowSleeping</code> en falso.
+          </p>
+        </md>
+      </div>
+      <div class="minis horiz">
+        <script type="mie/p5" id="sleeping" horiz="">
 let ball, floor;
 
 function setup() {
@@ -71,7 +76,7 @@ function draw() {
 	if (frameCount == 100)	floor.rotation = 10;
 }
 				</script>
-          <script type="mie/p5" id="wake-up!" horiz="">
+        <script type="mie/p5" id="wake-up!" horiz="">
 let ball, floor;
 
 function setup() {
@@ -89,47 +94,48 @@ function draw() {
 	}
 }
 				</script>
-        </div>
       </div>
-      <div id="page-1" class="page">
-        <md id="md1-0"><h2 id="manipulación-del-tiempo">Manipulación del tiempo</h2>
-          <p>
-            Por defecto, después de cada vez que se ejecuta la función de dibujo
-            de p5.js, p5play llama a tres funciones en este orden:
-          </p>
-          <ul>
-            <li><code>allSprites.draw()</code>: dibuja todos los sprites</li>
-            <li><code>world.step()</code>: avanza la simulación física</li>
-            <li>
-              <code>allSprites.update()</code>: actualiza sprite.ani y
-              sprite.mouse
-            </li>
-          </ul>
-          <p>
-            Pero también puedes tomar control manual de estos procesos
-            llamándolos tú mismo.
-          </p>
-          <p>
-            ¡En el mini-ejemplo, intenta presionar espacio para activar y
-            desactivar el slow-motion!
-          </p>
-          <h2 id="spritedraw-y-groupdraw">sprite.draw y group.draw</h2>
-          <p>
-            Puedes utilizar las funciones <code>sprite.draw</code> y
-            <code>group.draw</code> para controlar manualmente cuándo se dibujan
-            los sprites individuales y los grupos dentro del bucle de dibujo de
-            p5.js. Cualquier sprite que no se dibuje manualmente se dibujará
-            automáticamente al final del bucle de dibujo de p5.js a menos que la
-            propiedad autoDraw del sprite esté establecida en falso directamente
-            o por uno de sus grupos padres. Para prevenir el dibujo automático
-            completamente establece <code>allSprites.autoDraw = false</code>.
-          </p>
-          <p>
-            Ten en cuenta que tendrás que activar y desactivar manualmente la
-            cámara si quieres utilizarla con sprites dibujados manualmente.
-          </p>
-        </md>
-        <script type="mie/p5" id="world.step">
+    </div>
+    <div id="page-1" class="page">
+      <md id="md1-0">
+        <h2 id="manipulación-del-tiempo">Manipulación del tiempo</h2>
+        <p>
+          Por defecto, después de cada vez que se ejecuta la función de dibujo
+          de p5.js, p5play llama a tres funciones en este orden:
+        </p>
+        <ul>
+          <li><code>allSprites.draw()</code>: dibuja todos los sprites</li>
+          <li><code>world.step()</code>: avanza la simulación física</li>
+          <li>
+            <code>allSprites.update()</code>: actualiza sprite.ani y
+            sprite.mouse
+          </li>
+        </ul>
+        <p>
+          Pero también puedes tomar control manual de estos procesos
+          llamándolos tú mismo.
+        </p>
+        <p>
+          ¡En el mini-ejemplo, intenta presionar espacio para activar y
+          desactivar el slow-motion!
+        </p>
+        <h2 id="spritedraw-y-groupdraw">sprite.draw y group.draw</h2>
+        <p>
+          Puedes utilizar las funciones <code>sprite.draw</code> y
+          <code>group.draw</code> para controlar manualmente cuándo se dibujan
+          los sprites individuales y los grupos dentro del bucle de dibujo de
+          p5.js. Cualquier sprite que no se dibuje manualmente se dibujará
+          automáticamente al final del bucle de dibujo de p5.js a menos que la
+          propiedad autoDraw del sprite esté establecida en falso directamente
+          o por uno de sus grupos padres. Para prevenir el dibujo automático
+          completamente establece <code>allSprites.autoDraw = false</code>.
+        </p>
+        <p>
+          Ten en cuenta que tendrás que activar y desactivar manualmente la
+          cámara si quieres utilizarla con sprites dibujados manualmente.
+        </p>
+      </md>
+      <script type="mie/p5" id="world.step">
 let ball, box;
 		
 function setup() {
@@ -156,66 +162,70 @@ function draw() {
 	}
 }
 			</script>
-        <md id="md1-1"><h2 id="worldstep">world.step</h2>
-          <p>
-            <code>world.step</code> comprueba las colisiones y calcula las
-            posiciones y velocidades de todos los sprites después de avanzar la
-            simulación física en 1/60 de segundo por defecto. No se puede
-            avanzar en el tiempo a los sprites individualmente.
-          </p>
-          <p>
-            Antes de usar <code>world.step</code> en tu función de dibujo de
-            p5.js, asegúrate de dibujar todos los sprites. ¡De lo contrario, se
-            dibujarán en la posición incorrecta!
-          </p>
-          <p>
-            Establece <code>world.autoStep = false</code> para desactivar el
-            avance automático. Entonces puedes llamar a
-            <code>world.step</code> manualmente cuando quieras avanzar la
-            simulación física.
-          </p>
-        </md>
-        <md id="md1-2"><h2 id="spriteupdate-y-groupupdate">sprite.update y group.update</h2>
-          <p>
-            ¿Qué hace <code>sprite.update</code>? Se encarga de actualizar la
-            animación del sprite y los eventos del ratón. También ejecuta la
-            función de actualización personalizada del usuario si se ha
-            establecido alguna. Para prevenir la actualización automática
-            completamente establece <code>allSprites.autoUpdate = false</code>.
-          </p>
-          <p>
-            ¿Por qué esta funcionalidad está separada del paso del mundo? Porque
-            en una pantalla de pausa el mundo físico podría estar pausado, pero
-            las animaciones y eventos de ratón del menú de pausa todavía podrían
-            actualizarse.
-          </p>
-        </md>
+      <md id="md1-1">
+        <h2 id="worldstep">world.step</h2>
+        <p>
+          <code>world.step</code> comprueba las colisiones y calcula las
+          posiciones y velocidades de todos los sprites después de avanzar la
+          simulación física en 1/60 de segundo por defecto. No se puede
+          avanzar en el tiempo a los sprites individualmente.
+        </p>
+        <p>
+          Antes de usar <code>world.step</code> en tu función de dibujo de
+          p5.js, asegúrate de dibujar todos los sprites. ¡De lo contrario, se
+          dibujarán en la posición incorrecta!
+        </p>
+        <p>
+          Establece <code>world.autoStep = false</code> para desactivar el
+          avance automático. Entonces puedes llamar a
+          <code>world.step</code> manualmente cuando quieras avanzar la
+          simulación física.
+        </p>
+      </md>
+      <md id="md1-2">
+        <h2 id="spriteupdate-y-groupupdate">sprite.update y group.update</h2>
+        <p>
+          ¿Qué hace <code>sprite.update</code>? Se encarga de actualizar la
+          animación del sprite y los eventos del ratón. También ejecuta la
+          función de actualización personalizada del usuario si se ha
+          establecido alguna. Para prevenir la actualización automática
+          completamente establece <code>allSprites.autoUpdate = false</code>.
+        </p>
+        <p>
+          ¿Por qué esta funcionalidad está separada del paso del mundo? Porque
+          en una pantalla de pausa el mundo físico podría estar pausado, pero
+          las animaciones y eventos de ratón del menú de pausa todavía podrían
+          actualizarse.
+        </p>
+      </md>
+    </div>
+
+    <div class="break"></div>
+    <div id="toc">
+      <a id="prevPage" class="navLink">Página anterior</a>
+      <div id="pageNav" class="submenu">
+        <a data-page="0" href="world.html?page=0">Durmiendo</a>
+        <a data-page="1" href="world.html?page=1">Controlando el Tiempo</a>
       </div>
+      <a id="nextPage" class="navLink">Siguiente página</a>
+    </div>
+    <div class="break"></div>
+    <footer id="credits" class="text-small">
+      Creado por Quinton Ashley (@quinton-ashley) derechos de autor 2022-2023
+    </footer>
+  </article>
 
-      <div class="break"></div>
-      <div id="toc">
-        <a id="prevPage" class="navLink">Página anterior</a>
-        <div id="pageNav" class="submenu">
-          <a data-page="0" href="world.html?page=0">Durmiendo</a>
-          <a data-page="1" href="world.html?page=1">Controlando el Tiempo</a>
-        </div>
-        <a id="nextPage" class="navLink">Siguiente página</a>
-      </div>
-      <div class="break"></div>
-      <footer id="credits" class="text-small">
-        Creado por Quinton Ashley (@quinton-ashley) derechos de autor 2022-2023
-      </footer>
-    </article>
+  <script src="/v3/q5.min.js"></script>
+  <script src="/v3/planck.min.js"></script>
+  <script src="/v3/p5play.min.js"></script>
 
-    <script src="/v3/q5.min.js"></script>
-    <script src="/v3/planck.min.js"></script>
-    <script src="/v3/p5play.min.js"></script>
+  <script>
+    window.mie = { autoLoad: false };
+  </script>
+  <script src="/learn/mie.js"></script>
+  <script src="/learn/learn.js"></script>
 
-    <script>
-      window.mie = { autoLoad: false };
-    </script>
-    <script src="/learn/mie.js"></script>
-    <script src="/learn/learn.js"></script>
-  
 
-</body></html>
+</body>
+
+</html>

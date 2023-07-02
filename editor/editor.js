@@ -117,7 +117,7 @@ async function startServer() {
 	qrDiv.innerHTML = '';
 	let qr0 = document.createElement('qr-code');
 	qr0.id = 'qr0';
-	qr0.innerHTML = `<img src="/assets/logo.svg" slot="icon">`;
+	qr0.innerHTML = `<img src="/assets/p5play_logo.svg" slot="icon">`;
 	qr0.contents = 'p5play://' + ipAddress + ':7529';
 	qr0.moduleColor = '#ed225d';
 	qr0.positionRingColor = '#ed225d';

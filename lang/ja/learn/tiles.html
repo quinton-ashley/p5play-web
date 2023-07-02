@@ -1,60 +1,65 @@
-<!DOCTYPE html><html lang="ja"><head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>p5play : Tiles</title>
-    <link rel="icon" href="/assets/favicon.png">
-    <link rel="stylesheet" href="/learn/style.css">
-  </head>
+<!DOCTYPE html>
+<html lang="ja">
 
-  <body class="dark">
-    <article>
-      <nav id="topNav">
-        <a href="index.html" id="logoLink" class="active">
-          <img alt="p5play logo" src="/assets/logo.svg" class="logo">
-          <span>p5play</span>
-        </a>
-        <hr>
-        <a href="canvas.html">Canvas</a>
-        <a href="tiles.html" class="active">Tiles</a>
-        <a href="world.html">World</a>
-        <hr>
-        <a id="darkMode" onclick="toggleDarkMode()" tabindex="0" role="button">
-          <div id="darkModeIcon"></div>
-        </a>
-      </nav>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>p5play : Tiles</title>
+  <link rel="icon" href="/assets/favicon.png">
+  <link rel="stylesheet" href="/learn/style.css">
+</head>
 
-      <div class="break"></div>
+<body class="dark">
+  <article>
+    <nav id="topNav">
+      <a href="index.html" id="logoLink" class="active">
+        <img alt="p5play logo" src="/assets/p5play_logo.svg" class="logo">
+        <span>p5play</span>
+      </a>
+      <hr>
+      <a href="canvas.html">Canvas</a>
+      <a href="tiles.html" class="active">Tiles</a>
+      <a href="world.html">World</a>
+      <hr>
+      <a id="darkMode" onclick="toggleDarkMode()" tabindex="0" role="button">
+        <div id="darkModeIcon"></div>
+      </a>
+    </nav>
 
-      <div id="page-0" class="page">
-        <md id="md0-0"><h2 id="タイル">タイル</h2>
-          <p>
-            オリジナルのスーパーマリオブラザーズのリードデベロッパーである宮本茂とレベルデザイナーの手塚卓志は、<a href="https://www.youtube.com/watch?v=DLoRd6_a1CI">グラフ用紙を使用してレベルをプロットし</a>、ゲーム内のすべてのスプライトの座標をプログラマーのチームに入力させました。それはたくさんの作業です！
-          </p>
-          <p>
-            幸いなことに、p5play
-            では、<code>Tiles</code>コンストラクタを使って、文字列の文字の位置に基づいてグリッド上にスプライトを作ることができます！
-          </p>
-          <p>
-            最初の入力パラメータは文字列または文字列の配列で、配列の各行または文字列はタイルの行を表します。
-          </p>
-          <p>
-            2 番目と 3
-            番目の入力パラメータは、タイルグリッドの左上（最初の）タイルの x
-            座標と y 座標です。
-          </p>
-          <p>
-            4 番目と 5
-            番目の入力パラメータは、各タイルの幅と高さ、そしてタイル間に追加したいスペースです。
-          </p>
-          <h2 id="試してみてください！">試してみてください！</h2>
-          <p>"P5"ブロックのレイアウトを編集してみてください。</p>
-          <p>
-            スペース " " やピリオド "."
-            は、タイルグリッドのその位置にスプライトを作らないことを示すために使用されます。この例では、"="
-            文字は <code>bricks</code> に使用されます。
-          </p>
-        </md>
-        <script type="mie/p5" title="tiles" lines="29">
+    <div class="break"></div>
+
+    <div id="page-0" class="page">
+      <md id="md0-0">
+        <h2 id="タイル">タイル</h2>
+        <p>
+          オリジナルのスーパーマリオブラザーズのリードデベロッパーである宮本茂とレベルデザイナーの手塚卓志は、<a
+            href="https://www.youtube.com/watch?v=DLoRd6_a1CI">グラフ用紙を使用してレベルをプロットし</a>、ゲーム内のすべてのスプライトの座標をプログラマーのチームに入力させました。それはたくさんの作業です！
+        </p>
+        <p>
+          幸いなことに、p5play
+          では、<code>Tiles</code>コンストラクタを使って、文字列の文字の位置に基づいてグリッド上にスプライトを作ることができます！
+        </p>
+        <p>
+          最初の入力パラメータは文字列または文字列の配列で、配列の各行または文字列はタイルの行を表します。
+        </p>
+        <p>
+          2 番目と 3
+          番目の入力パラメータは、タイルグリッドの左上（最初の）タイルの x
+          座標と y 座標です。
+        </p>
+        <p>
+          4 番目と 5
+          番目の入力パラメータは、各タイルの幅と高さ、そしてタイル間に追加したいスペースです。
+        </p>
+        <h2 id="試してみてください！">試してみてください！</h2>
+        <p>"P5"ブロックのレイアウトを編集してみてください。</p>
+        <p>
+          スペース " " やピリオド "."
+          は、タイルグリッドのその位置にスプライトを作らないことを示すために使用されます。この例では、"="
+          文字は <code>bricks</code> に使用されます。
+        </p>
+      </md>
+      <script type="mie/p5" title="tiles" lines="29">
 let bricks;
 
 function setup() {
@@ -95,32 +100,33 @@ function draw() {
 	}
 }
 			</script>
-      </div>
-      <div id="page-1" class="page">
-        <md id="md1-0"><h2 id="タイル座標">タイル座標</h2>
-          <p>
-            すべてのスプライトの座標値のピクセル値を変更するには、<code>allSprites.tileSize</code>を設定します。例えば、タイルのサイズが
-            8 の場合、x/y の位置 1 は 8 ピクセル、2 は 16 ピクセル、3 は 24
-            ピクセルを表します。この設定はアニメーション座標の指定方法にも影響します。
-          </p>
-          <p>
-            このミニ例では、視覚的な参照のためにグリッド線が描かれています。
-          </p>
-          <p>
-            また、単純に<code>move</code>関数をヘディング "up"
-            で使用すると、プレイヤーは 1 タイルの距離を上に移動します。
-          </p>
-          <p>
-            2
-            つの衝突ルールだけで、プレイヤーはブロックを押して動かすことができ、ブロックも互いに押し合うことができます。移動した後にグリッドにスナップします。
-          </p>
-          <p>
-            本当に素晴らしいのは、スプライトごとに
-            <code>tileSize</code>
-            を設定できることです。グループに設定すると、そのグループのすべてのスプライトがそのタイルサイズを使用します！
-          </p>
-        </md>
-        <script type="mie/p5" id="group.tileSize">
+    </div>
+    <div id="page-1" class="page">
+      <md id="md1-0">
+        <h2 id="タイル座標">タイル座標</h2>
+        <p>
+          すべてのスプライトの座標値のピクセル値を変更するには、<code>allSprites.tileSize</code>を設定します。例えば、タイルのサイズが
+          8 の場合、x/y の位置 1 は 8 ピクセル、2 は 16 ピクセル、3 は 24
+          ピクセルを表します。この設定はアニメーション座標の指定方法にも影響します。
+        </p>
+        <p>
+          このミニ例では、視覚的な参照のためにグリッド線が描かれています。
+        </p>
+        <p>
+          また、単純に<code>move</code>関数をヘディング "up"
+          で使用すると、プレイヤーは 1 タイルの距離を上に移動します。
+        </p>
+        <p>
+          2
+          つの衝突ルールだけで、プレイヤーはブロックを押して動かすことができ、ブロックも互いに押し合うことができます。移動した後にグリッドにスナップします。
+        </p>
+        <p>
+          本当に素晴らしいのは、スプライトごとに
+          <code>tileSize</code>
+          を設定できることです。グループに設定すると、そのグループのすべてのスプライトがそのタイルサイズを使用します！
+        </p>
+      </md>
+      <script type="mie/p5" id="group.tileSize">
 let player, blocks;
 let gridSize = 32;
 
@@ -160,33 +166,35 @@ function draw() {
 	if (kb.presses('right')) player.move(1, 'right');
 }
 			</script>
+    </div>
+
+    <div class="break"></div>
+    <div id="toc">
+      <a id="prevPage" class="navLink">前のページ</a>
+      <div id="pageNav" class="submenu">
+        <a data-page="0" href="tiles.html?page=0">タイルコンストラクタ</a>
+        <a data-page="1" href="tiles.html?page=1">tileSizeの使用</a>
       </div>
+      <a id="nextPage" class="navLink">次のページ</a>
+    </div>
+    <div class="break"></div>
+    <footer id="credits" class="text-small">
+      クリントン・アシュリー（@quinton-ashley）によって作成されました 著作権
+      2022-2023
+    </footer>
+  </article>
 
-      <div class="break"></div>
-      <div id="toc">
-        <a id="prevPage" class="navLink">前のページ</a>
-        <div id="pageNav" class="submenu">
-          <a data-page="0" href="tiles.html?page=0">タイルコンストラクタ</a>
-          <a data-page="1" href="tiles.html?page=1">tileSizeの使用</a>
-        </div>
-        <a id="nextPage" class="navLink">次のページ</a>
-      </div>
-      <div class="break"></div>
-      <footer id="credits" class="text-small">
-        クリントン・アシュリー（@quinton-ashley）によって作成されました 著作権
-        2022-2023
-      </footer>
-    </article>
+  <script src="/v3/q5.min.js"></script>
+  <script src="/v3/planck.min.js"></script>
+  <script src="/v3/p5play.min.js"></script>
 
-    <script src="/v3/q5.min.js"></script>
-    <script src="/v3/planck.min.js"></script>
-    <script src="/v3/p5play.min.js"></script>
+  <script>
+    window.mie = { autoLoad: false };
+  </script>
+  <script src="/learn/mie.js"></script>
+  <script src="/learn/learn.js"></script>
 
-    <script>
-      window.mie = { autoLoad: false };
-    </script>
-    <script src="/learn/mie.js"></script>
-    <script src="/learn/learn.js"></script>
-  
 
-</body></html>
+</body>
+
+</html>

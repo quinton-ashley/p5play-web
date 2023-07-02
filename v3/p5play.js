@@ -4805,36 +4805,30 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			if (callback && typeof callback != 'function') {
 				throw new FriendlyError('Group.overlap', 1, [callback]);
 			}
-			if (!this._hasSensors) {
-				for (let s of this) {
+			for (let s of this) {
+				if (!s._hasSensors) s.addDefaultSensors();
+			}
+			this._hasSensors = true;
+			if (target instanceof this.p.Sprite) {
+				if (!target._hasSensors) target.addDefaultSensors();
+			} else {
+				for (let s of target) {
 					if (!s._hasSensors) s.addDefaultSensors();
 				}
-				this._hasSensors = true;
+				target._hasSensors = true;
 			}
-			if (!target._hasSensors) {
-				if (target instanceof this.p.Sprite) {
-					target.addDefaultSensors();
-				} else {
-					for (let s of target) {
-						if (!s._hasSensors) s.addDefaultSensors();
-					}
-					target._hasSensors = true;
-				}
+
+			this._removeContactsWith(target);
+			this._hasOverlap[target._uid] = true;
+			for (let s of this) {
+				s._hasOverlap[target._uid] = true;
 			}
-			if (this._hasOverlap[target._uid] != true) {
-				this._removeContactsWith(target);
-				this._hasOverlap[target._uid] = true;
-				for (let s of this) {
-					s._hasOverlap[target._uid] = true;
-				}
-			}
-			if (target._hasOverlap[this._uid] != true) {
-				target._removeContactsWith(this);
-				target._hasOverlap[this._uid] = true;
-				if (target instanceof this.p.Group) {
-					for (let s of target) {
-						s._hasOverlap[this._uid] = true;
-					}
+
+			target._removeContactsWith(this);
+			target._hasOverlap[this._uid] = true;
+			if (target instanceof this.p.Group) {
+				for (let s of target) {
+					s._hasOverlap[this._uid] = true;
 				}
 			}
 		}
@@ -5003,6 +4997,8 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 				if (!(s instanceof this.p.Sprite)) {
 					throw new Error('you can only add sprites to a group, no ' + typeof s + 's');
 				}
+
+				// TODO: ensure overlaps and collisions
 
 				super.push(s);
 				if (this.parent) this.p.p5play.groups[this.parent].push(s);

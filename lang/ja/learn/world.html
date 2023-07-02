@@ -1,59 +1,64 @@
-<!DOCTYPE html><html lang="ja"><head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>p5play : World</title>
-    <link rel="icon" href="/assets/logo.svg">
-    <link rel="stylesheet" href="/learn/style.css">
-  </head>
+<!DOCTYPE html>
+<html lang="ja">
 
-  <body class="dark">
-    <article>
-      <nav id="topNav">
-        <a href="index.html" id="logoLink" class="active">
-          <img alt="p5play logo" src="/assets/logo.svg" class="logo">
-          <span>p5play</span>
-        </a>
-        <hr>
-        <a href="canvas.html">Canvas</a>
-        <a href="tiles.html">Tiles</a>
-        <a href="world.html" class="active">World</a>
-        <hr>
-        <a id="darkMode" onclick="toggleDarkMode()" tabindex="0" role="button">
-          <div id="darkModeIcon"></div>
-        </a>
-      </nav>
-      <div class="break"></div>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>p5play : World</title>
+  <link rel="icon" href="/assets/p5play_logo.svg">
+  <link rel="stylesheet" href="/learn/style.css">
+</head>
 
-      <div id="page-0" class="page">
-        <div class="minis horiz">
-          <md id="md0-0"><h2 id="ワールド">ワールド</h2>
-            <p>
-              p5play
-              の各インスタンスには、物理シミュレーションを制御するために使用できる独自の
-              <code>world</code> オブジェクトがあります。
-            </p>
-            <p>
-              このオブジェクトの最も重要なプロパティは
-              <code>gravity</code> で、x 成分と y 成分を持っています。
-            </p>
-          </md>
-          <md id="md0-1"><h2 id="スリープ">スリープ</h2>
-            <p><code>world.allowSleeping</code> はデフォルトで true です。</p>
-            <p>
-              スプライトは、動きを止めて新たに何も衝突しないときに "sleeping"
-              状態になります。 "Sleeping"
-              スプライトは物理シミュレーション中に無視されるため、通常は Box2D
-              物理エンジンソルバが不必要な計算を行う必要がなくなります。これはパフォーマンスには良いですが、場合によっては問題を引き起こすこともあります。
-            </p>
-            <p>
-              スプライトを起こすには <code>sprite.sleeping</code> を false
-              に設定します。また、 <code>sprite.allowSleeping</code> を false
-              に設定することで、スプライトごとにスリープを無効にすることもできます。
-            </p>
-          </md>
-        </div>
-        <div class="minis horiz">
-          <script type="mie/p5" id="sleeping" horiz="">
+<body class="dark">
+  <article>
+    <nav id="topNav">
+      <a href="index.html" id="logoLink" class="active">
+        <img alt="p5play logo" src="/assets/p5play_logo.svg" class="logo">
+        <span>p5play</span>
+      </a>
+      <hr>
+      <a href="canvas.html">Canvas</a>
+      <a href="tiles.html">Tiles</a>
+      <a href="world.html" class="active">World</a>
+      <hr>
+      <a id="darkMode" onclick="toggleDarkMode()" tabindex="0" role="button">
+        <div id="darkModeIcon"></div>
+      </a>
+    </nav>
+    <div class="break"></div>
+
+    <div id="page-0" class="page">
+      <div class="minis horiz">
+        <md id="md0-0">
+          <h2 id="ワールド">ワールド</h2>
+          <p>
+            p5play
+            の各インスタンスには、物理シミュレーションを制御するために使用できる独自の
+            <code>world</code> オブジェクトがあります。
+          </p>
+          <p>
+            このオブジェクトの最も重要なプロパティは
+            <code>gravity</code> で、x 成分と y 成分を持っています。
+          </p>
+        </md>
+        <md id="md0-1">
+          <h2 id="スリープ">スリープ</h2>
+          <p><code>world.allowSleeping</code> はデフォルトで true です。</p>
+          <p>
+            スプライトは、動きを止めて新たに何も衝突しないときに "sleeping"
+            状態になります。 "Sleeping"
+            スプライトは物理シミュレーション中に無視されるため、通常は Box2D
+            物理エンジンソルバが不必要な計算を行う必要がなくなります。これはパフォーマンスには良いですが、場合によっては問題を引き起こすこともあります。
+          </p>
+          <p>
+            スプライトを起こすには <code>sprite.sleeping</code> を false
+            に設定します。また、 <code>sprite.allowSleeping</code> を false
+            に設定することで、スプライトごとにスリープを無効にすることもできます。
+          </p>
+        </md>
+      </div>
+      <div class="minis horiz">
+        <script type="mie/p5" id="sleeping" horiz="">
 let ball, floor;
 
 function setup() {
@@ -68,7 +73,7 @@ function draw() {
 	if (frameCount == 100)	floor.rotation = 10;
 }
 				</script>
-          <script type="mie/p5" id="wake-up!" horiz="">
+        <script type="mie/p5" id="wake-up!" horiz="">
 let ball, floor;
 
 function setup() {
@@ -86,47 +91,48 @@ function draw() {
 	}
 }
 				</script>
-        </div>
       </div>
-      <div id="page-1" class="page">
-        <md id="md1-0"><h2 id="時間の制御">時間の制御</h2>
-          <p>
-            デフォルトでは、p5.js の draw 関数が実行されるたびに、p5play
-            は以下の 3 つの関数をこの順序で呼び出します：
-          </p>
-          <ul>
-            <li>
-              <code>allSprites.draw()</code> ： すべてのスプライトを描画します
-            </li>
-            <li><code>world.step()</code> ： 物理シミュレーションを進めます</li>
-            <li>
-              <code>allSprites.update()</code> ： sprite.ani と sprite.mouse
-              を更新します
-            </li>
-          </ul>
-          <p>
-            しかし、これらのプロセスを自分で呼び出すことで手動で制御することもできます。
-          </p>
-          <p>
-            ミニ例では、スペースを押してスローモーションを切り替えてみてください！
-          </p>
-          <h2 id="spritedraw-と-groupdraw">sprite.draw と group.draw</h2>
-          <p>
-            p5.js の draw
-            ループ内で個々のスプライトとグループを描画するタイミングを手動で制御するために、<code>sprite.draw</code>
-            と
-            <code>group.draw</code>
-            関数を使用できます。手動で描画されなかったスプライトは、スプライトの
-            autoDraw プロパティが直接または親グループのいずれかによって false
-            に設定されていない限り、p5.js の draw
-            ループの終わりに自動的に描画されます。自動描画を完全に防ぐには
-            <code>allSprites.autoDraw = false</code> を設定します。
-          </p>
-          <p>
-            手動で描画したスプライトを使ってカメラをオンにしたりオフにしたりする場合は、手動でオンオフを切り替える必要があります。
-          </p>
-        </md>
-        <script type="mie/p5" id="world.step">
+    </div>
+    <div id="page-1" class="page">
+      <md id="md1-0">
+        <h2 id="時間の制御">時間の制御</h2>
+        <p>
+          デフォルトでは、p5.js の draw 関数が実行されるたびに、p5play
+          は以下の 3 つの関数をこの順序で呼び出します：
+        </p>
+        <ul>
+          <li>
+            <code>allSprites.draw()</code> ： すべてのスプライトを描画します
+          </li>
+          <li><code>world.step()</code> ： 物理シミュレーションを進めます</li>
+          <li>
+            <code>allSprites.update()</code> ： sprite.ani と sprite.mouse
+            を更新します
+          </li>
+        </ul>
+        <p>
+          しかし、これらのプロセスを自分で呼び出すことで手動で制御することもできます。
+        </p>
+        <p>
+          ミニ例では、スペースを押してスローモーションを切り替えてみてください！
+        </p>
+        <h2 id="spritedraw-と-groupdraw">sprite.draw と group.draw</h2>
+        <p>
+          p5.js の draw
+          ループ内で個々のスプライトとグループを描画するタイミングを手動で制御するために、<code>sprite.draw</code>
+          と
+          <code>group.draw</code>
+          関数を使用できます。手動で描画されなかったスプライトは、スプライトの
+          autoDraw プロパティが直接または親グループのいずれかによって false
+          に設定されていない限り、p5.js の draw
+          ループの終わりに自動的に描画されます。自動描画を完全に防ぐには
+          <code>allSprites.autoDraw = false</code> を設定します。
+        </p>
+        <p>
+          手動で描画したスプライトを使ってカメラをオンにしたりオフにしたりする場合は、手動でオンオフを切り替える必要があります。
+        </p>
+      </md>
+      <script type="mie/p5" id="world.step">
 let ball, box;
 		
 function setup() {
@@ -153,64 +159,68 @@ function draw() {
 	}
 }
 			</script>
-        <md id="md1-1"><h2 id="worldstep">world.step</h2>
-          <p>
-            <code>world.step</code> は、デフォルトで 1/60
-            秒進行した物理シミュレーションの後で、すべてのスプライトの衝突をチェックし、位置と速度を計算します。スプライトは個別に時間を進めることはできません。
-          </p>
-          <p>
-            p5.js の draw 関数で
-            <code>world.step</code>
-            を使用する前に、すべてのスプライトを描画しておくことが重要です。そうしないと、スプライトが間違った位置に描画されます！
-          </p>
-          <p>
-            自動ステップを無効にするには
-            <code>world.autoStep = false</code>
-            を設定します。それから、物理シミュレーションを進行させたいときにいつでも手動で
-            <code>world.step</code> を呼び出すことができます。
-          </p>
-        </md>
-        <md id="md1-2"><h2 id="spriteupdate-と-groupupdate">
-            sprite.update と group.update
-          </h2>
-          <p>
-            <code>sprite.update</code>
-            は何をしますか？これは、スプライトのアニメーションとマウスイベントの更新を担当します。また、ユーザーが何かを設定した場合は、ユーザーのカスタム更新関数も実行します。完全な自動更新を防ぐには
-            <code>allSprites.autoUpdate = false</code> を設定します。
-          </p>
-          <p>
-            なぜこの機能はワールドステップから分離されているのですか？というのも、一時停止画面では物理ワールドが一時停止している可能性がありますが、一時停止メニューの
-            UI
-            アニメーションとマウスイベントは引き続き更新される可能性があるからです。
-          </p>
-        </md>
+      <md id="md1-1">
+        <h2 id="worldstep">world.step</h2>
+        <p>
+          <code>world.step</code> は、デフォルトで 1/60
+          秒進行した物理シミュレーションの後で、すべてのスプライトの衝突をチェックし、位置と速度を計算します。スプライトは個別に時間を進めることはできません。
+        </p>
+        <p>
+          p5.js の draw 関数で
+          <code>world.step</code>
+          を使用する前に、すべてのスプライトを描画しておくことが重要です。そうしないと、スプライトが間違った位置に描画されます！
+        </p>
+        <p>
+          自動ステップを無効にするには
+          <code>world.autoStep = false</code>
+          を設定します。それから、物理シミュレーションを進行させたいときにいつでも手動で
+          <code>world.step</code> を呼び出すことができます。
+        </p>
+      </md>
+      <md id="md1-2">
+        <h2 id="spriteupdate-と-groupupdate">
+          sprite.update と group.update
+        </h2>
+        <p>
+          <code>sprite.update</code>
+          は何をしますか？これは、スプライトのアニメーションとマウスイベントの更新を担当します。また、ユーザーが何かを設定した場合は、ユーザーのカスタム更新関数も実行します。完全な自動更新を防ぐには
+          <code>allSprites.autoUpdate = false</code> を設定します。
+        </p>
+        <p>
+          なぜこの機能はワールドステップから分離されているのですか？というのも、一時停止画面では物理ワールドが一時停止している可能性がありますが、一時停止メニューの
+          UI
+          アニメーションとマウスイベントは引き続き更新される可能性があるからです。
+        </p>
+      </md>
+    </div>
+
+    <div class="break"></div>
+    <div id="toc">
+      <a id="prevPage" class="navLink">前のページ</a>
+      <div id="pageNav" class="submenu">
+        <a data-page="0" href="world.html?page=0">スリープ</a>
+        <a data-page="1" href="world.html?page=1">時間のコントロール</a>
       </div>
+      <a id="nextPage" class="navLink">次のページ</a>
+    </div>
+    <div class="break"></div>
+    <footer id="credits" class="text-small">
+      クリントン・アシュリー（@quinton-ashley）によって作成されました 著作権
+      2022-2023
+    </footer>
+  </article>
 
-      <div class="break"></div>
-      <div id="toc">
-        <a id="prevPage" class="navLink">前のページ</a>
-        <div id="pageNav" class="submenu">
-          <a data-page="0" href="world.html?page=0">スリープ</a>
-          <a data-page="1" href="world.html?page=1">時間のコントロール</a>
-        </div>
-        <a id="nextPage" class="navLink">次のページ</a>
-      </div>
-      <div class="break"></div>
-      <footer id="credits" class="text-small">
-        クリントン・アシュリー（@quinton-ashley）によって作成されました 著作権
-        2022-2023
-      </footer>
-    </article>
+  <script src="/v3/q5.min.js"></script>
+  <script src="/v3/planck.min.js"></script>
+  <script src="/v3/p5play.min.js"></script>
 
-    <script src="/v3/q5.min.js"></script>
-    <script src="/v3/planck.min.js"></script>
-    <script src="/v3/p5play.min.js"></script>
+  <script>
+    window.mie = { autoLoad: false };
+  </script>
+  <script src="/learn/mie.js"></script>
+  <script src="/learn/learn.js"></script>
 
-    <script>
-      window.mie = { autoLoad: false };
-    </script>
-    <script src="/learn/mie.js"></script>
-    <script src="/learn/learn.js"></script>
-  
 
-</body></html>
+</body>
+
+</html>

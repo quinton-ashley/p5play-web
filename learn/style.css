@@ -1,11 +1,11 @@
 html {
-	--pink: #ed225d;
-	--blue: #c0eeff;
+	--pink: #ff0a51;
+	--blue: #b7ebff;
 
-	--pink0: #ed225d;
+	--pink0: #ff0a51;
 	--pink1: #ff1c5c;
 
-	--blue0: #c0eeff;
+	--blue0: #b7ebff;
 	--blue1: #2880c2;
 	--blue2: #f0f8ff;
 
@@ -24,8 +24,8 @@ body.dark {
 	/* --pink0: #ff1c5c; */
 
 	/* --blue0: #2880c2; */
-	--blue0: #69aada;
-	--blue1: #69aada;
+	--blue0: #4eaee9;
+	--blue1: #4eaee9;
 	--blue2: #002340;
 
 	--primary: #c8c3bc;
