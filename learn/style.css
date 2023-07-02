@@ -3,10 +3,9 @@ html {
 	--blue: #b7ebff;
 
 	--pink0: #ff0a51;
-	--pink1: #ff1c5c;
 
 	--blue0: #b7ebff;
-	--blue1: #2880c2;
+	--blue1: #1a88d6;
 	--blue2: #f0f8ff;
 
 	--primary: #000;
@@ -93,7 +92,7 @@ md {
 }
 
 .ace_numeric {
-	color: var(--pink1) !important;
+	color: var(--pink0) !important;
 }
 
 .ace_scroller,

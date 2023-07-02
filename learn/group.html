@@ -1,58 +1,54 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>p5play : Group</title>
+    <link rel="icon" href="/assets/favicon.png">
+    <link rel="stylesheet" href="/learn/style.css">
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>p5play : Group</title>
-  <link rel="icon" href="/assets/favicon.png">
-  <link rel="stylesheet" href="/learn/style.css">
-</head>
-
-<body class="dark">
-  <article>
-    <nav id="topNav">
-      <a href="index.html" id="logoLink" class="active">
-        <img alt="p5play logo" src="/assets/p5play_logo.svg" class="logo">
-        <span>p5play</span>
-      </a>
-      <hr>
-      <a href="sprite.html">Sprite</a>
-      <a href="group.html" class="active">Group</a>
-      <a href="sprite_animation.html">Ani</a>
-      <a href="input_devices.html">Input</a>
-      <a href="camera.html">Camera</a>
-      <a href="joints.html">Joints</a>
-      <a href="canvas.html">...</a>
-      <hr>
-      <a id="darkMode" onclick="toggleDarkMode()" tabindex="0" role="button">
-        <div id="darkModeIcon"></div>
-      </a>
-    </nav>
-    <div class="break"></div>
-    <div id="page-0" class="page">
-      <md id="md0-0">
-        <h2 id="what-is-a-group">What is a Group?</h2>
-        <p>
-          In p5play a Group is a collection of and blueprint for sprites with
-          similar traits and behaviors. For example the dots in Pac-Man!
-        </p>
-        <p>
-          The <code>group.length</code> property can be used to check how many
-          sprites are in a group. In this example the while loop condition is
-          true as long as the dots group has less than 24 sprites.
-        </p>
-        <p>
-          In the mini example, <code>new dots.Sprite</code> creates a sprite
-          that inherits the dots group's color, y position, and diameter. Each
-          dot is assigned a unique x position.
-        </p>
-        <p>
-          I call this "soft inheritance" because a group acts as a blueprint
-          for new group sprites.
-        </p>
-      </md>
-      <script type="mie/p5" id="dots" lines="15" base-0="">
+  <body class="dark">
+    <article>
+      <nav id="topNav">
+        <a href="index.html" id="logoLink" class="active">
+          <img alt="p5play logo" src="/assets/p5play_logo.svg" class="logo">
+          <span>p5play</span>
+        </a>
+        <hr>
+        <a href="sprite.html">Sprite</a>
+        <a href="group.html" class="active">Group</a>
+        <a href="sprite_animation.html">Ani</a>
+        <a href="input_devices.html">Input</a>
+        <a href="camera.html">Camera</a>
+        <a href="joints.html">Joints</a>
+        <a href="canvas.html">...</a>
+        <hr>
+        <a id="darkMode" onclick="toggleDarkMode()" tabindex="0" role="button">
+          <div id="darkModeIcon"></div>
+        </a>
+      </nav>
+      <div class="break"></div>
+      <div id="page-0" class="page">
+        <md id="md0-0"><h2 id="what-is-a-group">What is a Group?</h2>
+          <p>
+            In p5play a Group is a collection of and blueprint for sprites with
+            similar traits and behaviors. For example the dots in Pac-Man!
+          </p>
+          <p>
+            The <code>group.length</code> property can be used to check how many
+            sprites are in a group. In this example the while loop condition is
+            true as long as the dots group has less than 24 sprites.
+          </p>
+          <p>
+            In the mini example, <code>new dots.Sprite</code> creates a sprite
+            that inherits the dots group's color, y position, and diameter. Each
+            dot is assigned a unique x position.
+          </p>
+          <p>
+            I call this "soft inheritance" because a group acts as a blueprint
+            for new group sprites.
+          </p>
+        </md>
+        <script type="mie/p5" id="dots" lines="15" base-0="">
 let dots;
 
 function setup() {
@@ -73,55 +69,51 @@ function draw() {
 	clear();
 }
 			</script>
-      <md id="md0-1">
-        <p>
-          You can access a sprite in a group by index because groups are
-          arrays. You can use any of the standard JavaScript array methods on
-          a group.
-        </p>
-      </md>
-      <script type="mie/p5" id="green-dot" base="0">
+        <md id="md0-1"><p>
+            You can access a sprite in a group by index because groups are
+            arrays. You can use any of the standard JavaScript array methods on
+            a group.
+          </p>
+        </md>
+        <script type="mie/p5" id="green-dot" base="0">
 dots[5].color = 'green';
 			</script>
-      <md id="md0-2">
-        <p>
-          Setting a group's property to a different value will affect all the
-          sprites in the group! I call this "dynamic inheritance".
-        </p>
-      </md>
-      <script type="mie/p5" id="green-dots" base="0">
+        <md id="md0-2"><p>
+            Setting a group's property to a different value will affect all the
+            sprites in the group! I call this "dynamic inheritance".
+          </p>
+        </md>
+        <script type="mie/p5" id="green-dots" base="0">
 dots.color = 'green';
 			</script>
-      <md id="md0-3">
-        <p>
-          Using movement functions like <code>group.moveTowards</code>, will
-          cause all the sprites in a group to move.
-        </p>
-      </md>
-      <script type="mie/p5" id="moving-dots" base="0">
+        <md id="md0-3"><p>
+            Using movement functions like <code>group.moveTowards</code>, will
+            cause all the sprites in a group to move.
+          </p>
+        </md>
+        <script type="mie/p5" id="moving-dots" base="0">
 dots.moveTowards(mouse);
 			</script>
-    </div>
-    <div id="page-1" class="page">
-      <md id="md1-0">
-        <h2 id="arrow-function-property-setters">
-          Arrow function property setters
-        </h2>
-        <p>
-          In p5play, when you set a sprite property in a group to an arrow
-          function, each new sprite created using that group will use the
-          function to evaluate the property.
-        </p>
-        <p>
-          When <code>group.amount</code> gets adjusted, the group will
-          automatically create or remove sprites to match the set amount.
-        </p>
-        <p>
-          In this mini example, each gem sprite is assigned a random x and y
-          position.
-        </p>
-      </md>
-      <script type="mie/p5" id="push-gems" horiz="">
+      </div>
+      <div id="page-1" class="page">
+        <md id="md1-0"><h2 id="arrow-function-property-setters">
+            Arrow function property setters
+          </h2>
+          <p>
+            In p5play, when you set a sprite property in a group to an arrow
+            function, each new sprite created using that group will use the
+            function to evaluate the property.
+          </p>
+          <p>
+            When <code>group.amount</code> gets adjusted, the group will
+            automatically create or remove sprites to match the set amount.
+          </p>
+          <p>
+            In this mini example, each gem sprite is assigned a random x and y
+            position.
+          </p>
+        </md>
+        <script type="mie/p5" id="push-gems" horiz="">
 let player, gems;
 
 function setup() {
@@ -141,24 +133,23 @@ function draw() {
 	player.moveTowards(mouse);
 }
 			</script>
-    </div>
-    <div id="page-2" class="page">
-      <md id="md2-0">
-        <h2 id="group-overlap">Group overlap</h2>
-        <p>
-          The overlap function isn't just for handling if two sprites overlap.
-          You can also check if a sprite overlaps with a sprite in a group.
-        </p>
-        <p>
-          In this mini example the collect function receives as inputs the
-          player and the gem in the gems group that the player sprite is
-          overlapping. That gem gets removed.
-        </p>
-        <p>
-          You can use the overlap and collide functions on groups as well.
-        </p>
-      </md>
-      <script type="mie/p5" id="collect-gems" horiz="">
+      </div>
+      <div id="page-2" class="page">
+        <md id="md2-0"><h2 id="group-overlap">Group overlap</h2>
+          <p>
+            The overlap function isn't just for handling if two sprites overlap.
+            You can also check if a sprite overlaps with a sprite in a group.
+          </p>
+          <p>
+            In this mini example the collect function receives as inputs the
+            player and the gem in the gems group that the player sprite is
+            overlapping. That gem gets removed.
+          </p>
+          <p>
+            You can use the overlap and collide functions on groups as well.
+          </p>
+        </md>
+        <script type="mie/p5" id="collect-gems" horiz="">
 let player, gems;
 
 function setup() {
@@ -184,16 +175,15 @@ function draw() {
 	player.moveTowards(mouse);
 }
 			</script>
-    </div>
-    <div id="page-3" class="page">
-      <md id="md3-0">
-        <h2 id="allsprites-group">allSprites Group</h2>
-        <p>
-          p5play creates an <code>allSprites</code> group that contains all
-          the sprites in a sketch.
-        </p>
-      </md>
-      <script type="mie/p5" id="allSprites" horiz="">
+      </div>
+      <div id="page-3" class="page">
+        <md id="md3-0"><h2 id="allsprites-group">allSprites Group</h2>
+          <p>
+            p5play creates an <code>allSprites</code> group that contains all
+            the sprites in a sketch.
+          </p>
+        </md>
+        <script type="mie/p5" id="allSprites" horiz="">
 let box, circle;
 
 function setup() {
@@ -207,23 +197,22 @@ function draw() {
 	allSprites.moveTowards(mouse);
 }
 			</script>
-    </div>
-    <div id="page-4" class="page">
-      <md id="md4-0">
-        <h2 id="indexed-arrow-function-setters">
-          Indexed arrow function setters
-        </h2>
-        <p>
-          When evaluating a group sprite's property you can even use its
-          index!
-        </p>
-        <p>
-          <code>i</code> is the index of the sprite in the group, which is
-          given as an input parameter to group property functions when they
-          are evaluated.
-        </p>
-      </md>
-      <script type="mie/p5" id="doors">
+      </div>
+      <div id="page-4" class="page">
+        <md id="md4-0"><h2 id="indexed-arrow-function-setters">
+            Indexed arrow function setters
+          </h2>
+          <p>
+            When evaluating a group sprite's property you can even use its
+            index!
+          </p>
+          <p>
+            <code>i</code> is the index of the sprite in the group, which is
+            given as an input parameter to group property functions when they
+            are evaluated.
+          </p>
+        </md>
+        <script type="mie/p5" id="doors">
 let doors, rail;
 
 function setup() {
@@ -244,30 +233,29 @@ function draw() {
 	clear();
 }
 			</script>
-    </div>
-    <div id="page-5" class="page">
-      <md id="md5-0">
-        <h2 id="sub-groups">Sub Groups</h2>
-        <p>
-          In this mini example there are two sub groups of the
-          <code>boxes</code> group: <code>smallBoxes</code> and
-          <code>bigBoxes</code>.
-        </p>
-        <p>
-          New sprites created using the <code>bigBoxes</code> group will
-          inherit traits from the <code>boxes</code> group but not from the
-          <code>smallBoxes</code> groups.
-        </p>
-        <p>
-          The <code>boxes</code> group contains all the sprites in the
-          <code>smallBoxes</code> and <code>bigBoxes</code> groups.
-        </p>
-        <p>
-          The <code>group.removeAll</code> function can be used to remove all
-          the sprites from a group.
-        </p>
-      </md>
-      <script type="mie/p5" id="SubGroup" horiz="">
+      </div>
+      <div id="page-5" class="page">
+        <md id="md5-0"><h2 id="sub-groups">Sub Groups</h2>
+          <p>
+            In this mini example there are two sub groups of the
+            <code>boxes</code> group: <code>smallBoxes</code> and
+            <code>bigBoxes</code>.
+          </p>
+          <p>
+            New sprites created using the <code>bigBoxes</code> group will
+            inherit traits from the <code>boxes</code> group but not from the
+            <code>smallBoxes</code> groups.
+          </p>
+          <p>
+            The <code>boxes</code> group contains all the sprites in the
+            <code>smallBoxes</code> and <code>bigBoxes</code> groups.
+          </p>
+          <p>
+            The <code>group.removeAll</code> function can be used to remove all
+            the sprites from a group.
+          </p>
+        </md>
+        <script type="mie/p5" id="SubGroup" horiz="">
 let boxes, smallBoxes, bigBoxes;
 
 function setup() {
@@ -297,33 +285,32 @@ function draw() {
 	}
 }
 			</script>
-    </div>
-    <div id="page-6" class="page">
-      <md id="md6-0">
-        <h2 id="culling">Culling</h2>
-        <p>
-          By default, sprites are removed when they go 10000 pixels offscreen
-          relative to the camera's position. This is to prevent the world from
-          getting too big, which would slow down the physics simulation.
-        </p>
-        <p>
-          To change this, set <code>allSprites.autoCull = false</code>. Use
-          the <code>group.cull</code> function to set a different cull
-          boundary, and note that it can even cull sprites that don't have a
-          physics collider.
-        </p>
-        <p>
-          An optional last parameter can be used to specify a callback
-          function that will be called when a sprite is culled. The default
-          response to culling is to remove the sprite that exited the cull
-          boundary, but by setting your own function you can do something
-          else. The callback function receives the sprite that was culled and
-          a total count of how many sprites were culled on that frame. Note
-          that in this example, the amount of balls decreases if more than one
-          ball is culled in one frame.
-        </p>
-      </md>
-      <script type="mie/p5" id="cull">
+      </div>
+      <div id="page-6" class="page">
+        <md id="md6-0"><h2 id="culling">Culling</h2>
+          <p>
+            By default, sprites are removed when they go 10000 pixels offscreen
+            relative to the camera's position. This is to prevent the world from
+            getting too big, which would slow down the physics simulation.
+          </p>
+          <p>
+            To change this, set <code>allSprites.autoCull = false</code>. Use
+            the <code>group.cull</code> function to set a different cull
+            boundary, and note that it can even cull sprites that don't have a
+            physics collider.
+          </p>
+          <p>
+            An optional last parameter can be used to specify a callback
+            function that will be called when a sprite is culled. The default
+            response to culling is to remove the sprite that exited the cull
+            boundary, but by setting your own function you can do something
+            else. The callback function receives the sprite that was culled and
+            a total count of how many sprites were culled on that frame. Note
+            that in this example, the amount of balls decreases if more than one
+            ball is culled in one frame.
+          </p>
+        </md>
+        <script type="mie/p5" id="cull">
 let balls;
 function setup() {
 	new Canvas(500, 192);
@@ -341,21 +328,20 @@ function draw() {
 	}
 }
 			</script>
-      <md id="md6-1">
-        <h2 id="life">life</h2>
-        <p>
-          Another way to limit how long a sprite exists is to set its
-          <code>life</code> property, which is the number of frames that the
-          sprite exists for. When the sprite's life is up, it will be removed.
-          This is useful for creating temporary objects like projectiles and
-          force fields.
-        </p>
-        <p>
-          Try out this little game! Click the mouse to create a beach ball and
-          try keeping it in the air with the water stream.
-        </p>
-      </md>
-      <script type="mie/p5" id="life">
+        <md id="md6-1"><h2 id="life">life</h2>
+          <p>
+            Another way to limit how long a sprite exists is to set its
+            <code>life</code> property, which is the number of frames that the
+            sprite exists for. When the sprite's life is up, it will be removed.
+            This is useful for creating temporary objects like projectiles and
+            force fields.
+          </p>
+          <p>
+            Try out this little game! Click the mouse to create a beach ball and
+            try keeping it in the air with the water stream.
+          </p>
+        </md>
+        <script type="mie/p5" id="life">
 let water;
 function setup() {
 	new Canvas(500, 192);
@@ -375,21 +361,20 @@ function draw() {
 	if (mouse.presses()) new Sprite(250, -200, 40);
 }
 			</script>
-    </div>
-    <div id="page-7" class="page">
-      <md id="md7-0">
-        <h2 id="custom-properties">Custom Properties</h2>
-        <p>
-          You can add your own properties to sprites and groups, just like
-          with any other JavaScript object!
-        </p>
-        <p>
-          Also when you add custom properties to a group, they will be
-          inherited by new group sprites. You can even use arrow functions as
-          property setters.
-        </p>
-      </md>
-      <script type="mie/p5" id="custom-properties" lines="10">
+      </div>
+      <div id="page-7" class="page">
+        <md id="md7-0"><h2 id="custom-properties">Custom Properties</h2>
+          <p>
+            You can add your own properties to sprites and groups, just like
+            with any other JavaScript object!
+          </p>
+          <p>
+            Also when you add custom properties to a group, they will be
+            inherited by new group sprites. You can even use arrow functions as
+            property setters.
+          </p>
+        </md>
+        <script type="mie/p5" id="custom-properties" lines="10">
 function setup() {
 	new Canvas(500, 60);
 
@@ -406,41 +391,39 @@ function draw() {
 }
 
 			</script>
-    </div>
-
-    <div class="break"></div>
-    <div id="toc">
-      <a id="prevPage" class="navLink">Previous Page</a>
-      <div id="pageNav" class="submenu">
-        <a data-page="0" href="group.html?page=0">Soft and Dynamic Inheritance</a>
-        <a data-page="1" href="group.html?page=1">Arrow Setters</a>
-        <a data-page="2" href="group.html?page=2">Overlaps</a>
-        <a data-page="3" href="group.html?page=3">allSprites</a>
-        <a data-page="4" href="group.html?page=4">Indexed Arrow Setters</a>
-        <a data-page="5" href="group.html?page=5">Subgroups</a>
-        <a data-page="6" href="group.html?page=6">Culling</a>
-        <a data-page="7" href="group.html?page=7">Custom Properties</a>
       </div>
-      <a id="nextPage" class="navLink">Next Page</a>
-    </div>
-    <div class="break"></div>
-    <footer id="credits" class="text-small">
-      Created by Quinton Ashley (@quinton-ashley) Copyright 2022-2023
-    </footer>
-  </article>
 
-  <!-- <script src="https://cdn.jsdelivr.net/npm/p5@1/lib/p5.js"></script> -->
-  <script src="/v3/q5.min.js"></script>
-  <script src="/v3/planck.min.js"></script>
-  <script src="/v3/p5play.min.js"></script>
+      <div class="break"></div>
+      <div id="toc">
+        <a id="prevPage" class="navLink">Previous Page</a>
+        <div id="pageNav" class="submenu">
+          <a data-page="0" href="group.html?page=0">Soft and Dynamic Inheritance</a>
+          <a data-page="1" href="group.html?page=1">Arrow Setters</a>
+          <a data-page="2" href="group.html?page=2">Overlaps</a>
+          <a data-page="3" href="group.html?page=3">allSprites</a>
+          <a data-page="4" href="group.html?page=4">Indexed Arrow Setters</a>
+          <a data-page="5" href="group.html?page=5">Subgroups</a>
+          <a data-page="6" href="group.html?page=6">Culling</a>
+          <a data-page="7" href="group.html?page=7">Custom Properties</a>
+        </div>
+        <a id="nextPage" class="navLink">Next Page</a>
+      </div>
+      <div class="break"></div>
+      <footer id="credits" class="text-small">
+        Created by Quinton Ashley (@quinton-ashley) Copyright 2022-2023
+      </footer>
+    </article>
 
-  <script>
-    window.mie = { autoLoad: false };
-  </script>
-  <script src="/learn/mie.js"></script>
-  <script src="/learn/learn.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/p5@1/lib/p5.js"></script> -->
+    <script src="/v3/q5.min.js"></script>
+    <script src="/v3/planck.min.js"></script>
+    <script src="/v3/p5play.min.js"></script>
 
+    <script>
+      window.mie = { autoLoad: false };
+    </script>
+    <script src="/learn/mie.js"></script>
+    <script src="/learn/learn.js"></script>
+  
 
-</body>
-
-</html>
+</body></html>
