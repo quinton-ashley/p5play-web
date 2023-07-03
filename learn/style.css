@@ -1,8 +1,9 @@
 html {
-	--pink: #ff0a51;
+	--pink: #ff0a52;
 	--blue: #b7ebff;
 
-	--pink0: #ff0a51;
+	--pink0: #ff0a52;
+	--pink1: #ff0a52;
 
 	--blue0: #b7ebff;
 	--blue1: #1a88d6;
@@ -20,7 +21,8 @@ html:has(body.dark) {
 }
 
 body.dark {
-	/* --pink0: #ff1c5c; */
+	--pink0: #ea104e;
+	--pink1: #ff0851;
 
 	/* --blue0: #2880c2; */
 	--blue0: #4eaee9;
@@ -91,8 +93,10 @@ md {
 	opacity: 0;
 }
 
-.ace_numeric {
-	color: var(--pink0) !important;
+.ace_numeric,
+.ace_string,
+.ace_boolean {
+	color: var(--pink1) !important;
 }
 
 .ace_scroller,
