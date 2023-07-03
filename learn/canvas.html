@@ -1,79 +1,85 @@
-<!DOCTYPE html><html lang="en"><head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>p5play : Canvas</title>
-    <link rel="icon" href="/assets/p5play_logo.svg">
-    <link rel="stylesheet" href="/learn/style.css">
-  </head>
+<!DOCTYPE html>
+<html lang="en">
 
-  <body class="dark">
-    <article>
-      <nav id="topNav">
-        <a href="index.html" id="logoLink" class="active">
-          <img alt="p5play logo" src="/assets/p5play_logo.svg" class="logo">
-          <span>p5play</span>
-        </a>
-        <hr>
-        <a href="canvas.html" class="active">Canvas</a>
-        <a href="tiles.html">Tiles</a>
-        <a href="world.html">World</a>
-        <hr>
-        <a id="darkMode" onclick="toggleDarkMode()" tabindex="0" role="button">
-          <div id="darkModeIcon"></div>
-        </a>
-      </nav>
-      <div class="break"></div>
-      <div id="page-0" class="page">
-        <md id="md0-0"><h2 id="advanced-topics">Advanced Topics</h2>
-          <p>
-            These reference pages highlight some of the more advanced features
-            of p5play.
-          </p>
-          <p>You should probably read the other reference pages first!</p>
-        </md>
-        <md id="md0-1"><h2 id="canvas">Canvas</h2>
-          <p>
-            The <code>Canvas</code> class is a wrapper around p5play's version
-            of the p5.js <code>createCanvas</code> function, which is used to
-            create an HTML5 canvas element. p5play's version also provides a few
-            extra features.
-          </p>
-          <p>
-            If no parameters are passed to <code>new Canvas()</code>, it will
-            create a canvas that fills the entire window.
-          </p>
-          <p>
-            Use <code>canvas.w</code> and <code>canvas.h</code> to get the width
-            and height of the canvas.
-          </p>
-          <p>
-            You can also pass an aspect ratio to the Canvas constructor. This
-            will create the largest possible canvas that fits within the window,
-            while maintaining the given aspect ratio. For example,
-            <code>new Canvas('2:1')</code> will create a canvas that is twice as
-            wide as it is tall.
-          </p>
-        </md>
-      </div>
-      <div id="page-1" class="page">
-        <md id="md1-0"><h2 id="pixelated-mode">pixelated mode</h2>
-          <p>
-            Another <code>Canvas</code> feature is the
-            <code>"pixelated"</code> preset. Use it for making 8-bit or 16-bit
-            style retro games!
-          </p>
-          <p>
-            By default, the <code>"pixelated"</code> preset scales the canvas to
-            fit the screen while retaining its aspect ratio, but you can also
-            define a custom scale by passing a multiplier after the preset name.
-          </p>
-          <p>
-            For example, <code>"pixelated x2"</code> will create a canvas that's
-            displayed at twice the size of the specified width and height.
-          </p>
-        </md>
-        <div class="minis horiz">
-          <script type="mie/p5" id="normal sized pixels" lines="9" hide-editor="">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>p5play : Canvas</title>
+  <link rel="icon" href="/assets/p5play_logo.svg">
+  <link rel="stylesheet" href="/learn/style.css">
+</head>
+
+<body class="dark">
+  <article>
+    <nav id="topNav">
+      <a href="index.html" id="logoLink" class="active">
+        <img alt="p5play logo" src="/assets/p5play_logo.svg" class="logo">
+        <span>p5play</span>
+      </a>
+      <hr>
+      <a href="canvas.html" class="active">Canvas</a>
+      <a href="tiles.html">Tiles</a>
+      <a href="world.html">World</a>
+      <hr>
+      <a id="darkMode" onclick="toggleDarkMode()" tabindex="0" role="button" name="dark mode toggle">
+        <div id="darkModeIcon"></div>
+      </a>
+    </nav>
+    <div class="break"></div>
+    <div id="page-0" class="page">
+      <md id="md0-0">
+        <h2 id="advanced-topics">Advanced Topics</h2>
+        <p>
+          These reference pages highlight some of the more advanced features
+          of p5play.
+        </p>
+        <p>You should probably read the other reference pages first!</p>
+      </md>
+      <md id="md0-1">
+        <h2 id="canvas">Canvas</h2>
+        <p>
+          The <code>Canvas</code> class is a wrapper around p5play's version
+          of the p5.js <code>createCanvas</code> function, which is used to
+          create an HTML5 canvas element. p5play's version also provides a few
+          extra features.
+        </p>
+        <p>
+          If no parameters are passed to <code>new Canvas()</code>, it will
+          create a canvas that fills the entire window.
+        </p>
+        <p>
+          Use <code>canvas.w</code> and <code>canvas.h</code> to get the width
+          and height of the canvas.
+        </p>
+        <p>
+          You can also pass an aspect ratio to the Canvas constructor. This
+          will create the largest possible canvas that fits within the window,
+          while maintaining the given aspect ratio. For example,
+          <code>new Canvas('2:1')</code> will create a canvas that is twice as
+          wide as it is tall.
+        </p>
+      </md>
+    </div>
+    <div id="page-1" class="page">
+      <md id="md1-0">
+        <h2 id="pixelated-mode">pixelated mode</h2>
+        <p>
+          Another <code>Canvas</code> feature is the
+          <code>"pixelated"</code> preset. Use it for making 8-bit or 16-bit
+          style retro games!
+        </p>
+        <p>
+          By default, the <code>"pixelated"</code> preset scales the canvas to
+          fit the screen while retaining its aspect ratio, but you can also
+          define a custom scale by passing a multiplier after the preset name.
+        </p>
+        <p>
+          For example, <code>"pixelated x2"</code> will create a canvas that's
+          displayed at twice the size of the specified width and height.
+        </p>
+      </md>
+      <div class="minis horiz">
+        <script type="mie/p5" id="normal sized pixels" lines="9" hide-editor="">
 function setup() {
   new Canvas(500, 20);
 
@@ -85,7 +91,7 @@ function setup() {
 }
 function draw() {}
       </script>
-          <script type="mie/p5" id="pixelated-preset" lines="10">
+        <script type="mie/p5" id="pixelated-preset" lines="10">
 function setup() {
   //       (width, height, preset)
   new Canvas(120, 5, 'pixelated x4');
@@ -98,33 +104,35 @@ function setup() {
 }
 function draw() {}
       </script>
-        </div>
       </div>
+    </div>
 
-      <div class="break"></div>
-      <div id="toc">
-        <a id="prevPage" class="navLink">Previous Page</a>
-        <div id="pageNav" class="submenu">
-          <a data-page="0" href="canvas.html?page=0">Canvas constructor</a>
-          <a data-page="1" href="canvas.html?page=1">Pixelated Mode</a>
-        </div>
-        <a id="nextPage" class="navLink">Next Page</a>
+    <div class="break"></div>
+    <div id="toc">
+      <a id="prevPage" class="navLink">Previous Page</a>
+      <div id="pageNav" class="submenu">
+        <a data-page="0" href="canvas.html?page=0">Canvas constructor</a>
+        <a data-page="1" href="canvas.html?page=1">Pixelated Mode</a>
       </div>
-      <div class="break"></div>
-      <footer id="credits" class="text-small">
-        Created by Quinton Ashley (@quinton-ashley) Copyright 2022-2023
-      </footer>
-    </article>
+      <a id="nextPage" class="navLink">Next Page</a>
+    </div>
+    <div class="break"></div>
+    <footer id="credits" class="text-small">
+      Created by Quinton Ashley (@quinton-ashley) Copyright 2022-2023
+    </footer>
+  </article>
 
-    <script src="/v3/q5.min.js"></script>
-    <script src="/v3/planck.min.js"></script>
-    <script src="/v3/p5play.min.js"></script>
+  <script src="/v3/q5.min.js"></script>
+  <script src="/v3/planck.min.js"></script>
+  <script src="/v3/p5play.min.js"></script>
 
-    <script>
-      window.mie = { autoLoad: false };
-    </script>
-    <script src="/learn/mie.js"></script>
-    <script src="/learn/learn.js"></script>
-  
+  <script>
+    window.mie = { autoLoad: false };
+  </script>
+  <script src="/learn/mie.js"></script>
+  <script src="/learn/learn.js"></script>
 
-</body></html>
+
+</body>
+
+</html>

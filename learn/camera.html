@@ -1,41 +1,45 @@
-<!DOCTYPE html><html lang="en"><head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>p5play : Camera</title>
-    <link rel="icon" href="/assets/favicon.png">
-    <link rel="stylesheet" href="/learn/style.css">
-  </head>
+<!DOCTYPE html>
+<html lang="en">
 
-  <body class="dark">
-    <article>
-      <nav id="topNav">
-        <a href="index.html" id="logoLink" class="active">
-          <img alt="p5play logo" src="/assets/p5play_logo.svg" class="logo">
-          <span>p5play</span>
-        </a>
-        <hr>
-        <a href="sprite.html">Sprite</a>
-        <a href="group.html">Group</a>
-        <a href="sprite_animation.html">Ani</a>
-        <a href="input_devices.html">Input</a>
-        <a href="camera.html" class="active">Camera</a>
-        <a href="joints.html">Joints</a>
-        <a href="canvas.html">...</a>
-        <hr>
-        <a id="darkMode" onclick="toggleDarkMode()" tabindex="0" role="button">
-          <div id="darkModeIcon"></div>
-        </a>
-      </nav>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>p5play : Camera</title>
+  <link rel="icon" href="/assets/favicon.png">
+  <link rel="stylesheet" href="/learn/style.css">
+</head>
 
-      <div class="break"></div>
+<body class="dark">
+  <article>
+    <nav id="topNav">
+      <a href="index.html" id="logoLink" class="active">
+        <img alt="p5play logo" src="/assets/p5play_logo.svg" class="logo">
+        <span>p5play</span>
+      </a>
+      <hr>
+      <a href="sprite.html">Sprite</a>
+      <a href="group.html">Group</a>
+      <a href="sprite_animation.html">Ani</a>
+      <a href="input_devices.html">Input</a>
+      <a href="camera.html" class="active">Camera</a>
+      <a href="joints.html">Joints</a>
+      <a href="canvas.html">...</a>
+      <hr>
+      <a id="darkMode" onclick="toggleDarkMode()" tabindex="0" role="button" name="dark mode toggle">
+        <div id="darkModeIcon"></div>
+      </a>
+    </nav>
 
-      <div id="page-0" class="page">
-        <md id="md0-0"><h2 id="camera">Camera</h2>
-          <p>
-            In this example the camera follows the player's x axis movement.
-          </p>
-        </md>
-        <script type="mie/p5" id="sidescrolling-camera">
+    <div class="break"></div>
+
+    <div id="page-0" class="page">
+      <md id="md0-0">
+        <h2 id="camera">Camera</h2>
+        <p>
+          In this example the camera follows the player's x axis movement.
+        </p>
+      </md>
+      <script type="mie/p5" id="sidescrolling-camera">
 let player, floor;
 
 function setup() {
@@ -55,38 +59,39 @@ function draw() {
 	camera.x = player.x;
 }
 			</script>
-      </div>
-      <div id="page-1" class="page">
-        <md id="md1-0"><h2 id="camera-onoff">Camera On/Off</h2>
-          <p>
-            By default, <code>allSprites.draw()</code> is called at the end of
-            the p5.js draw loop. However, if you want to control when sprites
-            and groups are drawn, you can draw them separately.
-          </p>
-          <p>
-            The player and environment of your game should be drawn with the
-            camera on.
-          </p>
-          <p>
-            UI or HUD sprites, represented by orange squares in this examples,
-            should be drawn when the camera is off.
-          </p>
-          <p>
-            <code>camera.zoom</code> can be used to zoom the camera in and out.
-          </p>
-          <p>
-            <code>camera.zoomTo(target, speed)</code> is an async function that
-            can be used to smoothly zoom the camera in and out. It takes an
-            optional second parameter, the amount it will zoom per frame.
-          </p>
-          <p>
-            <code>mouse.x</code> stores the x position of the mouse in relation
-            to the world, which can be larger than the canvas.
-            <code>camera.mouse.x</code> stores the x position of the mouse in
-            relation to the canvas.
-          </p>
-        </md>
-        <script type="mie/p5" id="overhead-camera">
+    </div>
+    <div id="page-1" class="page">
+      <md id="md1-0">
+        <h2 id="camera-onoff">Camera On/Off</h2>
+        <p>
+          By default, <code>allSprites.draw()</code> is called at the end of
+          the p5.js draw loop. However, if you want to control when sprites
+          and groups are drawn, you can draw them separately.
+        </p>
+        <p>
+          The player and environment of your game should be drawn with the
+          camera on.
+        </p>
+        <p>
+          UI or HUD sprites, represented by orange squares in this examples,
+          should be drawn when the camera is off.
+        </p>
+        <p>
+          <code>camera.zoom</code> can be used to zoom the camera in and out.
+        </p>
+        <p>
+          <code>camera.zoomTo(target, speed)</code> is an async function that
+          can be used to smoothly zoom the camera in and out. It takes an
+          optional second parameter, the amount it will zoom per frame.
+        </p>
+        <p>
+          <code>mouse.x</code> stores the x position of the mouse in relation
+          to the world, which can be larger than the canvas.
+          <code>camera.mouse.x</code> stores the x position of the mouse in
+          relation to the canvas.
+        </p>
+      </md>
+      <script type="mie/p5" id="overhead-camera">
 let player;
 
 function setup() {
@@ -125,27 +130,28 @@ function draw() {
 	}
 }
 			</script>
-      </div>
-      <div id="page-2" class="page">
-        <md id="md2-0"><h2 id="mouse-events-with-the-camera">
-            Mouse Events with the Camera
-          </h2>
-          <p>
-            In this example the camera is moving left and right using a sin
-            wave.
-          </p>
-          <p>
-            The big sprite is drawn in the world space when the camera is on.
-            The big sprite doesn't move, but it looks like it does because the
-            camera is moving.
-          </p>
-          <p>
-            The small sprite is drawn when the camera is off. If you wanted to
-            make a UI element in your game, like a pause button sprite, you
-            should make it when the camera is off.
-          </p>
-        </md>
-        <script type="mie/p5" id="mouse-camera">
+    </div>
+    <div id="page-2" class="page">
+      <md id="md2-0">
+        <h2 id="mouse-events-with-the-camera">
+          Mouse Events with the Camera
+        </h2>
+        <p>
+          In this example the camera is moving left and right using a sin
+          wave.
+        </p>
+        <p>
+          The big sprite is drawn in the world space when the camera is on.
+          The big sprite doesn't move, but it looks like it does because the
+          camera is moving.
+        </p>
+        <p>
+          The small sprite is drawn when the camera is off. If you wanted to
+          make a UI element in your game, like a pause button sprite, you
+          should make it when the camera is off.
+        </p>
+      </md>
+      <script type="mie/p5" id="mouse-camera">
 let big, small;
 
 function setup() {
@@ -177,33 +183,35 @@ function draw() {
 	small.draw();
 }
 			</script>
+    </div>
+
+    <div class="break"></div>
+    <div id="toc">
+      <a id="prevPage" class="navLink">Previous Page</a>
+      <div id="pageNav" class="submenu">
+        <a data-page="0" href="camera.html?page=0">Basic Usage</a>
+        <a data-page="1" href="camera.html?page=1">On/Off</a>
+        <a data-page="2" href="camera.html?page=2">Mouse Events with the Camera</a>
       </div>
+      <a id="nextPage" class="navLink">Next Page</a>
+    </div>
+    <div class="break"></div>
+    <footer id="credits" class="text-small">
+      Created by Quinton Ashley (@quinton-ashley) Copyright 2022-2023
+    </footer>
+  </article>
 
-      <div class="break"></div>
-      <div id="toc">
-        <a id="prevPage" class="navLink">Previous Page</a>
-        <div id="pageNav" class="submenu">
-          <a data-page="0" href="camera.html?page=0">Basic Usage</a>
-          <a data-page="1" href="camera.html?page=1">On/Off</a>
-          <a data-page="2" href="camera.html?page=2">Mouse Events with the Camera</a>
-        </div>
-        <a id="nextPage" class="navLink">Next Page</a>
-      </div>
-      <div class="break"></div>
-      <footer id="credits" class="text-small">
-        Created by Quinton Ashley (@quinton-ashley) Copyright 2022-2023
-      </footer>
-    </article>
+  <script src="/v3/q5.min.js"></script>
+  <script src="/v3/planck.min.js"></script>
+  <script src="/v3/p5play.js"></script>
 
-    <script src="/v3/q5.min.js"></script>
-    <script src="/v3/planck.min.js"></script>
-    <script src="/v3/p5play.js"></script>
+  <script>
+    window.mie = { autoLoad: false };
+  </script>
+  <script src="/learn/mie.js"></script>
+  <script src="/learn/learn.js"></script>
 
-    <script>
-      window.mie = { autoLoad: false };
-    </script>
-    <script src="/learn/mie.js"></script>
-    <script src="/learn/learn.js"></script>
-  
 
-</body></html>
+</body>
+
+</html>

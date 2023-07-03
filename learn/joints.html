@@ -1,48 +1,52 @@
-<!DOCTYPE html><html lang="en"><head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>p5play : Joints</title>
-    <link rel="icon" href="/assets/p5play_logo.svg">
-    <link rel="stylesheet" href="/learn/style.css">
-  </head>
+<!DOCTYPE html>
+<html lang="en">
 
-  <body class="dark">
-    <article>
-      <nav id="topNav">
-        <a href="index.html" id="logoLink" class="active">
-          <img alt="p5play logo" src="/assets/p5play_logo.svg" class="logo">
-          <span>p5play</span>
-        </a>
-        <hr>
-        <a href="sprite.html">Sprite</a>
-        <a href="group.html">Group</a>
-        <a href="sprite_animation.html">Ani</a>
-        <a href="input_devices.html">Input</a>
-        <a href="camera.html">Camera</a>
-        <a href="joints.html" class="active">Joints</a>
-        <a href="canvas.html">...</a>
-        <hr>
-        <a id="darkMode" onclick="toggleDarkMode()" tabindex="0" role="button">
-          <div id="darkModeIcon"></div>
-        </a>
-      </nav>
-      <div class="break"></div>
-      <div id="page-0" class="page">
-        <md id="md0-0"><h2 id="joints">Joints</h2>
-          <p>
-            A joint connects the physics colliders of two sprites, limiting
-            their movement relative to each other.
-          </p>
-          <p>
-            Joint constructors accept two sprites as input. At least one of the
-            sprites in a joint must have a dynamic physics collider.
-          </p>
-          <p>
-            Every sprite has a <code>sprite.joints</code> array, which contains
-            all the joints it's currently connected to.
-          </p>
-        </md>
-        <script type="mie/p5" id="glue" lines="12" horiz="">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>p5play : Joints</title>
+  <link rel="icon" href="/assets/p5play_logo.svg">
+  <link rel="stylesheet" href="/learn/style.css">
+</head>
+
+<body class="dark">
+  <article>
+    <nav id="topNav">
+      <a href="index.html" id="logoLink" class="active">
+        <img alt="p5play logo" src="/assets/p5play_logo.svg" class="logo">
+        <span>p5play</span>
+      </a>
+      <hr>
+      <a href="sprite.html">Sprite</a>
+      <a href="group.html">Group</a>
+      <a href="sprite_animation.html">Ani</a>
+      <a href="input_devices.html">Input</a>
+      <a href="camera.html">Camera</a>
+      <a href="joints.html" class="active">Joints</a>
+      <a href="canvas.html">...</a>
+      <hr>
+      <a id="darkMode" onclick="toggleDarkMode()" tabindex="0" role="button" name="dark mode toggle">
+        <div id="darkModeIcon"></div>
+      </a>
+    </nav>
+    <div class="break"></div>
+    <div id="page-0" class="page">
+      <md id="md0-0">
+        <h2 id="joints">Joints</h2>
+        <p>
+          A joint connects the physics colliders of two sprites, limiting
+          their movement relative to each other.
+        </p>
+        <p>
+          Joint constructors accept two sprites as input. At least one of the
+          sprites in a joint must have a dynamic physics collider.
+        </p>
+        <p>
+          Every sprite has a <code>sprite.joints</code> array, which contains
+          all the joints it's currently connected to.
+        </p>
+      </md>
+      <script type="mie/p5" id="glue" lines="12" horiz="">
 let floor, spriteA, spriteB, j;
 
 function setup() {
@@ -60,32 +64,33 @@ function draw() {
   clear();
 }
       </script>
-        <md id="md0-1"><h2 id="gluejoint">GlueJoint</h2>
-          <p>
-            Do you like crafting in Legend of Zelda: Tears of the Kingdom? Then
-            you'll love glue joints!
-          </p>
-          <p>
-            A <code>GlueJoint</code> is the simplest type of joint, it just
-            glues two sprites together. The sprites don't have to be touching
-            and they won't un-glue unless you remove the joint.
-          </p>
-          <p>
-            But wait, why use a glue joint instead of
-            <code>sprite.addCollider</code>?
-          </p>
-          <ul>
-            <li>each sprite can have its own physics properties</li>
-            <li>each sprite can detect collisions separately</li>
-            <li>removing a joint doesn't remove the sprites</li>
-          </ul>
-          <p>
-            Try gluing and un-gluing the stick and ball sprite in the mini
-            example. If you want a challenge, throw the ball straight up in the
-            air and try to stick it to the top of the stick!
-          </p>
-        </md>
-        <script type="mie/p5" id="glue-and-unglue">
+      <md id="md0-1">
+        <h2 id="gluejoint">GlueJoint</h2>
+        <p>
+          Do you like crafting in Legend of Zelda: Tears of the Kingdom? Then
+          you'll love glue joints!
+        </p>
+        <p>
+          A <code>GlueJoint</code> is the simplest type of joint, it just
+          glues two sprites together. The sprites don't have to be touching
+          and they won't un-glue unless you remove the joint.
+        </p>
+        <p>
+          But wait, why use a glue joint instead of
+          <code>sprite.addCollider</code>?
+        </p>
+        <ul>
+          <li>each sprite can have its own physics properties</li>
+          <li>each sprite can detect collisions separately</li>
+          <li>removing a joint doesn't remove the sprites</li>
+        </ul>
+        <p>
+          Try gluing and un-gluing the stick and ball sprite in the mini
+          example. If you want a challenge, throw the ball straight up in the
+          air and try to stick it to the top of the stick!
+        </p>
+      </md>
+      <script type="mie/p5" id="glue-and-unglue">
 let floor, stick, ball, j;
 
 function setup() {
@@ -106,32 +111,32 @@ function draw() {
 	}
 }
       </script>
-      </div>
-      <div id="page-1" class="page">
-        <md id="md1-0">
-          <h2 id="distancejoint">DistanceJoint</h2>
-          <p>
-            By default, a <code>DistanceJoint</code> is attached at the center
-            of each sprite that it's connected to. To shift the joint's
-            attachment points, edit its <code>offsetA</code> and
-            <code>offsetB</code> vectors.
-          </p>
-          <p>
-            Adjusting the joint's <code>springiness</code> ratio changes the
-            amount it can stretch and compress.
-          </p>
-          <p>
-            <code>0.0</code> = steel rod (default)<br><code>0.2</code> = stiff
-            spring<br><code>0.4</code> = tight spring<br><code>0.6</code> =
-            bouncy spring<br><code>0.8</code> = slinky<br><code>1.0</code>
-            = bungee cord
-          </p>
-          <p>
-            You can also adjust the joints's <code>damping</code> ratio to
-            change how quickly it loses vibrational energy.
-          </p>
-        </md>
-        <script type="mie/p5" id="swing" lines="13">
+    </div>
+    <div id="page-1" class="page">
+      <md id="md1-0">
+        <h2 id="distancejoint">DistanceJoint</h2>
+        <p>
+          By default, a <code>DistanceJoint</code> is attached at the center
+          of each sprite that it's connected to. To shift the joint's
+          attachment points, edit its <code>offsetA</code> and
+          <code>offsetB</code> vectors.
+        </p>
+        <p>
+          Adjusting the joint's <code>springiness</code> ratio changes the
+          amount it can stretch and compress.
+        </p>
+        <p>
+          <code>0.0</code> = steel rod (default)<br><code>0.2</code> = stiff
+          spring<br><code>0.4</code> = tight spring<br><code>0.6</code> =
+          bouncy spring<br><code>0.8</code> = slinky<br><code>1.0</code>
+          = bungee cord
+        </p>
+        <p>
+          You can also adjust the joints's <code>damping</code> ratio to
+          change how quickly it loses vibrational energy.
+        </p>
+      </md>
+      <script type="mie/p5" id="swing" lines="13">
 let sA, sB, j;
 function setup() {
 	new Canvas(500, 500);
@@ -151,37 +156,38 @@ function draw() {
 	sA.moveTowards(mouse);
 }
       </script>
-      </div>
-      <div id="page-2" class="page">
-        <md id="md2-0"><h2 id="wheeljoint">WheelJoint</h2>
-          <p>
-            A <code>WheelJoint</code> connects a vehicle body to a wheel. Use
-            wheel joints to create drive-able vehicles!
-          </p>
-          <p>
-            Every wheel joint has a motor, which can be enabled by setting the
-            joint's <code>speed</code> to the desired motor speed,
-            <code>maxPower</code> to a positive value, or
-            <code>motorEnabled</code> to true.
-          </p>
-          <p>
-            Disabling a wheel joint motor is like putting a car in neutral, it
-            causes the wheel to roll freely. The joint's speed must be set to
-            zero for the wheel to brake.
-          </p>
-          <p>
-            By default, wheel joints have a <code>maxPower</code> of 1000,
-            <code>springiness</code> of 0.1, <code>damping</code> of 0.7, and
-            angle of attachment <code>angle</code> of 90 degrees.
-          </p>
-          <p>
-            Try driving the car in this example! Can you make it to the end of
-            the road? Customize the car by changing the position of its wheels
-            and the angle at which they're attached.
-          </p>
-        </md>
+    </div>
+    <div id="page-2" class="page">
+      <md id="md2-0">
+        <h2 id="wheeljoint">WheelJoint</h2>
+        <p>
+          A <code>WheelJoint</code> connects a vehicle body to a wheel. Use
+          wheel joints to create drive-able vehicles!
+        </p>
+        <p>
+          Every wheel joint has a motor, which can be enabled by setting the
+          joint's <code>speed</code> to the desired motor speed,
+          <code>maxPower</code> to a positive value, or
+          <code>motorEnabled</code> to true.
+        </p>
+        <p>
+          Disabling a wheel joint motor is like putting a car in neutral, it
+          causes the wheel to roll freely. The joint's speed must be set to
+          zero for the wheel to brake.
+        </p>
+        <p>
+          By default, wheel joints have a <code>maxPower</code> of 1000,
+          <code>springiness</code> of 0.1, <code>damping</code> of 0.7, and
+          angle of attachment <code>angle</code> of 90 degrees.
+        </p>
+        <p>
+          Try driving the car in this example! Can you make it to the end of
+          the road? Customize the car by changing the position of its wheels
+          and the angle at which they're attached.
+        </p>
+      </md>
 
-        <script type="mie/p5" id="car">
+      <script type="mie/p5" id="car">
 let car, wheelsFront, wheelsRear, axleFront, axleRear;
 
 function setup() {
@@ -215,24 +221,25 @@ function draw() {
 	camera.y = car.y;
 }
 			</script>
-      </div>
-      <div id="page-3" class="page">
-        <md id="md3-0"><h2 id="hingejoint">HingeJoint</h2>
-          <p>
-            A <code>HingeJoint</code> enables one or two sprites to rotate
-            around the same attachment point.
-          </p>
-          <p>
-            Hinge joints with a small <code>maxPower</code> and default
-            <code>speed</code> of zero apply braking force to resist being
-            moved.
-          </p>
-          <p>
-            Try clicking around this example to drop small boxes on the seesaw.
-            How many boxes can you put on the seesaw before it tips?
-          </p>
-        </md>
-        <script type="mie/p5" id="seesaw">
+    </div>
+    <div id="page-3" class="page">
+      <md id="md3-0">
+        <h2 id="hingejoint">HingeJoint</h2>
+        <p>
+          A <code>HingeJoint</code> enables one or two sprites to rotate
+          around the same attachment point.
+        </p>
+        <p>
+          Hinge joints with a small <code>maxPower</code> and default
+          <code>speed</code> of zero apply braking force to resist being
+          moved.
+        </p>
+        <p>
+          Try clicking around this example to drop small boxes on the seesaw.
+          How many boxes can you put on the seesaw before it tips?
+        </p>
+      </md>
+      <script type="mie/p5" id="seesaw">
 let s0, s1, j;
 function setup() {
 	new Canvas(500, 200);
@@ -254,30 +261,31 @@ function draw() {
 	if (mouse.presses()) new Sprite(mouse.x, mouse.y, 6, 6)
 }
 			  </script>
-      </div>
-      <div id="page-4" class="page">
-        <md id="md4-0"><h2 id="sliderjoint">SliderJoint</h2>
-          <p>
-            A <code>SliderJoint</code> constrains the motion of two sprites to
-            sliding along a common axis, without rotation.
-          </p>
-          <p>
-            The joint's <code>range</code> determines how far apart the
-            connected sprites can be from each other. Changing the joint's
-            <code>angle</code> changes the direction the sprites can slide in.
-          </p>
-          <p>
-            By default the joint's motor is enabled with a <code>speed</code> of
-            0, so <code>maxPower</code> determines how much the joint can resist
-            sliding.
-          </p>
-          <p>
-            Try dropping boxes on the scale by clicking with your mouse. How
-            many boxes can you stack on the scale before it reaches its limit?
-            Try changing its angle too.
-          </p>
-        </md>
-        <script type="mie/p5" id="weight scale" horiz="">
+    </div>
+    <div id="page-4" class="page">
+      <md id="md4-0">
+        <h2 id="sliderjoint">SliderJoint</h2>
+        <p>
+          A <code>SliderJoint</code> constrains the motion of two sprites to
+          sliding along a common axis, without rotation.
+        </p>
+        <p>
+          The joint's <code>range</code> determines how far apart the
+          connected sprites can be from each other. Changing the joint's
+          <code>angle</code> changes the direction the sprites can slide in.
+        </p>
+        <p>
+          By default the joint's motor is enabled with a <code>speed</code> of
+          0, so <code>maxPower</code> determines how much the joint can resist
+          sliding.
+        </p>
+        <p>
+          Try dropping boxes on the scale by clicking with your mouse. How
+          many boxes can you stack on the scale before it reaches its limit?
+          Try changing its angle too.
+        </p>
+      </md>
+      <script type="mie/p5" id="weight scale" horiz="">
 let floor, scale, j;
 
 function setup() {
@@ -303,35 +311,37 @@ function draw() {
 }
 
       </script>
+    </div>
+
+    <div class="break"></div>
+    <div id="toc">
+      <a id="prevPage" class="navLink">Previous Page</a>
+      <div id="pageNav" class="submenu">
+        <a data-page="0" href="joints.html?page=0">GlueJoint</a>
+        <a data-page="1" href="joints.html?page=1">DistanceJoint</a>
+        <a data-page="2" href="joints.html?page=2">WheelJoint</a>
+        <a data-page="3" href="joints.html?page=3">HingeJoint</a>
+        <a data-page="4" href="joints.html?page=4">SliderJoint</a>
       </div>
+      <a id="nextPage" class="navLink">Next Page</a>
+    </div>
+    <div class="break"></div>
+    <footer id="credits" class="text-small">
+      Created by Quinton Ashley (@quinton-ashley) Copyright 2022-2023
+    </footer>
+  </article>
 
-      <div class="break"></div>
-      <div id="toc">
-        <a id="prevPage" class="navLink">Previous Page</a>
-        <div id="pageNav" class="submenu">
-          <a data-page="0" href="joints.html?page=0">GlueJoint</a>
-          <a data-page="1" href="joints.html?page=1">DistanceJoint</a>
-          <a data-page="2" href="joints.html?page=2">WheelJoint</a>
-          <a data-page="3" href="joints.html?page=3">HingeJoint</a>
-          <a data-page="4" href="joints.html?page=4">SliderJoint</a>
-        </div>
-        <a id="nextPage" class="navLink">Next Page</a>
-      </div>
-      <div class="break"></div>
-      <footer id="credits" class="text-small">
-        Created by Quinton Ashley (@quinton-ashley) Copyright 2022-2023
-      </footer>
-    </article>
+  <script src="/v3/q5.min.js"></script>
+  <script src="/v3/planck.min.js"></script>
+  <script src="/v3/p5play.min.js"></script>
 
-    <script src="/v3/q5.min.js"></script>
-    <script src="/v3/planck.min.js"></script>
-    <script src="/v3/p5play.min.js"></script>
+  <script>
+    window.mie = { autoLoad: false };
+  </script>
+  <script src="/learn/mie.js"></script>
+  <script src="/learn/learn.js"></script>
 
-    <script>
-      window.mie = { autoLoad: false };
-    </script>
-    <script src="/learn/mie.js"></script>
-    <script src="/learn/learn.js"></script>
-  
 
-</body></html>
+</body>
+
+</html>

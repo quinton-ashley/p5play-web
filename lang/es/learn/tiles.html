@@ -1,69 +1,74 @@
-<!DOCTYPE html><html lang="es"><head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>p5play : Tiles</title>
-    <link rel="icon" href="/assets/favicon.png">
-    <link rel="stylesheet" href="/learn/style.css">
-  </head>
+<!DOCTYPE html>
+<html lang="es">
 
-  <body class="dark">
-    <article>
-      <nav id="topNav">
-        <a href="index.html" id="logoLink" class="active">
-          <img alt="p5play logo" src="/assets/p5play_logo.svg" class="logo">
-          <span>p5play</span>
-        </a>
-        <hr>
-        <a href="canvas.html">Canvas</a>
-        <a href="tiles.html" class="active">Tiles</a>
-        <a href="world.html">World</a>
-        <hr>
-        <a id="darkMode" onclick="toggleDarkMode()" tabindex="0" role="button">
-          <div id="darkModeIcon"></div>
-        </a>
-      </nav>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>p5play : Tiles</title>
+  <link rel="icon" href="/assets/favicon.png">
+  <link rel="stylesheet" href="/learn/style.css">
+</head>
 
-      <div class="break"></div>
+<body class="dark">
+  <article>
+    <nav id="topNav">
+      <a href="index.html" id="logoLink" class="active">
+        <img alt="p5play logo" src="/assets/p5play_logo.svg" class="logo">
+        <span>p5play</span>
+      </a>
+      <hr>
+      <a href="canvas.html">Canvas</a>
+      <a href="tiles.html" class="active">Tiles</a>
+      <a href="world.html">World</a>
+      <hr>
+      <a id="darkMode" onclick="toggleDarkMode()" tabindex="0" role="button" name="dark mode toggle">
+        <div id="darkModeIcon"></div>
+      </a>
+    </nav>
 
-      <div id="page-0" class="page">
-        <md id="md0-0"><h2 id="azulejos">Azulejos</h2>
-          <p>
-            Para el Super Mario Bros. original, el desarrollador principal,
-            Shigeru Miyamoto, y el diseñador de niveles, Takashi Tezuka,
-            <a href="https://www.youtube.com/watch?v=DLoRd6_a1CI">utilizaron papel cuadriculado para trazar los niveles</a>
-            y luego tuvieron a su equipo de programadores escribiendo las
-            coordenadas de cada sprite en el juego. ¡Eso es mucho trabajo!
-          </p>
-          <p>
-            Afortunadamente para ti, en p5play el constructor
-            <code>Tiles</code> puede hacer sprites en una cuadrícula basándose
-            en las posiciones de los caracteres en una cadena de texto!
-          </p>
-          <p>
-            El primer parámetro de entrada es una cadena de texto o un array de
-            cadenas de texto, cada línea o cadena en el array representa una
-            fila de azulejos.
-          </p>
-          <p>
-            El segundo y tercer parámetros de entrada son las coordenadas x e y
-            de la parte superior izquierda (primer) azulejo en la cuadrícula de
-            azulejos.
-          </p>
-          <p>
-            El cuarto y quinto parámetros de entrada son el ancho y alto
-            respectivamente de cada azulejo y cualquier espacio que quieras
-            añadir entre azulejos.
-          </p>
-          <h2 id="¡pruébalo">¡Pruébalo!</h2>
-          <p>Intenta editar el diseño de los ladrillos "P5".</p>
-          <p>
-            Nota que los espacios " " o puntos "." se utilizan para indicar que
-            no se deben hacer sprites en esa posición en la cuadrícula de
-            azulejos. En este ejemplo, el carácter "=" se utiliza para
-            <code>bricks</code>.
-          </p>
-        </md>
-        <script type="mie/p5" title="tiles" lines="29">
+    <div class="break"></div>
+
+    <div id="page-0" class="page">
+      <md id="md0-0">
+        <h2 id="azulejos">Azulejos</h2>
+        <p>
+          Para el Super Mario Bros. original, el desarrollador principal,
+          Shigeru Miyamoto, y el diseñador de niveles, Takashi Tezuka,
+          <a href="https://www.youtube.com/watch?v=DLoRd6_a1CI">utilizaron papel cuadriculado para trazar los
+            niveles</a>
+          y luego tuvieron a su equipo de programadores escribiendo las
+          coordenadas de cada sprite en el juego. ¡Eso es mucho trabajo!
+        </p>
+        <p>
+          Afortunadamente para ti, en p5play el constructor
+          <code>Tiles</code> puede hacer sprites en una cuadrícula basándose
+          en las posiciones de los caracteres en una cadena de texto!
+        </p>
+        <p>
+          El primer parámetro de entrada es una cadena de texto o un array de
+          cadenas de texto, cada línea o cadena en el array representa una
+          fila de azulejos.
+        </p>
+        <p>
+          El segundo y tercer parámetros de entrada son las coordenadas x e y
+          de la parte superior izquierda (primer) azulejo en la cuadrícula de
+          azulejos.
+        </p>
+        <p>
+          El cuarto y quinto parámetros de entrada son el ancho y alto
+          respectivamente de cada azulejo y cualquier espacio que quieras
+          añadir entre azulejos.
+        </p>
+        <h2 id="¡pruébalo">¡Pruébalo!</h2>
+        <p>Intenta editar el diseño de los ladrillos "P5".</p>
+        <p>
+          Nota que los espacios " " o puntos "." se utilizan para indicar que
+          no se deben hacer sprites en esa posición en la cuadrícula de
+          azulejos. En este ejemplo, el carácter "=" se utiliza para
+          <code>bricks</code>.
+        </p>
+      </md>
+      <script type="mie/p5" title="tiles" lines="29">
 let bricks;
 
 function setup() {
@@ -104,40 +109,41 @@ function draw() {
 	}
 }
 			</script>
-      </div>
-      <div id="page-1" class="page">
-        <md id="md1-0"><h2 id="coordenadas-de-azulejos">Coordenadas de Azulejos</h2>
-          <p>
-            Puedes cambiar el valor en píxeles de los valores de coordenadas
-            para todos los sprites configurando
-            <code>allSprites.tileSize</code>. Por ejemplo, si el tamaño del
-            azulejo es 8, entonces una posición x/y de 1 representa 8 píxeles, 2
-            representa 16 píxeles, 3 representa 24 píxeles, etc. Nota que esta
-            configuración también afecta a cómo se especifican las coordenadas
-            de animación.
-          </p>
-          <p>
-            En este mini-ejemplo las líneas de cuadrícula se dibujan solo como
-            referencia visual.
-          </p>
-          <p>
-            También nota que simplemente utilizando la función
-            <code>move</code> con la dirección "up" hace que el jugador se mueva
-            hacia arriba una distancia de 1 azulejo.
-          </p>
-          <p>
-            Con sólo dos reglas de colisión, el jugador puede empujar los
-            bloques y los bloques pueden empujarse entre sí también. Se ajustan
-            a la cuadrícula después de moverse.
-          </p>
-          <p>
-            Lo realmente agradable es que puedes configurar
-            <code>tileSize</code> en función de cada sprite. Si se configura
-            para un grupo, entonces todos los sprites en ese grupo utilizarán
-            ese tamaño de azulejo!
-          </p>
-        </md>
-        <script type="mie/p5" id="group.tileSize">
+    </div>
+    <div id="page-1" class="page">
+      <md id="md1-0">
+        <h2 id="coordenadas-de-azulejos">Coordenadas de Azulejos</h2>
+        <p>
+          Puedes cambiar el valor en píxeles de los valores de coordenadas
+          para todos los sprites configurando
+          <code>allSprites.tileSize</code>. Por ejemplo, si el tamaño del
+          azulejo es 8, entonces una posición x/y de 1 representa 8 píxeles, 2
+          representa 16 píxeles, 3 representa 24 píxeles, etc. Nota que esta
+          configuración también afecta a cómo se especifican las coordenadas
+          de animación.
+        </p>
+        <p>
+          En este mini-ejemplo las líneas de cuadrícula se dibujan solo como
+          referencia visual.
+        </p>
+        <p>
+          También nota que simplemente utilizando la función
+          <code>move</code> con la dirección "up" hace que el jugador se mueva
+          hacia arriba una distancia de 1 azulejo.
+        </p>
+        <p>
+          Con sólo dos reglas de colisión, el jugador puede empujar los
+          bloques y los bloques pueden empujarse entre sí también. Se ajustan
+          a la cuadrícula después de moverse.
+        </p>
+        <p>
+          Lo realmente agradable es que puedes configurar
+          <code>tileSize</code> en función de cada sprite. Si se configura
+          para un grupo, entonces todos los sprites en ese grupo utilizarán
+          ese tamaño de azulejo!
+        </p>
+      </md>
+      <script type="mie/p5" id="group.tileSize">
 let player, blocks;
 let gridSize = 32;
 
@@ -177,32 +183,34 @@ function draw() {
 	if (kb.presses('right')) player.move(1, 'right');
 }
 			</script>
+    </div>
+
+    <div class="break"></div>
+    <div id="toc">
+      <a id="prevPage" class="navLink">Página anterior</a>
+      <div id="pageNav" class="submenu">
+        <a data-page="0" href="tiles.html?page=0">Constructor de Azulejos</a>
+        <a data-page="1" href="tiles.html?page=1">Uso de tamaño de Azulejo</a>
       </div>
+      <a id="nextPage" class="navLink">Siguiente página</a>
+    </div>
+    <div class="break"></div>
+    <footer id="credits" class="text-small">
+      Creado por Quinton Ashley (@quinton-ashley) derechos de autor 2022-2023
+    </footer>
+  </article>
 
-      <div class="break"></div>
-      <div id="toc">
-        <a id="prevPage" class="navLink">Página anterior</a>
-        <div id="pageNav" class="submenu">
-          <a data-page="0" href="tiles.html?page=0">Constructor de Azulejos</a>
-          <a data-page="1" href="tiles.html?page=1">Uso de tamaño de Azulejo</a>
-        </div>
-        <a id="nextPage" class="navLink">Siguiente página</a>
-      </div>
-      <div class="break"></div>
-      <footer id="credits" class="text-small">
-        Creado por Quinton Ashley (@quinton-ashley) derechos de autor 2022-2023
-      </footer>
-    </article>
+  <script src="/v3/q5.min.js"></script>
+  <script src="/v3/planck.min.js"></script>
+  <script src="/v3/p5play.min.js"></script>
 
-    <script src="/v3/q5.min.js"></script>
-    <script src="/v3/planck.min.js"></script>
-    <script src="/v3/p5play.min.js"></script>
+  <script>
+    window.mie = { autoLoad: false };
+  </script>
+  <script src="/learn/mie.js"></script>
+  <script src="/learn/learn.js"></script>
 
-    <script>
-      window.mie = { autoLoad: false };
-    </script>
-    <script src="/learn/mie.js"></script>
-    <script src="/learn/learn.js"></script>
-  
 
-</body></html>
+</body>
+
+</html>

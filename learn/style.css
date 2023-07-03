@@ -3,10 +3,10 @@ html {
 	--blue: #b7ebff;
 
 	--pink0: #ff0a52;
-	--pink1: #ff0a52;
+	--pink1: #eb0043;
 
 	--blue0: #b7ebff;
-	--blue1: #1a88d6;
+	--blue1: #1779C4;
 	--blue2: #f0f8ff;
 
 	--primary: #000;
@@ -22,9 +22,8 @@ html:has(body.dark) {
 
 body.dark {
 	--pink0: #ea104e;
-	--pink1: #ff0851;
+	--pink1: #ff0a52;
 
-	/* --blue0: #2880c2; */
 	--blue0: #4eaee9;
 	--blue1: #4eaee9;
 	--blue2: #002340;
@@ -386,7 +385,7 @@ nav {
 
 #langNav a.active,
 #langNav a:hover {
-	color: var(--pink0);
+	color: var(--pink1);
 }
 
 .page>md>:first-child,

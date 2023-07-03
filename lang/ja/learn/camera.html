@@ -1,39 +1,43 @@
-<!DOCTYPE html><html lang="ja"><head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>p5play : Camera</title>
-    <link rel="icon" href="/assets/favicon.png">
-    <link rel="stylesheet" href="/learn/style.css">
-  </head>
+<!DOCTYPE html>
+<html lang="ja">
 
-  <body class="dark">
-    <article>
-      <nav id="topNav">
-        <a href="index.html" id="logoLink" class="active">
-          <img alt="p5play logo" src="/assets/p5play_logo.svg" class="logo">
-          <span>p5play</span>
-        </a>
-        <hr>
-        <a href="sprite.html">Sprite</a>
-        <a href="group.html">Group</a>
-        <a href="sprite_animation.html">Ani</a>
-        <a href="input_devices.html">Input</a>
-        <a href="camera.html" class="active">Camera</a>
-        <a href="joints.html">Joints</a>
-        <a href="canvas.html">...</a>
-        <hr>
-        <a id="darkMode" onclick="toggleDarkMode()" tabindex="0" role="button">
-          <div id="darkModeIcon"></div>
-        </a>
-      </nav>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>p5play : Camera</title>
+  <link rel="icon" href="/assets/favicon.png">
+  <link rel="stylesheet" href="/learn/style.css">
+</head>
 
-      <div class="break"></div>
+<body class="dark">
+  <article>
+    <nav id="topNav">
+      <a href="index.html" id="logoLink" class="active">
+        <img alt="p5play logo" src="/assets/p5play_logo.svg" class="logo">
+        <span>p5play</span>
+      </a>
+      <hr>
+      <a href="sprite.html">Sprite</a>
+      <a href="group.html">Group</a>
+      <a href="sprite_animation.html">Ani</a>
+      <a href="input_devices.html">Input</a>
+      <a href="camera.html" class="active">Camera</a>
+      <a href="joints.html">Joints</a>
+      <a href="canvas.html">...</a>
+      <hr>
+      <a id="darkMode" onclick="toggleDarkMode()" tabindex="0" role="button" name="dark mode toggle">
+        <div id="darkModeIcon"></div>
+      </a>
+    </nav>
 
-      <div id="page-0" class="page">
-        <md id="md0-0"><h2 id="カメラ">カメラ</h2>
-          <p>この例では、カメラがプレイヤーの x 軸の動きを追います。</p>
-        </md>
-        <script type="mie/p5" id="sidescrolling-camera">
+    <div class="break"></div>
+
+    <div id="page-0" class="page">
+      <md id="md0-0">
+        <h2 id="カメラ">カメラ</h2>
+        <p>この例では、カメラがプレイヤーの x 軸の動きを追います。</p>
+      </md>
+      <script type="mie/p5" id="sidescrolling-camera">
 let player, floor;
 
 function setup() {
@@ -53,34 +57,35 @@ function draw() {
 	camera.x = player.x;
 }
 			</script>
-      </div>
-      <div id="page-1" class="page">
-        <md id="md1-0"><h2 id="カメラのオンオフ">カメラのオン/オフ</h2>
-          <p>
-            デフォルトでは、<code>allSprites.draw()</code>は p5.js
-            の描画ループの終了時に呼び出されます。しかし、スプライトとグループが描画されるタイミングを制御したい場合は、それらを別々に描画することができます。
-          </p>
-          <p>
-            ゲームのプレイヤーと環境は、カメラがオンの状態で描画するべきです。
-          </p>
-          <p>
-            UI または HUD
-            のスプライトは、この例ではオレンジの四角で表されており、カメラがオフのときに描画されるべきです。
-          </p>
-          <p>
-            <code>camera.zoom</code>は、カメラをズームインおよびズームアウトするために使用できます。
-          </p>
-          <p>
-            <code>camera.zoomTo(target, speed)</code>は、カメラをスムーズにズームインおよびズームアウトするために使用できる非同期関数です。これはオプションの
-            2 つ目のパラメーターを取り、それはフレームごとにズームする量です。
-          </p>
-          <p>
-            <code>mouse.x</code>は、キャンバスよりも大きい可能性があるワールドに対するマウスの x
-            位置を保存します。<code>camera.mouse.x</code>は、キャンバスに対するマウスの
-            x 位置を保存します。
-          </p>
-        </md>
-        <script type="mie/p5" id="overhead-camera">
+    </div>
+    <div id="page-1" class="page">
+      <md id="md1-0">
+        <h2 id="カメラのオンオフ">カメラのオン/オフ</h2>
+        <p>
+          デフォルトでは、<code>allSprites.draw()</code>は p5.js
+          の描画ループの終了時に呼び出されます。しかし、スプライトとグループが描画されるタイミングを制御したい場合は、それらを別々に描画することができます。
+        </p>
+        <p>
+          ゲームのプレイヤーと環境は、カメラがオンの状態で描画するべきです。
+        </p>
+        <p>
+          UI または HUD
+          のスプライトは、この例ではオレンジの四角で表されており、カメラがオフのときに描画されるべきです。
+        </p>
+        <p>
+          <code>camera.zoom</code>は、カメラをズームインおよびズームアウトするために使用できます。
+        </p>
+        <p>
+          <code>camera.zoomTo(target, speed)</code>は、カメラをスムーズにズームインおよびズームアウトするために使用できる非同期関数です。これはオプションの
+          2 つ目のパラメーターを取り、それはフレームごとにズームする量です。
+        </p>
+        <p>
+          <code>mouse.x</code>は、キャンバスよりも大きい可能性があるワールドに対するマウスの x
+          位置を保存します。<code>camera.mouse.x</code>は、キャンバスに対するマウスの
+          x 位置を保存します。
+        </p>
+      </md>
+      <script type="mie/p5" id="overhead-camera">
 let player;
 
 function setup() {
@@ -119,20 +124,21 @@ function draw() {
 	}
 }
 			</script>
-      </div>
-      <div id="page-2" class="page">
-        <md id="md2-0"><h2 id="カメラとマウスイベント">カメラとマウスイベント</h2>
-          <p>この例では、カメラは sin 波を使用して左右に移動します。</p>
-          <p>
-            大きなスプライトは、カメラがオンのときにワールドスペースで描画されます。大きなスプライトは移動しませんが、カメラが移動しているために移動しているように見えます。
-          </p>
-          <p>
-            小さなスプライトは、カメラがオフのスクリーンスペース（UI）で描画されます。あなたがゲーム内の
-            UI
-            要素、例えばポーズボタンのスプライトを作りたい場合、カメラがオフのときに作成するべきです。
-          </p>
-        </md>
-        <script type="mie/p5" id="mouse-camera">
+    </div>
+    <div id="page-2" class="page">
+      <md id="md2-0">
+        <h2 id="カメラとマウスイベント">カメラとマウスイベント</h2>
+        <p>この例では、カメラは sin 波を使用して左右に移動します。</p>
+        <p>
+          大きなスプライトは、カメラがオンのときにワールドスペースで描画されます。大きなスプライトは移動しませんが、カメラが移動しているために移動しているように見えます。
+        </p>
+        <p>
+          小さなスプライトは、カメラがオフのスクリーンスペース（UI）で描画されます。あなたがゲーム内の
+          UI
+          要素、例えばポーズボタンのスプライトを作りたい場合、カメラがオフのときに作成するべきです。
+        </p>
+      </md>
+      <script type="mie/p5" id="mouse-camera">
 let big, small;
 
 function setup() {
@@ -164,34 +170,36 @@ function draw() {
 	small.draw();
 }
 			</script>
+    </div>
+
+    <div class="break"></div>
+    <div id="toc">
+      <a id="prevPage" class="navLink">前のページ</a>
+      <div id="pageNav" class="submenu">
+        <a data-page="0" href="camera.html?page=0">基本的な使用法</a>
+        <a data-page="1" href="camera.html?page=1">オン/オフ</a>
+        <a data-page="2" href="camera.html?page=2">カメラを使用したマウスイベント</a>
       </div>
+      <a id="nextPage" class="navLink">次のページ</a>
+    </div>
+    <div class="break"></div>
+    <footer id="credits" class="text-small">
+      クリントン・アシュリー（@quinton-ashley）によって作成されました 著作権
+      2022-2023
+    </footer>
+  </article>
 
-      <div class="break"></div>
-      <div id="toc">
-        <a id="prevPage" class="navLink">前のページ</a>
-        <div id="pageNav" class="submenu">
-          <a data-page="0" href="camera.html?page=0">基本的な使用法</a>
-          <a data-page="1" href="camera.html?page=1">オン/オフ</a>
-          <a data-page="2" href="camera.html?page=2">カメラを使用したマウスイベント</a>
-        </div>
-        <a id="nextPage" class="navLink">次のページ</a>
-      </div>
-      <div class="break"></div>
-      <footer id="credits" class="text-small">
-        クリントン・アシュリー（@quinton-ashley）によって作成されました 著作権
-        2022-2023
-      </footer>
-    </article>
+  <script src="/v3/q5.min.js"></script>
+  <script src="/v3/planck.min.js"></script>
+  <script src="/v3/p5play.js"></script>
 
-    <script src="/v3/q5.min.js"></script>
-    <script src="/v3/planck.min.js"></script>
-    <script src="/v3/p5play.js"></script>
+  <script>
+    window.mie = { autoLoad: false };
+  </script>
+  <script src="/learn/mie.js"></script>
+  <script src="/learn/learn.js"></script>
 
-    <script>
-      window.mie = { autoLoad: false };
-    </script>
-    <script src="/learn/mie.js"></script>
-    <script src="/learn/learn.js"></script>
-  
 
-</body></html>
+</body>
+
+</html>
