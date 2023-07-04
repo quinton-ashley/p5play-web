@@ -60,7 +60,8 @@ let refs = {
 	},
 	'Camera.html': {
 		0: ['x', 'y'],
-		1: ['zoom', 'zoomTo', 'on', 'off', 'mouse']
+		1: ['zoom', 'zoomTo'],
+		2: ['on', 'off', 'mouse']
 	},
 	'Canvas.html': {
 		0: ['w', 'h', '"w:h"'],
