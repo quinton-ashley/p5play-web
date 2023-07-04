@@ -94,52 +94,48 @@ test('Group: Constructor', () => {
 });
 
 test('Group: Properties', () => {
-	return new Promise((resolve) => {
-		const sketch = (p) => {
-			p.setup = () => {
-				new p.Canvas(400, 400);
-				p.noLoop();
+	const sketch = (p) => {
+		p.setup = () => {
+			new p.Canvas(400, 400);
+			p.noLoop();
 
-				const group = new p.Group();
+			const group = new p.Group();
 
-				expect(group.idNum).toBeDefined();
+			expect(group.idNum).toBeDefined();
 
-				// Add and remove sprites..
-				const sprite1 = new p.Sprite();
-				const sprite2 = new p.Sprite();
+			// Add and remove sprites..
+			const sprite1 = new p.Sprite();
+			const sprite2 = new p.Sprite();
 
-				group.add(sprite1, sprite2);
-				expect(group).toHaveLength(2);
+			group.add(sprite1, sprite2);
+			expect(group).toHaveLength(2);
 
-				group.remove(sprite1);
-				expect(group).toHaveLength(1);
-				expect(group[0]).toBe(sprite2);
+			group.remove(sprite1);
+			expect(group).toHaveLength(1);
+			expect(group[0]).toBe(sprite2);
 
-				group.removeAll();
-				expect(group).toHaveLength(0);
+			group.removeAll();
+			expect(group).toHaveLength(0);
 
-				// set the current animation..
-				const animation = new p.SpriteAnimation();
-				group.ani = animation;
+			// set the current animation..
+			const animation = new p.SpriteAnimation();
+			group.ani = animation;
 
-				expect(group.ani).toEqual(animation);
-				expect(group.animation).toEqual(animation);
-				expect(group.length).toEqual(0);
+			expect(group.ani).toEqual(animation);
+			expect(group.animation).toEqual(animation);
+			expect(group.length).toEqual(0);
 
-				group.amount = 5;
-				expect(group.length).toEqual(5);
+			group.amount = 5;
+			expect(group.length).toEqual(5);
 
-				group.amount = 2;
-				expect(group.length).toEqual(2);
+			group.amount = 2;
+			expect(group.length).toEqual(2);
 
-				group.amount = 0;
-				expect(group.length).toEqual(0);
-
-				resolve();
-			};
+			group.amount = 0;
+			expect(group.length).toEqual(0);
 		};
-		new p5(sketch);
-	});
+	};
+	new p5(sketch);
 });
 
 test('Group: Methods', () => {

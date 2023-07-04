@@ -17,7 +17,7 @@
 			"nextPage": "Next Page",
 			"credits": "Created by Quinton Ashley (@quinton-ashley) Copyright 2022-2023"
 		},
-		"camera": ["Basic Usage", "On/Off", "Mouse Events with the Camera"],
+		"camera": ["Movement", "Zoom", "On/Off", "Mouse Events with the Camera"],
 		"canvas": ["Canvas constructor", "Pixelated Mode"],
 		"group": [
 			"Soft and Dynamic Inheritance",

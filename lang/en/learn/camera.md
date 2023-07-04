@@ -1,10 +1,18 @@
 # 0-0
 
-## Camera
+## Camera Movement
 
 In this example the camera follows the player's x axis movement.
 
 # 1-0
+
+## Camera Zoom
+
+`camera.zoom` changes the scale that sprites and other elements in the world are drawn at. Increasing the zoom will make sprites appear larger, and decreasing the zoom will make sprites appear smaller.
+
+`camera.zoomTo(target, speed)` is an async function that can be used to smoothly zoom the camera in and out. It takes an optional second parameter, the amount it will zoom per frame.
+
+# 2-0
 
 ## Camera On/Off
 
@@ -14,13 +22,9 @@ The player and environment of your game should be drawn with the camera on.
 
 UI or HUD sprites, represented by orange squares in this examples, should be drawn when the camera is off.
 
-`camera.zoom` can be used to zoom the camera in and out.
-
-`camera.zoomTo(target, speed)` is an async function that can be used to smoothly zoom the camera in and out. It takes an optional second parameter, the amount it will zoom per frame.
-
 `mouse.x` stores the x position of the mouse in relation to the world, which can be larger than the canvas. `camera.mouse.x` stores the x position of the mouse in relation to the canvas.
 
-# 2-0
+# 3-0
 
 ## Mouse Events with the Camera
 

@@ -17,7 +17,7 @@
 			"nextPage": "Siguiente página",
 			"credits": "Creado por Quinton Ashley (@quinton-ashley) derechos de autor 2022-2023"
 		},
-		"camera": ["Uso Básico", "Encendido/Apagado", "Eventos del Ratón con la Cámara"],
+		"camera": ["Movimiento", "Acercar", "Encendido/Apagado", "Eventos del Ratón con la Cámara"],
 		"canvas": ["Constructor de Lienzo", "Modo Pixelado"],
 		"group": [
 			"Heredencia Suave y Dinámica",
