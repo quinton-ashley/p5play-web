@@ -1,61 +1,57 @@
-<!DOCTYPE html>
-<html lang="es">
+<!DOCTYPE html><html lang="es"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>p5play : Animation</title>
+    <link rel="icon" href="/assets/favicon.png">
+    <link rel="stylesheet" href="/learn/style.css">
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>p5play : Animation</title>
-  <link rel="icon" href="/assets/favicon.png">
-  <link rel="stylesheet" href="/learn/style.css">
-</head>
+  <body class="dark">
+    <article>
+      <nav id="topNav">
+        <a href="index.html" id="logoLink" class="active">
+          <img alt="p5play logo" src="/assets/p5play_logo.svg" class="logo">
+          <span>p5play</span>
+        </a>
+        <hr>
+        <a href="sprite.html">Sprite</a>
+        <a href="group.html">Group</a>
+        <a href="sprite_animation.html" class="active">Ani</a>
+        <a href="input_devices.html">Input</a>
+        <a href="camera.html">Camera</a>
+        <a href="joints.html">Joints</a>
+        <a href="canvas.html">...</a>
+        <hr>
+        <a id="darkMode" onclick="toggleDarkMode()" tabindex="0" role="button" title="dark mode toggle">
+          <div id="darkModeIcon"></div>
+        </a>
+      </nav>
 
-<body class="dark">
-  <article>
-    <nav id="topNav">
-      <a href="index.html" id="logoLink" class="active">
-        <img alt="p5play logo" src="/assets/p5play_logo.svg" class="logo">
-        <span>p5play</span>
-      </a>
-      <hr>
-      <a href="sprite.html">Sprite</a>
-      <a href="group.html">Group</a>
-      <a href="sprite_animation.html" class="active">Ani</a>
-      <a href="input_devices.html">Input</a>
-      <a href="camera.html">Camera</a>
-      <a href="joints.html">Joints</a>
-      <a href="canvas.html">...</a>
-      <hr>
-      <a id="darkMode" onclick="toggleDarkMode()" tabindex="0" role="button" title="dark mode toggle">
-        <div id="darkModeIcon"></div>
-      </a>
-    </nav>
+      <div class="break"></div>
 
-    <div class="break"></div>
-
-    <div id="page-0" class="page">
-      <md id="md0-0">
-        <h2 id="cómo-cargar-animaciones">Cómo cargar animaciones</h2>
-        <p>
-          Una animación es una serie de imágenes que se muestran una después
-          de la otra a una velocidad suficiente para dar la apariencia de
-          movimiento.
-        </p>
-        <p>
-          La función <code>loadAni</code> tiene tres modos diferentes:
-          secuencia, lista y hoja de sprites.
-        </p>
-        <p>
-          En este mini ejemplo, la animación de la nube respirando se carga
-          utilizando una secuencia numerada de imágenes dada la ruta a la
-          primera imagen y el índice de la última imagen en la secuencia.
-        </p>
-        <p>
-          La función <code>animation</code> es similar a la función
-          <code>image</code> de p5.js. Úsala en la función draw de p5.js para
-          mostrar una animación en una posición.
-        </p>
-      </md>
-      <script type="mie/p5" id="sequence-mode">
+      <div id="page-0" class="page">
+        <md id="md0-0"><h2 id="cómo-cargar-animaciones">Cómo cargar animaciones</h2>
+          <p>
+            Una animación es una serie de imágenes que se muestran una después
+            de la otra a una velocidad suficiente para dar la apariencia de
+            movimiento.
+          </p>
+          <p>
+            La función <code>loadAni</code> tiene tres modos diferentes:
+            secuencia, lista y hoja de sprites.
+          </p>
+          <p>
+            En este mini ejemplo, la animación de la nube respirando se carga
+            utilizando una secuencia numerada de imágenes dada la ruta a la
+            primera imagen y el índice de la última imagen en la secuencia.
+          </p>
+          <p>
+            La función <code>animation</code> es similar a la función
+            <code>image</code> de p5.js. Úsala en la función draw de p5.js para
+            mostrar una animación en una posición.
+          </p>
+        </md>
+        <script type="mie/p5" id="sequence-mode">
 let cloudAni;
 
 function setup() {
@@ -69,22 +65,21 @@ function draw() {
 	animation(cloudAni, 250, 80);
 }
 			</script>
-      <md id="md0-1">
-        <p>
-          En este mini ejemplo, la función <code>loadAnimation</code> recibe
-          una lista de imágenes.
-        </p>
-        <p>
-          La propiedad <code>ani.frameDelay</code> define cuántos frames se
-          muestra una imagen en la animación antes de que se muestre la
-          siguiente imagen. El valor predeterminado es 4. Los valores más
-          altos hacen que la animación se reproduzca más lentamente. Un
-          retraso de frame de 1 haría que la animación se reproduzca lo más
-          rápido posible.
-        </p>
-        <p>¡Pruébalo! Intenta cambiar el frameDelay en este mini-ejemplo.</p>
-      </md>
-      <script type="mie/p5" id="list-mode">
+        <md id="md0-1"><p>
+            En este mini ejemplo, la función <code>loadAnimation</code> recibe
+            una lista de imágenes.
+          </p>
+          <p>
+            La propiedad <code>ani.frameDelay</code> define cuántos frames se
+            muestra una imagen en la animación antes de que se muestre la
+            siguiente imagen. El valor predeterminado es 4. Los valores más
+            altos hacen que la animación se reproduzca más lentamente. Un
+            retraso de frame de 1 haría que la animación se reproduzca lo más
+            rápido posible.
+          </p>
+          <p>¡Pruébalo! Intenta cambiar el frameDelay en este mini-ejemplo.</p>
+        </md>
+        <script type="mie/p5" id="list-mode">
 let shapeShifterAni;
 
 function setup() {
@@ -108,25 +103,24 @@ function draw() {
 	animation(shapeShifterAni, 250, 80);
 }
 			</script>
-      <md id="md0-2">
-        <p>
-          Este mini ejemplo carga una animación desde una hoja de sprites, que
-          es una sola imagen que contiene todos los frames de una animación.
-          Echa un vistazo a la hoja de sprites en este sketch que se muestra
-          sólo para que puedas ver cómo es una.
-        </p>
-        <p>
-          En el modo de hoja de sprites, se puede utilizar un objeto atlas
-          para especificar el tamaño de cada frame y cuántos frames de
-          animación hay.
-        </p>
-        <p>
-          Si realmente necesitas usar una animación cuando tu programa
-          comienza, deberías cargarla en la función preload de p5.js en lugar
-          de en setup.
-        </p>
-      </md>
-      <script type="mie/p5" id="sprite-sheet-mode">
+        <md id="md0-2"><p>
+            Este mini ejemplo carga una animación desde una hoja de sprites, que
+            es una sola imagen que contiene todos los frames de una animación.
+            Echa un vistazo a la hoja de sprites en este sketch que se muestra
+            sólo para que puedas ver cómo es una.
+          </p>
+          <p>
+            En el modo de hoja de sprites, se puede utilizar un objeto atlas
+            para especificar el tamaño de cada frame y cuántos frames de
+            animación hay.
+          </p>
+          <p>
+            Si realmente necesitas usar una animación cuando tu programa
+            comienza, deberías cargarla en la función preload de p5.js en lugar
+            de en setup.
+          </p>
+        </md>
+        <script type="mie/p5" id="sprite-sheet-mode">
 let splatAni;
 
 function setup() {
@@ -144,17 +138,16 @@ function draw() {
 }
 //
 			</script>
-    </div>
-    <div id="page-1" class="page">
-      <md id="md1-0">
-        <h2 id="animando">Animando</h2>
-        <p>p5play te da control total sobre tus animaciones.</p>
-        <p>
-          ¡Intenta usar tu teclado para probar algunas de las diferentes
-          formas de controlar las animaciones!
-        </p>
-      </md>
-      <script type="mie/p5" id="splat">
+      </div>
+      <div id="page-1" class="page">
+        <md id="md1-0"><h2 id="animando">Animando</h2>
+          <p>p5play te da control total sobre tus animaciones.</p>
+          <p>
+            ¡Intenta usar tu teclado para probar algunas de las diferentes
+            formas de controlar las animaciones!
+          </p>
+        </md>
+        <script type="mie/p5" id="splat">
 let ani;
 
 function setup() {
@@ -185,46 +178,44 @@ function draw() {
 	animation(ani, 250, 80);
 }
 			</script>
-    </div>
-    <div id="page-2" class="page">
-      <div class="minis horiz">
-        <md id="md2-0">
-          <h2 id="sprites-con-animaciones">Sprites con Animaciones</h2>
-          <p>
-            La función sprite.addAni puede agregar una animación a un sprite.
-            También puede cargar la animación, al igual que loadAni. Como un
-            primer parámetro de entrada opcional, puedes proporcionar un
-            nombre para la animación.
-          </p>
-          <p>
-            Intenta presionar el botón izquierdo del ratón. Cuando la
-            propiedad <code>sprite.debug</code> está configurada como
-            verdadera, puedes ver el colisionador del cuerpo físico del
-            sprite.
-          </p>
-        </md>
-        <md id="md2-1">
-          <h2 id="controlar-la-animación-de-un-sprite">
-            Controlar la Animación de un Sprite
-          </h2>
-          <p>
-            <code>sprite.ani</code> almacena la animación actual del sprite,
-            que puede cambiarse al nombre de una animación diferente.
-          </p>
-          <p>
-            <code>sprite.mirror</code> puede ser utilizado para voltear el
-            sprite horizontal o verticalmente.
-          </p>
-          <p>
-            Intenta presionar izquierda y derecha para hacer mover el
-            fantasma.
-          </p>
-          <p>
-            Intenta presionar la barra espaciadora para detener la animación.
-          </p>
-        </md>
       </div>
-      <script type="mie/p5" id="sprites-with-animation">
+      <div id="page-2" class="page">
+        <div class="minis horiz">
+          <md id="md2-0"><h2 id="sprites-con-animaciones">Sprites con Animaciones</h2>
+            <p>
+              La función sprite.addAni puede agregar una animación a un sprite.
+              También puede cargar la animación, al igual que loadAni. Como un
+              primer parámetro de entrada opcional, puedes proporcionar un
+              nombre para la animación.
+            </p>
+            <p>
+              Intenta presionar el botón izquierdo del ratón. Cuando la
+              propiedad <code>sprite.debug</code> está configurada como
+              verdadera, puedes ver el colisionador del cuerpo físico del
+              sprite.
+            </p>
+          </md>
+          <md id="md2-1"><h2 id="controlar-la-animación-de-un-sprite">
+              Controlar la Animación de un Sprite
+            </h2>
+            <p>
+              <code>sprite.ani</code> almacena la animación actual del sprite,
+              que puede cambiarse al nombre de una animación diferente.
+            </p>
+            <p>
+              <code>sprite.mirror</code> puede ser utilizado para voltear el
+              sprite horizontal o verticalmente.
+            </p>
+            <p>
+              Intenta presionar izquierda y derecha para hacer mover el
+              fantasma.
+            </p>
+            <p>
+              Intenta presionar la barra espaciadora para detener la animación.
+            </p>
+          </md>
+        </div>
+        <script type="mie/p5" id="sprites-with-animation">
 let ghost;
 
 function setup() {
@@ -260,23 +251,21 @@ function draw() {
 	}
 }
 			</script>
-    </div>
-    <div id="page-3" class="page">
-      <md id="md3-0">
-        <h2 id="grupos-con-animaciones">Grupos con Animaciones</h2>
-        <p>
-          Si un grupo tiene sólo una animación, los nuevos sprites del grupo
-          utilizarán esa animación. De lo contrario, por defecto el sprite
-          obtiene la última animación cargada.
-        </p>
-        <p>
-          Observa que en este mini-ejemplo si colocas manchas demasiado cerca,
-          se alejarán hasta que sus colisionadores ya no estén superpuestos.
-          El tamaño del colisionador se toma del tamaño de la animación.
-        </p>
-        <p>¡Intenta hacer clic con el ratón para añadir nuevas manchas!</p>
-      </md>
-      <script type="mie/p5" id="splats">
+      </div>
+      <div id="page-3" class="page">
+        <md id="md3-0"><h2 id="grupos-con-animaciones">Grupos con Animaciones</h2>
+          <p>
+            Si se agrega una animación a un grupo, los nuevos sprites del grupo
+            recibirán una copia de esa animación.
+          </p>
+          <p>
+            Observa que en este mini-ejemplo si colocas manchas demasiado cerca,
+            se alejarán hasta que sus colisionadores ya no estén superpuestos.
+            El tamaño del colisionador se toma del tamaño de la animación.
+          </p>
+          <p>¡Intenta hacer clic con el ratón para añadir nuevas manchas!</p>
+        </md>
+        <script type="mie/p5" id="splats">
 let splats;
 
 function setup() {
@@ -294,86 +283,83 @@ function draw() {
 	}
 }
 			</script>
-    </div>
-    <div id="page-4" class="page">
-      <div class="minis">
-        <md id="md4-0">
-          <h2 id="hojas-de-sprites-con-múltiples-animaciones">
-            Hojas de Sprites con Múltiples Animaciones
-          </h2>
-          <p>
-            Para cargar múltiples animaciones desde la misma imagen de la hoja
-            de sprites, primero configura la propiedad
-            <code>spriteSheet</code> del sprite o grupo.
-          </p>
-          <p>
-            A continuación, utiliza la función <code>addAnimations</code> /
-            <code>addAnis</code>. Aceptan un objeto que utiliza los nombres de
-            las animaciones como claves y los atlas de las hojas de sprites
-            como valores.
-          </p>
-          <p>
-            ¡Usar un objeto atlas es mucho más fácil que especificar
-            manualmente las coordenadas de cada frame!
-          </p>
-          <p>Los objetos atlas pueden tener las siguientes propiedades:</p>
-          <p>
-            <code>x</code>, <code>y</code>, <code>pos</code>,
-            <code>w</code>/<code>width</code>,
-            <code>h</code>/<code>height</code>,
-            <code>size</code>/<code>frameSize</code>, <code>row</code>,
-            <code>col</code>, <code>frames</code>/<code>frameCount</code>,
-            <code>delay</code>/<code>frameDelay</code>, y
-            <code>rotation</code>.
-          </p>
-          <p>
-            En el ejemplo del "héroe", el tamaño del sprite del héroe se
-            establece en 32x32 píxeles en el constructor <code>Sprite</code>.
-            Ese tamaño se utiliza como multiplicador para el valor de la fila
-            dado.
-          </p>
-          <p>
-            Haz clic en este enlace para ver la
-            <a href="assets/questKid.png">hoja de sprites completa</a>
-            utilizada en el ejemplo.
-          </p>
-          <p>
-            Si realmente quieres apreciar lo bueno que es p5play, intenta
-            comparar el código de mi ejemplo con
-            <a href="https://labs.phaser.io/view.html?src=src/animation/create%20animation%20from%20sprite%20sheet.js">esta
-              demo de Phaser</a>. ¡Ja!
-          </p>
-          <p>
-            Recomiendo hacer que cada frame en una animación tenga el mismo
-            tamaño y ponerlos en orden de izquierda a derecha. Si no, tendrás
-            que especificar manualmente la posición de cada frame, lo cual se
-            puede hacer utilizando una matriz de coordenadas en lugar de un
-            objeto atlas.
-          </p>
-        </md>
-        <md id="md4-1">
-          <h2 id="anis">anis</h2>
-          <p>
-            Cada sprite y grupo tiene un objeto <code>animations</code> /
-            <code>anis</code> que almacena sus animaciones. Las claves son
-            nombres de animación y los valores son objetos de animación.
-            Funciona como lo hacen los grupos, utilizando herencia suave y
-            dinámica.
-          </p>
-          <p>
-            La propiedad <code>ani.offset</code> se utiliza para ajustar la
-            posición de una animación en relación con la posición del sprite.
-          </p>
-          <p>
-            Cuando <code>sprite.pixelPerfect</code> está configurado como
-            verdadero, el sprite se dibuja en coordenadas enteras, mientras
-            que mantiene la posición precisa de su colisionador. ¡Esto es útil
-            para los juegos de arte pixelado!
-          </p>
-        </md>
       </div>
-      <div class="minis horiz">
-        <script type="mie/p5" id="hero-demoMode" hide-editor="">
+      <div id="page-4" class="page">
+        <div class="minis">
+          <md id="md4-0"><h2 id="hojas-de-sprites-con-múltiples-animaciones">
+              Hojas de Sprites con Múltiples Animaciones
+            </h2>
+            <p>
+              Para cargar múltiples animaciones desde la misma imagen de la hoja
+              de sprites, primero configura la propiedad
+              <code>spriteSheet</code> del sprite o grupo.
+            </p>
+            <p>
+              A continuación, utiliza la función <code>addAnimations</code> /
+              <code>addAnis</code>. Aceptan un objeto que utiliza los nombres de
+              las animaciones como claves y los atlas de las hojas de sprites
+              como valores.
+            </p>
+            <p>
+              ¡Usar un objeto atlas es mucho más fácil que especificar
+              manualmente las coordenadas de cada frame!
+            </p>
+            <p>Los objetos atlas pueden tener las siguientes propiedades:</p>
+            <p>
+              <code>x</code>, <code>y</code>, <code>pos</code>,
+              <code>w</code>/<code>width</code>,
+              <code>h</code>/<code>height</code>,
+              <code>size</code>/<code>frameSize</code>, <code>row</code>,
+              <code>col</code>, <code>frames</code>/<code>frameCount</code>,
+              <code>delay</code>/<code>frameDelay</code>, y
+              <code>rotation</code>.
+            </p>
+            <p>
+              En el ejemplo del "héroe", el tamaño del sprite del héroe se
+              establece en 32x32 píxeles en el constructor <code>Sprite</code>.
+              Ese tamaño se utiliza como multiplicador para el valor de la fila
+              dado.
+            </p>
+            <p>
+              Haz clic en este enlace para ver la
+              <a href="assets/questKid.png">hoja de sprites completa</a>
+              utilizada en el ejemplo.
+            </p>
+            <p>
+              Si realmente quieres apreciar lo bueno que es p5play, intenta
+              comparar el código de mi ejemplo con
+              <a href="https://labs.phaser.io/view.html?src=src/animation/create%20animation%20from%20sprite%20sheet.js">esta demo de Phaser</a>. ¡Ja!
+            </p>
+            <p>
+              Recomiendo hacer que cada frame en una animación tenga el mismo
+              tamaño y ponerlos en orden de izquierda a derecha. Si no, tendrás
+              que especificar manualmente la posición de cada frame, lo cual se
+              puede hacer utilizando una matriz de coordenadas en lugar de un
+              objeto atlas.
+            </p>
+          </md>
+          <md id="md4-1"><h2 id="anis">anis</h2>
+            <p>
+              Cada sprite y grupo tiene un objeto <code>animations</code> /
+              <code>anis</code> que almacena sus animaciones. Las claves son
+              nombres de animación y los valores son objetos de animación.
+              Funciona como lo hacen los grupos, utilizando herencia suave y
+              dinámica.
+            </p>
+            <p>
+              La propiedad <code>ani.offset</code> se utiliza para ajustar la
+              posición de una animación en relación con la posición del sprite.
+            </p>
+            <p>
+              Cuando <code>sprite.pixelPerfect</code> está configurado como
+              verdadero, el sprite se dibuja en coordenadas enteras, mientras
+              que mantiene la posición precisa de su colisionador. ¡Esto es útil
+              para los juegos de arte pixelado!
+            </p>
+          </md>
+        </div>
+        <div class="minis horiz">
+          <script type="mie/p5" id="hero-demoMode" hide-editor="">
 let hero;
 
 function preload() {
@@ -410,7 +396,7 @@ function draw() {
 	
 }
 				</script>
-        <script type="mie/p5" id="hero">
+          <script type="mie/p5" id="hero">
 let hero;
 
 function preload() {
@@ -443,31 +429,30 @@ function draw() {
 	if (kb.presses('s')) hero.ani = 'stand';
 }
 				</script>
+        </div>
       </div>
-    </div>
-    <div id="page-5" class="page">
-      <md id="md5-0">
-        <h2 id="secuenciación-de-animaciones">
-          Secuenciación de Animaciones
-        </h2>
-        <p>
-          <code>sprite.ani</code> puede ser configurado como un objeto de
-          animación, nombre de animación, o matriz de nombres de animación que
-          se reproducirán en secuencia.
-        </p>
-        <p>
-          Por defecto, si el bucle está habilitado, la última animación de la
-          secuencia será en bucle. Para hacer un bucle de toda la secuencia,
-          utiliza <code>'**'</code> como el último nombre de la animación. Si
-          en cambio quieres que la secuencia se detenga al final, utiliza
-          <code>';;'</code> como el último nombre de la animación.
-        </p>
-        <p>
-          Este ejemplo muestra cómo el personaje del héroe puede ser movido
-          alrededor de la pantalla usando WASD o las flechas del teclado!
-        </p>
-      </md>
-      <script type="mie/p5" base-0="" hide="">
+      <div id="page-5" class="page">
+        <md id="md5-0"><h2 id="secuenciación-de-animaciones">
+            Secuenciación de Animaciones
+          </h2>
+          <p>
+            <code>sprite.ani</code> puede ser configurado como un objeto de
+            animación, nombre de animación, o matriz de nombres de animación que
+            se reproducirán en secuencia.
+          </p>
+          <p>
+            Por defecto, si el bucle está habilitado, la última animación de la
+            secuencia será en bucle. Para hacer un bucle de toda la secuencia,
+            utiliza <code>'**'</code> como el último nombre de la animación. Si
+            en cambio quieres que la secuencia se detenga al final, utiliza
+            <code>';;'</code> como el último nombre de la animación.
+          </p>
+          <p>
+            Este ejemplo muestra cómo el personaje del héroe puede ser movido
+            alrededor de la pantalla usando WASD o las flechas del teclado!
+          </p>
+        </md>
+        <script type="mie/p5" base-0="" hide="">
 let hero, floor;
 
 function preload() {
@@ -500,7 +485,7 @@ function draw() {
 	clear();
 }
 			</script>
-      <script type="mie/p5" id="animation-sequencing" base="0">
+        <script type="mie/p5" id="animation-sequencing" base="0">
 if (kb.presses('up')) hero.ani = ['jump', 'stand'];
 if (kb.presses('down')) hero.ani = ['roll', 'stand'];
 
@@ -520,53 +505,50 @@ if (hero.ani.name != 'jump' && hero.ani.name != 'roll') {
 	}
 }
 			</script>
-    </div>
-    <div id="page-6" class="page">
-      <md id="md6-0">
-        <h2 id="secuenciación-de-animaciones-avanzada">
-          Secuenciación de Animaciones Avanzada
-        </h2>
-        <p>
-          Por detrás, configurar <code>sprite.ani</code> utiliza la función
-          asincrónica <code>sprite.changeAni</code>. Puedes usar esta función
-          directamente para esperar a que las animaciones terminen de
-          reproducirse.
-        </p>
-        <p>¡Ejemplo próximamente!</p>
-      </md>
-    </div>
-
-    <div class="break"></div>
-    <div id="toc">
-      <a id="prevPage" class="navLink">Página anterior</a>
-      <div id="pageNav" class="submenu">
-        <a data-page="0" href="sprite_animation.html?page=0">Cargando Animaciones</a>
-        <a data-page="1" href="sprite_animation.html?page=1">Controles de Animación</a>
-        <a data-page="2" href="sprite_animation.html?page=2">Sprites con Animaciones</a>
-        <a data-page="3" href="sprite_animation.html?page=3">Grupos con Animaciones</a>
-        <a data-page="4" href="sprite_animation.html?page=4">Hojas de Sprite con Múltiples Animaciones</a>
-        <a data-page="5" href="sprite_animation.html?page=5">Secuenciación</a>
-        <a data-page="6" href="sprite_animation.html?page=6">Secuenciación Avanzada</a>
       </div>
-      <a id="nextPage" class="navLink">Siguiente página</a>
-    </div>
-    <div class="break"></div>
-    <footer id="credits" class="text-small">
-      Creado por Quinton Ashley (@quinton-ashley) derechos de autor 2022-2023
-    </footer>
-  </article>
+      <div id="page-6" class="page">
+        <md id="md6-0"><h2 id="secuenciación-de-animaciones-avanzada">
+            Secuenciación de Animaciones Avanzada
+          </h2>
+          <p>
+            Por detrás, configurar <code>sprite.ani</code> utiliza la función
+            asincrónica <code>sprite.changeAni</code>. Puedes usar esta función
+            directamente para esperar a que las animaciones terminen de
+            reproducirse.
+          </p>
+          <p>¡Ejemplo próximamente!</p>
+        </md>
+      </div>
 
-  <script src="/v3/q5.min.js"></script>
-  <script src="/v3/planck.min.js"></script>
-  <script src="/v3/p5play.min.js"></script>
+      <div class="break"></div>
+      <div id="toc">
+        <a id="prevPage" class="navLink">Página anterior</a>
+        <div id="pageNav" class="submenu">
+          <a data-page="0" href="sprite_animation.html?page=0">Cargando Animaciones</a>
+          <a data-page="1" href="sprite_animation.html?page=1">Controles de Animación</a>
+          <a data-page="2" href="sprite_animation.html?page=2">Sprites con Animaciones</a>
+          <a data-page="3" href="sprite_animation.html?page=3">Grupos con Animaciones</a>
+          <a data-page="4" href="sprite_animation.html?page=4">Hojas de Sprite con Múltiples Animaciones</a>
+          <a data-page="5" href="sprite_animation.html?page=5">Secuenciación</a>
+          <a data-page="6" href="sprite_animation.html?page=6">Secuenciación Avanzada</a>
+        </div>
+        <a id="nextPage" class="navLink">Siguiente página</a>
+      </div>
+      <div class="break"></div>
+      <footer id="credits" class="text-small">
+        Creado por Quinton Ashley (@quinton-ashley) derechos de autor 2022-2023
+      </footer>
+    </article>
 
-  <script>
-    window.mie = { autoLoad: false };
-  </script>
-  <script src="/learn/mie.js"></script>
-  <script src="/learn/learn.js"></script>
+    <script src="/v3/q5.min.js"></script>
+    <script src="/v3/planck.min.js"></script>
+    <script src="/v3/p5play.min.js"></script>
 
+    <script>
+      window.mie = { autoLoad: false };
+    </script>
+    <script src="/learn/mie.js"></script>
+    <script src="/learn/learn.js"></script>
+  
 
-</body>
-
-</html>
+</body></html>

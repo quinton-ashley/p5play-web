@@ -63,7 +63,7 @@ Try pressing the space bar to stop the animation.
 
 ## Groups with Animations
 
-If a group has only one animation, new group sprites will use that animation. Otherwise by default the sprite gets the last animation loaded.
+If an animation is added to a group, new group sprites will receive a copy of that animation.
 
 Note that in this mini-example if you put splats too close together they'll move apart until their colliders are no longer overlapping. The size of the collider is taken from the size of the animation.
 

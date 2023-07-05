@@ -124,7 +124,11 @@ El segundo parámetro de entrada a la función `spriteArt` es la escala de la im
 
 # 3-2
 
-La paleta predeterminada usa colores predeterminados de p5.js pero ¡también puedes cambiar la paleta de colores!
+## ¡Pruébalo!
+
+La paleta predeterminada usa colores predeterminados de p5.js pero también puedes cambiar la paleta de colores.
+
+¡Intenta cambiar el color de la cara sonriente y luego haz tu propio arte de píxeles!
 
 # 4-0
 
@@ -250,6 +254,8 @@ Los Sprites tienen atributos físicos que afectan cómo interactúan con el mund
 
 # 9-1
 
+## ¡Pruébalo!
+
 Por defecto, la `mass` se asigna en función del tamaño del sprite. Cuanto mayor sea el sprite, más masa tendrá. La masa también puede ser ajustada manualmente.
 
 Intenta cambiar la masa de uno de los sprites en este mini-ejemplo.
@@ -275,6 +281,8 @@ En este ejemplo, el color del bloque es rojo cuando está colisionando con la pl
 En la vida real, cuando una persona sube a un ascensor y este sube, diríamos que esa persona estaría colisionando con el suelo del ascensor durante todo el trayecto.
 
 En planck, sin embargo, cuando los colisionadores son desplazados por otros colisionadores, constantemente colisionan y dejan de colisionar entre sí.
+
+Si estás intentando hacer un juego de plataformas (como Super Mario Bros.), el 'colliding' no es una manera confiable de verificar si un sprite está parado en una plataforma. Echa un vistazo a mi [demostración de plataformas](https://openprocessing.org/sketch/1869796).
 
 # 10-0
 

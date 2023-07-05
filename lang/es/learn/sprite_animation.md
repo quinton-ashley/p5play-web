@@ -58,7 +58,7 @@ Intenta presionar la barra espaciadora para detener la animación.
 
 ## Grupos con Animaciones
 
-Si un grupo tiene sólo una animación, los nuevos sprites del grupo utilizarán esa animación. De lo contrario, por defecto el sprite obtiene la última animación cargada.
+Si se agrega una animación a un grupo, los nuevos sprites del grupo recibirán una copia de esa animación.
 
 Observa que en este mini-ejemplo si colocas manchas demasiado cerca, se alejarán hasta que sus colisionadores ya no estén superpuestos. El tamaño del colisionador se toma del tamaño de la animación.
 

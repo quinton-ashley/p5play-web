@@ -2,9 +2,11 @@
 
 ## About
 
-p5play is an accessible _and_ powerful platform for creating games and art with code. It was designed to both inspire people to learn Computer Science and enable commercial game development.
+p5play is an accessible _and_ powerful platform for creating games and art with code. It was designed to inspire people to learn Computer Science and enable professional game development.
 
-p5play provides beginners with immediate, tangible results. But unlike many other CS education tools, it also rewards learners with depth in the form of a powerful, flexible, and extensible framework.
+p5play provides beginners with immediate, tangible results. It cuts boilerplate code to an absolute minimum by making sensible assumptions, ensuring that users only write code that's impactful and easy to understand.
+
+Many other CS education tools offer ease of use through simplicity, but thereby have limited or no practical use outside an intro level academic setting. p5play is different because it rewards learners with depth and flexibility. When students feel they're gaining practical skills, not just doing work "for school", it's a great way to keep them engaged and excited about learning.
 
 p5play (v3) and p5play.org was created by Quinton Ashley.
 

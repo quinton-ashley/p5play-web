@@ -127,7 +127,11 @@ The second input parameter to the `spriteArt` function is the scale of the image
 
 # 3-2
 
-The default palette uses default [p5.js colors](https://p5js.org/reference/#/p5/color) but you can customize the color palette too!
+## Try it out!
+
+The default palette uses default [p5.js colors](https://p5js.org/reference/#/p5/color) but you can customize the color palette too.
+
+Try changing the color of the smiley face, then make your own pixel art!
 
 # 4-0
 
@@ -256,6 +260,8 @@ Sprites have physical attributes that affect how they interact with the world. T
 
 # 9-1
 
+## Try it out!
+
 By default, `mass` is assigned based on the sprite's size. The larger the sprite, the more mass it has. Mass can also be set manually.
 
 Try changing the mass of one of the sprites in this mini-example.
@@ -264,7 +270,7 @@ Try changing the mass of one of the sprites in this mini-example.
 
 ## planck Bugs
 
-p5play uses the planck physics engine, which usually outputs realistic looking physical interactions, but it's not perfect.
+p5play uses the planck.js, a JS port of the Box2D physics engine. It usually generates realistic looking interactions, but it's not perfect.
 
 In this mini-example the ball has a `bounciness` of 1, so each time the ball bounces it should return to its starting position. However, due to a bug in planck, the ball bounces incrementally higher each time it hits the ground.
 
@@ -276,15 +282,13 @@ The `bounciness` bug is most noticeable when a collider bounces off a flat surfa
 
 # 9-4
 
-Also, you may expect `friction` to affect circle physics colliders, but sadly it doesn't! Use the `rotationDrag` property instead.
-
-# 9-5
-
 In this example the block's color is red when it is colliding with the moving platform. Although you might expect the block to stay red while being lifted by the platform, it blinks between red and blue.
 
 In real life when a person gets on an elevator and it rises, we would say that person was colliding with the elevator floor.
 
 In planck however, when a collider is displaced by another collider, they constantly collide and separate from each other.
+
+If you're trying to make a platformer game, `colliding` is not a reliable way to check if a sprite is standing on a platform. Check out my [platformer demo](https://openprocessing.org/sketch/1869796).
 
 # 10-0
 
@@ -350,13 +354,13 @@ Try changing the number of points!
 
 # 11-5
 
-Now you can see how the p5play logo was made!
+Now you can see how the tumbler demo on the p5play homepage was made!
 
-Even closed chains like this one are made of lines and they're empty on the inside. In the example on the p5play homepage, you can see how chain colliders can contain many other sprites inside them!
+Closed chains are empty on the inside and they can act as a container for many smaller sprites.
 
 # 11-6
 
-Note that closed chain colliders aren't so good at being dynamic colliders. This is a limitation of the Box2D physics engine that p5play uses.
+Note that closed chain colliders aren't so good at being dynamic colliders. This is a limitation of the Box2D physics engine that p5play uses. See the Combo Colliders page to learn how to create concave colliders from multiple convex colliders.
 
 # 12-0
 
