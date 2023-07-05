@@ -1,5 +1,6 @@
 node_modules
 testing/experiments
+testing/assets
 testing/test*
 package-lock.json
 dev
