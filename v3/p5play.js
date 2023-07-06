@@ -7573,10 +7573,8 @@ canvas {
 	const _image = this.image;
 
 	this.image = function () {
-		if (typeof pInst.p5play != 'undefined' && pInst.p5play.disableImages) {
-			return;
-		}
-		_image(...arguments);
+		if (pInst.p5play.disableImages) return;
+		_image.call(pInst, ...arguments);
 	};
 
 	let errMsgs = {
