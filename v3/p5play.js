@@ -7341,7 +7341,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 				args[1] = h;
 			}
 		}
-		if (args.length < 3) args[2] = 'p2d';
+		args[2] = 'P2D';
 		let can = _createCanvas.call(pInst, ...args);
 		this.canvas.tabIndex = 0;
 		this.canvas.w = args[0];
@@ -7515,7 +7515,10 @@ canvas {
 	 * @param {function} [callback]
 	 */
 	this.loadImg = this.loadImage = function () {
-		if (this.p5play.disableImages) return;
+		if (this.p5play.disableImages) {
+			// return a dummy image object to prevent errors
+			return { w: 16, width: 16, h: 16, height: 16, pixels: [] };
+		}
 		let args = arguments;
 		let url = args[0];
 		let img = pInst.p5play.images[url];
