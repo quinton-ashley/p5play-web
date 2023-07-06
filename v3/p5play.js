@@ -2310,7 +2310,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		}
 
 		_update() {
-			if (this._ani) this._ani.update();
+			if (this._ani?.update) this._ani.update();
 
 			for (let prop in this.mouse) {
 				if (this.mouse[prop] == -1) this.mouse[prop] = 0;
@@ -2361,7 +2361,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 					}
 					if (b instanceof this.p.Group) continue;
 
-					let cb = this.p.world._findContactCB(contactType, a, b);
+					let cb = this.p.world._findContact(contactType, a, b, true);
 					if (typeof cb == 'function') cb(a, b, v);
 				}
 			}
@@ -2379,10 +2379,10 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		 */
 		_draw() {
 			if (this.strokeWeight !== undefined) this.p.strokeWeight(this.strokeWeight);
-			if (this._ani && this.debug != 'colliders') {
+			if (this._ani?.draw && this.debug != 'colliders') {
 				this._ani.draw(this._offset._x, this._offset._y, 0, this._scale._x, this._scale._y);
 			}
-			if (!this._ani || this.debug) {
+			if (!this._ani || this.debug || this.p.p5play.disableImages) {
 				if (this.debug && this.debug != 'colliders') {
 					this.p.noFill();
 					this.p.stroke(0, 255, 0);
@@ -5192,7 +5192,10 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		this.Sprite.prototype.addImg =
 		this.Group.prototype.addImg =
 			function () {
-				if (this.p.p5play.disableImages) return;
+				if (this.p.p5play.disableImages) {
+					this._ani = {};
+					return;
+				}
 				let args = [...arguments];
 				let name, ani;
 				if (args[0] instanceof this.p.SpriteAnimation) {
@@ -5540,35 +5543,41 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		}
 
 		/**
-		 * Used internally to find a contact callback between two sprites.
+		 * Used internally to find a contact boolean, for example to determine
+		 * if the sprites overlap.
+		 *
+		 * If the findCB param is true, the function will search for
+		 * the first contact callback it finds between the two sprites and
+		 * their groups.
 		 *
 		 * @private
 		 * @param {String} type the eventType of contact callback to find
 		 * @param {Sprite} s0
 		 * @param {Sprite} s1
+		 * @param {Boolean} findCB if true, will return a contact callback
 		 * @returns contact cb if one can be found between the two sprites
 		 */
-		_findContactCB(type, s0, s1) {
+		_findContact(type, s0, s1, findCB) {
 			let cb = s0[type][s1._uid];
-			if (cb) return cb;
+			if (cb && (!findCB || cb !== true)) return cb;
 
 			let s1IsSprite = s1 instanceof this.p.Sprite;
 
 			if (s1IsSprite) {
 				for (let g1 of s1.groups) {
 					cb = s0[type][g1._uid];
-					if (cb) return cb;
+					if (cb && (!findCB || cb !== true)) return cb;
 				}
 			}
 
 			if (s0 instanceof this.p.Sprite) {
 				for (let g0 of s0.groups) {
 					cb = g0[type][s1._uid];
-					if (cb) return cb;
+					if (cb && (!findCB || cb !== true)) return cb;
 					if (s1IsSprite) {
 						for (let g1 of s1.groups) {
 							cb = g0[type][g1._uid];
-							if (cb) return cb;
+							if (cb && (!findCB || cb !== true)) return cb;
 						}
 					}
 				}
@@ -5833,8 +5842,8 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 
 		// if `a` has an overlap enabled with `b` their colliders should not produce a
 		// contact event, the overlap contact event is between their sensors
-		let shouldOverlap = a.p.world._findContactCB('_hasOverlap', a, b);
-		if (!shouldOverlap) shouldOverlap = a.p.world._findContactCB('_hasOverlap', b, a);
+		let shouldOverlap = a.p.world._findContact('_hasOverlap', a, b);
+		if (!shouldOverlap) shouldOverlap = a.p.world._findContact('_hasOverlap', b, a);
 		if (shouldOverlap) return false;
 		return true;
 	};
