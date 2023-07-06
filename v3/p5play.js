@@ -7305,17 +7305,18 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		}
 		let scale;
 		if (typeof args[2] == 'string') {
-			args[2] = args[2].toLowerCase();
-			if (args[2] != 'p2d' && args[2] != 'webgl') {
-				args[2] = args[2].split(' ');
+			let rend = args[2].toLowerCase();
+			if (rend != 'p2d' && rend != 'webgl') {
+				rend = rend.split(' ');
+				args[2] = undefined;
 			}
-			if (args[2][0] == 'pixelated') {
+			if (rend[0] == 'pixelated') {
 				pixelated = true;
-				if (!args[2][1]) isFullScreen = true;
-				else scale = Number(args[2][1].slice(1));
+				if (!rend[1]) isFullScreen = true;
+				else scale = Number(rend[1].slice(1));
 				ratio = [args[0], args[1]];
 			}
-			if (args[2][0] == 'fullscreen') {
+			if (rend[0] == 'fullscreen') {
 				isFullScreen = true;
 			}
 		}
@@ -7341,7 +7342,6 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 				args[1] = h;
 			}
 		}
-		args[2] = 'P2D';
 		let can = _createCanvas.call(pInst, ...args);
 		this.canvas.tabIndex = 0;
 		this.canvas.w = args[0];
