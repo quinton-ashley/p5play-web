@@ -7308,7 +7308,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			let rend = args[2].toLowerCase();
 			if (rend != 'p2d' && rend != 'webgl') {
 				rend = rend.split(' ');
-				args[2] = undefined;
+				args.pop();
 			}
 			if (rend[0] == 'pixelated') {
 				pixelated = true;

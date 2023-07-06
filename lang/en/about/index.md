@@ -22,7 +22,7 @@ p5play v3 is free (open source) because I believe anyone should be able to learn
 
 ## Can I see some demos?
 
-If you'd like to see some demos of games and art I've made with p5play, which showcase p5play's capabilities better than the simple examples on the learn pages, check out my [OpenProcessing profile](https://openprocessing.org/user/350295?o=35&view=sketches).
+If you'd like to see some games and art I've made with p5play, check out my [OpenProcessing profile](https://openprocessing.org/user/350295?o=35&view=sketches). Also take a look at the #share channel in p5play discord to see what other people are making with p5play.
 
 # EULA
 
