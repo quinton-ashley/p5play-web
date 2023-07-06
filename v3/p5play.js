@@ -7573,7 +7573,9 @@ canvas {
 	const _image = this.image;
 
 	this.image = function () {
-		if (this.p5play.disableImages) return;
+		if (typeof pInst.p5play != undefined && pInst.p5play.disableImages) {
+			return;
+		}
 		_image(...arguments);
 	};
 
