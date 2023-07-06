@@ -18,11 +18,17 @@ async function main() {
 		await translatePage('index');
 	}
 
-	const pages = await getPagesInDirectory('learn');
-	for (const page of pages) {
-		if (specificPage && page != specificPage) continue;
-		await translatePage('learn', page);
+	for (let pageGroup of ['learn', 'about']) {
+		const pages = await getPagesInDirectory(pageGroup);
+		for (const page of pages) {
+			let pagePath = pageGroup + '/' + page;
+			if (specificPage && pageGroup != specificPage && pagePath != specificPage) {
+				continue;
+			}
+			await translatePage(pageGroup, page);
+		}
 	}
+
 	log('Done!');
 }
 

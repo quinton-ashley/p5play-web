@@ -1,81 +1,138 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>p5play : About</title>
+    <link rel="icon" href="/assets/favicon.png">
+    <link rel="stylesheet" href="/learn/style.css">
+  </head>
 
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>p5play : About</title>
-	<link rel="icon" href="/assets/favicon.png" />
-	<link rel="stylesheet" href="/learn/style.css">
-</head>
+  <body class="dark">
+    <article>
+      <nav id="topNav">
+        <a href="../index.html" id="logoLink" class="active">
+          <img alt="p5play logo" src="/assets/p5play_logo.svg" class="logo">
+          <span>p5play</span>
+        </a>
+        <hr>
+        <a href="../learn">Learn</a>
+        <a href="/docs/Sprite_Sprite.html">Docs</a>
+        <!-- <a href="/editor">Editor</a> -->
+        <a href="../jam">Jam!</a>
+        <a href="../pro">PRO$</a>
+        <a href="../about" class="active">About</a>
+        <hr>
+        <a id="darkMode" onclick="toggleDarkMode()" tabindex="0" role="button" title="dark mode toggle">
+          <div id="darkModeIcon"></div>
+        </a>
+      </nav>
+      <div class="top big break"></div>
 
-<body class="dark">
-	<article>
-		<nav id="topNav">
-			<a href="../index.html" id="logoLink" class="active">
-				<img alt="p5play logo" src="/assets/p5play_logo.svg" class="logo">
-				<span>p5play</span>
-			</a>
-			<hr>
-			<a href="../learn">Learn</a>
-			<a href="/docs/Sprite_Sprite.html">Docs</a>
-			<!-- <a href="/editor">Editor</a> -->
-			<a href="../jam">Jam!</a>
-			<a href="../pro">PRO$</a>
-			<a href="../about" class="active">About</a>
-			<hr>
-			<a id="darkMode" onclick="toggleDarkMode()" tabindex="0" role="button" title="dark mode toggle">
-				<div id="darkModeIcon"></div>
-			</a>
-		</nav>
-		<div class="top big break"></div>
+      <div class="page" style="display: flex">
+        <md id="about"><h2 id="what-is-p5play">What is p5play?</h2>
+          <p>
+            p5play is an accessible <em>and</em> powerful platform for creating
+            games and art with code. It was designed to inspire people to learn
+            Computer Science and enable professional game development.
+          </p>
+          <p>
+            p5play provides beginners with immediate, tangible results. It cuts
+            boilerplate code to an absolute minimum by making sensible
+            assumptions, ensuring that users only write code that's impactful
+            and easy to understand.
+          </p>
+        </md>
+        <md id="why"><h2 id="why-use-p5play">Why use p5play?</h2>
+          <p>
+            Many other CS education tools offer ease of use through simplicity,
+            but thereby have limited or no practical use outside an intro level
+            academic setting. p5play is different because it rewards learners
+            with depth and flexibility. When students feel they're gaining
+            practical skills, not just doing work "for school", it's a great way
+            to keep them engaged and excited about learning.
+          </p>
+        </md>
+        <md id="demos"><h2 id="can-i-see-some-demos">Can I see some demos?</h2>
+          <p>
+            If you'd like to see some demos of games and art I've made with
+            p5play, which showcase p5play's capabilities better than the simple
+            examples on the learn pages, check out my
+            <a href="https://openprocessing.org/user/350295?o=35&amp;view=sketches">OpenProcessing profile</a>.
+          </p>
+        </md>
+        <md id="free"><h2 id="why-is-p5play-free">Why is p5play free?</h2>
+          <p>
+            p5play v3 is free (open source) because I believe anyone should be
+            able to learn to code, and have fun doing so!
+          </p>
+        </md>
+        <md id="about-quinton-ashley"><h2 id="who-is-quinton-ashley">Who is Quinton Ashley?</h2>
+          <p>
+            Hi I'm Quinton, the creator of p5play (v3) and p5play.org. I'm a
+            Computer Science teacher, tutor, and mentor at
+            <a href="https://www.crimsoneducation.org/">Crimson Education</a>. I
+            teach AP CS Principles, AP CS A, IGSCE CS, and Game Design
+            Principles.
+          </p>
+        </md>
+        <md id="EULA"><h2 id="end-user-license-agreement-eula">
+            End User License Agreement (EULA)
+          </h2>
+          <p>
+            By using p5play you agree to the
+            <a href="https://github.com/quinton-ashley/p5play/blob/main/EULA.md">End User License Agreement (EULA)</a>.
+          </p>
+        </md>
+        <md id="thanks" class="full"><h2 id="special-thanks">Special Thanks</h2>
+          <p>
+            I want to start by thanking my parents for their support and for
+            enrolling me in coding classes when I was a kid! I'd like to thank
+            all my public school teachers, especially my junior year English
+            teacher, Mr. Williams.
+          </p>
+          <p>
+            I also want to thank my wife, Victoria, for her support and
+            encouragement.💞
+          </p>
+          <p>
+            I'd also like to thank the Colombian government 🇨🇴 of Gustavo Petro
+            for giving extended visas to digital nomads, making it easy for
+            remote workers like me to live and work here in Bogotá, Colombia. If
+            I still lived in US, p5play wouldn't exist. I'd be too busy working
+            a second job, and thus unable to spend countless hours on a passion
+            project like this one.
+          </p>
+          <p>
+            I attended NYU and took all of the core computer science courses at
+            NYU CAS and also NYU Steinhardt's "Teaching of Computer Science"
+            course. Shoutout to my favorite professors: Joanna Klukowska, Leigh
+            Ann DeLyser, Lawrence Ferrara, and Langdon Crawford. Before deciding
+            to teach full time I worked as a Node.js Software Developer at
+            QTUltrasound, a medical device company based in the San Francisco
+            Bay Area.
+          </p>
+          <p>
+            Now I've been tutoring and teaching for 4 years. I've learned a lot
+            from hundreds of students about what works and what doesn't. I've
+            used p5play in my classes for 2 years, and I've seen how it can
+            inspire students to learn and create.
+          </p>
+          <p>
+            I created p5play v3 for educating the next generation of
+            programmers! If you want more info about why I made p5play (v3),
+            read the
+            <a href="https://github.com/quinton-ashley/p5play/wiki/p5play-Version-3">"p5play Version 3"</a>
+            wiki article and my
+            <a href="https://github.com/quinton-ashley/p5play/wiki/Developer-Log">developer log</a>.
+          </p>
+        </md>
+      </div>
+      <div class="break"></div>
+      <footer id="credits" class="text-small">
+        Created by Quinton Ashley (@quinton-ashley) Copyright 2022-2023.
+      </footer>
+    </article>
 
-		<div class="page" style="display:flex">
-			<div id="about" class="full">
-				<h2>About</h2>
-				<p>
-					p5play is an accessible and powerful platform for creating games and art with code. It was designed to
-					inspire people to learn Computer Science and enable professional game development.
-				</p>
-				<p>
-					p5play provides beginners with immediate, tangible results. It cuts boilerplate code to an absolute minimum by
-					making
-					sensible assumptions, ensuring that users only write code that's impactful and easy to understand.
-				</p>
-				<p>
-					Many other CS education tools offer ease of use through simplicity, but thereby have limited or no
-					practical use
-					outside an intro level academic setting. p5play is different because it rewards learners with depth and
-					flexibility.
-					When students feel they're gaining practical skills, not just doing work "for school", it's a great way to
-					keep them
-					engaged and
-					excited about learning.
-				</p>
-				<p>
-					If you want more info about why I made p5play (v3), read the <a
-						href="https://github.com/quinton-ashley/p5play/wiki/p5play-Version-3" target="_blank">"p5play
-						Version 3"</a> wiki article and my <a href="https://github.com/quinton-ashley/p5play/wiki/Developer-Log"
-						target="_blank">developer log</a>.
-				</p>
-				<p>
-					If you'd like to see some demos of games and art I've made with p5play, check out my <a
-						href="https://openprocessing.org/user/350295?o=35&view=sketches" target="_blank">OpenProcessing page</a>.
-				</p>
-				<p>
-					By using p5play you agree to the <a href="https://github.com/quinton-ashley/p5play/blob/main/EULA.md"
-						target="_blank">End User
-						License Agreement (EULA)</a>.
-				</p>
-			</div>
-		</div>
-		<div class="break"></div>
-		<footer id="credits" class="text-small">
-			Created by Quinton Ashley (@quinton-ashley) Copyright 2022-2023.
-		</footer>
-	</article>
+    <script src="/learn/main.js"></script>
+  
 
-	<script src="/learn/main.js"></script>
-</body>
-
-</html>
+</body></html>

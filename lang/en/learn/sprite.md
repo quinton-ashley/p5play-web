@@ -107,7 +107,7 @@ But, note that the `move`, `moveTo`, and `moveTowards` functions override a spri
 
 # 3-0
 
-## Sprite image
+## Sprites with an Image
 
 `sprite.image` or `sprite.img` can be set to a p5.Image or a url path to an image file.
 
@@ -119,7 +119,7 @@ Try pressing the left mouse button. When the `sprite.debug` property is set to t
 
 # 3-1
 
-## Make Pixel Art!
+## Pixel Art
 
 You can use the `spriteArt` function to create pixel art images for your sprites. It takes a string as input and returns an image. Each character in the string represents the color value of a pixel in the image.
 

@@ -70,7 +70,7 @@ Desde que introdujimos p5 y p5play, hemos visto un aumento de más del 100% en l
 
 # review5
 
-"Comparado con [Pearson Edxcel] GCSE, lo que hemos aprendido aquí ha sido mucho más beneficioso. Con GCSE, usamos Tkinter en Python que fue útil para hacer aplicaciones básicas. Sin embargo, ahora usando p5play podemos hacer juegos mucho más avanzados que son interesantes y prácticos." - Estudiante en Wyke
+"Usar p5play en JavaScript para hacer programas gráficos es mucho mejor que aprender Python, porque puedes ver cómo tu código de programa influye en algo en pantalla." - Estudiante en Wyke
 
 # review6
 
@@ -78,7 +78,7 @@ Desde que introdujimos p5 y p5play, hemos visto un aumento de más del 100% en l
 
 # review7
 
-"Usar la biblioteca p5play en JavaScript para hacer programas gráficos es mucho mejor que aprender Python, porque puedes ver cómo tu código de programa influye en algo en pantalla." - Estudiante en Wyke
+"Con GCSE, usamos Tkinter en Python que fue útil para hacer aplicaciones básicas. Sin embargo, ahora usando p5play podemos hacer juegos mucho más avanzados que son interesantes y prácticos." - Estudiante en Wyke
 
 # credits
 

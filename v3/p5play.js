@@ -1659,7 +1659,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 			if (!this.body) return;
 			if (this.watch) this.mod[21] = true;
 			let t = this.massData;
-			t.mass = val;
+			t.mass = val > 0 ? val : 0.00000001;
 			this.body.setMassData(t);
 			delete this._massUndefinedByUser;
 		}
@@ -5192,6 +5192,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		this.Sprite.prototype.addImg =
 		this.Group.prototype.addImg =
 			function () {
+				if (this.p.p5play.disableImages) return;
 				let args = [...arguments];
 				let name, ani;
 				if (args[0] instanceof this.p.SpriteAnimation) {
@@ -7567,6 +7568,13 @@ canvas {
 		// 	}
 		// }, 3000);
 		return img;
+	};
+
+	const _image = this.image;
+
+	this.image = function () {
+		if (this.p5play.disableImages) return;
+		_image(...arguments);
 	};
 
 	let errMsgs = {

@@ -116,7 +116,7 @@ Intenta presionar el botón izquierdo del ratón. Cuando la propiedad `sprite.de
 
 # 3-1
 
-## ¡Haz Pixel Art!
+## Pixel Art
 
 Puedes usar la función `spriteArt` para crear imágenes de pixel art para tus sprites. Toma una cadena como entrada y devuelve una imagen. Cada carácter en la cadena representa el valor de color de un píxel en la imagen.
 
