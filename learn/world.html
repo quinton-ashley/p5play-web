@@ -29,11 +29,14 @@
           <md id="md0-0"><h2 id="world">World</h2>
             <p>
               Each instance of p5play has its own <code>world</code> object,
-              that can be used to control the physics simulation.
+              that can be used to control the Box2D physics simulation. Its most
+              important property is <code>gravity</code>, which has x and y
+              components.
             </p>
             <p>
-              The most important property of this object is
-              <code>gravity</code>, which has x and y components.
+              Note that the physics simulation is deterministic. That means if
+              you run the same code twice, unless you're using random values,
+              you'll get the same result!
             </p>
           </md>
           <md id="md0-1"><h2 id="sleeping">Sleeping</h2>

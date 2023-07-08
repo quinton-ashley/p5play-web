@@ -27,3 +27,5 @@ Another `Canvas` feature is the `"pixelated"` preset. Use it for making 8-bit or
 By default, the `"pixelated"` preset scales the canvas to fit the screen while retaining its aspect ratio, but you can also define a custom scale by passing a multiplier after the preset name.
 
 For example, `"pixelated x2"` will create a canvas that's displayed at twice the size of the specified width and height.
+
+To display all sprites at integer coordinates, set `allSprites.pixelPerfect` to true and use integer coordinates for the camera's position and zoom.

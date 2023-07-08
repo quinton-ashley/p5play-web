@@ -7525,6 +7525,7 @@ canvas {
 	 */
 	this.loadImg = this.loadImage = function () {
 		if (this.p5play.disableImages) {
+			pInst._decrementPreload();
 			// return a dummy image object to prevent errors
 			return { w: 16, width: 16, h: 16, height: 16, pixels: [] };
 		}

@@ -28,7 +28,7 @@ Take a look at the `lang/en/index.md` file. The first line contains
 # 0
 ```
 
-In markdown, a single hash `#` is used for h1 headers (the biggest headers in HTML), but for p5play-web translation it indicates a section of the page that the following markdown text belongs to. Each section of markdown ends with another line that starts with a single hash `#`. To better understand how this markdown sectioning works, compare the `lang/en/index.md` file to the homepage of `p5play.org`.
+In markdown, a single hash `#` is used for h1 headers (the biggest headers in HTML), but for p5play-web translation indicates a section of the markdown file that will be placed inside an element in the html page. The text following the hash symbol is the the id of the element (numbers are prefixed with "md"). Each section of markdown ends with another line that starts with a single hash `#`. If you'd like to better understand how this markdown sectioning works, compare the `lang/en/index.md` file to the homepage of `p5play.org`.
 
 ## Testing your translation
 

@@ -2,9 +2,9 @@
 
 ## World
 
-Each instance of p5play has its own `world` object, that can be used to control the physics simulation.
+Each instance of p5play has its own `world` object, that can be used to control the Box2D physics simulation. Its most important property is `gravity`, which has x and y components.
 
-The most important property of this object is `gravity`, which has x and y components.
+Note that the physics simulation is deterministic. That means if you run the same code twice, unless you're using random values, you'll get the same result!
 
 # 0-1
 
