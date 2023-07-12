@@ -10,7 +10,7 @@ const specificPage = process.argv[3];
 
 async function main() {
 	if (!langCode) {
-		console.error('Please provide a two letter language code (ISO 639-1), for example: node main/build.js es');
+		console.error('Please provide a two letter language code (ISO 639-1), for example: node lang/build.js es');
 		process.exit(1);
 	}
 
@@ -18,9 +18,10 @@ async function main() {
 		await translatePage('index');
 	}
 
-	for (let pageGroup of ['learn', 'about']) {
+	for (let pageGroup of ['learn', 'about', 'pro', 'jam']) {
 		const pages = await getPagesInDirectory(pageGroup);
 		for (const page of pages) {
+			if (page == 'signup' || page == 'tos') continue;
 			let pagePath = pageGroup + '/' + page;
 			if (specificPage && pageGroup != specificPage && pagePath != specificPage) {
 				continue;

@@ -2,9 +2,7 @@
 
 ## What is p5play?
 
-p5play is an accessible _and_ powerful platform for creating games and art with code.
-
-It was designed to inspire people to learn Computer Science and enable professional game development.
+p5play is an accessible _and_ powerful platform for creating games and art with code. It was designed to inspire people to learn Computer Science and enable professional game development.
 
 p5play provides beginners with immediate, tangible results. It cuts boilerplate code to an absolute minimum by making sensible assumptions, ensuring that users only write code that's impactful and easy to understand.
 
@@ -12,9 +10,7 @@ p5play provides beginners with immediate, tangible results. It cuts boilerplate 
 
 ## Why use p5play?
 
-Many other CS education tools offer ease of use through over-simplification, but thereby have limited or no practical use outside an intro level academic setting.
-
-p5play is different because it rewards learners with depth and flexibility. When students feel they're gaining practical skills, not just doing work "for school", they stay engaged and excited about learning.
+Many other CS education tools offer ease of use through over-simplification, but thereby have limited or no practical use outside an intro level academic setting. p5play is different because it rewards learners with depth and flexibility. When students feel they're gaining practical skills, not just doing work "for school", they stay engaged and excited about learning.
 
 # free
 
