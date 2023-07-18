@@ -477,16 +477,21 @@ function draw() {
 	monster.debug = mouse.pressing();
 }
 			</script>
-        <md id="md3-1"><h2 id="ピクセルアートを作ろう！">ピクセルアートを作ろう！</h2>
-          <p>
-            <code>spriteArt</code>
-            関数を使用して、スプライト用のピクセルアート画像を作成できます。これは文字列を入力として受け取り、画像を返します。文字列内の各文字は、画像内のピクセルの色値を表します。
-          </p>
-          <p>
-            <code>spriteArt</code> 関数への 2
-            つ目の入力パラメータは、画像のスケールです。
-          </p>
-        </md>
+        <div class="minis">
+          <md id="md3-1"><h2 id="ピクセルアート">ピクセルアート</h2>
+            <p>
+              <code>spriteArt</code>関数を使用して、スプライト用のピクセルアート画像を作成できます。この関数は文字列を入力として受け取り、画像を返します。文字列内の各文字は、画像内のピクセルの色の値を表します。
+            </p>
+            <p>
+              <code>spriteArt</code>関数への第二入力パラメータは、画像のスケールです。
+            </p>
+          </md>
+          <md id="md3-2"><h2 id="試してみよう！">試してみよう！</h2>
+            <p>
+              自分のピクセルアートを作ってみましょう！以下のアルファベットを見て、各文字がデフォルトで表す色を確認してください。
+            </p>
+          </md>
+        </div>
         <script type="mie/p5" id="smiley" lines="15">
 let smiley;
 
@@ -505,18 +510,45 @@ yybyyyybyy
 }
 
 function draw() {
-	clear();
+  noLoop();
 }
 			</script>
+        <div style="width: 100%; padding: 0">
+          <script type="mie/p5" id="default-colors" hide-editor="">
+function setup() {
+	new Canvas(1030, 70);
+	let alphaText = `
+....b.........d......ff.....h....i...j..k....l...............................t.....................
+.aa.bbb.ccc.ddd.ee...f..ggg.hhh.........k.k..l..mmm.nnn.ooo.ppp.qqq.rrr..ss.ttt.u.u.v.v.x.x.y.y.zz
+a.a.b.b.c...d.d.ee..fff.ggg.h.h..i...j..kk...l..mmm.n.n.o.o.p.p.q.q.r....s...t..u.u.v.v..x..yyy..z.
+.aa.bbb.ccc.ddd.eee..f....g.h.h..i...j..k.k..ll.m.m.n.n.ooo.ppp.qqq.r...ss...tt.uuu..v..x.x...y..zz
+........................ggg.........jj......................p.....q.........................yy.....
+`;
+
+	let alpha = new Sprite();
+	alpha.img = spriteArt(alphaText, 10);
+
+	background(20);
+	noLoop();
+}
+
+function draw() {}
+
+        </script>
+        </div>
         <div class="break"></div>
-        <md id="md3-2"><h2 id="やってみて！">やってみて！</h2>
+        <md id="md3-3"><h2 id="カスタムカラー">カスタムカラー</h2>
           <p>
-            デフォルトのパレットはデフォルトの
-            <a href="https://p5js.org/reference/#/p5/color">p5.js の色</a>
-            を使用しますが、色パレットもカスタマイズできます！
+            カラーパレットを作成し、<code>spriteArt</code>関数への第三パラメータとして渡すことで、カスタムカラーを使ったピクセルアートを作成することもできます。
           </p>
           <p>
-            スマイリーフェイスの色を変えて、自分だけのドット絵を作ってみてください！
+            p5play のカラーパレットは<a href="https://p5js.org/reference/#/p5/object">JavaScript オブジェクト</a>形式で提供する必要があります。シンプルな JS
+            オブジェクトは辞書のようなものです。ピクセルアートで使用する各文字に対して色を定義することができます。色を作成するには、p5.js
+            の<a href="https://p5js.org/reference/#/p5/color"><code>color</code></a>関数を使用します。この関数は RGB（赤、緑、青）値または HEX
+            カラーコードを受け付けます。
+          </p>
+          <p>
+            色を見つける最も簡単な方法は、<a href="https://www.google.com/search?q=google+color+picker">カラーピッカー</a>を使用することです。
           </p>
         </md>
         <script type="mie/p5" id="blue-smiley" lines="20">
@@ -525,16 +557,16 @@ let smiley;
 function setup() {
 	new Canvas(500, 120);
 	let smileText = `
-..yyyyyy
-.yybyybyy
-yyyyyyyyyy
-yybyyyybyy
-.yybbbbyy
-..yyyyyy`;
+..uuuuuu
+.uubuubuu
+uuuuuuuuuu
+uubuuuubuu
+.uubbbbuu
+..uuuuuu`;
 
 	let palette = {
-		'y': color(60, 220, 255),
-		'b': color(20)
+		u: color(60, 220, 255),
+		b: color('#303060')
 	};
 
 	smiley = new Sprite();
@@ -542,7 +574,7 @@ yybyyyybyy
 }
 
 function draw() {
-	clear();
+	noLoop();
 }
 			</script>
       </div>

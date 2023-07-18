@@ -501,18 +501,27 @@ function draw() {
 	monster.debug = mouse.pressing();
 }
 			</script>
-        <md id="md3-1"><h2 id="pixel-art">Pixel Art</h2>
-          <p>
-            Puedes usar la función <code>spriteArt</code> para crear imágenes de
-            pixel art para tus sprites. Toma una cadena como entrada y devuelve
-            una imagen. Cada carácter en la cadena representa el valor de color
-            de un píxel en la imagen.
-          </p>
-          <p>
-            El segundo parámetro de entrada a la función
-            <code>spriteArt</code> es la escala de la imagen.
-          </p>
-        </md>
+        <div class="minis">
+          <md id="md3-1"><h2 id="arte-de-píxeles">Arte de Píxeles</h2>
+            <p>
+              Puedes utilizar la función <code>spriteArt</code> para crear
+              imágenes de arte de píxeles para tus sprites. Recibe una cadena
+              como entrada y devuelve una imagen. Cada carácter en la cadena
+              representa el valor de color de un píxel en la imagen.
+            </p>
+            <p>
+              El segundo parámetro de entrada de la función
+              <code>spriteArt</code> es la escala de la imagen.
+            </p>
+          </md>
+          <md id="md3-2"><h2 id="¡pruébalo">¡Pruébalo!</h2>
+            <p>
+              ¡Intenta crear tu propio arte de píxeles! Echa un vistazo al
+              alfabeto a continuación para ver qué color representa cada letra
+              de forma predeterminada.
+            </p>
+          </md>
+        </div>
         <script type="mie/p5" id="smiley" lines="15">
 let smiley;
 
@@ -531,18 +540,51 @@ yybyyyybyy
 }
 
 function draw() {
-	clear();
+  noLoop();
 }
 			</script>
+        <div style="width: 100%; padding: 0">
+          <script type="mie/p5" id="default-colors" hide-editor="">
+function setup() {
+	new Canvas(1030, 70);
+	let alphaText = `
+....b.........d......ff.....h....i...j..k....l...............................t.....................
+.aa.bbb.ccc.ddd.ee...f..ggg.hhh.........k.k..l..mmm.nnn.ooo.ppp.qqq.rrr..ss.ttt.u.u.v.v.x.x.y.y.zz
+a.a.b.b.c...d.d.ee..fff.ggg.h.h..i...j..kk...l..mmm.n.n.o.o.p.p.q.q.r....s...t..u.u.v.v..x..yyy..z.
+.aa.bbb.ccc.ddd.eee..f....g.h.h..i...j..k.k..ll.m.m.n.n.ooo.ppp.qqq.r...ss...tt.uuu..v..x.x...y..zz
+........................ggg.........jj......................p.....q.........................yy.....
+`;
+
+	let alpha = new Sprite();
+	alpha.img = spriteArt(alphaText, 10);
+
+	background(20);
+	noLoop();
+}
+
+function draw() {}
+
+        </script>
+        </div>
         <div class="break"></div>
-        <md id="md3-2"><h2 id="¡pruébalo">¡Pruébalo!</h2>
+        <md id="md3-3"><h2 id="colores-personalizados">Colores Personalizados</h2>
           <p>
-            La paleta predeterminada usa colores predeterminados de p5.js pero
-            también puedes cambiar la paleta de colores.
+            También puedes crear arte de píxeles que utilice colores
+            personalizados creando una paleta de colores y pasándola como tercer
+            parámetro a la función <code>spriteArt</code>.
           </p>
           <p>
-            ¡Intenta cambiar el color de la cara sonriente y luego haz tu propio
-            arte de píxeles!
+            Las paletas de colores en p5play deben proporcionarse en formato
+            <a href="https://p5js.org/reference/#/p5/object">Objeto JavaScript</a>. Un objeto JS simple es como un diccionario. Puedes definir un
+            color para cada letra que uses en tu arte de píxeles. Para crear un
+            color, utiliza la función
+            <a href="https://p5js.org/reference/#/p5/color"><code>color</code></a>
+            de p5.js, que acepta valores RGB (rojo, verde, azul) o códigos de
+            color HEX.
+          </p>
+          <p>
+            La forma más sencilla de encontrar colores es utilizar un
+            <a href="https://www.google.com/search?q=selector+de+colores+google">selector de colores</a>.
           </p>
         </md>
         <script type="mie/p5" id="blue-smiley" lines="20">
@@ -551,16 +593,16 @@ let smiley;
 function setup() {
 	new Canvas(500, 120);
 	let smileText = `
-..yyyyyy
-.yybyybyy
-yyyyyyyyyy
-yybyyyybyy
-.yybbbbyy
-..yyyyyy`;
+..uuuuuu
+.uubuubuu
+uuuuuuuuuu
+uubuuuubuu
+.uubbbbuu
+..uuuuuu`;
 
 	let palette = {
-		'y': color(60, 220, 255),
-		'b': color(20)
+		u: color(60, 220, 255),
+		b: color('#303060')
 	};
 
 	smiley = new Sprite();
@@ -568,7 +610,7 @@ yybyyyybyy
 }
 
 function draw() {
-	clear();
+	noLoop();
 }
 			</script>
       </div>

@@ -4,7 +4,7 @@
 
 Looking to turn your ideas into online games or interactive art? Check out p5play! It was designed by Computer Science teachers to be intuitive for beginners, making it popular at schools and universities around the world. But, p5play v3 isn't just for classroom use. It's packed with awesome features and uses the same physics simulator that powers beloved games like Tiny Wings, Shovel Knight, Limbo, Happy Wheels, and Angry Birds.
 
-Get started by reading the ["Learn" reference pages!](learn)
+Get started by reading the ["Learn" reference pages!](learn/sprite.html)
 
 # 1
 

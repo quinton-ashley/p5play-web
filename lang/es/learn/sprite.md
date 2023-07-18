@@ -116,19 +116,27 @@ Intenta presionar el botón izquierdo del ratón. Cuando la propiedad `sprite.de
 
 # 3-1
 
-## Pixel Art
+## Arte de Píxeles
 
-Puedes usar la función `spriteArt` para crear imágenes de pixel art para tus sprites. Toma una cadena como entrada y devuelve una imagen. Cada carácter en la cadena representa el valor de color de un píxel en la imagen.
+Puedes utilizar la función `spriteArt` para crear imágenes de arte de píxeles para tus sprites. Recibe una cadena como entrada y devuelve una imagen. Cada carácter en la cadena representa el valor de color de un píxel en la imagen.
 
-El segundo parámetro de entrada a la función `spriteArt` es la escala de la imagen.
+El segundo parámetro de entrada de la función `spriteArt` es la escala de la imagen.
 
 # 3-2
 
 ## ¡Pruébalo!
 
-La paleta predeterminada usa colores predeterminados de p5.js pero también puedes cambiar la paleta de colores.
+¡Intenta crear tu propio arte de píxeles! Echa un vistazo al alfabeto a continuación para ver qué color representa cada letra de forma predeterminada.
 
-¡Intenta cambiar el color de la cara sonriente y luego haz tu propio arte de píxeles!
+# 3-3
+
+## Colores Personalizados
+
+También puedes crear arte de píxeles que utilice colores personalizados creando una paleta de colores y pasándola como tercer parámetro a la función `spriteArt`.
+
+Las paletas de colores en p5play deben proporcionarse en formato [Objeto JavaScript](https://p5js.org/reference/#/p5/object). Un objeto JS simple es como un diccionario. Puedes definir un color para cada letra que uses en tu arte de píxeles. Para crear un color, utiliza la función [`color`](https://p5js.org/reference/#/p5/color) de p5.js, que acepta valores RGB (rojo, verde, azul) o códigos de color HEX.
+
+La forma más sencilla de encontrar colores es utilizar un [selector de colores](https://www.google.com/search?q=selector+de+colores+google).
 
 # 4-0
 

@@ -492,18 +492,26 @@ function draw() {
 	monster.debug = mouse.pressing();
 }
 			</script>
-        <md id="md3-1"><h2 id="pixel-art">Pixel Art</h2>
-          <p>
-            You can use the <code>spriteArt</code> function to create pixel art
-            images for your sprites. It takes a string as input and returns an
-            image. Each character in the string represents the color value of a
-            pixel in the image.
-          </p>
-          <p>
-            The second input parameter to the <code>spriteArt</code> function is
-            the scale of the image.
-          </p>
-        </md>
+        <div class="minis">
+          <md id="md3-1"><h2 id="pixel-art">Pixel Art</h2>
+            <p>
+              You can use the <code>spriteArt</code> function to create pixel
+              art images for your sprites. It takes a string as input and
+              returns an image. Each character in the string represents the
+              color value of a pixel in the image.
+            </p>
+            <p>
+              The second input parameter to the <code>spriteArt</code> function
+              is the scale of the image.
+            </p>
+          </md>
+          <md id="md3-2"><h2 id="try-it-out">Try it out!</h2>
+            <p>
+              Try making your own pixel art! Take a look at the alphabet below
+              to see what color each letter represents by default.
+            </p>
+          </md>
+        </div>
         <script type="mie/p5" id="smiley" lines="15">
 let smiley;
 
@@ -522,19 +530,52 @@ yybyyyybyy
 }
 
 function draw() {
-	clear();
+  noLoop();
 }
 			</script>
+        <div style="width: 100%; padding: 0">
+          <script type="mie/p5" id="default-colors" hide-editor="">
+function setup() {
+	new Canvas(1030, 70);
+	let alphaText = `
+....b.........d......ff.....h....i...j..k....l...............................t.....................
+.aa.bbb.ccc.ddd.ee...f..ggg.hhh.........k.k..l..mmm.nnn.ooo.ppp.qqq.rrr..ss.ttt.u.u.v.v.x.x.y.y.zz
+a.a.b.b.c...d.d.ee..fff.ggg.h.h..i...j..kk...l..mmm.n.n.o.o.p.p.q.q.r....s...t..u.u.v.v..x..yyy..z.
+.aa.bbb.ccc.ddd.eee..f....g.h.h..i...j..k.k..ll.m.m.n.n.ooo.ppp.qqq.r...ss...tt.uuu..v..x.x...y..zz
+........................ggg.........jj......................p.....q.........................yy.....
+`;
+
+	let alpha = new Sprite();
+	alpha.img = spriteArt(alphaText, 10);
+
+	background(20);
+	noLoop();
+}
+
+function draw() {}
+
+        </script>
+        </div>
         <div class="break"></div>
-        <md id="md3-2"><h2 id="try-it-out">Try it out!</h2>
+        <md id="md3-3"><h2 id="custom-colors">Custom Colors</h2>
           <p>
-            The default palette uses default
-            <a href="https://p5js.org/reference/#/p5/color">p5.js colors</a> but
-            you can customize the color palette too.
+            You can also make pixel art that uses custom colors by creating a
+            color palette and passing it as the third parameter to the
+            <code>spriteArt</code> function.
           </p>
           <p>
-            Try changing the color of the smiley face, then make your own pixel
-            art!
+            Color palettes in p5play must be provided in
+            <a href="https://p5js.org/reference/#/p5/object">JavaScript Object</a>
+            format. A simple JS object is like a dictionary. You can define a
+            color for each letter you use in your pixel art. To create a color
+            use the p5.js
+            <a href="https://p5js.org/reference/#/p5/color"><code>color</code></a>
+            function which accepts RGB (red, green, blue) values or HEX color
+            codes.
+          </p>
+          <p>
+            The easiest way to find colors is to use a
+            <a href="https://www.google.com/search?q=google+color+picker">color picker</a>.
           </p>
         </md>
         <script type="mie/p5" id="blue-smiley" lines="20">
@@ -543,16 +584,16 @@ let smiley;
 function setup() {
 	new Canvas(500, 120);
 	let smileText = `
-..yyyyyy
-.yybyybyy
-yyyyyyyyyy
-yybyyyybyy
-.yybbbbyy
-..yyyyyy`;
+..uuuuuu
+.uubuubuu
+uuuuuuuuuu
+uubuuuubuu
+.uubbbbuu
+..uuuuuu`;
 
 	let palette = {
-		'y': color(60, 220, 255),
-		'b': color(20)
+		u: color(60, 220, 255),
+		b: color('#303060')
 	};
 
 	smiley = new Sprite();
@@ -560,7 +601,7 @@ yybyyyybyy
 }
 
 function draw() {
-	clear();
+	noLoop();
 }
 			</script>
       </div>

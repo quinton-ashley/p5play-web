@@ -129,9 +129,17 @@ The second input parameter to the `spriteArt` function is the scale of the image
 
 ## Try it out!
 
-The default palette uses default [p5.js colors](https://p5js.org/reference/#/p5/color) but you can customize the color palette too.
+Try making your own pixel art! Take a look at the alphabet below to see what color each letter represents by default.
 
-Try changing the color of the smiley face, then make your own pixel art!
+# 3-3
+
+## Custom Colors
+
+You can also make pixel art that uses custom colors by creating a color palette and passing it as the third parameter to the `spriteArt` function.
+
+Color palettes in p5play must be provided in [JavaScript Object](https://p5js.org/reference/#/p5/object) format. A simple JS object is like a dictionary. You can define a color for each letter you use in your pixel art. To create a color use the p5.js [`color`](https://p5js.org/reference/#/p5/color) function which accepts RGB (red, green, blue) values or HEX color codes.
+
+The easiest way to find colors is to use a [color picker](https://www.google.com/search?q=google+color+picker).
 
 # 4-0
 
