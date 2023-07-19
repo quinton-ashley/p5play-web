@@ -1,51 +1,57 @@
 # about
 
-## What is p5play?
+## p5play とは？
 
-p5play is an accessible _and_ powerful platform for creating games and art with code. It was designed to inspire people to learn Computer Science and enable professional game development.
+p5play はコードを使ってゲームとアートを作成するためのアクセス可能で強力なプラットフォームです。
 
-p5play provides beginners with immediate, tangible results. It cuts boilerplate code to an absolute minimum by making sensible assumptions, ensuring that users only write code that's impactful and easy to understand.
+それは人々にコンピュータサイエンスを学ぶようにインスパイアし、プロのゲーム開発を可能にすることを目指して設計されました。
+
+p5play は初心者に直感的で具体的な結果を提供します。合理的な仮定を行うことで、冗長なコードを絶対的な最小限に抑え、ユーザーが影響力のあるコードだけを書くことができるようにしています。
 
 # why
 
-## Why use p5play?
+## なぜ p5play を使うのですか？
 
-Many other CS education tools offer ease of use through over-simplification, but thereby have limited or no practical use outside an intro level academic setting. p5play is different because it rewards learners with depth and flexibility. When students feel they're gaining practical skills, not just doing work "for school", they stay engaged and excited about learning.
+他の多くのコンピュータサイエンス教育ツールは、過度の単純化による使いやすさを提供しますが、そのためには導入レベルの学術的環境以外での実用性が限られるか全くない場合もあります。
+
+p5play は異なり、学習者に深さと柔軟性を与えます。学生が実践的なスキルを身につけていると感じると、「学校のため」だけでなく、学ぶことに対してやる気と興奮を持続させることができます。
 
 # free
 
-## Why is p5play free?
+## なぜ p5play は無料なのですか？
 
-p5play v3 is free (open source) because I think every student should be able to have fun while learning how to code.
+p5play v3 は無料（オープンソース）です。なぜなら、私はすべての学生がコーディングを学びながら楽しむことができるべきだと考えるからです。
 
 # demos
 
-## Can I see some demos?
+## デモを見ることはできますか？
 
-If you'd like to see some games and art I've made with p5play, check out my [OpenProcessing profile](https://openprocessing.org/user/350295?o=35&view=sketches). Also take a look at the #share channel in p5play discord to see what other people are making with p5play.
+p5play で作成したいくつかのゲームとアートを見たい場合は、私の[OpenProcessing プロフィール](https://openprocessing.org/user/350295?o=35&view=sketches)をチェックしてください。また、p5play の Discord の#share チャンネルを見て、他の人が p5play を使って何を作っているかを確認してみてください。
 
 # EULA
 
-## End User License Agreement (EULA)
+## エンドユーザーライセンス契約 (EULA)
 
-By using p5play you agree to the [End User License Agreement (EULA)](https://github.com/quinton-ashley/p5play/blob/main/EULA.md).
+p5play を使用することで、[エンドユーザーライセンス契約 (EULA)](https://github.com/quinton-ashley/p5play/blob/main/EULA.md)に同意することになります。
 
 # about-quinton-ashley
 
-## Who is Quinton Ashley?
+## クイントン・アシュリーとは？
 
-Hi I'm Quinton, the creator of p5play (v3) and p5play.org. I'm a Computer Science teacher, tutor, and mentor at [Crimson Education](https://www.crimsoneducation.org/). I teach AP CS Principles, AP CS A, IGSCE CS, and Game Design Principles.
+こんにちは、私はクイントンです。p5play (v3) と p5play.org のクリエーターです。私は [Crimson Education](https://www.crimsoneducation.org/) でコンピュータサイエンスの教師、家庭教師、メンターをしています。AP CS Principles、AP CS A、IGSCE CS、およびゲームデザイン原則を教えています。
 
 # thanks
 
-## Special Thanks
+## 特別な感謝
 
-I want to start by thanking my parents for their support and for enrolling me in coding classes when I was a kid!
+まず初めに、子供の頃に私をプログラムのクラスに入れてくれた両親に感謝します！
 
-I also want to thank my wife, Victoria, for her support and encouragement.💞
+また、妻のヴィクトリアにも感謝します。彼女のサポートと励ましに感謝します。💞
 
-I'd like to thank all my teachers, especially my junior year English teacher, Mr. Williams, and my favorite NYU professors: Joanna Klukowska, Leigh Ann DeLyser, Lawrence Ferrara, and Langdon Crawford.
+私のすべての教師、特に高校 3 年生の英語の先生であるウィリアムズ先生、そしてお気に入りの NYU の教授たち、ジョアンナ・クルコフスカ、リー・アン・デリーサー、ローレンス・フェラーラ、ラングドン・クロフォードにも感謝します。
 
-I'd also like to thank the Colombian government 🇨🇴 of Gustavo Petro for giving extended visas to digital nomads, making it easy for remote workers like me to live and work here in Bogotá, Colombia. If I still lived in US, p5play probably wouldn't exist. I couldn't afford to spend countless hours on a passion project like this one.
+また、コロンビアの政府 🇨🇴、グスタボ・ペトロ氏にも感謝します。デジタルノマドに拡張ビザを与えてくれたおかげで、私のようなリモートワーカーがボゴタ、コロンビアで生活し、仕事をすることが容易になりました。もし私がまだアメリカに住んでいたら、p5play は存在しなかったでしょう。このような情熱的なプロジェクトに無数の時間を費やす余裕はありませんでした。
 
-If you want more info about why I made p5play (v3), read the ["p5play Version 3"](https://github.com/quinton-ashley/p5play/wiki/p5play-Version-3) wiki article and my [developer log](https://github.com/quinton-ashley/p5play/wiki/Developer-Log)!
+p5.play (v1) を作成してくれた Paolo Pedercini に感謝します！そして、信頼してプロジェクトを引き継いでくれた Erin Catto 氏、素晴らしい物理エンジンを作成してくれたこと、そして Box2D の JavaScript ポートである planck.js を作成してくれた Ali Shakiba 氏にも感謝します。
+
+p5play (v3) を作成した背景についての詳細情報が欲しい場合は、["p5play Version 3"](https://github.com/quinton-ashley/p5play/wiki/p5play-Version-3)のウィキ記事と私の[開発者ログ](https://github.com/quinton-ashley/p5play/wiki/Developer-Log)を読んでみてください！

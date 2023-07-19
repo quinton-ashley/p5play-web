@@ -1,21 +1,21 @@
 # jam
 
-## p5play Game Jam! Summer 2023
+## ¡Jam de Juegos p5play! Verano 2023
 
-The p5play Game Jam is a competition held bi-annually to see who can make the best game using p5play!
+¡La Jam de Juegos p5play es una competición que se celebra cada dos años para ver quién puede hacer el mejor juego usando p5play!
 
-You can work individually or in a team. Share your game in the [#share](https://discord.gg/3UTbqUgmPF) channel on Discord to receive feedback before the competition ends. Submit your game using the google form linked below.
+Puedes trabajar individualmente o en equipo. Comparte tu juego en el canal [#share](https://discord.gg/3UTbqUgmPF) en Discord para recibir comentarios antes de que termine la competición. Envía tu juego utilizando el formulario de Google vinculado a continuación.
 
-Games must use the latest version of p5play and be submitted before August 31st 2023.
+Los juegos deben utilizar la última versión de p5play y enviarse antes del 31 de agosto de 2023.
 
-## 🎉 [Submit your game!](https://forms.gle/xn2PvsC8FA8Hf8Qo8) 🎉
+## 🎉 [¡Envía tu juego!](https://forms.gle/xn2PvsC8FA8Hf8Qo8) 🎉
 
 # winter2022
 
-## Winter 2022 winner: [@kevin98799](https://kevin98799.itch.io)
+## Ganador de Invierno 2022: [@kevin98799](https://kevin98799.itch.io)
 
-In ["Puzzling Magnetism Recharged"](https://kevin98799.itch.io/puzzling-magnetism-recharged) you play as two characters with opposite magnetic charges that can push or pull boxes respective to their magnetism.
+En ["Puzzling Magnetism Recharged"](https://kevin98799.itch.io/puzzling-magnetism-recharged) juegas como dos personajes con cargas magnéticas opuestas que pueden empujar o atraer cajas según su magnetismo.
 
-This game won because it's unique and has a progressively challenging level design. The code also makes great use of Groups and the Tiles constructor.
+Este juego ganó porque es único y tiene un diseño de niveles progresivamente desafiante. El código también hace un gran uso de Grupos y el constructor de Tiles.
 
-Big congrats to Kevin! 🥳
+¡Enhorabuena a Kevin! 🥳

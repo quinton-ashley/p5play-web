@@ -1,19 +1,19 @@
 # promo
 
-## p5play Pro Membership
+## Membresía p5play Pro
 
-Ready to become a p5play Pro and make real money from your games?
+¿Listo para convertirte en un p5play Pro y ganar dinero real con tus juegos?
 
-If you become a p5play Pro Member you'll be able to build iOS apps using p5play, enabling you to sell your games on Apple's App Store or earn revenue from advertisements.
+Si te conviertes en un Miembro p5play Pro, podrás construir aplicaciones de iOS utilizando p5play, lo que te permitirá vender tus juegos en la App Store de Apple o generar ingresos a través de publicidad.
 
-Sign up now to be notified when p5play Pro features will be made available.
+¡Regístrate ahora para recibir una notificación cuando las funciones p5play Pro estén disponibles!
 
-## Coming soon!
+## ¡Próximamente!
 
 # welcome
 
-## p5play Pro Membership
+## Membresía p5play Pro
 
-Welcome !
+¡Bienvenido!
 
-Thanks for signing up. You'll be notified by email when pro features are available!
+Gracias por registrarte. ¡Recibirás una notificación por correo electrónico cuando las funciones Pro estén disponibles!

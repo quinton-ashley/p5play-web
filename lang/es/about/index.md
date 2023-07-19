@@ -1,51 +1,57 @@
-# about
+# Acerca de
 
-## What is p5play?
+## ¿Qué es p5play?
 
-p5play is an accessible _and_ powerful platform for creating games and art with code. It was designed to inspire people to learn Computer Science and enable professional game development.
+p5play es una plataforma accesible _y_ poderosa para crear juegos y arte mediante código.
 
-p5play provides beginners with immediate, tangible results. It cuts boilerplate code to an absolute minimum by making sensible assumptions, ensuring that users only write code that's impactful and easy to understand.
+Fue diseñado para inspirar a las personas a aprender Ciencias de la Computación y permitir el desarrollo profesional de juegos.
 
-# why
+p5play proporciona a los principiantes resultados inmediatos y tangibles. Reduce al mínimo el código de plantilla al hacer suposiciones sensatas, asegurando que los usuarios solo escriban código que tenga un impacto y que sea fácil de entender.
 
-## Why use p5play?
+# ¿Por qué?
 
-Many other CS education tools offer ease of use through over-simplification, but thereby have limited or no practical use outside an intro level academic setting. p5play is different because it rewards learners with depth and flexibility. When students feel they're gaining practical skills, not just doing work "for school", they stay engaged and excited about learning.
+## ¿Por qué usar p5play?
 
-# free
+Muchas otras herramientas educativas de Ciencias de la Computación ofrecen facilidad de uso mediante una simplificación excesiva, pero carecen de utilidad práctica fuera de un entorno académico de nivel introductorio.
 
-## Why is p5play free?
+p5play es diferente porque recompensa a los estudiantes con profundidad y flexibilidad. Cuando los estudiantes sienten que están adquiriendo habilidades prácticas, no solo trabajando "para la escuela", se mantienen comprometidos y entusiasmados con el aprendizaje.
 
-p5play v3 is free (open source) because I think every student should be able to have fun while learning how to code.
+# Gratuito
 
-# demos
+## ¿Por qué es gratuito p5play?
 
-## Can I see some demos?
+p5play v3 es gratuito (código abierto) porque creo que cada estudiante debería poder divertirse mientras aprende a programar.
 
-If you'd like to see some games and art I've made with p5play, check out my [OpenProcessing profile](https://openprocessing.org/user/350295?o=35&view=sketches). Also take a look at the #share channel in p5play discord to see what other people are making with p5play.
+# Demostraciones
 
-# EULA
+## ¿Puedo ver algunas demostraciones?
 
-## End User License Agreement (EULA)
+Si quieres ver algunos juegos y arte que he creado con p5play, echa un vistazo a mi [perfil de OpenProcessing](https://openprocessing.org/user/350295?o=35&view=sketches). También puedes echar un vistazo al canal #share en el servidor de Discord de p5play para ver lo que otras personas están creando con p5play.
 
-By using p5play you agree to the [End User License Agreement (EULA)](https://github.com/quinton-ashley/p5play/blob/main/EULA.md).
+# Contrato de Licencia para el Usuario Final (EULA)
 
-# about-quinton-ashley
+## Contrato de Licencia para el Usuario Final (EULA)
 
-## Who is Quinton Ashley?
+Al utilizar p5play, aceptas el [Contrato de Licencia para el Usuario Final (EULA)](https://github.com/quinton-ashley/p5play/blob/main/EULA.md).
 
-Hi I'm Quinton, the creator of p5play (v3) and p5play.org. I'm a Computer Science teacher, tutor, and mentor at [Crimson Education](https://www.crimsoneducation.org/). I teach AP CS Principles, AP CS A, IGSCE CS, and Game Design Principles.
+# Acerca de Quinton Ashley
 
-# thanks
+## ¿Quién es Quinton Ashley?
 
-## Special Thanks
+Hola, soy Quinton, el creador de p5play (v3) y p5play.org. Soy profesor de Ciencias de la Computación, tutor y mentor en [Crimson Education](https://www.crimsoneducation.org/). Enseño Principios de AP CS, AP CS A, IGSCE CS y Principios de Diseño de Juegos.
 
-I want to start by thanking my parents for their support and for enrolling me in coding classes when I was a kid!
+# Agradecimientos Especiales
 
-I also want to thank my wife, Victoria, for her support and encouragement.💞
+## Agradecimientos Especiales
 
-I'd like to thank all my teachers, especially my junior year English teacher, Mr. Williams, and my favorite NYU professors: Joanna Klukowska, Leigh Ann DeLyser, Lawrence Ferrara, and Langdon Crawford.
+Quiero comenzar agradeciendo a mis padres por su apoyo y por inscribirme en clases de programación cuando era niño.
 
-I'd also like to thank the Colombian government 🇨🇴 of Gustavo Petro for giving extended visas to digital nomads, making it easy for remote workers like me to live and work here in Bogotá, Colombia. If I still lived in US, p5play probably wouldn't exist. I couldn't afford to spend countless hours on a passion project like this one.
+También quiero agradecer a mi esposa, Victoria, por su apoyo y aliento.💞
 
-If you want more info about why I made p5play (v3), read the ["p5play Version 3"](https://github.com/quinton-ashley/p5play/wiki/p5play-Version-3) wiki article and my [developer log](https://github.com/quinton-ashley/p5play/wiki/Developer-Log)!
+Quiero agradecer a todos mis profesores, especialmente a mi profesor de inglés de tercer año, el Sr. Williams, y a mis profesores favoritos de NYU: Joanna Klukowska, Leigh Ann DeLyser, Lawrence Ferrara y Langdon Crawford.
+
+También quiero agradecer al gobierno colombiano 🇨🇴 de Gustavo Petro por otorgar visas extendidas a nómadas digitales, lo que facilita que trabajadores remotos como yo vivamos y trabajemos aquí en Bogotá, Colombia. Si aún viviera en Estados Unidos, p5play probablemente no existiría. No podría permitirme pasar innumerables horas en un proyecto apasionante como este.
+
+¡Muchas gracias a Paolo Pedercini por crear p5.play (v1) y confiar en mí para continuar con el proyecto! También gracias a Erin Catto, creador de Box2D, por desarrollar un motor de física increíble, y gracias a Ali Shakiba, creador de planck.js, un puerto de Box2D en JavaScript.
+
+Si quieres más información sobre por qué creé p5play (v3), lee el artículo ["p5play Version 3"](https://github.com/quinton-ashley/p5play/wiki/p5play-Version-3) en el wiki y mi [registro de desarrollador](https://github.com/quinton-ashley/p5play/wiki/Developer-Log).

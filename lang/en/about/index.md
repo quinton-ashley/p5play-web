@@ -52,6 +52,6 @@ I'd like to thank all my teachers, especially my junior year English teacher, Mr
 
 I'd also like to thank the Colombian government 🇨🇴 of Gustavo Petro for giving extended visas to digital nomads, making it easy for remote workers like me to live and work here in Bogotá, Colombia. If I still lived in US, p5play probably wouldn't exist. I couldn't afford to spend countless hours on a passion project like this one.
 
-Big thanks to Paolo Pedercini for creating p5.play (v1) and trusting me to take over the project!
+Big thanks to Paolo Pedercini for creating p5.play (v1) and trusting me to take over the project! Also thank you Erin Catto, creator of Box2D, for creating such an incredible physics engine and thanks to Ali Shakiba, creator of planck.js, a JavaScript port of Box2D.
 
 If you want more info about why I made p5play (v3), read the ["p5play Version 3"](https://github.com/quinton-ashley/p5play/wiki/p5play-Version-3) wiki article and my [developer log](https://github.com/quinton-ashley/p5play/wiki/Developer-Log)!

@@ -1,19 +1,19 @@
 # promo
 
-## p5play Pro Membership
+## p5play Pro メンバーシップ
 
-Ready to become a p5play Pro and make real money from your games?
+p5play Pro メンバーになって、ゲームから実際のお金を稼ぎませんか？
 
-If you become a p5play Pro Member you'll be able to build iOS apps using p5play, enabling you to sell your games on Apple's App Store or earn revenue from advertisements.
+p5play Pro メンバーになると、p5play を使用して iOS アプリを作成できるようになり、Apple の App Store でゲームを販売したり、広告収益を得ることができます。
 
-Sign up now to be notified when p5play Pro features will be made available.
+p5play Pro 機能が利用可能になると、通知を受け取るために今すぐサインアップしてください。
 
-## Coming soon!
+## 近日公開！
 
 # welcome
 
-## p5play Pro Membership
+## p5play Pro メンバーシップ
 
-Welcome !
+ようこそ！
 
-Thanks for signing up. You'll be notified by email when pro features are available!
+登録いただきありがとうございます。Pro 機能が利用可能になると、メールで通知いたします！
