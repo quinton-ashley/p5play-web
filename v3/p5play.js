@@ -437,8 +437,8 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 				else this._shape = 'box';
 			}
 
-			group.push(this);
 			if (!group._isAllSpritesGroup) this.p.allSprites.push(this);
+			group.push(this);
 
 			this._scale = new Scale();
 
