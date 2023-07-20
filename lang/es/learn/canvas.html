@@ -79,27 +79,31 @@
           <script type="mie/p5" id="normal sized pixels" lines="9" hide-editor="">
 function setup() {
   new Canvas(500, 20);
-
+  background(255);
   noStroke();
   fill(0);
   for (let i = 0; i < 120; i++) {
     rect(i, i % 5, 1, 1);
   }
 }
-function draw() {}
+function draw() {
+  noLoop();
+}
       </script>
           <script type="mie/p5" id="pixelated-preset" lines="10">
 function setup() {
   //       (width, height, preset)
   new Canvas(120, 5, 'pixelated x4');
-
+  background(255);
   noStroke();
   fill(0);
   for (let i = 0; i < 120; i++) {
     rect(i, i % 5, 1, 1);
   }
 }
-function draw() {}
+function draw() {
+  noLoop();
+}
       </script>
         </div>
       </div>

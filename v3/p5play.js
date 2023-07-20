@@ -7450,14 +7450,14 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		/* prevent webkit from resizing text to fit */
 		/* prevent copy paste, to allow, change 'none' to 'text' */
 		let style = `
-canvas { 
+.p5Canvas, .q5Canvas {
 	outline: none;
 	-webkit-touch-callout: none;
 	-webkit-text-size-adjust: none;
 	-webkit-user-select: none;
 	overscroll-behavior: none;
 }
-main{
+main {
 	overscroll-behavior: none;
 }`;
 		if (isFullScreen) {
@@ -7480,7 +7480,7 @@ main {
 		}
 		if (pixelated) {
 			style += `
-canvas {
+#${this.canvas.id} {
 	image-rendering: pixelated;
 	width: ${w}px!important;
 	height: ${h}px!important;
