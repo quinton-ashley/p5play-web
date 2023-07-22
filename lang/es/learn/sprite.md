@@ -398,13 +398,19 @@ Presiona "x" o "y" para escalar el sprite en esa dirección por una cantidad ale
 
 Usando la función `addCollider`, puedes agregar varios colisionadores a un sprite.
 
-¡Pero solo usa esta función cuando realmente sea necesario para el juego!
-
-Normalmente, si algo requiere muchos colisionadores, como las paredes de un laberinto, simplemente deberías crear varios sprites, cada uno con su propio colisionador.
-
-Además, incluso si la imagen de un sprite es compleja, típicamente una caja o círculo será suficiente para las interacciones físicas, especialmente para sprites pequeños.
+¡Pero solo usa esta función cuando realmente sea necesario para el juego! Normalmente, si algo requiere muchos colisionadores, como las paredes de un laberinto, simplemente deberías crear varios sprites, cada uno con su propio colisionador. Además, incluso si la imagen de un sprite es compleja, típicamente una caja o círculo será suficiente para las interacciones físicas, especialmente para sprites pequeños.
 
 Sin embargo, a veces, realmente necesitarás crear un sprite con varios colisionadores. ¡Por ejemplo, si quieres modelar un flipper de pinball!
+
+# 14-1
+
+## Sensores de Combinación
+
+Los sensores de superposición determinan si un sprite se superpone con otro sprite.
+
+Por defecto, cuando se utiliza un método de verificación de superposición y el sprite no tiene sensores, se utiliza la función `addDefaultSensors` en segundo plano para crear sensores para cada uno de los colisionadores del sprite.
+
+Puedes agregar sensores adicionales a un sprite utilizando la función `addSensor`.
 
 # 15-0
 

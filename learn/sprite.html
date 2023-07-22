@@ -1687,29 +1687,44 @@ function draw() {
 			</script>
       </div>
       <div id="page-14" class="page">
-        <md id="md14-0"><h2 id="combo-colliders">Combo Colliders</h2>
-          <p>
-            By using the <code>addCollider</code> function you can add multiple
-            colliders to a sprite.
-          </p>
-          <p>
-            But only use this feature when it's really necessary for gameplay!
-          </p>
-          <p>
-            Usually if something requires a lot of colliders, like the walls of
-            a maze, you should just create multiple sprites, each with their own
-            collider.
-          </p>
-          <p>
-            Also, even if a sprite's image is complex, typically a box or circle
-            will be just fine for physics interactions, especially for small
-            sprites.
-          </p>
-          <p>
-            Yet sometimes, you will truly need to create a sprite with multiple
-            colliders. For example, if you want to model a pinball flipper!
-          </p>
-        </md>
+        <div class="minis">
+          <md id="md14-0"><h2 id="combo-colliders">Combo Colliders</h2>
+            <p>
+              By using the <code>addCollider</code> function you can add
+              multiple colliders to a sprite. It supports the same input
+              arguments as the Sprite constructor.
+            </p>
+            <p>
+              But only use this feature when it's really necessary for gameplay!
+              Usually if something requires a lot of colliders, like the walls
+              of a maze, you should just create multiple sprites, each with
+              their own collider. Also, even if a sprite's image is complex,
+              typically a box or circle will be just fine for physics
+              interactions, especially for small sprites.
+            </p>
+            <p>
+              Yet sometimes, you will truly need to create a sprite with
+              multiple colliders. For example, if you want to model a pinball
+              flipper!
+            </p>
+          </md>
+          <md id="md14-1"><h2 id="combo-sensors">Combo Sensors</h2>
+            <p>
+              Overlap sensors determine if a sprite overlaps with another
+              sprite.
+            </p>
+            <p>
+              By default when an overlap checking method is used, and the sprite
+              has no sensors, the <code>addDefaultSensors</code> function is
+              used behind the scenes to create sensors for each of the sprite's
+              colliders.
+            </p>
+            <p>
+              You can add additional sensors to a sprite by using the
+              <code>addSensor</code> function.
+            </p>
+          </md>
+        </div>
         <script type="mie/p5" id="pinball-flipper" horiz="">
 let ball, flipper;
 

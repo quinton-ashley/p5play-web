@@ -1712,31 +1712,44 @@ function draw() {
 			</script>
       </div>
       <div id="page-14" class="page">
-        <md id="md14-0"><h2 id="colisionadores-combo">Colisionadores Combo</h2>
-          <p>
-            Usando la función <code>addCollider</code>, puedes agregar varios
-            colisionadores a un sprite.
-          </p>
-          <p>
-            ¡Pero solo usa esta función cuando realmente sea necesario para el
-            juego!
-          </p>
-          <p>
-            Normalmente, si algo requiere muchos colisionadores, como las
-            paredes de un laberinto, simplemente deberías crear varios sprites,
-            cada uno con su propio colisionador.
-          </p>
-          <p>
-            Además, incluso si la imagen de un sprite es compleja, típicamente
-            una caja o círculo será suficiente para las interacciones físicas,
-            especialmente para sprites pequeños.
-          </p>
-          <p>
-            Sin embargo, a veces, realmente necesitarás crear un sprite con
-            varios colisionadores. ¡Por ejemplo, si quieres modelar un flipper
-            de pinball!
-          </p>
-        </md>
+        <div class="minis">
+          <md id="md14-0"><h2 id="colisionadores-combo">Colisionadores Combo</h2>
+            <p>
+              Usando la función <code>addCollider</code>, puedes agregar varios
+              colisionadores a un sprite.
+            </p>
+            <p>
+              ¡Pero solo usa esta función cuando realmente sea necesario para el
+              juego! Normalmente, si algo requiere muchos colisionadores, como
+              las paredes de un laberinto, simplemente deberías crear varios
+              sprites, cada uno con su propio colisionador. Además, incluso si
+              la imagen de un sprite es compleja, típicamente una caja o círculo
+              será suficiente para las interacciones físicas, especialmente para
+              sprites pequeños.
+            </p>
+            <p>
+              Sin embargo, a veces, realmente necesitarás crear un sprite con
+              varios colisionadores. ¡Por ejemplo, si quieres modelar un flipper
+              de pinball!
+            </p>
+          </md>
+          <md id="md14-1"><h2 id="sensores-de-combinación">Sensores de Combinación</h2>
+            <p>
+              Los sensores de superposición determinan si un sprite se superpone
+              con otro sprite.
+            </p>
+            <p>
+              Por defecto, cuando se utiliza un método de verificación de
+              superposición y el sprite no tiene sensores, se utiliza la función
+              <code>addDefaultSensors</code> en segundo plano para crear
+              sensores para cada uno de los colisionadores del sprite.
+            </p>
+            <p>
+              Puedes agregar sensores adicionales a un sprite utilizando la
+              función <code>addSensor</code>.
+            </p>
+          </md>
+        </div>
         <script type="mie/p5" id="pinball-flipper" horiz="">
 let ball, flipper;
 

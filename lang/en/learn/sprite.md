@@ -402,15 +402,21 @@ Press "x" or "y" to scale the sprite in that direction by a random amount. But n
 
 ## Combo Colliders
 
-By using the `addCollider` function you can add multiple colliders to a sprite.
+By using the `addCollider` function you can add multiple colliders to a sprite. It supports the same input arguments as the Sprite constructor.
 
-But only use this feature when it's really necessary for gameplay!
-
-Usually if something requires a lot of colliders, like the walls of a maze, you should just create multiple sprites, each with their own collider.
-
-Also, even if a sprite's image is complex, typically a box or circle will be just fine for physics interactions, especially for small sprites.
+But only use this feature when it's really necessary for gameplay! Usually if something requires a lot of colliders, like the walls of a maze, you should just create multiple sprites, each with their own collider. Also, even if a sprite's image is complex, typically a box or circle will be just fine for physics interactions, especially for small sprites.
 
 Yet sometimes, you will truly need to create a sprite with multiple colliders. For example, if you want to model a pinball flipper!
+
+# 14-1
+
+## Combo Sensors
+
+Overlap sensors determine if a sprite overlaps with another sprite.
+
+By default when an overlap checking method is used, and the sprite has no sensors, the `addDefaultSensors` function is used behind the scenes to create sensors for each of the sprite's colliders.
+
+You can add additional sensors to a sprite by using the `addSensor` function.
 
 # 15-0
 
