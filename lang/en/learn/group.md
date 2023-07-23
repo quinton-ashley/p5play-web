@@ -30,7 +30,7 @@ In p5play, when you set a sprite property in a group to an arrow function, each 
 
 When `group.amount` gets adjusted, the group will automatically create or remove sprites to match the set amount.
 
-In this mini example, each gem sprite is assigned a random x and y position.
+In this mini example, each gem sprite is assigned a random diameter and position.
 
 # 2-0
 
