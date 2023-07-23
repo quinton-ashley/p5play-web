@@ -30,7 +30,7 @@ In p5play, when you set a sprite property in a group to an arrow function, each 
 
 When `group.amount` gets adjusted, the group will automatically create or remove sprites to match the set amount.
 
-In this mini example, each gem sprite is assigned a random diameter and position.
+In this mini example, each gem sprite is assigned a random position.
 
 # 2-0
 
@@ -52,9 +52,9 @@ p5play creates an `allSprites` group that contains all the sprites in a sketch.
 
 ## Indexed arrow function setters
 
-When evaluating a group sprite's property you can even use its index!
+Arrow setters can even use the sprite's index in the group!
 
-`i` is the index of the sprite in the group, which is given as an input parameter to group property functions when they are evaluated.
+The index, `i`, is given as an input parameter to the group's arrow setters. It can be used to calculate the new group sprite's properties.
 
 # 5-0
 
