@@ -402,7 +402,7 @@ Press "x" or "y" to scale the sprite in that direction by a random amount. But n
 
 ## Combo Colliders
 
-By using the `addCollider` function you can add multiple colliders to a sprite. It supports the same input arguments as the Sprite constructor.
+By using the `addCollider` function you can add multiple colliders to a sprite. It supports the same input arguments as the Sprite constructor, except the first two parameters are x and y offsets from the sprite's position.
 
 But only use this feature when it's really necessary for gameplay! Usually if something requires a lot of colliders, like the walls of a maze, you should just create multiple sprites, each with their own collider. Also, even if a sprite's image is complex, typically a box or circle will be just fine for physics interactions, especially for small sprites.
 
