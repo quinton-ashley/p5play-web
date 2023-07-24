@@ -1608,33 +1608,39 @@ function draw() {
 			</script>
       </div>
       <div id="page-12" class="page">
-        <md id="md12-0"><h2 id="dibujo-personalizado">Dibujo personalizado</h2>
-          <p>
-            A veces no podrás usar animaciones predibujadas para obtener el tipo
-            de efecto visual que quieres para un sprite en movimiento.
-          </p>
-          <p>
-            Afortunadamente, puedes personalizar la función
-            <code>draw</code> del sprite y hacer que muestre cualquier cosa que
-            quieras!
-          </p>
-          <p>
-            Ten en cuenta que dentro de la función de dibujo del sprite, el
-            centro del sprite se traduce a la posición (0, 0).
-          </p>
-          <p>
-            Este mini ejemplo rota la elipse del sprite en la dirección en la
-            que se está moviendo y hace que la elipse se estire en esa dirección
-            proporcionalmente a su velocidad. ¡Un poco complicado!
-          </p>
-          <h2 id="actualización-personalizada">Actualización personalizada</h2>
-          <p>
-            También puedes definir una función de actualización personalizada
-            para un sprite que se ejecuta al final del bucle de dibujo o cuando
-            se llama a updateSprites. Puedes poner cualquier comportamiento
-            específico del sprite que quieras allí.
-          </p>
-        </md>
+        <div class="minis horiz">
+          <md id="md12-0"><h2 id="dibujo-personalizado">Dibujo personalizado</h2>
+            <p>
+              A veces no podrás usar animaciones predibujadas para obtener el
+              tipo de efecto visual que quieres para un sprite en movimiento.
+            </p>
+            <p>
+              Afortunadamente, puedes personalizar la función
+              <code>draw</code> del sprite y hacer que muestre cualquier cosa
+              que quieras!
+            </p>
+            <p>
+              Ten en cuenta que dentro de la función de dibujo del sprite, el
+              centro del sprite se traduce a la posición (0, 0).
+            </p>
+            <p>
+              Este mini ejemplo rota la elipse del sprite en la dirección en la
+              que se está moviendo y hace que la elipse se estire en esa
+              dirección proporcionalmente a su velocidad. ¡Un poco complicado!
+            </p>
+          </md>
+          <md id="md12-1"><h2 id="actualización-personalizada">
+              Actualización personalizada
+            </h2>
+            <p>
+              También puedes definir una función <code>update</code> de
+              actualización personalizada para un sprite que se ejecuta al final
+              del bucle de dibujo o cuando se llama a updateSprites. Puedes
+              poner cualquier comportamiento específico del sprite que quieras
+              allí.
+            </p>
+          </md>
+        </div>
         <script type="mie/p5" id="custom-draw">
 let face, stretchy;
 

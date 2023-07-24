@@ -382,9 +382,11 @@ Note that inside the sprite's draw function the center of the sprite is translat
 
 This mini example rotates the sprite's ellipse to the direction it's moving and makes the ellipse stretch in that direction proportional to it's speed. Kind of complicated!
 
+# 12-1
+
 ## Custom Update
 
-You can also define a custom update function for a sprite that runs at the end of the draw loop or when updateSprites is called. You can put any sprite specific behavior you want in there.
+You can also define a custom `update` function for a sprite that runs at the end of the draw loop or when updateSprites is called. You can put any sprite specific behavior you want in there.
 
 # 13-0
 

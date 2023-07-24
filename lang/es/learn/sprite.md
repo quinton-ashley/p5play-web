@@ -376,9 +376,11 @@ Ten en cuenta que dentro de la función de dibujo del sprite, el centro del spri
 
 Este mini ejemplo rota la elipse del sprite en la dirección en la que se está moviendo y hace que la elipse se estire en esa dirección proporcionalmente a su velocidad. ¡Un poco complicado!
 
+# 12-1
+
 ## Actualización personalizada
 
-También puedes definir una función de actualización personalizada para un sprite que se ejecuta al final del bucle de dibujo o cuando se llama a updateSprites. Puedes poner cualquier comportamiento específico del sprite que quieras allí.
+También puedes definir una función `update` de actualización personalizada para un sprite que se ejecuta al final del bucle de dibujo o cuando se llama a updateSprites. Puedes poner cualquier comportamiento específico del sprite que quieras allí.
 
 # 13-0
 

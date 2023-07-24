@@ -1586,31 +1586,35 @@ function draw() {
 			</script>
       </div>
       <div id="page-12" class="page">
-        <md id="md12-0"><h2 id="custom-draw">Custom draw</h2>
-          <p>
-            Sometimes you won't be able to use pre-drawn animations to get the
-            kind of visual effect you want for a sprite in motion.
-          </p>
-          <p>
-            Fortunately, you can customize the sprite's
-            <code>draw</code> function and make it display anything you want!
-          </p>
-          <p>
-            Note that inside the sprite's draw function the center of the sprite
-            is translated to position (0, 0).
-          </p>
-          <p>
-            This mini example rotates the sprite's ellipse to the direction it's
-            moving and makes the ellipse stretch in that direction proportional
-            to it's speed. Kind of complicated!
-          </p>
-          <h2 id="custom-update">Custom Update</h2>
-          <p>
-            You can also define a custom update function for a sprite that runs
-            at the end of the draw loop or when updateSprites is called. You can
-            put any sprite specific behavior you want in there.
-          </p>
-        </md>
+        <div class="minis horiz">
+          <md id="md12-0"><h2 id="custom-draw">Custom draw</h2>
+            <p>
+              Sometimes you won't be able to use pre-drawn animations to get the
+              kind of visual effect you want for a sprite in motion.
+            </p>
+            <p>
+              Fortunately, you can customize the sprite's
+              <code>draw</code> function and make it display anything you want!
+            </p>
+            <p>
+              Note that inside the sprite's draw function the center of the
+              sprite is translated to position (0, 0).
+            </p>
+            <p>
+              This mini example rotates the sprite's ellipse to the direction
+              it's moving and makes the ellipse stretch in that direction
+              proportional to it's speed. Kind of complicated!
+            </p>
+          </md>
+          <md id="md12-1"><h2 id="custom-update">Custom Update</h2>
+            <p>
+              You can also define a custom <code>update</code> function for a
+              sprite that runs at the end of the draw loop or when updateSprites
+              is called. You can put any sprite specific behavior you want in
+              there.
+            </p>
+          </md>
+        </div>
         <script type="mie/p5" id="custom-draw">
 let face, stretchy;
 
