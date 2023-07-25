@@ -6,4 +6,4 @@
 
 [最初に、スプライトに関する最初の数ページを見てみてください！](sprite.html)
 
-お探しのものが見つからない場合は、完全な[p5play](/docs/classes/Sprite.html)、[p5.js](https://p5js.org/reference/)、または[p5.sound](https://p5js.org/reference/#/libraries/p5.sound)のドキュメンテーションを試してみるか、いくつかの[デモ](https://openprocessing.org/user/350295?o=35&view=sketches)をご覧ください。
+お探しのものが見つからない場合は、完全な[p5play](/docs/Sprite_Sprite.html)、[p5.js](https://p5js.org/reference/)、または[p5.sound](https://p5js.org/reference/#/libraries/p5.sound)のドキュメンテーションを試してみるか、いくつかの[デモ](https://openprocessing.org/user/350295?o=35&view=sketches)をご覧ください。
