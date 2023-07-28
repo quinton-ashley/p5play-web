@@ -467,20 +467,6 @@ footer p {
 	font-size: 14px;
 }
 
-/* pro.html */
-
-#auth {
-	display: none;
-}
-
-.login {
-	font-size: 32px;
-	font-weight: bold;
-	display: flex;
-	justify-content: center;
-	gap: 50px;
-}
-
 @media screen and (max-width: 1030px) {
 
 	html,

@@ -1362,6 +1362,7 @@ p5.prototype.registerMethod('init', function p5PlayInit() {
 		 * The density of the sprite's physics body.
 		 *
 		 * @type {Number}
+		 * @default 5
 		 */
 		get density() {
 			if (!this.fixture) return;

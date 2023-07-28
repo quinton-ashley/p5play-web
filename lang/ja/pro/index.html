@@ -37,15 +37,31 @@
             アプリを作成できるようになり、Apple の App Store
             でゲームを販売したり、広告収益を得ることができます。
           </p>
-          <p>
-            p5play Pro
-            機能が利用可能になると、通知を受け取るために今すぐサインアップしてください。
-          </p>
           <h2 id="近日公開！">近日公開！</h2>
         </md>
-        <div class="login">
-          <a class="btn" href="/pro/tos.html">Sign Up</a>
-          <a class="btn" href="https://p5play.auth.us-west-2.amazoncognito.com/login?redirect_uri=https%3A%2F%2Fp5play.org%2Fpro%2Findex.html&amp;client_id=3oegfdhu2r7eo8nr371496718c&amp;response_type=token&amp;scope=email+openid+phone">Login</a>
+        <div class="minis horiz">
+          <md>
+            <md id="signup"><p>
+                p5play Pro
+                機能が利用可能になると、通知を受け取るために今すぐサインアップしてください。
+              </p>
+            </md>
+            <div class="login">
+              <a class="btn" href="/pro/signup.html">Sign Up</a>
+              <a class="btn" href="https://p5play.auth.us-west-2.amazoncognito.com/login?redirect_uri=https%3A%2F%2Fp5play.org%2Fpro%2Findex.html&amp;client_id=3oegfdhu2r7eo8nr371496718c&amp;response_type=token&amp;scope=email+openid+phone">Login</a>
+            </div>
+          </md>
+          <md>
+            <md id="patreon"><p>
+                p5play Pro の一部の機能は、Patreon メンバーのみが利用できます。
+                今すぐ参加して p5play の開発をサポートしてください!
+              </p>
+            </md>
+            <a id="patreon-brand" href="https://www.patreon.com/p5play" aria-label="Patreon page for p5play">
+              <img id="patreon-logo" src="https://www.svgrepo.com/download/354168/patreon.svg" alt="">
+              <img src="/assets/brands/patreon_brand.svg" alt="patreon brand" height="28px">
+            </a>
+          </md>
         </div>
       </div>
       <div id="auth" class="page">
@@ -69,6 +85,29 @@
 		https://cdn.jsdelivr.net/npm/jwt-decode@3.1.2/build/jwt-decode.min.js
 		"></script>
     <script src="/pro/pro.js"></script>
+    <style>
+      #auth {
+        display: none;
+      }
+
+      .login {
+        font-size: 32px;
+        font-weight: bold;
+        display: flex;
+        justify-content: center;
+        gap: 50px;
+      }
+
+      #patreon-logo {
+        width: 40px;
+        height: 40px;
+        margin-right: 10px;
+      }
+
+      #patreon-brand {
+        height: 28px;
+      }
+    </style>
   
 
 </body></html>

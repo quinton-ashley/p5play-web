@@ -39,15 +39,32 @@
             tus juegos en la App Store de Apple o generar ingresos a través de
             publicidad.
           </p>
-          <p>
-            ¡Regístrate ahora para recibir una notificación cuando las funciones
-            p5play Pro estén disponibles!
-          </p>
           <h2 id="¡próximamente">¡Próximamente!</h2>
         </md>
-        <div class="login">
-          <a class="btn" href="/pro/tos.html">Sign Up</a>
-          <a class="btn" href="https://p5play.auth.us-west-2.amazoncognito.com/login?redirect_uri=https%3A%2F%2Fp5play.org%2Fpro%2Findex.html&amp;client_id=3oegfdhu2r7eo8nr371496718c&amp;response_type=token&amp;scope=email+openid+phone">Login</a>
+        <div class="minis horiz">
+          <md>
+            <md id="signup"><p>
+                ¡Regístrate ahora para recibir una notificación cuando las
+                funciones p5play Pro estén disponibles!
+              </p>
+            </md>
+            <div class="login">
+              <a class="btn" href="/pro/signup.html">Sign Up</a>
+              <a class="btn" href="https://p5play.auth.us-west-2.amazoncognito.com/login?redirect_uri=https%3A%2F%2Fp5play.org%2Fpro%2Findex.html&amp;client_id=3oegfdhu2r7eo8nr371496718c&amp;response_type=token&amp;scope=email+openid+phone">Login</a>
+            </div>
+          </md>
+          <md>
+            <md id="patreon"><p>
+                Algunas funciones de p5play Pro solo estarán disponibles para
+                los miembros de Patreon. ¡Únase ahora para apoyar el desarrollo
+                de p5play!
+              </p>
+            </md>
+            <a id="patreon-brand" href="https://www.patreon.com/p5play" aria-label="Patreon page for p5play">
+              <img id="patreon-logo" src="https://www.svgrepo.com/download/354168/patreon.svg" alt="">
+              <img src="/assets/brands/patreon_brand.svg" alt="patreon brand" height="28px">
+            </a>
+          </md>
         </div>
       </div>
       <div id="auth" class="page">
@@ -71,6 +88,29 @@
 		https://cdn.jsdelivr.net/npm/jwt-decode@3.1.2/build/jwt-decode.min.js
 		"></script>
     <script src="/pro/pro.js"></script>
+    <style>
+      #auth {
+        display: none;
+      }
+
+      .login {
+        font-size: 32px;
+        font-weight: bold;
+        display: flex;
+        justify-content: center;
+        gap: 50px;
+      }
+
+      #patreon-logo {
+        width: 40px;
+        height: 40px;
+        margin-right: 10px;
+      }
+
+      #patreon-brand {
+        height: 28px;
+      }
+    </style>
   
 
 </body></html>

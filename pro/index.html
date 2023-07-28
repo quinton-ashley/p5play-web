@@ -29,23 +29,37 @@
 
       <div id="noauth" class="page">
         <md id="promo"><h2 id="p5play-pro-membership">p5play Pro Membership</h2>
+          <p>Ready to make real money from your games?</p>
           <p>
-            Ready to become a p5play Pro and make real money from your games?
-          </p>
-          <p>
-            If you become a p5play Pro Member you'll be able to build iOS apps
-            using p5play, enabling you to sell your games on Apple's App Store
-            or earn revenue from advertisements.
-          </p>
-          <p>
-            Sign up now to be notified when p5play Pro features will be made
-            available.
+            As a Pro member you'll be able to build iOS apps using p5play,
+            enabling you to sell your games on Apple's App Store or earn revenue
+            from advertisements.
           </p>
           <h2 id="coming-soon">Coming soon!</h2>
         </md>
-        <div class="login">
-          <a class="btn" href="/pro/tos.html">Sign Up</a>
-          <a class="btn" href="https://p5play.auth.us-west-2.amazoncognito.com/login?redirect_uri=https%3A%2F%2Fp5play.org%2Fpro%2Findex.html&amp;client_id=3oegfdhu2r7eo8nr371496718c&amp;response_type=token&amp;scope=email+openid+phone">Login</a>
+        <div class="minis horiz">
+          <md>
+            <md id="signup"><p>
+                Sign up now to be notified when p5play Pro features will be
+                available.
+              </p>
+            </md>
+            <div class="login">
+              <a class="btn" href="/pro/signup.html">Sign Up</a>
+              <a class="btn" href="https://p5play.auth.us-west-2.amazoncognito.com/login?redirect_uri=https%3A%2F%2Fp5play.org%2Fpro%2Findex.html&amp;client_id=3oegfdhu2r7eo8nr371496718c&amp;response_type=token&amp;scope=email+openid+phone">Login</a>
+            </div>
+          </md>
+          <md>
+            <md id="patreon"><p>
+                Some p5play Pro features will only be available to Patreon
+                members. Join now to support the development of p5play!
+              </p>
+            </md>
+            <a id="patreon-brand" href="https://www.patreon.com/p5play" aria-label="Patreon page for p5play">
+              <img id="patreon-logo" src="https://www.svgrepo.com/download/354168/patreon.svg" alt="">
+              <img src="/assets/brands/patreon_brand.svg" alt="patreon brand" height="28px">
+            </a>
+          </md>
         </div>
       </div>
       <div id="auth" class="page">
@@ -69,6 +83,29 @@
 		https://cdn.jsdelivr.net/npm/jwt-decode@3.1.2/build/jwt-decode.min.js
 		"></script>
     <script src="/pro/pro.js"></script>
+    <style>
+      #auth {
+        display: none;
+      }
+
+      .login {
+        font-size: 32px;
+        font-weight: bold;
+        display: flex;
+        justify-content: center;
+        gap: 50px;
+      }
+
+      #patreon-logo {
+        width: 40px;
+        height: 40px;
+        margin-right: 10px;
+      }
+
+      #patreon-brand {
+        height: 28px;
+      }
+    </style>
   
 
 </body></html>
