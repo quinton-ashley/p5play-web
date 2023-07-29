@@ -262,13 +262,17 @@ Los Sprites tienen atributos físicos que afectan cómo interactúan con el mund
 
 # 9-1
 
-## ¡Pruébalo!
+## Masa
 
 Por defecto, la `mass` se asigna en función del tamaño del sprite. Cuanto mayor sea el sprite, más masa tendrá. La masa también puede ser ajustada manualmente.
 
-Intenta cambiar la masa de uno de los sprites en este mini-ejemplo.
-
 # 9-2
+
+## ¡Pruébalo!
+
+Intenta cambiar la masa de uno de los sprites en este mini ejemplo.
+
+# 9-3
 
 ## Bugs en planck
 
@@ -276,13 +280,13 @@ p5play usa el motor de física planck, que normalmente ofrece interacciones fís
 
 En este mini-ejemplo, la bola tiene una `bounciness` de 1, así que cada vez que la bola rebota debería volver a su posición inicial. Sin embargo, debido a un bug en planck, la bola rebota cada vez más alto cada vez que golpea el suelo.
 
-# 9-3
+# 9-4
 
 Esperemos que el bug se solucione en una futura versión de planck o p5play, pero hasta entonces aquí tienes una solución alternativa.
 
 El bug de `bounciness` es más notorio cuando un colisionador rebota en una superficie plana. Aquí tienes una solución alternativa que sobrescribe la velocidad y de la bola después de que colisiona con el suelo.
 
-# 9-4
+# 9-5
 
 En este ejemplo, el color del bloque es rojo cuando está colisionando con la plataforma móvil. Aunque podrías esperar que el bloque se mantenga rojo mientras está siendo levantado por la plataforma, parpadea entre rojo y azul.
 

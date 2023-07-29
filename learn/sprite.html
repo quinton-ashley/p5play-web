@@ -333,7 +333,7 @@ function draw() {
 			</script>
         <md id="md2-0"><h2 id="sprite-movement">Sprite movement</h2>
           <p>Changing a sprite's position teleports it!</p>
-          <p>Try clicking around this mini-example.</p>
+          <p>Try clicking around this mini example.</p>
         </md>
         <script type="mie/p5" id="teleport" base="3">
 if (mouse.presses()) {
@@ -1121,7 +1121,7 @@ function draw() {
         <md id="md9-0"><h2 id="physical-attributes">Physical attributes</h2>
           <p>
             Sprites have physical attributes that affect how they interact with
-            the world. Take a look at the mini-examples to see these attributes
+            the world. Take a look at the mini examples to see these attributes
             in action.
           </p>
         </md>
@@ -1188,43 +1188,58 @@ sprite.rotationLock = true;
 				</script>
         </div>
         <div class="break"></div>
-        <md id="md9-1"><h2 id="try-it-out">Try it out!</h2>
-          <p>
-            By default, <code>mass</code> is assigned based on the sprite's
-            size. The larger the sprite, the more mass it has. Mass can also be
-            set manually.
-          </p>
-          <p>
-            Try changing the mass of one of the sprites in this mini-example.
-          </p>
-        </md>
-        <script type="mie/p5" id="mass" lines="13">
-let platform, pin, a, b;
+        <div class="minis horiz">
+          <md id="md9-1"><h2 id="mass">Mass</h2>
+            <p>
+              The larger the sprite, the more mass it has by default. When a
+              sprite's size is initially defined, its <code>mass</code> will be
+              calculated.
+            </p>
+            <p>
+              But in the real world, stretching or squishing an object doesn't
+              change its mass, so in p5play changing a sprite's size doesn't
+              change its mass either. To recalculate a sprite's mass after
+              changing its size, use the <code>resetMass</code> function.
+            </p>
+          </md>
+          <md id="md9-2"><h2 id="try-it-out">Try it out!</h2>
+            <p>
+              This mini example shows how sprites of different sizes can balance
+              on a seesaw if their mass is set to the same value. Try changing
+              the mass of one of the sprites.
+            </p>
+          </md>
+        </div>
+        <script type="mie/p5" id="mass" lines="15">
+let platform, pin, spriteA, spriteB;
+
 function setup() {
-	new Canvas(238, 100);
+	new Canvas(300, 100);
 	world.gravity.y = 10;
 
-	platform = new Sprite(121, 88, 232, 5);
-	pin = new Sprite(121, 93, 5, 's');
+	platform = new Sprite(150, 88, 232, 5);
+	pin = new Sprite(150, 93, 5, 's');
 
-	a = new Sprite(26, 0, 40, 40);
-	a.mass = 2;
-	b = new Sprite(216, 0, 40, 40);
-	b.mass = 2;
+	spriteA = new Sprite(50, 0, 80, 40);
+	spriteA.mass = 2;
+
+	spriteB = new Sprite(250, 0, 20, 40);
+	spriteB.mass = 2;
 }
+
 function draw() {
 	clear();
 }
 			</script>
         <div class="break"></div>
-        <md id="md9-2"><h2 id="planck-bugs">planck Bugs</h2>
+        <md id="md9-3"><h2 id="planck-bugs">planck Bugs</h2>
           <p>
             p5play uses the planck.js, a JS port of the Box2D physics engine. It
             usually generates realistic looking interactions, but it's not
             perfect.
           </p>
           <p>
-            In this mini-example the ball has a <code>bounciness</code> of 1, so
+            In this mini example the ball has a <code>bounciness</code> of 1, so
             each time the ball bounces it should return to its starting
             position. However, due to a bug in planck, the ball bounces
             incrementally higher each time it hits the ground.
@@ -1253,14 +1268,17 @@ function draw() {
 	}
 }
 			</script>
-        <md id="md9-3"><p>
-            Hopefully the bug will be fixed in a future version of planck or
-            p5play, but until then here's a workaround.
+        <md id="md9-4"><p>
+            This full bounce interaction is impossible in real life, but could
+            be an important element in a video game.
           </p>
           <p>
             The <code>bounciness</code> bug is most noticeable when a collider
-            bounces off a flat surface. Here's a workaround that overrides the
-            ball's y velocity after it collides with the ground.
+            bounces off a flat surface, like in these examples.
+          </p>
+          <p>
+            Here's a workaround that overrides the ball's y velocity after it
+            collides with the ground.
           </p>
         </md>
         <script type="mie/p5" id="full-bounce-workaround" horiz="">
@@ -1283,7 +1301,7 @@ function draw() {
 	}
 }
 			</script>
-        <md id="md9-4"><p>
+        <md id="md9-5"><p>
             In this example the block's color is red when it is colliding with
             the moving platform. Although you might expect the block to stay red
             while being lifted by the platform, it blinks between red and blue.
@@ -1336,11 +1354,11 @@ function draw() {
           <p>
             To use vertex mode, provide the Sprite constructor with an array of
             vertex arrays. Each vertex array should contain [x, y] coordinates.
-            In these mini-examples the sprite's (x, y) position is highlighted
+            In these mini examples the sprite's (x, y) position is highlighted
             by a small black square.
           </p>
           <p>
-            Try changing the vertexes of the chain sprite in the mini-example to
+            Try changing the vertexes of the chain sprite in the mini example to
             make the ball stay on the floor!
           </p>
         </md>
@@ -1711,6 +1729,10 @@ function draw() {
               Yet sometimes, you will truly need to create a sprite with
               multiple colliders. For example, if you want to model a pinball
               flipper!
+            </p>
+            <p>
+              Note that adding a collider to a sprite will automatically
+              recalculate the sprite's mass.
             </p>
           </md>
           <md id="md14-1"><h2 id="combo-sensors">Combo Sensors</h2>

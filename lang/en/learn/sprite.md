@@ -59,7 +59,7 @@ For an extra challenge, try resetting the block to its original position after i
 
 Changing a sprite's position teleports it!
 
-Try clicking around this mini-example.
+Try clicking around this mini example.
 
 # 2-1
 
@@ -264,31 +264,39 @@ But, if the sprite's movement is interrupted by a new movement or a collision th
 
 ## Physical attributes
 
-Sprites have physical attributes that affect how they interact with the world. Take a look at the mini-examples to see these attributes in action.
+Sprites have physical attributes that affect how they interact with the world. Take a look at the mini examples to see these attributes in action.
 
 # 9-1
 
-## Try it out!
+## Mass
 
-By default, `mass` is assigned based on the sprite's size. The larger the sprite, the more mass it has. Mass can also be set manually.
+The larger the sprite, the more mass it has by default. When a sprite's size is initially defined, its `mass` will be calculated.
 
-Try changing the mass of one of the sprites in this mini-example.
+But in the real world, stretching or squishing an object doesn't change its mass, so in p5play changing a sprite's size doesn't change its mass either. To recalculate a sprite's mass after changing its size, use the `resetMass` function.
 
 # 9-2
+
+## Try it out!
+
+This mini example shows how sprites of different sizes can balance on a seesaw if their mass is set to the same value. Try changing the mass of one of the sprites.
+
+# 9-3
 
 ## planck Bugs
 
 p5play uses the planck.js, a JS port of the Box2D physics engine. It usually generates realistic looking interactions, but it's not perfect.
 
-In this mini-example the ball has a `bounciness` of 1, so each time the ball bounces it should return to its starting position. However, due to a bug in planck, the ball bounces incrementally higher each time it hits the ground.
-
-# 9-3
-
-Hopefully the bug will be fixed in a future version of planck or p5play, but until then here's a workaround.
-
-The `bounciness` bug is most noticeable when a collider bounces off a flat surface. Here's a workaround that overrides the ball's y velocity after it collides with the ground.
+In this mini example the ball has a `bounciness` of 1, so each time the ball bounces it should return to its starting position. However, due to a bug in planck, the ball bounces incrementally higher each time it hits the ground.
 
 # 9-4
+
+This full bounce interaction is impossible in real life, but could be an important element in a video game.
+
+The `bounciness` bug is most noticeable when a collider bounces off a flat surface, like in these examples.
+
+Here's a workaround that overrides the ball's y velocity after it collides with the ground.
+
+# 9-5
 
 In this example the block's color is red when it is colliding with the moving platform. Although you might expect the block to stay red while being lifted by the platform, it blinks between red and blue.
 
@@ -304,9 +312,9 @@ If you're trying to make a platformer game, `colliding` is not a reliable way to
 
 There are three different chain modes: vertex, distance, and line.
 
-To use vertex mode, provide the Sprite constructor with an array of vertex arrays. Each vertex array should contain \[x, y\] coordinates. In these mini-examples the sprite's (x, y) position is highlighted by a small black square.
+To use vertex mode, provide the Sprite constructor with an array of vertex arrays. Each vertex array should contain \[x, y\] coordinates. In these mini examples the sprite's (x, y) position is highlighted by a small black square.
 
-Try changing the vertexes of the chain sprite in the mini-example to make the ball stay on the floor!
+Try changing the vertexes of the chain sprite in the mini example to make the ball stay on the floor!
 
 # 10-1
 
@@ -409,6 +417,8 @@ By using the `addCollider` function you can add multiple colliders to a sprite. 
 But only use this feature when it's really necessary for gameplay! Usually if something requires a lot of colliders, like the walls of a maze, you should just create multiple sprites, each with their own collider. Also, even if a sprite's image is complex, typically a box or circle will be just fine for physics interactions, especially for small sprites.
 
 Yet sometimes, you will truly need to create a sprite with multiple colliders. For example, if you want to model a pinball flipper!
+
+Note that adding a collider to a sprite will automatically recalculate the sprite's mass.
 
 # 14-1
 

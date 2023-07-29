@@ -1201,36 +1201,44 @@ sprite.rotationLock = true;
 				</script>
         </div>
         <div class="break"></div>
-        <md id="md9-1"><h2 id="¡pruébalo">¡Pruébalo!</h2>
-          <p>
-            Por defecto, la <code>mass</code> se asigna en función del tamaño
-            del sprite. Cuanto mayor sea el sprite, más masa tendrá. La masa
-            también puede ser ajustada manualmente.
-          </p>
-          <p>
-            Intenta cambiar la masa de uno de los sprites en este mini-ejemplo.
-          </p>
-        </md>
-        <script type="mie/p5" id="mass" lines="13">
-let platform, pin, a, b;
+        <div class="minis horiz">
+          <md id="md9-1"><h2 id="masa">Masa</h2>
+            <p>
+              Por defecto, la <code>mass</code> se asigna en función del tamaño
+              del sprite. Cuanto mayor sea el sprite, más masa tendrá. La masa
+              también puede ser ajustada manualmente.
+            </p>
+          </md>
+          <md id="md9-2"><h2 id="¡pruébalo">¡Pruébalo!</h2>
+            <p>
+              Intenta cambiar la masa de uno de los sprites en este mini
+              ejemplo.
+            </p>
+          </md>
+        </div>
+        <script type="mie/p5" id="mass" lines="15">
+let platform, pin, spriteA, spriteB;
+
 function setup() {
-	new Canvas(238, 100);
+	new Canvas(300, 100);
 	world.gravity.y = 10;
 
-	platform = new Sprite(121, 88, 232, 5);
-	pin = new Sprite(121, 93, 5, 's');
+	platform = new Sprite(150, 88, 232, 5);
+	pin = new Sprite(150, 93, 5, 's');
 
-	a = new Sprite(26, 0, 40, 40);
-	a.mass = 2;
-	b = new Sprite(216, 0, 40, 40);
-	b.mass = 2;
+	spriteA = new Sprite(50, 0, 80, 40);
+	spriteA.mass = 2;
+
+	spriteB = new Sprite(250, 0, 20, 40);
+	spriteB.mass = 2;
 }
+
 function draw() {
 	clear();
 }
 			</script>
         <div class="break"></div>
-        <md id="md9-2"><h2 id="bugs-en-planck">Bugs en planck</h2>
+        <md id="md9-3"><h2 id="bugs-en-planck">Bugs en planck</h2>
           <p>
             p5play usa el motor de física planck, que normalmente ofrece
             interacciones físicas de apariencia realista, pero no es perfecto.
@@ -1265,7 +1273,7 @@ function draw() {
 	}
 }
 			</script>
-        <md id="md9-3"><p>
+        <md id="md9-4"><p>
             Esperemos que el bug se solucione en una futura versión de planck o
             p5play, pero hasta entonces aquí tienes una solución alternativa.
           </p>
@@ -1296,7 +1304,7 @@ function draw() {
 	}
 }
 			</script>
-        <md id="md9-4"><p>
+        <md id="md9-5"><p>
             En este ejemplo, el color del bloque es rojo cuando está
             colisionando con la plataforma móvil. Aunque podrías esperar que el
             bloque se mantenga rojo mientras está siendo levantado por la

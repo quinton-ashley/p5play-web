@@ -89,6 +89,10 @@ test('Sprite : properties', () => {
 			s.y = 10;
 			expect(s.y).toBe(10);
 
+			// default density and mass
+			expect(s.density).toBe(5);
+			expect(s.mass).toBeCloseTo(3.461);
+
 			// test width, height (w, h)
 			s.w = 15;
 			expect(s.w).toBe(15);
@@ -96,12 +100,15 @@ test('Sprite : properties', () => {
 			expect(() => {
 				s.hw = 10;
 			}).toThrow();
+			expect(s.mass).toBeCloseTo(1.038);
+
 			s.h = 20;
 			expect(s.h).toBe(20);
 			expect(s.hh).toBe(10);
 			expect(() => {
 				s.hh = 10;
 			}).toThrow();
+			expect(s.mass).toBeCloseTo(0.415);
 
 			expect(s).toBeInstanceOf(p.Sprite);
 			expect(s.vel).toBeInstanceOf(p5.Vector);
@@ -140,6 +147,7 @@ test('Sprite : properties', () => {
 			expect(s.d).toBe(20);
 			expect(s.w).toBe(20);
 			expect(s.h).toBe(20);
+			expect(s.mass).toBeCloseTo(0.415);
 
 			// test change collider type
 			s.collider = 'static';
@@ -167,6 +175,7 @@ test('Sprite : physics', () => {
 
 				s0 = new p.Sprite(10, 0);
 				s1 = new p.Sprite(100, 10, 50, 'static');
+				expect(s1.mass).toBe(0);
 			};
 
 			p.draw = () => {

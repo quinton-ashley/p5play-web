@@ -1132,32 +1132,40 @@ sprite.rotationLock = true;
 				</script>
         </div>
         <div class="break"></div>
-        <md id="md9-1"><p>
-            デフォルトでは、<code>mass</code>
-            はスプライトのサイズに基づいて割り当てられます。スプライトが大きいほど、質量は多くなります。質量は手動で設定することもできます。
-          </p>
-          <p>このミニ例の一つのスプライトの質量を変更してみてください。</p>
-        </md>
-        <script type="mie/p5" id="mass" lines="13">
-let platform, pin, a, b;
+        <div class="minis horiz">
+          <md id="md9-1"><h2 id="質量">質量</h2>
+            <p>
+              デフォルトでは、<code>mass</code>
+              はスプライトのサイズに基づいて割り当てられます。スプライトが大きいほど、質量は多くなります。質量は手動で設定することもできます。
+            </p>
+          </md>
+          <md id="md9-2"><h2 id="試してみてください！">試してみてください！</h2>
+            <p>このミニ例の一つのスプライトの質量を変更してみてください。</p>
+          </md>
+        </div>
+        <script type="mie/p5" id="mass" lines="15">
+let platform, pin, spriteA, spriteB;
+
 function setup() {
-	new Canvas(238, 100);
+	new Canvas(300, 100);
 	world.gravity.y = 10;
 
-	platform = new Sprite(121, 88, 232, 5);
-	pin = new Sprite(121, 93, 5, 's');
+	platform = new Sprite(150, 88, 232, 5);
+	pin = new Sprite(150, 93, 5, 's');
 
-	a = new Sprite(26, 0, 40, 40);
-	a.mass = 2;
-	b = new Sprite(216, 0, 40, 40);
-	b.mass = 2;
+	spriteA = new Sprite(50, 0, 80, 40);
+	spriteA.mass = 2;
+
+	spriteB = new Sprite(250, 0, 20, 40);
+	spriteB.mass = 2;
 }
+
 function draw() {
 	clear();
 }
 			</script>
         <div class="break"></div>
-        <md id="md9-2"><h2 id="planck-のバグ">planck のバグ</h2>
+        <md id="md9-3"><h2 id="planck-のバグ">planck のバグ</h2>
           <p>
             p5play は planck
             物理エンジンを使用していますが、通常は現実的に見える物理的相互作用を出力しますが、それは完全ではありません。
@@ -1191,7 +1199,7 @@ function draw() {
 	}
 }
 			</script>
-        <md id="md9-3"><p>
+        <md id="md9-4"><p>
             planck か p5play
             の将来のバージョンでバグが修正されることを願っていますが、それまではここに一つの回避策を提供します。
           </p>
@@ -1221,7 +1229,7 @@ function draw() {
 	}
 }
 			</script>
-        <md id="md9-4"><p>
+        <md id="md9-5"><p>
             この例では、ブロックが動くプラットフォームと衝突しているとき、その色は赤です。プラットフォームによって持ち上げられている間、ブロックが赤色のままであることを期待するかもしれませんが、赤と青の間で点滅します。
           </p>
           <p>
