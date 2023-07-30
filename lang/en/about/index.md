@@ -1,4 +1,4 @@
-# about
+# 0-0
 
 ## What is p5play?
 
@@ -8,7 +8,7 @@ It was designed to inspire people to learn Computer Science and enable professio
 
 p5play provides beginners with immediate, tangible results. It cuts boilerplate code to an absolute minimum by making sensible assumptions, ensuring that users only write code that's impactful and easy to understand.
 
-# why
+# 0-1
 
 ## Why use p5play?
 
@@ -16,31 +16,33 @@ Many other CS education tools offer ease of use through over-simplification, but
 
 p5play is different because it rewards learners with depth and flexibility. When students feel they're gaining practical skills, not just doing work "for school", they stay engaged and excited about learning.
 
-# free
+# 0-2
 
-## Why is p5play free?
+## Is p5play open source?
 
-p5play v3 is free (open source) because I think every student should be able to have fun while learning how to code.
+p5play v3 is open source licensed under the GPL v3 because I think making games should be accessible to everyone.
 
-# demos
+# 0-3
 
 ## Can I see some demos?
 
 If you'd like to see some games and art I've made with p5play, check out my [OpenProcessing profile](https://openprocessing.org/user/350295?o=35&view=sketches). Also take a look at the #share channel in p5play discord to see what other people are making with p5play.
 
-# EULA
+# 0-4
 
-## End User License Agreement (EULA)
+## Can I use p5play commercially?
 
-By using p5play you agree to the [End User License Agreement (EULA)](https://github.com/quinton-ashley/p5play/blob/main/EULA.md).
+If you'd like to use p5play in a closed source commercial project, you will need to pay for a GPL v3 license exception for [Patreon](https://www.patreon.com/p5play) members. See [LICENSING.md](/LICENSING.md) for more info.
 
-# about-quinton-ashley
+Also, by using p5play you agree to the [End User License Agreement (EULA)](https://github.com/quinton-ashley/p5play/blob/main/EULA.md).
+
+# 0-5
 
 ## Who is Quinton Ashley?
 
 Hi I'm Quinton, the creator of p5play (v3) and p5play.org. I'm a Computer Science teacher, tutor, and mentor at [Crimson Education](https://www.crimsoneducation.org/). I teach AP CS Principles, AP CS A, IGSCE CS, and Game Design Principles.
 
-# thanks
+# 1-0
 
 ## Special Thanks
 

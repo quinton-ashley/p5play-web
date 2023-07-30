@@ -7,7 +7,7 @@ I am not a lawyer, but my understanding is that the license allows you to make c
 It is therefore illegal copyright infringement to use p5play in any closed source commercial project without obtaining an exemption to this rule from the sole copyright holder, Quinton Ashley. Such exemptions are afforded in the GPL v3 by section 7 which states "Additional permissions are terms that supplement the terms of this
 License by making exceptions from one or more of its conditions."
 
-One way to obtain an exception is by being a p5play Patreon member. The only other way is to be publicly listed as exempt by Quinton Ashley on his p5play-exceptions page on GitHub.
+The primary way to obtain an exception is by being a p5play Patreon member. The only other way is to be publicly listed as exempt by Quinton Ashley on his p5play-exceptions page on GitHub.
 
 Contact Quinton Ashley by email for more information: info@p5play.org.
 
