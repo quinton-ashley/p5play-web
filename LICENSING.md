@@ -11,7 +11,7 @@ One way to obtain an exception is by being a p5play Patreon member. The only oth
 
 Contact Quinton Ashley by email for more information: info@p5play.org.
 
-If you intend to make a derivative version of p5play, which means copying the code in part or whole and making your own edits to it, then you must release your work publicly under the same GPLv3 only license, meaning that derivatives of p5play must also be open source. I would prefer that derivatives only exist for the purpose of contributing back to the main p5play library.
+If you intend to make a derivative version of p5play, which means copying the code in part or whole and making your own edits to it, then you must release your work publicly under the same GPLv3 only license, meaning that derivatives of p5play must also be open source. I would prefer that derivatives only exist for the purpose of contributing back to the main p5play library, for the benefit of the p5play community.
 
 The current p5play logos were created by Quinton Ashley, all rights reserved. The p5play logo can be found in the "assets" folder of this p5play-web repository in a file named "logo.svg". You can not use it to imply a derivative work is original or was created by Quinton Ashley. You are encouraged to reference it and/or the "made_with_p5play.png" images in your own projects to show that your project was made with p5play, but you may not imply that your project is endorsed by Quinton Ashley.
 
