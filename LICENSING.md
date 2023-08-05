@@ -2,7 +2,7 @@
 
 ## p5play v3 library
 
-You can utilize p5play in a commercial project if at least ONE (1) of the following conditions is met:
+You can utilize p5play in a closed source project if at least ONE (1) of the following conditions is met:
 
 1. You are a current [p5play Patreon][] member paying for the appropriate tier.
 
@@ -10,7 +10,7 @@ You can utilize p5play in a commercial project if at least ONE (1) of the follow
 
 3. You publicly release the source code for your entire project.
 
-p5play is licensed under the GPLv3, a copyleft license. Failure to comply is intellectual property theft. Cease and desist letters will be sent to suspected violators, affording a reasonable amount of time to comply before legal action is taken. Violators will be prosecuted to the fullest extent of the law.
+p5play is licensed under the GPLv3, a copyleft license. Violating the terms is intellectual property theft. Cease and desist letters will be sent to suspected violators.
 
 Quinton Ashley is the sole copyright holder of p5play. Exceptions are afforded by the GPL v3 in section 7 which states "Additional permissions are terms that supplement the terms of this License by making exceptions from one or more of its conditions." If an exception is not obtained, potential consumers must be made aware of their ability to download readable (non-obfuscated) source code at or before the point of sale, as a free alternative to making any purchases. Note that your source code must include any requisite material, not limited to program files.
 
