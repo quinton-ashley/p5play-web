@@ -119,9 +119,9 @@ async function startServer() {
 	qr0.id = 'qr0';
 	qr0.innerHTML = `<img src="../assets/p5play_logo.svg" slot="icon">`;
 	qr0.contents = 'p5play://' + ipAddress + ':7529';
-	qr0.moduleColor = '#ed225d';
-	qr0.positionRingColor = '#ed225d';
-	qr0.positionCenterColor = '#c0eeff';
+	qr0.moduleColor = '#ff0a52';
+	qr0.positionRingColor = '#ff0a52';
+	qr0.positionCenterColor = '#b7ebff';
 	qr0.maskXToYRatio = '1';
 	qr0.addEventListener('codeRendered', () => {
 		qr0.animateQRCode((targets, _x, _y, _count, entity) => ({

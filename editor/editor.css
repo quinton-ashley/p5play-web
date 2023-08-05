@@ -1,11 +1,13 @@
 html {
-  --pink: #ed225d;
-  --blue: #c0eeff;
+  --pink: #ff0a52;
+  --blue: #b7ebff;
 
-  --pink0: #ed225d;
-  --pink1: #ff1c5c;
+  --pink0: #ea104e;
+  --pink1: #ff0a52;
 
-  --blue1: #2d7bb6;
+  --blue0: #4eaee9;
+  --blue1: #4eaee9;
+  --blue2: #002340;
 
   --bg: #000;
 
@@ -263,21 +265,21 @@ pre {
 }
 
 #qr {
-  width: 256px;
-  height: 256px;
+  width: 360px;
+  height: 360px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 #qr img {
-  width: 256px;
-  height: 256px;
+  width: 360px;
+  height: 360px;
 }
 
 #qr0 {
-  width: 256px;
-  height: 256px;
+  width: 360px;
+  height: 360px;
   margin: 2em auto;
   background-color: var(--secondary);
   border-radius: 5px;

@@ -2,17 +2,19 @@
 
 ### [p5play](https://github.com/quinton-ashley/p5play) is a JavaScript game engine that uses [p5.js](http://p5js.org/) for graphics and [Box2D](https://piqnt.com/planck.js/) for physics.
 
-Looking to turn your ideas into online games or interactive art? Check out p5play! It was designed by Computer Science teachers to be intuitive for beginners, making it popular at schools and universities around the world. But, p5play v3 isn't just for classroom use. It's packed with awesome features and uses the same physics simulator that powers beloved games like Tiny Wings, Shovel Knight, Limbo, Happy Wheels, and Angry Birds.
+Designed by Computer Science teachers to be intuitive for beginners, making it popular at schools and universities around the world.
 
-Get started by reading the ["Learn" reference pages!](learn/sprite.html)
+Uses the same powerful physics simulator as beloved games like Tiny Wings, Shovel Knight, Limbo, Happy Wheels, and Angry Birds.
 
-# 1
+## [Learn p5play!](learn/sprite.html)
+
+# 10
 
 ## Join the community 👾
 
 Ask questions and meet other people making interactive art and games with p5play on our [community Discord server](https://discord.gg/3UTbqUgmPF).
 
-# 2
+# 11
 
 ## Support this project 🤝
 
@@ -20,19 +22,19 @@ p5play is [open source licensed](https://github.com/quinton-ashley/p5play-web/bl
 
 But if you use p5play professionally, please [support the project on Patreon](https://www.patreon.com/p5play)!
 
-# 3
+# 12
 
-## No installation required! 🤩
+## No installation required 🤩
 
-You can use any of these online code editor templates. However, I suggest avoiding the p5.js web editor, it has a lot of problems. I recommend using OpenProcessing.
+Works great on Google Chromebooks! You can use any of these online code editor templates. We recommend using OpenProcessing.
 
-# 4-0
+# 13-0
 
 ## Local Development 🔨
 
 Use p5play on your own website by adding these links to your HTML file. School firewall blocking p5play.org? See the [FAQs](https://github.com/quinton-ashley/p5play/wiki/FAQ#school-firewall-blocking-p5playorg)
 
-# 4-1
+# 13-1
 
 p5play is also available on npm: `npm i p5play`
 
