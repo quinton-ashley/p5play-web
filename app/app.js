@@ -1,5 +1,5 @@
 const log = console.log;
-const { app, BrowserWindow, dialog, exec, ipcMain, shell, protocol } = require('electron');
+const { app, BrowserWindow, dialog, exec, ipcMain, net, shell, protocol } = require('electron');
 const fs = require('node:fs/promises');
 const path = require('path');
 const os = require('os');
@@ -122,29 +122,7 @@ function createWindow(event, url) {
 	}
 }
 
-protocol.registerSchemesAsPrivileged([
-	{
-		scheme: 'file',
-		privileges: {
-			standard: true,
-			secure: true,
-			supportFetchAPI: true
-		}
-	}
-]);
-
 app.on('ready', () => {
-	protocol.interceptFileProtocol(
-		'file',
-		(request, callback) => {
-			const url = request.url.slice(7); /* all urls start with 'file://' */
-			callback({ path: path.join(__dirname, url) });
-		},
-		(err) => {
-			if (err) console.error('Failed to register protocol');
-		}
-	);
-
 	const ipAddress = getIpAddress();
 	const homeDir = os.homedir();
 	ipcMain.handle('getIpAddress', () => ipAddress);

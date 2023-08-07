@@ -40,7 +40,7 @@ Try using your keyboard to test out some of the different ways to control animat
 
 The `sprite.addAni` function can add an animation to a sprite. It can also load the animation, just like `loadAni`. As an optional first input parameter, you can provide a name for the animation.
 
-Try pressing the left mouse button. When the
+Try pressing the left mouse button. When
 `sprite.debug` property is set to true you can
 see the sprite's physics body collider.
 
@@ -48,11 +48,11 @@ see the sprite's physics body collider.
 
 ## Control a Sprite's Animation
 
-`sprite.ani` stores the sprite's current animation,
-which can be changed by setting it to the name of a different
-animation.
+Use the `sprite.changeAni` function to change a sprite's animation, this function accepts an animation object or the name of a previously loaded animation.
 
-`sprite.mirror` can be used to flip the sprite
+`sprite.ani` stores the sprite's current animation, which enables access to its properties and functions like `play` and `stop`.
+
+The `sprite.mirror` vector can be used to flip the sprite
 horizontally or vertically.
 
 Try pressing left and right to make the ghost move.
@@ -105,7 +105,7 @@ When `sprite.pixelPerfect` is set to true, the sprite will be drawn at integer c
 
 ## Animation Sequencing
 
-`sprite.ani` can be set to an animation object, animation name, or array of animation names that will be played in sequence.
+`sprite.changeAni` can be accept an animation object, animation name, or array of animation names that will be played in sequence.
 
 By default if looping is enabled, the last animation in the sequence will be looped. To loop the entire sequence, use `'**'` as the last animation name. If instead you want the sequence to stop at the end, use `';;'` as the last animation name.
 
@@ -115,6 +115,6 @@ This example shows how the hero character can be moved around the screen using W
 
 ## Advanced Animation Sequencing
 
-Behind the scenes, setting `sprite.ani` uses the `sprite.changeAni` async function. You can use this function directly to wait for animations to finish playing.
+`sprite.changeAni` is an async function, you can use it to wait for animations to finish playing.
 
 Example coming soon!

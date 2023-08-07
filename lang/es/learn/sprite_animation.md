@@ -44,15 +44,17 @@ Intenta presionar el botón izquierdo del ratón. Cuando la propiedad `sprite.de
 
 # 2-1
 
-## Controlar la Animación de un Sprite
+## Control de la Animación de un Sprite
 
-`sprite.ani` almacena la animación actual del sprite, que puede cambiarse al nombre de una animación diferente.
+Utiliza la función `sprite.changeAni` para cambiar la animación de un sprite. Esta función acepta un objeto de animación o el nombre de una animación cargada previamente.
 
-`sprite.mirror` puede ser utilizado para voltear el sprite horizontal o verticalmente.
+`sprite.ani` almacena la animación actual del sprite, lo que permite acceder a sus propiedades y funciones como `play` y `stop`.
 
-Intenta presionar izquierda y derecha para hacer mover el fantasma.
+El vector `sprite.mirror` se puede usar para voltear el sprite horizontal o verticalmente.
 
-Intenta presionar la barra espaciadora para detener la animación.
+Prueba presionando izquierda y derecha para hacer que el fantasma se mueva.
+
+Prueba presionando la barra espaciadora para detener la animación.
 
 # 3-0
 
@@ -60,56 +62,56 @@ Intenta presionar la barra espaciadora para detener la animación.
 
 Si se agrega una animación a un grupo, los nuevos sprites del grupo recibirán una copia de esa animación.
 
-Observa que en este mini-ejemplo si colocas manchas demasiado cerca, se alejarán hasta que sus colisionadores ya no estén superpuestos. El tamaño del colisionador se toma del tamaño de la animación.
+Ten en cuenta que en este mini-ejemplo, si colocas las manchas demasiado cerca, se separarán hasta que sus colisionadores ya no se superpongan. El tamaño del colisionador se toma del tamaño de la animación.
 
-¡Intenta hacer clic con el ratón para añadir nuevas manchas!
+¡Prueba hacer clic con el ratón para agregar nuevas manchas!
 
 # 4-0
 
 ## Hojas de Sprites con Múltiples Animaciones
 
-Para cargar múltiples animaciones desde la misma imagen de la hoja de sprites, primero configura la propiedad `spriteSheet` del sprite o grupo.
+Para cargar múltiples animaciones desde la misma imagen de hoja de sprites, primero establece la propiedad `spriteSheet` del sprite o grupo.
 
-A continuación, utiliza la función `addAnimations` / `addAnis`. Aceptan un objeto que utiliza los nombres de las animaciones como claves y los atlas de las hojas de sprites como valores.
+Luego, utiliza la función `addAnimations` / `addAnis`. Aceptan un objeto que utiliza los nombres de las animaciones como claves y los atlas de la hoja de sprites como valores.
 
-¡Usar un objeto atlas es mucho más fácil que especificar manualmente las coordenadas de cada frame!
+Usar un objeto atlas es mucho más fácil que especificar manualmente las coordenadas de cada fotograma.
 
 Los objetos atlas pueden tener las siguientes propiedades:
 
-`x`, `y`, `pos`, `w`/`width`, `h`/`height`, `size`/`frameSize`, `row`, `col`, `frames`/`frameCount`, `delay`/`frameDelay`, y `rotation`.
+`x`, `y`, `pos`, `w`/`width`, `h`/`height`, `size`/`frameSize`, `row`, `col`, `frames`/`frameCount`, `delay`/`frameDelay` y `rotation`.
 
-En el ejemplo del "héroe", el tamaño del sprite del héroe se establece en 32x32 píxeles en el constructor `Sprite`. Ese tamaño se utiliza como multiplicador para el valor de la fila dado.
+En el ejemplo del "héroe", el tamaño del sprite del héroe se establece en 32x32 píxeles en el constructor `Sprite`. Ese tamaño se utiliza como un multiplicador para el valor de la fila proporcionado.
 
-Haz clic en este enlace para ver la [hoja de sprites completa](assets/questKid.png) utilizada en el ejemplo.
+Haz clic en este enlace para ver la hoja de sprites completa [questKid](assets/questKid.png) utilizada en el ejemplo.
 
-Si realmente quieres apreciar lo bueno que es p5play, intenta comparar el código de mi ejemplo con [esta demo de Phaser](https://labs.phaser.io/view.html?src=src/animation/create%20animation%20from%20sprite%20sheet.js). ¡Ja!
+Si deseas apreciar realmente lo bueno que es p5play, compara el código de mi ejemplo con [esta demostración de Phaser](https://labs.phaser.io/view.html?src=src/animation/create%20animation%20from%20sprite%20sheet.js). ¡Ja!
 
-Recomiendo hacer que cada frame en una animación tenga el mismo tamaño y ponerlos en orden de izquierda a derecha. Si no, tendrás que especificar manualmente la posición de cada frame, lo cual se puede hacer utilizando una matriz de coordenadas en lugar de un objeto atlas.
+Recomiendo hacer que cada fotograma de una animación tenga el mismo tamaño y colocarlos en orden de izquierda a derecha. De lo contrario, tendrás que especificar manualmente la posición de cada fotograma, lo que se puede hacer utilizando una matriz de coordenadas en lugar de un objeto atlas.
 
 # 4-1
 
 ## anis
 
-Cada sprite y grupo tiene un objeto `animations` / `anis` que almacena sus animaciones. Las claves son nombres de animación y los valores son objetos de animación. Funciona como lo hacen los grupos, utilizando herencia suave y dinámica.
+Cada sprite y grupo tiene un objeto `animations` / `anis` que almacena sus animaciones. Las claves son nombres de animaciones y los valores son objetos de animación. Funciona como lo hacen los grupos, utilizando una herencia suave y dinámica.
 
 La propiedad `ani.offset` se utiliza para ajustar la posición de una animación en relación con la posición del sprite.
 
-Cuando `sprite.pixelPerfect` está configurado como verdadero, el sprite se dibuja en coordenadas enteras, mientras que mantiene la posición precisa de su colisionador. ¡Esto es útil para los juegos de arte pixelado!
+Cuando `sprite.pixelPerfect` está configurado en true, el sprite se dibujará en coordenadas enteras, manteniendo la posición precisa de su colisionador. ¡Esto es útil para juegos de arte pixelado!
 
 # 5-0
 
 ## Secuenciación de Animaciones
 
-`sprite.ani` puede ser configurado como un objeto de animación, nombre de animación, o matriz de nombres de animación que se reproducirán en secuencia.
+`sprite.changeAni` puede aceptar un objeto de animación, un nombre de animación o una matriz de nombres de animación que se reproducirán en secuencia.
 
-Por defecto, si el bucle está habilitado, la última animación de la secuencia será en bucle. Para hacer un bucle de toda la secuencia, utiliza `'**'` como el último nombre de la animación. Si en cambio quieres que la secuencia se detenga al final, utiliza `';;'` como el último nombre de la animación.
+De manera predeterminada, si la repetición está habilitada, la última animación de la secuencia se repetirá. Para repetir toda la secuencia, utiliza `'**'` como el último nombre de animación. Si, en cambio, deseas que la secuencia se detenga al final, utiliza `';;'` como el último nombre de animación.
 
-Este ejemplo muestra cómo el personaje del héroe puede ser movido alrededor de la pantalla usando WASD o las flechas del teclado!
+¡Este ejemplo muestra cómo el personaje héroe puede moverse por la pantalla usando las teclas WASD o las teclas de flecha!
 
 # 6-0
 
 ## Secuenciación de Animaciones Avanzada
 
-Por detrás, configurar `sprite.ani` utiliza la función asincrónica `sprite.changeAni`. Puedes usar esta función directamente para esperar a que las animaciones terminen de reproducirse.
+`sprite.changeAni` es una función asíncrona, puedes usarla para esperar a que las animaciones terminen de reproducirse.
 
 ¡Ejemplo próximamente!

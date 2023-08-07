@@ -134,7 +134,6 @@ async function translatePage(pageGroup, page) {
 
 	html = dom.serialize();
 
-	// this doesn't work, vscode must use unknown additional settings
 	html = await beautify(html, {
 		indent_size: 1,
 		indent_char: '\t',
@@ -158,10 +157,6 @@ async function translatePage(pageGroup, page) {
 	html = html.replace(/(<script .+>)\s*/g, '$1\n');
 
 	await fs.writeFile(htmlFilePath, html);
-
-	// save again with the default vscode html formatter
-	// by using command line vscode
-
 	log(path.resolve(htmlFilePath));
 }
 
