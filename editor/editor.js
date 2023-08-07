@@ -10,6 +10,7 @@ let ids = [
 	'sceneZoneBtn',
 	'fullscreenBtn',
 	'mobileZoneBtn',
+	'learnBtn',
 	'shareZoneBtn',
 
 	'codeNav',

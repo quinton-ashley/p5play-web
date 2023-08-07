@@ -122,7 +122,31 @@ function createWindow(event, url) {
 	}
 }
 
+// protocol.registerSchemesAsPrivileged([
+// 	{
+// 		scheme: 'file',
+// 		privileges: {
+// 			standard: true,
+// 			secure: true,
+// 			supportFetchAPI: true
+// 		}
+// 	}
+// ]);
+
 app.on('ready', () => {
+	// protocol.handle('file', (req) => {
+	// 	// const url = req.url.slice(7); /* all urls start with 'file://' */
+	// 	const url = req.url;
+	// 	log(url);
+	// 	return net.fetch(url);
+	// });
+
+	// const _fetch = net.fetch;
+	// net.fetch = (url, options) => {
+	// 	log(url);
+	// 	return _fetch(url, options);
+	// };
+
 	const ipAddress = getIpAddress();
 	const homeDir = os.homedir();
 	ipcMain.handle('getIpAddress', () => ipAddress);
@@ -147,7 +171,7 @@ app.on('ready', () => {
 		}
 	});
 
-	mainWindow.loadFile(path.join(__dirname, '../learn/index.html'));
+	mainWindow.loadFile(path.join(__dirname, '../editor/index.html'));
 
 	mainWindow.webContents.openDevTools();
 });
