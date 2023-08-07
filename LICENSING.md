@@ -19,8 +19,6 @@ Quinton Ashley is the sole copyright holder of p5play. Exceptions are afforded b
 Contact Quinton Ashley by email for more information:
 info@p5play.org
 
-If you intend to make a derivative version of p5play, which means copying the code in part or whole and making your own edits to it, then you must release your work publicly under the same GPLv3 license, meaning that derivatives of p5play must also be open source. However, I would prefer that derivatives only exist for the purpose of contributing back to the main p5play library, for the benefit of the p5play community.
-
 ## p5play logos
 
 The current p5play logos were created by Quinton Ashley, all rights reserved. The p5play logo can be found in the "assets" folder of this p5play-web repository in a file named "logo.svg". You can not use it to imply a derivative work is original or was created by Quinton Ashley. You are encouraged to reference it and/or the "made_with_p5play.png" images in your own projects to show that your project was made with p5play, but you may not imply that your project is endorsed by Quinton Ashley.
@@ -31,9 +29,9 @@ p5.play v1 and v2 are licensed under the LGPLv2 license, a more permissive copyl
 
 ## p5play.org website
 
-The example code and non-logo images shown in the mini-editors on the p5play website are public domain works licensed under the CC0 license. You are free to copy and modify them for use in your own projects without attribution.
+The example code and non-logo images shown in the mini editors on the p5play website are public domain works licensed under the CC0 license. You are free to copy and modify them for use in your own projects without attribution.
 
-The lessons and everything else in this repository, "p5play-web", is owned by Quinton Ashley, all rights reserved. This content is publicly available to be read and referenced in your own projects, but you may not copy the content to a greater extent than fair use allows without permission from Quinton Ashley.
+The lessons and everything else in this repository, "p5play-web", is owned by Quinton Ashley, all rights reserved. This content is publicly available to be read and referenced in your own projects, but you may not copy the content to a greater extent than fair use allows without permission.
 
 ## Contributions to p5play
 
