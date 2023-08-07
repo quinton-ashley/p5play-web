@@ -29,3 +29,13 @@ By default, the `"pixelated"` preset scales the canvas to fit the screen while r
 For example, `"pixelated x2"` will create a canvas that's displayed at twice the size of the specified width and height.
 
 To display all sprites at integer coordinates, set `allSprites.pixelPerfect` to true and use integer coordinates for the camera's position and zoom.
+
+# 2-0
+
+## Resize
+
+The `resizeCanvas` or `canvas.resize` functions resize the canvas to a specified width and height.
+
+Visually the canvas will shrink or extend to the new size. Sprites will not change position.
+
+If you would prefer to keep the camera focused on the same area, then you must manually adjust the camera position after calling this function.

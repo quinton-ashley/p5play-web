@@ -1,53 +1,45 @@
-<!DOCTYPE html><html lang="ja"><head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>p5play : Group</title>
-    <link rel="icon" href="/assets/favicon.png">
-    <link rel="stylesheet" href="/learn/style.css">
-  </head>
+<!DOCTYPE html>
+<html lang="ja">
 
-  <body class="dark">
-    <article>
-      <nav id="topNav">
-        <a href="index.html" id="logoLink" class="active">
-          <img alt="p5play logo" src="/assets/p5play_logo.svg" class="logo">
-          <span>p5play</span>
-        </a>
-        <hr>
-        <a href="sprite.html">Sprite</a>
-        <a href="group.html" class="active">Group</a>
-        <a href="sprite_animation.html">Ani</a>
-        <a href="input_devices.html">Input</a>
-        <a href="camera.html">Camera</a>
-        <a href="joints.html">Joints</a>
-        <a href="canvas.html">...</a>
-        <hr>
-        <a id="darkMode" onclick="toggleDarkMode()" tabindex="0" role="button" title="dark mode toggle">
-          <div id="darkModeIcon"></div>
-        </a>
-      </nav>
-      <div class="break"></div>
-      <div id="page-0" class="page">
-        <md id="md0-0"><h2 id="グループとは何ですか？">グループとは何ですか？</h2>
-          <p>
-            p5play
-            では、グループは、同様の特性と振る舞いを持つスプライトのコレクションであり、設計図でもあります。例えば、Pac-Man
-            のドット！
-          </p>
-          <p>
-            <code>group.length</code>プロパティは、グループにいくつのスプライトがあるかを確認するために使用できます。この例では、ドットのグループが
-            24 個未満のスプライトを持つ限り、while ループの条件が真です。
-          </p>
-          <p>
-            このミニ例では、<code>new dots.Sprite</code>は、ドットのグループの色、y
-            位置、直径を継承するスプライトを作成します。各ドットには一意の x
-            位置が割り当てられます。
-          </p>
-          <p>
-            私はこれを「ソフト継承」と呼びます。なぜなら、グループは新しいグループスプライトの設計図として機能するからです。
-          </p>
-        </md>
-        <script type="mie/p5" id="dots" lines="15" base-0="">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>p5play : Group</title>
+	<link rel="icon" href="/assets/favicon.png">
+	<link rel="stylesheet" href="/learn/style.css">
+</head>
+
+<body class="dark">
+	<article>
+		<nav id="topNav">
+			<a href="index.html" id="logoLink" class="active">
+				<img alt="p5play logo" src="/assets/p5play_logo.svg" class="logo">
+				<span>p5play</span>
+			</a>
+			<hr>
+			<a href="sprite.html">Sprite</a>
+			<a href="group.html" class="active">Group</a>
+			<a href="sprite_animation.html">Ani</a>
+			<a href="input_devices.html">Input</a>
+			<a href="camera.html">Camera</a>
+			<a href="joints.html">Joints</a>
+			<a href="canvas.html">...</a>
+			<hr>
+			<a id="darkMode" onclick="toggleDarkMode()" tabindex="0" role="button" title="dark mode toggle">
+				<div id="darkModeIcon"></div>
+			</a>
+		</nav>
+		<div class="break"></div>
+		<div id="page-0" class="page">
+			<md id="md0-0">
+				<h2 id="グループとは何ですか？">グループとは何ですか？</h2>
+				<p>p5play では、グループは、同様の特性と振る舞いを持つスプライトのコレクションであり、設計図でもあります。例えば、Pac-Man のドット！</p>
+				<p><code>group.length</code>プロパティは、グループにいくつのスプライトがあるかを確認するために使用できます。この例では、ドットのグループが 24
+					個未満のスプライトを持つ限り、while ループの条件が真です。</p>
+				<p>このミニ例では、<code>new dots.Sprite</code>は、ドットのグループの色、y 位置、直径を継承するスプライトを作成します。各ドットには一意の x 位置が割り当てられます。</p>
+				<p>私はこれを「ソフト継承」と呼びます。なぜなら、グループは新しいグループスプライトの設計図として機能するからです。</p>
+			</md>
+			<script type="mie/p5" id="dots" lines="15" base-0="">
 let dots;
 
 function setup() {
@@ -68,46 +60,33 @@ function draw() {
 	clear();
 }
 			</script>
-        <md id="md0-1"><p>
-            グループは配列なので、インデックスでグループ内のスプライトにアクセスできます。グループには、標準の
-            JavaScript の配列メソッドを使用することができます。
-          </p>
-        </md>
-        <script type="mie/p5" id="green-dot" base="0">
+			<md id="md0-1">
+				<p>グループは配列なので、インデックスでグループ内のスプライトにアクセスできます。グループには、標準の JavaScript の配列メソッドを使用することができます。</p>
+			</md>
+			<script type="mie/p5" id="green-dot" base="0">
 dots[5].color = 'green';
 			</script>
-        <md id="md0-2"><p>
-            グループのプロパティを異なる値に設定すると、グループ内のすべてのスプライトに影響を及ぼします！私はこれを「動的継承」と呼んでいます。
-          </p>
-        </md>
-        <script type="mie/p5" id="green-dots" base="0">
+			<md id="md0-2">
+				<p>グループのプロパティを異なる値に設定すると、グループ内のすべてのスプライトに影響を及ぼします！私はこれを「動的継承」と呼んでいます。</p>
+			</md>
+			<script type="mie/p5" id="green-dots" base="0">
 dots.color = 'green';
 			</script>
-        <md id="md0-3"><p>
-            <code>group.moveTowards</code>のような移動関数を使用すると、グループ内のすべてのスプライトが移動します。
-          </p>
-        </md>
-        <script type="mie/p5" id="moving-dots" base="0">
+			<md id="md0-3">
+				<p><code>group.moveTowards</code>のような移動関数を使用すると、グループ内のすべてのスプライトが移動します。</p>
+			</md>
+			<script type="mie/p5" id="moving-dots" base="0">
 dots.moveTowards(mouse);
 			</script>
-      </div>
-      <div id="page-1" class="page">
-        <md id="md1-0"><h2 id="アロー関数プロパティセッター">
-            アロー関数プロパティセッター
-          </h2>
-          <p>
-            p5play
-            では、グループ内のスプライトプロパティをアロー関数に設定すると、そのグループを使用して作成された新しいスプライトは、その関数を使用してプロパティを評価します。
-          </p>
-          <p>
-            <code>group.amount</code>が調整されると、グループは自動的に設定した量に合わせてスプライトを作成したり削除したりします。
-          </p>
-          <p>
-            このミニ例では、各宝石のスプライトにはランダムな x 座標と y
-            座標が割り当てられます。
-          </p>
-        </md>
-        <script type="mie/p5" id="push-gems" horiz="">
+		</div>
+		<div id="page-1" class="page">
+			<md id="md1-0">
+				<h2 id="アロー関数プロパティセッター">アロー関数プロパティセッター</h2>
+				<p>p5play では、グループ内のスプライトプロパティをアロー関数に設定すると、そのグループを使用して作成された新しいスプライトは、その関数を使用してプロパティを評価します。</p>
+				<p><code>group.amount</code>が調整されると、グループは自動的に設定した量に合わせてスプライトを作成したり削除したりします。</p>
+				<p>このミニ例では、各宝石のスプライトにはランダムな x 座標と y 座標が割り当てられます。</p>
+			</md>
+			<script type="mie/p5" id="push-gems" horiz="">
 let player, gems;
 
 function setup() {
@@ -127,20 +106,15 @@ function draw() {
 	player.moveTowards(mouse);
 }
 			</script>
-      </div>
-      <div id="page-2" class="page">
-        <md id="md2-0"><h2 id="グループの重なり">グループの重なり</h2>
-          <p>
-            overlap 関数は、2
-            つのスプライトが重なっているかどうかを処理するためだけのものではありません。グループ内のスプライトとスプライトが重なっているかどうかも確認できます。
-          </p>
-          <p>
-            このミニ例では、collect
-            関数は入力としてプレーヤーと、プレーヤースプライトが重なっている宝石グループ内の宝石を受け取ります。その宝石は削除されます。
-          </p>
-          <p>グループにも overlap 関数と collide 関数を使用できます。</p>
-        </md>
-        <script type="mie/p5" id="collect-gems" horiz="">
+		</div>
+		<div id="page-2" class="page">
+			<md id="md2-0">
+				<h2 id="グループの重なり">グループの重なり</h2>
+				<p>overlap 関数は、2 つのスプライトが重なっているかどうかを処理するためだけのものではありません。グループ内のスプライトとスプライトが重なっているかどうかも確認できます。</p>
+				<p>このミニ例では、collect 関数は入力としてプレーヤーと、プレーヤースプライトが重なっている宝石グループ内の宝石を受け取ります。その宝石は削除されます。</p>
+				<p>グループにも overlap 関数と collide 関数を使用できます。</p>
+			</md>
+			<script type="mie/p5" id="collect-gems" horiz="">
 let player, gems;
 
 function setup() {
@@ -166,15 +140,13 @@ function draw() {
 	player.moveTowards(mouse);
 }
 			</script>
-      </div>
-      <div id="page-3" class="page">
-        <md id="md3-0"><h2 id="allsprites-グループ">allSprites グループ</h2>
-          <p>
-            p5play
-            は、スケッチ内のすべてのスプライトを含む<code>allSprites</code>グループを作成します。
-          </p>
-        </md>
-        <script type="mie/p5" id="allSprites" horiz="">
+		</div>
+		<div id="page-3" class="page">
+			<md id="md3-0">
+				<h2 id="allsprites-グループ">allSprites グループ</h2>
+				<p>p5play は、スケッチ内のすべてのスプライトを含む<code>allSprites</code>グループを作成します。</p>
+			</md>
+			<script type="mie/p5" id="allSprites" horiz="">
 let box, circle;
 
 function setup() {
@@ -188,21 +160,16 @@ function draw() {
 	allSprites.moveTowards(mouse);
 }
 			</script>
-      </div>
-      <div id="page-4" class="page">
-        <div class="minis horiz">
-          <md id="md4-0"><h2 id="インデックス付きアロー関数セッター">
-              インデックス付きアロー関数セッター
-            </h2>
-            <p>
-              グループスプライトのプロパティを評価するときは、そのインデックスを使用することさえできます！
-            </p>
-            <p>
-              <code>i</code>はグループ内のスプライトのインデックスで、それらが評価されるときにグループプロパティ関数への入力パラメータとして与えられます。
-            </p>
-          </md>
-          <script type="mie/p5" id="doors" hide-editor="">
-        let doors, rail;
+		</div>
+		<div id="page-4" class="page">
+			<div class="minis horiz">
+				<md id="md4-0">
+					<h2 id="インデックス付きアロー関数セッター">インデックス付きアロー関数セッター</h2>
+					<p>グループスプライトのプロパティを評価するときは、そのインデックスを使用することさえできます！</p>
+					<p><code>i</code>はグループ内のスプライトのインデックスで、それらが評価されるときにグループプロパティ関数への入力パラメータとして与えられます。</p>
+				</md>
+				<script type="mie/p5" id="doors" hide-editor="">
+let doors, rail;
         
         function setup() {
         	new Canvas(500, 150);
@@ -222,8 +189,8 @@ function draw() {
         	clear();
         }
         			</script>
-        </div>
-        <script type="mie/p5" id="numbered" lines="13">
+			</div>
+			<script type="mie/p5" id="numbered" lines="13">
 let orbs;
 
 function setup() {
@@ -242,24 +209,17 @@ function draw() {
 	clear();
 }
 			</script>
-      </div>
-      <div id="page-5" class="page">
-        <md id="md5-0"><h2 id="サブグループ">サブグループ</h2>
-          <p>
-            このミニ例では、<code>boxes</code>グループの 2
-            つのサブグループ、<code>smallBoxes</code>と<code>bigBoxes</code>があります。
-          </p>
-          <p>
-            <code>bigBoxes</code>グループを使用して作成された新しいスプライトは、<code>boxes</code>グループから特性を継承しますが、<code>smallBoxes</code>グループからは継承しません。
-          </p>
-          <p>
-            <code>boxes</code>グループには、<code>smallBoxes</code>グループと<code>bigBoxes</code>グループのすべてのスプライトが含まれています。
-          </p>
-          <p>
-            <code>group.removeAll</code>関数を使用して、グループからすべてのスプライトを削除することができます。
-          </p>
-        </md>
-        <script type="mie/p5" id="SubGroup" horiz="">
+		</div>
+		<div id="page-5" class="page">
+			<md id="md5-0">
+				<h2 id="サブグループ">サブグループ</h2>
+				<p>このミニ例では、<code>boxes</code>グループの 2 つのサブグループ、<code>smallBoxes</code>と<code>bigBoxes</code>があります。</p>
+				<p><code>bigBoxes</code>グループを使用して作成された新しいスプライトは、<code>boxes</code>グループから特性を継承しますが、<code>smallBoxes</code>グループからは継承しません。
+				</p>
+				<p><code>boxes</code>グループには、<code>smallBoxes</code>グループと<code>bigBoxes</code>グループのすべてのスプライトが含まれています。</p>
+				<p><code>group.removeAll</code>関数を使用して、グループからすべてのスプライトを削除することができます。</p>
+			</md>
+			<script type="mie/p5" id="SubGroup" horiz="">
 let boxes, smallBoxes, bigBoxes;
 
 function setup() {
@@ -289,23 +249,18 @@ function draw() {
 	}
 }
 			</script>
-      </div>
-      <div id="page-6" class="page">
-        <md id="md6-0"><h2 id="カリング">カリング</h2>
-          <p>
-            デフォルトでは、スプライトはカメラの位置に対して 10000
-            ピクセル画面外に行くと削除されます。これは、世界が大きくなりすぎて物理シミュレーションが遅くなるのを防ぐためです。
-          </p>
-          <p>
-            これを変更するには、<code>allSprites.autoCull = false</code>を設定し、<code>group.cull</code>関数を使用して異なるカリング境界を設定します。物理コライダーを持たないスプライトさえカリングすることができます。
-          </p>
-          <p>
-            オプションの最後のパラメータは、スプライトがカリングされたときに呼び出されるコールバック関数を指定するために使用できます。カリングへのデフォルトの応答は、カリング境界を超えたスプライトを削除することですが、自分の関数を設定することで、他のことを行うことができます。コールバック関数は、カリングされたスプライトとそのフレームでカリングされたスプライトの合計数を受け取ります。この例では、1
-            フレームで 1
-            つ以上のボールがカリングされた場合、ボールの数が減ります。
-          </p>
-        </md>
-        <script type="mie/p5" id="cull">
+		</div>
+		<div id="page-6" class="page">
+			<md id="md6-0">
+				<h2 id="カリング">カリング</h2>
+				<p>デフォルトでは、スプライトはカメラの位置に対して 10000 ピクセル画面外に行くと削除されます。これは、世界が大きくなりすぎて物理シミュレーションが遅くなるのを防ぐためです。</p>
+				<p>これを変更するには、<code>allSprites.autoCull =
+						false</code>を設定し、<code>group.cull</code>関数を使用して異なるカリング境界を設定します。物理コライダーを持たないスプライトさえカリングすることができます。
+				</p>
+				<p>オプションの最後のパラメータは、スプライトがカリングされたときに呼び出されるコールバック関数を指定するために使用できます。カリングへのデフォルトの応答は、カリング境界を超えたスプライトを削除することですが、自分の関数を設定することで、他のことを行うことができます。コールバック関数は、カリングされたスプライトとそのフレームでカリングされたスプライトの合計数を受け取ります。この例では、1
+					フレームで 1 つ以上のボールがカリングされた場合、ボールの数が減ります。</p>
+			</md>
+			<script type="mie/p5" id="cull">
 let balls;
 function setup() {
 	new Canvas(500, 192);
@@ -323,15 +278,13 @@ function draw() {
 	}
 }
 			</script>
-        <md id="md6-1"><h2 id="life">life</h2>
-          <p>
-            スプライトが存在する期間を制限する別の方法は、その<code>life</code>プロパティを設定することです。これはスプライトが存在するフレーム数です。スプライトの寿命が尽きると、それは削除されます。これは、発射体やフォースフィールドなどの一時的なオブジェクトを作成するのに便利です。
-          </p>
-          <p>
-            この小さなゲームを試してみてください！マウスをクリックしてビーチボールを作成し、水流で空中に保つようにしてみてください。
-          </p>
-        </md>
-        <script type="mie/p5" id="life">
+			<md id="md6-1">
+				<h2 id="life">life</h2>
+				<p>スプライトが存在する期間を制限する別の方法は、その<code>life</code>プロパティを設定することです。これはスプライトが存在するフレーム数です。スプライトの寿命が尽きると、それは削除されます。これは、発射体やフォースフィールドなどの一時的なオブジェクトを作成するのに便利です。
+				</p>
+				<p>この小さなゲームを試してみてください！マウスをクリックしてビーチボールを作成し、水流で空中に保つようにしてみてください。</p>
+			</md>
+			<script type="mie/p5" id="life">
 let water;
 function setup() {
 	new Canvas(500, 192);
@@ -351,18 +304,14 @@ function draw() {
 	if (mouse.presses()) new Sprite(250, -200, 40);
 }
 			</script>
-      </div>
-      <div id="page-7" class="page">
-        <md id="md7-0"><h2 id="カスタムプロパティ">カスタムプロパティ</h2>
-          <p>
-            スプライトとグループに独自のプロパティを追加できます。これは他の
-            JavaScript オブジェクトと同じです！
-          </p>
-          <p>
-            また、グループにカスタムプロパティを追加すると、それらは新しいグループスプライトによって継承されます。プロパティセッターとしてアロー関数を使用することさえできます。
-          </p>
-        </md>
-        <script type="mie/p5" id="custom-properties" lines="10">
+		</div>
+		<div id="page-7" class="page">
+			<md id="md7-0">
+				<h2 id="カスタムプロパティ">カスタムプロパティ</h2>
+				<p>スプライトとグループに独自のプロパティを追加できます。これは他の JavaScript オブジェクトと同じです！</p>
+				<p>また、グループにカスタムプロパティを追加すると、それらは新しいグループスプライトによって継承されます。プロパティセッターとしてアロー関数を使用することさえできます。</p>
+			</md>
+			<script type="mie/p5" id="custom-properties" lines="10">
 function setup() {
 	new Canvas(500, 60);
 
@@ -379,40 +328,37 @@ function draw() {
 }
 
 			</script>
-      </div>
+		</div>
 
-      <div class="break"></div>
-      <div id="toc">
-        <a id="prevPage" class="navLink">前のページ</a>
-        <div id="pageNav" class="submenu">
-          <a data-page="0" href="group.html?page=0">ソフトとダイナミック継承</a>
-          <a data-page="1" href="group.html?page=1">アローセッター</a>
-          <a data-page="2" href="group.html?page=2">オーバーラップ</a>
-          <a data-page="3" href="group.html?page=3">allSprites</a>
-          <a data-page="4" href="group.html?page=4">インデックス付きアローセッター</a>
-          <a data-page="5" href="group.html?page=5">サブグループ</a>
-          <a data-page="6" href="group.html?page=6">カリング</a>
-          <a data-page="7" href="group.html?page=7">カスタムプロパティ</a>
-        </div>
-        <a id="nextPage" class="navLink">次のページ</a>
-      </div>
-      <div class="break"></div>
-      <footer id="credits" class="text-small">
-        クリントン・アシュリー（@quinton-ashley）によって作成されました 著作権
-        2022-2023
-      </footer>
-    </article>
+		<div class="break"></div>
+		<div id="toc">
+			<a id="prevPage" class="navLink">前のページ</a>
+			<div id="pageNav" class="submenu">
+				<a data-page="0" href="group.html?page=0">ソフトとダイナミック継承</a>
+				<a data-page="1" href="group.html?page=1">アローセッター</a>
+				<a data-page="2" href="group.html?page=2">オーバーラップ</a>
+				<a data-page="3" href="group.html?page=3">allSprites</a>
+				<a data-page="4" href="group.html?page=4">インデックス付きアローセッター</a>
+				<a data-page="5" href="group.html?page=5">サブグループ</a>
+				<a data-page="6" href="group.html?page=6">カリング</a>
+				<a data-page="7" href="group.html?page=7">カスタムプロパティ</a>
+			</div>
+			<a id="nextPage" class="navLink">次のページ</a>
+		</div>
+		<div class="break"></div>
+		<footer id="credits" class="text-small">クリントン・アシュリー（@quinton-ashley）によって作成されました 著作権 2022-2023</footer>
+	</article>
 
-    <!-- <script src="https://cdn.jsdelivr.net/npm/p5@1/lib/p5.js"></script> -->
-    <script src="/v3/q5.min.js"></script>
-    <script src="/v3/planck.min.js"></script>
-    <script src="/v3/p5play.min.js"></script>
+	<!-- <script src="https://cdn.jsdelivr.net/npm/p5@1/lib/p5.js"></script> -->
+<script src="/v3/q5.min.js"></script>
+<script src="/v3/planck.min.js"></script>
+<script src="/v3/p5play.min.js"></script>
+<script>
+window.mie = { autoLoad: false };
 
-    <script>
-      window.mie = { autoLoad: false };
-    </script>
-    <script src="/learn/mie.js"></script>
-    <script src="/learn/learn.js"></script>
-  
+	</script>
+	<script src="/learn/mie.js"></script>
+<script src="/learn/learn.js"></script>
+</body>
 
-</body></html>
+</html>

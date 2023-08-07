@@ -15,3 +15,5 @@ node_modules/
 # ignore to preserve files
 demos
 v2
+
+.vscode

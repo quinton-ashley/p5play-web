@@ -18,7 +18,7 @@
 			"credits": "Created by Quinton Ashley (@quinton-ashley) Copyright 2022-2023"
 		},
 		"camera": ["Movement", "Zoom", "On/Off", "Mouse Events with the Camera"],
-		"canvas": ["Canvas constructor", "Pixelated Mode"],
+		"canvas": ["Canvas constructor", "Pixelated Mode", "Resize"],
 		"group": [
 			"Soft and Dynamic Inheritance",
 			"Arrow Setters",

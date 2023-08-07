@@ -1,52 +1,52 @@
-<!DOCTYPE html><html lang="ja"><head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>p5play : Input</title>
-    <link rel="icon" href="/assets/favicon.png">
-    <link rel="stylesheet" href="/learn/style.css">
-  </head>
+<!DOCTYPE html>
+<html lang="ja">
 
-  <body class="dark">
-    <article>
-      <nav id="topNav">
-        <a href="index.html" id="logoLink" class="active">
-          <img alt="p5play logo" src="/assets/p5play_logo.svg" class="logo">
-          <span>p5play</span>
-        </a>
-        <hr>
-        <a href="sprite.html">Sprite</a>
-        <a href="group.html">Group</a>
-        <a href="sprite_animation.html">Ani</a>
-        <a href="input_devices.html" class="active">Input</a>
-        <a href="camera.html">Camera</a>
-        <a href="joints.html">Joints</a>
-        <a href="canvas.html">...</a>
-        <hr>
-        <a id="darkMode" onclick="toggleDarkMode()" tabindex="0" role="button" title="dark mode toggle">
-          <div id="darkModeIcon"></div>
-        </a>
-      </nav>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>p5play : Input</title>
+	<link rel="icon" href="/assets/favicon.png">
+	<link rel="stylesheet" href="/learn/style.css">
+</head>
 
-      <div class="break"></div>
+<body class="dark">
+	<article>
+		<nav id="topNav">
+			<a href="index.html" id="logoLink" class="active">
+				<img alt="p5play logo" src="/assets/p5play_logo.svg" class="logo">
+				<span>p5play</span>
+			</a>
+			<hr>
+			<a href="sprite.html">Sprite</a>
+			<a href="group.html">Group</a>
+			<a href="sprite_animation.html">Ani</a>
+			<a href="input_devices.html" class="active">Input</a>
+			<a href="camera.html">Camera</a>
+			<a href="joints.html">Joints</a>
+			<a href="canvas.html">...</a>
+			<hr>
+			<a id="darkMode" onclick="toggleDarkMode()" tabindex="0" role="button" title="dark mode toggle">
+				<div id="darkModeIcon"></div>
+			</a>
+		</nav>
 
-      <div id="page-0" class="page">
-        <md id="md0-0"><h2 id="入力デバイス">入力デバイス</h2>
-          <p>p5play で利用可能な入力デバイスは次のとおりです:</p>
-          <ul>
-            <li><code>kb</code>または<code>keyboard</code>はキーボード</li>
-            <li><code>mouse</code>はマウス</li>
-            <li>
-              <code>contro</code>または<code>controllers</code>はゲームコントローラー
-            </li>
-          </ul>
-          <p>
-            これらの入力デバイスはすべて、入力の状態を取得するためのシンプルな関数、<code>presses</code>、<code>pressing</code>、<code>released</code>を使用します。
-          </p>
-          <p>
-            また、彼らの全ての入力の状態をプロパティとして保存します。例えば、<code>kb.space</code>はユーザーがスペースキーを押し続けているフレーム数を保存します。ユーザーが入力を解放するとリセットされます。
-          </p>
-        </md>
-        <script type="mie/p5" id="hidden" base-0="" hide="">
+		<div class="break"></div>
+
+		<div id="page-0" class="page">
+			<md id="md0-0">
+				<h2 id="入力デバイス">入力デバイス</h2>
+				<p>p5play で利用可能な入力デバイスは次のとおりです:</p>
+				<ul>
+					<li><code>kb</code>または<code>keyboard</code>はキーボード</li>
+					<li><code>mouse</code>はマウス</li>
+					<li><code>contro</code>または<code>controllers</code>はゲームコントローラー</li>
+				</ul>
+				<p>これらの入力デバイスはすべて、入力の状態を取得するためのシンプルな関数、<code>presses</code>、<code>pressing</code>、<code>released</code>を使用します。
+				</p>
+				<p>また、彼らの全ての入力の状態をプロパティとして保存します。例えば、<code>kb.space</code>はユーザーがスペースキーを押し続けているフレーム数を保存します。ユーザーが入力を解放するとリセットされます。
+				</p>
+			</md>
+			<script type="mie/p5" id="hidden" base-0="" hide="">
 function setup() {
 	new Canvas(238, 100);
 	frameRate(30);
@@ -57,54 +57,43 @@ function draw() {
 	clear();
 }
 			</script>
-        <div class="minis">
-          <script type="mie/p5" id="presses" base="0">
+			<div class="minis">
+				<script type="mie/p5" id="presses" base="0">
 if (kb.presses('space')) {
 	background(0, 255, 0);
 }
 				</script>
-          <script type="mie/p5" id="pressing" base="0">
+				<script type="mie/p5" id="pressing" base="0">
 if (kb.pressing('space')) {
 	background(0, 255, 0);
 }
 				</script>
-          <script type="mie/p5" id="holding" base="0">
+				<script type="mie/p5" id="holding" base="0">
 if (kb.space >= 12) {
 	background(0, 255, 0);
 }
 				</script>
-          <script type="mie/p5" id="released" base="0">
+				<script type="mie/p5" id="released" base="0">
 if (kb.released('space')) {
 	background(0, 255, 0);
 }
 				</script>
-        </div>
-      </div>
-      <div id="page-1" class="page">
-        <md id="md1-0"><h2 id="キーボード">キーボード</h2>
-          <p>
-            PC ゲームでは、WASD
-            キーが一般的にプレイヤーキャラクターの移動を制御するために使用されます。p5play
-            では、'up'、'down'、'left'、'right'の方向名を使用して WASD
-            キーと矢印キーの押下を検出できます。
-          </p>
-          <p>
-            WASD
-            と矢印キーを別々に使用したい場合は、これらのキー名を使用して矢印キーの押下を検出できます:
-            'ArrowUp', 'ArrowDown', 'ArrowLeft' そして 'ArrowRight'。
-            左利きのプレイヤーやローカルで 2
-            人プレイするセカンドプレイヤーをサポートするために、IJKL
-            キーでの移動が一般的です。これらのキーは次のように参照できます:
-            'up2', 'down2', 'left2', 'right2'。 一部のキーボードは最上行が
-            QWERTY で始まりません。p5play
-            は他のキーボードレイアウトを標準的な英語の QWERTY
-            レイアウトにマッピングします。例えば、フランスの AZERTY
-            キーボードのユーザーの WASD キーは ZQSD
-            です。これは<code>p5play.standardizeKeyboard</code>を false
-            に設定することで無効にできます。<a href="https://developer.mozilla.org/ja/docs/Web/API/KeyboardEvent/code">詳細情報</a>
-          </p>
-        </md>
-        <script type="mie/p5" id="keyboard-movement">
+			</div>
+		</div>
+		<div id="page-1" class="page">
+			<md id="md1-0">
+				<h2 id="キーボード">キーボード</h2>
+				<p>PC ゲームでは、WASD キーが一般的にプレイヤーキャラクターの移動を制御するために使用されます。p5play では、'up'、'down'、'left'、'right'の方向名を使用して WASD
+					キーと矢印キーの押下を検出できます。</p>
+				<p>WASD と矢印キーを別々に使用したい場合は、これらのキー名を使用して矢印キーの押下を検出できます: 'ArrowUp', 'ArrowDown', 'ArrowLeft' そして
+					'ArrowRight'。
+					左利きのプレイヤーやローカルで 2 人プレイするセカンドプレイヤーをサポートするために、IJKL キーでの移動が一般的です。これらのキーは次のように参照できます: 'up2', 'down2',
+					'left2', 'right2'。
+					一部のキーボードは最上行が QWERTY で始まりません。p5play は他のキーボードレイアウトを標準的な英語の QWERTY レイアウトにマッピングします。例えば、フランスの AZERTY
+					キーボードのユーザーの WASD キーは ZQSD です。これは<code>p5play.standardizeKeyboard</code>を false に設定することで無効にできます。<a
+						href="https://developer.mozilla.org/ja/docs/Web/API/KeyboardEvent/code">詳細情報</a></p>
+			</md>
+			<script type="mie/p5" id="keyboard-movement">
 let player;
 
 function setup() {
@@ -130,14 +119,14 @@ function draw() {
 	}
 }
 			</script>
-      </div>
-      <div id="page-2" class="page">
-        <md id="md2-0"><h2 id="マルチ入力">マルチ入力</h2>
-          <p>
-            このミニスケッチは、スペースキーを押すかマウスをクリックすることで一つのアクションが実行できる方法を示しています。デフォルトのマウス入力は、左マウスボタンまたは通常のクリックのための'left'です。
-          </p>
-        </md>
-        <script type="mie/p5" id="hidden" base-1="" hide="">
+		</div>
+		<div id="page-2" class="page">
+			<md id="md2-0">
+				<h2 id="マルチ入力">マルチ入力</h2>
+				<p>このミニスケッチは、スペースキーを押すかマウスをクリックすることで一つのアクションが実行できる方法を示しています。デフォルトのマウス入力は、左マウスボタンまたは通常のクリックのための'left'です。
+				</p>
+			</md>
+			<script type="mie/p5" id="hidden" base-1="" hide="">
 let sprite;
 
 function setup() {
@@ -150,29 +139,24 @@ function draw() {
 	sprite.color = 'yellow';
 }
 			</script>
-        <script type="mie/p5" id="multi-input" base="1">
+			<script type="mie/p5" id="multi-input" base="1">
 if (kb.pressing('space') || mouse.pressing()) {
 	sprite.color = 'red';
 }
 			</script>
-      </div>
-      <div id="page-3" class="page">
-        <md id="md3-0"><h2 id="スプライトマウス">スプライトマウス</h2>
-          <p>
-            物理的なコライダーを持つスプライトは、スプライト上のマウス入力を検出するための自身のマウスオブジェクトを持っています。
-            <code>sprite.mouse</code>オブジェクトは、<code>mouse</code>入力オブジェクトと同様ですが、追加の機能があります。
-          </p>
-          <p>
-            <code>hovers</code>と<code>hovering</code>は、ユーザーがマウスをスプライト上に移動したときに検出します。
-          </p>
-          <p>
-            <code>dragging</code>は、ユーザーがマウスボタンをクリックし続けてマウスを移動するときに検出します。
-            <code>mouse.x</code>はキャンバス上のマウスの x
-            位置であり、<code>sprite.mouse.x</code>はスプライトに対するマウスの
-            x 位置です。
-          </p>
-        </md>
-        <script type="mie/p5" id="sprite.mouse">
+		</div>
+		<div id="page-3" class="page">
+			<md id="md3-0">
+				<h2 id="スプライトマウス">スプライトマウス</h2>
+				<p>物理的なコライダーを持つスプライトは、スプライト上のマウス入力を検出するための自身のマウスオブジェクトを持っています。
+					<code>sprite.mouse</code>オブジェクトは、<code>mouse</code>入力オブジェクトと同様ですが、追加の機能があります。
+				</p>
+				<p><code>hovers</code>と<code>hovering</code>は、ユーザーがマウスをスプライト上に移動したときに検出します。</p>
+				<p><code>dragging</code>は、ユーザーがマウスボタンをクリックし続けてマウスを移動するときに検出します。
+					<code>mouse.x</code>はキャンバス上のマウスの x 位置であり、<code>sprite.mouse.x</code>はスプライトに対するマウスの x 位置です。
+				</p>
+			</md>
+			<script type="mie/p5" id="sprite.mouse">
 let sprite;
 
 function setup() {
@@ -199,33 +183,21 @@ function draw() {
 	}
 }
 			</script>
-      </div>
-      <div id="page-4" class="page">
-        <md id="md4-0"><h2 id="ゲームコントローラー">ゲームコントローラー</h2>
-          <p>
-            <code>contro</code>または<code>controllers</code>オブジェクトは、ゲームコントローラーのボタンの入力状態を提供します：
-          </p>
-          <p>
-            "a", "b", "x", "y", "l" (左バンパー), "r" (右バンパー), "lt"
-            (左トリガー), "rt" (右トリガー), "up", "down", "left", "right"
-            (dpad), "start", "select"
-          </p>
-          <p>
-            また、アナログスティックの<code>x</code>および<code>y</code>軸の位置も提供します：<code>leftStick</code>および<code>rightStick</code>。軸の値は-1
-            から 1 の範囲で、0 は中央です。
-          </p>
-          <p>
-            <code>contro</code>オブジェクトはまた、Web
-            ブラウザによって検出されたすべての接続されたゲームコントローラーを含む配列でもあります。接続されたコントローラーはインデックスでアクセスします。例えば、<code>contro[0]</code>と<code>contro[1]</code>は最初と
-            2
-            番目のコントローラーです。デフォルトでは<code>contro</code>は<code>contro[0]</code>を参照します。
-          </p>
-          <p>
-            試してみてください！接続されたゲームコントローラーの任意のボタンを押すと、p5play
-            によって検出されます。
-          </p>
-        </md>
-        <script type="mie/p5" id="controller-test">
+		</div>
+		<div id="page-4" class="page">
+			<md id="md4-0">
+				<h2 id="ゲームコントローラー">ゲームコントローラー</h2>
+				<p><code>contro</code>または<code>controllers</code>オブジェクトは、ゲームコントローラーのボタンの入力状態を提供します：</p>
+				<p>"a", "b", "x", "y", "l" (左バンパー), "r" (右バンパー), "lt" (左トリガー), "rt" (右トリガー), "up", "down", "left",
+					"right" (dpad), "start", "select"</p>
+				<p>また、アナログスティックの<code>x</code>および<code>y</code>軸の位置も提供します：<code>leftStick</code>および<code>rightStick</code>。軸の値は-1
+					から 1 の範囲で、0 は中央です。</p>
+				<p><code>contro</code>オブジェクトはまた、Web
+					ブラウザによって検出されたすべての接続されたゲームコントローラーを含む配列でもあります。接続されたコントローラーはインデックスでアクセスします。例えば、<code>contro[0]</code>と<code>contro[1]</code>は最初と
+					2 番目のコントローラーです。デフォルトでは<code>contro</code>は<code>contro[0]</code>を参照します。</p>
+				<p>試してみてください！接続されたゲームコントローラーの任意のボタンを押すと、p5play によって検出されます。</p>
+			</md>
+			<script type="mie/p5" id="controller-test">
 let sprite;
 
 function setup() {
@@ -248,42 +220,40 @@ function draw() {
 	sprite.y = 100 + contro.leftStick.y * 80;
 }
 			</script>
-      </div>
-      <div id="page-5" class="page">
-        <md id="md5-0"><h2 id="タッチ">タッチ</h2>
-          <p>例は近日公開予定です！</p>
-        </md>
-      </div>
+		</div>
+		<div id="page-5" class="page">
+			<md id="md5-0">
+				<h2 id="タッチ">タッチ</h2>
+				<p>例は近日公開予定です！</p>
+			</md>
+		</div>
 
-      <div class="break"></div>
-      <div id="toc">
-        <a id="prevPage" class="navLink">前のページ</a>
-        <div id="pageNav" class="submenu">
-          <a data-page="0" href="input_devices.html?page=0">入力の検出</a>
-          <a data-page="1" href="input_devices.html?page=1">キーボード</a>
-          <a data-page="2" href="input_devices.html?page=2">複数のコントロールスキーム</a>
-          <a data-page="3" href="input_devices.html?page=3">マウス</a>
-          <a data-page="4" href="input_devices.html?page=4">ゲームコントローラ</a>
-          <a data-page="5" href="input_devices.html?page=5">タッチ</a>
-        </div>
-        <a id="nextPage" class="navLink">次のページ</a>
-      </div>
-      <div class="break"></div>
-      <footer id="credits" class="text-small">
-        クリントン・アシュリー（@quinton-ashley）によって作成されました 著作権
-        2022-2023
-      </footer>
-    </article>
+		<div class="break"></div>
+		<div id="toc">
+			<a id="prevPage" class="navLink">前のページ</a>
+			<div id="pageNav" class="submenu">
+				<a data-page="0" href="input_devices.html?page=0">入力の検出</a>
+				<a data-page="1" href="input_devices.html?page=1">キーボード</a>
+				<a data-page="2" href="input_devices.html?page=2">複数のコントロールスキーム</a>
+				<a data-page="3" href="input_devices.html?page=3">マウス</a>
+				<a data-page="4" href="input_devices.html?page=4">ゲームコントローラ</a>
+				<a data-page="5" href="input_devices.html?page=5">タッチ</a>
+			</div>
+			<a id="nextPage" class="navLink">次のページ</a>
+		</div>
+		<div class="break"></div>
+		<footer id="credits" class="text-small">クリントン・アシュリー（@quinton-ashley）によって作成されました 著作権 2022-2023</footer>
+	</article>
 
-    <script src="/v3/q5.min.js"></script>
-    <script src="/v3/planck.min.js"></script>
-    <script src="/v3/p5play.min.js"></script>
+	<script src="/v3/q5.min.js"></script>
+<script src="/v3/planck.min.js"></script>
+<script src="/v3/p5play.min.js"></script>
+<script>
+window.mie = { autoLoad: false };
 
-    <script>
-      window.mie = { autoLoad: false };
-    </script>
-    <script src="/learn/mie.js"></script>
-    <script src="/learn/learn.js"></script>
-  
+	</script>
+	<script src="/learn/mie.js"></script>
+<script src="/learn/learn.js"></script>
+</body>
 
-</body></html>
+</html>

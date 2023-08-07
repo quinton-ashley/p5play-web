@@ -1,55 +1,46 @@
-<!DOCTYPE html><html lang="ja"><head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>p5play : Jam!</title>
-    <link rel="icon" href="/assets/favicon.png">
-    <link rel="stylesheet" href="/learn/style.css">
-  </head>
+<!DOCTYPE html>
+<html lang="ja">
 
-  <body class="dark">
-    <article>
-      <nav id="topNav">
-        <a href="../index.html" id="logoLink" class="active">
-          <img alt="p5play logo" src="/assets/p5play_logo.svg" class="logo">
-          <span>p5play</span>
-        </a>
-        <hr>
-        <a href="../learn">Learn</a>
-        <a href="/docs/Sprite_Sprite.html">Docs</a>
-        <!-- <a href="/editor">Editor</a> -->
-        <a href="../jam" class="active">Jam!</a>
-        <a href="../pro">PRO$</a>
-        <a href="../about">About</a>
-        <hr>
-        <a id="darkMode" onclick="toggleDarkMode()" tabindex="0" role="button" title="dark mode toggle">
-          <div id="darkModeIcon"></div>
-        </a>
-      </nav>
-      <div class="top big break"></div>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>p5play : Jam!</title>
+	<link rel="icon" href="/assets/favicon.png">
+	<link rel="stylesheet" href="/learn/style.css">
+</head>
 
-      <div class="page" style="display: flex">
-        <md id="jam"><h2 id="p5play-ゲームジャム！2023-年夏">
-            p5play ゲームジャム！2023 年夏
-          </h2>
-          <p>
-            p5play ゲームジャムは、p5play
-            を使って最高のゲームを作成することを競う、半年ごとに開催されるコンペティションです！
-          </p>
-          <p>
-            個人での参加も、チームでの参加も可能です。競技終了前に、Discord の<a href="https://discord.gg/3UTbqUgmPF">#share</a>チャンネルでゲームを共有し、フィードバックを受け取ることができます。以下にリンクされた
-            Google フォームを使って、ゲームを提出してください。
-          </p>
-          <p>
-            ゲームは最新バージョンの p5play を使用し、2023 年 8 月 31
-            日までに提出する必要があります。
-          </p>
-          <h2 id="🎉-ゲームを提出する！-🎉">
-            🎉
-            <a href="https://forms.gle/xn2PvsC8FA8Hf8Qo8">ゲームを提出する！</a>
-            🎉
-          </h2>
-        </md>
-        <script type="mie/p5" name="Jam!" hide-editor="">
+<body class="dark">
+	<article>
+		<nav id="topNav">
+			<a href="../index.html" id="logoLink" class="active">
+				<img alt="p5play logo" src="/assets/p5play_logo.svg" class="logo">
+				<span>p5play</span>
+			</a>
+			<hr>
+			<a href="../learn">Learn</a>
+			<a href="/docs/Sprite_Sprite.html">Docs</a>
+			<!-- <a href="/editor">Editor</a> -->
+			<a href="../jam" class="active">Jam!</a>
+			<a href="../pro">PRO$</a>
+			<a href="../about">About</a>
+			<hr>
+			<a id="darkMode" onclick="toggleDarkMode()" tabindex="0" role="button" title="dark mode toggle">
+				<div id="darkModeIcon"></div>
+			</a>
+		</nav>
+		<div class="top big break"></div>
+
+		<div class="page" style="display: flex">
+			<md id="jam">
+				<h2 id="p5play-ゲームジャム！2023-年夏">p5play ゲームジャム！2023 年夏</h2>
+				<p>p5play ゲームジャムは、p5play を使って最高のゲームを作成することを競う、半年ごとに開催されるコンペティションです！</p>
+				<p>個人での参加も、チームでの参加も可能です。競技終了前に、Discord の<a
+						href="https://discord.gg/3UTbqUgmPF">#share</a>チャンネルでゲームを共有し、フィードバックを受け取ることができます。以下にリンクされた
+					Google フォームを使って、ゲームを提出してください。</p>
+				<p>ゲームは最新バージョンの p5play を使用し、2023 年 8 月 31 日までに提出する必要があります。</p>
+				<h2 id="🎉-ゲームを提出する！-🎉">🎉 <a href="https://forms.gle/xn2PvsC8FA8Hf8Qo8">ゲームを提出する！</a> 🎉</h2>
+			</md>
+			<script type="mie/p5" name="Jam!" hide-editor="">
 let logosAni;
 
 function setup() {
@@ -79,38 +70,32 @@ function draw() {
 }
 
 			</script>
-        <div>
-          <img src="https://images-ext-2.discordapp.net/external/LWIN7hKDU_JS3nZcPIVdliwVbK_DiHLCZBUpobQTLpQ/https/img.itch.zone/aW1nLzEwODE4OTA1LnBuZw%3D%3D/original/8PvGJE.png" alt="Puzzling Magnetism Recharged title screen image" style="width: 100%">
-        </div>
-        <md id="winter2022"><h2 id="2022-年冬の優勝者-kevin98799">
-            2022 年冬の優勝者:
-            <a href="https://kevin98799.itch.io">@kevin98799</a>
-          </h2>
-          <p>
-            <a href="https://kevin98799.itch.io/puzzling-magnetism-recharged">"Puzzling Magnetism Recharged"</a>では、逆の磁気チャージを持つ 2
-            つのキャラクターを操作して、それぞれの磁気に応じてボックスを押したり引いたりします。
-          </p>
-          <p>
-            このゲームは、ユニークで進行が難しいレベルデザインが評価され、またコードでは
-            Groups と Tiles のコンストラクタをうまく活用しています。
-          </p>
-          <p>ケビンに大きな祝福を！ 🥳</p>
-          <pre><code>
+			<div>
+				<img src="https://images-ext-2.discordapp.net/external/LWIN7hKDU_JS3nZcPIVdliwVbK_DiHLCZBUpobQTLpQ/https/img.itch.zone/aW1nLzEwODE4OTA1LnBuZw%3D%3D/original/8PvGJE.png"
+					alt="Puzzling Magnetism Recharged title screen image" style="width: 100%">
+			</div>
+			<md id="winter2022">
+				<h2 id="2022-年冬の優勝者-kevin98799">2022 年冬の優勝者: <a href="https://kevin98799.itch.io">@kevin98799</a></h2>
+				<p><a href="https://kevin98799.itch.io/puzzling-magnetism-recharged">"Puzzling Magnetism
+						Recharged"</a>では、逆の磁気チャージを持つ 2 つのキャラクターを操作して、それぞれの磁気に応じてボックスを押したり引いたりします。</p>
+				<p>このゲームは、ユニークで進行が難しいレベルデザインが評価され、またコードでは Groups と Tiles のコンストラクタをうまく活用しています。</p>
+				<p>ケビンに大きな祝福を！ 🥳</p>
+				<pre><code>
 </code></pre>
-        </md>
-      </div>
+			</md>
+		</div>
 
-      <div class="break"></div>
-      <footer id="credits" class="text-small">
-        Created by Quinton Ashley (@quinton-ashley) Copyright 2022-2023.
-      </footer>
-    </article>
+		<div class="break"></div>
+		<footer id="credits" class="text-small">
+			Created by Quinton Ashley (@quinton-ashley) Copyright 2022-2023.
+		</footer>
+	</article>
 
-    <script src="/v3/q5.min.js"></script>
-    <script src="/v3/planck.min.js"></script>
-    <script src="/v3/p5play.min.js"></script>
-    <script src="/learn/main.js"></script>
-    <script src="/learn/mie.js"></script>
-  
+	<script src="/v3/q5.min.js"></script>
+<script src="/v3/planck.min.js"></script>
+<script src="/v3/p5play.min.js"></script>
+<script src="/learn/main.js"></script>
+<script src="/learn/mie.js"></script>
+</body>
 
-</body></html>
+</html>

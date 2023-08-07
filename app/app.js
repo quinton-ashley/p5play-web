@@ -1,5 +1,5 @@
 const log = console.log;
-const { app, BrowserWindow, dialog, exec, ipcMain, shell } = require('electron');
+const { app, BrowserWindow, dialog, exec, ipcMain, shell, protocol } = require('electron');
 const fs = require('node:fs/promises');
 const path = require('path');
 const os = require('os');
@@ -91,6 +91,10 @@ async function readFile(event, fullPath) {
 	return await fs.readFile(fullPath, 'utf-8');
 }
 
+async function writeFile(event, fullPath, content) {
+	return await fs.writeFile(fullPath, content, 'utf-8');
+}
+
 // shell.showItemInFolder('C:Users/sdkca');
 
 function resizeWindow(event, width, height) {
@@ -106,16 +110,41 @@ function openInBrowser(event, url) {
 	shell.openExternal(url);
 }
 
-function createGameWindow(event, url) {
-	const gameWindow = new BrowserWindow({
+function createWindow(event, url) {
+	const w = new BrowserWindow({
 		fullscreen: true,
 		resizable: true
 	});
-
-	gameWindow.loadURL(url);
+	if (url.startsWith('http')) {
+		w.loadURL(url);
+	} else {
+		w.loadFile(path.join(__dirname, url));
+	}
 }
 
+protocol.registerSchemesAsPrivileged([
+	{
+		scheme: 'file',
+		privileges: {
+			standard: true,
+			secure: true,
+			supportFetchAPI: true
+		}
+	}
+]);
+
 app.on('ready', () => {
+	protocol.interceptFileProtocol(
+		'file',
+		(request, callback) => {
+			const url = request.url.slice(7); /* all urls start with 'file://' */
+			callback({ path: path.join(__dirname, url) });
+		},
+		(err) => {
+			if (err) console.error('Failed to register protocol');
+		}
+	);
+
 	const ipAddress = getIpAddress();
 	const homeDir = os.homedir();
 	ipcMain.handle('getIpAddress', () => ipAddress);
@@ -125,8 +154,9 @@ app.on('ready', () => {
 	ipcMain.handle('startServer', startServer);
 	ipcMain.handle('resizeWindow', resizeWindow);
 	ipcMain.handle('readFile', readFile);
+	ipcMain.handle('writeFile', writeFile);
 	ipcMain.handle('openInBrowser', openInBrowser);
-	ipcMain.handle('createGameWindow', createGameWindow);
+	ipcMain.handle('createWindow', createWindow);
 
 	const mainWindow = new BrowserWindow({
 		useContentSize: true,
@@ -139,7 +169,7 @@ app.on('ready', () => {
 		}
 	});
 
-	mainWindow.loadFile(path.join(__dirname, '../editor/index.html'));
+	mainWindow.loadFile(path.join(__dirname, '../learn/index.html'));
 
 	mainWindow.webContents.openDevTools();
 });

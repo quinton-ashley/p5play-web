@@ -1,7 +1,7 @@
 const log = console.log;
 const fs = require('fs/promises');
 const path = require('path');
-const prettier = require('prettier');
+const beautify = require('js-beautify').html;
 const { JSDOM } = require('jsdom');
 const marked = require('../learn/marked/marked.min.js');
 
@@ -77,7 +77,7 @@ async function translatePage(pageGroup, page) {
 			let id = tran.slice(0, splitIdx);
 			if (!isNaN(id[0])) id = 'md' + id;
 			let md = document.getElementById(id);
-			if (md) md.innerHTML = marked.parse(tran.slice(splitIdx + 1));
+			if (md) md.innerHTML = '\n' + marked.parse(tran.slice(splitIdx + 1));
 		}
 	}
 
@@ -108,17 +108,15 @@ async function translatePage(pageGroup, page) {
 		htmlFilePath = `./lang/${langCode}` + htmlFilePath.slice(1);
 	}
 
-	// Extract scripts
+	// edit scripts if necessary
 	let scripts = Array.from(document.querySelectorAll('script[type="mie/p5"]'));
-	let scriptTexts = [];
 
 	for (let i = 0; i < scripts.length; i++) {
 		let t = scripts[i].textContent;
 		if (langCode != 'en') {
 			t = t.replaceAll("'assets", "'/learn/assets");
 		}
-		scriptTexts[i] = t;
-		scripts[i].textContent = '';
+		scripts[i].textContent = t;
 	}
 
 	if (langCode != 'en') {
@@ -134,23 +132,36 @@ async function translatePage(pageGroup, page) {
 		}
 	}
 
-	// Format HTML without scripts
-	html = prettier.format(dom.serialize(), {
-		parser: 'html'
-	});
-
-	// Re-insert scripts
-	dom = new JSDOM(html);
-	document = dom.window.document;
-	scripts = Array.from(document.querySelectorAll('script[type="mie/p5"]'));
-
-	for (let i = 0; i < scripts.length; i++) {
-		scripts[i].textContent = scriptTexts[i];
-	}
-
 	html = dom.serialize();
 
+	// this doesn't work, vscode must use unknown additional settings
+	html = await beautify(html, {
+		indent_size: 1,
+		indent_char: '\t',
+		max_preserve_newlines: 1,
+		preserve_newlines: true,
+		keep_array_indentation: false,
+		break_chained_methods: false,
+		indent_scripts: 'separate',
+		brace_style: 'none,preserve-inline',
+		space_before_conditional: true,
+		unescape_strings: false,
+		jslint_happy: false,
+		end_with_newline: true,
+		wrap_line_length: 120,
+		indent_inner_html: false,
+		comma_first: false,
+		e4x: false,
+		indent_empty_lines: false
+	});
+
+	html = html.replace(/(<script .+>)\s*/g, '$1\n');
+
 	await fs.writeFile(htmlFilePath, html);
+
+	// save again with the default vscode html formatter
+	// by using command line vscode
+
 	log(path.resolve(htmlFilePath));
 }
 

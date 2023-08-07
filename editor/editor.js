@@ -142,6 +142,20 @@ async function buildIOS() {}
 
 /* CODE EDITOR */
 
+let lastEdited = 0;
+
+function codeEdited() {
+	if (Date.now() - lastEdited < 1000) return;
+	ipc.invoke('writeFile', proj + '/' + codeNavTabs[0].innerText, ace.edit('editor0').getValue());
+}
+
+function codeEditing() {
+	log('editing');
+	if (!desktop) return;
+	setTimeout(codeEdited, 1000);
+	lastEdited = Date.now();
+}
+
 async function loadCodeEditor(file, idx) {
 	let code;
 	if (desktop) {
@@ -175,6 +189,7 @@ async function loadCodeEditor(file, idx) {
 		wrap: true
 	});
 	editor.setTheme('ace/theme/dracula');
+	editor.getSession().on('change', codeEditing);
 
 	ed.select = () => {
 		activateZone('codeZone');
@@ -280,12 +295,16 @@ function activateZone(zone) {
 
 fullscreenBtn.addEventListener('click', () => {
 	if (!serverRunning) startServer();
-	ipc.invoke('createGameWindow', 'http://localhost:7529');
+	ipc.invoke('createWindow', 'http://localhost:7529');
 });
 
 mobileZoneBtn.addEventListener('click', () => {
 	activateZone('mobileZone');
 	if (!serverRunning) startServer();
+});
+
+learnBtn.addEventListener('click', () => {
+	ipc.invoke('createWindow', '../learn/index.html');
 });
 
 shareZoneBtn.addEventListener('click', () => {

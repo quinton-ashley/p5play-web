@@ -1,58 +1,53 @@
-<!DOCTYPE html><html lang="es"><head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>p5play : Input</title>
-    <link rel="icon" href="/assets/favicon.png">
-    <link rel="stylesheet" href="/learn/style.css">
-  </head>
+<!DOCTYPE html>
+<html lang="es">
 
-  <body class="dark">
-    <article>
-      <nav id="topNav">
-        <a href="index.html" id="logoLink" class="active">
-          <img alt="p5play logo" src="/assets/p5play_logo.svg" class="logo">
-          <span>p5play</span>
-        </a>
-        <hr>
-        <a href="sprite.html">Sprite</a>
-        <a href="group.html">Group</a>
-        <a href="sprite_animation.html">Ani</a>
-        <a href="input_devices.html" class="active">Input</a>
-        <a href="camera.html">Camera</a>
-        <a href="joints.html">Joints</a>
-        <a href="canvas.html">...</a>
-        <hr>
-        <a id="darkMode" onclick="toggleDarkMode()" tabindex="0" role="button" title="dark mode toggle">
-          <div id="darkModeIcon"></div>
-        </a>
-      </nav>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>p5play : Input</title>
+	<link rel="icon" href="/assets/favicon.png">
+	<link rel="stylesheet" href="/learn/style.css">
+</head>
 
-      <div class="break"></div>
+<body class="dark">
+	<article>
+		<nav id="topNav">
+			<a href="index.html" id="logoLink" class="active">
+				<img alt="p5play logo" src="/assets/p5play_logo.svg" class="logo">
+				<span>p5play</span>
+			</a>
+			<hr>
+			<a href="sprite.html">Sprite</a>
+			<a href="group.html">Group</a>
+			<a href="sprite_animation.html">Ani</a>
+			<a href="input_devices.html" class="active">Input</a>
+			<a href="camera.html">Camera</a>
+			<a href="joints.html">Joints</a>
+			<a href="canvas.html">...</a>
+			<hr>
+			<a id="darkMode" onclick="toggleDarkMode()" tabindex="0" role="button" title="dark mode toggle">
+				<div id="darkModeIcon"></div>
+			</a>
+		</nav>
 
-      <div id="page-0" class="page">
-        <md id="md0-0"><h2 id="dispositivos-de-entrada">Dispositivos de entrada</h2>
-          <p>Aquí están los dispositivos de entrada disponibles en p5play:</p>
-          <ul>
-            <li><code>kb</code> o <code>keyboard</code> para el teclado</li>
-            <li><code>mouse</code> para el ratón</li>
-            <li>
-              <code>contro</code> o <code>controllers</code> para los
-              controladores de juegos
-            </li>
-          </ul>
-          <p>
-            Todos estos dispositivos de entrada utilizan las mismas funciones
-            simples para obtener el estado de una entrada: <code>presses</code>,
-            <code>pressing</code> y <code>released</code>.
-          </p>
-          <p>
-            También almacenan el estado de todas sus entradas como propiedades.
-            Por ejemplo, <code>kb.space</code> almacena cuántos frames ha estado
-            presionando el usuario la tecla espacio. Se reinicia cuando el
-            usuario suelta la entrada.
-          </p>
-        </md>
-        <script type="mie/p5" id="hidden" base-0="" hide="">
+		<div class="break"></div>
+
+		<div id="page-0" class="page">
+			<md id="md0-0">
+				<h2 id="dispositivos-de-entrada">Dispositivos de entrada</h2>
+				<p>Aquí están los dispositivos de entrada disponibles en p5play:</p>
+				<ul>
+					<li><code>kb</code> o <code>keyboard</code> para el teclado</li>
+					<li><code>mouse</code> para el ratón</li>
+					<li><code>contro</code> o <code>controllers</code> para los controladores de juegos</li>
+				</ul>
+				<p>Todos estos dispositivos de entrada utilizan las mismas funciones simples para obtener el estado de
+					una entrada: <code>presses</code>, <code>pressing</code> y <code>released</code>.</p>
+				<p>También almacenan el estado de todas sus entradas como propiedades. Por ejemplo,
+					<code>kb.space</code> almacena cuántos frames ha estado presionando el usuario la tecla espacio. Se
+					reinicia cuando el usuario suelta la entrada.</p>
+			</md>
+			<script type="mie/p5" id="hidden" base-0="" hide="">
 function setup() {
 	new Canvas(238, 100);
 	frameRate(30);
@@ -63,55 +58,47 @@ function draw() {
 	clear();
 }
 			</script>
-        <div class="minis">
-          <script type="mie/p5" id="presses" base="0">
+			<div class="minis">
+				<script type="mie/p5" id="presses" base="0">
 if (kb.presses('space')) {
 	background(0, 255, 0);
 }
 				</script>
-          <script type="mie/p5" id="pressing" base="0">
+				<script type="mie/p5" id="pressing" base="0">
 if (kb.pressing('space')) {
 	background(0, 255, 0);
 }
 				</script>
-          <script type="mie/p5" id="holding" base="0">
+				<script type="mie/p5" id="holding" base="0">
 if (kb.space >= 12) {
 	background(0, 255, 0);
 }
 				</script>
-          <script type="mie/p5" id="released" base="0">
+				<script type="mie/p5" id="released" base="0">
 if (kb.released('space')) {
 	background(0, 255, 0);
 }
 				</script>
-        </div>
-      </div>
-      <div id="page-1" class="page">
-        <md id="md1-0"><h2 id="teclado">Teclado</h2>
-          <p>
-            En los juegos de PC, las teclas WASD se utilizan comúnmente para
-            controlar el movimiento del personaje del jugador. En p5play puedes
-            usar los nombres de las direcciones 'up', 'down', 'left' y 'right'
-            para detectar las presiones de las teclas WASD y las teclas de
-            flecha.
-          </p>
-          <p>
-            Si quieres usar WASD y las teclas de flecha por separado puedes usar
-            estos nombres de teclas para detectar las presiones de las teclas de
-            flecha: 'ArrowUp', 'ArrowDown', 'ArrowLeft' y 'ArrowRight'. Usar las
-            teclas IJKL para el movimiento es común para apoyar a los jugadores
-            zurdos o a los segundos jugadores en juegos locales de dos
-            jugadores. Estas teclas pueden ser referenciadas usando: 'up2',
-            'down2', 'left2', y 'right2'. Algunos teclados no empiezan con
-            QWERTY en la fila superior. p5play mapea otros layouts de teclado al
-            layout estándar inglés QWERTY. Por ejemplo, las teclas WASD para los
-            usuarios del teclado francés AZERTY son ZQSD. Esto puede ser
-            desactivado estableciendo <code>p5play.standardizeKeyboard</code> en
-            falso.
-            <a href="https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/code">Más info</a>
-          </p>
-        </md>
-        <script type="mie/p5" id="keyboard-movement">
+			</div>
+		</div>
+		<div id="page-1" class="page">
+			<md id="md1-0">
+				<h2 id="teclado">Teclado</h2>
+				<p>En los juegos de PC, las teclas WASD se utilizan comúnmente para controlar el movimiento del
+					personaje del jugador. En p5play puedes usar los nombres de las direcciones 'up', 'down', 'left' y
+					'right' para detectar las presiones de las teclas WASD y las teclas de flecha.</p>
+				<p>Si quieres usar WASD y las teclas de flecha por separado puedes usar estos nombres de teclas para
+					detectar las presiones de las teclas de flecha: 'ArrowUp', 'ArrowDown', 'ArrowLeft' y 'ArrowRight'.
+					Usar las teclas IJKL para el movimiento es común para apoyar a los jugadores zurdos o a los segundos
+					jugadores en juegos locales de dos jugadores. Estas teclas pueden ser referenciadas usando: 'up2',
+					'down2', 'left2', y 'right2'.
+					Algunos teclados no empiezan con QWERTY en la fila superior. p5play mapea otros layouts de teclado
+					al layout estándar inglés QWERTY. Por ejemplo, las teclas WASD para los usuarios del teclado francés
+					AZERTY son ZQSD. Esto puede ser desactivado estableciendo <code>p5play.standardizeKeyboard</code> en
+					falso. <a href="https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/code">Más info</a>
+				</p>
+			</md>
+			<script type="mie/p5" id="keyboard-movement">
 let player;
 
 function setup() {
@@ -137,17 +124,15 @@ function draw() {
 	}
 }
 			</script>
-      </div>
-      <div id="page-2" class="page">
-        <md id="md2-0"><h2 id="multi-entrada">Multi-Entrada</h2>
-          <p>
-            Este mini-sketch muestra cómo una acción puede ser realizada
-            presionando la tecla espacio o haciendo clic con el ratón. La
-            entrada de ratón por defecto es 'left' para el botón izquierdo del
-            ratón o clic normal.
-          </p>
-        </md>
-        <script type="mie/p5" id="hidden" base-1="" hide="">
+		</div>
+		<div id="page-2" class="page">
+			<md id="md2-0">
+				<h2 id="multi-entrada">Multi-Entrada</h2>
+				<p>Este mini-sketch muestra cómo una acción puede ser realizada presionando la tecla espacio o haciendo
+					clic con el ratón. La entrada de ratón por defecto es 'left' para el botón izquierdo del ratón o
+					clic normal.</p>
+			</md>
+			<script type="mie/p5" id="hidden" base-1="" hide="">
 let sprite;
 
 function setup() {
@@ -160,33 +145,27 @@ function draw() {
 	sprite.color = 'yellow';
 }
 			</script>
-        <script type="mie/p5" id="multi-input" base="1">
+			<script type="mie/p5" id="multi-input" base="1">
 if (kb.pressing('space') || mouse.pressing()) {
 	sprite.color = 'red';
 }
 			</script>
-      </div>
-      <div id="page-3" class="page">
-        <md id="md3-0"><h2 id="ratón-sprite">Ratón Sprite</h2>
-          <p>
-            Los sprites con colisionadores físicos tienen su propio objeto ratón
-            para detectar las entradas del ratón en el sprite. Los objetos
-            <code>sprite.mouse</code> son justo como el objeto de entrada
-            <code>mouse</code>, excepto que tienen funciones adicionales.
-          </p>
-          <p>
-            <code>hovers</code> y <code>hovering</code> detectan cuando el
-            usuario mueve el ratón sobre un sprite.
-          </p>
-          <p>
-            <code>dragging</code> detecta cuando el usuario hace clic y mantiene
-            un botón del ratón en el sprite mientras mueve el ratón. Nota que
-            <code>mouse.x</code> es la posición x del ratón en el lienzo y
-            <code>sprite.mouse.x</code> es la posición x del ratón relativa al
-            sprite.
-          </p>
-        </md>
-        <script type="mie/p5" id="sprite.mouse">
+		</div>
+		<div id="page-3" class="page">
+			<md id="md3-0">
+				<h2 id="ratón-sprite">Ratón Sprite</h2>
+				<p>Los sprites con colisionadores físicos tienen su propio objeto ratón para detectar las entradas del
+					ratón en el sprite.
+					Los objetos <code>sprite.mouse</code> son justo como el objeto de entrada <code>mouse</code>,
+					excepto que tienen funciones adicionales.</p>
+				<p><code>hovers</code> y <code>hovering</code> detectan cuando el usuario mueve el ratón sobre un
+					sprite.</p>
+				<p><code>dragging</code> detecta cuando el usuario hace clic y mantiene un botón del ratón en el sprite
+					mientras mueve el ratón.
+					Nota que <code>mouse.x</code> es la posición x del ratón en el lienzo y <code>sprite.mouse.x</code>
+					es la posición x del ratón relativa al sprite.</p>
+			</md>
+			<script type="mie/p5" id="sprite.mouse">
 let sprite;
 
 function setup() {
@@ -213,38 +192,25 @@ function draw() {
 	}
 }
 			</script>
-      </div>
-      <div id="page-4" class="page">
-        <md id="md4-0"><h2 id="controladores-de-juegos">Controladores de juegos</h2>
-          <p>
-            El objeto <code>contro</code> o <code>controllers</code> proporciona
-            el estado de entrada de los botones del controlador de juegos:
-          </p>
-          <p>
-            "a", "b", "x", "y", "l" (gatillo izquierdo), "r" (gatillo derecho),
-            "lt" (gatillo izquierdo), "rt" (gatillo derecho), "up", "down",
-            "left", "right" (dpad), "start" y "select"
-          </p>
-          <p>
-            También proporciona las posiciones del eje <code>x</code> y
-            <code>y</code> de los sticks analógicos: <code>leftStick</code> y
-            <code>rightStick</code>. Los valores del eje varían entre -1 y 1,
-            donde 0 es el centro.
-          </p>
-          <p>
-            El objeto <code>contro</code> también es un array que contiene todos
-            los controladores de juegos conectados detectados por tu navegador
-            web. Accede a los controladores conectados por índice. Por ejemplo,
-            <code>contro[0]</code> y <code>contro[1]</code> son los primeros y
-            segundos controladores. Por defecto <code>contro</code> hace
-            referencia a <code>contro[0]</code>.
-          </p>
-          <p>
-            ¡Pruébalo! Presiona cualquier botón en tu controlador de juegos
-            conectado para que sea detectado por p5play.
-          </p>
-        </md>
-        <script type="mie/p5" id="controller-test">
+		</div>
+		<div id="page-4" class="page">
+			<md id="md4-0">
+				<h2 id="controladores-de-juegos">Controladores de juegos</h2>
+				<p>El objeto <code>contro</code> o <code>controllers</code> proporciona el estado de entrada de los
+					botones del controlador de juegos:</p>
+				<p>"a", "b", "x", "y", "l" (gatillo izquierdo), "r" (gatillo derecho), "lt" (gatillo izquierdo), "rt"
+					(gatillo derecho), "up", "down", "left", "right" (dpad), "start" y "select"</p>
+				<p>También proporciona las posiciones del eje <code>x</code> y <code>y</code> de los sticks analógicos:
+					<code>leftStick</code> y <code>rightStick</code>. Los valores del eje varían entre -1 y 1, donde 0
+					es el centro.</p>
+				<p>El objeto <code>contro</code> también es un array que contiene todos los controladores de juegos
+					conectados detectados por tu navegador web. Accede a los controladores conectados por índice. Por
+					ejemplo, <code>contro[0]</code> y <code>contro[1]</code> son los primeros y segundos controladores.
+					Por defecto <code>contro</code> hace referencia a <code>contro[0]</code>.</p>
+				<p>¡Pruébalo! Presiona cualquier botón en tu controlador de juegos conectado para que sea detectado por
+					p5play.</p>
+			</md>
+			<script type="mie/p5" id="controller-test">
 let sprite;
 
 function setup() {
@@ -267,41 +233,41 @@ function draw() {
 	sprite.y = 100 + contro.leftStick.y * 80;
 }
 			</script>
-      </div>
-      <div id="page-5" class="page">
-        <md id="md5-0"><h2 id="tocar">Tocar</h2>
-          <p>Ejemplo próximamente!</p>
-        </md>
-      </div>
+		</div>
+		<div id="page-5" class="page">
+			<md id="md5-0">
+				<h2 id="tocar">Tocar</h2>
+				<p>Ejemplo próximamente!</p>
+			</md>
+		</div>
 
-      <div class="break"></div>
-      <div id="toc">
-        <a id="prevPage" class="navLink">Página anterior</a>
-        <div id="pageNav" class="submenu">
-          <a data-page="0" href="input_devices.html?page=0">Detección de Entrada</a>
-          <a data-page="1" href="input_devices.html?page=1">Teclado</a>
-          <a data-page="2" href="input_devices.html?page=2">Varios Esquemas de Control</a>
-          <a data-page="3" href="input_devices.html?page=3">Ratón</a>
-          <a data-page="4" href="input_devices.html?page=4">Controladores de Juego</a>
-          <a data-page="5" href="input_devices.html?page=5">Táctil</a>
-        </div>
-        <a id="nextPage" class="navLink">Siguiente página</a>
-      </div>
-      <div class="break"></div>
-      <footer id="credits" class="text-small">
-        Creado por Quinton Ashley (@quinton-ashley) derechos de autor 2022-2023
-      </footer>
-    </article>
+		<div class="break"></div>
+		<div id="toc">
+			<a id="prevPage" class="navLink">Página anterior</a>
+			<div id="pageNav" class="submenu">
+				<a data-page="0" href="input_devices.html?page=0">Detección de Entrada</a>
+				<a data-page="1" href="input_devices.html?page=1">Teclado</a>
+				<a data-page="2" href="input_devices.html?page=2">Varios Esquemas de Control</a>
+				<a data-page="3" href="input_devices.html?page=3">Ratón</a>
+				<a data-page="4" href="input_devices.html?page=4">Controladores de Juego</a>
+				<a data-page="5" href="input_devices.html?page=5">Táctil</a>
+			</div>
+			<a id="nextPage" class="navLink">Siguiente página</a>
+		</div>
+		<div class="break"></div>
+		<footer id="credits" class="text-small">Creado por Quinton Ashley (@quinton-ashley) derechos de autor 2022-2023
+		</footer>
+	</article>
 
-    <script src="/v3/q5.min.js"></script>
-    <script src="/v3/planck.min.js"></script>
-    <script src="/v3/p5play.min.js"></script>
+	<script src="/v3/q5.min.js"></script>
+<script src="/v3/planck.min.js"></script>
+<script src="/v3/p5play.min.js"></script>
+<script>
+window.mie = { autoLoad: false };
 
-    <script>
-      window.mie = { autoLoad: false };
-    </script>
-    <script src="/learn/mie.js"></script>
-    <script src="/learn/learn.js"></script>
-  
+	</script>
+	<script src="/learn/mie.js"></script>
+<script src="/learn/learn.js"></script>
+</body>
 
-</body></html>
+</html>

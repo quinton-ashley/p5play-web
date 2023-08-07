@@ -18,7 +18,7 @@
 			"credits": "Creado por Quinton Ashley (@quinton-ashley) derechos de autor 2022-2023"
 		},
 		"camera": ["Movimiento", "Acercar", "Encendido/Apagado", "Eventos del Ratón con la Cámara"],
-		"canvas": ["Constructor de Lienzo", "Modo Pixelado"],
+		"canvas": ["Constructor de Lienzo", "Modo Pixelado", "Cambiar el Tamaño"],
 		"group": [
 			"Heredencia Suave y Dinámica",
 			"Establecedores de Flecha",
