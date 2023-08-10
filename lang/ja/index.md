@@ -4,11 +4,11 @@
 
 ### は JS ゲームエンジンです。
 
-### グラフィックスには[p5.js](http://p5js.org/)を使用しています
+### [p5.js](http://p5js.org/)グラフィックス用
 
 ### 学習が容易です！
 
-### 物理には[Box2D](https://piqnt.com/planck.js/)を使用しています
+### [Box2D](https://piqnt.com/planck.js/)物理学用
 
 ### は強力です！
 

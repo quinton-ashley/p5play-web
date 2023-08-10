@@ -122,8 +122,7 @@ async function translatePage(pageGroup, page) {
 	if (langCode != 'en') {
 		// change website language
 		document.documentElement.lang = langCode;
-
-		document.body.classList.add(langCode);
+		document.documentElement.className = langCode;
 
 		let langNav = document.getElementById('langNav');
 		if (!langNav) langNav = document.getElementById('littleLangs');

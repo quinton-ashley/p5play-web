@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="en">
 
 <head>
 	<meta charset="UTF-8">
@@ -57,10 +57,10 @@
 				muted=""></video>
 			<div id="page0" class="page">
 				<div id="bigBrand">
-					<a href="https://youtu.be/J5sstkQtb7E" id="logoLink" class="active">p5play</a>
+					<a href="https://youtu.be/J5sstkQtb7E" id="logoLink" class="active" target="_blank">p5play</a>
 				</div>
 				<div id="bigLogo">
-					<a href="https://youtu.be/J5sstkQtb7E" title="play video!">
+					<a href="https://youtu.be/J5sstkQtb7E" title="play video!" target="_blank">
 						<img alt="p5play logo" src="/assets/p5play_logo.svg" class="logo">
 					</a>
 				</div>
@@ -80,7 +80,7 @@
 
 		<div id="reel1" class="reel">
 			<video src="https://quinton-ashley.github.io/p5play-assets/reel1.mov" loop="" playsinline="" muted=""></video>
-			<div class="page">
+			<div id="page1" class="page">
 				<div class="minis horiz">
 					<md id="md1">
 						<p><a href="https://github.com/quinton-ashley/p5play">p5play</a> uses the same <a
@@ -494,6 +494,8 @@ function dropSprite() {
 
 		.reel {
 			overflow: hidden;
+			display: flex;
+			justify-content: center;
 		}
 
 		video {
@@ -540,11 +542,6 @@ function dropSprite() {
 		#littleLangs a {
 			font-size: 16px;
 			text-shadow: none;
-		}
-
-		.reel {
-			display: flex;
-			justify-content: center;
 		}
 
 		.page {
@@ -610,6 +607,10 @@ function dropSprite() {
 			margin: 0;
 			line-height: 5vw;
 			font-size: 2.75vw;
+		}
+
+		html.ja #bigInfo h3 {
+			font-size: 2.4vw;
 		}
 
 		@keyframes scrollUp {
@@ -966,8 +967,8 @@ background: linear-gradient(rgba(19, 21, 22, 0) 90%, rgba(19, 21, 22, 1) 100%);
 			}
 
 			.page {
-				padding-left: 20px;
-				padding-right: 20px;
+				width: 100%;
+				padding: 20px;
 			}
 
 			.apps {
@@ -1002,14 +1003,36 @@ background: linear-gradient(rgba(19, 21, 22, 0) 90%, rgba(19, 21, 22, 1) 100%);
 				font-size: 12vw;
 			}
 
+			#page0 {
+				align-content: end;
+			}
+
 			#bigInfo {
 				width: fit-content;
 				height: 8vw;
+				margin-bottom: 20px;
 			}
 
 			#bigInfo h3 {
 				font-size: 5vw;
 				line-height: 8vw;
+			}
+		}
+
+		@media screen and (max-width: 540px) {
+			#reel1 {
+				justify-content: unset;
+				justify-items: center;
+			}
+
+			#page1 {
+				justify-content: unset;
+				justify-items: center;
+			}
+
+			.page>.minis,
+			.page>.mie {
+				width: calc(100vw - 40px);
 			}
 		}
 	</style>

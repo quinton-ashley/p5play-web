@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" class="ja">
 
 <head>
 	<meta charset="UTF-8">
@@ -19,7 +19,7 @@
 	<link rel="stylesheet" href="/learn/style.css">
 </head>
 
-<body id="home" class="dark ja">
+<body id="home" class="dark">
 	<article>
 		<nav id="topNav">
 			<a href="learn">Learn</a>
@@ -57,18 +57,20 @@
 				muted=""></video>
 			<div id="page0" class="page">
 				<div id="bigBrand">
-					<a href="../index.html" id="logoLink" class="active">p5play</a>
+					<a href="https://youtu.be/J5sstkQtb7E" id="logoLink" class="active" target="_blank">p5play</a>
 				</div>
 				<div id="bigLogo">
-					<img alt="p5play logo" src="/assets/p5play_logo.svg" class="logo">
+					<a href="https://youtu.be/J5sstkQtb7E" title="play video!" target="_blank">
+						<img alt="p5play logo" src="/assets/p5play_logo.svg" class="logo">
+					</a>
 				</div>
 				<div id="bigInfo">
 					<md id="md0">
 						<h3 id="は強力です！">は強力です！</h3>
 						<h3 id="は-js-ゲームエンジンです。">は JS ゲームエンジンです。</h3>
-						<h3 id="グラフィックスにはp5jsを使用しています">グラフィックスには<a href="http://p5js.org/">p5.js</a>を使用しています</h3>
+						<h3 id="p5jsグラフィックス用"><a href="http://p5js.org/">p5.js</a>グラフィックス用</h3>
 						<h3 id="学習が容易です！">学習が容易です！</h3>
-						<h3 id="物理にはbox2dを使用しています">物理には<a href="https://piqnt.com/planck.js/">Box2D</a>を使用しています</h3>
+						<h3 id="box2d物理学用"><a href="https://piqnt.com/planck.js/">Box2D</a>物理学用</h3>
 						<h3 id="は強力です！-1">は強力です！</h3>
 					</md>
 				</div>
@@ -78,7 +80,7 @@
 		<div id="reel1" class="reel">
 			<video src="https://quinton-ashley.github.io/p5play-assets/reel1.mov" loop="" playsinline=""
 				muted=""></video>
-			<div class="page">
+			<div id="page1" class="page">
 				<div class="minis horiz">
 					<md id="md1">
 						<p><a href="https://github.com/quinton-ashley/p5play">p5play</a>は、愛されるゲームを支える同じ<a
@@ -486,6 +488,8 @@ nav {
 
 .reel {
 	overflow: hidden;
+	display: flex;
+	justify-content: center;
 }
 
 video {
@@ -532,11 +536,6 @@ video {
 #littleLangs a {
 	font-size: 16px;
 	text-shadow: none;
-}
-
-.reel {
-	display: flex;
-	justify-content: center;
 }
 
 .page {
@@ -602,6 +601,10 @@ video {
 	margin: 0;
 	line-height: 5vw;
 	font-size: 2.75vw;
+}
+
+html.ja #bigInfo h3 {
+	font-size: 2.4vw;
 }
 
 @keyframes scrollUp {
@@ -958,8 +961,8 @@ background: linear-gradient(rgba(19, 21, 22, 0) 90%, rgba(19, 21, 22, 1) 100%);
 	}
 
 	.page {
-		padding-left: 20px;
-		padding-right: 20px;
+		width: 100%;
+		padding: 20px;
 	}
 
 	.apps {
@@ -994,14 +997,36 @@ background: linear-gradient(rgba(19, 21, 22, 0) 90%, rgba(19, 21, 22, 1) 100%);
 		font-size: 12vw;
 	}
 
+	#page0 {
+		align-content: end;
+	}
+
 	#bigInfo {
 		width: fit-content;
 		height: 8vw;
+		margin-bottom: 20px;
 	}
 
 	#bigInfo h3 {
 		font-size: 5vw;
 		line-height: 8vw;
+	}
+}
+
+@media screen and (max-width: 540px) {
+	#reel1 {
+		justify-content: unset;
+		justify-items: center;
+	}
+
+	#page1 {
+		justify-content: unset;
+		justify-items: center;
+	}
+
+	.page>.minis,
+	.page>.mie {
+		width: calc(100vw - 40px);
 	}
 }
 
