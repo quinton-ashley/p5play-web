@@ -19,14 +19,9 @@
 	<link rel="stylesheet" href="/learn/style.css">
 </head>
 
-<body id="home" class="dark">
+<body id="home" class="dark es">
 	<article>
 		<nav id="topNav">
-			<a href="index.html" id="logoLink" class="active">
-				<img alt="p5play logo" src="/assets/p5play_logo.svg" class="logo" width="48px" height="48px">
-				<span>p5play</span>
-			</a>
-			<hr>
 			<a href="learn">Learn</a>
 			<a href="/docs/Sprite_Sprite.html">Docs</a>
 			<!-- <a href="/editor">Editor</a> -->
@@ -37,62 +32,90 @@
 			<a id="darkMode" onclick="toggleDarkMode()" tabindex="0" role="button" title="dark mode toggle">
 				<div id="darkModeIcon"></div>
 			</a>
-		</nav>
-
-		<div id="langBreak">
-			<div class="break"></div>
-			<nav id="langNav">
+			<hr>
+			<div id="littleLangs">
 				<a href="/" lang="en" class="" title="English">English</a>
 				<!-- <a href="/lang/zh" lang="zh" title="Chinese">中文</a> -->
 				<a href="/lang/es" lang="es" title="Spanish" class="active">Español</a>
 				<!-- <a href="/lang/ru" lang="ru" title="Russian">Русский</a>
-        <a href="/lang/de" lang="de" title="German">Deutsch</a>-->
+				        <a href="/lang/de" lang="de" title="German">Deutsch</a>-->
 				<a href="/lang/ja" lang="ja" title="Japanese">日本語</a>
 				<!-- <a href="/lang/pt" lang="pt" title="Portuguese">Português</a>
-        <a href="/lang/fr" lang="fr" title="French">Français</a>
-        <a href="/lang/ko" lang="ko" title="Korean">한국어</a>
-        <a href="/lang/hi" lang="hi" title="Hindi">हिन्दी</a>
-        <a href="/lang/ar" lang="ar" title="Arabic">العربية</a>
-        <a href="/lang/it" lang="it" title="Italian">Italiano</a> -->
-			</nav>
-			<div class="break"></div>
+				        <a href="/lang/fr" lang="fr" title="French">Français</a>
+				        <a href="/lang/ko" lang="ko" title="Korean">한국어</a>
+				        <a href="/lang/hi" lang="hi" title="Hindi">हिन्दी</a>
+				        <a href="/lang/ar" lang="ar" title="Arabic">العربية</a>
+				        <a href="/lang/it" lang="it" title="Italian">Italiano</a> -->
+			</div>
+
+		</nav>
+	</article>
+
+	<div id="home">
+		<div id="reel0" class="reel">
+			<video src="https://quinton-ashley.github.io/p5play-assets/reel0.mov" autoplay="" loop="" playsinline=""
+				muted=""></video>
+			<div id="page0" class="page">
+				<div id="bigBrand">
+					<a href="../index.html" id="logoLink" class="active">p5play</a>
+				</div>
+				<div id="bigLogo">
+					<img alt="p5play logo" src="/assets/p5play_logo.svg" class="logo">
+				</div>
+				<div id="bigInfo">
+					<md id="md0">
+						<h3 id="¡es-poderoso">¡es poderoso!</h3>
+						<h3 id="motor-de-juego-en-js">motor de juego en JS</h3>
+						<h3 id="p5js-para-gráficos"><a href="http://p5js.org/">p5.js</a> para gráficos</h3>
+						<h3 id="¡es-fácil-de-aprender">¡es fácil de aprender!</h3>
+						<h3 id="box2d-para-física"><a href="https://piqnt.com/planck.js/">Box2D</a> para física</h3>
+						<h3 id="¡es-poderoso-1">¡es poderoso!</h3>
+					</md>
+				</div>
+			</div>
 		</div>
 
-		<div id="home" class="page" style="display: flex">
-			<div id="home-info">
-				<md id="md0">
-					<h3 id="p5play-es-un-motor-de-juego-de-js-que-utiliza-p5js-para-gráficos-y-box2d-para-físicas"><a
-							href="https://github.com/quinton-ashley/p5play">p5play</a> es un motor de juego de JS que
-						utiliza <a href="http://p5js.org/">p5.js</a> para gráficos y <a
-							href="https://piqnt.com/planck.js/">Box2D</a> para físicas.</h3>
-					<p>¿Buscas convertir tus ideas en juegos en línea o arte interactivo? ¡Prueba p5play! Fue diseñado
-						por profesores de Ciencias de la Computación para ser intuitivo para principiantes, lo que lo
-						hace popular en escuelas y universidades de todo el mundo. Pero, p5play v3 no es solo para uso
-						en el aula. Es una herramienta poderosa construida sobre <a
-							href="https://piqnt.com/planck.js/">planck.js</a>, un port de Box2D, el mismo simulador de
-						físicas usado por los líderes de la industria en juegos queridos como Tiny Wings y Angry Birds.
-					</p>
-					<p>¡Comienza leyendo las <a href="learn/sprite.html">páginas de referencia "Learn"!</a></p>
-				</md>
-
-				<!-- <p id="shields">
-        <a href="https://www.patreon.com/p5play" target="_blank" aria-label="Patreon page of p5play">
-          <img src="https://img.shields.io/badge/Patreon-@p5play-orange.svg" alt="">
-        </a>
-        <a aria-label="p5play GitHub stars counter" href="https://github.com/quinton-ashley/p5play" target="_blank">
-          <img src="https://img.shields.io/github/stars/quinton-ashley/p5play.svg?style=social" alt="">
-        </a>
-        </p> -->
-			</div>
-			<script type="mie/p5" id="tumbler-demo" hide-editor="">
+		<div id="reel1" class="reel">
+			<video src="https://quinton-ashley.github.io/p5play-assets/reel1.mov" loop="" playsinline=""
+				muted=""></video>
+			<div class="page">
+				<div class="minis horiz">
+					<md id="md1">
+						<p><a href="https://github.com/quinton-ashley/p5play">p5play</a> utiliza el mismo simulador de
+							física <a href="https://piqnt.com/planck.js/">Box2D</a> que impulsa juegos queridos.</p>
+					</md>
+					<div class="apps">
+						<div class="app">
+							<img src="/assets/app_icons/tiny_wings.webp" alt="tiny wings app icon">
+							<p>Tiny Wings</p>
+						</div>
+						<div class="app">
+							<img src="/assets/app_icons/shovel_knight.webp" alt="shovel knight app icon">
+							<p>Shovel Knight</p>
+						</div>
+						<div class="app">
+							<img src="/assets/app_icons/limbo.webp" alt="limbo app icon">
+							<p>Limbo</p>
+						</div>
+						<div class="app">
+							<img src="/assets/app_icons/happy_wheels.webp" alt="happy wheels app icon">
+							<p>Happy Wheels</p>
+						</div>
+						<div class="app">
+							<img src="/assets/app_icons/angry_birds.webp" alt="angry birds app icon">
+							<p>Angry Birds</p>
+						</div>
+					</div>
+				</div>
+				<script type="mie/p5" id="physics-demo" hide-editor="">
 let tumbler, x, y, sides, len, angle;
 
 function setup() {
-  new Canvas(500, 364);
+  new Canvas(500, 350);
   world.gravity.y = 10;
 
-  x = width * 0.5;
-  y = height * 0.5;
+  x = canvas.w * 0.5;
+  y = canvas.h * 0.5;
   sides = 5;
   len = 75;
   angle = 360 / sides;
@@ -125,312 +148,551 @@ function dropSprite() {
   penta.color = '#b7ebff';
 }
       </script>
-
-			<div class="break"></div>
-
-			<div>
-				<md id="md10">
-					<h2 id="join-the-community-👾">Join the community 👾</h2>
-					<p>Ask questions and meet other people making interactive art and games with p5play on our <a
-							href="https://discord.gg/3UTbqUgmPF">community Discord server</a>.</p>
-				</md>
-				<p>
-					<a id="discord-brand" href="https://discord.gg/3UTbqUgmPF" target="_blank">
-						<img class="discord-brand"
-							src="https://assets-global.website-files.com/6257adef93867e50d84d30e2/62594fdd2eb6504fca0545cb_364fc8a0ee7fcebf47ca6ebd16ec12f1%20(1).svg"
-							alt="Discord brand">
-					</a>
-				</p>
 			</div>
-			<div>
-				<md id="md11">
-					<h2 id="support-this-project-🤝">Support this project 🤝</h2>
-					<p>p5play is <a href="https://github.com/quinton-ashley/p5play-web/blob/main/LICENSING.md">open
-							source licensed</a> under the GPL: it's free!</p>
-					<p>But if you use p5play professionally, please <a href="https://www.patreon.com/p5play">support the
-							project on Patreon</a>!</p>
-				</md>
-				<p>
-					<a id="patreon-brand" href="https://www.patreon.com/p5play" aria-label="Patreon page for p5play">
-						<img src="https://www.svgrepo.com/download/354168/patreon.svg" alt="">
-						<img src="/assets/brands/patreon_brand.svg" alt="patreon brand" height="28px">
-					</a>
-				</p>
-			</div>
-			<div>
-				<md id="md12">
-					<h2 id="no-installation-required-🤩">No installation required 🤩</h2>
-					<p>Works great on Google Chromebooks! You can use any of these online code editor templates. We
-						recommend using OpenProcessing.</p>
-				</md>
-				<div id="editors">
-					<a href="https://openprocessing.org/sketch/1717172" target="_blank">
-						<img alt="OpenProcessing logo" class="openprocessing-brand"
-							src=" https://openprocessing.org/assets/img/logo/logo_36x30_color@2x.png">
-						<span class="bariol">OpenProcessing</span>
-					</a>
-					<a href="https://editor.p5js.org/quinton-ashley/sketches/szN_XdV5O" target="_blank">
-						<img alt="p5.js web editor logo" class="p5js-web-editor-brand" src="/assets/brands/p5js.svg">
-						<span>web editor</span>
-					</a>
-					<a href="https://codepen.io/qashto/pen/rNKMjrZ?editors=0010" target="_blank">
-						<svg class="codepen-brand" viewBox="0 0 138 26" fill="none" stroke="#fff" stroke-width="2.3"
-							stroke-linecap="round" stroke-linejoin="round" title="CodePen" height="40px">
-							<path
-								d="M15 8a7 7 0 100 10m7-8.7L33 2l11 7.3v7.4L33 24l-11-7.3zm0 0l11 7.4 11-7.4m0 7.4L33 9.3l-11 7.4M33 2v7.3m0 7.4V24M52 6h5a7 7 0 010 14h-5zm28 0h-9v14h9m-9-7h6m11 1h6a4 4 0 000-8h-6v14m26-14h-9v14h9m-9-7h6m11 7V6l11 14V6">
-							</path>
-						</svg>
-					</a>
-					<a href="https://glitch.com/edit/#!/p5play-v3-starter-code?path=sketch.js%3A1%3A0" target="_blank">
-						<img class="glitch-brand" src="/assets/brands/glitch_brand.svg" alt="glitch brand">
-					</a>
+		</div>
+
+		<div id="reel2" class="reel">
+			<video src="https://quinton-ashley.github.io/p5play-assets/reel2.mov" loop="" playsinline=""
+				muted=""></video>
+			<div class="page">
+				<div class="full">
+					<md id="md2">
+						<p><a href="https://github.com/quinton-ashley/p5play">p5play</a> fue diseñado por profesores de
+							Ciencias de la Computación para ser intuitivo para principiantes, lo que lo hace popular en
+							escuelas y universidades de todo el mundo. <a href="learn/sprite.html">¡Aprende p5play!</a>
+						</p>
+					</md>
+				</div>
+				<div id="usedBy" class="full">
+					<div id="user-brands">
+						<a aria-label="Crimson Education" id="crimson-brand" href="https://www.crimsoneducation.org/"
+							target="_blank">
+							<img src="/assets/brands/crimson_brand.svg" alt="Crimson Education">
+						</a>
+						<a id="codehs-brand" href="https://codehs.com/course/gamedesign_p5play/overview"
+							target="_blank">
+							<img src="https://staticflare.codehs.com/img/logos/codehs_logo_dark_text.png" alt="CodeHS">
+						</a>
+						<a id="codeorg-brand" href="https://code.org/educate/gamelab" target="_blank">
+							<img src="https://studio.code.org/assets/logo-2acd4ebc69c447786b866b98034bb3c0777b5f67cd8bd7955e97bba0b16f2bd1.svg"
+								alt="CODE.org">
+						</a>
+						<a id="girlswhocode-brand" href="https://girlswhocode.com/" target="_blank">
+							<img src="/assets/brands/girlswhocode_brand.svg" alt="Girls Who Code">
+						</a>
+						<a id="lsu-brand" href="https://pdm.lsupathways.org/2_graphics/" target="_blank">
+							<img src="https://www.lsu.edu/_resources_fierce/svgs/lsu-logo.svg" alt="LSU DDEM">
+						</a>
+						<a id="ttu-brand" href="https://wreckem.itch.io/p5play-games" target="_blank">
+							<img src="https://www.ttu.edu/_resources/homepage/images/logo.png"
+								alt="Texas Tech University">
+						</a>
+						<a id="nyuitp-brand" href="https://tisch.nyu.edu/itp#" target="_blank">
+							<img src="https://globalnav.digicomm.nyu.edu/logos/tisch_large_short.svg" alt="NYU Tisch">
+						</a>
+						<a id="depaul-brand"
+							href="https://www.cdm.depaul.edu/academics/pages/courseinfo.aspx?Subject=GAM&amp;CatalogNbr=240">
+							<img src="/assets/brands/depaul_brand.png" alt="DePaul">
+						</a>
+						<a id="hunter-brand" href="https://github.com/hunter-teacher-cert/unit_plan-mka"
+							target="_blank">
+							<img src="https://hunter.cuny.edu/assets/hunter-logo.svg" alt="HUNTER">
+						</a>
+						<a id="cmu-brand" href="https://www.cmu.edu" target="_blank">
+							<img src="/assets/brands/cmu_brand.png" alt="Carnegie Mellon University">
+						</a>
+					</div>
 				</div>
 			</div>
-			<div>
-				<md id="md13-0">
-					<h2 id="local-development-🔨">Local Development 🔨</h2>
-					<p>Use p5play on your own website by adding these links to your HTML file. School firewall blocking
-						p5play.org? See the <a
-							href="https://github.com/quinton-ashley/p5play/wiki/FAQ#school-firewall-blocking-p5playorg">FAQs</a>
+		</div>
+
+		<div id="reel3" class="reel">
+			<video src="https://quinton-ashley.github.io/p5play-assets/reel3.mov" loop="" playsinline=""
+				muted=""></video>
+			<div class="page">
+				<div>
+					<md id="md10">
+						<h2 id="únete-a-la-comunidad-👾">Únete a la comunidad 👾</h2>
+						<p>Haz preguntas y conoce a otras personas que crean arte interactivo y juegos con p5play en
+							nuestro <a href="https://discord.gg/3UTbqUgmPF">servidor de Discord de la comunidad</a>.</p>
+					</md>
+					<p>
+						<a id="discord-brand" href="https://discord.gg/3UTbqUgmPF" target="_blank">
+							<img class="discord-brand"
+								src="https://assets-global.website-files.com/6257adef93867e50d84d30e2/62594fdd2eb6504fca0545cb_364fc8a0ee7fcebf47ca6ebd16ec12f1%20(1).svg"
+								alt="Discord brand">
+						</a>
 					</p>
-				</md>
-				<textarea id="lib-links" aria-label="link tags for p5play and its dependencies" rows="5">&lt;script src="https://cdn.jsdelivr.net/npm/p5@1/lib/p5.min.js"&gt;&lt;/script&gt;
-&lt;script src="https://cdn.jsdelivr.net/npm/p5@1/lib/addons/p5.sound.min.js"&gt;&lt;/script&gt;
-
-&lt;script src="https://p5play.org/v3/planck.min.js"&gt;&lt;/script&gt;
-&lt;script src="https://p5play.org/v3/p5play.js"&gt;&lt;/script&gt;</textarea>
-				<md id="md13-1">
-					<p>p5play is also available on npm: <code>npm i p5play</code></p>
-					<p><a href="https://github.com/quinton-ashley/p5play/wiki/Get-Started">Want to use p5play
-							offline?</a></p>
-				</md>
-			</div>
-
-			<div class="break"></div>
-			<div class="full">
-				<div id="user-brands">
-					<div>
-						<h2 id="usedBy" style="width: fit-content">Used by</h2>
-					</div>
-					<a aria-label="Crimson Education" id="crimson-brand" href="https://www.crimsoneducation.org/"
-						target="_blank">
-						<img src="/assets/brands/crimson_brand.svg" alt="Crimson Education">
-					</a>
-					<a id="codehs-brand" href="https://codehs.com/course/gamedesign_p5play/overview" target="_blank">
-						<img src="https://staticflare.codehs.com/img/logos/codehs_logo_dark_text.png" alt="CodeHS">
-					</a>
-					<a id="codeorg-brand" href="https://code.org/educate/gamelab" target="_blank">
-						<img src="https://studio.code.org/assets/logo-2acd4ebc69c447786b866b98034bb3c0777b5f67cd8bd7955e97bba0b16f2bd1.svg"
-							alt="CODE.org">
-					</a>
-					<a id="girlswhocode-brand" href="https://girlswhocode.com/" target="_blank">
-						<img src="/assets/brands/girlswhocode_brand.svg" alt="Girls Who Code">
-					</a>
-					<a id="lsu-brand" href="https://pdm.lsupathways.org/2_graphics/" target="_blank">
-						<img src="https://www.lsu.edu/_resources_fierce/svgs/lsu-logo.svg" alt="LSU DDEM">
-					</a>
-					<a id="nyuitp-brand" href="https://tisch.nyu.edu/itp#" target="_blank">
-						<img src="https://globalnav.digicomm.nyu.edu/logos/tisch_large_short.svg" alt="NYU Tisch">
-					</a>
-					<a id="depaul-brand"
-						href="https://www.cdm.depaul.edu/academics/pages/courseinfo.aspx?Subject=GAM&amp;CatalogNbr=240">
-						<img src="https://www.cdm.depaul.edu/PublishingImages/logoCDM.png" alt="DePaul">
-					</a>
-					<a id="hunter-brand" href="https://github.com/hunter-teacher-cert/unit_plan-mka" target="_blank">
-						<img src="https://hunter.cuny.edu/assets/hunter-logo.svg" alt="HUNTER">
-					</a>
-					<a id="cmu-brand" href="https://www.cmu.edu" target="_blank">
-						<img src="/assets/brands/cmu_brand.png" alt="Carnegie Mellon University">
-					</a>
-					<a id="ttu-brand" href="https://wreckem.itch.io/p5play-games" target="_blank">
-						<img src="https://www.ttu.edu/_resources/homepage/images/logo.png" alt="Texas Tech University">
-					</a>
-				</div>
-			</div>
-
-			<div class="break"></div>
-
-			<div>
-				<md id="review0" class="testimonial-text">
-					<p>"He encontrado la biblioteca p5play como un recurso invaluable para introducir a los estudiantes
-						al diseño y desarrollo de juegos. Nuestro equipo eligió usar esta biblioteca para nuestro
-						Programa de Verano de Diseño de Juegos debido a sus muchas características personalizables,
-						recursos bien documentados, y su API fácil de usar que lo hacen accesible para estudiantes de
-						todas las edades y niveles de habilidad.</p>
-					<p>Gracias a los numerosos métodos y propiedades incluidos en esta biblioteca, los estudiantes son
-						capaces de llevar rápidamente sus visiones de juego a la vida con código. Estos juegos van desde
-						juegos básicos de atrapar hasta juegos con múltiples niveles y características desafiantes.</p>
-					<p>Además de los recursos bien documentados de la biblioteca, p5play ofrece una gran cantidad de
-						apoyo e inspiración para los estudiantes y profesores en su comunidad. Esto incluye sus páginas
-						de aprendizaje interactivo que permiten a los estudiantes experimentar con diferentes
-						propiedades y métodos de la biblioteca, su evento tri-anual Game Jam, y su canal de Discord
-						lleno de muchos recursos excelentes y oportunidades para encontrar apoyo.</p>
-					<p>Nuestro equipo de Girls Who Code recomienda altamente esta biblioteca a cualquier persona
-						interesada en el desarrollo de juegos. ¡No podemos esperar a ver todos los juegos que nuestros
-						estudiantes creen este verano con esta increíble biblioteca!"</p>
-				</md>
-				<div class="testimonial-bio">
-					<img src="/assets/bios/ashley_goetz.jpg" alt="Amy">
-					<div>
-						<div class="name">Ashley Goetz</div>
-						<div>Curriculum Developer at</div>
-						<div>
-							<a href="https://girlswhocode.com/" target="_blank">Girls Who Code</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div>
-				<md id="review1" class="testimonial-text">
-					<p>"Me encanta absolutamente lo que has hecho con las páginas de Learn, qué referencia tan genial
-						para propiedades importantes de sprite, espero ver más de eso. Escarbando un poco en el código
-						fuente diría que [p5play v3] conserva mucho del atractivo de las versiones anteriores y pude
-						orientarme bastante rápido."</p>
-				</md>
-				<div class="testimonial-bio">
-					<img src="/assets/bios/brad_buchanan.jpg" alt="Brad">
-					<div>
-						<div class="name">Bradley C Buchanan</div>
-						<div>
-							Software Manager at
-							<a href="https://discord.com" target="_blank">Discord</a>
-						</div>
-						<div>
-							Former Software Manager at
-							<a href="https://google.com" target="_blank">Google</a>
-						</div>
-						<div>
-							Former Software Manager at
-							<a href="https://code.org/" target="_blank">Code.org</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div>
-				<md id="review2" class="testimonial-text">
-					<p>"Muchas gracias por todo el trabajo Quinton. Con esta correcta integración de físicas, es posible
-						que comience a utilizar p5play de nuevo en mis clases."</p>
-				</md>
-				<div class="testimonial-bio">
-					<img src="/assets/bios/paolo_pedercini.jpg" alt="Paolo">
-					<div>
-						<div class="name">Paolo Pedercini</div>
-						<div>Creator of p5.play v1</div>
-						<div>
-							Professor at
-							<a href="https://www.cmu.edu" target="_blank">Carnegie Mellon</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div>
-				<md id="review3" class="testimonial-text">
-					<p>"Añadí una unidad centrada en p5play a mi currículo de Codificación Artística y Diseño de Juegos
-						como una forma de presentar la programación orientada a objetos. Los estudiantes se adaptaron
-						rápidamente a los sprites y grupos y estaban más que emocionados con toda la interactividad
-						incorporada en p5play. A través de los juegos, los estudiantes pudieron solidificar su
-						comprensión de las propiedades y métodos sin siquiera darse cuenta de que estaban aprendiendo
-						algunos de los conceptos fundamentales de la programación orientada a objetos.</p>
-					<p>Mis estudiantes pasaron tiempo haciendo juegos usando la biblioteca p5play y estaban inmensamente
-						orgullosos de sus logros. Desde que hemos utilizado p5play, mis estudiantes ahora pueden
-						entender mejor las clases y han escrito incluso algunas de las suyas propias."</p>
-				</md>
-				<div class="testimonial-bio">
-					<img src="/assets/bios/marisa_shuman.jpg" alt="Marisa">
-					<div>
-						<div class="name">Marisa Shuman</div>
-						<div>Computer Science Teacher at</div>
-						<div>
-							<a href="https://tywlsbronx.org" target="_blank">The Young Women's Leadership School of the
-								Bronx</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div>
-				<md id="review4" class="testimonial-text">
-					<p>"p5play ha sido una gran adición a nuestro currículo. Nos ha permitido explorar una salida más
-						creativa para aprender la programación orientada a objetos y ha sido invaluable en los proyectos
-						de sus estudiantes para sus exámenes.</p>
-					<p>Desde que introdujimos p5 y p5play, hemos visto un aumento de más del 100% en los estudiantes y
-						ahora estamos viendo grandes beneficios en el aprendizaje de los estudiantes. Recomendaría
-						altamente la introducción de p5 &amp; p5play en su currículo. Ahora hemos desarrollado una serie
-						personalizada de tutoriales en video para permitir que más escuelas y colegios en el Reino Unido
-						introduzcan p5play a su currículo."</p>
-				</md>
-				<div class="testimonial-bio">
-					<img src="/assets/bios/rhys_drury.jpg" alt="Marisa">
-					<div>
-						<div class="name">Rhys Drury</div>
-						<div>Head of Computing at</div>
-						<div>
-							<a href="https://www.wyke.ac.uk" target="_blank">Wyke Sixth Form College, UK</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<md id="review5" class="testimonial-text">
-				<p>"Usar p5play en JavaScript para hacer programas gráficos es mucho mejor que aprender Python, porque
-					puedes ver cómo tu código de programa influye en algo en pantalla." - Estudiante en Wyke</p>
-			</md>
-			<md id="review6" class="testimonial-text">
-				<p>"Aprender p5play realmente me ha ayudado a interesarme más en la codificación, ya que facilita la
-					creación de juegos. Hace que el proceso sea menos consumidor de tiempo y más divertido." -
-					Estudiante en Wyke</p>
-			</md>
-			<md id="review7" class="testimonial-text">
-				<p>"Con GCSE, usamos Tkinter en Python que fue útil para hacer aplicaciones básicas. Sin embargo, ahora
-					usando p5play podemos hacer juegos mucho más avanzados que son interesantes y prácticos." -
-					Estudiante en Wyke</p>
-			</md>
-
-			<div class="break"></div>
-
-			<div class="credits full">
-				<div class="credits-lg">
-					Creator of p5play : <strong>Quinton Ashley</strong> |
-					<a href="https://openprocessing.org/user/350295?view=activity&amp;o=35">@quinton-ashley</a>
-					| <a href="mailto:info@p5play.org">info@p5play.org</a>
 				</div>
 				<div>
-					Creator of p5.play v1 : <strong>Paolo Pedercini</strong> |
-					<a href="http://molleindustria.org/" target="_blank">molleindustria.org</a>
-					| <a href="mailto:info@molleindustria.it">info@molleindustria.it</a>
+					<md id="md11">
+						<h2 id="apoya-este-proyecto-🤝">Apoya este proyecto 🤝</h2>
+						<p>p5play tiene una <a
+								href="https://github.com/quinton-ashley/p5play-web/blob/main/LICENSING.md">licencia de
+								código abierto</a> bajo GPL: ¡es gratis!</p>
+						<p>Pero si usas p5play profesionalmente, por favor, ¡<a
+								href="https://www.patreon.com/p5play">apoya el proyecto en Patreon</a>!</p>
+					</md>
+					<p>
+						<a id="patreon-brand" href="https://www.patreon.com/p5play"
+							aria-label="Patreon page for p5play">
+							<img src="https://www.svgrepo.com/download/354168/patreon.svg" alt="">
+							<img src="/assets/brands/patreon_brand.svg" alt="patreon brand" height="28px">
+						</a>
+					</p>
 				</div>
-				<div>Current Contributors: Oliver Zell, Caleb Foss, and Bobby S.</div>
-				<div class="credits-sm">
-					Huge thanks to p5play testers and bug reporters: Raj Raizada,
-					@Tezumie, Nathan Anil, Chayarat Wangweera, Zhiyuan Guo, Aarnav
-					Gupta, and Carter Noa.
+				<div>
+					<md id="md12">
+						<h2 id="¡no-se-requiere-instalación-🤩">¡No se requiere instalación! 🤩</h2>
+						<p>Puedes utilizar cualquiera de estas plantillas de editores de código en línea. Sin embargo,
+							sugiero evitar el editor web de p5.js, tiene muchos problemas. Recomiendo usar
+							OpenProcessing.</p>
+					</md>
+					<div id="editors">
+						<a href="https://openprocessing.org/sketch/1717172" target="_blank">
+							<img alt="OpenProcessing logo" class="openprocessing-brand"
+								src=" https://openprocessing.org/assets/img/logo/logo_36x30_color@2x.png">
+							<span class="bariol">OpenProcessing</span>
+						</a>
+						<a href="https://editor.p5js.org/quinton-ashley/sketches/szN_XdV5O" target="_blank">
+							<img alt="p5.js web editor logo" class="p5js-web-editor-brand"
+								src="/assets/brands/p5js.svg">
+							<span>web editor</span>
+						</a>
+						<a href="https://codepen.io/qashto/pen/rNKMjrZ?editors=0010" target="_blank">
+							<svg class="codepen-brand" viewBox="0 0 138 26" fill="none" stroke="#fff" stroke-width="2.3"
+								stroke-linecap="round" stroke-linejoin="round" title="CodePen" height="40px">
+								<path
+									d="M15 8a7 7 0 100 10m7-8.7L33 2l11 7.3v7.4L33 24l-11-7.3zm0 0l11 7.4 11-7.4m0 7.4L33 9.3l-11 7.4M33 2v7.3m0 7.4V24M52 6h5a7 7 0 010 14h-5zm28 0h-9v14h9m-9-7h6m11 1h6a4 4 0 000-8h-6v14m26-14h-9v14h9m-9-7h6m11 7V6l11 14V6">
+								</path>
+							</svg>
+						</a>
+						<a href="https://glitch.com/edit/#!/p5play-v3-starter-code?path=sketch.js%3A1%3A0"
+							target="_blank">
+							<img class="glitch-brand" src="/assets/brands/glitch_brand.svg" alt="glitch brand">
+						</a>
+					</div>
+				</div>
+				<div>
+					<md id="md13-0">
+						<h2 id="desarrollo-local-🔨">Desarrollo local 🔨</h2>
+						<p>Usa p5play en tu propio sitio web añadiendo estos enlaces a tu archivo HTML. ¿El cortafuegos
+							de tu escuela bloquea p5play.org? Consulta las <a
+								href="https://github.com/quinton-ashley/p5play/wiki/FAQ#school-firewall-blocking-p5playorg">preguntas
+								frecuentes (FAQs)</a></p>
+					</md>
+					<textarea id="lib-links" aria-label="link tags for p5play and its dependencies" rows="5">&lt;script src="https://cdn.jsdelivr.net/npm/p5@1/lib/p5.min.js"&gt;&lt;/script&gt;
+&lt;script src="https://cdn.jsdelivr.net/npm/p5@1/lib/addons/p5.sound.min.js"&gt;&lt;/script&gt;
+		
+&lt;script src="https://p5play.org/v3/planck.min.js"&gt;&lt;/script&gt;
+&lt;script src="https://p5play.org/v3/p5play.js"&gt;&lt;/script&gt;</textarea>
+					<md id="md13-1">
+						<p>p5play también está disponible en npm: <code>npm i p5play</code></p>
+						<p><a href="https://github.com/quinton-ashley/p5play/wiki/Get-Started">¿Quieres usar p5play sin
+								conexión?</a></p>
+					</md>
 				</div>
 			</div>
-			<div class="break"></div>
-			<footer id="credits" class="text-small">
-				<p>p5play.org fue creado por Quinton Ashley. Copyright ©2022-2023. ¿Buscas la <a
-						href="https://quinton-ashley.github.io/p5play-web-archive/v2">versión legado</a> de p5play?</p>
-			</footer>
 		</div>
-	</article>
+
+		<div id="reel4" class="reel">
+			<div class="page">
+				<div class="break"></div>
+				<div>
+					<md id="review0" class="testimonial-text">
+						<p>"He encontrado la biblioteca p5play como un recurso invaluable para introducir a los
+							estudiantes al diseño y desarrollo de juegos. Nuestro equipo eligió usar esta biblioteca
+							para nuestro Programa de Verano de Diseño de Juegos debido a sus muchas características
+							personalizables, recursos bien documentados, y su API fácil de usar que lo hacen accesible
+							para estudiantes de todas las edades y niveles de habilidad.</p>
+						<p>Gracias a los numerosos métodos y propiedades incluidos en esta biblioteca, los estudiantes
+							son capaces de llevar rápidamente sus visiones de juego a la vida con código. Estos juegos
+							van desde juegos básicos de atrapar hasta juegos con múltiples niveles y características
+							desafiantes.</p>
+						<p>Además de los recursos bien documentados de la biblioteca, p5play ofrece una gran cantidad de
+							apoyo e inspiración para los estudiantes y profesores en su comunidad. Esto incluye sus
+							páginas de aprendizaje interactivo que permiten a los estudiantes experimentar con
+							diferentes propiedades y métodos de la biblioteca, su evento tri-anual Game Jam, y su canal
+							de Discord lleno de muchos recursos excelentes y oportunidades para encontrar apoyo.</p>
+						<p>Nuestro equipo de Girls Who Code recomienda altamente esta biblioteca a cualquier persona
+							interesada en el desarrollo de juegos. ¡No podemos esperar a ver todos los juegos que
+							nuestros estudiantes creen este verano con esta increíble biblioteca!"</p>
+					</md>
+					<div class="testimonial-bio">
+						<img src="/assets/bios/ashley_goetz.jpg" alt="Amy">
+						<div>
+							<div class="name">Ashley Goetz</div>
+							<div>Curriculum Developer at</div>
+							<div>
+								<a href="https://girlswhocode.com/" target="_blank">Girls Who Code</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div>
+					<md id="review1" class="testimonial-text">
+						<p>"Me encanta absolutamente lo que has hecho con las páginas de Learn, qué referencia tan
+							genial para propiedades importantes de sprite, espero ver más de eso. Escarbando un poco en
+							el código fuente diría que [p5play v3] conserva mucho del atractivo de las versiones
+							anteriores y pude orientarme bastante rápido."</p>
+					</md>
+					<div class="testimonial-bio">
+						<img src="/assets/bios/brad_buchanan.jpg" alt="Brad">
+						<div>
+							<div class="name">Bradley C Buchanan</div>
+							<div>
+								Software Manager at
+								<a href="https://discord.com" target="_blank">Discord</a>
+							</div>
+							<div>
+								Former Software Manager at
+								<a href="https://google.com" target="_blank">Google</a>
+							</div>
+							<div>
+								Former Software Manager at
+								<a href="https://code.org/" target="_blank">Code.org</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div>
+					<md id="review2" class="testimonial-text">
+						<p>"Muchas gracias por todo el trabajo Quinton. Con esta correcta integración de físicas, es
+							posible que comience a utilizar p5play de nuevo en mis clases."</p>
+					</md>
+					<div class="testimonial-bio">
+						<img src="/assets/bios/paolo_pedercini.jpg" alt="Paolo">
+						<div>
+							<div class="name">Paolo Pedercini</div>
+							<div>Creator of p5.play v1</div>
+							<div>
+								Professor at
+								<a href="https://www.cmu.edu" target="_blank">Carnegie Mellon</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div>
+					<md id="review3" class="testimonial-text">
+						<p>"Añadí una unidad centrada en p5play a mi currículo de Codificación Artística y Diseño de
+							Juegos como una forma de presentar la programación orientada a objetos. Los estudiantes se
+							adaptaron rápidamente a los sprites y grupos y estaban más que emocionados con toda la
+							interactividad incorporada en p5play. A través de los juegos, los estudiantes pudieron
+							solidificar su comprensión de las propiedades y métodos sin siquiera darse cuenta de que
+							estaban aprendiendo algunos de los conceptos fundamentales de la programación orientada a
+							objetos.</p>
+						<p>Mis estudiantes pasaron tiempo haciendo juegos usando la biblioteca p5play y estaban
+							inmensamente orgullosos de sus logros. Desde que hemos utilizado p5play, mis estudiantes
+							ahora pueden entender mejor las clases y han escrito incluso algunas de las suyas propias."
+						</p>
+					</md>
+					<div class="testimonial-bio">
+						<img src="/assets/bios/marisa_shuman.jpg" alt="Marisa">
+						<div>
+							<div class="name">Marisa Shuman</div>
+							<div>Computer Science Teacher at</div>
+							<div>
+								<a href="https://tywlsbronx.org" target="_blank">The Young Women's Leadership School of
+									the
+									Bronx</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div>
+					<md id="review4" class="testimonial-text">
+						<p>"p5play ha sido una gran adición a nuestro currículo. Nos ha permitido explorar una salida
+							más creativa para aprender la programación orientada a objetos y ha sido invaluable en los
+							proyectos de sus estudiantes para sus exámenes.</p>
+						<p>Desde que introdujimos p5 y p5play, hemos visto un aumento de más del 100% en los estudiantes
+							y ahora estamos viendo grandes beneficios en el aprendizaje de los estudiantes. Recomendaría
+							altamente la introducción de p5 &amp; p5play en su currículo. Ahora hemos desarrollado una
+							serie personalizada de tutoriales en video para permitir que más escuelas y colegios en el
+							Reino Unido introduzcan p5play a su currículo."</p>
+					</md>
+					<div class="testimonial-bio">
+						<img src="/assets/bios/rhys_drury.jpg" alt="Marisa">
+						<div>
+							<div class="name">Rhys Drury</div>
+							<div>Head of Computing at</div>
+							<div>
+								<a href="https://www.wyke.ac.uk" target="_blank">Wyke Sixth Form College, UK</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<md id="review5" class="testimonial-text">
+					<p>"Usar p5play en JavaScript para hacer programas gráficos es mucho mejor que aprender Python,
+						porque puedes ver cómo tu código de programa influye en algo en pantalla." - Estudiante en Wyke
+					</p>
+				</md>
+				<md id="review6" class="testimonial-text">
+					<p>"Aprender p5play realmente me ha ayudado a interesarme más en la codificación, ya que facilita la
+						creación de juegos. Hace que el proceso sea menos consumidor de tiempo y más divertido." -
+						Estudiante en Wyke</p>
+				</md>
+				<md id="review7" class="testimonial-text">
+					<p>"Con GCSE, usamos Tkinter en Python que fue útil para hacer aplicaciones básicas. Sin embargo,
+						ahora usando p5play podemos hacer juegos mucho más avanzados que son interesantes y prácticos."
+						- Estudiante en Wyke</p>
+				</md>
+
+				<div class="break"></div>
+
+				<div class="credits full">
+					<div class="credits-lg">
+						Creator of p5play : <strong>Quinton Ashley</strong> |
+						<a href="https://openprocessing.org/user/350295?view=activity&amp;o=35">@quinton-ashley</a>
+						| <a href="mailto:info@p5play.org">info@p5play.org</a>
+					</div>
+					<div>
+						Creator of p5.play v1 : <strong>Paolo Pedercini</strong> |
+						<a href="http://molleindustria.org/" target="_blank">molleindustria.org</a>
+						| <a href="mailto:info@molleindustria.it">info@molleindustria.it</a>
+					</div>
+					<div>Current Contributors: @Tezumie, Oliver Zell, Caleb Foss, and Bobby S.</div>
+					<div class="credits-sm">
+						Huge thanks to p5play testers and bug reporters:
+					</div>
+					<div class="credits-sm">
+						Raj Raizada, Nathan Anil, Chayarat Wangweera, Zhiyuan Guo, Aarnav
+						Gupta, and Carter Noa.
+					</div>
+				</div>
+				<div class="break"></div>
+			</div>
+		</div>
+
+		<footer id="credits" class="text-small">
+			<p>p5play.org fue creado por Quinton Ashley. Copyright ©2022-2023. ¿Buscas la <a
+					href="https://quinton-ashley.github.io/p5play-web-archive/v2">versión legado</a> de p5play?</p>
+		</footer>
+	</div>
 
 	<script src="/v3/q5.min.js"></script>
 <script src="/v3/planck.min.js"></script>
 <script src="/v3/p5play.min.js"></script>
 <script src="/learn/mie.js"></script>
 <script src="/learn/main.js"></script>
-<style>
+<script>
+const reels = document.querySelectorAll(".reel")
+for (let reel of reels) {
+	reel.addEventListener("mouseover", function() {
+		let vid = reel.children[0];
+		if (vid.tagName == 'VIDEO') vid.play();
+	})
+	reel.addEventListener("mouseout", function() {
+		let vid = reel.children[0];
+		if (vid.tagName == 'VIDEO') vid.pause();
+	})
+}
+
+	</script>
+	<style>
 @font-face {
 	font-family: "bariol";
 	src: url("https://openprocessing.org/assets/fonts/Bariol_Webfont/Bariol_Light_Webfont/bariol_light-webfont.ttf");
 	font-display: fallback;
 }
 
-.page h3 {
-	line-height: 32px;
+article {
+	width: 100%;
+	position: absolute;
+	top: 0;
+}
+
+nav {
+	width: fit-content;
+}
+
+.reel {
+	overflow: hidden;
+}
+
+video {
+	object-fit: cover;
+	width: 100vw;
+	position: absolute;
+	left: 0;
+	z-index: -1;
+}
+
+#reel0 {
+	height: 56.25vw;
+}
+
+#reel1 {
+	height: 60vh;
+}
+
+#reel1,
+#reel2 {
 	font-size: 20px;
 }
 
-.mie.p5 .mie-logo {
-	background-image: url("/assets/favicon.png");
+#reel1 video {
+	top: 56.25vw;
+	z-index: -2;
+}
+
+#reel2 video {
+	top: calc(56.25vw + 60vh);
+}
+
+#reel4 {
+	background-color: var(--background);
+}
+
+#littleLangs {
+	display: inline-flex;
+	align-items: center;
+}
+
+#littleLangs a.active,
+#littleLangs a:hover,
+#littleLangs a {
+	font-size: 16px;
+	text-shadow: none;
+}
+
+.reel {
+	display: flex;
+	justify-content: center;
+}
+
+.page {
+	display: flex;
+	width: 1030px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+#page0 {
+	width: 96%;
+	padding: 0;
+	flex-wrap: nowrap;
+}
+
+#logoLink.active {
+	text-shadow: 0.5vw 0.5vw 0px var(--blue0);
+}
+
+#bigLogo {
+	display: flex;
+	align-items: center;
+	background: none;
+}
+
+#bigLogo .logo {
+	width: 20vw;
+	height: 20vw;
+}
+
+#bigLogo {
+	width: fit-content;
+	padding: 0;
+}
+
+#bigBrand #logoLink {
+	font-size: 6vw;
+}
+
+#bigBrand,
+#bigInfo {
+	width: 33%;
+	padding-top: 0;
+	padding-bottom: 0;
+}
+
+#bigBrand {
+	display: flex;
+	align-items: center;
+	justify-content: right;
+}
+
+#bigBrand,
+#bigInfo {
+	height: 6vw;
+}
+
+#bigInfo {
+	padding-top: 0.8vw;
+}
+
+#bigInfo h3 {
+	margin: 0;
+	line-height: 5vw;
+	font-size: 2.75vw;
+}
+
+@keyframes scrollUp {
+
+	10%,
+	20% {
+		transform: translateY(-16.666%);
+	}
+
+	30%,
+	40% {
+		transform: translateY(-33.333%);
+	}
+
+	50%,
+	60% {
+		transform: translateY(-50%);
+	}
+
+	70%,
+	80% {
+		transform: translateY(-66.666%);
+	}
+
+	90%,
+	100% {
+		transform: translateY(-83.333%);
+	}
+}
+
+#bigInfo {
+	overflow: hidden;
+}
+
+#md0 {
+	animation: scrollUp 8s infinite;
+}
+
+#usedBy {
+	background: none;
+}
+
+.apps {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	margin-top: 32px;
+}
+
+.app {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.app p {
+	margin-top: 8px;
+	text-align: center;
+	font-size: 12px;
+	padding-left: 4px;
+	padding-right: 4px;
+	background-color: var(--secondary);
+	border-radius: 8px;
+}
+
+.apps img {
+	width: 64px;
+	height: 64px;
+	border-radius: 8px;
 }
 
 #discord-brand {
@@ -499,28 +761,30 @@ body.dark #patreon-brand img:nth-of-type(2) {
 
 #hunter-brand {
 	background-color: #fff;
-	max-width: 18%;
+	width: 200px;
 }
 
 #nyuitp-brand {
 	background-color: #57068c;
-	width: 24%;
+	width: 250px;
 }
 
 #lsu-brand {
 	background-color: #502e81;
-	width: 14%;
+	width: 150px;
 }
 
 #ttu-brand {
 	background-color: #d60000;
+	width: 40px;
 }
 
 #depaul-brand {
 	background-color: rgb(66, 8, 17);
-	width: 20%;
+	width: 200px;
 }
 
+#ttu-brand img,
 #nyuitp-brand img,
 #hunter-brand img,
 #depaul-brand img {
@@ -623,15 +887,15 @@ body.dark #patreon-brand img:nth-of-type(2) {
 }
 
 /* .testimonial-text::after {
-	display: absolute;
-	z-index: 1000;
-	background: linear-gradient(rgba(255, 255, 255, 0) 90%, rgba(255, 255, 255, 1) 100%);
+display: absolute;
+z-index: 1000;
+background: linear-gradient(rgba(255, 255, 255, 0) 90%, rgba(255, 255, 255, 1) 100%);
 } */
 /* 
 .dark .testimonial-text::after {
-	display: absolute;
-	bottom: 0;
-	background: linear-gradient(rgba(19, 21, 22, 0) 90%, rgba(19, 21, 22, 1) 100%);
+display: absolute;
+bottom: 0;
+background: linear-gradient(rgba(19, 21, 22, 0) 90%, rgba(19, 21, 22, 1) 100%);
 } */
 .testimonial-bio {
 	display: flex;
@@ -693,12 +957,73 @@ body.dark #patreon-brand img:nth-of-type(2) {
 	margin-left: 0;
 }
 
+.credits p {
+	text-align: center;
+}
+
 .credits-lg {
 	font-size: 24px;
 }
 
 .credits-sm {
 	font-size: 16px;
+}
+
+@media screen and (max-width: 1030px) {
+	article {
+		padding: 0;
+	}
+
+	#topNav>hr:first-of-type {
+		order: 0;
+	}
+
+	.page {
+		padding-left: 20px;
+		padding-right: 20px;
+	}
+
+	.apps {
+		margin-top: 0;
+	}
+
+	#reel1 {
+		height: 77vh;
+	}
+
+	#reel1 video {
+		height: 77vh;
+	}
+
+	#reel2 video {
+		top: calc(56.25vw + 77vh);
+		height: 100vh;
+	}
+}
+
+@media screen and (max-width: 760px) {
+	#page0 {
+		flex-wrap: wrap;
+		align-content: center;
+	}
+
+	#bigBrand {
+		width: fit-content;
+	}
+
+	#bigBrand #logoLink {
+		font-size: 12vw;
+	}
+
+	#bigInfo {
+		width: fit-content;
+		height: 8vw;
+	}
+
+	#bigInfo h3 {
+		font-size: 5vw;
+		line-height: 8vw;
+	}
 }
 
 	</style>

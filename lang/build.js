@@ -14,7 +14,7 @@ async function main() {
 		process.exit(1);
 	}
 
-	if (!specificPage) {
+	if (!specificPage || specificPage == 'index') {
 		await translatePage('index');
 	}
 
@@ -123,7 +123,10 @@ async function translatePage(pageGroup, page) {
 		// change website language
 		document.documentElement.lang = langCode;
 
+		document.body.classList.add(langCode);
+
 		let langNav = document.getElementById('langNav');
+		if (!langNav) langNav = document.getElementById('littleLangs');
 		if (langNav) {
 			// remove active class from english link
 			langNav.children[0].classList.remove('active');

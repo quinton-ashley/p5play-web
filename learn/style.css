@@ -38,22 +38,23 @@ body.dark {
 
 html,
 body {
-	background-color: var(--background);
+	padding: 0;
+	margin: 0;
 }
 
 body {
-	margin: auto;
+	color: var(--primary);
+	background-color: var(--background);
+	font-family: sans-serif;
+	font-size: 18px;
 }
 
 article {
-	color: var(--primary);
 	display: flex;
 	margin: auto;
 	justify-content: center;
 	flex-wrap: wrap;
-	font-family: sans-serif;
 	width: 1030px;
-	font-size: 18px;
 }
 
 @font-face {
@@ -175,14 +176,17 @@ a.navLink {
 	text-shadow: 2px 2px 0px var(--blue0);
 }
 
-#topNav #logoLink:hover {
-	color: transparent;
-	-webkit-text-stroke: 1.6px var(--pink0);
+#logoLink {
+	font-family: Mont, sans-serif;
+	font-display: swap;
+	font-size: 48px;
+	color: var(--pink0);
+	text-shadow: 3px 3px 0px var(--blue0);
 }
 
-#topNav #logoLink.active {
-	font-size: 48px;
-	text-shadow: 3px 3px 0px var(--blue0);
+#logoLink:hover {
+	color: transparent;
+	-webkit-text-stroke: 1.6px var(--pink0);
 }
 
 #topNav a.active {
@@ -209,7 +213,7 @@ a.navLink {
 	}
 }
 
-#topNav .logo:hover {
+.logo:hover {
 	animation: spin 2s linear infinite;
 }
 
@@ -283,8 +287,7 @@ a.btn:hover,
 	cursor: pointer;
 }
 
-.superLink,
-#home-info md h3>a:first-child {
+.superLink {
 	font-size: 32px;
 	color: var(--pink0);
 }
@@ -378,7 +381,9 @@ nav {
 	height: 10px;
 }
 
+#littleLangs a,
 #langNav a {
+	width: max-content;
 	color: var(--dark);
 	font-size: 16px;
 	writing-mode: horizontal-tb;
@@ -482,7 +487,7 @@ footer p {
 
 	nav {
 		display: flex;
-		align-items: baseline;
+		align-items: center;
 		width: 100%;
 		overflow: scroll;
 		gap: 10px;
@@ -502,8 +507,13 @@ footer p {
 		width: max-content;
 	}
 
+	.page {
+		justify-content: center;
+	}
+
 	.page>.mie {
 		width: 100%;
+		max-width: 500px;
 	}
 
 	.page>md,
@@ -511,6 +521,11 @@ footer p {
 		width: 100%;
 		padding: 20px;
 		border: 0;
+	}
+
+	.page>md,
+	.page>div:not(.mie):not(.break):not(.minis):not(.full) {
+		max-width: 500px;
 	}
 
 	.minis>md {
@@ -522,11 +537,12 @@ footer p {
 	}
 
 	.page>.minis {
+		justify-content: center;
 		width: 100%;
 		padding: 0;
 	}
 
-	#topNav #logoLink {
+	#logoLink {
 		white-space: nowrap;
 		order: -3;
 	}

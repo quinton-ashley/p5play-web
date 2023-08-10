@@ -1,18 +1,32 @@
 # 0
 
-### [p5play](https://github.com/quinton-ashley/p5play) es un motor de juego de JS que utiliza [p5.js](http://p5js.org/) para gráficos y [Box2D](https://piqnt.com/planck.js/) para físicas.
+### ¡es poderoso!
 
-¿Buscas convertir tus ideas en juegos en línea o arte interactivo? ¡Prueba p5play! Fue diseñado por profesores de Ciencias de la Computación para ser intuitivo para principiantes, lo que lo hace popular en escuelas y universidades de todo el mundo. Pero, p5play v3 no es solo para uso en el aula. Es una herramienta poderosa construida sobre [planck.js](https://piqnt.com/planck.js/), un port de Box2D, el mismo simulador de físicas usado por los líderes de la industria en juegos queridos como Tiny Wings y Angry Birds.
+### motor de juego en JS
 
-¡Comienza leyendo las [páginas de referencia "Learn"!](learn/sprite.html)
+### [p5.js](http://p5js.org/) para gráficos
+
+### ¡es fácil de aprender!
+
+### [Box2D](https://piqnt.com/planck.js/) para física
+
+### ¡es poderoso!
 
 # 1
+
+[p5play](https://github.com/quinton-ashley/p5play) utiliza el mismo simulador de física [Box2D](https://piqnt.com/planck.js/) que impulsa juegos queridos.
+
+# 2
+
+[p5play](https://github.com/quinton-ashley/p5play) fue diseñado por profesores de Ciencias de la Computación para ser intuitivo para principiantes, lo que lo hace popular en escuelas y universidades de todo el mundo. [¡Aprende p5play!](learn/sprite.html)
+
+# 10
 
 ## Únete a la comunidad 👾
 
 Haz preguntas y conoce a otras personas que crean arte interactivo y juegos con p5play en nuestro [servidor de Discord de la comunidad](https://discord.gg/3UTbqUgmPF).
 
-# 2
+# 11
 
 ## Apoya este proyecto 🤝
 
@@ -20,19 +34,19 @@ p5play tiene una [licencia de código abierto](https://github.com/quinton-ashley
 
 Pero si usas p5play profesionalmente, por favor, ¡[apoya el proyecto en Patreon](https://www.patreon.com/p5play)!
 
-# 3
+# 12
 
 ## ¡No se requiere instalación! 🤩
 
 Puedes utilizar cualquiera de estas plantillas de editores de código en línea. Sin embargo, sugiero evitar el editor web de p5.js, tiene muchos problemas. Recomiendo usar OpenProcessing.
 
-# 4-0
+# 13-0
 
 ## Desarrollo local 🔨
 
 Usa p5play en tu propio sitio web añadiendo estos enlaces a tu archivo HTML. ¿El cortafuegos de tu escuela bloquea p5play.org? Consulta las [preguntas frecuentes (FAQs)](https://github.com/quinton-ashley/p5play/wiki/FAQ#school-firewall-blocking-p5playorg)
 
-# 4-1
+# 13-1
 
 p5play también está disponible en npm: `npm i p5play`
 

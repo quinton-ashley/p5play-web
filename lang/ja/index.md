@@ -1,18 +1,32 @@
 # 0
 
-### [p5play](https://github.com/quinton-ashley/p5play)は、グラフィックスのための[p5.js](http://p5js.org/)と物理学のための[Box2D](https://piqnt.com/planck.js/)を使用した JavaScript のゲームエンジンです。
+### は強力です！
 
-オンラインゲームやインタラクティブアートにアイデアを具現化したいですか？p5play をチェックしてみてください！それは初心者に直感的であるためにコンピューターサイエンスの教師によって設計され、世界中の学校と大学で人気があります。しかし、p5play v3 は教室での使用だけでなく、Box2D - Tiny Wings や Angry Birds のような愛されているゲームで業界のリーダーによって使用されている同じ物理シミュレーターのポートである[planck.js](https://piqnt.com/planck.js/)上に構築された強力なツールです。
+### は JS ゲームエンジンです。
 
-["学び"リファレンスページ](learn/sprite.html)を読んで始めてください！
+### グラフィックスには[p5.js](http://p5js.org/)を使用しています
+
+### 学習が容易です！
+
+### 物理には[Box2D](https://piqnt.com/planck.js/)を使用しています
+
+### は強力です！
 
 # 1
+
+[p5play](https://github.com/quinton-ashley/p5play)は、愛されるゲームを支える同じ[Box2D](https://piqnt.com/planck.js/)物理シミュレーターを使用しています！
+
+# 2
+
+[p5play](https://github.com/quinton-ashley/p5play)は、コンピュータサイエンスの教師によって初心者に直感的に設計され、世界中の学校や大学で人気です。[p5play を学ぶ！](learn/sprite.html)
+
+# 10
 
 ## コミュニティに参加する 👾
 
 [p5play でインタラクティブアートとゲームを作っている他の人々と出会い、質問してください](https://discord.gg/3UTbqUgmPF)。
 
-# 2
+# 11
 
 ## このプロジェクトをサポートする 🤝
 
@@ -20,19 +34,19 @@ p5play は GPL の下で[オープンソースライセンス](https://github.co
 
 しかし、あなたがプロとして p5play を使用しているなら、[Patreon でプロジェクトをサポートしてください](https://www.patreon.com/p5play)！
 
-# 3
+# 12
 
 ## インストールは必要ありません！🤩
 
 これらのオンラインコードエディタテンプレートのいずれかを使用できます。しかし、p5.js ウェブエディタは避けることをお勧めします、それには多くの問題があります。OpenProcessing の使用を推奨します。
 
-# 4-0
+# 13-0
 
 ## ローカル開発 🔨
 
 HTML ファイルにこれらのリンクを追加することで、自分のウェブサイトで p5play を使用できます。学校のファイアウォールが p5play.org をブロックしていますか？ [FAQs](https://github.com/quinton-ashley/p5play/wiki/FAQ#school-firewall-blocking-p5playorg)をご覧ください。
 
-# 4-1
+# 13-1
 
 p5play も npm で利用可能です：`npm i p5play`
 

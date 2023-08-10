@@ -1,12 +1,24 @@
 # 0
 
-### [p5play](https://github.com/quinton-ashley/p5play) is a JavaScript game engine that uses [p5.js](http://p5js.org/) for graphics and [Box2D](https://piqnt.com/planck.js/) for physics.
+### is powerful!
 
-Designed by Computer Science teachers to be intuitive for beginners, making it popular at schools and universities around the world.
+### is a JS game engine.
 
-Uses the same powerful physics simulator as beloved games like Tiny Wings, Shovel Knight, Limbo, Happy Wheels, and Angry Birds.
+### uses [p5.js](http://p5js.org/) for graphics
 
-## [Learn p5play!](learn/sprite.html)
+### is easy to learn!
+
+### uses [Box2D](https://piqnt.com/planck.js/) for physics
+
+### is powerful!
+
+# 1
+
+[p5play](https://github.com/quinton-ashley/p5play) uses the same [Box2D](https://piqnt.com/planck.js/) physics simulator that powers beloved games!
+
+# 2
+
+[p5play](https://github.com/quinton-ashley/p5play) was designed by Computer Science teachers to be intuitive for beginners, making it popular at schools and universities around the world. [Learn p5play!](learn/sprite.html)
 
 # 10
 
@@ -36,13 +48,13 @@ Use p5play on your own website by adding these links to your HTML file. School f
 
 # 13-1
 
-p5play is also available on npm: `npm i p5play`
+Also available on npm: `npm i p5play`
 
 [Want to use p5play offline?](https://github.com/quinton-ashley/p5play/wiki/Get-Started)
 
 # review0
 
-“I have found the p5play library to be an invaluable resource for introducing students to game design and development. Our team chose to use this library for our Game Design Summer Program due to its many customizable features, well documented resources, and easy-to-use API which make it accessible for students of all ages and skill levels.
+“I have found the p5play library to be an invaluable resource for introducing students to game design and development. Our team chose to use this library for our Game Design Summer Program due to its many customizable features, [well documented resources](learn/sprite.html), and easy-to-use API which make it accessible for students of all ages and skill levels.
 
 Due to the many methods and properties included in this library, students are able to quickly bring their game visions to life with code. These games range from basic catcher games to games with multiple levels and challenging features.
 
@@ -52,7 +64,7 @@ Our Girls Who Code team highly recommends this library to anyone interested in g
 
 # review1
 
-“I absolutely love what you've done with the Learn pages, what a cool reference for important sprite properties, looking forward to seeing more of that. Digging through the source a bit I'd say [p5play v3] retains a ton of the appeal of earlier versions and I was able to orient pretty quick.”
+“I absolutely love what you've done with the [Learn pages](learn/sprite.html), what a cool reference for important sprite properties, looking forward to seeing more of that. Digging through the source a bit I'd say [p5play v3] retains a ton of the appeal of earlier versions and I was able to orient pretty quick.”
 
 # review2
 

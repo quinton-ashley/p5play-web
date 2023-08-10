@@ -135,9 +135,12 @@ function createWindow(event, url) {
 
 app.on('ready', () => {
 	// protocol.handle('file', (req) => {
-	// 	// const url = req.url.slice(7); /* all urls start with 'file://' */
 	// 	const url = req.url;
 	// 	log(url);
+
+	// 	// convert the url to use the app directory as the root
+	// 	// file path instead of the system root file path
+
 	// 	return net.fetch(url);
 	// });
 
