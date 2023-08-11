@@ -185,7 +185,7 @@ a.navLink {
 }
 
 #logoLink:hover {
-	color: transparent;
+	color: transparent !important;
 	-webkit-text-stroke: 1.6px var(--pink0);
 }
 

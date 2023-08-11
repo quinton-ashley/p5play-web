@@ -165,7 +165,7 @@ function dropSprite() {
 				</div>
 				<div id="usedBy" class="full">
 					<div id="user-brands">
-						<a aria-label="Crimson Education" id="crimson-brand" href="https://www.crimsoneducation.org/"
+						<a id="crimson-brand" aria-label="Crimson Education" href="https://www.crimsoneducation.org/"
 							target="_blank">
 							<img src="/assets/brands/crimson_brand.svg" alt="Crimson Education">
 						</a>
@@ -504,7 +504,7 @@ video {
 }
 
 #reel1 {
-	height: 60vh;
+	height: 500px;
 }
 
 #reel1,
@@ -518,7 +518,11 @@ video {
 }
 
 #reel2 video {
-	top: calc(56.25vw + 60vh);
+	top: calc(56.25vw + 500px);
+}
+
+#reel3 video {
+	height: 100%;
 }
 
 #reel4 {
@@ -691,12 +695,6 @@ html.ja #bigInfo h3 {
 	gap: 24px;
 }
 
-#user-brands a,
-.brand {
-	padding: 8px;
-	border-radius: 8px;
-}
-
 #patreon-brand {
 	display: flex;
 	align-items: center;
@@ -715,29 +713,38 @@ body.dark #patreon-brand img:nth-of-type(2) {
 	height: 20px;
 }
 
-#codehs-brand img,
-#cmu-brand img {
-	width: 140px;
+#usedBy {
+	padding: 0;
+}
+
+#user-brands a,
+.brand {
+	padding: 8px;
+	border-radius: 8px;
+}
+
+#user-brands a img {
+	width: 100%;
 }
 
 #crimson-brand {
 	background-color: #1d1e2b;
+	width: 160px;
 }
 
 #codehs-brand {
 	background-color: #f4f8fc;
+	width: 160px;
 }
 
 #codeorg-brand {
 	background-color: #00adbc;
-}
-
-#codeorg-brand img {
-	width: 64px;
+	width: 70px;
 }
 
 #girlswhocode-brand {
 	background-color: #e5f8ff;
+	width: 140px;
 }
 
 #hunter-brand {
@@ -757,7 +764,7 @@ body.dark #patreon-brand img:nth-of-type(2) {
 
 #ttu-brand {
 	background-color: #d60000;
-	width: 40px;
+	width: 36px;
 }
 
 #depaul-brand {
@@ -765,11 +772,8 @@ body.dark #patreon-brand img:nth-of-type(2) {
 	width: 200px;
 }
 
-#ttu-brand img,
-#nyuitp-brand img,
-#hunter-brand img,
-#depaul-brand img {
-	width: 100%;
+#cmu-brand {
+	width: 140px;
 }
 
 #discord-brand img {
@@ -969,20 +973,41 @@ background: linear-gradient(rgba(19, 21, 22, 0) 90%, rgba(19, 21, 22, 1) 100%);
 	}
 
 	#reel1 {
-		height: 77vh;
+		height: 680px;
 	}
 
 	#reel1 video {
-		height: 77vh;
+		height: 680px;
 	}
 
 	#reel2 video {
-		top: calc(56.25vw + 77vh);
+		top: calc(56.25vw + 680px);
 		height: 100vh;
 	}
 }
 
 @media screen and (max-width: 760px) {
+	#topNav {
+		margin-top: 0;
+		border-radius: 0;
+	}
+
+	#reel0 {
+		margin-top: 40px;
+	}
+
+	#reel0 video {
+		top: 40px;
+	}
+
+	#reel1 video {
+		top: calc(56.25vw + 40px);
+	}
+
+	#reel2 video {
+		top: calc(56.25vw + 720px);
+	}
+
 	#page0 {
 		flex-wrap: wrap;
 		align-content: center;
@@ -990,14 +1015,14 @@ background: linear-gradient(rgba(19, 21, 22, 0) 90%, rgba(19, 21, 22, 1) 100%);
 
 	#bigBrand {
 		width: fit-content;
+		height: fit-content;
+		padding-left: 6px;
+		padding-right: 6px;
+		margin-right: 8px;
 	}
 
 	#bigBrand #logoLink {
 		font-size: 12vw;
-	}
-
-	#page0 {
-		align-content: end;
 	}
 
 	#bigInfo {
@@ -1012,17 +1037,56 @@ background: linear-gradient(rgba(19, 21, 22, 0) 90%, rgba(19, 21, 22, 1) 100%);
 	}
 }
 
+@media screen and (max-width: 600px) {
+	#user-brands {
+		gap: 8px;
+	}
+
+	#ttu-brand {
+		width: 26px;
+	}
+
+	#codeorg-brand {
+		width: 40px;
+	}
+
+	#girlswhocode-brand {
+		width: 80px;
+	}
+
+	#crimson-brand,
+	#lsu-brand,
+	#cmu-brand {
+		width: 100px;
+	}
+
+	#depaul-brand,
+	#codehs-brand,
+	#hunter-brand {
+		width: 120px;
+	}
+
+	#nyuitp-brand {
+		width: 150px;
+	}
+}
+
 @media screen and (max-width: 540px) {
 	#reel1 {
-		height: 110vh;
+		height: 630px;
 	}
 
 	#reel1 video {
-		height: 110vh;
+		top: calc(56.25vw + 40px);
+		height: 630px;
 	}
 
 	#reel2 video {
-		top: calc(56.25vw + 110vh);
+		top: calc(56.25vw + 670px);
+		height: 100vh;
+	}
+
+	#reel2 video {
 		height: 100vh;
 	}
 
