@@ -1,8 +1,8 @@
 # 0-0
 
-## Referencia
+## Aprender
 
-Estas páginas de referencia "Aprender" proporcionan mini-ejemplos interactivos para las características más importantes de p5play. Fueron escritas por Quinton Ashley, creador de p5play v3 y se ofrecen como un recurso público para la comunidad de p5play.
+Estas páginas de referencia "Aprender" proporcionan mini ejemplos interactivos para las características más importantes de p5play. Fueron escritas por Quinton Ashley, creador de p5play v3 y se ofrecen como un recurso público para la comunidad de p5play.
 
 [¡Comienza mirando las primeras páginas sobre sprites!](sprite.html)
 

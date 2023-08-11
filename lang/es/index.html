@@ -23,7 +23,6 @@
 	<article>
 		<nav id="topNav">
 			<a href="learn">Learn</a>
-			<a href="/docs/Sprite_Sprite.html">Docs</a>
 			<!-- <a href="/editor">Editor</a> -->
 			<a href="jam">Jam!</a>
 			<a href="pro">PRO$</a>
@@ -1035,6 +1034,28 @@ background: linear-gradient(rgba(19, 21, 22, 0) 90%, rgba(19, 21, 22, 1) 100%);
 }
 
 @media screen and (max-width: 540px) {
+	#reel1 {
+		height: 110vh;
+	}
+
+	#reel1 video {
+		height: 110vh;
+	}
+
+	#reel2 video {
+		top: calc(56.25vw + 110vh);
+		height: 100vh;
+	}
+
+	#reel1,
+	#reel2 {
+		font-size: 18px;
+	}
+
+	.app p {
+		display: none;
+	}
+
 	#reel1 {
 		justify-content: unset;
 		justify-items: center;

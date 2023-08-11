@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="es">
 
 <head>
 	<meta charset="UTF-8">
@@ -18,7 +18,6 @@
 			</a>
 			<hr>
 			<a href="../learn">Learn</a>
-			<a href="/docs/Sprite_Sprite.html">Docs</a>
 			<!-- <a href="../editor">Editor</a> -->
 			<a href="../jam">Jam!</a>
 			<a href="../pro" class="active">PRO$</a>
@@ -56,10 +55,13 @@
 						<p>Algunas funciones de p5play Pro solo estarán disponibles para los miembros de Patreon. ¡Únase
 							ahora para apoyar el desarrollo de p5play!</p>
 					</md>
-					<a id="patreon-brand" href="https://www.patreon.com/p5play" aria-label="Patreon page for p5play">
-						<img id="patreon-logo" src="https://www.svgrepo.com/download/354168/patreon.svg" alt="">
-						<img src="/assets/brands/patreon_brand.svg" alt="patreon brand" height="28px">
-					</a>
+					<p>
+						<a id="patreon-brand" href="https://www.patreon.com/p5play"
+							aria-label="Patreon page for p5play">
+							<img id="patreon-logo" src="https://www.svgrepo.com/download/354168/patreon.svg" alt="">
+							<img src="/assets/brands/patreon_brand.svg" alt="patreon brand" height="28px">
+						</a>
+					</p>
 				</md>
 			</div>
 		</div>
@@ -102,7 +104,12 @@
 }
 
 #patreon-brand {
-	height: 28px;
+	display: flex;
+	align-items: center;
+	gap: 24px;
+	width: min-content;
+	padding-top: 5px;
+	padding-bottom: 5px;
 }
 
 	</style>

@@ -48,7 +48,7 @@ Use p5play on your own website by adding these links to your HTML file. School f
 
 # 13-1
 
-Also available on npm: `npm i p5play`
+Available on [npm](https://www.npmjs.com/package/p5play): `npm i p5play`
 
 [Want to use p5play offline?](https://github.com/quinton-ashley/p5play/wiki/Get-Started)
 
