@@ -9,17 +9,23 @@ p5.prototype.registerMethod('init', function p5playInit() {
 		throw 'planck.js must be loaded before p5play';
 	}
 
-	document.head.insertAdjacentHTML(
-		'beforeend',
-		`<script async src="https://www.googletagmanager.com/gtag/js?id=G-EHXNCTSYLK"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+	// Google Analytics Tracking Code
+	let script = document.createElement('script');
+	script.src = 'https://www.googletagmanager.com/gtag/js?id=G-EHXNCTSYLK';
+	script.async = true;
+	document.head.append(script);
 
-  gtag('config', 'G-EHXNCTSYLK');
-</script>`
-	);
+	script.onload = function () {
+		window.dataLayer = window.dataLayer || [];
+		function gtag() {
+			dataLayer.push(arguments);
+		}
+		gtag('js', new Date());
+		gtag('config', 'G-EHXNCTSYLK');
+
+		// Track library loading as an event
+		gtag('event', 'p5play_v3');
+	};
 
 	// store a reference to the p5 instance that p5play is being added to
 	const pInst = this;
@@ -2583,6 +2589,10 @@ p5.prototype.registerMethod('init', function p5playInit() {
 		 */
 		applyForce(x, y, originX, originY) {
 			if (!this.body || (!x && !y)) return;
+			if (!this.p5play._applyForceUsed) {
+				gtag('event', 'p5play_v3_applyForce');
+				this.p5play._applyForceUsed = true;
+			}
 			if (arguments.length == 2 && typeof y != 'number') {
 				originX = y;
 			}
@@ -5916,7 +5926,11 @@ p5.prototype.registerMethod('init', function p5playInit() {
 		 * @param {Number} h
 		 */
 		constructor(tiles, x, y, w, h) {
-			if (typeof tiles == 'string') tiles = tiles.split('\n');
+			if (typeof tiles == 'string') {
+				if (tiles[0] == '\n') tiles = tiles.slice(1);
+				tiles = tiles.replaceAll('\t', '  ');
+				tiles = tiles.split('\n');
+			}
 
 			x ??= 0;
 			y ??= 0;
