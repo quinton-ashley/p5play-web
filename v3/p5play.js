@@ -9,26 +9,28 @@ p5.prototype.registerMethod('init', function p5playInit() {
 		throw 'planck.js must be loaded before p5play';
 	}
 
-	// Google Analytics Tracking Code
-	let script = document.createElement('script');
-	script.src = 'https://www.googletagmanager.com/gtag/js?id=G-EHXNCTSYLK';
-	script.async = true;
-	document.head.append(script);
-
-	script.onload = function () {
-		window.dataLayer = window.dataLayer || [];
-		function gtag() {
-			dataLayer.push(arguments);
-		}
-		gtag('js', new Date());
-		gtag('config', 'G-EHXNCTSYLK');
-
-		// Track library loading as an event
-		gtag('event', 'p5play_v3');
-	};
-
 	// store a reference to the p5 instance that p5play is being added to
 	const pInst = this;
+
+	// Google Analytics Tracking Code
+	{
+		let script = document.createElement('script');
+		script.src = 'https://www.googletagmanager.com/gtag/js?id=G-EHXNCTSYLK';
+		script.async = true;
+		document.head.append(script);
+
+		script.onload = function () {
+			window.dataLayer = window.dataLayer || [];
+			window.gtag = function () {
+				dataLayer.push(arguments);
+			};
+			gtag('js', new Date());
+			gtag('config', 'G-EHXNCTSYLK');
+
+			// Track library loading as an event
+			gtag('event', 'p5play_v3');
+		};
+	}
 
 	const log = console.log; // shortcut
 	this.log = console.log;
@@ -45,6 +47,9 @@ p5.prototype.registerMethod('init', function p5playInit() {
 	this.p5play.groupsCreated = 0;
 	this.p5play.spritesCreated = 0;
 	this.p5play.spritesDrawn = 0;
+
+	// tracking
+	this.p5play._applyForceUsed = false;
 
 	// change the angle mode so that the p5play default is degrees
 	this.angleMode('degrees');
@@ -2589,9 +2594,9 @@ p5.prototype.registerMethod('init', function p5playInit() {
 		 */
 		applyForce(x, y, originX, originY) {
 			if (!this.body || (!x && !y)) return;
-			if (!this.p5play._applyForceUsed) {
+			if (!this.p.p5play._applyForceUsed) {
 				gtag('event', 'p5play_v3_applyForce');
-				this.p5play._applyForceUsed = true;
+				this.p.p5play._applyForceUsed = true;
 			}
 			if (arguments.length == 2 && typeof y != 'number') {
 				originX = y;
