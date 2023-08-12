@@ -9,6 +9,18 @@ p5.prototype.registerMethod('init', function p5playInit() {
 		throw 'planck.js must be loaded before p5play';
 	}
 
+	document.head.insertAdjacentHTML(
+		'beforeend',
+		`<script async src="https://www.googletagmanager.com/gtag/js?id=G-EHXNCTSYLK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-EHXNCTSYLK');
+</script>`
+	);
+
 	// store a reference to the p5 instance that p5play is being added to
 	const pInst = this;
 
