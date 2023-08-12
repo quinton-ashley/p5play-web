@@ -2594,7 +2594,7 @@ p5.prototype.registerMethod('init', function p5playInit() {
 		 */
 		applyForce(x, y, originX, originY) {
 			if (!this.body || (!x && !y)) return;
-			if (!this.p.p5play._applyForceUsed) {
+			if (window.gtag && !this.p.p5play._applyForceUsed) {
 				gtag('event', 'p5play_v3_applyForce');
 				this.p.p5play._applyForceUsed = true;
 			}
