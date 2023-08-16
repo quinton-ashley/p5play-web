@@ -66,6 +66,6 @@
 			"Advanced Sequencing"
 		],
 		"tiles": ["Tiles constructor", "Using tileSize"],
-		"world": ["Sleeping", "Controlling Time"]
+		"world": ["Sleeping", "Controlling Time", "Performance"]
 	}
 }

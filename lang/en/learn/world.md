@@ -53,3 +53,15 @@ Set `world.autoStep = false` to disable automatic stepping. Then you can call `w
 What does `sprite.update` do? It's responsible for updating the sprite's animation and mouse events. It also runs the user's custom update functions if they set any. To prevent automatic updating completely set `allSprites.autoUpdate = false`.
 
 Why is this functionality separated from the world step? Because on a pause screen the physics world could be paused, but pause menu UI animations and mouse events could still be processed.
+
+# 2-0
+
+## Performance Testing
+
+The `renderStats` function displays the number of sprites drawn, an approximation of the current FPS as well as the average, minimum, and maximum FPS achieved during the previous second.
+
+FPS in this context refers to how many frames per second your computer can generate, including physics calculations and any other processes necessary to generate a frame, but not including the delay between when frames are actually shown on the screen. The higher the FPS, the better your game is performing.
+
+You can use this function for approximate performance testing. For more accurate results, use your web browser's performance testing tools.
+
+Generally having less sprites and using a smaller canvas will make your game perform better. For better performance don't use the p5.js `clear` function or sample the colors of pixels in your canvas using `canvas.get`.
