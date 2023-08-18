@@ -101,19 +101,12 @@ sprite.x = 150;
 				<script type="mie/p5" id="y" base="1">
 sprite.y = 30;
 				</script>
-				<script type="mie/p5" id="position">
-sprite.pos = {x: 50, y: 0};
-				</script>
-				<script type="mie/p5" id="rotation">
-sprite.rotation = 45;
-				</script>
 				<script type="mie/p5" id="color" base="1">
 sprite.color = 'pink';
 sprite.stroke = 'red';
 				</script>
-				<script type="mie/p5" id="textColor">
-sprite.textColor = 'blue';
-sprite.text = "Hello!";
+				<script type="mie/p5" id="rotation">
+sprite.rotation = 45;
 				</script>
 			</div>
 
@@ -127,15 +120,9 @@ sprite.h = 80;
 				<script type="mie/p5" id="diameter" base="1">
 sprite.d = 40;
 				</script>
-				<script type="mie/p5" id="radius">
-sprite.r = 40;
-				</script>
 				<script type="mie/p5" id="textSize">
 sprite.textSize = 40;
 sprite.text = "p5";
-				</script>
-				<script type="mie/p5" id="visible">
-sprite.visible = false;
 				</script>
 			</div>
 			<div class="break"></div>
@@ -301,9 +288,10 @@ function draw() {
 }
 			</script>
 			<md id="md2-0">
-				<h2 id="movimiento-de-los-sprites">Movimiento de los sprites</h2>
-				<p>¡Cambiar la posición de un sprite lo teletransporta!</p>
-				<p>Intenta hacer clic alrededor de este mini-ejemplo.</p>
+				<h2 id="movimiento-del-sprite">Movimiento del Sprite</h2>
+				<p>Mover un sprite editando directamente sus coordenadas (x, y) lo teletransportará a la nueva posición,
+					sin moverlo a través de posiciones intermedias.</p>
+				<p>Prueba haciendo clic en este mini ejemplo.</p>
 			</md>
 			<script type="mie/p5" id="teleport" base="3">
 if (mouse.presses()) {
@@ -312,10 +300,10 @@ if (mouse.presses()) {
 }
 			</script>
 			<md id="md2-1">
-				<p>El siguiente ejemplo muestra qué sucede si un sprite se teletransporta cada vez que la función de
-					dibujo de p5.js renderiza un frame.</p>
-				<p>Si quieres que un sprite interactúe físicamente con otros sprites mientras se mueve, ¡no lo
+				<p>Si deseas que un sprite interactúe físicamente con otros sprites mientras se mueve, ¡no lo
 					teletransportes!</p>
+				<p>Este mal ejemplo muestra lo que sucede si un sprite es teletransportado cada vez que la función de
+					dibujo (draw) de p5.js renderiza un fotograma.</p>
 			</md>
 			<script type="mie/p5" id="teleport-:-continuously-👎" base="3">
 player.x = mouse.x;

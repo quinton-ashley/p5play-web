@@ -57,33 +57,33 @@ For an extra challenge, try resetting the block to its original position after i
 
 ## Sprite movement
 
-Changing a sprite's position teleports it!
+Moving a sprite by directly editing its (x, y) coordinates will teleport it to the new position, without moving it through intermediate positions.
 
 Try clicking around this mini example.
 
 # 2-1
 
-The next example shows what happens if a sprite is teleported every time the p5.js draw function renders a frame.
-
 If you want a sprite to physically interact with other sprites while it's moving, don't teleport it!
+
+This bad example shows what happens if a sprite is teleported every time the p5.js draw function renders a frame.
 
 # 2-2
 
-All of the other movement methods on this page work by changing the sprite's x and y axis velocities. `velocity` aka `vel` is a p5.js Vector, you can use any Vector functions on it.
+All the other movement methods on this page change the sprite's `velocity`, aka `vel`, which is its rate of motion along the x and y axis.
 
-You may have to restart this example to see the sprite move.
+`vel` is a p5.js Vector, you can use any vector functions on it.
+
+Restart this example to see the player sprite hit the block!
 
 # 2-3
 
-Move the sprite indefinitely by setting its `direction` and `speed`.
+Yet, you may find it's more convenient to move a sprite by setting its `direction` and `speed`.
 
-You can also set a sprite's direction using a direction name such as: 'up', 'down', 'left', 'right', 'upLeft', 'upRight', 'downLeft', 'downRight'.
-
-Note that p5play converts these direction names to their corresponding angle values.
+You can also set a sprite's direction using an angle value or direction name such as: 'up', 'down', 'left', 'right', 'upLeft', 'upRight', 'downLeft', 'downRight'.
 
 # 2-4
 
-The `move` function moves a sprite across a fixed distance. The direction and speed of the movement can be specified as parameters to the function or set separately.
+The `move` function moves a sprite across a fixed distance. The direction and speed of the movement can be specified as parameters to the function or set separately, like in the previous example.
 
 # 2-5
 
@@ -101,9 +101,9 @@ Any movement function that accepts an object with x and y properties could inste
 
 # 2-7
 
-Hopefully the examples on this page helped you understand some of the sprite movement options available in p5play.
+Hopefully the examples on this page helped you understand some of the sprite movement options available in p5play!
 
-But, note that the `move`, `moveTo`, and `moveTowards` functions override a sprite's current motion, forcing it to move in a new direction. That might not always be what you want! Read the page on advanced sprite movement to learn how to move a sprite with respect to other forces acting on it, such as gravity.
+But, note that the `move`, `moveTo`, and `moveTowards` functions are imperative, they override a sprite's current motion, forcing it to move in a new direction. That may not always be what you want! Read the page on advanced sprite movement to learn how to move a sprite with respect to other forces acting on it, such as gravity.
 
 # 3-0
 

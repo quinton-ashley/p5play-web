@@ -154,6 +154,34 @@ function draw() {
 					podrían actualizarse.</p>
 			</md>
 		</div>
+		<div id="page-2" class="page">
+			<md id="md2-0">
+				<h2 id="performance-testing">Performance Testing</h2>
+				<p>The <code>renderStats</code> function displays the number of sprites drawn, an approximation of the
+					current FPS as well as the average, minimum, and maximum FPS achieved during the previous second.
+				</p>
+				<p>FPS in this context refers to how many frames per second your computer can generate, including
+					physics calculations and any other processes necessary to generate a frame, but not including the
+					delay between when frames are actually shown on the screen. The higher the FPS, the better your game
+					is performing.</p>
+				<p>You can use this function for approximate performance testing. For more accurate results, use your
+					web browser's performance testing tools.</p>
+				<p>Generally having less sprites and using a smaller canvas will make your game perform better. For
+					better performance don't use the p5.js <code>clear</code> function or sample the colors of pixels in
+					your canvas using <code>canvas.get</code>.</p>
+			</md>
+			<script type="mie/p5" id="world.step">
+function setup() {
+	new Canvas(500, 100);
+}
+
+function draw() {
+	background(255);
+
+	renderStats();
+}
+			</script>
+		</div>
 
 		<div class="break"></div>
 		<div id="toc">
@@ -161,6 +189,7 @@ function draw() {
 			<div id="pageNav" class="submenu">
 				<a data-page="0" href="world.html?page=0">Durmiendo</a>
 				<a data-page="1" href="world.html?page=1">Controlando el Tiempo</a>
+				<a data-page="2" href="world.html?page=2">undefined</a>
 			</div>
 			<a id="nextPage" class="navLink">Siguiente página</a>
 		</div>

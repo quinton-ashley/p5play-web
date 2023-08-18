@@ -96,19 +96,12 @@ sprite.x = 150;
 				<script type="mie/p5" id="y" base="1">
 sprite.y = 30;
 				</script>
-				<script type="mie/p5" id="position">
-sprite.pos = {x: 50, y: 0};
-				</script>
-				<script type="mie/p5" id="rotation">
-sprite.rotation = 45;
-				</script>
 				<script type="mie/p5" id="color" base="1">
 sprite.color = 'pink';
 sprite.stroke = 'red';
 				</script>
-				<script type="mie/p5" id="textColor">
-sprite.textColor = 'blue';
-sprite.text = "Hello!";
+				<script type="mie/p5" id="rotation">
+sprite.rotation = 45;
 				</script>
 			</div>
 
@@ -122,15 +115,9 @@ sprite.h = 80;
 				<script type="mie/p5" id="diameter" base="1">
 sprite.d = 40;
 				</script>
-				<script type="mie/p5" id="radius">
-sprite.r = 40;
-				</script>
 				<script type="mie/p5" id="textSize">
 sprite.textSize = 40;
 sprite.text = "p5";
-				</script>
-				<script type="mie/p5" id="visible">
-sprite.visible = false;
 				</script>
 			</div>
 			<div class="break"></div>
@@ -290,8 +277,8 @@ function draw() {
 			</script>
 			<md id="md2-0">
 				<h2 id="スプライトの移動">スプライトの移動</h2>
-				<p>スプライトの位置を変更すると、それはテレポートします！</p>
-				<p>このミニ例を試してみて、周りをクリックしてみてください。</p>
+				<p>スプライトを直接編集して（x、y）座標を変更すると、中間の位置を移動せずに新しい位置にテレポートします。</p>
+				<p>このミニ例をクリックしてみてください。</p>
 			</md>
 			<script type="mie/p5" id="teleport" base="3">
 if (mouse.presses()) {
@@ -300,8 +287,8 @@ if (mouse.presses()) {
 }
 			</script>
 			<md id="md2-1">
-				<p>次の例では、p5.js の draw 関数がフレームをレンダリングするたびに、スプライトがテレポートすると何が起こるかを示しています。</p>
-				<p>スプライトが移動している間に他のスプライトと物理的に相互作用する場合、それをテレポートさせないでください！</p>
+				<p>スプライトが移動中に他のスプライトと実際に相互作用するようにしたい場合は、テレポートしないでください！</p>
+				<p>この悪い例は、p5.js の描画関数がフレームをレンダリングするたびにスプライトがテレポートされる場合の問題を示しています。</p>
 			</md>
 			<script type="mie/p5" id="teleport-:-continuously-👎" base="3">
 player.x = mouse.x;

@@ -141,8 +141,7 @@ function draw() {
 				<p>Before you use <code>world.step</code> in your p5.js draw function, be sure to draw all the sprites.
 					Otherwise, they will be drawn in the wrong position!</p>
 				<p>Set <code>world.autoStep = false</code> to disable automatic stepping. Then you can call
-					<code>world.step</code> manually whenever you want to progress the physics simulation.
-				</p>
+					<code>world.step</code> manually whenever you want to progress the physics simulation.</p>
 			</md>
 			<md id="md1-2">
 				<h2 id="spriteupdate-and-groupupdate">sprite.update and group.update</h2>
@@ -165,7 +164,9 @@ function draw() {
 					is performing.</p>
 				<p>You can use this function for approximate performance testing. For more accurate results, use your
 					web browser's performance testing tools.</p>
-				<p>Generally having less sprites and using a smaller canvas will make your game perform better.</p>
+				<p>Generally having less sprites and using a smaller canvas will make your game perform better. For
+					better performance don't use the p5.js <code>clear</code> function or sample the colors of pixels in
+					your canvas using <code>canvas.get</code>.</p>
 			</md>
 			<script type="mie/p5" id="world.step">
 function setup() {
@@ -195,14 +196,14 @@ function draw() {
 	</article>
 
 	<script src="/v3/q5.min.js"></script>
-	<script src="/v3/planck.min.js"></script>
-	<script src="/v3/p5play.min.js"></script>
-	<script>
-		window.mie = { autoLoad: false };
+<script src="/v3/planck.min.js"></script>
+<script src="/v3/p5play.min.js"></script>
+<script>
+window.mie = { autoLoad: false };
 
 	</script>
 	<script src="/learn/mie.js"></script>
-	<script src="/learn/learn.js"></script>
+<script src="/learn/learn.js"></script>
 </body>
 
 </html>

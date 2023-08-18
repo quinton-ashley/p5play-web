@@ -50,17 +50,17 @@ Para un desafío adicional, intenta restablecer la posición original del bloque
 
 # 2-0
 
-## Movimiento de los sprites
+## Movimiento del Sprite
 
-¡Cambiar la posición de un sprite lo teletransporta!
+Mover un sprite editando directamente sus coordenadas (x, y) lo teletransportará a la nueva posición, sin moverlo a través de posiciones intermedias.
 
-Intenta hacer clic alrededor de este mini-ejemplo.
+Prueba haciendo clic en este mini ejemplo.
 
 # 2-1
 
-El siguiente ejemplo muestra qué sucede si un sprite se teletransporta cada vez que la función de dibujo de p5.js renderiza un frame.
+Si deseas que un sprite interactúe físicamente con otros sprites mientras se mueve, ¡no lo teletransportes!
 
-Si quieres que un sprite interactúe físicamente con otros sprites mientras se mueve, ¡no lo teletransportes!
+Este mal ejemplo muestra lo que sucede si un sprite es teletransportado cada vez que la función de dibujo (draw) de p5.js renderiza un fotograma.
 
 # 2-2
 
