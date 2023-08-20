@@ -260,6 +260,12 @@ The `move`, `moveTo`, `rotate`, and `rotateTo` functions all return a `Promise` 
 
 But, if the sprite's movement is interrupted by a new movement or a collision that significantly changes the sprite's trajectory, the promise will resolve to false.
 
+# 8-2
+
+If you want a sprite to follow another sprite, you may be tempted to use `moveTo` repeatedly, without waiting for the sprite to reach its destination. But for better performance, try using the `angleTo` function, which gets the angle between a sprite and a position. This angle can be used to change the direction that the sprite moves in.
+
+In this example, the [p5.js dist](https://p5js.org/reference/#/p5/dist) function is used to calculate the distance between the player and its ally.
+
 # 9-0
 
 ## Physical attributes
@@ -434,12 +440,34 @@ You can add additional sensors to a sprite by using the `addSensor` function.
 
 ## Advanced Movement
 
-If you want a sprite to follow another sprite, you may be tempted to use `moveTo` repeatedly, without waiting for the sprite to reach its destination. But for better performance, try using the `angleTo` function, which gets the angle between a sprite and a position. This angle can be used to change the direction that the sprite moves in.
+`move` functions are imperative, they override a sprite's velocities. But what if you want a sprite to respect other forces acting on it, such as gravity?
 
-In this example, the [p5.js dist](p5.js dist) function is used to calculate the distance between the player and its ally.
+A bearing is the direction that needs to be followed to reach a destination. Changing a sprite's `bearing` won't imperatively change its movement direction.
+
+Use `applyForce` with one input parameter, the amount of force, to have the force be applied at the sprite's `bearing` angle.
+
+In this example, the drone has to overcome the force of gravity to fly. Make the drone fly, then let it fall, when upward force is applied to the drone again it will gradually stop falling and start to fly!
 
 # 15-1
 
-The `move` functions override a sprite's velocities, but what if you want a sprite to respect other forces acting on it, such as gravity?
+The `applyForceScaled` function multiplies the force applied to the sprite by its mass.
 
-You can add or subtract from a sprite's velocities directly, or use the `applyForce` function.
+You can use this function to give sprites their own gravity!
+
+By default, force is applied to the sprite's center of mass. But the `applyForce` and `applyForceScaled` functions can also accept a last input parameter, a position object with x and y properties that specifies the relative position of where force will be applied on the sprite.
+
+# 15-2
+
+Use the `attractTo` function to attract the sprite to a position by applying force.
+
+This example simulates an electron's orbit around the nucleus of an atom.
+
+All the force functions can accept positions as separate numbers or as an object with x, y properties.
+
+Note that the advanced movement functions shown on this page will not wake [sleeping sprites](./world.html)!
+
+# 15-3
+
+Torque is the force that causes rotation. Use `applyTorque` to non-imperatively affect the sprite's rotation.
+
+In this example, the robot rolls slower in places where the ground is steeper.

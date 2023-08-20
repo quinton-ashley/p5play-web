@@ -892,6 +892,37 @@ function draw() {
 	clear();
 }
 			</script>
+			<md id="md8-2">
+				<p>スプライトを別のスプライトに追従させたい場合、<code>moveTo</code>を何度も使用し、スプライトが目的地に到達するのを待たないで使うことが考えられます。しかし、パフォーマンスを向上させるためには、<code>angleTo</code>関数を試してみてください。これは、スプライトと位置との間の角度を取得します。この角度は、スプライトが移動する方向を変更するために使用できます。
+				</p>
+				<p>この例では、<a href="https://p5js.org/reference/#/p5/dist">p5.js dist</a>関数が使用されて、プレイヤーとその味方との間の距離を計算しています。
+				</p>
+			</md>
+			<script type="mie/p5" base-8="" hidden="">
+let player, ally;
+
+function setup() {
+	new Canvas(500, 100);
+	player = new Sprite(400, 50, 20);
+	ally = new Sprite(200, 50, 20, 20, 'n');
+}
+
+function draw() {
+	clear();
+}
+			</script>
+			<script type="mie/p5" id="angleTo" base="8">
+player.moveTowards(mouse);
+
+let distance = dist(player.x, player.y, ally.x, ally.y);
+
+if (distance > 40) {
+	ally.direction = ally.angleTo(player);
+	ally.speed = 2;
+} else if (distance < 30) {
+	ally.speed = 0;
+}
+			</script>
 		</div>
 		<div id="page-9" class="page">
 			<md id="md9-0">
@@ -1429,63 +1460,107 @@ function draw() {
 		</div>
 		<div id="page-15" class="page">
 			<md id="md15-0">
-				<p>スプライトを別のスプライトに追従させたい場合、<code>moveTo</code>を何度も使用し、スプライトが目的地に到達するのを待たないで使うことが考えられます。しかし、パフォーマンスを向上させるためには、<code>angleTo</code>関数を試してみてください。これは、スプライトと位置との間の角度を取得します。この角度は、スプライトが移動する方向を変更するために使用できます。
-				</p>
-				<p>この例では、<a href="https://p5js.org/reference/#/p5/dist">p5.js dist</a>関数が使用されて、プレイヤーとその味方との間の距離を計算しています。
-				</p>
-			</md>
-			<script type="mie/p5" base-8="" hidden="">
-let player, ally;
-
-function setup() {
-	new Canvas(500, 100);
-	player = new Sprite(400, 50, 20);
-	ally = new Sprite(200, 50, 20, 20, 'n');
-}
-
-function draw() {
-	clear();
-}
-        </script>
-			<script type="mie/p5" id="angleTo" base="8">
-player.moveTowards(mouse);
-
-let distance = dist(player.x, player.y, ally.x, ally.y);
-
-if (distance > 40) {
-  ally.direction = ally.angleTo(player);
-  ally.speed = 2;
-} else if (distance < 30) {
-  ally.speed = 0;
-}
-      </script>
-			<md id="md15-1">
-				<p><code>move</code> 関数はスプライトの速度を上書きしますが、重力のような他の力が作用するのを尊重させたい場合はどうすればよいでしょうか？</p>
-				<p>スプライトの速度を直接加算または減算することができます、または <code>applyForce</code> 関数を使用することもできます。</p>
+				<h2 id="高度な動作">高度な動作</h2>
+				<p><code>move</code> 関数は命令的で、スプライトの速度を上書きします。しかし、スプライトが重力などの他の力を尊重する必要がある場合はどうすれば良いでしょうか？</p>
+				<p>ベアリングとは、目的地に到達するために従う必要がある方向です。スプライトの <code>bearing</code> を変更しても、その移動方向が命令的に変更されるわけではありません。</p>
+				<p><code>applyForce</code> を使い、入力パラメータとして力の量を一つ受け取ることで、力をスプライトの <code>bearing</code> 角で適用することができます。</p>
+				<p>この例では、ドローンは重力の力を克服して飛ばなければなりません。ドローンを飛ばし、それから落としてみてください。ドローンに再び上向きの力が加わると、落下が徐々に止まり、飛び始めます！</p>
 			</md>
 			<script type="mie/p5" id="applyForce" horiz="">
-let player;
+let drone, floor;
 
 function setup() {
-  new Canvas(160, 400);
-  world.gravity.y = 10;
-  player = new Sprite(150, 50, 10);
-  new Sprite(2, 200, 4, 400, 's');
+	new Canvas(100, 500);
+	world.gravity.y = 4;
+
+	drone = new Sprite(50, 0, 40, 10);
+	
+	floor = new Sprite(50, 498, 100, 6, 's');
 }
 
 function draw() {
-  clear();
+	background(16);
 
-  if (mouse.pressing()) {
-    player.applyForce(-5, 0);
-  }
+	if (mouse.pressing()) {
+		drone.bearing = -90;
+		drone.applyForce(6);
+	}
+}
+			</script>
+			<md id="md15-1">
+				<p><code>applyForceScaled</code> 関数は、スプライトに適用される力をその質量で乗算します。</p>
+				<p>この関数を使用して、スプライトに独自の重力を与えることができます！</p>
+				<p>デフォルトでは、力はスプライトの重心に適用されます。ただし、<code>applyForce</code> および <code>applyForceScaled</code>
+					関数は、最後の入力パラメータとして、x と y プロパティを持つ位置オブジェクトも受け入れることができます。この位置オブジェクトは、どこに力をスプライトに適用するかの相対位置を指定します。</p>
+			</md>
+			<script type="mie/p5" id="applyForceScaled" horiz="">
+let s0, s1;
+function setup() {
+  new Canvas(100, 288);
+  s0 = new Sprite(51, 252, 20, 20);
+	s1 = new Sprite(49, 32, 20, 20);
+	new Sprite(50, 4, 100, 8, 's');
+  new Sprite(50, 284, 100, 8, 's');
+}
 
-  if (player.y > 400) {
-    player.pos = {x: 150, y: 0};
-    player.speed = 0;
-  }
+function draw() {
+  background(16);
+	//                 (x,  y)
+	s0.applyForceScaled(0, -10);
+	s1.applyForceScaled(0, 10);
 }
       </script>
+			<md id="md15-2">
+				<p><code>attractTo</code> 関数を使用して、位置に引き寄せる力を適用してスプライトを引き寄せることができます。</p>
+				<p>この例では、電子が原子核の周りを軌道を描いている様子をシミュレーションしています。</p>
+				<p>全ての力関数は、位置を個々の数値として受け取るか、x、y プロパティを持つオブジェクトとして受け取ることができます。</p>
+				<p>なお、このページで示されている高度な動作関数は、<a href="./world.html">スリーピングスプライト</a> を起こすことはありません。</p>
+			</md>
+			<script type="mie/p5" id="attractTo">
+let nucleus, electron;
+
+function setup() {
+	new Canvas(500, 200);
+	nucleus = new Sprite(250, 100, 45);
+	electron = new Sprite(150, 100, 10);
+	electron.vel.y = 5;
+}
+
+function draw() {
+	background(16, 10);
+	//               (position, force)
+	electron.attractTo(nucleus, 5);
+}
+			</script>
+			<md id="md15-3">
+				<p>トルクは回転を引き起こす力です。<code>applyTorque</code> を使用してスプライトの回転に影響を与えることができます。</p>
+				<p>この例では、地面が急斜面の場所ではロボットの転がる速度が遅くなります。</p>
+			</md>
+			<script type="mie/p5" id="applyTorque">
+let ground, robot;
+
+function setup() {
+	new Canvas(500, 250);
+	world.gravity.y = 10;
+
+	robot = new Sprite(250, 0, 50);
+
+	let grade = [[400, 0]];
+	for (let i = 0; i < 100; i++) {
+		grade.push([random(50, 200), random(-40, 10)]);
+	}
+	let ground = new Sprite(30, 150, grade, 's');
+	ground.color = 'green';
+}
+
+function draw() {
+	background(16);
+	
+	robot.applyTorque(2);
+
+	camera.pos = robot.pos;
+}
+			</script>
 		</div>
 
 		<div class="break"></div>

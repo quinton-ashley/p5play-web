@@ -956,6 +956,41 @@ function draw() {
 	clear();
 }
 			</script>
+			<md id="md8-2">
+				<p>Si deseas que un sprite siga a otro sprite, es posible que te sientas tentado a usar
+					<code>moveTo</code> repetidamente, sin esperar a que el sprite alcance su destino. Pero para un
+					mejor rendimiento, prueba usar la función <code>angleTo</code>, que obtiene el ángulo entre un
+					sprite y una posición. Este ángulo puede utilizarse para cambiar la dirección en la que se mueve el
+					sprite.</p>
+				<p>En este ejemplo, se utiliza la función <code>dist</code> de <a
+						href="https://p5js.org/reference/#/p5/dist">p5.js</a> para calcular la distancia entre el
+					jugador y su aliado.</p>
+			</md>
+			<script type="mie/p5" base-8="" hidden="">
+let player, ally;
+
+function setup() {
+	new Canvas(500, 100);
+	player = new Sprite(400, 50, 20);
+	ally = new Sprite(200, 50, 20, 20, 'n');
+}
+
+function draw() {
+	clear();
+}
+			</script>
+			<script type="mie/p5" id="angleTo" base="8">
+player.moveTowards(mouse);
+
+let distance = dist(player.x, player.y, ally.x, ally.y);
+
+if (distance > 40) {
+	ally.direction = ally.angleTo(player);
+	ally.speed = 2;
+} else if (distance < 30) {
+	ally.speed = 0;
+}
+			</script>
 		</div>
 		<div id="page-9" class="page">
 			<md id="md9-0">
@@ -1532,68 +1567,118 @@ function draw() {
 		</div>
 		<div id="page-15" class="page">
 			<md id="md15-0">
-				<p>Si quieres que un sprite siga a otro sprite, es posible que te sientas tentado a usar
-					<code>moveTo</code> repetidamente sin esperar a que el sprite alcance su destino. Sin embargo, para
-					obtener un mejor rendimiento, prueba a utilizar la función <code>angleTo</code>, que obtiene el
-					ángulo entre un sprite y una posición. Este ángulo se puede utilizar para cambiar la dirección en la
-					que se mueve el sprite.</p>
-				<p>En este ejemplo, se utiliza la función <a href="https://p5js.org/reference/#/p5/dist">dist</a> de
-					p5.js para calcular la distancia entre el jugador y su aliado.</p>
-			</md>
-			<script type="mie/p5" base-8="" hidden="">
-let player, ally;
-
-function setup() {
-	new Canvas(500, 100);
-	player = new Sprite(400, 50, 20);
-	ally = new Sprite(200, 50, 20, 20, 'n');
-}
-
-function draw() {
-	clear();
-}
-        </script>
-			<script type="mie/p5" id="angleTo" base="8">
-player.moveTowards(mouse);
-
-let distance = dist(player.x, player.y, ally.x, ally.y);
-
-if (distance > 40) {
-  ally.direction = ally.angleTo(player);
-  ally.speed = 2;
-} else if (distance < 30) {
-  ally.speed = 0;
-}
-      </script>
-			<md id="md15-1">
-				<p>Las funciones move anulan las velocidades de un sprite, pero ¿qué pasa si quieres que un sprite
-					respete otras fuerzas que actúan sobre él, como la gravedad?</p>
-				<p>Puedes sumar o restar directamente a las velocidades de un sprite, o usar las funciones
-					<code>applyForce</code>.</p>
+				<h2 id="movimiento-avanzado">Movimiento Avanzado</h2>
+				<p>Las funciones de <code>move</code> son imperativas, sobrescriben las velocidades de un sprite. Pero,
+					¿qué sucede si deseas que un sprite respete otras fuerzas que actúan sobre él, como la gravedad?</p>
+				<p>Un rumbo es la dirección que debe seguirse para llegar a un destino. Cambiar el <code>rumbo</code> de
+					un sprite no cambiará imperativamente su dirección de movimiento.</p>
+				<p>Utiliza <code>applyForce</code> con un parámetro de entrada, la cantidad de fuerza, para que la
+					fuerza se aplique en el ángulo del <code>rumbo</code> del sprite.</p>
+				<p>En este ejemplo, el dron debe vencer la fuerza de gravedad para volar. ¡Haz que el dron vuele y luego
+					déjalo caer, cuando se aplique una fuerza hacia arriba al dron, dejará gradualmente de caer y
+					comenzará a volar!</p>
 			</md>
 			<script type="mie/p5" id="applyForce" horiz="">
-let player;
+let drone, floor;
 
 function setup() {
-  new Canvas(160, 400);
-  world.gravity.y = 10;
-  player = new Sprite(150, 50, 10);
-  new Sprite(2, 200, 4, 400, 's');
+	new Canvas(100, 500);
+	world.gravity.y = 4;
+
+	drone = new Sprite(50, 0, 40, 10);
+	
+	floor = new Sprite(50, 498, 100, 6, 's');
 }
 
 function draw() {
-  clear();
+	background(16);
 
-  if (mouse.pressing()) {
-    player.applyForce(-5, 0);
-  }
+	if (mouse.pressing()) {
+		drone.bearing = -90;
+		drone.applyForce(6);
+	}
+}
+			</script>
+			<md id="md15-1">
+				<p>La función <code>applyForceScaled</code> multiplica la fuerza aplicada al sprite por su masa.</p>
+				<p>¡Puedes usar esta función para darles a los sprites su propia gravedad!</p>
+				<p>Por defecto, la fuerza se aplica al centro de masa del sprite. Pero las funciones
+					<code>applyForce</code> y <code>applyForceScaled</code> también pueden aceptar un último parámetro
+					de entrada, un objeto de posición con propiedades x e y que especifica la posición relativa donde se
+					aplicará la fuerza en el sprite.</p>
+			</md>
+			<script type="mie/p5" id="applyForceScaled" horiz="">
+let s0, s1;
+function setup() {
+  new Canvas(100, 288);
+  s0 = new Sprite(51, 252, 20, 20);
+	s1 = new Sprite(49, 32, 20, 20);
+	new Sprite(50, 4, 100, 8, 's');
+  new Sprite(50, 284, 100, 8, 's');
+}
 
-  if (player.y > 400) {
-    player.pos = {x: 150, y: 0};
-    player.speed = 0;
-  }
+function draw() {
+  background(16);
+	//                 (x,  y)
+	s0.applyForceScaled(0, -10);
+	s1.applyForceScaled(0, 10);
 }
       </script>
+			<md id="md15-2">
+				<p>Utiliza la función <code>attractTo</code> para atraer al sprite hacia una posición aplicando fuerza.
+				</p>
+				<p>Este ejemplo simula la órbita de un electrón alrededor del núcleo de un átomo.</p>
+				<p>Todas las funciones de fuerza pueden aceptar posiciones como números separados o como un objeto con
+					propiedades x e y.</p>
+				<p>Ten en cuenta que las funciones de movimiento avanzado mostradas en esta página no despertarán a los
+					<a href="./world.html">sprites en reposo</a>!</p>
+			</md>
+			<script type="mie/p5" id="attractTo">
+let nucleus, electron;
+
+function setup() {
+	new Canvas(500, 200);
+	nucleus = new Sprite(250, 100, 45);
+	electron = new Sprite(150, 100, 10);
+	electron.vel.y = 5;
+}
+
+function draw() {
+	background(16, 10);
+	//               (position, force)
+	electron.attractTo(nucleus, 5);
+}
+			</script>
+			<md id="md15-3">
+				<p>El torque es la fuerza que provoca la rotación. Utiliza <code>applyTorque</code> para afectar el giro
+					del sprite de manera no imperativa.</p>
+				<p>En este ejemplo, el robot rueda más despacio en lugares donde el suelo es más empinado.</p>
+			</md>
+			<script type="mie/p5" id="applyTorque">
+let ground, robot;
+
+function setup() {
+	new Canvas(500, 250);
+	world.gravity.y = 10;
+
+	robot = new Sprite(250, 0, 50);
+
+	let grade = [[400, 0]];
+	for (let i = 0; i < 100; i++) {
+		grade.push([random(50, 200), random(-40, 10)]);
+	}
+	let ground = new Sprite(30, 150, grade, 's');
+	ground.color = 'green';
+}
+
+function draw() {
+	background(16);
+	
+	robot.applyTorque(2);
+
+	camera.pos = robot.pos;
+}
+			</script>
 		</div>
 
 		<div class="break"></div>

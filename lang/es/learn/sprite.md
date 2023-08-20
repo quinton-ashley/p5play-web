@@ -254,6 +254,12 @@ Las funciones `move`, `moveTo`, `rotate`, y `rotateTo` todas devuelven una `Prom
 
 Pero, si el movimiento del sprite se interrumpe por un nuevo movimiento o una colisión que cambia significativamente la trayectoria del sprite, la promesa se resolverá a false.
 
+# 8-2
+
+Si deseas que un sprite siga a otro sprite, es posible que te sientas tentado a usar `moveTo` repetidamente, sin esperar a que el sprite alcance su destino. Pero para un mejor rendimiento, prueba usar la función `angleTo`, que obtiene el ángulo entre un sprite y una posición. Este ángulo puede utilizarse para cambiar la dirección en la que se mueve el sprite.
+
+En este ejemplo, se utiliza la función `dist` de [p5.js](https://p5js.org/reference/#/p5/dist) para calcular la distancia entre el jugador y su aliado.
+
 # 9-0
 
 ## Atributos físicos
@@ -420,12 +426,36 @@ Puedes agregar sensores adicionales a un sprite utilizando la función `addSenso
 
 # 15-0
 
-Si quieres que un sprite siga a otro sprite, es posible que te sientas tentado a usar `moveTo` repetidamente sin esperar a que el sprite alcance su destino. Sin embargo, para obtener un mejor rendimiento, prueba a utilizar la función `angleTo`, que obtiene el ángulo entre un sprite y una posición. Este ángulo se puede utilizar para cambiar la dirección en la que se mueve el sprite.
+## Movimiento Avanzado
 
-En este ejemplo, se utiliza la función [dist](https://p5js.org/reference/#/p5/dist) de p5.js para calcular la distancia entre el jugador y su aliado.
+Las funciones de `move` son imperativas, sobrescriben las velocidades de un sprite. Pero, ¿qué sucede si deseas que un sprite respete otras fuerzas que actúan sobre él, como la gravedad?
+
+Un rumbo es la dirección que debe seguirse para llegar a un destino. Cambiar el `rumbo` de un sprite no cambiará imperativamente su dirección de movimiento.
+
+Utiliza `applyForce` con un parámetro de entrada, la cantidad de fuerza, para que la fuerza se aplique en el ángulo del `rumbo` del sprite.
+
+En este ejemplo, el dron debe vencer la fuerza de gravedad para volar. ¡Haz que el dron vuele y luego déjalo caer, cuando se aplique una fuerza hacia arriba al dron, dejará gradualmente de caer y comenzará a volar!
 
 # 15-1
 
-Las funciones move anulan las velocidades de un sprite, pero ¿qué pasa si quieres que un sprite respete otras fuerzas que actúan sobre él, como la gravedad?
+La función `applyForceScaled` multiplica la fuerza aplicada al sprite por su masa.
 
-Puedes sumar o restar directamente a las velocidades de un sprite, o usar las funciones `applyForce`.
+¡Puedes usar esta función para darles a los sprites su propia gravedad!
+
+Por defecto, la fuerza se aplica al centro de masa del sprite. Pero las funciones `applyForce` y `applyForceScaled` también pueden aceptar un último parámetro de entrada, un objeto de posición con propiedades x e y que especifica la posición relativa donde se aplicará la fuerza en el sprite.
+
+# 15-2
+
+Utiliza la función `attractTo` para atraer al sprite hacia una posición aplicando fuerza.
+
+Este ejemplo simula la órbita de un electrón alrededor del núcleo de un átomo.
+
+Todas las funciones de fuerza pueden aceptar posiciones como números separados o como un objeto con propiedades x e y.
+
+Ten en cuenta que las funciones de movimiento avanzado mostradas en esta página no despertarán a los [sprites en reposo](./world.html)!
+
+# 15-3
+
+El torque es la fuerza que provoca la rotación. Utiliza `applyTorque` para afectar el giro del sprite de manera no imperativa.
+
+En este ejemplo, el robot rueda más despacio en lugares donde el suelo es más empinado.
