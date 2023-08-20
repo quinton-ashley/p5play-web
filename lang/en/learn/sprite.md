@@ -446,7 +446,7 @@ A bearing is the direction that needs to be followed to reach a destination. Cha
 
 Use `applyForce` with one input parameter, the amount of force, to have the force be applied at the sprite's `bearing` angle.
 
-In this example, the drone has to overcome the force of gravity to fly. Make the drone fly, then let it fall, when upward force is applied to the drone again it will gradually stop falling and start to fly!
+In this example, the drone has to overcome the force of gravity to fly. Make the drone fly, then let it fall, when upward force is applied to the drone again it'll gradually stop falling and start to fly!
 
 # 15-1
 
