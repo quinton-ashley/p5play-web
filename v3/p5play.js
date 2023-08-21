@@ -2581,7 +2581,7 @@ p5.prototype.registerMethod('init', function p5playInit() {
 
 		_parseForceArgs() {
 			let args = arguments;
-			if (args.length == 1 || (args.length == 3 && typeof args[2] == 'number')) {
+			if (typeof args[0] == 'number' && (args.length == 1 || typeof args[1] != 'number')) {
 				args[3] = args[2];
 				args[2] = args[1];
 				args[1] = this.p.sin(this._bearing) * args[0];

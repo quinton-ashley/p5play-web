@@ -74,5 +74,5 @@
 		"make": "electron-forge make",
 		"publish": "electron-forge publish"
 	},
-	"version": "1.3.22"
+	"version": "1.3.23"
 }
