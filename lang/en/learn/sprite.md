@@ -460,7 +460,7 @@ By default, force is applied to the sprite's center of mass. But the `applyForce
 
 Use the `attractTo` function to attract the sprite to a position by applying force.
 
-This example simulates an electron's orbit around the nucleus of an atom.
+This example shows an electron orbiting the nucleus of an atom. (Note this visualization isn't realistic based on current scientific understanding, but it looks cool!)
 
 All the force functions can accept positions as separate numbers or as an object with x, y properties.
 
