@@ -523,6 +523,7 @@ p5.prototype.registerMethod('init', function p5playInit() {
 
 			this._angle = 0;
 			this._rotationSpeed = 0;
+			this._bearing = 0;
 
 			/**
 			 * The sprite's position on the previous frame.
@@ -4937,7 +4938,6 @@ p5.prototype.registerMethod('init', function p5playInit() {
 		}
 
 		/**
-		 * Apply a force on every sprite in a group.
 		 */
 		applyForce() {
 			for (let s of this) {
@@ -4946,8 +4946,6 @@ p5.prototype.registerMethod('init', function p5playInit() {
 		}
 
 		/**
-		 * Apply a force on every sprite in a group that is scaled to
-		 * each sprite's mass.
 		 */
 		applyForceScaled() {
 			for (let s of this) {
@@ -4960,6 +4958,14 @@ p5.prototype.registerMethod('init', function p5playInit() {
 		attractTo() {
 			for (let s of this) {
 				s.attractTo(...arguments);
+			}
+		}
+
+		/**
+		 */
+		applyTorque() {
+			for (let s of this) {
+				s.applyTorque(...arguments);
 			}
 		}
 

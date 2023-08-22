@@ -7,6 +7,70 @@
 	<title>p5play : Learn</title>
 	<link rel="icon" href="/assets/p5play_logo.svg">
 	<link rel="stylesheet" href="/learn/style.css">
+	<style>
+#refs {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: flex-start;
+}
+
+#refs>div {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	gap: 4px;
+	align-content: start;
+}
+
+#refs div h2 {
+	width: 100%;
+}
+
+#refs div h2 a {
+	color: var(--primary);
+}
+
+#refs div:not(:first-child) h2 a:hover {
+	color: var(--pink);
+	text-decoration: underline;
+}
+
+#refs>div:nth-child(7),
+#refs>div:nth-child(8),
+#refs>div:nth-child(9),
+#refs>div:nth-child(10) {
+	width: 19.75%;
+}
+
+@media screen and (max-width: 1030px) {
+
+	#refs>div,
+	#refs>div:nth-child(7),
+	#refs>div:nth-child(8),
+	#refs>div:nth-child(9),
+	#refs>div:nth-child(10) {
+		width: 45%;
+	}
+
+	#refs>div:nth-child(1),
+	#refs>div:nth-child(2) {
+		width: 96%;
+	}
+}
+
+@media screen and (max-width: 540px) {
+
+	#refs>div,
+	#refs>div:nth-child(7),
+	#refs>div:nth-child(8),
+	#refs>div:nth-child(9),
+	#refs>div:nth-child(10) {
+		width: 96%;
+	}
+}
+
+	</style>
 </head>
 
 <body class="dark">
@@ -71,59 +135,6 @@
 	<script src="/learn/main.js"></script>
 <script src="/learn/learn.js"></script>
 <script src="/learn/reference.js"></script>
-<style>
-#refs {
-	display: flex;
-	flex-direction: row;
-	align-items: flex-start;
-}
-
-#refs>div {
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	gap: 4px;
-	align-content: start;
-}
-
-#refs div h2 {
-	width: 100%;
-}
-
-#refs div h2 a {
-	color: var(--primary);
-}
-
-#refs div:not(:first-child) h2 a:hover {
-	color: var(--pink);
-	text-decoration: underline;
-}
-
-#refs>div:nth-child(7),
-#refs>div:nth-child(8),
-#refs>div:nth-child(9),
-#refs>div:nth-child(10) {
-	width: 19.75%;
-}
-
-@media screen and (max-width: 1030px) {
-
-	#refs>div,
-	#refs>div:nth-child(7),
-	#refs>div:nth-child(8),
-	#refs>div:nth-child(9),
-	#refs>div:nth-child(10) {
-		width: 45%;
-	}
-
-	#refs>div:nth-child(1),
-	#refs>div:nth-child(2) {
-		width: 96%;
-	}
-}
-
-	</style>
-
 </body>
 
 </html>

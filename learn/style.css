@@ -514,18 +514,15 @@ footer p {
 
 	.page>.mie {
 		width: 100%;
-		max-width: 500px;
 	}
 
 	.page>md,
 	.page>div:not(.mie):not(.break):not(.minis) {
 		width: 100%;
-		padding: 20px;
 		border: 0;
 	}
 
-	.page>md,
-	.page>div:not(.mie):not(.break):not(.minis):not(.full) {
+	.page>.mie {
 		max-width: 500px;
 	}
 

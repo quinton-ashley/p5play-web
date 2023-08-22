@@ -5,28 +5,32 @@ const beautify = require('js-beautify').html;
 const { JSDOM } = require('jsdom');
 const marked = require('../learn/marked/marked.min.js');
 
-const langCode = process.argv[2];
+let langCode = process.argv[2];
 const specificPage = process.argv[3];
 
+let langCodes = ['en', 'es', 'ja'];
+
 async function main() {
-	if (!langCode) {
-		console.error('Please provide a two letter language code (ISO 639-1), for example: node lang/build.js es');
-		process.exit(1);
-	}
+	if (langCode) langCodes = [langCode];
 
-	if (!specificPage || specificPage == 'index') {
-		await translatePage('index');
-	}
+	for (let i = 0; i < langCodes.length; i++) {
+		langCode = langCodes[i];
+		if (langCodes.length > 1) log(langCode);
 
-	for (let pageGroup of ['learn', 'about', 'pro', 'jam']) {
-		const pages = await getPagesInDirectory(pageGroup);
-		for (const page of pages) {
-			if (page == 'signup' || page == 'tos') continue;
-			let pagePath = pageGroup + '/' + page;
-			if (specificPage && pageGroup != specificPage && pagePath != specificPage) {
-				continue;
+		if (!specificPage || specificPage == 'index') {
+			await translatePage('index');
+		}
+
+		for (let pageGroup of ['learn', 'about', 'pro', 'jam']) {
+			const pages = await getPagesInDirectory(pageGroup);
+			for (const page of pages) {
+				if (page == 'signup' || page == 'tos') continue;
+				let pagePath = pageGroup + '/' + page;
+				if (specificPage && pageGroup != specificPage && pagePath != specificPage) {
+					continue;
+				}
+				await translatePage(pageGroup, page);
 			}
-			await translatePage(pageGroup, page);
 		}
 	}
 
