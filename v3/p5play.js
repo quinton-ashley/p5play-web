@@ -7100,6 +7100,7 @@ p5.prototype.registerMethod('init', function p5playInit() {
 			case 'replit.com':
 			case 'stackblitz.com':
 			case 'jsfiddle.net':
+			case 'aijs-912fe.web.app':
 				break;
 			default:
 				if (
