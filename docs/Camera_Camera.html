@@ -70,14 +70,14 @@ Look at the Camera reference pages before reading these docs.
 A `camera` object is created automatically when p5play loads.
 Currently, there can only be one camera per p5.js instance.
 
-A camera facilitates scrolling and zooming for scenes extending beyond
-the canvas. A camera has a position, a zoom factor, and the mouse
-coordinates relative to the view.
+A camera facilitates zooming and scrolling for scenes extending beyond
+the canvas. Moving the camera does not actually move the sprites.
+
 The camera is automatically created on the first draw cycle.
 
 In p5.js terms the camera wraps the whole drawing cycle in a
-transformation matrix but it can be disable anytime during the draw
-cycle for example to draw interface elements in an absolute position.
+transformation matrix but it can be disabled anytime during the draw
+cycle to draw interface elements in an absolute position.
 </div>
 
 
@@ -312,7 +312,7 @@ cycle for example to draw interface elements in an absolute position.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line5769">line 5769</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line5767">line 5767</a>
     </li></ul></dd>
     
 
@@ -386,7 +386,7 @@ cycle for example to draw interface elements in an absolute position.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line5781">line 5781</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line5779">line 5779</a>
     </li></ul></dd>
     
 
@@ -460,7 +460,7 @@ cycle for example to draw interface elements in an absolute position.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line5806">line 5806</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line5804">line 5804</a>
     </li></ul></dd>
     
 
@@ -534,7 +534,7 @@ cycle for example to draw interface elements in an absolute position.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line5822">line 5822</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line5820">line 5820</a>
     </li></ul></dd>
     
 
@@ -574,9 +574,9 @@ cycle for example to draw interface elements in an absolute position.
 <div class="description">
     Camera zoom.
 
-A scale of 1 will be the normal size. Setting it to 2 will
-make everything twice the size. .5 will make everything half
-size.
+A scale of 1 will be the normal size. Setting it to 2
+will make everything appear twice as big. .5 will make
+everything look half size.
 </div>
 
 
@@ -617,7 +617,7 @@ size.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line5843">line 5843</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line5841">line 5841</a>
     </li></ul></dd>
     
 
@@ -703,7 +703,7 @@ and scale until camera.on() is called
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line5908">line 5908</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line5906">line 5906</a>
     </li></ul></dd>
     
 
@@ -788,7 +788,7 @@ camera.off() is called
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line5893">line 5893</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line5891">line 5891</a>
     </li></ul></dd>
     
 
@@ -871,7 +871,7 @@ camera.off() is called
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line5867">line 5867</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line5865">line 5865</a>
     </li></ul></dd>
     
 
@@ -932,7 +932,7 @@ camera.off() is called
             
 
             <td class="description last">
-                The target zoom.
+                The target zoom
                 
             </td>
         </tr>
@@ -958,7 +958,7 @@ camera.off() is called
             
 
             <td class="description last">
-                The amount of zoom per frame.
+                The amount of zoom per frame
                 
             </td>
         </tr>
@@ -999,7 +999,7 @@ camera.off() is called
 
 
 <div class="param-desc">
-    A promise that resolves when the camera reaches the target zoom.
+    resolves true when the camera reaches the target zoom
 </div>
 
     
@@ -1026,7 +1026,7 @@ camera.off() is called
 <br class="clear">
 
 <footer>
-    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Mon Aug 21 2023 23:28:09 GMT-0700 (Pacific Daylight Time) using the Minami theme.
+    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Wed Aug 23 2023 07:48:40 GMT-0700 (Pacific Daylight Time) using the Minami theme.
 </footer>
 
 <script>prettyPrint();</script>
