@@ -1566,7 +1566,7 @@ function draw() {
 				<p><code>move</code> functions are imperative, they override a sprite's velocities. But what if you want
 					a sprite to respect other forces acting on it, such as gravity?</p>
 				<p>A bearing is the direction that needs to be followed to reach a destination. Changing a sprite's
-					<code>bearing</code> won't imperatively change its movement direction.</p>
+					bearing won't imperatively change its movement direction.</p>
 				<p>Use <code>applyForce</code> with one input parameter, the amount of force, to have the force be
 					applied at the sprite's <code>bearing</code> angle.</p>
 				<p>In this example, the drone has to overcome the force of gravity to fly. Make the drone fly, then let
@@ -1598,10 +1598,11 @@ function draw() {
 				<p>The <code>applyForceScaled</code> function multiplies the force applied to the sprite by its mass.
 				</p>
 				<p>You can use this function to give sprites their own gravity!</p>
-				<p>By default, force is applied to the sprite's center of mass. But the <code>applyForce</code> and
-					<code>applyForceScaled</code> functions can also accept a last input parameter, a position object
-					with x and y properties that specifies the relative position of where force will be applied on the
-					sprite.</p>
+				<p>Both force functions can accept force as separate x and y components or as an amount, provided you
+					set the sprite's <code>bearing</code>.</p>
+				<p>By default, force is applied to the sprite's center of mass. But the force functions can also accept
+					a last input parameter, a position object with x and y properties that specifies the relative
+					position of where force will be applied on the sprite.</p>
 			</md>
 			<script type="mie/p5" id="applyForceScaled" horiz="">
 let s0, s1;
@@ -1621,11 +1622,10 @@ function draw() {
 }
       </script>
 			<md id="md15-2">
-				<p>Use the <code>attractTo</code> function to attract the sprite to a position by applying force.</p>
+				<p>Use the <code>attractTo</code> function to attract the sprite to a position by applying force. The
+					position can be given as an object with x and y properties or as separate x and y parameters.</p>
 				<p>This example shows an electron orbiting the nucleus of an atom. (Note this visualization isn't
 					realistic based on current scientific understanding, but it looks cool!)</p>
-				<p>All the force functions can accept positions as separate numbers or as an object with x, y
-					properties.</p>
 				<p>Note that the advanced movement functions shown on this page will not wake <a
 						href="./world.html">sleeping sprites</a>!</p>
 			</md>

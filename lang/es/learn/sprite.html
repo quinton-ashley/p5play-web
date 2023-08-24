@@ -1602,6 +1602,8 @@ function draw() {
 			<md id="md15-1">
 				<p>La función <code>applyForceScaled</code> multiplica la fuerza aplicada al sprite por su masa.</p>
 				<p>¡Puedes usar esta función para darles a los sprites su propia gravedad!</p>
+				<p>Ambas funciones de fuerza pueden aceptar la fuerza como componentes x e y separados o como una
+					cantidad, siempre que establezcas el <code>rumbo</code> del sprite.</p>
 				<p>Por defecto, la fuerza se aplica al centro de masa del sprite. Pero las funciones
 					<code>applyForce</code> y <code>applyForceScaled</code> también pueden aceptar un último parámetro
 					de entrada, un objeto de posición con propiedades x e y que especifica la posición relativa donde se
@@ -1626,10 +1628,9 @@ function draw() {
       </script>
 			<md id="md15-2">
 				<p>Utiliza la función <code>attractTo</code> para atraer al sprite hacia una posición aplicando fuerza.
-				</p>
+					La posición puede ser proporcionada como un objeto con propiedades x e y, o como parámetros
+					separados x e y.</p>
 				<p>Este ejemplo simula la órbita de un electrón alrededor del núcleo de un átomo.</p>
-				<p>Todas las funciones de fuerza pueden aceptar posiciones como números separados o como un objeto con
-					propiedades x e y.</p>
 				<p>Ten en cuenta que las funciones de movimiento avanzado mostradas en esta página no despertarán a los
 					<a href="./world.html">sprites en reposo</a>!</p>
 			</md>

@@ -442,7 +442,7 @@ You can add additional sensors to a sprite by using the `addSensor` function.
 
 `move` functions are imperative, they override a sprite's velocities. But what if you want a sprite to respect other forces acting on it, such as gravity?
 
-A bearing is the direction that needs to be followed to reach a destination. Changing a sprite's `bearing` won't imperatively change its movement direction.
+A bearing is the direction that needs to be followed to reach a destination. Changing a sprite's bearing won't imperatively change its movement direction.
 
 Use `applyForce` with one input parameter, the amount of force, to have the force be applied at the sprite's `bearing` angle.
 
@@ -454,15 +454,15 @@ The `applyForceScaled` function multiplies the force applied to the sprite by it
 
 You can use this function to give sprites their own gravity!
 
-By default, force is applied to the sprite's center of mass. But the `applyForce` and `applyForceScaled` functions can also accept a last input parameter, a position object with x and y properties that specifies the relative position of where force will be applied on the sprite.
+Both force functions can accept force as separate x and y components or as an amount, provided you set the sprite's `bearing`.
+
+By default, force is applied to the sprite's center of mass. But the force functions can also accept a last input parameter, a position object with x and y properties that specifies the relative position of where force will be applied on the sprite.
 
 # 15-2
 
-Use the `attractTo` function to attract the sprite to a position by applying force.
+Use the `attractTo` function to attract the sprite to a position by applying force. The position can be given as an object with x and y properties or as separate x and y parameters.
 
 This example shows an electron orbiting the nucleus of an atom. (Note this visualization isn't realistic based on current scientific understanding, but it looks cool!)
-
-All the force functions can accept positions as separate numbers or as an object with x, y properties.
 
 Note that the advanced movement functions shown on this page will not wake [sleeping sprites](./world.html)!
 

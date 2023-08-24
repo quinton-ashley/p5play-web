@@ -442,15 +442,15 @@ La función `applyForceScaled` multiplica la fuerza aplicada al sprite por su ma
 
 ¡Puedes usar esta función para darles a los sprites su propia gravedad!
 
+Ambas funciones de fuerza pueden aceptar la fuerza como componentes x e y separados o como una cantidad, siempre que establezcas el `rumbo` del sprite.
+
 Por defecto, la fuerza se aplica al centro de masa del sprite. Pero las funciones `applyForce` y `applyForceScaled` también pueden aceptar un último parámetro de entrada, un objeto de posición con propiedades x e y que especifica la posición relativa donde se aplicará la fuerza en el sprite.
 
 # 15-2
 
-Utiliza la función `attractTo` para atraer al sprite hacia una posición aplicando fuerza.
+Utiliza la función `attractTo` para atraer al sprite hacia una posición aplicando fuerza. La posición puede ser proporcionada como un objeto con propiedades x e y, o como parámetros separados x e y.
 
 Este ejemplo simula la órbita de un electrón alrededor del núcleo de un átomo.
-
-Todas las funciones de fuerza pueden aceptar posiciones como números separados o como un objeto con propiedades x e y.
 
 Ten en cuenta que las funciones de movimiento avanzado mostradas en esta página no despertarán a los [sprites en reposo](./world.html)!
 
