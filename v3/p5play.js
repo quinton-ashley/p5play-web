@@ -221,16 +221,10 @@ p5.prototype.registerMethod('init', function p5playInit() {
 				}
 			};
 
-			/**
-			 * True if the sprite was removed from the world
-			 *
-			 * @type {Boolean}
-			 * @default false
-			 */
-			this.removed = false;
-
+			this._removed = false;
 			this._life = 2147483647;
 			this._visible = true;
+			this._pixelPerfect = false;
 			this._aniChangeCount = 0;
 
 			/**
@@ -1757,10 +1751,10 @@ p5.prototype.registerMethod('init', function p5playInit() {
 		}
 
 		/**
-		 * Set to true to display the sprite pixel perfect.
-		 * This is useful when using pixel art. Be sure to move the sprite
-		 * by whole numbers if you want it to stay looking sharp,
-		 * otherwise it will experience subpixel rendering.
+		 * By default p5play draws sprites with subpixel rendering.
+		 *
+		 * Set pixelPerfect to true to make p5play always display sprites
+		 * at integer pixel precision. This is useful for making retro games.
 		 *
 		 * @type {Boolean}
 		 * @default false
@@ -2494,12 +2488,14 @@ p5.prototype.registerMethod('init', function p5playInit() {
 			this._visible = true;
 			this.p.p5play.spritesDrawn++;
 
-			x = fixRound(x);
-			y = fixRound(y);
-
-			if (this._pixelPerfect) {
-				if (this._w % 2 == 0 || !isSlop((x % 1) - 0.5)) x = Math.round(x);
-				if (this._h % 2 == 0 || !isSlop((y % 1) - 0.5)) y = Math.round(y);
+			if (!this._pixelPerfect) {
+				x = fixRound(x);
+				y = fixRound(y);
+			} else {
+				if (this._w % 2 == 0) x = Math.round(x);
+				else x = Math.round(x - 0.5) + 0.5;
+				if (this._h % 2 == 0) y = Math.round(y);
+				else y = Math.round(y - 0.5) + 0.5;
 			}
 
 			for (let j of this.joints) {
