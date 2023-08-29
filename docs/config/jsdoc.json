@@ -1,0 +1,9 @@
+{
+	"source": {
+		"include": ["v3/p5play.js"]
+	},
+	"opts": {
+		"template": "./docs/minami",
+		"destination": "docs"
+	}
+}

@@ -50,7 +50,6 @@
 		"electron": "^25.4.0",
 		"jest-cli": "^29.3.1",
 		"jest-environment-jsdom": "^29.3.1",
-		"minami": "^1.2.3",
 		"taffydb": "^2.7.3"
 	},
 	"homepage": "https://github.com/quinton-ashley/p5play-web",
@@ -63,7 +62,7 @@
 	"main": "app/app.js",
 	"scripts": {
 		"tests": "jest tests",
-		"docs": "jsdoc --configure docs/jsdoc.json && rm -rf docs/fonts",
+		"docs": "jsdoc --configure docs/config/jsdoc.json",
 		"min": "minify v3/p5play.js > v3/p5play.min.js && cp v3/p5play.min.js ../../pkg/p5play/p5play.min.js",
 		"v": "npm version patch --force",
 		"V": "npm version minor --force",
@@ -74,5 +73,5 @@
 		"make": "electron-forge make",
 		"publish": "electron-forge publish"
 	},
-	"version": "1.3.33"
+	"version": "1.4.0"
 }
