@@ -21,6 +21,7 @@ body {
 }
 
 h5,
+.page-title,
 ul:has(.param-type) {
 	display: none;
 }
