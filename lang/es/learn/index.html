@@ -15,6 +15,14 @@
 	align-items: flex-start;
 }
 
+#learnOptions {
+	display: flex;
+	width: 100%;
+	justify-content: center;
+	gap: 16px;
+	margin-top: 16px;
+}
+
 #refs>div {
 	display: flex;
 	flex-direction: row;
@@ -23,12 +31,8 @@
 	align-content: start;
 }
 
-#refs div h2 {
-	width: 100%;
-}
-
-#refs div h2 a {
-	color: var(--primary);
+#refs div:first-child .btn {
+	font-size: 27px;
 }
 
 #refs div:not(:first-child) h2 a:hover {
@@ -114,15 +118,26 @@
 		</div>
 
 		<div id="refs" class="page">
-			<md id="md0-0" class="full">
-				<h2 id="aprender">Aprender</h2>
-				<p><a href="sprite.html">¡Comienza mirando las primeras páginas sobre sprites!</a></p>
-				<p>Estas páginas de referencia "Aprender" proporcionan mini ejemplos interactivos para las
-					características más importantes de p5play. Fueron escritas por Quinton Ashley, creador de p5play v3
-					y se ofrecen como un recurso público para la comunidad de p5play.</p>
-				<p>¿No puedes encontrar lo que estás buscando? Prueba con la documentación completa de <a
-						href="/docs/Sprite.html">p5play</a>, <a href="https://p5js.org/reference/">p5.js</a>, o <a
-						href="https://p5js.org/reference/#/libraries/p5.sound">p5.sound</a> o mira algunas <a
+			<div class="full">
+				<md id="md0-0">
+					<h2 id="aprender">Aprender</h2>
+					<p><a href="sprite.html">¡Comienza mirando las primeras páginas sobre sprites!</a></p>
+					<p>Estas páginas de referencia "Aprender" proporcionan mini ejemplos interactivos para las
+						características más importantes de p5play. Fueron escritas por Quinton Ashley, creador de p5play
+						v3 y se ofrecen como un recurso público para la comunidad de p5play.</p>
+					<p>¿No puedes encontrar lo que estás buscando? Prueba con la documentación completa de <a
+							href="/docs/Sprite.html">p5play</a>, <a href="https://p5js.org/reference/">p5.js</a>, o <a
+							href="https://p5js.org/reference/#/libraries/p5.sound">p5.sound</a> o mira algunas <a
+							href="https://openprocessing.org/user/350295?o=35&amp;view=sketches">demos</a>.</p>
+				</md>
+				<div id="learnOptions">
+					<a class="btn" href="sprite.html">Get Started!</a>
+				</div>
+			</div>
+			<md id="md0-1" class="ref full">
+				<p>Can't find what you're looking for? Try the <a href="/docs/Sprite.html">full documentation for
+						p5play</a>, <a href="https://p5js.org/reference/">p5.js reference</a>, or <a
+						href="https://p5js.org/reference/#/libraries/p5.sound">p5.sound reference</a> or look at some <a
 						href="https://openprocessing.org/user/350295?o=35&amp;view=sketches">demos</a>.</p>
 			</md>
 		</div>

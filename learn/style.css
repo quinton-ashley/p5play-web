@@ -60,7 +60,13 @@ article {
 
 @font-face {
 	font-family: Mont;
-	src: url('fonts/mont/Mont-HeavyDEMO.otf');
+	src: url('/assets/fonts/mont/Mont-HeavyDEMO.otf');
+}
+
+h2 {
+	width: 100%;
+	font-family: Mont;
+	margin-block-end: 0.6em;
 }
 
 #darkModeIcon {
@@ -245,7 +251,7 @@ nav hr {
 
 a.btn,
 #toc a,
-#refs div:not(:first-child) a:not(:first-child) {
+#refs :not(:last-child) a:not(:first-child) {
 	background-color: var(--blue2);
 	color: var(--blue1);
 	box-shadow: var(--blue0) 3px 3px 0px;
@@ -264,15 +270,15 @@ a.btn,
 
 #toc a.active,
 #toc a:hover,
-#refs>div:not(:first-child) a:not(:first-child).active,
-#refs div:not(:first-child) a:not(:first-child):hover {
+#refs :not(:last-child) a:not(:first-child).active,
+#refs :not(:last-child) a:not(:first-child):hover {
 	color: var(--pink0);
 	box-shadow: var(--pink0) 3px 3px 0px;
 }
 
 a.btn:hover,
 #toc a:hover,
-#refs div:not(:first-child) a:not(:first-child):hover {
+#refs :not(:last-child) a:not(:first-child):hover {
 	scale: 1.05;
 	color: var(--pink0);
 	text-decoration: none;

@@ -15,6 +15,14 @@
 	align-items: flex-start;
 }
 
+#learnOptions {
+	display: flex;
+	width: 100%;
+	justify-content: center;
+	gap: 16px;
+	margin-top: 16px;
+}
+
 #refs>div {
 	display: flex;
 	flex-direction: row;
@@ -23,12 +31,8 @@
 	align-content: start;
 }
 
-#refs div h2 {
-	width: 100%;
-}
-
-#refs div h2 a {
-	color: var(--primary);
+#refs div:first-child .btn {
+	font-size: 27px;
 }
 
 #refs div:not(:first-child) h2 a:hover {
@@ -114,12 +118,17 @@
 		</div>
 
 		<div id="refs" class="page">
-			<md id="md0-0" class="full">
-				<h2 id="learn">Learn</h2>
-				<p><a href="sprite.html">Start by looking at the first few pages about sprites!</a></p>
-				<p>These "Learn" reference pages provide interactive mini examples for p5play's most important features.
-					They were written by the creator of p5play v3, Quinton Ashley, and are available for free as a
-					public resource.</p>
+			<div class="full">
+				<md id="md0-0">
+					<h2 id="learn">Learn</h2>
+					<p>These "Learn" reference pages provide interactive mini examples for p5play's most important
+						features.</p>
+				</md>
+				<div id="learnOptions">
+					<a class="btn" href="sprite.html">Get Started!</a>
+				</div>
+			</div>
+			<md id="md0-1" class="ref full">
 				<p>Can't find what you're looking for? Try the <a href="/docs/Sprite.html">full documentation for
 						p5play</a>, <a href="https://p5js.org/reference/">p5.js reference</a>, or <a
 						href="https://p5js.org/reference/#/libraries/p5.sound">p5.sound reference</a> or look at some <a

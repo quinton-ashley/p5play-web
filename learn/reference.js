@@ -164,11 +164,12 @@ for (let refPage in refs) {
 	}
 
 	let div = document.createElement('div');
-	if (className == 'Sprite') div.className = 'full';
+	div.className = 'ref';
+	if (className == 'Sprite') div.classList.add('full');
 	let heading = document.createElement('h2');
 	heading.innerHTML = `<a href="${refPage}">${className}</a>`;
 	div.append(heading);
-	refsDiv.append(div);
+	refsDiv.children[refsDiv.children.length - 2].insertAdjacentElement('afterend', div);
 
 	let links = [];
 	for (let pageNum in ref) {
