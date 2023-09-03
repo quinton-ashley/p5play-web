@@ -1,0 +1,125 @@
+@font-face {
+  font-family: Mont;
+  src: url("/assets/fonts/mont/Mont-HeavyDEMO.otf");
+}
+#brand {
+  font-family: Mont;
+  font-size: 60px;
+  font-weight: bold;
+  color: #000000;
+  text-align: center;
+  color: #ff0a52;
+  text-shadow: 4px 4px 0px #b7ebff;
+}
+
+#brand-parent {
+  margin-bottom: 28px;
+  display: flex;
+  justify-content: center;
+}
+
+#logo-image {
+  width: 100px;
+  height: 100px;
+  margin-right: 10px;
+  animation: spin 10s linear infinite;
+}
+
+div.modal-dialog {
+  position: relative;
+  height: 550px;
+  width: 552px;
+}
+
+@media (min-width: 992px) {
+  div.signup-box {
+    max-width: 1000px;
+    position: absolute;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+  div.row2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center; /* this will center children vertically */
+  }
+  div.row2 input,
+  div.row2 select {
+    width: 250px;
+  }
+  input,
+  select {
+    height: 50px !important;
+  }
+}
+input,
+select {
+  border-radius: 10px !important;
+  margin-bottom: 16px;
+}
+
+.label-customizable {
+  margin-top: 16px;
+}
+
+input:hover,
+select:hover {
+  cursor: text;
+}
+
+input.not-valid,
+select.not-valid {
+  border: 1px solid #ff0a52 !important;
+  border-radius: 10px !important;
+  transition: border 0.3s;
+  box-sizing: border-box;
+}
+
+input.not-valid:hover,
+select.not-valid:hover {
+  border: 2px solid #eb0043 !important;
+}
+
+input.not-valid:focus,
+select.not-valid:focus {
+  border: 3px solid #c30037 !important;
+  outline: none;
+}
+
+input.is-valid,
+select.is-valid {
+  border: 1.5px solid rgb(0, 133, 0) !important;
+  border-radius: 10px !important;
+  transition: border 0.3s;
+  box-sizing: border-box;
+}
+
+input.is-valid:hover,
+select.is-valid:hover {
+  border: 2px solid rgb(0, 124, 0) !important;
+}
+
+input.is-valid:focus,
+select.is-valid:focus {
+  border: 3px solid rgb(0, 111, 0) !important;
+  outline: none;
+}
+
+.containter {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+select#country {
+  cursor: pointer !important;
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}/*# sourceMappingURL=style.css.map */
