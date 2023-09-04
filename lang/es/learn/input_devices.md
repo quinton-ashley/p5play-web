@@ -16,11 +16,18 @@ También almacenan el estado de todas sus entradas como propiedades. Por ejemplo
 
 ## Teclado
 
-En los juegos de PC, las teclas WASD se utilizan comúnmente para controlar el movimiento del personaje del jugador. En p5play puedes usar los nombres de las direcciones 'up', 'down', 'left' y 'right' para detectar las presiones de las teclas WASD y las teclas de flecha.
+`kb` rastrea casi todas las teclas del teclado, incluyendo 'enter', 'backspace' y 'control'.
 
-Si quieres usar WASD y las teclas de flecha por separado puedes usar estos nombres de teclas para detectar las presiones de las teclas de flecha: 'ArrowUp', 'ArrowDown', 'ArrowLeft' y 'ArrowRight'.
-Usar las teclas IJKL para el movimiento es común para apoyar a los jugadores zurdos o a los segundos jugadores en juegos locales de dos jugadores. Estas teclas pueden ser referenciadas usando: 'up2', 'down2', 'left2', y 'right2'.
-Algunos teclados no empiezan con QWERTY en la fila superior. p5play mapea otros layouts de teclado al layout estándar inglés QWERTY. Por ejemplo, las teclas WASD para los usuarios del teclado francés AZERTY son ZQSD. Esto puede ser desactivado estableciendo `p5play.standardizeKeyboard` en falso. [Más info](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/code)
+Ten en cuenta que la entrada de letras distingue entre mayúsculas y minúsculas. `kb.presses('q')` devuelve verdadero si el usuario presiona la tecla 'q'. Pero `kb.presses('Q')` solo devuelve verdadero si el usuario presiona la tecla 'q' mientras mantiene presionada la tecla 'shift'.
+
+Dado que las teclas WASD se utilizan comúnmente para controlar el movimiento del personaje del jugador, puedes usar los nombres de dirección 'arriba', 'abajo', 'izquierda' y 'derecha' para detectar las pulsaciones de WASD y las teclas de flecha.
+
+Las teclas de flecha también se pueden detectar por separado utilizando 'arrowUp', 'arrowDown', 'arrowLeft' y 'arrowRight'.
+
+En juegos locales de dos jugadores, es común que el segundo jugador utilice las teclas IJKL para el movimiento. Estas teclas se pueden referenciar utilizando 'up2', 'down2', 'left2' y 'right2'.
+
+[¿Usas un teclado no QWERTY?](https://github.com/quinton-ashley/p5play/wiki/FAQ#is-p5plays-kb-input-system-compatible-with-non-qwerty-keyboards)
+
 
 # 2-0
 

@@ -64,7 +64,7 @@ if (kb.presses('space')) {
 }
 				</script>
 				<script type="mie/p5" id="pressing" base="0">
-if (kb.pressing('space')) {
+if (kb.pressing(' ')) {
 	background(0, 255, 0);
 }
 				</script>
@@ -74,7 +74,7 @@ if (kb.space >= 12) {
 }
 				</script>
 				<script type="mie/p5" id="released" base="0">
-if (kb.released('space')) {
+if (kb.released(' ')) {
 	background(0, 255, 0);
 }
 				</script>
@@ -83,15 +83,16 @@ if (kb.released('space')) {
 		<div id="page-1" class="page">
 			<md id="md1-0">
 				<h2 id="キーボード">キーボード</h2>
-				<p>PC ゲームでは、WASD キーが一般的にプレイヤーキャラクターの移動を制御するために使用されます。p5play では、'up'、'down'、'left'、'right'の方向名を使用して WASD
-					キーと矢印キーの押下を検出できます。</p>
-				<p>WASD と矢印キーを別々に使用したい場合は、これらのキー名を使用して矢印キーの押下を検出できます: 'ArrowUp', 'ArrowDown', 'ArrowLeft' そして
-					'ArrowRight'。
-					左利きのプレイヤーやローカルで 2 人プレイするセカンドプレイヤーをサポートするために、IJKL キーでの移動が一般的です。これらのキーは次のように参照できます: 'up2', 'down2',
-					'left2', 'right2'。
-					一部のキーボードは最上行が QWERTY で始まりません。p5play は他のキーボードレイアウトを標準的な英語の QWERTY レイアウトにマッピングします。例えば、フランスの AZERTY
-					キーボードのユーザーの WASD キーは ZQSD です。これは<code>p5play.standardizeKeyboard</code>を false に設定することで無効にできます。<a
-						href="https://developer.mozilla.org/ja/docs/Web/API/KeyboardEvent/code">詳細情報</a></p>
+				<p><code>kb</code> は、'enter'、'backspace'、'control' を含む、キーボードのほぼすべてのキーを追跡します。</p>
+				<p>文字入力は大文字と小文字を区別することに注意してください。<code>kb.presses('q')</code> は、ユーザーが 'q' キーを押した場合に true
+					を返します。しかし、<code>kb.presses('Q')</code> は、ユーザーが 'shift' キーを押しながら 'q' キーを押した場合にのみ true を返します。</p>
+				<p>WASD キーはプレイヤーキャラクターの移動を制御するためによく使用されるため、WASD および矢印キーの押下を検出するために 'up'、'down'、'left'、'right'
+					の方向名を使用できます。</p>
+				<p>矢印キーは、'arrowUp'、'arrowDown'、'arrowLeft'、'arrowRight' を使用して個別に検出することもできます。</p>
+				<p>ローカルの二人用ゲームでは、第二のプレイヤーが移動にIJKLキーを使用することが一般的です。これらのキーは 'up2'、'down2'、'left2'、'right2' を使用して参照できます。</p>
+				<p><a
+						href="https://github.com/quinton-ashley/p5play/wiki/FAQ#is-p5plays-kb-input-system-compatible-with-non-qwerty-keyboards">QWERTY以外のキーボードを使用していますか？</a>
+				</p>
 			</md>
 			<script type="mie/p5" id="keyboard-movement">
 let player;

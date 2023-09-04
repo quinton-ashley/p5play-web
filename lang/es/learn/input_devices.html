@@ -65,7 +65,7 @@ if (kb.presses('space')) {
 }
 				</script>
 				<script type="mie/p5" id="pressing" base="0">
-if (kb.pressing('space')) {
+if (kb.pressing(' ')) {
 	background(0, 255, 0);
 }
 				</script>
@@ -75,7 +75,7 @@ if (kb.space >= 12) {
 }
 				</script>
 				<script type="mie/p5" id="released" base="0">
-if (kb.released('space')) {
+if (kb.released(' ')) {
 	background(0, 255, 0);
 }
 				</script>
@@ -84,19 +84,22 @@ if (kb.released('space')) {
 		<div id="page-1" class="page">
 			<md id="md1-0">
 				<h2 id="teclado">Teclado</h2>
-				<p>En los juegos de PC, las teclas WASD se utilizan comúnmente para controlar el movimiento del
-					personaje del jugador. En p5play puedes usar los nombres de las direcciones 'up', 'down', 'left' y
-					'right' para detectar las presiones de las teclas WASD y las teclas de flecha.</p>
-				<p>Si quieres usar WASD y las teclas de flecha por separado puedes usar estos nombres de teclas para
-					detectar las presiones de las teclas de flecha: 'ArrowUp', 'ArrowDown', 'ArrowLeft' y 'ArrowRight'.
-					Usar las teclas IJKL para el movimiento es común para apoyar a los jugadores zurdos o a los segundos
-					jugadores en juegos locales de dos jugadores. Estas teclas pueden ser referenciadas usando: 'up2',
-					'down2', 'left2', y 'right2'.
-					Algunos teclados no empiezan con QWERTY en la fila superior. p5play mapea otros layouts de teclado
-					al layout estándar inglés QWERTY. Por ejemplo, las teclas WASD para los usuarios del teclado francés
-					AZERTY son ZQSD. Esto puede ser desactivado estableciendo <code>p5play.standardizeKeyboard</code> en
-					falso. <a href="https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/code">Más info</a>
-				</p>
+				<p><code>kb</code> rastrea casi todas las teclas del teclado, incluyendo 'enter', 'backspace' y
+					'control'.</p>
+				<p>Ten en cuenta que la entrada de letras distingue entre mayúsculas y minúsculas.
+					<code>kb.presses('q')</code> devuelve verdadero si el usuario presiona la tecla 'q'. Pero
+					<code>kb.presses('Q')</code> solo devuelve verdadero si el usuario presiona la tecla 'q' mientras
+					mantiene presionada la tecla 'shift'.</p>
+				<p>Dado que las teclas WASD se utilizan comúnmente para controlar el movimiento del personaje del
+					jugador, puedes usar los nombres de dirección 'arriba', 'abajo', 'izquierda' y 'derecha' para
+					detectar las pulsaciones de WASD y las teclas de flecha.</p>
+				<p>Las teclas de flecha también se pueden detectar por separado utilizando 'arrowUp', 'arrowDown',
+					'arrowLeft' y 'arrowRight'.</p>
+				<p>En juegos locales de dos jugadores, es común que el segundo jugador utilice las teclas IJKL para el
+					movimiento. Estas teclas se pueden referenciar utilizando 'up2', 'down2', 'left2' y 'right2'.</p>
+				<p><a
+						href="https://github.com/quinton-ashley/p5play/wiki/FAQ#is-p5plays-kb-input-system-compatible-with-non-qwerty-keyboards">¿Usas
+						un teclado no QWERTY?</a></p>
 			</md>
 			<script type="mie/p5" id="keyboard-movement">
 let player;

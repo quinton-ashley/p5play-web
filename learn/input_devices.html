@@ -43,9 +43,9 @@
 				</ul>
 				<p>These input devices all use the same simple functions for getting the state of an input:
 					<code>presses</code>, <code>pressing</code>, and <code>released</code>.</p>
-				<p>They also store the state of all their inputs as properties. For example, <code>kb.space</code>
-					stores how many frames the user has been pressing the space key. It gets reset when the user
-					releases the input.</p>
+				<p>Input devices also store the state of all their inputs as properties. For example, kb.space stores
+					how many frames the user has been pressing the space key. It gets reset when the user releases the
+					input.</p>
 			</md>
 			<script type="mie/p5" id="hidden" base-0="" hide="">
 function setup() {
@@ -65,7 +65,7 @@ if (kb.presses('space')) {
 }
 				</script>
 				<script type="mie/p5" id="pressing" base="0">
-if (kb.pressing('space')) {
+if (kb.pressing(' ')) {
 	background(0, 255, 0);
 }
 				</script>
@@ -75,7 +75,7 @@ if (kb.space >= 12) {
 }
 				</script>
 				<script type="mie/p5" id="released" base="0">
-if (kb.released('space')) {
+if (kb.released(' ')) {
 	background(0, 255, 0);
 }
 				</script>
@@ -84,17 +84,20 @@ if (kb.released('space')) {
 		<div id="page-1" class="page">
 			<md id="md1-0">
 				<h2 id="keyboard">Keyboard</h2>
-				<p>In PC games the WASD keys are commonly used to control the player character's movement. In p5play you
-					can use the direction names 'up', 'down', 'left', and 'right' to detect WASD key and arrow key
-					presses.</p>
-				<p>If you want to use WASD and the arrow keys separately you can use these key names to detect arrow key
-					presses: 'ArrowUp', 'ArrowDown', 'ArrowLeft' and 'ArrowRight'.
-					Using the IJKL keys for movement is common to support left handed players or second players in local
-					two player games. These keys can be referenced using: 'up2', 'down2', 'left2', and 'right2'.
-					Some keyboards don't start with QWERTY on the top row. p5play maps other keyboard layouts to the
-					standard English QWERTY layout. For example, the WASD keys for French AZERTY keyboard users are
-					ZQSD. This can be disabled by setting <code>p5play.standardizeKeyboard</code> to false. <a
-						href="https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/code">More info</a></p>
+				<p><code>kb</code> tracks nearly every key on the keyboard, including 'enter', 'backspace', and
+					'control'.</p>
+				<p>Note that letter input is case sensitive. <code>kb.presses('q')</code> returns true if the user
+					presses the 'q' key. But <code>kb.presses('Q')</code> only returns true if the user presses the 'q'
+					key while pressing 'shift'.</p>
+				<p>Since the WASD keys are commonly used to control the player character's movement, you can use the
+					direction names 'up', 'down', 'left', and 'right' to detect WASD and arrow key presses.</p>
+				<p>Arrow keys can also be detected separately using 'arrowUp', 'arrowDown', 'arrowLeft', and
+					'arrowRight'.</p>
+				<p>In local two player games it's common for the second player to use the IJKL keys for movement. These
+					keys can be referenced using 'up2', 'down2', 'left2', and 'right2'.</p>
+				<p><a
+						href="https://github.com/quinton-ashley/p5play/wiki/FAQ#is-p5plays-kb-input-system-compatible-with-non-qwerty-keyboards">Using
+						a non-QWERTY keyboard?</a></p>
 			</md>
 			<script type="mie/p5" id="keyboard-movement">
 let player;

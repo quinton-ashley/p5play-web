@@ -10,17 +10,23 @@ Here are the input devices available in p5play:
 
 These input devices all use the same simple functions for getting the state of an input: `presses`, `pressing`, and `released`.
 
-They also store the state of all their inputs as properties. For example, `kb.space` stores how many frames the user has been pressing the space key. It gets reset when the user releases the input.
+Input devices also store the state of all their inputs as properties. For example, kb.space stores how many frames the user has been pressing the space key. It gets reset when the user releases the input.
 
 # 1-0
 
 ## Keyboard
 
-In PC games the WASD keys are commonly used to control the player character's movement. In p5play you can use the direction names 'up', 'down', 'left', and 'right' to detect WASD key and arrow key presses.
+`kb` tracks nearly every key on the keyboard, including 'enter', 'backspace', and 'control'.
 
-If you want to use WASD and the arrow keys separately you can use these key names to detect arrow key presses: 'ArrowUp', 'ArrowDown', 'ArrowLeft' and 'ArrowRight'.
-Using the IJKL keys for movement is common to support left handed players or second players in local two player games. These keys can be referenced using: 'up2', 'down2', 'left2', and 'right2'.
-Some keyboards don't start with QWERTY on the top row. p5play maps other keyboard layouts to the standard English QWERTY layout. For example, the WASD keys for French AZERTY keyboard users are ZQSD. This can be disabled by setting `p5play.standardizeKeyboard` to false. [More info](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/code)
+Note that letter input is case sensitive. `kb.presses('q')` returns true if the user presses the 'q' key. But `kb.presses('Q')` only returns true if the user presses the 'q' key while pressing 'shift'.
+
+Since the WASD keys are commonly used to control the player character's movement, you can use the direction names 'up', 'down', 'left', and 'right' to detect WASD and arrow key presses.
+
+Arrow keys can also be detected separately using 'arrowUp', 'arrowDown', 'arrowLeft', and 'arrowRight'.
+
+In local two player games it's common for the second player to use the IJKL keys for movement. These keys can be referenced using 'up2', 'down2', 'left2', and 'right2'.
+
+[Using a non-QWERTY keyboard?](https://github.com/quinton-ashley/p5play/wiki/FAQ#is-p5plays-kb-input-system-compatible-with-non-qwerty-keyboards)
 
 # 2-0
 

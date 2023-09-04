@@ -16,11 +16,18 @@ p5play で利用可能な入力デバイスは次のとおりです:
 
 ## キーボード
 
-PC ゲームでは、WASD キーが一般的にプレイヤーキャラクターの移動を制御するために使用されます。p5play では、'up'、'down'、'left'、'right'の方向名を使用して WASD キーと矢印キーの押下を検出できます。
+`kb` は、'enter'、'backspace'、'control' を含む、キーボードのほぼすべてのキーを追跡します。
 
-WASD と矢印キーを別々に使用したい場合は、これらのキー名を使用して矢印キーの押下を検出できます: 'ArrowUp', 'ArrowDown', 'ArrowLeft' そして 'ArrowRight'。
-左利きのプレイヤーやローカルで 2 人プレイするセカンドプレイヤーをサポートするために、IJKL キーでの移動が一般的です。これらのキーは次のように参照できます: 'up2', 'down2', 'left2', 'right2'。
-一部のキーボードは最上行が QWERTY で始まりません。p5play は他のキーボードレイアウトを標準的な英語の QWERTY レイアウトにマッピングします。例えば、フランスの AZERTY キーボードのユーザーの WASD キーは ZQSD です。これは`p5play.standardizeKeyboard`を false に設定することで無効にできます。[詳細情報](https://developer.mozilla.org/ja/docs/Web/API/KeyboardEvent/code)
+文字入力は大文字と小文字を区別することに注意してください。`kb.presses('q')` は、ユーザーが 'q' キーを押した場合に true を返します。しかし、`kb.presses('Q')` は、ユーザーが 'shift' キーを押しながら 'q' キーを押した場合にのみ true を返します。
+
+WASD キーはプレイヤーキャラクターの移動を制御するためによく使用されるため、WASD および矢印キーの押下を検出するために 'up'、'down'、'left'、'right' の方向名を使用できます。
+
+矢印キーは、'arrowUp'、'arrowDown'、'arrowLeft'、'arrowRight' を使用して個別に検出することもできます。
+
+ローカルの二人用ゲームでは、第二のプレイヤーが移動にIJKLキーを使用することが一般的です。これらのキーは 'up2'、'down2'、'left2'、'right2' を使用して参照できます。
+
+[QWERTY以外のキーボードを使用していますか？](https://github.com/quinton-ashley/p5play/wiki/FAQ#is-p5plays-kb-input-system-compatible-with-non-qwerty-keyboards)
+
 
 # 2-0
 
