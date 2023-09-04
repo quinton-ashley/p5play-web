@@ -55,16 +55,16 @@
 </head>
 
 <body spellcheck="false">
+	<div class="right-side"></div>
 	<div class="container">
 		<div class="modal-dialog">
 
-			<div
-				class="modal-content background-customizable modal-content-mobile visible-md visible-lg modal-dialog-centered signup-box">
+			<div class="modal-content background-customizable  modal-dialog-centered signup-box">
 
 				<div class="modal-body">
 					<div id="brand-parent">
 						<img src="/assets/p5play_logo.svg" alt="Logo" id="logo-image">
-						<h1 id="brand">p5play</h1>
+						<a href="/index.html" id="brand">p5play</a>
 					</div>
 					<form name="signupform"
 						action="https://p5play.auth.us-west-2.amazoncognito.com/signup?client_id=3oegfdhu2r7eo8nr371496718c&amp;response_type=code&amp;scope=email+openid+phone&amp;redirect_uri=https%3A%2F%2Fp5play.org%2Fpro%2Findex.html"
@@ -78,32 +78,16 @@
 									aria-label="Full Name" placeholder="Full Name" onkeyup="checkIfValid();" id="full-name" />
 							</div>
 						</div>
-						<!-- <div style="display: none">
-											<label class="label-customizable">Middle Name</label>
-											<div>
-												<input
-													type="text"
-													name="requiredAttributes[middle_name]"
-													class="form-control inputField-customizable"
-													required=""
-													aria-label="Middle Name"
-													value="nil"
-												/>
-											</div>
-										</div> -->
-						<!-- <div style="display: none">
-											<label class="label-customizable">Last Name</label>
-											<div>
-												<input
-													type="text"
-													name="requiredAttributes[family_name]"
-													class="form-control inputField-customizable"
-													required=""
-													aria-label="Last Name"
-													value="nil"
-												/>
-											</div> 
-										</div> -->
+						<div style="display: none">
+							<input type="text" name="requiredAttributes[middle_name]" class="form-control inputField-customizable"
+								required="" aria-label="Middle Name" value="nil" />
+							<input type="text" name="requiredAttributes[family_name]" class="form-control inputField-customizable"
+								required="" aria-label="Last Name" value="nil" />
+							<input type="text" name="requiredAttributes[locale]" class="form-control inputField-customizable"
+								required="" aria-label="locale" value="nil" id="localeInput" />
+							<input type="text" name="requiredAttributes[updated_at]" class="form-control inputField-customizable"
+								required="" aria-label="updated_at" value="nil" id="todaysDate" />
+						</div>
 						<div class="row2">
 							<div>
 								<!-- <label class="label-customizable">Gender</label> -->
@@ -129,8 +113,8 @@
 													placeholder="Country" id="country" onchange="checkIfValid();">
 													<option value="nil">Select Country</option>
 												</select> -->
-									<select name="country" class="form-control inputField-customizable" id="country"
-										onchange="checkIfValid();">
+									<select name="requiredAttributes[address]" class="form-control inputField-customizable" required=""
+										aria-label="Country" id="country" onchange="checkIfValid();">
 										<option value="" label="Country" selected="selected">Country</option>
 										<optgroup id="country-optgroup-Africa" label="Africa">
 											<option value="DZ" label="Algeria">Algeria</option>
@@ -414,14 +398,14 @@
 						</div>
 						<div class="row5">
 							<!-- <label class="label-customizable">Password</label> -->
-							<input type="password" autocomplete="new-password" name="password" onkeyup="checkIfValid();" value=""
-								class="form-control inputField-customizable" placeholder="Password" required="" aria-label="Password"
-								id="password" />
+							<input type="password" autocomplete="new-password" name="password"
+								onkeyup="checkPasswordMatch(); checkIfValid();" value="" class="form-control inputField-customizable"
+								placeholder="Password" required="" aria-label="Password" id="password" />
 						</div>
 
 						<div>
 							<div>
-								<div class="checkPassword-lowerletter passwordCheck-notValid-customizable">
+								<div class=" checkPassword-lowerletter passwordCheck-notValid-customizable">
 									<span aria-hidden="true" class="check-lowerletter"></span>
 									<span class="checkPasswordText-lowerletter"></span>
 								</div>
@@ -479,10 +463,10 @@
 			});
 		});
 
-		//document.getElementById('localeInput').value =
-		//navigator.languages[0] || navigator.language || navigator.userLanguage;
+		document.getElementById('localeInput').value =
+			navigator.languages[0] || navigator.language || navigator.userLanguage;
 
-		//document.getElementById('todaysDate').value = Math.floor(new Date().getTime() / 1000);
+		document.getElementById('todaysDate').value = Math.floor(new Date().getTime() / 1000);
 
 		function checkPasswordHelper(password) {
 			var passwordPolicy = [];
@@ -722,7 +706,7 @@
 		}
 		function isValidPassword(password) {
 			var regex =
-				/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[-+=!$%^&*()_|~`{}\[\]:\/;<>?,.@#'"\s])[A-Za-z\d-+=!$%^&*()_|~`{}\[\]:\/;<>?,.@#'"\s]{8,}$/;
+				/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[ -+=!$%^&*()_|~`{}\[\]:\/;<>?,.@#'"\s])[A-Za-z\d-+=!$%^&*()_|~`{}\[\]:\/;<>?,.@#'"]{8,}$/;
 			return regex.test(password);
 			/*
 			This makes sure that the password has:

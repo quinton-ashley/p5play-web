@@ -4,7 +4,26 @@ $pink: #ff0a52;
 $pink0: #ff0a52;
 $pink1: #eb0043;
 $pink2: #c30037;
+$blue1: #1779c4;
+$blue2: #f0f8ff;
+div.signup-box {
+	border-radius: 10px;
+}
+body {
+	background-color: $blue2;
+}
 
+.right-side {
+	background-image: url('/pro/p5play_signup.png');
+	background-size: cover; /* <------ */
+	background-repeat: no-repeat;
+	background-position: center center; /* optional, center the image */
+	position: absolute;
+	top: 0;
+	left: 50%;
+	width: 50vw;
+	height: 100vh;
+}
 @font-face {
 	font-family: Mont;
 	src: url('/assets/fonts/mont/Mont-HeavyDEMO.otf');
@@ -18,6 +37,14 @@ $pink2: #c30037;
 	text-align: center;
 	color: $pink0;
 	text-shadow: 4px 4px 0px $blue0;
+	transition: 100ms;
+	padding-top: 5.5px;
+}
+#brand:hover {
+	cursor: pointer;
+	text-decoration: underline;
+	color: transparent !important;
+	-webkit-text-stroke: 1.6px $pink0;
 }
 #brand-parent {
 	margin-bottom: 28px;
@@ -33,14 +60,12 @@ $pink2: #c30037;
 
 div.modal-dialog {
 	position: relative;
-	height: 550px;
 	width: 552px;
+	transition: 0.3s;
 }
-@media (min-width: 992px) {
+@media (min-width: 726px) {
 	div.signup-box {
 		max-width: $signup-box-width-992px;
-		position: absolute;
-		border-radius: 10px;
 		display: flex;
 		flex-direction: column;
 	}
@@ -58,6 +83,15 @@ div.modal-dialog {
 	input,
 	select {
 		height: 50px !important;
+	}
+	.modal-dialog {
+		margin: 5vw !important;
+	}
+}
+@media (max-width: 500px) {
+	.right-side {
+		left: 0%;
+		width: 100vw;
 	}
 }
 
@@ -112,11 +146,16 @@ select.is-valid:focus {
 	outline: none;
 }
 
-.containter {
+.container {
 	display: flex;
-	flex-direction: column;
-	justify-content: center;
+	justify-content: flex-start;
 	align-items: center;
+	width: 100vw !important;
+	height: 100vh !important;
+	padding-right: 0px !important;
+	padding-left: 0px !important;
+	margin-right: 0px !important;
+	margin-left: 0px !important;
 }
 
 select#country {
