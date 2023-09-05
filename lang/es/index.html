@@ -46,6 +46,7 @@ video {
 	position: absolute;
 	left: 0;
 	z-index: -1;
+	image-rendering: pixelated;
 }
 
 #reel0 {
@@ -88,6 +89,7 @@ video {
 #littleLangs a {
 	font-size: 16px;
 	text-shadow: none;
+	transition: 0.3s;
 }
 
 .page {
@@ -716,7 +718,8 @@ body.dark #patreon-brand img:nth-of-type(2) {
 
 	<div id="home">
 		<div id="reel0" class="reel">
-			<video src="https://quinton-ashley.github.io/p5play-assets/reel0.mov" autoplay="" loop="" playsinline=""
+			<video src="https://quinton-ashley.github.io/p5play-assets/reel0.mov"
+				poster="https://quinton-ashley.github.io/p5play-assets/thumb0.jpg" autoplay="" loop="" playsinline=""
 				muted=""></video>
 			<div id="page0" class="page">
 				<div id="bigBrand">
@@ -741,7 +744,8 @@ body.dark #patreon-brand img:nth-of-type(2) {
 		</div>
 
 		<div id="reel1" class="reel">
-			<video src="https://quinton-ashley.github.io/p5play-assets/reel1.mov" loop="" playsinline=""
+			<video src="https://quinton-ashley.github.io/p5play-assets/reel1.mov"
+				poster="https://quinton-ashley.github.io/p5play-assets/thumb1.jpg" loop="" playsinline=""
 				muted=""></video>
 			<div id="page1" class="page">
 				<div class="minis horiz">
@@ -789,22 +793,15 @@ function setup() {
   tumbler = new Sprite(x, y, la, 'kinematic');
   tumbler.rotationSpeed = 0.5;
   tumbler.color = '#ff0a52';
+	tumbler.strokeWeight = 8;
 
-  allSprites.remove(tumbler);
   dropSprite();
   strokeJoin(ROUND);
 }
 
 function draw() {
   clear();
-
-  strokeWeight(8);
-  tumbler.draw();
-
   if (mouse.presses()) dropSprite();
-
-  strokeWeight(1);
-  allSprites.draw();
 }
 
 function dropSprite() {
@@ -817,7 +814,8 @@ function dropSprite() {
 		</div>
 
 		<div id="reel2" class="reel">
-			<video src="https://quinton-ashley.github.io/p5play-assets/reel2.mov" loop="" playsinline=""
+			<video src="https://quinton-ashley.github.io/p5play-assets/reel2.mov"
+				poster="https://quinton-ashley.github.io/p5play-assets/thumb2.jpg" loop="" playsinline=""
 				muted=""></video>
 			<div class="page">
 				<div class="full">
@@ -857,10 +855,9 @@ function dropSprite() {
 						</a>
 						<a id="depaul-brand"
 							href="https://www.cdm.depaul.edu/academics/pages/courseinfo.aspx?Subject=GAM&amp;CatalogNbr=240">
-							<img src="/assets/brands/depaul_brand.png" alt="DePaul">
+							<img src="/assets/brands/depaul_brand.png" alt="DePaul" target="_blank">
 						</a>
-						<a id="hunter-brand" href="https://github.com/hunter-teacher-cert/unit_plan-mka"
-							target="_blank">
+						<a id="hunter-brand" href="https://hunter.cuny.edu/" target="_blank">
 							<img src="/assets/brands/hunter_brand.svg" alt="HUNTER">
 						</a>
 						<a id="cmu-brand" href="https://www.cmu.edu" target="_blank">
@@ -872,7 +869,8 @@ function dropSprite() {
 		</div>
 
 		<div id="reel3" class="reel">
-			<video src="https://quinton-ashley.github.io/p5play-assets/reel3.mov" loop="" playsinline=""
+			<video src="https://quinton-ashley.github.io/p5play-assets/reel3.mov"
+				poster="https://quinton-ashley.github.io/p5play-assets/thumb3.jpg" loop="" playsinline=""
 				muted=""></video>
 			<div class="page">
 				<div>

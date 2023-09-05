@@ -118,7 +118,8 @@ let refs = {
 			'loadJSON',
 			'storeItem',
 			'getItem',
-			'clearStorage'
+			'clearStorage',
+			'fullscreen'
 		]
 	},
 	'q5.js 2D': {

@@ -46,6 +46,7 @@ video {
 	position: absolute;
 	left: 0;
 	z-index: -1;
+	image-rendering: pixelated;
 }
 
 #reel0 {
@@ -717,7 +718,8 @@ body.dark #patreon-brand img:nth-of-type(2) {
 
 	<div id="home">
 		<div id="reel0" class="reel">
-			<video src="https://quinton-ashley.github.io/p5play-assets/reel0.mov" autoplay="" loop="" playsinline=""
+			<video src="https://quinton-ashley.github.io/p5play-assets/reel0.mov"
+				poster="https://quinton-ashley.github.io/p5play-assets/thumb0.jpg" autoplay="" loop="" playsinline=""
 				muted=""></video>
 			<div id="page0" class="page">
 				<div id="bigBrand">
@@ -743,7 +745,8 @@ body.dark #patreon-brand img:nth-of-type(2) {
 		</div>
 
 		<div id="reel1" class="reel">
-			<video src="https://quinton-ashley.github.io/p5play-assets/reel1.mov" loop="" playsinline=""
+			<video src="https://quinton-ashley.github.io/p5play-assets/reel1.mov"
+				poster="https://quinton-ashley.github.io/p5play-assets/thumb1.jpg" loop="" playsinline=""
 				muted=""></video>
 			<div id="page1" class="page">
 				<div class="minis horiz">
@@ -792,22 +795,15 @@ function setup() {
   tumbler = new Sprite(x, y, la, 'kinematic');
   tumbler.rotationSpeed = 0.5;
   tumbler.color = '#ff0a52';
+	tumbler.strokeWeight = 8;
 
-  allSprites.remove(tumbler);
   dropSprite();
   strokeJoin(ROUND);
 }
 
 function draw() {
   clear();
-
-  strokeWeight(8);
-  tumbler.draw();
-
   if (mouse.presses()) dropSprite();
-
-  strokeWeight(1);
-  allSprites.draw();
 }
 
 function dropSprite() {
@@ -820,7 +816,8 @@ function dropSprite() {
 		</div>
 
 		<div id="reel2" class="reel">
-			<video src="https://quinton-ashley.github.io/p5play-assets/reel2.mov" loop="" playsinline=""
+			<video src="https://quinton-ashley.github.io/p5play-assets/reel2.mov"
+				poster="https://quinton-ashley.github.io/p5play-assets/thumb2.jpg" loop="" playsinline=""
 				muted=""></video>
 			<div class="page">
 				<div class="full">
@@ -873,7 +870,8 @@ function dropSprite() {
 		</div>
 
 		<div id="reel3" class="reel">
-			<video src="https://quinton-ashley.github.io/p5play-assets/reel3.mov" loop="" playsinline=""
+			<video src="https://quinton-ashley.github.io/p5play-assets/reel3.mov"
+				poster="https://quinton-ashley.github.io/p5play-assets/thumb3.jpg" loop="" playsinline=""
 				muted=""></video>
 			<div class="page">
 				<div>
