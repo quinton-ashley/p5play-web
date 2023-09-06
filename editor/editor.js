@@ -19,6 +19,15 @@ let ids = [
 	'webFolderSelector'
 ];
 
+let fileTypePriority = {
+	js: 1,
+	json: 2,
+	md: 3,
+	html: 4,
+	txt: 5,
+	css: 6
+};
+
 for (let id of ids) {
 	window[id] = document.getElementById(id);
 }
@@ -48,6 +57,17 @@ async function _openProject(files) {
 		return;
 	}
 	log(files);
+
+	// Sort files here based on fileTypePriority
+	files.sort((a, b) => {
+		let extA = a.path.split('.').pop();
+		let extB = b.path.split('.').pop();
+
+		let priorityA = fileTypePriority[extA] || 9999; // if not found, assign a high number
+		let priorityB = fileTypePriority[extB] || 9999; // if not found, assign a high number
+
+		return priorityA - priorityB;
+	});
 
 	document.getElementById('zoneBtns').style.display = 'flex';
 
