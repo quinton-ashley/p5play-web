@@ -219,8 +219,11 @@ async function loadCodeEditor(file, idx) {
 
 /* SCENE EDITOR */
 
+let q = new Q5('global');
+
 function setup() {
 	new Canvas(sceneZone.offsetWidth, sceneZone.offsetHeight);
+	world.autoStep = false;
 	// noStroke();
 
 	// // tray that will hold the user's sprites and group sprites
@@ -236,10 +239,53 @@ function setup() {
 	// }
 }
 
+function draw() {
+	background('green');
+}
+
 function loadScene() {
+	// let src = ace.edit('editor' + currentEditor).getValue();
+
+	// eval(src);
+
+	// log(setup);
+	// log(draw);
 	let src = ace.edit('editor' + currentEditor).getValue();
 
-	log(src);
+	eval(src);
+
+	if (typeof setup != 'function' && typeof draw != 'function') {
+		alert('Error: setup and/or draw are not defined or not functions.');
+		return;
+	}
+
+	log(setup);
+
+	let start = src.slice(0, src.indexOf('function'));
+
+	setup = setup.toString();
+	setup = setup.slice(setup.indexOf('{'));
+
+	let idx = setup.indexOf('new Canvas');
+	let lineStart;
+	// find new line before idx
+	for (let i = idx; i >= 0; i--) {
+		if (setup[i] == '\n') {
+			lineStart = i;
+			break;
+		}
+	}
+
+	let lineEnd = setup.indexOf('\n', idx) + 1;
+
+	// remove line with new Canvas
+	setup = setup.slice(0, lineStart) + setup.slice(lineEnd);
+	log(setup);
+	eval(setup);
+
+	log(p5play.groups);
+
+	q._drawFn = draw;
 }
 
 /* UTILS */
@@ -335,7 +381,7 @@ shareZoneBtn.addEventListener('click', () => {
 });
 
 sceneZoneBtn.addEventListener('click', () => {
-	activateZone('sceneZone');
+	// activateZone('sceneZone');
 	// TODO: make window bigger
 
 	loadScene();

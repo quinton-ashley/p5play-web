@@ -291,8 +291,7 @@ pre {
 	background-color: var(--dark);
 }
 
-#sceneEditor {
-	display: none;
+#sceneZone {
 	height: 100vh;
 	min-width: calc(100% - 505px);
 	max-width: 70%;
