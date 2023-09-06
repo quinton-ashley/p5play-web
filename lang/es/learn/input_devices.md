@@ -18,7 +18,7 @@ También almacenan el estado de todas sus entradas como propiedades. Por ejemplo
 
 `kb` rastrea casi todas las teclas del teclado, incluyendo 'enter', 'backspace' y 'control'.
 
-Ten en cuenta que la entrada de letras distingue entre mayúsculas y minúsculas. `kb.presses('q')` devuelve verdadero si el usuario presiona la tecla 'q'. Pero `kb.presses('Q')` solo devuelve verdadero si el usuario presiona la tecla 'q' mientras mantiene presionada la tecla 'shift'.
+Ten en cuenta que la entrada de letras no distingue entre mayúsculas y minúsculas. Para verificar si un usuario está presionando la tecla shift, utiliza: `kb.pressing('shift')`.
 
 Dado que las teclas WASD se utilizan comúnmente para controlar el movimiento del personaje del jugador, puedes usar los nombres de dirección 'arriba', 'abajo', 'izquierda' y 'derecha' para detectar las pulsaciones de WASD y las teclas de flecha.
 
@@ -27,7 +27,6 @@ Las teclas de flecha también se pueden detectar por separado utilizando 'arrowU
 En juegos locales de dos jugadores, es común que el segundo jugador utilice las teclas IJKL para el movimiento. Estas teclas se pueden referenciar utilizando 'up2', 'down2', 'left2' y 'right2'.
 
 [¿Usas un teclado no QWERTY?](https://github.com/quinton-ashley/p5play/wiki/FAQ#is-p5plays-kb-input-system-compatible-with-non-qwerty-keyboards)
-
 
 # 2-0
 
