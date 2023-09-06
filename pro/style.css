@@ -1,166 +1,230 @@
-div.signup-box {
-  border-radius: 10px;
+html {
+	--pink: #ff0a52;
+	--blue: #b7ebff;
+
+	--pink0: #ff0a52;
+	--pink1: #eb0043;
+	--pink2: #c30037;
+
+	--blue0: #b7ebff;
+	--blue1: #1779c4;
+	--blue2: #f0f8ff;
+
+	--primary: #000;
+	--secondary: #fff;
+	--bright: #000;
+	--dark: #d1cdc9;
+	--background: #eee;
+	--ask-account-check: #282828;
 }
 
+html:has(body.dark) {
+	--background: #242424;
+}
+
+body.dark {
+	--pink0: #ea104e;
+	--pink1: #ff0a52;
+
+	--blue0: #4eaee9;
+	--blue1: #4eaee9;
+	--blue2: #323232;
+
+	--primary: #c8c3bc;
+	--secondary: #131516;
+
+	--bright: #eee;
+	--dark: #66615a;
+	--background: #000;
+	--input-color: #282828;
+	--ask-account-check: #9b9b9b;
+}
+
+div.signup-box {
+	border-radius: 10px;
+}
 body {
-  background-color: #f0f8ff;
+	background-color: var(--blue2);
 }
 
 .right-side {
-  background-image: url("/pro/p5play_signup.png");
-  background-size: cover; /* <------ */
-  background-repeat: no-repeat;
-  background-position: center center; /* optional, center the image */
-  position: absolute;
-  top: 0;
-  left: 50%;
-  width: 50vw;
-  height: 100vh;
+	background-image: url('/pro/p5play_signup.png');
+	background-size: cover; /* <------ */
+	background-repeat: no-repeat;
+	background-position: center center; /* optional, center the image */
+	position: absolute;
+	top: 0;
+	left: 50%;
+	width: 50vw;
+	height: 100vh;
 }
-
 @font-face {
-  font-family: Mont;
-  src: url("/assets/fonts/mont/Mont-HeavyDEMO.otf");
+	font-family: Mont;
+	src: url('/assets/fonts/mont/Mont-HeavyDEMO.otf');
 }
+
 #brand {
-  font-family: Mont;
-  font-size: 60px;
-  font-weight: bold;
-  color: #000000;
-  text-align: center;
-  color: #ff0a52;
-  text-shadow: 4px 4px 0px #b7ebff;
-  transition: 100ms;
-  padding-top: 5.5px;
+	font-family: Mont;
+	font-size: 60px;
+	font-weight: bold;
+	text-align: center;
+	color: var(--pink0);
+	text-shadow: 4px 4px 0px var(--blue0);
+	transition: 100ms;
+	padding-top: 5.5px;
 }
-
 #brand:hover {
-  cursor: pointer;
-  text-decoration: underline;
-  color: transparent !important;
-  -webkit-text-stroke: 1.6px #ff0a52;
+	cursor: pointer;
+	text-decoration: underline;
+	color: transparent !important;
+	-webkit-text-stroke: 1.6px var(--pink0);
 }
-
 #brand-parent {
-  margin-bottom: 28px;
-  display: flex;
-  justify-content: center;
+	margin-bottom: 28px;
+	display: flex;
+	justify-content: center;
 }
-
 #logo-image {
-  width: 100px;
-  height: 100px;
-  margin-right: 10px;
-  animation: spin 10s linear infinite;
+	width: 100px;
+	height: 100px;
+	margin-right: 10px;
+	animation: spin 10s linear infinite;
 }
 
 div.modal-dialog {
-  position: relative;
-  width: 552px;
-  transition: 0.3s;
+	position: relative;
+	width: 552px;
+	transition: 0.3s;
 }
-
+.modal-content {
+	background-color: var(--secondary) !important;
+}
 @media (min-width: 726px) {
-  div.signup-box {
-    max-width: 1000px;
-    display: flex;
-    flex-direction: column;
-  }
-  div.row2 {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center; /* this will center children vertically */
-  }
-  div.row2 input,
-  div.row2 select {
-    width: 250px;
-  }
-  input,
-  select {
-    height: 50px !important;
-  }
-  .modal-dialog {
-    margin: 5vw !important;
-  }
+	div.signup-box {
+		max-width: 1000px;
+		display: flex;
+		flex-direction: column;
+	}
+	div.row2 {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center; /* this will center children vertically */
+	}
+	div.row2 select,
+	div.row2 input {
+		width: 250px;
+	}
+
+	input,
+	select {
+		height: 50px !important;
+	}
+	.modal-dialog {
+		margin: 5vw !important;
+	}
 }
 @media (max-width: 500px) {
-  .right-side {
-    left: 0%;
-    width: 100vw;
-  }
+	.right-side {
+		left: 0%;
+		width: 100vw;
+	}
 }
+.ask-account-check {
+	color: var(--ask-account-check);
+	font-size: 14px;
+	margin-top: 16px;
+}
+
+.signUpButton {
+	background-color: var(--pink0) !important;
+	border-radius: 10px !important;
+	border: none !important;
+	color: #fff !important;
+	font-size: 18px !important;
+	font-weight: bold !important;
+	padding: 10px 20px !important;
+	margin-top: 16px !important;
+	transition: 0.3s !important;
+	text-align: center;
+	padding: 0 !important;
+}
+
 input,
 select {
-  border-radius: 10px !important;
-  margin-bottom: 16px;
+	border-radius: 10px !important;
+	margin-bottom: 16px;
+	background-color: var(--input-color) !important;
+	color: var(--primary) !important;
+}
+input::placeholder,
+select::placeholder {
+	color: var(--primary) !important;
 }
 
 .label-customizable {
-  margin-top: 16px;
+	margin-top: 16px;
 }
-
 input:hover,
 select:hover {
-  cursor: text;
+	cursor: text;
 }
-
 input.not-valid,
 select.not-valid {
-  border: 1px solid #ff0a52 !important;
-  border-radius: 10px !important;
-  transition: border 0.3s;
-  box-sizing: border-box;
+	border: 1px solid var(--pink0) !important;
+	border-radius: 10px !important;
+	transition: border 0.3s;
+	box-sizing: border-box;
 }
 
 input.not-valid:hover,
 select.not-valid:hover {
-  border: 2px solid #eb0043 !important;
+	border: 2px solid var(--pink1) !important;
 }
 
 input.not-valid:focus,
 select.not-valid:focus {
-  border: 3px solid #c30037 !important;
-  outline: none;
+	border: 3px solid var(--pink2) !important;
+	outline: none;
 }
 
 input.is-valid,
 select.is-valid {
-  border: 1.5px solid rgb(0, 133, 0) !important;
-  border-radius: 10px !important;
-  transition: border 0.3s;
-  box-sizing: border-box;
+	border: 1.5px solid rgb(0, 133, 0) !important;
+	border-radius: 10px !important;
+	transition: border 0.3s;
+	box-sizing: border-box;
 }
 
 input.is-valid:hover,
 select.is-valid:hover {
-  border: 2px solid rgb(0, 124, 0) !important;
+	border: 2px solid rgb(0, 124, 0) !important;
 }
 
 input.is-valid:focus,
 select.is-valid:focus {
-  border: 3px solid rgb(0, 111, 0) !important;
-  outline: none;
+	border: 3px solid rgb(0, 111, 0) !important;
+	outline: none;
 }
 
 .container {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  width: 100vw !important;
-  height: 100vh !important;
-  padding-right: 0px !important;
-  padding-left: 0px !important;
-  margin-right: 0px !important;
-  margin-left: 0px !important;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	width: 100vw !important;
+	height: 100vh !important;
+	padding-right: 0px !important;
+	padding-left: 0px !important;
+	margin-right: 0px !important;
+	margin-left: 0px !important;
 }
 
 select#country {
-  cursor: pointer !important;
+	cursor: pointer !important;
 }
 
 @keyframes spin {
-  100% {
-    transform: rotate(360deg);
-  }
-}/*# sourceMappingURL=style.css.map */
+	100% {
+		transform: rotate(360deg);
+	}
+}

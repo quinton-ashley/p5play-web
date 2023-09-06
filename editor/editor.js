@@ -1,5 +1,5 @@
 const log = console.log;
-let desktop = typeof window.ipc !== 'undefined';
+let isApp = typeof window.ipc !== 'undefined';
 
 let ids = [
 	'codeZone',
@@ -28,8 +28,10 @@ let codeNavTabs = [];
 let ipAddress, homeDir, lang, proj, activeZone, activeZoneBtn;
 let serverRunning = false;
 
+let currentEditor;
+
 async function openProject() {
-	if (!desktop) return webFolderSelector.click();
+	if (!isApp) return webFolderSelector.click();
 
 	let { dir, files } = await ipc.invoke('selectFolder', lang.openProject);
 	if (!files) return alert(lang.error + ': ' + lang.err0);
@@ -52,11 +54,14 @@ async function _openProject(files) {
 	let hasJS = false;
 	for (let i = 0; i < files.length; i++) {
 		let file = files[i];
+		// extension
 		let ext = file.type.split('/')[1];
-		if (ext != 'javascript' && ext != 'json' && ext != 'html' && ext != 'markdown' && ext != 'text') continue;
+		if (ext != 'javascript' && ext != 'json' && ext != 'css' && ext != 'html' && ext != 'markdown' && ext != 'text') {
+			continue;
+		}
 
 		let path;
-		if (desktop) {
+		if (isApp) {
 			path = file.path;
 		} else {
 			path = file.webkitRelativePath;
@@ -66,12 +71,19 @@ async function _openProject(files) {
 		if (path.startsWith('node_modules')) continue;
 		if (path.includes('package-lock')) continue;
 
-		hasJS = true;
+		let idx = codeNav.children.length - 1;
+
+		if (ext == 'javascript') {
+			hasJS = true;
+			sketchFileIdx = idx;
+		}
+
 		let tab = document.createElement('tab');
-		tab.dataset.value = i;
+		tab.dataset.value = idx;
 		tab.innerText = path;
 		tab.addEventListener('click', () => {
-			let ed = codeZone.querySelector('#editor' + i);
+			currentEditor = idx;
+			let ed = codeZone.querySelector('#editor' + idx);
 			if (ed) {
 				if (!ed.classList.contains('active')) {
 					ed.select();
@@ -83,7 +95,7 @@ async function _openProject(files) {
 				return;
 			}
 			activateZone('codeZone');
-			loadCodeEditor(files[i], i);
+			loadCodeEditor(files[i], idx);
 		});
 		codeNav.appendChild(tab);
 	}
@@ -95,7 +107,7 @@ async function _openProject(files) {
 
 	codeNavTabs = document.querySelectorAll('#codeNav > tab');
 
-	if (!desktop) loadCodeEditor(files[0], 0);
+	if (!isApp) loadCodeEditor(files[0], 0);
 }
 
 function resetMain() {
@@ -147,19 +159,23 @@ let lastEdited = 0;
 
 function codeEdited() {
 	if (Date.now() - lastEdited < 1000) return;
-	ipc.invoke('writeFile', proj + '/' + codeNavTabs[0].innerText, ace.edit('editor0').getValue());
+	ipc.invoke(
+		'writeFile',
+		proj + '/' + codeNavTabs[currentEditor].innerText,
+		ace.edit('editor' + currentEditor).getValue()
+	);
 }
 
 function codeEditing() {
 	log('editing');
-	if (!desktop) return;
+	if (!isApp) return;
 	setTimeout(codeEdited, 1000);
 	lastEdited = Date.now();
 }
 
 async function loadCodeEditor(file, idx) {
 	let code;
-	if (desktop) {
+	if (isApp) {
 		code = await ipc.invoke('readFile', proj + '/' + file.path);
 	} else {
 		code = await file.text();
@@ -196,29 +212,35 @@ async function loadCodeEditor(file, idx) {
 		activateZone('codeZone');
 		ed.classList.add('active');
 		codeNavTabs[idx].classList.add('active');
-		if (desktop && document.body.offsetHeight < 200) expandMain();
+		if (isApp && document.body.offsetHeight < 200) expandMain();
 	};
 	ed.select();
 }
 
 /* SCENE EDITOR */
 
-// function setup() {
-// 	new Canvas(sceneZone.offsetWidth, sceneZone.offsetHeight);
-// 	noStroke();
+function setup() {
+	new Canvas(sceneZone.offsetWidth, sceneZone.offsetHeight);
+	// noStroke();
 
-// 	// tray that will hold the user's sprites and group sprites
-// 	fill('#303030');
-// 	rect(0, height - 160, width, 5);
+	// // tray that will hold the user's sprites and group sprites
+	// fill('#303030');
+	// rect(0, height - 160, width, 5);
 
-// 	fill('#131516');
-// 	for (let i = 0; i < 12; i++) {
-// 		let x = 10 + i * 156;
-// 		let y = height - 148;
+	// fill('#131516');
+	// for (let i = 0; i < 12; i++) {
+	// 	let x = 10 + i * 156;
+	// 	let y = height - 148;
 
-// 		rect(x, y, 140, 140, 5);
-// 	}
-// }
+	// 	rect(x, y, 140, 140, 5);
+	// }
+}
+
+function loadScene() {
+	let src = ace.edit('editor' + currentEditor).getValue();
+
+	log(src);
+}
 
 /* UTILS */
 
@@ -236,7 +258,7 @@ async function loadScripts(sources) {
 }
 
 async function start() {
-	if (!desktop && navigator.onLine) {
+	if (!isApp && navigator.onLine) {
 		await loadScripts([
 			'https://cdn.jsdelivr.net/npm/ace-builds@1.18.0/src-min-noconflict/ace.min.js',
 			'https://cdn.jsdelivr.net/npm/ace-builds@1.18.0/src-min-noconflict/ext-language_tools.js'
@@ -253,7 +275,7 @@ async function start() {
 		]);
 	}
 
-	if (desktop) {
+	if (isApp) {
 		ipAddress = await ipc.invoke('getIpAddress');
 		homeDir = await ipc.invoke('getHomeDir');
 		resetMain();
@@ -310,4 +332,11 @@ learnBtn.addEventListener('click', () => {
 
 shareZoneBtn.addEventListener('click', () => {
 	activateZone('shareZone');
+});
+
+sceneZoneBtn.addEventListener('click', () => {
+	activateZone('sceneZone');
+	// TODO: make window bigger
+
+	loadScene();
 });
