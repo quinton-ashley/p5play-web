@@ -1,6 +1,14 @@
 const log = console.log;
 let isApp = typeof window.ipc !== 'undefined';
 
+let codeChangeType = {
+	add: 1,
+	remove: -1,
+	update: -1
+};
+
+let previousSetup = '';
+
 let ids = [
 	'codeZone',
 	'sceneZone',
@@ -24,8 +32,8 @@ let fileTypePriority = {
 	json: 2,
 	md: 3,
 	html: 4,
-	txt: 5,
-	css: 6
+	css: 5,
+	txt: 6
 };
 
 for (let id of ids) {
@@ -184,6 +192,7 @@ function codeEdited() {
 		proj + '/' + codeNavTabs[currentEditor].innerText,
 		ace.edit('editor' + currentEditor).getValue()
 	);
+	updateScene();
 }
 
 function codeEditing() {
@@ -259,17 +268,13 @@ function setup() {
 	// }
 }
 
-function draw() {
-	background('green');
+function draw() {}
+
+function windowResized() {
+	canvas.resize(sceneZone.offsetWidth, sceneZone.offsetHeight);
 }
 
-function loadScene() {
-	// let src = ace.edit('editor' + currentEditor).getValue();
-
-	// eval(src);
-
-	// log(setup);
-	// log(draw);
+function getSceneFunctions() {
 	let src = ace.edit('editor' + currentEditor).getValue();
 
 	eval(src);
@@ -279,9 +284,9 @@ function loadScene() {
 		return;
 	}
 
-	log(setup);
-
 	let start = src.slice(0, src.indexOf('function'));
+
+	eval(start);
 
 	setup = setup.toString();
 	setup = setup.slice(setup.indexOf('{'));
@@ -301,11 +306,38 @@ function loadScene() {
 	// remove line with new Canvas
 	setup = setup.slice(0, lineStart) + setup.slice(lineEnd);
 	log(setup);
+
+	return { setup, draw };
+}
+
+function loadScene() {
+	let { setup, draw } = getSceneFunctions();
+
 	eval(setup);
 
-	log(p5play.groups);
+	draw = new Function(draw.toString());
+	q._drawFn = () => draw();
 
-	q._drawFn = draw;
+	previousSetup = setup;
+}
+
+function updateScene() {
+	let { setup, draw } = getSceneFunctions();
+
+	// reset scene
+	allSprites.removeAll();
+	p5play.sprites = {};
+	p5play.groups = {};
+	p5play.spritesCreated = 0;
+	p5play.groupsCreated = 0;
+	p5play.spritesDrawn = 0;
+
+	eval(setup);
+
+	draw = new Function(draw.toString());
+	q._drawFn = () => draw();
+
+	previousSetup = setup;
 }
 
 /* UTILS */
@@ -401,8 +433,5 @@ shareZoneBtn.addEventListener('click', () => {
 });
 
 sceneZoneBtn.addEventListener('click', () => {
-	// activateZone('sceneZone');
-	// TODO: make window bigger
-
 	loadScene();
 });
