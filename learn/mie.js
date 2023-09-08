@@ -228,16 +228,11 @@ mie.load = () => {
 
 mie.lang.p5 = {};
 
-mie.lang.p5.completions = [
-	{ value: 'new Sprite', score: 2, meta: '(ani, x, y, w, h, collider)' },
-	{ value: 'Sprite', score: 1, meta: '(ani, x, y, w, h, collider)' },
-	{ value: 'new Group', score: 1, meta: '()' },
-	{ value: 'Group', score: 1, meta: '()' },
-	{ value: 'createCanvas', score: 1, meta: '(w, h)' },
-	{ value: 'ani', score: 1, meta: 'SpriteAnimation' },
-	{ value: 'createSprite', score: 1, meta: '(ani, x, y, w, h, collider)' },
-	{ value: 'createGroup', score: 1, meta: '()' }
-];
+(async () => {
+	let data = await fetch('ace/completions.json');
+	let json = await data.json();
+	mie.lang.p5.completions = json;
+})();
 
 mie.lang.p5.functionNames = [
 	'preload',

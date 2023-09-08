@@ -1,7 +1,12 @@
 const log = console.log;
 let isApp = typeof window.ipc !== 'undefined';
 
+let previousSetup = '';
+
 let ids = [
+	'slider',
+	'sidebar',
+
 	'codeZone',
 	'sceneZone',
 	'mobileZone',
@@ -18,6 +23,15 @@ let ids = [
 	'qrDiv',
 	'webFolderSelector'
 ];
+
+let fileTypePriority = {
+	js: 1,
+	json: 2,
+	md: 3,
+	html: 4,
+	css: 5,
+	txt: 6
+};
 
 for (let id of ids) {
 	window[id] = document.getElementById(id);
@@ -48,6 +62,19 @@ async function _openProject(files) {
 		return;
 	}
 	log(files);
+
+	files = [...files];
+
+	// Sort files here based on fileTypePriority
+	files.sort((a, b) => {
+		let extA = a.name.split('.').pop();
+		let extB = b.name.split('.').pop();
+
+		let priorityA = fileTypePriority[extA] || 9999; // if not found, assign a high number
+		let priorityB = fileTypePriority[extB] || 9999; // if not found, assign a high number
+
+		return priorityA - priorityB;
+	});
 
 	document.getElementById('zoneBtns').style.display = 'flex';
 
@@ -107,7 +134,12 @@ async function _openProject(files) {
 
 	codeNavTabs = document.querySelectorAll('#codeNav > tab');
 
-	if (!isApp) loadCodeEditor(files[0], 0);
+	if (!isApp) {
+		currentEditor = 0;
+		loadCodeEditor(files[0], 0);
+	}
+
+	topNav.classList.add('loaded');
 }
 
 function resetMain() {
@@ -164,6 +196,7 @@ function codeEdited() {
 		proj + '/' + codeNavTabs[currentEditor].innerText,
 		ace.edit('editor' + currentEditor).getValue()
 	);
+	updateScene();
 }
 
 function codeEditing() {
@@ -200,13 +233,16 @@ async function loadCodeEditor(file, idx) {
 	editor.setOptions({
 		mode: 'ace/mode/' + mode,
 		fontSize: '14px',
-		showFoldWidgets: false,
-		showGutter: false,
+		// showFoldWidgets: false,
+		// showGutter: false,
 		tabSize: 2,
 		wrap: true
 	});
 	editor.setTheme('ace/theme/dracula');
 	editor.getSession().on('change', codeEditing);
+
+	let data = await fetch('../learn/ace/completions.json');
+	let completions = await data.json();
 
 	ed.select = () => {
 		activateZone('codeZone');
@@ -219,8 +255,11 @@ async function loadCodeEditor(file, idx) {
 
 /* SCENE EDITOR */
 
+let q = new Q5('global');
+
 function setup() {
 	new Canvas(sceneZone.offsetWidth, sceneZone.offsetHeight);
+	world.autoStep = false;
 	// noStroke();
 
 	// // tray that will hold the user's sprites and group sprites
@@ -236,10 +275,80 @@ function setup() {
 	// }
 }
 
-function loadScene() {
+function draw() {}
+
+function windowResized() {
+	canvas.resize(sceneZone.offsetWidth, sceneZone.offsetHeight);
+}
+
+// if dom window is resized
+window.addEventListener('resize', () => {
+	sceneZone.style.width = window.innerWidth - sidebar.offsetWidth - 5 + 'px';
+});
+
+function getSceneFunctions() {
 	let src = ace.edit('editor' + currentEditor).getValue();
 
-	log(src);
+	eval(src);
+
+	if (typeof setup != 'function' && typeof draw != 'function') {
+		alert('Error: setup and/or draw are not defined or not functions.');
+		return;
+	}
+
+	let start = src.slice(0, src.indexOf('function'));
+
+	eval(start);
+
+	setup = setup.toString();
+	setup = setup.slice(setup.indexOf('{'));
+	let idx = setup.indexOf('new Canvas');
+	if (idx === -1) idx = setup.indexOf('createCanvas');
+	if (idx !== -1) {
+		// Make sure new Canvas exists before trying to remove it
+		let lineStart;
+		// find new line before idx
+		for (let i = idx; i >= 0; i--) {
+			if (setup[i] == '\n') {
+				lineStart = i;
+				break;
+			}
+		}
+
+		let lineEnd = setup.indexOf('\n', idx) + 1;
+
+		// remove line with new Canvas
+		setup = setup.slice(0, lineStart) + setup.slice(lineEnd);
+	}
+	log(setup);
+
+	return { setup, draw };
+}
+
+function loadScene() {
+	runCode();
+}
+
+function updateScene() {
+	// reset scene
+	allSprites.removeAll();
+	p5play.sprites = {};
+	p5play.groups = {};
+	p5play.spritesCreated = 0;
+	p5play.groupsCreated = 0;
+	p5play.spritesDrawn = 0;
+
+	runCode();
+}
+
+function runCode() {
+	let { setup, draw } = getSceneFunctions();
+	eval(setup);
+
+	draw = new Function(draw.toString());
+	q._drawFn = () => draw();
+
+	previousSetup = setup;
 }
 
 /* UTILS */
@@ -316,6 +425,30 @@ function activateZone(zone) {
 	window[zone].classList.add('active');
 }
 
+{
+	let isDragging = false;
+	let offsetX, offsetY;
+
+	slider.addEventListener('mousedown', (e) => {
+		isDragging = true;
+
+		// Calculate the offset between the mouse pointer and the element's top-left corner
+		offsetX = e.clientX - slider.getBoundingClientRect().left;
+	});
+
+	document.addEventListener('mousemove', (e) => {
+		if (!isDragging) return;
+
+		// update width of sidebar and sceneZone
+		sidebar.style.width = e.clientX - offsetX - 5 + 'px';
+		sceneZone.style.width = window.innerWidth - (e.clientX - offsetX) + 'px';
+	});
+
+	document.addEventListener('mouseup', () => {
+		isDragging = false;
+	});
+}
+
 fullscreenBtn.addEventListener('click', () => {
 	if (!serverRunning) startServer();
 	ipc.invoke('createWindow', 'http://localhost:7529');
@@ -335,8 +468,5 @@ shareZoneBtn.addEventListener('click', () => {
 });
 
 sceneZoneBtn.addEventListener('click', () => {
-	activateZone('sceneZone');
-	// TODO: make window bigger
-
 	loadScene();
 });
