@@ -61,7 +61,9 @@ Try driving the car in this example! Can you make it to the end of the road? Cus
 
 ## HingeJoint
 
-A `HingeJoint` enables one or two sprites to rotate around the same attachment point.
+A `HingeJoint` enables one or two sprites to rotate around the same point.
+
+To change the point of rotation edit the joint's `offsetA` or `offsetB` vector.
 
 Hinge joints with a small `maxPower` and default `speed` of zero apply braking force to resist being moved.
 

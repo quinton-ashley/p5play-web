@@ -4,6 +4,10 @@
  * @author quinton-ashley and LingDong-
  * @license GPL-3.0-only
  */
+
+/**
+ * @type {Q5}
+ */
 function Q5(scope, parent) {
 	if (scope == 'auto') {
 		if (typeof window.setup == 'undefined') return;
@@ -467,6 +471,7 @@ function Q5(scope, parent) {
 		skyblue: [135, 206, 235],
 		tan: [210, 180, 140],
 		turquoise: [64, 224, 208],
+		transparent: [0, 0, 0, 0],
 		white: [255, 255, 255],
 		violet: [238, 130, 238],
 		yellow: [255, 255, 0]

@@ -18,7 +18,7 @@ Input devices also store the state of all their inputs as properties. For exampl
 
 `kb` tracks nearly every key on the keyboard, including 'enter', 'backspace', and 'control'.
 
-Note that letter input is case sensitive. `kb.presses('q')` returns true if the user presses the 'q' key. But `kb.presses('Q')` only returns true if the user presses the 'q' key while pressing 'shift'.
+Note that letter input is not case sensitive. To check if a user is pressing shift use: `kb.pressing('shift')`.
 
 Since the WASD keys are commonly used to control the player character's movement, you can use the direction names 'up', 'down', 'left', and 'right' to detect WASD and arrow key presses.
 

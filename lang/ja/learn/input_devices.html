@@ -84,15 +84,15 @@ if (kb.released(' ')) {
 			<md id="md1-0">
 				<h2 id="キーボード">キーボード</h2>
 				<p><code>kb</code> は、'enter'、'backspace'、'control' を含む、キーボードのほぼすべてのキーを追跡します。</p>
-				<p>文字入力は大文字と小文字を区別することに注意してください。<code>kb.presses('q')</code> は、ユーザーが 'q' キーを押した場合に true
-					を返します。しかし、<code>kb.presses('Q')</code> は、ユーザーが 'shift' キーを押しながら 'q' キーを押した場合にのみ true を返します。</p>
+				<p>大文字と小文字の文字入力は区別しません。ユーザーがシフトキーを押しているかどうかを確認するには、<code>kb.pressing('shift')</code> を使用してください。</p>
 				<p>WASD キーはプレイヤーキャラクターの移動を制御するためによく使用されるため、WASD および矢印キーの押下を検出するために 'up'、'down'、'left'、'right'
 					の方向名を使用できます。</p>
 				<p>矢印キーは、'arrowUp'、'arrowDown'、'arrowLeft'、'arrowRight' を使用して個別に検出することもできます。</p>
-				<p>ローカルの二人用ゲームでは、第二のプレイヤーが移動にIJKLキーを使用することが一般的です。これらのキーは 'up2'、'down2'、'left2'、'right2' を使用して参照できます。</p>
-				<p><a
-						href="https://github.com/quinton-ashley/p5play/wiki/FAQ#is-p5plays-kb-input-system-compatible-with-non-qwerty-keyboards">QWERTY以外のキーボードを使用していますか？</a>
+				<p>ローカルの二人用ゲームでは、第二のプレイヤーが移動に IJKL キーを使用することが一般的です。これらのキーは 'up2'、'down2'、'left2'、'right2' を使用して参照できます。
 				</p>
+				<p><a
+						href="https://github.com/quinton-ashley/p5play/wiki/FAQ#is-p5plays-kb-input-system-compatible-with-non-qwerty-keyboards">QWERTY
+						以外のキーボードを使用していますか？</a></p>
 			</md>
 			<script type="mie/p5" id="keyboard-movement">
 let player;

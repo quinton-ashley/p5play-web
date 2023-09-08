@@ -86,10 +86,8 @@ if (kb.released(' ')) {
 				<h2 id="teclado">Teclado</h2>
 				<p><code>kb</code> rastrea casi todas las teclas del teclado, incluyendo 'enter', 'backspace' y
 					'control'.</p>
-				<p>Ten en cuenta que la entrada de letras distingue entre mayúsculas y minúsculas.
-					<code>kb.presses('q')</code> devuelve verdadero si el usuario presiona la tecla 'q'. Pero
-					<code>kb.presses('Q')</code> solo devuelve verdadero si el usuario presiona la tecla 'q' mientras
-					mantiene presionada la tecla 'shift'.</p>
+				<p>Ten en cuenta que la entrada de letras no distingue entre mayúsculas y minúsculas. Para verificar si
+					un usuario está presionando la tecla shift, utiliza: <code>kb.pressing('shift')</code>.</p>
 				<p>Dado que las teclas WASD se utilizan comúnmente para controlar el movimiento del personaje del
 					jugador, puedes usar los nombres de dirección 'arriba', 'abajo', 'izquierda' y 'derecha' para
 					detectar las pulsaciones de WASD y las teclas de flecha.</p>

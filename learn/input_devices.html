@@ -86,9 +86,8 @@ if (kb.released(' ')) {
 				<h2 id="keyboard">Keyboard</h2>
 				<p><code>kb</code> tracks nearly every key on the keyboard, including 'enter', 'backspace', and
 					'control'.</p>
-				<p>Note that letter input is case sensitive. <code>kb.presses('q')</code> returns true if the user
-					presses the 'q' key. But <code>kb.presses('Q')</code> only returns true if the user presses the 'q'
-					key while pressing 'shift'.</p>
+				<p>Note that letter input is not case sensitive. To check if a user is pressing shift use:
+					<code>kb.pressing('shift')</code>.</p>
 				<p>Since the WASD keys are commonly used to control the player character's movement, you can use the
 					direction names 'up', 'down', 'left', and 'right' to detect WASD and arrow key presses.</p>
 				<p>Arrow keys can also be detected separately using 'arrowUp', 'arrowDown', 'arrowLeft', and

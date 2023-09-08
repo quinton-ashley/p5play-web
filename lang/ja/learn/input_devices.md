@@ -18,16 +18,15 @@ p5play で利用可能な入力デバイスは次のとおりです:
 
 `kb` は、'enter'、'backspace'、'control' を含む、キーボードのほぼすべてのキーを追跡します。
 
-文字入力は大文字と小文字を区別することに注意してください。`kb.presses('q')` は、ユーザーが 'q' キーを押した場合に true を返します。しかし、`kb.presses('Q')` は、ユーザーが 'shift' キーを押しながら 'q' キーを押した場合にのみ true を返します。
+大文字と小文字の文字入力は区別しません。ユーザーがシフトキーを押しているかどうかを確認するには、`kb.pressing('shift')` を使用してください。
 
 WASD キーはプレイヤーキャラクターの移動を制御するためによく使用されるため、WASD および矢印キーの押下を検出するために 'up'、'down'、'left'、'right' の方向名を使用できます。
 
 矢印キーは、'arrowUp'、'arrowDown'、'arrowLeft'、'arrowRight' を使用して個別に検出することもできます。
 
-ローカルの二人用ゲームでは、第二のプレイヤーが移動にIJKLキーを使用することが一般的です。これらのキーは 'up2'、'down2'、'left2'、'right2' を使用して参照できます。
+ローカルの二人用ゲームでは、第二のプレイヤーが移動に IJKL キーを使用することが一般的です。これらのキーは 'up2'、'down2'、'left2'、'right2' を使用して参照できます。
 
-[QWERTY以外のキーボードを使用していますか？](https://github.com/quinton-ashley/p5play/wiki/FAQ#is-p5plays-kb-input-system-compatible-with-non-qwerty-keyboards)
-
+[QWERTY 以外のキーボードを使用していますか？](https://github.com/quinton-ashley/p5play/wiki/FAQ#is-p5plays-kb-input-system-compatible-with-non-qwerty-keyboards)
 
 # 2-0
 
