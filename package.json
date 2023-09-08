@@ -38,7 +38,7 @@
 		"js-beautify": "^1.14.9",
 		"mime-types": "^2.1.35",
 		"mousetrap": "^1.6.5",
-		"p5": "^1.6.0"
+		"p5": "^1.7.0"
 	},
 	"devDependencies": {
 		"@electron-forge/cli": "^6.1.1",
@@ -73,5 +73,5 @@
 		"make": "electron-forge make",
 		"publish": "electron-forge publish"
 	},
-	"version": "1.4.9"
+	"version": "1.4.10"
 }

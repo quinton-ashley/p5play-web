@@ -107,7 +107,7 @@ features.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line5333">line 5333</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line5353">line 5353</a>
     </li></ul></dd>
     
 
@@ -212,7 +212,7 @@ shouldn't disable for every sprite in the world.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line5719">line 5719</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line5741">line 5741</a>
     </li></ul></dd>
     
 
@@ -370,7 +370,7 @@ shouldn't disable for every sprite in the world.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line5407">line 5407</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line5427">line 5427</a>
     </li></ul></dd>
     
 
@@ -454,7 +454,7 @@ tiles to be aligned with the top left corner of the canvas.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line5467">line 5467</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line5487">line 5487</a>
     </li></ul></dd>
     
 
@@ -537,7 +537,7 @@ but don't have it be too low, or else objects will never sleep.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line5425">line 5425</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line5445">line 5445</a>
     </li></ul></dd>
     
 
@@ -624,7 +624,7 @@ Optionally you can specify a group to search.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line5560">line 5560</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line5582">line 5582</a>
     </li></ul></dd>
     
 
@@ -821,7 +821,7 @@ Optionally you can specify a group to search.
 
     
 
-    <h4 class="name" id="getSpritesAt"><span class="type-signature"></span>getSpritesAt<span class="signature">(x, y, group<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Array}</span></h4>
+    <h4 class="name" id="getSpritesAt"><span class="type-signature"></span>getSpritesAt<span class="signature">(x, y, group<span class="signature-attributes">opt</span>, cameraActiveWhenDrawn<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Array}</span></h4>
 
     
 
@@ -866,7 +866,7 @@ Optionally you can specify a group to search.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line5519">line 5519</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line5541">line 5541</a>
     </li></ul></dd>
     
 
@@ -1013,6 +1013,43 @@ Optionally you can specify a group to search.
         </tr>
 
     
+
+        <tr>
+            
+                <td class="name"><code>cameraActiveWhenDrawn</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><code>Boolean</code></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">
+                if true, only sprites that
+were drawn when the camera was active will be returned
+                
+            </td>
+        </tr>
+
+    
     </tbody>
 </table>
 
@@ -1108,7 +1145,7 @@ Used when the canvas is created or resized.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line5441">line 5441</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line5461">line 5461</a>
     </li></ul></dd>
     
 
@@ -1273,7 +1310,7 @@ loop, unless it was already called inside the draw loop.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line5495">line 5495</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line5515">line 5515</a>
     </li></ul></dd>
     
 
@@ -1429,7 +1466,7 @@ loop, unless it was already called inside the draw loop.
 <br class="clear">
 
 <footer>
-    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Wed Sep 06 2023 09:46:42 GMT-0500 (Colombia Standard Time) using the Minami theme.
+    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Fri Sep 08 2023 00:57:53 GMT-0500 (Colombia Standard Time) using the Minami theme.
 </footer>
 
 <script>prettyPrint();</script>
