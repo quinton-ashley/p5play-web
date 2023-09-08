@@ -10,29 +10,33 @@
 </head>
 
 <body>
-	<div id="main">
+	<div id="sidebar">
 		<nav id="topNav">
 			<a href="https://p5play.org/learn" class="externalLink">
 				<img id="logo" src="../assets/p5play_logo.svg" slot="icon">
 			</a>
 			<div id="zoneBtns">
-				<btn id="sceneZoneBtn" title="scene editor">
+				<btn id="playBtn" title="Play/Stop">
+					<icon class="play"></icon>
+				</btn>
+
+				<btn id="sceneZoneBtn" title="Scene Editor">
 					<icon class="hammer"></icon>
 				</btn>
 
-				<btn id="fullscreenBtn" title="fullscreen">
+				<btn id="fullscreenBtn" title="Fullscreen">
 					<icon class="display"></icon>
 				</btn>
 
-				<btn id="mobileZoneBtn" title="mobile">
+				<btn id="mobileZoneBtn" title="Mobile">
 					<icon class="mobile-screen-button"></icon>
 				</btn>
 
-				<btn id="learnBtn" title="learn">
+				<btn id="learnBtn" title="Learn">
 					<icon class="book-open"></icon>
 				</btn>
 
-				<btn id="shareZoneBtn" title="share">
+				<btn id="shareZoneBtn" title="Share">
 					<icon class="share-from-square"></icon>
 				</btn>
 			</div>
@@ -68,7 +72,6 @@
 <script src="../v3/q5.min.js"></script>
 <script src="../v3/planck.min.js"></script>
 <script src="../v3/p5play.js"></script>
-<script src="../node_modules/diff/dist/diff.min.js"></script>
 <script src="editor.js"></script>
 
 </html>

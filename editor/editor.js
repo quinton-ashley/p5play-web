@@ -1,15 +1,12 @@
 const log = console.log;
 let isApp = typeof window.ipc !== 'undefined';
 
-let codeChangeType = {
-	add: 1,
-	remove: -1,
-	update: -1
-};
-
 let previousSetup = '';
 
 let ids = [
+	'slider',
+	'sidebar',
+
 	'codeZone',
 	'sceneZone',
 	'mobileZone',
@@ -66,10 +63,12 @@ async function _openProject(files) {
 	}
 	log(files);
 
+	files = [...files];
+
 	// Sort files here based on fileTypePriority
 	files.sort((a, b) => {
-		let extA = a.path.split('.').pop();
-		let extB = b.path.split('.').pop();
+		let extA = a.name.split('.').pop();
+		let extB = b.name.split('.').pop();
 
 		let priorityA = fileTypePriority[extA] || 9999; // if not found, assign a high number
 		let priorityB = fileTypePriority[extB] || 9999; // if not found, assign a high number
@@ -135,7 +134,12 @@ async function _openProject(files) {
 
 	codeNavTabs = document.querySelectorAll('#codeNav > tab');
 
-	if (!isApp) loadCodeEditor(files[0], 0);
+	if (!isApp) {
+		currentEditor = 0;
+		loadCodeEditor(files[0], 0);
+	}
+
+	topNav.classList.add('loaded');
 }
 
 function resetMain() {
@@ -229,13 +233,16 @@ async function loadCodeEditor(file, idx) {
 	editor.setOptions({
 		mode: 'ace/mode/' + mode,
 		fontSize: '14px',
-		showFoldWidgets: false,
-		showGutter: false,
+		// showFoldWidgets: false,
+		// showGutter: false,
 		tabSize: 2,
 		wrap: true
 	});
 	editor.setTheme('ace/theme/dracula');
 	editor.getSession().on('change', codeEditing);
+
+	let data = await fetch('../learn/ace/completions.json');
+	let completions = await data.json();
 
 	ed.select = () => {
 		activateZone('codeZone');
@@ -274,6 +281,11 @@ function windowResized() {
 	canvas.resize(sceneZone.offsetWidth, sceneZone.offsetHeight);
 }
 
+// if dom window is resized
+window.addEventListener('resize', () => {
+	sceneZone.style.width = window.innerWidth - sidebar.offsetWidth - 5 + 'px';
+});
+
 function getSceneFunctions() {
 	let src = ace.edit('editor' + currentEditor).getValue();
 
@@ -290,40 +302,34 @@ function getSceneFunctions() {
 
 	setup = setup.toString();
 	setup = setup.slice(setup.indexOf('{'));
-
 	let idx = setup.indexOf('new Canvas');
-	let lineStart;
-	// find new line before idx
-	for (let i = idx; i >= 0; i--) {
-		if (setup[i] == '\n') {
-			lineStart = i;
-			break;
+	if (idx === -1) idx = setup.indexOf('createCanvas');
+	if (idx !== -1) {
+		// Make sure new Canvas exists before trying to remove it
+		let lineStart;
+		// find new line before idx
+		for (let i = idx; i >= 0; i--) {
+			if (setup[i] == '\n') {
+				lineStart = i;
+				break;
+			}
 		}
+
+		let lineEnd = setup.indexOf('\n', idx) + 1;
+
+		// remove line with new Canvas
+		setup = setup.slice(0, lineStart) + setup.slice(lineEnd);
 	}
-
-	let lineEnd = setup.indexOf('\n', idx) + 1;
-
-	// remove line with new Canvas
-	setup = setup.slice(0, lineStart) + setup.slice(lineEnd);
 	log(setup);
 
 	return { setup, draw };
 }
 
 function loadScene() {
-	let { setup, draw } = getSceneFunctions();
-
-	eval(setup);
-
-	draw = new Function(draw.toString());
-	q._drawFn = () => draw();
-
-	previousSetup = setup;
+	runCode();
 }
 
 function updateScene() {
-	let { setup, draw } = getSceneFunctions();
-
 	// reset scene
 	allSprites.removeAll();
 	p5play.sprites = {};
@@ -332,6 +338,11 @@ function updateScene() {
 	p5play.groupsCreated = 0;
 	p5play.spritesDrawn = 0;
 
+	runCode();
+}
+
+function runCode() {
+	let { setup, draw } = getSceneFunctions();
 	eval(setup);
 
 	draw = new Function(draw.toString());
@@ -412,6 +423,30 @@ function activateZone(zone) {
 	activeZoneBtn = window[zone + 'Btn'];
 	window[zone + 'Btn']?.classList.add('active');
 	window[zone].classList.add('active');
+}
+
+{
+	let isDragging = false;
+	let offsetX, offsetY;
+
+	slider.addEventListener('mousedown', (e) => {
+		isDragging = true;
+
+		// Calculate the offset between the mouse pointer and the element's top-left corner
+		offsetX = e.clientX - slider.getBoundingClientRect().left;
+	});
+
+	document.addEventListener('mousemove', (e) => {
+		if (!isDragging) return;
+
+		// update width of sidebar and sceneZone
+		sidebar.style.width = e.clientX - offsetX - 5 + 'px';
+		sceneZone.style.width = window.innerWidth - (e.clientX - offsetX) + 'px';
+	});
+
+	document.addEventListener('mouseup', () => {
+		isDragging = false;
+	});
 }
 
 fullscreenBtn.addEventListener('click', () => {

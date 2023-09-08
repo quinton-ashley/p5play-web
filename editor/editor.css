@@ -59,6 +59,10 @@ nav {
 	justify-content: center;
 }
 
+#topNav.loaded {
+	justify-content: flex-start;
+}
+
 btn {
 	display: flex;
 	justify-content: center;
@@ -115,6 +119,18 @@ icon {
 
 .hammer {
 	-webkit-mask: url('icons/hammer.svg') no-repeat;
+}
+#sceneZoneBtn {
+	background-color: var(--blue1);
+}
+
+.play {
+	-webkit-mask: url('icons/play.svg') no-repeat;
+	margin-left: 6px;
+	width: 26px;
+}
+#playBtn {
+	background-color: var(--pink);
 }
 
 .folder-open {
@@ -192,9 +208,8 @@ btn.na {
 	display: block;
 }
 
-#main {
-	width: 30%;
-	min-width: 500px;
+#sidebar {
+	width: 540px;
 }
 
 #codeNav {
@@ -219,7 +234,7 @@ pre {
 	margin: 0;
 }
 
-#main .zone.active,
+#sidebar .zone.active,
 .ace_editor.active {
 	display: flex;
 	justify-content: center;
@@ -293,6 +308,5 @@ pre {
 
 #sceneZone {
 	height: 100vh;
-	min-width: calc(100% - 505px);
-	max-width: 70%;
+	width: calc(100% - 545px);
 }
