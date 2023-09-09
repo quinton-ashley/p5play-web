@@ -1701,7 +1701,9 @@ p5.prototype.registerMethod('init', function p5playInit() {
 		set mass(val) {
 			if (!this.body) return;
 			if (this.watch) this.mod[21] = true;
-			this.body.m_mass = val > 0 ? val : 0.00000001;
+			let t = this.massData;
+			t.mass = val > 0 ? val : 0.00000001;
+			this.body.setMassData(t);
 			delete this._massUndef;
 		}
 
