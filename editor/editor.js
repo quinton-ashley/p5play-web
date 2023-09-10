@@ -3,6 +3,8 @@ let isApp = typeof window.ipc !== 'undefined';
 
 let previousSetup = '';
 
+let sceneLoaded = false;
+
 let ids = [
 	'slider',
 	'sidebar',
@@ -12,6 +14,7 @@ let ids = [
 	'mobileZone',
 	'shareZone',
 
+	'playBtn',
 	'sceneZoneBtn',
 	'fullscreenBtn',
 	'mobileZoneBtn',
@@ -207,14 +210,14 @@ function codeEditing() {
 }
 
 async function loadCodeEditor(file, idx) {
-	let code;
+	let code = null;
 	if (isApp) {
 		code = await ipc.invoke('readFile', proj + '/' + file.path);
 	} else {
 		code = await file.text();
 	}
 
-	if (!code) {
+	if (code === null) {
 		alert('ERROR: There was an error reading the file.');
 		return;
 	}
@@ -322,11 +325,17 @@ function getSceneFunctions() {
 	}
 	log(setup);
 
+	draw = draw.toString();
+	draw = draw.slice(draw.indexOf('{'));
+	draw = new Function(draw);
+
 	return { setup, draw };
 }
 
 function loadScene() {
+	sceneLoaded = false;
 	runCode();
+	sceneLoaded = true;
 }
 
 function updateScene() {
@@ -343,10 +352,11 @@ function updateScene() {
 
 function runCode() {
 	let { setup, draw } = getSceneFunctions();
+	window.setup = setup;
 	eval(setup);
 
-	draw = new Function(draw.toString());
-	q._drawFn = () => draw();
+	window.draw = draw;
+	q._drawFn = () => window.draw();
 
 	previousSetup = setup;
 }
@@ -449,6 +459,16 @@ function activateZone(zone) {
 	});
 }
 
+playBtn.addEventListener('click', () => {
+	if (!sceneLoaded) loadScene();
+	world.autoStep = !world.autoStep;
+	if (world.autoStep) {
+		playBtn.children[0].className = 'stop';
+	} else {
+		playBtn.children[0].className = 'play';
+	}
+});
+
 fullscreenBtn.addEventListener('click', () => {
 	if (!serverRunning) startServer();
 	ipc.invoke('createWindow', 'http://localhost:7529');
@@ -468,5 +488,8 @@ shareZoneBtn.addEventListener('click', () => {
 });
 
 sceneZoneBtn.addEventListener('click', () => {
-	loadScene();
+	world.autoStep = false;
+	playBtn.children[0].className = 'play';
+	if (!sceneLoaded) loadScene();
+	else updateScene();
 });

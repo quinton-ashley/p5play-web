@@ -132,6 +132,11 @@ icon {
 #playBtn {
 	background-color: var(--pink);
 }
+.stop {
+	-webkit-mask: url('icons/stop.svg') no-repeat;
+	margin-left: 4px;
+	width: 28px;
+}
 
 .folder-open {
 	-webkit-mask: url('icons/folder-open.svg') no-repeat;

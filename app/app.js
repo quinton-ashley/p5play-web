@@ -134,21 +134,19 @@ function createWindow(event, url) {
 // ]);
 
 app.on('ready', () => {
-	// protocol.handle('file', (req) => {
-	// 	const url = req.url;
-	// 	log(url);
+	protocol.handle('file', (req) => {
+		let f = req.url.slice(8, req.url.indexOf('/', 8));
 
-	// 	// convert the url to use the app directory as the root
-	// 	// file path instead of the system root file path
+		let folders = ['about', 'assets', 'docs', 'lang', 'learn', 'pro', 'v3'];
+		let url = req.url;
+		if (folders.includes(f)) {
+			let parentDir = __dirname.slice(0, __dirname.lastIndexOf('/'));
+			url = 'file://' + parentDir + req.url.slice(7);
+			req = new Request(url);
+		}
 
-	// 	return net.fetch(url);
-	// });
-
-	// const _fetch = net.fetch;
-	// net.fetch = (url, options) => {
-	// 	log(url);
-	// 	return _fetch(url, options);
-	// };
+		return net.fetch(req, { bypassCustomProtocolHandlers: true });
+	});
 
 	const ipAddress = getIpAddress();
 	const homeDir = os.homedir();
