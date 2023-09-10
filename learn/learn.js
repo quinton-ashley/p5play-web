@@ -59,6 +59,7 @@ async function start() {
 		await loadScripts([
 			'https://cdn.jsdelivr.net/npm/ace-builds@1.18.0/src-min-noconflict/ace.min.js',
 			'https://cdn.jsdelivr.net/npm/ace-builds@1.18.0/src-min-noconflict/ext-language_tools.js',
+			'https://cdn.jsdelivr.net/npm/ace-builds@1.18.0/src-min-noconflict/ext-beautify.js',
 			'https://cdn.jsdelivr.net/npm/marked@4.3.0/marked.min.js'
 		]);
 	} else {
@@ -68,6 +69,7 @@ async function start() {
 			'ace/mode-javascript.js',
 			'ace/theme-dracula.js',
 			'ace/theme-xcode.js',
+			'ace/ext-beautify.js',
 			'marked/marked.min.js'
 		]);
 	}

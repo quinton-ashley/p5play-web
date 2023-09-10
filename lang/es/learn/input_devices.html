@@ -60,7 +60,7 @@ function draw() {
 			</script>
 			<div class="minis">
 				<script type="mie/p5" id="presses" base="0">
-if (kb.presses('space')) {
+if (kb.presses(' ')) {
 	background(0, 255, 0);
 }
 				</script>
@@ -80,6 +80,32 @@ if (kb.released(' ')) {
 }
 				</script>
 			</div>
+			<md id="md0-1">
+				<p>p5play facilita la activación de la misma acción a través de diferentes dispositivos de entrada
+					utilizando <a
+						href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_OR">lógica
+						booleana</a>.</p>
+				<p>En el mini ejemplo, el sprite se vuelve rojo si presionas la tecla de espacio o haces clic con el
+					ratón.</p>
+			</md>
+			<script type="mie/p5" id="hidden" base-1="" hide="">
+let sprite;
+
+function setup() {
+	new Canvas(500, 100);
+	sprite = new Sprite();
+}
+
+function draw() {
+	clear();
+	sprite.color = 'yellow';
+}
+			</script>
+			<script type="mie/p5" id="multi-input" base="1">
+if (kb.pressing('space') || mouse.pressing()) {
+	sprite.color = 'green';
+}
+			</script>
 		</div>
 		<div id="page-1" class="page">
 			<md id="md1-0">
@@ -128,33 +154,29 @@ function draw() {
 		</div>
 		<div id="page-2" class="page">
 			<md id="md2-0">
-				<h2 id="multi-entrada">Multi-Entrada</h2>
-				<p>Este mini-sketch muestra cómo una acción puede ser realizada presionando la tecla espacio o haciendo
-					clic con el ratón. La entrada de ratón por defecto es 'left' para el botón izquierdo del ratón o
-					clic normal.</p>
+				<h2 id="ratón">Ratón</h2>
+				<p>La entrada de ratón predeterminada es el botón 'izquierdo', un clic de un dedo en los trackpads.
+					También puedes usar el 'derecho' (clic de dos dedos) y el 'centro'.</p>
+				<p><code>mouse.x</code> y <code>mouse.y</code> almacenan la posición del ratón en el lienzo.</p>
+				<p><code>mouse.visible</code> es un booleano que determina si el ratón es visible o no.</p>
+				<p><code>mouse.cursor</code> se puede configurar con un <a
+						href="https://developer.mozilla.org/en-US/docs/Web/CSS/cursor">estilo de cursor</a>. El valor
+					predeterminado es 'default', otras opciones incluyen 'grab', 'move', 'pointer' y 'wait'.</p>
 			</md>
-			<script type="mie/p5" id="hidden" base-1="" hide="">
-let sprite;
-
+			<script type="mie/p5" id="hidden" base-2="" hide="">
 function setup() {
 	new Canvas(500, 100);
-	sprite = new Sprite();
 }
 
-function draw() {
-	clear();
-	sprite.color = 'yellow';
-}
+function draw() {}
 			</script>
-			<script type="mie/p5" id="multi-input" base="1">
-if (kb.pressing('space') || mouse.pressing()) {
-	sprite.color = 'red';
-}
+			<script type="mie/p5" id="mouse.visible" base="2">
+mouse.visible = false;
 			</script>
 		</div>
 		<div id="page-3" class="page">
 			<md id="md3-0">
-				<h2 id="ratón-sprite">Ratón Sprite</h2>
+				<h2 id="ratón-de-sprite">Ratón de Sprite</h2>
 				<p>Los sprites con colisionadores físicos tienen su propio objeto ratón para detectar las entradas del
 					ratón en el sprite.
 					Los objetos <code>sprite.mouse</code> son justo como el objeto de entrada <code>mouse</code>,
@@ -180,7 +202,8 @@ function draw() {
 
 	if (mouse.pressing()) sprite.color = 'red';
 
-	if (sprite.mouse.hovering()) sprite.color = 'blue';
+	if (sprite.mouse.hovering()) mouse.cursor = 'grab';
+	else mouse.cursor = 'default';
 
 	if (sprite.mouse.pressing()) sprite.color = 'green';
 
@@ -248,8 +271,8 @@ function draw() {
 			<div id="pageNav" class="submenu">
 				<a data-page="0" href="input_devices.html?page=0">Detección de Entrada</a>
 				<a data-page="1" href="input_devices.html?page=1">Teclado</a>
-				<a data-page="2" href="input_devices.html?page=2">Varios Esquemas de Control</a>
-				<a data-page="3" href="input_devices.html?page=3">Ratón</a>
+				<a data-page="2" href="input_devices.html?page=2">Ratón</a>
+				<a data-page="3" href="input_devices.html?page=3">Ratón de Sprite</a>
 				<a data-page="4" href="input_devices.html?page=4">Controladores de Juego</a>
 				<a data-page="5" href="input_devices.html?page=5">Táctil</a>
 			</div>

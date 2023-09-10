@@ -53,3 +53,15 @@ Establece `world.autoStep = false` para desactivar el avance automático. Entonc
 ¿Qué hace `sprite.update`? Se encarga de actualizar la animación del sprite y los eventos del ratón. También ejecuta la función de actualización personalizada del usuario si se ha establecido alguna. Para prevenir la actualización automática completamente establece `allSprites.autoUpdate = false`.
 
 ¿Por qué esta funcionalidad está separada del paso del mundo? Porque en una pantalla de pausa el mundo físico podría estar pausado, pero las animaciones y eventos de ratón del menú de pausa todavía podrían actualizarse.
+
+# 2-0
+
+## Pruebas de Rendimiento
+
+La función `renderStats` muestra el número de sprites dibujados, una aproximación de los FPS (fotogramas por segundo) actuales, así como el promedio, mínimo y máximo de FPS alcanzados durante el segundo anterior.
+
+Los FPS en este contexto se refieren a cuántos cuadros por segundo puede generar tu computadora, incluyendo cálculos de física y cualquier otro proceso necesario para generar un cuadro, pero sin incluir la demora entre cuándo se muestran realmente los cuadros en la pantalla. Cuanto más altos sean los FPS, mejor rendimiento tendrá tu juego.
+
+Puedes utilizar esta función para realizar pruebas de rendimiento aproximadas. Para obtener resultados más precisos, utiliza las herramientas de prueba de rendimiento de tu navegador web.
+
+En general, tener menos sprites y usar un lienzo más pequeño hará que tu juego tenga un mejor rendimiento. Para un mejor rendimiento, no utilices la función `clear` de p5.js ni muestrees los colores de los píxeles en tu lienzo utilizando `canvas.get`.

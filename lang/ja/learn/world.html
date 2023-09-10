@@ -115,7 +115,7 @@ function setup() {
 }
 
 function draw() {
-	if (kb.pressing('space')) {
+	if (mouse.pressing()) {
 		background(0, 0, 0, 30);
 		allSprites.draw();
 		world.step(1/240);
@@ -144,28 +144,33 @@ function draw() {
 		</div>
 		<div id="page-2" class="page">
 			<md id="md2-0">
-				<h2 id="performance-testing">Performance Testing</h2>
-				<p>The <code>renderStats</code> function displays the number of sprites drawn, an approximation of the
-					current FPS as well as the average, minimum, and maximum FPS achieved during the previous second.
-				</p>
-				<p>FPS in this context refers to how many frames per second your computer can generate, including
-					physics calculations and any other processes necessary to generate a frame, but not including the
-					delay between when frames are actually shown on the screen. The higher the FPS, the better your game
-					is performing.</p>
-				<p>You can use this function for approximate performance testing. For more accurate results, use your
-					web browser's performance testing tools.</p>
-				<p>Generally having less sprites and using a smaller canvas will make your game perform better. For
-					better performance don't use the p5.js <code>clear</code> function or sample the colors of pixels in
-					your canvas using <code>canvas.get</code>.</p>
+				<h2 id="パフォーマンステスト">パフォーマンステスト</h2>
+				<p><code>renderStats</code> 関数は、描画されたスプライトの数、現在の FPS の近似値、前の 1 秒間に達成した平均、最小、最大 FPS を表示します。</p>
+				<p>このコンテキストでの FPS は、コンピュータが 1
+					秒間に生成できるフレーム数を指します。これにはフレームを生成するために必要な物理計算や、フレームが実際に画面に表示されるまでの遅延は含まれません。FPS
+					が高いほど、ゲームのパフォーマンスが向上します。</p>
+				<p>この関数は、おおよそのパフォーマンステストに使用できます。より正確な結果を得るには、ウェブブラウザのパフォーマンステストツールを使用してください。</p>
+				<p>一般的に、スプライトの数を少なくし、小さなキャンバスを使用すると、ゲームのパフォーマンスが向上します。パフォーマンスを向上させるために、p5.js の <code>clear</code>
+					関数を使用しないか、キャンバスのピクセルの色をサンプリングすることは避けてください。</p>
 			</md>
 			<script type="mie/p5" id="world.step">
 function setup() {
-	new Canvas(500, 100);
+	new Canvas(500, 250);
+
+	for (let i = 0; i < 25; i++) {
+		let x = 430 - i * 20;
+		for (let j = 0; j < 12; j++) {
+			new Sprite(x + j * 10, 5 + i * 10, 9, 9);
+		}
+	}
 }
 
 function draw() {
-	background(255);
-
+	background(20);
+	if (mouse.presses()) new Sprite(mouse.x, mouse.y, 25);
+	if (mouse.pressing()) {
+		allSprites.at(-1).moveTowards(mouse);
+	}
 	renderStats();
 }
 			</script>
@@ -177,7 +182,7 @@ function draw() {
 			<div id="pageNav" class="submenu">
 				<a data-page="0" href="world.html?page=0">スリープ</a>
 				<a data-page="1" href="world.html?page=1">時間のコントロール</a>
-				<a data-page="2" href="world.html?page=2">undefined</a>
+				<a data-page="2" href="world.html?page=2">パフォーマンステスト</a>
 			</div>
 			<a id="nextPage" class="navLink">次のページ</a>
 		</div>

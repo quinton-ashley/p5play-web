@@ -96,7 +96,7 @@ function draw() {
 					<li><code>allSprites.update()</code> : updates animations and mouse events</li>
 				</ul>
 				<p>But you can also take manual control of these processes by calling them yourself.</p>
-				<p>In the mini-example, try pressing space to toggle slow-motion!</p>
+				<p>In the mini-example, click to toggle slow-motion!</p>
 				<h2 id="spritedraw-and-groupdraw">sprite.draw and group.draw</h2>
 				<p>You can use the <code>sprite.draw</code> and <code>group.draw</code> functions to manually control
 					when individual sprites and groups are drawn inside the p5.js draw loop. Any sprites not drawn
@@ -124,7 +124,7 @@ function setup() {
 }
 
 function draw() {
-	if (kb.pressing('space')) {
+	if (mouse.pressing()) {
 		background(0, 0, 0, 30);
 		allSprites.draw();
 		world.step(1/240);
@@ -170,12 +170,22 @@ function draw() {
 			</md>
 			<script type="mie/p5" id="world.step">
 function setup() {
-	new Canvas(500, 100);
+	new Canvas(500, 250);
+
+	for (let i = 0; i < 25; i++) {
+		let x = 430 - i * 20;
+		for (let j = 0; j < 12; j++) {
+			new Sprite(x + j * 10, 5 + i * 10, 9, 9);
+		}
+	}
 }
 
 function draw() {
-	background(255);
-
+	background(20);
+	if (mouse.presses()) new Sprite(mouse.x, mouse.y, 25);
+	if (mouse.pressing()) {
+		allSprites.at(-1).moveTowards(mouse);
+	}
 	renderStats();
 }
 			</script>

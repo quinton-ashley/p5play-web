@@ -28,7 +28,7 @@ By default, after each time the p5.js draw function is run, p5play calls three f
 
 But you can also take manual control of these processes by calling them yourself.
 
-In the mini-example, try pressing space to toggle slow-motion!
+In the mini-example, click to toggle slow-motion!
 
 ## sprite.draw and group.draw
 
