@@ -7933,6 +7933,7 @@ main {
 			this.y;
 
 			this._visible = true;
+			this._cursor = 'default';
 		}
 
 		/**
@@ -7953,17 +7954,22 @@ main {
 		/**
 		 * The mouse's CSS cursor style.
 		 * @type {string}
+		 * @default 'default'
 		 */
 		get cursor() {
 			return pInst.canvas.style.cursor;
 		}
 		set cursor(val) {
-			pInst.cursor(val);
+			if (val != this._cursor) {
+				pInst.cursor(val);
+				this._cursor = val;
+			}
 		}
 
 		/**
 		 * Controls whether the mouse is visible or not.
 		 * @type {boolean}
+		 * @default true
 		 */
 		get visible() {
 			return this._visible;

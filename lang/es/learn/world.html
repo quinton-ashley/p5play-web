@@ -124,7 +124,7 @@ function setup() {
 }
 
 function draw() {
-	if (kb.pressing('space')) {
+	if (mouse.pressing()) {
 		background(0, 0, 0, 30);
 		allSprites.draw();
 		world.step(1/240);
@@ -156,28 +156,38 @@ function draw() {
 		</div>
 		<div id="page-2" class="page">
 			<md id="md2-0">
-				<h2 id="performance-testing">Performance Testing</h2>
-				<p>The <code>renderStats</code> function displays the number of sprites drawn, an approximation of the
-					current FPS as well as the average, minimum, and maximum FPS achieved during the previous second.
-				</p>
-				<p>FPS in this context refers to how many frames per second your computer can generate, including
-					physics calculations and any other processes necessary to generate a frame, but not including the
-					delay between when frames are actually shown on the screen. The higher the FPS, the better your game
-					is performing.</p>
-				<p>You can use this function for approximate performance testing. For more accurate results, use your
-					web browser's performance testing tools.</p>
-				<p>Generally having less sprites and using a smaller canvas will make your game perform better. For
-					better performance don't use the p5.js <code>clear</code> function or sample the colors of pixels in
-					your canvas using <code>canvas.get</code>.</p>
+				<h2 id="pruebas-de-rendimiento">Pruebas de Rendimiento</h2>
+				<p>La función <code>renderStats</code> muestra el número de sprites dibujados, una aproximación de los
+					FPS (fotogramas por segundo) actuales, así como el promedio, mínimo y máximo de FPS alcanzados
+					durante el segundo anterior.</p>
+				<p>Los FPS en este contexto se refieren a cuántos cuadros por segundo puede generar tu computadora,
+					incluyendo cálculos de física y cualquier otro proceso necesario para generar un cuadro, pero sin
+					incluir la demora entre cuándo se muestran realmente los cuadros en la pantalla. Cuanto más altos
+					sean los FPS, mejor rendimiento tendrá tu juego.</p>
+				<p>Puedes utilizar esta función para realizar pruebas de rendimiento aproximadas. Para obtener
+					resultados más precisos, utiliza las herramientas de prueba de rendimiento de tu navegador web.</p>
+				<p>En general, tener menos sprites y usar un lienzo más pequeño hará que tu juego tenga un mejor
+					rendimiento. Para un mejor rendimiento, no utilices la función <code>clear</code> de p5.js ni
+					muestrees los colores de los píxeles en tu lienzo utilizando <code>canvas.get</code>.</p>
 			</md>
 			<script type="mie/p5" id="world.step">
 function setup() {
-	new Canvas(500, 100);
+	new Canvas(500, 250);
+
+	for (let i = 0; i < 25; i++) {
+		let x = 430 - i * 20;
+		for (let j = 0; j < 12; j++) {
+			new Sprite(x + j * 10, 5 + i * 10, 9, 9);
+		}
+	}
 }
 
 function draw() {
-	background(255);
-
+	background(20);
+	if (mouse.presses()) new Sprite(mouse.x, mouse.y, 25);
+	if (mouse.pressing()) {
+		allSprites.at(-1).moveTowards(mouse);
+	}
 	renderStats();
 }
 			</script>
@@ -189,7 +199,7 @@ function draw() {
 			<div id="pageNav" class="submenu">
 				<a data-page="0" href="world.html?page=0">Durmiendo</a>
 				<a data-page="1" href="world.html?page=1">Controlando el Tiempo</a>
-				<a data-page="2" href="world.html?page=2">undefined</a>
+				<a data-page="2" href="world.html?page=2">Pruebas de Rendimiento</a>
 			</div>
 			<a id="nextPage" class="navLink">Siguiente página</a>
 		</div>

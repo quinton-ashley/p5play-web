@@ -12,6 +12,12 @@ Todos estos dispositivos de entrada utilizan las mismas funciones simples para o
 
 También almacenan el estado de todas sus entradas como propiedades. Por ejemplo, `kb.space` almacena cuántos frames ha estado presionando el usuario la tecla espacio. Se reinicia cuando el usuario suelta la entrada.
 
+# 0-1
+
+p5play facilita la activación de la misma acción a través de diferentes dispositivos de entrada utilizando [lógica booleana](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_OR).
+
+En el mini ejemplo, el sprite se vuelve rojo si presionas la tecla de espacio o haces clic con el ratón.
+
 # 1-0
 
 ## Teclado
@@ -30,13 +36,19 @@ En juegos locales de dos jugadores, es común que el segundo jugador utilice las
 
 # 2-0
 
-## Multi-Entrada
+## Ratón
 
-Este mini-sketch muestra cómo una acción puede ser realizada presionando la tecla espacio o haciendo clic con el ratón. La entrada de ratón por defecto es 'left' para el botón izquierdo del ratón o clic normal.
+La entrada de ratón predeterminada es el botón 'izquierdo', un clic de un dedo en los trackpads. También puedes usar el 'derecho' (clic de dos dedos) y el 'centro'.
+
+`mouse.x` y `mouse.y` almacenan la posición del ratón en el lienzo.
+
+`mouse.visible` es un booleano que determina si el ratón es visible o no.
+
+`mouse.cursor` se puede configurar con un [estilo de cursor](https://developer.mozilla.org/en-US/docs/Web/CSS/cursor). El valor predeterminado es 'default', otras opciones incluyen 'grab', 'move', 'pointer' y 'wait'.
 
 # 3-0
 
-## Ratón Sprite
+## Ratón de Sprite
 
 Los sprites con colisionadores físicos tienen su propio objeto ratón para detectar las entradas del ratón en el sprite.
 Los objetos `sprite.mouse` son justo como el objeto de entrada `mouse`, excepto que tienen funciones adicionales.

@@ -10,7 +10,13 @@ Here are the input devices available in p5play:
 
 These input devices all use the same simple functions for getting the state of an input: `presses`, `pressing`, and `released`.
 
-Input devices also store the state of all their inputs as properties. For example, kb.space stores how many frames the user has been pressing the space key. It gets reset when the user releases the input.
+Input devices also store the state of all their inputs as properties. For example, `kb.space` stores how many frames the user has been pressing the space key. It gets reset when the user releases the input.
+
+# 0-1
+
+p5play makes it easy to trigger the same action via different input devices using [boolean logic](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_OR).
+
+In the mini-example, the sprite turns red if you press the space key or click the mouse.
 
 # 1-0
 
@@ -30,9 +36,15 @@ In local two player games it's common for the second player to use the IJKL keys
 
 # 2-0
 
-## Multi-Input
+## Mouse
 
-This mini-sketch shows how one action can be performed by either pressing the space key or clicking the mouse. The default mouse input is 'left' for the left mouse button or normal click.
+The default mouse input is the 'left' button, a one finger click on trackpads. You can also use 'right' (two finger click) and 'center'.
+
+`mouse.x` and `mouse.y` store the position of the mouse on the canvas.
+
+`mouse.visible` is a boolean that determines whether the mouse is visible or not.
+
+`mouse.cursor` can be set to a [cursor style](https://developer.mozilla.org/en-US/docs/Web/CSS/cursor). The default is 'default', other options include 'grab', 'move', 'pointer', and 'wait'.
 
 # 3-0
 

@@ -59,7 +59,7 @@ function draw() {
 			</script>
 			<div class="minis">
 				<script type="mie/p5" id="presses" base="0">
-if (kb.presses('space')) {
+if (kb.presses(' ')) {
 	background(0, 255, 0);
 }
 				</script>
@@ -79,6 +79,30 @@ if (kb.released(' ')) {
 }
 				</script>
 			</div>
+			<md id="md0-1">
+				<p>p5play は、<a
+						href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_OR">ブール論理</a>を使用して、異なる入力デバイスを介して同じアクションをトリガーすることを容易にします。
+				</p>
+				<p>ミニ例では、スプライトはスペースキーを押すかマウスをクリックすると赤くなります。</p>
+			</md>
+			<script type="mie/p5" id="hidden" base-1="" hide="">
+let sprite;
+
+function setup() {
+	new Canvas(500, 100);
+	sprite = new Sprite();
+}
+
+function draw() {
+	clear();
+	sprite.color = 'yellow';
+}
+			</script>
+			<script type="mie/p5" id="multi-input" base="1">
+if (kb.pressing('space') || mouse.pressing()) {
+	sprite.color = 'green';
+}
+			</script>
 		</div>
 		<div id="page-1" class="page">
 			<md id="md1-0">
@@ -123,27 +147,23 @@ function draw() {
 		</div>
 		<div id="page-2" class="page">
 			<md id="md2-0">
-				<h2 id="マルチ入力">マルチ入力</h2>
-				<p>このミニスケッチは、スペースキーを押すかマウスをクリックすることで一つのアクションが実行できる方法を示しています。デフォルトのマウス入力は、左マウスボタンまたは通常のクリックのための'left'です。
-				</p>
+				<h2 id="マウス">マウス</h2>
+				<p>デフォルトのマウス入力は「left」ボタンで、トラックパッドでの単一指のクリックです。また、'right'（二本指クリック）と 'center' も使用できます。</p>
+				<p><code>mouse.x</code> と <code>mouse.y</code> はマウスのキャンバス上の位置を格納します。</p>
+				<p><code>mouse.visible</code> は、マウスが表示されるかどうかを決定するブール値です。</p>
+				<p><code>mouse.cursor</code> は <a
+						href="https://developer.mozilla.org/en-US/docs/Web/CSS/cursor">カーソルスタイル</a> に設定できます。デフォルトは
+					'default' で、他のオプションには 'grab'、'move'、'pointer'、'wait' などがあります。</p>
 			</md>
-			<script type="mie/p5" id="hidden" base-1="" hide="">
-let sprite;
-
+			<script type="mie/p5" id="hidden" base-2="" hide="">
 function setup() {
 	new Canvas(500, 100);
-	sprite = new Sprite();
 }
 
-function draw() {
-	clear();
-	sprite.color = 'yellow';
-}
+function draw() {}
 			</script>
-			<script type="mie/p5" id="multi-input" base="1">
-if (kb.pressing('space') || mouse.pressing()) {
-	sprite.color = 'red';
-}
+			<script type="mie/p5" id="mouse.visible" base="2">
+mouse.visible = false;
 			</script>
 		</div>
 		<div id="page-3" class="page">
@@ -171,7 +191,8 @@ function draw() {
 
 	if (mouse.pressing()) sprite.color = 'red';
 
-	if (sprite.mouse.hovering()) sprite.color = 'blue';
+	if (sprite.mouse.hovering()) mouse.cursor = 'grab';
+	else mouse.cursor = 'default';
 
 	if (sprite.mouse.pressing()) sprite.color = 'green';
 
@@ -235,8 +256,8 @@ function draw() {
 			<div id="pageNav" class="submenu">
 				<a data-page="0" href="input_devices.html?page=0">入力の検出</a>
 				<a data-page="1" href="input_devices.html?page=1">キーボード</a>
-				<a data-page="2" href="input_devices.html?page=2">複数のコントロールスキーム</a>
-				<a data-page="3" href="input_devices.html?page=3">マウス</a>
+				<a data-page="2" href="input_devices.html?page=2">マウス</a>
+				<a data-page="3" href="input_devices.html?page=3">スプライトーマウス</a>
 				<a data-page="4" href="input_devices.html?page=4">ゲームコントローラ</a>
 				<a data-page="5" href="input_devices.html?page=5">タッチ</a>
 			</div>

@@ -15,7 +15,8 @@
 		"DOM": {
 			"prevPage": "Previous Page",
 			"nextPage": "Next Page",
-			"credits": "Created by Quinton Ashley (@quinton-ashley) Copyright 2022-2023"
+			"credits": "Created by Quinton Ashley (@quinton-ashley) Copyright 2022-2023",
+			"getStarted": "Get Started!"
 		},
 		"camera": ["Movement", "Zoom", "On/Off", "Mouse Events with the Camera"],
 		"canvas": ["Canvas constructor", "Pixelated Mode", "Resize"],
@@ -29,14 +30,7 @@
 			"Culling",
 			"Custom Properties"
 		],
-		"input_devices": [
-			"Detecting Input",
-			"Keyboard",
-			"Multiple Control Schemes",
-			"Sprite Mouse",
-			"Game Controllers",
-			"Touch"
-		],
+		"input_devices": ["Detecting Input", "Keyboard", "Mouse", "Sprite Mouse", "Game Controllers", "Touch"],
 		"joints": ["GlueJoint", "DistanceJoint", "WheelJoint", "HingeJoint", "SliderJoint"],
 		"sprite": [
 			"Basic Properties",

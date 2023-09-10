@@ -1,9 +1,9 @@
 # 0-0
 
-## リファレンス
+## 学ぶ
 
-[最初に、スプライトに関する最初の数ページを見てみてください！](sprite.html)
+これらの「学ぶ」リファレンスページは、p5play の最も重要な機能に対する対話型のミニ例を提供しています。
 
-これらの「学習」リファレンスページは、p5play の最も重要な機能のための対話式ミニ例を提供します。これらは、p5play v3 の作成者である Quinton Ashley によって書かれ、p5play コミュニティのための公共のリソースとして提供されています。
+# 0-1
 
-お探しのものが見つからない場合は、完全な[p5play](/docs/Sprite.html)、[p5.js](https://p5js.org/reference/)、または[p5.sound](https://p5js.org/reference/#/libraries/p5.sound)のドキュメンテーションを試してみるか、いくつかの[デモ](https://openprocessing.org/user/350295?o=35&view=sketches)をご覧ください。
+お探しの情報が見つからない場合は、[p5play の完全なドキュメンテーション](/docs/Sprite.html)、[p5.js リファレンス](https://p5js.org/reference/)、または [p5.sound リファレンス](https://p5js.org/reference/#/libraries/p5.sound) を試してみるか、[デモ](https://openprocessing.org/user/350295?o=35&view=sketches)を見てみてください。

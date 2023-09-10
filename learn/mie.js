@@ -99,7 +99,7 @@ mie.load = () => {
 					maxLines: lines,
 					fontSize: '14px',
 					showFoldWidgets: false,
-					showGutter: props.gutter || false,
+					showLineNumbers: false,
 					tabSize: 2,
 					enableBasicAutocompletion: [
 						{
@@ -400,6 +400,14 @@ if (mie.autoLoad !== false) {
 
 .mie-edit:hover {
 	color: #404040;
+}
+
+.ace_gutter {
+	width: 4px !important;
+}
+
+.ace_gutter-cell.ace_error {
+	background-color: #ff0000 !important;
 }
 
 @media screen and (max-width: 600px) {

@@ -43,9 +43,9 @@
 				</ul>
 				<p>These input devices all use the same simple functions for getting the state of an input:
 					<code>presses</code>, <code>pressing</code>, and <code>released</code>.</p>
-				<p>Input devices also store the state of all their inputs as properties. For example, kb.space stores
-					how many frames the user has been pressing the space key. It gets reset when the user releases the
-					input.</p>
+				<p>Input devices also store the state of all their inputs as properties. For example,
+					<code>kb.space</code> stores how many frames the user has been pressing the space key. It gets reset
+					when the user releases the input.</p>
 			</md>
 			<script type="mie/p5" id="hidden" base-0="" hide="">
 function setup() {
@@ -60,7 +60,7 @@ function draw() {
 			</script>
 			<div class="minis">
 				<script type="mie/p5" id="presses" base="0">
-if (kb.presses('space')) {
+if (kb.presses(' ')) {
 	background(0, 255, 0);
 }
 				</script>
@@ -80,6 +80,30 @@ if (kb.released(' ')) {
 }
 				</script>
 			</div>
+			<md id="md0-1">
+				<p>p5play makes it easy to trigger the same action via different input devices using <a
+						href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_OR">boolean
+						logic</a>.</p>
+				<p>In the mini-example, the sprite turns red if you press the space key or click the mouse.</p>
+			</md>
+			<script type="mie/p5" id="hidden" base-1="" hide="">
+let sprite;
+
+function setup() {
+	new Canvas(500, 100);
+	sprite = new Sprite();
+}
+
+function draw() {
+	clear();
+	sprite.color = 'yellow';
+}
+			</script>
+			<script type="mie/p5" id="multi-input" base="1">
+if (kb.pressing('space') || mouse.pressing()) {
+	sprite.color = 'green';
+}
+			</script>
 		</div>
 		<div id="page-1" class="page">
 			<md id="md1-0">
@@ -127,27 +151,24 @@ function draw() {
 		</div>
 		<div id="page-2" class="page">
 			<md id="md2-0">
-				<h2 id="multi-input">Multi-Input</h2>
-				<p>This mini-sketch shows how one action can be performed by either pressing the space key or clicking
-					the mouse. The default mouse input is 'left' for the left mouse button or normal click.</p>
+				<h2 id="mouse">Mouse</h2>
+				<p>The default mouse input is the 'left' button, a one finger click on trackpads. You can also use
+					'right' (two finger click) and 'center'.</p>
+				<p><code>mouse.x</code> and <code>mouse.y</code> store the position of the mouse on the canvas.</p>
+				<p><code>mouse.visible</code> is a boolean that determines whether the mouse is visible or not.</p>
+				<p><code>mouse.cursor</code> can be set to a <a
+						href="https://developer.mozilla.org/en-US/docs/Web/CSS/cursor">cursor style</a>. The default is
+					'default', other options include 'grab', 'move', 'pointer', and 'wait'.</p>
 			</md>
-			<script type="mie/p5" id="hidden" base-1="" hide="">
-let sprite;
-
+			<script type="mie/p5" id="hidden" base-2="" hide="">
 function setup() {
 	new Canvas(500, 100);
-	sprite = new Sprite();
 }
 
-function draw() {
-	clear();
-	sprite.color = 'yellow';
-}
+function draw() {}
 			</script>
-			<script type="mie/p5" id="multi-input" base="1">
-if (kb.pressing('space') || mouse.pressing()) {
-	sprite.color = 'red';
-}
+			<script type="mie/p5" id="mouse.visible" base="2">
+mouse.visible = false;
 			</script>
 		</div>
 		<div id="page-3" class="page">
@@ -177,7 +198,8 @@ function draw() {
 
 	if (mouse.pressing()) sprite.color = 'red';
 
-	if (sprite.mouse.hovering()) sprite.color = 'blue';
+	if (sprite.mouse.hovering()) mouse.cursor = 'grab';
+	else mouse.cursor = 'default';
 
 	if (sprite.mouse.pressing()) sprite.color = 'green';
 
@@ -244,7 +266,7 @@ function draw() {
 			<div id="pageNav" class="submenu">
 				<a data-page="0" href="input_devices.html?page=0">Detecting Input</a>
 				<a data-page="1" href="input_devices.html?page=1">Keyboard</a>
-				<a data-page="2" href="input_devices.html?page=2">Multiple Control Schemes</a>
+				<a data-page="2" href="input_devices.html?page=2">Mouse</a>
 				<a data-page="3" href="input_devices.html?page=3">Sprite Mouse</a>
 				<a data-page="4" href="input_devices.html?page=4">Game Controllers</a>
 				<a data-page="5" href="input_devices.html?page=5">Touch</a>
