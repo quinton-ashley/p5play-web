@@ -33,6 +33,10 @@ let args = {};
 	}
 }
 
+if (navigator.userAgent.includes('Electron')) {
+	document.getElementById('logoLink').onclick = () => window.close();
+}
+
 let pages = document.getElementsByClassName('page');
 let pageNav = document.getElementById('pageNav');
 let currentPage = 0;
@@ -126,6 +130,7 @@ function loadPage(pageNum) {
 }
 
 function setEditorThemes() {
+	if (typeof mie == 'undefined') return;
 	if (document.body.className == 'dark') {
 		mie.theme = 'dark';
 	} else {
