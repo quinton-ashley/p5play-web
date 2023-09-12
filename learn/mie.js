@@ -139,11 +139,12 @@ mie.load = () => {
 				this.code = code;
 			}
 
-			this.play();
-
 			if (props.hide || props.hidden) {
 				mini.style.display = 'none';
+				return;
 			}
+
+			this.play();
 
 			/* auto reload after the specified amount of seconds */
 			if (props.reload) {

@@ -160,15 +160,19 @@ function draw() {
 						href="https://developer.mozilla.org/en-US/docs/Web/CSS/cursor">cursor style</a>. The default is
 					'default', other options include 'grab', 'move', 'pointer', and 'wait'.</p>
 			</md>
-			<script type="mie/p5" id="hidden" base-2="" hide="">
+			<script type="mie/p5" id="mouse.visible">
+let cur;
 function setup() {
 	new Canvas(500, 100);
+	cur = new Sprite();
+
+	mouse.visible = false;
 }
 
-function draw() {}
-			</script>
-			<script type="mie/p5" id="mouse.visible" base="2">
-mouse.visible = false;
+function draw() {
+	clear();
+	cur.moveTowards(mouse, 1);
+}
 			</script>
 		</div>
 		<div id="page-3" class="page">
@@ -216,42 +220,63 @@ function draw() {
 		<div id="page-4" class="page">
 			<md id="md4-0">
 				<h2 id="game-controllers">Game Controllers</h2>
-				<p>The <code>contro</code> or <code>controllers</code> object provides the input state of game
-					controller buttons:</p>
-				<p>"a", "b", "x", "y", "l" (left bumper), "r" (right bumper), "lt" (left trigger), "rt" (right trigger),
-					"up", "down", "left", "right" (D-pad), "start", and "select"</p>
-				<p>It also provides the <code>x</code> and <code>y</code> axis positions of the analog sticks:
-					<code>leftStick</code> and <code>rightStick</code>. The axis values range between -1 and 1, where 0
-					is the center.</p>
-				<p>The <code>contro</code> object is also an array that contains all the connected game controllers
-					detected by your web browser. Access connected controllers by index. For example,
-					<code>contro[0]</code> and <code>contro[1]</code> are the first and second controllers. By default
-					<code>contro</code> references <code>contro[0]</code>.</p>
-				<p>Try it out! Press any button on your connected game controller for it to be detected by p5play.</p>
+				<p>The <code>contro</code> object provides the input state of game controller buttons:</p>
+				<p><code>a</code>, <code>b</code>, <code>x</code>, <code>y</code>, <code>l</code> (left bumper),
+					<code>r</code> (right bumper), <code>lt</code> (left trigger), <code>rt</code> (right trigger),
+					<code>up</code>, <code>down</code>, <code>left</code>, <code>right</code> (D-pad), <code>lsb</code>
+					(left stick button), <code>rsb</code> (right stick button), <code>start</code>, and
+					<code>select</code></p>
+				<p><code>contro.leftStick</code> and <code>contro.rightStick</code> represent the positions of the
+					controller's analog sticks as objects with x and y properties. These values range from -1 to 1, with
+					0 indicating the center position.</p>
+				<p>Some controllers have analog triggers, and their positions are stored as numbers ranging from 0 to 1
+					in <code>contro.leftTrigger</code> and <code>contro.rightTrigger</code>.</p>
+				<p>The <code>contro</code> object (aka <code>controllers</code>) is an array that contains all the
+					connected game controllers detected by your web browser. Access connected controllers by index. For
+					example, <code>contro[0]</code> and <code>contro[1]</code> are the first and second controllers.
+					Through JS magic, <code>contro</code> can be used to get the input states of <code>contro[0]</code>.
+				</p>
 			</md>
-			<script type="mie/p5" id="controller-test">
-let sprite;
+			<div class="minis horiz">
+				<script type="mie/p5" base-2="" hidden="">
+let a, b, x, y, lsb;
 
 function setup() {
 	new Canvas(500, 200);
-	sprite = new Sprite(250, 100, 10, 10);
+	btns = new Group();
+	btns.d = 30;
+
+	a = new btns.Sprite(400, 130);
+	b = new btns.Sprite(430, 100);
+	x = new btns.Sprite(370, 100);
+	y = new btns.Sprite(400, 70);
+
+	lsb = new btns.Sprite(100, 100);
 }
 
 function draw() {
-	clear();
-
-	if (contro.pressing('a')) {
-		sprite.color = 'green';
-	} else if (contro.pressing('b')) {
-		sprite.color = 'red';
-	} else {
-		sprite.color = 'yellow';
-	}
-
-	sprite.x = 250 + contro.leftStick.x * 80;
-	sprite.y = 100 + contro.leftStick.y * 80;
+	background(20);
+	fill(20);
+	stroke(255);
+	ellipse(100, 100, 80, 80);
+	btns.color = 'gray';
 }
 			</script>
+				<script type="mie/p5" id="controller-test" base="2">
+if (contro.pressing('a')) a.color = 'green';
+if (contro.pressing('b')) b.color = 'red';
+if (contro.pressing('x')) x.color = 'blue';
+if (contro.pressing('y')) y.color = 'yellow';
+
+lsb.x = 100 + contro.leftStick.x * 40;
+lsb.y = 100 + contro.leftStick.y * 40;
+if (contro.pressing('lsb')) lsb.color = 'white';
+			</script>
+				<md id="md4-1">
+					<p>Try it out! Connect a game controller and press any button on it for it to be detected by p5play.
+					</p>
+				</md>
+			</div>
 		</div>
 		<div id="page-5" class="page">
 			<md id="md5-0">

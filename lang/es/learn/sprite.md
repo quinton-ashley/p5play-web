@@ -192,8 +192,6 @@ Ten en cuenta que las interacciones físicas entre sprites, incluyendo colisione
 
 Intenta hacer que el sprite azul cambie a rojo solo si se superpone con el sprite rojo.
 
-Tenga en cuenta que este ejemplo utiliza tonos personalizados de azul y rojo mediante la utilización de la función [color de p5.js](https://p5js.org/reference/#/p5/color)
-
 # 6-4
 
 ## Cambiar entre superposiciones y colisiones

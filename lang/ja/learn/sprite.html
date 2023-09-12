@@ -682,7 +682,6 @@ function draw() {
 			<md id="md6-3">
 				<h2 id="試してみてください！">試してみてください！</h2>
 				<p>青いスプライトが赤いスプライトと重なっている場合に限り、赤に変わるようにしてみてください。</p>
-				<p>この例では、<a href="https://p5js.org/reference/#/p5/color">p5.js color</a> 関数を利用してカスタムの青と赤を使用しています。</p>
 			</md>
 			<script type="mie/p5" id="Level-6-Challenge" lines="20" horiz="">
 let sprite1, sprite2;
@@ -691,10 +690,10 @@ function setup() {
 	new Canvas(100, 400);
 
 	sprite1 = new Sprite(50, 50);
-	sprite1.color = color(40, 140, 255);
+	sprite1.color = 'blue';
 
 	sprite2 = new Sprite(50, 300);
-	sprite2.color = color(255, 30, 10);
+	sprite2.color = 'red';
 }
 
 function draw() {

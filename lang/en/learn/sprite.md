@@ -196,8 +196,6 @@ sprite is teleported, its position is directly changed!
 
 Try making the blue sprite change to red only if it's overlapping with the red sprite.
 
-Note that this example uses custom shades of blue and red by utilizing the [p5.js color](https://p5js.org/reference/#/p5/color) function.
-
 # 6-4
 
 ## Switch between overlaps and collides

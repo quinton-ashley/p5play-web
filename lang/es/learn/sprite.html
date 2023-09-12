@@ -729,8 +729,6 @@ function draw() {
 			<md id="md6-3">
 				<h2 id="¡pruébalo">¡Pruébalo!</h2>
 				<p>Intenta hacer que el sprite azul cambie a rojo solo si se superpone con el sprite rojo.</p>
-				<p>Tenga en cuenta que este ejemplo utiliza tonos personalizados de azul y rojo mediante la utilización
-					de la función <a href="https://p5js.org/reference/#/p5/color">color de p5.js</a></p>
 			</md>
 			<script type="mie/p5" id="Level-6-Challenge" lines="20" horiz="">
 let sprite1, sprite2;
@@ -739,10 +737,10 @@ function setup() {
 	new Canvas(100, 400);
 
 	sprite1 = new Sprite(50, 50);
-	sprite1.color = color(40, 140, 255);
+	sprite1.color = 'blue';
 
 	sprite2 = new Sprite(50, 300);
-	sprite2.color = color(255, 30, 10);
+	sprite2.color = 'red';
 }
 
 function draw() {

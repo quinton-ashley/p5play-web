@@ -190,8 +190,6 @@ Sprite コンストラクタ、`new Sprite()` の内部では、スプライト�
 
 青いスプライトが赤いスプライトと重なっている場合に限り、赤に変わるようにしてみてください。
 
-この例では、[p5.js color](https://p5js.org/reference/#/p5/color) 関数を利用してカスタムの青と赤を使用しています。
-
 # 6-4
 
 ## overlaps と collides を切り替える

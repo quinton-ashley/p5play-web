@@ -49,7 +49,7 @@ function setup() {
 
 function draw() {
 	clear();
-	if (kb.presses("right")) {
+	if (mouse.presses()) {
 		player.vel.y = -4;
 		player.vel.x = 3;
 	}

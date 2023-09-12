@@ -60,17 +60,21 @@ Nota que `mouse.x` es la posición x del ratón en el lienzo y `sprite.mouse.x` 
 
 # 4-0
 
-## Controladores de juegos
+## Controladores de Juego
 
-El objeto `contro` o `controllers` proporciona el estado de entrada de los botones del controlador de juegos:
+El objeto `contro` proporciona el estado de entrada de los botones del controlador de juego:
 
-"a", "b", "x", "y", "l" (gatillo izquierdo), "r" (gatillo derecho), "lt" (gatillo izquierdo), "rt" (gatillo derecho), "up", "down", "left", "right" (dpad), "start" y "select"
+`a`, `b`, `x`, `y`, `l` (gatillo izquierdo), `r` (gatillo derecho), `lt` (gatillo izquierdo), `rt` (gatillo derecho), `up`, `down`, `left`, `right` (D-pad), `lsb` (botón de palanca izquierda), `rsb` (botón de palanca derecha), `start` y `select`
 
-También proporciona las posiciones del eje `x` y `y` de los sticks analógicos: `leftStick` y `rightStick`. Los valores del eje varían entre -1 y 1, donde 0 es el centro.
+`contro.leftStick` y `contro.rightStick` representan las posiciones de las palancas analógicas del controlador como objetos con propiedades x e y. Estos valores van desde -1 hasta 1, con 0 indicando la posición central.
 
-El objeto `contro` también es un array que contiene todos los controladores de juegos conectados detectados por tu navegador web. Accede a los controladores conectados por índice. Por ejemplo, `contro[0]` y `contro[1]` son los primeros y segundos controladores. Por defecto `contro` hace referencia a `contro[0]`.
+Algunos controladores tienen gatillos analógicos, y sus posiciones se almacenan como números que van de 0 a 1 en `contro.leftTrigger` y `contro.rightTrigger`.
 
-¡Pruébalo! Presiona cualquier botón en tu controlador de juegos conectado para que sea detectado por p5play.
+El objeto `contro` (también conocido como `controllers`) es una matriz que contiene todos los controladores de juego conectados detectados por tu navegador web. Accede a los controladores conectados por índice. Por ejemplo, `contro[0]` y `contro[1]` son el primer y segundo controlador. A través de la magia de JavaScript, `contro` se puede utilizar para obtener los estados de entrada de `contro[0]`.
+
+# 4-1
+
+¡Pruébalo! Conecta un controlador de juego y presiona cualquier botón en él para que p5play lo detecte.
 
 # 5-0
 

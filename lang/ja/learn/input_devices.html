@@ -155,15 +155,19 @@ function draw() {
 						href="https://developer.mozilla.org/en-US/docs/Web/CSS/cursor">カーソルスタイル</a> に設定できます。デフォルトは
 					'default' で、他のオプションには 'grab'、'move'、'pointer'、'wait' などがあります。</p>
 			</md>
-			<script type="mie/p5" id="hidden" base-2="" hide="">
+			<script type="mie/p5" id="mouse.visible">
+let cur;
 function setup() {
 	new Canvas(500, 100);
+	cur = new Sprite();
+
+	mouse.visible = false;
 }
 
-function draw() {}
-			</script>
-			<script type="mie/p5" id="mouse.visible" base="2">
-mouse.visible = false;
+function draw() {
+	clear();
+	cur.moveTowards(mouse, 1);
+}
 			</script>
 		</div>
 		<div id="page-3" class="page">
@@ -208,40 +212,59 @@ function draw() {
 		</div>
 		<div id="page-4" class="page">
 			<md id="md4-0">
-				<h2 id="ゲームコントローラー">ゲームコントローラー</h2>
-				<p><code>contro</code>または<code>controllers</code>オブジェクトは、ゲームコントローラーのボタンの入力状態を提供します：</p>
-				<p>"a", "b", "x", "y", "l" (左バンパー), "r" (右バンパー), "lt" (左トリガー), "rt" (右トリガー), "up", "down", "left",
-					"right" (dpad), "start", "select"</p>
-				<p>また、アナログスティックの<code>x</code>および<code>y</code>軸の位置も提供します：<code>leftStick</code>および<code>rightStick</code>。軸の値は-1
-					から 1 の範囲で、0 は中央です。</p>
-				<p><code>contro</code>オブジェクトはまた、Web
-					ブラウザによって検出されたすべての接続されたゲームコントローラーを含む配列でもあります。接続されたコントローラーはインデックスでアクセスします。例えば、<code>contro[0]</code>と<code>contro[1]</code>は最初と
-					2 番目のコントローラーです。デフォルトでは<code>contro</code>は<code>contro[0]</code>を参照します。</p>
-				<p>試してみてください！接続されたゲームコントローラーの任意のボタンを押すと、p5play によって検出されます。</p>
+				<h2 id="ゲームコントローラ">ゲームコントローラ</h2>
+				<p><code>contro</code> オブジェクトは、ゲームコントローラのボタンの入力状態を提供します:</p>
+				<p><code>a</code>、<code>b</code>、<code>x</code>、<code>y</code>、<code>l</code>（左バンパー）、<code>r</code>（右バンパー）、<code>lt</code>（左トリガー）、<code>rt</code>（右トリガー）、<code>up</code>、<code>down</code>、<code>left</code>、<code>right</code>（D
+					パッド）、<code>lsb</code>（左スティックボタン）、<code>rsb</code>（右スティックボタン）、<code>start</code>、および
+					<code>select</code></p>
+				<p><code>contro.leftStick</code> と <code>contro.rightStick</code> は、コントローラのアナログスティックの位置を x と y
+					プロパティを持つオブジェクトとして表します。これらの値は -1 から 1 の範囲で、0 は中央位置を示します。</p>
+				<p>一部のコントローラにはアナログトリガーがあり、その位置は <code>contro.leftTrigger</code> と <code>contro.rightTrigger</code> に 0
+					から 1 の範囲の数値として格納されます。</p>
+				<p><code>contro</code> オブジェクト（別名 <code>controllers</code>）は、Web
+					ブラウザによって検出されたすべての接続されたゲームコントローラを含む配列です。インデックスを使用して接続されたコントローラにアクセスできます。例えば、<code>contro[0]</code> と
+					<code>contro[1]</code> は最初のコントローラと 2 番目のコントローラです。JavaScript の仕組みにより、<code>contro</code> を使用して
+					<code>contro[0]</code> の入力状態を取得できます。</p>
 			</md>
-			<script type="mie/p5" id="controller-test">
-let sprite;
+			<div class="minis horiz">
+				<script type="mie/p5" base-2="" hidden="">
+let a, b, x, y, lsb;
 
 function setup() {
 	new Canvas(500, 200);
-	sprite = new Sprite(250, 100, 10, 10);
+	btns = new Group();
+	btns.d = 30;
+
+	a = new btns.Sprite(400, 130);
+	b = new btns.Sprite(430, 100);
+	x = new btns.Sprite(370, 100);
+	y = new btns.Sprite(400, 70);
+
+	lsb = new btns.Sprite(100, 100);
 }
 
 function draw() {
-	clear();
-
-	if (contro.pressing('a')) {
-		sprite.color = 'green';
-	} else if (contro.pressing('b')) {
-		sprite.color = 'red';
-	} else {
-		sprite.color = 'yellow';
-	}
-
-	sprite.x = 250 + contro.leftStick.x * 80;
-	sprite.y = 100 + contro.leftStick.y * 80;
+	background(20);
+	fill(20);
+	stroke(255);
+	ellipse(100, 100, 80, 80);
+	btns.color = 'gray';
 }
 			</script>
+				<script type="mie/p5" id="controller-test" base="2">
+if (contro.pressing('a')) a.color = 'green';
+if (contro.pressing('b')) b.color = 'red';
+if (contro.pressing('x')) x.color = 'blue';
+if (contro.pressing('y')) y.color = 'yellow';
+
+lsb.x = 100 + contro.leftStick.x * 40;
+lsb.y = 100 + contro.leftStick.y * 40;
+if (contro.pressing('lsb')) lsb.color = 'white';
+			</script>
+				<md id="md4-1">
+					<p>試してみてください！ゲームコントローラを接続し、そのいずれかのボタンを押すと、p5play によって検出されます。</p>
+				</md>
+			</div>
 		</div>
 		<div id="page-5" class="page">
 			<md id="md5-0">

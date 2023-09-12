@@ -725,8 +725,6 @@ function draw() {
 			<md id="md6-3">
 				<h2 id="try-it-out">Try it out!</h2>
 				<p>Try making the blue sprite change to red only if it's overlapping with the red sprite.</p>
-				<p>Note that this example uses custom shades of blue and red by utilizing the <a
-						href="https://p5js.org/reference/#/p5/color">p5.js color</a> function.</p>
 			</md>
 			<script type="mie/p5" id="Level-6-Challenge" lines="20" horiz="">
 let sprite1, sprite2;
@@ -735,10 +733,10 @@ function setup() {
 	new Canvas(100, 400);
 
 	sprite1 = new Sprite(50, 50);
-	sprite1.color = color(40, 140, 255);
+	sprite1.color = 'blue';
 
 	sprite2 = new Sprite(50, 300);
-	sprite2.color = color(255, 30, 10);
+	sprite2.color = 'red';
 }
 
 function draw() {

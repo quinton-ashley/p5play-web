@@ -62,15 +62,19 @@ Note that `mouse.x` is the x position of the mouse on the canvas and `sprite.mou
 
 ## Game Controllers
 
-The `contro` or `controllers` object provides the input state of game controller buttons:
+The `contro` object provides the input state of game controller buttons:
 
-"a", "b", "x", "y", "l" (left bumper), "r" (right bumper), "lt" (left trigger), "rt" (right trigger), "up", "down", "left", "right" (D-pad), "start", and "select"
+`a`, `b`, `x`, `y`, `l` (left bumper), `r` (right bumper), `lt` (left trigger), `rt` (right trigger), `up`, `down`, `left`, `right` (D-pad), `lsb` (left stick button), `rsb` (right stick button), `start`, and `select`
 
-It also provides the `x` and `y` axis positions of the analog sticks: `leftStick` and `rightStick`. The axis values range between -1 and 1, where 0 is the center.
+`contro.leftStick` and `contro.rightStick` represent the positions of the controller's analog sticks as objects with x and y properties. These values range from -1 to 1, with 0 indicating the center position.
 
-The `contro` object is also an array that contains all the connected game controllers detected by your web browser. Access connected controllers by index. For example, `contro[0]` and `contro[1]` are the first and second controllers. By default `contro` references `contro[0]`.
+Some controllers have analog triggers, and their positions are stored as numbers ranging from 0 to 1 in `contro.leftTrigger` and `contro.rightTrigger`.
 
-Try it out! Press any button on your connected game controller for it to be detected by p5play.
+The `contro` object (aka `controllers`) is an array that contains all the connected game controllers detected by your web browser. Access connected controllers by index. For example, `contro[0]` and `contro[1]` are the first and second controllers. Through JS magic, `contro` can be used to get the input states of `contro[0]`.
+
+# 4-1
+
+Try it out! Connect a game controller and press any button on it for it to be detected by p5play.
 
 # 5-0
 

@@ -18,16 +18,17 @@ test('InputDevice : mouse', () => {
 				expect(p.mouse.x).toBe(0);
 				expect(p.mouse.y).toBe(0);
 				expect(p.mouse.holdThreshold).toEqual(12);
-				expect(p.mouse.default).toEqual('left');
 				expect(p.mouse.isOnCanvas).toBe(false);
 				expect(p.mouse.active).toBe(false);
 
 				// return false for invalid input..
 				expect(p.mouse.presses('invalid-input')).toBe(false);
 
-				// return 'left' for input starting with 'left'..
-				const acResultLeft = p.mouse.ac('left-click');
-				expect(acResultLeft).toBe('left');
+				p.mouse.right = 10;
+				// return 'right' for input starting with 'right'..
+				const res = p.mouse.pressing('right-click');
+				expect(res).toBe(10);
+				p.mouse.right = -1;
 			};
 
 			p.draw = () => {

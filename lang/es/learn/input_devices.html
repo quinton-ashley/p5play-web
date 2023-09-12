@@ -163,15 +163,19 @@ function draw() {
 						href="https://developer.mozilla.org/en-US/docs/Web/CSS/cursor">estilo de cursor</a>. El valor
 					predeterminado es 'default', otras opciones incluyen 'grab', 'move', 'pointer' y 'wait'.</p>
 			</md>
-			<script type="mie/p5" id="hidden" base-2="" hide="">
+			<script type="mie/p5" id="mouse.visible">
+let cur;
 function setup() {
 	new Canvas(500, 100);
+	cur = new Sprite();
+
+	mouse.visible = false;
 }
 
-function draw() {}
-			</script>
-			<script type="mie/p5" id="mouse.visible" base="2">
-mouse.visible = false;
+function draw() {
+	clear();
+	cur.moveTowards(mouse, 1);
+}
 			</script>
 		</div>
 		<div id="page-3" class="page">
@@ -219,44 +223,65 @@ function draw() {
 		</div>
 		<div id="page-4" class="page">
 			<md id="md4-0">
-				<h2 id="controladores-de-juegos">Controladores de juegos</h2>
-				<p>El objeto <code>contro</code> o <code>controllers</code> proporciona el estado de entrada de los
-					botones del controlador de juegos:</p>
-				<p>"a", "b", "x", "y", "l" (gatillo izquierdo), "r" (gatillo derecho), "lt" (gatillo izquierdo), "rt"
-					(gatillo derecho), "up", "down", "left", "right" (dpad), "start" y "select"</p>
-				<p>También proporciona las posiciones del eje <code>x</code> y <code>y</code> de los sticks analógicos:
-					<code>leftStick</code> y <code>rightStick</code>. Los valores del eje varían entre -1 y 1, donde 0
-					es el centro.</p>
-				<p>El objeto <code>contro</code> también es un array que contiene todos los controladores de juegos
-					conectados detectados por tu navegador web. Accede a los controladores conectados por índice. Por
-					ejemplo, <code>contro[0]</code> y <code>contro[1]</code> son los primeros y segundos controladores.
-					Por defecto <code>contro</code> hace referencia a <code>contro[0]</code>.</p>
-				<p>¡Pruébalo! Presiona cualquier botón en tu controlador de juegos conectado para que sea detectado por
-					p5play.</p>
+				<h2 id="controladores-de-juego">Controladores de Juego</h2>
+				<p>El objeto <code>contro</code> proporciona el estado de entrada de los botones del controlador de
+					juego:</p>
+				<p><code>a</code>, <code>b</code>, <code>x</code>, <code>y</code>, <code>l</code> (gatillo izquierdo),
+					<code>r</code> (gatillo derecho), <code>lt</code> (gatillo izquierdo), <code>rt</code> (gatillo
+					derecho), <code>up</code>, <code>down</code>, <code>left</code>, <code>right</code> (D-pad),
+					<code>lsb</code> (botón de palanca izquierda), <code>rsb</code> (botón de palanca derecha),
+					<code>start</code> y <code>select</code></p>
+				<p><code>contro.leftStick</code> y <code>contro.rightStick</code> representan las posiciones de las
+					palancas analógicas del controlador como objetos con propiedades x e y. Estos valores van desde -1
+					hasta 1, con 0 indicando la posición central.</p>
+				<p>Algunos controladores tienen gatillos analógicos, y sus posiciones se almacenan como números que van
+					de 0 a 1 en <code>contro.leftTrigger</code> y <code>contro.rightTrigger</code>.</p>
+				<p>El objeto <code>contro</code> (también conocido como <code>controllers</code>) es una matriz que
+					contiene todos los controladores de juego conectados detectados por tu navegador web. Accede a los
+					controladores conectados por índice. Por ejemplo, <code>contro[0]</code> y <code>contro[1]</code>
+					son el primer y segundo controlador. A través de la magia de JavaScript, <code>contro</code> se
+					puede utilizar para obtener los estados de entrada de <code>contro[0]</code>.</p>
 			</md>
-			<script type="mie/p5" id="controller-test">
-let sprite;
+			<div class="minis horiz">
+				<script type="mie/p5" base-2="" hidden="">
+let a, b, x, y, lsb;
 
 function setup() {
 	new Canvas(500, 200);
-	sprite = new Sprite(250, 100, 10, 10);
+	btns = new Group();
+	btns.d = 30;
+
+	a = new btns.Sprite(400, 130);
+	b = new btns.Sprite(430, 100);
+	x = new btns.Sprite(370, 100);
+	y = new btns.Sprite(400, 70);
+
+	lsb = new btns.Sprite(100, 100);
 }
 
 function draw() {
-	clear();
-
-	if (contro.pressing('a')) {
-		sprite.color = 'green';
-	} else if (contro.pressing('b')) {
-		sprite.color = 'red';
-	} else {
-		sprite.color = 'yellow';
-	}
-
-	sprite.x = 250 + contro.leftStick.x * 80;
-	sprite.y = 100 + contro.leftStick.y * 80;
+	background(20);
+	fill(20);
+	stroke(255);
+	ellipse(100, 100, 80, 80);
+	btns.color = 'gray';
 }
 			</script>
+				<script type="mie/p5" id="controller-test" base="2">
+if (contro.pressing('a')) a.color = 'green';
+if (contro.pressing('b')) b.color = 'red';
+if (contro.pressing('x')) x.color = 'blue';
+if (contro.pressing('y')) y.color = 'yellow';
+
+lsb.x = 100 + contro.leftStick.x * 40;
+lsb.y = 100 + contro.leftStick.y * 40;
+if (contro.pressing('lsb')) lsb.color = 'white';
+			</script>
+				<md id="md4-1">
+					<p>¡Pruébalo! Conecta un controlador de juego y presiona cualquier botón en él para que p5play lo
+						detecte.</p>
+				</md>
+			</div>
 		</div>
 		<div id="page-5" class="page">
 			<md id="md5-0">
