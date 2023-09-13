@@ -63,8 +63,9 @@
 	"main": "app/app.js",
 	"scripts": {
 		"tests": "jest tests",
+		"dist": "cp v3/p5play.js ../../pkg/p5play/p5play.js && cp v3/p5play.min.js ../../pkg/p5play/p5play.min.js",
 		"docs": "jsdoc --configure docs/config/jsdoc.json",
-		"min": "minify v3/p5play.js > v3/p5play.min.js && cp v3/p5play.min.js ../../pkg/p5play/p5play.min.js",
+		"min": "minify v3/p5play.js > v3/p5play.min.js",
 		"v": "npm version patch --force",
 		"V": "npm version minor --force",
 		"version": "git add -A",
@@ -74,5 +75,5 @@
 		"make": "electron-forge make",
 		"publish": "electron-forge publish"
 	},
-	"version": "1.6.3"
+	"version": "1.6.4"
 }
