@@ -86,11 +86,12 @@ function draw() {
 		<div id="page-2" class="page">
 			<md id="md2-0">
 				<h2 id="camera-onoff">Camera On/Off</h2>
-				<p>By default, <code>allSprites.draw()</code> is called at the end of the p5.js draw loop. However, if
-					you want to control when sprites and groups are drawn, you can draw them separately.</p>
-				<p>The player and environment of your game should be drawn with the camera on.</p>
-				<p>UI or HUD sprites, represented by orange squares in this examples, should be drawn when the camera is
-					off.</p>
+				<p>By default, <code>allSprites.draw()</code> is called at the end of the p5.js draw loop, where the
+					camera is automatically turned on. However, if you want to control when sprites and groups are
+					drawn, you can draw them separately.</p>
+				<p>The player and environment of your game should be drawn after <code>camera.on()</code> is called.</p>
+				<p>UI or HUD sprites, represented by orange squares in this examples, should be drawn after
+					<code>camera.off()</code> is called.</p>
 				<p><code>mouse.x</code> stores the x position of the mouse in relation to the world, which can be larger
 					than the canvas. <code>camera.mouse.x</code> stores the x position of the mouse in relation to the
 					canvas.</p>
