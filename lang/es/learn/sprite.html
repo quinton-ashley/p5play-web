@@ -612,7 +612,7 @@ function setup() {
 	new Canvas(60, 342);
 	world.gravity.y = 10;
 	
-	pillar = new Sprite(30, 362, 30, 500, 'static');
+	pillar = new Sprite(30, 362, 30, 500, 'static')
 	player = new Sprite(30, 0, 50);
 }
 
@@ -676,10 +676,10 @@ function draw() {
 function setup() {
 	new Canvas(200, 128);
 
-	sprite1 = new Sprite(90, 50);
-	sprite2 = new Sprite(115, 75);
+	spriteA = new Sprite(90, 50);
+	spriteB = new Sprite(115, 75);
 
-	sprite1.overlaps(sprite2);
+	spriteA.overlaps(spriteB);
 }
 
 function draw() {
@@ -693,8 +693,11 @@ function draw() {
 					alto se dibujan primero.</p>
 			</md>
 			<script type="mie/p5" id="layer" horiz="" lines="8" base="4">
-sprite1.layer = 2;
-sprite2.layer = 1;
+spriteA.layer = 2;
+spriteA.text = 'Layer 2';
+
+spriteB.layer = 1;
+spriteB.text = 'Layer 1';
 			</script>
 			<md id="md6-2">
 				<p>En el primer fotograma en que un sprite se superpone con otro sprite, la función

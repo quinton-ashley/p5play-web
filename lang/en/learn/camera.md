@@ -14,13 +14,13 @@ In this example the camera follows the player's x axis movement.
 
 # 2-0
 
-## Camera On/Off
+## Camera On & Off
 
 By default, `allSprites.draw()` is called at the end of the p5.js draw loop, where the camera is automatically turned on. However, if you want to control when sprites and groups are drawn, you can draw them separately.
 
-The player and environment of your game should be drawn after `camera.on()` is called.
+The player and environment of your game should be drawn after the camera is turned on with `camera.on()`.
 
-UI or HUD sprites, represented by orange squares in this examples, should be drawn after `camera.off()` is called.
+UI or HUD sprites, represented by orange squares in this examples, should be drawn after the camera is turned off with `camera.off()`.
 
 `mouse.x` stores the x position of the mouse in relation to the world, which can be larger than the canvas. `camera.mouse.x` stores the x position of the mouse in relation to the canvas.
 

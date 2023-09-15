@@ -161,6 +161,8 @@ Try creating two sprites using the sprite constructor.
 
 ## Collisions
 
+To check for collisions use these functions inside the p5.js `draw` function.
+
 On the first frame that a sprite collides with another sprite, the `collides` function returns true.
 
 While a sprite is colliding with another sprite, the `colliding` function returns the number of frames the collision has occurred for.
@@ -173,13 +175,17 @@ On the first frame after two sprites collided, the `collided` function returns t
 
 Sprites collide by default but they can also overlap!
 
+By default sprites are drawn in the order they were created in.
+
 # 6-1
 
 ## Layer
 
-By default sprites are drawn in the order they were created in. You can change the draw order by editing sprite's `.layer` property. Sprites with the highest layer value get drawn first.
+You can change the draw order by editing a sprite's `.layer` property. Sprites with higher layer values get drawn on top of sprites with lower layer values.
 
 # 6-2
+
+For detecting overlaps, use these functions inside the p5.js `draw` function.
 
 On the first frame that a sprite overlaps with another sprite, the `overlaps` function returns true.
 

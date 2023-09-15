@@ -2,9 +2,9 @@
 
 ## p5play v3 library
 
-You can utilize p5play in a closed source project if at least ONE (1) of the following conditions is met:
+You can utilize p5play in a commercial (monetized) context if at least ONE (1) of the following conditions is met:
 
-1. You are a current [p5play Patreon][] member paying for the appropriate tier.
+1. You are a current [p5play Patreon][] member or [p5play GitHub Sponsor][] paying for the appropriate tier.
 
 2. You are publicly listed by Quinton Ashley on his [p5play-exceptions][] page on GitHub.
 
@@ -12,7 +12,9 @@ You can utilize p5play in a closed source project if at least ONE (1) of the fol
 
 p5play is licensed under the GPLv3, a copyleft license. Violating the terms is intellectual property theft. Cease and desist letters will be sent to suspected violators.
 
-Quinton Ashley is the sole copyright holder of p5play. Exceptions are afforded by the GPL v3 in section 7 which states "Additional permissions are terms that supplement the terms of this License by making exceptions from one or more of its conditions." If an exception is not obtained, potential consumers must be made aware of their ability to download readable (non-obfuscated) source code at or before the point of sale, as a free alternative to making any purchases. Note that your source code must include any requisite material, not limited to program files.
+Quinton Ashley is the sole copyright holder of p5play. Exceptions are afforded by the GPL v3 in section 7 which states "Additional permissions are terms that supplement the terms of this License by making exceptions from one or more of its conditions."
+
+If you do not obtain an exception, potential consumers must be made aware of their ability to download readable (non-obfuscated) source code at or before the point of sale, as a free alternative to making any purchases. Note that your source code must include any requisite material, not limited to program files.
 
 [Non-profit organizations must also comply with the above conditions on commercial use.](https://www.beavandenberk.com/ip/copyright-tm/nonprofits-and-the-fair-use-defense/)
 
@@ -38,4 +40,5 @@ The lessons and everything else in this repository, "p5play-web", is owned by Qu
 Any contributions made to the p5play library, p5play editor app, and/or p5play.org become the property of Quinton Ashley, unless a superseding agreement is arranged. By contributing to the p5play and p5play-web repositories, you forfeit any copyright claims over your contributions for the benefit of the p5play community. Any contributions to the p5play library will be credited on the home page of p5play.org and in the p5play changelog on GitHub unless you'd prefer to make contributions anonymously.
 
 [p5play Patreon]: https://www.patreon.com/p5play
+[p5play GitHub Sponsor]: https://github.com/sponsors/quinton-ashley
 [p5play-exceptions]: https://github.com/quinton-ashley/p5play-exceptions
