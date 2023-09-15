@@ -1,46 +1,46 @@
-# 0-0
-
 ## ¿Qué es p5play?
 
-p5play es una plataforma accesible _y_ poderosa para crear juegos y arte mediante código.
+p5play es una plataforma accesible y poderosa para crear juegos y arte con código.
 
-Fue diseñado para inspirar a las personas a aprender Ciencias de la Computación y permitir el desarrollo profesional de juegos.
-
-p5play proporciona a los principiantes resultados inmediatos y tangibles. Reduce al mínimo el código de plantilla al hacer suposiciones sensatas, asegurando que los usuarios solo escriban código que tenga un impacto y que sea fácil de entender.
+Fue diseñada para inspirar a las personas a aprender Ciencias de la Computación y permitir el desarrollo profesional de juegos.
 
 # 0-1
 
 ## ¿Por qué usar p5play?
 
-Muchas otras herramientas educativas de Ciencias de la Computación ofrecen facilidad de uso mediante una simplificación excesiva, pero carecen de utilidad práctica fuera de un entorno académico de nivel introductorio.
+¡Las páginas de [aprendizaje](../learn) de p5play.org son un recurso gratuito que contiene una documentación extensa y ejemplos!
 
-p5play es diferente porque recompensa a los estudiantes con profundidad y flexibilidad. Cuando los estudiantes sienten que están adquiriendo habilidades prácticas, no solo trabajando "para la escuela", se mantienen comprometidos y entusiasmados con el aprendizaje.
+p5play es fácil de aprender pero no está sobresimplificado. Ofrece a los desarrolladores profundidad y flexibilidad.
+
+Al reducir el código básico al mínimo absoluto, p5play te permite centrarte en lo que es importante: ¡el diseño de juegos!
 
 # 0-2
 
 ## ¿Es p5play de código abierto?
 
-p5play v3 es de código abierto y está licenciado bajo la GPL v3 porque creo que hacer juegos debería ser accesible para todos.
+p5play v3 es de código abierto y tiene licencia bajo la GPL v3 porque creo que todos deberían poder aprender a programar y hacer juegos de forma gratuita.
 
 # 0-3
 
 ## ¿Puedo ver algunas demostraciones?
 
-Si quieres ver algunos juegos y arte que he creado con p5play, echa un vistazo a mi [perfil de OpenProcessing](https://openprocessing.org/user/350295?o=35&view=sketches). También puedes echar un vistazo al canal #share en el servidor de Discord de p5play para ver lo que otras personas están creando con p5play.
+Echa un vistazo al perfil de [OpenProcessing](https://openprocessing.org/user/350295?o=35&view=sketches) de Quinton y también visita el canal #share en [Discord de la comunidad de p5play](https://discord.gg/3UTbqUgmPF) para ver lo que otras personas están creando con p5play.
 
 # 0-4
 
-## ¿Puedo utilizar p5play con fines comerciales?
+## ¿Puedo usar p5play comercialmente?
 
-Si deseas utilizar p5play en un proyecto comercial con código cerrado, deberás pagar por una excepción de licencia GPL v3 para los miembros de [Patreon](https://www.patreon.com/p5play). Consulta [LICENSING.md](/LICENSING.md) para obtener más información al respecto.
+p5play fue creado para hacer que el desarrollo de juegos comerciales sea más asequible para los desarrolladores independientes. Es por eso que p5play solo cobra una tarifa de suscripción plana por el uso comercial. ¡Sin tarifas de instalación para los usuarios!
 
-Además, al utilizar p5play, aceptas el [Contrato de Licencia para el Usuario Final (EULA)](https://github.com/quinton-ashley/p5play/blob/main/EULA.md).
+Conviértete en un miembro [Patreon de p5play](https://www.patreon.com/p5play) para obtener una excepción de publicación comercial de código cerrado a la licencia GPL v3 de p5play. Consulta [LICENSING.md](/LICENSING.md) para obtener más información.
+
+Además, al utilizar p5play, aceptas el [Acuerdo de Licencia de Usuario Final (EULA)](https://github.com/quinton-ashley/p5play/blob/main/EULA.md).
 
 # 0-5
 
 ## ¿Quién es Quinton Ashley?
 
-Hola, soy Quinton, el creador de p5play (v3) y p5play.org. Soy profesor de Ciencias de la Computación, tutor y mentor en [Crimson Education](https://www.crimsoneducation.org/). Enseño Principios de AP CS, AP CS A, IGSCE CS y Principios de Diseño de Juegos.
+¡Hola! Soy Quinton, el creador de p5play (v3) y p5play.org. Soy profesor de Ciencias de la Computación, tutor y mentor en [Crimson Education](https://www.crimsoneducation.org/). Enseño Principios de AP CS, AP CS A, IGSCE CS y Principios de Diseño de Juegos.
 
 # 1-0
 
@@ -48,12 +48,10 @@ Hola, soy Quinton, el creador de p5play (v3) y p5play.org. Soy profesor de Cienc
 
 Quiero comenzar agradeciendo a mis padres por su apoyo y por inscribirme en clases de programación cuando era niño.
 
-También quiero agradecer a mi esposa, Victoria, por su apoyo y aliento.💞
+Muchas gracias a Paolo Pedercini por crear p5.play (v1) y por confiarme el proyecto. También gracias a Erin Catto, creador de Box2D, por crear un motor de física tan increíble, y gracias a Ali Shakiba, creador de planck.js, un puerto de Box2D a JavaScript.
 
-Quiero agradecer a todos mis profesores, especialmente a mi profesor de inglés de tercer año, el Sr. Williams, y a mis profesores favoritos de NYU: Joanna Klukowska, Leigh Ann DeLyser, Lawrence Ferrara y Langdon Crawford.
+También quiero agradecer a mi esposa, Victoria, y a mi hija, Luna, por su apoyo y aliento. 💞
 
-También quiero agradecer al gobierno colombiano 🇨🇴 de Gustavo Petro por otorgar visas extendidas a nómadas digitales, lo que facilita que trabajadores remotos como yo vivamos y trabajemos aquí en Bogotá, Colombia. Si aún viviera en Estados Unidos, p5play probablemente no existiría. No podría permitirme pasar innumerables horas en un proyecto apasionante como este.
+Además, aprecio al gobierno colombiano 🇨🇴 de Gustavo Petro por otorgar visas extendidas a nómadas digitales, lo que facilita a trabajadores remotos como yo vivir y trabajar aquí en Bogotá, Colombia. Si todavía viviera en EE. UU., p5play probablemente no existiría. No podría permitirme pasar innumerables horas en un proyecto apasionado como este.
 
-¡Muchas gracias a Paolo Pedercini por crear p5.play (v1) y confiar en mí para continuar con el proyecto! También gracias a Erin Catto, creador de Box2D, por desarrollar un motor de física increíble, y gracias a Ali Shakiba, creador de planck.js, un puerto de Box2D en JavaScript.
-
-Si quieres más información sobre por qué creé p5play (v3), lee el artículo ["p5play Version 3"](https://github.com/quinton-ashley/p5play/wiki/p5play-Version-3) en el wiki y mi [registro de desarrollador](https://github.com/quinton-ashley/p5play/wiki/Developer-Log).
+Si deseas obtener más información sobre por qué hice p5play (v3), lee el artículo ["p5play Versión 3"](https://github.com/quinton-ashley/p5play/wiki/p5play-Version-3) en el wiki y mi [registro de desarrollador](https://github.com/quinton-ashley/p5play/wiki/Developer-Log)!
