@@ -32,7 +32,7 @@ p5.prototype.registerMethod('init', function p5playInit() {
 			};
 			gtag('js', new Date());
 			gtag('config', 'G-EHXNCTSYLK');
-			gtag('event', 'p5play_v3_12');
+			gtag('event', 'p5play_v3_14');
 		};
 	}
 
