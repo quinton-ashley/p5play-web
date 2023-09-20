@@ -107,7 +107,7 @@ features.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line5526">line 5526</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line5546">line 5546</a>
     </li></ul></dd>
     
 
@@ -212,7 +212,7 @@ shouldn't disable for every sprite in the world.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line5869">line 5869</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line5888">line 5888</a>
     </li></ul></dd>
     
 
@@ -370,7 +370,7 @@ shouldn't disable for every sprite in the world.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line5599">line 5599</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line5619">line 5619</a>
     </li></ul></dd>
     
 
@@ -412,7 +412,8 @@ shouldn't disable for every sprite in the world.
 to be at rest.
 
 Adjust the velocity threshold to allow for slow moving objects
-but don't have it be too low, or else objects will never sleep.
+but don't have it be too low, or else objects will never sleep,
+which will hurt performance.
 </div>
 
 
@@ -453,7 +454,7 @@ but don't have it be too low, or else objects will never sleep.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line5616">line 5616</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line5638">line 5638</a>
     </li></ul></dd>
     
 
@@ -540,7 +541,7 @@ Optionally you can specify a group to search.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line5721">line 5721</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line5741">line 5741</a>
     </li></ul></dd>
     
 
@@ -737,14 +738,14 @@ Optionally you can specify a group to search.
 
     
 
-    <h4 class="name" id="getSpritesAt"><span class="type-signature"></span>getSpritesAt<span class="signature">(x, y, group<span class="signature-attributes">opt</span>, cameraActiveWhenDrawn<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Array:<a href="global.html#package:"></a>.&lt;<a href="global.html">Sprite</a>:<a href="global.html#package:"></a>>}</span></h4>
+    <h4 class="name" id="getSpritesAt"><span class="type-signature"></span>getSpritesAt<span class="signature">(x, y, group<span class="signature-attributes">opt</span>, cameraActiveWhenDrawn<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Array:<a href="global.html#.createTextImage"></a>.&lt;<a href="global.html">Sprite</a>:<a href="global.html#.createTextImage"></a>>}</span></h4>
 
     
 
 
 
 <div class="description">
-    Returns the sprites at a position on any layer.
+    Returns the sprites at a position, ordered by layer.
 
 Optionally you can specify a group to search.
 </div>
@@ -782,7 +783,7 @@ Optionally you can specify a group to search.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line5680">line 5680</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line5701">line 5701</a>
     </li></ul></dd>
     
 
@@ -993,7 +994,7 @@ were drawn when the camera was active will be returned
     </dt>
     <dd>
         
-<span class="param-type"><code>Array:<a href="global.html#package:"></a>.&lt;<a href="global.html">Sprite</a>:<a href="global.html#package:"></a>></code></span>
+<span class="param-type"><code>Array:<a href="global.html#.createTextImage"></a>.&lt;<a href="global.html">Sprite</a>:<a href="global.html#.createTextImage"></a>></code></span>
 
 
     </dd>
@@ -1061,7 +1062,7 @@ Used when the canvas is created or resized.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line5632">line 5632</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line5653">line 5653</a>
     </li></ul></dd>
     
 
@@ -1226,7 +1227,7 @@ loop, unless it was already called inside the draw loop.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line5654">line 5654</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line5675">line 5675</a>
     </li></ul></dd>
     
 
@@ -1382,7 +1383,7 @@ loop, unless it was already called inside the draw loop.
 <br class="clear">
 
 <footer>
-    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Wed Sep 13 2023 14:40:58 GMT-0500 (Colombia Standard Time) using the Minami theme.
+    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Wed Sep 20 2023 08:35:47 GMT-0500 (Colombia Standard Time) using the Minami theme.
 </footer>
 
 <script>prettyPrint();</script>
