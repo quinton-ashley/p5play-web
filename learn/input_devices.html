@@ -42,10 +42,12 @@
 					<li><code>contro</code> or <code>controllers</code> for game controllers</li>
 				</ul>
 				<p>These input devices all use the same simple functions for getting the state of an input:
-					<code>presses</code>, <code>pressing</code>, and <code>released</code>.</p>
+					<code>presses</code>, <code>pressing</code>, and <code>released</code>.
+				</p>
 				<p>Input devices also store the state of all their inputs as properties. For example,
 					<code>kb.space</code> stores how many frames the user has been pressing the space key. It gets reset
-					when the user releases the input.</p>
+					when the user releases the input.
+				</p>
 			</md>
 			<script type="mie/p5" id="hidden" base-0="" hide="">
 function setup() {
@@ -111,7 +113,8 @@ if (kb.pressing('space') || mouse.pressing()) {
 				<p><code>kb</code> tracks nearly every key on the keyboard, including 'enter', 'backspace', and
 					'control'.</p>
 				<p>Note that letter input is not case sensitive. To check if a user is pressing shift use:
-					<code>kb.pressing('shift')</code>.</p>
+					<code>kb.pressing('shift')</code>.
+				</p>
 				<p>Since the WASD keys are commonly used to control the player character's movement, you can use the
 					direction names 'up', 'down', 'left', and 'right' to detect WASD and arrow key presses.</p>
 				<p>Arrow keys can also be detected separately using 'arrowUp', 'arrowDown', 'arrowLeft', and
@@ -165,6 +168,8 @@ let cur;
 function setup() {
 	new Canvas(500, 100);
 	cur = new Sprite();
+	cur.d = 30;
+	cur.img = createTextImage('🐭');
 
 	mouse.visible = false;
 }
@@ -186,7 +191,8 @@ function draw() {
 				<p><code>dragging</code> detects when the user clicks and holds a mouse button on the sprite while
 					moving the mouse.
 					Note that <code>mouse.x</code> is the x position of the mouse on the canvas and
-					<code>sprite.mouse.x</code> is the x position of the mouse relative to the sprite.</p>
+					<code>sprite.mouse.x</code> is the x position of the mouse relative to the sprite.
+				</p>
 			</md>
 			<script type="mie/p5" id="sprite.mouse">
 let sprite;
@@ -225,7 +231,8 @@ function draw() {
 					<code>r</code> (right bumper), <code>lt</code> (left trigger), <code>rt</code> (right trigger),
 					<code>up</code>, <code>down</code>, <code>left</code>, <code>right</code> (D-pad), <code>lsb</code>
 					(left stick button), <code>rsb</code> (right stick button), <code>start</code>, and
-					<code>select</code></p>
+					<code>select</code>
+				</p>
 				<p><code>contro.leftStick</code> and <code>contro.rightStick</code> represent the positions of the
 					controller's analog sticks as objects with x and y properties. These values range from -1 to 1, with
 					0 indicating the center position.</p>
@@ -303,14 +310,14 @@ if (contro.pressing('lsb')) lsb.color = 'white';
 	</article>
 
 	<script src="/v3/q5.min.js"></script>
-<script src="/v3/planck.min.js"></script>
-<script src="/v3/p5play.min.js"></script>
-<script>
-window.mie = { autoLoad: false };
+	<script src="/v3/planck.min.js"></script>
+	<script src="/v3/p5play.min.js"></script>
+	<script>
+		window.mie = { autoLoad: false };
 
 	</script>
 	<script src="/learn/mie.js"></script>
-<script src="/learn/learn.js"></script>
+	<script src="/learn/learn.js"></script>
 </body>
 
 </html>
