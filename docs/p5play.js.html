@@ -1322,7 +1322,7 @@ p5.prototype.registerMethod('init', function p5playInit() {
 				this.body = undefined;
 			}
 
-			// replace colliders and overlap sensors
+			// replace colliders
 			if (this._collider != 'none') {
 				if (v) {
 					this.addCollider(0, 0, v);
@@ -4363,9 +4363,10 @@ p5.prototype.registerMethod('init', function p5playInit() {
 			if (img instanceof p5.Image) return img;
 
 			let { x, y, w, h } = img; // image info
-			let g = createGraphics(w, h);
-			g.image(this.spriteSheet, this.offset.x, this.offset.y, w, h, x, y, w, h);
-			return g;
+
+			let image = this.p.createImage(w, h);
+			image.copy(this.spriteSheet, this.offset.x, this.offset.y, w, h, x, y, w, h);
+			return image;
 		}
 
 		/**
@@ -7146,7 +7147,8 @@ p5.prototype.registerMethod('init', function p5playInit() {
 		return l;
 	}
 
-	this.p5play.palettes ??= [
+	// default color palettes
+	this.p5play.palettes = [
 		{
 			a: 'aqua',
 			b: 'black',
@@ -7689,7 +7691,7 @@ main {
 
 	/**
 	 * Just like the p5.js background function except it also accepts
-	 * a color pallette code.
+	 * a color palette code.
 	 */
 	this.background = function () {
 		let args = arguments;
@@ -7705,7 +7707,7 @@ main {
 
 	/**
 	 * Just like the p5.js fill function except it also accepts
-	 * a color pallette code.
+	 * a color palette code.
 	 */
 	this.fill = function () {
 		let args = arguments;
@@ -7721,7 +7723,7 @@ main {
 
 	/**
 	 * Just like the p5.js stroke function except it also accepts
-	 * a color pallette code.
+	 * a color palette code.
 	 */
 	this.stroke = function () {
 		let args = arguments;
@@ -7784,12 +7786,6 @@ main {
 			return img;
 		}
 		const _cb = (_img) => {
-			// if (!_img.pixels.length) {
-			// 	log('hi');
-			// 	_loadImage.call(pInst, url, _cb);
-			// 	return;
-			// }
-
 			_img.w = _img.width;
 			_img.h = _img.height;
 			for (let cb of _img.cbs) {
@@ -7798,8 +7794,6 @@ main {
 			for (let i = 1; i &lt; _img.calls; i++) {
 				pInst._decrementPreload();
 			}
-			// delete _img.calls;
-			// delete _img.cbs;
 			_img.cbs = [];
 			pInst.p5play.images.onLoad(img);
 		};
@@ -7809,11 +7803,6 @@ main {
 		if (cb) img.cbs.push(cb);
 		img.url = url;
 		pInst.p5play.images[url] = img;
-		// setTimeout(() => {
-		// 	if (!img.width &amp;&amp; !img.height) {
-		// 		console.warn('Image may have failed to load: ' + url);
-		// 	}
-		// }, 3000);
 		return img;
 	};
 
@@ -7935,29 +7924,33 @@ main {
 				$.textImage(ti, x, y);
 				return;
 			}
-			ti = $.createGraphics.call($, 1, 1);
-			c = ti.canvas.getContext('2d');
-			c.font = `${r._textStyle} ${r._textSize}px ${r._textFont}`;
+			let pd = $.pixelDensity();
+			let tg = $.createGraphics.call($, 1, 1);
+			c = tg.canvas.getContext('2d');
+			c.font = `${r._textStyle} ${r._textSize * pd}px ${r._textFont}`;
 			let lines = str.split('\n');
 			cX = 0;
-			cY = r._textLeading * lines.length;
+			cY = r._textLeading * pd * lines.length;
 			let m = c.measureText(' ');
-			ti._ascent = m.fontBoundingBoxAscent;
-			ti._descent = m.fontBoundingBoxDescent;
-			h ??= cY + ti._descent;
-			ti.resizeCanvas(Math.ceil($.textWidth(str)), Math.ceil(h));
-			ti.pixelDensity($._pixelDensity);
+			tg._ascent = m.fontBoundingBoxAscent;
+			tg._descent = m.fontBoundingBoxDescent;
+			h ??= cY + tg._descent;
+			tg.resizeCanvas(Math.ceil(tg.textWidth(str)), Math.ceil(h));
 			c.fillStyle = ctx.fillStyle;
 			c.strokeStyle = ctx.strokeStyle;
+			c.lineWidth = ctx.lineWidth * pd;
+			let f = c.fillStyle;
+			if (!r._fillSet) c.fillStyle = 'black';
 			for (let i = 0; i &lt; lines.length; i++) {
 				if (r._doStroke &amp;&amp; r._strokeSet) c.strokeText(lines[i], cX, cY);
-				let f = c.fillStyle;
-				if (!r._fillSet) c.fillStyle = 'black';
 				if (r._doFill) c.fillText(lines[i], cX, cY);
-				if (!r._fillSet) c.fillStyle = f;
 				cY += r._textLeading;
 				if (cY > h) break;
 			}
+			if (!r._fillSet) c.fillStyle = f;
+			ti = tg.get();
+			ti.width /= pd;
+			ti.height /= pd;
 			$._tic.set(k, ti);
 			$.textImage(ti, x, y);
 		};
@@ -8394,7 +8387,7 @@ main {
 		 */
 		dragged(inp) {
 			inp ??= this._default;
-			return this.drag[inp] == -1;
+			return this.drag[inp] &lt;= -1;
 		}
 	};
 
@@ -8436,7 +8429,7 @@ main {
 		 * @returns {boolean} true on the first frame that the mouse is no longer over the sprite
 		 */
 		hovered() {
-			return this.hover == -1;
+			return this.hover &lt;= -1;
 		}
 	};
 
@@ -8479,11 +8472,9 @@ main {
 		let m = this.mouse;
 		if (m[btn] > 0 &amp;&amp; m.drag[btn] &lt;= 0) {
 			m.drag[btn] = 1;
-			m._isDragging = true;
 			let ms = this.world.mouseSprite?.mouse;
 			if (ms) {
 				ms.drag[btn] = 1;
-				ms._isDragging = true;
 			}
 		}
 	};
@@ -8505,6 +8496,7 @@ main {
 			m[btn] = -3;
 		} else if (m[btn] > 1) m[btn] = -1;
 		else m[btn] = -2;
+		if (m.drag[btn] > 0) m.drag[btn] = -1;
 
 		let msm = this.world.mouseSprite?.mouse;
 		if (msm) {
@@ -8516,9 +8508,7 @@ main {
 				} else {
 					msm[btn] = -2;
 				}
-				if (msm.drag[btn] > 0) {
-					msm.drag[btn] = msm[btn];
-				}
+				if (msm.drag[btn] > 0) msm.drag[btn] = -1;
 			} else {
 				msm[btn] = 0;
 				msm.drag[btn] = 0;
@@ -9303,6 +9293,10 @@ p5.prototype.registerMethod('post', function p5playPostDraw() {
 		if (m[btn] &lt; 0) m[btn] = 0;
 		else if (m[btn] > 0) m[btn]++;
 		if (msm) msm[btn] = m[btn];
+
+		if (m.drag[btn] &lt; 0) m.drag[btn] = 0;
+		else if (m.drag[btn] > 0) m.drag[btn]++;
+		if (msm) msm.drag[btn] = m.drag[btn];
 	}
 
 	if (this.world.mouseTracking) {
@@ -9320,31 +9314,33 @@ p5.prototype.registerMethod('post', function p5playPostDraw() {
 			else if (s.mouse.hover &lt; 0) s.mouse.hover = 0;
 		}
 
-		let ms = this.world.mouseSprite;
-
 		// if the user is not pressing any mouse buttons
 		if (m.left &lt;= 0 &amp;&amp; m.center &lt;= 0 &amp;&amp; m.right &lt;= 0) {
-			ms = null;
 			this.world.mouseSprite = null;
-		} else {
-			for (let btn of ['left', 'center', 'right']) {
-				if (m.drag[btn] &lt; 0) m.drag[btn] = 0;
-				else if (m.drag[btn] > 0) m.drag[btn]++;
-				if (msm) {
-					msm.drag[btn] = m.drag[btn];
-					msm.x = ms.x - m.x;
-					msm.y = ms.y - m.y;
-				}
-			}
 		}
 
+		let ms = this.world.mouseSprite;
+
+		let isDragging = m.drag.left > 0 || m.drag.center > 0 || m.drag.right > 0;
+
 		for (let s of this.world.mouseSprites) {
-			// mouse stopped hovering over the sprite and is not dragging it
-			if ((!msm?._isDragging || s != ms) &amp;&amp; !sprites.includes(s)) {
+			// if the mouse stopped hovering over the sprite
+			if (!sprites.includes(s)) {
 				let sm = s.mouse;
-				sm.hover = -1;
-				sm.left = sm.center = sm.right = 0;
+				if (sm.hover > 0) {
+					sm.hover = -1;
+					sm.left = sm.center = sm.right = 0;
+				}
+				// if mouse is not dragging and the sprite is the current mouse sprite
+				if (!isDragging &amp;&amp; s == ms) this.world.mouseSprite = ms = null;
 			}
+		}
+		if (ms) {
+			// if the user is dragging on a sprite, but not currently hovering
+			// over it, the mouse sprite should still be added to the mouseSprites array
+			if (!sprites.includes(ms)) sprites.push(ms);
+			msm.x = ms.x - m.x;
+			msm.y = ms.y - m.y;
 		}
 		this.world.mouseSprites = sprites;
 	}
@@ -9369,7 +9365,7 @@ p5.prototype.registerMethod('post', function p5playPostDraw() {
 <br class="clear">
 
 <footer>
-    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Thu Sep 21 2023 08:42:48 GMT-0500 (Colombia Standard Time) using the Minami theme.
+    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Fri Sep 22 2023 00:18:43 GMT-0500 (Colombia Standard Time) using the Minami theme.
 </footer>
 
 <script>prettyPrint();</script>

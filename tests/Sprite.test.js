@@ -121,6 +121,7 @@ test('Sprite : properties', () => {
 			expect(s.rotationSpeed).toBeCloseTo(30);
 			s.rotationSpeed = 0;
 			expect(s.rotationSpeed).toBe(0);
+			s.rotation = 0;
 
 			s.color = 'red';
 			expect(s.color).toBeInstanceOf(p5.Color);
