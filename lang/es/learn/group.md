@@ -34,13 +34,16 @@ En este mini ejemplo, a cada sprite de gema se le asigna una posición x e y ale
 
 # 2-0
 
-## Superposición de grupo
+## Colisiones y Superposiciones
 
-La función de superposición no es sólo para manejar si dos sprites se superponen. También puedes comprobar si un sprite se superpone con un sprite en un grupo.
+Las funciones de colisión y superposición no solo se utilizan para detectar eventos entre dos sprites. También puedes comprobar colisiones y superposiciones entre sprites y grupos o entre grupos. Las funciones son:
 
-En este mini ejemplo, la función collect recibe como entradas al jugador y la gema en el grupo de gemas con la que el sprite del jugador se está superponiendo. Esa gema se elimina.
+`colisiona`, `colisionando`, `colisionado`  
+`superpone`, `superponiendo`, `superpuesto`
 
-También puedes usar las funciones de superposición y colisión en grupos.
+En lugar de utilizar estas funciones en declaraciones `if`, puedes proporcionarles una función de devolución de llamada como segundo parámetro. La función de devolución de llamada se ejecutará cuando ocurra el evento de colisión o superposición. La función de devolución de llamada recibe, como entradas, dos sprites.
+
+En este mini ejemplo, la función de devolución de llamada recibe el sprite del jugador y el sprite de la gema en el grupo de gemas con el que el jugador se superpone. Esa gema se recoge (se elimina).
 
 # 3-0
 

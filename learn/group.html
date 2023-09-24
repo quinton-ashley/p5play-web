@@ -116,12 +116,17 @@ function draw() {
 		</div>
 		<div id="page-2" class="page">
 			<md id="md2-0">
-				<h2 id="group-overlap">Group overlap</h2>
-				<p>The overlap function isn't just for handling if two sprites overlap. You can also check if a sprite
-					overlaps with a sprite in a group.</p>
-				<p>In this mini example the collect function receives as inputs the player and the gem in the gems group
-					that the player sprite is overlapping. That gem gets removed.</p>
-				<p>You can use the overlap and collide functions on groups as well.</p>
+				<h2 id="collisions-and-overlaps">Collisions and Overlaps</h2>
+				<p>Collision and overlap functions aren't just for detecting events between two sprites. You can also
+					check for collisions and overlaps between sprites and groups or between groups. The functions are:
+				</p>
+				<p><code>collides</code>, <code>colliding</code>, <code>collided</code><br><code>overlaps</code>,
+					<code>overlapping</code>, <code>overlapped</code></p>
+				<p>Instead of using these functions in <code>if</code> statements, you can provide them with a callback
+					function as a second parameter. The callback function will run when the collision or overlap event
+					occurs. The callback function receives, as inputs, two sprites.</p>
+				<p>In this mini example the callback function receives the player sprite and the gem sprite in the gems
+					group that the player overlaps. That gem gets collected (removed).</p>
 			</md>
 			<script type="mie/p5" id="collect-gems" horiz="">
 let player, gems;
@@ -358,7 +363,7 @@ function draw() {
 			<div id="pageNav" class="submenu">
 				<a data-page="0" href="group.html?page=0">Soft and Dynamic Inheritance</a>
 				<a data-page="1" href="group.html?page=1">Arrow Setters</a>
-				<a data-page="2" href="group.html?page=2">Overlaps</a>
+				<a data-page="2" href="group.html?page=2">Collisions and Overlaps</a>
 				<a data-page="3" href="group.html?page=3">allSprites</a>
 				<a data-page="4" href="group.html?page=4">Indexed Arrow Setters</a>
 				<a data-page="5" href="group.html?page=5">Subgroups</a>

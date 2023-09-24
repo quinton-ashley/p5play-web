@@ -34,13 +34,16 @@ In this mini example, each gem sprite is assigned a random position.
 
 # 2-0
 
-## Group overlap
+## Collisions and Overlaps
 
-The overlap function isn't just for handling if two sprites overlap. You can also check if a sprite overlaps with a sprite in a group.
+Collision and overlap functions aren't just for detecting events between two sprites. You can also check for collisions and overlaps between sprites and groups or between groups. The functions are:
 
-In this mini example the collect function receives as inputs the player and the gem in the gems group that the player sprite is overlapping. That gem gets removed.
+`collides`, `colliding`, `collided`  
+`overlaps`, `overlapping`, `overlapped`
 
-You can use the overlap and collide functions on groups as well.
+Instead of using these functions in `if` statements, you can provide them with a callback function as a second parameter. The callback function will run when the collision or overlap event occurs. The callback function receives, as inputs, two sprites.
+
+In this mini example the callback function receives the player sprite and the gem sprite in the gems group that the player overlaps. That gem gets collected (removed).
 
 # 3-0
 

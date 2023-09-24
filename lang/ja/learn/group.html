@@ -109,10 +109,15 @@ function draw() {
 		</div>
 		<div id="page-2" class="page">
 			<md id="md2-0">
-				<h2 id="グループの重なり">グループの重なり</h2>
-				<p>overlap 関数は、2 つのスプライトが重なっているかどうかを処理するためだけのものではありません。グループ内のスプライトとスプライトが重なっているかどうかも確認できます。</p>
-				<p>このミニ例では、collect 関数は入力としてプレーヤーと、プレーヤースプライトが重なっている宝石グループ内の宝石を受け取ります。その宝石は削除されます。</p>
-				<p>グループにも overlap 関数と collide 関数を使用できます。</p>
+				<h2 id="衝突と重なり">衝突と重なり</h2>
+				<p>衝突と重なりの関数は、2つのスプライト間のイベントを検出するためだけでなく、スプライトとグループ、またはグループ間の衝突と重なりをチェックするためにも使用できます。使用できる関数は次のとおりです：
+				</p>
+				<p><code>collides</code>, <code>colliding</code>, <code>collided</code><br><code>overlaps</code>,
+					<code>overlapping</code>, <code>overlapped</code></p>
+				<p>これらの関数を <code>if</code>
+					文で使用する代わりに、コールバック関数を2番目のパラメータとして提供することもできます。衝突または重なりのイベントが発生したときにコールバック関数が実行されます。コールバック関数は、2つのスプライトを入力として受け取ります。
+				</p>
+				<p>このミニ例では、コールバック関数はプレイヤースプライトとプレイヤーが重なっているgemsグループ内のジェムスプライトを受け取ります。そのジェムは収集され（削除され）ます。</p>
 			</md>
 			<script type="mie/p5" id="collect-gems" horiz="">
 let player, gems;
@@ -336,7 +341,7 @@ function draw() {
 			<div id="pageNav" class="submenu">
 				<a data-page="0" href="group.html?page=0">ソフトとダイナミック継承</a>
 				<a data-page="1" href="group.html?page=1">アローセッター</a>
-				<a data-page="2" href="group.html?page=2">オーバーラップ</a>
+				<a data-page="2" href="group.html?page=2">衝突と重なり</a>
 				<a data-page="3" href="group.html?page=3">allSprites</a>
 				<a data-page="4" href="group.html?page=4">インデックス付きアローセッター</a>
 				<a data-page="5" href="group.html?page=5">サブグループ</a>

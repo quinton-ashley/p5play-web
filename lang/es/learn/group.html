@@ -119,12 +119,20 @@ function draw() {
 		</div>
 		<div id="page-2" class="page">
 			<md id="md2-0">
-				<h2 id="superposición-de-grupo">Superposición de grupo</h2>
-				<p>La función de superposición no es sólo para manejar si dos sprites se superponen. También puedes
-					comprobar si un sprite se superpone con un sprite en un grupo.</p>
-				<p>En este mini ejemplo, la función collect recibe como entradas al jugador y la gema en el grupo de
-					gemas con la que el sprite del jugador se está superponiendo. Esa gema se elimina.</p>
-				<p>También puedes usar las funciones de superposición y colisión en grupos.</p>
+				<h2 id="colisiones-y-superposiciones">Colisiones y Superposiciones</h2>
+				<p>Las funciones de colisión y superposición no solo se utilizan para detectar eventos entre dos
+					sprites. También puedes comprobar colisiones y superposiciones entre sprites y grupos o entre
+					grupos. Las funciones son:</p>
+				<p><code>colisiona</code>, <code>colisionando</code>,
+					<code>colisionado</code><br><code>superpone</code>, <code>superponiendo</code>,
+					<code>superpuesto</code></p>
+				<p>En lugar de utilizar estas funciones en declaraciones <code>if</code>, puedes proporcionarles una
+					función de devolución de llamada como segundo parámetro. La función de devolución de llamada se
+					ejecutará cuando ocurra el evento de colisión o superposición. La función de devolución de llamada
+					recibe, como entradas, dos sprites.</p>
+				<p>En este mini ejemplo, la función de devolución de llamada recibe el sprite del jugador y el sprite de
+					la gema en el grupo de gemas con el que el jugador se superpone. Esa gema se recoge (se elimina).
+				</p>
 			</md>
 			<script type="mie/p5" id="collect-gems" horiz="">
 let player, gems;
@@ -363,7 +371,7 @@ function draw() {
 			<div id="pageNav" class="submenu">
 				<a data-page="0" href="group.html?page=0">Heredencia Suave y Dinámica</a>
 				<a data-page="1" href="group.html?page=1">Establecedores de Flecha</a>
-				<a data-page="2" href="group.html?page=2">Superposiciones</a>
+				<a data-page="2" href="group.html?page=2">Colisiones y Superposiciones</a>
 				<a data-page="3" href="group.html?page=3">todos los Sprites</a>
 				<a data-page="4" href="group.html?page=4">Establecedores de Flecha Indexados</a>
 				<a data-page="5" href="group.html?page=5">Subgrupos</a>
