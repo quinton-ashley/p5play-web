@@ -65,3 +65,5 @@ FPS in this context refers to how many frames per second your computer can gener
 You can use this function for approximate performance testing. For more accurate results, use your web browser's performance testing tools.
 
 Generally having less sprites and using a smaller canvas will make your game perform better. For better performance don't use the p5.js `clear` function or sample the colors of pixels in your canvas using `canvas.get`.
+
+I've tested p5play in every web browser and found that Google Chrome performs the best.

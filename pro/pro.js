@@ -8,17 +8,22 @@
 	if (idToken && idToken != 'null') user = jwt_decode(idToken);
 	else idToken = null;
 
+	// check if there's no token or if it's expired
 	if (!idToken || user.exp < Date.now() / 1000) {
-		// get the AWS Cognito id_token from the URL
+		// tries to get the AWS Cognito id_token from the URL
 		let params = location.search;
 		if (!params) params = '?' + location.hash.slice(1);
 		const urlParams = new URLSearchParams(params);
 		idToken = urlParams.get('id_token');
+		// save to local storage
 		localStorage.setItem('idToken', idToken);
+
+		// if there's no token, display the unauthorized section of the page
 		if (!idToken) {
 			document.getElementById('noauth').style.display = 'flex';
 			return;
 		}
+		// else, decode the token
 		user = jwt_decode(idToken);
 
 		// hide the token from the URL
