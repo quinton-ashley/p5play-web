@@ -37,7 +37,7 @@ gravity.
 
 `'static'` colliders can't be moved. `'kinematic'` colliders can be moved
 programmatically but not by other sprites. They also won't collide with other kinematic colliders. Setting a sprite's collider
-type to `'none'` removes it from the physics simulation.
+type to `'none'` makes it have no collider.
 
 The collider type can also be set using the first letter of the collider type name: `'d'`, `'s'`, `'k'`, or `'n'`.
 
@@ -248,27 +248,15 @@ When `sprite.debug` is true, the center of the sprite is marked with a small gre
 
 # 8-0
 
-## Movement sequencing
+## Scaling
 
-These examples use a `Turtle` sprite which is just a regular sprite
-that's green and shaped like a triangle for that classic turtle
-programming look.
+Changing `sprite.scale` will scale the sprite's collider and visual appearance by the specified amount.
 
-You can use the `await` keyword inside an `async` function to wait for a movement to finish before continuing with the next movement. This is useful for making a sprite move in a sequence.
+Press a number key to see the sprite scale uniformly by that amount.
 
-The `delay` function can be used to wait for a specified number of milliseconds. 1000 milliseconds is equal to 1 second!
+Click your mouse or touch tap to double the sprite's scale.
 
-# 8-1
-
-The `move`, `moveTo`, `rotate`, and `rotateTo` functions all return a `Promise` that resolves to true when the movement is finished.
-
-But, if the sprite's movement is interrupted by a new movement or a collision that significantly changes the sprite's trajectory, the promise will resolve to false.
-
-# 8-2
-
-If you want a sprite to follow another sprite, you may be tempted to use `moveTo` repeatedly, without waiting for the sprite to reach its destination. But for better performance, try using the `angleTo` function, which gets the angle between a sprite and a position. This angle can be used to change the direction that the sprite moves in.
-
-In this example, the [p5.js dist](https://p5js.org/reference/#/p5/dist) function is used to calculate the distance between the player and its ally.
+Press "x" or "y" to scale the sprite in that direction by a random amount. But note that if the sprite gets scaled unevenly, the image will get distorted and stay that way even when scaled uniformly again.
 
 # 9-0
 
@@ -318,6 +306,42 @@ If you're trying to make a platformer game, `colliding` is not a reliable way to
 
 # 10-0
 
+## Advanced Movement
+
+`move` functions are imperative, they override a sprite's velocities. But what if you want a sprite to respect other forces acting on it, such as gravity?
+
+A bearing is the direction that needs to be followed to reach a destination. Changing a sprite's bearing won't imperatively change its movement direction.
+
+Use `applyForce` with one input parameter, the amount of force, to have the force be applied at the sprite's `bearing` angle.
+
+In this example, the drone has to overcome the force of gravity to fly. Make the drone fly, then let it fall, when upward force is applied to the drone again it'll gradually stop falling and start to fly!
+
+# 10-1
+
+The `applyForceScaled` function multiplies the force applied to the sprite by its mass.
+
+You can use this function to give sprites their own gravity!
+
+Both force functions can accept force as separate x and y components or as an amount, provided you set the sprite's `bearing`.
+
+By default, force is applied to the sprite's center of mass. But the force functions can also accept a last input parameter, a position object with x and y properties that specifies the relative position of where force will be applied on the sprite.
+
+# 10-2
+
+Use the `attractTo` function to attract the sprite to a position by applying force. The position can be given as an object with x and y properties or as separate x and y parameters.
+
+This example shows an electron orbiting the nucleus of an atom. (Note this visualization isn't realistic based on current scientific understanding, but it looks cool!)
+
+Note that the advanced movement functions shown on this page will not wake [sleeping sprites](./world.html)!
+
+# 10-3
+
+Torque is the force that causes rotation. Use `applyTorque` to non-imperatively affect the sprite's rotation.
+
+In this example, the robot rolls slower in places where the ground is steeper.
+
+# 11-0
+
 ## Chain Colliders
 
 There are three different chain modes: vertex, distance, and line.
@@ -326,7 +350,7 @@ To use vertex mode, provide the Sprite constructor with an array of vertex array
 
 Try changing the vertexes of the chain sprite in the mini example to make the ball stay on the floor!
 
-# 10-1
+# 11-1
 
 To use distance mode, provide the Sprite constructor an (x, y) position and an array of distance arrays. These arrays should contain \[x, y\] distances relative to the previous vertex. The (x, y) position will be the first vertex in the chain.
 
@@ -334,7 +358,7 @@ Distance mode is best for creating super long chains.
 
 Try adding 5 distances to make the ground roll up and down on a rocky ground chain.
 
-# 10-2
+# 11-2
 
 To use line mode, provide the Sprite constructor an (x,y) position and a list of line lengths and angles. Each angle is relative to the previous line's angle.
 
@@ -344,7 +368,7 @@ Note that the line mode chain's (x, y) position is located at the average of all
 
 Try changing the lengths of these lines and their angles!
 
-# 11-0
+# 12-0
 
 ## Polygon Colliders
 
@@ -352,15 +376,15 @@ Regular polygons can be created by providing the Sprite constructor with a side 
 
 Here are the names you can use: triangle, square, pentagon, hexagon, septagon, octagon, enneagon, decagon, hendecagon, and dodecagon.
 
-# 11-1
+# 12-1
 
 If the start and end of a chain is at the same point and the resulting shape is convex, it automatically becomes a polygon!
 
-# 11-2
+# 12-2
 
 Regardless of whether a sprite is a polygon or a chain, all physics bodies that start and end at the same point have their (x, y) position located at the center of the shape, not at the first vertex. This position is calculated by averaging all of the shape's vertexes.
 
-# 11-3
+# 12-3
 
 You can force a convex polygon to be a chain by setting `sprite.shape = 'chain'`
 
@@ -370,7 +394,7 @@ The formula for the angle of a regular polygon is 360 / n, where n is the number
 
 Try making a square shaped chain!
 
-# 11-4
+# 12-4
 
 Here's the code for making a regular star with five points.
 
@@ -378,47 +402,17 @@ Note that because the star is a concave shape it can't have a polygon collider.
 
 Try changing the number of points!
 
-# 11-5
+# 12-5
 
 Now you can see how the tumbler demo on the p5play homepage was made!
 
 Closed chains are empty on the inside and they can act as a container for many smaller sprites.
 
-# 11-6
+# 12-6
 
 Note that closed chain colliders aren't so good at being dynamic colliders. This is a limitation of the Box2D physics engine that p5play uses. See the Combo Colliders page to learn how to create concave colliders from multiple convex colliders.
 
-# 12-0
-
-## Custom draw
-
-Sometimes you won't be able to use pre-drawn animations to get the kind of visual effect you want for a sprite in motion.
-
-Fortunately, you can customize the sprite's `draw` function and make it display anything you want!
-
-Note that inside the sprite's draw function the center of the sprite is translated to position (0, 0).
-
-This mini example rotates the sprite's ellipse to the direction it's moving and makes the ellipse stretch in that direction proportional to it's speed. Kind of complicated!
-
-# 12-1
-
-## Custom Update
-
-You can also define a custom `update` function for a sprite that runs at the end of the draw loop or when updateSprites is called. You can put any sprite specific behavior you want in there.
-
 # 13-0
-
-## scale
-
-Changing `sprite.scale` will scale the sprite's collider and visual appearance by the specified amount.
-
-Press a number key to see the sprite scale uniformly by that amount.
-
-Click your mouse or touch tap to double the sprite's scale.
-
-Press "x" or "y" to scale the sprite in that direction by a random amount. But note that if the sprite gets scaled unevenly, the image will get distorted and stay that way even when scaled uniformly again.
-
-# 14-0
 
 ## Combo Colliders
 
@@ -430,7 +424,7 @@ Yet sometimes, you will truly need to create a sprite with multiple colliders. F
 
 Note that adding a collider to a sprite will automatically recalculate the sprite's mass.
 
-# 14-1
+# 13-1
 
 ## Combo Sensors
 
@@ -440,38 +434,44 @@ By default when an overlap checking method is used, and the sprite has no sensor
 
 You can add additional sensors to a sprite by using the `addSensor` function.
 
+# 14-0
+
+## Custom Draw
+
+Sometimes you won't be able to use pre-drawn animations to get the kind of visual effect you want for a sprite in motion.
+
+Fortunately, you can customize the sprite's `draw` function and make it display anything you want!
+
+Note that inside the sprite's draw function the center of the sprite is translated to position (0, 0).
+
+This mini example rotates the sprite's ellipse to the direction it's moving and makes the ellipse stretch in that direction proportional to it's speed. Kind of complicated!
+
+# 14-1
+
+## Custom Update
+
+You can also define a custom `update` function for a sprite that runs at the end of the draw loop or when updateSprites is called. You can put any sprite specific behavior you want in there.
+
 # 15-0
 
-## Advanced Movement
+## Movement Sequencing
 
-`move` functions are imperative, they override a sprite's velocities. But what if you want a sprite to respect other forces acting on it, such as gravity?
+These examples use a `Turtle` sprite which is just a regular sprite
+that's green and shaped like a triangle for that classic turtle
+programming look.
 
-A bearing is the direction that needs to be followed to reach a destination. Changing a sprite's bearing won't imperatively change its movement direction.
+You can use the `await` keyword inside an `async` function to wait for a movement to finish before continuing with the next movement. This is useful for making a sprite move in a sequence.
 
-Use `applyForce` with one input parameter, the amount of force, to have the force be applied at the sprite's `bearing` angle.
-
-In this example, the drone has to overcome the force of gravity to fly. Make the drone fly, then let it fall, when upward force is applied to the drone again it'll gradually stop falling and start to fly!
+The `delay` function can be used to wait for a specified number of milliseconds. 1000 milliseconds is equal to 1 second!
 
 # 15-1
 
-The `applyForceScaled` function multiplies the force applied to the sprite by its mass.
+The `move`, `moveTo`, `rotate`, and `rotateTo` functions all return a `Promise` that resolves to true when the movement is finished.
 
-You can use this function to give sprites their own gravity!
-
-Both force functions can accept force as separate x and y components or as an amount, provided you set the sprite's `bearing`.
-
-By default, force is applied to the sprite's center of mass. But the force functions can also accept a last input parameter, a position object with x and y properties that specifies the relative position of where force will be applied on the sprite.
+But, if the sprite's movement is interrupted by a new movement or a collision that significantly changes the sprite's trajectory, the promise will resolve to false.
 
 # 15-2
 
-Use the `attractTo` function to attract the sprite to a position by applying force. The position can be given as an object with x and y properties or as separate x and y parameters.
+If you want a sprite to follow another sprite, you may be tempted to use `moveTo` repeatedly, without waiting for the sprite to reach its destination. But for better performance, try using the `angleTo` function, which gets the angle between a sprite and a position. This angle can be used to change the direction that the sprite moves in.
 
-This example shows an electron orbiting the nucleus of an atom. (Note this visualization isn't realistic based on current scientific understanding, but it looks cool!)
-
-Note that the advanced movement functions shown on this page will not wake [sleeping sprites](./world.html)!
-
-# 15-3
-
-Torque is the force that causes rotation. Use `applyTorque` to non-imperatively affect the sprite's rotation.
-
-In this example, the robot rolls slower in places where the ground is steeper.
+In this example, the [p5.js dist](https://p5js.org/reference/#/p5/dist) function is used to calculate the distance between the player and its ally.

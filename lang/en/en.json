@@ -41,14 +41,14 @@
 			"Collisions",
 			"Overlaps",
 			"Rotation",
-			"Movement Sequencing",
+			"Scaling",
 			"Physical Attributes",
+			"Advanced Movement",
 			"Chains",
 			"Polygons",
-			"Custom Draw",
-			"Scaling",
 			"Combo Colliders",
-			"Advanced Movement"
+			"Custom Draw",
+			"Movement Sequencing"
 		],
 		"sprite_animation": [
 			"Loading Animations",

@@ -105,7 +105,7 @@ When `sprite.pixelPerfect` is set to true, the sprite will be drawn at integer c
 
 ## Animation Sequencing
 
-`sprite.changeAni` can be accept an animation object, animation name, or array of animation names that will be played in sequence.
+`sprite.changeAni` can accept an animation object, animation name, or array of animation names that will be played in sequence.
 
 By default if looping is enabled, the last animation in the sequence will be looped. To loop the entire sequence, use `'**'` as the last animation name. If instead you want the sequence to stop at the end, use `';;'` as the last animation name.
 

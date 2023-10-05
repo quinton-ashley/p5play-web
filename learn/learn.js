@@ -107,9 +107,9 @@ function loadPage(pageNum) {
 	for (let i = 0; i < pages.length; i++) {
 		let el = pageNav.children[i];
 		if (el.dataset.page == pageNum) {
-			el.className = 'active';
+			el.classList.add('active');
 		} else {
-			el.className = '';
+			el.classList.remove('active');
 		}
 	}
 	for (let mini of mie) {

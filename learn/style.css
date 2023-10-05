@@ -4,6 +4,7 @@ html {
 
 	--pink0: #ff0a52;
 	--pink1: #eb0043;
+	--pink2: #ffeef3;
 
 	--blue0: #b7ebff;
 	--blue1: #1779c4;
@@ -23,6 +24,7 @@ html:has(body.dark) {
 body.dark {
 	--pink0: #ea104e;
 	--pink1: #ff0a52;
+	--pink2: #400113;
 
 	--blue0: #4eaee9;
 	--blue1: #4eaee9;
@@ -260,6 +262,12 @@ a.btn,
 	margin: 2px;
 }
 
+#toc a.adv {
+	background-color: var(--pink2);
+	color: var(--dark);
+	box-shadow: var(--dark) 3px 3px 0px;
+}
+
 #toc #prevPage {
 	margin-right: 20px;
 }
@@ -268,20 +276,28 @@ a.btn,
 	margin-left: 20px;
 }
 
+a.btn:hover,
 #toc a.active,
 #toc a:hover,
 #refs :not(:last-child) a:not(:first-child).active,
 #refs :not(:last-child) a:not(:first-child):hover {
-	color: var(--pink0);
-	box-shadow: var(--pink0) 3px 3px 0px;
+	background-color: var(--blue1);
+	color: var(--blue2);
+	box-shadow: var(--blue0) 3px 3px 0px;
+	text-decoration: none;
+}
+
+#toc a.adv.active,
+#toc a.adv:hover {
+	background-color: var(--pink0);
+	color: var(--pink2);
+	box-shadow: var(--pink1) 3px 3px 0px;
 }
 
 a.btn:hover,
 #toc a:hover,
 #refs :not(:last-child) a:not(:first-child):hover {
 	scale: 1.05;
-	color: var(--pink0);
-	text-decoration: none;
 }
 
 .socials:hover,

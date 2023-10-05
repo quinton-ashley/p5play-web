@@ -48,14 +48,14 @@
 			"Colisiones",
 			"Superposiciones",
 			"Rotación",
-			"Secuenciación de Movimiento",
+			"Escalado",
 			"Atributos Físicos",
+			"Movimiento Avanzada",
 			"Cadenas",
 			"Polígonos",
-			"Dibujo Personalizado",
-			"Escalado",
 			"Combos de Colisionadores",
-			"Movimiento Avanzada"
+			"Dibujo Personalizado",
+			"Secuenciación de Movimiento"
 		],
 		"sprite_animation": [
 			"Cargando Animaciones",
