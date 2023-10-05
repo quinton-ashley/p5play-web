@@ -338,7 +338,7 @@ Note that the advanced movement functions shown on this page will not wake [slee
 
 Torque is the force that causes rotation. Use `applyTorque` to non-imperatively affect the sprite's rotation.
 
-In this example, the robot rolls slower in places where the ground is steeper.
+In this example, the robot rolls slower going uphill than it does going downhill.
 
 # 11-0
 
