@@ -5,7 +5,7 @@
 const log = console.log;
 global.p5 = require('../v3/q5.js');
 global.planck = require('../v3/planck.min.js');
-require('../v3/p5play.js');
+require('../v3/p5play-beta.js');
 
 test('InputDevice : mouse', () => {
 	return new Promise((resolve) => {
@@ -161,8 +161,9 @@ test('InputDevice : keyboard', () => {
 					});
 					p.canvas.dispatchEvent(evt);
 
-					// check that the 'space' key is up..
-					expect(p.kb[' ']).toBe(-2);
+					// the key was pressed and released in the same frame,
+					// so the property should be -3
+					expect(p.kb[' ']).toBe(-3);
 				}
 
 				if (p.frameCount == 3) {

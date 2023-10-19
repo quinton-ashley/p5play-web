@@ -5,7 +5,7 @@
 const log = console.log;
 global.p5 = require('../v3/q5.js');
 global.planck = require('../v3/planck.min.js');
-require('../v3/p5play.js');
+require('../v3/p5play-beta.js');
 
 // path to my VSCode Live Server
 // let host = 'http://127.0.0.1:5501';
