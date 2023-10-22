@@ -1,6 +1,6 @@
 /**
  * p5play
- * @version 3.14
+ * @version 3.15-beta
  * @author quinton-ashley
  * @license gpl-v3-only
  */
@@ -444,11 +444,13 @@ p5.prototype.registerMethod('init', function p5playInit() {
 			x ??= group.x;
 			if (x === undefined) {
 				x = this.p.width / this.p.allSprites.tileSize / 2;
-				this._vertexMode = true;
+				if (w) this._vertexMode = true;
 			}
 			y ??= group.y;
-			if (y === undefined) y = this.p.height / this.p.allSprites.tileSize / 2;
-			if (w === undefined || w === null) {
+			if (y === undefined) {
+				y = this.p.height / this.p.allSprites.tileSize / 2;
+			}
+			if (w === undefined) {
 				w = group.w || group.width || group.d || group.diameter;
 				h ??= group.h || group.height;
 			}
@@ -5458,9 +5460,11 @@ p5.prototype.registerMethod('init', function p5playInit() {
 					else b._ensureOverlap(s);
 				}
 				for (let event in eventTypes) {
-					let type = eventTypes[event];
-					for (let tuid in this[type]) {
-						s[type][tuid] = this[type][tuid];
+					let contactTypes = eventTypes[event];
+					for (let contactType of contactTypes) {
+						for (let tuid in this[contactType]) {
+							s[contactType][tuid] = this[contactType][tuid];
+						}
 					}
 				}
 
@@ -5671,7 +5675,7 @@ p5.prototype.registerMethod('init', function p5playInit() {
 		 */
 		removeAll() {
 			while (this.length > 0) {
-				this[0].remove();
+				this[0]._remove();
 			}
 		}
 
