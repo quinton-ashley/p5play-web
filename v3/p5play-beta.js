@@ -1,6 +1,6 @@
 /**
  * p5play
- * @version 3.15-beta
+ * @version 3.15-beta1
  * @author quinton-ashley
  * @license gpl-v3-only
  */
@@ -728,6 +728,9 @@ p5.prototype.registerMethod('init', function p5playInit() {
 		 * @param {Number} h height of the collider
 		 */
 		addCollider(offsetX, offsetY, w, h) {
+			if (this._removed) {
+				throw new Error("Can't add colliders to a sprite that was removed.");
+			}
 			if (this.__collider == 3) {
 				this._collider = 'dynamic';
 				this.__collider = 0;
@@ -775,6 +778,9 @@ p5.prototype.registerMethod('init', function p5playInit() {
 		 * @param {Number} h height of the collider
 		 */
 		addSensor(offsetX, offsetY, w, h) {
+			if (this._removed) {
+				throw new Error("Can't add sensors to a sprite that was removed.");
+			}
 			let s = this._parseShape(...arguments);
 			if (!this.body) {
 				this.body = this.p.world.createBody({
@@ -1281,10 +1287,10 @@ p5.prototype.registerMethod('init', function p5playInit() {
 					'Cannot set the collider type of a polygon or chain collider to "none". To achieve the same effect, use .overlaps(allSprites) to have your sprite overlap with the allSprites group.'
 				);
 			}
-			// if (this.joints.length) {
-			// 	this.joints.removeAll();
-			// 	console.warn('Changing the collider type of a sprite that has joints will remove all its joints.');
-			// }
+
+			if (this._removed) {
+				throw new Error('Cannot change the collider type of a sprite that was removed.');
+			}
 
 			let oldCollider = this.__collider;
 
@@ -1295,13 +1301,13 @@ p5.prototype.registerMethod('init', function p5playInit() {
 
 			if (oldCollider === undefined) return;
 
-			// this._reset();
-
 			if (this.__collider != 3) {
 				if (this.body) this.body.setType(val);
 				if (oldCollider == 3) this.addCollider();
 			} else {
 				this.removeColliders();
+				if (this.fixture?.m_isSensor) this.body.m_gravityScale = 0;
+				else this.p.world.destroyBody(this.body);
 			}
 		}
 
@@ -5441,7 +5447,10 @@ p5.prototype.registerMethod('init', function p5playInit() {
 		push(...sprites) {
 			for (let s of sprites) {
 				if (!(s instanceof this.p.Sprite)) {
-					throw new Error('you can only add sprites to a group, no ' + typeof s + 's');
+					throw new Error('You can only add sprites to a group, not ' + typeof s);
+				}
+				if (s.removed) {
+					throw new Error("Can't add a removed sprite to a group");
 				}
 
 				for (let tuid in this._hasOverlap) {
@@ -5675,7 +5684,7 @@ p5.prototype.registerMethod('init', function p5playInit() {
 		 */
 		removeAll() {
 			while (this.length > 0) {
-				this[0]._remove();
+				this[0].remove();
 			}
 		}
 
@@ -7602,9 +7611,10 @@ p5.prototype.registerMethod('init', function p5playInit() {
 	 * await play(sound);
 	 */
 	this.play = (sound) => {
-		if (!sound.play) throw new Error("Tried to play your input but it wasn't a sound object: " + sound);
-		// TODO reject if sound not found
-		return new Promise((resolve, reject) => {
+		if (!sound?.play) {
+			throw new Error("Tried to play your sound but it wasn't a sound object.");
+		}
+		return new Promise((resolve) => {
 			sound.play();
 			sound.onended(() => resolve());
 		});
@@ -8337,20 +8347,19 @@ main {
 	}
 
 	/**
-	 * A group of all the sprites.
+	 * A group that includes all the sprites.
 	 * @type {Group}
 	 */
 	this.allSprites = new this.Group();
 
 	/**
-	 * The planck physics world. Use this to change gravity and offset the
-	 * sprite's coordinate system.
+	 * The physics world.
 	 * @type {World}
 	 */
 	this.world = new this.World();
 
 	/**
-	 * The default camera. Use this to pan and zoom the camera.
+	 * The default camera.
 	 * @type {Camera}
 	 */
 	this.camera = new this.Camera();
