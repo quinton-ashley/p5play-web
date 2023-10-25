@@ -103,7 +103,6 @@ class MiniEditor {
 				enableBasicAutocompletion: [
 					{
 						getCompletions: (editor, session, pos, prefix, callback) => {
-							// note, won't fire if caret is at a word that does not have these letters
 							callback(null, mie.lang[this.lang].completions || []);
 						}
 					}
@@ -193,7 +192,24 @@ class MiniEditor {
 	}
 }
 
-mie.loadMinis = function (elem) {
+Object.defineProperty(mie, 'theme', {
+	get: () => mie._theme,
+	set: (theme) => {
+		mie._theme = theme;
+		if (mie.editorDisabled) return;
+		if (theme == 'dark') {
+			for (let mini of mie) {
+				mini.editor.setTheme('ace/theme/dracula');
+			}
+		} else {
+			for (let mini of mie) {
+				mini.editor.setTheme('ace/theme/xcode');
+			}
+		}
+	}
+});
+
+mie.loadMinis = (elem) => {
 	elem = elem || document;
 	let scripts = [...elem.getElementsByTagName('script')];
 	for (let script of scripts) {
@@ -203,40 +219,22 @@ mie.loadMinis = function (elem) {
 	}
 };
 
-mie.load = async () => {
+mie.load = () => {
 	if (typeof window.ace == 'undefined') {
 		console.log('mie will run without the ace editor, which was not loaded.');
 		mie.editorDisabled = true;
-	} else {
-		let data = await fetch('ace/completions.json');
-		let json = await data.json();
-		mie.lang.p5.completions = json;
 	}
-
-	Object.defineProperty(mie, 'theme', {
-		get: () => mie._theme,
-		set: (theme) => {
-			mie._theme = theme;
-			if (mie.editorDisabled) return;
-			if (theme == 'dark') {
-				for (let mini of mie) {
-					mini.editor.setTheme('ace/theme/dracula');
-				}
-			} else {
-				for (let mini of mie) {
-					mini.editor.setTheme('ace/theme/xcode');
-				}
-			}
-		}
-	});
-
-	if (mie.autoLoad !== false) mie.autoLoad = true;
-	if (mie.autoLoad) mie.loadMinis();
-
+	if (mie.autoLoad !== false) mie.loadMinis();
 	if (mie.ready) mie.ready();
 };
 
 mie.lang.p5 = {};
+
+(async () => {
+	let data = await fetch('ace/completions.json');
+	let json = await data.json();
+	mie.lang.p5.completions = json;
+})();
 
 mie.lang.p5.functionNames = [
 	'preload',

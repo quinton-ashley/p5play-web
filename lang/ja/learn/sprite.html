@@ -165,9 +165,11 @@ function draw() {
 					の物理衝突判定器があり、スプライトが自由に移動し、重力に影響を受けることができます。</p>
 				<p><code>'static'</code> の衝突判定器は移動できません。<code>'kinematic'</code>
 					の衝突判定器はプログラム的に移動することができますが、他のスプライトによっては移動できません。また、他のキネマティック衝突判定器と衝突しません。スプライトの衝突判定器タイプを
-					<code>'none'</code> に設定すると、物理シミュレーションからそれが削除されます。</p>
+					<code>'none'</code> に設定すると、物理シミュレーションからそれが削除されます。
+				</p>
 				<p>衝突判定器のタイプは、衝突判定器のタイプ名の最初の文字を使用して設定することもできます：<code>'d'</code>、<code>'s'</code>、<code>'k'</code>、または
-					<code>'n'</code>。</p>
+					<code>'n'</code>。
+				</p>
 				<p>ミニ例を再生するには、右上のリロードアイコンをクリックしてください！</p>
 			</md>
 			<script type="mie/p5" id="dynamic-and-static-colliders" base-2="" horiz="" lines="16">
@@ -386,7 +388,8 @@ function draw() {
 			<div class="minis">
 				<md id="md3-1">
 					<h2 id="ピクセルアート">ピクセルアート</h2>
-					<p><code>spriteArt</code>関数を使用して、スプライト用のピクセルアート画像を作成できます。この関数は文字列を入力として受け取り、画像を返します。文字列内の各文字は、画像内のピクセルの色の値を表します。
+					<p>
+						<code>spriteArt</code>関数を使用して、スプライト用のピクセルアート画像を作成できます。この関数は文字列を入力として受け取り、画像を返します。文字列内の各文字は、画像内のピクセルの色の値を表します。
 					</p>
 					<p><code>spriteArt</code>関数への第二入力パラメータは、画像のスケールです。</p>
 				</md>
@@ -845,30 +848,85 @@ function draw() {
 				<p><code>async</code>関数内で<code>await</code>キーワードを使用すると、次の移動を続ける前に移動が終了するのを待つことができます。これは、スプライトを順番に動かすのに便利です。
 				</p>
 			</md>
-			<script type="mie/p5" id="scaling">
-let sprite;
+			<script type="mie/p5" id="square-sequence" horiz="" lines="15">
+let turtle;
 
 function setup() {
-	new Canvas(500, 200);
+	new Canvas(160, 160);
+	turtle = new Turtle(30);
 
-	sprite = new Sprite(250, 100, 90, 90);
-	sprite.img = '/learn/assets/square.png';
-	sprite.debug = true;
+	squareSequence();
+}
+
+async function squareSequence() {
+	await turtle.move(100);
+	await turtle.rotate(90);
+  await delay(1000);
+	squareSequence();
 }
 
 function draw() {
 	clear();
+}
+			</script>
+			<md id="md8-1">
+				<p><code>move</code>、<code>moveTo</code>、<code>rotate</code>、および<code>rotateTo</code>関数はすべて、移動が終了したときに
+					true に解決する<code>Promise</code>を返します。</p>
+				<p>しかし、スプライトの移動が新しい移動またはスプライトの軌道を大幅に変更する衝突によって中断されると、promise は false に解決します。</p>
+			</md>
+			<script type="mie/p5" id="random-sequence" horiz="" lines="17">
+let turtle, ball;
 
-	for (let i = 1; i < 10; i++) {
-		if (kb.presses(i)) sprite.scale = i;
-	}
+function setup() {
+	new Canvas(160, 304);
+	turtle = new Turtle(30);
+	ball = new Sprite(80, 152, 50);
 
-	if (mouse.presses()) sprite.scale *= 2;
-	if (kb.presses('x')) sprite.scale.x = random(0.1, 6);
-	if (kb.presses('y')) sprite.scale.y = random(0.1, 6);
+	randomSequence();
+}
 
-	if (kb.pressing('a')) sprite.ani.scale.x = 10;
-	else sprite.ani.scale.x = 1;
+async function randomSequence() {
+	let x = random(0, width);
+	let y = random(0, height);
+	await turtle.rotateTo(x, y, 5);
+	await turtle.moveTo(x, y, 3);
+	randomSequence();
+}
+
+function draw() {
+	clear();
+}
+			</script>
+			<md id="md8-2">
+				<p>
+					スプライトを別のスプライトに追従させたい場合、<code>moveTo</code>を何度も使用し、スプライトが目的地に到達するのを待たないで使うことが考えられます。しかし、パフォーマンスを向上させるためには、<code>angleTo</code>関数を試してみてください。これは、スプライトと位置との間の角度を取得します。この角度は、スプライトが移動する方向を変更するために使用できます。
+				</p>
+				<p>この例では、<a href="https://p5js.org/reference/#/p5/dist">p5.js dist</a>関数が使用されて、プレイヤーとその味方との間の距離を計算しています。
+				</p>
+			</md>
+			<script type="mie/p5" base-8="" hidden="">
+let player, ally;
+
+function setup() {
+	new Canvas(500, 100);
+	player = new Sprite(400, 50, 20);
+	ally = new Sprite(200, 50, 20, 20, 'n');
+}
+
+function draw() {
+	clear();
+}
+			</script>
+			<script type="mie/p5" id="angleTo" base="8">
+player.moveTowards(mouse);
+
+let distance = dist(player.x, player.y, ally.x, ally.y);
+
+if (distance > 40) {
+	ally.direction = ally.angleTo(player);
+	ally.speed = 2;
+} else if (distance < 30) {
+	ally.speed = 0;
 }
 			</script>
 		</div>
@@ -933,10 +991,10 @@ sprite.rotationDrag = 1;
 sprite.rotationDrag = 5;
 				</script>
 				<script type="mie/p5" id="no-rotationLock" base="7">
-sprite.rotationLock=false
+sprite.rotationLock =false
 				</script>
 				<script type="mie/p5" id="with-rotationLock" base="7">
-sprite.rotationLock =true
+sprite.rotationLock = true;
 				</script>
 			</div>
 			<div class="break"></div>
@@ -1066,108 +1124,6 @@ function draw() {
 					y)位置は小さな黒い四角で強調表示されています。</p>
 				<p>ミニ例のチェインスプライトの頂点を変更して、ボールが床に留まるようにしてみてください！</p>
 			</md>
-			<script type="mie/p5" id="applyForce" horiz="">
-let drone, floor;
-
-function setup() {
-	new Canvas(100, 500);
-	world.gravity.y = 4;
-
-	drone = new Sprite(50, 0, 40, 10);
-	
-	floor = new Sprite(50, 498, 100, 6, 's');
-}
-
-function draw() {
-	background(16);
-
-	if (mouse.pressing()) {
-		drone.bearing = -90;
-		drone.applyForce(6);
-	}
-}
-			</script>
-			<md id="md10-1">
-				<p>distance モードを使用するには、Sprite コンストラクタに(x, y)位置と distance 配列の配列を提供します。これらの配列は、前の頂点に対する[x, y]距離を含むべきです。(x,
-					y)位置はチェインの最初の頂点になります。</p>
-				<p>distance モードは、超長いチェインを作成するのに最適です。</p>
-				<p>5 つの距離を追加して、地面が起伏する岩地チェイン上で転がるようにしてみてください。</p>
-			</md>
-			<script type="mie/p5" id="applyForceScaled" horiz="">
-let s0, s1;
-function setup() {
-  new Canvas(100, 288);
-  s0 = new Sprite(51, 252, 20, 20);
-	s1 = new Sprite(49, 32, 20, 20);
-	new Sprite(50, 4, 100, 8, 's');
-  new Sprite(50, 284, 100, 8, 's');
-}
-
-function draw() {
-  background(16);
-	//                 (x,  y)
-	s0.applyForceScaled(0, -10);
-	s1.applyForceScaled(0, 10);
-}
-      </script>
-			<md id="md10-2">
-				<p>line モードを使用するには、Sprite コンストラクタに(x,y)位置と線の長さと角度のリストを提供します。各角度は前の線の角度に対する相対値です。</p>
-				<p>line モードは、小さなおよび/または対称的なチェインに最適です。</p>
-				<p>line モードのチェインの(x, y)位置は、全ての頂点の平均に位置しますが、これはチェイン上の点ではないかもしれません。</p>
-				<p>これらの線の長さと角度を変更してみてください！</p>
-			</md>
-			<script type="mie/p5" id="attractTo">
-let nucleus, electron;
-
-function setup() {
-	new Canvas(500, 200);
-	nucleus = new Sprite(250, 100, 45);
-	electron = new Sprite(150, 100, 10);
-	electron.vel.y = 5;
-}
-
-function draw() {
-	background(16, 10);
-	//               (position, force)
-	electron.attractTo(nucleus, 5);
-}
-			</script>
-			<md id="md10-3">
-				<p>Torque is the force that causes rotation. Use <code>applyTorque</code> to non-imperatively affect the
-					sprite's rotation.</p>
-				<p>In this example, the robot rolls slower going uphill than it does going downhill.</p>
-			</md>
-			<script type="mie/p5" id="applyTorque">
-let robot, floor1, floor2;
-
-function setup() {
-	new Canvas(500, 250);
-	world.gravity.y = 10;
-
-	robot = new Sprite(250, 0, 50);
-	robot.debug = true;
-
-	floor1 = new Sprite(400, 100, 500, 5, 's');
-	floor1.rotation = -10;
-	floor2 = new Sprite(890, 100, 500, 5, 's');
-	floor2.rotation = 10;
-}
-
-function draw() {
-	background(16);
-	
-	robot.applyTorque(3);
-
-	camera.pos = robot.pos;
-}
-			</script>
-		</div>
-		<div id="page-11" class="page">
-			<md id="md11-0">
-				<h2 id="ポリゴンコライダー">ポリゴンコライダー</h2>
-				<p>通常のポリゴンは、スプライトコンストラクタに辺の長さとポリゴンの名前を提供することで作成できます。</p>
-				<p>使用できる名前は以下の通りです: 三角形、四角形、五角形、六角形、七角形、八角形、九角形、十角形、十一角形、十二角形。</p>
-			</md>
 			<script type="mie/p5" id="vertex-mode" lines="12">
 let floor, ball;
 
@@ -1187,8 +1143,11 @@ function draw() {
 	rect(floor.x - 2, floor.y - 2, 4, 4);
 }
 			</script>
-			<md id="md11-1">
-				<p>チェーンの始点と終点が同じ点にある場合、かつ、結果として得られる形状が凸形状であれば、それは自動的にポリゴンになります！</p>
+			<md id="md10-1">
+				<p>distance モードを使用するには、Sprite コンストラクタに(x, y)位置と distance 配列の配列を提供します。これらの配列は、前の頂点に対する[x, y]距離を含むべきです。(x,
+					y)位置はチェインの最初の頂点になります。</p>
+				<p>distance モードは、超長いチェインを作成するのに最適です。</p>
+				<p>5 つの距離を追加して、地面が起伏する岩地チェイン上で転がるようにしてみてください。</p>
 			</md>
 			<script type="mie/p5" id="distance-mode" lines="12">
 let ground, ball;
@@ -1209,9 +1168,11 @@ function draw() {
 }
 			</script>
 
-			<md id="md11-2">
-				<p>スプライトがポリゴンであるかチェーンであるかに関わらず、始点と終点が同じ点にあるすべての物理ボディは、その(x,
-					y)位置が形状の中心に位置することに注意してください、最初の頂点ではありません。この位置は、形状のすべての頂点を平均して計算されます。</p>
+			<md id="md10-2">
+				<p>line モードを使用するには、Sprite コンストラクタに(x,y)位置と線の長さと角度のリストを提供します。各角度は前の線の角度に対する相対値です。</p>
+				<p>line モードは、小さなおよび/または対称的なチェインに最適です。</p>
+				<p>line モードのチェインの(x, y)位置は、全ての頂点の平均に位置しますが、これはチェイン上の点ではないかもしれません。</p>
+				<p>これらの線の長さと角度を変更してみてください！</p>
 			</md>
 			<script type="mie/p5" id="line-mode" lines="12">
 let shelf, orb;
@@ -1232,13 +1193,11 @@ function draw() {
 }
 			</script>
 		</div>
-		<div id="page-12" class="page">
-			<md id="md12-0">
-				<h2 id="カスタム描画">カスタム描画</h2>
-				<p>スプライトの動きに対して求める視覚効果を得るために、事前に描かれたアニメーションを使用できない場合があります。</p>
-				<p>幸いなことに、スプライトの<code>draw</code>関数をカスタマイズして、任意の表示を行うことができます！</p>
-				<p>スプライトの draw 関数内部では、スプライトの中心が位置(0, 0)に移動されることに注意してください。</p>
-				<p>このミニ例では、スプライトの楕円を移動方向に回転させ、その方向に比例して楕円を伸ばします。これはちょっと複雑です！</p>
+		<div id="page-11" class="page">
+			<md id="md11-0">
+				<h2 id="ポリゴンコライダー">ポリゴンコライダー</h2>
+				<p>通常のポリゴンは、スプライトコンストラクタに辺の長さとポリゴンの名前を提供することで作成できます。</p>
+				<p>使用できる名前は以下の通りです: 三角形、四角形、五角形、六角形、七角形、八角形、九角形、十角形、十一角形、十二角形。</p>
 			</md>
 			<script type="mie/p5" id="pentagon" lines="6">
 function setup() {
@@ -1252,10 +1211,8 @@ function draw() {
 	clear();
 }
 			</script>
-			<md id="md12-1">
-				<h2 id="カスタムアップデート">カスタムアップデート</h2>
-				<p>また、描画ループの終わりまたは <code>update</code>
-					が呼ばれたときに実行されるスプライトのカスタムアップデート関数を定義することもできます。そこには、任意のスプライト固有の振る舞いを入れることができます。</p>
+			<md id="md11-1">
+				<p>チェーンの始点と終点が同じ点にある場合、かつ、結果として得られる形状が凸形状であれば、それは自動的にポリゴンになります！</p>
 			</md>
 			<script type="mie/p5" id="irregular-polygon:-vertex-mode" lines="5">
 function setup() {
@@ -1268,10 +1225,9 @@ function draw() {
 	clear();
 }
 			</script>
-			<md id="md12-2">
-				<p>Regardless of whether a sprite is a polygon or a chain, all physics bodies that start and end at the
-					same point have their (x, y) position located at the center of the shape, not at the first vertex.
-					This position is calculated by averaging all of the shape's vertexes.</p>
+			<md id="md11-2">
+				<p>スプライトがポリゴンであるかチェーンであるかに関わらず、始点と終点が同じ点にあるすべての物理ボディは、その(x,
+					y)位置が形状の中心に位置することに注意してください、最初の頂点ではありません。この位置は、形状のすべての頂点を平均して計算されます。</p>
 			</md>
 			<script type="mie/p5" id="irregular-polygon:-distance-mode" lines="9">
 function setup() {
@@ -1288,12 +1244,11 @@ function draw() {
 	clear();
 }
 			</script>
-			<md id="md12-3">
-				<p>You can force a convex polygon to be a chain by setting <code>sprite.shape = 'chain'</code></p>
-				<p>Regular polygons can be created from a list with the line length, angle, and repeat.</p>
-				<p>The formula for the angle of a regular polygon is 360 / n, where n is the number of sides. Make that
-					angle negative to orient the polygon with one of its edges on top.</p>
-				<p>Try making a square shaped chain!</p>
+			<md id="md11-3">
+				<p><code>sprite.shape = 'chain'</code>と設定することで、凸形状のポリゴンを強制的にチェーンにすることができます。</p>
+				<p>通常のポリゴンは、線の長さ、角度、リピートをリストにして作成することができます。</p>
+				<p>正規ポリゴンの角度の公式は 360 / n です。ここで、n は辺の数です。この角度を負にすると、ポリゴンがその辺の一つを上に向けて配置されます。</p>
+				<p>四角形のチェーンを作ってみてください！</p>
 			</md>
 			<script type="mie/p5" id="pentagon-chain" lines="7">
 function setup() {
@@ -1308,10 +1263,10 @@ function draw() {
 	clear();
 }
 			</script>
-			<md id="md12-4">
-				<p>Here's the code for making a regular star with five points.</p>
-				<p>Note that because the star is a concave shape it can't have a polygon collider.</p>
-				<p>Try changing the number of points!</p>
+			<md id="md11-4">
+				<p>ここには、五角星を作るコードがあります。</p>
+				<p>星が凹形状であるため、ポリゴンコライダを持つことはできないことに注意してください。</p>
+				<p>ポイントの数を変更してみてください！</p>
 			</md>
 			<script type="mie/p5" id="star" lines="6">
 function setup() {
@@ -1325,9 +1280,9 @@ function draw() {
 	clear();
 }
 			</script>
-			<md id="md12-5">
-				<p>Now you can see how the tumbler demo on the p5play homepage was made!</p>
-				<p>Closed chains are empty on the inside and they can act as a container for many smaller sprites.</p>
+			<md id="md11-5">
+				<p>これで p5play のロゴの作り方がわかります！</p>
+				<p>このような閉じたチェーンでさえ、内部は空で、線で作られています。p5play のホームページの例では、チェーンコライダが他の多くのスプライトを内包することができることがわかります！</p>
 			</md>
 			<script type="mie/p5" id="p5play-logo" lines="8">
 function setup() {
@@ -1343,10 +1298,8 @@ function draw() {
 	clear();
 }
 			</script>
-			<md id="md12-6">
-				<p>Note that closed chain colliders aren't so good at being dynamic colliders. This is a limitation of
-					the Box2D physics engine that p5play uses. See the Combo Colliders page to learn how to create
-					concave colliders from multiple convex colliders.</p>
+			<md id="md11-6">
+				<p>閉じたチェーンコライダは、ダイナミックコライダとしてあまり良くないことに注意してください。これは p5play が使用している Box2D 物理エンジンの制約です。</p>
 			</md>
 			<script type="mie/p5" id="concave-chain-colliders" lines="11">
 function setup() {
@@ -1369,31 +1322,112 @@ function draw() {
 }
 			</script>
 		</div>
-		<div id="page-13" class="page">
+		<div id="page-12" class="page">
 			<div class="minis horiz">
-				<md id="md13-0">
-					<h2 id="スケール">スケール</h2>
-					<p><code>sprite.scale</code>を変更すると、指定された量でスプライトのコライダーと視覚的な外観がスケーリングされます。</p>
-					<p>数字キーを押すと、スプライトがその量だけ均一にスケールします。</p>
-					<p>"d"キーを押すと、スプライトのスケールが倍になります。</p>
-					<p>"x"キーまたは"y"キーを押すと、スプライトがその方向にランダムな量だけスケールします。ただし、スプライトが不均等にスケーリングされた場合、画像は歪んでしまい、再度均一にスケーリングされてもそのままになります。
-					</p>
+				<md id="md12-0">
+					<h2 id="カスタム描画">カスタム描画</h2>
+					<p>スプライトの動きに対して求める視覚効果を得るために、事前に描かれたアニメーションを使用できない場合があります。</p>
+					<p>幸いなことに、スプライトの<code>draw</code>関数をカスタマイズして、任意の表示を行うことができます！</p>
+					<p>スプライトの draw 関数内部では、スプライトの中心が位置(0, 0)に移動されることに注意してください。</p>
+					<p>このミニ例では、スプライトの楕円を移動方向に回転させ、その方向に比例して楕円を伸ばします。これはちょっと複雑です！</p>
 				</md>
-				<md id="md13-1">
-					<h2 id="combo-sensors">Combo Sensors</h2>
-					<p>Overlap sensors determine if a sprite overlaps with another sprite.</p>
-					<p>By default when an overlap checking method is used, and the sprite has no sensors, the
-						<code>addDefaultSensors</code> function is used behind the scenes to create sensors for each of
-						the sprite's colliders.
+				<md id="md12-1">
+					<h2 id="カスタムアップデート">カスタムアップデート</h2>
+					<p>また、描画ループの終わりまたは <code>update</code>
+						が呼ばれたときに実行されるスプライトのカスタムアップデート関数を定義することもできます。そこには、任意のスプライト固有の振る舞いを入れることができます。</p>
+				</md>
+			</div>
+			<script type="mie/p5" id="custom-draw">
+let face, stretchy;
+
+function setup() {
+	new Canvas(500, 200);
+
+	face = loadImage('/learn/assets/face.png');
+	stretchy = new Sprite();
+	
+	stretchy.draw = () => {
+		fill(237, 205, 0);
+
+		push();
+		rotate(stretchy.direction);
+		ellipse(0, 0, 100 + stretchy.speed, 100 - stretchy.speed);
+		pop();
+
+		image(face, stretchy.vel.x * 2, stretchy.vel.y * 2);
+	};
+
+	stretchy.update = () => {
+		stretchy.moveTowards(mouse, 0.07);
+	};
+}
+
+function draw() {
+	clear();
+}
+//
+			</script>
+		</div>
+		<div id="page-13" class="page">
+			<md id="md13-0">
+				<h2 id="スケール">スケール</h2>
+				<p><code>sprite.scale</code>を変更すると、指定された量でスプライトのコライダーと視覚的な外観がスケーリングされます。</p>
+				<p>数字キーを押すと、スプライトがその量だけ均一にスケールします。</p>
+				<p>"d"キーを押すと、スプライトのスケールが倍になります。</p>
+				<p>"x"キーまたは"y"キーを押すと、スプライトがその方向にランダムな量だけスケールします。ただし、スプライトが不均等にスケーリングされた場合、画像は歪んでしまい、再度均一にスケーリングされてもそのままになります。
+				</p>
+			</md>
+			<script type="mie/p5" id="scaling">
+let sprite;
+
+function setup() {
+	new Canvas(500, 200);
+
+	sprite = new Sprite(250, 100, 90, 90);
+	sprite.img = '/learn/assets/square.png';
+	sprite.debug = true;
+}
+
+function draw() {
+	clear();
+
+	for (let i = 1; i < 10; i++) {
+		if (kb.presses(i)) sprite.scale = i;
+	}
+
+	if (mouse.presses()) sprite.scale *= 2;
+	if (kb.presses('x')) sprite.scale.x = random(0.1, 6);
+	if (kb.presses('y')) sprite.scale.y = random(0.1, 6);
+
+	if (kb.pressing('a')) sprite.ani.scale.x = 10;
+	else sprite.ani.scale.x = 1;
+}
+			</script>
+		</div>
+		<div id="page-14" class="page">
+			<div class="minis">
+				<md id="md14-0">
+					<h2 id="コンボコライダー">コンボコライダー</h2>
+					<p><code>addCollider</code>関数を使用すると、スプライトに複数のコライダーを追加することができます。</p>
+					<p>
+						しかし、この機能は、ゲームプレイに本当に必要なときだけ使用してください！通常、迷路の壁のように多くのコライダーを必要とするものは、それぞれが独自のコライダーを持つ複数のスプライトを作成するべきです。また、スプライトの画像が複雑でも、通常はボックスや円で物理的な相互作用には十分で、特に小さなスプライトにはそれが適しています。
 					</p>
-					<p>You can add additional sensors to a sprite by using the <code>addSensor</code> function.</p>
+					<p>しかし、時には、本当に複数のコライダーを持つスプライトを作成する必要があります。例えば、ピンボールのフリッパーをモデル化したい場合などです！</p>
+				</md>
+				<md id="md14-1">
+					<h2 id="コンボセンサー">コンボセンサー</h2>
+					<p>オーバーラップセンサーはスプライトが別のスプライトと重なっているかを判定します。</p>
+					<p>
+						オーバーラップチェックのメソッドが使用されると、スプライトにセンサーがない場合、<code>addDefaultSensors</code>関数が背後で使用され、スプライトの各コライダーのためにセンサーが作成されます。
+					</p>
+					<p><code>addSensor</code>関数を使用して、スプライトに追加のセンサーを追加することができます。</p>
 				</md>
 			</div>
 			<script type="mie/p5" id="pinball-flipper" horiz="">
 let ball, flipper;
 
 function setup() {
-	new Canvas(180, 500);
+	new Canvas(196, 500);
 	world.gravity.y = 10;
 
 	ball = new Sprite(100, -20, 30);
@@ -1415,7 +1449,7 @@ function setup() {
 }
 
 function draw() {
-	background(16);
+	background(150);
 
 	if (mouse.presses()) {
 		flipper.rotateTo(20, 8);
@@ -1423,56 +1457,12 @@ function draw() {
 	if (mouse.pressed()) {
 		flipper.rotateTo(-20, 8);
 	}
+
 	if (frameCount % 100 == 0) {
-		ball.life = 200;
+	  ball.life = 200;
 		let x = random(50, 140);
 		ball = new Sprite(x, -100, 30);
 	}
-}
-			</script>
-		</div>
-		<div id="page-14" class="page">
-			<div class="minis horiz">
-				<md id="md14-0">
-					<h2 id="コンボコライダー">コンボコライダー</h2>
-					<p><code>addCollider</code>関数を使用すると、スプライトに複数のコライダーを追加することができます。</p>
-					<p>しかし、この機能は、ゲームプレイに本当に必要なときだけ使用してください！通常、迷路の壁のように多くのコライダーを必要とするものは、それぞれが独自のコライダーを持つ複数のスプライトを作成するべきです。また、スプライトの画像が複雑でも、通常はボックスや円で物理的な相互作用には十分で、特に小さなスプライトにはそれが適しています。
-					</p>
-					<p>しかし、時には、本当に複数のコライダーを持つスプライトを作成する必要があります。例えば、ピンボールのフリッパーをモデル化したい場合などです！</p>
-				</md>
-				<md id="md14-1">
-					<h2 id="コンボセンサー">コンボセンサー</h2>
-					<p>オーバーラップセンサーはスプライトが別のスプライトと重なっているかを判定します。</p>
-					<p>オーバーラップチェックのメソッドが使用されると、スプライトにセンサーがない場合、<code>addDefaultSensors</code>関数が背後で使用され、スプライトの各コライダーのためにセンサーが作成されます。
-					</p>
-					<p><code>addSensor</code>関数を使用して、スプライトに追加のセンサーを追加することができます。</p>
-				</md>
-			</div>
-			<script type="mie/p5" id="stretchy" lines="22">
-function setup() {
-	new Canvas(500, 200);
-
-	let face = loadImage('/learn/assets/face.png');
-	let stretchy = new Sprite();
-	
-	stretchy.draw = () => {
-		fill(237, 205, 0);
-
-		push();
-		rotate(stretchy.direction);
-		ellipse(0, 0, 100 + stretchy.speed, 100 - stretchy.speed);
-		pop();
-
-		image(face, stretchy.vel.x * 2, stretchy.vel.y * 2);
-	};
-
-	stretchy.update = () => {
-		stretchy.moveTowards(mouse, 0.07);
-	};
-}
-
-function draw() {
-	clear();
 }
 			</script>
 		</div>
@@ -1484,25 +1474,25 @@ function draw() {
 				<p><code>applyForce</code> を使い、入力パラメータとして力の量を一つ受け取ることで、力をスプライトの <code>bearing</code> 角で適用することができます。</p>
 				<p>この例では、ドローンは重力の力を克服して飛ばなければなりません。ドローンを飛ばし、それから落としてみてください。ドローンに再び上向きの力が加わると、落下が徐々に止まり、飛び始めます！</p>
 			</md>
-			<script type="mie/p5" id="square-sequence" horiz="" lines="15">
-let turtle;
+			<script type="mie/p5" id="applyForce" horiz="">
+let drone, floor;
 
 function setup() {
-	new Canvas(160, 160);
-	turtle = new Turtle(30);
+	new Canvas(100, 500);
+	world.gravity.y = 4;
 
-	squareSequence();
-}
-
-async function squareSequence() {
-	await turtle.move(100);
-	await turtle.rotate(90);
-  await delay(1000);
-	squareSequence();
+	drone = new Sprite(50, 0, 40, 10);
+	
+	floor = new Sprite(50, 498, 100, 6, 's');
 }
 
 function draw() {
-	clear();
+	background(16);
+
+	if (mouse.pressing()) {
+		drone.bearing = -90;
+		drone.applyForce(6);
+	}
 }
 			</script>
 			<md id="md15-1">
@@ -1513,57 +1503,71 @@ function draw() {
 				<p>デフォルトでは、力はスプライトの重心に適用されます。ただし、<code>applyForce</code> および <code>applyForceScaled</code>
 					関数は、最後の入力パラメータとして、x と y プロパティを持つ位置オブジェクトも受け入れることができます。この位置オブジェクトは、どこに力をスプライトに適用するかの相対位置を指定します。</p>
 			</md>
-			<script type="mie/p5" id="random-sequence" horiz="" lines="17">
-let turtle, ball;
-
+			<script type="mie/p5" id="applyForceScaled" horiz="">
+let s0, s1;
 function setup() {
-	new Canvas(160, 304);
-	turtle = new Turtle(30);
-	ball = new Sprite(80, 152, 50);
-
-	randomSequence();
-}
-
-async function randomSequence() {
-	let x = random(0, width);
-	let y = random(0, height);
-	await turtle.rotateTo(x, y, 5);
-	await turtle.moveTo(x, y, 3);
-	randomSequence();
+  new Canvas(100, 288);
+  s0 = new Sprite(51, 252, 20, 20);
+	s1 = new Sprite(49, 32, 20, 20);
+	new Sprite(50, 4, 100, 8, 's');
+  new Sprite(50, 284, 100, 8, 's');
 }
 
 function draw() {
-	clear();
+  background(16);
+	//                 (x,  y)
+	s0.applyForceScaled(0, -10);
+	s1.applyForceScaled(0, 10);
 }
-			</script>
+      </script>
 			<md id="md15-2">
 				<p><code>attractTo</code> 関数を使用して、位置に引き寄せる力を適用してスプライトを引き寄せることができます。</p>
 				<p>この例では、電子が原子核の周りを軌道を描いている様子をシミュレーションしています。</p>
 				<p>なお、このページで示されている高度な動作関数は、<a href="./world.html">スリーピングスプライト</a> を起こすことはありません。</p>
 			</md>
-			<script type="mie/p5" base-8="" hidden="">
-let player, ally;
+			<script type="mie/p5" id="attractTo">
+let nucleus, electron;
 
 function setup() {
-	new Canvas(500, 100);
-	player = new Sprite(400, 50, 20);
-	ally = new Sprite(200, 50, 20, 20, 'n');
+	new Canvas(500, 200);
+	nucleus = new Sprite(250, 100, 45);
+	electron = new Sprite(150, 100, 10);
+	electron.vel.y = 5;
 }
 
 function draw() {
-	clear();
+	background(16, 10);
+	//               (position, force)
+	electron.attractTo(nucleus, 5);
 }
 			</script>
-			<script type="mie/p5" id="angleTo" base="8">
-player.moveTowards(mouse);
+			<md id="md15-3">
+				<p>トルクは回転を引き起こす力です。<code>applyTorque</code> を使用してスプライトの回転に影響を与えることができます。</p>
+				<p>この例では、地面が急斜面の場所ではロボットの転がる速度が遅くなります。</p>
+			</md>
+			<script type="mie/p5" id="applyTorque">
+let ground, robot;
 
-let distance = dist(player.x, player.y, ally.x, ally.y);
+function setup() {
+	new Canvas(500, 250);
+	world.gravity.y = 10;
 
-if (distance > 40) {
-	ally.direction = ally.angleTo(player);
-	ally.speed = 2;
-} else if (distance < 30) {
-	ally.speed = 0;
+	robot = new Sprite(250, 0, 50);
+
+	let grade = [[400, 0]];
+	for (let i = 0; i < 100; i++) {
+		grade.push([random(50, 200), random(-40, 10)]);
+	}
+	let ground = new Sprite(30, 150, grade, 's');
+	ground.color = 'green';
+}
+
+function draw() {
+	background(16);
+	
+	robot.applyTorque(2);
+
+	camera.pos = robot.pos;
 }
 			</script>
 		</div>
@@ -1573,21 +1577,21 @@ if (distance > 40) {
 			<a id="prevPage" class="navLink">前のページ</a>
 			<div id="pageNav" class="submenu">
 				<a data-page="0" href="sprite.html?page=0">基本的なプロパティ</a>
-				<a data-page="1" href="sprite.html?page=1">物理学</a>
+				<a data-page="1" href="sprite.html?page=1">物理</a>
 				<a data-page="2" href="sprite.html?page=2">移動</a>
-				<a data-page="3" href="sprite.html?page=3">画像を持つスプライト</a>
-				<a data-page="4" href="sprite.html?page=4">スプライトのコンストラクタ</a>
+				<a data-page="3" href="sprite.html?page=3">画像付きスプライト</a>
+				<a data-page="4" href="sprite.html?page=4">スプライトコンストラクタ</a>
 				<a data-page="5" href="sprite.html?page=5">衝突</a>
-				<a data-page="6" href="sprite.html?page=6">重なり</a>
+				<a data-page="6" href="sprite.html?page=6">オーバーラップ</a>
 				<a data-page="7" href="sprite.html?page=7">回転</a>
-				<a data-page="8" href="sprite.html?page=8">スケーリング</a>
-				<a data-page="9" href="sprite.html?page=9">物理的な属性</a>
-				<a data-page="10" href="sprite.html?page=10">高度な移動</a>
-				<a class="adv" data-page="11" href="sprite.html?page=11">チェイン</a>
-				<a class="adv" data-page="12" href="sprite.html?page=12">多角形</a>
-				<a class="adv" data-page="13" href="sprite.html?page=13">コンボコライダー</a>
-				<a class="adv" data-page="14" href="sprite.html?page=14">カスタム描画</a>
-				<a class="adv" data-page="15" href="sprite.html?page=15">移動のシーケンス</a>
+				<a data-page="8" href="sprite.html?page=8">移動シーケンス</a>
+				<a data-page="9" href="sprite.html?page=9">物理的属性</a>
+				<a data-page="10" href="sprite.html?page=10">チェーン</a>
+				<a data-page="11" href="sprite.html?page=11">ポリゴン</a>
+				<a data-page="12" href="sprite.html?page=12">カスタム描画</a>
+				<a data-page="13" href="sprite.html?page=13">スケーリング</a>
+				<a data-page="14" href="sprite.html?page=14">コンボコライダー</a>
+				<a data-page="15" href="sprite.html?page=15">高度な動き</a>
 			</div>
 			<a id="nextPage" class="navLink">次のページ</a>
 		</div>
@@ -1596,15 +1600,15 @@ if (distance > 40) {
 	</article>
 
 	<!-- <script src="https://cdn.jsdelivr.net/npm/p5@1/lib/p5.min.js"></script> -->
-<script src="/v3/q5.min.js"></script>
-<script src="/v3/planck.min.js"></script>
-<script src="/v3/p5play.min.js"></script>
-<script>
-window.mie = { autoLoad: false };
+	<script src="/v3/q5.min.js"></script>
+	<script src="/v3/planck.min.js"></script>
+	<script src="/v3/p5play.min.js"></script>
+	<script>
+		window.mie = { autoLoad: false };
 
 	</script>
 	<script src="/learn/mie.js"></script>
-<script src="/learn/learn.js"></script>
+	<script src="/learn/learn.js"></script>
 </body>
 
 </html>
