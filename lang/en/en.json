@@ -1,4 +1,13 @@
 {
+	"main": {
+		"DOM": {
+			"learn": "Learn",
+			"editor": "Editor",
+			"jam": "Jam!",
+			"pro": "PRO$",
+			"about": "About"
+		}
+	},
 	"editor": {
 		"DOM": {
 			"openProjectLabel": "Select your p5play project folder",

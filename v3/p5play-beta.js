@@ -729,7 +729,8 @@ p5.prototype.registerMethod('init', function p5playInit() {
 		 */
 		addCollider(offsetX, offsetY, w, h) {
 			if (this._removed) {
-				throw new Error("Can't add colliders to a sprite that was removed.");
+				console.error("Can't add colliders to a sprite that was removed.");
+				return;
 			}
 			if (this.__collider == 3) {
 				this._collider = 'dynamic';
@@ -779,7 +780,8 @@ p5.prototype.registerMethod('init', function p5playInit() {
 		 */
 		addSensor(offsetX, offsetY, w, h) {
 			if (this._removed) {
-				throw new Error("Can't add sensors to a sprite that was removed.");
+				console.error("Can't add sensors to a sprite that was removed.");
+				return;
 			}
 			let s = this._parseShape(...arguments);
 			if (!this.body) {
@@ -5450,7 +5452,8 @@ p5.prototype.registerMethod('init', function p5playInit() {
 					throw new Error('You can only add sprites to a group, not ' + typeof s);
 				}
 				if (s.removed) {
-					throw new Error("Can't add a removed sprite to a group");
+					console.error("Can't add a removed sprite to a group");
+					continue;
 				}
 
 				for (let tuid in this._hasOverlap) {
@@ -5458,12 +5461,11 @@ p5.prototype.registerMethod('init', function p5playInit() {
 					if (hasOverlap && !s._hasSensors) {
 						s.addDefaultSensors();
 					}
-					// s._hasOverlap[tuid] = hasOverlap;
 					let b;
 					if (tuid >= 1000) b = this.p.p5play.sprites[tuid];
 					else b = this.p.p5play.groups[tuid];
 
-					if (!b) continue;
+					if (!b || b.removed) continue;
 
 					if (!hasOverlap) b._ensureCollide(s);
 					else b._ensureOverlap(s);

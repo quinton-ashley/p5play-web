@@ -104,4 +104,4 @@ Since introducing p5 and p5play we have seen an uptake of over 100% for students
 
 # credits
 
-p5play.org was created by Quinton Ashley. Copyright ©2022-2023. Looking for the [legacy version](https://quinton-ashley.github.io/p5play-web-archive/v2) of p5play?
+p5play.org was created by Quinton Ashley. Copyright ©2022-2023. [info@p5play.org](mailto:info@p5play.org) Looking for the [legacy version](https://quinton-ashley.github.io/p5play-web-archive/v2) of p5play?

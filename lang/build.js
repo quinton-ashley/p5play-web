@@ -10,8 +10,13 @@ const specificPage = process.argv[3];
 
 let langCodes = ['en', 'es', 'ja'];
 
+let langJSON;
+
 async function main() {
 	if (langCode) langCodes = [langCode];
+
+	let file = `./lang/${langCode}/${langCode}.json`;
+	langJSON = JSON.parse(await fs.readFile(file, 'utf8'));
 
 	for (let i = 0; i < langCodes.length; i++) {
 		langCode = langCodes[i];
@@ -85,17 +90,16 @@ async function translatePage(pageGroup, page) {
 		}
 	}
 
-	async function loadTranslationJSON() {
-		let file = `./lang/${langCode}/${langCode}.json`;
-		let lang = JSON.parse(await fs.readFile(file, 'utf8'));
-		lang = lang[pageGroup || page];
-
+	function loadTranslationJSON(key) {
+		let lang = langJSON[key];
 		if (!lang) return;
 
 		for (let label in lang.DOM) {
 			let el = document.getElementById(label);
 			if (el) el.innerHTML = lang.DOM[label];
 		}
+
+		if (key == 'main') return;
 
 		if (pageGroup == 'learn' && page != 'index') {
 			const pageNav = document.getElementById('pageNav');
@@ -106,7 +110,10 @@ async function translatePage(pageGroup, page) {
 		}
 	}
 
-	await Promise.all([loadTranslationMD(), loadTranslationJSON()]);
+	loadTranslationJSON('main');
+	loadTranslationJSON(pageGroup || page);
+
+	await loadTranslationMD();
 
 	if (langCode != 'en') {
 		htmlFilePath = `./lang/${langCode}` + htmlFilePath.slice(1);

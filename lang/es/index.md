@@ -104,4 +104,4 @@ Desde que introdujimos p5 y p5play, hemos visto un aumento de más del 100% en l
 
 # credits
 
-p5play.org fue creado por Quinton Ashley. Copyright ©2022-2023. ¿Buscas la [versión legado](https://quinton-ashley.github.io/p5play-web-archive/v2) de p5play?
+p5play.org fue creado por Quinton Ashley. Copyright ©2022-2023. [info@p5play.org](mailto:info@p5play.org) ¿Buscas la [versión legado](https://quinton-ashley.github.io/p5play-web-archive/v2) de p5play?

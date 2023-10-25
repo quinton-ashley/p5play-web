@@ -1,4 +1,13 @@
 {
+	"main": {
+		"DOM": {
+			"learn": "学ぶ",
+			"editor": "エディター",
+			"jam": "ジャム！",
+			"pro": "プロ",
+			"about": "約"
+		}
+	},
 	"editor": {
 		"DOM": {
 			"openProjectLabel": "あなたのp5playプロジェクトフォルダを選択してください",

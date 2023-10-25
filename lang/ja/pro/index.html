@@ -17,11 +17,11 @@
 				<span>p5play</span>
 			</a>
 			<hr>
-			<a href="../learn">Learn</a>
-			<!-- <a href="../editor">Editor</a> -->
-			<a href="../jam">Jam!</a>
-			<a href="../pro" class="active">PRO$</a>
-			<a href="../about">About</a>
+			<a id="learn" href="../learn">学ぶ</a>
+			<!-- <a id="editor" href="../editor">Editor</a> -->
+			<a id="jam" href="../jam">ジャム！</a>
+			<a id="pro" href="../pro" class="active">プロ</a>
+			<a id="about" href="../about">約</a>
 			<hr>
 			<a id="darkMode" onclick="toggleDarkMode()" tabindex="0" role="button" title="dark mode toggle">
 				<div id="darkModeIcon"></div>
@@ -54,8 +54,8 @@
 					<p>
 						<a id="patreon-brand" href="https://www.patreon.com/p5play"
 							aria-label="Patreon page for p5play">
-							<img id="patreon-logo" src="https://www.svgrepo.com/download/354168/patreon.svg" alt="">
-							<img src="/assets/brands/patreon_brand.svg" alt="patreon brand" height="28px">
+							<img id="patreon-logo" src="/assets/brands/patreon_logo.png" alt="">
+							<img src="/assets/brands/patreon_brand.png" alt="patreon brand" height="28px">
 						</a>
 					</p>
 				</md>
@@ -92,19 +92,24 @@
 	gap: 50px;
 }
 
+md p:first-child {
+	margin-top: 0;
+}
+
 #patreon-logo {
-	width: 40px;
-	height: 40px;
-	margin-right: 10px;
+	height: 42px;
 }
 
 #patreon-brand {
 	display: flex;
 	align-items: center;
-	gap: 24px;
+	height: 42px;
+	gap: 20px;
 	width: min-content;
-	padding-top: 5px;
-	padding-bottom: 5px;
+}
+
+body.dark #patreon-brand {
+	filter: invert(90%);
 }
 
 	</style>

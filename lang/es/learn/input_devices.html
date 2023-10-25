@@ -167,7 +167,11 @@ function draw() {
 let cur;
 function setup() {
 	new Canvas(500, 100);
+	textSize(30);
+	
 	cur = new Sprite();
+	cur.d = 30;
+	cur.img = createTextImage('🐭');
 
 	mouse.visible = false;
 }

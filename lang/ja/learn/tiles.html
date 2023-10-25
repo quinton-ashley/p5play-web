@@ -44,7 +44,7 @@
 				</p>
 			</md>
 			<script type="mie/p5" title="tiles" lines="29">
-let bricks;
+let bricks, tilesGroup;
 
 function setup() {
 	new Canvas(500, 200);
@@ -54,7 +54,7 @@ function setup() {
 	bricks.h = 10;
 	bricks.tile = '=';
 
-	new Tiles(
+	tilesGroup = new Tiles(
 		[
 			'=====...======',
 			'======..======',
