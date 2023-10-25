@@ -55,58 +55,6 @@ For an extra challenge, try resetting the block to its original position after i
 
 # 2-0
 
-## Sprite movement
-
-Moving a sprite by directly editing its (x, y) coordinates will teleport it to the new position, without moving it through intermediate positions.
-
-Try clicking around this mini example.
-
-# 2-1
-
-If you want a sprite to physically interact with other sprites while it's moving, don't teleport it!
-
-This bad example shows what happens if a sprite is teleported every time the p5.js draw function renders a frame.
-
-# 2-2
-
-All the other movement methods on this page change the sprite's `velocity`, aka `vel`, which is its rate of motion along the x and y axis.
-
-`vel` is a p5.js Vector, you can use any vector functions on it.
-
-Restart this example to see the player sprite hit the block!
-
-# 2-3
-
-Yet, you may find it's more convenient to move a sprite by setting its `direction` and `speed`.
-
-You can also set a sprite's direction using an angle value or direction name such as: 'up', 'down', 'left', 'right', 'upLeft', 'upRight', 'downLeft', 'downRight'.
-
-# 2-4
-
-The `move` function moves a sprite across a fixed distance. The direction and speed of the movement can be specified as parameters to the function or set separately, like in the previous example.
-
-# 2-5
-
-The `moveTowards` function moves a sprite towards a position, at a percentage of the distance to that position.
-
-In this example, the player moves 10% of the distance to the mouse on every p5.js draw call. Its speed, and the force it exerts on the block, is proportional to the distance it moves.
-
-# 2-6
-
-The `moveTo` function generates an impulse that moves a sprite to a position at a constant speed.
-
-But note that if the sprite is acted on by a force like gravity or bumps into another sprite, its speed and direction will be affected and it may not reach the target position.
-
-Any movement function that accepts an object with x and y properties could instead be called with (x, y) position numbers.
-
-# 2-7
-
-Hopefully the examples on this page helped you understand some of the sprite movement options available in p5play!
-
-But, note that the `move`, `moveTo`, and `moveTowards` functions are imperative, they override a sprite's current motion, forcing it to move in a new direction. That may not always be what you want! Read the page on advanced sprite movement to learn how to move a sprite with respect to other forces acting on it, such as gravity.
-
-# 3-0
-
 ## Sprites with an Image
 
 `sprite.image` or `sprite.img` can be set to a p5.Image or a url path to an image file.
@@ -117,7 +65,7 @@ If you need an image to be loaded before your program starts, it's best to use [
 
 Try pressing the left mouse button. When the `sprite.debug` property is set to true you can see the sprite's physics body collider. You can make the size of the collider different from the size of the image!
 
-# 3-1
+# 2-1
 
 ## Pixel Art
 
@@ -125,13 +73,13 @@ You can use the `spriteArt` function to create pixel art images for your sprites
 
 The second input parameter to the `spriteArt` function is the scale of the image.
 
-# 3-2
+# 2-2
 
 ## Try it out!
 
 Try making your own pixel art! Take a look at the alphabet below to see what color each letter represents by default.
 
-# 3-3
+# 2-3
 
 ## Custom Colors
 
@@ -140,6 +88,58 @@ You can also make pixel art that uses custom colors by creating a color palette 
 Color palettes in p5play must be provided in [JavaScript Object](https://p5js.org/reference/#/p5/object) format. A simple JS object is like a dictionary. You can define a color for each letter you use in your pixel art. To create a color use the p5.js [`color`](https://p5js.org/reference/#/p5/color) function which accepts RGB (red, green, blue) values or HEX color codes.
 
 The easiest way to find colors is to use a [color picker](https://www.google.com/search?q=google+color+picker).
+
+# 3-0
+
+## Sprite movement
+
+Moving a sprite by directly editing its (x, y) coordinates will teleport it to the new position, without moving it through intermediate positions.
+
+Try clicking around this mini example.
+
+# 3-1
+
+If you want a sprite to physically interact with other sprites while it's moving, don't teleport it!
+
+This bad example shows what happens if a sprite is teleported every time the p5.js draw function renders a frame.
+
+# 3-2
+
+All the other movement methods on this page change the sprite's `velocity`, aka `vel`, which is its rate of motion along the x and y axis.
+
+`vel` is a p5.js Vector, you can use any vector functions on it.
+
+Restart this example to see the player sprite hit the block!
+
+# 3-3
+
+Yet, you may find it's more convenient to move a sprite by setting its `direction` and `speed`.
+
+You can also set a sprite's direction using an angle value or direction name such as: 'up', 'down', 'left', 'right', 'upLeft', 'upRight', 'downLeft', 'downRight'.
+
+# 3-4
+
+The `move` function moves a sprite across a fixed distance. The direction and speed of the movement can be specified as parameters to the function or set separately, like in the previous example.
+
+# 3-5
+
+The `moveTowards` function moves a sprite towards a position, at a percentage of the distance to that position.
+
+In this example, the player moves 10% of the distance to the mouse on every p5.js draw call. Its speed, and the force it exerts on the block, is proportional to the distance it moves.
+
+# 3-6
+
+The `moveTo` function generates an impulse that moves a sprite to a position at a constant speed.
+
+But note that if the sprite is acted on by a force like gravity or bumps into another sprite, its speed and direction will be affected and it may not reach the target position.
+
+Any movement function that accepts an object with x and y properties could instead be called with (x, y) position numbers.
+
+# 3-7
+
+Hopefully the examples on this page helped you understand some of the sprite movement options available in p5play!
+
+But, note that the `move`, `moveTo`, and `moveTowards` functions are imperative, they override a sprite's current motion, forcing it to move in a new direction. That may not always be what you want! Read the page on advanced sprite movement to learn how to move a sprite with respect to other forces acting on it, such as gravity.
 
 # 4-0
 

@@ -44,8 +44,8 @@
 		"sprite": [
 			"Basic Properties",
 			"Physics",
-			"Movement",
 			"Sprites with an Image",
+			"Movement",
 			"Sprite Constructor",
 			"Collisions",
 			"Overlaps",

@@ -270,116 +270,7 @@ function draw() {
 			</script>
 		</div>
 		<div id="page-2" class="page">
-			<script type="mie/p5" id="idle-player" lines="11" hide="" base-3="">
-let player, block;
-
-function setup() {
-	new Canvas(500, 100);
-
-	player = new Sprite();
-	player.diameter = 50;
-	player.x = 400;
-
-	block = new Sprite();
-}
-
-function draw() {
-	clear();
-}
-			</script>
 			<md id="md2-0">
-				<h2 id="sprite-movement">Sprite movement</h2>
-				<p>Moving a sprite by directly editing its (x, y) coordinates will teleport it to the new position,
-					without moving it through intermediate positions.</p>
-				<p>Try clicking around this mini example.</p>
-			</md>
-			<script type="mie/p5" id="teleport" base="3">
-if (mouse.presses()) {
-	player.x = mouse.x;
-	player.y = mouse.y;
-}
-			</script>
-			<md id="md2-1">
-				<p>If you want a sprite to physically interact with other sprites while it's moving, don't teleport it!
-				</p>
-				<p>This bad example shows what happens if a sprite is teleported every time the p5.js draw function
-					renders a frame.</p>
-			</md>
-			<script type="mie/p5" id="teleport-:-continuously-👎" base="3">
-player.x = mouse.x;
-player.y = mouse.y;
-			</script>
-			<md id="md2-2">
-				<p>All the other movement methods on this page change the sprite's <code>velocity</code>, aka
-					<code>vel</code>, which is its rate of motion along the x and y axis.</p>
-				<p><code>vel</code> is a p5.js Vector, you can use any vector functions on it.</p>
-				<p>Restart this example to see the player sprite hit the block!</p>
-			</md>
-			<script type="mie/p5" id="velocity-:-continuously" base="3">
-player.vel.x = -2;
-player.vel.y = 0.1;
-			</script>
-			<md id="md2-3">
-				<p>Yet, you may find it's more convenient to move a sprite by setting its <code>direction</code> and
-					<code>speed</code>.</p>
-				<p>You can also set a sprite's direction using an angle value or direction name such as: 'up', 'down',
-					'left', 'right', 'upLeft', 'upRight', 'downLeft', 'downRight'.</p>
-			</md>
-			<script type="mie/p5" id="direction-+-speed-:-continuously" base="3">
-player.direction = 187;
-player.speed = 3;
-			</script>
-			<md id="md2-4">
-				<p>The <code>move</code> function moves a sprite across a fixed distance. The direction and speed of the
-					movement can be specified as parameters to the function or set separately, like in the previous
-					example.</p>
-			</md>
-			<script type="mie/p5" id="move-:-impulse" base="3">
-if (kb.presses('left')) {
-	//   (distance, direction, speed)
-	player.move(30, 'left', 3);
-}
-			</script>
-			<md id="md2-5">
-				<p>The <code>moveTowards</code> function moves a sprite towards a position, at a percentage of the
-					distance to that position.</p>
-				<p>In this example, the player moves 10% of the distance to the mouse on every p5.js draw call. Its
-					speed, and the force it exerts on the block, is proportional to the distance it moves.</p>
-			</md>
-			<script type="mie/p5" id="moveTowards-:-continuously" base="3">
-//             (position, tracking)
-player.moveTowards(mouse, 0.10);
-			</script>
-			<md id="md2-6">
-				<p>The <code>moveTo</code> function generates an impulse that moves a sprite to a position at a constant
-					speed.</p>
-				<p>But note that if the sprite is acted on by a force like gravity or bumps into another sprite, its
-					speed and direction will be affected and it may not reach the target position.</p>
-				<p>Any movement function that accepts an object with x and y properties could instead be called with (x,
-					y) position numbers.</p>
-			</md>
-			<script type="mie/p5" id="moveTo-:-impulse" base="3">
-if (mouse.presses()) {
-	//        (position, speed)
-	player.moveTo(mouse, 8);
-}
-			</script>
-			<md id="md2-7">
-				<p>Hopefully the examples on this page helped you understand some of the sprite movement options
-					available in p5play!</p>
-				<p>But, note that the <code>move</code>, <code>moveTo</code>, and <code>moveTowards</code> functions are
-					imperative, they override a sprite's current motion, forcing it to move in a new direction. That may
-					not always be what you want! Read the page on advanced sprite movement to learn how to move a sprite
-					with respect to other forces acting on it, such as gravity.</p>
-			</md>
-			<script type="mie/p5" id="segmented-motion" base="3">
-if (kb.pressing('left')) player.vel.x = -5;
-else if (kb.pressing('right')) player.vel.x = 5;
-else player.vel.x = 0;
-			</script>
-		</div>
-		<div id="page-3" class="page">
-			<md id="md3-0">
 				<h2 id="sprites-with-an-image">Sprites with an Image</h2>
 				<p><code>sprite.image</code> or <code>sprite.img</code> can be set to a p5.Image or a url path to an
 					image file.</p>
@@ -413,14 +304,14 @@ function draw() {
 			</script>
 			<div class="break"></div>
 			<div class="minis">
-				<md id="md3-1">
+				<md id="md2-1">
 					<h2 id="pixel-art">Pixel Art</h2>
 					<p>You can use the <code>spriteArt</code> function to create pixel art images for your sprites. It
 						takes a string as input and returns an image. Each character in the string represents the color
 						value of a pixel in the image.</p>
 					<p>The second input parameter to the <code>spriteArt</code> function is the scale of the image.</p>
 				</md>
-				<md id="md3-2">
+				<md id="md2-2">
 					<h2 id="try-it-out">Try it out!</h2>
 					<p>Try making your own pixel art! Take a look at the alphabet below to see what color each letter
 						represents by default.</p>
@@ -471,7 +362,7 @@ function draw() {}
         </script>
 			</div>
 			<div class="break"></div>
-			<md id="md3-3">
+			<md id="md2-3">
 				<h2 id="custom-colors">Custom Colors</h2>
 				<p>You can also make pixel art that uses custom colors by creating a color palette and passing it as the
 					third parameter to the <code>spriteArt</code> function.</p>
@@ -509,6 +400,115 @@ function draw() {
 	noLoop();
 }
 			</script>
+		</div>
+		<div id="page-3" class="page">
+			<script type="mie/p5" id="idle-player" lines="11" hide="" base-3="">
+let player, block;
+		
+		function setup() {
+			new Canvas(500, 100);
+		
+			player = new Sprite();
+			player.diameter = 50;
+			player.x = 400;
+		
+			block = new Sprite();
+		}
+		
+		function draw() {
+			clear();
+		}
+					</script>
+			<md id="md3-0">
+				<h2 id="sprite-movement">Sprite movement</h2>
+				<p>Moving a sprite by directly editing its (x, y) coordinates will teleport it to the new position,
+					without moving it through intermediate positions.</p>
+				<p>Try clicking around this mini example.</p>
+			</md>
+			<script type="mie/p5" id="teleport" base="3">
+if (mouse.presses()) {
+			player.x = mouse.x;
+			player.y = mouse.y;
+		}
+					</script>
+			<md id="md3-1">
+				<p>If you want a sprite to physically interact with other sprites while it's moving, don't teleport it!
+				</p>
+				<p>This bad example shows what happens if a sprite is teleported every time the p5.js draw function
+					renders a frame.</p>
+			</md>
+			<script type="mie/p5" id="teleport-:-continuously-👎" base="3">
+player.x = mouse.x;
+		player.y = mouse.y;
+					</script>
+			<md id="md3-2">
+				<p>All the other movement methods on this page change the sprite's <code>velocity</code>, aka
+					<code>vel</code>, which is its rate of motion along the x and y axis.</p>
+				<p><code>vel</code> is a p5.js Vector, you can use any vector functions on it.</p>
+				<p>Restart this example to see the player sprite hit the block!</p>
+			</md>
+			<script type="mie/p5" id="velocity-:-continuously" base="3">
+player.vel.x = -2;
+		player.vel.y = 0.1;
+					</script>
+			<md id="md3-3">
+				<p>Yet, you may find it's more convenient to move a sprite by setting its <code>direction</code> and
+					<code>speed</code>.</p>
+				<p>You can also set a sprite's direction using an angle value or direction name such as: 'up', 'down',
+					'left', 'right', 'upLeft', 'upRight', 'downLeft', 'downRight'.</p>
+			</md>
+			<script type="mie/p5" id="direction-+-speed-:-continuously" base="3">
+player.direction = 187;
+		player.speed = 3;
+					</script>
+			<md id="md3-4">
+				<p>The <code>move</code> function moves a sprite across a fixed distance. The direction and speed of the
+					movement can be specified as parameters to the function or set separately, like in the previous
+					example.</p>
+			</md>
+			<script type="mie/p5" id="move-:-impulse" base="3">
+if (kb.presses('left')) {
+			//   (distance, direction, speed)
+			player.move(30, 'left', 3);
+		}
+					</script>
+			<md id="md3-5">
+				<p>The <code>moveTowards</code> function moves a sprite towards a position, at a percentage of the
+					distance to that position.</p>
+				<p>In this example, the player moves 10% of the distance to the mouse on every p5.js draw call. Its
+					speed, and the force it exerts on the block, is proportional to the distance it moves.</p>
+			</md>
+			<script type="mie/p5" id="moveTowards-:-continuously" base="3">
+//             (position, tracking)
+		player.moveTowards(mouse, 0.10);
+					</script>
+			<md id="md3-6">
+				<p>The <code>moveTo</code> function generates an impulse that moves a sprite to a position at a constant
+					speed.</p>
+				<p>But note that if the sprite is acted on by a force like gravity or bumps into another sprite, its
+					speed and direction will be affected and it may not reach the target position.</p>
+				<p>Any movement function that accepts an object with x and y properties could instead be called with (x,
+					y) position numbers.</p>
+			</md>
+			<script type="mie/p5" id="moveTo-:-impulse" base="3">
+if (mouse.presses()) {
+			//        (position, speed)
+			player.moveTo(mouse, 8);
+		}
+					</script>
+			<md id="md3-7">
+				<p>Hopefully the examples on this page helped you understand some of the sprite movement options
+					available in p5play!</p>
+				<p>But, note that the <code>move</code>, <code>moveTo</code>, and <code>moveTowards</code> functions are
+					imperative, they override a sprite's current motion, forcing it to move in a new direction. That may
+					not always be what you want! Read the page on advanced sprite movement to learn how to move a sprite
+					with respect to other forces acting on it, such as gravity.</p>
+			</md>
+			<script type="mie/p5" id="segmented-motion" base="3">
+if (kb.pressing('left')) player.vel.x = -5;
+		else if (kb.pressing('right')) player.vel.x = 5;
+		else player.vel.x = 0;
+					</script>
 		</div>
 		<div id="page-4" class="page">
 			<div class="minis horiz">
@@ -1681,8 +1681,8 @@ if (distance > 40) {
 			<div id="pageNav" class="submenu">
 				<a data-page="0" href="sprite.html?page=0">Basic Properties</a>
 				<a data-page="1" href="sprite.html?page=1">Physics</a>
-				<a data-page="2" href="sprite.html?page=2">Movement</a>
-				<a data-page="3" href="sprite.html?page=3">Sprites with an Image</a>
+				<a data-page="2" href="sprite.html?page=2">Sprites with an Image</a>
+				<a data-page="3" href="sprite.html?page=3">Movement</a>
 				<a data-page="4" href="sprite.html?page=4">Sprite Constructor</a>
 				<a data-page="5" href="sprite.html?page=5">Collisions</a>
 				<a data-page="6" href="sprite.html?page=6">Overlaps</a>
