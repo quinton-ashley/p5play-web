@@ -55,32 +55,29 @@ p5.prototype.registerMethod('init', function p5playInit() {
 		_overlappers: ['_overlaps', '_overlapping', '_overlapped']
 	};
 
-	class P5Play {
+	/**
+	 * @class
+	 */
+	this.P5Play = class {
 		/**
 		 * This class is deleted after it's used
 		 * to create the `p5play` object
-		 * which stores information about the sketch.
-		 *
-		 * @constructor
+		 * which contains information about the sketch.
 		 */
 		constructor() {
-			this.os = {};
-			this.context = 'web';
-			this._hasMouse = window.matchMedia('(any-hover: none)').matches ? false : true;
-			this.standardizeKeyboard = false;
 			/**
 			 * Contains all the sprites in the sketch,
 			 * but users should use the `allSprites` group.
 			 *
 			 * The keys are the sprite's unique ids.
-			 * @type {Object}
+			 * @type {Object.<number, Sprite>}
 			 */
 			this.sprites = {};
 			/**
 			 * Contains all the groups in the sketch,
 			 *
 			 * The keys are the group's unique ids.
-			 * @type {Object}
+			 * @type {Object.<number, Group>}
 			 */
 			this.groups = {};
 			this.groupsCreated = 0;
@@ -96,12 +93,23 @@ p5.prototype.registerMethod('init', function p5playInit() {
 			/**
 			 * The default color palette, at index 0 of this array,
 			 * has all the letters of the English alphabet mapped to colors.
+			 * @type {Array}
 			 */
 			this.palettes = [];
-		}
-	}
 
-	this.p5play = new P5Play();
+			this.os = {};
+			this.context = 'web';
+			if (window.matchMedia) this.hasMouse = window.matchMedia('(any-hover: none)').matches ? false : true;
+			else this.hasMouse = true;
+			this.standardizeKeyboard = false;
+		}
+	};
+
+	/**
+	 * Contains information about the sketch.
+	 * @type {P5Play}
+	 */
+	this.p5play = new this.P5Play();
 	delete this.P5Play;
 
 	/**
@@ -134,9 +142,6 @@ p5.prototype.registerMethod('init', function p5playInit() {
 		 * Every sprite you create is added to the `allSprites`
 		 * group and put on the top layer, in front of all
 		 * previously created sprites.
-		 *
-		 * @constructor
-		 * @returns {Sprite} A new Sprite object
 		 *
 		 * @param {Number} [x] - horizontal position of the sprite
 		 * @param {Number} [y] - vertical position of the sprite
@@ -501,6 +506,10 @@ p5.prototype.registerMethod('init', function p5playInit() {
 			// to its groups after its collider is potentially created
 			this.groups = [];
 
+			/**
+			 * Used to detect mouse events with the sprite.
+			 * @type {_SpriteMouse}
+			 */
 			this.mouse = new this.p._SpriteMouse();
 
 			if (this.collider != 'none') {
@@ -1019,11 +1028,6 @@ p5.prototype.registerMethod('init', function p5playInit() {
 		/**
 		 * Removes the physics body colliders from the sprite but not
 		 * overlap sensors.
-		 *
-		 * Only use this method if you never want to use the sprite's
-		 * colliders again. If you want to disable colliders without
-		 * removing them, use the overlaps, overlapping, or overlapped
-		 * functions instead.
 		 */
 		removeColliders() {
 			if (!this.body) return;
@@ -1033,11 +1037,6 @@ p5.prototype.registerMethod('init', function p5playInit() {
 
 		/**
 		 * Removes overlap sensors from the sprite.
-		 *
-		 * Only use this method if you never want to use the sprite's
-		 * overlap sensors again. To disable overlap sensors without
-		 * removing them, use the collides, colliding, or collided functions
-		 * instead.
 		 */
 		removeSensors() {
 			if (!this.body) return;
@@ -1162,6 +1161,10 @@ p5.prototype.registerMethod('init', function p5playInit() {
 			this.changeAni(val);
 		}
 
+		/**
+		 * Reference to the sprite's current animation.
+		 * @type {SpriteAnimation}
+		 */
 		get ani() {
 			return this._ani;
 		}
@@ -1169,6 +1172,10 @@ p5.prototype.registerMethod('init', function p5playInit() {
 			this.changeAni(val);
 		}
 
+		/**
+		 * Keys are the animation label, values are SpriteAnimation objects
+		 * @type {SpriteAnimations}
+		 */
 		get anis() {
 			return this.animations;
 		}
@@ -1265,7 +1272,7 @@ p5.prototype.registerMethod('init', function p5playInit() {
 		 *
 		 * To achieve the same effect as setting collider type
 		 * to "none", use `.overlaps(allSprites)` to have your
-		 * sprite overlap with the `allSprites` group.
+		 * sprite overlap with all sprites.
 		 *
 		 * @type {String}
 		 * @default 'dynamic'
@@ -1477,6 +1484,11 @@ p5.prototype.registerMethod('init', function p5playInit() {
 		set textColour(val) {
 			this.textColor = val;
 		}
+		/**
+		 * The sprite's text fill color. Black by default.
+		 * @type {p5.Color}
+		 * @default black (#000000)
+		 */
 		get textFill() {
 			return this._textFill;
 		}
@@ -1529,6 +1541,7 @@ p5.prototype.registerMethod('init', function p5playInit() {
 		 * reach a destination. Setting a sprite's bearing doesn't do
 		 * anything by itself. You can apply a force at the sprite's
 		 * bearing angle using the `applyForce` function.
+		 * @type {Number}
 		 * @example
 		 * sprite.bearing = angle;
 		 * sprite.applyForce(amount);
@@ -1541,6 +1554,11 @@ p5.prototype.registerMethod('init', function p5playInit() {
 			this._bearing = val;
 		}
 
+		/**
+		 * If true, an outline of the sprite's collider will be drawn.
+		 * @type {Boolean}
+		 * @default false
+		 */
 		get debug() {
 			return this._debug;
 		}
@@ -1639,7 +1657,7 @@ p5.prototype.registerMethod('init', function p5playInit() {
 		 * A sprite's draw function can be overridden with a
 		 * custom draw function, in which the center of the sprite is
 		 * at (0, 0).
-		 *
+		 * @type {Function}
 		 * @example
 		 * sprite.draw = function() {
 		 *   // an oval
@@ -1845,8 +1863,8 @@ p5.prototype.registerMethod('init', function p5playInit() {
 		/**
 		 * The sprite's mirror states.
 		 * @type {Object}
-		 * @property {Boolean} x - The sprite's horizontal mirror state.
-		 * @property {Boolean} y - The sprite's vertical mirror state.
+		 * @property {Boolean} x - the sprite's horizontal mirror state
+		 * @property {Boolean} y - the sprite's vertical mirror state
 		 * @default {x: false, y: false}
 		 */
 		get mirror() {
@@ -1865,6 +1883,9 @@ p5.prototype.registerMethod('init', function p5playInit() {
 		 * The sprite's x and y properties represent its center in world
 		 * coordinates. This point is also the sprite's center of rotation.
 		 * @type {object}
+		 * @property {Number} x - the sprite's horizontal offset
+		 * @property {Number} y - the sprite's vertical offset
+		 * @default {x: 0, y: 0}
 		 */
 		get offset() {
 			return this._offset;
@@ -2454,7 +2475,7 @@ p5.prototype.registerMethod('init', function p5playInit() {
 		 *
 		 * There's no way to individually update a sprite or group
 		 * of sprites in the physics simulation though.
-		 *
+		 * @type {Function}
 		 */
 		get update() {
 			return this._update;
@@ -4839,25 +4860,19 @@ p5.prototype.registerMethod('init', function p5playInit() {
 
 			let _this = this;
 
-			/**
-			 * @type {Sprite}
-			 */
-			this.Sprite;
-
 			this.Sprite = class extends this.p.Sprite {
 				constructor() {
 					super(_this, ...arguments);
 				}
 			};
 			/**
-			 * @type {Sprite}
+			 * @class
 			 */
 			this.GroupSprite = this.Sprite;
 
-			/**
-			 * @type {Group}
-			 */
-			this.Group;
+			// JSDoc breaks if I don't put @class for GroupSprite
+			// but for typescript defs they should be typeof Sprite
+			// and get replaced as such by the p5play-types build.js script
 
 			this.Group = class extends this.p.Group {
 				constructor() {
@@ -4865,7 +4880,7 @@ p5.prototype.registerMethod('init', function p5playInit() {
 				}
 			};
 			/**
-			 * @type {Group}
+			 * @class
 			 */
 			this.Subgroup = this.Group;
 
@@ -5675,8 +5690,13 @@ p5.prototype.registerMethod('init', function p5playInit() {
 			return this.remove(0);
 		}
 
+		/**
+		 * Not supported!
+		 * @return {Number} the new length of the group
+		 */
 		unshift() {
-			throw 'unshift is not supported for groups';
+			console.error('unshift is not supported for groups');
+			return this.length;
 		}
 
 		/**
@@ -6752,7 +6772,7 @@ p5.prototype.registerMethod('init', function p5playInit() {
 
 		/**
 		 * Function that draws the joint. Can be overridden by the user.
-		 *
+		 * @type {Function}
 		 * @param {Number} xA
 		 * @param {Number} yA
 		 * @param {Number} [xB]
