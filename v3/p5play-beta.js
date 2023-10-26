@@ -1,6 +1,6 @@
 /**
  * p5play
- * @version 3.15-beta1
+ * @version 3.15-beta2
  * @author quinton-ashley
  * @license gpl-v3-only
  */
@@ -66,6 +66,7 @@ p5.prototype.registerMethod('init', function p5playInit() {
 		constructor() {
 			this.os = {};
 			this.context = 'web';
+			this._hasMouse = window.matchMedia('(any-hover: none)').matches ? false : true;
 			this.standardizeKeyboard = false;
 			/**
 			 * Contains all the sprites in the sketch,
@@ -5739,8 +5740,7 @@ p5.prototype.registerMethod('init', function p5playInit() {
 	this.Sprite.prototype.__step = this.Group.prototype.__step = function () {
 		// for each type of collision and overlap event
 		let a = this;
-		let b, contactType, shouldOverlap, cb;
-		let checkCollisions = true;
+		let b;
 		for (let event in eventTypes) {
 			for (let k in this[event]) {
 				if (k >= 1000) {
@@ -5759,6 +5759,25 @@ p5.prototype.registerMethod('init', function p5playInit() {
 				}
 				this[event][k] = v;
 				b[event][a._uid] = v;
+			}
+		}
+	};
+
+	this.Sprite.prototype.___step = this.Group.prototype.___step = function () {
+		let a = this;
+		let b, contactType, shouldOverlap, cb;
+		let checkCollisions = true;
+		for (let event in eventTypes) {
+			for (let k in this[event]) {
+				if (k >= 1000) {
+					if (a._isGroup || a._uid >= k) continue;
+					b = this.p.p5play.sprites[k];
+				} else {
+					if (a._isGroup && a._uid >= k) continue;
+					b = this.p.p5play.groups[k];
+				}
+
+				let v = a[event][k];
 
 				// contact callbacks can only be called between sprites
 				if (a._isGroup || b._isGroup) continue;
@@ -5784,6 +5803,7 @@ p5.prototype.registerMethod('init', function p5playInit() {
 			}
 			checkCollisions = false;
 		}
+
 		// all of p5play's references to the sprite can be removed
 		// only if the sprite is not colliding or overlapping with anything
 		// otherwise the sprite will be removed from the world but
@@ -6037,14 +6057,16 @@ p5.prototype.registerMethod('init', function p5playInit() {
 				s.prevRotation = s.rotation;
 			}
 			super.step(timeStep || 1 / (this.p._targetFrameRate || 60), velocityIterations || 8, positionIterations || 3);
+
 			let sprites = Object.values(this.p.p5play.sprites);
-			for (let s of sprites) {
-				s._step();
-			}
 			let groups = Object.values(this.p.p5play.groups);
-			for (let g of groups) {
-				g._step();
-			}
+
+			for (let s of sprites) s._step();
+			for (let g of groups) g._step();
+
+			for (let s of sprites) s.___step();
+			for (let g of groups) g.___step();
+
 			if (this.autoStep) this.autoStep = null;
 		}
 
@@ -6103,6 +6125,15 @@ p5.prototype.registerMethod('init', function p5playInit() {
 		getSpriteAt(x, y, group) {
 			const sprites = this.getSpritesAt(x, y, group);
 			return sprites[0];
+		}
+
+		getMouseSprites() {
+			let sprites = this.getSpritesAt(this.p.mouse.x, this.p.mouse.y);
+			if (this.p.camera._wasOff) {
+				let uiSprites = this.getSpritesAt(this.p.camera.mouse.x, this.p.camera.mouse.y, this.p.allSprites, false);
+				if (uiSprites.length) sprites = [...uiSprites, ...sprites];
+			}
+			return sprites;
 		}
 
 		/*
@@ -6465,6 +6496,7 @@ p5.prototype.registerMethod('init', function p5playInit() {
 			if (this.active) {
 				this.p.pop();
 				this.active = false;
+				this._wasOff = true;
 			}
 		}
 	}; //end camera class
@@ -8577,6 +8609,14 @@ main {
 			return inp;
 		}
 
+		update() {
+			this.x = (pInst.mouseX - pInst.world.hw) / pInst.camera.zoom + pInst.camera.x;
+			this.y = (pInst.mouseY - pInst.world.hh) / pInst.camera.zoom + pInst.camera.y;
+
+			pInst.camera.mouse.x = pInst.mouseX;
+			pInst.camera.mouse.y = pInst.mouseY;
+		}
+
 		/**
 		 * The mouse's position.
 		 * @type {object}
@@ -8692,18 +8732,21 @@ main {
 	};
 
 	const __onmousedown = function (btn) {
-		this.mouse[btn]++;
 		this.mouse.active = true;
+		this.mouse[btn]++;
 		if (this.world.mouseSprites.length) {
-			let ms = this.world.mouseSprite;
+			let msm = this.world.mouseSprite?.mouse;
 			// old mouse sprite didn't have the mouse released on it
-			if (ms) {
-				ms.mouse[btn] = 0;
-				ms.mouse.drag[btn] = 0;
+			if (msm) {
+				msm[btn] = 0;
+				msm.hover = 0;
+				msm.drag[btn] = 0;
 			}
 			ms = this.world.mouseSprites[0];
-			ms.mouse[btn] = 1;
 			this.world.mouseSprite = ms;
+			msm = ms.mouse;
+			msm[btn] = 1;
+			if (msm.hover <= 0) msm.hover = 1;
 		}
 	};
 
@@ -8722,8 +8765,12 @@ main {
 	const _ontouchstart = pInst._ontouchstart;
 
 	pInst._ontouchstart = function (e) {
-		__onmousedown.call(this, 'left');
 		_ontouchstart.call(this, e);
+		if (touches.length == 1) {
+			this.mouse.update();
+			this.world.mouseSprites = this.world.getMouseSprites();
+		}
+		__onmousedown.call(this, 'left');
 	};
 
 	const __onmousemove = function (btn) {
@@ -8788,8 +8835,8 @@ main {
 	const _ontouchend = pInst._ontouchend;
 
 	pInst._ontouchend = function (e) {
-		__onmouseup.call(this, 'left');
 		_ontouchend.call(this, e);
+		__onmouseup.call(this, 'left');
 	};
 
 	delete this._Mouse;
@@ -9447,11 +9494,7 @@ p5.prototype.registerMethod('pre', function p5playPreDraw() {
 
 	this.p5play.spritesDrawn = 0;
 
-	this.mouse.x = (this.mouseX - this.world.hw) / this.camera.zoom + this.camera.x;
-	this.mouse.y = (this.mouseY - this.world.hh) / this.camera.zoom + this.camera.y;
-
-	this.camera.mouse.x = this.mouseX;
-	this.camera.mouse.y = this.mouseY;
+	this.mouse.update();
 
 	this.contro._update();
 });
@@ -9535,7 +9578,7 @@ p5.prototype.registerMethod('post', function p5playPostDraw() {
 	for (let btn of ['left', 'center', 'right']) {
 		if (m[btn] < 0) m[btn] = 0;
 		else if (m[btn] > 0) m[btn]++;
-		if (msm) msm[btn] = m[btn];
+		if (msm?.hover) msm[btn] = m[btn];
 
 		if (m.drag[btn] < 0) m.drag[btn] = 0;
 		else if (m.drag[btn] > 0) m.drag[btn]++;
@@ -9543,17 +9586,12 @@ p5.prototype.registerMethod('post', function p5playPostDraw() {
 	}
 
 	if (this.world.mouseTracking) {
-		let sprites = this.world.getSpritesAt(m.x, m.y);
-		let uiSprites = this.world.getSpritesAt(this.camera.mouse.x, this.camera.mouse.y, this.allSprites, false);
-		sprites = sprites.concat(uiSprites);
+		let sprites = this.world.getMouseSprites();
 
 		for (let i = 0; i < sprites.length; i++) {
 			let s = sprites[i];
-			if (i == 0) {
-				s.mouse.hover++;
-				continue;
-			}
-			if (s.mouse.hover > 0) s.mouse.hover = -1;
+			if (i == 0) s.mouse.hover++;
+			else if (s.mouse.hover > 0) s.mouse.hover = -1;
 			else if (s.mouse.hover < 0) s.mouse.hover = 0;
 		}
 
