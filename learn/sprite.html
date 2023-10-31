@@ -405,19 +405,19 @@ function draw() {
 			<script type="mie/p5" id="idle-player" lines="11" hide="" base-3="">
 let player, block;
 		
-		function setup() {
-			new Canvas(500, 100);
-		
-			player = new Sprite();
-			player.diameter = 50;
-			player.x = 400;
-		
-			block = new Sprite();
-		}
-		
-		function draw() {
-			clear();
-		}
+function setup() {
+	new Canvas(500, 100);
+
+	player = new Sprite();
+	player.diameter = 50;
+	player.x = 400;
+
+	block = new Sprite();
+}
+
+function draw() {
+	clear();
+}
 					</script>
 			<md id="md3-0">
 				<h2 id="sprite-movement">Sprite movement</h2>
@@ -427,9 +427,9 @@ let player, block;
 			</md>
 			<script type="mie/p5" id="teleport" base="3">
 if (mouse.presses()) {
-			player.x = mouse.x;
-			player.y = mouse.y;
-		}
+	player.x = mouse.x;
+	player.y = mouse.y;
+}
 					</script>
 			<md id="md3-1">
 				<p>If you want a sprite to physically interact with other sprites while it's moving, don't teleport it!
@@ -439,7 +439,7 @@ if (mouse.presses()) {
 			</md>
 			<script type="mie/p5" id="teleport-:-continuously-👎" base="3">
 player.x = mouse.x;
-		player.y = mouse.y;
+player.y = mouse.y;
 					</script>
 			<md id="md3-2">
 				<p>All the other movement methods on this page change the sprite's <code>velocity</code>, aka
@@ -449,7 +449,7 @@ player.x = mouse.x;
 			</md>
 			<script type="mie/p5" id="velocity-:-continuously" base="3">
 player.vel.x = -2;
-		player.vel.y = 0.1;
+player.vel.y = 0.1;
 					</script>
 			<md id="md3-3">
 				<p>Yet, you may find it's more convenient to move a sprite by setting its <code>direction</code> and
@@ -459,7 +459,7 @@ player.vel.x = -2;
 			</md>
 			<script type="mie/p5" id="direction-+-speed-:-continuously" base="3">
 player.direction = 187;
-		player.speed = 3;
+player.speed = 3;
 					</script>
 			<md id="md3-4">
 				<p>The <code>move</code> function moves a sprite across a fixed distance. The direction and speed of the
@@ -468,9 +468,9 @@ player.direction = 187;
 			</md>
 			<script type="mie/p5" id="move-:-impulse" base="3">
 if (kb.presses('left')) {
-			//   (distance, direction, speed)
-			player.move(30, 'left', 3);
-		}
+	//   (distance, direction, speed)
+	player.move(30, 'left', 3);
+}
 					</script>
 			<md id="md3-5">
 				<p>The <code>moveTowards</code> function moves a sprite towards a position, at a percentage of the
@@ -479,8 +479,9 @@ if (kb.presses('left')) {
 					speed, and the force it exerts on the block, is proportional to the distance it moves.</p>
 			</md>
 			<script type="mie/p5" id="moveTowards-:-continuously" base="3">
-//             (position, tracking)
-		player.moveTowards(mouse, 0.10);
+//                (x, y, tracking)
+//                (position, tracking)
+player.moveTowards(mouse, 0.10);
 					</script>
 			<md id="md3-6">
 				<p>The <code>moveTo</code> function generates an impulse that moves a sprite to a position at a constant
@@ -492,9 +493,10 @@ if (kb.presses('left')) {
 			</md>
 			<script type="mie/p5" id="moveTo-:-impulse" base="3">
 if (mouse.presses()) {
-			//        (position, speed)
-			player.moveTo(mouse, 8);
-		}
+	//           (x, y, speed)
+	//           (position, speed)
+	player.moveTo(mouse.x, mouse.y, 8);
+}
 					</script>
 			<md id="md3-7">
 				<p>Hopefully the examples on this page helped you understand some of the sprite movement options
@@ -508,7 +510,7 @@ if (mouse.presses()) {
 if (kb.pressing('left')) player.vel.x = -5;
 		else if (kb.pressing('right')) player.vel.x = 5;
 		else player.vel.x = 0;
-					</script>
+			</script>
 		</div>
 		<div id="page-4" class="page">
 			<div class="minis horiz">
