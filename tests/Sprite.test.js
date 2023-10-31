@@ -264,31 +264,22 @@ test('Sprite : move, moveTo, moveTowards', () => {
 				expect(s.x).toBe(200);
 				expect(s.y).toBe(180);
 
-				s.direction = 'upRight';
-				await expect(s.move(1)).resolves.toBe(true);
+				await expect(s.move(1, 'upRight')).resolves.toBe(true);
 				expect(s.x).toBeCloseTo(200.707);
 				expect(s.y).toBeCloseTo(179.293);
 
-				// s.direction = 'left';
-				// await expect(s.move(10)).resolves.toBe(true);
-				// expect(s.x).toBe(90);
-				// expect(s.y).toBe(110);
+				await expect(s.moveTo(10, 20, 20)).resolves.toBe(true);
+				expect(s.x).toBe(10);
+				expect(s.y).toBe(20);
 
-				// await expect(s.moveTo(10, 20)).resolves.toBe(true);
-				// expect(s.x).toBe(10);
-				// expect(s.y).toBe(20);
+				// test interrupted movement
+				expect(s.moveTo(50, 20)).resolves.toBe(false);
+				await expect(s.moveTo(30, 20, 5)).resolves.toBe(true);
 
-				// // test interrupted movement
-				// expect(s.moveTo(50, 20)).resolves.toBe(false);
-				// await expect(s.moveTo(30, 20)).resolves.toBe(true);
-
-				// s.moveTowards(20, 0);
-				// expect(s.x).toBe(29);
-				// expect(s.y).toBe(18);
-
-				// s.moveTowards({ x: 19, y: 0 }, 0.5);
-				// expect(s.x).toBe(24);
-				// expect(s.y).toBe(9);
+				s.moveTowards(20, 0);
+				await p.delay();
+				expect(s.x).toBeLessThan(30);
+				expect(s.y).toBeLessThan(20);
 
 				// s.direction = 'up';
 				// s.speed = 3;

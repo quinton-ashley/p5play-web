@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>p5play : Play</title>
+	<meta name="description"
+		content="p5play is a JavaScript game engine that uses p5.js for graphics and Box2D for physics!">
+	<link rel="icon" href="/assets/favicon.png">
+
+	<meta property="og:title" content="p5play">
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="https://p5play.org">
+	<meta property="og:image" content="main/logo.png">
+	<meta property="og:description"
+		content="p5play is a JavaScript game engine that uses p5.js for graphics and Box2D for physics!">
+
+	<link rel="stylesheet" href="/learn/style.css">
+	<link rel="stylesheet" href="/play/style.css">
+</head>
+
+<body id="home" class="dark">
+	<article>
+		<nav id="topNav">
+			<a href="../index.html" id="logoLink" class="active">
+				<img alt="p5play logo" src="/assets/p5play_logo.svg" class="logo">
+				<span>p5play</span>
+			</a>
+			<hr>
+			<a id="learn" href="../learn">Learn</a>
+			<!-- <a id="editor" href="../editor">Editor</a> -->
+			<a id="jam" href="../jam">Jam!</a>
+			<a id="pro" href="../pro">PRO$</a>
+			<a id="play" href="../play" class="active">Play</a>
+			<a id="about" href="../about">About</a>
+			<hr>
+			<a id="darkMode" onclick="toggleDarkMode()" tabindex="0" role="button" title="dark mode toggle">
+				<div id="darkModeIcon"></div>
+			</a>
+		</nav>
+		<div class="top big break"></div>
+	</article>
+
+	<div id="showcase">
+		<div id="lg0" class="col col-lg"></div>
+
+		<div id="md0" class="col">
+			<div id="made_with_p5play">
+				<img src="../assets/made_with_p5play_lg.png" alt="Made with p5play" />
+			</div>
+		</div>
+
+		<div id="lg1" class="col col-lg"></div>
+	</div>
+
+	<script src="/learn/main.js"></script>
+	<script src="play.js"> </script>
+
+	<!-- ... Your HTML and CSS ... -->
+</body>
+
+</html>
