@@ -48,7 +48,6 @@
 		"@electron-forge/maker-squirrel": "^6.1.1",
 		"@electron-forge/maker-zip": "^6.1.1",
 		"canvas": "^2.10.2",
-		"electron": "^27.0.2",
 		"jest-cli": "^29.3.1",
 		"jest-environment-jsdom": "^29.3.1",
 		"taffydb": "^2.7.3"
@@ -75,5 +74,5 @@
 		"make": "electron-forge make",
 		"publish": "electron-forge publish"
 	},
-	"version": "1.7.9"
+	"version": "1.7.10"
 }
