@@ -247,10 +247,10 @@ test('Sprite : move, moveTo, moveTowards', () => {
 
 				s = new p.Sprite(200, 200);
 
-				startSequence();
+				sequence();
 			};
 
-			async function startSequence() {
+			async function sequence() {
 				await expect(s.move(1, 180, 10)).resolves.toBe(true);
 				expect(s.x).toBe(199);
 				expect(s.y).toBe(200);
@@ -371,4 +371,152 @@ test('Sprite : chain and polygon constructors', () => {
 		};
 	};
 	new p5(sketch);
+});
+
+test('Sprite : collides, colliding, collided', () => {
+	return new Promise((resolve, reject) => {
+		const sketch = (p) => {
+			let s0, s1;
+
+			p.setup = () => {
+				new p.Canvas(400, 400);
+
+				s0 = new p.Sprite(200, 200);
+				s0.test = 0;
+
+				s1 = new p.Sprite(254, 200);
+				s1.test = 0;
+
+				s0.collides(s1, (a, b) => {
+					expect(a).toBe(s0);
+					expect(b).toBe(s1);
+
+					a.test = 1;
+					b.test = 2;
+				});
+
+				s0.vel.x = 5;
+
+				sequence();
+			};
+
+			async function sequence() {
+				expect(s0.collides(s1)).toBe(false);
+				expect(s1.collides(s0)).toBe(false);
+
+				await p.delay();
+				await p.delay();
+
+				expect(s0.collides(s1)).toBe(true);
+				expect(s1.collides(s0)).toBe(true);
+				expect(s0.colliding(s1)).toBe(1);
+				expect(s1.colliding(s0)).toBe(1);
+				expect(s0.collided(s1)).toBe(false);
+				expect(s1.collided(s0)).toBe(false);
+
+				expect(s0.test).toBe(1);
+				expect(s1.test).toBe(2);
+
+				await p.delay();
+
+				expect(s0.collides(s1)).toBe(false);
+				expect(s1.collides(s0)).toBe(false);
+				expect(s0.colliding(s1)).toBe(2);
+				expect(s1.colliding(s0)).toBe(2);
+				expect(s0.collided(s1)).toBe(false);
+				expect(s1.collided(s0)).toBe(false);
+
+				let collidingFrameCount = 0;
+				while (s0.colliding(s1)) {
+					await p.delay();
+					collidingFrameCount++;
+				}
+				expect(collidingFrameCount).toBe(1);
+
+				expect(s0.collided(s1)).toBe(true);
+				expect(s1.collided(s0)).toBe(true);
+
+				resolve();
+			}
+
+			p.draw = () => {
+				if (p.frameCount == 10) reject('timed out');
+			};
+		};
+		new p5(sketch);
+	});
+});
+
+test('Sprite : overlaps, overlapping, overlapped', () => {
+	return new Promise((resolve, reject) => {
+		const sketch = (p) => {
+			let s0, s1;
+
+			p.setup = () => {
+				new p.Canvas(400, 400);
+
+				s0 = new p.Sprite(200, 200);
+				s0.test = 0;
+
+				s1 = new p.Sprite(254, 200);
+				s1.test = 0;
+
+				s0.overlaps(s1, (a, b) => {
+					expect(a).toBe(s0);
+					expect(b).toBe(s1);
+
+					a.test = 1;
+					b.test = 2;
+				});
+
+				s0.vel.x = 25;
+
+				sequence();
+			};
+
+			async function sequence() {
+				expect(s0.overlaps(s1)).toBe(false);
+				expect(s1.overlaps(s0)).toBe(false);
+
+				await p.delay();
+				await p.delay();
+
+				expect(s0.overlaps(s1)).toBe(true);
+				expect(s1.overlaps(s0)).toBe(true);
+				expect(s0.overlapping(s1)).toBe(1);
+				expect(s1.overlapping(s0)).toBe(1);
+				expect(s0.overlapped(s1)).toBe(false);
+				expect(s1.overlapped(s0)).toBe(false);
+
+				expect(s0.test).toBe(1);
+				expect(s1.test).toBe(2);
+
+				await p.delay();
+
+				expect(s0.overlaps(s1)).toBe(false);
+				expect(s1.overlaps(s0)).toBe(false);
+				expect(s0.overlapping(s1)).toBe(2);
+				expect(s1.overlapping(s0)).toBe(2);
+				expect(s0.overlapped(s1)).toBe(false);
+				expect(s1.overlapped(s0)).toBe(false);
+
+				let overlappingFrameCount = 0;
+				while (s0.overlapping(s1)) {
+					await p.delay();
+					overlappingFrameCount++;
+				}
+				expect(overlappingFrameCount).toBe(3);
+
+				expect(s0.overlapped(s1)).toBe(true);
+				expect(s1.overlapped(s0)).toBe(true);
+
+				resolve();
+			}
+
+			p.draw = () => {
+				if (p.frameCount == 10) reject('timed out');
+			};
+		};
+		new p5(sketch);
+	});
 });

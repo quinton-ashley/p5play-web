@@ -138,33 +138,96 @@ test('Group: Properties', () => {
 	new p5(sketch);
 });
 
-test('Group: Methods', () => {
-	return new Promise((resolve) => {
+test('Group: overlaps, overlapping, overlapped', () => {
+	return new Promise((resolve, reject) => {
 		const sketch = (p) => {
+			let s0, s1, g1, g2;
+
 			p.setup = () => {
 				new p.Canvas(400, 400);
-				p.noLoop();
 
-				const group = new p.Group();
+				g1 = new p.Group();
 
-				// if the target is not a sprite or group..
-				const target = {};
-				const target2 = new p.Sprite();
-				const callback = 'not a function';
+				s0 = new p.Sprite(200, 200);
+
+				// if the target is not a group..
+				const invalidTarget = {};
+				const invalidCB = 'not a function';
 
 				expect(() => {
-					group.overlaps(target);
+					s0.overlaps(invalidTarget);
 				}).toThrow();
 
 				expect(() => {
-					group.overlaps(target2, callback);
+					s0.overlaps(g1, invalidCB);
 				}).toThrow();
 
-				group.overlaps(target2);
+				s0.overlaps(g1, (a, b) => {
+					expect(a).toBe(s0);
+					expect(b).toBe(s1);
 
-				// TODO make good tests for overlaps, culling, and removal
+					a.test = 1;
+					b.test = 2;
+				});
+
+				s1 = new g1.Sprite(254, 200);
+
+				g2 = new p.Group();
+				g2.add(s0);
+
+				g1.overlaps(g2, (a, b) => {
+					expect(a).toBe(s1);
+					expect(b).toBe(s0);
+
+					g1.test = 1;
+				});
+
+				s0.vel.x = 20;
+
+				sequence();
+			};
+
+			async function sequence() {
+				expect(s0.overlaps(s1)).toBe(false);
+				expect(s0.overlaps(g1)).toBe(false);
+
+				await p.delay();
+				await p.delay();
+
+				expect(s0.overlaps(s1)).toBe(true);
+				expect(s0.overlaps(g1)).toBe(true);
+				expect(s0.overlapping(s1)).toBe(1);
+				expect(s0.overlapping(g1)).toBe(1);
+				expect(s0.overlapped(s1)).toBe(false);
+				expect(s0.overlapped(g1)).toBe(false);
+
+				expect(g1.test).toBe(1);
+				expect(s0.test).toBe(1);
+				expect(s1.test).toBe(2);
+
+				await p.delay();
+
+				expect(s0.overlaps(s1)).toBe(false);
+				expect(s0.overlaps(g1)).toBe(false);
+				expect(s0.overlapping(s1)).toBe(2);
+				expect(s0.overlapping(g1)).toBe(2);
+				expect(s0.overlapped(s1)).toBe(false);
+				expect(s0.overlapped(g1)).toBe(false);
+
+				let overlappingFrameCount = 0;
+				while (s0.overlapping(g1)) {
+					await p.delay();
+					overlappingFrameCount++;
+				}
+				expect(overlappingFrameCount).toBe(4);
+
+				expect(s0.overlapped(s1)).toBe(true);
+				expect(s0.overlapped(g1)).toBe(true);
 
 				resolve();
+			}
+			p.draw = () => {
+				if (p.frameCount == 10) reject('timed out');
 			};
 		};
 		new p5(sketch);
