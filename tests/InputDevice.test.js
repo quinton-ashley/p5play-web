@@ -45,8 +45,10 @@ test('InputDevice : mouse', () => {
 				if (p.frameCount == 2) {
 					expect(p.mouse.x).toEqual(10);
 					expect(p.mouse.y).toEqual(20);
-					expect(p.mouse.pos).toEqual({ x: 10, y: 20 });
-					expect(p.mouse.position).toEqual({ x: 10, y: 20 });
+					expect(p.mouse.pos.x).toEqual(10);
+					expect(p.mouse.pos.y).toEqual(20);
+					expect(p.mouse.position.x).toEqual(10);
+					expect(p.mouse.position.y).toEqual(20);
 				}
 
 				// TODO: continue tests by creating MouseEvents..

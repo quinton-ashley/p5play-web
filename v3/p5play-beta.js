@@ -375,7 +375,6 @@ p5.prototype.registerMethod('init', function p5playInit() {
 					if (_this.body) {
 						let pos = new pl.Vec2((val * _this.tileSize) / plScale, _this.body.getPosition().y);
 						_this.body.setPosition(pos);
-						// _this.body.synchronizeTransform();
 					}
 					_this._position.x = val;
 				}
@@ -391,7 +390,6 @@ p5.prototype.registerMethod('init', function p5playInit() {
 					if (_this.body) {
 						let pos = new pl.Vec2(_this.body.getPosition().x, (val * _this.tileSize) / plScale);
 						_this.body.setPosition(pos);
-						// _this.body.synchronizeTransform();
 					}
 					_this._position.y = val;
 				}
@@ -6388,7 +6386,7 @@ p5.prototype.registerMethod('init', function p5playInit() {
 			let _this = this;
 
 			// camera position
-			this._pos = { x: 0, y: 0 };
+			this._pos = this.p.createVector.call(this.p);
 
 			// camera translation
 			this.__pos = { x: 0, y: 0, rounded: {} };
@@ -6396,17 +6394,36 @@ p5.prototype.registerMethod('init', function p5playInit() {
 			/**
 			 * Absolute position of the mouse. Same values as p5.js `mouseX` and `mouseY`.
 			 * @type {Object}
+			 * @property {Number} x
+			 * @property {Number} y
 			 */
 			this.mouse = {
 				x: this.p.mouseX,
 				y: this.p.mouseY
 			};
+
 			/**
-			 * @type.x {Number}
+			 * Vector of the absolute position of the mouse.
+			 * @type {p5.Vector}
 			 */
-			/**
-			 * @type.y {Number}
-			 */
+			this.mouse.pos = this.p.createVector.call(this.p);
+
+			Object.defineProperty(this.mouse.pos, 'x', {
+				get() {
+					return _this.mouse.x;
+				},
+				set(val) {
+					_this.mouse.x = val;
+				}
+			});
+			Object.defineProperty(this.mouse.pos, 'y', {
+				get() {
+					return _this.mouse.y;
+				},
+				set(val) {
+					_this.mouse.y = val;
+				}
+			});
 
 			/**
 			 * Read only. True if the camera is active.
@@ -8622,20 +8639,25 @@ main {
 			let _this = this;
 
 			// this.x and this.y store the actual position values of the mouse
-			this._position = {
-				get x() {
+			this._pos = pInst.createVector.call(pInst);
+
+			Object.defineProperty(this._pos, 'x', {
+				get() {
 					return _this.x;
 				},
-				set x(val) {
+				set(val) {
 					_this.x = val;
-				},
-				get y() {
+				}
+			});
+
+			Object.defineProperty(this._pos, 'y', {
+				get() {
 					return _this.y;
 				},
-				set y(val) {
+				set(val) {
 					_this.y = val;
 				}
-			};
+			});
 
 			/**
 			 * The mouse's x position.
@@ -8712,14 +8734,14 @@ main {
 		 * @type {object}
 		 */
 		get pos() {
-			return this._position;
+			return this._pos;
 		}
 		/**
 		 * The mouse's position. Alias for pos.
 		 * @type {object}
 		 */
 		get position() {
-			return this._position;
+			return this._pos;
 		}
 
 		/**

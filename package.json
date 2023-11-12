@@ -68,5 +68,5 @@
 		"make": "electron-forge make",
 		"publish": "electron-forge publish"
 	},
-	"version": "1.7.15"
+	"version": "1.7.16"
 }
