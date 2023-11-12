@@ -1037,10 +1037,7 @@ p5.prototype.registerMethod('init', function p5playInit() {
 			}
 			this._w = w;
 			this._hw = w * 0.5;
-
-			if (this._shape == 'circle') {
-				this._diameter = w;
-			} else {
+			if (this._shape != 'circle') {
 				this._h = h;
 				this._hh = h * 0.5;
 			}
@@ -2322,8 +2319,7 @@ p5.prototype.registerMethod('init', function p5playInit() {
 		 * @type {Number}
 		 */
 		get d() {
-			this._diameter ??= this.w;
-			return this._diameter;
+			return this._w;
 		}
 		set d(val) {
 			if (val < 0) {
@@ -2332,9 +2328,8 @@ p5.prototype.registerMethod('init', function p5playInit() {
 			}
 			let shapeChange = this.shape != 'circle';
 			if (!shapeChange) {
-				if (this._diameter == val) return;
+				if (this._w == val) return;
 				if (this.watch) this.mod[38] = true;
-				this._diameter = val;
 			} else {
 				if (this.watch) {
 					this.mod[29] = true;
@@ -2360,8 +2355,6 @@ p5.prototype.registerMethod('init', function p5playInit() {
 			let scalar = val / this._w;
 			this._w = val;
 			this._hw = val * 0.5;
-			this._h = val;
-			this._hh = this._hw;
 			if (shapeChange) return;
 			this._resizeColliders({ x: scalar, y: scalar });
 		}
@@ -2370,7 +2363,7 @@ p5.prototype.registerMethod('init', function p5playInit() {
 		 * @type {Number}
 		 */
 		get diameter() {
-			return this.d;
+			return this._w;
 		}
 		set diameter(val) {
 			this.d = val;

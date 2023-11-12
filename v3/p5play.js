@@ -375,7 +375,6 @@ p5.prototype.registerMethod('init', function p5playInit() {
 					if (_this.body) {
 						let pos = new pl.Vec2((val * _this.tileSize) / plScale, _this.body.getPosition().y);
 						_this.body.setPosition(pos);
-						// _this.body.synchronizeTransform();
 					}
 					_this._position.x = val;
 				}
@@ -391,7 +390,6 @@ p5.prototype.registerMethod('init', function p5playInit() {
 					if (_this.body) {
 						let pos = new pl.Vec2(_this.body.getPosition().x, (val * _this.tileSize) / plScale);
 						_this.body.setPosition(pos);
-						// _this.body.synchronizeTransform();
 					}
 					_this._position.y = val;
 				}
@@ -1039,10 +1037,7 @@ p5.prototype.registerMethod('init', function p5playInit() {
 			}
 			this._w = w;
 			this._hw = w * 0.5;
-
-			if (this._shape == 'circle') {
-				this._diameter = w;
-			} else {
+			if (this._shape != 'circle') {
 				this._h = h;
 				this._hh = h * 0.5;
 			}
@@ -2324,8 +2319,7 @@ p5.prototype.registerMethod('init', function p5playInit() {
 		 * @type {Number}
 		 */
 		get d() {
-			this._diameter ??= this.w;
-			return this._diameter;
+			return this._w;
 		}
 		set d(val) {
 			if (val < 0) {
@@ -2334,9 +2328,8 @@ p5.prototype.registerMethod('init', function p5playInit() {
 			}
 			let shapeChange = this.shape != 'circle';
 			if (!shapeChange) {
-				if (this._diameter == val) return;
+				if (this._w == val) return;
 				if (this.watch) this.mod[38] = true;
-				this._diameter = val;
 			} else {
 				if (this.watch) {
 					this.mod[29] = true;
@@ -2362,8 +2355,6 @@ p5.prototype.registerMethod('init', function p5playInit() {
 			let scalar = val / this._w;
 			this._w = val;
 			this._hw = val * 0.5;
-			this._h = val;
-			this._hh = this._hw;
 			if (shapeChange) return;
 			this._resizeColliders({ x: scalar, y: scalar });
 		}
@@ -2372,7 +2363,7 @@ p5.prototype.registerMethod('init', function p5playInit() {
 		 * @type {Number}
 		 */
 		get diameter() {
-			return this.d;
+			return this._w;
 		}
 		set diameter(val) {
 			this.d = val;
@@ -6388,7 +6379,7 @@ p5.prototype.registerMethod('init', function p5playInit() {
 			let _this = this;
 
 			// camera position
-			this._pos = { x: 0, y: 0 };
+			this._pos = this.p.createVector.call(this.p);
 
 			// camera translation
 			this.__pos = { x: 0, y: 0, rounded: {} };
@@ -6396,17 +6387,36 @@ p5.prototype.registerMethod('init', function p5playInit() {
 			/**
 			 * Absolute position of the mouse. Same values as p5.js `mouseX` and `mouseY`.
 			 * @type {Object}
+			 * @property {Number} x
+			 * @property {Number} y
 			 */
 			this.mouse = {
 				x: this.p.mouseX,
 				y: this.p.mouseY
 			};
+
 			/**
-			 * @type.x {Number}
+			 * Vector of the absolute position of the mouse.
+			 * @type {p5.Vector}
 			 */
-			/**
-			 * @type.y {Number}
-			 */
+			this.mouse.pos = this.p.createVector.call(this.p);
+
+			Object.defineProperty(this.mouse.pos, 'x', {
+				get() {
+					return _this.mouse.x;
+				},
+				set(val) {
+					_this.mouse.x = val;
+				}
+			});
+			Object.defineProperty(this.mouse.pos, 'y', {
+				get() {
+					return _this.mouse.y;
+				},
+				set(val) {
+					_this.mouse.y = val;
+				}
+			});
 
 			/**
 			 * Read only. True if the camera is active.
@@ -8622,20 +8632,25 @@ main {
 			let _this = this;
 
 			// this.x and this.y store the actual position values of the mouse
-			this._position = {
-				get x() {
+			this._pos = pInst.createVector.call(pInst);
+
+			Object.defineProperty(this._pos, 'x', {
+				get() {
 					return _this.x;
 				},
-				set x(val) {
+				set(val) {
 					_this.x = val;
-				},
-				get y() {
+				}
+			});
+
+			Object.defineProperty(this._pos, 'y', {
+				get() {
 					return _this.y;
 				},
-				set y(val) {
+				set(val) {
 					_this.y = val;
 				}
-			};
+			});
 
 			/**
 			 * The mouse's x position.
@@ -8712,14 +8727,14 @@ main {
 		 * @type {object}
 		 */
 		get pos() {
-			return this._position;
+			return this._pos;
 		}
 		/**
 		 * The mouse's position. Alias for pos.
 		 * @type {object}
 		 */
 		get position() {
-			return this._position;
+			return this._pos;
 		}
 
 		/**
