@@ -77,8 +77,8 @@ dots[5].color = 'green';
 dots.color = 'green';
 			</script>
 			<md id="md0-3">
-				<p>Using movement functions like <code>group.moveTowards</code>, will cause all the sprites in a group
-					to move.</p>
+				<p>Using movement functions like <code>moveTowards</code> on a group, will cause all the sprites in a
+					group to move.</p>
 			</md>
 			<script type="mie/p5" id="moving-dots" base="0">
 dots.moveTowards(mouse);
@@ -234,7 +234,9 @@ function draw() {
 					<code>boxes</code> group but not from the <code>smallBoxes</code> groups.</p>
 				<p>The <code>boxes</code> group contains all the sprites in the <code>smallBoxes</code> and
 					<code>bigBoxes</code> groups.</p>
-				<p>The <code>group.removeAll</code> function can be used to remove all the sprites from a group.</p>
+				<p>The <code>remove</code> function removes the group itself, only use it if you don't want to use the
+					group again. If you just want to remove all the sprites from a group, use the <code>removeAll</code>
+					function.</p>
 			</md>
 			<script type="mie/p5" id="SubGroup" horiz="">
 let boxes, smallBoxes, bigBoxes;
@@ -273,9 +275,9 @@ function draw() {
 				<p>By default, sprites are removed when they go 10000 pixels offscreen relative to the camera's
 					position. This is to prevent the world from getting too big, which would slow down the physics
 					simulation.</p>
-				<p>To change this, set <code>allSprites.autoCull = false</code>. Use the <code>group.cull</code>
-					function to set a different cull boundary, and note that it can even cull sprites that don't have a
-					physics collider.</p>
+				<p>To change this, set <code>allSprites.autoCull = false</code>. Use the <code>cull</code> function to
+					set a different cull boundary, and note that it can even cull sprites that don't have a physics
+					collider.</p>
 				<p>An optional last parameter can be used to specify a callback function that will be called when a
 					sprite is culled. The default response to culling is to remove the sprite that exited the cull
 					boundary, but by setting your own function you can do something else. The callback function receives

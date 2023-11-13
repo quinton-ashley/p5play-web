@@ -2346,6 +2346,7 @@ p5.prototype.registerMethod('init', function p5playInit() {
 				}
 				this._removeFixtures();
 				this._h = undefined;
+				this._hh = undefined;
 				this._shape = undefined;
 				if (this._collider != 'none') {
 					this.addCollider(0, 0, val);
@@ -2467,6 +2468,10 @@ p5.prototype.registerMethod('init', function p5playInit() {
 			if (val == 'circle') {
 				this.d = this.w;
 			} else {
+				if (val == 'box') {
+					this._h = this._w;
+					this._hh = this._hw;
+				}
 				this._shape = val;
 				this._reset();
 			}

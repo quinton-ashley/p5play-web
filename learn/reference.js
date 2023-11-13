@@ -20,7 +20,7 @@ let refs = {
 		2: ['image', 'scale', 'debug'],
 		3: ['vel / velocity', 'speed', 'direction', 'move', 'moveTo', 'moveTowards', 'angleTo'],
 		5: ['collides', 'colliding', 'collided'],
-		6: ['overlaps', 'overlapping', 'overlapped', 'layer'],
+		6: ['overlaps', 'overlapping', 'overlapped', 'layer', 'remove'],
 		7: ['rotate', 'rotateTo', 'rotateTowards', 'rotationSpeed'],
 		9: ['bounciness', 'drag', 'friction', 'mass', 'rotationDrag', 'rotationLock'],
 		10: ['applyForce', 'applyForceScaled', 'bearing', 'attractTo', 'applyTorque'],
@@ -39,9 +39,9 @@ let refs = {
 	'Group.html': {
 		0: ['sprite properties', 'GroupSprite', 'move'],
 		1: ['collides', 'amount', 'arrow setters'],
-		2: ['overlaps', 'remove'],
+		2: ['overlaps'],
 		3: ['allSprites'],
-		5: ['removeAll', 'SubGroup'],
+		5: ['remove', 'removeAll', 'SubGroup'],
 		'group.html?page=6': ['autoCull', 'cull']
 	},
 	'Sprite_Animation.html': {

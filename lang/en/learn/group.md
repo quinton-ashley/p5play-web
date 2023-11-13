@@ -20,7 +20,7 @@ Setting a group's property to a different value will affect all the sprites in t
 
 # 0-3
 
-Using movement functions like `group.moveTowards`, will cause all the sprites in a group to move.
+Using movement functions like `moveTowards` on a group, will cause all the sprites in a group to move.
 
 # 1-0
 
@@ -69,7 +69,7 @@ New sprites created using the `bigBoxes` group will inherit traits from the `box
 
 The `boxes` group contains all the sprites in the `smallBoxes` and `bigBoxes` groups.
 
-The `group.removeAll` function can be used to remove all the sprites from a group.
+The `remove` function removes the group itself, only use it if you don't want to use the group again. If you just want to remove all the sprites from a group, use the `removeAll` function.
 
 # 6-0
 
@@ -77,7 +77,7 @@ The `group.removeAll` function can be used to remove all the sprites from a grou
 
 By default, sprites are removed when they go 10000 pixels offscreen relative to the camera's position. This is to prevent the world from getting too big, which would slow down the physics simulation.
 
-To change this, set `allSprites.autoCull = false`. Use the `group.cull` function to set a different cull boundary, and note that it can even cull sprites that don't have a physics collider.
+To change this, set `allSprites.autoCull = false`. Use the `cull` function to set a different cull boundary, and note that it can even cull sprites that don't have a physics collider.
 
 An optional last parameter can be used to specify a callback function that will be called when a sprite is culled. The default response to culling is to remove the sprite that exited the cull boundary, but by setting your own function you can do something else. The callback function receives the sprite that was culled and a total count of how many sprites were culled on that frame. Note that in this example, the amount of balls decreases if more than one ball is culled in one frame.
 
