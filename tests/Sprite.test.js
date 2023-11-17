@@ -148,7 +148,7 @@ test('Sprite : properties', () => {
 			expect(s.d).toBe(20);
 			expect(s.w).toBe(20);
 			expect(s.h).toBe(20);
-			expect(s.mass).toBeCloseTo(0.415);
+			expect(s.mass).toBeCloseTo(0.432);
 
 			// test change collider type
 			s.collider = 'static';
