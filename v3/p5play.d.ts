@@ -76,8 +76,20 @@ class Sprite {
      * </a>
      *
      * The Sprite constructor can be used in many different ways.
+     *
+     * In fact it's so flexible that I've only listed out some of the
+     * most common ways it can be used in the examples section below.
+     * Try experimenting with it! It's likely to work the way you
+     * expect it to, if not you'll just get an error.
+     *
+     * Special feature! If the first parameter to this constructor is a
+     * loaded p5.Image, SpriteAnimation, or name of a SpriteAnimation,
+     * then the Sprite will be created with that animation. If the
+     * dimensions of the sprite are not given, then the Sprite will be
+     * created using the dimensions of the animation.
+     *
      * Every sprite you create is added to the `allSprites`
-     * group and put on the top layer, in front of all
+     * group and put on the top draw order layer, in front of all
      * previously created sprites.
      *
      * @param {Number} [x] - horizontal position of the sprite
@@ -91,11 +103,13 @@ class Sprite {
      * 'static', 'kinematic', or 'none'
      * @example
      *
-     * let sprite = new Sprite();
+     * let spr = new Sprite();
      *
      * let rectangle = new Sprite(x, y, width, height);
      *
      * let circle = new Sprite(x, y, diameter);
+     *
+     * let spr = new Sprite(aniName, x, y);
      *
      * let line = new Sprite(x, y, [length, angle]);
      */
