@@ -116,6 +116,55 @@ function draw() {
 	player.moveTowards(mouse);
 }
 			</script>
+			<div class="minis horiz">
+				<md id="md1-1">
+					<h2 id="establecedores-de-funciones-de-flecha-indexados">Establecedores de funciones de flecha
+						indexados</h2>
+					<p>¡Incluso puedes usar su índice al evaluar una propiedad de sprite de grupo!</p>
+					<p><code>i</code> es el índice del sprite en el grupo, que se da como un parámetro de entrada a las
+						funciones de propiedad del grupo cuando se evalúan.</p>
+				</md>
+				<script type="mie/p5" id="doors" hide-editor="">
+let doors, rail;
+        
+        function setup() {
+        	new Canvas(500, 150);
+        
+        	doors = new Group();
+        	doors.x = (i) => i * 55;
+        	doors.y = (i) => 100 - i * 5;
+        	doors.height = 100;
+        	doors.amount = 10;
+        
+        	rail = new Sprite(250, 20, 500, 5);
+        	rail.color = 'grey';
+        	rail.rotation = -5;
+        }
+        
+        function draw() {
+        	clear();
+        }
+        			</script>
+			</div>
+			<script type="mie/p5" id="numbered" lines="13">
+let orbs;
+
+function setup() {
+	new Canvas(500, 100);
+
+	orbs = new Group();
+	orbs.d = 40;
+	orbs.x = (i) => i * 50;
+	orbs.y = 50;
+  orbs.color = 'skyblue';
+  orbs.text = (i) => i;
+	orbs.amount = 11;
+}
+
+function draw() {
+	clear();
+}
+			</script>
 		</div>
 		<div id="page-2" class="page">
 			<md id="md2-0">
@@ -182,54 +231,29 @@ function draw() {
 			</script>
 		</div>
 		<div id="page-4" class="page">
-			<div class="minis horiz">
-				<md id="md4-0">
-					<h2 id="establecedores-de-funciones-de-flecha-indexados">Establecedores de funciones de flecha
-						indexados</h2>
-					<p>¡Incluso puedes usar su índice al evaluar una propiedad de sprite de grupo!</p>
-					<p><code>i</code> es el índice del sprite en el grupo, que se da como un parámetro de entrada a las
-						funciones de propiedad del grupo cuando se evalúan.</p>
-				</md>
-				<script type="mie/p5" id="doors" hide-editor="">
-let doors, rail;
-        
-        function setup() {
-        	new Canvas(500, 150);
-        
-        	doors = new Group();
-        	doors.x = (i) => i * 55;
-        	doors.y = (i) => 100 - i * 5;
-        	doors.height = 100;
-        	doors.amount = 10;
-        
-        	rail = new Sprite(250, 20, 500, 5);
-        	rail.color = 'grey';
-        	rail.rotation = -5;
-        }
-        
-        function draw() {
-        	clear();
-        }
-        			</script>
-			</div>
-			<script type="mie/p5" id="numbered" lines="13">
-let orbs;
-
+			<md id="md4-0">
+				<h2 id="propiedades-personalizadas">Propiedades Personalizadas</h2>
+				<p>¡Puedes añadir tus propias propiedades a los sprites y grupos, al igual que con cualquier otro objeto
+					de JavaScript!</p>
+				<p>Además, cuando añades propiedades personalizadas a un grupo, serán heredadas por los nuevos sprites
+					del grupo. Incluso puedes usar funciones de flecha como establecedores de propiedades.</p>
+			</md>
+			<script type="mie/p5" id="custom-properties" lines="10">
 function setup() {
-	new Canvas(500, 100);
+	new Canvas(500, 60);
 
-	orbs = new Group();
-	orbs.d = 40;
-	orbs.x = (i) => i * 50;
-	orbs.y = 50;
-  orbs.color = 'skyblue';
-  orbs.text = (i) => i;
-	orbs.amount = 11;
+	ghosts = new Group();
+	ghosts.strength = 'high';
+	ghosts.health = () => round(random(40, 70));
+
+	let g = new ghosts.Sprite();
+	g.text = g.health;
 }
 
 function draw() {
 	clear();
 }
+
 			</script>
 		</div>
 		<div id="page-5" class="page">
@@ -338,32 +362,6 @@ function draw() {
 }
 			</script>
 		</div>
-		<div id="page-7" class="page">
-			<md id="md7-0">
-				<h2 id="propiedades-personalizadas">Propiedades Personalizadas</h2>
-				<p>¡Puedes añadir tus propias propiedades a los sprites y grupos, al igual que con cualquier otro objeto
-					de JavaScript!</p>
-				<p>Además, cuando añades propiedades personalizadas a un grupo, serán heredadas por los nuevos sprites
-					del grupo. Incluso puedes usar funciones de flecha como establecedores de propiedades.</p>
-			</md>
-			<script type="mie/p5" id="custom-properties" lines="10">
-function setup() {
-	new Canvas(500, 60);
-
-	ghosts = new Group();
-	ghosts.strength = 'high';
-	ghosts.health = () => round(random(40, 70));
-
-	let g = new ghosts.Sprite();
-	g.text = g.health;
-}
-
-function draw() {
-	clear();
-}
-
-			</script>
-		</div>
 
 		<div class="break"></div>
 		<div id="toc">
@@ -373,10 +371,9 @@ function draw() {
 				<a data-page="1" href="group.html?page=1">Establecedores de Flecha</a>
 				<a data-page="2" href="group.html?page=2">Colisiones y Superposiciones</a>
 				<a data-page="3" href="group.html?page=3">todos los Sprites</a>
-				<a data-page="4" href="group.html?page=4">Establecedores de Flecha Indexados</a>
+				<a data-page="4" href="group.html?page=4">Propiedades Personalizadas</a>
 				<a data-page="5" href="group.html?page=5">Subgrupos</a>
 				<a data-page="6" href="group.html?page=6">Recorte</a>
-				<a data-page="7" href="group.html?page=7">Propiedades Personalizadas</a>
 			</div>
 			<a id="nextPage" class="navLink">Siguiente página</a>
 		</div>

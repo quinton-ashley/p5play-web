@@ -126,6 +126,7 @@ let refs = {
 		'https://p5js.org/reference/#/p5': [
 			'background',
 			'clear',
+			'color',
 			'fill',
 			'noFill',
 			'stroke',

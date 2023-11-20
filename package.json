@@ -38,7 +38,7 @@
 		"js-beautify": "^1.14.9",
 		"mime-types": "^2.1.35",
 		"mousetrap": "^1.6.5",
-		"p5": "^1.7.0"
+		"p5": "^1.8.0"
 	},
 	"devDependencies": {
 		"canvas": "^2.10.2",
@@ -68,5 +68,5 @@
 		"make": "electron-forge make",
 		"publish": "electron-forge publish"
 	},
-	"version": "1.7.22"
+	"version": "1.8.0"
 }

@@ -32,6 +32,14 @@ When `group.amount` gets adjusted, the group will automatically create or remove
 
 In this mini example, each gem sprite is assigned a random position.
 
+# 1-1
+
+## Indexed arrow function setters
+
+Arrow setters can even use the sprite's index in the group!
+
+The index, `i`, is given as an input parameter to the group's arrow setters. It can be used to calculate the new group sprite's properties.
+
 # 2-0
 
 ## Collisions and Overlaps
@@ -53,11 +61,11 @@ p5play creates an `allSprites` group that contains all the sprites in a sketch.
 
 # 4-0
 
-## Indexed arrow function setters
+## Custom Properties
 
-Arrow setters can even use the sprite's index in the group!
+You can add your own properties to sprites and groups, just like with any other JavaScript object!
 
-The index, `i`, is given as an input parameter to the group's arrow setters. It can be used to calculate the new group sprite's properties.
+Also when you add custom properties to a group, they will be inherited by new group sprites. You can even use arrow functions as property setters.
 
 # 5-0
 
@@ -88,11 +96,3 @@ An optional last parameter can be used to specify a callback function that will 
 Another way to limit how long a sprite exists is to set its `life` property, which is the number of frames that the sprite exists for. When the sprite's life is up, it will be removed. This is useful for creating temporary objects like projectiles and force fields.
 
 Try out this little game! Click the mouse to create a beach ball and try keeping it in the air with the water stream.
-
-# 7-0
-
-## Custom Properties
-
-You can add your own properties to sprites and groups, just like with any other JavaScript object!
-
-Also when you add custom properties to a group, they will be inherited by new group sprites. You can even use arrow functions as property setters.

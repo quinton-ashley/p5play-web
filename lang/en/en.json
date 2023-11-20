@@ -34,10 +34,9 @@
 			"Arrow Setters",
 			"Collisions and Overlaps",
 			"allSprites",
-			"Indexed Arrow Setters",
+			"Custom Properties",
 			"Subgroups",
-			"Culling",
-			"Custom Properties"
+			"Culling"
 		],
 		"input_devices": ["Detecting Input", "Keyboard", "Mouse", "Sprite Mouse", "Game Controllers", "Touch"],
 		"joints": ["GlueJoint", "DistanceJoint", "WheelJoint", "HingeJoint", "SliderJoint"],

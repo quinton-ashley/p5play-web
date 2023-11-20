@@ -106,18 +106,64 @@ function draw() {
 	player.moveTowards(mouse);
 }
 			</script>
+			<div class="minis horiz">
+				<md id="md1-1">
+					<h2 id="インデックス付きアロー関数セッター">インデックス付きアロー関数セッター</h2>
+					<p>グループスプライトのプロパティを評価するときは、そのインデックスを使用することさえできます！</p>
+					<p><code>i</code>はグループ内のスプライトのインデックスで、それらが評価されるときにグループプロパティ関数への入力パラメータとして与えられます。</p>
+				</md>
+				<script type="mie/p5" id="doors" hide-editor="">
+let doors, rail;
+        
+        function setup() {
+        	new Canvas(500, 150);
+        
+        	doors = new Group();
+        	doors.x = (i) => i * 55;
+        	doors.y = (i) => 100 - i * 5;
+        	doors.height = 100;
+        	doors.amount = 10;
+        
+        	rail = new Sprite(250, 20, 500, 5);
+        	rail.color = 'grey';
+        	rail.rotation = -5;
+        }
+        
+        function draw() {
+        	clear();
+        }
+        			</script>
+			</div>
+			<script type="mie/p5" id="numbered" lines="13">
+let orbs;
+
+function setup() {
+	new Canvas(500, 100);
+
+	orbs = new Group();
+	orbs.d = 40;
+	orbs.x = (i) => i * 50;
+	orbs.y = 50;
+  orbs.color = 'skyblue';
+  orbs.text = (i) => i;
+	orbs.amount = 11;
+}
+
+function draw() {
+	clear();
+}
+			</script>
 		</div>
 		<div id="page-2" class="page">
 			<md id="md2-0">
 				<h2 id="衝突と重なり">衝突と重なり</h2>
-				<p>衝突と重なりの関数は、2つのスプライト間のイベントを検出するためだけでなく、スプライトとグループ、またはグループ間の衝突と重なりをチェックするためにも使用できます。使用できる関数は次のとおりです：
+				<p>衝突と重なりの関数は、2 つのスプライト間のイベントを検出するためだけでなく、スプライトとグループ、またはグループ間の衝突と重なりをチェックするためにも使用できます。使用できる関数は次のとおりです：
 				</p>
 				<p><code>collides</code>, <code>colliding</code>, <code>collided</code><br><code>overlaps</code>,
 					<code>overlapping</code>, <code>overlapped</code></p>
-				<p>これらの関数を <code>if</code>
-					文で使用する代わりに、コールバック関数を2番目のパラメータとして提供することもできます。衝突または重なりのイベントが発生したときにコールバック関数が実行されます。コールバック関数は、2つのスプライトを入力として受け取ります。
-				</p>
-				<p>このミニ例では、コールバック関数はプレイヤースプライトとプレイヤーが重なっているgemsグループ内のジェムスプライトを受け取ります。そのジェムは収集され（削除され）ます。</p>
+				<p>これらの関数を <code>if</code> 文で使用する代わりに、コールバック関数を 2
+					番目のパラメータとして提供することもできます。衝突または重なりのイベントが発生したときにコールバック関数が実行されます。コールバック関数は、2 つのスプライトを入力として受け取ります。</p>
+				<p>このミニ例では、コールバック関数はプレイヤースプライトとプレイヤーが重なっている gems グループ内のジェムスプライトを受け取ります。そのジェムは収集され（削除され）ます。</p>
 			</md>
 			<script type="mie/p5" id="collect-gems" horiz="">
 let player, gems;
@@ -167,52 +213,27 @@ function draw() {
 			</script>
 		</div>
 		<div id="page-4" class="page">
-			<div class="minis horiz">
-				<md id="md4-0">
-					<h2 id="インデックス付きアロー関数セッター">インデックス付きアロー関数セッター</h2>
-					<p>グループスプライトのプロパティを評価するときは、そのインデックスを使用することさえできます！</p>
-					<p><code>i</code>はグループ内のスプライトのインデックスで、それらが評価されるときにグループプロパティ関数への入力パラメータとして与えられます。</p>
-				</md>
-				<script type="mie/p5" id="doors" hide-editor="">
-let doors, rail;
-        
-        function setup() {
-        	new Canvas(500, 150);
-        
-        	doors = new Group();
-        	doors.x = (i) => i * 55;
-        	doors.y = (i) => 100 - i * 5;
-        	doors.height = 100;
-        	doors.amount = 10;
-        
-        	rail = new Sprite(250, 20, 500, 5);
-        	rail.color = 'grey';
-        	rail.rotation = -5;
-        }
-        
-        function draw() {
-        	clear();
-        }
-        			</script>
-			</div>
-			<script type="mie/p5" id="numbered" lines="13">
-let orbs;
-
+			<md id="md4-0">
+				<h2 id="カスタムプロパティ">カスタムプロパティ</h2>
+				<p>スプライトとグループに独自のプロパティを追加できます。これは他の JavaScript オブジェクトと同じです！</p>
+				<p>また、グループにカスタムプロパティを追加すると、それらは新しいグループスプライトによって継承されます。プロパティセッターとしてアロー関数を使用することさえできます。</p>
+			</md>
+			<script type="mie/p5" id="custom-properties" lines="10">
 function setup() {
-	new Canvas(500, 100);
+	new Canvas(500, 60);
 
-	orbs = new Group();
-	orbs.d = 40;
-	orbs.x = (i) => i * 50;
-	orbs.y = 50;
-  orbs.color = 'skyblue';
-  orbs.text = (i) => i;
-	orbs.amount = 11;
+	ghosts = new Group();
+	ghosts.strength = 'high';
+	ghosts.health = () => round(random(40, 70));
+
+	let g = new ghosts.Sprite();
+	g.text = g.health;
 }
 
 function draw() {
 	clear();
 }
+
 			</script>
 		</div>
 		<div id="page-5" class="page">
@@ -310,30 +331,6 @@ function draw() {
 }
 			</script>
 		</div>
-		<div id="page-7" class="page">
-			<md id="md7-0">
-				<h2 id="カスタムプロパティ">カスタムプロパティ</h2>
-				<p>スプライトとグループに独自のプロパティを追加できます。これは他の JavaScript オブジェクトと同じです！</p>
-				<p>また、グループにカスタムプロパティを追加すると、それらは新しいグループスプライトによって継承されます。プロパティセッターとしてアロー関数を使用することさえできます。</p>
-			</md>
-			<script type="mie/p5" id="custom-properties" lines="10">
-function setup() {
-	new Canvas(500, 60);
-
-	ghosts = new Group();
-	ghosts.strength = 'high';
-	ghosts.health = () => round(random(40, 70));
-
-	let g = new ghosts.Sprite();
-	g.text = g.health;
-}
-
-function draw() {
-	clear();
-}
-
-			</script>
-		</div>
 
 		<div class="break"></div>
 		<div id="toc">
@@ -343,10 +340,9 @@ function draw() {
 				<a data-page="1" href="group.html?page=1">アローセッター</a>
 				<a data-page="2" href="group.html?page=2">衝突と重なり</a>
 				<a data-page="3" href="group.html?page=3">allSprites</a>
-				<a data-page="4" href="group.html?page=4">インデックス付きアローセッター</a>
+				<a data-page="4" href="group.html?page=4">カスタムプロパティ</a>
 				<a data-page="5" href="group.html?page=5">サブグループ</a>
 				<a data-page="6" href="group.html?page=6">カリング</a>
-				<a data-page="7" href="group.html?page=7">カスタムプロパティ</a>
 			</div>
 			<a id="nextPage" class="navLink">次のページ</a>
 		</div>

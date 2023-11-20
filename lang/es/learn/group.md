@@ -32,6 +32,14 @@ Cuando `group.amount` se ajusta, el grupo creará o eliminará automáticamente 
 
 En este mini ejemplo, a cada sprite de gema se le asigna una posición x e y aleatoria.
 
+# 1-1
+
+## Establecedores de funciones de flecha indexados
+
+¡Incluso puedes usar su índice al evaluar una propiedad de sprite de grupo!
+
+`i` es el índice del sprite en el grupo, que se da como un parámetro de entrada a las funciones de propiedad del grupo cuando se evalúan.
+
 # 2-0
 
 ## Colisiones y Superposiciones
@@ -53,11 +61,11 @@ p5play crea un grupo `allSprites` que contiene todos los sprites en un sketch.
 
 # 4-0
 
-## Establecedores de funciones de flecha indexados
+## Propiedades Personalizadas
 
-¡Incluso puedes usar su índice al evaluar una propiedad de sprite de grupo!
+¡Puedes añadir tus propias propiedades a los sprites y grupos, al igual que con cualquier otro objeto de JavaScript!
 
-`i` es el índice del sprite en el grupo, que se da como un parámetro de entrada a las funciones de propiedad del grupo cuando se evalúan.
+Además, cuando añades propiedades personalizadas a un grupo, serán heredadas por los nuevos sprites del grupo. Incluso puedes usar funciones de flecha como establecedores de propiedades.
 
 # 5-0
 
@@ -88,11 +96,3 @@ Un último parámetro opcional se puede utilizar para especificar una función d
 Otra forma de limitar cuánto tiempo existe un sprite es establecer su propiedad `life`, que es el número de fotogramas que el sprite existe. Cuando la vida del sprite se acaba, será eliminado. Esto es útil para crear objetos temporales como proyectiles y campos de fuerza.
 
 ¡Prueba este pequeño juego! Haz clic con el ratón para crear una pelota de playa e intenta mantenerla en el aire con el chorro de agua.
-
-# 7-0
-
-## Propiedades Personalizadas
-
-¡Puedes añadir tus propias propiedades a los sprites y grupos, al igual que con cualquier otro objeto de JavaScript!
-
-Además, cuando añades propiedades personalizadas a un grupo, serán heredadas por los nuevos sprites del grupo. Incluso puedes usar funciones de flecha como establecedores de propiedades.

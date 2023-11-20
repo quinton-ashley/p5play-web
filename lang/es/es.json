@@ -35,10 +35,9 @@
 			"Establecedores de Flecha",
 			"Colisiones y Superposiciones",
 			"todos los Sprites",
-			"Establecedores de Flecha Indexados",
+			"Propiedades Personalizadas",
 			"Subgrupos",
-			"Recorte",
-			"Propiedades Personalizadas"
+			"Recorte"
 		],
 		"input_devices": [
 			"Detección de Entrada",
