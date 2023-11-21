@@ -123,25 +123,28 @@ function setup() {
 	new blocks.Sprite(6, 0);
 
 	player.collides(blocks, (player, block) => {
-		block.move(1, player.heading);
+		block.move(player.heading);
 	});
-	blocks.collides(blocks, (b, block) => {
-		block.move(1, player.heading);
+	blocks.collides(blocks, (a, b) => {
+		if (!a.colliding(player)) a.move(player.heading);
+		if (!b.colliding(player)) b.move(player.heading);
 	});
 }
 
 function draw() {
 	clear();
-	for (let i = 0; i < width / gridSize; i++) {
-		for (let j = 0; j < height / gridSize; j++) {
+	for (let i = 0; i < 15; i++) {
+		for (let j = 0; j < 6; j++) {
 			rect(i * gridSize, j * gridSize, gridSize, gridSize);
 		}
 	}
 
-	if (kb.presses('up')) player.move(1, 'up');
-	if (kb.presses('down')) player.move(1, 'down');
-	if (kb.presses('left')) player.move(1, 'left');
-	if (kb.presses('right')) player.move(1, 'right');
+	if (kb.presses('up')) player.move('up');
+	if (kb.presses('down')) player.move('down');
+	if (kb.presses('left')) player.move('left');
+	if (kb.presses('right')) player.move('right');
+
+	log(player.x, blocks[1].x);
 }
 			</script>
 		</div>
