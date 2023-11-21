@@ -8320,6 +8320,7 @@ main {
 			let font = r._textFont;
 			if (typeof font != 'string') {
 				font = font.font.names.fullName;
+				font = font[Object.keys(font)[0]];
 			}
 			return (
 				str.slice(0, 200) +
