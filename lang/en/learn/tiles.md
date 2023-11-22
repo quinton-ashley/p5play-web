@@ -22,12 +22,10 @@ Note that spaces " " or periods "." are used to indicate that no sprites should 
 
 ## Tile coordinates
 
-You can change the pixel value of coordinate values for all sprites by setting `allSprites.tileSize`. For example, the tile size is 8, then an x/y position of 1 represents 8 pixels, 2 represents 16 pixels, 3 represents 24 pixels, etc. Note this setting affects how animation coordinates are specified too.
+You can change the pixel value that coordinate positions represent from the default of 1 by setting `sprite.tileSize` or `group.tileSize`.
 
-In this mini-example grid lines are drawn purely for visual reference.
+If tile size is 8, then an x/y position of 1 represents 8 pixels, 2 represents 16 pixels, 3 represents 24 pixels, etc. It can make loading animations easier!
 
-In this example, moving a sprite across a distance of 1 tile causes it to move 32 pixels.
+In this mini-example, moving a sprite 1 tile causes it to move 32 pixels. Grid lines are drawn to visually illustrate the tile size.
 
-With just two collision rules the player can push around the blocks and blocks can push each other too. They snap to the tile grid after moving.
-
-What's really nice is that you can set `tileSize` on a per sprite basis. If set for a group then all sprites in that group will use that tile size!
+With just two collision rules, the player can push around the blocks and blocks can push each other. Although this example would benefit from input buffering to ensure the player completes a move before starting another.
