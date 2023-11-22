@@ -1,0 +1,9 @@
+{
+	"include": ["p5play.js"],
+	"compilerOptions": {
+		"target": "ESNext",
+		"allowJs": true,
+		"declaration": true,
+		"emitDeclarationOnly": true
+	}
+}

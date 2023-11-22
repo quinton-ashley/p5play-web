@@ -41,6 +41,7 @@
 		"p5": "^1.8.0"
 	},
 	"devDependencies": {
+		"bun-types": "^1.0.1",
 		"canvas": "^2.10.2",
 		"jest-cli": "^29.3.1",
 		"jest-environment-jsdom": "^29.3.1",
@@ -56,9 +57,10 @@
 	"main": "app/app.js",
 	"scripts": {
 		"tests": "jest tests",
-		"dist": "bun min && cp v3/p5play.js ../../pkg/p5play/p5play.js && cp v3/p5play.min.js ../../pkg/p5play/p5play.min.js && cp v3/q5.js ../../pkg/q5/q5.js",
+		"types": "bun dev/types/types.js && cp v3/p5play.d.ts ../../pkg/p5play/p5play.d.ts",
 		"docs": "jsdoc --configure docs/config/jsdoc.json",
 		"min": "minify v3/p5play.js > v3/p5play.min.js",
+		"dist": "bun min && cp v3/p5play.js ../../pkg/p5play/p5play.js && cp v3/p5play.min.js ../../pkg/p5play/p5play.min.js && cp v3/q5.js ../../pkg/q5/q5.js",
 		"v": "npm version patch --force",
 		"V": "npm version minor --force",
 		"version": "git add -A",
@@ -68,5 +70,5 @@
 		"make": "electron-forge make",
 		"publish": "electron-forge publish"
 	},
-	"version": "1.8.8"
+	"version": "1.8.9"
 }

@@ -1,14 +1,17 @@
 node_modules
-testing/experiments
-testing/assets
-testing/test*
+dev/experiments
+dev/assets
+dev/types/p5play.js
+dev/types/p5play.d.ts
+dev/test*
 package-lock.json
-dev
 v4
 
 logs
 *.log
 npm-debug.log*
+
+bun.lockb
 
 node_modules/
 
