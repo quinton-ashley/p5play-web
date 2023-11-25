@@ -77,4 +77,3 @@ declare global {
 await Bun.write('v3/p5play.d.ts', dec);
 
 unlinkSync('dev/types/p5play.d.ts'); // delete temp files
-unlinkSync('dev/types/p5play.js');

@@ -76,8 +76,20 @@ class Sprite {
      * </a>
      *
      * The Sprite constructor can be used in many different ways.
+     *
+     * In fact it's so flexible that I've only listed out some of the
+     * most common ways it can be used in the examples section below.
+     * Try experimenting with it! It's likely to work the way you
+     * expect it to, if not you'll just get an error.
+     *
+     * Special feature! If the first parameter to this constructor is a
+     * loaded p5.Image, SpriteAnimation, or name of a SpriteAnimation,
+     * then the Sprite will be created with that animation. If the
+     * dimensions of the sprite are not given, then the Sprite will be
+     * created using the dimensions of the animation.
+     *
      * Every sprite you create is added to the `allSprites`
-     * group and put on the top layer, in front of all
+     * group and put on the top draw order layer, in front of all
      * previously created sprites.
      *
      * @param {Number} [x] - horizontal position of the sprite
@@ -91,11 +103,13 @@ class Sprite {
      * 'static', 'kinematic', or 'none'
      * @example
      *
-     * let sprite = new Sprite();
+     * let spr = new Sprite();
      *
      * let rectangle = new Sprite(x, y, width, height);
      *
      * let circle = new Sprite(x, y, diameter);
+     *
+     * let spr = new Sprite(aniName, x, y);
      *
      * let line = new Sprite(x, y, [length, angle]);
      */
@@ -103,24 +117,10 @@ class Sprite {
     p: any;
     /**
      * Each sprite has a unique id number. Don't change it!
-     * Its useful for debugging. Sprite id numbers start at 1000.
+     * They are useful for debugging.
      * @type {Number}
      */
     idNum: number;
-    /**
-     * If set to true, p5play will record all changes to the sprite's
-     * properties in its `mod` array.
-     * @type {Boolean}
-     * @default undefined
-     */
-    watch: boolean;
-    /**
-     * An array of booleans that indicate which properties were
-     * changed since the last frame. Useful for only sending
-     * modified sprite data in binary netcode.
-     * @type {Array}
-     */
-    mod: any[];
     /**
      * Groups the sprite belongs to, including allSprites
      * @type {Group[]}
@@ -138,6 +138,24 @@ class Sprite {
      * @default []
      */
     joints: Joint[];
+    /**
+     * If set to true, p5play will record all changes to the sprite's
+     * properties in its `mod` array. Intended to be used to enable
+     * online multiplayer.
+     * @type {Boolean}
+     * @default undefined
+     */
+    watch: boolean;
+    /**
+     * An Object that has sprite property number codes as keys,
+     * these correspond to the index of the property in the
+     * Sprite.props array. The booleans values this object stores,
+     * indicate which properties were changed since the last frame.
+     * Useful for limiting the amount of sprite data sent in binary
+     * netcode to only the sprite properties that have been modified.
+     * @type {Object}
+     */
+    mod: any;
     /**
      * The tile size is used to change the size of one unit of
      * measurement for the sprite.
@@ -184,6 +202,13 @@ class Sprite {
      * @type {_SpriteMouse}
      */
     mouse: _SpriteMouse;
+    set shape(arg: string);
+    /**
+     * The kind of shape: 'box', 'circle', 'chain', or 'polygon'.
+     * @type {String}
+     * @default box
+     */
+    get shape(): string;
     set w(arg: number);
     /**
      * The width of the sprite.
@@ -223,8 +248,8 @@ class Sprite {
      * constructor except the first two parameters are x and y offsets,
      * the distance new collider should be from the center of the sprite.
      *
-     * This function also auto-resets the sprite's mass, recalculating
-     * the sprite's mass based on its new size.
+     * This function also recalculates the sprite's mass based on its
+     * new size.
      *
      * One limitation of the current implementation is that sprites
      * with multiple colliders can't have their collider
@@ -471,22 +496,30 @@ class Sprite {
     /**
      * Displays the sprite.
      *
-     * This function is called automatically at
-     * the end of each p5.js draw function call but it can also be run
-     * separately to customize the order sprites are drawn in relation
+     * This function is called automatically at the end of each
+     * p5.js draw function call but it can also be run
+     * by users to customize the order sprites are drawn in relation
      * to other stuff drawn to the p5.js canvas. Also see the sprite.layer
      * property.
      *
      * A sprite's draw function can be overridden with a
-     * custom draw function, in which the center of the sprite is
-     * at (0, 0).
+     * custom draw function, inside this function (0, 0) is the center of
+     * the sprite.
+     *
+     * Using this function actually calls the sprite's internal `_display`
+     * function, which sets up the canvas for drawing the sprite before
+     * calling the sprite's `_draw` function. See the example below for how to
+     * run the sprite's default `_draw` function inside your custom `draw` function.
+     *
      * @type {Function}
      * @example
-     * sprite.draw = function() {
-     *   // an oval
-     *   ellipse(0,0,20,10);
-     * }
+     * let defaultDraw = sprite._draw;
      *
+     * sprite.draw = function() {
+     *   // tint
+     *   tint(255, 127);
+     *   defaultDraw();
+     * }
      */
     get draw(): Function;
     set dynamic(arg: boolean);
@@ -707,10 +740,11 @@ class Sprite {
      */
     get removed(): boolean;
     /**
-     * Read only. The sprite's vertices.
-     * @type {p5.Vector[]}
+     * The sprite's vertices, in vertex mode format.
+     * @type {Array}
      */
-    get vertices(): p5.Vector[];
+    set vertices(arg: any[]);
+    get vertices(): any[];
     set visible(arg: boolean);
     /**
      * If true the sprite is shown, if set to false the sprite is hidden.
@@ -793,13 +827,6 @@ class Sprite {
      * @type {Number}
      */
     get radius(): number;
-    set shape(arg: string);
-    /**
-     * The kind of shape: 'box', 'circle', 'chain', or 'polygon'.
-     * @type {String}
-     * @default box
-     */
-    get shape(): string;
     set update(arg: Function);
     /**
      * You can set the sprite's update function to a custom
@@ -876,14 +903,22 @@ class Sprite {
      */
     applyTorque(val: any): void;
     /**
-     * Moves a sprite towards a position.
+     * Moves a sprite towards a position at a percentage of the distance
+     * between itself and the destination.
      *
-     * @param {Number|Object} x|position destination x or any object with x and y properties
-     * @param {Number} y destination y
-     * @param {Number} tracking [optional] 1 represents 1:1 tracking, the mouse moves to the destination immediately, 0 represents no tracking. Default is 0.1 (10% tracking).
+     * @param {Number|Object} x destination x or any object with x and y properties
+     * @param {Number} [y] destination y
+     * @param {Number} [tracking] 1 represents 1:1 tracking, the mouse moves to the destination immediately, 0 represents no tracking. Default is 0.1 (10% tracking).
      */
-    moveTowards(x: number | any, y: number, tracking: number): void;
-    moveAway(x: any, y: any, repel: any, ...args: any[]): void;
+    moveTowards(x: number | any, y?: number, tracking?: number): void;
+    /**
+     * Moves the sprite away from a position, the opposite of moveTowards,
+     * at a percentage of the distance between itself and the position.
+     * @param {Number} x
+     * @param {Number} [y]
+     * @param {Number} [repel] range from 0-1
+     */
+    moveAway(x: number, y?: number, repel?: number, ...args: any[]): void;
     /**
      * Move the sprite a certain distance from its current position.
      *
@@ -1298,7 +1333,7 @@ class SpriteAnimation extends Array<p5.Image> {
 }
 /**
  * This SpriteAnimations class serves the same role that Group does
- * for Sprites. This class is used interally to create `sprite.anis`
+ * for Sprites. This class is used internally to create `sprite.anis`
  * and `group.anis`. It's not intended to be used directly by p5play users.
  *
  * In instance objects of this class, the keys are animation names,
@@ -1741,7 +1776,9 @@ class Group extends Array<Sprite> {
     /**
      */
     moveTowards(x: any, y: any, tracking: any): void;
-    moveAway(x: any, y: any, tracking: any): void;
+    /**
+     */
+    moveAway(x: any, y: any, repel: any): void;
     /**
      * Alias for group.length
      * @deprecated
@@ -1919,14 +1956,10 @@ class Camera {
     /**
      * Absolute position of the mouse. Same values as p5.js `mouseX` and `mouseY`.
      * @type {Object}
+     * @property {Number} x
+     * @property {Number} y
      */
     mouse: any;
-    /**
-     * @type.x {Number}
-     */
-    /**
-     * @type.y {Number}
-     */
     /**
      * Read only. True if the camera is active.
      * Use the methods Camera.on() and Camera.off()
@@ -1969,6 +2002,7 @@ class Camera {
      * @type {Object}
      */
     get position(): any;
+    moveTo(x: any, y: any, speed: any): Promise<boolean>;
     set zoom(arg: number);
     /**
      * Camera zoom.
