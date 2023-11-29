@@ -4,13 +4,13 @@
 
 For the original Super Mario Bros. lead developer, Shigeru Miyamoto, and level designer, Takashi Tezuka, [used graph paper to plot out the levels](https://www.youtube.com/watch?v=DLoRd6_a1CI) and then had their team of programmers type the coordinates of every sprite in the game. That's a lot of work!
 
-Fortunately for you, in p5play the `Tiles` constructor can make sprites on a grid based on the positions of characters in a string!
+Fortunately for you, in p5play the `Tiles` constructor can make sprites based on the positions of tile characters in a string!
 
 The first input parameter is a string or array of strings, each line or string in the array representing a row of tiles.
 
-The second and third input parameters are the x and y coordinates of the top left (first) tile in the tiles grid.
+The second and third input parameters can be used to specify the x and y coordinates of the top left (first) tile. The fourth and fifth parameters specify the horizontal and vertical spacing between tiles.
 
-The fourth and fifth input parameters are the width and height respectively of each tile and any spacing you might want to add between tiles.
+The constructor returns a `Group` that contains all the sprites it created. Use `group.removeAll()` to remove all the sprites from this group before resetting a level or loading a new one.
 
 ## Try it out!
 
