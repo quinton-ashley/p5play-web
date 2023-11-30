@@ -7,6 +7,7 @@ dev/test*
 package-lock.json
 v4
 
+.DS_STORE
 logs
 *.log
 npm-debug.log*
