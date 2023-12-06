@@ -30,6 +30,8 @@ For example, `"pixelated x2"` will create a canvas that's displayed at twice the
 
 To display all sprites at integer coordinates, set `allSprites.pixelPerfect` to true and use integer coordinates for the camera's position and zoom.
 
+Note that modern fonts are vector based, so they won't look very good in pixelated mode. Load a bitmap font instead with the p5.js [`loadFont`](https://p5js.org/reference/#/p5/loadFont) function.
+
 # 2-0
 
 ## Resize
