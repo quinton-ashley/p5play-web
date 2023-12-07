@@ -118,7 +118,8 @@ test('Group: Properties', () => {
 			expect(group).toHaveLength(0);
 
 			// set the current animation..
-			const anim = new p.SpriteAnimation();
+			const img = p.spriteArt('ww');
+			const anim = new p.SpriteAnimation(img);
 			group.ani = anim;
 
 			expect(group.ani).toEqual(anim);
