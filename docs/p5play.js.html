@@ -41,7 +41,7 @@
         <article>
             <pre class="prettyprint source linenums"><code>/**
  * p5play
- * @version 3.17
+ * @version 3.18
  * @author quinton-ashley
  * @license gpl-v3-only
  */
@@ -73,7 +73,7 @@ p5.prototype.registerMethod('init', function p5playInit() {
 			};
 			gtag('js', new Date());
 			gtag('config', 'G-EHXNCTSYLK');
-			gtag('event', 'p5play_v3_14');
+			gtag('event', 'p5play_v3_18');
 		};
 	}
 
@@ -703,17 +703,14 @@ p5.prototype.registerMethod('init', function p5playInit() {
 			this._destIdx = 0;
 			this.drag = 0;
 
+			this._debug = false;
+
 			/**
-			 * When the sprite.debug property is set to true, the collider
-			 * shapes will be drawn as bright green outlines with crosshairs
-			 * at the center of the sprite.
-			 *
-			 * When the sprite.debug property is set to 'colliders', only the
-			 * collider shapes will be drawn.
-			 * @type {boolean|string}
-			 * @default false
+			 * Text displayed at the center of the sprite.
+			 * @type {String}
+			 * @default undefined
 			 */
-			this.debug = false;
+			this.text;
 
 			if (!group._isAllSpritesGroup) this.p.allSprites.push(this);
 			group.push(this);
@@ -1333,7 +1330,7 @@ p5.prototype.registerMethod('init', function p5playInit() {
 		}
 
 		/**
-		 * The center of mass of the sprite's physics body.
+		 * The center of mass of the sprite's physics body. Read only.
 		 * @type {p5.Vector}
 		 */
 		get centerOfMass() {
@@ -1400,7 +1397,10 @@ p5.prototype.registerMethod('init', function p5playInit() {
 			} else {
 				this.removeColliders();
 				if (this.fixture?.m_isSensor) this.body.m_gravityScale = 0;
-				else this.p.world.destroyBody(this.body);
+				else {
+					this.p.world.destroyBody(this.body);
+					this.body = null;
+				}
 			}
 		}
 
@@ -4086,33 +4086,17 @@ p5.prototype.registerMethod('init', function p5playInit() {
 						_generateSheetFrames();
 						pInst._decrementPreload();
 					});
+					if (typeof sheet == 'string') {
+						owner.spriteSheet = this.spriteSheet;
+					}
 				}
 
 				function _generateSheetFrames() {
-					if (Array.isArray(atlas) || Array.isArray(atlas.frames)) {
-						if (typeof atlas[0] == 'number') {
-							if (atlas.length == 4) {
-								atlas = { pos: atlas.slice(0, 2), size: atlas.slice(2) };
-							} else {
-								atlas = { pos: atlas };
-							}
+					if (Array.isArray(atlas)) {
+						if (atlas.length == 4) {
+							atlas = { pos: atlas.slice(0, 2), size: atlas.slice(2) };
 						} else {
-							let frames = atlas;
-							if (Array.isArray(atlas.frames)) {
-								frames = atlas.frames;
-								delete atlas.frames;
-								for (let i = 0; i &lt; frames.length; i++) {
-									frames[i] = {
-										pos: frames[i]
-									};
-									Object.assign(frames[i], atlas);
-								}
-							}
-							for (let frame of frames) {
-								atlas = frame;
-								_generateSheetFrames();
-							}
-							return;
+							atlas = { pos: atlas };
 						}
 					}
 
@@ -4139,7 +4123,9 @@ p5.prototype.registerMethod('init', function p5playInit() {
 					if (delay) _this.frameDelay = delay;
 					if (frameDelay) _this.frameDelay = frameDelay;
 					if (rotation) _this.rotation = rotation;
-					frameCount ??= frames || 1;
+					if (frames &amp;&amp; Array.isArray(frames)) {
+						frameCount = frames.length;
+					} else frameCount ??= frames || 1;
 					w ??= width || owner.anis.w;
 					h ??= height || owner.anis.h;
 					x ??= col || 0;
@@ -4164,7 +4150,7 @@ p5.prototype.registerMethod('init', function p5playInit() {
 						if (!owner._dimensionsUndef &amp;&amp; owner.w &amp;&amp; owner.h) {
 							w = owner.w * tileSize;
 							h = owner.h * tileSize;
-						} else if (tileSize) {
+						} else if (tileSize != 1) {
 							w = h = tileSize;
 						} else if (frameCount) {
 							w = _this.spriteSheet.width / frameCount;
@@ -4181,24 +4167,44 @@ p5.prototype.registerMethod('init', function p5playInit() {
 						h *= tileSize;
 					}
 
-					// get the real dimensions and position of the frame
-					// in the sheet
-					if (tileSize != 1) {
-						x *= tileSize;
-						y *= tileSize;
-					} else if (line !== undefined || row !== undefined || col !== undefined) {
-						x *= w;
-						y *= h;
-					}
-
 					// add all the frames in the animation to the frames array
-					for (let i = 0; i &lt; frameCount; i++) {
-						_this.push({ x, y, w, h });
-						x += w;
-						if (x >= _this.spriteSheet.width) {
-							x = 0;
-							y += h;
-							if (y >= _this.spriteSheet.height) y = 0;
+					if (!Array.isArray(frames)) {
+						if (tileSize != 1 || pos || line !== undefined || row !== undefined || col !== undefined) {
+							x *= w;
+							y *= h;
+						}
+						for (let i = 0; i &lt; frameCount; i++) {
+							_this.push({ x, y, w, h });
+							x += w;
+							if (x >= _this.spriteSheet.width) {
+								x = 0;
+								y += h;
+								if (y >= _this.spriteSheet.height) y = 0;
+							}
+						}
+					} else {
+						let sw = Math.round(_this.spriteSheet.width / w);
+						for (let frame of frames) {
+							if (typeof frame == 'number') {
+								y = Math.floor(frame / sw) * h;
+								x = (frame % sw) * w;
+								_this.push({ x, y, w, h });
+							} else {
+								let f;
+								if (frame.length == 2) {
+									x = frame[0] * w;
+									y = frame[1] * h;
+									f = { x, y, w, h };
+								} else {
+									f = {
+										x: frame[0],
+										y: frame[1],
+										w: frame[2],
+										h: frame[3]
+									};
+								}
+								_this.push(f);
+							}
 						}
 					}
 				}
@@ -8132,6 +8138,8 @@ main {
 			style += `
 #${this.canvas.id} {
 	image-rendering: pixelated;
+	font-smooth: never;
+	-webkit-font-smoothing: none;
 	width: ${w}px!important;
 	height: ${h}px!important;
 }`;
@@ -8143,19 +8151,26 @@ main {
 		if (pixelated) {
 			pInst.pixelDensity(1);
 			pInst.noSmooth();
+			pInst.textFont('monospace');
+			this.canvas.getContext('2d').imageSmoothingEnabled = false;
 		}
 
 		let idx = navigator.userAgent.indexOf('iPhone OS');
 		if (idx > -1) {
 			let version = navigator.userAgent.substring(idx + 10, idx + 12);
-			this.p5play.version = version;
-			if (version &lt; 16) {
-				pInst.pixelDensity(1);
-			}
+			if (version &lt; 16) pInst.pixelDensity(1);
 			this.p5play.os.platform = 'iOS';
 			this.p5play.os.version = version;
-		} else if (navigator.userAgentData !== undefined) {
-			this.p5play.os.platform = navigator.userAgentData.platform;
+		} else {
+			// for Chromium based browsers
+			let pl = navigator.userAgentData?.platform;
+			if (!pl &amp;&amp; navigator.platform) {
+				pl = navigator.platform.slice(3);
+				if (pl == 'Mac') pl = 'macOS';
+				else if (pl == 'Win') pl = 'Windows';
+				else if (pl == 'Lin') pl = 'Linux';
+			}
+			this.p5play.os.platform = pl;
 		}
 
 		return can;
@@ -8365,9 +8380,15 @@ main {
 		_image.call(pInst, ...arguments);
 	};
 
-	// if the user isn't using q5.js
-	// add text caching to p5.js
+	let enableTextCache = false;
 	if (typeof this._textCache === 'undefined') {
+		// if the user isn't using q5.js
+		// add text caching to p5.js, only if the user is using p5.js v1.9.0 or later
+		try {
+			enableTextCache = Number(p5.VERSION.replaceAll('.', '')) >= 190;
+		} catch (e) {}
+	}
+	if (enableTextCache) {
 		const $ = this;
 		$._textCache = true;
 		$._TimedCache = class extends Map {
@@ -8470,11 +8491,12 @@ main {
 			str = str.toString();
 			const r = $._renderer;
 			if (!r._doFill &amp;&amp; !r._doStroke) return;
-			let c, ti, k, cX, cY, _ascent, _descent;
 			const ctx = $.canvas.getContext('2d');
 			let t = ctx.getTransform();
 			let useCache = $._useCache || ($._textCache &amp;&amp; (t.b != 0 || t.c != 0));
 			if (!useCache) return _text.call($, str, x, y, w, h);
+
+			let c, ti, k, cX, cY, _ascent, _descent;
 			k = _genTextImageKey(str, w, h);
 			ti = $._tic.get(k);
 			if (ti) {
@@ -8482,9 +8504,9 @@ main {
 				return;
 			}
 			let tg = $.createGraphics.call($, 1, 1);
-			tg.textFont(r._textFont);
-			if (r._textStyle) tg.textStyle(r._textStyle);
-			tg.textSize(r._textSize);
+			tg.textFont($.textFont());
+			if ($.textStyle()) tg.textStyle($.textStyle());
+			tg.textSize($.textSize());
 			c = tg.canvas.getContext('2d');
 			let lines = str.split('\n');
 			cX = 0;
@@ -8494,22 +8516,17 @@ main {
 			_descent = m.fontBoundingBoxDescent;
 			h ??= cY + _descent;
 			tg.resizeCanvas(Math.ceil(tg.textWidth(str)), Math.ceil(h));
-			c.fillStyle = ctx.fillStyle;
-			c.strokeStyle = ctx.strokeStyle;
-			c.lineWidth = ctx.lineWidth;
-			let f = c.fillStyle;
-			if (!r._fillSet) c.fillStyle = 'black';
+			tg.fill(ctx.fillStyle);
+			if (r._doStroke) {
+				tg.stroke(ctx.strokeStyle);
+				tg.strokeWeight(ctx.lineWidth);
+			} else tg.noStroke();
 			for (let i = 0; i &lt; lines.length; i++) {
-				if (r._doStroke &amp;&amp; r._strokeSet) c.strokeText(lines[i], cX, cY);
-				if (r._doFill) c.fillText(lines[i], cX, cY);
+				tg.text(lines[i], cX, cY);
 				cY += r._textLeading;
 				if (cY > h) break;
 			}
-			if (!r._fillSet) c.fillStyle = f;
 			ti = tg.get();
-			let pd = $.pixelDensity();
-			ti.width /= pd;
-			ti.height /= pd;
 			ti._ascent = _ascent;
 			ti._descent = _descent;
 			$._tic.set(k, ti);
@@ -9950,7 +9967,7 @@ p5.prototype.registerMethod('post', function p5playPostDraw() {
 <br class="clear">
 
 <footer>
-    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Sat Nov 25 2023 23:08:53 GMT-0500 (Colombia Standard Time) using the Minami theme.
+    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Thu Dec 07 2023 23:30:55 GMT-0500 (Colombia Standard Time) using the Minami theme.
 </footer>
 
 <script>prettyPrint();</script>
