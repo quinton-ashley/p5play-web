@@ -3060,7 +3060,7 @@ p5.prototype.registerMethod('init', function p5playInit() {
 				let distX, distY;
 				do {
 					if (destIdx != this._destIdx) return false;
-					await pInst.delay();
+					await pInst.sleep();
 
 					// check if the sprite's movement has been impeded such that
 					// its speed has become slower than the world velocityThreshold
@@ -3251,7 +3251,7 @@ p5.prototype.registerMethod('init', function p5playInit() {
 					let limit = Math.abs(this.rotationSpeed) + 0.01;
 					do {
 						if (this._rotateIdx != _rotateIdx) return false;
-						await pInst.delay();
+						await pInst.sleep();
 
 						if ((cw && this.rotationSpeed < 0.01) || (!cw && this.rotationSpeed > -0.01)) {
 							return false;
@@ -3263,10 +3263,10 @@ p5.prototype.registerMethod('init', function p5playInit() {
 
 					if (Math.abs(ang - this.rotation) > 0.01) {
 						this.rotationSpeed = ang - this.rotation;
-						await pInst.delay();
+						await pInst.sleep();
 					}
 				} else {
-					await pInst.delay();
+					await pInst.sleep();
 				}
 				if (this._rotateIdx != _rotateIdx) return false;
 				this.rotationSpeed = 0;
@@ -6626,7 +6626,7 @@ p5.prototype.registerMethod('init', function p5playInit() {
 				for (let i = 0; i < steps; i++) {
 					this.x += velX;
 					this.y += velY;
-					await this.p.delay();
+					await this.p.sleep();
 					if (destIdx != this._destIdx) return false;
 				}
 				this.x = x;
@@ -6682,7 +6682,7 @@ p5.prototype.registerMethod('init', function p5playInit() {
 				for (let i = 0; i < frames; i++) {
 					if (zoomIdx != this._zoomIdx) return false;
 					this.zoom += speed;
-					await this.p.delay();
+					await this.p.sleep();
 				}
 				this.zoom = target;
 				return true;
@@ -7835,9 +7835,10 @@ p5.prototype.registerMethod('init', function p5playInit() {
 	};
 
 	/**
-	 * Delay code execution in an async function for the specified time
-	 * or if no input parameter is given, it waits for the next possible
-	 * animation frame.
+	 * Delays code execution in an async function for the specified time.
+	 *
+	 * If no input is given, it waits until a new animation frame is ready
+	 * to be drawn using the `window.requestAnimationFrame` function.
 	 *
 	 * @param {Number} millisecond
 	 * @returns {Promise} A Promise that fulfills after the specified time.
@@ -7847,25 +7848,35 @@ p5.prototype.registerMethod('init', function p5playInit() {
 	 *   await delay(3000);
 	 * }
 	 */
-	this.delay = (millisecond) => {
-		if (!millisecond) {
-			return new Promise((resolve) => {
-				addEventListener('p5play_world_step', resolve);
-			});
-		} else {
-			// else it wraps setTimeout in a Promise
-			return new Promise((resolve) => {
-				setTimeout(resolve, millisecond);
-			});
-		}
+	this.delay = (milliseconds) => {
+		if (!milliseconds) return new Promise(requestAnimationFrame);
+		// else it wraps setTimeout in a Promise
+		return new Promise((resolve) => {
+			setTimeout(resolve, milliseconds);
+		});
 	};
 
 	/**
-	 * Alternative to `delay`, which is preferred, but this name may be more
-	 * familiar to Processing Java users.
+	 * Delays code execution in an async function for the specified time.
+	 *
+	 * If no input is given, it waits until after a
+	 * world step is completed.
+	 *
+	 * @param {Number} millisecond
+	 * @returns {Promise} A Promise that fulfills after the specified time.
+	 *
+	 * @example
+	 * async function startGame() {
+	 *   await sleep(3000);
+	 * }
 	 */
-	this.sleep = (millisecond) => {
-		return this.delay(millisecond);
+	this.sleep = (milliseconds) => {
+		if (!milliseconds) {
+			return new Promise((resolve) => {
+				addEventListener('p5play_world_step', resolve);
+			});
+		}
+		return this.delay(milliseconds);
 	};
 
 	/**
