@@ -384,25 +384,17 @@ If the start and end of a chain is at the same point and the resulting shape is 
 
 # 12-2
 
-Regardless of whether a sprite is a polygon or a chain, all physics bodies that start and end at the same point have their (x, y) position located at the center of the shape, not at the first vertex. This position is calculated by averaging all of the shape's vertexes.
+You can force a convex polygon to be a chain by setting `sprite.shape = 'chain'`
 
 # 12-3
 
-You can force a convex polygon to be a chain by setting `sprite.shape = 'chain'`
-
-Regular polygons can be created from a list with the line length, angle, and repeat.
-
-The formula for the angle of a regular polygon is 360 / n, where n is the number of sides. Make that angle negative to orient the polygon with one of its edges on top.
-
-Try making a square shaped chain!
+Any polygon or chain with a closed shape is center positioned.
 
 # 12-4
 
 Here's the code for making a regular star with five points.
 
 Note that because the star is a concave shape it can't have a polygon collider.
-
-Try changing the number of points!
 
 # 12-5
 

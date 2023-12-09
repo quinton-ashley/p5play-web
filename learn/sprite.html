@@ -508,8 +508,8 @@ if (mouse.presses()) {
 			</md>
 			<script type="mie/p5" id="segmented-motion" base="3">
 if (kb.pressing('left')) player.vel.x = -5;
-		else if (kb.pressing('right')) player.vel.x = 5;
-		else player.vel.x = 0;
+else if (kb.pressing('right')) player.vel.x = 5;
+else player.vel.x = 0;
 			</script>
 		</div>
 		<div id="page-4" class="page">
@@ -1285,22 +1285,20 @@ function draw() {
 				<p>Distance mode is best for creating super long chains.</p>
 				<p>Try adding 5 distances to make the ground roll up and down on a rocky ground chain.</p>
 			</md>
-			<script type="mie/p5" id="distance-mode" lines="12">
-let ground, ball;
-
+			<script type="mie/p5" id="distance-mode" lines="9">
 function setup() {
-	new Canvas(500, 200);
+	new Canvas(500, 100);
 	world.gravity.y = 10;
 
-	//                 (x, y, [distance0, distance1, ...])
-	ground = new Sprite(30, 90, [[20, 20], [60, -10], [50, 10]], 'static');
+	//        ( x,  y, [distance0, distance1, ...])
+	new Sprite(30, 50, [[60, 20], [90, -9], [90, 9]], 's');
 
-	ball = new Sprite(40, 0, 20);
+	new Sprite(40, 0, 20);
 }
 	
 function draw() {
 	clear();
-	rect(ground.x - 2, ground.y - 2, 4, 4);
+	rect(allSprites[0].x - 2, allSprites[0].y - 2, 4, 4);
 }
 			</script>
 
@@ -1312,22 +1310,20 @@ function draw() {
 					may not be a point on the chain.</p>
 				<p>Try changing the lengths of these lines and their angles!</p>
 			</md>
-			<script type="mie/p5" id="line-mode" lines="12">
-let shelf, orb;
-
+			<script type="mie/p5" id="line-mode" lines="9">
 function setup() {
 	new Canvas(500, 200);
 	world.gravity.y = 10;
 
-	//                (x, y, [length0, angle0, length1, ...])
-	shelf = new Sprite(250, 100, [50, 20, 50, -20, 50, -20], 'static');
+	//        (  x,   y, [length0, angle0, length1, ...])
+	new Sprite(250, 100, [50, 20, 50, -20, 50, -20], 's');
 
-	orb = new Sprite(200, 0, 20);
+	new Sprite(200, 0, 20);
 }
 	
 function draw() {
 	clear();
-	rect(shelf.x - 2, shelf.y - 2, 4, 4);
+	rect(allSprites[0].x - 2, allSprites[0].y - 2, 4, 4);
 }
 			</script>
 		</div>
@@ -1341,10 +1337,10 @@ function draw() {
 			</md>
 			<script type="mie/p5" id="pentagon" lines="6">
 function setup() {
-	new Canvas(500, 200);
+	new Canvas(500, 100);
 
 	//        ( x,  y, sideLength, polygonName)
-	new Sprite(250, 100, 80, 'pentagon');
+	new Sprite(250, 50, 50, 'pentagon');
 }
 	
 function draw() {
@@ -1357,9 +1353,9 @@ function draw() {
 			</md>
 			<script type="mie/p5" id="irregular-polygon:-vertex-mode" lines="5">
 function setup() {
-	new Canvas(500, 200);
+	new Canvas(500, 100);
 
-	new Sprite([[8, 8], [140, 192], [300, 90], [8, 8]]);
+	new Sprite([[8, 8], [140, 92], [300, 40], [8, 8]]);
 }
 
 function draw() {
@@ -1367,15 +1363,28 @@ function draw() {
 }
 			</script>
 			<md id="md12-2">
-				<p>Regardless of whether a sprite is a polygon or a chain, all physics bodies that start and end at the
-					same point have their (x, y) position located at the center of the shape, not at the first vertex.
-					This position is calculated by averaging all of the shape's vertexes.</p>
+				<p>You can force a convex polygon to be a chain by setting <code>sprite.shape = 'chain'</code></p>
 			</md>
-			<script type="mie/p5" id="irregular-polygon:-distance-mode" lines="9">
+			<script type="mie/p5" id="box-chain" lines="6" horiz="">
 function setup() {
-	new Canvas(500, 200);
+	new Canvas(150, 100);
 
-	new Sprite(250, 100, [
+	let s = new Sprite(75, 50, 100, 60);
+	s.shape = 'chain';
+}
+	
+function draw() {
+	clear();
+}
+			</script>
+			<md id="md12-3">
+				<p>Any polygon or chain with a closed shape is center positioned.</p>
+			</md>
+			<script type="mie/p5" id="irregular-polygon:-distance-mode" lines="9" horiz="">
+function setup() {
+	new Canvas(250, 100);
+
+	new Sprite(125, 50, [
 		[100, 40],
 		[-100, 40],
 		[0, -80]
@@ -1386,37 +1395,16 @@ function draw() {
 	clear();
 }
 			</script>
-			<md id="md12-3">
-				<p>You can force a convex polygon to be a chain by setting <code>sprite.shape = 'chain'</code></p>
-				<p>Regular polygons can be created from a list with the line length, angle, and repeat.</p>
-				<p>The formula for the angle of a regular polygon is 360 / n, where n is the number of sides. Make that
-					angle negative to orient the polygon with one of its edges on top.</p>
-				<p>Try making a square shaped chain!</p>
-			</md>
-			<script type="mie/p5" id="pentagon-chain" lines="7">
-function setup() {
-	new Canvas(500, 200);
-
-	//               (x, y, [length, angle, repeat])
-	let s = new Sprite(250, 100, [80, -72, 5]);
-	s.shape = 'chain';
-}
-	
-function draw() {
-	clear();
-}
-			</script>
 			<md id="md12-4">
 				<p>Here's the code for making a regular star with five points.</p>
 				<p>Note that because the star is a concave shape it can't have a polygon collider.</p>
-				<p>Try changing the number of points!</p>
 			</md>
 			<script type="mie/p5" id="star" lines="6">
 function setup() {
-	new Canvas(500, 200);
+	new Canvas(500, 160);
 
 	//        ( x,  y, [l0, a0, l1, a1, repeat])
-	new Sprite(250, 100, [60, -72, 60, 144, 5]);
+	new Sprite(250, 80, [50, -72, 50, 144, 5]);
 }
 
 function draw() {
@@ -1429,10 +1417,10 @@ function draw() {
 			</md>
 			<script type="mie/p5" id="p5play-logo" lines="8">
 function setup() {
-	new Canvas(500, 200);
+	new Canvas(500, 180);
 	world.gravity.y = 10;
 
-	new Sprite(250, 100, [40, 72, 40, -72, 40, 72, 5], 's');
+	new Sprite(250, 90, [40, 72, 40, -72, 40, 72, 5], 's');
 
 	new Sprite(251, 50, 20, 'pentagon');
 }
@@ -1448,18 +1436,18 @@ function draw() {
 			</md>
 			<script type="mie/p5" id="concave-chain-colliders" lines="11">
 function setup() {
-	new Canvas(500, 200);
+	new Canvas(500, 100);
 	world.gravity.y = 10;
 
 	new Sprite([
-		[200, 50],
+		[200, 0],
+		[300, 0],
 		[300, 50],
-		[300, 100],
-		[280, 70],
-		[200, 50]
+		[280, 20],
+		[200, 0]
 	]);
 
-	new Sprite(250, 190, 500, 10, 's');
+	new Sprite(250, 90, 500, 10, 's');
 }
 
 function draw() {
