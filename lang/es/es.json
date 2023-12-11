@@ -37,7 +37,8 @@
 			"todos los Sprites",
 			"Propiedades Personalizadas",
 			"Subgrupos",
-			"Recorte"
+			"Recorte",
+			"Dibujar y actualizar"
 		],
 		"input_devices": [
 			"Detección de Entrada",

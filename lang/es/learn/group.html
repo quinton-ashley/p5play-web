@@ -216,12 +216,11 @@ function draw() {
 				<p>p5play crea un grupo <code>allSprites</code> que contiene todos los sprites en un sketch.</p>
 			</md>
 			<script type="mie/p5" id="allSprites" horiz="">
-let box, circle;
-
 function setup() {
-	new Canvas(50, 228);
-	box = new Sprite(25, 70, 10, 90);
-	circle = new Sprite(25, 140, 10);
+	new Canvas(100, 208);
+
+	new Sprite(50, 85, 10, 90);
+	new Sprite(50, 155, 10);
 }
 
 function draw() {
@@ -320,17 +319,15 @@ let balls;
 function setup() {
 	new Canvas(500, 192);
 	balls = new Group();
+	balls.d = 20;
 	balls.collider = 'none';
 	balls.direction = () => random(0, 360);
 	balls.speed = () => random(1, 5);
-	balls.d = 20;
 	balls.amount = 10;
 }
 function draw() {
 	clear();
-	if (balls.cull(-50)) {
-		new balls.Sprite();
-	}
+	if (balls.cull(-50)) new balls.Sprite();
 }
 			</script>
 			<md id="md6-1">
@@ -345,8 +342,8 @@ function draw() {
 let water;
 function setup() {
 	new Canvas(500, 192);
-	noCursor();
 	world.gravity.y = 10;
+	noCursor();
 
 	water = new Group();
 	water.color = 'blue';
@@ -362,6 +359,46 @@ function draw() {
 }
 			</script>
 		</div>
+		<div id="page-7" class="page">
+			<div class="minis horiz">
+				<md id="md7-0">
+					<h2 id="dibujar">Dibujar</h2>
+					<p>Al igual que con la función <code>sprite.draw</code>, puedes usar <code>group.draw</code> para
+						controlar manualmente cuándo se dibujan los grupos dentro del bucle draw de p5.js.</p>
+					<p>Cualquier sprite que no sea dibujado manualmente será dibujado automáticamente al final del bucle
+						draw de p5.js, a menos que su propiedad <code>autoDraw</code> esté establecida en falso.</p>
+					<p>Ten en cuenta que si quieres dibujar manualmente sprites o grupos y usar la cámara, tendrás que
+						activar y desactivar la cámara manualmente.</p>
+				</md>
+				<md id="md7-1">
+					<h2 id="actualizar">Actualizar</h2>
+					<p>La función <code>group.update</code> ejecuta la función <code>sprite.update</code> de cada sprite
+						en el grupo. Para prevenir la actualización automática, establece <code>autoUpdate</code> en
+						falso.</p>
+				</md>
+			</div>
+			<script type="mie/p5" id="draw-and-update">
+let gems;
+function setup() {
+	new Canvas(500, 208);
+	gems = new Group();
+	gems.d = 5;
+	gems.x = () => random(0, 200);
+	gems.y = () => random(0, canvas.h);
+	gems.speed = 0.5;
+	gems.text = '️💎';
+	gems.textSize = 20;
+	gems.amount = 80;
+}
+function draw() {
+	clear();
+	gems.draw();
+
+	fill(255, 200);
+	rect(150, 0, 200, 208);
+}
+			</script>
+		</div>
 
 		<div class="break"></div>
 		<div id="toc">
@@ -374,6 +411,7 @@ function draw() {
 				<a data-page="4" href="group.html?page=4">Propiedades Personalizadas</a>
 				<a data-page="5" href="group.html?page=5">Subgrupos</a>
 				<a data-page="6" href="group.html?page=6">Recorte</a>
+				<a data-page="7" href="group.html?page=7">Dibujar y actualizar</a>
 			</div>
 			<a id="nextPage" class="navLink">Siguiente página</a>
 		</div>

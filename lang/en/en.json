@@ -36,7 +36,8 @@
 			"allSprites",
 			"Custom Properties",
 			"Subgroups",
-			"Culling"
+			"Culling",
+			"Draw and Update"
 		],
 		"input_devices": ["Detecting Input", "Keyboard", "Mouse", "Sprite Mouse", "Game Controllers", "Touch"],
 		"joints": ["GlueJoint", "DistanceJoint", "WheelJoint", "HingeJoint", "SliderJoint"],

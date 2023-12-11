@@ -28,18 +28,15 @@
 		<div class="break"></div>
 		<div id="page-0" class="page">
 			<md id="md0-0">
-				<h2 id="advanced-topics">Advanced Topics</h2>
-				<p>These reference pages highlight some of the more advanced features of p5play.</p>
-				<p>You should probably read the other reference pages first!</p>
-			</md>
-			<md id="md0-1">
 				<h2 id="canvas">Canvas</h2>
 				<p>The <code>Canvas</code> class is a wrapper around p5play's version of the p5.js
 					<code>createCanvas</code> function, which is used to create an HTML5 canvas element. p5play's
 					version also provides a few extra features.</p>
+				<p>Use <code>canvas.w</code> and <code>canvas.h</code> to get the width and height of the canvas.</p>
+			</md>
+			<md id="md0-1">
 				<p>If no parameters are passed to <code>new Canvas()</code>, it will create a canvas that fills the
 					entire window.</p>
-				<p>Use <code>canvas.w</code> and <code>canvas.h</code> to get the width and height of the canvas.</p>
 				<p>You can also pass an aspect ratio to the Canvas constructor. This will create the largest possible
 					canvas that fits within the window, while maintaining the given aspect ratio. For example, <code>new
 						Canvas('2:1')</code> will create a canvas that is twice as wide as it is tall.</p>
@@ -58,8 +55,8 @@
 				<p>To display all sprites at integer coordinates, set <code>allSprites.pixelPerfect</code> to true and
 					use integer coordinates for the camera's position and zoom.</p>
 				<p>Note that modern fonts are vector based, so they won't look very good in pixelated mode. Load a
-					bitmap font instead with the p5.js <a
-						href="https://p5js.org/reference/#/p5/loadFont"><code>loadFont</code></a> function.</p>
+					bitmap font instead with the p5.js <a href="https://p5js.org/reference/#/p5/loadFont"
+						target="_blank"><code>loadFont</code></a> function.</p>
 			</md>
 			<div class="minis horiz">
 				<script type="mie/p5" id="normal sized pixels" lines="9" hide-editor="">

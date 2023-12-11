@@ -66,7 +66,7 @@ The `contro` object provides the input state of game controller buttons:
 
 `a`, `b`, `x`, `y`, `l` (left bumper), `r` (right bumper), `lt` (left trigger), `rt` (right trigger), `up`, `down`, `left`, `right` (D-pad), `lsb` (left stick button), `rsb` (right stick button), `start`, and `select`
 
-`contro.leftStick` and `contro.rightStick` represent the positions of the controller's analog sticks as objects with x and y properties. These values range from -1 to 1, with 0 indicating the center position.
+`contro.leftStick` and `contro.rightStick` represent the positions of the analog sticks as objects with x and y properties. These values range from -1 to 1, with 0 indicating the center position.
 
 Some controllers have analog triggers, and their positions are stored as numbers ranging from 0 to 1 in `contro.leftTrigger` and `contro.rightTrigger`.
 
@@ -76,8 +76,12 @@ The `contro` object (aka `controllers`) is an array that contains all the connec
 
 Try it out! Connect a game controller and press any button on it for it to be detected by p5play.
 
+➡️ [full demo](https://openprocessing.org/sketch/2120550)
+
 # 5-0
 
 ## Touch
+
+You can use the [`touches`](https://p5js.org/reference/#/p5/touches) array to get the positions of multiple touches on the canvas.
 
 Example coming soon!

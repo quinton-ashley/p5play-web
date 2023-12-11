@@ -86,26 +86,31 @@ function draw() {
 			</div>
 		</div>
 		<div id="page-1" class="page">
-			<md id="md1-0">
-				<h2 id="controlling-time">Controlling Time</h2>
-				<p>By default, after each time the p5.js draw function is run, p5play calls three functions in this
-					order:</p>
-				<ul>
-					<li><code>allSprites.draw()</code> : draws all sprites</li>
-					<li><code>world.step()</code> : progresses the physics simulation</li>
-					<li><code>allSprites.update()</code> : updates animations and mouse events</li>
-				</ul>
-				<p>But you can also take manual control of these processes by calling them yourself.</p>
-				<p>In the mini-example, click to toggle slow-motion!</p>
-				<h2 id="spritedraw-and-groupdraw">sprite.draw and group.draw</h2>
-				<p>You can use the <code>sprite.draw</code> and <code>group.draw</code> functions to manually control
-					when individual sprites and groups are drawn inside the p5.js draw loop. Any sprites not drawn
-					manually will be automatically drawn at the end of the p5.js draw loop, unless the sprite's autoDraw
-					property is set to false directly or by one of its parent groups. To prevent automatic drawing
-					completely set <code>allSprites.autoDraw = false</code>.</p>
-				<p>Note that if you want to manually draw sprites you'll also have to manually turn the camera on and
-					off.</p>
-			</md>
+			<div class="minis horiz">
+				<md id="md1-0">
+					<h2 id="controlling-time">Controlling Time</h2>
+					<p>By default, after each time the p5.js draw function is run, p5play calls three functions in this
+						order:</p>
+					<ul>
+						<li><code>allSprites.draw()</code> : draws all sprites</li>
+						<li><code>world.step()</code> : progresses the physics simulation</li>
+						<li><code>allSprites.update()</code> : updates animations and mouse events</li>
+					</ul>
+					<p>But you can also take manual control of these processes by calling them yourself.</p>
+				</md>
+				<md id="md1-1">
+					<h2 id="worldstep">world.step</h2>
+					<p>The <code>world.step</code> function calculates the positions and velocities of all sprites after
+						progressing the physics simulation by 1/60th of a second by default.</p>
+					<p>Set <code>world.autoStep = false</code> to disable automatic stepping, in effect pausing time!
+						Then you can call <code>world.step</code> manually when you want to progress the physics
+						simulation. Only run it after all sprites have been drawn.</p>
+					<p>This mini example shows how a time step can be provided as an input parameter, but note that the
+						Box2D physics engine solver is only stable up to a time step of 1/30th of a second. If you want
+						to advance the simulation by a larger amount of time, call <code>world.step</code> multiple
+						times.</p>
+				</md>
+			</div>
 			<script type="mie/p5" id="world.step">
 let ball, box;
 		
@@ -133,24 +138,6 @@ function draw() {
 	}
 }
 			</script>
-			<md id="md1-1">
-				<h2 id="worldstep">world.step</h2>
-				<p>The <code>world.step</code> function checks for collisions and calculates the positions and
-					velocities of all sprites after progressing the physics simulation by 1/60th of a second by default.
-					Sprites can't be progressed forward in time individually.</p>
-				<p>Before you use <code>world.step</code> in your p5.js draw function, be sure to draw all the sprites.
-					Otherwise, they will be drawn in the wrong position!</p>
-				<p>Set <code>world.autoStep = false</code> to disable automatic stepping. Then you can call
-					<code>world.step</code> manually whenever you want to progress the physics simulation.</p>
-			</md>
-			<md id="md1-2">
-				<h2 id="spriteupdate-and-groupupdate">sprite.update and group.update</h2>
-				<p>What does <code>sprite.update</code> do? It's responsible for updating the sprite's animation and
-					mouse events. It also runs the user's custom update functions if they set any. To prevent automatic
-					updating completely set <code>allSprites.autoUpdate = false</code>.</p>
-				<p>Why is this functionality separated from the world step? Because on a pause screen the physics world
-					could be paused, but pause menu UI animations and mouse events could still be processed.</p>
-			</md>
 		</div>
 		<div id="page-2" class="page">
 			<md id="md2-0">

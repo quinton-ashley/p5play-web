@@ -198,12 +198,11 @@ function draw() {
 				<p>p5play は、スケッチ内のすべてのスプライトを含む<code>allSprites</code>グループを作成します。</p>
 			</md>
 			<script type="mie/p5" id="allSprites" horiz="">
-let box, circle;
-
 function setup() {
-	new Canvas(50, 228);
-	box = new Sprite(25, 70, 10, 90);
-	circle = new Sprite(25, 140, 10);
+	new Canvas(100, 208);
+
+	new Sprite(50, 85, 10, 90);
+	new Sprite(50, 155, 10);
 }
 
 function draw() {
@@ -291,17 +290,15 @@ let balls;
 function setup() {
 	new Canvas(500, 192);
 	balls = new Group();
+	balls.d = 20;
 	balls.collider = 'none';
 	balls.direction = () => random(0, 360);
 	balls.speed = () => random(1, 5);
-	balls.d = 20;
 	balls.amount = 10;
 }
 function draw() {
 	clear();
-	if (balls.cull(-50)) {
-		new balls.Sprite();
-	}
+	if (balls.cull(-50)) new balls.Sprite();
 }
 			</script>
 			<md id="md6-1">
@@ -314,8 +311,8 @@ function draw() {
 let water;
 function setup() {
 	new Canvas(500, 192);
-	noCursor();
 	world.gravity.y = 10;
+	noCursor();
 
 	water = new Group();
 	water.color = 'blue';
@@ -331,6 +328,44 @@ function draw() {
 }
 			</script>
 		</div>
+		<div id="page-7" class="page">
+			<div class="minis horiz">
+				<md id="md7-0">
+					<h2 id="draw">Draw</h2>
+					<p><code>sprite.draw</code>関数と同様に、<code>group.draw</code>を使用して、p5.js の draw
+						ループ内でグループが描画されるタイミングを手動で制御できます。</p>
+					<p>手動で描画されないスプライトは、それらの<code>autoDraw</code>プロパティが false に設定されていない限り、p5.js の draw
+						ループの終わりに自動的に描画されます。</p>
+					<p>スプライトやグループを手動で描画し、カメラを使用したい場合は、カメラを手動でオン・オフする必要があることに注意してください。</p>
+				</md>
+				<md id="md7-1">
+					<h2 id="update">Update</h2>
+					<p><code>group.update</code>関数は、グループ内のすべてのスプライトの<code>sprite.update</code>関数を実行します。自動更新を防ぐには、<code>autoUpdate</code>を
+						false に設定します。</p>
+				</md>
+			</div>
+			<script type="mie/p5" id="draw-and-update">
+let gems;
+function setup() {
+	new Canvas(500, 208);
+	gems = new Group();
+	gems.d = 5;
+	gems.x = () => random(0, 200);
+	gems.y = () => random(0, canvas.h);
+	gems.speed = 0.5;
+	gems.text = '️💎';
+	gems.textSize = 20;
+	gems.amount = 80;
+}
+function draw() {
+	clear();
+	gems.draw();
+
+	fill(255, 200);
+	rect(150, 0, 200, 208);
+}
+			</script>
+		</div>
 
 		<div class="break"></div>
 		<div id="toc">
@@ -343,6 +378,7 @@ function draw() {
 				<a data-page="4" href="group.html?page=4">カスタムプロパティ</a>
 				<a data-page="5" href="group.html?page=5">サブグループ</a>
 				<a data-page="6" href="group.html?page=6">カリング</a>
+				<a data-page="7" href="group.html?page=7">描画と更新</a>
 			</div>
 			<a id="nextPage" class="navLink">次のページ</a>
 		</div>

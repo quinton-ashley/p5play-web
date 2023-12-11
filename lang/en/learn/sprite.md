@@ -404,7 +404,9 @@ Closed chains are empty on the inside and they can act as a container for many s
 
 # 12-6
 
-Note that closed chain colliders aren't so good at being dynamic colliders. This is a limitation of the Box2D physics engine that p5play uses. See the Combo Colliders page to learn how to create concave colliders from multiple convex colliders.
+Note that closed chain colliders aren't so good at being dynamic colliders.
+
+This is a limitation of the Box2D physics engine that p5play uses. See the "Combo Colliders" page to learn how to create concave colliders from multiple convex colliders.
 
 # 13-0
 
@@ -434,17 +436,19 @@ You can add additional sensors to a sprite by using the `addSensor` function.
 
 Sometimes you won't be able to use pre-drawn animations to get the kind of visual effect you want for a sprite in motion.
 
-Fortunately, you can customize the sprite's `draw` function and make it display anything you want!
+Fortunately, you can customize the sprite's `draw` function to make it display anything you want!
 
 Note that inside the sprite's draw function the center of the sprite is translated to position (0, 0).
 
-This mini example rotates the sprite's ellipse to the direction it's moving and makes the ellipse stretch in that direction proportional to it's speed. Kind of complicated!
+This mini example rotates the sprite's ellipse to the direction it's moving and makes the ellipse stretch in that direction proportional to its speed. Kind of complicated!
 
 # 14-1
 
 ## Custom Update
 
-You can also define a custom `update` function for a sprite that runs at the end of the draw loop or when updateSprites is called. You can put any sprite specific behavior you want in there.
+A sprite's `update` function runs at the end of the p5.js draw loop by default. It updates the sprite's animation (if it has one) and mouse event tracking.
+
+Thanks to some behind the scenes magic, overriding the function will not replace the default behavior, but allows you to add to it.
 
 # 15-0
 

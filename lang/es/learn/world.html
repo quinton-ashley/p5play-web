@@ -85,27 +85,32 @@ function draw() {
 			</div>
 		</div>
 		<div id="page-1" class="page">
-			<md id="md1-0">
-				<h2 id="manipulación-del-tiempo">Manipulación del tiempo</h2>
-				<p>Por defecto, después de cada vez que se ejecuta la función de dibujo de p5.js, p5play llama a tres
-					funciones en este orden:</p>
-				<ul>
-					<li><code>allSprites.draw()</code>: dibuja todos los sprites</li>
-					<li><code>world.step()</code>: avanza la simulación física</li>
-					<li><code>allSprites.update()</code>: actualiza sprite.ani y sprite.mouse</li>
-				</ul>
-				<p>Pero también puedes tomar control manual de estos procesos llamándolos tú mismo.</p>
-				<p>¡En el mini-ejemplo, intenta presionar espacio para activar y desactivar el slow-motion!</p>
-				<h2 id="spritedraw-y-groupdraw">sprite.draw y group.draw</h2>
-				<p>Puedes utilizar las funciones <code>sprite.draw</code> y <code>group.draw</code> para controlar
-					manualmente cuándo se dibujan los sprites individuales y los grupos dentro del bucle de dibujo de
-					p5.js. Cualquier sprite que no se dibuje manualmente se dibujará automáticamente al final del bucle
-					de dibujo de p5.js a menos que la propiedad autoDraw del sprite esté establecida en falso
-					directamente o por uno de sus grupos padres. Para prevenir el dibujo automático completamente
-					establece <code>allSprites.autoDraw = false</code>.</p>
-				<p>Ten en cuenta que tendrás que activar y desactivar manualmente la cámara si quieres utilizarla con
-					sprites dibujados manualmente.</p>
-			</md>
+			<div class="minis horiz">
+				<md id="md1-0">
+					<h2 id="controlando-el-tiempo">Controlando el Tiempo</h2>
+					<p>Por defecto, después de cada vez que se ejecuta la función draw de p5.js, p5play llama a tres
+						funciones en este orden:</p>
+					<ul>
+						<li><code>allSprites.draw()</code> : dibuja todos los sprites</li>
+						<li><code>world.step()</code> : avanza la simulación de física</li>
+						<li><code>allSprites.update()</code> : actualiza animaciones y eventos del ratón</li>
+					</ul>
+					<p>Pero también puedes tomar control manual de estos procesos llamándolos tú mismo.</p>
+				</md>
+				<md id="md1-1">
+					<h2 id="worldstep">world.step</h2>
+					<p>La función <code>world.step</code> calcula las posiciones y velocidades de todos los sprites
+						después de avanzar la simulación de física por 1/60 de segundo por defecto.</p>
+					<p>Establece <code>world.autoStep = false</code> para desactivar el avance automático, ¡lo que
+						efectivamente pausa el tiempo! Luego puedes llamar a <code>world.step</code> manualmente cuando
+						quieras avanzar la simulación de física. Solo ejecútalo después de que todos los sprites hayan
+						sido dibujados.</p>
+					<p>Este mini ejemplo muestra cómo un paso de tiempo puede ser proporcionado como un parámetro de
+						entrada, pero ten en cuenta que el solucionador del motor de física Box2D solo es estable hasta
+						un paso de tiempo de 1/30 de segundo. Si quieres avanzar la simulación por una cantidad de
+						tiempo mayor, llama a <code>world.step</code> varias veces.</p>
+				</md>
+			</div>
 			<script type="mie/p5" id="world.step">
 let ball, box;
 		
@@ -133,26 +138,6 @@ function draw() {
 	}
 }
 			</script>
-			<md id="md1-1">
-				<h2 id="worldstep">world.step</h2>
-				<p><code>world.step</code> comprueba las colisiones y calcula las posiciones y velocidades de todos los
-					sprites después de avanzar la simulación física en 1/60 de segundo por defecto. No se puede avanzar
-					en el tiempo a los sprites individualmente.</p>
-				<p>Antes de usar <code>world.step</code> en tu función de dibujo de p5.js, asegúrate de dibujar todos
-					los sprites. ¡De lo contrario, se dibujarán en la posición incorrecta!</p>
-				<p>Establece <code>world.autoStep = false</code> para desactivar el avance automático. Entonces puedes
-					llamar a <code>world.step</code> manualmente cuando quieras avanzar la simulación física.</p>
-			</md>
-			<md id="md1-2">
-				<h2 id="spriteupdate-y-groupupdate">sprite.update y group.update</h2>
-				<p>¿Qué hace <code>sprite.update</code>? Se encarga de actualizar la animación del sprite y los eventos
-					del ratón. También ejecuta la función de actualización personalizada del usuario si se ha
-					establecido alguna. Para prevenir la actualización automática completamente establece
-					<code>allSprites.autoUpdate = false</code>.</p>
-				<p>¿Por qué esta funcionalidad está separada del paso del mundo? Porque en una pantalla de pausa el
-					mundo físico podría estar pausado, pero las animaciones y eventos de ratón del menú de pausa todavía
-					podrían actualizarse.</p>
-			</md>
 		</div>
 		<div id="page-2" class="page">
 			<md id="md2-0">

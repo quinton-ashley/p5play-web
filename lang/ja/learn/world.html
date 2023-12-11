@@ -80,23 +80,27 @@ function draw() {
 			</div>
 		</div>
 		<div id="page-1" class="page">
-			<md id="md1-0">
-				<h2 id="時間の制御">時間の制御</h2>
-				<p>デフォルトでは、p5.js の draw 関数が実行されるたびに、p5play は以下の 3 つの関数をこの順序で呼び出します：</p>
-				<ul>
-					<li><code>allSprites.draw()</code> ： すべてのスプライトを描画します</li>
-					<li><code>world.step()</code> ： 物理シミュレーションを進めます</li>
-					<li><code>allSprites.update()</code> ： sprite.ani と sprite.mouse を更新します</li>
-				</ul>
-				<p>しかし、これらのプロセスを自分で呼び出すことで手動で制御することもできます。</p>
-				<p>ミニ例では、スペースを押してスローモーションを切り替えてみてください！</p>
-				<h2 id="spritedraw-と-groupdraw">sprite.draw と group.draw</h2>
-				<p>p5.js の draw ループ内で個々のスプライトとグループを描画するタイミングを手動で制御するために、<code>sprite.draw</code> と
-					<code>group.draw</code> 関数を使用できます。手動で描画されなかったスプライトは、スプライトの autoDraw プロパティが直接または親グループのいずれかによって false
-					に設定されていない限り、p5.js の draw ループの終わりに自動的に描画されます。自動描画を完全に防ぐには <code>allSprites.autoDraw = false</code>
-					を設定します。</p>
-				<p>手動で描画したスプライトを使ってカメラをオンにしたりオフにしたりする場合は、手動でオンオフを切り替える必要があります。</p>
-			</md>
+			<div class="minis horiz">
+				<md id="md1-0">
+					<h2 id="時間のコントロール">時間のコントロール</h2>
+					<p>デフォルトでは、p5.js の draw 関数が実行された後、p5play は以下の 3 つの関数をこの順番で呼び出します：</p>
+					<ul>
+						<li><code>allSprites.draw()</code> : すべてのスプライトを描画します</li>
+						<li><code>world.step()</code> : 物理シミュレーションを進行させます</li>
+						<li><code>allSprites.update()</code> : アニメーションとマウスイベントを更新します</li>
+					</ul>
+					<p>しかし、これらのプロセスを自分で呼び出すことによって、手動で制御することもできます。</p>
+				</md>
+				<md id="md1-1">
+					<h2 id="worldstep">world.step</h2>
+					<p><code>world.step</code>関数は、物理シミュレーションを 1/60 秒進めた後の、すべてのスプライトの位置と速度を計算します。</p>
+					<p><code>world.autoStep =
+							false</code>を設定すると自動ステップが無効になり、時間が一時停止します！その後、物理シミュレーションを進めたいときに<code>world.step</code>を手動で呼び出すことができます。すべてのスプライトが描画された後にのみ実行してください。
+					</p>
+					<p>このミニ例では、タイムステップを入力パラメータとして提供する方法が示されていますが、Box2D 物理エンジンソルバーは 1/30
+						秒のタイムステップまでしか安定していません。より長い時間でシミュレーションを進めたい場合は、<code>world.step</code>を複数回呼び出してください。</p>
+				</md>
+			</div>
 			<script type="mie/p5" id="world.step">
 let ball, box;
 		
@@ -124,23 +128,6 @@ function draw() {
 	}
 }
 			</script>
-			<md id="md1-1">
-				<h2 id="worldstep">world.step</h2>
-				<p><code>world.step</code> は、デフォルトで 1/60
-					秒進行した物理シミュレーションの後で、すべてのスプライトの衝突をチェックし、位置と速度を計算します。スプライトは個別に時間を進めることはできません。</p>
-				<p>p5.js の draw 関数で <code>world.step</code> を使用する前に、すべてのスプライトを描画しておくことが重要です。そうしないと、スプライトが間違った位置に描画されます！
-				</p>
-				<p>自動ステップを無効にするには <code>world.autoStep = false</code> を設定します。それから、物理シミュレーションを進行させたいときにいつでも手動で
-					<code>world.step</code> を呼び出すことができます。</p>
-			</md>
-			<md id="md1-2">
-				<h2 id="spriteupdate-と-groupupdate">sprite.update と group.update</h2>
-				<p><code>sprite.update</code>
-					は何をしますか？これは、スプライトのアニメーションとマウスイベントの更新を担当します。また、ユーザーが何かを設定した場合は、ユーザーのカスタム更新関数も実行します。完全な自動更新を防ぐには
-					<code>allSprites.autoUpdate = false</code> を設定します。</p>
-				<p>なぜこの機能はワールドステップから分離されているのですか？というのも、一時停止画面では物理ワールドが一時停止している可能性がありますが、一時停止メニューの UI
-					アニメーションとマウスイベントは引き続き更新される可能性があるからです。</p>
-			</md>
 		</div>
 		<div id="page-2" class="page">
 			<md id="md2-0">

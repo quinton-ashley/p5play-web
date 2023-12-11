@@ -86,7 +86,12 @@ async function translatePage(pageGroup, page) {
 			let id = tran.slice(0, splitIdx);
 			if (!isNaN(id[0])) id = 'md' + id;
 			let md = document.getElementById(id);
-			if (md) md.innerHTML = '\n' + marked.parse(tran.slice(splitIdx + 1));
+			if (!md) continue;
+			md.innerHTML = '\n' + marked.parse(tran.slice(splitIdx + 1));
+			let links = md.getElementsByTagName('a');
+			for (let link of links) {
+				link.setAttribute('target', '_blank');
+			}
 		}
 	}
 

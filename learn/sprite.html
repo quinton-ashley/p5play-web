@@ -35,10 +35,10 @@
 		<div id="page-0" class="page">
 			<md id="md0-0">
 				<h2 id="setup-and-draw">Setup and Draw</h2>
-				<p>The code inside the <a href="https://p5js.org">p5.js</a> (or <a
-						href="https://github.com/quinton-ashley/q5.js">q5.js</a>) <code>setup</code> function runs when
-					the program starts. The <code>new Canvas()</code> constructor creates a section of the screen that
-					the program can draw on.</p>
+				<p>The code inside the <a href="https://p5js.org" target="_blank">p5.js</a> (or <a
+						href="https://github.com/quinton-ashley/q5.js" target="_blank">q5.js</a>) <code>setup</code>
+					function runs when the program starts. The <code>new Canvas()</code> constructor creates a section
+					of the screen that the program can draw on.</p>
 				<p>The p5.js <code>draw</code> function is run 60 times per second by default. The
 					<code>background</code> function can be used to fill the canvas with a color each time it is drawn.
 				</p>
@@ -275,8 +275,8 @@ function draw() {
 				<p><code>sprite.image</code> or <code>sprite.img</code> can be set to a p5.Image or a url path to an
 					image file.</p>
 				<p>If you need an image to be loaded before your program starts, it's best to use <a
-						href="https://p5js.org/reference/#/p5/loadImage"><code>loadImage</code></a> inside the p5.js
-					<code>preload</code> function.</p>
+						href="https://p5js.org/reference/#/p5/loadImage" target="_blank"><code>loadImage</code></a>
+					inside the p5.js <code>preload</code> function.</p>
 				<p><code>sprite.scale</code> changes the size of both the sprite's collider and visual appearance. A
 					scale value of 2 doubles the size of the sprite.</p>
 				<p>Try pressing the left mouse button. When the <code>sprite.debug</code> property is set to true you
@@ -366,13 +366,13 @@ function draw() {}
 				<h2 id="custom-colors">Custom Colors</h2>
 				<p>You can also make pixel art that uses custom colors by creating a color palette and passing it as the
 					third parameter to the <code>spriteArt</code> function.</p>
-				<p>Color palettes in p5play must be provided in <a
-						href="https://p5js.org/reference/#/p5/object">JavaScript Object</a> format. A simple JS object
-					is like a dictionary. You can define a color for each letter you use in your pixel art. To create a
-					color use the p5.js <a href="https://p5js.org/reference/#/p5/color"><code>color</code></a> function
+				<p>Color palettes in p5play must be provided in <a href="https://p5js.org/reference/#/p5/object"
+						target="_blank">JavaScript Object</a> format. A simple JS object is like a dictionary. You can
+					define a color for each letter you use in your pixel art. To create a color use the p5.js <a
+						href="https://p5js.org/reference/#/p5/color" target="_blank"><code>color</code></a> function
 					which accepts RGB (red, green, blue) values or HEX color codes.</p>
 				<p>The easiest way to find colors is to use a <a
-						href="https://www.google.com/search?q=google+color+picker">color picker</a>.</p>
+						href="https://www.google.com/search?q=google+color+picker" target="_blank">color picker</a>.</p>
 			</md>
 			<script type="mie/p5" id="blue-smiley" lines="20">
 let smiley;
@@ -1106,8 +1106,8 @@ function draw() {
 				<p>In planck however, when a collider is displaced by another collider, they constantly collide and
 					separate from each other.</p>
 				<p>If you're trying to make a platformer game, <code>colliding</code> is not a reliable way to check if
-					a sprite is standing on a platform. Check out my <a
-						href="https://openprocessing.org/sketch/1869796">platformer demo</a>.</p>
+					a sprite is standing on a platform. Check out my <a href="https://openprocessing.org/sketch/1869796"
+						target="_blank">platformer demo</a>.</p>
 			</md>
 			<script type="mie/p5" id="colliding-bug" horiz="">
 let block, platform;
@@ -1200,8 +1200,8 @@ function draw() {
 					position can be given as an object with x and y properties or as separate x and y parameters.</p>
 				<p>This example shows an electron orbiting the nucleus of an atom. (Note this visualization isn't
 					realistic based on current scientific understanding, but it looks cool!)</p>
-				<p>Note that the advanced movement functions shown on this page will not wake <a
-						href="./world.html">sleeping sprites</a>!</p>
+				<p>Note that the advanced movement functions shown on this page will not wake <a href="./world.html"
+						target="_blank">sleeping sprites</a>!</p>
 			</md>
 			<script type="mie/p5" id="attractTo">
 let nucleus, electron;
@@ -1430,9 +1430,9 @@ function draw() {
 }
 			</script>
 			<md id="md12-6">
-				<p>Note that closed chain colliders aren't so good at being dynamic colliders. This is a limitation of
-					the Box2D physics engine that p5play uses. See the Combo Colliders page to learn how to create
-					concave colliders from multiple convex colliders.</p>
+				<p>Note that closed chain colliders aren't so good at being dynamic colliders.</p>
+				<p>This is a limitation of the Box2D physics engine that p5play uses. See the "Combo Colliders" page to
+					learn how to create concave colliders from multiple convex colliders.</p>
 			</md>
 			<script type="mie/p5" id="concave-chain-colliders" lines="11">
 function setup() {
@@ -1527,18 +1527,19 @@ function draw() {
 					<h2 id="custom-draw">Custom Draw</h2>
 					<p>Sometimes you won't be able to use pre-drawn animations to get the kind of visual effect you want
 						for a sprite in motion.</p>
-					<p>Fortunately, you can customize the sprite's <code>draw</code> function and make it display
+					<p>Fortunately, you can customize the sprite's <code>draw</code> function to make it display
 						anything you want!</p>
 					<p>Note that inside the sprite's draw function the center of the sprite is translated to position
 						(0, 0).</p>
 					<p>This mini example rotates the sprite's ellipse to the direction it's moving and makes the ellipse
-						stretch in that direction proportional to it's speed. Kind of complicated!</p>
+						stretch in that direction proportional to its speed. Kind of complicated!</p>
 				</md>
 				<md id="md14-1">
 					<h2 id="custom-update">Custom Update</h2>
-					<p>You can also define a custom <code>update</code> function for a sprite that runs at the end of
-						the draw loop or when updateSprites is called. You can put any sprite specific behavior you want
-						in there.</p>
+					<p>A sprite's <code>update</code> function runs at the end of the p5.js draw loop by default. It
+						updates the sprite's animation (if it has one) and mouse event tracking.</p>
+					<p>Thanks to some behind the scenes magic, overriding the function will not replace the default
+						behavior, but allows you to add to it.</p>
 				</md>
 			</div>
 			<script type="mie/p5" id="stretchy" lines="22">
@@ -1636,8 +1637,8 @@ function draw() {
 					repeatedly, without waiting for the sprite to reach its destination. But for better performance, try
 					using the <code>angleTo</code> function, which gets the angle between a sprite and a position. This
 					angle can be used to change the direction that the sprite moves in.</p>
-				<p>In this example, the <a href="https://p5js.org/reference/#/p5/dist">p5.js dist</a> function is used
-					to calculate the distance between the player and its ally.</p>
+				<p>In this example, the <a href="https://p5js.org/reference/#/p5/dist" target="_blank">p5.js dist</a>
+					function is used to calculate the distance between the player and its ally.</p>
 			</md>
 			<script type="mie/p5" base-8="" hidden="">
 let player, ally;

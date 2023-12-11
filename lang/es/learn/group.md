@@ -96,3 +96,19 @@ Un último parámetro opcional se puede utilizar para especificar una función d
 Otra forma de limitar cuánto tiempo existe un sprite es establecer su propiedad `life`, que es el número de fotogramas que el sprite existe. Cuando la vida del sprite se acaba, será eliminado. Esto es útil para crear objetos temporales como proyectiles y campos de fuerza.
 
 ¡Prueba este pequeño juego! Haz clic con el ratón para crear una pelota de playa e intenta mantenerla en el aire con el chorro de agua.
+
+# 7-0
+
+## Dibujar
+
+Al igual que con la función `sprite.draw`, puedes usar `group.draw` para controlar manualmente cuándo se dibujan los grupos dentro del bucle draw de p5.js.
+
+Cualquier sprite que no sea dibujado manualmente será dibujado automáticamente al final del bucle draw de p5.js, a menos que su propiedad `autoDraw` esté establecida en falso.
+
+Ten en cuenta que si quieres dibujar manualmente sprites o grupos y usar la cámara, tendrás que activar y desactivar la cámara manualmente.
+
+# 7-1
+
+## Actualizar
+
+La función `group.update` ejecuta la función `sprite.update` de cada sprite en el grupo. Para prevenir la actualización automática, establece `autoUpdate` en falso.

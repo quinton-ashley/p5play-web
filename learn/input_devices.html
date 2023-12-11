@@ -82,8 +82,8 @@ if (kb.released(' ')) {
 			</div>
 			<md id="md0-1">
 				<p>p5play makes it easy to trigger the same action via different input devices using <a
-						href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_OR">boolean
-						logic</a>.</p>
+						href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_OR"
+						target="_blank">boolean logic</a>.</p>
 				<p>In the mini-example, the sprite turns red if you press the space key or click the mouse.</p>
 			</md>
 			<script type="mie/p5" id="hidden" base-1="" hide="">
@@ -118,9 +118,8 @@ if (kb.pressing('space') || mouse.pressing()) {
 					'arrowRight'.</p>
 				<p>In local two player games it's common for the second player to use the IJKL keys for movement. These
 					keys can be referenced using 'up2', 'down2', 'left2', and 'right2'.</p>
-				<p><a
-						href="https://github.com/quinton-ashley/p5play/wiki/FAQ#is-p5plays-kb-input-system-compatible-with-non-qwerty-keyboards">Using
-						a non-QWERTY keyboard?</a></p>
+				<p><a href="https://github.com/quinton-ashley/p5play/wiki/FAQ#is-p5plays-kb-input-system-compatible-with-non-qwerty-keyboards"
+						target="_blank">Using a non-QWERTY keyboard?</a></p>
 			</md>
 			<script type="mie/p5" id="keyboard-movement">
 let player;
@@ -157,8 +156,8 @@ function draw() {
 				<p><code>mouse.x</code> and <code>mouse.y</code> store the position of the mouse on the canvas.</p>
 				<p><code>mouse.visible</code> is a boolean that determines whether the mouse is visible or not.</p>
 				<p><code>mouse.cursor</code> can be set to a <a
-						href="https://developer.mozilla.org/en-US/docs/Web/CSS/cursor">cursor style</a>. The default is
-					'default', other options include 'grab', 'move', 'pointer', and 'wait'.</p>
+						href="https://developer.mozilla.org/en-US/docs/Web/CSS/cursor" target="_blank">cursor style</a>.
+					The default is 'default', other options include 'grab', 'move', 'pointer', and 'wait'.</p>
 			</md>
 			<script type="mie/p5" id="mouse.visible">
 let cur;
@@ -231,8 +230,8 @@ function draw() {
 					(left stick button), <code>rsb</code> (right stick button), <code>start</code>, and
 					<code>select</code></p>
 				<p><code>contro.leftStick</code> and <code>contro.rightStick</code> represent the positions of the
-					controller's analog sticks as objects with x and y properties. These values range from -1 to 1, with
-					0 indicating the center position.</p>
+					analog sticks as objects with x and y properties. These values range from -1 to 1, with 0 indicating
+					the center position.</p>
 				<p>Some controllers have analog triggers, and their positions are stored as numbers ranging from 0 to 1
 					in <code>contro.leftTrigger</code> and <code>contro.rightTrigger</code>.</p>
 				<p>The <code>contro</code> object (aka <code>controllers</code>) is an array that contains all the
@@ -279,12 +278,16 @@ if (contro.pressing('lsb')) lsb.color = 'white';
 				<md id="md4-1">
 					<p>Try it out! Connect a game controller and press any button on it for it to be detected by p5play.
 					</p>
+					<p>➡️ <a href="https://openprocessing.org/sketch/2120550" target="_blank">full demo</a></p>
 				</md>
 			</div>
 		</div>
 		<div id="page-5" class="page">
 			<md id="md5-0">
 				<h2 id="touch">Touch</h2>
+				<p>You can use the <a href="https://p5js.org/reference/#/p5/touches"
+						target="_blank"><code>touches</code></a> array to get the positions of multiple touches on the
+					canvas.</p>
 				<p>Example coming soon!</p>
 			</md>
 		</div>

@@ -87,11 +87,11 @@ dots.moveTowards(mouse);
 		<div id="page-1" class="page">
 			<md id="md1-0">
 				<h2 id="arrow-function-property-setters">Arrow function property setters</h2>
-				<p>In p5play, when you set a sprite property in a group to an arrow function, each new sprite created
-					using that group will use the function to evaluate the property.</p>
-				<p>When <code>group.amount</code> gets adjusted, the group will automatically create or remove sprites
-					to match the set amount.</p>
-				<p>In this mini example, each gem sprite is assigned a random position.</p>
+				<p>If you set a group property to an arrow <code>=&gt;</code> function, each new sprite created using
+					that group will use the function to evaluate the property.</p>
+				<p>When <code>group.amount</code> is adjusted, the group will automatically create or remove sprites to
+					match the set amount.</p>
+				<p>In this mini example, each gem sprite is assigned a random position on the canvas.</p>
 			</md>
 			<script type="mie/p5" id="push-gems" horiz="">
 let player, gems;
@@ -116,7 +116,7 @@ function draw() {
 			<div class="minis horiz">
 				<md id="md1-1">
 					<h2 id="indexed-arrow-function-setters">Indexed arrow function setters</h2>
-					<p>Arrow setters can even use the sprite's index in the group!</p>
+					<p>Arrow setters can use the sprite's index in the group!</p>
 					<p>The index, <code>i</code>, is given as an input parameter to the group's arrow setters. It can be
 						used to calculate the new group sprite's properties.</p>
 				</md>
@@ -209,12 +209,11 @@ function draw() {
 				<p>p5play creates an <code>allSprites</code> group that contains all the sprites in a sketch.</p>
 			</md>
 			<script type="mie/p5" id="allSprites" horiz="">
-let box, circle;
-
 function setup() {
-	new Canvas(50, 228);
-	box = new Sprite(25, 70, 10, 90);
-	circle = new Sprite(25, 140, 10);
+	new Canvas(100, 208);
+
+	new Sprite(50, 85, 10, 90);
+	new Sprite(50, 155, 10);
 }
 
 function draw() {
@@ -299,39 +298,36 @@ function draw() {
 				<p>By default, sprites are removed when they go 10000 pixels offscreen relative to the camera's
 					position. This is to prevent the world from getting too big, which would slow down the physics
 					simulation.</p>
-				<p>To change this, set <code>allSprites.autoCull = false</code>. Use the <code>cull</code> function to
-					set a different cull boundary, and note that it can even cull sprites that don't have a physics
+				<p>To change this, set <code>allSprites.autoCull = false</code> or use the <code>cull</code> function to
+					set a different cull boundary. Note that it can even cull sprites that don't have a physics
 					collider.</p>
-				<p>An optional last parameter can be used to specify a callback function that will be called when a
-					sprite is culled. The default response to culling is to remove the sprite that exited the cull
-					boundary, but by setting your own function you can do something else. The callback function receives
-					the sprite that was culled and a total count of how many sprites were culled on that frame. Note
-					that in this example, the amount of balls decreases if more than one ball is culled in one frame.
-				</p>
+				<p>Sprites that cross the cull boundary are removed by default. As the last input parameter to the
+					<code>cull</code> function, you can insert a callback function. When called, it receives the sprite
+					that was culled and a total count of how many sprites were culled on that frame.</p>
+				<p>Note that in this example, the amount of balls decreases if more than one ball is culled in one
+					frame.</p>
 			</md>
 			<script type="mie/p5" id="cull">
 let balls;
 function setup() {
 	new Canvas(500, 192);
 	balls = new Group();
+	balls.d = 20;
 	balls.collider = 'none';
 	balls.direction = () => random(0, 360);
 	balls.speed = () => random(1, 5);
-	balls.d = 20;
 	balls.amount = 10;
 }
 function draw() {
 	clear();
-	if (balls.cull(-50)) {
-		new balls.Sprite();
-	}
+	if (balls.cull(-50)) new balls.Sprite();
 }
 			</script>
 			<md id="md6-1">
 				<h2 id="life">life</h2>
 				<p>Another way to limit how long a sprite exists is to set its <code>life</code> property, which is the
-					number of frames that the sprite exists for. When the sprite's life is up, it will be removed. This
-					is useful for creating temporary objects like projectiles and force fields.</p>
+					number of frames that the sprite exists for. When the sprite's life reaches <code>0</code>, it will
+					be removed. This is useful for creating temporary objects like projectiles and force fields.</p>
 				<p>Try out this little game! Click the mouse to create a beach ball and try keeping it in the air with
 					the water stream.</p>
 			</md>
@@ -339,8 +335,8 @@ function draw() {
 let water;
 function setup() {
 	new Canvas(500, 192);
-	noCursor();
 	world.gravity.y = 10;
+	noCursor();
 
 	water = new Group();
 	water.color = 'blue';
@@ -356,6 +352,43 @@ function draw() {
 }
 			</script>
 		</div>
+		<div id="page-7" class="page">
+			<div class="minis horiz">
+				<md id="md7-0">
+					<h2 id="draw">Draw</h2>
+					<p>Just like with the <code>sprite.draw</code> function, you can use <code>group.draw</code> to
+						manually control when groups are drawn inside the p5.js draw loop.</p>
+					<p>Any sprites not drawn manually will be automatically drawn at the end of the p5.js draw loop,
+						unless their <code>autoDraw</code> property is set to false.</p>
+					<p>Note that if you want to manually draw sprites or groups and use the camera, you'll have to
+						manually turn the camera on and off.</p>
+				</md>
+				<md id="md7-1">
+					<h2 id="update">Update</h2>
+					<p>The <code>group.update</code> function runs the <code>sprite.update</code> function of every
+						sprite in the group. To prevent automatic updating set <code>autoUpdate</code> to false.</p>
+				</md>
+			</div>
+			<script type="mie/p5" id="draw-and-update">
+let gems;
+function setup() {
+	new Canvas(500, 192);
+	gems = new Group();
+	gems.x = (i) => i * 25;
+	gems.y = (i) => i * 64;
+	gems.speed = 0.5;
+	gems.amount = 4;
+}
+function draw() {
+	clear();
+
+	gems.draw();
+
+	fill(255, 200);
+	rect(150, 0, 200, 208);
+}
+			</script>
+		</div>
 
 		<div class="break"></div>
 		<div id="toc">
@@ -368,6 +401,7 @@ function draw() {
 				<a data-page="4" href="group.html?page=4">Custom Properties</a>
 				<a data-page="5" href="group.html?page=5">Subgroups</a>
 				<a data-page="6" href="group.html?page=6">Culling</a>
+				<a data-page="7" href="group.html?page=7">Draw and Update</a>
 			</div>
 			<a id="nextPage" class="navLink">Next Page</a>
 		</div>

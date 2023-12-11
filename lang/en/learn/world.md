@@ -28,31 +28,15 @@ By default, after each time the p5.js draw function is run, p5play calls three f
 
 But you can also take manual control of these processes by calling them yourself.
 
-In the mini-example, click to toggle slow-motion!
-
-## sprite.draw and group.draw
-
-You can use the `sprite.draw` and `group.draw` functions to manually control when individual sprites and groups are drawn inside the p5.js draw loop. Any sprites not drawn manually will be automatically drawn at the end of the p5.js draw loop, unless the sprite's autoDraw property is set to false directly or by one of its parent groups. To prevent automatic drawing completely set `allSprites.autoDraw = false`.
-
-Note that if you want to manually draw sprites you'll also have to manually turn the camera on and off.
-
 # 1-1
 
 ## world.step
 
-The `world.step` function checks for collisions and calculates the positions and velocities of all sprites after progressing the physics simulation by 1/60th of a second by default. Sprites can't be progressed forward in time individually.
+The `world.step` function calculates the positions and velocities of all sprites after progressing the physics simulation by 1/60th of a second by default.
 
-Before you use `world.step` in your p5.js draw function, be sure to draw all the sprites. Otherwise, they will be drawn in the wrong position!
+Set `world.autoStep = false` to disable automatic stepping, in effect pausing time! Then you can call `world.step` manually when you want to progress the physics simulation. Only run it after all sprites have been drawn.
 
-Set `world.autoStep = false` to disable automatic stepping. Then you can call `world.step` manually whenever you want to progress the physics simulation.
-
-# 1-2
-
-## sprite.update and group.update
-
-What does `sprite.update` do? It's responsible for updating the sprite's animation and mouse events. It also runs the user's custom update functions if they set any. To prevent automatic updating completely set `allSprites.autoUpdate = false`.
-
-Why is this functionality separated from the world step? Because on a pause screen the physics world could be paused, but pause menu UI animations and mouse events could still be processed.
+This mini example shows how a time step can be provided as an input parameter, but note that the Box2D physics engine solver is only stable up to a time step of 1/30th of a second. If you want to advance the simulation by a larger amount of time, call `world.step` multiple times.
 
 # 2-0
 
