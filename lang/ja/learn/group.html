@@ -347,18 +347,16 @@ function draw() {
 			<script type="mie/p5" id="draw-and-update">
 let gems;
 function setup() {
-	new Canvas(500, 208);
+	new Canvas(500, 192);
 	gems = new Group();
-	gems.d = 5;
-	gems.x = () => random(0, 200);
-	gems.y = () => random(0, canvas.h);
+	gems.x = (i) => i * 25;
+	gems.y = (i) => i * 64;
 	gems.speed = 0.5;
-	gems.text = '️💎';
-	gems.textSize = 20;
-	gems.amount = 80;
+	gems.amount = 4;
 }
 function draw() {
 	clear();
+
 	gems.draw();
 
 	fill(255, 200);
