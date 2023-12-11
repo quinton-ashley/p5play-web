@@ -208,7 +208,7 @@ Try making the blue sprite change to red only if it's overlapping with the red s
 
 ## Switch between overlaps and collides
 
-By default if you check for an overlap between two sprites, they will no longer collide. You can override this by checking for a collision between the sprites.
+When you set an overlap relationship between two sprites, they will no longer collide, but you can make them have a collision relationship again by using a collision function.
 
 In this example, pressing the space key temporarily allows the player to ghost through the wall.
 
