@@ -29,9 +29,9 @@
 		<div id="page-0" class="page">
 			<md id="md0-0">
 				<h2 id="canvas">Canvas</h2>
-				<p>The <code>Canvas</code> class is a wrapper around p5play's version of the p5.js
-					<code>createCanvas</code> function, which is used to create an HTML5 canvas element. p5play's
-					version also provides a few extra features.</p>
+				<p>The <code>Canvas</code> constructor creates a new HTML5 <code>canvas</code> element and adds it to
+					your webpage.</p>
+				<p>It's like the p5.js <code>createCanvas</code> function, but with some added features!</p>
 				<p>Use <code>canvas.w</code> and <code>canvas.h</code> to get the width and height of the canvas.</p>
 			</md>
 			<md id="md0-1">
@@ -40,6 +40,9 @@
 				<p>You can also pass an aspect ratio to the Canvas constructor. This will create the largest possible
 					canvas that fits within the window, while maintaining the given aspect ratio. For example, <code>new
 						Canvas('2:1')</code> will create a canvas that is twice as wide as it is tall.</p>
+				<p>Another added feature is the <code>"fullscreen"</code> preset, <code>new Canvas(1920, 1080,
+						'fullscreen')</code> will letterbox the canvas to fit within the window, while maintaining a
+					1920x1080 resolution.</p>
 			</md>
 		</div>
 		<div id="page-1" class="page">
@@ -47,11 +50,9 @@
 				<h2 id="pixelated-mode">pixelated mode</h2>
 				<p>Another <code>Canvas</code> feature is the <code>"pixelated"</code> preset. Use it for making 8-bit
 					or 16-bit style retro games!</p>
-				<p>By default, the <code>"pixelated"</code> preset scales the canvas to fit the screen while retaining
-					its aspect ratio, but you can also define a custom scale by passing a multiplier after the preset
-					name.</p>
-				<p>For example, <code>"pixelated x2"</code> will create a canvas that's displayed at twice the size of
-					the specified width and height.</p>
+				<p>This preset will make the canvas fit the screen, unless you specify a multiplier. For example,
+					<code>"pixelated x2"</code> will create a canvas that's displayed at twice the size of the specified
+					width and height.</p>
 				<p>To display all sprites at integer coordinates, set <code>allSprites.pixelPerfect</code> to true and
 					use integer coordinates for the camera's position and zoom.</p>
 				<p>Note that modern fonts are vector based, so they won't look very good in pixelated mode. Load a
@@ -96,8 +97,8 @@ function draw() {
 				<p>The <code>resizeCanvas</code> or <code>canvas.resize</code> functions resize the canvas to a
 					specified width and height.</p>
 				<p>Visually the canvas will shrink or extend to the new size. Sprites will not change position.</p>
-				<p>If you would prefer to keep the camera focused on the same area, then you must manually adjust the
-					camera position after calling this function.</p>
+				<p>If you'd prefer to keep the camera focused on the same area, manually adjust the camera position
+					after calling this function.</p>
 			</md>
 		</div>
 

@@ -28,30 +28,38 @@
 		<div class="break"></div>
 		<div id="page-0" class="page">
 			<md id="md0-0">
-				<h2 id="canvas">Canvas</h2>
-				<p>La clase <code>Canvas</code> es un envoltorio alrededor de la versión de p5play de la función
-					<code>createCanvas</code> de p5.js, que se utiliza para crear un elemento de canvas HTML5. La
-					versión de p5play también proporciona algunas características adicionales.</p>
-				<p>Usa <code>canvas.w</code> y <code>canvas.h</code> para obtener el ancho y la altura del canvas.</p>
+				<h2 id="lienzo">Lienzo</h2>
+				<p>El constructor <code>Canvas</code> crea un nuevo elemento <code>canvas</code> HTML5 y lo añade a tu
+					página web.</p>
+				<p>¡Es como la función <code>createCanvas</code> de p5.js, pero con algunas características adicionales!
+				</p>
+				<p>Usa <code>canvas.w</code> y <code>canvas.h</code> para obtener el ancho y el alto del lienzo.</p>
 			</md>
 			<md id="md0-1">
-				<p>Si no se pasan parámetros a <code>new Canvas()</code>, se creará un canvas que llenará toda la
-					ventana.</p>
-				<p>También puedes pasar una proporción de aspecto al constructor de Canvas. Esto creará el canvas más
-					grande posible que se ajuste dentro de la ventana, manteniendo la proporción de aspecto dada. Por
-					ejemplo, <code>new Canvas('2:1')</code> creará un canvas que es el doble de ancho que alto.</p>
+				<p>Si no se pasan parámetros a <code>new Canvas()</code>, se creará un lienzo que llena toda la ventana.
+				</p>
+				<p>También puedes pasar una relación de aspecto al constructor de Canvas. Esto creará el lienzo más
+					grande posible que se ajuste dentro de la ventana, manteniendo la relación de aspecto dada. Por
+					ejemplo, <code>new Canvas('2:1')</code> creará un lienzo que es el doble de ancho que de alto.</p>
+				<p>Otra característica añadida es el preajuste "pantalla completa", <code>new Canvas(1920, 1080,
+						'fullscreen')</code> ajustará el lienzo para que encaje dentro de la ventana, manteniendo una
+					resolución de 1920x1080.</p>
 			</md>
 		</div>
 		<div id="page-1" class="page">
 			<md id="md1-0">
 				<h2 id="modo-pixelado">modo pixelado</h2>
-				<p>Otra característica añadida es el preset "pixelado". ¡Úsalo para crear juegos retro al estilo de
-					8-bit o 16-bit!</p>
-				<p>Por defecto, el preset "pixelado" escala el canvas para que se ajuste a la pantalla mientras mantiene
-					su proporción de aspecto, pero también puedes definir una escala personalizada pasando un número
-					después del nombre del preset.</p>
-				<p>Por ejemplo, "pixelado x2" creará un canvas que se mostrará al doble del tamaño del ancho y la altura
+				<p>Otra característica de <code>Canvas</code> es el preajuste "pixelado". ¡Úsalo para hacer juegos retro
+					de estilo 8 bits o 16 bits!</p>
+				<p>Este preajuste hará que el lienzo se ajuste a la pantalla, a menos que especifiques un multiplicador.
+					Por ejemplo, "pixelado x2" creará un lienzo que se muestra al doble del tamaño del ancho y alto
 					especificados.</p>
+				<p>Para mostrar todos los sprites en coordenadas enteras, establece <code>allSprites.pixelPerfect</code>
+					en verdadero y usa coordenadas enteras para la posición y el zoom de la cámara.</p>
+				<p>Ten en cuenta que las fuentes modernas están basadas en vectores, por lo que no se verán muy bien en
+					modo pixelado. Carga en su lugar una fuente de mapa de bits con la función <a
+						href="https://p5js.org/reference/#/p5/loadFont" target="_blank"><code>loadFont</code></a> de
+					p5.js.</p>
 			</md>
 			<div class="minis horiz">
 				<script type="mie/p5" id="normal sized pixels" lines="9" hide-editor="">

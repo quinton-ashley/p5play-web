@@ -1,26 +1,32 @@
 # 0-0
 
-## Canvas
+## Lienzo
 
-La clase `Canvas` es un envoltorio alrededor de la versión de p5play de la función `createCanvas` de p5.js, que se utiliza para crear un elemento de canvas HTML5. La versión de p5play también proporciona algunas características adicionales.
+El constructor `Canvas` crea un nuevo elemento `canvas` HTML5 y lo añade a tu página web.
 
-Usa `canvas.w` y `canvas.h` para obtener el ancho y la altura del canvas.
+¡Es como la función `createCanvas` de p5.js, pero con algunas características adicionales!
+
+Usa `canvas.w` y `canvas.h` para obtener el ancho y el alto del lienzo.
 
 # 0-1
 
-Si no se pasan parámetros a `new Canvas()`, se creará un canvas que llenará toda la ventana.
+Si no se pasan parámetros a `new Canvas()`, se creará un lienzo que llena toda la ventana.
 
-También puedes pasar una proporción de aspecto al constructor de Canvas. Esto creará el canvas más grande posible que se ajuste dentro de la ventana, manteniendo la proporción de aspecto dada. Por ejemplo, `new Canvas('2:1')` creará un canvas que es el doble de ancho que alto.
+También puedes pasar una relación de aspecto al constructor de Canvas. Esto creará el lienzo más grande posible que se ajuste dentro de la ventana, manteniendo la relación de aspecto dada. Por ejemplo, `new Canvas('2:1')` creará un lienzo que es el doble de ancho que de alto.
+
+Otra característica añadida es el preajuste "pantalla completa", `new Canvas(1920, 1080, 'fullscreen')` ajustará el lienzo para que encaje dentro de la ventana, manteniendo una resolución de 1920x1080.
 
 # 1-0
 
 ## modo pixelado
 
-Otra característica añadida es el preset "pixelado". ¡Úsalo para crear juegos retro al estilo de 8-bit o 16-bit!
+Otra característica de `Canvas` es el preajuste "pixelado". ¡Úsalo para hacer juegos retro de estilo 8 bits o 16 bits!
 
-Por defecto, el preset "pixelado" escala el canvas para que se ajuste a la pantalla mientras mantiene su proporción de aspecto, pero también puedes definir una escala personalizada pasando un número después del nombre del preset.
+Este preajuste hará que el lienzo se ajuste a la pantalla, a menos que especifiques un multiplicador. Por ejemplo, "pixelado x2" creará un lienzo que se muestra al doble del tamaño del ancho y alto especificados.
 
-Por ejemplo, "pixelado x2" creará un canvas que se mostrará al doble del tamaño del ancho y la altura especificados.
+Para mostrar todos los sprites en coordenadas enteras, establece `allSprites.pixelPerfect` en verdadero y usa coordenadas enteras para la posición y el zoom de la cámara.
+
+Ten en cuenta que las fuentes modernas están basadas en vectores, por lo que no se verán muy bien en modo pixelado. Carga en su lugar una fuente de mapa de bits con la función [`loadFont`](https://p5js.org/reference/#/p5/loadFont) de p5.js.
 
 # 2-0
 

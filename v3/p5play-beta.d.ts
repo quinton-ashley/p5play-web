@@ -1682,12 +1682,13 @@ class Group extends Array<Sprite> {
      * @type {p5.Image}
      */
     get image(): p5.Image;
+    set amount(arg: number);
     /**
      * Depending on the value that the amount property is set to, the group will
      * either add or remove sprites.
      * @type {Number}
      */
-    set amount(arg: any);
+    get amount(): number;
     set velocity(arg: p5.Vector);
     /**
      * The sprite's velocity vector {x, y}

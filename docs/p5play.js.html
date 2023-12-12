@@ -5222,11 +5222,15 @@ p5.prototype.registerMethod('init', function p5playInit() {
 		set image(val) {
 			this.ani = val;
 		}
+
 		/**
 		 * Depending on the value that the amount property is set to, the group will
 		 * either add or remove sprites.
 		 * @type {Number}
 		 */
+		get amount() {
+			return this.length;
+		}
 		set amount(val) {
 			let diff = val - this.length;
 			let shouldAdd = diff > 0;
@@ -6280,7 +6284,7 @@ p5.prototype.registerMethod('init', function p5playInit() {
 			for (let s of sprites) s.___step();
 			for (let g of groups) g.___step();
 
-			dispatchEvent(new Event('p5play_world_step'));
+			this.p.canvas.dispatchEvent(new Event('p5play_world_step'));
 			if (this.autoStep) this.autoStep = null;
 		}
 
@@ -7914,7 +7918,7 @@ p5.prototype.registerMethod('init', function p5playInit() {
 	this.sleep = (milliseconds) => {
 		if (!milliseconds) {
 			return new Promise((resolve) => {
-				addEventListener('p5play_world_step', resolve);
+				this.canvas.addEventListener('p5play_world_step', resolve);
 			});
 		}
 		return this.delay(milliseconds);
@@ -8025,74 +8029,52 @@ p5.prototype.registerMethod('init', function p5playInit() {
 	 * browser from scrolling the page when the user is playing a game
 	 * using common keyboard commands.
 	 *
-	 * @param {Number} width|ratio
+	 * @param {Number} width
 	 * @param {Number} height
+	 * @param {String} preset - can be 'fullscreen' or 'pixelated'
 	 */
 	this.createCanvas = function () {
 		let args = [...arguments];
-		let isFullScreen = false;
-		let pixelated = false;
-		let w, h, ratio;
+		let isFullScreen, isPixelated, scale;
 		if (typeof args[0] == 'string') {
-			if (args[0].includes(':')) ratio = args[0].split(':');
-			else {
-				args[2] = args[0];
-				args[0] = undefined;
+			let ratio = args[0].split(':');
+			if (ratio[1]) {
+				args[2] = args[1];
+				isFullScreen = true;
+				let rW = Number(ratio[0]);
+				let rH = Number(ratio[1]);
+				let w = window.innerWidth;
+				let h = window.innerWidth * (rH / rW);
+				if (h > window.innerHeight) {
+					w = window.innerHeight * (rW / rH);
+					h = window.innerHeight;
+				}
+				args[0] = Math.round(w);
+				args[1] = Math.round(h);
+			} else {
+				args = [];
 			}
-			if (args[1] == 'fullscreen') isFullScreen = true;
 		}
 		if (!args[0]) {
 			args[0] = window.innerWidth;
 			args[1] = window.innerHeight;
 			isFullScreen = true;
-		} else if (typeof args[0] == 'number' &amp;&amp; typeof args[1] != 'number') {
-			args[2] = args[1];
-			args[1] = args[0];
 		}
-		let scale;
 		if (typeof args[2] == 'string') {
-			let rend = args[2].toLowerCase();
-			if (rend != 'p2d' &amp;&amp; rend != 'webgl') {
-				rend = rend.split(' ');
-				args.pop();
-			}
+			let rend = args.pop().toLowerCase().split(' ');
 			if (rend[0] == 'pixelated') {
-				pixelated = true;
+				isPixelated = true;
 				if (!rend[1]) isFullScreen = true;
 				else scale = Number(rend[1].slice(1));
-				ratio = [args[0], args[1]];
 			}
-			if (rend[0] == 'fullscreen') {
-				isFullScreen = true;
-			}
+			if (rend[0] == 'fullscreen') isFullScreen = true;
 		}
-		if (ratio) {
-			let rW = Number(ratio[0]);
-			let rH = Number(ratio[1]);
-			if (!scale) {
-				w = window.innerWidth;
-				h = window.innerWidth * (rH / rW);
-				if (h > window.innerHeight) {
-					w = window.innerHeight * (rW / rH);
-					h = window.innerHeight;
-				}
-			} else {
-				w = rW * scale;
-				h = rH * scale;
-			}
-			w = Math.round(w);
-			h = Math.round(h);
-
-			if (!pixelated) {
-				args[0] = w;
-				args[1] = h;
-			}
-		}
-		let can = _createCanvas.call(pInst, ...args);
-		this.canvas.tabIndex = 0;
-		this.canvas.w = args[0];
-		this.canvas.h = args[1];
-		this.canvas.addEventListener('keydown', function (e) {
+		let c = _createCanvas.call(pInst, ...args);
+		if (c.canvas) c = c.canvas;
+		c.tabIndex = 0;
+		c.w = c.width;
+		c.h = c.height;
+		c.addEventListener('keydown', function (e) {
 			if (
 				e.key == ' ' ||
 				e.key == '/' ||
@@ -8104,21 +8086,21 @@ p5.prototype.registerMethod('init', function p5playInit() {
 				e.preventDefault();
 			}
 		});
-		this.canvas.addEventListener('mouseover', () => {
+		c.addEventListener('mouseover', () => {
 			this.mouse.isOnCanvas = true;
 			this.mouse.active = true;
 		});
-		this.canvas.addEventListener('mouseleave', () => {
+		c.addEventListener('mouseleave', () => {
 			this.mouse.isOnCanvas = false;
 		});
-		this.canvas.addEventListener('touchstart', (e) => e.preventDefault());
+		c.addEventListener('touchstart', (e) => e.preventDefault());
 		// this stops the right click menu from appearing
-		this.canvas.addEventListener('contextmenu', (e) => e.preventDefault());
-		this.canvas.resize = this.resizeCanvas;
-		this.canvas.hw = this.canvas.w * 0.5;
-		this.canvas.hh = this.canvas.h * 0.5;
-		this.camera.x = this.canvas.hw;
-		this.camera.y = this.canvas.hh;
+		c.addEventListener('contextmenu', (e) => e.preventDefault());
+		c.resize = this.resizeCanvas;
+		c.hw = c.w * 0.5;
+		c.hh = c.h * 0.5;
+		this.camera.x = c.hw;
+		this.camera.y = c.hh;
 		if (!userDisabledP5Errors) p5.disableFriendlyErrors = false;
 
 		/* prevent callout to copy image, etc when tap to hold */
@@ -8153,25 +8135,33 @@ main {
 	height: 100%;
 }`;
 		}
-		if (pixelated) {
+		style += `\n#${c.id} {`;
+		if (isPixelated) {
 			style += `
-#${this.canvas.id} {
 	image-rendering: pixelated;
 	font-smooth: never;
 	-webkit-font-smoothing: none;
-	width: ${w}px!important;
-	height: ${h}px!important;
-}`;
+`;
 		}
+		if (!scale) {
+			if (c.w > c.h) style += 'width: 100%!important; height: auto!important;';
+			else style += 'height: 100%!important; width: auto!important;';
+		} else {
+			style += `
+	width: ${c.w * scale}px!important;
+	height: ${c.h * scale}px!important;
+`;
+		}
+		style += '\n}';
 		let styleElem = document.createElement('style');
 		styleElem.innerHTML = style;
 		document.head.appendChild(styleElem);
 
-		if (pixelated) {
+		if (isPixelated) {
 			pInst.pixelDensity(1);
 			pInst.noSmooth();
 			pInst.textFont('monospace');
-			this.canvas.getContext('2d').imageSmoothingEnabled = false;
+			c.getContext('2d').imageSmoothingEnabled = false;
 		}
 
 		let idx = navigator.userAgent.indexOf('iPhone OS');
@@ -8192,7 +8182,7 @@ main {
 			this.p5play.os.platform = pl;
 		}
 
-		return can;
+		return c;
 	};
 
 	// this is only for jsdoc
@@ -9986,7 +9976,7 @@ p5.prototype.registerMethod('post', function p5playPostDraw() {
 <br class="clear">
 
 <footer>
-    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Sat Dec 09 2023 11:53:49 GMT-0500 (Colombia Standard Time) using the Minami theme.
+    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Mon Dec 11 2023 22:46:40 GMT-0500 (Colombia Standard Time) using the Minami theme.
 </footer>
 
 <script>prettyPrint();</script>
