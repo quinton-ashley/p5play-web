@@ -95,7 +95,15 @@ async function start() {
 			}
 		};
 
-		mie.load();
+		if (typeof mie != 'undefined') {
+			(async () => {
+				let data = await fetch('ace/completions.json');
+				let json = await data.json();
+				mie.lang.p5.completions = json;
+
+				mie.load();
+			})();
+		}
 		loadPage();
 	}
 }

@@ -230,12 +230,6 @@ mie.load = () => {
 
 mie.lang.p5 = {};
 
-(async () => {
-	let data = await fetch('ace/completions.json');
-	let json = await data.json();
-	mie.lang.p5.completions = json;
-})();
-
 mie.lang.p5.functionNames = [
 	'preload',
 	'setup',
