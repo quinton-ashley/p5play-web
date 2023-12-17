@@ -72,35 +72,61 @@ Nuestro equipo de Girls Who Code recomienda altamente esta biblioteca a cualquie
 
 # r3
 
-"Muchas gracias por todo el trabajo Quinton. Con esta correcta integración de físicas, es posible que comience a utilizar p5play de nuevo en mis clases."
+“He agregado una unidad centrada en p5play a mi currículo de Codificación Artística y Diseño de Juegos como una forma de introducir la programación orientada a objetos. Los estudiantes se adaptaron rápidamente a los sprites y grupos y estaban emocionados por toda la interactividad incorporada en p5play. A través de los juegos, los estudiantes pudieron solidificar su comprensión de las propiedades y métodos sin siquiera darse cuenta de que estaban aprendiendo algunos de los conceptos centrales de la programación orientada a objetos.
+
+Mis estudiantes pasaron tiempo haciendo juegos usando la biblioteca p5play y estaban inmensamente orgullosos de sus logros. Desde que hemos usado p5play, mis estudiantes ahora pueden entender mejor las clases e incluso han escrito algunas de las suyas propias.”
 
 # r4
 
-"Añadí una unidad centrada en p5play a mi currículo de Codificación Artística y Diseño de Juegos como una forma de presentar la programación orientada a objetos. Los estudiantes se adaptaron rápidamente a los sprites y grupos y estaban más que emocionados con toda la interactividad incorporada en p5play. A través de los juegos, los estudiantes pudieron solidificar su comprensión de las propiedades y métodos sin siquiera darse cuenta de que estaban aprendiendo algunos de los conceptos fundamentales de la programación orientada a objetos.
-
-Mis estudiantes pasaron tiempo haciendo juegos usando la biblioteca p5play y estaban inmensamente orgullosos de sus logros. Desde que hemos utilizado p5play, mis estudiantes ahora pueden entender mejor las clases y han escrito incluso algunas de las suyas propias."
+“He estado usando variaciones de p5play durante varios años en mi clase de CS de secundaria. Aunque antes era útil, no era nada como lo que has hecho con la versión 3. ¡Me ENCANTA! Incluso mis estudiantes más jóvenes pueden tener éxito y aprender conceptos básicos de codificación porque realmente no necesitan conocer toda la matemática y física detrás del código ahora. Además, todo es consistente y racionalizado, así que las nuevas ideas tienen sentido. Luego está tu increíble nuevo sitio web con tantos ejemplos fáciles de entender. Puedo enviar a mis estudiantes avanzados directamente al sitio web de p5play y pueden explorar y construir lo que quieran. ¡Muchas gracias por todo tu trabajo!”
 
 # r5
 
-"p5play ha sido una gran adición a nuestro currículo. Nos ha permitido explorar una salida más creativa para aprender la programación orientada a objetos y ha sido invaluable en los proyectos de sus estudiantes para sus exámenes.
+“p5play ha sido una gran adición a nuestro currículo. Nos ha permitido explorar una salida más creativa para aprender programación orientada a objetos y ha sido invaluable en los proyectos de los estudiantes para sus exámenes.
 
-Desde que introdujimos p5 y p5play, hemos visto un aumento de más del 100% en los estudiantes y ahora estamos viendo grandes beneficios en el aprendizaje de los estudiantes. Recomendaría altamente la introducción de p5 & p5play en su currículo. Ahora hemos desarrollado una serie personalizada de tutoriales en video para permitir que más escuelas y colegios en el Reino Unido introduzcan p5play a su currículo."
+Desde que introdujimos p5 y p5play, hemos visto un aumento de más del 100% en los estudiantes y ahora estamos viendo enormes beneficios en el aprendizaje de los estudiantes. Recomendaría encarecidamente introducir p5 y p5play en su currículo. Ahora hemos desarrollado una serie de tutoriales en video a medida para permitir que más escuelas y colegios en el Reino Unido introduzcan p5play en su currículo.”
 
 # r6
 
-"En general, no puedo recomendar p5play lo suficiente. Ha proporcionado una forma increíblemente fácil de llevar mis habilidades de desarrollo de juegos al siguiente nivel sin tener que aprender un software de desarrollo de juegos complicado. Ya seas un desarrollador experimentado o recién estés comenzando, creo que encontrarás que p5play es una herramienta valiosa para tener en tu arsenal."
+“¡Muchas gracias por todo el trabajo, Quinton. Con esta integración de física adecuada, podría comenzar a usar p5play de nuevo en mis clases!”
 
 # r7
 
-"Usar p5play en JavaScript para hacer programas gráficos es mucho mejor que aprender Python, porque puedes ver cómo tu código de programa influye en algo en pantalla." - Estudiante en Wyke
+“En general, no puedo recomendar p5play lo suficiente. Ha proporcionado una manera increíblemente fácil de llevar mis habilidades de desarrollo de juegos al siguiente nivel sin tener que aprender algún software de desarrollo de juegos complicado. Ya sea que seas un desarrollador experimentado o simplemente estés comenzando, creo que encontrarás que p5play es una herramienta valiosa en tu arsenal.”
 
 # r8
 
-"Aprender p5play realmente me ha ayudado a interesarme más en la codificación, ya que facilita la creación de juegos. Hace que el proceso sea menos consumidor de tiempo y más divertido." - Estudiante en Wyke
+“Usar la biblioteca p5play en JavaScript para hacer programas gráficos es mucho mejor que aprender Python, porque puedes ver cómo tu código de programa influye en algo en la pantalla.” - Estudiante en Wyke
 
 # r9
 
-"Con GCSE, usamos Tkinter en Python que fue útil para hacer aplicaciones básicas. Sin embargo, ahora usando p5play podemos hacer juegos mucho más avanzados que son interesantes y prácticos." - Estudiante en Wyke
+“¡Aprender p5play realmente me ha ayudado a interesarme más en la codificación, ya que hace que crear juegos sea muy fácil. Hace que el proceso sea menos tedioso y más divertido!” - Estudiante en Wyke
+
+# r10
+
+“He usado Tkinter en Python, que era útil para hacer aplicaciones básicas. Sin embargo, ahora usando p5play podemos hacer juegos mucho más avanzados que son interesantes y prácticos.” - Estudiante en Wyke
+
+# r11
+
+## ¡Haznos saber qué piensas! 😄
+
+Envía tu opinión sobre p5play a [info@p5play.org](mailto:info@p5play.org)
+
+# 14
+
+## ¡Únete a más de 25,000 usuarios activos!
+
+### Comienza con nuestras páginas interactivas de [Aprender](learn/sprite.html).
+
+# 15
+
+## ¿Eres profesor? 👩‍🏫
+
+Usar p5play en tu currículo de secundaria o preparatoria es una excelente manera de interesar a tus estudiantes en la programación orientada a objetos.
+
+Quinton Ashley, el creador de p5play v3, ofrece sesiones de Desarrollo Profesional para profesores. Incluso si no eres un "jugador" y no tienes experiencia en diseño de juegos, ¡puedes convertirte en un experto en enseñar p5play! A tus estudiantes les encantará hacer sus propios juegos y arte interactivo. Durante mi curso de PD recibirás consejos sobre diseño de currículo, análisis de trabajos de estudiantes, recursos seleccionados para que tus estudiantes los usen, ¡y más!
+
+Consulta por correo electrónico: [info@p5play.org](mailto:info@p5play.org)
 
 # credits
 
