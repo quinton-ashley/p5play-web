@@ -118,16 +118,6 @@ p5play に関するあなたのレビューを[info@p5play.org](mailto:info@p5pl
 
 ### 私たちのインタラクティブな[Learn](learn/sprite.html)ページで始めましょう。
 
-# 15
-
-## 教師ですか？ 👩‍🏫
-
-中学校または高校のカリキュラムで p5play を使用することは、生徒たちがオブジェクト指向プログラミングに興味を持つ素晴らしい方法です。
-
-p5play v3 の作成者であるクイントン・アシュリーは、教師のためのプロフェッショナルデベロップメントセッションを提供しています。ゲーム好きでなくても、ゲームデザインの経験がなくても、p5play の教え方のエキスパートになることができます！生徒たちは自分たちのゲームやインタラクティブなアートを作るのが大好きになります。私の PD コースでは、カリキュラムデザインに関するアドバイス、生徒の作品の分析、生徒が使用するためのキュレートされたリソースなどが提供されます！
-
-メールでお問い合わせください：[info@p5play.org](mailto:info@p5play.org)
-
 # credits
 
 p5play.org は Quinton Ashley によって作成されました。Copyright ©2022-2023。[info@p5play.org](mailto:info@p5play.org) p5play の[旧バージョン](https://quinton-ashley.github.io/p5play-web-archive/v2)を探していますか？

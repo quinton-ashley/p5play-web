@@ -58,7 +58,7 @@ Available on [npm](https://www.npmjs.com/package/p5play): `npm i p5play`
 
 # r1
 
-“I have found the p5play library to be an invaluable resource for introducing students to game design and development. Our team chose to use this library for our Game Design Summer Program due to its many customizable features, [well documented resources](learn/sprite.html), and easy-to-use API which make it accessible for students of all ages and skill levels.
+“I have found the p5play library to be an invaluable resource for introducing students to game design and development. Our team chose to use this library for our Game Design Summer Program due to its many customizable features, well documented resources, and easy-to-use API which make it accessible for students of all ages and skill levels.
 
 Due to the many methods and properties included in this library, students are able to quickly bring their game visions to life with code. These games range from basic catcher games to games with multiple levels and challenging features.
 
@@ -68,7 +68,7 @@ Our Girls Who Code team highly recommends this library to anyone interested in g
 
 # r2
 
-“I absolutely love what you've done with the [Learn pages](learn/sprite.html), what a cool reference for important sprite properties, looking forward to seeing more of that. Digging through the source a bit I'd say [p5play v3] retains a ton of the appeal of earlier versions and I was able to orient pretty quick.”
+“I absolutely love what you've done with the Learn pages, what a cool reference for important sprite properties, looking forward to seeing more of that. Digging through the source a bit I'd say [p5play v3] retains a ton of the appeal of earlier versions and I was able to orient pretty quick.”
 
 # r3
 
@@ -120,13 +120,23 @@ Send your review of p5play to [info@p5play.org](mailto:info@p5play.org)
 
 # 15
 
-## Are you a teacher? 👩‍🏫
+## Are you a teacher? 👩‍🏫 🧑‍🏫 👨‍🏫
 
 Using p5play in your middle or high school curriculum is a great way to get your students interested in object oriented programming.
 
 Quinton Ashley, the creator of p5play v3, offers Professional Development sessions for teachers. Even if you're not a "gamer" and have no experience with game design, you can become an expert at teaching p5play! Your students will love making their own games and interactive art. During my PD course you'll receive advice on curriculum design, analysis of student work, curated resources for your students to use, and more!
 
-Inquire via email: [info@p5play.org](mailto:info@p5play.org)
+Inquire about Professional Development via email: [info@p5play.org](mailto:info@p5play.org)
+
+# 16
+
+## Are you a student? 🙋‍♀️ 🙋 🙋‍♂️
+
+If your school has a Computer Science teacher, tell them about p5play!
+
+Quinton Ashley, the creator of p5play v3, also teaches a Game Design Fundamentals course. Level up your programming skills by learning how to use p5play. I'll help you design your own game and share it with the world!
+
+Ask your parents to send an email to [info@p5play.org](mailto:info@p5play.org) and inquire about private tutoring.
 
 # credits
 

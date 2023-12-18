@@ -118,16 +118,6 @@ Envía tu opinión sobre p5play a [info@p5play.org](mailto:info@p5play.org)
 
 ### Comienza con nuestras páginas interactivas de [Aprender](learn/sprite.html).
 
-# 15
-
-## ¿Eres profesor? 👩‍🏫
-
-Usar p5play en tu currículo de secundaria o preparatoria es una excelente manera de interesar a tus estudiantes en la programación orientada a objetos.
-
-Quinton Ashley, el creador de p5play v3, ofrece sesiones de Desarrollo Profesional para profesores. Incluso si no eres un "jugador" y no tienes experiencia en diseño de juegos, ¡puedes convertirte en un experto en enseñar p5play! A tus estudiantes les encantará hacer sus propios juegos y arte interactivo. Durante mi curso de PD recibirás consejos sobre diseño de currículo, análisis de trabajos de estudiantes, recursos seleccionados para que tus estudiantes los usen, ¡y más!
-
-Consulta por correo electrónico: [info@p5play.org](mailto:info@p5play.org)
-
 # credits
 
 p5play.org fue creado por Quinton Ashley. Copyright ©2022-2023. [info@p5play.org](mailto:info@p5play.org) ¿Buscas la [versión legado](https://quinton-ashley.github.io/p5play-web-archive/v2) de p5play?
