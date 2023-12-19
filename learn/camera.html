@@ -35,6 +35,9 @@
 		<div id="page-0" class="page">
 			<md id="md0-0">
 				<h2 id="camera-movement">Camera Movement</h2>
+				<p>The <code>camera</code> is center positioned and located in the middle of the canvas by default.</p>
+				<p>The camera can be moved by changing its <code>x</code> and <code>y</code> values or by using the
+					<code>camera.moveTo</code> function.</p>
 				<p>In this example the camera follows the player's x axis movement.</p>
 			</md>
 			<script type="mie/p5" id="sidescrolling-camera">
@@ -61,11 +64,11 @@ function draw() {
 		<div id="page-1" class="page">
 			<md id="md1-0">
 				<h2 id="camera-zoom">Camera Zoom</h2>
-				<p><code>camera.zoom</code> changes the scale that sprites and other elements in the world are drawn at.
+				<p><code>zoom</code> changes the scale that sprites and other elements in the world are drawn at.
 					Increasing the zoom will make sprites appear larger, and decreasing the zoom will make sprites
 					appear smaller.</p>
-				<p><code>camera.zoomTo(target, speed)</code> is an async function that can be used to smoothly zoom the
-					camera in and out. It takes an optional second parameter, the amount it will zoom per frame.</p>
+				<p><code>zoomTo(target, speed)</code> is an async function that can be used to smoothly zoom the camera
+					in and out. It takes an optional second parameter, the amount it will zoom per frame.</p>
 			</md>
 			<script type="mie/p5" id="zoom-in-and-out">
 function setup() {
@@ -140,11 +143,10 @@ function draw() {
 		<div id="page-3" class="page">
 			<md id="md3-0">
 				<h2 id="mouse-events-with-the-camera">Mouse Events with the Camera</h2>
-				<p>In this example the camera is moving left and right using a sin wave.</p>
-				<p>The big sprite is drawn in the world space when the camera is on. The big sprite doesn't move, but it
-					looks like it does because the camera is moving.</p>
-				<p>The small sprite is drawn when the camera is off. If you wanted to make a UI element in your game,
-					like a pause button sprite, you should make it when the camera is off.</p>
+				<p>None of the sprites in this example are moving! The camera is just moving left and right.</p>
+				<p>The big sprite is drawn in the world space when the camera is on. The small sprite is drawn when the
+					camera is off.</p>
+				<p>Note that <code>sprite.mouse</code> functions still work, whether the camera is on or off.</p>
 			</md>
 			<script type="mie/p5" id="mouse-camera">
 let big, small;

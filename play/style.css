@@ -1,12 +1,14 @@
 #showcase {
 	display: flex;
 	margin-top: 16px;
+	margin-left: 1vw;
+	gap: 1vw;
 }
 
 /* COLUMNS */
 
 .col {
-	width: 24vw;
+	width: 15.5vw;
 	padding: 0;
 	display: flex;
 	flex-direction: column;
@@ -14,21 +16,44 @@
 }
 
 .col-lg {
-	width: 36vw;
-	padding-left: 1vw;
-	padding-right: 1vw;
+	width: 32vw;
+	/* padding-left: 1vw; */
+	/* padding-right: 1vw; */
+}
+
+#lg1 {
+	flex-wrap: wrap;
+	flex-direction: row;
 }
 
 #made_with_p5play {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	height: 11vw;
+	height: 18vw;
+}
+
+/* animation scale in and out */
+
+@keyframes scale-ani {
+	0% {
+		transform: scale(0.95);
+	}
+
+	50% {
+		transform: scale(1);
+	}
+
+	100% {
+		transform: scale(0.95);
+	}
 }
 
 #made_with_p5play img {
-	max-width: 20vw;
-	max-height: 10vw;
+	max-width: 32vw;
+	max-height: 18vw;
+	/* use scale-ani */
+	animation: scale-ani 2s ease-in-out infinite;
 }
 
 /* CARD */
@@ -36,25 +61,26 @@
 .card {
 	background-color: var(--secondary);
 	color: var(--primary);
-	height: 11vw;
+	height: 8.5vw;
 	border-radius: 10px;
 	overflow: hidden;
 }
 
 .card-lg {
-	height: 23vw;
+	height: 18vw;
 }
 
 .thumbnail {
-	display: block;
+	display: flex;
 	width: 100%;
-	height: 8vw;
+	justify-content: center;
+	height: 9vw;
 	align-items: center;
 	overflow: hidden;
 }
 
 .card-lg .thumbnail {
-	height: 20vw;
+	height: 18vw;
 }
 
 .thumbnail img {
@@ -70,14 +96,17 @@
 }
 
 .info {
+	margin-top: -3vw;
 	height: 3vw;
-	display: flex;
+	display: none;
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
 	padding-left: 0.5vw;
 	padding-right: 0.5vw;
 	font-size: 18px;
+	background-color: var(--secondary);
+	position: relative;
 }
 
 .info p {

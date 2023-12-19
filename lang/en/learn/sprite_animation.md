@@ -4,7 +4,7 @@
 
 An animation is a series of images that are displayed one after the other at a fast enough rate to give the appearance of motion.
 
-The `loadAni` function has a three different modes: sequence, list, and sprite sheet.
+The `loadAni` function has three different modes: sequence, list, and sprite sheet.
 
 In this mini example, the cloud breathing animation is loaded using a numbered sequence of images given the path to the first image and the index of the last image in the sequence.
 
@@ -85,6 +85,8 @@ Atlas objects can have the following properties:
 
 In the "hero" example the size of the hero sprite is set to 32x32 pixels in the `Sprite` constructor. That size is used as a multiplier to the row value given.
 
+The `ani.offset` property is used to adjust the position of an animation relative to the sprite's position.
+
 Click this link to see the full [questKid](assets/questKid.png) sprite sheet used in the example.
 
 If you'd like to truly appreciate how good p5play is, try comparing the code from my example to [this Phaser demo](https://labs.phaser.io/view.html?src=src/animation/create%20animation%20from%20sprite%20sheet.js). Ha!
@@ -96,8 +98,6 @@ I recommend making every frame in an animation the same size and putting them in
 ## anis
 
 Every sprite and group has an `animations` / `anis` object that stores its animations. The keys are animation names and values are animation objects. It works like groups do, utilizing soft and dynamic inheritance.
-
-The `ani.offset` property is used to adjust the position of an animation relative to the sprite's position.
 
 When `sprite.pixelPerfect` is set to true, the sprite will be drawn at integer coordinates, while retaining the precise position of its collider. This is useful for pixel art games!
 

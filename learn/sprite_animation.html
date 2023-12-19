@@ -37,7 +37,7 @@
 				<h2 id="how-to-load-animations">How to load animations</h2>
 				<p>An animation is a series of images that are displayed one after the other at a fast enough rate to
 					give the appearance of motion.</p>
-				<p>The <code>loadAni</code> function has a three different modes: sequence, list, and sprite sheet.</p>
+				<p>The <code>loadAni</code> function has three different modes: sequence, list, and sprite sheet.</p>
 				<p>In this mini example, the cloud breathing animation is loaded using a numbered sequence of images
 					given the path to the first image and the index of the last image in the sequence.</p>
 				<p>The <code>animation</code> function is similar to the p5.js <code>image</code> function. Use it in
@@ -134,11 +134,11 @@ function setup() {
 function draw() {
 	clear();
 
+	if (kb.presses('s')) ani.stop();
 	if (kb.presses('p')) ani.play();
 	if (kb.presses('o')) ani.play(0);
 	if (kb.presses('ArrowDown')) ani.frameDelay--;
 	if (kb.presses('ArrowUp')) ani.frameDelay++;
-	if (kb.presses('s')) ani.stop();
 	if (kb.presses('r')) ani.rewind();
 	if (kb.presses('l')) ani.loop();
 	if (kb.presses('n')) ani.noLoop();
@@ -259,6 +259,8 @@ function draw() {
 						<code>delay</code>/<code>frameDelay</code>, and <code>rotation</code>.</p>
 					<p>In the "hero" example the size of the hero sprite is set to 32x32 pixels in the
 						<code>Sprite</code> constructor. That size is used as a multiplier to the row value given.</p>
+					<p>The <code>ani.offset</code> property is used to adjust the position of an animation relative to
+						the sprite's position.</p>
 					<p>Click this link to see the full <a href="assets/questKid.png" target="_blank">questKid</a> sprite
 						sheet used in the example.</p>
 					<p>If you'd like to truly appreciate how good p5play is, try comparing the code from my example to
@@ -273,8 +275,6 @@ function draw() {
 					<p>Every sprite and group has an <code>animations</code> / <code>anis</code> object that stores its
 						animations. The keys are animation names and values are animation objects. It works like groups
 						do, utilizing soft and dynamic inheritance.</p>
-					<p>The <code>ani.offset</code> property is used to adjust the position of an animation relative to
-						the sprite's position.</p>
 					<p>When <code>sprite.pixelPerfect</code> is set to true, the sprite will be drawn at integer
 						coordinates, while retaining the precise position of its collider. This is useful for pixel art
 						games!</p>

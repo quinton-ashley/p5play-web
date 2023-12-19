@@ -2,15 +2,19 @@
 
 ## Camera Movement
 
+The `camera` is center positioned and located in the middle of the canvas by default.
+
+The camera can be moved by changing its `x` and `y` values or by using the `camera.moveTo` function.
+
 In this example the camera follows the player's x axis movement.
 
 # 1-0
 
 ## Camera Zoom
 
-`camera.zoom` changes the scale that sprites and other elements in the world are drawn at. Increasing the zoom will make sprites appear larger, and decreasing the zoom will make sprites appear smaller.
+`zoom` changes the scale that sprites and other elements in the world are drawn at. Increasing the zoom will make sprites appear larger, and decreasing the zoom will make sprites appear smaller.
 
-`camera.zoomTo(target, speed)` is an async function that can be used to smoothly zoom the camera in and out. It takes an optional second parameter, the amount it will zoom per frame.
+`zoomTo(target, speed)` is an async function that can be used to smoothly zoom the camera in and out. It takes an optional second parameter, the amount it will zoom per frame.
 
 # 2-0
 
@@ -28,8 +32,8 @@ UI or HUD sprites, represented by orange squares in this examples, should be dra
 
 ## Mouse Events with the Camera
 
-In this example the camera is moving left and right using a sin wave.
+None of the sprites in this example are moving! The camera is just moving left and right.
 
-The big sprite is drawn in the world space when the camera is on. The big sprite doesn't move, but it looks like it does because the camera is moving.
+The big sprite is drawn in the world space when the camera is on. The small sprite is drawn when the camera is off.
 
-The small sprite is drawn when the camera is off. If you wanted to make a UI element in your game, like a pause button sprite, you should make it when the camera is off.
+Note that `sprite.mouse` functions still work, whether the camera is on or off.

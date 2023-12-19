@@ -3,46 +3,59 @@ let projects = [
 		title: 'Red Remover',
 		author: '@Nirmay',
 		url: 'https://thegamebox.ca/redremover.html',
-		size: 1
+		size: 1,
+		video: true
 	},
-	// {
-	// 	title: 'Into the Mines',
-	// 	author: '@Tezumies',
-	// 	url: 'https://tezumie.github.io/into-the-mines/',
-	// 	size: 1
-	// },
 	{
-		title: 'Desert Golfing',
-		author: '@mtrc',
-		url: 'https://editor.p5js.org/mtrc/sketches/Zc9cjBS3R',
+		title: 'Into the Mines',
+		author: '@Tezumies',
+		url: 'https://tezumie.github.io/into-the-mines/',
 		size: 1
 	},
 	{
-		title: 'Break Those Blocks',
-		author: '@moonflower2022',
-		url: 'https://moonflower2022.github.io/break-those-blocks/',
+		title: 'Skull Knight',
+		author: '@pannawit0',
+		url: 'https://pannawit0.github.io/SkullKnight/',
 		size: 1
 	},
 	{
 		title: 'Fruit 2048',
 		author: '@arissazh',
 		url: 'https://arissazh.github.io/final-project/',
-		size: 1
+		size: 1,
+		video: true
+	},
+	{
+		title: 'Desert Golfing',
+		author: '@mtrc',
+		url: 'https://editor.p5js.org/mtrc/sketches/Zc9cjBS3R',
+		size: 1,
+		video: true
+	},
+	{
+		title: 'Break Those Blocks',
+		author: '@moonflower2022',
+		url: 'https://moonflower2022.github.io/break-those-blocks/',
+		size: 1,
+		video: true
 	},
 	{
 		title: 'Puzzling Magnetism Recharged',
 		author: '@kevin98799',
-		url: 'https://kevin98799.itch.io/puzzling-magnetism-recharged'
+		url: 'https://kevin98799.itch.io/puzzling-magnetism-recharged',
+		video: true
 	},
 	{
 		title: 'Forrest Life',
 		author: '@Axiom',
-		url: 'https://quinton-ashley.github.io/Squirrel/Code/index.html'
+		url: 'https://quinton-ashley.github.io/Squirrel/Code/index.html',
+		video: true
 	},
 	{
 		title: 'The Lake House',
 		author: '@Axiom',
-		url: 'https://quinton-ashley.github.io/TheLakeHouse/Code/index.html'
+		url: 'https://quinton-ashley.github.io/TheLakeHouse/Code/index.html',
+		video: true
 	},
 	{
 		title: 'Lily Leap',
@@ -56,7 +69,8 @@ let projects = [
 	}
 ];
 
-let largeCardsPerCol = 2;
+let largeCardsCount = 0;
+let smallCardsCount = 0;
 
 let assets = 'https://quinton-ashley.github.io/p5play-assets/play/';
 
@@ -67,11 +81,15 @@ for (let i = 0; i < projects.length; i++) {
 
 	proj.id = proj.title.toLowerCase().replace(/ /g, '_');
 	let imgUrl = assets + proj.id + '.jpg'; // images must be jpg
-	let vidUrl = assets + proj.id + '.mp4'; // videos must be mp4
 
 	let card = document.createElement('div');
 	card.classList.add('card');
-	card.dataset.vidUrl = vidUrl;
+
+	if (proj.video) {
+		let vidUrl = assets + proj.id + '.mp4'; // videos must be mp4
+		card.dataset.vidUrl = vidUrl;
+	}
+
 	if (proj.size == 1) card.classList.add('card-lg');
 	card.innerHTML = `
 <a class="thumbnail" href="${proj.url}" target="_blank">
@@ -86,20 +104,27 @@ for (let i = 0; i < projects.length; i++) {
 	card.thumbnailImg = card.querySelector('.thumbnail img');
 
 	if (proj.size == 1) {
-		if (i % largeCardsPerCol == 0) cols[0].append(card);
-		else cols[2].append(card);
+		if (largeCardsCount % 2 == 0) cols[0].append(card);
+		else cols[4].append(card);
+		largeCardsCount++;
 	} else {
-		cols[1].append(card);
+		if (smallCardsCount % 2 == 0) cols[2].append(card);
+		else cols[3].append(card);
+		smallCardsCount++;
+	}
+
+	function playVid(card) {
+		card.thumbnailImg.style.display = 'none';
+		card.vid.width = card.offsetWidth;
+		card.vid.style.display = 'block';
+		card.vid.play();
 	}
 
 	card.addEventListener('mouseenter', () => {
-		const cardWidth = card.offsetWidth;
 		const thumbnailHeight = card.thumbnailImg.offsetHeight;
 		card.thumbnail.style.height = thumbnailHeight;
 
-		card.thumbnailImg.style.display = 'none';
-
-		if (!card.vid) {
+		if (!card.vid && card.dataset.vidUrl) {
 			let vid = document.createElement('video');
 			vid.src = card.dataset.vidUrl;
 			vid.poster = card.thumbnailImg.src;
@@ -108,17 +133,17 @@ for (let i = 0; i < projects.length; i++) {
 			vid.loop = true;
 			card.thumbnail.append(vid);
 			card.vid = vid;
+			vid.addEventListener('canplay', () => {
+				playVid(card);
+			});
 		}
 
-		card.vid.width = cardWidth;
-		card.vid.style.display = 'block';
-		card.vid.play();
+		if (card.vid) playVid(card);
 	});
 
 	card.addEventListener('mouseleave', () => {
-		card.thumbnailImg.style.display = 'block';
-
 		if (card.vid) {
+			card.thumbnailImg.style.display = 'block';
 			card.vid.pause();
 			card.vid.style.display = 'none';
 		}
