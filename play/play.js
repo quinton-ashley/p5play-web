@@ -102,6 +102,7 @@ for (let i = 0; i < projects.length; i++) {
 
 	card.thumbnail = card.querySelector('.thumbnail');
 	card.thumbnailImg = card.querySelector('.thumbnail img');
+	card.info = card.querySelector('.info');
 
 	if (proj.size == 1) {
 		if (largeCardsCount % 2 == 0) cols[0].append(card);
@@ -122,9 +123,13 @@ for (let i = 0; i < projects.length; i++) {
 
 	card.addEventListener('mouseenter', () => {
 		const thumbnailHeight = card.thumbnailImg.offsetHeight;
-		card.thumbnail.style.height = thumbnailHeight;
+		card.thumbnail.style.height = thumbnailHeight + 'px';
 
-		if (!card.vid && card.dataset.vidUrl) {
+		card.info.style.display = 'flex';
+
+		if (!card.vid && !card.dataset.vidUrl) return;
+
+		if (!card.vid) {
 			let vid = document.createElement('video');
 			vid.src = card.dataset.vidUrl;
 			vid.poster = card.thumbnailImg.src;
@@ -136,12 +141,11 @@ for (let i = 0; i < projects.length; i++) {
 			vid.addEventListener('canplay', () => {
 				playVid(card);
 			});
-		}
-
-		if (card.vid) playVid(card);
+		} else playVid(card);
 	});
 
 	card.addEventListener('mouseleave', () => {
+		card.info.style.display = 'none';
 		if (card.vid) {
 			card.thumbnailImg.style.display = 'block';
 			card.vid.pause();
