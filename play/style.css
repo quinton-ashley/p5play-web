@@ -32,24 +32,9 @@
 	height: 18vw;
 }
 
-@keyframes scale-ani {
-	0% {
-		transform: scale(0.95);
-	}
-
-	50% {
-		transform: scale(1);
-	}
-
-	100% {
-		transform: scale(0.95);
-	}
-}
-
 #made_with_p5play img {
 	max-width: 32vw;
 	max-height: 18vw;
-	animation: scale-ani 2s ease-in-out infinite;
 }
 
 /* CARD */
@@ -67,6 +52,7 @@
 }
 
 .thumbnail {
+	position: relative;
 	display: flex;
 	width: 100%;
 	justify-content: center;
@@ -92,47 +78,61 @@
 }
 
 .info {
-	margin-top: -36px;
+	position: relative;
+	height: 0;
 	display: none;
 	flex-direction: row;
-	justify-content: space-between;
 	align-items: center;
-	font-size: 18px;
+	font-size: 14px;
+	z-index: 100;
+}
 
-	position: relative;
+.card-lg .info {
+	font-size: 18px;
+}
+
+.info-top {
+	justify-content: start;
+	top: 10px;
+}
+
+.card-lg .info-top {
+	top: 18px;
+}
+
+.info-bottom {
+	justify-content: end;
+	top: -14px;
+}
+
+.card-lg .info-bottom {
+	top: -18px;
 }
 
 .info p {
 	margin: 0;
 	background-color: var(--secondary);
+	padding: 4px;
+	max-width: 100%;
+	height: 16px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-wrap: nowrap;
+	text-overflow: ellipsis;
+}
+
+.card-lg .info p {
+	height: 22px;
 	padding: 8px;
 }
 
 .info .title {
-	border-top-right-radius: 10px;
+	font-weight: bold;
+	border-bottom-right-radius: 10px;
 }
 
 .info .author {
 	border-top-left-radius: 10px;
-}
-
-.title {
-	max-width: 50%;
-	height: fit-content;
-	font-weight: bold;
-	overflow: hidden;
-	white-space: nowrap;
-	text-wrap: nowrap;
-	text-overflow: ellipsis;
-}
-
-.author {
-	max-width: 50%;
-	height: fit-content;
-	overflow: hidden;
-	white-space: nowrap;
-	text-wrap: nowrap;
-	text-overflow: ellipsis;
 }
 
 .card:hover {

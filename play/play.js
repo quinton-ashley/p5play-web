@@ -92,17 +92,20 @@ for (let i = 0; i < projects.length; i++) {
 
 	if (proj.size == 1) card.classList.add('card-lg');
 	card.innerHTML = `
+<div class="info info-top">
+	<p class="title">${proj.title}</p>
+</div>
 <a class="thumbnail" href="${proj.url}" target="_blank">
 	<img src="${imgUrl}" alt="${proj.title} image">
 </a>
-<div class="info">
-	<p class="title">${proj.title}</p>
+<div class="info info-bottom">
 	<p class="author">by ${proj.author}</p>
 </div>`;
 
 	card.thumbnail = card.querySelector('.thumbnail');
 	card.thumbnailImg = card.querySelector('.thumbnail img');
-	card.info = card.querySelector('.info');
+	card.info0 = card.querySelector('.info-top');
+	card.info1 = card.querySelector('.info-bottom');
 
 	if (proj.size == 1) {
 		if (largeCardsCount % 2 == 0) cols[0].append(card);
@@ -125,19 +128,20 @@ for (let i = 0; i < projects.length; i++) {
 		const thumbnailHeight = card.thumbnailImg.offsetHeight;
 		card.thumbnail.style.height = thumbnailHeight + 'px';
 
-		card.info.style.display = 'flex';
+		card.info0.style.display = 'flex';
+		card.info1.style.display = 'flex';
 
 		if (!card.vid && !card.dataset.vidUrl) return;
 
 		if (!card.vid) {
 			let vid = document.createElement('video');
+			card.vid = vid;
 			vid.src = card.dataset.vidUrl;
 			vid.poster = card.thumbnailImg.src;
 			vid.muted = true;
 			vid.autoplay = true;
 			vid.loop = true;
 			card.thumbnail.append(vid);
-			card.vid = vid;
 			vid.addEventListener('canplay', () => {
 				playVid(card);
 			});
@@ -145,7 +149,9 @@ for (let i = 0; i < projects.length; i++) {
 	});
 
 	card.addEventListener('mouseleave', () => {
-		card.info.style.display = 'none';
+		card.info0.style.display = 'none';
+		card.info1.style.display = 'none';
+
 		if (card.vid) {
 			card.thumbnailImg.style.display = 'block';
 			card.vid.pause();
