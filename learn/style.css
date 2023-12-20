@@ -53,7 +53,6 @@ body {
 }
 
 article {
-	display: none;
 	margin: auto;
 	justify-content: center;
 	flex-wrap: wrap;
