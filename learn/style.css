@@ -53,7 +53,7 @@ body {
 }
 
 article {
-	display: flex;
+	display: none;
 	margin: auto;
 	justify-content: center;
 	flex-wrap: wrap;
@@ -335,28 +335,28 @@ code {
 	row-gap: 20px;
 }
 
-.page > md,
-.page > div {
+.page>md,
+.page>div {
 	width: 45%;
 }
 
-.page > .minis,
-.page > .mie {
+.page>.minis,
+.page>.mie {
 	width: 49%;
 	/* padding: 2%; */
 }
 
 nav,
-.page > md,
-.page > div:not(.mie):not(.break):not(.minis),
-.minis > md {
+.page>md,
+.page>div:not(.mie):not(.break):not(.minis),
+.minis>md {
 	padding: 2%;
 	/* border: 2px solid var(--dark); */
 	border-radius: 10px;
 	background-color: var(--secondary);
 }
 
-.minis > md {
+.minis>md {
 	padding: 4%;
 }
 
@@ -418,19 +418,19 @@ nav {
 	color: var(--pink1);
 }
 
-.page > md > :first-child,
-.page > div:not(.mie):not(.break):not(.minis) > :first-child,
-.page > div > md > :first-child {
+.page>md> :first-child,
+.page>div:not(.mie):not(.break):not(.minis)> :first-child,
+.page>div>md> :first-child {
 	margin-top: 0;
 }
 
-.page > md > :last-child,
-.page > div:not(.mie):not(.break):not(.minis) > :last-child,
-.page > div > md > :last-child {
+.page>md> :last-child,
+.page>div:not(.mie):not(.break):not(.minis)> :last-child,
+.page>div>md> :last-child {
 	margin-bottom: 0;
 }
 
-.page > .full {
+.page>.full {
 	width: 96%;
 }
 
@@ -442,7 +442,7 @@ nav {
 	box-shadow: 4px 4px 0px var(--blue0);
 }
 
-.page > .break {
+.page>.break {
 	width: 100%;
 	margin-top: 0;
 	margin-bottom: 0;
@@ -458,11 +458,11 @@ nav {
 	row-gap: 20px;
 }
 
-.minis.horiz > div {
+.minis.horiz>div {
 	width: 100%;
 }
 
-.minis > div {
+.minis>div {
 	width: 48%;
 }
 
@@ -497,6 +497,7 @@ footer p {
 }
 
 @media screen and (max-width: 1030px) {
+
 	html,
 	body {
 		overflow-x: hidden;
@@ -534,29 +535,29 @@ footer p {
 		justify-content: center;
 	}
 
-	.page > .mie {
+	.page>.mie {
 		width: 100%;
 	}
 
-	.page > md,
-	.page > div:not(.mie):not(.break):not(.minis) {
+	.page>md,
+	.page>div:not(.mie):not(.break):not(.minis) {
 		width: 100%;
 		border: 0;
 	}
 
-	.page > .mie {
+	.page>.mie {
 		max-width: 500px;
 	}
 
-	.minis > md {
+	.minis>md {
 		padding: 20px;
 	}
 
-	.minis > .mie {
+	.minis>.mie {
 		width: 49%;
 	}
 
-	.page > .minis {
+	.page>.minis {
 		justify-content: center;
 		width: 100%;
 		padding: 0;
@@ -567,7 +568,7 @@ footer p {
 		order: -3;
 	}
 
-	#topNav > hr:first-of-type {
+	#topNav>hr:first-of-type {
 		order: -2;
 	}
 

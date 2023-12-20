@@ -41,7 +41,11 @@ let pages = document.getElementsByClassName('page');
 let pageNav = document.getElementById('pageNav');
 let currentPage = 0;
 
+let article;
+
 async function start() {
+	article = document.getElementsByTagName('article')[0];
+
 	function loadScript(src) {
 		return new Promise(function (resolve) {
 			let script = document.createElement('script');
@@ -110,6 +114,8 @@ async function start() {
 start();
 
 function loadPage(pageNum) {
+	article.style.display = 'none';
+
 	pageNum = pageNum ?? args.page ?? 0;
 
 	for (let i = 0; i < pages.length; i++) {
@@ -135,6 +141,8 @@ function loadPage(pageNum) {
 	currentPage = parseInt(pageNum);
 
 	document.getElementById('toc').style.display = 'flex';
+
+	article.style.display = 'flex';
 }
 
 function setEditorThemes() {
