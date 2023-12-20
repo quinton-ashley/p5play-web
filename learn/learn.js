@@ -44,7 +44,7 @@ let currentPage = 0;
 let article;
 
 async function start() {
-	article = document.getElementsByTagName('article')[0];
+	article = document.body.children[0];
 
 	function loadScript(src) {
 		return new Promise(function (resolve) {

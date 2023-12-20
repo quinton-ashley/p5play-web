@@ -215,4 +215,6 @@ for (let refPage in refs) {
 	for (let link of links) {
 		div.append(link);
 	}
+
+	document.body.children[0].style.display = 'flex';
 }
