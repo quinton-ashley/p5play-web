@@ -10,7 +10,7 @@
 </head>
 
 <body class="dark">
-	<article>
+	<article style="display: none;">
 		<nav id="topNav">
 			<a href="index.html" id="logoLink" class="active">
 				<img alt="p5play logo" src="/assets/p5play_logo.svg" class="logo">
@@ -152,7 +152,8 @@ function draw() {
 				<p>Disabling a wheel joint motor is like putting a car in neutral, it causes the wheel to roll freely.
 					The joint's speed must be set to zero for the wheel to brake.</p>
 				<p>By default, wheel joints have a <code>maxPower</code> of 1000, <code>springiness</code> of 0.1,
-					<code>damping</code> of 0.7, and angle of attachment <code>angle</code> of 90 degrees.</p>
+					<code>damping</code> of 0.7, and angle of attachment <code>angle</code> of 90 degrees.
+				</p>
 				<p>Try driving the car in this example! Can you make it to the end of the road? Customize the car by
 					changing the position of its wheels and the angle at which they're attached.</p>
 			</md>
@@ -283,14 +284,14 @@ function draw() {
 	</article>
 
 	<script src="/v3/q5.min.js"></script>
-<script src="/v3/planck.min.js"></script>
-<script src="/v3/p5play.min.js"></script>
-<script>
-window.mie = { autoLoad: false };
+	<script src="/v3/planck.min.js"></script>
+	<script src="/v3/p5play.min.js"></script>
+	<script>
+		window.mie = { autoLoad: false };
 
 	</script>
 	<script src="/learn/mie.js"></script>
-<script src="/learn/learn.js"></script>
+	<script src="/learn/learn.js"></script>
 </body>
 
 </html>

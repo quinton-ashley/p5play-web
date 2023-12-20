@@ -10,7 +10,7 @@
 </head>
 
 <body class="dark">
-	<article>
+	<article style="display: none;">
 		<nav id="topNav">
 			<a href="index.html" id="logoLink" class="active">
 				<img alt="p5play logo" src="/assets/p5play_logo.svg" class="logo">
@@ -49,8 +49,7 @@
 				<p>このプリセットは、マルチプライヤーを指定しない限り、画面にキャンバスをフィットさせます。例えば、<code>"pixelated x2"</code>は、指定された幅と高さの 2
 					倍のサイズで表示されるキャンバスを作成します。</p>
 				<p>すべてのスプライトを整数座標で表示するには、<code>allSprites.pixelPerfect</code>を true に設定し、カメラの位置とズームに整数座標を使用してください。</p>
-				<p>現代のフォントはベクトルベースなので、ピクセル化モードではあまり良く見えません。代わりに p5.js の<a
-						href="https://p5js.org/reference/#/p5/loadFont"
+				<p>現代のフォントはベクトルベースなので、ピクセル化モードではあまり良く見えません。代わりに p5.js の<a href="https://p5js.org/reference/#/p5/loadFont"
 						target="_blank"><code>loadFont</code></a>関数でビットマップフォントを読み込んでください。</p>
 			</md>
 			<div class="minis horiz">
@@ -109,14 +108,14 @@ function draw() {
 	</article>
 
 	<script src="/v3/q5.min.js"></script>
-<script src="/v3/planck.min.js"></script>
-<script src="/v3/p5play.min.js"></script>
-<script>
-window.mie = { autoLoad: false };
+	<script src="/v3/planck.min.js"></script>
+	<script src="/v3/p5play.min.js"></script>
+	<script>
+		window.mie = { autoLoad: false };
 
 	</script>
 	<script src="/learn/mie.js"></script>
-<script src="/learn/learn.js"></script>
+	<script src="/learn/learn.js"></script>
 </body>
 
 </html>

@@ -10,7 +10,7 @@
 </head>
 
 <body class="dark">
-	<article>
+	<article style="display: none;">
 		<nav id="topNav">
 			<a href="index.html" id="logoLink" class="active">
 				<img alt="p5play logo" src="/assets/p5play_logo.svg" class="logo">
@@ -174,7 +174,8 @@ function draw() {
 					grupos. Las funciones son:</p>
 				<p><code>colisiona</code>, <code>colisionando</code>,
 					<code>colisionado</code><br><code>superpone</code>, <code>superponiendo</code>,
-					<code>superpuesto</code></p>
+					<code>superpuesto</code>
+				</p>
 				<p>En lugar de utilizar estas funciones en declaraciones <code>if</code>, puedes proporcionarles una
 					función de devolución de llamada como segundo parámetro. La función de devolución de llamada se
 					ejecutará cuando ocurra el evento de colisión o superposición. La función de devolución de llamada
@@ -259,11 +260,14 @@ function draw() {
 			<md id="md5-0">
 				<h2 id="sub-grupos">Sub Grupos</h2>
 				<p>En este mini ejemplo hay dos subgrupos del grupo <code>boxes</code>: <code>smallBoxes</code> y
-					<code>bigBoxes</code>.</p>
+					<code>bigBoxes</code>.
+				</p>
 				<p>Los nuevos sprites creados usando el grupo <code>bigBoxes</code> heredarán rasgos del grupo
-					<code>boxes</code> pero no del grupo <code>smallBoxes</code>.</p>
+					<code>boxes</code> pero no del grupo <code>smallBoxes</code>.
+				</p>
 				<p>El grupo <code>boxes</code> contiene todos los sprites en los grupos <code>smallBoxes</code> y
-					<code>bigBoxes</code>.</p>
+					<code>bigBoxes</code>.
+				</p>
 				<p>La función <code>group.removeAll</code> se puede usar para eliminar todos los sprites de un grupo.
 				</p>
 			</md>
@@ -306,7 +310,8 @@ function draw() {
 					ralentizaría la simulación física.</p>
 				<p>Para cambiar esto, establece <code>allSprites.autoCull = false</code> y usa la función
 					<code>group.cull</code> para establecer un límite de culling diferente. Incluso puede cull sprites
-					que no tienen un collider físico.</p>
+					que no tienen un collider físico.
+				</p>
 				<p>Un último parámetro opcional se puede utilizar para especificar una función de callback que se
 					llamará cuando un sprite sea cullado. La respuesta por defecto al culling es eliminar el sprite que
 					salió del límite de culling pero al establecer tu propia función puedes hacer algo más. La función
@@ -419,15 +424,15 @@ function draw() {
 	</article>
 
 	<!-- <script src="https://cdn.jsdelivr.net/npm/p5@1/lib/p5.js"></script> -->
-<script src="/v3/q5.min.js"></script>
-<script src="/v3/planck.min.js"></script>
-<script src="/v3/p5play.min.js"></script>
-<script>
-window.mie = { autoLoad: false };
+	<script src="/v3/q5.min.js"></script>
+	<script src="/v3/planck.min.js"></script>
+	<script src="/v3/p5play.min.js"></script>
+	<script>
+		window.mie = { autoLoad: false };
 
 	</script>
 	<script src="/learn/mie.js"></script>
-<script src="/learn/learn.js"></script>
+	<script src="/learn/learn.js"></script>
 </body>
 
 </html>

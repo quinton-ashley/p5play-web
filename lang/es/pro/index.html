@@ -10,7 +10,7 @@
 </head>
 
 <body class="dark">
-	<article>
+	<article style="display: none;">
 		<nav id="topNav">
 			<a href="../index.html" id="logoLink" class="active">
 				<img alt="p5play logo" src="/assets/p5play_logo.svg" class="logo">
@@ -57,8 +57,7 @@
 							ahora para apoyar el desarrollo de p5play!</p>
 					</md>
 					<p>
-						<a id="patreon-brand" href="https://www.patreon.com/p5play"
-							aria-label="Patreon page for p5play">
+						<a id="patreon-brand" href="https://www.patreon.com/p5play" aria-label="Patreon page for p5play">
 							<img id="patreon-logo" src="/assets/brands/patreon_logo.png" alt="">
 							<img src="/assets/brands/patreon_brand.png" alt="patreon brand" height="28px">
 						</a>
@@ -81,43 +80,42 @@
 	</article>
 
 	<script src="/learn/main.js"></script>
-<script src="
+	<script src="
 		https://cdn.jsdelivr.net/npm/jwt-decode@3.1.2/build/jwt-decode.min.js
 		"></script>
 	<script src="/pro/pro.js"></script>
-<style>
-#auth {
-	display: none;
-}
+	<style>
+		#auth {
+			display: none;
+		}
 
-.login {
-	font-size: 32px;
-	font-weight: bold;
-	display: flex;
-	justify-content: center;
-	gap: 50px;
-}
+		.login {
+			font-size: 32px;
+			font-weight: bold;
+			display: flex;
+			justify-content: center;
+			gap: 50px;
+		}
 
-md p:first-child {
-	margin-top: 0;
-}
+		md p:first-child {
+			margin-top: 0;
+		}
 
-#patreon-logo {
-	height: 42px;
-}
+		#patreon-logo {
+			height: 42px;
+		}
 
-#patreon-brand {
-	display: flex;
-	align-items: center;
-	height: 42px;
-	gap: 20px;
-	width: min-content;
-}
+		#patreon-brand {
+			display: flex;
+			align-items: center;
+			height: 42px;
+			gap: 20px;
+			width: min-content;
+		}
 
-body.dark #patreon-brand {
-	filter: invert(90%);
-}
-
+		body.dark #patreon-brand {
+			filter: invert(90%);
+		}
 	</style>
 
 </body>

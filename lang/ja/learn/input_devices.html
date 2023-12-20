@@ -10,7 +10,7 @@
 </head>
 
 <body class="dark">
-	<article>
+	<article style="display: none;">
 		<nav id="topNav">
 			<a href="index.html" id="logoLink" class="active">
 				<img alt="p5play logo" src="/assets/p5play_logo.svg" class="logo">
@@ -151,8 +151,8 @@ function draw() {
 				<p>デフォルトのマウス入力は「left」ボタンで、トラックパッドでの単一指のクリックです。また、'right'（二本指クリック）と 'center' も使用できます。</p>
 				<p><code>mouse.x</code> と <code>mouse.y</code> はマウスのキャンバス上の位置を格納します。</p>
 				<p><code>mouse.visible</code> は、マウスが表示されるかどうかを決定するブール値です。</p>
-				<p><code>mouse.cursor</code> は <a
-						href="https://developer.mozilla.org/en-US/docs/Web/CSS/cursor">カーソルスタイル</a> に設定できます。デフォルトは
+				<p><code>mouse.cursor</code> は <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/cursor">カーソルスタイル</a>
+					に設定できます。デフォルトは
 					'default' で、他のオプションには 'grab'、'move'、'pointer'、'wait' などがあります。</p>
 			</md>
 			<script type="mie/p5" id="mouse.visible">
@@ -218,9 +218,11 @@ function draw() {
 			<md id="md4-0">
 				<h2 id="ゲームコントローラ">ゲームコントローラ</h2>
 				<p><code>contro</code> オブジェクトは、ゲームコントローラのボタンの入力状態を提供します:</p>
-				<p><code>a</code>、<code>b</code>、<code>x</code>、<code>y</code>、<code>l</code>（左バンパー）、<code>r</code>（右バンパー）、<code>lt</code>（左トリガー）、<code>rt</code>（右トリガー）、<code>up</code>、<code>down</code>、<code>left</code>、<code>right</code>（D
+				<p>
+					<code>a</code>、<code>b</code>、<code>x</code>、<code>y</code>、<code>l</code>（左バンパー）、<code>r</code>（右バンパー）、<code>lt</code>（左トリガー）、<code>rt</code>（右トリガー）、<code>up</code>、<code>down</code>、<code>left</code>、<code>right</code>（D
 					パッド）、<code>lsb</code>（左スティックボタン）、<code>rsb</code>（右スティックボタン）、<code>start</code>、および
-					<code>select</code></p>
+					<code>select</code>
+				</p>
 				<p><code>contro.leftStick</code> と <code>contro.rightStick</code> は、コントローラのアナログスティックの位置を x と y
 					プロパティを持つオブジェクトとして表します。これらの値は -1 から 1 の範囲で、0 は中央位置を示します。</p>
 				<p>一部のコントローラにはアナログトリガーがあり、その位置は <code>contro.leftTrigger</code> と <code>contro.rightTrigger</code> に 0
@@ -228,7 +230,8 @@ function draw() {
 				<p><code>contro</code> オブジェクト（別名 <code>controllers</code>）は、Web
 					ブラウザによって検出されたすべての接続されたゲームコントローラを含む配列です。インデックスを使用して接続されたコントローラにアクセスできます。例えば、<code>contro[0]</code> と
 					<code>contro[1]</code> は最初のコントローラと 2 番目のコントローラです。JavaScript の仕組みにより、<code>contro</code> を使用して
-					<code>contro[0]</code> の入力状態を取得できます。</p>
+					<code>contro[0]</code> の入力状態を取得できます。
+				</p>
 			</md>
 			<div class="minis horiz">
 				<script type="mie/p5" base-2="" hidden="">
@@ -295,14 +298,14 @@ if (contro.pressing('lsb')) lsb.color = 'white';
 	</article>
 
 	<script src="/v3/q5.min.js"></script>
-<script src="/v3/planck.min.js"></script>
-<script src="/v3/p5play.min.js"></script>
-<script>
-window.mie = { autoLoad: false };
+	<script src="/v3/planck.min.js"></script>
+	<script src="/v3/p5play.min.js"></script>
+	<script>
+		window.mie = { autoLoad: false };
 
 	</script>
 	<script src="/learn/mie.js"></script>
-<script src="/learn/learn.js"></script>
+	<script src="/learn/learn.js"></script>
 </body>
 
 </html>

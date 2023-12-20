@@ -10,7 +10,7 @@
 </head>
 
 <body class="dark">
-	<article>
+	<article style="display: none;">
 		<nav id="topNav">
 			<a href="index.html" id="logoLink" class="active">
 				<img alt="p5play logo" src="/assets/p5play_logo.svg" class="logo">
@@ -259,12 +259,13 @@ function draw() {
 					<p><code>x</code>, <code>y</code>, <code>pos</code>, <code>w</code>/<code>width</code>,
 						<code>h</code>/<code>height</code>, <code>size</code>/<code>frameSize</code>, <code>row</code>,
 						<code>col</code>, <code>frames</code>/<code>frameCount</code>,
-						<code>delay</code>/<code>frameDelay</code> y <code>rotation</code>.</p>
+						<code>delay</code>/<code>frameDelay</code> y <code>rotation</code>.
+					</p>
 					<p>En el ejemplo del "héroe", el tamaño del sprite del héroe se establece en 32x32 píxeles en el
 						constructor <code>Sprite</code>. Ese tamaño se utiliza como un multiplicador para el valor de la
 						fila proporcionado.</p>
-					<p>Haz clic en este enlace para ver la hoja de sprites completa <a
-							href="assets/questKid.png">questKid</a> utilizada en el ejemplo.</p>
+					<p>Haz clic en este enlace para ver la hoja de sprites completa <a href="assets/questKid.png">questKid</a>
+						utilizada en el ejemplo.</p>
 					<p>Si deseas apreciar realmente lo bueno que es p5play, compara el código de mi ejemplo con <a
 							href="https://labs.phaser.io/view.html?src=src/animation/create%20animation%20from%20sprite%20sheet.js">esta
 							demostración de Phaser</a>. ¡Ja!</p>
@@ -453,14 +454,14 @@ if (hero.ani.name != 'jump' && hero.ani.name != 'roll') {
 	</article>
 
 	<script src="/v3/q5.min.js"></script>
-<script src="/v3/planck.min.js"></script>
-<script src="/v3/p5play.min.js"></script>
-<script>
-window.mie = { autoLoad: false };
+	<script src="/v3/planck.min.js"></script>
+	<script src="/v3/p5play.min.js"></script>
+	<script>
+		window.mie = { autoLoad: false };
 
 	</script>
 	<script src="/learn/mie.js"></script>
-<script src="/learn/learn.js"></script>
+	<script src="/learn/learn.js"></script>
 </body>
 
 </html>

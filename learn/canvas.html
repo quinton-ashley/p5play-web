@@ -10,7 +10,7 @@
 </head>
 
 <body class="dark">
-	<article>
+	<article style="display: none;">
 		<nav id="topNav">
 			<a href="index.html" id="logoLink" class="active">
 				<img alt="p5play logo" src="/assets/p5play_logo.svg" class="logo">
@@ -52,7 +52,8 @@
 					or 16-bit style retro games!</p>
 				<p>This preset will make the canvas fit the screen, unless you specify a multiplier. For example,
 					<code>"pixelated x2"</code> will create a canvas that's displayed at twice the size of the specified
-					width and height.</p>
+					width and height.
+				</p>
 				<p>To display all sprites at integer coordinates, set <code>allSprites.pixelPerfect</code> to true and
 					use integer coordinates for the camera's position and zoom.</p>
 				<p>Note that modern fonts are vector based, so they won't look very good in pixelated mode. Load a
@@ -117,14 +118,14 @@ function draw() {
 	</article>
 
 	<script src="/v3/q5.min.js"></script>
-<script src="/v3/planck.min.js"></script>
-<script src="/v3/p5play.min.js"></script>
-<script>
-window.mie = { autoLoad: false };
+	<script src="/v3/planck.min.js"></script>
+	<script src="/v3/p5play.min.js"></script>
+	<script>
+		window.mie = { autoLoad: false };
 
 	</script>
 	<script src="/learn/mie.js"></script>
-<script src="/learn/learn.js"></script>
+	<script src="/learn/learn.js"></script>
 </body>
 
 </html>

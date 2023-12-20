@@ -10,7 +10,7 @@
 </head>
 
 <body class="dark">
-	<article>
+	<article style="display: none;">
 		<nav id="topNav">
 			<a href="index.html" id="logoLink" class="active">
 				<img alt="p5play logo" src="/assets/p5play_logo.svg" class="logo">
@@ -94,7 +94,8 @@ function draw() {
 				<md id="md1-1">
 					<h2 id="worldstep">world.step</h2>
 					<p><code>world.step</code>関数は、物理シミュレーションを 1/60 秒進めた後の、すべてのスプライトの位置と速度を計算します。</p>
-					<p><code>world.autoStep =
+					<p>
+						<code>world.autoStep =
 							false</code>を設定すると自動ステップが無効になり、時間が一時停止します！その後、物理シミュレーションを進めたいときに<code>world.step</code>を手動で呼び出すことができます。すべてのスプライトが描画された後にのみ実行してください。
 					</p>
 					<p>このミニ例では、タイムステップを入力パラメータとして提供する方法が示されていますが、Box2D 物理エンジンソルバーは 1/30
@@ -178,14 +179,14 @@ function draw() {
 	</article>
 
 	<script src="/v3/q5.min.js"></script>
-<script src="/v3/planck.min.js"></script>
-<script src="/v3/p5play.min.js"></script>
-<script>
-window.mie = { autoLoad: false };
+	<script src="/v3/planck.min.js"></script>
+	<script src="/v3/p5play.min.js"></script>
+	<script>
+		window.mie = { autoLoad: false };
 
 	</script>
 	<script src="/learn/mie.js"></script>
-<script src="/learn/learn.js"></script>
+	<script src="/learn/learn.js"></script>
 </body>
 
 </html>

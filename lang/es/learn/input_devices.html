@@ -10,7 +10,7 @@
 </head>
 
 <body class="dark">
-	<article>
+	<article style="display: none;">
 		<nav id="topNav">
 			<a href="index.html" id="logoLink" class="active">
 				<img alt="p5play logo" src="/assets/p5play_logo.svg" class="logo">
@@ -45,7 +45,8 @@
 					una entrada: <code>presses</code>, <code>pressing</code> y <code>released</code>.</p>
 				<p>También almacenan el estado de todas sus entradas como propiedades. Por ejemplo,
 					<code>kb.space</code> almacena cuántos frames ha estado presionando el usuario la tecla espacio. Se
-					reinicia cuando el usuario suelta la entrada.</p>
+					reinicia cuando el usuario suelta la entrada.
+				</p>
 			</md>
 			<script type="mie/p5" id="hidden" base-0="" hide="">
 function setup() {
@@ -234,7 +235,8 @@ function draw() {
 					<code>r</code> (gatillo derecho), <code>lt</code> (gatillo izquierdo), <code>rt</code> (gatillo
 					derecho), <code>up</code>, <code>down</code>, <code>left</code>, <code>right</code> (D-pad),
 					<code>lsb</code> (botón de palanca izquierda), <code>rsb</code> (botón de palanca derecha),
-					<code>start</code> y <code>select</code></p>
+					<code>start</code> y <code>select</code>
+				</p>
 				<p><code>contro.leftStick</code> y <code>contro.rightStick</code> representan las posiciones de las
 					palancas analógicas del controlador como objetos con propiedades x e y. Estos valores van desde -1
 					hasta 1, con 0 indicando la posición central.</p>
@@ -313,14 +315,14 @@ if (contro.pressing('lsb')) lsb.color = 'white';
 	</article>
 
 	<script src="/v3/q5.min.js"></script>
-<script src="/v3/planck.min.js"></script>
-<script src="/v3/p5play.min.js"></script>
-<script>
-window.mie = { autoLoad: false };
+	<script src="/v3/planck.min.js"></script>
+	<script src="/v3/p5play.min.js"></script>
+	<script>
+		window.mie = { autoLoad: false };
 
 	</script>
 	<script src="/learn/mie.js"></script>
-<script src="/learn/learn.js"></script>
+	<script src="/learn/learn.js"></script>
 </body>
 
 </html>

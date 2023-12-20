@@ -10,7 +10,7 @@
 </head>
 
 <body class="dark">
-	<article>
+	<article style="display: none;">
 		<nav id="topNav">
 			<a href="index.html" id="logoLink" class="active">
 				<img alt="p5play logo" src="/assets/p5play_logo.svg" class="logo">
@@ -160,7 +160,8 @@ function draw() {
 				<p>衝突と重なりの関数は、2 つのスプライト間のイベントを検出するためだけでなく、スプライトとグループ、またはグループ間の衝突と重なりをチェックするためにも使用できます。使用できる関数は次のとおりです：
 				</p>
 				<p><code>collides</code>, <code>colliding</code>, <code>collided</code><br><code>overlaps</code>,
-					<code>overlapping</code>, <code>overlapped</code></p>
+					<code>overlapping</code>, <code>overlapped</code>
+				</p>
 				<p>これらの関数を <code>if</code> 文で使用する代わりに、コールバック関数を 2
 					番目のパラメータとして提供することもできます。衝突または重なりのイベントが発生したときにコールバック関数が実行されます。コールバック関数は、2 つのスプライトを入力として受け取ります。</p>
 				<p>このミニ例では、コールバック関数はプレイヤースプライトとプレイヤーが重なっている gems グループ内のジェムスプライトを受け取ります。そのジェムは収集され（削除され）ます。</p>
@@ -239,7 +240,8 @@ function draw() {
 			<md id="md5-0">
 				<h2 id="サブグループ">サブグループ</h2>
 				<p>このミニ例では、<code>boxes</code>グループの 2 つのサブグループ、<code>smallBoxes</code>と<code>bigBoxes</code>があります。</p>
-				<p><code>bigBoxes</code>グループを使用して作成された新しいスプライトは、<code>boxes</code>グループから特性を継承しますが、<code>smallBoxes</code>グループからは継承しません。
+				<p>
+					<code>bigBoxes</code>グループを使用して作成された新しいスプライトは、<code>boxes</code>グループから特性を継承しますが、<code>smallBoxes</code>グループからは継承しません。
 				</p>
 				<p><code>boxes</code>グループには、<code>smallBoxes</code>グループと<code>bigBoxes</code>グループのすべてのスプライトが含まれています。</p>
 				<p><code>group.removeAll</code>関数を使用して、グループからすべてのスプライトを削除することができます。</p>
@@ -282,7 +284,8 @@ function draw() {
 				<p>これを変更するには、<code>allSprites.autoCull =
 						false</code>を設定し、<code>group.cull</code>関数を使用して異なるカリング境界を設定します。物理コライダーを持たないスプライトさえカリングすることができます。
 				</p>
-				<p>オプションの最後のパラメータは、スプライトがカリングされたときに呼び出されるコールバック関数を指定するために使用できます。カリングへのデフォルトの応答は、カリング境界を超えたスプライトを削除することですが、自分の関数を設定することで、他のことを行うことができます。コールバック関数は、カリングされたスプライトとそのフレームでカリングされたスプライトの合計数を受け取ります。この例では、1
+				<p>
+					オプションの最後のパラメータは、スプライトがカリングされたときに呼び出されるコールバック関数を指定するために使用できます。カリングへのデフォルトの応答は、カリング境界を超えたスプライトを削除することですが、自分の関数を設定することで、他のことを行うことができます。コールバック関数は、カリングされたスプライトとそのフレームでカリングされたスプライトの合計数を受け取ります。この例では、1
 					フレームで 1 つ以上のボールがカリングされた場合、ボールの数が減ります。</p>
 			</md>
 			<script type="mie/p5" id="cull">
@@ -303,7 +306,8 @@ function draw() {
 			</script>
 			<md id="md6-1">
 				<h2 id="life">life</h2>
-				<p>スプライトが存在する期間を制限する別の方法は、その<code>life</code>プロパティを設定することです。これはスプライトが存在するフレーム数です。スプライトの寿命が尽きると、それは削除されます。これは、発射体やフォースフィールドなどの一時的なオブジェクトを作成するのに便利です。
+				<p>
+					スプライトが存在する期間を制限する別の方法は、その<code>life</code>プロパティを設定することです。これはスプライトが存在するフレーム数です。スプライトの寿命が尽きると、それは削除されます。これは、発射体やフォースフィールドなどの一時的なオブジェクトを作成するのに便利です。
 				</p>
 				<p>この小さなゲームを試してみてください！マウスをクリックしてビーチボールを作成し、水流で空中に保つようにしてみてください。</p>
 			</md>
@@ -340,7 +344,8 @@ function draw() {
 				</md>
 				<md id="md7-1">
 					<h2 id="update">Update</h2>
-					<p><code>group.update</code>関数は、グループ内のすべてのスプライトの<code>sprite.update</code>関数を実行します。自動更新を防ぐには、<code>autoUpdate</code>を
+					<p>
+						<code>group.update</code>関数は、グループ内のすべてのスプライトの<code>sprite.update</code>関数を実行します。自動更新を防ぐには、<code>autoUpdate</code>を
 						false に設定します。</p>
 				</md>
 			</div>
@@ -385,15 +390,15 @@ function draw() {
 	</article>
 
 	<!-- <script src="https://cdn.jsdelivr.net/npm/p5@1/lib/p5.js"></script> -->
-<script src="/v3/q5.min.js"></script>
-<script src="/v3/planck.min.js"></script>
-<script src="/v3/p5play.min.js"></script>
-<script>
-window.mie = { autoLoad: false };
+	<script src="/v3/q5.min.js"></script>
+	<script src="/v3/planck.min.js"></script>
+	<script src="/v3/p5play.min.js"></script>
+	<script>
+		window.mie = { autoLoad: false };
 
 	</script>
 	<script src="/learn/mie.js"></script>
-<script src="/learn/learn.js"></script>
+	<script src="/learn/learn.js"></script>
 </body>
 
 </html>

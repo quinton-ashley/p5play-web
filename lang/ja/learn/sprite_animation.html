@@ -10,7 +10,7 @@
 </head>
 
 <body class="dark">
-	<article>
+	<article style="display: none;">
 		<nav id="topNav">
 			<a href="index.html" id="logoLink" class="active">
 				<img alt="p5play logo" src="/assets/p5play_logo.svg" class="logo">
@@ -86,7 +86,8 @@ function draw() {
 }
 			</script>
 			<md id="md0-2">
-				<p>このミニ例では、スプライトシートからアニメーションを読み込みます。スプライトシートとは、アニメーションのすべてのフレームを含む単一の画像です。このスケッチのスプライトシートを見て、それがどのように見えるかを確認してください。
+				<p>
+					このミニ例では、スプライトシートからアニメーションを読み込みます。スプライトシートとは、アニメーションのすべてのフレームを含む単一の画像です。このスケッチのスプライトシートを見て、それがどのように見えるかを確認してください。
 				</p>
 				<p>スプライトシートモードでは、アトラスオブジェクトを使用して各フレームのサイズとアニメーションのフレーム数を指定できます。</p>
 				<p>プログラムが開始したときにアニメーションを本当に必要とする場合は、setup の代わりに p5.js の preload 関数で読み込む必要があります。</p>
@@ -242,8 +243,10 @@ function draw() {
 						関数を使用します。これらは、アニメーション名をキー、スプライトシートアトラスを値とするオブジェクトを受け入れます。</p>
 					<p>アトラスオブジェクトを使用する方が、各フレームの座標を手動で指定するよりも簡単です！</p>
 					<p>アトラスオブジェクトには、次のプロパティがあります。</p>
-					<p><code>x</code>、<code>y</code>、<code>pos</code>、<code>w</code>/<code>width</code>、<code>h</code>/<code>height</code>、<code>size</code>/<code>frameSize</code>、<code>row</code>、<code>col</code>、<code>frames</code>/<code>frameCount</code>、<code>delay</code>/<code>frameDelay</code>、および
-						<code>rotation</code>。</p>
+					<p>
+						<code>x</code>、<code>y</code>、<code>pos</code>、<code>w</code>/<code>width</code>、<code>h</code>/<code>height</code>、<code>size</code>/<code>frameSize</code>、<code>row</code>、<code>col</code>、<code>frames</code>/<code>frameCount</code>、<code>delay</code>/<code>frameDelay</code>、および
+						<code>rotation</code>。
+					</p>
 					<p>「ヒーロー」の例では、ヒーロースプライトのサイズが<code>Sprite</code> コンストラクタ内で 32x32
 						ピクセルに設定されています。そのサイズは与えられた行の値に対する乗数として使用されます。</p>
 					<p>このリンクをクリックして、例で使用される <a href="assets/questKid.png">questKid</a> スプライトシート全体を確認してください。</p>
@@ -424,14 +427,14 @@ if (hero.ani.name != 'jump' && hero.ani.name != 'roll') {
 	</article>
 
 	<script src="/v3/q5.min.js"></script>
-<script src="/v3/planck.min.js"></script>
-<script src="/v3/p5play.min.js"></script>
-<script>
-window.mie = { autoLoad: false };
+	<script src="/v3/planck.min.js"></script>
+	<script src="/v3/p5play.min.js"></script>
+	<script>
+		window.mie = { autoLoad: false };
 
 	</script>
 	<script src="/learn/mie.js"></script>
-<script src="/learn/learn.js"></script>
+	<script src="/learn/learn.js"></script>
 </body>
 
 </html>
