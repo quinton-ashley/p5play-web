@@ -53,6 +53,7 @@ body {
 }
 
 article {
+	display: flex;
 	margin: auto;
 	justify-content: center;
 	flex-wrap: wrap;
