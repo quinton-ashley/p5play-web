@@ -271,7 +271,8 @@ if (mie.autoLoad !== false) mie.load();
 	let style = document.createElement('style');
 	style.innerHTML = `
 .ace_gutter,
-.ace_gutter-layer {
+.ace_gutter-layer,
+.ace_gutter-cell {
 	width: 4px !important;
 }
 

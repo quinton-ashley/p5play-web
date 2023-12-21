@@ -1,8 +1,8 @@
 node_modules
 dev/experiments
 dev/assets
-dev/types/p5play.js
-dev/types/p5play.d.ts
+types/p5play.js
+types/p5play.d.ts
 dev/test*
 package-lock.json
 v4

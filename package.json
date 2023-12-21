@@ -57,7 +57,7 @@
 	"main": "app/app.js",
 	"scripts": {
 		"tests": "jest tests",
-		"types": "bun dev/types/types.js && cp v3/p5play.d.ts ../../pkg/p5play/p5play.d.ts",
+		"types": "bun types/types.js && cp v3/p5play.d.ts ../../pkg/p5play/p5play.d.ts",
 		"docs": "jsdoc --configure docs/config/jsdoc.json",
 		"min": "minify v3/p5play.js > v3/p5play.min.js",
 		"dist": "bun min && cp v3/p5play.js ../../pkg/p5play/p5play.js && cp v3/p5play.min.js ../../pkg/p5play/p5play.min.js && cp v3/q5.js ../../pkg/q5/q5.js",
@@ -70,5 +70,5 @@
 		"make": "electron-forge make",
 		"publish": "electron-forge publish"
 	},
-	"version": "1.8.42"
+	"version": "1.8.43"
 }

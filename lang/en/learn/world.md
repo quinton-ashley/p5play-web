@@ -42,12 +42,12 @@ This mini example shows how a time step can be provided as an input parameter, b
 
 ## Performance Testing
 
-The `renderStats` function displays the number of sprites drawn, an approximation of the current FPS as well as the average, minimum, and maximum FPS achieved during the previous second.
+The `renderStats` function displays the number of sprites drawn and FPS approximations. For more accurate results, use your web browser's performance testing tools.
 
-FPS in this context refers to how many frames per second your computer can generate, including physics calculations and any other processes necessary to generate a frame, but not including the delay between when frames are actually shown on the screen. The higher the FPS, the better your game is performing.
+FPS in this context refers to how many frames per second your computer can generate, not including the delay between when frames are actually shown on the screen. The higher the FPS, the better your game is performing.
 
-You can use this function for approximate performance testing. For more accurate results, use your web browser's performance testing tools.
+Having less sprites and using a smaller canvas will make your game perform better. For better performance, don't use the p5.js `clear` function or sample the colors of pixels in your canvas using `canvas.get`.
 
-Generally having less sprites and using a smaller canvas will make your game perform better. For better performance don't use the p5.js `clear` function or sample the colors of pixels in your canvas using `canvas.get`.
+By default the Box2D physics engine performs 8 velocity and 3 position iterations on each `world.step`. Decreasing these values will make the simulation faster but also less accurate.
 
 I've tested p5play in every web browser and found that Google Chrome performs the best.

@@ -142,18 +142,17 @@ function draw() {
 		<div id="page-2" class="page">
 			<md id="md2-0">
 				<h2 id="performance-testing">Performance Testing</h2>
-				<p>The <code>renderStats</code> function displays the number of sprites drawn, an approximation of the
-					current FPS as well as the average, minimum, and maximum FPS achieved during the previous second.
-				</p>
-				<p>FPS in this context refers to how many frames per second your computer can generate, including
-					physics calculations and any other processes necessary to generate a frame, but not including the
-					delay between when frames are actually shown on the screen. The higher the FPS, the better your game
-					is performing.</p>
-				<p>You can use this function for approximate performance testing. For more accurate results, use your
-					web browser's performance testing tools.</p>
-				<p>Generally having less sprites and using a smaller canvas will make your game perform better. For
-					better performance don't use the p5.js <code>clear</code> function or sample the colors of pixels in
-					your canvas using <code>canvas.get</code>.</p>
+				<p>The <code>renderStats</code> function displays the number of sprites drawn and FPS approximations.
+					For more accurate results, use your web browser's performance testing tools.</p>
+				<p>FPS in this context refers to how many frames per second your computer can generate, not including
+					the delay between when frames are actually shown on the screen. The higher the FPS, the better your
+					game is performing.</p>
+				<p>Having less sprites and using a smaller canvas will make your game perform better. For better
+					performance, don't use the p5.js <code>clear</code> function or sample the colors of pixels in your
+					canvas using <code>canvas.get</code>.</p>
+				<p>By default the Box2D physics engine performs 8 velocity and 3 position iterations on each
+					<code>world.step</code>. Decreasing these values will make the simulation faster but also less
+					accurate.</p>
 				<p>I've tested p5play in every web browser and found that Google Chrome performs the best.</p>
 			</md>
 			<script type="mie/p5" id="renderStats">
@@ -175,6 +174,10 @@ function draw() {
 		allSprites.at(-1).moveTowards(mouse);
 	}
 	renderStats();
+	allSprites.draw();
+
+	// (timeStep, velocityIterations, positionIterations)
+	world.step(1 / 60, 8, 3);
 }
 			</script>
 		</div>
@@ -194,14 +197,14 @@ function draw() {
 	</article>
 
 	<script src="/v3/q5.min.js"></script>
-	<script src="/v3/planck.min.js"></script>
-	<script src="/v3/p5play.min.js"></script>
-	<script>
-		window.mie = { autoLoad: false };
+<script src="/v3/planck.min.js"></script>
+<script src="/v3/p5play.min.js"></script>
+<script>
+window.mie = { autoLoad: false };
 
 	</script>
 	<script src="/learn/mie.js"></script>
-	<script src="/learn/learn.js"></script>
+<script src="/learn/learn.js"></script>
 </body>
 
 </html>

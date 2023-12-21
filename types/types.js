@@ -1,11 +1,11 @@
 // bun is require to run this script: https://bun.sh
 
-// usage: bun dev/types/types.js -i /path/to/p5play.js
+// usage: bun types/types.js -i /path/to/p5play.js
 
 import { unlinkSync } from 'node:fs';
 
 const log = console.log;
-const pathToP5Play = process.argv[3] || '../../web/p5play-web/v3/p5play.js';
+const pathToP5Play = process.argv[3] || 'v3/p5play.js';
 
 let file = Bun.file(pathToP5Play);
 file = await file.text();
@@ -24,14 +24,14 @@ file = file.replace(/^\s*this\.([_\w]+) = class/gm, 'class $1');
 file = file.replace(/extends this\.([_\w]+)/gm, 'extends $1');
 
 // overwrite p5play.js
-await Bun.write('dev/types/p5play.js', file);
+await Bun.write('types/p5play.js', file);
 
-const proc = Bun.spawn(['tsc', '--project', 'dev/types/tsconfig.json']);
+const proc = Bun.spawn(['tsc', '--project', 'types/tsconfig.json']);
 
 // await completion
 await proc.exited;
 
-let dec = await Bun.file('dev/types/p5play.d.ts');
+let dec = await Bun.file('types/p5play.d.ts');
 dec = await dec.text();
 dec = dec.slice(dec.indexOf('*/') + 2);
 dec = dec.replaceAll('declare ', '');
@@ -76,4 +76,4 @@ declare global {
 	'\n}\n';
 await Bun.write('v3/p5play.d.ts', dec);
 
-unlinkSync('dev/types/p5play.d.ts'); // delete temp files
+unlinkSync('types/p5play.d.ts'); // delete temp files

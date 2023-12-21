@@ -2836,7 +2836,9 @@ p5.prototype.registerMethod('init', function p5playInit() {
 		 * sprite.attractTo({x, y}, force);
 		 */
 		attractTo(x, y, force, radius, easing) {
-			if (!this.body) return;
+			if (!this.body || this.__collider != 0) {
+				throw new Error('attractTo can only be used on sprites with dynamic colliders');
+			}
 			if (typeof x != 'number') {
 				let obj = x;
 				if (!obj || (obj == this.p.mouse && !this.p.mouse.active)) return;
@@ -2857,7 +2859,9 @@ p5.prototype.registerMethod('init', function p5playInit() {
 		}
 
 		repelFrom(x, y, force, radius, easing) {
-			if (!this.body) return;
+			if (!this.body || this.__collider != 0) {
+				throw new Error('repelFrom can only be used on sprites with dynamic colliders');
+			}
 			if (typeof x != 'number') {
 				let obj = x;
 				if (!obj || (obj == this.p.mouse && !this.p.mouse.active)) return;
