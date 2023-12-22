@@ -310,6 +310,16 @@ body.dark #patreon-brand {
 	width: 200px;
 }
 
+#dalton-brand {
+	background-color: #fff;
+	width: 360px;
+}
+
+#tywls-brand {
+	background-color: #152253;
+	width: 100px;
+}
+
 #nyuitp-brand {
 	background-color: #57068c;
 	width: 250px;
@@ -554,6 +564,16 @@ body.dark #patreon-brand {
 		top: calc(56.25vw + 680px);
 		height: 100vh;
 	}
+
+	#dalton-brand {
+		width: 300px;
+	}
+}
+
+@media screen and (max-width: 845px) {
+	#dalton-brand {
+		width: 212px;
+	}
 }
 
 @media screen and (max-width: 760px) {
@@ -605,6 +625,10 @@ body.dark #patreon-brand {
 		font-size: 5vw;
 		line-height: 8vw;
 	}
+
+	#dalton-brand {
+		width: 300px;
+	}
 }
 
 @media screen and (max-width: 600px) {
@@ -634,6 +658,10 @@ body.dark #patreon-brand {
 	#codehs-brand,
 	#hunter-brand {
 		width: 120px;
+	}
+
+	#dalton-brand {
+		width: 150px;
 	}
 
 	#nyuitp-brand {
@@ -839,6 +867,9 @@ function dropSprite() {
 							target="_blank">
 							<img src="/assets/brands/crimson_brand.svg" alt="Crimson Education">
 						</a>
+						<a id="dalton-brand" href="https://www.dalton.org/">
+							<img src="/assets/brands/dalton_brand.webp" alt="The Dalton School">
+						</a>
 						<a id="nyuitp-brand"
 							href="https://creative-coding.decontextualize.com/making-games-with-p5-play/"
 							target="_blank">
@@ -861,6 +892,9 @@ function dropSprite() {
 						<a id="girlswhocode-brand" href="https://girlswhocode.com/" target="_blank">
 							<img src="/assets/brands/girlswhocode_brand.svg" alt="Girls Who Code">
 						</a>
+						<!-- <a id="tywls-brand" href="https://tywlsbronx.org/">
+							<img src="/assets/brands/tywls_logo.webp" alt="The Young Women's Leadership School of the Bronx">
+						</a> -->
 						<a id="codehs-brand" href="https://codehs.com/course/gamedesign_p5play/overview"
 							target="_blank">
 							<img src="/assets/brands/codehs_brand.png" alt="CodeHS">
@@ -904,8 +938,8 @@ function dropSprite() {
 					<p>
 						<a id="patreon-brand" href="https://www.patreon.com/p5play"
 							aria-label="Patreon page for p5play">
-							<img src="/assets/brands/patreon_logo.png" alt="" id="patreon-logo">
-							<img src="/assets/brands/patreon_brand.png" alt="patreon brand" height="28px">
+							<img src="/assets/brands/patreon_logo.webp" alt="" id="patreon-logo">
+							<img src="/assets/brands/patreon_brand.webp" alt="patreon brand" height="28px">
 						</a>
 					</p>
 				</div>
@@ -1217,25 +1251,52 @@ function dropSprite() {
 <script src="/learn/mie.js"></script>
 <script src="/learn/main.js"></script>
 <script>
+let userPaused = false;
 const reels = document.querySelectorAll(".reel");
-const options = {
-	root: null,
-	rootMargin: "0px",
-	threshold: 0.25
-};
-const observer = new IntersectionObserver((entries, observer) => {
-	for (const entry of entries) {
-		if (entry.isIntersecting) {
-			const vid = entry.target.children[0];
-			if (vid.tagName == 'VIDEO') vid.play();
-		} else {
-			const vid = entry.target.children[0];
-			if (vid.tagName == 'VIDEO') vid.pause();
+for (let reel of reels) {
+	reel.addEventListener("click", () => {
+		userPaused = !userPaused;
+		for (let r of reels) {
+			let vid = r.children[0];
+			if (vid.tagName == 'VIDEO') {
+				if (userPaused) vid.pause();
+				else vid.play();
+			}
 		}
+	});
+}
+if (window.innerHeight < 1500) {
+	const options = {
+		root: null,
+		rootMargin: "0px",
+		threshold: 0.25
+	};
+	const observer = new IntersectionObserver((entries, observer) => {
+		for (const entry of entries) {
+			if (entry.isIntersecting) {
+				const vid = entry.target.children[0];
+				if (vid.tagName == 'VIDEO' && !userPaused) vid.play();
+			} else {
+				const vid = entry.target.children[0];
+				if (vid.tagName == 'VIDEO') vid.pause();
+			}
+		}
+	}, options);
+	for (const reel of reels) {
+		observer.observe(reel);
 	}
-}, options);
-for (const reel of reels) {
-	observer.observe(reel);
+} else {
+	// play videos if mouse hovers over reel
+	for (const reel of reels) {
+		reel.addEventListener("mouseenter", () => {
+			const vid = reel.children[0];
+			if (vid.tagName == 'VIDEO' && !userPaused) vid.play();
+		});
+		reel.addEventListener("mouseleave", () => {
+			const vid = reel.children[0];
+			if (vid.tagName == 'VIDEO') vid.pause();
+		});
+	}
 }
 
 	</script>
