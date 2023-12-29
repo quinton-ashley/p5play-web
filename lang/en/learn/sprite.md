@@ -282,9 +282,9 @@ This mini example shows how sprites of different sizes can balance on a seesaw i
 
 # 9-3
 
-## planck Bugs
+## planck
 
-p5play uses the planck.js, a JS port of the Box2D physics engine. It usually generates realistic looking interactions, but it's not perfect.
+p5play uses planck.js, a JS port of the Box2D physics engine. It generates realistic looking interactions at a good rate of performance, but it also has some limitations you should be aware of.
 
 In this mini example the ball has a `bounciness` of 1, so each time the ball bounces it should return to its starting position. However, due to a bug in planck, the ball bounces incrementally higher each time it hits the ground.
 

@@ -270,12 +270,6 @@ if (mie.autoLoad !== false) mie.load();
 {
 	let style = document.createElement('style');
 	style.innerHTML = `
-.ace_gutter,
-.ace_gutter-layer,
-.ace_gutter-cell {
-	width: 4px !important;
-}
-
 .mie {
 	display: flex;
 	flex-direction: column;
@@ -373,6 +367,12 @@ if (mie.autoLoad !== false) mie.load();
 
 .mie-edit:hover {
 	color: #404040;
+}
+
+.ace_gutter,
+.ace_gutter-layer,
+.ace_gutter-cell {
+	width: 4px !important;
 }
 
 .ace_gutter-cell.ace_error {
