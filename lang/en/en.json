@@ -24,7 +24,7 @@
 		"DOM": {
 			"prevPage": "Previous Page",
 			"nextPage": "Next Page",
-			"credits": "Created by Quinton Ashley (@quinton-ashley) Copyright 2022-2023",
+			"credits": "Created by Quinton Ashley (@quinton-ashley) Copyright 2022-2024",
 			"getStarted": "Get Started!"
 		},
 		"camera": ["Movement", "Zoom", "On/Off", "Mouse Events with the Camera"],

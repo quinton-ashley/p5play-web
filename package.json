@@ -33,12 +33,9 @@
 	"description": "The website for p5play",
 	"dependencies": {
 		"@bitjson/qr-code": "^1.0.2",
-		"@types/p5": "^1.7.0",
-		"express": "^4.18.2",
+		"@types/p5": "^1.7.4",
 		"js-beautify": "^1.14.9",
-		"mime-types": "^2.1.35",
-		"mousetrap": "^1.6.5",
-		"p5": "^1.8.0"
+		"p5": "^1.9.0"
 	},
 	"devDependencies": {
 		"bun-types": "^1.0.1",
@@ -57,7 +54,7 @@
 	"main": "app/app.js",
 	"scripts": {
 		"tests": "jest tests",
-		"types": "bun types/types.js && cp v3/p5play.d.ts ../../pkg/p5play/p5play.d.ts",
+		"types": "bun types/types.js && cp v3/p5play.d.ts v3/p5play-beta.d.ts && cp v3/p5play.d.ts ../../pkg/p5play/p5play.d.ts",
 		"docs": "jsdoc --configure docs/config/jsdoc.json",
 		"min": "minify v3/p5play.js > v3/p5play.min.js",
 		"dist": "bun min && cp v3/p5play.js ../../pkg/p5play/p5play.js && cp v3/p5play.min.js ../../pkg/p5play/p5play.min.js && cp v3/q5.js ../../pkg/q5/q5.js",
@@ -70,5 +67,5 @@
 		"make": "electron-forge make",
 		"publish": "electron-forge publish"
 	},
-	"version": "1.8.44"
+	"version": "1.8.45"
 }

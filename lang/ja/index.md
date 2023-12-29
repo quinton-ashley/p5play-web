@@ -120,4 +120,4 @@ p5play に関するあなたのレビューを[info@p5play.org](mailto:info@p5pl
 
 # credits
 
-p5play.org は Quinton Ashley によって作成されました。Copyright ©2022-2023。[info@p5play.org](mailto:info@p5play.org) p5play の[旧バージョン](https://quinton-ashley.github.io/p5play-web-archive/v2)を探していますか？
+p5play.org は Quinton Ashley によって作成されました。Copyright ©2022-2024。[info@p5play.org](mailto:info@p5play.org) p5play の[旧バージョン](https://quinton-ashley.github.io/p5play-web-archive/v2)を探していますか？

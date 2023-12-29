@@ -9028,17 +9028,17 @@ main {
 		if (!this._setupDone) return;
 
 		_ontouchstart.call(this, e);
-		let touch = this.touches.at(-1);
-		touch.duration = 0;
-		touch.presses = function () {
-			return this.duration == 1 || this.duration == -3;
-		};
-		touch.pressing = function () {
-			return this.duration > 0 ? this.duration : 0;
-		};
-		touch.released = function () {
-			return this.duration <= -1;
-		};
+		// let touch = this.touches.at(-1);
+		// touch.duration = 1;
+		// touch.presses = function () {
+		// 	return this.duration == 1 || this.duration == -3;
+		// };
+		// touch.pressing = function () {
+		// 	return this.duration > 0 ? this.duration : 0;
+		// };
+		// touch.released = function () {
+		// 	return this.duration <= -1;
+		// };
 		if (this.touches.length == 1) {
 			this.mouse.update();
 			this.world.mouseSprites = this.world.getMouseSprites();
