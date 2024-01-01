@@ -49,6 +49,7 @@
 			"Táctil"
 		],
 		"joints": ["pegamento", "distancia", "rueda", "bisagra", "deslizador"],
+		"sound": ["Usando sonidos"],
 		"sprite": [
 			"Propiedades Básicas",
 			"Física",

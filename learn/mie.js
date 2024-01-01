@@ -379,6 +379,10 @@ if (mie.autoLoad !== false) mie.load();
 	background-color: #ff0000 !important;
 }
 
+.ace_scroller {
+	left: 4px !important;
+}
+
 @media screen and (max-width: 600px) {
 	.mie.horiz .mie-main {
 		flex-direction: column;

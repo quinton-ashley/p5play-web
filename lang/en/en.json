@@ -41,6 +41,7 @@
 		],
 		"input_devices": ["Detecting Input", "Keyboard", "Mouse", "Sprite Mouse", "Game Controllers", "Touch"],
 		"joints": ["GlueJoint", "DistanceJoint", "WheelJoint", "HingeJoint", "SliderJoint"],
+		"sound": ["Using Sounds"],
 		"sprite": [
 			"Basic Properties",
 			"Physics",

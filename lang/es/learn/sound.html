@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es" class="es">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>p5play : Sound</title>
+	<link rel="icon" href="/assets/p5play_logo.svg">
+	<link rel="stylesheet" href="/learn/style.css">
+</head>
+
+<body class="dark">
+	<article style="display: none;">
+		<nav id="topNav">
+			<a href="index.html" id="logoLink" class="active">
+				<img alt="p5play logo" src="/assets/p5play_logo.svg" class="logo">
+				<span>p5play</span>
+			</a>
+			<hr>
+			<a href="canvas.html">Canvas</a>
+			<a href="sound.html" class="active">Sound</a>
+			<a href="tiles.html">Tiles</a>
+			<a href="world.html">World</a>
+			<hr>
+			<a id="darkMode" onclick="toggleDarkMode()" tabindex="0" role="button" title="dark mode toggle">
+				<div id="darkModeIcon"></div>
+			</a>
+		</nav>
+		<div class="break"></div>
+		<div id="page-0" class="page">
+			<md id="md0-0">
+				<h2 id="sonido">Sonido</h2>
+				<p>Utiliza la función <code>loadSound</code> para crear un objeto <code>Sound</code>.</p>
+				<p>A menudo, para mezclar sonidos adecuadamente, querrás usar el método <code>setVolume</code>, que
+					acepta un valor en un rango de 0 a 1.</p>
+				<p>Para capacidades de mezcla de audio más extensas, puedes usar la biblioteca <a
+						href="https://p5js.org/reference/#/libraries/p5.sound" target="_blank">p5.sound</a>.</p>
+			</md>
+			<script type="mie/p5" id="loadSound" horiz="">
+let jumpSound;
+function preload() {
+	jumpSound = loadSound("assets/jump.wav");
+}
+function setup() {
+  new Canvas(100, 224);
+}
+function draw() {
+	if (mouse.presses()) {
+		jumpSound.play();
+	}
+}
+			</script>
+		</div>
+
+		<div class="break"></div>
+		<div id="toc">
+			<a id="prevPage" class="navLink">Página anterior</a>
+			<div id="pageNav" class="submenu">
+				<a data-page="0" href="canvas.html?page=0">Usando sonidos</a>
+			</div>
+			<a id="nextPage" class="navLink">Siguiente página</a>
+		</div>
+		<div class="break"></div>
+		<footer id="credits" class="text-small">Creado por Quinton Ashley (@quinton-ashley) derechos de autor 2022-2024
+		</footer>
+	</article>
+
+	<script src="/v3/q5.min.js"></script>
+<script src="/v3/planck.min.js"></script>
+<script src="/v3/p5play.min.js"></script>
+<script>
+window.mie = { autoLoad: false };
+
+	</script>
+	<script src="/learn/mie.js"></script>
+<script src="/learn/learn.js"></script>
+</body>
+
+</html>

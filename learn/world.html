@@ -18,6 +18,7 @@
 			</a>
 			<hr>
 			<a href="canvas.html">Canvas</a>
+			<a href="sound.html">Sound</a>
 			<a href="tiles.html">Tiles</a>
 			<a href="world.html" class="active">World</a>
 			<hr>
@@ -152,7 +153,8 @@ function draw() {
 					canvas using <code>canvas.get</code>.</p>
 				<p>By default the Box2D physics engine performs 8 velocity and 3 position iterations on each
 					<code>world.step</code>. Decreasing these values will make the simulation faster but also less
-					accurate.</p>
+					accurate.
+				</p>
 				<p>I've tested p5play in every web browser and found that Google Chrome performs the best.</p>
 			</md>
 			<script type="mie/p5" id="renderStats">
@@ -197,14 +199,14 @@ function draw() {
 	</article>
 
 	<script src="/v3/q5.min.js"></script>
-<script src="/v3/planck.min.js"></script>
-<script src="/v3/p5play.min.js"></script>
-<script>
-window.mie = { autoLoad: false };
+	<script src="/v3/planck.min.js"></script>
+	<script src="/v3/p5play.min.js"></script>
+	<script>
+		window.mie = { autoLoad: false };
 
 	</script>
 	<script src="/learn/mie.js"></script>
-<script src="/learn/learn.js"></script>
+	<script src="/learn/learn.js"></script>
 </body>
 
 </html>
