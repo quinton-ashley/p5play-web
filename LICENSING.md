@@ -37,7 +37,7 @@ The lessons and everything else in this repository, "p5play-web", is owned by Qu
 
 ## Contributions to p5play
 
-Any contributions made to the p5play library, p5play editor app, and/or p5play.org become the property of Quinton Ashley, unless a superseding agreement is arranged. By contributing to the p5play and p5play-web repositories, you forfeit any copyright claims over your contributions for the benefit of the p5play community. Any contributions to the p5play library will be credited on the home page of p5play.org and in the p5play changelog on GitHub unless you'd prefer to make contributions anonymously.
+Any contributions made to the p5play library will be released under the GPL v3. You agree to forfeit any individual copyright claims over your contributions for the benefit of the p5play community. Contributions to the p5play library will be credited on the home page of p5play.org and in the p5play changelog on GitHub unless you'd prefer to make contributions anonymously.
 
 [p5play Patreon]: https://www.patreon.com/p5play
 [p5play GitHub Sponsor]: https://github.com/sponsors/quinton-ashley
