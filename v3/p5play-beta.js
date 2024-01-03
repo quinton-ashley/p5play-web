@@ -9774,21 +9774,20 @@ main {
 
 p5.prototype.registerMethod('pre', function p5playPreDraw() {
 	// called before each p5.js draw function call
-
 	if (this.p5play._fps) {
 		this.p5play._preDrawFrameTime = performance.now();
 	}
-
 	this.p5play.spritesDrawn = 0;
-
+	if (!this.canvas.mouse) {
+		this.noLoop();
+		throw new Error('You must create a canvas');
+	}
 	this.mouse.update();
-
 	this.contro._update();
 });
 
 p5.prototype.registerMethod('post', function p5playPostDraw() {
 	// called after each p5.js draw function call
-
 	this.p5play._inPostDraw = true;
 
 	if (this.allSprites.autoCull) {
