@@ -8868,7 +8868,7 @@ main {
 			return inp;
 		}
 
-		update() {
+		_update() {
 			this.x = (pInst.mouseX - pInst.canvas.hw) / pInst.camera.zoom + pInst.camera.x;
 			this.y = (pInst.mouseY - pInst.canvas.hh) / pInst.camera.zoom + pInst.camera.y;
 
@@ -9022,28 +9022,29 @@ main {
 		_onmousedown.call(this, e);
 	};
 
-	const _ontouchstart = pInst._ontouchstart;
-
-	pInst._ontouchstart = function (e) {
-		if (!this._setupDone) return;
-
-		_ontouchstart.call(this, e);
-		// let touch = this.touches.at(-1);
-		// touch.duration = 1;
-		// touch.presses = function () {
-		// 	return this.duration == 1 || this.duration == -3;
-		// };
-		// touch.pressing = function () {
-		// 	return this.duration > 0 ? this.duration : 0;
-		// };
-		// touch.released = function () {
-		// 	return this.duration <= -1;
-		// };
-		if (this.touches.length == 1) {
-			this.mouse.update();
-			this.world.mouseSprites = this.world.getMouseSprites();
+	this._Touch = class extends this.InputDevice {
+		constructor(touch) {
+			super();
+			this.id = touch.identifier;
+			this._default = 'duration';
+			this.duration = 1;
+			this.pos = touch;
 		}
-		__onmousedown.call(this, 'left');
+
+		set pos(v) {
+			if (v.identifier) {
+				let c = pInst.canvas;
+				const rect = c.getBoundingClientRect();
+				const sx = c.scrollWidth / c.w || 1;
+				const sy = c.scrollHeight / c.h || 1;
+				this.x = (touch.clientX - rect.left) / sx;
+				this.y = (touch.clientY - rect.top) / sy;
+				this.force = touch.force;
+			} else {
+				this.x = v.x;
+				this.y = v.y;
+			}
+		}
 	};
 
 	const __onmousemove = function (btn) {
@@ -9068,14 +9069,6 @@ main {
 
 		__onmousemove.call(this, btn);
 		_onmousemove.call(this, e);
-	};
-
-	const _ontouchmove = pInst._ontouchmove;
-
-	pInst._ontouchmove = function (e) {
-		if (!this._setupDone) return;
-		_ontouchmove.call(this, e);
-		__onmousemove.call(this, 'left');
 	};
 
 	const __onmouseup = function (btn) {
@@ -9117,16 +9110,52 @@ main {
 		_onmouseup.call(this, e);
 	};
 
-	const _ontouchend = pInst._ontouchend;
+	delete this._Mouse;
+
+	pInst._ontouchstart = function (e) {
+		if (!this._setupDone) return;
+
+		for (let touch of e.changedTouches) {
+			this.touches.push(new this._Touch(touch));
+
+			if (this.touches.length == 1) {
+				this.mouseX = this.touches[0].x;
+				this.mouseY = this.touches[0].y;
+				this.mouse._update();
+				__onmousedown.call(this, 'left');
+			}
+		}
+	};
+
+	pInst._ontouchmove = function (e) {
+		if (!this._setupDone) return;
+
+		for (let touch of e.changedTouches) {
+			let t = this.touches.find((t) => t.id == touch.identifier);
+			t.pos = touch;
+			if (t.id == this.touches[0].id) {
+				this.mouseX = this.touches[0].x;
+				this.mouseY = this.touches[0].y;
+				this.mouse._update();
+				__onmousemove.call(this, 'left');
+			}
+		}
+	};
 
 	pInst._ontouchend = function (e) {
 		if (!this._setupDone) return;
 
-		_ontouchend.call(this, e);
-		__onmouseup.call(this, 'left');
+		for (let touch of e.changedTouches) {
+			let t = this.touches.find((t) => t.id == touch.identifier);
+			t.pos = touch;
+			if (t.id == this.touches[0].id) {
+				this.mouseX = this.touches[0].x;
+				this.mouseY = this.touches[0].y;
+				this.mouse._update();
+				__onmouseup.call(this, 'left');
+			}
+		}
 	};
-
-	delete this._Mouse;
 
 	this._KeyBoard = class extends this.InputDevice {
 		#test;
@@ -9782,7 +9811,7 @@ p5.prototype.registerMethod('pre', function p5playPreDraw() {
 		this.noLoop();
 		throw new Error('You must create a canvas');
 	}
-	this.mouse.update();
+	this.mouse._update();
 	this.contro._update();
 });
 
