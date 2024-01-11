@@ -5,12 +5,12 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>p5play : PRO$</title>
-	<link rel="icon" href="/assets/favicon.png">
+	<link rel="icon" href="/assets/favicon.webp">
 	<link rel="stylesheet" href="/learn/style.css">
 </head>
 
 <body class="dark">
-	<article style="display: none;">
+	<article>
 		<nav id="topNav">
 			<a href="../index.html" id="logoLink" class="active">
 				<img alt="p5play logo" src="/assets/p5play_logo.svg" class="logo">
@@ -31,16 +31,17 @@
 		<div class="top big break"></div>
 
 		<div id="noauth" class="page">
-			<md id="promo">
-				<h2 id="p5play-pro-メンバーシップ">p5play Pro メンバーシップ</h2>
-				<p>p5play Pro メンバーになって、ゲームから実際のお金を稼ぎませんか？</p>
-				<p>p5play Pro メンバーになると、p5play を使用して iOS アプリを作成できるようになり、Apple の App Store でゲームを販売したり、広告収益を得ることができます。</p>
+			<md id="md0-0">
+				<h2 id="p5play-メンバーシップ">p5play メンバーシップ</h2>
+				<p>ゲームから実際の収益を得たいですか？</p>
+				<p>Pro メンバーになると、p5play を使って iOS アプリを作成できるようになります。これにより、Apple の App Store でゲームを販売したり、広告から収益を得ることが可能になります。
+				</p>
 				<h2 id="近日公開！">近日公開！</h2>
 			</md>
 			<div class="minis horiz">
 				<md>
-					<md id="signup">
-						<p>p5play Pro 機能が利用可能になると、通知を受け取るために今すぐサインアップしてください。</p>
+					<md id="md0-1">
+						<p>今すぐアカウントにサインアップして、Pro 機能が利用可能になった時に通知を受け取りましょう。</p>
 					</md>
 					<div class="login">
 						<a class="btn" href="/pro/signup.html">Sign Up</a>
@@ -49,24 +50,33 @@
 					</div>
 				</md>
 				<md>
-					<md id="patreon">
-						<p>p5play Pro の一部の機能は、Patreon メンバーのみが利用できます。 今すぐ参加して p5play の開発をサポートしてください!</p>
+					<md id="md0-2">
+						<p>Pro 機能は<a href="https://github.com/sponsors/quinton-ashley" target="_blank">GitHub
+								Sponsors</a>または<a href="https://www.patreon.com/p5play"
+								target="_blank">Patreon</a>のメンバーにのみ利用可能になります。今すぐ参加して、p5play の開発をサポートしましょう！</p>
+						<p>支払いができない場合は、無料の<a href="https://github.com/quinton-ashley/p5play-novice/blob/main/LICENSE.md"
+								target="_blank">p5play 初心者ライセンス</a>を申請することができます。詳細は<a href="/LICENSING.md"
+								target="_blank">LICENSING.md</a>を参照してください。</p>
 					</md>
-					<p>
-						<a id="patreon-brand" href="https://www.patreon.com/p5play" aria-label="Patreon page for p5play">
-							<img id="patreon-logo" src="/assets/brands/patreon_logo.png" alt="">
-							<img src="/assets/brands/patreon_brand.png" alt="patreon brand" height="28px">
+					<div id="support">
+						<a id="github-brand" href="https://github.com/sponsors/quinton-ashley"
+							aria-label="GitHub Sponsors for p5play" title="GitHub Sponsors">
+							<img src="/assets/brands/github_logo.svg" alt="" height="42px">
+							<img src="/assets/brands/github_brand.webp" alt="Github" height="42px">
 						</a>
-					</p>
+						<a id="patreon-brand" href="https://www.patreon.com/p5play"
+							aria-label="Patreon page for p5play">
+							<img src="/assets/brands/patreon_logo.webp" alt="" height="42px">
+							<img src="/assets/brands/patreon_brand.webp" alt="Patreon" height="28px">
+						</a>
+					</div>
 				</md>
 			</div>
 		</div>
-		<div id="auth" class="page">
-			<md id="welcome">
-				<h2 id="p5play-pro-メンバーシップ">p5play Pro メンバーシップ</h2>
-				<p>ようこそ！</p>
-				<p>登録いただきありがとうございます。Pro 機能が利用可能になると、メールで通知いたします！</p>
-			</md>
+		<div id="md1-0" class="page">
+			<h2 id="p5play">p5play</h2>
+			<p>ようこそ！</p>
+			<p>サインアップしていただきありがとうございます。Pro 機能が利用可能になった際には、メールで通知されます！</p>
 		</div>
 		<div class="break"></div>
 		<footer id="credits" class="text-small">
@@ -75,42 +85,62 @@
 	</article>
 
 	<script src="/learn/main.js"></script>
-	<script src="
+<script src="
 		https://cdn.jsdelivr.net/npm/jwt-decode@3.1.2/build/jwt-decode.min.js
 		"></script>
 	<script src="/pro/pro.js"></script>
-	<style>
-		#auth {
-			display: none;
-		}
+<style>
+#auth {
+	display: none;
+}
 
-		.login {
-			font-size: 32px;
-			font-weight: bold;
-			display: flex;
-			justify-content: center;
-			gap: 50px;
-		}
+.login {
+	font-size: 32px;
+	font-weight: bold;
+	display: flex;
+	justify-content: center;
+	gap: 50px;
+}
 
-		md p:first-child {
-			margin-top: 0;
-		}
+md p:first-child {
+	margin-top: 0;
+}
 
-		#patreon-logo {
-			height: 42px;
-		}
+#support {
+	margin-top: 32px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	gap: 32px;
+}
 
-		#patreon-brand {
-			display: flex;
-			align-items: center;
-			height: 42px;
-			gap: 20px;
-			width: min-content;
-		}
+#patreon-brand {
+	display: flex;
+	align-items: center;
+	height: 42px;
+	gap: 20px;
+	width: min-content;
+}
 
-		body.dark #patreon-brand {
-			filter: invert(90%);
-		}
+#patreon-brand,
+#github-brand {
+	border-bottom: 1px solid transparent;
+}
+
+#patreon-brand:hover,
+#github-brand:hover {
+	color: var(--pink);
+	border-bottom: 1px solid var(--pink);
+}
+
+body.dark #patreon-brand {
+	filter: invert(90%);
+}
+
+body.dark #github-brand :nth-child(2) {
+	filter: invert(100%);
+}
+
 	</style>
 
 </body>

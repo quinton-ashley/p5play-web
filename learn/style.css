@@ -119,7 +119,7 @@ md {
 
 .mie.p5 .mie-logo {
 	width: 16px !important;
-	background-image: url('../assets/favicon.png') !important;
+	background-image: url('../assets/favicon.webp') !important;
 }
 
 /* .mie.p5 .mie-logo::before {
@@ -464,14 +464,6 @@ nav {
 
 .minis>div {
 	width: 48%;
-}
-
-#editors {
-	margin-top: 32px;
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
-	gap: 32px;
 }
 
 #otherLinks {

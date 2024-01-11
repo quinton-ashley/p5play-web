@@ -8,7 +8,7 @@ You agree to comply with all applicable laws and regulations when using p5play. 
 
 You can optionally consent to p5play using Google Analytics to track how you use p5play. To revoke this consent, you can use a browser extension to block Google Analytics or set `window._p5play_gtagged = false;` before loading p5play.
 
-Unless you are a p5play Patreon supporter or on @quinton-ashley's public p5play-exceptions GitHub repo list, you agree not to remove the "made with p5play" loading screen from any content you create with p5play.
+You agree not to remove the "made with p5play" loading screen from any content you create with p5play, unless you are exempt from this requirement via the p5play Professional License.
 
 https://github.com/quinton-ashley/p5play/wiki/FAQ#how-do-i-remove-the-made-with-p5play-intro-loading-screen
 

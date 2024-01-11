@@ -5,12 +5,12 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>p5play : PRO$</title>
-	<link rel="icon" href="/assets/favicon.png">
+	<link rel="icon" href="/assets/favicon.webp">
 	<link rel="stylesheet" href="/learn/style.css">
 </head>
 
 <body class="dark">
-	<article style="display: none;">
+	<article>
 		<nav id="topNav">
 			<a href="../index.html" id="logoLink" class="active">
 				<img alt="p5play logo" src="/assets/p5play_logo.svg" class="logo">
@@ -31,19 +31,18 @@
 		<div class="top big break"></div>
 
 		<div id="noauth" class="page">
-			<md id="promo">
-				<h2 id="membresía-p5play-pro">Membresía p5play Pro</h2>
-				<p>¿Listo para convertirte en un p5play Pro y ganar dinero real con tus juegos?</p>
-				<p>Si te conviertes en un Miembro p5play Pro, podrás construir aplicaciones de iOS utilizando p5play, lo
-					que te permitirá vender tus juegos en la App Store de Apple o generar ingresos a través de
-					publicidad.</p>
+			<md id="md0-0">
+				<h2 id="membresía-p5play">Membresía p5play</h2>
+				<p>¿Listo para ganar dinero real con tus juegos?</p>
+				<p>Como miembro Pro, podrás crear aplicaciones iOS usando p5play, lo que te permitirá vender tus juegos
+					en la App Store de Apple o ganar ingresos a través de publicidad.</p>
 				<h2 id="¡próximamente">¡Próximamente!</h2>
 			</md>
 			<div class="minis horiz">
 				<md>
-					<md id="signup">
-						<p>¡Regístrate ahora para recibir una notificación cuando las funciones p5play Pro estén
-							disponibles!</p>
+					<md id="md0-1">
+						<p>Regístrate ahora para recibir notificaciones de cuando las funciones Pro estén disponibles.
+						</p>
 					</md>
 					<div class="login">
 						<a class="btn" href="/pro/signup.html">Sign Up</a>
@@ -52,26 +51,36 @@
 					</div>
 				</md>
 				<md>
-					<md id="patreon">
-						<p>Algunas funciones de p5play Pro solo estarán disponibles para los miembros de Patreon. ¡Únase
-							ahora para apoyar el desarrollo de p5play!</p>
+					<md id="md0-2">
+						<p>Las funciones Pro solo estarán disponibles para los miembros de <a
+								href="https://github.com/sponsors/quinton-ashley" target="_blank">GitHub Sponsors</a> o
+							<a href="https://www.patreon.com/p5play" target="_blank">Patreon</a>. ¡Únete ahora para
+							apoyar el desarrollo de p5play!</p>
+						<p>Si no puedes permitirte pagar, puedes solicitar la <a
+								href="https://github.com/quinton-ashley/p5play-novice/blob/main/LICENSE.md"
+								target="_blank">Licencia Novato de p5play</a> gratuita. Consulta <a href="/LICENSING.md"
+								target="_blank">LICENSING.md</a> para más información.</p>
 					</md>
-					<p>
-						<a id="patreon-brand" href="https://www.patreon.com/p5play" aria-label="Patreon page for p5play">
-							<img id="patreon-logo" src="/assets/brands/patreon_logo.png" alt="">
-							<img src="/assets/brands/patreon_brand.png" alt="patreon brand" height="28px">
+					<div id="support">
+						<a id="github-brand" href="https://github.com/sponsors/quinton-ashley"
+							aria-label="GitHub Sponsors for p5play" title="GitHub Sponsors">
+							<img src="/assets/brands/github_logo.svg" alt="" height="42px">
+							<img src="/assets/brands/github_brand.webp" alt="Github" height="42px">
 						</a>
-					</p>
+						<a id="patreon-brand" href="https://www.patreon.com/p5play"
+							aria-label="Patreon page for p5play">
+							<img src="/assets/brands/patreon_logo.webp" alt="" height="42px">
+							<img src="/assets/brands/patreon_brand.webp" alt="Patreon" height="28px">
+						</a>
+					</div>
 				</md>
 			</div>
 		</div>
-		<div id="auth" class="page">
-			<md id="welcome">
-				<h2 id="membresía-p5play-pro">Membresía p5play Pro</h2>
-				<p>¡Bienvenido!</p>
-				<p>Gracias por registrarte. ¡Recibirás una notificación por correo electrónico cuando las funciones Pro
-					estén disponibles!</p>
-			</md>
+		<div id="md1-0" class="page">
+			<h2 id="membresía-p5play">Membresía p5play</h2>
+			<p>¡Bienvenido!</p>
+			<p>Gracias por registrarte. ¡Serás notificado por correo electrónico cuando las funciones pro estén
+				disponibles!</p>
 		</div>
 		<div class="break"></div>
 		<footer id="credits" class="text-small">
@@ -80,42 +89,62 @@
 	</article>
 
 	<script src="/learn/main.js"></script>
-	<script src="
+<script src="
 		https://cdn.jsdelivr.net/npm/jwt-decode@3.1.2/build/jwt-decode.min.js
 		"></script>
 	<script src="/pro/pro.js"></script>
-	<style>
-		#auth {
-			display: none;
-		}
+<style>
+#auth {
+	display: none;
+}
 
-		.login {
-			font-size: 32px;
-			font-weight: bold;
-			display: flex;
-			justify-content: center;
-			gap: 50px;
-		}
+.login {
+	font-size: 32px;
+	font-weight: bold;
+	display: flex;
+	justify-content: center;
+	gap: 50px;
+}
 
-		md p:first-child {
-			margin-top: 0;
-		}
+md p:first-child {
+	margin-top: 0;
+}
 
-		#patreon-logo {
-			height: 42px;
-		}
+#support {
+	margin-top: 32px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	gap: 32px;
+}
 
-		#patreon-brand {
-			display: flex;
-			align-items: center;
-			height: 42px;
-			gap: 20px;
-			width: min-content;
-		}
+#patreon-brand {
+	display: flex;
+	align-items: center;
+	height: 42px;
+	gap: 20px;
+	width: min-content;
+}
 
-		body.dark #patreon-brand {
-			filter: invert(90%);
-		}
+#patreon-brand,
+#github-brand {
+	border-bottom: 1px solid transparent;
+}
+
+#patreon-brand:hover,
+#github-brand:hover {
+	color: var(--pink);
+	border-bottom: 1px solid var(--pink);
+}
+
+body.dark #patreon-brand {
+	filter: invert(90%);
+}
+
+body.dark #github-brand :nth-child(2) {
+	filter: invert(100%);
+}
+
 	</style>
 
 </body>

@@ -18,7 +18,7 @@ Las [páginas de aprendizaje](../learn) de p5play.org son un recurso GRATUITO qu
 
 ## ¿Es de código abierto? 📖
 
-p5play v3 es de código abierto y tiene licencia bajo la GPL v3 para apoyar el desarrollo independiente de juegos.
+p5play v3 es de código abierto y tiene licencia bajo la AGPLv3 para apoyar el desarrollo independiente de juegos.
 
 Al utilizar p5play, aceptas el [EULA](https://github.com/quinton-ashley/p5play/blob/main/EULA.md).
 
@@ -32,9 +32,9 @@ Echa un vistazo a [@quinton-ashley](https://openprocessing.org/user/350295?o=35&
 
 ## ¿Puedo usarlo comercialmente? 🤑
 
-Hay una tarifa de suscripción plana para el uso comercial. ¡Sin tarifas de instalación para los usuarios!
+¡Sí! Puedes usar p5play comercialmente en proyectos de código cerrado bajo los términos de la [Licencia Profesional de p5play](https://github.com/quinton-ashley/p5play-web/blob/main/pro/LICENSE.md), disponible para los miembros de [Patreon](https://www.patreon.com/p5play).
 
-Conviértete en un miembro de [Patreon](https://www.patreon.com/p5play) para obtener una excepción de publicación comercial de código cerrado a la licencia GPL v3 de p5play. Consulta [LICENSING.md](/LICENSING.md) para obtener más información.
+Si no puedes permitirte pagar, puedes solicitar la [Licencia Novato de p5play](https://github.com/quinton-ashley/p5play-novice/blob/main/LICENSE.md) gratuita. Consulta [LICENSING.md](/LICENSING.md) para más información.
 
 # 0-5
 

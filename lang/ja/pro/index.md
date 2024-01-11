@@ -1,25 +1,27 @@
-# promo
+# 0-0
 
-## p5play Pro メンバーシップ
+## p5play メンバーシップ
 
-p5play Pro メンバーになって、ゲームから実際のお金を稼ぎませんか？
+ゲームから実際の収益を得たいですか？
 
-p5play Pro メンバーになると、p5play を使用して iOS アプリを作成できるようになり、Apple の App Store でゲームを販売したり、広告収益を得ることができます。
+Pro メンバーになると、p5play を使って iOS アプリを作成できるようになります。これにより、Apple の App Store でゲームを販売したり、広告から収益を得ることが可能になります。
 
 ## 近日公開！
 
-# signup
+# 0-1
 
-p5play Pro 機能が利用可能になると、通知を受け取るために今すぐサインアップしてください。
+今すぐアカウントにサインアップして、Pro 機能が利用可能になった時に通知を受け取りましょう。
 
-# patreon
+# 0-2
 
-p5play Pro の一部の機能は、Patreon メンバーのみが利用できます。 今すぐ参加して p5play の開発をサポートしてください!
+Pro 機能は[GitHub Sponsors](https://github.com/sponsors/quinton-ashley)または[Patreon](https://www.patreon.com/p5play)のメンバーにのみ利用可能になります。今すぐ参加して、p5play の開発をサポートしましょう！
 
-# welcome
+支払いができない場合は、無料の[p5play 初心者ライセンス](https://github.com/quinton-ashley/p5play-novice/blob/main/LICENSE.md)を申請することができます。詳細は[LICENSING.md](/LICENSING.md)を参照してください。
 
-## p5play Pro メンバーシップ
+# 1-0
+
+## p5play
 
 ようこそ！
 
-登録いただきありがとうございます。Pro 機能が利用可能になると、メールで通知いたします！
+サインアップしていただきありがとうございます。Pro 機能が利用可能になった際には、メールで通知されます！

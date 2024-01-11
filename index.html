@@ -12,7 +12,7 @@
 	<meta property="og:title" content="p5play">
 	<meta property="og:type" content="website">
 	<meta property="og:url" content="https://p5play.org">
-	<meta property="og:image" content="/assets/p5play_brand.png">
+	<meta property="og:image" content="/assets/p5play_brand.webp">
 	<meta property="og:description"
 		content="p5play is a JavaScript game engine that uses p5.js for graphics and Box2D for physics!">
 
@@ -210,6 +210,15 @@ html.ja #bigInfo h3 {
 	background: none;
 }
 
+#editors,
+#support {
+	margin-top: 32px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	gap: 32px;
+}
+
 .apps {
 	display: flex;
 	align-items: center;
@@ -263,12 +272,12 @@ html.ja #bigInfo h3 {
 	width: min-content;
 }
 
-#patreon-logo {
-	height: 42px;
-}
-
 body.dark #patreon-brand {
 	filter: invert(90%);
+}
+
+body.dark #github-brand :nth-child(2) {
+	filter: invert(100%);
 }
 
 #usedBy {
@@ -349,17 +358,17 @@ body.dark #patreon-brand {
 	height: 56px;
 }
 
-.codepen-brand {
+#codepen-brand {
 	opacity: 82%;
 }
 
-.openprocessing-brand,
-.glitch-brand {
+#openprocessing-brand,
+#glitch-brand {
 	color: var(--primary);
 	height: 32px;
 }
 
-.openprocessing-brand {
+#openprocessing-brand {
 	height: 40px;
 }
 
@@ -384,7 +393,7 @@ body.dark #patreon-brand {
 	text-decoration: none;
 }
 
-.dark .glitch-brand {
+.dark #glitch-brand {
 	filter: hue-rotate(180deg) invert() opacity(80%);
 }
 
@@ -396,29 +405,31 @@ body.dark #patreon-brand {
 	font-size: 28px;
 }
 
-.glitch-brand,
-.codepen-brand,
-.replit-brand,
+#glitch-brand,
+#codepen-brand,
+#replit-brand,
 #discord-brand,
-#patreon-brand {
+#patreon-brand,
+#github-brand {
 	border-bottom: 1px solid transparent;
 }
 
-.glitch-brand:hover,
-.codepen-brand:hover,
-.replit-brand:hover,
+#glitch-brand:hover,
+#codepen-brand:hover,
+#replit-brand:hover,
 #discord-brand:hover,
-#patreon-brand:hover {
+#patreon-brand:hover,
+#github-brand:hover {
 	color: var(--pink);
 	border-bottom: 1px solid var(--pink);
 }
 
-.replit-brand {
+#replit-brand {
 	margin-right: 16px;
 	transform: scale(1.5);
 }
 
-.light .codepen-brand,
+.light #codepen-brand,
 .light .discord-brand,
 .light .discord-logo {
 	filter: invert(1);
@@ -878,13 +889,13 @@ function dropSprite() {
 						<a id="depaul-brand"
 							href="https://www.cdm.depaul.edu/academics/pages/courseinfo.aspx?Subject=GAM&amp;CatalogNbr=240"
 							target="_blank">
-							<img src="/assets/brands/depaul_brand.png" alt="DePaul">
+							<img src="/assets/brands/depaul_brand.webp" alt="DePaul">
 						</a>
 						<a id="hunter-brand" href="https://hunter.cuny.edu/" target="_blank">
 							<img src="/assets/brands/hunter_brand.svg" alt="HUNTER">
 						</a>
 						<a id="cmu-brand" href="https://www.cmu.edu" target="_blank">
-							<img src="/assets/brands/cmu_brand.png" alt="Carnegie Mellon University">
+							<img src="/assets/brands/cmu_brand.webp" alt="Carnegie Mellon University">
 						</a>
 						<a id="lsu-brand" href="https://pdm.lsupathways.org/2_graphics/" target="_blank">
 							<img src="/assets/brands/lsu_brand.svg" alt="LSU DDEM">
@@ -897,13 +908,13 @@ function dropSprite() {
 						</a> -->
 						<a id="codehs-brand" href="https://codehs.com/course/gamedesign_p5play/overview"
 							target="_blank">
-							<img src="/assets/brands/codehs_brand.png" alt="CodeHS">
+							<img src="/assets/brands/codehs_brand.webp" alt="CodeHS">
 						</a>
 						<a id="codeorg-brand" href="https://code.org/educate/gamelab" target="_blank">
 							<img src="/assets/brands/codeorg_brand.svg" alt="CODE.org">
 						</a>
 						<a id="ttu-brand" href="https://wreckem.itch.io/p5play-games" target="_blank">
-							<img src="/assets/brands/ttu_logo.png" alt="Texas Tech University">
+							<img src="/assets/brands/ttu_logo.webp" alt="Texas Tech University">
 						</a>
 					</div>
 				</div>
@@ -923,25 +934,32 @@ function dropSprite() {
 					</md>
 					<p>
 						<a id="discord-brand" href="https://discord.gg/3UTbqUgmPF" target="_blank">
-							<img class="discord-brand" src="/assets/brands/discord_brand.svg" alt="Discord brand">
+							<img id="discord-brand" src="/assets/brands/discord_brand.svg" alt="Discord brand">
 						</a>
 					</p>
 				</div>
 				<div>
 					<md id="md11">
 						<h2 id="support-this-project-🤝">Support this project 🤝</h2>
-						<p>p5play is <a href="https://github.com/quinton-ashley/p5play-web/blob/main/LICENSING.md"
-								target="_blank">open source licensed</a> under the GPL: it's free!</p>
+						<p>p5play is open source and <a
+								href="https://github.com/quinton-ashley/p5play-web/blob/main/LICENSING.md"
+								target="_blank">multi-licensed</a>. Under the terms of the AGPLv3, anyone can use p5play
+							for free!</p>
 						<p>But if you use p5play professionally, please <a href="https://www.patreon.com/p5play"
-								target="_blank">support us on Patreon</a>.</p>
+								target="_blank">support</a> its development.</p>
 					</md>
-					<p>
+					<div id="support">
+						<a id="github-brand" href="https://github.com/sponsors/quinton-ashley"
+							aria-label="GitHub Sponsors for p5play" title="GitHub Sponsors">
+							<img src="/assets/brands/github_logo.svg" alt="" height="42px">
+							<img src="/assets/brands/github_brand.webp" alt="Github" height="42px">
+						</a>
 						<a id="patreon-brand" href="https://www.patreon.com/p5play"
 							aria-label="Patreon page for p5play">
-							<img src="/assets/brands/patreon_logo.webp" alt="" id="patreon-logo">
-							<img src="/assets/brands/patreon_brand.webp" alt="patreon brand" height="28px">
+							<img src="/assets/brands/patreon_logo.webp" alt="" height="42px">
+							<img src="/assets/brands/patreon_brand.webp" alt="Patreon" height="28px">
 						</a>
-					</p>
+					</div>
 				</div>
 				<div>
 					<md id="md12">
@@ -951,18 +969,18 @@ function dropSprite() {
 					</md>
 					<div id="editors">
 						<a href="https://openprocessing.org/sketch/1717172" target="_blank">
-							<img alt="OpenProcessing logo" class="openprocessing-brand"
-								src="/assets/brands/openprocessing_brand.png">
+							<img alt="OpenProcessing logo" id="openprocessing-brand"
+								src="/assets/brands/openprocessing_brand.webp" height="40px">
 							<span class="bariol">OpenProcessing</span>
 						</a>
 						<a href="https://editor.p5js.org/quinton-ashley/sketches/szN_XdV5O" target="_blank">
 							<img alt="p5.js web editor logo" class="p5js-web-editor-logo"
-								src="/assets/brands/p5js_logo.png">
+								src="/assets/brands/p5js_logo.webp">
 							<img alt="p5.js web editor brand" class="p5js-web-editor-brand"
 								src="/assets/brands/p5js_brand.svg">
 						</a>
 						<a href="https://codepen.io/qashto/pen/rNKMjrZ?editors=0010" target="_blank">
-							<svg class="codepen-brand" viewBox="0 0 138 26" fill="none" stroke="#fff" stroke-width="2.3"
+							<svg id="codepen-brand" viewBox="0 0 138 26" fill="none" stroke="#fff" stroke-width="2.3"
 								stroke-linecap="round" stroke-linejoin="round" title="CodePen" height="40px">
 								<path
 									d="M15 8a7 7 0 100 10m7-8.7L33 2l11 7.3v7.4L33 24l-11-7.3zm0 0l11 7.4 11-7.4m0 7.4L33 9.3l-11 7.4M33 2v7.3m0 7.4V24M52 6h5a7 7 0 010 14h-5zm28 0h-9v14h9m-9-7h6m11 1h6a4 4 0 000-8h-6v14m26-14h-9v14h9m-9-7h6m11 7V6l11 14V6">
@@ -971,7 +989,7 @@ function dropSprite() {
 						</a>
 						<a href="https://glitch.com/edit/#!/p5play-v3-starter-code?path=sketch.js%3A1%3A0"
 							target="_blank">
-							<img class="glitch-brand" src="/assets/brands/glitch_brand.svg" alt="glitch brand">
+							<img id="glitch-brand" src="/assets/brands/glitch_brand.svg" alt="glitch brand">
 						</a>
 					</div>
 				</div>
@@ -1253,7 +1271,9 @@ function dropSprite() {
 <script>
 let userPaused = false;
 const reels = document.querySelectorAll(".reel");
-for (let reel of reels) {
+for (let i = 0; i < reels.length; i++) {
+	if (i == 1) continue;
+	let reel = reels[i];
 	reel.addEventListener("click", () => {
 		userPaused = !userPaused;
 		for (let r of reels) {

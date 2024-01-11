@@ -30,9 +30,9 @@ Ask questions and meet other people making interactive art and games with p5play
 
 ## Support this project 🤝
 
-p5play is [open source licensed](https://github.com/quinton-ashley/p5play-web/blob/main/LICENSING.md) under the GPL: it's free!
+p5play is open source and [multi-licensed](https://github.com/quinton-ashley/p5play-web/blob/main/LICENSING.md). Under the terms of the AGPLv3, anyone can use p5play for free!
 
-But if you use p5play professionally, please [support us on Patreon](https://www.patreon.com/p5play).
+But if you use p5play professionally, please [support](https://www.patreon.com/p5play) its development.
 
 # 12
 

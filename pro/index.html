@@ -5,7 +5,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>p5play : PRO$</title>
-	<link rel="icon" href="/assets/favicon.png">
+	<link rel="icon" href="/assets/favicon.webp">
 	<link rel="stylesheet" href="/learn/style.css">
 </head>
 
@@ -31,8 +31,8 @@
 		<div class="top big break"></div>
 
 		<div id="noauth" class="page">
-			<md id="promo">
-				<h2 id="p5play-pro-membership">p5play Pro Membership</h2>
+			<md id="md0-0">
+				<h2 id="p5play-membership">p5play Membership</h2>
 				<p>Ready to make real money from your games?</p>
 				<p>As a Pro member you'll be able to build iOS apps using p5play, enabling you to sell your games on
 					Apple's App Store or earn revenue from advertisements.</p>
@@ -40,8 +40,8 @@
 			</md>
 			<div class="minis horiz">
 				<md>
-					<md id="signup">
-						<p>Sign up now to be notified when p5play Pro features will be available.</p>
+					<md id="md0-1">
+						<p>Sign up for an account now to be notified of when Pro features will be available.</p>
 					</md>
 					<div class="login">
 						<a class="btn" href="/pro/signup.html">Sign Up</a>
@@ -50,26 +50,34 @@
 					</div>
 				</md>
 				<md>
-					<md id="patreon">
-						<p>Some p5play Pro features will only be available to Patreon members. Join now to support the
-							development of p5play!</p>
+					<md id="md0-2">
+						<p>Pro features will only be available to <a href="https://github.com/sponsors/quinton-ashley"
+								target="_blank">GitHub Sponsors</a> or <a href="https://www.patreon.com/p5play"
+								target="_blank">Patreon</a> members. Join now to support the development of p5play!</p>
+						<p>If you can't afford to pay, you can apply for the free <a
+								href="https://github.com/quinton-ashley/p5play-novice/blob/main/LICENSE.md"
+								target="_blank">p5play Novice License</a>. See <a href="/LICENSING.md"
+								target="_blank">LICENSING.md</a> for more info.</p>
 					</md>
-					<p>
+					<div id="support">
+						<a id="github-brand" href="https://github.com/sponsors/quinton-ashley"
+							aria-label="GitHub Sponsors for p5play" title="GitHub Sponsors">
+							<img src="/assets/brands/github_logo.svg" alt="" height="42px">
+							<img src="/assets/brands/github_brand.webp" alt="Github" height="42px">
+						</a>
 						<a id="patreon-brand" href="https://www.patreon.com/p5play"
 							aria-label="Patreon page for p5play">
-							<img id="patreon-logo" src="/assets/brands/patreon_logo.webp" alt="">
-							<img src="/assets/brands/patreon_brand.webp" alt="patreon brand" height="28px">
+							<img src="/assets/brands/patreon_logo.webp" alt="" height="42px">
+							<img src="/assets/brands/patreon_brand.webp" alt="Patreon" height="28px">
 						</a>
-					</p>
+					</div>
 				</md>
 			</div>
 		</div>
-		<div id="auth" class="page">
-			<md id="welcome">
-				<h2 id="p5play-pro-membership">p5play Pro Membership</h2>
-				<p>Welcome !</p>
-				<p>Thanks for signing up. You'll be notified by email when pro features are available!</p>
-			</md>
+		<div id="md1-0" class="page">
+			<h2 id="p5play-membership">p5play Membership</h2>
+			<p>Welcome !</p>
+			<p>Thanks for signing up. You'll be notified by email when pro features are available!</p>
 		</div>
 		<div class="break"></div>
 		<footer id="credits" class="text-small">
@@ -99,8 +107,12 @@ md p:first-child {
 	margin-top: 0;
 }
 
-#patreon-logo {
-	height: 42px;
+#support {
+	margin-top: 32px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	gap: 32px;
 }
 
 #patreon-brand {
@@ -111,8 +123,23 @@ md p:first-child {
 	width: min-content;
 }
 
+#patreon-brand,
+#github-brand {
+	border-bottom: 1px solid transparent;
+}
+
+#patreon-brand:hover,
+#github-brand:hover {
+	color: var(--pink);
+	border-bottom: 1px solid var(--pink);
+}
+
 body.dark #patreon-brand {
 	filter: invert(90%);
+}
+
+body.dark #github-brand :nth-child(2) {
+	filter: invert(100%);
 }
 
 	</style>

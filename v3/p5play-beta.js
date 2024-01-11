@@ -2,7 +2,7 @@
  * p5play
  * @version 3.18
  * @author quinton-ashley
- * @license gpl-v3-only
+ * @license AGPL-3.0
  */
 p5.prototype.registerMethod('init', function p5playInit() {
 	if (typeof window.planck == 'undefined') {
@@ -15,6 +15,7 @@ p5.prototype.registerMethod('init', function p5playInit() {
 	const plScale = 60;
 
 	// Google Analytics
+	// users can set window._p5play_gtagged to false before loading p5play to disable tracking
 	if (
 		typeof window._p5play_gtagged == 'undefined' &&
 		typeof process == 'undefined' // don't track in node.js
@@ -7898,7 +7899,7 @@ p5.prototype.registerMethod('init', function p5playInit() {
 		d.id = 'p5play-intro';
 		d.style = 'position: absolute; width: 100%; height: 100%; top: 0; left: 0; z-index: 1000; background-color: black;';
 		let logo = document.createElement('img');
-		logo.src = 'https://p5play.org/v3/made_with_p5play.png';
+		logo.src = 'https://p5play.org/v3/made_with_p5play.webp';
 		logo.style =
 			'position: absolute; top: 50%; left: 50%; width: 40vh; height: 20vh; margin-left: -20vh; margin-top: -10vh; z-index: 1000; opacity: 0; transition: opacity 0.1s ease-in-out;';
 		document.body.append(d);
@@ -9444,20 +9445,20 @@ main {
 				rightTrigger: 5
 			};
 
+			// log(gp);
+
+			this.gamepad = gp;
+			this.id = gp.id;
+
 			// corrects button mapping for GuliKit gamepads
 			// which have a Nintendo Switch style button layout
 			// https://www.aliexpress.com/item/1005003624801819.html
-			if (gp.id.includes('GuliKit')) {
+			if (this.id.includes('GuliKit')) {
 				this._btns.a = 1;
 				this._btns.b = 0;
 				this._btns.x = 3;
 				this._btns.y = 2;
 			}
-
-			// log(gp);
-
-			this.gamepad = gp;
-			this.id = gp.id;
 		}
 
 		_ac(inp) {
