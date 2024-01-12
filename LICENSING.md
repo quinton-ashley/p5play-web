@@ -22,7 +22,7 @@ If you're a student, independent developer, or small development team and can't 
 
 This license exists to give novice developers the opportunity to use p5play commercially. If you can afford to pay for a professional license, please do so to support the development of p5play.
 
-To apply, email info@p5play.org with the title "novice". In the body of the email write a brief description of how you plan to use p5play commercially. If you're approved, you'll be added to the [p5play-novice][] README.md.
+Using the same email you used to sign up for a [p5play membership](https://p5play.org/pro/), send a message to info@p5play.org with the title "novice applicant". In the body of the email write a description of how you plan to use p5play commercially. If you're approved, you will be notified via a response to your email.
 
 ## p5play Professional License
 
@@ -85,4 +85,3 @@ Currently, if you'd like to make contributions to the p5play library, you can do
 [GitHub Sponsors]: https://github.com/sponsors/quinton-ashley
 [support its development]: https://www.patreon.com/p5play
 [must also comply]: https://www.beavandenberk.com/ip/copyright-tm/nonprofits-and-the-fair-use-defense/
-[p5play-novice]: https://github.com/quinton-ashley/p5play-novice
