@@ -32,13 +32,10 @@
 		<div class="break"></div>
 		<div id="page-0" class="page">
 			<md id="md0-0">
-				<h2 id="joints">Joints</h2>
-				<p>A joint connects the physics colliders of two sprites, limiting their movement relative to each
-					other.</p>
-				<p>Joint constructors accept two sprites as input. At least one of the sprites in a joint must have a
-					dynamic physics collider.</p>
-				<p>Every sprite has a <code>sprite.joints</code> array, which contains all the joints it's currently
-					connected to.</p>
+				<h2 id="joints-ジョイント">Joints (ジョイント)</h2>
+				<p>ジョイントは、二つのスプライトの物理コライダーを接続し、相互の動きを制限します。</p>
+				<p>ジョイントコンストラクタは二つのスプライトを入力として受け取ります。ジョイント内の少なくとも一つのスプライトには動的な物理コライダーが必要です。</p>
+				<p>すべてのスプライトには、現在接続されているすべてのジョイントを含む <code>sprite.joints</code> 配列があります。</p>
 			</md>
 			<script type="mie/p5" id="glue" lines="12" horiz="">
 let floor, spriteA, spriteB, j;
@@ -60,19 +57,18 @@ function draw() {
       </script>
 			<md id="md0-1">
 				<h2 id="gluejoint">GlueJoint</h2>
-				<p>Do you like crafting in Legend of Zelda: Tears of the Kingdom? Then you'll love glue joints!</p>
-				<p>A <code>GlueJoint</code> is the simplest type of joint, it just glues two sprites together. The
-					sprites don't have to be touching and they won't un-glue unless you remove the joint.</p>
-				<p>But wait, why use a glue joint instead of <code>sprite.addCollider</code>?</p>
+				<p>ゼルダの伝説：ティアーズ・オブ・ザ・キングダムでのクラフティングが好きですか？ それなら、グルージョイントが気に入るはずです！</p>
+				<p><code>GlueJoint</code>
+					は最も単純なジョイントのタイプで、単に二つのスプライトを接着します。スプライトが触れ合っている必要はなく、ジョイントを削除しない限りは接着が解けることはありません。</p>
+				<p>しかし、なぜ <code>sprite.addCollider</code> の代わりにグルージョイントを使うのでしょうか？</p>
 				<ul>
-					<li>each sprite can have its own physics properties</li>
-					<li>each sprite can detect collisions separately</li>
-					<li>removing a joint doesn't remove the sprites</li>
+					<li>各スプライトは独自の物理的特性を持つことができます</li>
+					<li>各スプライトは別々に衝突を検出できます</li>
+					<li>ジョイントを削除してもスプライトは削除されません</li>
 				</ul>
-				<p>Joints can be visually hidden by setting <code>joint.visible</code> to false or removed entirely by
-					running the <code>joint.remove</code> function.</p>
-				<p>Try gluing and un-gluing the stick and ball sprite in the mini example. If you want a challenge,
-					throw the ball straight up in the air and try to stick it to the top of the stick!</p>
+				<p>ジョイントは <code>joint.visible</code> を false に設定することで視覚的に隠すことができますし、<code>joint.remove</code>
+					関数を実行することで完全に削除することもできます。</p>
+				<p>スティックとボールのスプライトを接着したり接着を解除したりするミニ例を試してみてください。挑戦したい場合は、ボールを真っ直ぐ上に投げて、スティックの上部に接着しようとしてみてください！</p>
 			</md>
 			<script type="mie/p5" id="glue-and-unglue">
 let floor, stick, ball, j;
@@ -99,26 +95,12 @@ function draw() {
 		<div id="page-1" class="page">
 			<md id="md1-0">
 				<h2 id="distancejoint">DistanceJoint</h2>
-				<p>
-					By default, a <code>DistanceJoint</code> is attached at the center
-					of each sprite that it's connected to. To shift the joint's
-					attachment points, edit its <code>offsetA</code> and
-					<code>offsetB</code> vectors.
-				</p>
-				<p>
-					Adjusting the joint's <code>springiness</code> ratio changes the
-					amount it can stretch and compress.
-				</p>
-				<p>
-					<code>0.0</code> = steel rod (default)<br><code>0.2</code> = stiff
-					spring<br><code>0.4</code> = tight spring<br><code>0.6</code> =
-					bouncy spring<br><code>0.8</code> = slinky<br><code>1.0</code>
-					= bungee cord
-				</p>
-				<p>
-					You can also adjust the joints's <code>damping</code> ratio to
-					change how quickly it loses vibrational energy.
-				</p>
+				<p>デフォルトでは、<code>DistanceJoint</code> はそれが接続されている各スプライトの中心に取り付けられます。ジョイントの取り付けポイントを変更するには、その
+					<code>offsetA</code> と <code>offsetB</code> ベクターを編集します。</p>
+				<p>ジョイントの <code>springiness</code> 比率を調整すると、伸縮できる量が変わります。</p>
+				<p><code>0.0</code> = 鋼鉄棒（デフォルト）<br><code>0.2</code> = 堅いバネ<br><code>0.4</code> =
+					強いバネ<br><code>0.6</code> = バウンシーなバネ<br><code>0.8</code> = スリンキー<br><code>1.0</code> = バンジーコード</p>
+				<p>また、ジョイントの <code>damping</code> 比率を調整して、振動エネルギーがどれだけ早く失われるかを変えることもできます。</p>
 			</md>
 			<script type="mie/p5" id="swing" lines="13">
 let sA, sB, j;
@@ -144,18 +126,13 @@ function draw() {
 		<div id="page-2" class="page">
 			<md id="md2-0">
 				<h2 id="wheeljoint">WheelJoint</h2>
-				<p>A <code>WheelJoint</code> connects a vehicle body to a wheel. Use wheel joints to create drive-able
-					vehicles!</p>
-				<p>Every wheel joint has a motor, which can be enabled by setting the joint's <code>speed</code> to the
-					desired motor speed, <code>maxPower</code> to a positive value, or <code>motorEnabled</code> to
-					true.</p>
-				<p>Disabling a wheel joint motor is like putting a car in neutral, it causes the wheel to roll freely.
-					The joint's speed must be set to zero for the wheel to brake.</p>
-				<p>By default, wheel joints have a <code>maxPower</code> of 1000, <code>springiness</code> of 0.1,
-					<code>damping</code> of 0.7, and angle of attachment <code>angle</code> of 90 degrees.
-				</p>
-				<p>Try driving the car in this example! Can you make it to the end of the road? Customize the car by
-					changing the position of its wheels and the angle at which they're attached.</p>
+				<p><code>WheelJoint</code> は、車両のボディを車輪に接続します。ドライブ可能な車両を作るためにホイールジョイントを使用してください！</p>
+				<p>すべてのホイールジョイントにはモーターがあり、ジョイントの <code>speed</code> を所望のモーター速度に設定し、<code>maxPower</code>
+					を正の値に設定するか、<code>motorEnabled</code> を true にすることで有効にすることができます。</p>
+				<p>ホイールジョイントモーターを無効にすることは、車をニュートラルにするようなもので、車輪が自由に転がるようになります。車輪をブレーキさせるには、ジョイントの速度をゼロに設定する必要があります。</p>
+				<p>デフォルトでは、ホイールジョイントは <code>maxPower</code> が 1000、<code>springiness</code> が 0.1、<code>damping</code> が
+					0.7、取り付け角度 <code>angle</code> が 90 度に設定されています。</p>
+				<p>この例の車を運転してみてください！道路の終わりまで行くことができますか？車輪の位置や取り付け角度を変えて、車をカスタマイズしてみてください。</p>
 			</md>
 
 			<script type="mie/p5" id="car">
@@ -196,13 +173,11 @@ function draw() {
 		<div id="page-3" class="page">
 			<md id="md3-0">
 				<h2 id="hingejoint">HingeJoint</h2>
-				<p>A <code>HingeJoint</code> enables one or two sprites to rotate around the same point.</p>
-				<p>To change the point of rotation edit the joint's <code>offsetA</code> or <code>offsetB</code> vector.
+				<p><code>HingeJoint</code> は、一つまたは二つのスプライトが同じ点の周りを回転できるようにします。</p>
+				<p>回転の点を変更するには、ジョイントの <code>offsetA</code> または <code>offsetB</code> ベクターを編集してください。</p>
+				<p>小さな <code>maxPower</code> を持つヒンジジョイントで、デフォルトの <code>speed</code> がゼロの場合、移動されるのを抵抗するブレーキングフォースが適用されます。
 				</p>
-				<p>Hinge joints with a small <code>maxPower</code> and default <code>speed</code> of zero apply braking
-					force to resist being moved.</p>
-				<p>Try clicking around this example to drop small boxes on the seesaw. How many boxes can you put on the
-					seesaw before it tips?</p>
+				<p>この例でシーソーに小箱を落としてみてください。シーソーが傾く前に何個の箱を乗せることができますか？</p>
 			</md>
 			<script type="mie/p5" id="seesaw">
 let s0, s1, j;
@@ -230,14 +205,12 @@ function draw() {
 		<div id="page-4" class="page">
 			<md id="md4-0">
 				<h2 id="sliderjoint">SliderJoint</h2>
-				<p>A <code>SliderJoint</code> constrains the motion of two sprites to sliding
-					along a common axis, without rotation.</p>
-				<p>The joint's <code>range</code> determines how far apart the connected sprites can be from each other.
-					Changing the joint's <code>angle</code> changes the direction the sprites can slide in.</p>
-				<p>By default the joint's motor is enabled with a <code>speed</code> of 0, so <code>maxPower</code>
-					determines how much the joint can resist sliding.</p>
-				<p>Try dropping boxes on the scale by clicking with your mouse. How many boxes can you stack on the
-					scale before it reaches its limit? Try changing its angle too.</p>
+				<p><code>SliderJoint</code> は、二つのスプライトの動きを共通の軸に沿ってスライドするように制約しますが、回転はしません。</p>
+				<p>ジョイントの <code>range</code> は、接続されたスプライトが互いにどれだけ離れることができるかを決定します。ジョイントの <code>angle</code>
+					を変更すると、スプライトがスライドできる方向が変わります。</p>
+				<p>デフォルトではジョイントのモーターは <code>speed</code> が 0 で有効になっているので、<code>maxPower</code>
+					はジョイントがスライドにどれだけ抵抗できるかを決定します。</p>
+				<p>マウスをクリックして、天秤に箱を落としてみてください。天秤が限界に達する前に何個の箱を積み重ねることができますか？その角度を変えてみるのも面白いでしょう。</p>
 			</md>
 			<script type="mie/p5" id="weight scale" horiz="">
 let floor, scale, j;
@@ -246,7 +219,7 @@ function setup() {
 	new Canvas(120, 432);
 	world.gravity.y = 10;
 
-	floor = new Sprite(60, 380, 500, 20, 's')
+	floor = new Sprite(60, 380, 500, 20,'s')
 	scale = new Sprite(60, 200, 90, 10);
 
 	j = new SliderJoint(floor, scale);
@@ -260,7 +233,7 @@ function draw() {
 	if (mouse.presses()) {
 		new Sprite(mouse.x, mouse.y, 20, 20);
 	}
-	if (kb.pressing('space')) j.speed = -500;
+	if (kb.pressing(' ')) j.speed = -500;
 	else j.speed = 0;
 }
 
@@ -284,14 +257,14 @@ function draw() {
 	</article>
 
 	<script src="/v3/q5.min.js"></script>
-	<script src="/v3/planck.min.js"></script>
-	<script src="/v3/p5play.min.js"></script>
-	<script>
-		window.mie = { autoLoad: false };
+<script src="/v3/planck.min.js"></script>
+<script src="/v3/p5play.min.js"></script>
+<script>
+window.mie = { autoLoad: false };
 
 	</script>
 	<script src="/learn/mie.js"></script>
-	<script src="/learn/learn.js"></script>
+<script src="/learn/learn.js"></script>
 </body>
 
 </html>

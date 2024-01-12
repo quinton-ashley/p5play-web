@@ -1,8 +1,8 @@
 # LICENSING
 
-## p5play v3 library
-
 > This file contains a non-legally binding summary of p5play's licenses. Click on the links below to read the full text of each license.
+
+## p5play v3 library
 
 Anyone can use p5play for free under the terms of the [AGPLv3][] (Affero General Public License), a copyleft open source license. 🎉
 

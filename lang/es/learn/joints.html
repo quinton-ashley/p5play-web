@@ -32,13 +32,13 @@
 		<div class="break"></div>
 		<div id="page-0" class="page">
 			<md id="md0-0">
-				<h2 id="joints">Joints</h2>
-				<p>A joint connects the physics colliders of two sprites, limiting their movement relative to each
-					other.</p>
-				<p>Joint constructors accept two sprites as input. At least one of the sprites in a joint must have a
-					dynamic physics collider.</p>
-				<p>Every sprite has a <code>sprite.joints</code> array, which contains all the joints it's currently
-					connected to.</p>
+				<h2 id="joints-articulaciones">Joints (Articulaciones)</h2>
+				<p>Una articulación conecta los colisionadores físicos de dos sprites, limitando su movimiento relativo
+					entre sí.</p>
+				<p>Los constructores de articulaciones aceptan dos sprites como entrada. Al menos uno de los sprites en
+					una articulación debe tener un colisionador físico dinámico.</p>
+				<p>Cada sprite tiene un arreglo <code>sprite.joints</code>, que contiene todas las articulaciones a las
+					que está conectado actualmente.</p>
 			</md>
 			<script type="mie/p5" id="glue" lines="12" horiz="">
 let floor, spriteA, spriteB, j;
@@ -60,19 +60,22 @@ function draw() {
       </script>
 			<md id="md0-1">
 				<h2 id="gluejoint">GlueJoint</h2>
-				<p>Do you like crafting in Legend of Zelda: Tears of the Kingdom? Then you'll love glue joints!</p>
-				<p>A <code>GlueJoint</code> is the simplest type of joint, it just glues two sprites together. The
-					sprites don't have to be touching and they won't un-glue unless you remove the joint.</p>
-				<p>But wait, why use a glue joint instead of <code>sprite.addCollider</code>?</p>
+				<p>¿Te gusta el arte en Legend of Zelda: Tears of the Kingdom? ¡Entonces te encantarán las
+					articulaciones de pegamento!</p>
+				<p>Una <code>GlueJoint</code> es el tipo más simple de articulación, simplemente pega dos sprites
+					juntos. Los sprites no tienen que estar tocándose y no se despegarán a menos que se quite la
+					articulación.</p>
+				<p>Pero espera, ¿por qué usar una articulación de pegamento en lugar de <code>sprite.addCollider</code>?
+				</p>
 				<ul>
-					<li>each sprite can have its own physics properties</li>
-					<li>each sprite can detect collisions separately</li>
-					<li>removing a joint doesn't remove the sprites</li>
+					<li>cada sprite puede tener sus propias propiedades físicas</li>
+					<li>cada sprite puede detectar colisiones por separado</li>
+					<li>quitar una articulación no elimina los sprites</li>
 				</ul>
-				<p>Joints can be visually hidden by setting <code>joint.visible</code> to false or removed entirely by
-					running the <code>joint.remove</code> function.</p>
-				<p>Try gluing and un-gluing the stick and ball sprite in the mini example. If you want a challenge,
-					throw the ball straight up in the air and try to stick it to the top of the stick!</p>
+				<p>Las articulaciones pueden ocultarse visualmente estableciendo <code>joint.visible</code> en falso o
+					eliminarse por completo ejecutando la función <code>joint.remove</code>.</p>
+				<p>Prueba pegar y despegar el sprite de palo y bola en el mini ejemplo. Si buscas un desafío, ¡lanza la
+					bola directamente hacia arriba y trata de pegarla a la parte superior del palo!</p>
 			</md>
 			<script type="mie/p5" id="glue-and-unglue">
 let floor, stick, ball, j;
@@ -99,26 +102,16 @@ function draw() {
 		<div id="page-1" class="page">
 			<md id="md1-0">
 				<h2 id="distancejoint">DistanceJoint</h2>
-				<p>
-					By default, a <code>DistanceJoint</code> is attached at the center
-					of each sprite that it's connected to. To shift the joint's
-					attachment points, edit its <code>offsetA</code> and
-					<code>offsetB</code> vectors.
-				</p>
-				<p>
-					Adjusting the joint's <code>springiness</code> ratio changes the
-					amount it can stretch and compress.
-				</p>
-				<p>
-					<code>0.0</code> = steel rod (default)<br><code>0.2</code> = stiff
-					spring<br><code>0.4</code> = tight spring<br><code>0.6</code> =
-					bouncy spring<br><code>0.8</code> = slinky<br><code>1.0</code>
-					= bungee cord
-				</p>
-				<p>
-					You can also adjust the joints's <code>damping</code> ratio to
-					change how quickly it loses vibrational energy.
-				</p>
+				<p>Por defecto, un <code>DistanceJoint</code> se adjunta en el centro de cada sprite al que está
+					conectado. Para cambiar los puntos de anclaje de la articulación, edita sus vectores
+					<code>offsetA</code> y <code>offsetB</code> (la compensación).</p>
+				<p>Ajustar la proporción de <code>springiness</code> (elasticidad) del ensamblaje cambia la cantidad que
+					puede estirarse y comprimirse.</p>
+				<p><code>0.0</code> = barra de acero (por defecto)<br><code>0.2</code> = resorte
+					rígido<br><code>0.4</code> = resorte ajustado<br><code>0.6</code> = resorte
+					rebotador<br><code>0.8</code> = slinky<br><code>1.0</code> = cuerda bungee</p>
+				<p>También puedes ajustar la proporción de <code>damping</code> de la articulación para cambiar qué tan
+					rápido pierde energía vibratoria.</p>
 			</md>
 			<script type="mie/p5" id="swing" lines="13">
 let sA, sB, j;
@@ -144,18 +137,19 @@ function draw() {
 		<div id="page-2" class="page">
 			<md id="md2-0">
 				<h2 id="wheeljoint">WheelJoint</h2>
-				<p>A <code>WheelJoint</code> connects a vehicle body to a wheel. Use wheel joints to create drive-able
-					vehicles!</p>
-				<p>Every wheel joint has a motor, which can be enabled by setting the joint's <code>speed</code> to the
-					desired motor speed, <code>maxPower</code> to a positive value, or <code>motorEnabled</code> to
-					true.</p>
-				<p>Disabling a wheel joint motor is like putting a car in neutral, it causes the wheel to roll freely.
-					The joint's speed must be set to zero for the wheel to brake.</p>
-				<p>By default, wheel joints have a <code>maxPower</code> of 1000, <code>springiness</code> of 0.1,
-					<code>damping</code> of 0.7, and angle of attachment <code>angle</code> of 90 degrees.
-				</p>
-				<p>Try driving the car in this example! Can you make it to the end of the road? Customize the car by
-					changing the position of its wheels and the angle at which they're attached.</p>
+				<p>Un <code>WheelJoint</code> conecta el cuerpo de un vehículo a una rueda. ¡Usa las articulaciones de
+					rueda para crear vehículos conducibles!</p>
+				<p>Cada articulación de rueda tiene un motor, que se puede activar configurando la <code>speed</code>
+					(velocidad) del ensamblaje a la velocidad del motor deseada, <code>maxPower</code> (poder maximo) a
+					un valor positivo, o <code>motorEnabled</code> (motor habilitado) a verdadero.</p>
+				<p>Desactivar el motor de una articulación de rueda es como poner un coche en punto muerto, hace que la
+					rueda ruede libremente. La velocidad de la articulación debe ajustarse a cero para que la rueda
+					frene.</p>
+				<p>Por defecto, las articulaciones de rueda tienen un <code>maxPower</code> de 1000,
+					<code>springiness</code> (elasticidad) de 0.1, <code>damping</code> (mojadura) de 0.7, y ángulo de
+					sujeción <code>angle</code> de 90 grados.</p>
+				<p>¡Prueba conducir el coche en este ejemplo! ¿Puedes llegar al final del camino? Personaliza el coche
+					cambiando la posición de sus ruedas y el ángulo en el que están sujetas.</p>
 			</md>
 
 			<script type="mie/p5" id="car">
@@ -196,13 +190,14 @@ function draw() {
 		<div id="page-3" class="page">
 			<md id="md3-0">
 				<h2 id="hingejoint">HingeJoint</h2>
-				<p>A <code>HingeJoint</code> enables one or two sprites to rotate around the same point.</p>
-				<p>To change the point of rotation edit the joint's <code>offsetA</code> or <code>offsetB</code> vector.
-				</p>
-				<p>Hinge joints with a small <code>maxPower</code> and default <code>speed</code> of zero apply braking
-					force to resist being moved.</p>
-				<p>Try clicking around this example to drop small boxes on the seesaw. How many boxes can you put on the
-					seesaw before it tips?</p>
+				<p>Una <code>HingeJoint</code> permite que uno o dos sprites giren alrededor del mismo punto.</p>
+				<p>Para cambiar el punto de rotación, edita el vector <code>offsetA</code> o <code>offsetB</code> de la
+					articulación.</p>
+				<p>Las articulaciones de bisagra con un <code>maxPower</code> (poder maximo) pequeño y una
+					<code>speed</code> (velocidad) predeterminada de cero aplican fuerza de frenado para resistir ser
+					movidas.</p>
+				<p>Prueba hacer clic en este ejemplo para soltar cajas pequeñas en el balancín. ¿Cuántas cajas puedes
+					poner en el balancín antes de que se incline?</p>
 			</md>
 			<script type="mie/p5" id="seesaw">
 let s0, s1, j;
@@ -230,14 +225,16 @@ function draw() {
 		<div id="page-4" class="page">
 			<md id="md4-0">
 				<h2 id="sliderjoint">SliderJoint</h2>
-				<p>A <code>SliderJoint</code> constrains the motion of two sprites to sliding
-					along a common axis, without rotation.</p>
-				<p>The joint's <code>range</code> determines how far apart the connected sprites can be from each other.
-					Changing the joint's <code>angle</code> changes the direction the sprites can slide in.</p>
-				<p>By default the joint's motor is enabled with a <code>speed</code> of 0, so <code>maxPower</code>
-					determines how much the joint can resist sliding.</p>
-				<p>Try dropping boxes on the scale by clicking with your mouse. How many boxes can you stack on the
-					scale before it reaches its limit? Try changing its angle too.</p>
+				<p>Un <code>SliderJoint</code> restringe el movimiento de dos sprites al deslizarse a lo largo de un eje
+					común, sin rotación.</p>
+				<p>El <code>range</code> (rango) de la articulación determina cuán separados pueden estar los sprites
+					conectados entre sí. Cambiar el <code>angle</code> (ángulo) de la articulación cambia la dirección
+					en la que los sprites pueden deslizarse.</p>
+				<p>Por defecto, el motor de la articulación está activado con una <code>speed</code> (velocidad) de 0,
+					por lo que <code>maxPower</code> (poder maximo) determina cuánto puede resistir la articulación al
+					deslizamiento.</p>
+				<p>Prueba soltar cajas en la balanza haciendo clic con el ratón. ¿Cuántas cajas puedes apilar en la
+					balanza antes de que alcance su límite? Intenta cambiar su ángulo también.</p>
 			</md>
 			<script type="mie/p5" id="weight scale" horiz="">
 let floor, scale, j;
@@ -246,7 +243,7 @@ function setup() {
 	new Canvas(120, 432);
 	world.gravity.y = 10;
 
-	floor = new Sprite(60, 380, 500, 20, 's')
+	floor = new Sprite(60, 380, 500, 20,'s')
 	scale = new Sprite(60, 200, 90, 10);
 
 	j = new SliderJoint(floor, scale);
@@ -260,7 +257,7 @@ function draw() {
 	if (mouse.presses()) {
 		new Sprite(mouse.x, mouse.y, 20, 20);
 	}
-	if (kb.pressing('space')) j.speed = -500;
+	if (kb.pressing(' ')) j.speed = -500;
 	else j.speed = 0;
 }
 
@@ -285,14 +282,14 @@ function draw() {
 	</article>
 
 	<script src="/v3/q5.min.js"></script>
-	<script src="/v3/planck.min.js"></script>
-	<script src="/v3/p5play.min.js"></script>
-	<script>
-		window.mie = { autoLoad: false };
+<script src="/v3/planck.min.js"></script>
+<script src="/v3/p5play.min.js"></script>
+<script>
+window.mie = { autoLoad: false };
 
 	</script>
 	<script src="/learn/mie.js"></script>
-	<script src="/learn/learn.js"></script>
+<script src="/learn/learn.js"></script>
 </body>
 
 </html>

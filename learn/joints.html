@@ -99,26 +99,16 @@ function draw() {
 		<div id="page-1" class="page">
 			<md id="md1-0">
 				<h2 id="distancejoint">DistanceJoint</h2>
-				<p>
-					By default, a <code>DistanceJoint</code> is attached at the center
-					of each sprite that it's connected to. To shift the joint's
-					attachment points, edit its <code>offsetA</code> and
-					<code>offsetB</code> vectors.
+				<p>By default, a <code>DistanceJoint</code> is attached at the center of each sprite that it's connected
+					to. To shift the joint's attachment points, edit its <code>offsetA</code> and <code>offsetB</code>
+					vectors.</p>
+				<p>Adjusting the joint's <code>springiness</code> ratio changes the amount it can stretch and compress.
 				</p>
-				<p>
-					Adjusting the joint's <code>springiness</code> ratio changes the
-					amount it can stretch and compress.
-				</p>
-				<p>
-					<code>0.0</code> = steel rod (default)<br><code>0.2</code> = stiff
-					spring<br><code>0.4</code> = tight spring<br><code>0.6</code> =
-					bouncy spring<br><code>0.8</code> = slinky<br><code>1.0</code>
-					= bungee cord
-				</p>
-				<p>
-					You can also adjust the joints's <code>damping</code> ratio to
-					change how quickly it loses vibrational energy.
-				</p>
+				<p><code>0.0</code> = steel rod (default)<br><code>0.2</code> = stiff spring<br><code>0.4</code> = tight
+					spring<br><code>0.6</code> = bouncy spring<br><code>0.8</code> = slinky<br><code>1.0</code> = bungee
+					cord</p>
+				<p>You can also adjust the joints's <code>damping</code> ratio to change how quickly it loses
+					vibrational energy.</p>
 			</md>
 			<script type="mie/p5" id="swing" lines="13">
 let sA, sB, j;

@@ -26,7 +26,7 @@ Joints can be visually hidden by setting `joint.visible` to false or removed ent
 
 Try gluing and un-gluing the stick and ball sprite in the mini example. If you want a challenge, throw the ball straight up in the air and try to stick it to the top of the stick!
 
-# 1-1
+# 1-0
 
 ## DistanceJoint
 
