@@ -34,7 +34,7 @@ Check out [@quinton-ashley](https://openprocessing.org/user/350295?o=35&view=ske
 
 Yes! You can use p5play commercially in closed source projects under the terms of the [p5play Professional License](https://github.com/quinton-ashley/p5play-web/blob/main/pro/LICENSE.md), which is available to [Patreon](https://www.patreon.com/p5play) members.
 
-If you can't afford to pay, you can apply for the free [p5play Novice License](https://github.com/quinton-ashley/p5play-novice/blob/main/LICENSE.md). See [LICENSING.md](/LICENSING.md) for more info.
+If you can't afford to pay, you can apply for the free [p5play Novice License](https://github.com/quinton-ashley/p5play-novice/blob/main/LICENSE.md). See [LICENSING.md](https://github.com/quinton-ashley/p5play-web/blob/main/LICENSING.md) for more info.
 
 # 0-5
 

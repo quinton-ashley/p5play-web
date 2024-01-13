@@ -16,7 +16,7 @@ Regístrate ahora para recibir notificaciones de cuando las funciones Pro estén
 
 Las funciones Pro solo estarán disponibles para los miembros de [GitHub Sponsors](https://github.com/sponsors/quinton-ashley) o [Patreon](https://www.patreon.com/p5play). ¡Únete ahora para apoyar el desarrollo de p5play!
 
-Si no puedes permitirte pagar, puedes solicitar la [Licencia Novato de p5play](https://github.com/quinton-ashley/p5play-novice/blob/main/LICENSE.md) gratuita. Consulta [LICENSING.md](/LICENSING.md) para más información.
+Si no puedes permitirte pagar, puedes solicitar la [Licencia Novato de p5play](https://github.com/quinton-ashley/p5play-novice/blob/main/LICENSE.md) gratuita. Consulta [LICENSING.md](https://github.com/quinton-ashley/p5play-web/blob/main/LICENSING.md) para más información.
 
 # 1-0
 

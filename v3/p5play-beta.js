@@ -14,8 +14,8 @@ p5.prototype.registerMethod('init', function p5playInit() {
 	const pl = planck;
 	const plScale = 60;
 
-	// Google Analytics
-	// users can set window._p5play_gtagged to false before loading p5play to disable tracking
+	// Google Analytics collects anonymous usage data to help make p5play better.
+	// To opt out, set window._p5play_gtagged to false before loading p5play.
 	if (
 		typeof window._p5play_gtagged == 'undefined' &&
 		typeof process == 'undefined' // don't track in node.js

@@ -16,7 +16,7 @@ Pro メンバーになると、p5play を使って iOS アプリを作成でき�
 
 Pro 機能は[GitHub Sponsors](https://github.com/sponsors/quinton-ashley)または[Patreon](https://www.patreon.com/p5play)のメンバーにのみ利用可能になります。今すぐ参加して、p5play の開発をサポートしましょう！
 
-支払いができない場合は、無料の[p5play 初心者ライセンス](https://github.com/quinton-ashley/p5play-novice/blob/main/LICENSE.md)を申請することができます。詳細は[LICENSING.md](/LICENSING.md)を参照してください。
+支払いができない場合は、無料の[p5play 初心者ライセンス](https://github.com/quinton-ashley/p5play-novice/blob/main/LICENSE.md)を申請することができます。詳細は[LICENSING.md](https://github.com/quinton-ashley/p5play-web/blob/main/LICENSING.md)を参照してください。
 
 # 1-0
 

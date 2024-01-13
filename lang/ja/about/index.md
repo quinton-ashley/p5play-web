@@ -34,7 +34,7 @@ OpenProcessing の [@quinton-ashley](https://openprocessing.org/user/350295?o=35
 
 はい！[Patreon](https://www.patreon.com/p5play)のメンバーに提供される[p5play プロフェッショナルライセンス](https://github.com/quinton-ashley/p5play-web/blob/main/pro/LICENSE.md)の条件の下で、p5play を商業的にクローズドソースプロジェクトで使用することができます。
 
-支払いができない場合は、無料の[p5play 初心者ライセンス](https://github.com/quinton-ashley/p5play-novice/blob/main/LICENSE.md)を申請することができます。詳細は[LICENSING.md](/LICENSING.md)を参照してください。
+支払いができない場合は、無料の[p5play 初心者ライセンス](https://github.com/quinton-ashley/p5play-novice/blob/main/LICENSE.md)を申請することができます。詳細は[LICENSING.md](https://github.com/quinton-ashley/p5play-web/blob/main/LICENSING.md)を参照してください。
 
 # 0-5
 
