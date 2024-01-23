@@ -24,7 +24,7 @@
 
 ## Únete a la comunidad 👾
 
-Haz preguntas y conoce a otras personas que crean arte interactivo y juegos con p5play en nuestro [servidor de Discord de la comunidad](https://discord.gg/3UTbqUgmPF).
+Haz preguntas y conoce a otras personas que crean arte interactivo y juegos con p5play en nuestro [servidor de Discord de la comunidad](https://discord.gg/EJwnJATmj7).
 
 # 11
 

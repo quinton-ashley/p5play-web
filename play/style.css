@@ -29,12 +29,21 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	width: 32vw;
 	height: 18vw;
+	cursor: pointer;
 }
 
 #made_with_p5play img {
-	max-width: 32vw;
-	max-height: 18vw;
+	display: none;
+	width: 32vw;
+	image-rendering: pixelated;
+}
+
+/* first image */
+#made_with_p5play img:first-child {
+	display: block;
+	image-rendering: auto;
 }
 
 /* CARD */
@@ -42,12 +51,14 @@
 .card {
 	background-color: var(--secondary);
 	color: var(--primary);
+	width: 100%;
 	height: 8.5vw;
 	border-radius: 10px;
 	overflow: hidden;
 }
 
 .card-lg {
+	width: 100%;
 	height: 18vw;
 }
 

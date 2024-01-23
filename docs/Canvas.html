@@ -56,16 +56,23 @@
 
     
 
-    <h4 class="name" id="Canvas"><span class="type-signature"></span>new Canvas<span class="signature">(w, h, mode<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="Canvas"><span class="type-signature"></span>new Canvas<span class="signature">(width, height, preset<span class="signature-attributes">opt</span>, renderer<span class="signature-attributes">opt</span>, options<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
 
     
 
 
 
 <div class="description">
-    Creates a p5.js canvas element. Includes some extra features such as
-a pixelated mode. It can also use ratios instead of setting width and
-height directly. See the Canvas learn page for more information.
+    p5play adds some extra functionality to the p5.js `createCanvas`
+function. See the examples below.
+
+This function also disables the default keydown responses for
+the arrow keys, slash, and space. This is to prevent the
+browser from scrolling the page when the user is playing a game
+using common keyboard commands.
+
+Canvas options (context attributes) can only be utilized with
+q5.js.
 </div>
 
 
@@ -101,7 +108,7 @@ height directly. See the Canvas learn page for more information.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line8153">line 8153</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line8204">line 8204</a>
     </li></ul></dd>
     
 
@@ -147,7 +154,7 @@ height directly. See the Canvas learn page for more information.
 
         <tr>
             
-                <td class="name"><code>w</code></td>
+                <td class="name"><code>width</code></td>
             
 
             <td class="type">
@@ -172,7 +179,7 @@ height directly. See the Canvas learn page for more information.
             
 
             <td class="description last">
-                width of the canvas
+                
                 
             </td>
         </tr>
@@ -181,7 +188,7 @@ height directly. See the Canvas learn page for more information.
 
         <tr>
             
-                <td class="name"><code>h</code></td>
+                <td class="name"><code>height</code></td>
             
 
             <td class="type">
@@ -206,7 +213,7 @@ height directly. See the Canvas learn page for more information.
             
 
             <td class="description last">
-                height of the canvas
+                
                 
             </td>
         </tr>
@@ -215,7 +222,7 @@ height directly. See the Canvas learn page for more information.
 
         <tr>
             
-                <td class="name"><code>mode</code></td>
+                <td class="name"><code>preset</code></td>
             
 
             <td class="type">
@@ -242,7 +249,79 @@ height directly. See the Canvas learn page for more information.
             
 
             <td class="description last">
-                'pixelated' or 'fullscreen'
+                'fullscreen' or 'pixelated'
+                
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>renderer</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><code>String</code></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">
+                '2d' (default) or 'webgl'
+                
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><code>Object</code></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">
+                context attributes
                 
             </td>
         </tr>
@@ -264,14 +343,34 @@ height directly. See the Canvas learn page for more information.
 
 
 
+<div class="section-returns">
+<h5>Returns:</h5>
+
+        
+
+
+<div class="param-desc">
+    HTML5 canvas element
+</div>
+
+    
+</div>
+
 
 
 <div class="section-examples">
 <h5>Example</h5>
 
-    <pre class="prettyprint"><code>new Canvas(400, 400);
-
-new Canvas('16:9');</code></pre>
+    <pre class="prettyprint"><code>// fills the window
+new Canvas();
+// max 16:9 aspect ratio dimensions that will fit the window
+new Canvas('16:9');
+// 800x600 pixels
+new Canvas(800, 600);
+// fullscreen scaling, fits window (no stretching)
+new Canvas(800, 600, 'fullscreen');
+// pixelated scaling, fits window (no stretching)
+new Canvas(256, 240, 'pixelated');</code></pre>
 
 </div>
 
@@ -289,326 +388,6 @@ new Canvas('16:9');</code></pre>
 
     
 
-    
-        <h3 class="subsection-title">Members</h3>
-
-        
-            
-<div class="section-members">
-<h4 class="name" id="h"><span class="type-signature"></span>h<span class="type-signature"> :Number</span></h4>
-
-
-
-
-<div class="description">
-    The height of the canvas.
-</div>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-default">Default Value:</dt>
-    <dd class="tag-default"><ul class="dummy">
-            <li>100</li>
-        </ul></dd>
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line8182">line 8182</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-    <h5>Type:</h5>
-    <ul>
-        <li>
-            
-<span class="param-type"><code>Number</code></span>
-
-
-        </li>
-    </ul>
-
-
-
-
-
-</div>
-
-        
-            
-<div class="section-members">
-<h4 class="name" id="height"><span class="type-signature"></span>height<span class="type-signature"> :Number</span></h4>
-
-
-
-
-<div class="description">
-    The height of the canvas.
-</div>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-default">Default Value:</dt>
-    <dd class="tag-default"><ul class="dummy">
-            <li>100</li>
-        </ul></dd>
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line8189">line 8189</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-    <h5>Type:</h5>
-    <ul>
-        <li>
-            
-<span class="param-type"><code>Number</code></span>
-
-
-        </li>
-    </ul>
-
-
-
-
-
-</div>
-
-        
-            
-<div class="section-members">
-<h4 class="name" id="w"><span class="type-signature"></span>w<span class="type-signature"> :Number</span></h4>
-
-
-
-
-<div class="description">
-    The width of the canvas.
-</div>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-default">Default Value:</dt>
-    <dd class="tag-default"><ul class="dummy">
-            <li>100</li>
-        </ul></dd>
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line8168">line 8168</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-    <h5>Type:</h5>
-    <ul>
-        <li>
-            
-<span class="param-type"><code>Number</code></span>
-
-
-        </li>
-    </ul>
-
-
-
-
-
-</div>
-
-        
-            
-<div class="section-members">
-<h4 class="name" id="width"><span class="type-signature"></span>width<span class="type-signature"> :Number</span></h4>
-
-
-
-
-<div class="description">
-    The width of the canvas.
-</div>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-default">Default Value:</dt>
-    <dd class="tag-default"><ul class="dummy">
-            <li>100</li>
-        </ul></dd>
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line8175">line 8175</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-    <h5>Type:</h5>
-    <ul>
-        <li>
-            
-<span class="param-type"><code>Number</code></span>
-
-
-        </li>
-    </ul>
-
-
-
-
-
-</div>
-
-        
     
 
     
@@ -670,7 +449,7 @@ function.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line8204">line 8204</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line8264">line 8264</a>
     </li></ul></dd>
     
 
@@ -800,7 +579,7 @@ function.
 <br class="clear">
 
 <footer>
-    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Fri Dec 29 2023 09:26:43 GMT-0500 (Colombia Standard Time) using the Minami theme.
+    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Tue Jan 23 2024 11:53:44 GMT-0500 (Colombia Standard Time) using the Minami theme.
 </footer>
 
 <script>prettyPrint();</script>

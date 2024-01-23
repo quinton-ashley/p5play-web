@@ -26,7 +26,7 @@ p5play を使用することにより、[EULA](https://github.com/quinton-ashley
 
 ## デモを見ることはできますか？ 👀
 
-OpenProcessing の [@quinton-ashley](https://openprocessing.org/user/350295?o=35&view=sketches) や [p5play のコミュニティ Discord](https://discord.gg/3UTbqUgmPF) の #share チャンネルで、p5play を使用して他の人が何を作っているかを見てみてください。
+OpenProcessing の [@quinton-ashley](https://openprocessing.org/user/350295?o=35&view=sketches) や [p5play のコミュニティ Discord](https://discord.gg/EJwnJATmj7) の #share チャンネルで、p5play を使用して他の人が何を作っているかを見てみてください。
 
 # 0-4
 

@@ -20,9 +20,9 @@ Here are some examples of commercial use:
 
 If you're a student, independent developer, or small development team and can't afford to pay to use p5play commercially, you can apply to obtain the [p5play Novice License][] for free. By applying, you affirm that you are a low-income applicant as defined in the license.
 
-This license exists to give novice developers the opportunity to use p5play commercially. If you can afford to pay for a professional license, please do so to support the development of p5play.
+This license exists to give novice developers the opportunity to use p5play commercially. But if you can afford to pay for a professional license, please do so to support the development of p5play.
 
-Using the same email you used to sign up for a [p5play membership](https://p5play.org/pro/), send a message to info@p5play.org with the title "novice applicant". In the body of the email write a description of how you plan to use p5play commercially. If you're approved, you will be notified via a response to your email.
+Using the same email you used to sign up for a [p5play membership][], send a message to info@p5play.org with the title "novice applicant". In the body of the email write a description of how you plan to use p5play commercially. If you're approved, you will be notified via a response to your email.
 
 ## p5play Professional License
 
@@ -60,7 +60,7 @@ If you have a strong opinion about p5play's business model, I'd like to hear it!
 
 ## p5play logos
 
-The current p5play logos were created by Quinton Ashley, all rights reserved. The p5play logo can be found in the "assets" folder of this p5play-web repository in a file named "logo.svg". You are encouraged to reference it and/or the "made_with_p5play.webp" images in your own projects to show that your project was made with p5play, but you may not imply that your project is endorsed by Quinton Ashley.
+The current p5play logos were created by Quinton Ashley, all rights reserved. The p5play logo can be found in the "assets" folder of this p5play-web repository in a file named "logo.svg". You are encouraged to reference it and/or the "made_with_p5play" images in your own projects to show that your project was made with p5play, but you may not imply that your project is endorsed by Quinton Ashley.
 
 ## p5.play v1 and v2
 
@@ -79,6 +79,7 @@ In the future, I would like to hire developers to help me work on p5play but unf
 Currently, if you'd like to make contributions to the p5play library, you can do so on a volunteer basis. Significant contributions to the p5play library will be credited on the home page of p5play.org and in the p5play changelog on GitHub, unless you'd prefer to make contributions anonymously.
 
 [AGPLv3]: https://github.com/quinton-ashley/p5play/blob/main/LICENSE.md
+[p5play membership]: https://p5play.org/pro/
 [p5play Professional License]: https://github.com/quinton-ashley/p5play-web/blob/main/pro/LICENSE.md
 [p5play Novice License]: https://github.com/quinton-ashley/p5play-novice/blob/main/LICENSE.md
 [Patreon]: https://www.patreon.com/p5play

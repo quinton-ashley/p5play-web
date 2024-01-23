@@ -19,6 +19,8 @@ function toggleDarkMode() {
 	document.body.className = pref;
 }
 
+Q5.canvasOptions.alpha = true;
+
 /* learn.js */
 
 let args = {};

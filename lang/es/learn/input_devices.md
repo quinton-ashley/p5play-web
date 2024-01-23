@@ -16,7 +16,7 @@ También almacenan el estado de todas sus entradas como propiedades. Por ejemplo
 
 p5play facilita la activación de la misma acción a través de diferentes dispositivos de entrada utilizando [lógica booleana](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_OR).
 
-En el mini ejemplo, el sprite se vuelve rojo si presionas la tecla de espacio o haces clic con el ratón.
+En el mini ejemplo, el sprite se vuelve verde si presionas la tecla de espacio o haces clic con el ratón.
 
 # 1-0
 

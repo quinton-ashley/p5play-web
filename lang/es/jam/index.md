@@ -4,7 +4,7 @@
 
 ¡El p5play Game Jam es una competencia que se lleva a cabo cada dos años para ver quién puede crear el mejor juego utilizando p5play!
 
-Puedes trabajar de forma individual o en equipo. Comparte tu juego en el canal [#share](https://discord.gg/3UTbqUgmPF) en Discord para recibir comentarios antes de que termine la competencia. Envía tu juego utilizando el formulario de Google vinculado a continuación.
+Puedes trabajar de forma individual o en equipo. Comparte tu juego en el canal [#share](https://discord.gg/EJwnJATmj7) en Discord para recibir comentarios antes de que termine la competencia. Envía tu juego utilizando el formulario de Google vinculado a continuación.
 
 Los juegos deben utilizar la última versión de p5play y deben enviarse antes del 20 de junio de 2024.
 

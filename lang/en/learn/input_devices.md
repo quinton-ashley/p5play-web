@@ -16,7 +16,7 @@ Input devices also store the state of all their inputs as properties. For exampl
 
 p5play makes it easy to trigger the same action via different input devices using [boolean logic](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_OR).
 
-In the mini-example, the sprite turns red if you press the space key or click the mouse.
+In the mini-example, the sprite turns green if you press the space key or click the mouse.
 
 # 1-0
 

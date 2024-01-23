@@ -5,7 +5,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>p5play : Camera</title>
-	<link rel="icon" href="/assets/favicon.webp">
+	<link rel="icon" href="/assets/favicon.png">
 	<link rel="stylesheet" href="/learn/style.css">
 </head>
 
@@ -13,7 +13,7 @@
 	<article style="display: none;">
 		<nav id="topNav">
 			<a href="index.html" id="logoLink" class="active">
-				<img alt="p5play logo" src="/assets/p5play_logo.svg" class="logo">
+				<img alt="p5play logo" src="/assets/p5play_logo.svg" class="p5play_logo">
 				<span>p5play</span>
 			</a>
 			<hr>
@@ -37,7 +37,8 @@
 				<h2 id="camera-movement">Camera Movement</h2>
 				<p>The <code>camera</code> is center positioned and located in the middle of the canvas by default.</p>
 				<p>The camera can be moved by changing its <code>x</code> and <code>y</code> values or by using the
-					<code>camera.moveTo</code> function.</p>
+					<code>camera.moveTo</code> function.
+				</p>
 				<p>In this example the camera follows the player's x axis movement.</p>
 			</md>
 			<script type="mie/p5" id="sidescrolling-camera">
@@ -93,7 +94,8 @@ function draw() {
 					camera is automatically turned on. However, if you want to control when sprites and groups are
 					drawn, you can draw them separately.</p>
 				<p>The player and environment of your game should be drawn after the camera is turned on with
-					<code>camera.on()</code>.</p>
+					<code>camera.on()</code>.
+				</p>
 				<p>UI or HUD sprites, represented by orange squares in this examples, should be drawn after the camera
 					is turned off with <code>camera.off()</code>.</p>
 				<p><code>mouse.x</code> stores the x position of the mouse in relation to the world, which can be larger
@@ -198,14 +200,14 @@ function draw() {
 	</article>
 
 	<script src="/v3/q5.min.js"></script>
-<script src="/v3/planck.min.js"></script>
-<script src="/v3/p5play.js"></script>
-<script>
-window.mie = { autoLoad: false };
+	<script src="/v3/planck.min.js"></script>
+	<script src="/v3/p5play.js"></script>
+	<script>
+		window.mie = { autoLoad: false };
 
 	</script>
 	<script src="/learn/mie.js"></script>
-<script src="/learn/learn.js"></script>
+	<script src="/learn/learn.js"></script>
 </body>
 
 </html>

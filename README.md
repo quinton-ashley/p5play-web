@@ -63,9 +63,9 @@ See the [LICENSING.md][] file.
 
 ## Release Checklist
 
-- [ ] Manually edit the version number in `v3/p5play.js`
+- [ ] Manually edit the version number in `p5play-web/v3/p5play.js`
 - [ ] Update the documentation, run `bun docs` in `p5play-web`
-- [ ] Update type definitions, run `bun dist` in `p5play-types`
+- [ ] Update type definitions, run `bun types` in `p5play-web`
 - [ ] Minify and distribute, run `bun dist` in `p5play-web`
 - [ ] Run `bun v` (minor update) or `bun V` (major update) in `p5play-web` and `p5play`
 - [ ] Run `npm publish` in `p5play`

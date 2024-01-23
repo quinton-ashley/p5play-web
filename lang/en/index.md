@@ -24,7 +24,7 @@
 
 ## Join the community 👾
 
-Ask questions and meet other people making interactive art and games with p5play on our [community Discord server](https://discord.gg/3UTbqUgmPF).
+Ask questions and meet other people making interactive art and games with p5play on our [community Discord server](https://discord.gg/EJwnJATmj7).
 
 # 11
 

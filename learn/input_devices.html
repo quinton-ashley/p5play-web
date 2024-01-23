@@ -5,7 +5,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>p5play : Input</title>
-	<link rel="icon" href="/assets/favicon.webp">
+	<link rel="icon" href="/assets/favicon.png">
 	<link rel="stylesheet" href="/learn/style.css">
 </head>
 
@@ -13,7 +13,7 @@
 	<article style="display: none;">
 		<nav id="topNav">
 			<a href="index.html" id="logoLink" class="active">
-				<img alt="p5play logo" src="/assets/p5play_logo.svg" class="logo">
+				<img alt="p5play logo" src="/assets/p5play_logo.svg" class="p5play_logo">
 				<span>p5play</span>
 			</a>
 			<hr>
@@ -42,10 +42,12 @@
 					<li><code>contro</code> or <code>controllers</code> for game controllers</li>
 				</ul>
 				<p>These input devices all use the same simple functions for getting the state of an input:
-					<code>presses</code>, <code>pressing</code>, and <code>released</code>.</p>
+					<code>presses</code>, <code>pressing</code>, and <code>released</code>.
+				</p>
 				<p>Input devices also store the state of all their inputs as properties. For example,
 					<code>kb.space</code> stores how many frames the user has been pressing the space key. It gets reset
-					when the user releases the input.</p>
+					when the user releases the input.
+				</p>
 			</md>
 			<script type="mie/p5" id="hidden" base-0="" hide="">
 function setup() {
@@ -84,7 +86,7 @@ if (kb.released(' ')) {
 				<p>p5play makes it easy to trigger the same action via different input devices using <a
 						href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_OR"
 						target="_blank">boolean logic</a>.</p>
-				<p>In the mini-example, the sprite turns red if you press the space key or click the mouse.</p>
+				<p>In the mini-example, the sprite turns green if you press the space key or click the mouse.</p>
 			</md>
 			<script type="mie/p5" id="hidden" base-1="" hide="">
 let sprite;
@@ -111,14 +113,16 @@ if (kb.pressing('space') || mouse.pressing()) {
 				<p><code>kb</code> tracks nearly every key on the keyboard, including 'enter', 'backspace', and
 					'control'.</p>
 				<p>Note that letter input is not case sensitive. To check if a user is pressing shift use:
-					<code>kb.pressing('shift')</code>.</p>
+					<code>kb.pressing('shift')</code>.
+				</p>
 				<p>Since the WASD keys are commonly used to control the player character's movement, you can use the
 					direction names 'up', 'down', 'left', and 'right' to detect WASD and arrow key presses.</p>
 				<p>Arrow keys can also be detected separately using 'arrowUp', 'arrowDown', 'arrowLeft', and
 					'arrowRight'.</p>
 				<p>In local two player games it's common for the second player to use the IJKL keys for movement. These
 					keys can be referenced using 'up2', 'down2', 'left2', and 'right2'.</p>
-				<p><a href="https://github.com/quinton-ashley/p5play/wiki/FAQ#is-p5plays-kb-input-system-compatible-with-non-qwerty-keyboards"
+				<p><a
+						href="https://github.com/quinton-ashley/p5play/wiki/FAQ#is-p5plays-kb-input-system-compatible-with-non-qwerty-keyboards"
 						target="_blank">Using a non-QWERTY keyboard?</a></p>
 			</md>
 			<script type="mie/p5" id="keyboard-movement">
@@ -155,8 +159,8 @@ function draw() {
 					'right' (two finger click) and 'center'.</p>
 				<p><code>mouse.x</code> and <code>mouse.y</code> store the position of the mouse on the canvas.</p>
 				<p><code>mouse.visible</code> is a boolean that determines whether the mouse is visible or not.</p>
-				<p><code>mouse.cursor</code> can be set to a <a
-						href="https://developer.mozilla.org/en-US/docs/Web/CSS/cursor" target="_blank">cursor style</a>.
+				<p><code>mouse.cursor</code> can be set to a <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/cursor"
+						target="_blank">cursor style</a>.
 					The default is 'default', other options include 'grab', 'move', 'pointer', and 'wait'.</p>
 			</md>
 			<script type="mie/p5" id="mouse.visible">
@@ -189,7 +193,8 @@ function draw() {
 				<p><code>dragging</code> detects when the user clicks and holds a mouse button on the sprite while
 					moving the mouse.
 					Note that <code>mouse.x</code> is the x position of the mouse on the canvas and
-					<code>sprite.mouse.x</code> is the x position of the mouse relative to the sprite.</p>
+					<code>sprite.mouse.x</code> is the x position of the mouse relative to the sprite.
+				</p>
 			</md>
 			<script type="mie/p5" id="sprite.mouse">
 let sprite;
@@ -228,7 +233,8 @@ function draw() {
 					<code>r</code> (right bumper), <code>lt</code> (left trigger), <code>rt</code> (right trigger),
 					<code>up</code>, <code>down</code>, <code>left</code>, <code>right</code> (D-pad), <code>lsb</code>
 					(left stick button), <code>rsb</code> (right stick button), <code>start</code>, and
-					<code>select</code></p>
+					<code>select</code>
+				</p>
 				<p><code>contro.leftStick</code> and <code>contro.rightStick</code> represent the positions of the
 					analog sticks as objects with x and y properties. These values range from -1 to 1, with 0 indicating
 					the center position.</p>
@@ -285,8 +291,8 @@ if (contro.pressing('lsb')) lsb.color = 'white';
 		<div id="page-5" class="page">
 			<md id="md5-0">
 				<h2 id="touch">Touch</h2>
-				<p>You can use the <a href="https://p5js.org/reference/#/p5/touches"
-						target="_blank"><code>touches</code></a> array to get the positions of multiple touches on the
+				<p>You can use the <a href="https://p5js.org/reference/#/p5/touches" target="_blank"><code>touches</code></a>
+					array to get the positions of multiple touches on the
 					canvas.</p>
 				<p>Example coming soon!</p>
 			</md>
@@ -310,14 +316,14 @@ if (contro.pressing('lsb')) lsb.color = 'white';
 	</article>
 
 	<script src="/v3/q5.min.js"></script>
-<script src="/v3/planck.min.js"></script>
-<script src="/v3/p5play.min.js"></script>
-<script>
-window.mie = { autoLoad: false };
+	<script src="/v3/planck.min.js"></script>
+	<script src="/v3/p5play.min.js"></script>
+	<script>
+		window.mie = { autoLoad: false };
 
 	</script>
 	<script src="/learn/mie.js"></script>
-<script src="/learn/learn.js"></script>
+	<script src="/learn/learn.js"></script>
 </body>
 
 </html>

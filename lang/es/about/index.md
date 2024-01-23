@@ -26,7 +26,7 @@ Al utilizar p5play, aceptas el [EULA](https://github.com/quinton-ashley/p5play/b
 
 ## ¿Puedo ver algunas demostraciones? 👀
 
-Echa un vistazo a [@quinton-ashley](https://openprocessing.org/user/350295?o=35&view=sketches) en OpenProcessing y al canal #share en [Discord de la comunidad de p5play](https://discord.gg/3UTbqUgmPF) para ver lo que la gente está creando con p5play.
+Echa un vistazo a [@quinton-ashley](https://openprocessing.org/user/350295?o=35&view=sketches) en OpenProcessing y al canal #share en [Discord de la comunidad de p5play](https://discord.gg/EJwnJATmj7) para ver lo que la gente está creando con p5play.
 
 # 0-4
 

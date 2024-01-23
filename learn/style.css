@@ -38,6 +38,48 @@ body.dark {
 	--background: #000;
 }
 
+@media (color-gamut: p3) {
+	html {
+		--pink: oklch(0.657 0.294 16.698);
+		--blue: oklch(0.907 0.074 218.641);
+
+		--pink0: oklch(0.657 0.294 16.698);
+		--pink1: oklch(0.615 0.278 18.568);
+		--pink2: oklch(0.966 0.024 358.907);
+
+		--blue0: oklch(90.7% 0.073 218.6);
+		--blue1: oklch(0.56 0.163 241.961);
+		--blue2: oklch(0.975 0.015 239.425);
+
+		--primary: #000;
+		--secondary: #fff;
+		--bright: #000;
+		--dark: #d1cdc9;
+		--background: #eee;
+	}
+
+	html:has(body.dark) {
+		--background: #242424;
+	}
+
+	body.dark {
+		--pink0: oklch(0.618 0.274 15.973);
+		--pink1: oklch(0.657 0.294 16.698);
+		--pink2: oklch(0.246 0.109 12.066);
+
+		--blue0: oklch(0.714 0.147 232.544);
+		--blue1: oklch(0.714 0.147 232.544);
+		--blue2: oklch(0.249 0.077 241.818);
+
+		--primary: #c8c3bc;
+		--secondary: #131516;
+
+		--bright: #eee;
+		--dark: #66615a;
+		--background: #000;
+	}
+}
+
 html,
 body {
 	padding: 0;
@@ -63,6 +105,7 @@ article {
 @font-face {
 	font-family: Mont;
 	src: url('/assets/fonts/mont/Mont-HeavyDEMO.otf');
+	font-display: swap;
 }
 
 h2 {
@@ -119,7 +162,7 @@ md {
 
 .mie.p5 .mie-logo {
 	width: 16px !important;
-	background-image: url('../assets/favicon.webp') !important;
+	background-image: url('../assets/favicon.png') !important;
 }
 
 /* .mie.p5 .mie-logo::before {
@@ -212,7 +255,7 @@ a.navLink {
 	vertical-align: middle;
 }
 
-#topNav .logo {
+#topNav .p5play_logo {
 	height: 48px;
 }
 
@@ -222,11 +265,11 @@ a.navLink {
 	}
 }
 
-.logo:hover {
+.p5play_logo:hover {
 	animation: spin 2s linear infinite;
 }
 
-#topNav img:not(.logo):hover {
+#topNav img:not(.p5play_logo):hover {
 	box-shadow: 2px 2px 10px var(--pink0);
 }
 
@@ -260,6 +303,7 @@ a.btn,
 	height: min-content;
 	padding: 6px;
 	margin: 2px;
+	transition: ease-out color 0.3s, ease-out background-color 0.3s;
 }
 
 #toc a.adv {

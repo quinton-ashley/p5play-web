@@ -66,6 +66,11 @@ let projects = [
 		title: 'Sun Warrior',
 		author: '@andyjshaw000',
 		url: 'https://andyjshaw000.github.io/Final438/'
+	},
+	{
+		title: 'Save the Mushrooms',
+		author: '@chickenandwafflesequalsyes',
+		url: 'https://openprocessing.org/sketch/1995592'
 	}
 ];
 
@@ -80,7 +85,7 @@ for (let i = 0; i < projects.length; i++) {
 	let proj = projects[i];
 
 	proj.id = proj.title.toLowerCase().replace(/ /g, '_');
-	let imgUrl = assets + proj.id + '.jpg'; // images must be jpg
+	let imgUrl = assets + proj.id + '.webp'; // images must be webp
 
 	let card = document.createElement('div');
 	card.classList.add('card');
@@ -159,3 +164,14 @@ for (let i = 0; i < projects.length; i++) {
 		}
 	});
 }
+
+document.addEventListener('DOMContentLoaded', function () {
+	let mwp = document.getElementById('made_with_p5play');
+	let images = mwp.querySelectorAll('img');
+	let cur = 0;
+	mwp.addEventListener('click', () => {
+		images[cur].style.display = 'none';
+		cur = (cur + 1) % images.length;
+		images[cur].style.display = 'block';
+	});
+});

@@ -1,13 +1,11 @@
 /**
  * p5play
- * @version 3.18
+ * @version 3.19
  * @author quinton-ashley
  * @license AGPL-3.0
  */
 p5.prototype.registerMethod('init', function p5playInit() {
-	if (typeof window.planck == 'undefined') {
-		throw 'planck.js must be loaded before p5play';
-	}
+	if (!window.planck) throw 'planck.js must be loaded before p5play';
 
 	const pInst = this;
 
@@ -17,7 +15,7 @@ p5.prototype.registerMethod('init', function p5playInit() {
 	// Google Analytics collects anonymous usage data to help make p5play better.
 	// To opt out, set window._p5play_gtagged to false before loading p5play.
 	if (
-		typeof window._p5play_gtagged == 'undefined' &&
+		window._p5play_gtagged != false &&
 		typeof process == 'undefined' // don't track in node.js
 	) {
 		let script = document.createElement('script');
@@ -33,7 +31,7 @@ p5.prototype.registerMethod('init', function p5playInit() {
 			};
 			gtag('js', new Date());
 			gtag('config', 'G-EHXNCTSYLK');
-			gtag('event', 'p5play_v3_18');
+			gtag('event', 'p5play_v3_19');
 		};
 	}
 
@@ -658,11 +656,8 @@ p5.prototype.registerMethod('init', function p5playInit() {
 			 */
 			this.prevPos = { x, y };
 			this.prevRotation = 0;
-
 			this._dest = { x, y };
 			this._destIdx = 0;
-			this.drag = 0;
-
 			this._debug = false;
 
 			/**
@@ -1365,21 +1360,17 @@ p5.prototype.registerMethod('init', function p5playInit() {
 		}
 
 		_parseColor(val) {
-			// false if object was copied with Object.assign
+			// false if color was copied with Object.assign
 			if (val instanceof p5.Color) {
 				return val;
 			} else if (typeof val != 'object') {
-				if (typeof val == 'string' && val.length == 1) {
+				if (val.length == 1) {
 					return this.p.colorPal(val);
 				} else {
 					return this.p.color(val);
 				}
 			}
-			if (val.levels) return this.p.color(...val.levels);
-			// support for Q5.Color
-			if (val._r !== undefined) return this.p.color(val._r, val._g, val._b, val._a * 255);
-			if (val._h !== undefined) return this.p.color(val._h, val._s, val._v, val._a * 255);
-			throw new Error('Invalid color');
+			return this.p.color(...val.levels);
 		}
 
 		/**
@@ -1432,8 +1423,11 @@ p5.prototype.registerMethod('init', function p5playInit() {
 		}
 
 		/**
-		 * Alias for sprite.strokeColor
+		 * Overrides sprite's stroke color. By default the stroke of a sprite
+		 * is determined by its collider type, which can also be overridden
+		 * by the sketch's stroke color.
 		 * @type {p5.Color}
+		 * @default undefined
 		 */
 		get stroke() {
 			return this._stroke;
@@ -1442,12 +1436,10 @@ p5.prototype.registerMethod('init', function p5playInit() {
 			if (this.watch) this.mod[31] = true;
 			this._stroke = this._parseColor(val);
 		}
-
 		/**
-		 * Overrides sprite's stroke color. By default the stroke of a sprite
-		 * is determined by its collider type, which can also be overridden by the
-		 * sketch's stroke color.
+		 * Alias for sprite.stroke
 		 * @type {p5.Color}
+		 * @default undefined
 		 */
 		get strokeColor() {
 			return this._stroke;
@@ -1671,8 +1663,7 @@ p5.prototype.registerMethod('init', function p5playInit() {
 		 * let defaultDraw = sprite._draw;
 		 *
 		 * sprite.draw = function() {
-		 *   // tint
-		 *   tint(255, 127);
+		 *   // add custom code here
 		 *   defaultDraw();
 		 * }
 		 */
@@ -1909,6 +1900,19 @@ p5.prototype.registerMethod('init', function p5playInit() {
 		}
 
 		/**
+		 * The sprite's opacity. 0 is transparent, 1 is opaque.
+		 * @type {Number}
+		 * @default 1
+		 */
+		get opacity() {
+			return this._opacity ?? 1;
+		}
+		set opacity(val) {
+			if (this.watch) this.mod[43] = true;
+			this._opacity = val;
+		}
+
+		/**
 		 * Verbose alias for sprite.prevPos
 		 * @type {Object}
 		 */
@@ -1944,6 +1948,21 @@ p5.prototype.registerMethod('init', function p5playInit() {
 		set pixelPerfect(val) {
 			if (this.watch) this.mod[24] = true;
 			this._pixelPerfect = val;
+		}
+
+		/**
+		 * If the sprite has been removed from the world.
+		 * @type {Boolean}
+		 * @default false
+		 */
+		get removed() {
+			return this._removed;
+		}
+		set removed(val) {
+			if (!val || this._removed) return;
+			if (this.watch) this.mod[25] = true;
+			this._removed = true;
+			this._remove();
 		}
 
 		/**
@@ -2103,18 +2122,31 @@ p5.prototype.registerMethod('init', function p5playInit() {
 		}
 
 		/**
-		 * If the sprite has been removed from the world.
-		 * @type {Boolean}
-		 * @default false
+		 * Tint color applied to the sprite when drawn.
+		 *
+		 * Note that this is not good for performance, you should probably
+		 * pre-render the effect if you want to use it a lot.
+		 * @type {p5.Color}
+		 * @default undefined
 		 */
-		get removed() {
-			return this._removed;
+		get tint() {
+			return this._tint;
 		}
-		set removed(val) {
-			if (!val || this._removed) return;
-			if (this.watch) this.mod[25] = true;
-			this._removed = true;
-			this._remove();
+		set tint(val) {
+			if (this.watch) this.mod[44] = true;
+			this._tint = this._parseColor(val);
+		}
+
+		/**
+		 * Alias for sprite.tint
+		 * @type {p5.Color}
+		 * @default undefined
+		 */
+		get tintColor() {
+			return this._tint;
+		}
+		set tintColor(val) {
+			this.tint = val;
 		}
 
 		/**
@@ -2587,13 +2619,8 @@ p5.prototype.registerMethod('init', function p5playInit() {
 			this.__step();
 		}
 
-		/*
-		 * Default draw
-		 */
+		// default draw
 		__draw() {
-			if (this._strokeWeight !== undefined) {
-				this.p.strokeWeight(this._strokeWeight);
-			}
 			if (this._ani && this.debug != 'colliders' && !this.p.p5play.disableImages) {
 				this._ani.draw(this._offset._x, this._offset._y, 0, this._scale._x, this._scale._y);
 			}
@@ -2697,6 +2724,8 @@ p5.prototype.registerMethod('init', function p5playInit() {
 				}
 			}
 
+			if (this._opacity == 0) return;
+
 			this.p.push();
 			this.p.imageMode('center');
 			this.p.rectMode('center');
@@ -2704,9 +2733,15 @@ p5.prototype.registerMethod('init', function p5playInit() {
 
 			this.p.translate(x, y);
 			if (this.rotation) this.p.rotate(this.rotation);
-			this.p.scale(this._mirror._x, this._mirror._y);
-
+			if (this._mirror.x != 1 || this._mirror.y != 1) {
+				this.p.scale(this._mirror._x, this._mirror._y);
+			}
 			this.p.fill(this.color);
+			if (this._strokeWeight !== undefined) {
+				this.p.strokeWeight(this._strokeWeight);
+			}
+			if (this._opacity) this.p.ctx.globalAlpha = this._opacity;
+			if (this._tint) this.p.tint(this._tint);
 
 			this._draw();
 
@@ -3775,7 +3810,8 @@ p5.prototype.registerMethod('init', function p5playInit() {
 		bearing: 'number', // 39
 		textSize: 'number', // 40
 		textStroke: 'color', // 41
-		textStrokeWeight: 'number' // 42
+		textStrokeWeight: 'number', // 42
+		opacity: 'number' // 43
 	};
 
 	this.Sprite.props = Object.keys(this.Sprite.propTypes);
@@ -7899,25 +7935,38 @@ p5.prototype.registerMethod('init', function p5playInit() {
 		d.id = 'p5play-intro';
 		d.style = 'position: absolute; width: 100%; height: 100%; top: 0; left: 0; z-index: 1000; background-color: black;';
 		let logo = document.createElement('img');
-		logo.src = 'https://p5play.org/v3/made_with_p5play.webp';
-		logo.style =
-			'position: absolute; top: 50%; left: 50%; width: 40vh; height: 20vh; margin-left: -20vh; margin-top: -10vh; z-index: 1000; opacity: 0; transition: opacity 0.1s ease-in-out;';
-		document.body.append(d);
+		logo.style = `position: absolute; top: 50%; left: 50%; width: 80vmin; height: 40vmin; margin-left: -40vmin; margin-top: -20vmin; z-index: 1001; opacity: 1; scale: 1; transition: scale 1.5s, opacity 0.4s ease-in-out;`;
+		logo.onerror = () => {
+			logo.style.imageRendering = 'pixelated';
+			logo.src =
+				'data:image/png;base64,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';
+		};
+		let src = window._p5play_intro_image;
+		if (src == '' || src?.includes('made_with_p5play')) {
+			if (src.includes('bit.') || src.includes('pixel')) {
+				logo.style.imageRendering = 'pixelated';
+			}
+			logo.src = src;
+		} else {
+			logo.src = 'https://p5play.org/assets/made_with_p5play.webp';
+		}
+
+		await new Promise((r) => (logo.onload = r));
 		d.append(logo);
-		await pInst.delay(100);
-		logo.style.opacity = '1';
-		logo.style.transition = 'scale 1.4s, opacity 0.4s ease-in-out';
-		logo.style.scale = '1.1';
+		document.body.append(d);
+		await pInst.delay();
+		logo.offsetHeight; // trigger css reflow
+		logo.style.scale = 1.2;
 		await pInst.delay(1100);
-		logo.style.opacity = '0';
-		await pInst.delay(300);
+		logo.style.opacity = 0;
+		await pInst.delay(400);
 		d.style.display = 'none';
 		d.remove();
 		document.getElementById('p5play-intro')?.remove();
 		pInst._decrementPreload();
 	}
 
-	{
+	if (window.location) {
 		let lh = location.hostname;
 		switch (lh) {
 			case '':
@@ -7953,42 +8002,23 @@ p5.prototype.registerMethod('init', function p5playInit() {
 	let userDisabledP5Errors = p5.disableFriendlyErrors;
 	p5.disableFriendlyErrors = true;
 
-	/**
-	 * p5.js canvas element. Use this property to get the canvas'
-	 * width and height
-	 * @property {p5.Canvas} canvas
-	 * @property {Number} canvas.w the width of the canvas
-	 * @property {Number} canvas.h the height of the canvas
-	 */
-	this.canvas = this.canvas;
-
 	const _createCanvas = this.createCanvas;
 
 	/**
-	 * Use of `new Canvas()` is preferred.
+	 * Use of `new Canvas()` is preferred. Check the Canvas constructor
+	 * for documentation.
 	 *
-	 * p5play adds some extra functionality to the p5.js createCanvas
-	 * function.
+	 * This function differs from `new Canvas()` because it returns a
+	 * p5.Renderer object instead of the HTML5 canvas object itself.
 	 *
-	 * In p5play, a canvas can be created with an aspect ratio in the
-	 * format `width:height`. For example `new Canvas('16:9')` will create
-	 * the largest possible canvas with a 16:9 aspect ratio.
-	 *
-	 * This function also disables the default keydown responses for
-	 * the arrow keys, slash, and space. This is to prevent the
-	 * browser from scrolling the page when the user is playing a game
-	 * using common keyboard commands.
-	 *
-	 * @param {Number} width
-	 * @param {Number} height
-	 * @param {String} preset - can be 'fullscreen' or 'pixelated'
+	 * @returns {p5.Renderer} renderer object
 	 */
 	this.createCanvas = function () {
 		let args = [...arguments];
 		let isFullScreen, isPixelated, scale;
 		if (typeof args[0] == 'string') {
-			let ratio = args[0].split(':');
-			if (ratio[1]) {
+			if (args[0].includes(':')) {
+				let ratio = args[0].split(':');
 				args[2] = args[1];
 				isFullScreen = true;
 				let rW = Number(ratio[0]);
@@ -8002,7 +8032,7 @@ p5.prototype.registerMethod('init', function p5playInit() {
 				args[0] = Math.round(w);
 				args[1] = Math.round(h);
 			} else {
-				args = [];
+				args = [0, 0, ...args];
 			}
 		}
 		if (!args[0]) {
@@ -8011,13 +8041,16 @@ p5.prototype.registerMethod('init', function p5playInit() {
 			isFullScreen = true;
 		}
 		if (typeof args[2] == 'string') {
-			let rend = args.pop().toLowerCase().split(' ');
+			let rend = args[2].toLowerCase().split(' ');
 			if (rend[0] == 'pixelated') {
 				isPixelated = true;
 				if (!rend[1]) isFullScreen = true;
 				else scale = Number(rend[1].slice(1));
+				args.splice(2, 1);
+			} else if (rend[0] == 'fullscreen') {
+				isFullScreen = true;
+				args.splice(2, 1);
 			}
-			if (rend[0] == 'fullscreen') isFullScreen = true;
 		}
 		let rend = _createCanvas.call(pInst, ...args);
 		let c = rend.canvas || rend;
@@ -8112,13 +8145,13 @@ main {
 			pInst.pixelDensity(1);
 			pInst.noSmooth();
 			pInst.textFont('monospace');
-			c.getContext('2d').imageSmoothingEnabled = false;
+			ctx.imageSmoothingEnabled = false;
 		}
 
 		let idx = navigator.userAgent.indexOf('iPhone OS');
 		if (idx > -1) {
 			let version = navigator.userAgent.substring(idx + 10, idx + 12);
-			if (version < 16) pInst.pixelDensity(1);
+			if (version < 16) pInst.pixelDensity(2);
 			this.p5play.os.platform = 'iOS';
 			this.p5play.os.version = version;
 		} else {
@@ -8139,55 +8172,81 @@ main {
 	// this is only for jsdoc
 	this.Canvas = class {
 		/**
-		 * Creates a p5.js canvas element. Includes some extra features such as
-		 * a pixelated mode. It can also use ratios instead of setting width and
-		 * height directly. See the Canvas learn page for more information.
+		 * p5play adds some extra functionality to the p5.js `createCanvas`
+		 * function. See the examples below.
 		 *
-		 * @param {Number} w width of the canvas
-		 * @param {Number} h height of the canvas
-		 * @param {String} [mode] 'pixelated' or 'fullscreen'
+		 * This function also disables the default keydown responses for
+		 * the arrow keys, slash, and space. This is to prevent the
+		 * browser from scrolling the page when the user is playing a game
+		 * using common keyboard commands.
+		 *
+		 * Canvas options (context attributes) can only be utilized with
+		 * q5.js.
+		 *
+		 * @param {Number} width
+		 * @param {Number} height
+		 * @param {String} [preset] 'fullscreen' or 'pixelated'
+		 * @param {String} [renderer] '2d' (default) or 'webgl'
+		 * @param {Object} [options] context attributes
+		 * @returns HTML5 canvas element
 		 * @example
-		 * new Canvas(400, 400);
-		 *
+		 * // fills the window
+		 * new Canvas();
+		 * // max 16:9 aspect ratio dimensions that will fit the window
 		 * new Canvas('16:9');
+		 * // 800x600 pixels
+		 * new Canvas(800, 600);
+		 * // fullscreen scaling, fits window (no stretching)
+		 * new Canvas(800, 600, 'fullscreen');
+		 * // pixelated scaling, fits window (no stretching)
+		 * new Canvas(256, 240, 'pixelated');
 		 */
-		constructor(w, h, mode) {
+		constructor(width, height, preset, renderer, options) {
 			/**
-			 * Absolute position of the mouse. Same values as p5.js `mouseX` and `mouseY`.
+			 * The width of the canvas.
+			 * @type {Number}
+			 * @default 100
+			 */
+			this.w;
+			/**
+			 * The width of the canvas.
+			 * @type {Number}
+			 * @default 100
+			 */
+			this.width;
+			/**
+			 * The height of the canvas.
+			 * @type {Number}
+			 * @default 100
+			 */
+			this.h;
+			/**
+			 * The height of the canvas.
+			 * @type {Number}
+			 * @default 100
+			 */
+			this.height;
+			/**
+			 * Half the width of the canvas.
+			 * @type {Number}
+			 * @default 100
+			 */
+			this.hw;
+			/**
+			 * Half the height of the canvas.
+			 * @type {Number}
+			 * @default 100
+			 */
+			this.hh;
+			/**
+			 * Absolute position of the mouse on the canvas, not relative
+			 * to the camera. Same values as p5.js `mouseX` and `mouseY`.
 			 * @type {Object}
 			 * @property {Number} x
 			 * @property {Number} y
 			 */
 			this.mouse;
 		}
-
-		/**
-		 * The width of the canvas.
-		 * @type {Number}
-		 * @default 100
-		 */
-		get w() {}
-
-		/**
-		 * The width of the canvas.
-		 * @type {Number}
-		 * @default 100
-		 */
-		get width() {}
-
-		/**
-		 * The height of the canvas.
-		 * @type {Number}
-		 * @default 100
-		 */
-		get h() {}
-
-		/**
-		 * The height of the canvas.
-		 * @type {Number}
-		 * @default 100
-		 */
-		get height() {}
 
 		/**
 		 * Resizes the canvas, the world, and centers the camera.
@@ -8205,8 +8264,14 @@ main {
 		resize() {}
 	};
 
+	/**
+	 * HTML5 canvas element.
+	 * @type {Canvas}
+	 */
+	this.canvas;
+
 	this.Canvas = function () {
-		return pInst.createCanvas(...arguments);
+		return pInst.createCanvas(...arguments).canvas;
 	};
 
 	const _resizeCanvas = this.resizeCanvas;
@@ -8844,6 +8909,11 @@ main {
 				center: 0,
 				right: 0
 			};
+			this._dragFrame = {
+				left: false,
+				center: false,
+				right: false
+			};
 			/**
 			 * Whether the mouse is currently on the canvas or not.
 			 * @type {boolean}
@@ -8923,7 +8993,7 @@ main {
 
 		/**
 		 * @param {string} inp
-		 * @returns {boolean} true on the first frame that the user reaches the holdThreshold for holding the input and could start to drag
+		 * @returns {boolean} true on the first frame that the user moves the mouse while pressing the input
 		 */
 		drags(inp) {
 			inp ??= this._default;
@@ -8932,7 +9002,7 @@ main {
 
 		/**
 		 * @param {string} inp
-		 * @returns {number} the amount of frames the user has been dragging while pressing the input
+		 * @returns {number} the amount of frames the user has been moving the mouse while pressing the input
 		 */
 		dragging(inp) {
 			inp ??= this._default;
@@ -8941,7 +9011,7 @@ main {
 
 		/**
 		 * @param {string} inp
-		 * @returns {boolean} true on the first frame that the user releases the input after dragging
+		 * @returns {boolean} true on the first frame that the user releases the input after dragging the mouse
 		 */
 		dragged(inp) {
 			inp ??= this._default;
@@ -9023,40 +9093,9 @@ main {
 		_onmousedown.call(this, e);
 	};
 
-	this._Touch = class extends this.InputDevice {
-		constructor(touch) {
-			super();
-			this.id = touch.identifier;
-			this._default = 'duration';
-			this.duration = 1;
-			this.pos = touch;
-		}
-
-		set pos(v) {
-			if (v.identifier) {
-				let c = pInst.canvas;
-				const rect = c.getBoundingClientRect();
-				const sx = c.scrollWidth / c.w || 1;
-				const sy = c.scrollHeight / c.h || 1;
-				this.x = (touch.clientX - rect.left) / sx;
-				this.y = (touch.clientY - rect.top) / sy;
-				this.force = touch.force;
-			} else {
-				this.x = v.x;
-				this.y = v.y;
-			}
-		}
-	};
-
 	const __onmousemove = function (btn) {
 		let m = this.mouse;
-		if (m[btn] > 0 && m.drag[btn] <= 0) {
-			m.drag[btn] = 1;
-			let ms = this.world.mouseSprite?.mouse;
-			if (ms) {
-				ms.drag[btn] = 1;
-			}
-		}
+		if (m[btn] > 0) m._dragFrame[btn] = true;
 	};
 
 	const _onmousemove = pInst._onmousemove;
@@ -9074,27 +9113,24 @@ main {
 
 	const __onmouseup = function (btn) {
 		let m = this.mouse;
-		if (m[btn] >= m.holdThreshold) {
-			m[btn] = -2;
-		} else if (m[btn] > 1) m[btn] = -1;
+		if (m[btn] >= m.holdThreshold) m[btn] = -2;
+		else if (m[btn] > 1) m[btn] = -1;
 		else m[btn] = -3;
+
 		if (m.drag[btn] > 0) m.drag[btn] = -1;
 
 		let msm = this.world.mouseSprite?.mouse;
-		if (msm) {
-			if (msm.hover > 1) {
-				if (msm[btn] >= this.mouse.holdThreshold) {
-					msm[btn] = -2;
-				} else if (msm[btn] > 1) {
-					msm[btn] = -1;
-				} else {
-					msm[btn] = -3;
-				}
-				if (msm.drag[btn] > 0) msm.drag[btn] = -1;
-			} else {
-				msm[btn] = 0;
-				msm.drag[btn] = 0;
-			}
+		if (!msm) return;
+
+		if (msm.hover > 1) {
+			if (msm[btn] >= this.mouse.holdThreshold) msm[btn] = -2;
+			else if (msm[btn] > 1) msm[btn] = -1;
+			else msm[btn] = -3;
+
+			if (msm.drag[btn] > 0) msm.drag[btn] = -1;
+		} else {
+			msm[btn] = 0;
+			msm.drag[btn] = 0;
 		}
 	};
 
@@ -9112,6 +9148,31 @@ main {
 	};
 
 	delete this._Mouse;
+
+	this.touches.holdThreshold = 12;
+
+	this._Touch = class extends this.InputDevice {
+		constructor(touch) {
+			super();
+			this.id = touch.identifier;
+			this._default = 'duration';
+			this.holdThreshold = pInst.touches.holdThreshold;
+			this.duration = 1;
+			this.drag = 0;
+			this._dragFrame = false;
+			this._update(touch);
+		}
+
+		_update(v) {
+			let c = pInst.canvas;
+			const rect = c.getBoundingClientRect();
+			const sx = c.scrollWidth / c.w || 1;
+			const sy = c.scrollHeight / c.h || 1;
+			this.x = (v.clientX - rect.left) / sx;
+			this.y = (v.clientY - rect.top) / sy;
+			this.force = v.force;
+		}
+	};
 
 	pInst._ontouchstart = function (e) {
 		if (!this._setupDone) return;
@@ -9133,7 +9194,8 @@ main {
 
 		for (let touch of e.changedTouches) {
 			let t = this.touches.find((t) => t.id == touch.identifier);
-			t.pos = touch;
+			t._update(touch);
+			t._dragFrame = true;
 			if (t.id == this.touches[0].id) {
 				this.mouseX = this.touches[0].x;
 				this.mouseY = this.touches[0].y;
@@ -9148,7 +9210,14 @@ main {
 
 		for (let touch of e.changedTouches) {
 			let t = this.touches.find((t) => t.id == touch.identifier);
-			t.pos = touch;
+			t._update(touch);
+
+			if (t.duration >= t.holdThreshold) t.duration = -2;
+			else if (t.duration > 1) t.duration = -1;
+			else t.duration = -3;
+
+			if (t.drag > 0) t.drag = -1;
+
 			if (t.id == this.touches[0].id) {
 				this.mouseX = this.touches[0].x;
 				this.mouseY = this.touches[0].y;
@@ -9237,9 +9306,8 @@ main {
 		}
 
 		_rel(k) {
-			if (this[k] >= this.holdThreshold) {
-				this[k] = -2;
-			} else if (this[k] > 1) this[k] = -1;
+			if (this[k] >= this.holdThreshold) this[k] = -2;
+			else if (this[k] > 1) this[k] = -1;
 			else this[k] = -3;
 		}
 
@@ -9889,6 +9957,21 @@ p5.prototype.registerMethod('post', function p5playPostDraw() {
 		else if (this.kb[k] > 0) this.kb[k]++;
 	}
 
+	for (let i = 0; i < this.touches.length; i++) {
+		let t = this.touches[i];
+		t.duration++;
+		if (t._dragFrame) {
+			t.drag++;
+			t._dragFrame = false;
+		} else if (t.drag < 0) {
+			t.drag = 0;
+		}
+		if (touch.duration <= 0) {
+			this.touches.splice(i, 1);
+			i--;
+		}
+	}
+
 	let m = this.mouse;
 	let msm = this.world.mouseSprite?.mouse;
 
@@ -9897,9 +9980,14 @@ p5.prototype.registerMethod('post', function p5playPostDraw() {
 		else if (m[btn] > 0) m[btn]++;
 		if (msm?.hover) msm[btn] = m[btn];
 
-		if (m.drag[btn] < 0) m.drag[btn] = 0;
-		else if (m.drag[btn] > 0) m.drag[btn]++;
-		if (msm) msm.drag[btn] = m.drag[btn];
+		if (m._dragFrame[btn]) {
+			m.drag[btn]++;
+			if (msm) msm.drag[btn] = m.drag[btn];
+			m._dragFrame[btn] = false;
+		} else if (m.drag[btn] < 0) {
+			m.drag[btn] = 0;
+			if (msm) msm.drag[btn] = 0;
+		}
 	}
 
 	if (this.world.mouseTracking) {
