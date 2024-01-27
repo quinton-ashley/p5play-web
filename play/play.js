@@ -68,6 +68,11 @@ let projects = [
 		url: 'https://andyjshaw000.github.io/Final438/'
 	},
 	{
+		title: 'Dodeca Done',
+		author: '@coding398',
+		url: 'https://store.steampowered.com/app/2754840/Dodecadone/'
+	},
+	{
 		title: 'Save the Mushrooms',
 		author: '@chickenandwafflesequalsyes',
 		url: 'https://openprocessing.org/sketch/1995592'
