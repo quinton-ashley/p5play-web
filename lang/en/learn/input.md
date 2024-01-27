@@ -7,6 +7,7 @@ Here are the input devices available in p5play:
 - `kb` or `keyboard` for the keyboard
 - `mouse` for the mouse
 - `contro` or `controllers` for game controllers
+- `touches` for touch screens
 
 These input devices all use the same simple functions for getting the state of an input: `presses`, `pressing`, and `released`.
 

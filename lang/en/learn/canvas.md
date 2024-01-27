@@ -6,7 +6,7 @@ The `Canvas` constructor creates a new HTML5 `canvas` element and adds it to you
 
 It's like the p5.js `createCanvas` function, but with some added features!
 
-Use `canvas.w` and `canvas.h` to get the width and height of the canvas.
+Use `canvas.w` to get the width and `canvas.h` to get the height of the canvas. `canvas.hw` gets half the width and `canvas.hh` gets half the height of the canvas.
 
 # 0-1
 
