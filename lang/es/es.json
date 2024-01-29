@@ -40,14 +40,7 @@
 			"Recorte",
 			"Dibujar y actualizar"
 		],
-		"input_devices": [
-			"Detección de Entrada",
-			"Teclado",
-			"Ratón",
-			"Ratón de Sprite",
-			"Controladores de Juego",
-			"Táctil"
-		],
+		"input": ["Detección de Entrada", "Teclado", "Ratón", "Ratón de Sprite", "Controladores de Juego", "Táctil"],
 		"joints": ["pegamento", "distancia", "rueda", "bisagra", "deslizador"],
 		"sound": ["Usando sonidos"],
 		"sprite": [
@@ -68,7 +61,7 @@
 			"Dibujo Personalizado",
 			"Secuenciación de Movimiento"
 		],
-		"sprite_animation": [
+		"animation": [
 			"Cargando Animaciones",
 			"Controles de Animación",
 			"Sprites con Animaciones",

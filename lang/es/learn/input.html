@@ -19,8 +19,8 @@
 			<hr>
 			<a href="sprite.html">Sprite</a>
 			<a href="group.html">Group</a>
-			<a href="sprite_animation.html">Ani</a>
-			<a href="input_devices.html" class="active">Input</a>
+			<a href="animation.html">Ani</a>
+			<a href="input.html" class="active">Input</a>
 			<a href="camera.html">Camera</a>
 			<a href="joints.html">Joints</a>
 			<a href="canvas.html">...</a>
@@ -34,18 +34,19 @@
 
 		<div id="page-0" class="page">
 			<md id="md0-0">
-				<h2 id="dispositivos-de-entrada">Dispositivos de entrada</h2>
+				<h2 id="dispositivos-de-entrada">Dispositivos de Entrada</h2>
 				<p>Aquí están los dispositivos de entrada disponibles en p5play:</p>
 				<ul>
-					<li><code>kb</code> o <code>keyboard</code> para el teclado</li>
+					<li><code>kb</code> / <code>keyboard</code> para el teclado</li>
 					<li><code>mouse</code> para el ratón</li>
-					<li><code>contro</code> o <code>controllers</code> para los controladores de juegos</li>
+					<li><code>contro</code> / <code>controllers</code> para los controles de juegos</li>
+					<li><code>touches</code> para entradas de pantalla táctil</li>
 				</ul>
 				<p>Todos estos dispositivos de entrada utilizan las mismas funciones simples para obtener el estado de
 					una entrada: <code>presses</code>, <code>pressing</code> y <code>released</code>.</p>
-				<p>También almacenan el estado de todas sus entradas como propiedades. Por ejemplo,
-					<code>kb.space</code> almacena cuántos frames ha estado presionando el usuario la tecla espacio. Se
-					reinicia cuando el usuario suelta la entrada.</p>
+				<p>Los dispositivos de entrada también almacenan el estado de todas sus entradas como propiedades. Por
+					ejemplo, <code>kb.space</code> almacena cuántos cuadros el usuario ha estado presionando la tecla
+					espaciadora. Se reinicia cuando el usuario suelta la entrada.</p>
 			</md>
 			<script type="mie/p5" id="hidden" base-0="" hide="">
 function setup() {
@@ -82,10 +83,10 @@ if (kb.released(' ')) {
 			</div>
 			<md id="md0-1">
 				<p>p5play facilita la activación de la misma acción a través de diferentes dispositivos de entrada
-					utilizando <a
+					usando <a
 						href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_OR"
 						target="_blank">lógica booleana</a>.</p>
-				<p>En el mini ejemplo, el sprite se vuelve verde si presionas la tecla de espacio o haces clic con el
+				<p>En el mini-ejemplo, el sprite se vuelve verde si presionas la tecla espaciadora o haces clic con el
 					ratón.</p>
 			</md>
 			<script type="mie/p5" id="hidden" base-1="" hide="">
@@ -112,15 +113,15 @@ if (kb.pressing('space') || mouse.pressing()) {
 				<h2 id="teclado">Teclado</h2>
 				<p><code>kb</code> rastrea casi todas las teclas del teclado, incluyendo 'enter', 'backspace' y
 					'control'.</p>
-				<p>Ten en cuenta que la entrada de letras no distingue entre mayúsculas y minúsculas. Para verificar si
-					un usuario está presionando la tecla shift, utiliza: <code>kb.pressing('shift')</code>.</p>
-				<p>Dado que las teclas WASD se utilizan comúnmente para controlar el movimiento del personaje del
-					jugador, puedes usar los nombres de dirección 'arriba', 'abajo', 'izquierda' y 'derecha' para
-					detectar las pulsaciones de WASD y las teclas de flecha.</p>
-				<p>Las teclas de flecha también se pueden detectar por separado utilizando 'arrowUp', 'arrowDown',
+				<p>Nota que la entrada de letras no distingue entre mayúsculas y minúsculas. Para verificar si un
+					usuario está presionando shift usa: <code>kb.pressing('shift')</code>.</p>
+				<p>Dado que las teclas WASD se usan comúnmente para controlar el movimiento del personaje del jugador,
+					puedes usar los nombres de dirección 'up', 'down', 'left' y 'right' para detectar las presiones de
+					las teclas WASD y de flechas.</p>
+				<p>Las teclas de flecha también pueden detectarse por separado usando 'arrowUp', 'arrowDown',
 					'arrowLeft' y 'arrowRight'.</p>
-				<p>En juegos locales de dos jugadores, es común que el segundo jugador utilice las teclas IJKL para el
-					movimiento. Estas teclas se pueden referenciar utilizando 'up2', 'down2', 'left2' y 'right2'.</p>
+				<p>En juegos locales para dos jugadores es común que el segundo jugador use las teclas IJKL para el
+					movimiento. Estas teclas pueden referenciarse usando 'up2', 'down2', 'left2' y 'right2'.</p>
 				<p><a href="https://github.com/quinton-ashley/p5play/wiki/FAQ#is-p5plays-kb-input-system-compatible-with-non-qwerty-keyboards"
 						target="_blank">¿Usas un teclado no QWERTY?</a></p>
 			</md>
@@ -154,14 +155,16 @@ function draw() {
 		<div id="page-2" class="page">
 			<md id="md2-0">
 				<h2 id="ratón">Ratón</h2>
-				<p>La entrada de ratón predeterminada es el botón 'izquierdo', un clic de un dedo en los trackpads.
-					También puedes usar el 'derecho' (clic de dos dedos) y el 'centro'.</p>
-				<p><code>mouse.x</code> y <code>mouse.y</code> almacenan la posición del ratón en el lienzo.</p>
+				<p>La entrada por defecto del ratón es el botón 'left', un clic con un dedo en trackpads. También puedes
+					usar 'right' (clic con dos dedos) y 'center'.</p>
+				<p><code>mouse.x</code> y <code>mouse.y</code> almacenan la posición del ratón en el mundo, basada en la
+					posición de la cámara.</p>
+				<p><code>mouse.canvasPos</code> almacena la posición absoluta del ratón en el lienzo.</p>
 				<p><code>mouse.visible</code> es un booleano que determina si el ratón es visible o no.</p>
-				<p><code>mouse.cursor</code> se puede configurar con un <a
+				<p><code>mouse.cursor</code> se puede configurar a un <a
 						href="https://developer.mozilla.org/en-US/docs/Web/CSS/cursor" target="_blank">estilo de
-						cursor</a>. El valor predeterminado es 'default', otras opciones incluyen 'grab', 'move',
-					'pointer' y 'wait'.</p>
+						cursor</a>. El predeterminado es 'default', otras opciones incluyen 'grab', 'move', 'pointer' y
+					'wait'.</p>
 			</md>
 			<script type="mie/p5" id="mouse.visible">
 let cur;
@@ -185,15 +188,15 @@ function draw() {
 		<div id="page-3" class="page">
 			<md id="md3-0">
 				<h2 id="ratón-de-sprite">Ratón de Sprite</h2>
-				<p>Los sprites con colisionadores físicos tienen su propio objeto ratón para detectar las entradas del
+				<p>Los sprites con colisionadores físicos tienen su propio objeto de ratón para detectar entradas de
 					ratón en el sprite.
-					Los objetos <code>sprite.mouse</code> son justo como el objeto de entrada <code>mouse</code>,
-					excepto que tienen funciones adicionales.</p>
+					Los objetos <code>sprite.mouse</code> son como el objeto de entrada <code>mouse</code>, excepto que
+					tienen funciones adicionales.</p>
 				<p><code>hovers</code> y <code>hovering</code> detectan cuando el usuario mueve el ratón sobre un
 					sprite.</p>
-				<p><code>dragging</code> detecta cuando el usuario hace clic y mantiene un botón del ratón en el sprite
-					mientras mueve el ratón.
-					Nota que <code>mouse.x</code> es la posición x del ratón en el lienzo y <code>sprite.mouse.x</code>
+				<p><code>dragging</code> detecta cuando el usuario hace clic y mantiene presionado un botón del ratón en
+					el sprite mientras mueve el ratón.</p>
+				<p>Nota que <code>mouse.x</code> es la posición x del ratón en el lienzo y <code>sprite.mouse.x</code>
 					es la posición x del ratón relativa al sprite.</p>
 			</md>
 			<script type="mie/p5" id="sprite.mouse">
@@ -227,24 +230,24 @@ function draw() {
 		</div>
 		<div id="page-4" class="page">
 			<md id="md4-0">
-				<h2 id="controladores-de-juego">Controladores de Juego</h2>
-				<p>El objeto <code>contro</code> proporciona el estado de entrada de los botones del controlador de
-					juego:</p>
-				<p><code>a</code>, <code>b</code>, <code>x</code>, <code>y</code>, <code>l</code> (gatillo izquierdo),
-					<code>r</code> (gatillo derecho), <code>lt</code> (gatillo izquierdo), <code>rt</code> (gatillo
+				<h2 id="controles-de-juego">Controles de Juego</h2>
+				<p>El objeto <code>contro</code> proporciona el estado de entrada de los botones de control de juego:
+				</p>
+				<p><code>a</code>, <code>b</code>, <code>x</code>, <code>y</code>, <code>l</code> (botón izquierdo),
+					<code>r</code> (botón derecho), <code>lt</code> (gatillo izquierdo), <code>rt</code> (gatillo
 					derecho), <code>up</code>, <code>down</code>, <code>left</code>, <code>right</code> (D-pad),
-					<code>lsb</code> (botón de palanca izquierda), <code>rsb</code> (botón de palanca derecha),
+					<code>lsb</code> (botón del stick izquierdo), <code>rsb</code> (botón del stick derecho),
 					<code>start</code> y <code>select</code></p>
-				<p><code>contro.leftStick</code> y <code>contro.rightStick</code> representan las posiciones de las
-					palancas analógicas del controlador como objetos con propiedades x e y. Estos valores van desde -1
-					hasta 1, con 0 indicando la posición central.</p>
-				<p>Algunos controladores tienen gatillos analógicos, y sus posiciones se almacenan como números que van
-					de 0 a 1 en <code>contro.leftTrigger</code> y <code>contro.rightTrigger</code>.</p>
-				<p>El objeto <code>contro</code> (también conocido como <code>controllers</code>) es una matriz que
-					contiene todos los controladores de juego conectados detectados por tu navegador web. Accede a los
-					controladores conectados por índice. Por ejemplo, <code>contro[0]</code> y <code>contro[1]</code>
-					son el primer y segundo controlador. A través de la magia de JavaScript, <code>contro</code> se
-					puede utilizar para obtener los estados de entrada de <code>contro[0]</code>.</p>
+				<p><code>contro.leftStick</code> y <code>contro.rightStick</code> representan las posiciones de los
+					sticks análogos como objetos con propiedades x e y. Estos valores van de -1 a 1, siendo 0 la
+					posición central.</p>
+				<p>Algunos controles tienen gatillos análogos, y sus posiciones se almacenan como números que van de 0 a
+					1 en <code>contro.leftTrigger</code> y <code>contro.rightTrigger</code>.</p>
+				<p>El objeto <code>contro</code> (también conocido como <code>controllers</code>) es un arreglo que
+					contiene todos los controles de juego conectados detectados por tu navegador web. Accede a los
+					controles conectados por índice. Por ejemplo, <code>contro[0]</code> y <code>contro[1]</code> son el
+					primer y segundo control. A través de magia JS, <code>contro</code> se puede usar para obtener los
+					estados de entrada de <code>contro[0]</code>.</p>
 			</md>
 			<div class="minis horiz">
 				<script type="mie/p5" base-2="" hidden="">
@@ -270,7 +273,7 @@ function draw() {
 	ellipse(100, 100, 80, 80);
 	btns.color = 'gray';
 }
-			</script>
+				</script>
 				<script type="mie/p5" id="controller-test" base="2">
 if (contro.pressing('a')) a.color = 'green';
 if (contro.pressing('b')) b.color = 'red';
@@ -280,30 +283,61 @@ if (contro.pressing('y')) y.color = 'yellow';
 lsb.x = 100 + contro.leftStick.x * 40;
 lsb.y = 100 + contro.leftStick.y * 40;
 if (contro.pressing('lsb')) lsb.color = 'white';
-			</script>
+				</script>
 				<md id="md4-1">
-					<p>¡Pruébalo! Conecta un controlador de juego y presiona cualquier botón en él para que p5play lo
-						detecte.</p>
+					<p>¡Pruébalo! Conecta un control de juego y presiona cualquier botón en él para que sea detectado
+						por p5play.</p>
+					<p>➡️ <a href="https://openprocessing.org/sketch/2120550" target="_blank">demo completa</a></p>
 				</md>
 			</div>
 		</div>
 		<div id="page-5" class="page">
 			<md id="md5-0">
-				<h2 id="tocar">Tocar</h2>
-				<p>Ejemplo próximamente!</p>
+				<h2 id="tacto">Tacto</h2>
+				<p>Cada interacción con pantalla táctil genera un objeto de toque que se añade al arreglo
+					<code>touches</code>.</p>
+				<p>Cada toque tiene sus propias funciones para detectar estados de entrada de presión y arrastre.</p>
+				<p><code>touch.x</code> y <code>touch.y</code> almacenan la posición del toque en el mundo, basada en la
+					posición de la cámara.</p>
+				<p><code>touch.canvasPos</code> almacena la posición absoluta del toque en el lienzo.</p>
+				<p><code>touch.id</code> es un número único que identifica el toque.</p>
+				<p><code>touch.duration</code> almacena cuántos cuadros el toque ha estado activo.</p>
+				<p>El cuadro después de que un toque termina, su objeto de toque se elimina del arreglo
+					<code>touches</code>. <code>touches[0]</code> se mapea al <code>mouse</code>.</p>
+				<p>¡En la demostración de toques, toca la pantalla para crear cajas y arrástralas para lanzarlas!</p>
 			</md>
+			<script type="mie/p5" id="touches demo">
+let boxes = {};
+
+function setup() {
+	new Canvas(500, 200);
+}
+
+function draw() {
+	background(16);
+
+	for (let touch of touches) {
+		if (touch.presses()) {
+			let box = new Sprite(touch.x, touch.y, 30, 30);
+			boxes[touch.id] = box;
+		} else {
+			boxes[touch.id].moveTowards(touch);
+		}
+	}
+}
+			</script>
 		</div>
 
 		<div class="break"></div>
 		<div id="toc">
 			<a id="prevPage" class="navLink">Página anterior</a>
 			<div id="pageNav" class="submenu">
-				<a data-page="0" href="input_devices.html?page=0">Detección de Entrada</a>
-				<a data-page="1" href="input_devices.html?page=1">Teclado</a>
-				<a data-page="2" href="input_devices.html?page=2">Ratón</a>
-				<a data-page="3" href="input_devices.html?page=3">Ratón de Sprite</a>
-				<a data-page="4" href="input_devices.html?page=4">Controladores de Juego</a>
-				<a data-page="5" href="input_devices.html?page=5">Táctil</a>
+				<a data-page="0" href="input.html?page=0">Detección de Entrada</a>
+				<a data-page="1" href="input.html?page=1">Teclado</a>
+				<a data-page="2" href="input.html?page=2">Ratón</a>
+				<a data-page="3" href="input.html?page=3">Ratón de Sprite</a>
+				<a data-page="4" href="input.html?page=4">Controladores de Juego</a>
+				<a data-page="5" href="input.html?page=5">Táctil</a>
 			</div>
 			<a id="nextPage" class="navLink">Siguiente página</a>
 		</div>

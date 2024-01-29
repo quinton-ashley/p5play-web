@@ -29,12 +29,12 @@ let refs = {
 		14: ['draw', 'update'],
 		15: ['angleTo'],
 		'group.html?page=6': ['life'],
-		'sprite_animation.html?page=2': ['mirror', 'ani', 'addAni'],
-		'sprite_animation.html?page=4': ['anis', 'addAnis', 'pixelPerfect', 'spriteSheet'],
+		'animation.html?page=2': ['mirror', 'ani', 'addAni'],
+		'animation.html?page=4': ['anis', 'addAnis', 'pixelPerfect', 'spriteSheet'],
 		'tiles.html?page=0': ['tile'],
 		'tiles.html?page=1': ['tileSize'],
 		'world.html?page=0': ['allowSleeping', 'sleeping'],
-		'input_devices.html?page=3': ['mouse']
+		'input.html?page=3': ['mouse']
 	},
 	'Group.html': {
 		0: ['sprite properties', 'GroupSprite', 'move'],

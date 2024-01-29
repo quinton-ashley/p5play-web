@@ -39,7 +39,7 @@
 			"Culling",
 			"Draw and Update"
 		],
-		"input_devices": ["Detecting Input", "Keyboard", "Mouse", "Sprite Mouse", "Game Controllers", "Touch"],
+		"input": ["Detecting Input", "Keyboard", "Mouse", "Sprite Mouse", "Game Controllers", "Touch"],
 		"joints": ["GlueJoint", "DistanceJoint", "WheelJoint", "HingeJoint", "SliderJoint"],
 		"sound": ["Using Sounds"],
 		"sprite": [
@@ -60,7 +60,7 @@
 			"Custom Draw",
 			"Movement Sequencing"
 		],
-		"sprite_animation": [
+		"animation": [
 			"Loading Animations",
 			"Animation Controls",
 			"Sprites with Animations",

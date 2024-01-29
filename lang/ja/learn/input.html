@@ -19,8 +19,8 @@
 			<hr>
 			<a href="sprite.html">Sprite</a>
 			<a href="group.html">Group</a>
-			<a href="sprite_animation.html">Ani</a>
-			<a href="input_devices.html" class="active">Input</a>
+			<a href="animation.html">Ani</a>
+			<a href="input.html" class="active">Input</a>
 			<a href="camera.html">Camera</a>
 			<a href="joints.html">Joints</a>
 			<a href="canvas.html">...</a>
@@ -81,8 +81,8 @@ if (kb.released(' ')) {
 			</div>
 			<md id="md0-1">
 				<p>p5play は、<a
-						href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_OR">ブール論理</a>を使用して、異なる入力デバイスを介して同じアクションをトリガーすることを容易にします。
-				</p>
+						href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_OR"
+						target="_blank">ブール論理</a>を使用して、異なる入力デバイスを介して同じアクションをトリガーすることを容易にします。</p>
 				<p>ミニ例では、スプライトはスペースキーを押すかマウスをクリックすると赤くなります。</p>
 			</md>
 			<script type="mie/p5" id="hidden" base-1="" hide="">
@@ -114,9 +114,8 @@ if (kb.pressing('space') || mouse.pressing()) {
 				<p>矢印キーは、'arrowUp'、'arrowDown'、'arrowLeft'、'arrowRight' を使用して個別に検出することもできます。</p>
 				<p>ローカルの二人用ゲームでは、第二のプレイヤーが移動に IJKL キーを使用することが一般的です。これらのキーは 'up2'、'down2'、'left2'、'right2' を使用して参照できます。
 				</p>
-				<p><a
-						href="https://github.com/quinton-ashley/p5play/wiki/FAQ#is-p5plays-kb-input-system-compatible-with-non-qwerty-keyboards">QWERTY
-						以外のキーボードを使用していますか？</a></p>
+				<p><a href="https://github.com/quinton-ashley/p5play/wiki/FAQ#is-p5plays-kb-input-system-compatible-with-non-qwerty-keyboards"
+						target="_blank">QWERTY 以外のキーボードを使用していますか？</a></p>
 			</md>
 			<script type="mie/p5" id="keyboard-movement">
 let player;
@@ -151,9 +150,9 @@ function draw() {
 				<p>デフォルトのマウス入力は「left」ボタンで、トラックパッドでの単一指のクリックです。また、'right'（二本指クリック）と 'center' も使用できます。</p>
 				<p><code>mouse.x</code> と <code>mouse.y</code> はマウスのキャンバス上の位置を格納します。</p>
 				<p><code>mouse.visible</code> は、マウスが表示されるかどうかを決定するブール値です。</p>
-				<p><code>mouse.cursor</code> は <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/cursor">カーソルスタイル</a>
-					に設定できます。デフォルトは
-					'default' で、他のオプションには 'grab'、'move'、'pointer'、'wait' などがあります。</p>
+				<p><code>mouse.cursor</code> は <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/cursor"
+						target="_blank">カーソルスタイル</a> に設定できます。デフォルトは 'default' で、他のオプションには 'grab'、'move'、'pointer'、'wait'
+					などがあります。</p>
 			</md>
 			<script type="mie/p5" id="mouse.visible">
 let cur;
@@ -218,11 +217,9 @@ function draw() {
 			<md id="md4-0">
 				<h2 id="ゲームコントローラ">ゲームコントローラ</h2>
 				<p><code>contro</code> オブジェクトは、ゲームコントローラのボタンの入力状態を提供します:</p>
-				<p>
-					<code>a</code>、<code>b</code>、<code>x</code>、<code>y</code>、<code>l</code>（左バンパー）、<code>r</code>（右バンパー）、<code>lt</code>（左トリガー）、<code>rt</code>（右トリガー）、<code>up</code>、<code>down</code>、<code>left</code>、<code>right</code>（D
+				<p><code>a</code>、<code>b</code>、<code>x</code>、<code>y</code>、<code>l</code>（左バンパー）、<code>r</code>（右バンパー）、<code>lt</code>（左トリガー）、<code>rt</code>（右トリガー）、<code>up</code>、<code>down</code>、<code>left</code>、<code>right</code>（D
 					パッド）、<code>lsb</code>（左スティックボタン）、<code>rsb</code>（右スティックボタン）、<code>start</code>、および
-					<code>select</code>
-				</p>
+					<code>select</code></p>
 				<p><code>contro.leftStick</code> と <code>contro.rightStick</code> は、コントローラのアナログスティックの位置を x と y
 					プロパティを持つオブジェクトとして表します。これらの値は -1 から 1 の範囲で、0 は中央位置を示します。</p>
 				<p>一部のコントローラにはアナログトリガーがあり、その位置は <code>contro.leftTrigger</code> と <code>contro.rightTrigger</code> に 0
@@ -230,8 +227,7 @@ function draw() {
 				<p><code>contro</code> オブジェクト（別名 <code>controllers</code>）は、Web
 					ブラウザによって検出されたすべての接続されたゲームコントローラを含む配列です。インデックスを使用して接続されたコントローラにアクセスできます。例えば、<code>contro[0]</code> と
 					<code>contro[1]</code> は最初のコントローラと 2 番目のコントローラです。JavaScript の仕組みにより、<code>contro</code> を使用して
-					<code>contro[0]</code> の入力状態を取得できます。
-				</p>
+					<code>contro[0]</code> の入力状態を取得できます。</p>
 			</md>
 			<div class="minis horiz">
 				<script type="mie/p5" base-2="" hidden="">
@@ -257,7 +253,7 @@ function draw() {
 	ellipse(100, 100, 80, 80);
 	btns.color = 'gray';
 }
-			</script>
+				</script>
 				<script type="mie/p5" id="controller-test" base="2">
 if (contro.pressing('a')) a.color = 'green';
 if (contro.pressing('b')) b.color = 'red';
@@ -267,7 +263,7 @@ if (contro.pressing('y')) y.color = 'yellow';
 lsb.x = 100 + contro.leftStick.x * 40;
 lsb.y = 100 + contro.leftStick.y * 40;
 if (contro.pressing('lsb')) lsb.color = 'white';
-			</script>
+				</script>
 				<md id="md4-1">
 					<p>試してみてください！ゲームコントローラを接続し、そのいずれかのボタンを押すと、p5play によって検出されます。</p>
 				</md>
@@ -276,20 +272,48 @@ if (contro.pressing('lsb')) lsb.color = 'white';
 		<div id="page-5" class="page">
 			<md id="md5-0">
 				<h2 id="タッチ">タッチ</h2>
-				<p>例は近日公開予定です！</p>
+				<p>すべてのタッチスクリーンのインタラクションは、<code>touches</code>配列に追加されるタッチオブジェクトを生成します。</p>
+				<p>各タッチには、押下とドラッグの入力状態を検出するための独自の関数があります。</p>
+				<p><code>touch.x</code>と<code>touch.y</code>は、カメラの位置に基づいて、ワールド内のタッチの位置を保存します。</p>
+				<p><code>touch.canvasPos</code>は、キャンバス上のタッチの絶対位置を保存します。</p>
+				<p><code>touch.id</code>は、タッチを識別するユニークな番号です。</p>
+				<p><code>touch.duration</code>は、タッチがアクティブであったフレーム数を保存します。</p>
+				<p>タッチが終了した後のフレームでは、そのタッチオブジェクトは<code>touches</code>配列から削除されます。<code>touches[0]</code>は<code>mouse</code>にマッピングされます。
+				</p>
+				<p>タッチのデモでは、画面をタップしてボックスを作成し、ドラッグしてそれらを投げ回してみてください！</p>
 			</md>
+			<script type="mie/p5" id="touches demo">
+let boxes = {};
+
+function setup() {
+	new Canvas(500, 200);
+}
+
+function draw() {
+	background(16);
+
+	for (let touch of touches) {
+		if (touch.presses()) {
+			let box = new Sprite(touch.x, touch.y, 30, 30);
+			boxes[touch.id] = box;
+		} else {
+			boxes[touch.id].moveTowards(touch);
+		}
+	}
+}
+			</script>
 		</div>
 
 		<div class="break"></div>
 		<div id="toc">
 			<a id="prevPage" class="navLink">前のページ</a>
 			<div id="pageNav" class="submenu">
-				<a data-page="0" href="input_devices.html?page=0">入力の検出</a>
-				<a data-page="1" href="input_devices.html?page=1">キーボード</a>
-				<a data-page="2" href="input_devices.html?page=2">マウス</a>
-				<a data-page="3" href="input_devices.html?page=3">スプライトーマウス</a>
-				<a data-page="4" href="input_devices.html?page=4">ゲームコントローラ</a>
-				<a data-page="5" href="input_devices.html?page=5">タッチ</a>
+				<a data-page="0" href="input.html?page=0">入力の検出</a>
+				<a data-page="1" href="input.html?page=1">キーボード</a>
+				<a data-page="2" href="input.html?page=2">マウス</a>
+				<a data-page="3" href="input.html?page=3">スプライトーマウス</a>
+				<a data-page="4" href="input.html?page=4">ゲームコントローラ</a>
+				<a data-page="5" href="input.html?page=5">タッチ</a>
 			</div>
 			<a id="nextPage" class="navLink">次のページ</a>
 		</div>
@@ -298,14 +322,14 @@ if (contro.pressing('lsb')) lsb.color = 'white';
 	</article>
 
 	<script src="/v3/q5.min.js"></script>
-	<script src="/v3/planck.min.js"></script>
-	<script src="/v3/p5play.min.js"></script>
-	<script>
-		window.mie = { autoLoad: false };
+<script src="/v3/planck.min.js"></script>
+<script src="/v3/p5play.min.js"></script>
+<script>
+window.mie = { autoLoad: false };
 
 	</script>
 	<script src="/learn/mie.js"></script>
-	<script src="/learn/learn.js"></script>
+<script src="/learn/learn.js"></script>
 </body>
 
 </html>

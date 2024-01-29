@@ -19,8 +19,8 @@
 			<hr>
 			<a href="sprite.html">Sprite</a>
 			<a href="group.html" class="active">Group</a>
-			<a href="sprite_animation.html">Ani</a>
-			<a href="input_devices.html">Input</a>
+			<a href="animation.html">Ani</a>
+			<a href="input.html">Input</a>
 			<a href="camera.html">Camera</a>
 			<a href="joints.html">Joints</a>
 			<a href="canvas.html">...</a>
@@ -33,14 +33,14 @@
 		<div id="page-0" class="page">
 			<md id="md0-0">
 				<h2 id="¿qué-es-un-grupo">¿Qué es un Grupo?</h2>
-				<p>En p5play, un Grupo es una colección y un plano para sprites con características y comportamientos
-					similares. ¡Por ejemplo los puntos en Pac-Man!</p>
-				<p>La propiedad <code>group.length</code> se puede usar para comprobar cuántos sprites hay en un grupo.
-					En este ejemplo, la condición del bucle while es verdadera siempre que el grupo de puntos tenga
-					menos de 24 sprites.</p>
+				<p>En p5play un Grupo es una colección y un plano para sprites con rasgos y comportamientos similares.
+					¡Por ejemplo, los puntos en Pac-Man!</p>
+				<p>La propiedad <code>group.length</code> se puede usar para verificar cuántos sprites hay en un grupo.
+					En este ejemplo, la condición del bucle while es verdadera mientras el grupo de puntos tenga menos
+					de 24 sprites.</p>
 				<p>En el mini ejemplo, <code>new dots.Sprite</code> crea un sprite que hereda el color del grupo de
 					puntos, la posición y y el diámetro. A cada punto se le asigna una posición x única.</p>
-				<p>Llamo a esto "herencia suave" porque un grupo actúa como un plano para los nuevos sprites del grupo.
+				<p>Yo llamo a esto "herencia suave" porque un grupo actúa como un plano para nuevos sprites del grupo.
 				</p>
 			</md>
 			<script type="mie/p5" id="dots" lines="15" base-0="">
@@ -72,15 +72,15 @@ function draw() {
 dots[5].color = 'green';
 			</script>
 			<md id="md0-2">
-				<p>¡Establecer una propiedad de un grupo a un valor diferente afectará a todos los sprites en el grupo!
-					Llamo a esto "herencia dinámica".</p>
+				<p>¡Establecer la propiedad de un grupo a un valor diferente afectará a todos los sprites en el grupo!
+					Yo llamo a esto "herencia dinámica".</p>
 			</md>
 			<script type="mie/p5" id="green-dots" base="0">
 dots.color = 'green';
 			</script>
 			<md id="md0-3">
-				<p>Usar funciones de movimiento como <code>group.moveTowards</code>, hará que todos los sprites en un
-					grupo se muevan.</p>
+				<p>Usar funciones de movimiento como <code>moveTowards</code> en un grupo, hará que todos los sprites en
+					un grupo se muevan.</p>
 			</md>
 			<script type="mie/p5" id="moving-dots" base="0">
 dots.moveTowards(mouse);
@@ -88,13 +88,13 @@ dots.moveTowards(mouse);
 		</div>
 		<div id="page-1" class="page">
 			<md id="md1-0">
-				<h2 id="establecedores-de-propiedades-de-función-de-flecha">Establecedores de propiedades de función de
-					flecha</h2>
-				<p>En p5play, cuando estableces una propiedad de sprite en un grupo a una función de flecha, cada nuevo
-					sprite creado usando ese grupo utilizará la función para evaluar la propiedad.</p>
-				<p>Cuando <code>group.amount</code> se ajusta, el grupo creará o eliminará automáticamente sprites para
-					coincidir con la cantidad establecida.</p>
-				<p>En este mini ejemplo, a cada sprite de gema se le asigna una posición x e y aleatoria.</p>
+				<h2 id="configuradores-de-propiedades-de-función-flecha">Configuradores de propiedades de función flecha
+				</h2>
+				<p>Si estableces una propiedad del grupo a una función flecha <code>=&gt;</code>, cada nuevo sprite
+					creado usando ese grupo usará la función para evaluar la propiedad.</p>
+				<p>Cuando <code>group.amount</code> se ajusta, el grupo automáticamente creará o eliminará sprites para
+					igualar la cantidad establecida.</p>
+				<p>En este mini ejemplo, a cada sprite de gema se le asigna una posición aleatoria en el lienzo.</p>
 			</md>
 			<script type="mie/p5" id="push-gems" horiz="">
 let player, gems;
@@ -118,11 +118,10 @@ function draw() {
 			</script>
 			<div class="minis horiz">
 				<md id="md1-1">
-					<h2 id="establecedores-de-funciones-de-flecha-indexados">Establecedores de funciones de flecha
-						indexados</h2>
-					<p>¡Incluso puedes usar su índice al evaluar una propiedad de sprite de grupo!</p>
-					<p><code>i</code> es el índice del sprite en el grupo, que se da como un parámetro de entrada a las
-						funciones de propiedad del grupo cuando se evalúan.</p>
+					<h2 id="configuradores-de-función-flecha-indexados">Configuradores de función flecha indexados</h2>
+					<p>¡Los configuradores de flecha pueden usar el índice del sprite en el grupo!</p>
+					<p>El índice, <code>i</code>, se da como un parámetro de entrada a los configuradores de flecha del
+						grupo. Se puede usar para calcular las propiedades del nuevo sprite del grupo.</p>
 				</md>
 				<script type="mie/p5" id="doors" hide-editor="">
 let doors, rail;
@@ -169,20 +168,16 @@ function draw() {
 		<div id="page-2" class="page">
 			<md id="md2-0">
 				<h2 id="colisiones-y-superposiciones">Colisiones y Superposiciones</h2>
-				<p>Las funciones de colisión y superposición no solo se utilizan para detectar eventos entre dos
-					sprites. También puedes comprobar colisiones y superposiciones entre sprites y grupos o entre
-					grupos. Las funciones son:</p>
-				<p><code>colisiona</code>, <code>colisionando</code>,
-					<code>colisionado</code><br><code>superpone</code>, <code>superponiendo</code>,
-					<code>superpuesto</code>
-				</p>
-				<p>En lugar de utilizar estas funciones en declaraciones <code>if</code>, puedes proporcionarles una
-					función de devolución de llamada como segundo parámetro. La función de devolución de llamada se
-					ejecutará cuando ocurra el evento de colisión o superposición. La función de devolución de llamada
-					recibe, como entradas, dos sprites.</p>
-				<p>En este mini ejemplo, la función de devolución de llamada recibe el sprite del jugador y el sprite de
-					la gema en el grupo de gemas con el que el jugador se superpone. Esa gema se recoge (se elimina).
-				</p>
+				<p>Las funciones de colisión y superposición no son solo para detectar eventos entre dos sprites.
+					También puedes verificar colisiones y superposiciones entre sprites y grupos o entre grupos. Las
+					funciones son:</p>
+				<p><code>collides</code>, <code>colliding</code>, <code>collided</code><br><code>overlaps</code>,
+					<code>overlapping</code>, <code>overlapped</code></p>
+				<p>En lugar de usar estas funciones en declaraciones <code>if</code>, puedes proporcionarlas con una
+					función de callback como segundo parámetro. La función de callback se ejecutará cuando ocurra el
+					evento de colisión o superposición. La función de callback recibe, como entradas, dos sprites.</p>
+				<p>En este mini ejemplo la función de callback recibe el sprite del jugador y el sprite de gema en el
+					grupo de gemas con el que el jugador se superpone. Esa gema se recoge (elimina).</p>
 			</md>
 			<script type="mie/p5" id="collect-gems" horiz="">
 let player, gems;
@@ -233,10 +228,10 @@ function draw() {
 		<div id="page-4" class="page">
 			<md id="md4-0">
 				<h2 id="propiedades-personalizadas">Propiedades Personalizadas</h2>
-				<p>¡Puedes añadir tus propias propiedades a los sprites y grupos, al igual que con cualquier otro objeto
-					de JavaScript!</p>
-				<p>Además, cuando añades propiedades personalizadas a un grupo, serán heredadas por los nuevos sprites
-					del grupo. Incluso puedes usar funciones de flecha como establecedores de propiedades.</p>
+				<p>¡Puedes agregar tus propias propiedades a los sprites y grupos, al igual que con cualquier otro
+					objeto de JavaScript!</p>
+				<p>Además, cuando agregas propiedades personalizadas a un grupo, serán heredadas por los nuevos sprites
+					del grupo. Incluso puedes usar funciones flecha como configuradores de propiedades.</p>
 			</md>
 			<script type="mie/p5" id="custom-properties" lines="10">
 function setup() {
@@ -258,18 +253,16 @@ function draw() {
 		</div>
 		<div id="page-5" class="page">
 			<md id="md5-0">
-				<h2 id="sub-grupos">Sub Grupos</h2>
+				<h2 id="subgrupos">Subgrupos</h2>
 				<p>En este mini ejemplo hay dos subgrupos del grupo <code>boxes</code>: <code>smallBoxes</code> y
-					<code>bigBoxes</code>.
-				</p>
+					<code>bigBoxes</code>.</p>
 				<p>Los nuevos sprites creados usando el grupo <code>bigBoxes</code> heredarán rasgos del grupo
-					<code>boxes</code> pero no del grupo <code>smallBoxes</code>.
-				</p>
+					<code>boxes</code> pero no de los grupos <code>smallBoxes</code>.</p>
 				<p>El grupo <code>boxes</code> contiene todos los sprites en los grupos <code>smallBoxes</code> y
-					<code>bigBoxes</code>.
-				</p>
-				<p>La función <code>group.removeAll</code> se puede usar para eliminar todos los sprites de un grupo.
-				</p>
+					<code>bigBoxes</code>.</p>
+				<p>La función <code>remove</code> elimina el grupo en sí, solo úsala si no quieres usar el grupo de
+					nuevo. Si solo quieres eliminar todos los sprites de un grupo, usa la función
+					<code>removeAll</code>.</p>
 			</md>
 			<script type="mie/p5" id="SubGroup" horiz="">
 let boxes, smallBoxes, bigBoxes;
@@ -305,19 +298,17 @@ function draw() {
 		<div id="page-6" class="page">
 			<md id="md6-0">
 				<h2 id="culling">Culling</h2>
-				<p>Por defecto, los sprites se eliminan cuando se van 10000 píxeles fuera de la pantalla en relación con
+				<p>Por defecto, los sprites se eliminan cuando se van a 10000 píxeles fuera de pantalla en relación con
 					la posición de la cámara. Esto es para evitar que el mundo se haga demasiado grande, lo que
 					ralentizaría la simulación física.</p>
-				<p>Para cambiar esto, establece <code>allSprites.autoCull = false</code> y usa la función
-					<code>group.cull</code> para establecer un límite de culling diferente. Incluso puede cull sprites
-					que no tienen un collider físico.
-				</p>
-				<p>Un último parámetro opcional se puede utilizar para especificar una función de callback que se
-					llamará cuando un sprite sea cullado. La respuesta por defecto al culling es eliminar el sprite que
-					salió del límite de culling pero al establecer tu propia función puedes hacer algo más. La función
-					de callback recibe el sprite que fue cullado y un recuento total de cuántos sprites fueron cullados
-					en ese fotograma. En este ejemplo, la cantidad de bolas disminuye si más de una bola es cullada en
-					un fotograma.</p>
+				<p>Para cambiar esto, establece <code>allSprites.autoCull = false</code> o usa la función
+					<code>cull</code> para establecer un límite de culling diferente. Ten en cuenta que incluso puede
+					eliminar sprites que no tienen un colisionador físico.</p>
+				<p>Los sprites que cruzan el límite de culling se eliminan por defecto. Como último parámetro de entrada
+					a la función <code>cull</code>, puedes insertar una función de callback. Cuando se llama, recibe el
+					sprite que fue eliminado y un conteo total de cuántos sprites fueron eliminados en ese cuadro.</p>
+				<p>Ten en cuenta que en este ejemplo, la cantidad de bolas disminuye si se eliminan más de una bola en
+					un cuadro.</p>
 			</md>
 			<script type="mie/p5" id="cull">
 let balls;
@@ -337,9 +328,9 @@ function draw() {
 			</script>
 			<md id="md6-1">
 				<h2 id="vida">vida</h2>
-				<p>Otra forma de limitar cuánto tiempo existe un sprite es establecer su propiedad <code>life</code>,
-					que es el número de fotogramas que el sprite existe. Cuando la vida del sprite se acaba, será
-					eliminado. Esto es útil para crear objetos temporales como proyectiles y campos de fuerza.</p>
+				<p>Otra manera de limitar cuánto tiempo existe un sprite es establecer su propiedad <code>life</code>,
+					que es el número de cuadros que el sprite existe. Cuando la vida del sprite llega a <code>0</code>,
+					será eliminado. Esto es útil para crear objetos temporales como proyectiles y campos de fuerza.</p>
 				<p>¡Prueba este pequeño juego! Haz clic con el ratón para crear una pelota de playa e intenta mantenerla
 					en el aire con el chorro de agua.</p>
 			</md>
@@ -369,17 +360,17 @@ function draw() {
 				<md id="md7-0">
 					<h2 id="dibujar">Dibujar</h2>
 					<p>Al igual que con la función <code>sprite.draw</code>, puedes usar <code>group.draw</code> para
-						controlar manualmente cuándo se dibujan los grupos dentro del bucle draw de p5.js.</p>
-					<p>Cualquier sprite que no sea dibujado manualmente será dibujado automáticamente al final del bucle
-						draw de p5.js, a menos que su propiedad <code>autoDraw</code> esté establecida en falso.</p>
+						controlar manualmente cuándo se dibujan los grupos dentro del bucle de dibujo de p5.js.</p>
+					<p>Cualquier sprite no dibujado manualmente será dibujado automáticamente al final del bucle de
+						dibujo de p5.js, a menos que su propiedad <code>autoDraw</code> esté establecida en falso.</p>
 					<p>Ten en cuenta que si quieres dibujar manualmente sprites o grupos y usar la cámara, tendrás que
 						activar y desactivar la cámara manualmente.</p>
 				</md>
 				<md id="md7-1">
 					<h2 id="actualizar">Actualizar</h2>
 					<p>La función <code>group.update</code> ejecuta la función <code>sprite.update</code> de cada sprite
-						en el grupo. Para prevenir la actualización automática, establece <code>autoUpdate</code> en
-						falso.</p>
+						en el grupo. Para evitar la actualización automática establece <code>autoUpdate</code> en falso.
+					</p>
 				</md>
 			</div>
 			<script type="mie/p5" id="draw-and-update">
@@ -424,15 +415,15 @@ function draw() {
 	</article>
 
 	<!-- <script src="https://cdn.jsdelivr.net/npm/p5@1/lib/p5.js"></script> -->
-	<script src="/v3/q5.min.js"></script>
-	<script src="/v3/planck.min.js"></script>
-	<script src="/v3/p5play.min.js"></script>
-	<script>
-		window.mie = { autoLoad: false };
+<script src="/v3/q5.min.js"></script>
+<script src="/v3/planck.min.js"></script>
+<script src="/v3/p5play.min.js"></script>
+<script>
+window.mie = { autoLoad: false };
 
 	</script>
 	<script src="/learn/mie.js"></script>
-	<script src="/learn/learn.js"></script>
+<script src="/learn/learn.js"></script>
 </body>
 
 </html>

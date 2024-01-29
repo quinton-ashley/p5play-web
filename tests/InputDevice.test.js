@@ -19,7 +19,7 @@ test('InputDevice : mouse', () => {
 				expect(p.mouse.y).toBe(0);
 				expect(p.mouse.holdThreshold).toEqual(12);
 				expect(p.mouse.isOnCanvas).toBe(false);
-				expect(p.mouse.active).toBe(false);
+				expect(p.mouse.isActive).toBe(false);
 
 				// return false for invalid input..
 				expect(p.mouse.presses('invalid-input')).toBe(false);

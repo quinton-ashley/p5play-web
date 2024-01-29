@@ -4,10 +4,10 @@
 
 Here are the input devices available in p5play:
 
-- `kb` or `keyboard` for the keyboard
+- `kb` / `keyboard` for the keyboard
 - `mouse` for the mouse
-- `contro` or `controllers` for game controllers
-- `touches` for touch screens
+- `contro` / `controllers` for game controllers
+- `touches` for touch screen inputs
 
 These input devices all use the same simple functions for getting the state of an input: `presses`, `pressing`, and `released`.
 
@@ -41,7 +41,9 @@ In local two player games it's common for the second player to use the IJKL keys
 
 The default mouse input is the 'left' button, a one finger click on trackpads. You can also use 'right' (two finger click) and 'center'.
 
-`mouse.x` and `mouse.y` store the position of the mouse on the canvas.
+`mouse.x` and `mouse.y` store the position of the mouse in the world, based on the camera's position.
+
+`mouse.canvasPos` stores the absolute position of the mouse on the canvas.
 
 `mouse.visible` is a boolean that determines whether the mouse is visible or not.
 
@@ -57,6 +59,7 @@ Sprites with physics colliders have their own mouse object for detecting mouse i
 `hovers` and `hovering` detect when the user moves the mouse over a sprite.
 
 `dragging` detects when the user clicks and holds a mouse button on the sprite while moving the mouse.
+
 Note that `mouse.x` is the x position of the mouse on the canvas and `sprite.mouse.x` is the x position of the mouse relative to the sprite.
 
 # 4-0
@@ -83,6 +86,18 @@ Try it out! Connect a game controller and press any button on it for it to be de
 
 ## Touch
 
-You can use the [`touches`](https://p5js.org/reference/#/p5/touches) array to get the positions of multiple touches on the canvas.
+Every touch screen interaction generates a touch object that's added to the `touches` array.
 
-Example coming soon!
+Each touch has its own functions for detecting pressing and dragging input states.
+
+`touch.x` and `touch.y` store the position of the touch in the world, based on the camera's position.
+
+`touch.canvasPos` stores the absolute position of the touch on the canvas.
+
+`touch.id` is a unique number that identifies the touch.
+
+`touch.duration` stores how many frames the touch has been active.
+
+The frame after a touch ends, its touch object is removed from the `touches` array. `touches[0]` is mapped to the `mouse`.
+
+In the touches demo, tap the screen to create boxes and drag to throw them around!
