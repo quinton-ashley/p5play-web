@@ -2665,8 +2665,10 @@ Q5.prototype._methods = {
 Q5.prototype.registerMethod = (m, fn) => Q5.prototype._methods[m].push(fn);
 Q5.prototype.registerPreloadMethod = (n, fn) => (Q5.prototype[n] = fn[n]);
 
-if (typeof module != 'undefined') module.exports = Q5;
-else window.p5 ??= Q5;
+if (typeof module != 'undefined') {
+	global.p5 ??= Q5;
+	module.exports = global.Q5 = Q5;
+} else window.p5 ??= Q5;
 
 document.addEventListener('DOMContentLoaded', () => {
 	if (!Q5._hasGlobal) new Q5('auto');

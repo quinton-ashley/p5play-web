@@ -1,372 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width,initial-scale=1">
-	<title>_Mouse - Documentation</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>_Mouse - Documentation</title>
 
-	<script src="scripts/prettify/prettify.js"></script>
-	<script src="scripts/prettify/lang-css.js"></script>
-	<!--[if lt IE 9]>
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
       <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-	<link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-	<link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
-	<link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
 </head>
-
 <body>
 
-	<input type="checkbox" id="nav-trigger" class="nav-trigger" />
-	<label for="nav-trigger" class="navicon-button x">
-		<div class="navicon"></div>
-	</label>
-
-	<label for="nav-trigger" class="overlay"></label>
-
-	<nav>
-		<li class="nav-link nav-home-link"><a href="index.html">Home</a></li>
-		<li class="nav-heading">Classes</li>
-		<li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a
-					href="Camera.html">Camera</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="Camera.html#moveTo">moveTo</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="Camera.html#off">off</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="Camera.html#on">on</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="Camera.html#zoomTo">zoomTo</a></span></li>
-		<li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a
-					href="Canvas.html">Canvas</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="Canvas.html#resize">resize</a></span></li>
-		<li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a
-					href="DistanceJoint.html">DistanceJoint</a></span></li>
-		<li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a
-					href="GlueJoint.html">GlueJoint</a></span></li>
-		<li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a
-					href="Group.html">Group</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="Group.html#applyForce">applyForce</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="Group.html#applyForceScaled">applyForceScaled</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="Group.html#applyTorque">applyTorque</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="Group.html#attractTo">attractTo</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="Group.html#collided">collided</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="Group.html#collides">collides</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="Group.html#colliding">colliding</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="Group.html#cull">cull</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="Group.html#draw">draw</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="Group.html#move">move</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="Group.html#moveAway">moveAway</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="Group.html#moveTo">moveTo</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="Group.html#moveTowards">moveTowards</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="Group.html#overlapped">overlapped</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="Group.html#overlapping">overlapping</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="Group.html#overlaps">overlaps</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="Group.html#pop">pop</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="Group.html#push">push</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="Group.html#remove">remove</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="Group.html#removeAll">removeAll</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="Group.html#shift">shift</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="Group.html#size">size</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="Group.html#splice">splice</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="Group.html#toString">toString</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="Group.html#unshift">unshift</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="Group.html#update">update</a></span></li>
-		<li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a
-					href="GroupSprite.html">GroupSprite</a></span></li>
-		<li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a
-					href="Subgroup.html">Subgroup</a></span></li>
-		<li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a
-					href="HingeJoint.html">HingeJoint</a></span></li>
-		<li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a
-					href="InputDevice.html">InputDevice</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="InputDevice.html#held">held</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="InputDevice.html#holding">holding</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="InputDevice.html#holds">holds</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="InputDevice.html#pressed">pressed</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="InputDevice.html#presses">presses</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="InputDevice.html#pressing">pressing</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="InputDevice.html#released">released</a></span></li>
-		<li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a
-					href="Joint.html">Joint</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="Joint.html#remove">remove</a></span></li>
-		<li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a
-					href="P5Play.html">P5Play</a></span></li>
-		<li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a
-					href="RopeJoint.html">RopeJoint</a></span></li>
-		<li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a
-					href="SliderJoint.html">SliderJoint</a></span></li>
-		<li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a
-					href="Sprite.html">Sprite</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="Sprite.html#addCollider">addCollider</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="Sprite.html#addDefaultSensors">addDefaultSensors</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="Sprite.html#addSensor">addSensor</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="Sprite.html#angleTo">angleTo</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="Sprite.html#angleToFace">angleToFace</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="Sprite.html#applyForce">applyForce</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="Sprite.html#applyForceScaled">applyForceScaled</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="Sprite.html#applyTorque">applyTorque</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="Sprite.html#attractTo">attractTo</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="Sprite.html#changeAni">changeAni</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="Sprite.html#changeAnimation">changeAnimation</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="Sprite.html#collided">collided</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="Sprite.html#collides">collides</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="Sprite.html#colliding">colliding</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="Sprite.html#move">move</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="Sprite.html#moveAway">moveAway</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="Sprite.html#moveTo">moveTo</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="Sprite.html#moveTowards">moveTowards</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="Sprite.html#overlapped">overlapped</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="Sprite.html#overlapping">overlapping</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="Sprite.html#overlaps">overlaps</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="Sprite.html#remove">remove</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="Sprite.html#removeColliders">removeColliders</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="Sprite.html#removeSensors">removeSensors</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="Sprite.html#resetMass">resetMass</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="Sprite.html#rotate">rotate</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="Sprite.html#rotateTo">rotateTo</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="Sprite.html#rotateTowards">rotateTowards</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="Sprite.html#toString">toString</a></span></li>
-		<li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a
-					href="SpriteAnimation.html">SpriteAnimation</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="SpriteAnimation.html#clone">clone</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="SpriteAnimation.html#draw">draw</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="SpriteAnimation.html#goToFrame">goToFrame</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="SpriteAnimation.html#loop">loop</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="SpriteAnimation.html#nextFrame">nextFrame</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="SpriteAnimation.html#noLoop">noLoop</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="SpriteAnimation.html#pause">pause</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="SpriteAnimation.html#play">play</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="SpriteAnimation.html#previousFrame">previousFrame</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="SpriteAnimation.html#rewind">rewind</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="SpriteAnimation.html#stop">stop</a></span></li>
-		<li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a
-					href="Tiles.html">Tiles</a></span></li>
-		<li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a
-					href="WheelJoint.html">WheelJoint</a></span></li>
-		<li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a
-					href="World.html">World</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="World.html#getSpriteAt">getSpriteAt</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="World.html#getSpritesAt">getSpritesAt</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="World.html#step">step</a></span></li>
-		<li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a
-					href="-_Contro.html">_Contro</a></span></li>
-		<li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a
-					href="-_Contros.html">_Contros</a></span></li>
-		<li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a
-					href="-_KeyBoard.html">_KeyBoard</a></span></li>
-		<li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a
-					href="-_Mouse.html">_Mouse</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="-_Mouse.html#dragged">dragged</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="-_Mouse.html#dragging">dragging</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="-_Mouse.html#drags">drags</a></span></li>
-		<li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a
-					href="-_SpriteMouse.html">_SpriteMouse</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="-_SpriteMouse.html#hovered">hovered</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="-_SpriteMouse.html#hovering">hovering</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="-_SpriteMouse.html#hovers">hovers</a></span></li>
-		<li class="nav-heading"><a href="global.html">Globals</a></li>
-		<li class="nav-item"><span class="nav-item-type type-member">M</span><span class="nav-item-name"><a
-					href="global.html#allSprites">allSprites</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="global.html#animation">animation</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="global.html#background">background</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-member">M</span><span class="nav-item-name"><a
-					href="global.html#camera">camera</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-member">M</span><span class="nav-item-name"><a
-					href="global.html#canvas">canvas</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="global.html#colorPal">colorPal</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-member">M</span><span class="nav-item-name"><a
-					href="global.html#contro">contro</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-member">M</span><span class="nav-item-name"><a
-					href="global.html#controllers">controllers</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="global.html#createCanvas">createCanvas</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="global.html#createGroup">createGroup</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="global.html#createSprite">createSprite</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="global.html#createTiles">createTiles</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="global.html#delay">delay</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="global.html#fill">fill</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="global.html#getFPS">getFPS</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-member">M</span><span class="nav-item-name"><a
-					href="global.html#kb">kb</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-member">M</span><span class="nav-item-name"><a
-					href="global.html#keyboard">keyboard</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-member">M</span><span class="nav-item-name"><a
-					href="global.html#loadAnimation">loadAnimation</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-member">M</span><span class="nav-item-name"><a
-					href="global.html#loadImage">loadImage</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-member">M</span><span class="nav-item-name"><a
-					href="global.html#mouse">mouse</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-member">M</span><span class="nav-item-name"><a
-					href="global.html#p5play">p5play</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="global.html#play">play</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="global.html#renderStats">renderStats</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="global.html#resizeCanvas">resizeCanvas</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="global.html#sleep">sleep</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="global.html#spriteArt">spriteArt</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a
-					href="global.html#stroke">stroke</a></span></li>
-		<li class="nav-item"><span class="nav-item-type type-member">M</span><span class="nav-item-name"><a
-					href="global.html#world">world</a></span></li>
-	</nav>
-
-	<div id="main">
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
 
-		<h1 class="page-title">_Mouse</h1>
+<label for="nav-trigger" class="overlay"></label>
 
+<nav>
+    <li class="nav-link nav-home-link"><a href="index.html">Home</a></li><li class="nav-heading">Classes</li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="Camera.html">Camera</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Camera.html#moveTo">moveTo</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Camera.html#off">off</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Camera.html#on">on</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Camera.html#zoomTo">zoomTo</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="Canvas.html">Canvas</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Canvas.html#resize">resize</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="DistanceJoint.html">DistanceJoint</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="GlueJoint.html">GlueJoint</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="Group.html">Group</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Group.html#applyForce">applyForce</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Group.html#applyForceScaled">applyForceScaled</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Group.html#applyTorque">applyTorque</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Group.html#attractTo">attractTo</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Group.html#collided">collided</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Group.html#collides">collides</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Group.html#colliding">colliding</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Group.html#cull">cull</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Group.html#draw">draw</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Group.html#move">move</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Group.html#moveAway">moveAway</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Group.html#moveTo">moveTo</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Group.html#moveTowards">moveTowards</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Group.html#overlapped">overlapped</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Group.html#overlapping">overlapping</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Group.html#overlaps">overlaps</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Group.html#pop">pop</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Group.html#push">push</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Group.html#remove">remove</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Group.html#removeAll">removeAll</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Group.html#shift">shift</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Group.html#size">size</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Group.html#splice">splice</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Group.html#toString">toString</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Group.html#unshift">unshift</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Group.html#update">update</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="GroupSprite.html">GroupSprite</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="Subgroup.html">Subgroup</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="HingeJoint.html">HingeJoint</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="InputDevice.html">InputDevice</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="InputDevice.html#held">held</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="InputDevice.html#holding">holding</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="InputDevice.html#holds">holds</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="InputDevice.html#pressed">pressed</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="InputDevice.html#presses">presses</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="InputDevice.html#pressing">pressing</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="InputDevice.html#released">released</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="Joint.html">Joint</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Joint.html#remove">remove</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="P5Play.html">P5Play</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="RopeJoint.html">RopeJoint</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="SliderJoint.html">SliderJoint</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="Sprite.html">Sprite</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Sprite.html#addCollider">addCollider</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Sprite.html#addDefaultSensors">addDefaultSensors</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Sprite.html#addSensor">addSensor</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Sprite.html#angleTo">angleTo</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Sprite.html#angleToFace">angleToFace</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Sprite.html#applyForce">applyForce</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Sprite.html#applyForceScaled">applyForceScaled</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Sprite.html#applyTorque">applyTorque</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Sprite.html#attractTo">attractTo</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Sprite.html#changeAni">changeAni</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Sprite.html#changeAnimation">changeAnimation</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Sprite.html#collided">collided</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Sprite.html#collides">collides</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Sprite.html#colliding">colliding</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Sprite.html#move">move</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Sprite.html#moveAway">moveAway</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Sprite.html#moveTo">moveTo</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Sprite.html#moveTowards">moveTowards</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Sprite.html#overlapped">overlapped</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Sprite.html#overlapping">overlapping</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Sprite.html#overlaps">overlaps</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Sprite.html#remove">remove</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Sprite.html#removeColliders">removeColliders</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Sprite.html#removeSensors">removeSensors</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Sprite.html#resetMass">resetMass</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Sprite.html#rotate">rotate</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Sprite.html#rotateTo">rotateTo</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Sprite.html#rotateTowards">rotateTowards</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Sprite.html#toString">toString</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="SpriteAnimation.html">SpriteAnimation</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="SpriteAnimation.html#clone">clone</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="SpriteAnimation.html#draw">draw</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="SpriteAnimation.html#goToFrame">goToFrame</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="SpriteAnimation.html#loop">loop</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="SpriteAnimation.html#nextFrame">nextFrame</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="SpriteAnimation.html#noLoop">noLoop</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="SpriteAnimation.html#pause">pause</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="SpriteAnimation.html#play">play</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="SpriteAnimation.html#previousFrame">previousFrame</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="SpriteAnimation.html#rewind">rewind</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="SpriteAnimation.html#stop">stop</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="SpriteAnimations.html">SpriteAnimations</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="Tiles.html">Tiles</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="WheelJoint.html">WheelJoint</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="World.html">World</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="World.html#getSpriteAt">getSpriteAt</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="World.html#getSpritesAt">getSpritesAt</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="World.html#step">step</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="-_Contro.html">_Contro</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="-_Contros.html">_Contros</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="-_Keyboard.html">_Keyboard</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="-_Mouse.html">_Mouse</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="-_Mouse.html#dragged">dragged</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="-_Mouse.html#dragging">dragging</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="-_Mouse.html#drags">drags</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="-_SpriteMouse.html">_SpriteMouse</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="-_SpriteMouse.html#hovered">hovered</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="-_SpriteMouse.html#hovering">hovering</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="-_SpriteMouse.html#hovers">hovers</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="-_Touch.html">_Touch</a></span></li><li class="nav-heading"><a href="global.html">Globals</a></li><li class="nav-item"><span class="nav-item-type type-member">M</span><span class="nav-item-name"><a href="global.html#allSprites">allSprites</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#animation">animation</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#background">background</a></span></li><li class="nav-item"><span class="nav-item-type type-member">M</span><span class="nav-item-name"><a href="global.html#camera">camera</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#colorPal">colorPal</a></span></li><li class="nav-item"><span class="nav-item-type type-member">M</span><span class="nav-item-name"><a href="global.html#contro">contro</a></span></li><li class="nav-item"><span class="nav-item-type type-member">M</span><span class="nav-item-name"><a href="global.html#controllers">controllers</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#createCanvas">createCanvas</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#createGroup">createGroup</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#createSprite">createSprite</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#createTiles">createTiles</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#delay">delay</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#fill">fill</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#getFPS">getFPS</a></span></li><li class="nav-item"><span class="nav-item-type type-member">M</span><span class="nav-item-name"><a href="global.html#kb">kb</a></span></li><li class="nav-item"><span class="nav-item-type type-member">M</span><span class="nav-item-name"><a href="global.html#keyboard">keyboard</a></span></li><li class="nav-item"><span class="nav-item-type type-member">M</span><span class="nav-item-name"><a href="global.html#loadAnimation">loadAnimation</a></span></li><li class="nav-item"><span class="nav-item-type type-member">M</span><span class="nav-item-name"><a href="global.html#loadImage">loadImage</a></span></li><li class="nav-item"><span class="nav-item-type type-member">M</span><span class="nav-item-name"><a href="global.html#log">log</a></span></li><li class="nav-item"><span class="nav-item-type type-member">M</span><span class="nav-item-name"><a href="global.html#mouse">mouse</a></span></li><li class="nav-item"><span class="nav-item-type type-member">M</span><span class="nav-item-name"><a href="global.html#p5play">p5play</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#play">play</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#renderStats">renderStats</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#resizeCanvas">resizeCanvas</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#sleep">sleep</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#spriteArt">spriteArt</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#stroke">stroke</a></span></li><li class="nav-item"><span class="nav-item-type type-member">M</span><span class="nav-item-name"><a href="global.html#touches">touches</a></span></li><li class="nav-item"><span class="nav-item-type type-member">M</span><span class="nav-item-name"><a href="global.html#world">world</a></span></li>
+</nav>
 
+<div id="main">
+    
+    <h1 class="page-title">_Mouse</h1>
+    
 
+    
 
 
 
 
-		<section>
+<section>
 
-			<header>
+<header>
+    
+        <h2>
+        _Mouse
+        </h2>
+        
+    
+</header>
 
-				<h2>
-					_Mouse
-				</h2>
+<article>
+    <div class="container-overview">
+    
+        
+<div class="section-method">
 
+    
 
-			</header>
+    <h4 class="name" id="_Mouse"><span class="type-signature"></span>new _Mouse<span class="signature">()</span><span class="type-signature"></span></h4>
 
-			<article>
-				<div class="container-overview">
+    
 
 
-					<div class="section-method">
 
+<div class="description">
+    <a href="https://p5play.org/learn/input.html">
+Look at the Input reference pages before reading these docs.
+</a>
 
+Used to create the `mouse` input object.
+</div>
 
-						<h4 class="name" id="_Mouse"><span class="type-signature"></span>new _Mouse<span
-								class="signature">()</span><span class="type-signature"></span></h4>
 
 
 
 
+<dl class="details">
 
-						<div class="description">
-							<a href="https://p5play.org/learn/input.html">
-								Look at the Input reference pages before reading these docs.
-							</a>
+    
 
-							Used to create the `mouse` input object.
-						</div>
+    
 
+    
 
+    
 
+    
 
+    
 
-						<dl class="details">
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line8881">line 8881</a>
+    </li></ul></dd>
+    
 
+    
 
+    
 
+    
+</dl>
 
 
 
@@ -384,245 +130,368 @@
 
 
 
-							<dt class="tag-source">Source:</dt>
-							<dd class="tag-source">
-								<ul class="dummy">
-									<li>
-										<a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line8849">line 8849</a>
-									</li>
-								</ul>
-							</dd>
 
 
 
 
 
 
+</div>
+    
+    </div>
 
-						</dl>
+    
+        <h3 class="subsection-title">Extends</h3>
 
+        
 
 
+    <ul>
+        <li><a href="InputDevice.html">InputDevice</a></li>
+    </ul>
 
 
+    
 
+    
 
+    
+        <h3 class="subsection-title">Classes</h3>
 
+        <dl>
+            <dt><a href="-_Mouse.html">_Mouse</a></dt>
+            <dd></dd>
+        </dl>
+    
 
+     
 
+    
 
+    
+        <h3 class="subsection-title">Members</h3>
 
+        
+            
+<div class="section-members">
+<h4 class="name" id="cursor"><span class="type-signature"></span>cursor<span class="type-signature"> :string</span></h4>
 
 
 
 
+<div class="description">
+    The mouse's CSS cursor style.
+</div>
 
 
 
 
 
+<dl class="details">
 
+    
 
-					</div>
+    
 
-				</div>
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy">
+            <li>'default'</li>
+        </ul></dd>
+    
 
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line9023">line 9023</a>
+    </li></ul></dd>
+    
 
+    
 
-				<h3 class="subsection-title">Members</h3>
+    
 
+    
+</dl>
 
 
-				<div class="section-members">
-					<h4 class="name" id="cursor"><span class="type-signature"></span>cursor<span class="type-signature">
-							:string</span></h4>
 
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type"><code>string</code></span>
 
 
+        </li>
+    </ul>
 
-					<div class="description">
-						The mouse's CSS cursor style.
-					</div>
 
 
 
 
+</div>
 
-					<dl class="details">
+        
+            
+<div class="section-members">
+<h4 class="name" id="pos"><span class="type-signature"></span>pos<span class="type-signature"> :object</span></h4>
 
 
 
 
+<div class="description">
+    The mouse's position.
+</div>
 
 
 
 
 
+<dl class="details">
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line9007">line 9007</a>
+    </li></ul></dd>
+    
 
+    
 
-						<dt class="tag-default">Default Value:</dt>
-						<dd class="tag-default">
-							<ul class="dummy">
-								<li>'default'</li>
-							</ul>
-						</dd>
+    
 
+    
+</dl>
 
 
-						<dt class="tag-source">Source:</dt>
-						<dd class="tag-source">
-							<ul class="dummy">
-								<li>
-									<a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line8971">line 8971</a>
-								</li>
-							</ul>
-						</dd>
 
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type"><code>object</code></span>
 
 
+        </li>
+    </ul>
 
 
 
 
-					</dl>
 
+</div>
 
+        
+            
+<div class="section-members">
+<h4 class="name" id="position"><span class="type-signature"></span>position<span class="type-signature"> :object</span></h4>
 
-					<h5>Type:</h5>
-					<ul>
-						<li>
 
-							<span class="param-type"><code>string</code></span>
 
 
-						</li>
-					</ul>
+<div class="description">
+    The mouse's position. Alias for pos.
+</div>
 
 
 
 
 
-				</div>
+<dl class="details">
 
+    
 
+    
 
-				<div class="section-members">
-					<h4 class="name" id="pos"><span class="type-signature"></span>pos<span class="type-signature"> :object</span>
-					</h4>
+    
 
+    
 
+    
 
+    
 
-					<div class="description">
-						The mouse's position.
-					</div>
+    
 
+    
 
+    
 
+    
 
+    
 
-					<dl class="details">
+    
 
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line9014">line 9014</a>
+    </li></ul></dd>
+    
 
+    
 
+    
 
+    
+</dl>
 
 
 
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type"><code>object</code></span>
 
 
+        </li>
+    </ul>
 
 
 
 
 
+</div>
 
+        
+            
+<div class="section-members">
+<h4 class="name" id="visible"><span class="type-signature"></span>visible<span class="type-signature"> :boolean</span></h4>
 
 
 
 
+<div class="description">
+    Controls whether the mouse is visible or not.
+</div>
 
 
 
 
 
+<dl class="details">
 
+    
 
-						<dt class="tag-source">Source:</dt>
-						<dd class="tag-source">
-							<ul class="dummy">
-								<li>
-									<a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line8955">line 8955</a>
-								</li>
-							</ul>
-						</dd>
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
-					</dl>
+    
 
+    
 
+    
 
-					<h5>Type:</h5>
-					<ul>
-						<li>
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy">
+            <li>true</li>
+        </ul></dd>
+    
 
-							<span class="param-type"><code>object</code></span>
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line9038">line 9038</a>
+    </li></ul></dd>
+    
 
+    
 
-						</li>
-					</ul>
+    
 
+    
+</dl>
 
 
 
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type"><code>boolean</code></span>
 
-				</div>
 
+        </li>
+    </ul>
 
 
-				<div class="section-members">
-					<h4 class="name" id="position"><span class="type-signature"></span>position<span class="type-signature">
-							:object</span></h4>
 
 
 
+</div>
 
-					<div class="description">
-						The mouse's position. Alias for pos.
-					</div>
+        
+    
 
+    
+        <h3 class="subsection-title">Methods</h3>
 
+        
+            
+<div class="section-method">
 
+    
 
+    <h4 class="name" id="dragged"><span class="type-signature"></span>dragged<span class="signature">(inp)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
 
-					<dl class="details">
+    
 
 
 
@@ -630,95 +499,155 @@
 
 
 
+<dl class="details">
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line9069">line 9069</a>
+    </li></ul></dd>
+    
 
+    
 
+    
 
+    
+</dl>
 
 
 
-						<dt class="tag-source">Source:</dt>
-						<dd class="tag-source">
-							<ul class="dummy">
-								<li>
-									<a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line8962">line 8962</a>
-								</li>
-							</ul>
-						</dd>
 
 
 
 
 
 
+    <h5>Parameters:</h5>
+    
 
-					</dl>
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
 
+        <th>Type</th>
 
+        
 
-					<h5>Type:</h5>
-					<ul>
-						<li>
+        
 
-							<span class="param-type"><code>object</code></span>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
+    <tbody>
+    
 
-						</li>
-					</ul>
+        <tr>
+            
+                <td class="name"><code>inp</code></td>
+            
 
+            <td class="type">
+            
+                
+<span class="param-type"><code>string</code></span>
 
 
+            
+            </td>
 
+            
 
-				</div>
+            
 
+            <td class="description last">
+                
+                
+            </td>
+        </tr>
 
+    
+    </tbody>
+</table>
 
-				<div class="section-members">
-					<h4 class="name" id="visible"><span class="type-signature"></span>visible<span class="type-signature">
-							:boolean</span></h4>
 
 
 
 
-					<div class="description">
-						Controls whether the mouse is visible or not.
-					</div>
 
 
 
 
 
-					<dl class="details">
 
 
 
 
+<div class="section-returns">
+<h5>Returns:</h5>
 
+        
 
+<dl class="param-type">
+    <dt>
+        Type:
+    </dt>
+    <dd>
+        
+<span class="param-type"><code>boolean</code></span>
 
 
+    </dd>
+</dl>
 
 
+<div class="param-desc">
+    true on the first frame that the user releases the input after dragging the mouse
+</div>
 
+    
+</div>
 
 
 
+</div>
+        
+            
+<div class="section-method">
 
+    
 
+    <h4 class="name" id="dragging"><span class="type-signature"></span>dragging<span class="signature">(inp)</span><span class="type-signature"> &rarr; {number}</span></h4>
 
+    
 
 
 
@@ -726,74 +655,106 @@
 
 
 
-						<dt class="tag-default">Default Value:</dt>
-						<dd class="tag-default">
-							<ul class="dummy">
-								<li>true</li>
-							</ul>
-						</dd>
+<dl class="details">
 
+    
 
+    
 
-						<dt class="tag-source">Source:</dt>
-						<dd class="tag-source">
-							<ul class="dummy">
-								<li>
-									<a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line8986">line 8986</a>
-								</li>
-							</ul>
-						</dd>
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
-					</dl>
+    
 
+    
 
+    
 
-					<h5>Type:</h5>
-					<ul>
-						<li>
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line9060">line 9060</a>
+    </li></ul></dd>
+    
 
-							<span class="param-type"><code>boolean</code></span>
+    
 
+    
 
-						</li>
-					</ul>
+    
+</dl>
 
 
 
 
 
-				</div>
 
 
 
 
+    <h5>Parameters:</h5>
+    
 
-				<h3 class="subsection-title">Methods</h3>
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
 
+        <th>Type</th>
 
+        
 
-				<div class="section-method">
+        
 
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
+    <tbody>
+    
 
-					<h4 class="name" id="dragged"><span class="type-signature"></span>dragged<span
-							class="signature">(inp)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
+        <tr>
+            
+                <td class="name"><code>inp</code></td>
+            
 
+            <td class="type">
+            
+                
+<span class="param-type"><code>string</code></span>
 
 
+            
+            </td>
 
+            
 
+            
 
+            <td class="description last">
+                
+                
+            </td>
+        </tr>
 
+    
+    </tbody>
+</table>
 
 
-					<dl class="details">
 
 
 
@@ -806,95 +767,149 @@
 
 
 
+<div class="section-returns">
+<h5>Returns:</h5>
 
+        
 
+<dl class="param-type">
+    <dt>
+        Type:
+    </dt>
+    <dd>
+        
+<span class="param-type"><code>number</code></span>
 
 
+    </dd>
+</dl>
 
 
+<div class="param-desc">
+    the amount of frames the user has been moving the mouse while pressing the input
+</div>
 
+    
+</div>
 
 
 
+</div>
+        
+            
+<div class="section-method">
 
+    
 
+    <h4 class="name" id="drags"><span class="type-signature"></span>drags<span class="signature">(inp)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
 
+    
 
-						<dt class="tag-source">Source:</dt>
-						<dd class="tag-source">
-							<ul class="dummy">
-								<li>
-									<a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line9017">line 9017</a>
-								</li>
-							</ul>
-						</dd>
 
 
 
 
 
 
+<dl class="details">
 
-					</dl>
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
-					<h5>Parameters:</h5>
+    
 
+    
 
-					<table class="params">
-						<thead>
-							<tr>
+    
 
-								<th>Name</th>
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line9051">line 9051</a>
+    </li></ul></dd>
+    
 
+    
 
-								<th>Type</th>
+    
 
+    
+</dl>
 
 
 
 
-								<th class="last">Description</th>
-							</tr>
-						</thead>
 
-						<tbody>
 
 
-							<tr>
 
-								<td class="name"><code>inp</code></td>
 
+    <h5>Parameters:</h5>
+    
 
-								<td class="type">
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
 
+        <th>Type</th>
 
-									<span class="param-type"><code>string</code></span>
+        
 
+        
 
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-								</td>
+    <tbody>
+    
 
+        <tr>
+            
+                <td class="name"><code>inp</code></td>
+            
 
+            <td class="type">
+            
+                
+<span class="param-type"><code>string</code></span>
 
 
+            
+            </td>
 
-								<td class="description last">
+            
 
+            
 
-								</td>
-							</tr>
+            <td class="description last">
+                
+                
+            </td>
+        </tr>
 
+    
+    </tbody>
+</table>
 
-						</tbody>
-					</table>
 
 
 
@@ -908,381 +923,56 @@
 
 
 
+<div class="section-returns">
+<h5>Returns:</h5>
 
-					<div class="section-returns">
-						<h5>Returns:</h5>
+        
 
+<dl class="param-type">
+    <dt>
+        Type:
+    </dt>
+    <dd>
+        
+<span class="param-type"><code>boolean</code></span>
 
 
-						<dl class="param-type">
-							<dt>
-								Type:
-							</dt>
-							<dd>
+    </dd>
+</dl>
 
-								<span class="param-type"><code>boolean</code></span>
 
+<div class="param-desc">
+    true on the first frame that the user moves the mouse while pressing the input
+</div>
 
-							</dd>
-						</dl>
+    
+</div>
 
 
-						<div class="param-desc">
-							true on the first frame that the user releases the input after dragging the mouse
-						</div>
 
+</div>
+        
+    
 
-					</div>
+    
 
+    
+</article>
 
+</section>
 
-				</div>
 
 
-				<div class="section-method">
 
+</div>
 
+<br class="clear">
 
-					<h4 class="name" id="dragging"><span class="type-signature"></span>dragging<span
-							class="signature">(inp)</span><span class="type-signature"> &rarr; {number}</span></h4>
+<footer>
+    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Mon Jan 29 2024 18:11:35 GMT-0500 (Colombia Standard Time) using the Minami theme.
+</footer>
 
-
-
-
-
-
-
-
-
-					<dl class="details">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-						<dt class="tag-source">Source:</dt>
-						<dd class="tag-source">
-							<ul class="dummy">
-								<li>
-									<a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line9008">line 9008</a>
-								</li>
-							</ul>
-						</dd>
-
-
-
-
-
-
-
-					</dl>
-
-
-
-
-
-
-
-
-
-					<h5>Parameters:</h5>
-
-
-					<table class="params">
-						<thead>
-							<tr>
-
-								<th>Name</th>
-
-
-								<th>Type</th>
-
-
-
-
-
-								<th class="last">Description</th>
-							</tr>
-						</thead>
-
-						<tbody>
-
-
-							<tr>
-
-								<td class="name"><code>inp</code></td>
-
-
-								<td class="type">
-
-
-									<span class="param-type"><code>string</code></span>
-
-
-
-								</td>
-
-
-
-
-
-								<td class="description last">
-
-
-								</td>
-							</tr>
-
-
-						</tbody>
-					</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-					<div class="section-returns">
-						<h5>Returns:</h5>
-
-
-
-						<dl class="param-type">
-							<dt>
-								Type:
-							</dt>
-							<dd>
-
-								<span class="param-type"><code>number</code></span>
-
-
-							</dd>
-						</dl>
-
-
-						<div class="param-desc">
-							the amount of frames the user has been moving the mouse while pressing the input
-						</div>
-
-
-					</div>
-
-
-
-				</div>
-
-
-				<div class="section-method">
-
-
-
-					<h4 class="name" id="drags"><span class="type-signature"></span>drags<span class="signature">(inp)</span><span
-							class="type-signature"> &rarr; {boolean}</span></h4>
-
-
-
-
-
-
-
-
-
-					<dl class="details">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-						<dt class="tag-source">Source:</dt>
-						<dd class="tag-source">
-							<ul class="dummy">
-								<li>
-									<a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line8999">line 8999</a>
-								</li>
-							</ul>
-						</dd>
-
-
-
-
-
-
-
-					</dl>
-
-
-
-
-
-
-
-
-
-					<h5>Parameters:</h5>
-
-
-					<table class="params">
-						<thead>
-							<tr>
-
-								<th>Name</th>
-
-
-								<th>Type</th>
-
-
-
-
-
-								<th class="last">Description</th>
-							</tr>
-						</thead>
-
-						<tbody>
-
-
-							<tr>
-
-								<td class="name"><code>inp</code></td>
-
-
-								<td class="type">
-
-
-									<span class="param-type"><code>string</code></span>
-
-
-
-								</td>
-
-
-
-
-
-								<td class="description last">
-
-
-								</td>
-							</tr>
-
-
-						</tbody>
-					</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-					<div class="section-returns">
-						<h5>Returns:</h5>
-
-
-
-						<dl class="param-type">
-							<dt>
-								Type:
-							</dt>
-							<dd>
-
-								<span class="param-type"><code>boolean</code></span>
-
-
-							</dd>
-						</dl>
-
-
-						<div class="param-desc">
-							true on the first frame that the user moves the mouse while pressing the input
-						</div>
-
-
-					</div>
-
-
-
-				</div>
-
-
-
-
-
-
-			</article>
-
-		</section>
-
-
-
-
-	</div>
-
-	<br class="clear">
-
-	<footer>
-		Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Wed Jan 24 2024 00:07:42 GMT-0500
-		(Colombia Standard Time) using the Minami theme.
-	</footer>
-
-	<script>prettyPrint();</script>
-	<script src="scripts/linenumber.js"></script>
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
 </body>
-
 </html>
