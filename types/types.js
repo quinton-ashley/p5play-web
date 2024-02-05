@@ -16,7 +16,7 @@ const end = file.indexOf("});\n\np5.prototype.registerMethod('pre'") - 1;
 
 file = file.slice(start, end + 1);
 
-file = file.replace('const pInst = this;', 'let pInst;');
+file = file.replace('const $ = this;', 'let $;');
 
 file = file.replace('this.log = console.log;', '');
 

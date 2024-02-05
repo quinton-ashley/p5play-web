@@ -52,7 +52,9 @@ I've spent thousands of hours over the past two years developing p5play but I st
 
 I think I've found a good balance between open source and monetization with the multi-licensing model.
 
-On the one hand, I wanted to offer p5play as a fully featured game engine to anyone that might be interested in using it. I didn't want users to feel like it lacked core features that they'd need to pay a premium for. I also believe that the only way to deeply learn how software works is being able to look at the source code. Open source also gives everyone the ability to make suggestions and improvements to the library.
+On the one hand, I wanted to offer p5play as a fully featured game engine to anyone that might be interested in using it. I didn't want users to feel like it lacked core features that they'd need to pay a premium for. I also believe that the only way to deeply learn how software works is being able to look at the source code.
+
+Also, none of p5play's licenses allow users to make closed source modifications to the library itself, this ensures that any improvements made to p5play will be shared with the community.
 
 On the other hand, I want p5play to generate revenue so I can continue to develop it and make it better. I think p5play's ease of use compared to other game engines has real value and it's why people are willing to support the project financially.
 
