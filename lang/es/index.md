@@ -150,11 +150,11 @@ Dado que p5play es basado en la web, los estudiantes pueden compartir fácilment
 
 ## ¿Qué pasa con Scratch? 🐯
 
-[Scratch](https://scratch.mit.edu/) es genial para estudiantes de 8 a 11 años, pero los estudiantes mayores tienen expectativas más altas que Scratch no puede satisfacer. Eso es porque Scratch no tiene un motor de física integrado. Eso significa que incluso algo super fácil de hacer en p5play, como una pelota rodando cuesta abajo, requiere mucha matemática y es increíblemente tedioso de implementar en el entorno basado en bloques de Scratch.
+[Scratch](https://scratch.mit.edu/) es genial para estudiantes de 8 a 11 años, pero los estudiantes mayores tienen expectativas más altas que Scratch no puede satisfacer.
 
-Los juegos presentados en el sitio web de Scratch pueden ser inspiradores para los estudiantes, hasta que se dan cuenta de que casi todos fueron creados por adultos. Si un estudiante realmente está determinado a hacer un juego impresionante en Scratch, necesitará pasar 20 horas copiando y pegando de tutoriales de YouTube.
+Uno de los mayores problemas: Scratch no tiene un motor de física incorporado. Eso significa que incluso algo súper fácil de hacer en p5play, como una pelota rodando por una pendiente, requiere mucha matemática y es increíblemente tedioso de implementar en el entorno basado en bloques de Scratch.
 
-¡Mientras tanto, me siento humillado por lo que los jóvenes de 14 años pueden hacer con p5play regularmente!
+Los juegos destacados en el sitio web de Scratch son inspiradores para los estudiantes, hasta que se dan cuenta de que fueron hechos por adultos con paciencia extrema. Si un estudiante está realmente decidido a hacer un juego impresionante en Scratch, probablemente tenga que pasar 20 horas copiando y pegando desde tutoriales de YouTube. Con p5play, los estudiantes pueden obtener resultados mucho más rápido y con menos frustración.
 
 # 17-3
 

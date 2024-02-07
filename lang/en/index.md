@@ -166,17 +166,19 @@ Every EdTech company claims their "easy and fun to use" software empowers studen
 
 If platforms like [micro:bit](https://microbit.org/) are so fun and creatively empowering, why are students only using them to complete assignments? It hardly matters how easy something is if students don't see the point in learning it.
 
-p5play is different. It has all the features that students could want from a game engine: physics based contact handling, input detection, animations, a camera, joints, and more!
+p5play is different! It has all the features that students could want from a game engine: physics based contact handling, input detection, animations, a camera, joints, and more.
 
-Since p5play is web based, students can easily share their projects online. That's not so easy to do with a Python, C#, or Java project. Being able to share projects with family and friends can motivate students to make something worth sharing!
+Since p5play is web based, students can share their projects online. That's not so easy to do with a Python, C#, or Java project. Being able to share projects with family and friends can motivate students to make something worth sharing!
 
 # 17-2
 
 ## What about Scratch? 🐯
 
-[Scratch](https://scratch.mit.edu/) is great for students ages 8-11, but older students have higher expectations that Scratch can't meet. That's because Scratch has no built-in physics engine. That means even something super easy to make in p5play, like a ball rolling down a slope, requires a lot of math and is incredibly tedious to implement in Scratch's block based environment.
+[Scratch](https://scratch.mit.edu/) is great for students ages 8-11, but older students have higher expectations that Scratch can't meet.
 
-The games featured on the Scratch website can be inspiring for students, until they realize that nearly all of them were created by adults! If a student is really determined to make an impressive game in Scratch, they'll spend 20 hours copy pasting from YouTube tutorials.
+One of the biggest problems: Scratch has no built-in physics engine. That means even something super easy to make in p5play, like a ball rolling down a slope, requires a lot of math and is incredibly tedious to implement in Scratch's block based environment.
+
+The featured games on the Scratch website are inspiring to students, but they were made by adults with extreme patience. If a student is really determined to make an impressive game in Scratch, they'll probably have to spend 20 hours copy pasting from YouTube tutorials. With p5play, students can get results way faster and with less frustration.
 
 # 17-3
 
