@@ -26,7 +26,7 @@ async function main() {
 			await translatePage('index');
 		}
 
-		for (let pageGroup of ['learn', 'about', 'pro', 'jam']) {
+		for (let pageGroup of ['learn', 'jam', 'pro', 'play']) {
 			const pages = await getPagesInDirectory(pageGroup);
 			for (const page of pages) {
 				if (page == 'signup' || page == 'tos') continue;

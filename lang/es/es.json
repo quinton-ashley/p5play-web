@@ -6,7 +6,9 @@
 			"jam": "Jam!",
 			"pro": "PRO$",
 			"play": "Juego",
-			"about": "Acerca"
+			"info": "Acerca",
+			"reviews-h1": "Reseñas",
+			"more-info": "Más Información"
 		}
 	},
 	"editor": {

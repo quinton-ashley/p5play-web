@@ -5,7 +5,9 @@
 			"editor": "Editor",
 			"jam": "Jam!",
 			"pro": "PRO$",
-			"about": "About"
+			"info": "Info",
+			"reviews-h1": "Reviews",
+			"more-info": "More Info"
 		}
 	},
 	"editor": {

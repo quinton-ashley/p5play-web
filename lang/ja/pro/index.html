@@ -22,7 +22,6 @@
 			<a id="jam" href="../jam">ジャム！</a>
 			<a id="pro" href="../pro" class="active">プロ</a>
 			<a id="play" href="../play">プレー</a>
-			<a id="about" href="../about">約</a>
 			<hr>
 			<a id="darkMode" onclick="toggleDarkMode()" tabindex="0" role="button" title="dark mode toggle">
 				<div id="darkModeIcon"></div>
@@ -55,7 +54,8 @@
 								Sponsors</a>または<a href="https://www.patreon.com/p5play"
 								target="_blank">Patreon</a>のメンバーにのみ利用可能になります。今すぐ参加して、p5play の開発をサポートしましょう！</p>
 						<p>支払いができない場合は、無料の<a href="https://github.com/quinton-ashley/p5play-novice/blob/main/LICENSE.md"
-								target="_blank">p5play 初心者ライセンス</a>を申請することができます。詳細は<a href="/LICENSING.md"
+								target="_blank">p5play 初心者ライセンス</a>を申請することができます。詳細は<a
+								href="https://github.com/quinton-ashley/p5play-web/blob/main/LICENSING.md"
 								target="_blank">LICENSING.md</a>を参照してください。</p>
 					</md>
 					<div id="support">
@@ -64,7 +64,8 @@
 							<img src="/assets/brands/github_logo.svg" alt="" height="42px">
 							<img src="/assets/brands/github_brand.webp" alt="Github" height="42px">
 						</a>
-						<a id="patreon-brand" href="https://www.patreon.com/p5play" aria-label="Patreon page for p5play">
+						<a id="patreon-brand" href="https://www.patreon.com/p5play"
+							aria-label="Patreon page for p5play">
 							<img src="/assets/brands/patreon_logo.webp" alt="" height="42px">
 							<img src="/assets/brands/patreon_brand.webp" alt="Patreon" height="28px">
 						</a>
@@ -84,61 +85,62 @@
 	</article>
 
 	<script src="/learn/main.js"></script>
-	<script src="
+<script src="
 		https://cdn.jsdelivr.net/npm/jwt-decode@3.1.2/build/jwt-decode.min.js
 		"></script>
 	<script src="/pro/pro.js"></script>
-	<style>
-		#auth {
-			display: none;
-		}
+<style>
+#auth {
+	display: none;
+}
 
-		.login {
-			font-size: 32px;
-			font-weight: bold;
-			display: flex;
-			justify-content: center;
-			gap: 50px;
-		}
+.login {
+	font-size: 32px;
+	font-weight: bold;
+	display: flex;
+	justify-content: center;
+	gap: 50px;
+}
 
-		md p:first-child {
-			margin-top: 0;
-		}
+md p:first-child {
+	margin-top: 0;
+}
 
-		#support {
-			margin-top: 32px;
-			display: flex;
-			flex-wrap: wrap;
-			justify-content: space-between;
-			gap: 32px;
-		}
+#support {
+	margin-top: 32px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	gap: 32px;
+}
 
-		#patreon-brand {
-			display: flex;
-			align-items: center;
-			height: 42px;
-			gap: 20px;
-			width: min-content;
-		}
+#patreon-brand {
+	display: flex;
+	align-items: center;
+	height: 42px;
+	gap: 20px;
+	width: min-content;
+}
 
-		#patreon-brand,
-		#github-brand {
-			border-bottom: 1px solid transparent;
-		}
+#patreon-brand,
+#github-brand {
+	border-bottom: 1px solid transparent;
+}
 
-		#patreon-brand:hover,
-		#github-brand:hover {
-			color: var(--pink);
-			border-bottom: 1px solid var(--pink);
-		}
+#patreon-brand:hover,
+#github-brand:hover {
+	color: var(--pink);
+	border-bottom: 1px solid var(--pink);
+}
 
-		body.dark #patreon-brand {
-			filter: invert(90%);
-		}
+body.dark #patreon-brand {
+	filter: invert(90%);
+}
 
-		body.dark #github-brand :nth-child(2) {
-			filter: invert(100%);
-		}
+body.dark #github-brand :nth-child(2) {
+	filter: invert(100%);
+}
+
 	</style>
 
 </body>

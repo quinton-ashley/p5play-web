@@ -18,714 +18,7 @@
 
 	<link rel="preconnect" href="https://www.googletagmanager.com/">
 	<link rel="stylesheet" href="/learn/style.css">
-	<style>
-@font-face {
-	font-family: "bariol";
-	src: url("/assets/fonts/bariol_light-webfont.ttf");
-	font-display: swap;
-}
-
-article {
-	width: 100%;
-	position: absolute;
-	top: 0;
-}
-
-nav {
-	width: fit-content;
-}
-
-.reel {
-	overflow: hidden;
-	display: flex;
-	justify-content: center;
-}
-
-video {
-	object-fit: cover;
-	width: 100vw;
-	position: absolute;
-	left: 0;
-	z-index: -1;
-	image-rendering: pixelated;
-}
-
-#reel0 {
-	height: 56.25vw;
-}
-
-#reel1 {
-	height: 440px;
-}
-
-#reel1,
-#reel2 {
-	font-size: 20px;
-}
-
-#reel1 video {
-	top: 56.25vw;
-	z-index: -2;
-}
-
-#reel2 video {
-	top: calc(56.25vw + 440px);
-}
-
-#reel3 video {
-	height: 100%;
-}
-
-#reel4 {
-	background-color: var(--background);
-}
-
-#littleLangs {
-	display: inline-flex;
-	align-items: center;
-}
-
-#littleLangs a.active,
-#littleLangs a:hover,
-#littleLangs a {
-	font-size: 16px;
-	text-shadow: none;
-	transition: 0.3s;
-}
-
-.page {
-	display: flex;
-	width: 1030px;
-	padding-top: 20px;
-	padding-bottom: 20px;
-}
-
-.page>.mie,
-.page>md,
-.page>div:not(.break):not(.minis):not(.full) {
-	max-width: 500px;
-}
-
-#page0 {
-	width: 96%;
-	padding: 0;
-	flex-wrap: nowrap;
-}
-
-#logoLink.active {
-	text-shadow: 0.5vw 0.5vw 0px var(--blue0);
-}
-
-#bigLogo {
-	display: flex;
-	align-items: center;
-	background: none;
-}
-
-#bigLogo .p5play_logo {
-	width: 20vw;
-	height: 20vw;
-}
-
-#bigLogo {
-	width: fit-content;
-	padding: 0;
-}
-
-#bigBrand #logoLink {
-	font-size: 6vw;
-}
-
-#bigBrand,
-#bigInfo {
-	width: 33%;
-	padding-top: 0;
-	padding-bottom: 0;
-}
-
-#bigBrand {
-	display: flex;
-	align-items: center;
-	justify-content: right;
-}
-
-#bigBrand,
-#bigInfo {
-	height: 6vw;
-}
-
-#bigInfo {
-	padding-top: 0.8vw;
-}
-
-#bigInfo h3 {
-	margin: 0;
-	line-height: 5vw;
-	font-size: 2.7vw;
-	width: max-content;
-	overflow-x: visible;
-}
-
-html.ja #bigInfo h3 {
-	font-size: 2.4vw;
-}
-
-@keyframes scrollUp {
-
-	10%,
-	20% {
-		transform: translateY(-16.666%);
-	}
-
-	30%,
-	40% {
-		transform: translateY(-33.333%);
-	}
-
-	50%,
-	60% {
-		transform: translateY(-50%);
-	}
-
-	70%,
-	80% {
-		transform: translateY(-66.666%);
-	}
-
-	90%,
-	100% {
-		transform: translateY(-83.333%);
-	}
-}
-
-#bigInfo {
-	overflow: hidden;
-}
-
-#md0 {
-	animation: scrollUp 8s infinite;
-}
-
-#usedBy {
-	background: none;
-}
-
-#editors,
-#support {
-	margin-top: 32px;
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
-	gap: 32px;
-}
-
-.apps {
-	display: flex;
-	align-items: center;
-	justify-content: space-around;
-	margin-top: 32px;
-}
-
-.app {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-}
-
-.app p {
-	margin-top: 8px;
-	text-align: center;
-	font-size: 12px;
-	padding-left: 4px;
-	padding-right: 4px;
-	background-color: var(--secondary);
-	border-radius: 8px;
-}
-
-.apps img {
-	width: 64px;
-	height: 64px;
-	border-radius: 8px;
-}
-
-#discord-brand {
-	color: var(--primary);
-	display: flex;
-	align-items: center;
-	width: fit-content;
-}
-
-#user-brands {
-	display: flex;
-	align-items: center;
-	justify-content: space-around;
-	flex-wrap: wrap;
-	gap: 24px;
-}
-
-#patreon-brand {
-	display: flex;
-	align-items: center;
-	height: 42px;
-	gap: 20px;
-	width: min-content;
-}
-
-body.dark #patreon-brand {
-	filter: invert(85%);
-}
-
-body.dark #github-brand :nth-child(2) {
-	filter: invert(90%);
-}
-
-body:not(.dark) #discord-brand img {
-	filter: invert(100%);
-}
-
-#usedBy {
-	padding: 0;
-}
-
-#user-brands a,
-.brand {
-	padding: 8px;
-	border-radius: 8px;
-}
-
-#user-brands a img {
-	width: 100%;
-}
-
-#codehs-brand {
-	background-color: #f4f8fc;
-	width: 160px;
-}
-
-#codeorg-brand {
-	background-color: #00adbc;
-	width: 70px;
-}
-
-#girlswhocode-brand {
-	background-color: #e5f8ff;
-	width: 140px;
-}
-
-#strive-brand {
-	background-color: #fff;
-	width: 140px;
-}
-
-#hunter-brand {
-	background-color: #fff;
-	width: 200px;
-}
-
-#dalton-brand {
-	background-color: #fff;
-	width: 360px;
-}
-
-#tywls-brand {
-	background-color: #152253;
-	width: 100px;
-}
-
-#nyuitp-brand {
-	background-color: #57068c;
-	width: 250px;
-}
-
-#lsu-brand {
-	background-color: #502e81;
-	width: 150px;
-}
-
-#ttu-brand {
-	background-color: #d60000;
-	width: 36px;
-}
-
-#depaul-brand {
-	background-color: rgb(66, 8, 17);
-	width: 200px;
-}
-
-#cmu-brand {
-	width: 140px;
-}
-
-#discord-brand img {
-	opacity: 82%;
-	height: 56px;
-}
-
-#codepen-brand {
-	opacity: 82%;
-}
-
-#openprocessing-brand,
-#glitch-brand {
-	color: var(--primary);
-	height: 32px;
-}
-
-#openprocessing-brand {
-	height: 40px;
-}
-
-.p5js-web-editor-logo {
-	margin-right: 5px;
-}
-
-.p5js-web-editor-brand {
-	margin-bottom: -10px;
-}
-
-.p5js-web-editor-brand,
-.p5js-web-editor-logo {
-	height: 40px;
-}
-
-#discord-brand:hover span {
-	color: var(--pink);
-}
-
-#discord-brand:hover {
-	text-decoration: none;
-}
-
-.dark #glitch-brand {
-	filter: hue-rotate(180deg) invert() opacity(80%);
-}
-
-.bariol {
-	font-family: "bariol", "source sans pro", "helvetica";
-	font-weight: 300;
-	line-height: 1;
-	color: var(--primary);
-	font-size: 28px;
-}
-
-#glitch-brand,
-#codepen-brand,
-#replit-brand,
-#discord-brand,
-#patreon-brand,
-#github-brand {
-	border-bottom: 1px solid transparent;
-}
-
-#glitch-brand:hover,
-#codepen-brand:hover,
-#replit-brand:hover,
-#discord-brand:hover,
-#patreon-brand:hover,
-#github-brand:hover {
-	color: var(--pink);
-	border-bottom: 1px solid var(--pink);
-}
-
-#replit-brand {
-	margin-right: 16px;
-	transform: scale(1.5);
-}
-
-.light #codepen-brand,
-.light .discord-brand,
-.light .discord-logo {
-	filter: invert(1);
-}
-
-#lib-links {
-	width: 100%;
-	font-family: monospace;
-	font-size: 12px;
-	white-space: pre;
-	overflow-wrap: normal;
-	overflow-x: scroll;
-	background-color: var(--secondary);
-	color: var(--primary);
-	border: none;
-	resize: none;
-	margin-top: 16px;
-}
-
-.testimonial-text {
-	max-height: 168px;
-	overflow-y: scroll;
-}
-
-.testimonial-text :first-child {
-	margin-top: 0;
-}
-
-/* .testimonial-text::after {
-		display: absolute;
-		z-index: 1000;
-		background: linear-gradient(rgba(255, 255, 255, 0) 90%, rgba(255, 255, 255, 1) 100%);
-		} */
-/* 
-		.dark .testimonial-text::after {
-		display: absolute;
-		bottom: 0;
-		background: linear-gradient(rgba(19, 21, 22, 0) 90%, rgba(19, 21, 22, 1) 100%);
-		} */
-.testimonial-bio {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	gap: 16px;
-	margin-top: 10px;
-}
-
-.testimonial-text span {
-	line-height: 1;
-	padding-right: 2px;
-}
-
-.testimonial-bio>div {
-	line-height: 1.25;
-}
-
-.testimonial-bio .name {
-	margin-bottom: 10px;
-}
-
-.testimonial-text span,
-.testimonial-bio .name {
-	font-size: 20px;
-	font-weight: bold;
-}
-
-.testimonial-bio img {
-	width: 128px;
-	height: 128px;
-	border-radius: 10px;
-}
-
-#shields img {
-	height: 24px;
-	opacity: 80%;
-}
-
-#topNav .socials img:not(.github) {
-	opacity: 80%;
-}
-
-#topNav .discord-logo {
-	height: 28px;
-	border-radius: 40%;
-}
-
-#topNav .github {
-	background-color: #aaa;
-	border-radius: 50%;
-}
-
-.credits div {
-	width: 100%;
-	font-weight: 500;
-	text-align: center;
-	margin: 20px;
-	margin-left: 0;
-}
-
-.credits p {
-	text-align: center;
-}
-
-.credits-lg {
-	font-size: 24px;
-}
-
-.credits-sm {
-	font-size: 16px;
-}
-
-#md14 * {
-	text-align: center;
-}
-
-@media screen and (max-width: 1030px) {
-	article {
-		padding: 0;
-	}
-
-	#topNav>hr:first-of-type {
-		order: 0;
-	}
-
-	.page {
-		width: 100%;
-		padding: 20px;
-	}
-
-	.apps {
-		margin-top: 0;
-	}
-
-	#reel1 {
-		height: 680px;
-	}
-
-	#reel1 video {
-		height: 680px;
-	}
-
-	#reel2 video {
-		top: calc(56.25vw + 680px);
-		height: 100vh;
-	}
-
-	#dalton-brand {
-		width: 300px;
-	}
-}
-
-@media screen and (max-width: 845px) {
-	#dalton-brand {
-		width: 212px;
-	}
-}
-
-@media screen and (max-width: 760px) {
-	#topNav {
-		margin-top: 0;
-		border-radius: 0;
-	}
-
-	#reel0 {
-		margin-top: 40px;
-	}
-
-	#reel0 video {
-		top: 40px;
-	}
-
-	#reel1 video {
-		top: calc(56.25vw + 40px);
-	}
-
-	#reel2 video {
-		top: calc(56.25vw + 720px);
-	}
-
-	#page0 {
-		flex-wrap: wrap;
-		align-content: center;
-	}
-
-	#bigBrand {
-		width: fit-content;
-		height: fit-content;
-		padding-left: 6px;
-		padding-right: 6px;
-		margin-right: 8px;
-	}
-
-	#bigBrand #logoLink {
-		font-size: 12vw;
-	}
-
-	#bigInfo {
-		width: fit-content;
-		height: 8vw;
-		margin-bottom: 20px;
-	}
-
-	#bigInfo h3 {
-		font-size: 5vw;
-		line-height: 8vw;
-	}
-
-	#dalton-brand {
-		width: 300px;
-	}
-}
-
-@media screen and (max-width: 600px) {
-	#user-brands {
-		gap: 8px;
-	}
-
-	#ttu-brand {
-		width: 26px;
-	}
-
-	#codeorg-brand {
-		width: 40px;
-	}
-
-	#girlswhocode-brand {
-		width: 80px;
-	}
-
-	#strive-brand,
-	#lsu-brand,
-	#cmu-brand {
-		width: 100px;
-	}
-
-	#depaul-brand,
-	#codehs-brand,
-	#hunter-brand {
-		width: 120px;
-	}
-
-	#dalton-brand,
-	#nyuitp-brand {
-		width: 150px;
-	}
-}
-
-@media screen and (max-width: 540px) {
-	#reel1 {
-		height: 630px;
-	}
-
-	#reel1 video {
-		top: calc(56.25vw + 40px);
-		height: 630px;
-	}
-
-	#reel2 video {
-		top: calc(56.25vw + 670px);
-		height: 100vh;
-	}
-
-	#reel2 video {
-		height: 100vh;
-	}
-
-	#reel1,
-	#reel2 {
-		font-size: 18px;
-	}
-
-	.app p {
-		display: none;
-	}
-
-	#reel1 {
-		justify-content: unset;
-		justify-items: center;
-	}
-
-	#page1 {
-		justify-content: unset;
-		justify-items: center;
-	}
-
-	.page>.minis,
-	.page>.mie {
-		width: calc(100vw - 40px);
-	}
-}
-
-	</style>
+	<link rel="stylesheet" href="/index.css">
 </head>
 
 <body id="home" class="dark">
@@ -736,7 +29,6 @@ body:not(.dark) #discord-brand img {
 			<a id="jam" href="jam">ジャム！</a>
 			<a id="pro" href="pro">プロ</a>
 			<a id="play" href="play">プレー</a>
-			<a id="about" href="about">約</a>
 			<hr>
 			<a id="darkMode" onclick="toggleDarkMode()" tabindex="0" role="button" title="dark mode toggle">
 				<div id="darkModeIcon"></div>
@@ -744,19 +36,9 @@ body:not(.dark) #discord-brand img {
 			<hr>
 			<div id="littleLangs">
 				<a href="/" lang="en" class="" title="English">English</a>
-				<!-- <a href="/lang/zh" lang="zh" title="Chinese">中文</a> -->
 				<a href="/lang/es" lang="es" title="Spanish">Español</a>
-				<!-- <a href="/lang/ru" lang="ru" title="Russian">Русский</a>
-				        <a href="/lang/de" lang="de" title="German">Deutsch</a>-->
 				<a href="/lang/ja" lang="ja" title="Japanese" class="active">日本語</a>
-				<!-- <a href="/lang/pt" lang="pt" title="Portuguese">Português</a>
-				        <a href="/lang/fr" lang="fr" title="French">Français</a>
-				        <a href="/lang/ko" lang="ko" title="Korean">한국어</a>
-				        <a href="/lang/hi" lang="hi" title="Hindi">हिन्दी</a>
-				        <a href="/lang/ar" lang="ar" title="Arabic">العربية</a>
-				        <a href="/lang/it" lang="it" title="Italian">Italiano</a> -->
 			</div>
-
 		</nav>
 	</article>
 
@@ -862,7 +144,7 @@ function dropSprite() {
 			<video src="https://quinton-ashley.github.io/p5play-assets/reel2.mov"
 				poster="https://quinton-ashley.github.io/p5play-assets/thumb2.jpg" loop="" playsinline=""
 				muted=""></video>
-			<div class="page">
+			<div id="page2" class="page">
 				<div class="full">
 					<md id="md2">
 						<p><a href="https://github.com/quinton-ashley/p5play"
@@ -923,7 +205,7 @@ function dropSprite() {
 			<video src="https://quinton-ashley.github.io/p5play-assets/reel3.mov"
 				poster="https://quinton-ashley.github.io/p5play-assets/thumb3.jpg" loop="" playsinline=""
 				muted=""></video>
-			<div class="page">
+			<div id="page3" class="page">
 				<div>
 					<md id="md10">
 						<h2 id="コミュニティに参加する-👾">コミュニティに参加する 👾</h2>
@@ -1011,10 +293,13 @@ function dropSprite() {
 		</div>
 
 		<div id="reel4" class="reel">
-			<div class="page">
+			<div id="page5" class="page">
 				<div class="break"></div>
+				<h1 id="reviews-h1">レビュー</h1>
+			</div>
+			<div id="reviews" class="page">
 				<div>
-					<md id="r0" class="testimonial-text">
+					<md id="r00" class="testimonial-text">
 						<p>"昨日、新しい
 							p5play（v3）を見て、それを試したのはずいぶん長い間だなと気付きました！物理学が組み込まれていることに気付かなかったんです。それを使っていくつかのビデオを作成したいと思います。これは本当に素晴らしい仕事で、コミュニティをこのようにサポートしていただき、ありがとうございます！"
 						</p>
@@ -1034,7 +319,7 @@ function dropSprite() {
 					</div>
 				</div>
 				<div>
-					<md id="r1" class="testimonial-text">
+					<md id="r10" class="testimonial-text">
 						<p>「p5play
 							ライブラリは、学生たちにゲームデザインと開発を紹介するための貴重なリソースとなっています。私たちのチームは、その多くのカスタマイズ可能な機能、よく文書化されたリソース、そして全ての年齢とスキルレベルの学生にアクセス可能な使いやすい
 							API のために、このライブラリをゲームデザイン夏季プログラムで使用することを選択しました。</p>
@@ -1059,7 +344,22 @@ function dropSprite() {
 					</div>
 				</div>
 				<div>
-					<md id="r2" class="testimonial-text">
+					<md id="r20" class="testimonial-text">
+						<p>「最近、Quinton と一緒に働く機会を得て、p5 play
+							ライブラリを徹底的に調査しました。ビデオゲームデザインは、プログラミングプロジェクトに学生を引き込むための素晴らしい入り口であり、同時に p5
+							でのオブジェクト指向プログラミングの構造を紹介するものです。私は、私の学生がこれで何を作るかを見るのが待ちきれません！」</p>
+					</md>
+					<div class="testimonial-bio">
+						<img src="/assets/bios/christina_tobajas.webp" alt="Daniel">
+						<div>
+							<div class="name">Christina Tobajas</div>
+							<div>Teacher at</div>
+							<div><a href="https://www.dalton.org/" target="_blank">The Dalton School</a></div>
+						</div>
+					</div>
+				</div>
+				<div>
+					<md id="r30" class="testimonial-text">
 						<p>「Learn ページで行ったことは本当に素晴らしい、重要なスプライトプロパティの参考になる、それ以上のものを見るのを楽しみにしています。ソースを少し掘り下げてみると、[p5play
 							v3]は以前のバージョンの魅力をたくさん残していて、私はすぐに取り組むことができました。」</p>
 					</md>
@@ -1083,7 +383,7 @@ function dropSprite() {
 					</div>
 				</div>
 				<div>
-					<md id="r3" class="testimonial-text">
+					<md id="r40" class="testimonial-text">
 						<p>「p5play
 							を中心にしたユニットを私の芸術的コーディングとゲームデザインのカリキュラムに追加しました。これは、オブジェクト指向プログラミングを紹介する方法としてです。生徒たちはスプライトとグループにすぐに適応し、p5play
 							に組み込まれた相互作用について大変興奮しました。ゲームを通じて、生徒たちはオブジェクト指向プログラミングの核となるコンセプトのいくつかを学んでいるとは気づかずに、プロパティとメソッドの理解を深めました。
@@ -1105,7 +405,7 @@ function dropSprite() {
 					</div>
 				</div>
 				<div>
-					<md id="r4" class="testimonial-text">
+					<md id="r50" class="testimonial-text">
 						<p>「私は何年もの間、中学校の CS クラスで p5play のバリエーションを使用してきました。以前はそれなりでしたが、あなたがバージョン 3
 							で行ったこととは比べ物になりません。大好きです！私の若い生徒たちでも成功し、基本的なコーディングの概念を学ぶことができます。なぜなら、今はコードの背後にあるすべての数学や物理を本当に知る必要がないからです。さらに、すべてが一貫性があり、合理化されているため、新しいアイデアを理解するのが簡単です。それに、理解しやすい例がたくさんある素晴らしい新しいウェブサイトがあります。私は上級の生徒を直接
 							p5play のウェブサイトに送り、彼らが探索し、何でも構築できるようにしています。すべての作業に感謝します！」</p>
@@ -1122,7 +422,7 @@ function dropSprite() {
 					</div>
 				</div>
 				<div>
-					<md id="r5" class="testimonial-text">
+					<md id="r60" class="testimonial-text">
 						<p>「p5play
 							は私たちのカリキュラムに素晴らしい追加でした。これにより、オブジェクト指向プログラミングを学ぶためのより創造的なアウトレットを探求することができ、生徒たちの試験のプロジェクトには欠かせないものとなりました。
 						</p>
@@ -1142,7 +442,7 @@ function dropSprite() {
 					</div>
 				</div>
 				<div>
-					<md id="r6" class="testimonial-text">
+					<md id="r70" class="testimonial-text">
 						<p>「すべての作業に感謝します、クイントン。この適切な物理統合により、私は再びクラスで p5play を使用するかもしれません！」</p>
 					</md>
 					<div class="testimonial-bio">
@@ -1158,7 +458,7 @@ function dropSprite() {
 					</div>
 				</div>
 				<div>
-					<md id="r7" class="testimonial-text">
+					<md id="r80" class="testimonial-text">
 						<p>「全体的に、p5play
 							を十分に推奨することはできません。これは、複雑なゲーム開発ソフトウェアを学ぶ必要なく、私のゲーム開発スキルを次のレベルに引き上げるための信じられないほど簡単な方法を提供してくれました。あなたが熟練した開発者であろうと、これから始めるばかりであろうと、p5play
 							はあなたのツールボックスに持っておく価値のあるツールだと思います。」</p>
@@ -1174,23 +474,30 @@ function dropSprite() {
 						</div>
 					</div>
 				</div>
-				<md id="r8" class="testimonial-text">
-					<p>「JavaScript で p5play ライブラリを使用してグラフィカルなプログラムを作成することは、Python
-						を学ぶよりもずっと良いです。なぜなら、プログラムコードが画面上で何かに影響を与えるのを見ることができるからです。」 - Wyke の学生</p>
-				</md>
-				<md id="r9" class="testimonial-text">
-					<p>「p5play を学ぶことは、ゲーム作成を非常に簡単にするので、コーディングにもっと興味を持つのに本当に役立ちました。プロセスが時間がかからず、より楽しくなります！」 - Wyke の学生
-					</p>
-				</md>
-				<md id="r10" class="testimonial-text">
-					<p>「Python で Tkinter を使用していましたが、基本的なアプリケーションを作成するのには便利でした。しかし、今では p5play
-						を使用して、興味深く実用的なはるかに高度なゲームを作ることができます。」 - Wyke の学生</p>
-				</md>
-				<md id="r11" class="testimonial-text">
-					<h2 id="ぜひご意見をお聞かせください！-😄">ぜひご意見をお聞かせください！ 😄</h2>
-					<p>p5play に関するあなたのレビューを<a href="mailto:info@p5play.org" target="_blank">info@p5play.org</a>に送ってください
-					</p>
-				</md>
+				<div class="minis">
+					<md id="r90" class="testimonial-text">
+						<p>「JavaScript で p5play ライブラリを使用してグラフィカルなプログラムを作成することは、Python
+							を学ぶよりもずっと良いです。なぜなら、プログラムコードが画面上で何かに影響を与えるのを見ることができるからです。」 - Wyke の学生</p>
+					</md>
+					<md id="r100" class="testimonial-text">
+						<p>「p5play を学ぶことは、ゲーム作成を非常に簡単にするので、コーディングにもっと興味を持つのに本当に役立ちました。プロセスが時間がかからず、より楽しくなります！」 - Wyke
+							の学生</p>
+					</md>
+				</div>
+				<div class="minis">
+					<md id="r110" class="testimonial-text">
+						<p>「Python で Tkinter を使用していましたが、基本的なアプリケーションを作成するのには便利でした。しかし、今では p5play
+							を使用して、興味深く実用的なはるかに高度なゲームを作ることができます。」 - Wyke の学生</p>
+					</md>
+					<md id="r120" class="testimonial-text">
+						<h2 id="ぜひご意見をお聞かせください！-😄">ぜひご意見をお聞かせください！ 😄</h2>
+						<p>p5play に関するあなたのレビューを<a href="mailto:info@p5play.org"
+								target="_blank">info@p5play.org</a>に送ってください</p>
+					</md>
+				</div>
+			</div>
+
+			<div class="page">
 
 				<div class="break"></div>
 
@@ -1204,7 +511,7 @@ function dropSprite() {
 
 				<div class="break"></div>
 
-				<md id="md15">
+				<md id="md15-0">
 					<h2 id="are-you-a-teacher-👩🏫-🧑🏫-👨🏫">Are you a teacher? 👩‍🏫 🧑‍🏫 👨‍🏫</h2>
 					<p>Using p5play in your middle or high school curriculum is a great way to get your students
 						interested in object oriented programming.</p>
@@ -1216,21 +523,121 @@ function dropSprite() {
 					<p>Inquire about Professional Development via email: <a href="mailto:info@p5play.org"
 							target="_blank">info@p5play.org</a></p>
 				</md>
-				<md id="md16">
+				<md id="md15-1">
 					<h2 id="are-you-a-student-🙋♀️-🙋-🙋♂️">Are you a student? 🙋‍♀️ 🙋 🙋‍♂️</h2>
 					<p>If your school has a Computer Science teacher, tell them about p5play!</p>
-					<p>Quinton Ashley, the creator of p5play v3, also teaches a Game Design Fundamentals course. Level
-						up your programming skills by learning how to use p5play. I'll help you design your own game and
-						share it with the world!</p>
+					<p>If not, Quinton Ashley, the creator of p5play v3, teaches the following courses online: AP
+						Computer Science Principles, AP CS A, IGCSE Computer Science, and more. Learn standards aligned
+						CS in a fun way!</p>
+					<p>Quinton also teaches Game Design Fundamentals. Level up your programming skills by learning how
+						to use p5play. I'll help you design your own game and share it with the world!</p>
 					<p>Ask your parents to send an email to <a href="mailto:info@p5play.org"
 							target="_blank">info@p5play.org</a> and inquire about private tutoring.</p>
+				</md>
+
+				<div class="break"></div>
+
+				<h1 id="more-info">詳細</h1>
+
+				<md id="md17-0" class="closed">
+					<h2 id="コンピューターサイエンスの教育者が-p5play-を愛する理由は？-😍">コンピューターサイエンスの教育者が p5play を愛する理由は？ 😍</h2>
+					<p><a href="https://p5js.org/" target="_blank">p5.js</a> グラフィックライブラリはすでに CS 教育者の間で人気があるため、p5play
+						は多くのカリキュラムに自然に追加されます。</p>
+					<p>p5play はオブジェクト指向プログラミングの概念を教えるのに最適です。抽象的なデータをコンソールで操作する代わりに、生徒たちは<a href="../learn/sprite.html"
+							target="_blank">sprites</a>と呼ばれるゲームオブジェクトを作成し、視覚的にも物理的にも対話できます。生徒は<a
+							href="../learn/group.html" target="_blank">groups</a>を使用することで、配列やクラスのような継承を直感的に学ぶこともできます。
+					</p>
+					<p>p5play は完全にコードベースなので、生徒は特別なエディタアプリを使う必要がありません（Unity とは異なります）。p5play を使用することで、生徒は実践的な、移行可能な
+						JavaScript プログラミングスキルと、オンラインのコードエディターや業界標準の IDE（<a href="https://code.visualstudio.com/"
+							target="_blank">Visual Studio Code</a>など）での経験を得ることができます。</p>
+					<p>p5play はまた、よく設計され、文書化されています。インタラクティブな例と演習でいっぱいの無料リソースである<a href="../learn" target="_blank">Learn
+							pages</a>をチェックしてください。</p>
+				</md>
+				<md id="md17-1" class="closed">
+					<h2 id="生徒が-p5play-を学ぶべき理由は？-🤔">生徒が p5play を学ぶべき理由は？ 🤔</h2>
+					<p>すべての EdTech 企業は、自社の「使いやすく楽しい」というソフトウェアが生徒に「創造的な可能性を実現させる」ことを主張していますが、しばしばそれは単なるマーケティングの言葉に過ぎません。
+					</p>
+					<p><a href="https://microbit.org/"
+							target="_blank">micro:bit</a>のようなプラットフォームが本当に楽しく創造力を高めるものであるなら、なぜ生徒はそれを宿題を完了するためにしか使用しないのでしょうか？生徒がそれを学ぶ意味を見いだせない場合、どれだけ簡単であってもあまり重要ではありません。
+					</p>
+					<p>p5play は異なります。物理ベースの接触処理、入力検出、アニメーション、カメラ、ジョイントなど、生徒がゲームエンジンから求めるすべての機能を備えています！</p>
+					<p>p5play はウェブベースなので、学生は簡単に自分のプロジェクトをオンラインで共有できます。これは Python、C＃、または Java
+						のプロジェクトではそう簡単ではありません。プロジェクトを家族や友人と共有できることは、学生が共有する価値のあるものを作る動機になります！</p>
+				</md>
+				<md id="md17-2" class="closed">
+					<h2 id="scratch-については？-🐯">Scratch については？ 🐯</h2>
+					<p><a href="https://scratch.mit.edu/" target="_blank">Scratch</a>は 8 歳から 11
+						歳の生徒には素晴らしいですが、より高い期待を持つ年齢の生徒には Scratch では満たせません。Scratch には内蔵の物理エンジンがないため、p5play
+						で簡単に作れるような、斜面を転がるボールでさえ、多くの数学を必要とし、Scratch のブロックベースの環境では非常に面倒な実装が必要です。</p>
+					<p>Scratch のウェブサイトに掲載されているゲームは生徒にとって刺激的かもしれませんが、ほとんどが大人によって作成されたことに気づくと落胆します。生徒が Scratch
+						で印象的なゲームを作ろうと本当に決心している場合、YouTube のチュートリアルからコピペするために 20 時間を費やす必要があります。</p>
+					<p>その一方で、14 歳の生徒が定期的に p5play でできることに私は感心しています！</p>
+				</md>
+				<md id="md17-3" class="closed">
+					<h2 id="p5play-はなぜ作られたのか？-🎨">p5play はなぜ作られたのか？ 🎨</h2>
+					<p>p5play は、初心者には複雑すぎるし、一般的な CS 教育には適していないプロのゲームエンジン（例：Unity）と Scratch の間のギャップを確実に埋めるために作られました。</p>
+					<p>それでも、p5play は教室での使用に限定されていません。<a href="https://github.com/piqnt/planck.js"
+							target="_blank">Box2D</a>物理エンジンを動力としています。Angry Birds のような愛され、商業的に成功したゲームを動かすのと同じ物理エンジンです！
+					</p>
+					<p><strong>「最高のものだけが十分に良い」</strong> - LEGO の創設者、Godtfred Kirk Christiansen</p>
+					<p>p5play は、中学生と高校生を対象とする EdTech またはゲームエンジンの領域で、正当な競争相手に直面していません。</p>
+				</md>
+				<md id="md17-4" class="closed">
+					<h2 id="オープンソースですか？-📖">オープンソースですか？ 📖</h2>
+					<p>p5play v3 は、独立したゲーム開発をサポートするために AGPLv3 の下でオープンソースライセンスされています。</p>
+					<p>p5play を使用することで、<a href="https://github.com/quinton-ashley/p5play/blob/main/EULA.md"
+							target="_blank">EULA</a>に同意したことになります。</p>
+				</md>
+				<md id="md17-5" class="closed">
+					<h2 id="デモを見ることができますか？-👀">デモを見ることができますか？ 👀</h2>
+					<p>OpenProcessing の<a href="https://openprocessing.org/user/350295?o=35&amp;view=sketches"
+							target="_blank">@quinton-ashley</a>と<a href="https://discord.gg/EJwnJATmj7"
+							target="_blank">p5play のコミュニティ Discord</a>の#share チャネルをチェックして、人々が p5play で何を作っているかを見てください。
+					</p>
+				</md>
+				<md id="md17-6" class="closed">
+					<h2 id="商業的に使用できますか？-🤑">商業的に使用できますか？ 🤑</h2>
+					<p>はい！<a href="https://github.com/quinton-ashley/p5play-web/blob/main/pro/LICENSE.md"
+							target="_blank">p5play Professional License</a>の条件下で、商業プロジェクトで p5play を使用できます。これは<a
+							href="https://www.patreon.com/p5play" target="_blank">Patreon</a>メンバーに提供されます。</p>
+					<p>支払いができない場合は、無料の<a href="https://github.com/quinton-ashley/p5play-novice/blob/main/LICENSE.md"
+							target="_blank">p5play Novice License</a>を申請できます。詳細については<a
+							href="https://github.com/quinton-ashley/p5play-web/blob/main/LICENSING.md"
+							target="_blank">LICENSING.md</a>を参照してください。</p>
+				</md>
+				<md id="md17-7" class="closed">
+					<h2 id="quinton-ashley-とは？-👨💻">Quinton Ashley とは？ 👨‍💻</h2>
+					<p>こんにちは、私は Quinton です、p5play (v3)と p5play.org の作成者です。私はまた、7 年の経験を持つ CS
+						教育者です。プライベートレッスンに興味がある場合は、ご連絡ください！ <a href="mailto:quintonashley5@gmail.com"
+							target="_blank">mailto:quintonashley5@gmail.com</a></p>
+					<p>p5play に関する私の作業についての個人的なブログスタイルの執筆がある<a
+							href="https://github.com/quinton-ashley/p5play/wiki/Developer-Log" target="_blank">developer
+							log</a>をチェックしてください。</p>
+				</md>
+				<md id="md17-8" class="closed">
+					<h2 id="クレジット-⭐️">クレジット ⭐️</h2>
+					<p>p5play の作成に貢献してくれた全員に大きな感謝を！ 😄</p>
+					<p>p5.play（バージョン 1）の作成者、Paolo Pedercini、プロジェクトを引き継ぐことを信頼してくれた！ <a href="http://molleindustria.org"
+							target="_blank">molleindustria.org</a></p>
+					<p>Box2D 物理シミュレータの作成者、Erin Catto。 <a href="https://box2d.org" target="_blank">box2d.org</a></p>
+					<p>p5play の裏で使われている Box2D の JavaScript ポート、planck.js の作成者、Ali Shakiba。 <a
+							href="https://piqnt.com/planck.js" target="_blank">piqnt.com/planck.js</a></p>
+					<p>現在の貢献者：@Tezumie、Oliver Zell、Caleb Foss、そして Bobby S。</p>
+					<p>テスターとバグレポーター：Raj Raizada、Nathan Anil、Chayarat Wangweera、Zhiyuan Guo、Aarnav Gupta、そして Carter Noa。
+					</p>
+				</md>
+				<md id="md17-9" class="closed">
+					<h2 id="特別な感謝-🙌">特別な感謝 🙌</h2>
+					<p>まず、子供の頃に私をコーディングクラスに入れてくれた両親へのサポートに感謝したいと思います！また、支援と励ましをくれた私の妻、Victoria、娘の Luna に感謝します。💞</p>
+					<p>さらに、デジタルノマドに長期ビザを提供してくれたコロンビア政府 🇨🇴 の Gustavo Petro に感謝します。もし私がまだ US に住んでいたら、p5play
+						は存在しなかったでしょう。このような情熱プロジェクトに無数の時間を費やす余裕はありませんでした。</p>
 				</md>
 
 				<div class="break"></div>
 			</div>
 		</div>
 
-		<footer id="credits" class="text-small">
+		<footer id="ft" class="text-small">
 			<p>p5play.org は Quinton Ashley によって作成されました。Copyright ©2022-2024。<a href="mailto:info@p5play.org"
 					target="_blank">info@p5play.org</a> p5play の<a
 					href="https://quinton-ashley.github.io/p5play-web-archive/v2" target="_blank">旧バージョン</a>を探していますか？
@@ -1241,15 +648,22 @@ function dropSprite() {
 	<script src="/v3/q5.min.js"></script>
 <script src="/v3/planck.min.js"></script>
 <script src="/v3/p5play.min.js"></script>
-<script src="/learn/mie.js"></script>
+<script>
+Q5.canvasOptions.alpha = true;
+
+	</script>
+	<script src="/learn/mie.js"></script>
 <script src="/learn/main.js"></script>
 <script>
+document.querySelectorAll('md.closed').forEach(md => {
+	md.onclick = () => md.classList.toggle('closed');
+});
 let userPaused = false;
 const reels = document.querySelectorAll(".reel");
-for (let i = 0; i < reels.length; i++) {
-	if (i == 1) continue;
+for (let i = 0; i < 4; i++) {
 	let reel = reels[i];
-	reel.addEventListener("click", () => {
+	reel.addEventListener("click", (e) => {
+		if (e.target.tagName != 'DIV') return;
 		userPaused = !userPaused;
 		for (let r of reels) {
 			let vid = r.children[0];
@@ -1292,6 +706,11 @@ if (window.innerHeight < 1500) {
 			if (vid.tagName == 'VIDEO') vid.pause();
 		});
 	}
+}
+window.onload = function() {
+	const r = document.querySelectorAll('#reviews > div');
+	const rc = document.getElementById('reviews');
+	rc.scrollLeft = r[0].offsetLeft;
 }
 
 	</script>

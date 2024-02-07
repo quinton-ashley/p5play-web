@@ -1,0 +1,821 @@
+@font-face {
+	font-family: "bariol";
+	src: url("/assets/fonts/bariol_light-webfont.ttf");
+	font-display: swap;
+}
+
+article {
+	width: 100%;
+	position: absolute;
+	top: 0;
+}
+
+nav {
+	width: fit-content;
+}
+
+#reels {
+	scroll-snap-type: y mandatory;
+}
+
+.reel {
+	width: 100vw;
+	overflow: hidden;
+	display: flex;
+	justify-content: center;
+	scroll-snap-align: center;
+}
+
+video {
+	object-fit: cover;
+	width: 100vw;
+	position: absolute;
+	left: 0;
+	z-index: -1;
+	image-rendering: pixelated;
+}
+
+#reel1,
+#reel2 {
+	font-size: 20px;
+}
+
+#reel1 video {
+	z-index: -2;
+}
+
+#reel4 {
+	background-color: var(--background);
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+
+#littleLangs {
+	display: inline-flex;
+	align-items: center;
+}
+
+#littleLangs a.active,
+#littleLangs a:hover,
+#littleLangs a {
+	font-size: 16px;
+	text-shadow: none;
+	transition: 0.3s;
+}
+
+.page {
+	display: flex;
+	width: 1030px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+.page>.mie,
+.page>md,
+.page>div:not(.break):not(.minis):not(.full) {
+	max-width: 460px;
+}
+
+#page0 {
+	width: 96%;
+	padding: 0;
+	flex-wrap: nowrap;
+}
+
+#logoLink.active {
+	text-shadow: 0.5vw 0.5vw 0px var(--blue0);
+}
+
+#bigLogo {
+	display: flex;
+	align-items: center;
+	background: none;
+}
+
+#bigLogo .p5play_logo {
+	width: 20vw;
+	height: 20vw;
+}
+
+#bigLogo {
+	width: fit-content;
+	padding: 0;
+}
+
+#bigBrand #logoLink {
+	font-size: 6vw;
+}
+
+#bigBrand,
+#bigInfo {
+	width: 33%;
+	padding-top: 0;
+	padding-bottom: 0;
+}
+
+#bigBrand {
+	display: flex;
+	align-items: center;
+	justify-content: right;
+}
+
+#bigBrand,
+#bigInfo {
+	height: 6vw;
+}
+
+#bigInfo {
+	padding-top: 0.8vw;
+}
+
+#bigInfo h3 {
+	margin: 0;
+	line-height: 5vw;
+	font-size: 2.7vw;
+	width: max-content;
+	overflow-x: visible;
+}
+
+html.ja #bigInfo h3 {
+	font-size: 2.4vw;
+}
+
+@keyframes scrollUp {
+
+	10%,
+	20% {
+		transform: translateY(-16.666%);
+	}
+
+	30%,
+	40% {
+		transform: translateY(-33.333%);
+	}
+
+	50%,
+	60% {
+		transform: translateY(-50%);
+	}
+
+	70%,
+	80% {
+		transform: translateY(-66.666%);
+	}
+
+	90%,
+	100% {
+		transform: translateY(-83.333%);
+	}
+}
+
+#bigInfo {
+	overflow: hidden;
+}
+
+#md0 {
+	animation: scrollUp 8s infinite;
+}
+
+#usedBy {
+	background: none;
+}
+
+#editors,
+#support {
+	margin-top: 32px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	gap: 32px;
+}
+
+.apps {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	margin-top: 32px;
+}
+
+.app {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.app p {
+	margin-top: 8px;
+	text-align: center;
+	font-size: 12px;
+	padding-left: 4px;
+	padding-right: 4px;
+	background-color: var(--secondary);
+	border-radius: 8px;
+}
+
+.apps img {
+	width: 64px;
+	height: 64px;
+	border-radius: 8px;
+}
+
+#discord-brand {
+	color: var(--primary);
+	display: flex;
+	align-items: center;
+	width: fit-content;
+}
+
+#user-brands {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	flex-wrap: wrap;
+	gap: 24px;
+}
+
+#patreon-brand {
+	display: flex;
+	align-items: center;
+	height: 42px;
+	gap: 20px;
+	width: min-content;
+}
+
+body.dark #patreon-brand {
+	filter: invert(85%);
+}
+
+body.dark #github-brand :nth-child(2) {
+	filter: invert(90%);
+}
+
+body:not(.dark) #discord-brand img {
+	filter: invert(100%);
+}
+
+#usedBy {
+	padding: 0;
+}
+
+#user-brands a,
+.brand {
+	padding: 8px;
+	border-radius: 8px;
+}
+
+#user-brands a img {
+	width: 100%;
+}
+
+#codehs-brand {
+	background-color: #f4f8fc;
+	width: 160px;
+}
+
+#codeorg-brand {
+	background-color: #00adbc;
+	width: 70px;
+}
+
+#girlswhocode-brand {
+	background-color: #e5f8ff;
+	width: 140px;
+}
+
+#strive-brand {
+	background-color: #fff;
+	width: 140px;
+}
+
+#hunter-brand {
+	background-color: #fff;
+	width: 200px;
+}
+
+#dalton-brand {
+	background-color: #fff;
+	width: 360px;
+}
+
+#tywls-brand {
+	background-color: #152253;
+	width: 100px;
+}
+
+#nyuitp-brand {
+	background-color: #57068c;
+	width: 250px;
+}
+
+#lsu-brand {
+	background-color: #502e81;
+	width: 150px;
+}
+
+#ttu-brand {
+	background-color: #d60000;
+	width: 36px;
+}
+
+#depaul-brand {
+	background-color: rgb(66, 8, 17);
+	width: 200px;
+}
+
+#cmu-brand {
+	width: 140px;
+}
+
+#discord-brand img {
+	opacity: 82%;
+	height: 56px;
+}
+
+#codepen-brand {
+	opacity: 82%;
+}
+
+#openprocessing-brand,
+#glitch-brand {
+	color: var(--primary);
+	height: 32px;
+}
+
+#openprocessing-brand {
+	height: 40px;
+}
+
+.p5js-web-editor-logo {
+	margin-right: 5px;
+}
+
+.p5js-web-editor-brand {
+	margin-bottom: -10px;
+}
+
+.p5js-web-editor-brand,
+.p5js-web-editor-logo {
+	height: 40px;
+}
+
+#discord-brand:hover span {
+	color: var(--pink);
+}
+
+#discord-brand:hover {
+	text-decoration: none;
+}
+
+.dark #glitch-brand {
+	filter: hue-rotate(180deg) invert() opacity(80%);
+}
+
+.bariol {
+	font-family: "bariol", "source sans pro", "helvetica";
+	font-weight: 300;
+	line-height: 1;
+	color: var(--primary);
+	font-size: 28px;
+}
+
+#glitch-brand,
+#codepen-brand,
+#replit-brand,
+#discord-brand,
+#patreon-brand,
+#github-brand {
+	border-bottom: 1px solid transparent;
+}
+
+#glitch-brand:hover,
+#codepen-brand:hover,
+#replit-brand:hover,
+#discord-brand:hover,
+#patreon-brand:hover,
+#github-brand:hover {
+	color: var(--pink);
+	border-bottom: 1px solid var(--pink);
+}
+
+#replit-brand {
+	margin-right: 16px;
+	transform: scale(1.5);
+}
+
+.light #codepen-brand,
+.light .discord-brand,
+.light .discord-logo {
+	filter: invert(1);
+}
+
+#lib-links {
+	width: 100%;
+	font-family: monospace;
+	font-size: 12px;
+	white-space: pre;
+	overflow-wrap: normal;
+	overflow-x: scroll;
+	background-color: var(--secondary);
+	color: var(--primary);
+	border: none;
+	resize: none;
+	margin-top: 16px;
+}
+
+.testimonial-text {
+	max-height: 168px;
+	overflow-y: scroll;
+}
+
+.testimonial-text :first-child {
+	margin-top: 0;
+}
+
+/* .testimonial-text::after {
+		display: absolute;
+		z-index: 1000;
+		background: linear-gradient(rgba(255, 255, 255, 0) 90%, rgba(255, 255, 255, 1) 100%);
+		} */
+/* 
+		.dark .testimonial-text::after {
+		display: absolute;
+		bottom: 0;
+		background: linear-gradient(rgba(19, 21, 22, 0) 90%, rgba(19, 21, 22, 1) 100%);
+		} */
+.testimonial-bio {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 16px;
+	margin-top: 10px;
+}
+
+.testimonial-text span {
+	line-height: 1;
+	padding-right: 2px;
+}
+
+.testimonial-bio>div {
+	line-height: 1.25;
+}
+
+.testimonial-bio .name {
+	margin-bottom: 10px;
+}
+
+.testimonial-text span,
+.testimonial-bio .name {
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.testimonial-bio img {
+	width: 128px;
+	height: 128px;
+	border-radius: 10px;
+}
+
+#shields img {
+	height: 24px;
+	opacity: 80%;
+}
+
+#topNav .socials img:not(.github) {
+	opacity: 80%;
+}
+
+#topNav .discord-logo {
+	height: 28px;
+	border-radius: 40%;
+}
+
+#topNav .github {
+	background-color: #aaa;
+	border-radius: 50%;
+}
+
+.credits div {
+	width: 100%;
+	font-weight: 500;
+	text-align: center;
+	margin: 20px;
+	margin-left: 0;
+}
+
+.credits p {
+	text-align: center;
+}
+
+.credits-lg {
+	font-size: 24px;
+}
+
+.credits-sm {
+	font-size: 16px;
+}
+
+#md14 * {
+	text-align: center;
+}
+
+#reviews {
+	display: flex;
+	justify-content: start;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	width: 100%;
+	padding: 0;
+	padding-left: 50%;
+	padding-right: 50%;
+	gap: 30px;
+	overflow-x: scroll;
+	scroll-snap-type: x mandatory;
+	scrollbar-width: none;
+}
+
+#reviews::-webkit-scrollbar {
+	display: none;
+}
+
+#reviews>div {
+	scroll-snap-align: center;
+}
+
+#reviews>div {
+	flex: 0 0 460px;
+}
+
+#reviews .minis {
+	max-width: 500px;
+	scroll-snap-align: center;
+}
+
+footer {
+	margin-bottom: 300px;
+}
+
+#reel0 {
+	height: 56.25vw;
+}
+
+#reel1,
+#reel2,
+#reel3 {
+	height: 750px;
+}
+
+@media screen and (max-width: 1500px) {
+
+	#reel0,
+	#reel1,
+	#reel2,
+	#reel3 {
+		height: 56.25vw;
+	}
+}
+
+@media screen and (max-width: 1280px) {
+	#reel3 {
+		height: max-content;
+	}
+}
+
+@media screen and (max-width: 1030px) {
+	article {
+		padding: 0;
+	}
+
+	#topNav>hr:first-of-type {
+		order: 0;
+	}
+
+	.page {
+		width: 100%;
+		padding: 20px;
+	}
+
+	#page1 {
+		align-content: space-around;
+	}
+
+	#page5 {
+		padding-bottom: 0;
+	}
+
+	.apps {
+		margin-top: 0;
+	}
+
+	#reel0 {
+		top: 40px;
+	}
+
+	#reel1 {
+		height: 800px;
+	}
+
+	#reel1 video {
+		height: 800px;
+	}
+
+	#dalton-brand {
+		width: 300px;
+	}
+}
+
+@media screen and (max-width: 845px) {
+	#dalton-brand {
+		width: 260px;
+	}
+
+	#user-brands {
+		gap: 8px;
+	}
+
+	#ttu-brand {
+		width: 33px;
+	}
+
+	#codeorg-brand {
+		width: 52px;
+	}
+
+	#girlswhocode-brand {
+		width: 104px;
+	}
+
+	#strive-brand,
+	#lsu-brand,
+	#cmu-brand {
+		width: 130px;
+	}
+
+	#depaul-brand,
+	#codehs-brand,
+	#hunter-brand {
+		width: 156px;
+	}
+
+	#nyuitp-brand {
+		width: 195px;
+	}
+}
+
+@media screen and (max-width: 760px) {
+	#topNav {
+		margin-top: 0;
+		border-radius: 0;
+		height: 24px;
+	}
+
+	#reel0 {
+		margin-top: 40px;
+	}
+
+	#page0 {
+		flex-wrap: wrap;
+	}
+
+	#bigBrand {
+		width: fit-content;
+		height: fit-content;
+		padding-left: 6px;
+		padding-right: 6px;
+		margin-right: 8px;
+	}
+
+	#bigBrand #logoLink {
+		font-size: 12vw;
+	}
+
+	#bigInfo {
+		width: fit-content;
+		height: 8vw;
+		margin-bottom: 20px;
+	}
+
+	#bigInfo h3 {
+		font-size: 5vw;
+		line-height: 8vw;
+	}
+}
+
+@media screen and (max-width: 720px) {
+
+	#reel0,
+	#reel2 {
+		height: 600px;
+	}
+
+	#reel0 video {
+		height: 600px;
+	}
+
+	#reel1 {
+		height: 900px;
+	}
+
+	#reel1 video {
+		top: 640px;
+		height: 400px;
+	}
+
+	#reel2 video {
+		top: 1540px;
+		height: 600px;
+	}
+
+	#reel3 video {
+		display: none;
+	}
+
+	#reel1 {
+		justify-content: unset;
+		justify-items: center;
+	}
+
+	#page1 {
+		padding-top: 100px;
+		padding-bottom: 50px;
+		align-content: space-between;
+	}
+
+}
+
+@media screen and (max-width: 540px) {
+
+	#reviews>div {
+		flex: 0 0 calc(100vw - 80px);
+	}
+
+	#user-brands {
+		gap: 8px;
+	}
+
+	#ttu-brand {
+		width: 26px;
+	}
+
+	#codeorg-brand {
+		width: 40px;
+	}
+
+	#girlswhocode-brand {
+		width: 80px;
+	}
+
+	#strive-brand,
+	#lsu-brand,
+	#cmu-brand {
+		width: 100px;
+	}
+
+	#depaul-brand,
+	#codehs-brand,
+	#hunter-brand {
+		width: 120px;
+	}
+
+	#dalton-brand,
+	#nyuitp-brand {
+		width: 150px;
+	}
+
+	#bigBrand #logoLink {
+		font-size: 15vw;
+	}
+
+	#bigInfo {
+		width: fit-content;
+		height: 9vw;
+		margin-bottom: 20px;
+	}
+
+	#bigInfo h3 {
+		font-size: 6vw;
+		line-height: 9vw;
+	}
+
+	#reel1,
+	#reel2 {
+		font-size: 18px;
+	}
+
+	.app p {
+		font-size: 10px;
+	}
+
+	.page>.minis,
+	.page>.mie {
+		width: calc(100vw - 40px);
+	}
+}
+
+@media screen and (max-width: 440px) {
+
+	#user-brands {
+		justify-content: center;
+	}
+
+}

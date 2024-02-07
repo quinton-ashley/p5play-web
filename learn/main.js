@@ -21,5 +21,3 @@ function toggleDarkMode() {
 	// Save the preference
 	localStorage.setItem('darkMode', document.body.className);
 }
-
-Q5.canvasOptions.alpha = true;
