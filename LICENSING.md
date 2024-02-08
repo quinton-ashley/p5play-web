@@ -12,9 +12,9 @@ But if you want to use p5play commercially in a closed source product or service
 
 Here are some examples of commercial use:
 
-- teaching a class that is not free and open to the public
-- publishing a paid or monetized game on an app store
-- writing curriculum for a paid course
+- teaching a class that's not free or not open to the general public
+- publishing a paid or monetized game
+- writing curriculum that's not publicly accessible
 - developing a game for a paying client
 - monetizing an API service or website
 

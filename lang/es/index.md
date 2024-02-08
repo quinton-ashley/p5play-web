@@ -122,6 +122,12 @@ Envía tu opinión sobre p5play a [info@p5play.org](mailto:info@p5play.org)
 
 ### Comienza con nuestras páginas interactivas de [Aprender](learn/sprite.html).
 
+# 15
+
+## Creado por Quinton Ashley
+
+¡Quinton Ashley es un educador de Ciencias de la Computación con una pasión por el diseño de juegos y 7 años de experiencia en la enseñanza!
+
 # 17-0
 
 ## ¿Por qué a los educadores de Ciencias de la Computación les encanta p5play?! 😍

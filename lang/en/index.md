@@ -32,7 +32,7 @@ Ask questions and meet other people making interactive art and games with p5play
 
 p5play is open source and **free for personal use** under the terms of the [AGPLv3](https://github.com/quinton-ashley/p5play/blob/main/LICENSE.md).
 
-Support p5play at the appropriate tier to obtain the [p5play Professional License](https://github.com/quinton-ashley/p5play-web/blob/main/pro/LICENSE.md), which enables commercial use. [What qualifies as commercial use?](https://github.com/quinton-ashley/p5play-web/blob/main/LICENSING.md)
+Support p5play at the appropriate tier to obtain the [p5play Professional License](https://github.com/quinton-ashley/p5play-web/blob/main/pro/LICENSE.md) for [commercial use](https://github.com/quinton-ashley/p5play-web/blob/main/LICENSING.md).
 
 # 12
 
@@ -124,23 +124,29 @@ Send your review of p5play to [info@p5play.org](mailto:info@p5play.org)
 
 ### Get started with our interactive [Learn](learn/sprite.html) pages.
 
-# 15-0
+# 15
+
+## Created by Quinton Ashley
+
+Quinton Ashley is a Computer Science educator with a passion for game design and 7 years of teaching experience!
+
+# 16-0
 
 ## Are you a teacher? 👩‍🏫 🧑‍🏫 👨‍🏫
 
 Using p5play in your middle or high school curriculum is a great way to get your students interested in object oriented programming.
 
-Quinton Ashley, the creator of p5play v3, offers Professional Development sessions for teachers. Even if you're not a "gamer" and have no experience with game design, you can become an expert at teaching p5play! Your students will love making their own games and interactive art. During my PD course you'll receive advice on curriculum design, analysis of student work, curated resources for your students to use, and more!
+Quinton offers Professional Development sessions for teachers. Even if you're not a "gamer" and have no experience with game design, you can become an expert at teaching p5play! Your students will love making their own games and interactive art. During my PD course you'll receive advice on curriculum design, analysis of student work, curated resources for your students to use, and more!
 
 Inquire about Professional Development via email: [info@p5play.org](mailto:info@p5play.org)
 
-# 15-1
+# 16-1
 
 ## Are you a student? 🙋‍♀️ 🙋 🙋‍♂️
 
 If your school has a Computer Science teacher, tell them about p5play!
 
-If not, Quinton Ashley, the creator of p5play v3, teaches the following courses online: AP Computer Science Principles, AP CS A, IGCSE Computer Science, and more. Learn standards aligned CS in a fun way!
+If not, Quinton teaches the following courses online: AP Computer Science Principles, AP CS A, IGCSE Computer Science, and more. Learn standards aligned CS in a fun way!
 
 Quinton also teaches Game Design Fundamentals. Level up your programming skills by learning how to use p5play. I'll help you design your own game and share it with the world!
 
@@ -194,9 +200,19 @@ p5play faces no legitimate competition in the EdTech or game engine space among 
 
 # 17-4
 
-## Is it open source? 📖
+## Can I use p5play for free? 📖
 
-p5play v3 is open source licensed under the AGPLv3 to support independent game development.
+p5play is open source and [multi-licensed](https://github.com/quinton-ashley/p5play-web/blob/main/LICENSING.md). It can only be used for free under the terms of the [AGPLv3](https://github.com/quinton-ashley/p5play/blob/main/LICENSE.md).
+
+Acceptable free use of p5play includes:
+
+- teaching a free class that's open to the general public
+- as part of a curriculum that is freely available to the public
+- posting a tutorial video on YouTube, even if it's monetized (protected by fair use)
+- developing a game that is not monetized
+- publishing a monetized game if you publicly share the source code
+
+Almost any other use case is legally considered closed-source commercial use and requires a proprietary license.
 
 By using p5play you agree to the [EULA](https://github.com/quinton-ashley/p5play/blob/main/EULA.md).
 
@@ -212,9 +228,9 @@ Check out [@quinton-ashley](https://openprocessing.org/user/350295?o=35&view=ske
 
 Here are some examples of commercial use:
 
-- teaching a class that is not free or not open to the general public
-- publishing a paid or monetized game on an app store
-- writing curriculum for a paid course
+- teaching a class that's not free or not open to the general public
+- publishing a paid or monetized game
+- writing curriculum that's not publicly accessible
 - developing a game for a paying client
 - monetizing an API service or website
 
@@ -226,7 +242,7 @@ If you can't afford to pay, you can apply for the free [p5play Novice License](h
 
 ## Who is Quinton Ashley? 👨‍💻
 
-Hi I'm Quinton, the creator of p5play (v3) and p5play.org. I'm also a CS Educator with 7 years of experience. Contact me if you're interested in private tutoring! <mailto:quintonashley5@gmail.com>
+Hi I'm Quinton, the creator of p5play (version 3) and p5play.org.
 
 Check out my [developer log](https://github.com/quinton-ashley/p5play/wiki/Developer-Log) for personal blog style writing about my work on p5play.
 
@@ -234,7 +250,7 @@ Check out my [developer log](https://github.com/quinton-ashley/p5play/wiki/Devel
 
 ## Credits ⭐️
 
-Huge thanks to everyone that's contributed to creating p5play! 😄
+Huge thanks to everyone that's contributed to creating p5play (version 3)! 😄
 
 Paolo Pedercini, creator p5.play (version 1), who trusted me to take over the project! [molleindustria.org](http://molleindustria.org)
 

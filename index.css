@@ -44,7 +44,8 @@ video {
 	z-index: -2;
 }
 
-#reel4 {
+#reel5,
+#reel7 {
 	background-color: var(--background);
 	flex-direction: row;
 	flex-wrap: wrap;
@@ -565,6 +566,21 @@ footer {
 	height: 750px;
 }
 
+#reel6 {
+	height: 320px;
+}
+
+#reel6>img {
+	position: absolute;
+	/* width: max(990px, 110vw); */
+	height: 320px;
+	z-index: -1;
+}
+
+.spacer {
+	padding: 0 !important;
+}
+
 @media screen and (max-width: 1500px) {
 
 	#reel0,
@@ -593,6 +609,7 @@ footer {
 	.page {
 		width: 100%;
 		padding: 20px;
+		gap: 20px;
 	}
 
 	#page1 {
@@ -621,6 +638,15 @@ footer {
 
 	#dalton-brand {
 		width: 300px;
+	}
+
+	#reel6 img {
+		margin-left: 250px;
+	}
+
+	#reel6 .spacer,
+	#md15 {
+		max-width: calc(50% - 30px);
 	}
 }
 

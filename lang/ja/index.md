@@ -122,6 +122,12 @@ p5play に関するあなたのレビューを[info@p5play.org](mailto:info@p5pl
 
 ### 私たちのインタラクティブな[Learn](learn/sprite.html)ページで始めましょう。
 
+# 15
+
+## Quinton Ashley さんによって作成されました
+
+Quinton Ashley さんは、ゲームデザインに情熱を持つコンピューターサイエンスの教育者で、7 年の教育経験を持っています！
+
 # 17-0
 
 ## コンピューターサイエンスの教育者が p5play を愛する理由は？ 😍
