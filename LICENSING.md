@@ -4,14 +4,16 @@
 
 ## p5play v3 library
 
+p5play is open source and multi-licensed.
+
 Anyone can use p5play for free under the terms of the [AGPLv3][] (Affero General Public License), a copyleft open source license. 🎉
 
 But if you want to use p5play commercially in a closed source product or service, you must comply with the [p5play Novice License][] or [p5play Professional License][] agreements.
 
 Here are some examples of commercial use:
 
+- teaching a class that is not free and open to the public
 - publishing a paid or monetized game on an app store
-- teaching at a school that charges tuition
 - writing curriculum for a paid course
 - developing a game for a paying client
 - monetizing an API service or website

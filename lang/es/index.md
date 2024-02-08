@@ -140,7 +140,7 @@ p5play también está bien diseñado y documentado. Revisa las [páginas de Apre
 
 Cada compañía de EdTech afirma que su software "fácil y divertido de usar" empodera a los estudiantes para "realizar su potencial creativo", pero a menudo es solo palabrería de marketing.
 
-Si plataformas como [micro:bit](https://microbit.org/) son tan divertidas y potencialmente creativas, ¿por qué los estudiantes solo las usan para completar tareas? Realmente no importa cuán fácil sea algo si los estudiantes no ven el punto en aprenderlo.
+Si estas plataformas son tan divertidas y empoderadoras creativamente, ¿por qué los estudiantes solo las usan para completar tareas? Realmente no importa cuán fácil sea algo si los estudiantes no ven el punto en aprenderlo.
 
 p5play es diferente. Tiene todas las características que los estudiantes podrían querer de un motor de juegos: manejo de contacto basado en física, detección de entradas, animaciones, una cámara, juntas y más.
 

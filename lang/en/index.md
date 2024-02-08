@@ -28,11 +28,11 @@ Ask questions and meet other people making interactive art and games with p5play
 
 # 11
 
-## Support this project 🤝
+## Pricing 💸
 
-p5play is open source and [multi-licensed](https://github.com/quinton-ashley/p5play-web/blob/main/LICENSING.md). Under the terms of the AGPLv3, anyone can use p5play for free!
+p5play is open source and **free for personal use** under the terms of the [AGPLv3](https://github.com/quinton-ashley/p5play/blob/main/LICENSE.md).
 
-But if you use p5play professionally, please [support](https://www.patreon.com/p5play) its development.
+Support p5play at the appropriate tier to obtain the [p5play Professional License](https://github.com/quinton-ashley/p5play-web/blob/main/pro/LICENSE.md), which enables commercial use. [What qualifies as commercial use?](https://github.com/quinton-ashley/p5play-web/blob/main/LICENSING.md)
 
 # 12
 
@@ -164,7 +164,7 @@ p5play is also well designed and documented. Check out the [Learn pages](../lear
 
 Every EdTech company claims their "easy and fun to use" software empowers students to "realize their creative potential", but often it's just marketing fluff.
 
-If platforms like [micro:bit](https://microbit.org/) are so fun and creatively empowering, why are students only using them to complete assignments? It hardly matters how easy something is if students don't see the point in learning it.
+If these platforms are so fun and creatively empowering, why are students only using them to complete assignments? It hardly matters how easy something is if students don't see the point in learning it.
 
 p5play is different! It has all the features that students could want from a game engine: physics based contact handling, input detection, animations, a camera, joints, and more.
 
@@ -209,6 +209,14 @@ Check out [@quinton-ashley](https://openprocessing.org/user/350295?o=35&view=ske
 # 17-6
 
 ## Can I use it commercially? 🤑
+
+Here are some examples of commercial use:
+
+- teaching a class that is not free or not open to the general public
+- publishing a paid or monetized game on an app store
+- writing curriculum for a paid course
+- developing a game for a paying client
+- monetizing an API service or website
 
 Yes! You can use p5play commercially in closed source projects under the terms of the [p5play Professional License](https://github.com/quinton-ashley/p5play-web/blob/main/pro/LICENSE.md), which is available to [Patreon](https://www.patreon.com/p5play) members.
 
