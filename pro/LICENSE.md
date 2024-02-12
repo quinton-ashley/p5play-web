@@ -14,7 +14,7 @@ The Licensee is authorized to utilize the Content and Supplemental Materials in 
 
 - Limited Redistribution of the Supplemental Materials: The Licensee is only allowed to redistribute the Supplemental Materials to their students, student peers, team members, or co-workers. The Licensee can not sublicense or sell the Supplemental Materials to anyone. The Licensee is expressly forbidden from redistributing the Supplemental Materials in any way that would allow the general public to access them.
 
-- No Military Use: The Licensee is expressly forbidden from using the Content in projects that are directly or indirectly funded by, or affiliated with, military organizations or military contractors.
+- No Military Use: The Licensee is expressly forbidden from using the Content in projects that are directly sponsored by, or affiliated with, military organizations or military contractors.
 
 - No NFT or Cryptocurrency Use: The use of the Content in connection with Non-Fungible Tokens (NFTs), cryptocurrency transactions, or related blockchain technologies is strictly prohibited.
 

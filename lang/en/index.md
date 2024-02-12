@@ -28,9 +28,9 @@ Ask questions and meet other people making interactive art and games with p5play
 
 # 11
 
-## Pricing 💸
+## Support this project 🤝
 
-p5play is open source and **free for personal use** under the terms of the [AGPLv3](https://github.com/quinton-ashley/p5play/blob/main/LICENSE.md).
+p5play is open source and free to use under the terms of the [AGPLv3](https://github.com/quinton-ashley/p5play/blob/main/LICENSE.md).
 
 Support p5play at the appropriate tier to obtain the [p5play Professional License](https://github.com/quinton-ashley/p5play-web/blob/main/pro/LICENSE.md) for [commercial use](https://github.com/quinton-ashley/p5play-web/blob/main/LICENSING.md).
 
