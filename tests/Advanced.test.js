@@ -5,7 +5,7 @@
 const log = console.log;
 global.p5 = require('../v3/q5.js');
 global.planck = require('../v3/planck.min.js');
-require('../v3/p5play-beta.js');
+require('../v3/p5play.js');
 
 test('Canvas : constructors', () => {
 	const sketch = (p) => {
@@ -29,7 +29,7 @@ test('Canvas : constructors', () => {
 			new p.Canvas();
 			const defaultCanvasWidth = 1024;
 			const defaultCanvasHeight = 768;
-			
+
 			expect(p).toHaveProperty('canvas');
 			expect(p.width).toBe(defaultCanvasWidth);
 			expect(p.height).toBe(defaultCanvasHeight);

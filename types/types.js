@@ -70,6 +70,7 @@ dec = dec.replace(/^(const|function|var)*\s*_[^{\n]+\n/gm, '');
 dec = dec.replace(/^\s*(const|var)*\s*_([^{\n]+){(?:[^{}]*{[^{}]*}[^{}]*)*[^{}]*};\n/gm, '');
 dec =
 	`import * as p5 from 'p5';
+
 declare global {
 ` +
 	dec +

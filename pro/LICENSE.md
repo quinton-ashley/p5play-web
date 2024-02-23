@@ -1,20 +1,18 @@
 # p5play Professional License
 
-This License Agreement ("Agreement") is made between Quinton Ashley, the sole copyright owner of the p5play ("Licensor") and an individual or group that is an active paying subscriber, at the appropriate tier, to the Licensor’s [GitHub Sponsors](https://github.com/sponsors/quinton-ashley) or [Patreon](https://www.patreon.com/p5play) ("Licensee").
+This License Agreement ("Agreement") is made between Quinton Ashley, the sole copyright owner of p5play ("Licensor") and an individual or group actively paying license fees ("Licensee").
 
 ## 1. License Grant
 
-This Agreement pertains to the p5play, q5, and p5play-pro software libraries ("Content") and proprietary supplemental materials ("Supplemental Materials"), such as app template source code, which are only provided for use by novice and professional Licensees.
+This Agreement covers the p5play, q5, and p5play-pro software libraries ("Content") and any proprietary supplemental materials ("Supplemental Materials") provided privately to Licensees only.
 
-The Licensor grants to the Licensee a non-exclusive, non-transferable, and non-perpetual worldwide license.
-
-The Licensee is authorized to utilize the Content and Supplemental Materials in closed-source commercial projects, subject to the following restrictions:
+The Licensor grants to the Licensee a non-exclusive, non-transferable, and non-perpetual worldwide license to use the Content and Supplemental Materials in closed-source commercial projects, subject to the following restrictions:
 
 - No Closed Source Modifications: The Licensee is expressly forbidden from creating a closed source fork of the Content or using modified versions of the Content in closed source projects.
 
-- Limited Redistribution of the Supplemental Materials: The Licensee is only allowed to redistribute the Supplemental Materials to their students, student peers, team members, or co-workers. The Licensee can not sublicense or sell the Supplemental Materials to anyone. The Licensee is expressly forbidden from redistributing the Supplemental Materials in any way that would allow the general public to access them.
+- Limited Redistribution: The Licensee is only allowed to redistribute the Supplemental Materials to their students, student peers, team members, or co-workers. The Licensee can not sublicense or sell the Content or Supplemental Materials to anyone. The Licensee is expressly forbidden from redistributing the Supplemental Materials in any way that would allow the general public to access them.
 
-- No Military Use: The Licensee is expressly forbidden from using the Content in projects that are directly sponsored by, or affiliated with, military organizations or military contractors.
+- No Military Use: The Licensee is expressly forbidden from using the Content in projects that are directly sponsored by military organizations or military contractors.
 
 - No NFT or Cryptocurrency Use: The use of the Content in connection with Non-Fungible Tokens (NFTs), cryptocurrency transactions, or related blockchain technologies is strictly prohibited.
 
@@ -22,19 +20,23 @@ Licensees retain the option to use the p5play-pro library under the terms of the
 
 ## 2. Licensee Eligibility
 
-This Agreement must be renewed to remain in effect.
+The Licensee must meet one of the following requirements to be eligible for this Agreement:
 
-Renewal can only be achieved if the Licensee is a current paying subscriber to the Licensor's Patreon or Github Sponsors at the appropriate tier. What constitutes an appropriate tier can only be determined by the Licensor. If Licensees have any concerns about what tier is appropriate for their use, it is their responsibility to contact the Licensor at info@p5play.org and explain their planned use of the Content to confirm that they are paying the appropriate amount.
+    1. Be a current, paying subscriber to the Licensor's [GitHub Sponsors](https://github.com/sponsors/quinton-ashley) or [Patreon](https://www.patreon.com/p5play) at the appropriate tier, as determined by the Licensor. If Licensees have any concerns about what tier is appropriate for their use, they must contact the Licensor at info@p5play.org and explain their planned use of the Content.
 
-Licensees can pay more than the appropriate tier amount if they wish to support the Licensor's work to a greater extent.
+    2. Pay a custom invoice to the Licensor, as agreed upon by both parties.
 
-Note that the Licensor reserves the right to change the cost any tier at any time, but will give advance notice to Licensees before doing so.
+Renewal of this Agreement can only be achieved through payments on a monthly or yearly basis, depending on the tier or payment plan chosen by the Licensee.
+
+A Licensee can pay more than the appropriate tier amount if they wish to support the Licensor's work to a greater extent.
+
+Note that the Licensor reserves the right to change the tier costs at any time, but will give at least a one month notice to Licensees before doing so.
 
 ## 3. Attribution Required
 
-The Licensee must publicly display appropriate credit to the Licensor for the Content, but not in any way that suggests the Licensor endorses the Licensee or the Licensee's use.
+The Licensee must publicly display appropriate credit to the Licensor for the Content, but not in any way that suggests the Licensor endorses the Licensee or the Licensee's use, unless the Licensor has given prior written consent.
 
-Attribution can be accomplished by maintaining the "made with p5play" Loading Screen, which is enabled by default, or in any reasonable manner including customization of the "made with p5play" loading screen.
+Attribution can be accomplished by maintaining the "made with p5play" Loading Screen, which is enabled by default, or in any reasonable manner, including customization of the "made with p5play" loading screen.
 
 ## 4. No Warranty
 
@@ -42,13 +44,17 @@ The Content is provided "as is." The Licensor makes no warranties, express or im
 
 ## 5. Limitation of Liability
 
+If Licensee has any issues with the Content, they must contact the Licensor at info@p5play.org. The Licensor will make a reasonable effort to resolve the issue in a timely manner.
+
+If the Licensee is not satisfied with the Content, it is their responsibility to discontinue use of the Content and terminate their renewal of this Agreement.
+
 The Licensor shall not be liable for any damages suffered by the Licensee resulting from the use or inability to use the Content.
 
 ## 6. Termination
 
 Termination of the Agreement will occur if the Licensee fails to comply with any term(s) of this Agreement. Therefore, termination can occur automatically, without notice from the Licensor.
 
-Any lapse in payments on Patreon or Github Sponsors will also result in the immediate termination of this Agreement.
+Any lapse in licensing payments will result in the immediate termination of this Agreement.
 
 ## 7. Entire Agreement
 
