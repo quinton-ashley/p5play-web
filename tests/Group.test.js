@@ -192,8 +192,8 @@ test('Group: overlaps, overlapping, overlapped', () => {
 				expect(s0.overlaps(s1)).toBe(false);
 				expect(s0.overlaps(g1)).toBe(false);
 
-				await p.delay();
-				await p.delay();
+				await p.sleep();
+				await p.sleep();
 
 				expect(s0.overlaps(s1)).toBe(true);
 				expect(s0.overlaps(g1)).toBe(true);
@@ -206,7 +206,7 @@ test('Group: overlaps, overlapping, overlapped', () => {
 				expect(s0.test).toBe(1);
 				expect(s1.test).toBe(2);
 
-				await p.delay();
+				await p.sleep();
 
 				expect(s0.overlaps(s1)).toBe(false);
 				expect(s0.overlaps(g1)).toBe(false);
@@ -217,7 +217,7 @@ test('Group: overlaps, overlapping, overlapped', () => {
 
 				let overlappingFrameCount = 0;
 				while (s0.overlapping(g1)) {
-					await p.delay();
+					await p.sleep();
 					overlappingFrameCount++;
 				}
 				expect(overlappingFrameCount).toBe(4);

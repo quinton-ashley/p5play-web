@@ -277,7 +277,7 @@ test('Sprite : move, moveTo, moveTowards', () => {
 				await expect(s.moveTo(30, 20, 5)).resolves.toBe(true);
 
 				s.moveTowards(20, 0);
-				await p.delay();
+				await p.sleep();
 				expect(s.x).toBeLessThan(30);
 				expect(s.y).toBeLessThan(20);
 
@@ -404,8 +404,8 @@ test('Sprite : collides, colliding, collided', () => {
 				expect(s0.collides(s1)).toBe(false);
 				expect(s1.collides(s0)).toBe(false);
 
-				await p.delay();
-				await p.delay();
+				await p.sleep();
+				await p.sleep();
 
 				expect(s0.collides(s1)).toBe(true);
 				expect(s1.collides(s0)).toBe(true);
@@ -417,7 +417,7 @@ test('Sprite : collides, colliding, collided', () => {
 				expect(s0.test).toBe(1);
 				expect(s1.test).toBe(2);
 
-				await p.delay();
+				await p.sleep();
 
 				expect(s0.collides(s1)).toBe(false);
 				expect(s1.collides(s0)).toBe(false);
@@ -428,7 +428,7 @@ test('Sprite : collides, colliding, collided', () => {
 
 				let collidingFrameCount = 0;
 				while (s0.colliding(s1)) {
-					await p.delay();
+					await p.sleep();
 					collidingFrameCount++;
 				}
 				expect(collidingFrameCount).toBe(1);
@@ -478,8 +478,8 @@ test('Sprite : overlaps, overlapping, overlapped', () => {
 				expect(s0.overlaps(s1)).toBe(false);
 				expect(s1.overlaps(s0)).toBe(false);
 
-				await p.delay();
-				await p.delay();
+				await p.sleep();
+				await p.sleep();
 
 				expect(s0.overlaps(s1)).toBe(true);
 				expect(s1.overlaps(s0)).toBe(true);
@@ -491,7 +491,7 @@ test('Sprite : overlaps, overlapping, overlapped', () => {
 				expect(s0.test).toBe(1);
 				expect(s1.test).toBe(2);
 
-				await p.delay();
+				await p.sleep();
 
 				expect(s0.overlaps(s1)).toBe(false);
 				expect(s1.overlaps(s0)).toBe(false);
@@ -502,7 +502,7 @@ test('Sprite : overlaps, overlapping, overlapped', () => {
 
 				let overlappingFrameCount = 0;
 				while (s0.overlapping(s1)) {
-					await p.delay();
+					await p.sleep();
 					overlappingFrameCount++;
 				}
 				expect(overlappingFrameCount).toBe(3);
