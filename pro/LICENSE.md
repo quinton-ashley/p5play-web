@@ -8,13 +8,13 @@ This Agreement covers the p5play, q5, and p5play-pro software libraries ("Conten
 
 The Licensor grants to the Licensee a non-exclusive, non-transferable, and non-perpetual worldwide license to use the Content and Supplemental Materials in closed-source commercial projects, subject to the following restrictions:
 
-- No Closed Source Modifications: The Licensee is expressly forbidden from creating a closed source fork of the Content or using modified versions of the Content in closed source projects.
+1. No Closed Source Modifications: The Licensee is expressly forbidden from creating a closed source fork of the Content or using modified versions of the Content in closed source projects.
 
-- Limited Redistribution: The Licensee is only allowed to redistribute the Supplemental Materials to their students, student peers, team members, or co-workers. The Licensee can not sublicense or sell the Content or Supplemental Materials to anyone. The Licensee is expressly forbidden from redistributing the Supplemental Materials in any way that would allow the general public to access them.
+2. Limited Redistribution: The Licensee is only allowed to redistribute the Supplemental Materials to their students, student peers, team members, or co-workers. The Licensee can not sublicense or sell the Content or Supplemental Materials to anyone. The Licensee is expressly forbidden from redistributing the Supplemental Materials in any way that would allow the general public to access them.
 
-- No Military Use: The Licensee is expressly forbidden from using the Content in projects that are directly sponsored by military organizations or military contractors.
+3. No Military Use: The Licensee is expressly forbidden from using the Content in projects that are directly sponsored by military organizations or military contractors.
 
-- No NFT or Cryptocurrency Use: The use of the Content in connection with Non-Fungible Tokens (NFTs), cryptocurrency transactions, or related blockchain technologies is strictly prohibited.
+4. No NFT or Cryptocurrency Use: The use of the Content in connection with Non-Fungible Tokens (NFTs), cryptocurrency transactions, or related blockchain technologies is strictly prohibited.
 
 Licensees retain the option to use the p5play-pro library under the terms of the CC BY-NC-ND 4.0 and use the p5play and q5 libraries under the terms of the AGPLv3.
 
@@ -26,6 +26,8 @@ The Licensee must meet one of the following requirements to be eligible for this
 
 2. Pay a custom invoice to the Licensor, as agreed upon by both parties.
 
+Licensing fees are based on the scale of the Licensee's use of the Content at a per student, per month rate.
+
 Renewal of this Agreement can only be achieved through payments on a monthly or yearly basis, depending on the tier or payment plan chosen by the Licensee.
 
 A Licensee can pay more than the appropriate tier amount if they wish to support the Licensor's work to a greater extent.
@@ -36,7 +38,7 @@ Note that the Licensor reserves the right to change the tier costs at any time, 
 
 The Licensee must publicly display appropriate credit to the Licensor for the Content, but not in any way that suggests the Licensor endorses the Licensee or the Licensee's use, unless the Licensor has given prior written consent.
 
-Attribution can be accomplished by maintaining the "made with p5play" Loading Screen, which is enabled by default, or in any reasonable manner, including customization of the "made with p5play" loading screen.
+Attribution can be accomplished by maintaining the "made with p5play" Loading Screen, which is enabled by default, or in any reasonable manner.
 
 ## 4. No Warranty
 

@@ -2983,8 +2983,8 @@ p5.prototype.registerMethod('init', function p5playInit() {
 		/**
 		 * Moves the sprite away from a position, the opposite of moveTowards,
 		 * at a percentage of the distance between itself and the position.
-		 * @param {Number} x
-		 * @param {Number} [y]
+		 * @param {Number|Object} x destination x or any object with x and y properties
+		 * @param {Number} [y] destination y
 		 * @param {Number} [repel] range from 0-1
 		 */
 		moveAway(x, y, repel) {
@@ -3004,18 +3004,19 @@ p5.prototype.registerMethod('init', function p5playInit() {
 		 * the distance the sprite moves will be rounded up to the
 		 * nearest half tile.
 		 *
-		 * @param {Number} distance [optional]
-		 * @param {Number|String} direction [optional]
-		 * @param {Number} speed [optional]
+		 * @param {Number} distance
+		 * @param {Number|String} [direction] direction angle in degrees or a cardinal direction name, if not given the sprite's current direction is used
+		 * @param {Number} [speed] if not given, the sprite's current speed is used, unless it's 0 then it's given a default speed of 1 or 0.1 if the sprite's tileSize is greater than 1
 		 * @returns {Promise} resolves when the movement is complete or cancelled
 		 *
 		 * @example
-		 * sprite.move(distance);
-		 * sprite.move(distance, direction);
-		 * sprite.move(distance, direction, speed);
-		 *
-		 * sprite.move(directionName);
-		 * sprite.move(directionName, speed);
+		 * sprite.direction = -90;
+		 * sprite.speed = 2;
+		 * sprite.move(1);
+		 * // or
+		 * sprite.move(1, -90, 2);
+		 * // or
+		 * sprite.move('up', 2);
 		 */
 		move(distance, direction, speed) {
 			if (!distance) return Promise.resolve(false);
@@ -3057,7 +3058,7 @@ p5.prototype.registerMethod('init', function p5playInit() {
 		 *
 		 * @param {Number|Object} x|position destination x or any object with x and y properties
 		 * @param {Number} y destination y
-		 * @param {Number} speed [optional]
+		 * @param {Number} [speed] if not given, the sprite's current speed is used, unless it is 0 then it is given a default speed of 1 or 0.1 if the sprite's tileSize is greater than 1
 		 * @returns {Promise} resolves to true when the movement is complete
 		 * or to false if the sprite will not reach its destination
 		 */
@@ -3089,9 +3090,7 @@ p5.prototype.registerMethod('init', function p5playInit() {
 			this._destIdx++;
 			if (!x && !y) return Promise.resolve(true);
 
-			if (this.speed) speed ??= this.speed;
-			if (this.tileSize > 1) speed ??= 0.1;
-			speed ??= 1;
+			speed ??= this.speed || (this.tileSize <= 1 ? 1 : 0.1);
 			if (speed <= 0) {
 				console.warn('sprite.move: speed should be a positive number');
 				return Promise.resolve(false);
@@ -3258,16 +3257,23 @@ p5.prototype.registerMethod('init', function p5playInit() {
 		/**
 		 * Rotates the sprite to an angle or to face a position.
 		 *
-		 * @param {Number|Object} angle|position
+		 * @param {Number|Object} angle angle or a position object with x and y properties
 		 * @param {Number} speed the amount of rotation per frame, default is 1
-		 * @param {Number} facing (only if position is given) the rotation angle the sprite should be at when "facing" the position, default is 0
+		 * @param {Number} [facing] the rotation angle the sprite should be at when "facing" the given position, default is 0
 		 * @returns {Promise} a promise that resolves when the rotation is complete
+		 * @example
+		 * sprite.rotationSpeed = 2;
+		 * sprite.rotateTo(180);
+		 * // or
+		 * sprite.rotateTo(180, 2);
+		 * // or
+		 * sprite.rotateTo({x: 0, y: 100}, 2);
 		 */
-		rotateTo(angle, speed) {
+		rotateTo(angle, speed, facing) {
 			if (this.__collider == 1) throw new FriendlyError(0);
 
 			let args = arguments;
-			let x, y, facing;
+			let x, y;
 			if (typeof args[0] != 'number') {
 				x = args[0].x;
 				y = args[0].y;
@@ -3278,7 +3284,7 @@ p5.prototype.registerMethod('init', function p5playInit() {
 				y = args[1];
 				speed = args[2];
 				facing = args[3];
-			}
+			} else facing = undefined;
 
 			if (x !== undefined) angle = this.angleToFace(x, y, facing);
 			else {
@@ -3290,23 +3296,21 @@ p5.prototype.registerMethod('init', function p5playInit() {
 		}
 
 		/**
-		 * Rotates the sprite by an amount at a specified angles per frame speed.
+		 * Rotates the sprite by an amount at a given rotation speed.
 		 *
 		 * @param {Number} angle the amount to rotate the sprite
-		 * @param {Number} speed the amount of rotation per frame, default is 1
+		 * @param {Number} speed the absolute amount of rotation per frame, default is 1
 		 * @returns {Promise} a promise that resolves when the rotation is complete
 		 */
 		rotate(angle, speed) {
 			if (this.__collider == 1) throw new FriendlyError(0);
 			if (isNaN(angle)) throw new FriendlyError(1, [angle]);
 			if (angle == 0) return;
-			let absA = Math.abs(angle);
-			speed ??= 1;
-			if (speed > absA) speed = absA;
-
+			let cw = speed > 0; // rotation is clockwise
 			let ang = this.rotation + angle;
-			let cw = angle > 0; // rotation is clockwise
-			this.rotationSpeed = speed * (cw ? 1 : -1);
+
+			speed ??= 1;
+			this.rotationSpeed = speed;
 
 			this._rotateIdx ??= 0;
 			this._rotateIdx++;
