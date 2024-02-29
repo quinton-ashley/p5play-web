@@ -166,13 +166,15 @@ Los juegos destacados en el sitio web de Scratch son inspiradores para los estud
 
 ## ¿Por qué se creó p5play? 🎨
 
-p5play fue creado para cerrar definitivamente la brecha entre Scratch y motores de juego profesionales como Unity, que son demasiado complejos para principiantes y no adecuados para la educación general en CS.
+Las corporaciones no deberían tener un monopolio sobre el arte del desarrollo de juegos.
 
-Sin embargo, p5play no está limitado al uso en el aula. Está impulsado por el motor de física [Box2D](https://github.com/piqnt/planck.js). ¡El mismo motor de física que potencia juegos queridos y comercialmente exitosos como Angry Birds!
+En los primeros días de Internet, Adobe Flash facilitó la creación de juegos hechos por aficionados. Pero a medida que Internet se comercializaba más y herramientas simples como Flash quedaban obsoletas, el arte del desarrollo de juegos se volvía menos accesible. Hoy en día, con microtransacciones y cajas de botín envenenando casi todos los grandes lanzamientos, parece que los principales editores están interesados en explotar a los jugadores en busca de beneficios en lugar de crear arte.
+
+p5play fue creado para hacer que este medio sea más accesible para estudiantes, educadores y desarrolladores independientes. En una industria dominada actualmente por remakes y secuelas poco inspiradas, nuestra esperanza es que p5play se utilice para crear arte original e incluso arte políticamente cargado, que utilice mundos virtuales para inspirar a las personas a pensar críticamente sobre nuestra realidad.
 
 **"Solo lo mejor es suficientemente bueno"** - Godtfred Kirk Christiansen, fundador de LEGO
 
-p5play no enfrenta competencia legítima en el espacio de EdTech o motores de juego entre su demografía objetivo de estudiantes de secundaria y preparatoria.
+p5play definitivamente cierra la brecha entre Scratch y motores de juego profesionales como Unity, que son demasiado complejos para principiantes y no adecuados para la educación en ciencias de la computación en general.
 
 # 17-4
 

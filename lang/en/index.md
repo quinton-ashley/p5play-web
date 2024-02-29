@@ -190,13 +190,15 @@ The featured games on the Scratch website are inspiring to students, but they we
 
 ## Why was p5play created? 🎨
 
-p5play was created to definitively bridge the gap between Scratch and professional game engines like Unity, which are too complex for beginners and not suited for general CS education.
+Corporations shouldn't have a monopoly on the art of game development!
 
-Yet, p5play isn't limited to classroom use. It's powered by the [Box2D](https://github.com/piqnt/planck.js) physics engine. The same physics engine that powers beloved and commercially successful games like Angry Birds!
+In the early days of the internet, Adobe Flash facilitated the creation of games made by hobbyists. But as the internet became more commercialized, and simple tools like Flash were phased out, the art of game development became less accessible. Nowadays with micro-transactions and loot boxes poisoning nearly every big release, it seems that major publishers are interested in exploiting players for profit rather than creating art.
+
+p5play was created to make this medium more accessible to students, educators, and indie developers. In an industry currently dominated by re-makes and uninspired sequels, our hope is that p5play is used to create original art, and even politically charged art, which uses virtual worlds to inspire people to think critically about our reality.
 
 **"Only the best is good enough"** - Godtfred Kirk Christiansen, founder of LEGO
 
-p5play faces no legitimate competition in the EdTech or game engine space among its target demographic of middle and high school students.
+p5play definitively bridge the gap between Scratch and professional game engines like Unity, which are too complex for beginners and not suited for general CS education.
 
 # 17-4
 
