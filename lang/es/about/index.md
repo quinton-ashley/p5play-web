@@ -40,7 +40,7 @@ Si no puedes permitirte pagar, puedes solicitar la [Licencia Novato de p5play](h
 
 ## ¿Quién es Quinton Ashley? 👨‍💻
 
-¡Hola, soy Quinton, el creador de p5play (v3) y p5play.org! Soy profesor de Ciencias de la Computación, tutor y mentor en [Crimson Education](https://www.crimsoneducation.org/).
+¡Hola, soy Quinton, el creador de p5play (v3) y p5play.org! Soy profesor de Ciencias de la Computación, tutor y mentor.
 
 Echa un vistazo a mi [registro de desarrollador](https://github.com/quinton-ashley/p5play/wiki/Developer-Log) para lecturas de estilo blog personal sobre mi trabajo en p5play.
 
