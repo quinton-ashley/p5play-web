@@ -190,15 +190,17 @@ The featured games on the Scratch website are inspiring to students, but they we
 
 ## Why was p5play created? 🎨
 
-Corporations shouldn't have a monopoly on the art of game development!
+Corporations shouldn't have a monopoly on the art of game development! p5play was created to make this medium more accessible to students, educators, and indie developers.
 
-In the early days of the internet, Adobe Flash facilitated the creation of games made by hobbyists. But as the internet became more commercialized, and simple tools like Flash were phased out, the art of game development became less accessible. Nowadays with micro-transactions and loot boxes poisoning nearly every big release, it seems that major publishers are interested in exploiting players for profit rather than creating art.
+In the early days of the internet, Adobe Flash made it easier for hobbyists to develop, share games, and garner an audience, than ever before. But since Flash was phased out, gaming became more commercialized. Corporations like Meta (FaceBook) and Apple heavily promoted games poisoned by micro-transactions and loot boxes, mechanics designed to maximize profit. Hobbyists were left in the dust. Now gamers are sick of being exploited, they want originality, but in a polished package.
 
-p5play was created to make this medium more accessible to students, educators, and indie developers. In an industry currently dominated by re-makes and uninspired sequels, our hope is that p5play is used to create original art, and even politically charged art, which uses virtual worlds to inspire people to think critically about our reality.
+That's why Roblox, Minecraft for Education, and Fortnite all enable young developers to create and share game modes and experiences. They promise massive potential audiences but insidiously, these platforms are walled gardens that restrict artistic freedom and exploit developers. These corporations regularly remove or shadow ban content they dislike, and they can do so without explanation or recourse. These corporations explicitly forbid political art and only want un-controversial content they can monetize to extend the life of their decades old games.
+
+But the virtual worlds and systems of games are a powerful tool for political expression. p5play was especially created to help young game designers create art that can challenge players to think critically about our real world and the systems that govern it.
 
 **"Only the best is good enough"** - Godtfred Kirk Christiansen, founder of LEGO
 
-p5play definitively bridge the gap between Scratch and professional game engines like Unity, which are too complex for beginners and not suited for general CS education.
+p5play definitively bridges the gap between Scratch and professional game engines like Unity, which are too complex for beginners and too specialized to be used for general CS education.
 
 # 17-4
 
