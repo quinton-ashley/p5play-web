@@ -8,71 +8,72 @@
 	<link rel="icon" href="/assets/p5play_logo.svg">
 	<link rel="stylesheet" href="/learn/style.css">
 	<style>
-		#refs {
-			display: flex;
-			flex-direction: row;
-			justify-content: space-between;
-			align-items: flex-start;
-		}
+#refs {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: flex-start;
+}
 
-		#learnOptions {
-			display: flex;
-			width: 100%;
-			justify-content: center;
-			gap: 16px;
-			margin-top: 16px;
-		}
+#learnOptions {
+	display: flex;
+	width: 100%;
+	justify-content: center;
+	gap: 16px;
+	margin-top: 16px;
+}
 
-		#refs>div {
-			display: flex;
-			flex-direction: row;
-			flex-wrap: wrap;
-			gap: 4px;
-			align-content: start;
-		}
+#refs>div {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	gap: 4px;
+	align-content: start;
+}
 
-		#refs div:first-child .btn {
-			font-size: 27px;
-		}
+#refs div:first-child .btn {
+	font-size: 27px;
+}
 
-		#refs div:not(:first-child) h2 a:hover {
-			color: var(--pink);
-			text-decoration: underline;
-		}
+#refs div:not(:first-child) h2 a:hover {
+	color: var(--pink);
+	text-decoration: underline;
+}
 
-		#refs>div:nth-child(7),
-		#refs>div:nth-child(8),
-		#refs>div:nth-child(9),
-		#refs>div:nth-child(10) {
-			width: 19.75%;
-		}
+#refs>div:nth-child(7),
+#refs>div:nth-child(8),
+#refs>div:nth-child(9),
+#refs>div:nth-child(10) {
+	width: 19.75%;
+}
 
-		@media screen and (max-width: 1030px) {
+@media screen and (max-width: 1030px) {
 
-			#refs>div,
-			#refs>div:nth-child(7),
-			#refs>div:nth-child(8),
-			#refs>div:nth-child(9),
-			#refs>div:nth-child(10) {
-				width: 45%;
-			}
+	#refs>div,
+	#refs>div:nth-child(7),
+	#refs>div:nth-child(8),
+	#refs>div:nth-child(9),
+	#refs>div:nth-child(10) {
+		width: 45%;
+	}
 
-			#refs>div:nth-child(1),
-			#refs>div:nth-child(2) {
-				width: 96%;
-			}
-		}
+	#refs>div:nth-child(1),
+	#refs>div:nth-child(2) {
+		width: 96%;
+	}
+}
 
-		@media screen and (max-width: 540px) {
+@media screen and (max-width: 540px) {
 
-			#refs>div,
-			#refs>div:nth-child(7),
-			#refs>div:nth-child(8),
-			#refs>div:nth-child(9),
-			#refs>div:nth-child(10) {
-				width: 96%;
-			}
-		}
+	#refs>div,
+	#refs>div:nth-child(7),
+	#refs>div:nth-child(8),
+	#refs>div:nth-child(9),
+	#refs>div:nth-child(10) {
+		width: 96%;
+	}
+}
+
 	</style>
 </head>
 
@@ -120,27 +121,28 @@
 			<div class="full">
 				<md id="md0-0">
 					<h2 id="学ぶ">学ぶ</h2>
-					<p>これらの「学ぶ」リファレンスページは、p5play の最も重要な機能に対する対話型のミニ例を提供しています。</p>
+					<p>これらの「学ぶ」リファレンスページは、p5play の最も重要な機能を試せる、編集・実行可能な「コードサンプル」を提供しています。</p>
 				</md>
 				<div id="learnOptions">
-					<a id="getStarted" class="btn" href="sprite.html">始めましょう！</a>
+					<a id="getStarted" class="btn" href="sprite.html">始める！</a>
 				</div>
 			</div>
 			<md id="md0-1" class="ref full">
-				<p>お探しの情報が見つからない場合は、<a href="/docs/Sprite.html">p5play の完全なドキュメンテーション</a>、<a
-						href="https://p5js.org/reference/">p5.js リファレンス</a>、または <a
-						href="https://p5js.org/reference/#/libraries/p5.sound">p5.sound リファレンス</a> を試してみるか、<a
-						href="https://openprocessing.org/user/350295?o=35&amp;view=sketches">デモ</a>を見てみてください。</p>
+				<p>お探しの情報が見つからない場合は、<a href="/docs/Sprite.html" target="_blank">p5play の完全なドキュメンテーション</a>、<a
+						href="https://p5js.org/reference/" target="_blank">p5.js リファレンス</a>、または <a
+						href="https://p5js.org/reference/#/libraries/p5.sound" target="_blank">p5.sound リファレンス</a>
+					を試してみるか、<a href="https://openprocessing.org/user/350295?o=35&amp;view=sketches"
+						target="_blank">デモ</a>を見てみてください。</p>
 			</md>
 		</div>
 
 		<div class="break"></div>
-		<footer id="credits" class="text-small">クリントン・アシュリー（@quinton-ashley）によって作成されました 著作権 2022-2024</footer>
+		<footer id="credits" class="text-small">制作・著作: クイントン・アシュリー（@quinton-ashley） 2022-2024</footer>
 	</article>
 
 	<script src="/learn/main.js"></script>
-	<script src="/learn/learn.js"></script>
-	<script src="/learn/reference.js"></script>
+<script src="/learn/learn.js"></script>
+<script src="/learn/reference.js"></script>
 </body>
 
 </html>
