@@ -86,8 +86,7 @@ function draw() {
 }
 			</script>
 			<md id="md0-2">
-				<p>
-					このミニ例では、スプライトシートからアニメーションを読み込みます。スプライトシートとは、アニメーションのすべてのフレームを含む単一の画像です。このスケッチのスプライトシートを見て、それがどのように見えるかを確認してください。
+				<p>このミニ例では、スプライトシートからアニメーションを読み込みます。スプライトシートとは、アニメーションのすべてのフレームを含む単一の画像です。このスケッチのスプライトシートを見て、それがどのように見えるかを確認してください。
 				</p>
 				<p>スプライトシートモードでは、アトラスオブジェクトを使用して各フレームのサイズとアニメーションのフレーム数を指定できます。</p>
 				<p>プログラムが開始したときにアニメーションを本当に必要とする場合は、setup の代わりに p5.js の preload 関数で読み込む必要があります。</p>
@@ -129,11 +128,11 @@ function setup() {
 function draw() {
 	clear();
 
+	if (kb.presses('s')) ani.stop();
 	if (kb.presses('p')) ani.play();
 	if (kb.presses('o')) ani.play(0);
 	if (kb.presses('ArrowDown')) ani.frameDelay--;
 	if (kb.presses('ArrowUp')) ani.frameDelay++;
-	if (kb.presses('s')) ani.stop();
 	if (kb.presses('r')) ani.rewind();
 	if (kb.presses('l')) ani.loop();
 	if (kb.presses('n')) ani.noLoop();
@@ -243,16 +242,15 @@ function draw() {
 						関数を使用します。これらは、アニメーション名をキー、スプライトシートアトラスを値とするオブジェクトを受け入れます。</p>
 					<p>アトラスオブジェクトを使用する方が、各フレームの座標を手動で指定するよりも簡単です！</p>
 					<p>アトラスオブジェクトには、次のプロパティがあります。</p>
-					<p>
-						<code>x</code>、<code>y</code>、<code>pos</code>、<code>w</code>/<code>width</code>、<code>h</code>/<code>height</code>、<code>size</code>/<code>frameSize</code>、<code>row</code>、<code>col</code>、<code>frames</code>/<code>frameCount</code>、<code>delay</code>/<code>frameDelay</code>、および
-						<code>rotation</code>。
-					</p>
+					<p><code>x</code>、<code>y</code>、<code>pos</code>、<code>w</code>/<code>width</code>、<code>h</code>/<code>height</code>、<code>size</code>/<code>frameSize</code>、<code>row</code>、<code>col</code>、<code>frames</code>/<code>frameCount</code>、<code>delay</code>/<code>frameDelay</code>、および
+						<code>rotation</code>。</p>
 					<p>「ヒーロー」の例では、ヒーロースプライトのサイズが<code>Sprite</code> コンストラクタ内で 32x32
 						ピクセルに設定されています。そのサイズは与えられた行の値に対する乗数として使用されます。</p>
-					<p>このリンクをクリックして、例で使用される <a href="assets/questKid.png">questKid</a> スプライトシート全体を確認してください。</p>
+					<p>このリンクをクリックして、例で使用される <a href="assets/questKid.png" target="_blank">questKid</a>
+						スプライトシート全体を確認してください。</p>
 					<p>p5play の素晴らしさを本当に評価したい場合は、私の例のコードを<a
-							href="https://labs.phaser.io/view.html?src=src/animation/create%20animation%20from%20sprite%20sheet.js">この
-							Phaser デモ</a>と比較してみてください。ハ！</p>
+							href="https://labs.phaser.io/view.html?src=src/animation/create%20animation%20from%20sprite%20sheet.js"
+							target="_blank">この Phaser デモ</a>と比較してみてください。ハ！</p>
 					<p>アニメーション内の各フレームを同じサイズにし、左から右の順に配置することをおすすめします。そうでない場合は、アトラスオブジェクトの代わりに座標の配列を使用して各フレームの位置を手動で指定する必要があります。
 					</p>
 				</md>
@@ -410,31 +408,31 @@ if (hero.ani.name != 'jump' && hero.ani.name != 'roll') {
 
 		<div class="break"></div>
 		<div id="toc">
-			<a id="prevPage" class="navLink">前のページ</a>
+			<a id="prevPage" class="navLink">前へ</a>
 			<div id="pageNav" class="submenu">
 				<a data-page="0" href="animation.html?page=0">アニメーションのロード</a>
-				<a data-page="1" href="animation.html?page=1">アニメーションコントロール</a>
+				<a data-page="1" href="animation.html?page=1">アニメーションの制御</a>
 				<a data-page="2" href="animation.html?page=2">アニメーション付きスプライト</a>
 				<a data-page="3" href="animation.html?page=3">アニメーション付きグループ</a>
-				<a data-page="4" href="animation.html?page=4">複数のアニメーションを持つスプライトシート</a>
-				<a data-page="5" href="animation.html?page=5">シーケンス化</a>
-				<a data-page="6" href="animation.html?page=6">高度なシーケンス化</a>
+				<a data-page="4" href="animation.html?page=4">ひとつのスプライトシートに複数のアニメーションを定義</a>
+				<a data-page="5" href="animation.html?page=5">シーケンシャルなアニメーション定義</a>
+				<a data-page="6" href="animation.html?page=6">複雑でシーケンシャルなアニメーション定義</a>
 			</div>
-			<a id="nextPage" class="navLink">次のページ</a>
+			<a id="nextPage" class="navLink">次へ</a>
 		</div>
 		<div class="break"></div>
-		<footer id="credits" class="text-small">クリントン・アシュリー（@quinton-ashley）によって作成されました 著作権 2022-2024</footer>
+		<footer id="credits" class="text-small">制作・著作: クイントン・アシュリー（@quinton-ashley） ©2022-2024</footer>
 	</article>
 
 	<script src="/v3/q5.min.js"></script>
-	<script src="/v3/planck.min.js"></script>
-	<script src="/v3/p5play.min.js"></script>
-	<script>
-		window.mie = { autoLoad: false };
+<script src="/v3/planck.min.js"></script>
+<script src="/v3/p5play.min.js"></script>
+<script>
+window.mie = { autoLoad: false };
 
 	</script>
 	<script src="/learn/mie.js"></script>
-	<script src="/learn/learn.js"></script>
+<script src="/learn/learn.js"></script>
 </body>
 
 </html>

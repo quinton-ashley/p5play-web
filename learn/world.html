@@ -106,7 +106,7 @@ function draw() {
 					<p>Set <code>world.autoStep = false</code> to disable automatic stepping, in effect pausing time!
 						Then you can call <code>world.step</code> manually when you want to progress the physics
 						simulation. Only run it after all sprites have been drawn.</p>
-					<p>This mini example shows how a time step can be provided as an input parameter, but note that the
+					<p>This code example shows how a time step can be provided as an input parameter, but note that the
 						Box2D physics engine solver is only stable up to a time step of 1/30th of a second. If you want
 						to advance the simulation by a larger amount of time, call <code>world.step</code> multiple
 						times.</p>
@@ -153,8 +153,7 @@ function draw() {
 					canvas using <code>canvas.get</code>.</p>
 				<p>By default the Box2D physics engine performs 8 velocity and 3 position iterations on each
 					<code>world.step</code>. Decreasing these values will make the simulation faster but also less
-					accurate.
-				</p>
+					accurate.</p>
 				<p>I've tested p5play in every web browser and found that Google Chrome performs the best.</p>
 			</md>
 			<script type="mie/p5" id="renderStats">
@@ -199,14 +198,14 @@ function draw() {
 	</article>
 
 	<script src="/v3/q5.min.js"></script>
-	<script src="/v3/planck.min.js"></script>
-	<script src="/v3/p5play.min.js"></script>
-	<script>
-		window.mie = { autoLoad: false };
+<script src="/v3/planck.min.js"></script>
+<script src="/v3/p5play.min.js"></script>
+<script>
+window.mie = { autoLoad: false };
 
 	</script>
 	<script src="/learn/mie.js"></script>
-	<script src="/learn/learn.js"></script>
+<script src="/learn/learn.js"></script>
 </body>
 
 </html>

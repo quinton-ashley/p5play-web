@@ -2,7 +2,7 @@
 
 ## Learn
 
-These "Learn" reference pages provide interactive mini examples for p5play's most important features.
+These "Learn" reference pages provide interactive code examples for p5play's most important features.
 
 # 0-1
 

@@ -18,11 +18,11 @@ Video game developers use the word "sprite" to refer to characters, items, or an
 
 The `new Sprite()` constructor creates a sprite object, which contains variables that define a sprite’s position, size, and appearance.
 
-Try editing the properties of the box and circle sprites in the mini examples below!
+Try editing the properties of the box and circle sprites in the code examples below!
 
 # 0-2
 
-## Try it out!
+## Try it!
 
 Try turning the sprite named `ball` into a blue circle with a diameter of 30 and place it at the top right corner of the canvas.
 
@@ -41,11 +41,11 @@ type to `'none'` makes it have no collider.
 
 The collider type can also be set using the first letter of the collider type name: `'d'`, `'s'`, `'k'`, or `'n'`.
 
-Click the reload icon on the top right corner of a mini example to replay it!
+Click the reload icon on the top right corner of a code example to replay it!
 
 # 1-1
 
-## Try it out!
+## Try it!
 
 Try creating a sprite named `peg` with a static collider and circle shape. Create a sprite `block` with a dynamic collider and box shape. Position the block so that it hits the peg and falls to the right.
 
@@ -75,7 +75,7 @@ The second input parameter to the `spriteArt` function is the scale of the image
 
 # 2-2
 
-## Try it out!
+## Try it!
 
 Try making your own pixel art! Take a look at the alphabet below to see what color each letter represents by default.
 
@@ -95,7 +95,7 @@ The easiest way to find colors is to use a [color picker](https://www.google.com
 
 Moving a sprite by directly editing its (x, y) coordinates will teleport it to the new position, without moving it through intermediate positions.
 
-Try clicking around this mini example.
+Try clicking around this code example.
 
 # 3-1
 
@@ -153,7 +153,7 @@ By default, if no inputs are given to the Sprite constructor, a new sprite is po
 
 # 4-1
 
-## Try it out!
+## Try it!
 
 Try creating two sprites using the sprite constructor.
 
@@ -200,7 +200,7 @@ The `remove` function deletes a sprite.
 
 # 6-3
 
-## Try it out!
+## Try it!
 
 Try making the blue sprite change to red only if it's overlapping with the red sprite.
 
@@ -264,7 +264,7 @@ Press "x" or "y" to scale the sprite in that direction by a random amount. But n
 
 ## Physical attributes
 
-Sprites have physical attributes that affect how they interact with the world. Take a look at the mini examples to see these attributes in action.
+Sprites have physical attributes that affect how they interact with the world. Take a look at the code examples to see these attributes in action.
 
 # 9-1
 
@@ -276,9 +276,9 @@ But in the real world, stretching or squishing an object doesn't change its mass
 
 # 9-2
 
-## Try it out!
+## Try it!
 
-This mini example shows how sprites of different sizes can balance on a seesaw if their mass is set to the same value. Try changing the mass of one of the sprites.
+This code example shows how sprites of different sizes can balance on a seesaw if their mass is set to the same value. Try changing the mass of one of the sprites.
 
 # 9-3
 
@@ -286,7 +286,7 @@ This mini example shows how sprites of different sizes can balance on a seesaw i
 
 p5play uses planck.js, a JS port of the Box2D physics engine. It generates realistic looking interactions at a good rate of performance, but it also has some limitations you should be aware of.
 
-In this mini example the ball has a `bounciness` of 1, so each time the ball bounces it should return to its starting position. However, due to a bug in planck, the ball bounces incrementally higher each time it hits the ground.
+In this code example the ball has a `bounciness` of 1, so each time the ball bounces it should return to its starting position. However, due to a bug in planck, the ball bounces incrementally higher each time it hits the ground.
 
 # 9-4
 
@@ -348,9 +348,9 @@ In this example, the robot rolls slower going uphill than it does going downhill
 
 There are three different chain modes: vertex, distance, and line.
 
-To use vertex mode, provide the Sprite constructor with an array of vertex arrays. Each vertex array should contain \[x, y\] coordinates. In these mini examples the sprite's (x, y) position is highlighted by a small black square.
+To use vertex mode, provide the Sprite constructor with an array of vertex arrays. Each vertex array should contain \[x, y\] coordinates. In these code examples the sprite's (x, y) position is highlighted by a small black square.
 
-Try changing the vertexes of the chain sprite in the mini example to make the ball stay on the floor!
+Try changing the vertexes of the chain sprite in the code example to make the ball stay on the floor!
 
 # 11-1
 
@@ -440,7 +440,7 @@ Fortunately, you can customize the sprite's `draw` function to make it display a
 
 Note that inside the sprite's draw function the center of the sprite is translated to position (0, 0).
 
-This mini example rotates the sprite's ellipse to the direction it's moving and makes the ellipse stretch in that direction proportional to its speed. Kind of complicated!
+This code example rotates the sprite's ellipse to the direction it's moving and makes the ellipse stretch in that direction proportional to its speed. Kind of complicated!
 
 # 14-1
 

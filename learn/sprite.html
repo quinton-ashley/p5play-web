@@ -62,7 +62,7 @@ function draw() {
 					moves above a background.</p>
 				<p>The <code>new Sprite()</code> constructor creates a sprite object, which contains variables that
 					define a sprite’s position, size, and appearance.</p>
-				<p>Try editing the properties of the box and circle sprites in the mini examples below!</p>
+				<p>Try editing the properties of the box and circle sprites in the code examples below!</p>
 			</md>
 			<div class="minis horiz">
 				<script type="mie/p5" id="box" base-0="" horiz="" lines="9">
@@ -129,7 +129,7 @@ sprite.text = "p5";
 			<div class="break"></div>
 			<div class="minis horiz">
 				<md id="md0-2">
-					<h2 id="try-it-out">Try it out!</h2>
+					<h2 id="try-it">Try it!</h2>
 					<p>Try turning the sprite named <code>ball</code> into a blue circle with a diameter of 30 and place
 						it at the top right corner of the canvas.</p>
 				</md>
@@ -178,7 +178,7 @@ function draw() {
 					type to <code>'none'</code> makes it have no collider.</p>
 				<p>The collider type can also be set using the first letter of the collider type name: <code>'d'</code>,
 					<code>'s'</code>, <code>'k'</code>, or <code>'n'</code>.</p>
-				<p>Click the reload icon on the top right corner of a mini example to replay it!</p>
+				<p>Click the reload icon on the top right corner of a code example to replay it!</p>
 			</md>
 			<script type="mie/p5" id="dynamic-and-static-colliders" base-2="" horiz="" lines="16">
 let ball, floor;
@@ -223,7 +223,7 @@ floor.collider = 'none';
 			<div class="break"></div>
 			<div class="minis horiz">
 				<md id="md1-1">
-					<h2 id="try-it-out">Try it out!</h2>
+					<h2 id="try-it">Try it!</h2>
 					<p>Try creating a sprite named <code>peg</code> with a static collider and circle shape. Create a
 						sprite <code>block</code> with a dynamic collider and box shape. Position the block so that it
 						hits the peg and falls to the right.</p>
@@ -312,7 +312,7 @@ function draw() {
 					<p>The second input parameter to the <code>spriteArt</code> function is the scale of the image.</p>
 				</md>
 				<md id="md2-2">
-					<h2 id="try-it-out">Try it out!</h2>
+					<h2 id="try-it">Try it!</h2>
 					<p>Try making your own pixel art! Take a look at the alphabet below to see what color each letter
 						represents by default.</p>
 				</md>
@@ -423,7 +423,7 @@ function draw() {
 				<h2 id="sprite-movement">Sprite movement</h2>
 				<p>Moving a sprite by directly editing its (x, y) coordinates will teleport it to the new position,
 					without moving it through intermediate positions.</p>
-				<p>Try clicking around this mini example.</p>
+				<p>Try clicking around this code example.</p>
 			</md>
 			<script type="mie/p5" id="teleport" base="3">
 if (mouse.presses()) {
@@ -578,7 +578,7 @@ function draw() {
 			</div>
 			<div class="break"></div>
 			<md id="md4-1">
-				<h2 id="try-it-out">Try it out!</h2>
+				<h2 id="try-it">Try it!</h2>
 				<p>Try creating two sprites using the sprite constructor.</p>
 			</md>
 			<script type="mie/p5" id="Level-4-Challenge" lines="13" horiz="">
@@ -731,7 +731,7 @@ function draw() {
 			</script>
 			<div class="break"></div>
 			<md id="md6-3">
-				<h2 id="try-it-out">Try it out!</h2>
+				<h2 id="try-it">Try it!</h2>
 				<p>Try making the blue sprite change to red only if it's overlapping with the red sprite.</p>
 			</md>
 			<script type="mie/p5" id="Level-6-Challenge" lines="20" horiz="">
@@ -937,7 +937,7 @@ function draw() {
 			<md id="md9-0">
 				<h2 id="physical-attributes">Physical attributes</h2>
 				<p>Sprites have physical attributes that affect how they interact with the world. Take a look at the
-					mini examples to see these attributes in action.</p>
+					code examples to see these attributes in action.</p>
 			</md>
 			<script type="mie/p5" base-6="" hide="">
 let sprite, floor;
@@ -1012,8 +1012,8 @@ sprite.rotationLock =true
 						changing its size, use the <code>resetMass</code> function.</p>
 				</md>
 				<md id="md9-2">
-					<h2 id="try-it-out">Try it out!</h2>
-					<p>This mini example shows how sprites of different sizes can balance on a seesaw if their mass is
+					<h2 id="try-it">Try it!</h2>
+					<p>This code example shows how sprites of different sizes can balance on a seesaw if their mass is
 						set to the same value. Try changing the mass of one of the sprites.</p>
 				</md>
 			</div>
@@ -1044,7 +1044,7 @@ function draw() {
 				<p>p5play uses planck.js, a JS port of the Box2D physics engine. It generates realistic looking
 					interactions at a good rate of performance, but it also has some limitations you should be aware of.
 				</p>
-				<p>In this mini example the ball has a <code>bounciness</code> of 1, so each time the ball bounces it
+				<p>In this code example the ball has a <code>bounciness</code> of 1, so each time the ball bounces it
 					should return to its starting position. However, due to a bug in planck, the ball bounces
 					incrementally higher each time it hits the ground.</p>
 			</md>
@@ -1255,9 +1255,9 @@ function draw() {
 				<h2 id="chain-colliders">Chain Colliders</h2>
 				<p>There are three different chain modes: vertex, distance, and line.</p>
 				<p>To use vertex mode, provide the Sprite constructor with an array of vertex arrays. Each vertex array
-					should contain [x, y] coordinates. In these mini examples the sprite's (x, y) position is
+					should contain [x, y] coordinates. In these code examples the sprite's (x, y) position is
 					highlighted by a small black square.</p>
-				<p>Try changing the vertexes of the chain sprite in the mini example to make the ball stay on the floor!
+				<p>Try changing the vertexes of the chain sprite in the code example to make the ball stay on the floor!
 				</p>
 			</md>
 			<script type="mie/p5" id="vertex-mode" lines="12">
@@ -1532,7 +1532,7 @@ function draw() {
 						anything you want!</p>
 					<p>Note that inside the sprite's draw function the center of the sprite is translated to position
 						(0, 0).</p>
-					<p>This mini example rotates the sprite's ellipse to the direction it's moving and makes the ellipse
+					<p>This code example rotates the sprite's ellipse to the direction it's moving and makes the ellipse
 						stretch in that direction proportional to its speed. Kind of complicated!</p>
 				</md>
 				<md id="md14-1">

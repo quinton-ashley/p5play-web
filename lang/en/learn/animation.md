@@ -6,21 +6,21 @@ An animation is a series of images that are displayed one after the other at a f
 
 The `loadAni` function has three different modes: sequence, list, and sprite sheet.
 
-In this mini example, the cloud breathing animation is loaded using a numbered sequence of images given the path to the first image and the index of the last image in the sequence.
+In this code example, the cloud breathing animation is loaded using a numbered sequence of images given the path to the first image and the index of the last image in the sequence.
 
 The `animation` function is similar to the p5.js `image` function. Use it in the p5.js draw function to display an animation at a position.
 
 # 0-1
 
-In this mini example the `loadAnimation` function is given a list of images.
+In this code example the `loadAnimation` function is given a list of images.
 
 The `ani.frameDelay` property defines how many frames an image in the animation is displayed before the next image is displayed. The default is 4. Higher values make the animation play slower. A frame delay of 1 would make the animation play as fast as possible.
 
-Try it out! Try changing the frameDelay in this mini-example.
+Try it! Try changing the frameDelay in this mini-example.
 
 # 0-2
 
-This mini example loads an animation from a sprite sheet, which is a single image that contains all the frames of an animation. Take a look at the sprite sheet in this sketch which is displayed just so you can see what one looks like.
+This code example loads an animation from a sprite sheet, which is a single image that contains all the frames of an animation. Take a look at the sprite sheet in this sketch which is displayed just so you can see what one looks like.
 
 In sprite sheet mode, an atlas object can be used to specify the size of each frame and how many frames of animation there are.
 

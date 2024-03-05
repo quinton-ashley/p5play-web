@@ -36,7 +36,7 @@ The `world.step` function calculates the positions and velocities of all sprites
 
 Set `world.autoStep = false` to disable automatic stepping, in effect pausing time! Then you can call `world.step` manually when you want to progress the physics simulation. Only run it after all sprites have been drawn.
 
-This mini example shows how a time step can be provided as an input parameter, but note that the Box2D physics engine solver is only stable up to a time step of 1/30th of a second. If you want to advance the simulation by a larger amount of time, call `world.step` multiple times.
+This code example shows how a time step can be provided as an input parameter, but note that the Box2D physics engine solver is only stable up to a time step of 1/30th of a second. If you want to advance the simulation by a larger amount of time, call `world.step` multiple times.
 
 # 2-0
 

@@ -6,7 +6,7 @@ In p5play a Group is a collection of and blueprint for sprites with similar trai
 
 The `group.length` property can be used to check how many sprites are in a group. In this example the while loop condition is true as long as the dots group has less than 24 sprites.
 
-In the mini example, `new dots.Sprite` creates a sprite that inherits the dots group's color, y position, and diameter. Each dot is assigned a unique x position.
+In the code example, `new dots.Sprite` creates a sprite that inherits the dots group's color, y position, and diameter. Each dot is assigned a unique x position.
 
 I call this "soft inheritance" because a group acts as a blueprint for new group sprites.
 
@@ -30,7 +30,7 @@ If you set a group property to an arrow `=>` function, each new sprite created u
 
 When `group.amount` is adjusted, the group will automatically create or remove sprites to match the set amount.
 
-In this mini example, each gem sprite is assigned a random position on the canvas.
+In this code example, each gem sprite is assigned a random position on the canvas.
 
 # 1-1
 
@@ -51,7 +51,7 @@ Collision and overlap functions aren't just for detecting events between two spr
 
 Instead of using these functions in `if` statements, you can provide them with a callback function as a second parameter. The callback function will run when the collision or overlap event occurs. The callback function receives, as inputs, two sprites.
 
-In this mini example the callback function receives the player sprite and the gem sprite in the gems group that the player overlaps. That gem gets collected (removed).
+In this code example the callback function receives the player sprite and the gem sprite in the gems group that the player overlaps. That gem gets collected (removed).
 
 # 3-0
 
@@ -71,7 +71,7 @@ Also when you add custom properties to a group, they will be inherited by new gr
 
 ## Sub Groups
 
-In this mini example there are two sub groups of the `boxes` group: `smallBoxes` and `bigBoxes`.
+In this code example there are two sub groups of the `boxes` group: `smallBoxes` and `bigBoxes`.
 
 New sprites created using the `bigBoxes` group will inherit traits from the `boxes` group but not from the `smallBoxes` groups.
 

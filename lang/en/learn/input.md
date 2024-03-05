@@ -78,7 +78,7 @@ The `contro` object (aka `controllers`) is an array that contains all the connec
 
 # 4-1
 
-Try it out! Connect a game controller and press any button on it for it to be detected by p5play.
+Try it! Connect a game controller and press any button on it for it to be detected by p5play.
 
 ➡️ [full demo](https://openprocessing.org/sketch/2120550)
 
