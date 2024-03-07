@@ -90,26 +90,11 @@ function draw() {
 			<div class="minis horiz">
 				<md id="md1-0">
 					<h2 id="controlling-time">Controlling Time</h2>
-					<p>By default, after each time the p5.js draw function is run, p5play calls three functions in this
-						order:</p>
-					<ul>
-						<li><code>allSprites.draw()</code> : draws all sprites</li>
-						<li><code>world.step()</code> : progresses the physics simulation</li>
-						<li><code>allSprites.update()</code> : updates animations and mouse events</li>
-					</ul>
-					<p>But you can also take manual control of these processes by calling them yourself.</p>
-				</md>
-				<md id="md1-1">
-					<h2 id="worldstep">world.step</h2>
-					<p>The <code>world.step</code> function calculates the positions and velocities of all sprites after
-						progressing the physics simulation by 1/60th of a second by default.</p>
-					<p>Set <code>world.autoStep = false</code> to disable automatic stepping, in effect pausing time!
-						Then you can call <code>world.step</code> manually when you want to progress the physics
-						simulation. Only run it after all sprites have been drawn.</p>
-					<p>This code example shows how a time step can be provided as an input parameter, but note that the
-						Box2D physics engine solver is only stable up to a time step of 1/30th of a second. If you want
-						to advance the simulation by a larger amount of time, call <code>world.step</code> multiple
-						times.</p>
+					<p>The <code>world.timeScale</code> ratio is set to 1 by default for real time physics simulation.
+						Set it lower for slow motion. Make it 0 to pause time!</p>
+					<p>Note that the Box2D physics engine solver is only stable up to a time scale of 2. If you want to
+						advance the simulation by a larger amount of time, run the <code>world.step</code> function
+						multiple times.</p>
 				</md>
 			</div>
 			<script type="mie/p5" id="world.step">
@@ -132,10 +117,10 @@ function setup() {
 function draw() {
 	if (mouse.pressing()) {
 		background(0, 0, 0, 30);
-		allSprites.draw();
-		world.step(1/240);
+		world.timeScale = 0.25;
 	} else {
 		background(0);
+		world.timeScale = 1;
 	}
 }
 			</script>
@@ -151,9 +136,10 @@ function draw() {
 				<p>Having less sprites and using a smaller canvas will make your game perform better. For better
 					performance, don't use the p5.js <code>clear</code> function or sample the colors of pixels in your
 					canvas using <code>canvas.get</code>.</p>
-				<p>By default the Box2D physics engine performs 8 velocity and 3 position iterations on each
-					<code>world.step</code>. Decreasing these values will make the simulation faster but also less
-					accurate.</p>
+				<p>By default the Box2D physics engine performs 8 velocity iterations
+					<code>world.velocityIterations</code> and 3 position iterations
+					<code>world.positionIterations</code>. Decreasing these values will make the simulation faster but
+					also less accurate.</p>
 				<p>I've tested p5play in every web browser and found that Google Chrome performs the best.</p>
 			</md>
 			<script type="mie/p5" id="renderStats">
@@ -162,7 +148,7 @@ function setup() {
 
 	for (let i = 0; i < 25; i++) {
 		let x = 430 - i * 20;
-		for (let j = 0; j < 12; j++) {
+		for (let j = 0; j < 20; j++) {
 			new Sprite(x + j * 10, 5 + i * 10, 9, 9);
 		}
 	}
@@ -170,15 +156,16 @@ function setup() {
 
 function draw() {
 	background(20);
+
+	renderStats();
+
+	world.velocityIterations = 8;
+	world.positionIterations = 3;
+
 	if (mouse.presses()) new Sprite(mouse.x, mouse.y, 25);
 	if (mouse.pressing()) {
 		allSprites.at(-1).moveTowards(mouse);
 	}
-	renderStats();
-	allSprites.draw();
-
-	// (timeStep, velocityIterations, positionIterations)
-	world.step(1 / 60, 8, 3);
 }
 			</script>
 		</div>

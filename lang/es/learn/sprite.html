@@ -841,7 +841,7 @@ sprite.rotationSpeed = 1;
 				<p>El segundo parámetro opcional es la velocidad a la que rota el sprite por fotograma.</p>
 			</md>
 			<script type="mie/p5" id="rotate" base="5">
-//                                 (angle, rotationSpeed)
+//                              (angle, rotationSpeed)
 if (kb.presses('space')) sprite.rotate(15, 3);
 			</script>
 			<md id="md7-3">
@@ -854,13 +854,13 @@ if (kb.presses('space')) sprite.rotate(15, 3);
 			</md>
 			<div class="minis horiz">
 				<script type="mie/p5" id="rotateTo-(an-angle)" base="5">
-//          (angle, rotationSpeed)
+//                               (angle, rotationSpeed)
 if (kb.presses('left')) sprite.rotateTo(-90, 5);
 if (kb.presses('right')) sprite.rotateTo(0, 5);
 				</script>
-				<script type="mie/p5" id="rotateTo-(face-a-position)" base="8">
-//                                (pos, speed, facing)
-if (mouse.presses()) sprite.rotateTo(mouse, 5, 0);
+				<script type="mie/p5" id="rotateMinTo-(face-a-position)" base="8">
+//                              (pos, speed, facing)
+if (mouse.presses()) sprite.rotateMinTo(mouse, 5, 0);
 				</script>
 			</div>
 			<md id="md7-4">
@@ -1499,7 +1499,7 @@ function draw() {
 		flipper.rotateTo(20, 8);
 	}
 	if (mouse.released()) {
-		flipper.rotateTo(-20, 8);
+		flipper.rotateTo(-20, -8);
 	}
 	if (frameCount % 100 == 0) {
 		ball.life = 200;
@@ -1676,11 +1676,11 @@ if (distance > 40) {
 				<a data-page="8" href="sprite.html?page=8">Escalado</a>
 				<a data-page="9" href="sprite.html?page=9">Atributos Físicos</a>
 				<a data-page="10" href="sprite.html?page=10">Movimiento Avanzada</a>
-				<a class="adv" data-page="11" href="sprite.html?page=11">Cadenas</a>
-				<a class="adv" data-page="12" href="sprite.html?page=12">Polígonos</a>
-				<a class="adv" data-page="13" href="sprite.html?page=13">Combos de Colisionadores</a>
-				<a class="adv" data-page="14" href="sprite.html?page=14">Dibujo Personalizado</a>
-				<a class="adv" data-page="15" href="sprite.html?page=15">Secuenciación de Movimiento</a>
+				<a data-page="11" href="sprite.html?page=11">Cadenas</a>
+				<a data-page="12" href="sprite.html?page=12">Polígonos</a>
+				<a data-page="13" href="sprite.html?page=13">Combos de Colisionadores</a>
+				<a data-page="14" href="sprite.html?page=14">Dibujo Personalizado</a>
+				<a data-page="15" href="sprite.html?page=15">Secuenciación de Movimiento</a>
 			</div>
 			<a id="nextPage" class="navLink">Siguiente página</a>
 		</div>

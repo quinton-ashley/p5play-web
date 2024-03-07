@@ -797,23 +797,24 @@ sprite.rotationSpeed = 1;
 				<p>オプションの 2 つ目のパラメータは、スプライトがフレームごとに回転する速度です。</p>
 			</md>
 			<script type="mie/p5" id="rotate" base="5">
-//                                 (angle, rotationSpeed)
+//                              (angle, rotationSpeed)
 if (kb.presses('space')) sprite.rotate(15, 3);
 			</script>
 			<md id="md7-3">
-				<p><code>rotateTo</code> 関数を使用して、スプライト指定した角度に回転させます。回転速度はオプションの 2 つ目のパラメータとして与えることができます。</p>
-				<p>また、この関数に x, y 座標を持つオブジェクトが与えられた場合、スプライトはその位置に向かって回転します。"facing"角度は、スプライトが目標位置に対面する際の角度です。これを 0 から 90
-					に変更してみてください。クリックすると、スプライトの長辺がマウスに向かって回転します。</p>
+				<p><code>rotateTo</code> 関数を使用して、スプライトを角度に回転させるか、位置に向かせます。<code>rotateMinTo</code>
+					関数は、必要に応じてスプライトの回転速度の符号を変更し、スプライトが目的の角度に向かうための最小角度を回転させます。オプションの第三パラメーターである "facing"
+					角度は、スプライトがターゲットの位置を向いたときにあるべき角度です。</p>
+				<p>コード例で facing 角度を 0 から 90 に変更してみてください。その後、クリックすると、スプライトの長い側がマウスを向くように回転します。</p>
 			</md>
 			<div class="minis horiz">
 				<script type="mie/p5" id="rotateTo-(an-angle)" base="5">
-//          (angle, rotationSpeed)
+//                               (angle, rotationSpeed)
 if (kb.presses('left')) sprite.rotateTo(-90, 5);
 if (kb.presses('right')) sprite.rotateTo(0, 5);
 				</script>
-				<script type="mie/p5" id="rotateTo-(face-a-position)" base="8">
-//                                (pos, speed, facing)
-if (mouse.presses()) sprite.rotateTo(mouse, 5, 0);
+				<script type="mie/p5" id="rotateMinTo-(face-a-position)" base="8">
+//                              (pos, speed, facing)
+if (mouse.presses()) sprite.rotateMinTo(mouse, 5, 0);
 				</script>
 			</div>
 			<md id="md7-4">
@@ -1424,7 +1425,7 @@ function draw() {
 		flipper.rotateTo(20, 8);
 	}
 	if (mouse.released()) {
-		flipper.rotateTo(-20, 8);
+		flipper.rotateTo(-20, -8);
 	}
 	if (frameCount % 100 == 0) {
 		ball.life = 200;
@@ -1582,11 +1583,11 @@ if (distance > 40) {
 				<a data-page="8" href="sprite.html?page=8">拡大縮小</a>
 				<a data-page="9" href="sprite.html?page=9">物理挙動の属性</a>
 				<a data-page="10" href="sprite.html?page=10">高度な移動</a>
-				<a class="adv" data-page="11" href="sprite.html?page=11">チェインコライダー</a>
-				<a class="adv" data-page="12" href="sprite.html?page=12">ポリゴンコライダー</a>
-				<a class="adv" data-page="13" href="sprite.html?page=13">コンボコライダー</a>
-				<a class="adv" data-page="14" href="sprite.html?page=14">カスタム描画</a>
-				<a class="adv" data-page="15" href="sprite.html?page=15">シーケンシャルな移動</a>
+				<a data-page="11" href="sprite.html?page=11">チェインコライダー</a>
+				<a data-page="12" href="sprite.html?page=12">ポリゴンコライダー</a>
+				<a data-page="13" href="sprite.html?page=13">コンボコライダー</a>
+				<a data-page="14" href="sprite.html?page=14">カスタム描画</a>
+				<a data-page="15" href="sprite.html?page=15">シーケンシャルな移動</a>
 			</div>
 			<a id="nextPage" class="navLink">次へ</a>
 		</div>

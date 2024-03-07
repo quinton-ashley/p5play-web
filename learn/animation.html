@@ -296,7 +296,7 @@ function preload() {
 		jump: { row: 1, frames: 6 },
 		roll: { row: 2, frames: 5 },
 		turn: { row: 3, frames: 7 },
-		stand: { row: 3, frames: 1 }
+		stand: { row: 3 }
 	});
 	hero.changeAni('run');
 
@@ -332,7 +332,7 @@ function preload() {
 		jump: { row: 1, frames: 6 },
 		roll: { row: 2, frames: 5, frameDelay: 14 },
 		turn: { row: 3, frames: 7 },
-		stand: { row: 3, frames: 1 }
+		stand: { row: 3 }
 	});
 	hero.changeAni('run');
 }
@@ -369,7 +369,7 @@ let hero, floor;
 
 function preload() {
 	hero = new Sprite(62, 24, 32, 32);
-	hero.spriteSheet = '../learn/assets/questKid.png';
+	hero.spriteSheet = 'assets/questKid.png';
 	hero.anis.offset.x = 2;
 	hero.anis.offset.y = 2;
 	hero.anis.frameDelay = 8;
@@ -379,7 +379,7 @@ function preload() {
 		jump: { row: 1, frames: 6 },
 		roll: { row: 2, frames: 5, frameDelay: 14 },
 		turn: { row: 3, frames: 7 },
-		stand: { row: 3, frames: 1 }
+		stand: { row: 3 }
 	});
 	hero.changeAni('stand');
 }
@@ -412,7 +412,7 @@ if (hero.ani.name != 'jump' && hero.ani.name != 'roll') {
 	} else if (kb.pressing('right')) {
 		hero.changeAni('run');
 		hero.mirror.x = false;
-	} else {
+	} else if (hero.ani.name != 'stand') {
 		hero.changeAni('stand');
 	}
 }
@@ -422,8 +422,10 @@ if (hero.ani.name != 'jump' && hero.ani.name != 'roll') {
 			<md id="md6-0">
 				<h2 id="advanced-animation-sequencing">Advanced Animation Sequencing</h2>
 				<p><code>sprite.changeAni</code> is an async function, you can use it to wait for animations to finish
-					playing.</p>
-				<p>Example coming soon!</p>
+					playing. It's particularly useful for scripted animation sequences for NPCs. It could also be used
+					when the player character is idling (not moving), they could sit down and eventually fall asleep.
+				</p>
+				<p>Code example coming soon!</p>
 			</md>
 		</div>
 

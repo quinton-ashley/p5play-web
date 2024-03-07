@@ -20,23 +20,9 @@ You can wake up a sleeping sprite by setting `sprite.sleeping` to false. You can
 
 ## Controlling Time
 
-By default, after each time the p5.js draw function is run, p5play calls three functions in this order:
+The `world.timeScale` ratio is set to 1 by default for real time physics simulation. Set it lower for slow motion. Make it 0 to pause time!
 
-- `allSprites.draw()` : draws all sprites
-- `world.step()` : progresses the physics simulation
-- `allSprites.update()` : updates animations and mouse events
-
-But you can also take manual control of these processes by calling them yourself.
-
-# 1-1
-
-## world.step
-
-The `world.step` function calculates the positions and velocities of all sprites after progressing the physics simulation by 1/60th of a second by default.
-
-Set `world.autoStep = false` to disable automatic stepping, in effect pausing time! Then you can call `world.step` manually when you want to progress the physics simulation. Only run it after all sprites have been drawn.
-
-This code example shows how a time step can be provided as an input parameter, but note that the Box2D physics engine solver is only stable up to a time step of 1/30th of a second. If you want to advance the simulation by a larger amount of time, call `world.step` multiple times.
+Note that the Box2D physics engine solver is only stable up to a time scale of 2. If you want to advance the simulation by a larger amount of time, run the `world.step` function multiple times.
 
 # 2-0
 
@@ -48,6 +34,6 @@ FPS in this context refers to how many frames per second your computer can gener
 
 Having less sprites and using a smaller canvas will make your game perform better. For better performance, don't use the p5.js `clear` function or sample the colors of pixels in your canvas using `canvas.get`.
 
-By default the Box2D physics engine performs 8 velocity and 3 position iterations on each `world.step`. Decreasing these values will make the simulation faster but also less accurate.
+By default the Box2D physics engine performs 8 velocity iterations `world.velocityIterations` and 3 position iterations `world.positionIterations`. Decreasing these values will make the simulation faster but also less accurate.
 
 I've tested p5play in every web browser and found that Google Chrome performs the best.

@@ -837,29 +837,30 @@ sprite.rotationSpeed = 1;
 			</script>
 			<md id="md7-2">
 				<p>Use the <code>rotate</code> function to rotate a sprite by an amount.</p>
-				<p>The optional second parameter is the speed at which the sprite rotates per frame.</p>
+				<p>Rotation speed can be defined separately or as an optional second parameter.</p>
 			</md>
 			<script type="mie/p5" id="rotate" base="5">
-//                                 (angle, rotationSpeed)
+//                              (angle, rotationSpeed)
 if (kb.presses('space')) sprite.rotate(15, 3);
 			</script>
 			<md id="md7-3">
-				<p>Use the <code>rotateTo</code> function to rotate a sprite to an angle. Rotation speed can be given as
-					an optional second parameter.</p>
-				<p>Alternatively, if the function is given an object with x, y coordinates, the sprite will rotate to
-					face that position. The "facing" angle is the angle that the sprite should be at when facing the
-					target position. Try changing it from 0 to 90. When you click, the long side of the sprite will
-					rotate to face the mouse.</p>
+				<p>Use la función <code>rotateTo</code> para rotar un sprite a un ángulo o para enfrentar una posición.
+					La función <code>rotateMinTo</code> cambia el signo de la velocidad de rotación del sprite si es
+					necesario para rotar el sprite la distancia angular mínima para enfrentar el ángulo de destino. El
+					ángulo de "facing", un tercer parámetro opcional, es el ángulo al que el sprite debería estar cuando
+					enfrenta la posición objetivo.</p>
+				<p>Intente cambiar el ángulo de enfrentamiento de 0 a 90 en el ejemplo de código. Luego, cuando haga
+					clic, el lado largo del sprite se rotará para enfrentar el ratón.</p>
 			</md>
 			<div class="minis horiz">
 				<script type="mie/p5" id="rotateTo-(an-angle)" base="5">
-//          (angle, rotationSpeed)
+//                               (angle, rotationSpeed)
 if (kb.presses('left')) sprite.rotateTo(-90, 5);
 if (kb.presses('right')) sprite.rotateTo(0, 5);
 				</script>
-				<script type="mie/p5" id="rotateTo-(face-a-position)" base="8">
-//                                (pos, speed, facing)
-if (mouse.presses()) sprite.rotateTo(mouse, 5, 0);
+				<script type="mie/p5" id="rotateMinTo-(face-a-position)" base="8">
+//                              (pos, speed, facing)
+if (mouse.presses()) sprite.rotateMinTo(mouse, 5, 0);
 				</script>
 			</div>
 			<md id="md7-4">
@@ -1512,7 +1513,7 @@ function draw() {
 		flipper.rotateTo(20, 8);
 	}
 	if (mouse.released()) {
-		flipper.rotateTo(-20, 8);
+		flipper.rotateTo(-20, -8);
 	}
 	if (frameCount % 100 == 0) {
 		ball.life = 200;
@@ -1683,11 +1684,11 @@ if (distance > 40) {
 				<a data-page="8" href="sprite.html?page=8">Scaling</a>
 				<a data-page="9" href="sprite.html?page=9">Physical Attributes</a>
 				<a data-page="10" href="sprite.html?page=10">Advanced Movement</a>
-				<a class="adv" data-page="11" href="sprite.html?page=11">Chains</a>
-				<a class="adv" data-page="12" href="sprite.html?page=12">Polygons</a>
-				<a class="adv" data-page="13" href="sprite.html?page=13">Combo Colliders</a>
-				<a class="adv" data-page="14" href="sprite.html?page=14">Custom Draw</a>
-				<a class="adv" data-page="15" href="sprite.html?page=15">Movement Sequencing</a>
+				<a data-page="11" href="sprite.html?page=11">Chains</a>
+				<a data-page="12" href="sprite.html?page=12">Polygons</a>
+				<a data-page="13" href="sprite.html?page=13">Combo Colliders</a>
+				<a data-page="14" href="sprite.html?page=14">Custom Draw</a>
+				<a data-page="15" href="sprite.html?page=15">Movement Sequencing</a>
 			</div>
 			<a id="nextPage" class="navLink">Next Page</a>
 		</div>
