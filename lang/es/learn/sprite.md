@@ -220,9 +220,9 @@ El segundo parámetro opcional es la velocidad a la que rota el sprite por fotog
 
 # 7-3
 
-Usa la función `rotateTo` para rotar un sprite a un ángulo. La velocidad de rotación se puede dar como un segundo parámetro opcional.
+Use la función `rotateTo` para rotar un sprite a un ángulo o para enfrentar una posición. La función `rotateMinTo` cambia el signo de la velocidad de rotación del sprite si es necesario para rotar el sprite la distancia angular mínima para enfrentar el ángulo de destino. El ángulo de "facing", un tercer parámetro opcional, es el ángulo al que el sprite debería estar cuando enfrenta la posición objetivo.
 
-Alternativamente, si a la función se le da un objeto con coordenadas x, y, el sprite girará para enfrentar esa posición. El ángulo "de frente" es el ángulo en el que debería estar el sprite cuando está enfrentando la posición objetivo. Intenta cambiarlo de 0 a 90. Cuando hagas clic, el lado largo del sprite girará para enfrentar el ratón.
+Intente cambiar el ángulo de enfrentamiento de 0 a 90 en el ejemplo de código. Luego, cuando haga clic, el lado largo del sprite se rotará para enfrentar el ratón.
 
 # 7-4
 

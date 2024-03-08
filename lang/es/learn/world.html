@@ -18,6 +18,7 @@
 			</a>
 			<hr>
 			<a href="canvas.html">Canvas</a>
+			<a href="sound.html">Sound</a>
 			<a href="tiles.html">Tiles</a>
 			<a href="world.html" class="active">World</a>
 			<hr>
@@ -45,8 +46,7 @@
 						a veces puede causar problemas.</p>
 					<p>Puedes despertar un sprite que duerme estableciendo <code>sprite.sleeping</code> en falso.
 						También puedes desactivar el dormir en base a cada sprite estableciendo
-						<code>sprite.allowSleeping</code> en falso.
-					</p>
+						<code>sprite.allowSleeping</code> en falso.</p>
 				</md>
 			</div>
 			<div class="minis horiz">
@@ -98,19 +98,6 @@ function draw() {
 					</ul>
 					<p>Pero también puedes tomar control manual de estos procesos llamándolos tú mismo.</p>
 				</md>
-				<md id="md1-1">
-					<h2 id="worldstep">world.step</h2>
-					<p>La función <code>world.step</code> calcula las posiciones y velocidades de todos los sprites
-						después de avanzar la simulación de física por 1/60 de segundo por defecto.</p>
-					<p>Establece <code>world.autoStep = false</code> para desactivar el avance automático, ¡lo que
-						efectivamente pausa el tiempo! Luego puedes llamar a <code>world.step</code> manualmente cuando
-						quieras avanzar la simulación de física. Solo ejecútalo después de que todos los sprites hayan
-						sido dibujados.</p>
-					<p>Este mini ejemplo muestra cómo un paso de tiempo puede ser proporcionado como un parámetro de
-						entrada, pero ten en cuenta que el solucionador del motor de física Box2D solo es estable hasta
-						un paso de tiempo de 1/30 de segundo. Si quieres avanzar la simulación por una cantidad de
-						tiempo mayor, llama a <code>world.step</code> varias veces.</p>
-				</md>
 			</div>
 			<script type="mie/p5" id="world.step">
 let ball, box;
@@ -132,10 +119,10 @@ function setup() {
 function draw() {
 	if (mouse.pressing()) {
 		background(0, 0, 0, 30);
-		allSprites.draw();
-		world.step(1/240);
+		world.timeScale = 0.25;
 	} else {
 		background(0);
+		world.timeScale = 1;
 	}
 }
 			</script>
@@ -162,7 +149,7 @@ function setup() {
 
 	for (let i = 0; i < 25; i++) {
 		let x = 430 - i * 20;
-		for (let j = 0; j < 12; j++) {
+		for (let j = 0; j < 20; j++) {
 			new Sprite(x + j * 10, 5 + i * 10, 9, 9);
 		}
 	}
@@ -170,11 +157,16 @@ function setup() {
 
 function draw() {
 	background(20);
+
+	renderStats();
+
+	world.velocityIterations = 8;
+	world.positionIterations = 3;
+
 	if (mouse.presses()) new Sprite(mouse.x, mouse.y, 25);
 	if (mouse.pressing()) {
 		allSprites.at(-1).moveTowards(mouse);
 	}
-	renderStats();
 }
 			</script>
 		</div>
@@ -195,14 +187,14 @@ function draw() {
 	</article>
 
 	<script src="/v3/q5.min.js"></script>
-	<script src="/v3/planck.min.js"></script>
-	<script src="/v3/p5play.min.js"></script>
-	<script>
-		window.mie = { autoLoad: false };
+<script src="/v3/planck.min.js"></script>
+<script src="/v3/p5play.min.js"></script>
+<script>
+window.mie = { autoLoad: false };
 
 	</script>
 	<script src="/learn/mie.js"></script>
-	<script src="/learn/learn.js"></script>
+<script src="/learn/learn.js"></script>
 </body>
 
 </html>

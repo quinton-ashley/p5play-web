@@ -232,9 +232,9 @@ Rotation speed can be defined separately or as an optional second parameter.
 
 # 7-3
 
-Use la función `rotateTo` para rotar un sprite a un ángulo o para enfrentar una posición. La función `rotateMinTo` cambia el signo de la velocidad de rotación del sprite si es necesario para rotar el sprite la distancia angular mínima para enfrentar el ángulo de destino. El ángulo de "facing", un tercer parámetro opcional, es el ángulo al que el sprite debería estar cuando enfrenta la posición objetivo.
+Use the `rotateTo` function to rotate a sprite to an angle or to face a position. The `rotateMinTo` function changes the sign of the sprite's rotation speed if needed to rotate the sprite the minimum angular distance to face the destination angle. The "facing" angle, an optional third parameter, is the angle that the sprite should be at when facing the target position.
 
-Intente cambiar el ángulo de enfrentamiento de 0 a 90 en el ejemplo de código. Luego, cuando haga clic, el lado largo del sprite se rotará para enfrentar el ratón.
+Try changing the facing angle from 0 to 90 in the code example. Then when you click, the long side of the sprite will rotate to face the mouse.
 
 # 7-4
 
