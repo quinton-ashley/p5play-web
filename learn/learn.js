@@ -75,7 +75,7 @@ async function start() {
 			'/learn/ace/mode-javascript.js',
 			'/learn/ace/theme-dracula.js',
 			'/learn/ace/theme-xcode.js',
-			// 'ace/ext-beautify.js',
+			'ace/ext-beautify.js',
 			'/learn/marked/marked.min.js'
 		]);
 	}
