@@ -38,7 +38,7 @@
 				<p>An animation is a series of images that are displayed one after the other at a fast enough rate to
 					give the appearance of motion.</p>
 				<p>The <code>loadAni</code> function has three different modes: sequence, list, and sprite sheet.</p>
-				<p>In this mini example, the cloud breathing animation is loaded using a numbered sequence of images
+				<p>In this code example, the cloud breathing animation is loaded using a numbered sequence of images
 					given the path to the first image and the index of the last image in the sequence.</p>
 				<p>The <code>animation</code> function is similar to the p5.js <code>image</code> function. Use it in
 					the p5.js draw function to display an animation at a position.</p>
@@ -58,11 +58,11 @@ function draw() {
 }
 			</script>
 			<md id="md0-1">
-				<p>In this mini example the <code>loadAnimation</code> function is given a list of images.</p>
+				<p>In this code example the <code>loadAnimation</code> function is given a list of images.</p>
 				<p>The <code>ani.frameDelay</code> property defines how many frames an image in the animation is
 					displayed before the next image is displayed. The default is 4. Higher values make the animation
 					play slower. A frame delay of 1 would make the animation play as fast as possible.</p>
-				<p>Try it out! Try changing the frameDelay in this mini-example.</p>
+				<p>Try it! Try changing the frameDelay in this mini-example.</p>
 			</md>
 			<script type="mie/p5" id="list-mode">
 let shapeShifterAni;
@@ -89,7 +89,7 @@ function draw() {
 }
 			</script>
 			<md id="md0-2">
-				<p>This mini example loads an animation from a sprite sheet, which is a single image that contains all
+				<p>This code example loads an animation from a sprite sheet, which is a single image that contains all
 					the frames of an animation. Take a look at the sprite sheet in this sketch which is displayed just
 					so you can see what one looks like.</p>
 				<p>In sprite sheet mode, an atlas object can be used to specify the size of each frame and how many
@@ -296,7 +296,7 @@ function preload() {
 		jump: { row: 1, frames: 6 },
 		roll: { row: 2, frames: 5 },
 		turn: { row: 3, frames: 7 },
-		stand: { row: 3, frames: 1 }
+		stand: { row: 3 }
 	});
 	hero.changeAni('run');
 
@@ -332,7 +332,7 @@ function preload() {
 		jump: { row: 1, frames: 6 },
 		roll: { row: 2, frames: 5, frameDelay: 14 },
 		turn: { row: 3, frames: 7 },
-		stand: { row: 3, frames: 1 }
+		stand: { row: 3 }
 	});
 	hero.changeAni('run');
 }
@@ -369,7 +369,7 @@ let hero, floor;
 
 function preload() {
 	hero = new Sprite(62, 24, 32, 32);
-	hero.spriteSheet = '../learn/assets/questKid.png';
+	hero.spriteSheet = 'assets/questKid.png';
 	hero.anis.offset.x = 2;
 	hero.anis.offset.y = 2;
 	hero.anis.frameDelay = 8;
@@ -379,7 +379,7 @@ function preload() {
 		jump: { row: 1, frames: 6 },
 		roll: { row: 2, frames: 5, frameDelay: 14 },
 		turn: { row: 3, frames: 7 },
-		stand: { row: 3, frames: 1 }
+		stand: { row: 3 }
 	});
 	hero.changeAni('stand');
 }
@@ -412,7 +412,7 @@ if (hero.ani.name != 'jump' && hero.ani.name != 'roll') {
 	} else if (kb.pressing('right')) {
 		hero.changeAni('run');
 		hero.mirror.x = false;
-	} else {
+	} else if (hero.ani.name != 'stand') {
 		hero.changeAni('stand');
 	}
 }
@@ -422,8 +422,10 @@ if (hero.ani.name != 'jump' && hero.ani.name != 'roll') {
 			<md id="md6-0">
 				<h2 id="advanced-animation-sequencing">Advanced Animation Sequencing</h2>
 				<p><code>sprite.changeAni</code> is an async function, you can use it to wait for animations to finish
-					playing.</p>
-				<p>Example coming soon!</p>
+					playing. It's particularly useful for scripted animation sequences for NPCs. It could also be used
+					when the player character is idling (not moving), they could sit down and eventually fall asleep.
+				</p>
+				<p>Code example coming soon!</p>
 			</md>
 		</div>
 

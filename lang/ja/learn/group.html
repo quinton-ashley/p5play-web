@@ -160,8 +160,7 @@ function draw() {
 				<p>衝突と重なりの関数は、2 つのスプライト間のイベントを検出するためだけでなく、スプライトとグループ、またはグループ間の衝突と重なりをチェックするためにも使用できます。使用できる関数は次のとおりです：
 				</p>
 				<p><code>collides</code>, <code>colliding</code>, <code>collided</code><br><code>overlaps</code>,
-					<code>overlapping</code>, <code>overlapped</code>
-				</p>
+					<code>overlapping</code>, <code>overlapped</code></p>
 				<p>これらの関数を <code>if</code> 文で使用する代わりに、コールバック関数を 2
 					番目のパラメータとして提供することもできます。衝突または重なりのイベントが発生したときにコールバック関数が実行されます。コールバック関数は、2 つのスプライトを入力として受け取ります。</p>
 				<p>このミニ例では、コールバック関数はプレイヤースプライトとプレイヤーが重なっている gems グループ内のジェムスプライトを受け取ります。そのジェムは収集され（削除され）ます。</p>
@@ -240,8 +239,7 @@ function draw() {
 			<md id="md5-0">
 				<h2 id="サブグループ">サブグループ</h2>
 				<p>このミニ例では、<code>boxes</code>グループの 2 つのサブグループ、<code>smallBoxes</code>と<code>bigBoxes</code>があります。</p>
-				<p>
-					<code>bigBoxes</code>グループを使用して作成された新しいスプライトは、<code>boxes</code>グループから特性を継承しますが、<code>smallBoxes</code>グループからは継承しません。
+				<p><code>bigBoxes</code>グループを使用して作成された新しいスプライトは、<code>boxes</code>グループから特性を継承しますが、<code>smallBoxes</code>グループからは継承しません。
 				</p>
 				<p><code>boxes</code>グループには、<code>smallBoxes</code>グループと<code>bigBoxes</code>グループのすべてのスプライトが含まれています。</p>
 				<p><code>group.removeAll</code>関数を使用して、グループからすべてのスプライトを削除することができます。</p>
@@ -284,8 +282,7 @@ function draw() {
 				<p>これを変更するには、<code>allSprites.autoCull =
 						false</code>を設定し、<code>group.cull</code>関数を使用して異なるカリング境界を設定します。物理コライダーを持たないスプライトさえカリングすることができます。
 				</p>
-				<p>
-					オプションの最後のパラメータは、スプライトがカリングされたときに呼び出されるコールバック関数を指定するために使用できます。カリングへのデフォルトの応答は、カリング境界を超えたスプライトを削除することですが、自分の関数を設定することで、他のことを行うことができます。コールバック関数は、カリングされたスプライトとそのフレームでカリングされたスプライトの合計数を受け取ります。この例では、1
+				<p>オプションの最後のパラメータは、スプライトがカリングされたときに呼び出されるコールバック関数を指定するために使用できます。カリングへのデフォルトの応答は、カリング境界を超えたスプライトを削除することですが、自分の関数を設定することで、他のことを行うことができます。コールバック関数は、カリングされたスプライトとそのフレームでカリングされたスプライトの合計数を受け取ります。この例では、1
 					フレームで 1 つ以上のボールがカリングされた場合、ボールの数が減ります。</p>
 			</md>
 			<script type="mie/p5" id="cull">
@@ -306,8 +303,7 @@ function draw() {
 			</script>
 			<md id="md6-1">
 				<h2 id="life">life</h2>
-				<p>
-					スプライトが存在する期間を制限する別の方法は、その<code>life</code>プロパティを設定することです。これはスプライトが存在するフレーム数です。スプライトの寿命が尽きると、それは削除されます。これは、発射体やフォースフィールドなどの一時的なオブジェクトを作成するのに便利です。
+				<p>スプライトが存在する期間を制限する別の方法は、その<code>life</code>プロパティを設定することです。これはスプライトが存在するフレーム数です。スプライトの寿命が尽きると、それは削除されます。これは、発射体やフォースフィールドなどの一時的なオブジェクトを作成するのに便利です。
 				</p>
 				<p>この小さなゲームを試してみてください！マウスをクリックしてビーチボールを作成し、水流で空中に保つようにしてみてください。</p>
 			</md>
@@ -344,10 +340,8 @@ function draw() {
 				</md>
 				<md id="md7-1">
 					<h2 id="update">Update</h2>
-					<p>
-						<code>group.update</code>関数は、グループ内のすべてのスプライトの<code>sprite.update</code>関数を実行します。自動更新を防ぐには、<code>autoUpdate</code>を
-						false に設定します。
-					</p>
+					<p><code>group.update</code>関数は、グループ内のすべてのスプライトの<code>sprite.update</code>関数を実行します。自動更新を防ぐには、<code>autoUpdate</code>を
+						false に設定します。</p>
 				</md>
 			</div>
 			<script type="mie/p5" id="draw-and-update">
@@ -373,33 +367,33 @@ function draw() {
 
 		<div class="break"></div>
 		<div id="toc">
-			<a id="prevPage" class="navLink">前のページ</a>
+			<a id="prevPage" class="navLink">前へ</a>
 			<div id="pageNav" class="submenu">
-				<a data-page="0" href="group.html?page=0">ソフトとダイナミック継承</a>
+				<a data-page="0" href="group.html?page=0">ソフトでダイナミックな継承</a>
 				<a data-page="1" href="group.html?page=1">アローセッター</a>
-				<a data-page="2" href="group.html?page=2">衝突と重なり</a>
+				<a data-page="2" href="group.html?page=2">コリジョンとオーバーラップ</a>
 				<a data-page="3" href="group.html?page=3">allSprites</a>
 				<a data-page="4" href="group.html?page=4">カスタムプロパティ</a>
 				<a data-page="5" href="group.html?page=5">サブグループ</a>
 				<a data-page="6" href="group.html?page=6">カリング</a>
 				<a data-page="7" href="group.html?page=7">描画と更新</a>
 			</div>
-			<a id="nextPage" class="navLink">次のページ</a>
+			<a id="nextPage" class="navLink">次へ</a>
 		</div>
 		<div class="break"></div>
-		<footer id="credits" class="text-small">クリントン・アシュリー（@quinton-ashley）によって作成されました 著作権 2022-2024</footer>
+		<footer id="credits" class="text-small">制作・著作: クイントン・アシュリー（@quinton-ashley） ©2022-2024</footer>
 	</article>
 
 	<!-- <script src="https://cdn.jsdelivr.net/npm/p5@1/lib/p5.js"></script> -->
-	<script src="/v3/q5.min.js"></script>
-	<script src="/v3/planck.min.js"></script>
-	<script src="/v3/p5play.min.js"></script>
-	<script>
-		window.mie = { autoLoad: false };
+<script src="/v3/q5.min.js"></script>
+<script src="/v3/planck.min.js"></script>
+<script src="/v3/p5play.min.js"></script>
+<script>
+window.mie = { autoLoad: false };
 
 	</script>
 	<script src="/learn/mie.js"></script>
-	<script src="/learn/learn.js"></script>
+<script src="/learn/learn.js"></script>
 </body>
 
 </html>

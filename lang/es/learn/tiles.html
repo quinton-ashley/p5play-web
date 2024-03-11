@@ -18,6 +18,7 @@
 			</a>
 			<hr>
 			<a href="canvas.html">Canvas</a>
+			<a href="sound.html">Sound</a>
 			<a href="tiles.html" class="active">Tiles</a>
 			<a href="world.html">World</a>
 			<hr>
@@ -32,9 +33,10 @@
 			<md id="md0-0">
 				<h2 id="azulejos">Azulejos</h2>
 				<p>Para el Super Mario Bros. original, el desarrollador principal, Shigeru Miyamoto, y el diseñador de
-					niveles, Takashi Tezuka, <a href="https://www.youtube.com/watch?v=DLoRd6_a1CI">utilizaron papel
-						cuadriculado para trazar los niveles</a> y luego tuvieron a su equipo de programadores
-					escribiendo las coordenadas de cada sprite en el juego. ¡Eso es mucho trabajo!</p>
+					niveles, Takashi Tezuka, <a href="https://www.youtube.com/watch?v=DLoRd6_a1CI"
+						target="_blank">utilizaron papel cuadriculado para trazar los niveles</a> y luego tuvieron a su
+					equipo de programadores escribiendo las coordenadas de cada sprite en el juego. ¡Eso es mucho
+					trabajo!</p>
 				<p>Afortunadamente para ti, en p5play el constructor <code>Tiles</code> puede hacer sprites en una
 					cuadrícula basándose en las posiciones de los caracteres en una cadena de texto!</p>
 				<p>El primer parámetro de entrada es una cadena de texto o un array de cadenas de texto, cada línea o
@@ -47,8 +49,7 @@
 				<p>Intenta editar el diseño de los ladrillos "P5".</p>
 				<p>Nota que los espacios " " o puntos "." se utilizan para indicar que no se deben hacer sprites en esa
 					posición en la cuadrícula de azulejos. En este ejemplo, el carácter "=" se utiliza para
-					<code>bricks</code>.
-				</p>
+					<code>bricks</code>.</p>
 			</md>
 			<script type="mie/p5" title="tiles" lines="29">
 let bricks, tilesGroup;
@@ -98,8 +99,7 @@ function draw() {
 				<p>Puedes cambiar el valor en píxeles de los valores de coordenadas para todos los sprites configurando
 					<code>allSprites.tileSize</code>. Por ejemplo, si el tamaño del azulejo es 8, entonces una posición
 					x/y de 1 representa 8 píxeles, 2 representa 16 píxeles, 3 representa 24 píxeles, etc. Nota que esta
-					configuración también afecta a cómo se especifican las coordenadas de animación.
-				</p>
+					configuración también afecta a cómo se especifican las coordenadas de animación.</p>
 				<p>En este mini-ejemplo las líneas de cuadrícula se dibujan solo como referencia visual.</p>
 				<p>También nota que simplemente utilizando la función <code>move</code> con la dirección "up" hace que
 					el jugador se mueva hacia arriba una distancia de 1 azulejo.</p>
@@ -111,12 +111,11 @@ function draw() {
 			</md>
 			<script type="mie/p5" id="group.tileSize">
 let player, blocks;
-let gridSize = 32;
 
 function setup() {
 	new Canvas(480, 192);
 
-	allSprites.tileSize = gridSize;
+	allSprites.tileSize = 32;
 	allSprites.rotationLock = true;
 
 	player = new Sprite(1, 1);
@@ -137,10 +136,9 @@ function setup() {
 }
 
 function draw() {
-	clear();
 	for (let i = 0; i < 15; i++) {
 		for (let j = 0; j < 6; j++) {
-			rect(i * gridSize, j * gridSize, gridSize, gridSize);
+			rect(i * 32, j * 32, 32, 32);
 		}
 	}
 
@@ -148,8 +146,6 @@ function draw() {
 	if (kb.presses('down')) player.move('down');
 	if (kb.presses('left')) player.move('left');
 	if (kb.presses('right')) player.move('right');
-
-	log(player.x, blocks[1].x);
 }
 			</script>
 		</div>
@@ -169,14 +165,14 @@ function draw() {
 	</article>
 
 	<script src="/v3/q5.min.js"></script>
-	<script src="/v3/planck.min.js"></script>
-	<script src="/v3/p5play.min.js"></script>
-	<script>
-		window.mie = { autoLoad: false };
+<script src="/v3/planck.min.js"></script>
+<script src="/v3/p5play.min.js"></script>
+<script>
+window.mie = { autoLoad: false };
 
 	</script>
 	<script src="/learn/mie.js"></script>
-	<script src="/learn/learn.js"></script>
+<script src="/learn/learn.js"></script>
 </body>
 
 </html>

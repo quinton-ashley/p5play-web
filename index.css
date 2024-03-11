@@ -77,6 +77,11 @@ video {
 	max-width: 460px;
 }
 
+#bigBrand,
+#bigInfo {
+	max-width: unset;
+}
+
 #page0 {
 	width: 96%;
 	padding: 0;

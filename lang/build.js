@@ -43,12 +43,12 @@ async function main() {
 }
 
 async function getPagesInDirectory(dir) {
-	let files = await fs.readdir('./' + dir);
+	let files = await fs.readdir(`./lang/${langCode}/${dir}`);
 	const fileNames = [];
 	for (const file of files) {
-		if (file.endsWith('.html')) {
+		if (file.endsWith('.md')) {
 			// removes the '.html' extension
-			fileNames.push(file.slice(0, -5));
+			fileNames.push(file.slice(0, -3));
 		}
 	}
 	return fileNames;

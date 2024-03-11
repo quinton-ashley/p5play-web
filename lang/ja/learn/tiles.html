@@ -18,6 +18,7 @@
 			</a>
 			<hr>
 			<a href="canvas.html">Canvas</a>
+			<a href="sound.html">Sound</a>
 			<a href="tiles.html" class="active">Tiles</a>
 			<a href="world.html">World</a>
 			<hr>
@@ -32,8 +33,8 @@
 			<md id="md0-0">
 				<h2 id="タイル">タイル</h2>
 				<p>オリジナルのスーパーマリオブラザーズのリードデベロッパーである宮本茂とレベルデザイナーの手塚卓志は、<a
-						href="https://www.youtube.com/watch?v=DLoRd6_a1CI">グラフ用紙を使用してレベルをプロットし</a>、ゲーム内のすべてのスプライトの座標をプログラマーのチームに入力させました。それはたくさんの作業です！
-				</p>
+						href="https://www.youtube.com/watch?v=DLoRd6_a1CI"
+						target="_blank">グラフ用紙を使用してレベルをプロットし</a>、ゲーム内のすべてのスプライトの座標をプログラマーのチームに入力させました。それはたくさんの作業です！</p>
 				<p>幸いなことに、p5play では、<code>Tiles</code>コンストラクタを使って、文字列の文字の位置に基づいてグリッド上にスプライトを作ることができます！</p>
 				<p>最初の入力パラメータは文字列または文字列の配列で、配列の各行または文字列はタイルの行を表します。</p>
 				<p>2 番目と 3 番目の入力パラメータは、タイルグリッドの左上（最初の）タイルの x 座標と y 座標です。</p>
@@ -97,12 +98,11 @@ function draw() {
 			</md>
 			<script type="mie/p5" id="group.tileSize">
 let player, blocks;
-let gridSize = 32;
 
 function setup() {
 	new Canvas(480, 192);
 
-	allSprites.tileSize = gridSize;
+	allSprites.tileSize = 32;
 	allSprites.rotationLock = true;
 
 	player = new Sprite(1, 1);
@@ -123,10 +123,9 @@ function setup() {
 }
 
 function draw() {
-	clear();
 	for (let i = 0; i < 15; i++) {
 		for (let j = 0; j < 6; j++) {
-			rect(i * gridSize, j * gridSize, gridSize, gridSize);
+			rect(i * 32, j * 32, 32, 32);
 		}
 	}
 
@@ -134,34 +133,32 @@ function draw() {
 	if (kb.presses('down')) player.move('down');
 	if (kb.presses('left')) player.move('left');
 	if (kb.presses('right')) player.move('right');
-
-	log(player.x, blocks[1].x);
 }
 			</script>
 		</div>
 
 		<div class="break"></div>
 		<div id="toc">
-			<a id="prevPage" class="navLink">前のページ</a>
+			<a id="prevPage" class="navLink">前へ</a>
 			<div id="pageNav" class="submenu">
 				<a data-page="0" href="tiles.html?page=0">タイルコンストラクタ</a>
-				<a data-page="1" href="tiles.html?page=1">tileSizeの使用</a>
+				<a data-page="1" href="tiles.html?page=1">tileSize の使用</a>
 			</div>
-			<a id="nextPage" class="navLink">次のページ</a>
+			<a id="nextPage" class="navLink">次へ</a>
 		</div>
 		<div class="break"></div>
-		<footer id="credits" class="text-small">クリントン・アシュリー（@quinton-ashley）によって作成されました 著作権 2022-2024</footer>
+		<footer id="credits" class="text-small">制作・著作: クイントン・アシュリー（@quinton-ashley） ©2022-2024</footer>
 	</article>
 
 	<script src="/v3/q5.min.js"></script>
-	<script src="/v3/planck.min.js"></script>
-	<script src="/v3/p5play.min.js"></script>
-	<script>
-		window.mie = { autoLoad: false };
+<script src="/v3/planck.min.js"></script>
+<script src="/v3/p5play.min.js"></script>
+<script>
+window.mie = { autoLoad: false };
 
 	</script>
 	<script src="/learn/mie.js"></script>
-	<script src="/learn/learn.js"></script>
+<script src="/learn/learn.js"></script>
 </body>
 
 </html>

@@ -24,7 +24,7 @@ But wait, why use a glue joint instead of `sprite.addCollider`?
 
 Joints can be visually hidden by setting `joint.visible` to false or removed entirely by running the `joint.remove` function.
 
-Try gluing and un-gluing the stick and ball sprite in the mini example. If you want a challenge, throw the ball straight up in the air and try to stick it to the top of the stick!
+Try gluing and un-gluing the stick and ball sprite in the code example. If you want a challenge, throw the ball straight up in the air and try to stick it to the top of the stick!
 
 # 1-0
 

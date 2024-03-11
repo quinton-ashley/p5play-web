@@ -19,7 +19,7 @@ function toggleDarkMode() {
 	document.body.className = pref;
 }
 
-Q5.canvasOptions.alpha = true;
+if (typeof Q5 != 'undefined') Q5.canvasOptions.alpha = true;
 
 /* learn.js */
 
@@ -70,13 +70,13 @@ async function start() {
 		]);
 	} else {
 		await loadScripts([
-			'ace/ace.min.js',
-			'ace/ext-language_tools.js',
-			'ace/mode-javascript.js',
-			'ace/theme-dracula.js',
-			'ace/theme-xcode.js',
+			'/learn/ace/ace.min.js',
+			'/learn/ace/ext-language_tools.js',
+			'/learn/ace/mode-javascript.js',
+			'/learn/ace/theme-dracula.js',
+			'/learn/ace/theme-xcode.js',
 			'ace/ext-beautify.js',
-			'marked/marked.min.js'
+			'/learn/marked/marked.min.js'
 		]);
 	}
 

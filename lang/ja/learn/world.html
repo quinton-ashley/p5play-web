@@ -18,6 +18,7 @@
 			</a>
 			<hr>
 			<a href="canvas.html">Canvas</a>
+			<a href="sound.html">Sound</a>
 			<a href="tiles.html">Tiles</a>
 			<a href="world.html" class="active">World</a>
 			<hr>
@@ -91,16 +92,6 @@ function draw() {
 					</ul>
 					<p>しかし、これらのプロセスを自分で呼び出すことによって、手動で制御することもできます。</p>
 				</md>
-				<md id="md1-1">
-					<h2 id="worldstep">world.step</h2>
-					<p><code>world.step</code>関数は、物理シミュレーションを 1/60 秒進めた後の、すべてのスプライトの位置と速度を計算します。</p>
-					<p>
-						<code>world.autoStep =
-							false</code>を設定すると自動ステップが無効になり、時間が一時停止します！その後、物理シミュレーションを進めたいときに<code>world.step</code>を手動で呼び出すことができます。すべてのスプライトが描画された後にのみ実行してください。
-					</p>
-					<p>このミニ例では、タイムステップを入力パラメータとして提供する方法が示されていますが、Box2D 物理エンジンソルバーは 1/30
-						秒のタイムステップまでしか安定していません。より長い時間でシミュレーションを進めたい場合は、<code>world.step</code>を複数回呼び出してください。</p>
-				</md>
 			</div>
 			<script type="mie/p5" id="world.step">
 let ball, box;
@@ -122,10 +113,10 @@ function setup() {
 function draw() {
 	if (mouse.pressing()) {
 		background(0, 0, 0, 30);
-		allSprites.draw();
-		world.step(1/240);
+		world.timeScale = 0.25;
 	} else {
 		background(0);
+		world.timeScale = 1;
 	}
 }
 			</script>
@@ -147,7 +138,7 @@ function setup() {
 
 	for (let i = 0; i < 25; i++) {
 		let x = 430 - i * 20;
-		for (let j = 0; j < 12; j++) {
+		for (let j = 0; j < 20; j++) {
 			new Sprite(x + j * 10, 5 + i * 10, 9, 9);
 		}
 	}
@@ -155,38 +146,43 @@ function setup() {
 
 function draw() {
 	background(20);
+
+	renderStats();
+
+	world.velocityIterations = 8;
+	world.positionIterations = 3;
+
 	if (mouse.presses()) new Sprite(mouse.x, mouse.y, 25);
 	if (mouse.pressing()) {
 		allSprites.at(-1).moveTowards(mouse);
 	}
-	renderStats();
 }
 			</script>
 		</div>
 
 		<div class="break"></div>
 		<div id="toc">
-			<a id="prevPage" class="navLink">前のページ</a>
+			<a id="prevPage" class="navLink">前へ</a>
 			<div id="pageNav" class="submenu">
 				<a data-page="0" href="world.html?page=0">スリープ</a>
-				<a data-page="1" href="world.html?page=1">時間のコントロール</a>
-				<a data-page="2" href="world.html?page=2">パフォーマンステスト</a>
+				<a data-page="1" href="world.html?page=1">Time のコントロール</a>
+				<a data-page="2" href="world.html?page=2">パフォーマンスのチューニング</a>
 			</div>
-			<a id="nextPage" class="navLink">次のページ</a>
+			<a id="nextPage" class="navLink">次へ</a>
 		</div>
 		<div class="break"></div>
-		<footer id="credits" class="text-small">クリントン・アシュリー（@quinton-ashley）によって作成されました 著作権 2022-2024</footer>
+		<footer id="credits" class="text-small">制作・著作: クイントン・アシュリー（@quinton-ashley） ©2022-2024</footer>
 	</article>
 
 	<script src="/v3/q5.min.js"></script>
-	<script src="/v3/planck.min.js"></script>
-	<script src="/v3/p5play.min.js"></script>
-	<script>
-		window.mie = { autoLoad: false };
+<script src="/v3/planck.min.js"></script>
+<script src="/v3/p5play.min.js"></script>
+<script>
+window.mie = { autoLoad: false };
 
 	</script>
 	<script src="/learn/mie.js"></script>
-	<script src="/learn/learn.js"></script>
+<script src="/learn/learn.js"></script>
 </body>
 
 </html>

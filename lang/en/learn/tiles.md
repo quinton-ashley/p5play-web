@@ -12,7 +12,7 @@ The second and third input parameters can be used to specify the x and y coordin
 
 The constructor returns a `Group` that contains all the sprites it created. Use `group.removeAll()` to remove all the sprites from this group before resetting a level or loading a new one.
 
-## Try it out!
+## Try it!
 
 Try editing the "P5" brick layout.
 
