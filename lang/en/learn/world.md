@@ -24,6 +24,8 @@ The `world.timeScale` ratio is set to 1 by default for real time physics simulat
 
 Note that the Box2D physics engine solver is only stable up to a time scale of 2. If you want to advance the simulation by a larger amount of time, run the `world.step` function multiple times.
 
+Click the canvas in the example to make the physics simulation progress in slow motion, 1/4th real time. The Matrix bullet time effect is achieved by making the background of each frame slightly transparent.
+
 # 2-0
 
 ## Performance Testing

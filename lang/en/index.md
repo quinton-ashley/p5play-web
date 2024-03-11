@@ -170,7 +170,7 @@ p5play is also well designed and documented. Check out the [Learn pages](../lear
 
 Every EdTech company claims their "easy and fun to use" software empowers students to "realize their creative potential", but often it's just marketing fluff.
 
-If these platforms are so fun and creatively empowering, why are students only using them to complete assignments? It hardly matters how easy something is if students don't see the point in learning it.
+If these platforms are so fun and creatively empowering, why are students only using them to complete assignments?
 
 p5play is different! It has all the features that students could want from a game engine: physics based contact handling, input detection, animations, a camera, joints, and more.
 
@@ -184,7 +184,7 @@ Since p5play is web based, students can share their projects online. That's not 
 
 One of the biggest problems: Scratch has no built-in physics engine. That means even something super easy to make in p5play, like a ball rolling down a slope, requires a lot of math and is incredibly tedious to implement in Scratch's block based environment.
 
-The featured games on the Scratch website are inspiring to students, but they were made by adults with extreme patience. If a student is really determined to make an impressive game in Scratch, they'll probably have to spend 20 hours copy pasting from YouTube tutorials. With p5play, students can get results way faster and with less frustration.
+The featured games on the Scratch website are inspiring to students, but they were made by adults with extreme patience. If a student is really determined to make an impressive game in Scratch, they'll probably have to spend 20 hours copying from YouTube tutorials. With p5play, students can get results way faster and with less frustration.
 
 # 17-3
 
@@ -196,11 +196,11 @@ In the early days of the internet, Adobe Flash made it easier for hobbyists to d
 
 That's why Roblox, Minecraft for Education, and Fortnite all enable young developers to create and share game modes and experiences. They promise massive potential audiences but insidiously, these platforms are walled gardens that restrict artistic freedom and exploit developers. These corporations regularly remove or shadow ban content they dislike, and they can do so without explanation or recourse. These corporations explicitly forbid political art and only want un-controversial content they can monetize to extend the life of their decades old games.
 
-But the virtual worlds and systems of games are a powerful tool for political expression. p5play was especially created to help young game designers create art that can challenge players to think critically about our real world and the systems that govern it.
+But virtual worlds and game systems are powerful tools for artistic expression. Young game designers will always be able to use p5play freely, without corporate restrictions.
 
 **"Only the best is good enough"** - Godtfred Kirk Christiansen, founder of LEGO
 
-p5play definitively bridges the gap between Scratch and professional game engines like Unity, which are too complex for beginners and too specialized to be used for general CS education.
+p5play was made to definitively bridge the gap between Scratch and professional game engines like Unity, which are too complex for beginners and too specialized to be used for general CS education.
 
 # 17-4
 

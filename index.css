@@ -573,13 +573,17 @@ footer {
 
 #reel6 {
 	height: 320px;
+	background-color: #002D3F;
 }
 
 #reel6>img {
 	position: absolute;
 	/* width: max(990px, 110vw); */
 	height: 320px;
-	z-index: -1;
+}
+
+#reel6 .page {
+	z-index: 1;
 }
 
 .spacer {
