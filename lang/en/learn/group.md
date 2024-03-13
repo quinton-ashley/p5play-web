@@ -101,16 +101,16 @@ Try out this little game! Click the mouse to create a beach ball and try keeping
 
 # 7-0
 
-## Draw
+## Group Draw
 
 Just like with the `sprite.draw` function, you can use `group.draw` to manually control when groups are drawn inside the p5.js draw loop.
 
-Any sprites not drawn manually will be automatically drawn at the end of the p5.js draw loop, unless their `autoDraw` property is set to false.
+Any sprites or groups that are not drawn manually will be automatically drawn at the end of the p5.js draw loop, unless their `autoDraw` property is set to false.
 
 Note that if you want to manually draw sprites or groups and use the camera, you'll have to manually turn the camera on and off.
 
 # 7-1
 
-## Update
+## Group Update
 
 The `group.update` function runs the `sprite.update` function of every sprite in the group. To prevent automatic updating set `autoUpdate` to false.

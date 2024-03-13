@@ -355,16 +355,16 @@ function draw() {
 		<div id="page-7" class="page">
 			<div class="minis horiz">
 				<md id="md7-0">
-					<h2 id="draw">Draw</h2>
+					<h2 id="group-draw">Group Draw</h2>
 					<p>Just like with the <code>sprite.draw</code> function, you can use <code>group.draw</code> to
 						manually control when groups are drawn inside the p5.js draw loop.</p>
-					<p>Any sprites not drawn manually will be automatically drawn at the end of the p5.js draw loop,
-						unless their <code>autoDraw</code> property is set to false.</p>
+					<p>Any sprites or groups that are not drawn manually will be automatically drawn at the end of the
+						p5.js draw loop, unless their <code>autoDraw</code> property is set to false.</p>
 					<p>Note that if you want to manually draw sprites or groups and use the camera, you'll have to
 						manually turn the camera on and off.</p>
 				</md>
 				<md id="md7-1">
-					<h2 id="update">Update</h2>
+					<h2 id="group-update">Group Update</h2>
 					<p>The <code>group.update</code> function runs the <code>sprite.update</code> function of every
 						sprite in the group. To prevent automatic updating set <code>autoUpdate</code> to false.</p>
 				</md>
