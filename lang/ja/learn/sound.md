@@ -1,9 +1,9 @@
 # 0-0
 
-## 音
+## サウンド
 
-`loadSound` 関数を使用して `Sound` オブジェクトを作成します。
+`loadSound` 関数は、 `Sound` オブジェクトを生成します。
 
-音を適切にミックスするためには、0 から 1 の範囲の値を受け入れる `setVolume` メソッドを使用することがよくあります。
+多くの場合、適切なサウンドのミキシングには、 `setVolume` 関数に、 0 ～ 1 の範囲で引数を与える方法がおすすめです。
 
-より広範なオーディオミキシング機能については、[p5.sound](https://p5js.org/reference/#/libraries/p5.sound) ライブラリを使用できます。
+より広範なオーディオのミキシングには、[p5.sound](https://p5js.org/reference/#/libraries/p5.sound)ライブラリをご利用ください。

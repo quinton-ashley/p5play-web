@@ -34,8 +34,10 @@
 
 		<div id="page-0" class="page">
 			<md id="md0-0">
-				<h2 id="カメラ">カメラ</h2>
-				<p>この例では、カメラがプレイヤーの x 軸の動きを追います。</p>
+				<h2 id="カメラの移動">カメラの移動</h2>
+				<p><code>camera</code> （カメラ）とは、ゲーム全体から、どの範囲をキャンバスに映し出すかを定義する機能です。デフォルトでは、カメラはキャンバスの中央に配置されています。</p>
+				<p>カメラの移動には、 <code>x</code> や <code>y</code> の値を変更するか、 <code>camera.moveTo</code> 関数を使用します。</p>
+				<p>このコードサンプルでは、カメラはプレイヤーの x 方向への動きを、とらえ続けます。</p>
 			</md>
 			<script type="mie/p5" id="sidescrolling-camera">
 let player, floor;
@@ -60,9 +62,12 @@ function draw() {
 		</div>
 		<div id="page-1" class="page">
 			<md id="md1-0">
-				<p><code>camera.zoom</code>は、カメラをズームインおよびズームアウトするために使用できます。</p>
-				<p><code>camera.zoomTo(target, speed)</code>は、カメラをスムーズにズームインおよびズームアウトするために使用できる非同期関数です。これはオプションの 2
-					つ目のパラメーターを取り、それはフレームごとにズームする量です。</p>
+				<h2 id="カメラのズーム">カメラのズーム</h2>
+				<p><code>zoom</code>
+					（ズーム）関数は、ワールド内のスプライトや他の要素の描画サイズの倍率を変更します。ズームを大きくするとスプライトは拡大描画（ズームイン）され、小さくするとスプライトは縮小描画（ズームアウト）されます。
+				</p>
+				<p><code>zoomTo(target, speed)</code> は、カメラのズームインとズームアウトをスムースに行うための、 async 関数です。第 2 引数を与えた場合、それは 1
+					フレームあたりのズーム速度の指定になります。</p>
 			</md>
 			<script type="mie/p5" id="zoom-in-and-out">
 function setup() {
@@ -82,13 +87,15 @@ function draw() {
 		</div>
 		<div id="page-2" class="page">
 			<md id="md2-0">
-				<h2 id="カメラのオンオフ">カメラのオン/オフ</h2>
-				<p>デフォルトでは、<code>allSprites.draw()</code>は p5.js
-					の描画ループの終了時に呼び出されます。しかし、スプライトとグループが描画されるタイミングを制御したい場合は、それらを別々に描画することができます。</p>
-				<p>ゲームのプレイヤーと環境は、カメラがオンの状態で描画するべきです。</p>
-				<p>UI または HUD のスプライトは、この例ではオレンジの四角で表されており、カメラがオフのときに描画されるべきです。</p>
-				<p><code>mouse.x</code>は、キャンバスよりも大きい可能性があるワールドに対するマウスの x
-					位置を保存します。<code>camera.mouse.x</code>は、キャンバスに対するマウスの x 位置を保存します。</p>
+				<h2 id="カメラのオン・オフ">カメラのオン・オフ</h2>
+				<p>デフォルトでは、 <code>allSprites.draw()</code> は p5.js
+					の描画ループの最後に呼ばれ、そこでカメラが自動的にオンになります。しかし、スプライトやグループを描画するタイミングを手動で制御したい場合は、それらを別々に描画することができます。</p>
+				<p>このコードサンプルをご覧ください。ゲームのプレーヤーやその舞台のように、ワールドにおける座標系で指定された要素は、 <code>camera.on()</code> でカメラをオンにした後に描画します。
+				</p>
+				<p>また、オレンジの四角で表現されている UI や HUD のスプライトといった、ワールドとは無関係にキャンバス上の座標で指定された要素は、 <code>camera.off()</code>
+					でカメラをオフにした後に描画します。</p>
+				<p><code>mouse.x</code> は、ワールドに対するマウスの x 座標を表します。ワールドがキャンバスからはみ出していても、ワールドの座標系における座標を示し続けます。一方で
+					<code>camera.mouse.x</code> は、純粋にキャンバス上でのマウスの x 座標を表します。</p>
 			</md>
 			<script type="mie/p5" id="overhead-camera">
 let player, ui;
@@ -132,10 +139,10 @@ function draw() {
 		</div>
 		<div id="page-3" class="page">
 			<md id="md3-0">
-				<h2 id="カメラとマウスイベント">カメラとマウスイベント</h2>
-				<p>この例では、カメラは sin 波を使用して左右に移動します。</p>
-				<p>大きなスプライトは、カメラがオンのときにワールドスペースで描画されます。大きなスプライトは移動しませんが、カメラが移動しているために移動しているように見えます。</p>
-				<p>小さなスプライトは、カメラがオフのスクリーンスペース（UI）で描画されます。あなたがゲーム内の UI 要素、例えばポーズボタンのスプライトを作りたい場合、カメラがオフのときに作成するべきです。</p>
+				<h2 id="カメラにおけるマウスイベント">カメラにおけるマウスイベント</h2>
+				<p>このコードサンプルでは、どのスプライトも移動していません！　カメラが左右に動いているだけです。</p>
+				<p>大きなスプライトは、カメラがオンのときに、ワールドに対して描画されます。小さいスプライトは、カメラがオフのときに、キャンバスに対して描画されます。</p>
+				<p><code>sprite.mouse</code> 関数は、カメラのオン・オフにかかわらず、動作することに注意してください。</p>
 			</md>
 			<script type="mie/p5" id="mouse-camera">
 let big, small;
@@ -175,10 +182,10 @@ function draw() {
 		<div id="toc">
 			<a id="prevPage" class="navLink">前へ</a>
 			<div id="pageNav" class="submenu">
-				<a data-page="0" href="camera.html?page=0">移動</a>
-				<a data-page="1" href="camera.html?page=1">ズーム</a>
-				<a data-page="2" href="camera.html?page=2">オン/オフ</a>
-				<a data-page="3" href="camera.html?page=3">カメラのマウスイベント</a>
+				<a data-page="0" href="camera.html?page=0">カメラの移動</a>
+				<a data-page="1" href="camera.html?page=1">カメラのズーム</a>
+				<a data-page="2" href="camera.html?page=2">カメラのオン・オフ</a>
+				<a data-page="3" href="camera.html?page=3">カメラにおけるマウスイベント</a>
 			</div>
 			<a id="nextPage" class="navLink">次へ</a>
 		</div>

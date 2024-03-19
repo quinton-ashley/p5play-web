@@ -32,10 +32,10 @@
 		<div class="break"></div>
 		<div id="page-0" class="page">
 			<md id="md0-0">
-				<h2 id="joints-ジョイント">Joints (ジョイント)</h2>
-				<p>ジョイントは、二つのスプライトの物理コライダーを接続し、相互の動きを制限します。</p>
-				<p>ジョイントコンストラクタは二つのスプライトを入力として受け取ります。ジョイント内の少なくとも一つのスプライトには動的な物理コライダーが必要です。</p>
-				<p>すべてのスプライトには、現在接続されているすべてのジョイントを含む <code>sprite.joints</code> 配列があります。</p>
+				<h2 id="ジョイント">ジョイント</h2>
+				<p>ジョイントとは、２つのスプライトのコライダー同士を接続し、互いの物理挙動に制限をもうける機能のことです。</p>
+				<p>Joint はコンストラクタ引数として、 2 つのスプライトを受け取ります。スプライトのうち少なくとも 1 つには、 dynamic コライダーが必要です。</p>
+				<p>すべてのスプライトには <code>sprite.joints</code> プロパティがあり、接続中のすべてのジョイントを配列として格納しています。</p>
 			</md>
 			<script type="mie/p5" id="glue" lines="12" horiz="">
 let floor, spriteA, spriteB, j;
@@ -56,19 +56,20 @@ function draw() {
 }
       </script>
 			<md id="md0-1">
-				<h2 id="gluejoint">GlueJoint</h2>
-				<p>ゼルダの伝説：ティアーズ・オブ・ザ・キングダムでのクラフティングが好きですか？ それなら、グルージョイントが気に入るはずです！</p>
-				<p><code>GlueJoint</code>
-					は最も単純なジョイントのタイプで、単に二つのスプライトを接着します。スプライトが触れ合っている必要はなく、ジョイントを削除しない限りは接着が解けることはありません。</p>
-				<p>しかし、なぜ <code>sprite.addCollider</code> の代わりにグルージョイントを使うのでしょうか？</p>
+				<h2 id="グルージョイント">グルージョイント</h2>
+				<p>『ゼルダの伝説：ティアーズ・オブ・ザ・キングダム』の「クラフト」はお好きですか？ それなら、グルー（接着）ジョイントが気に入るはずです！</p>
+				<p><code>GlueJoint</code> （グルージョイント）とは、 2
+					つのスプライトを互いにノリ付けするように接着するだけの、最も単純なタイプのジョイントです。スプライトが物理的に触れ合っている必要はなく、ジョイントを削除しない限りは、接着が解けることはありません。
+				</p>
+				<p>でも、ちょっと待ってください。なぜ <code>sprite.addCollider</code> ではなく、グルージョイントを使うのか？　実は、グルーならではの特徴があるからです。　</p>
 				<ul>
-					<li>各スプライトは独自の物理的特性を持つことができます</li>
-					<li>各スプライトは別々に衝突を検出できます</li>
-					<li>ジョイントを削除してもスプライトは削除されません</li>
+					<li>各スプライトは、別々の物理的特性を持つことができます</li>
+					<li>各スプライトは、別々にコリジョンを検出できます</li>
+					<li>ジョイントを削除しても、スプライトが削除されることはありません</li>
 				</ul>
-				<p>ジョイントは <code>joint.visible</code> を false に設定することで視覚的に隠すことができますし、<code>joint.remove</code>
-					関数を実行することで完全に削除することもできます。</p>
-				<p>スティックとボールのスプライトを接着したり接着を解除したりするミニ例を試してみてください。挑戦したい場合は、ボールを真っ直ぐ上に投げて、スティックの上部に接着しようとしてみてください！</p>
+				<p>ジョイントは、 <code>joint.visible</code> を false に設定することで非表示にでき、<code>joint.remove</code>
+					関数で完全に削除することができます。</p>
+				<p>このコードサンプルで、棒とボールのスプライトをグルーしたり、グルーを解除したりしてみてください。ボールを真上に投げあげて、棒の先端へグルーさせる、けん玉遊びにも挑戦してみましょう！</p>
 			</md>
 			<script type="mie/p5" id="glue-and-unglue">
 let floor, stick, ball, j;
@@ -94,13 +95,16 @@ function draw() {
 		</div>
 		<div id="page-1" class="page">
 			<md id="md1-0">
-				<h2 id="distancejoint">DistanceJoint</h2>
-				<p>デフォルトでは、<code>DistanceJoint</code> はそれが接続されている各スプライトの中心に取り付けられます。ジョイントの取り付けポイントを変更するには、その
-					<code>offsetA</code> と <code>offsetB</code> ベクターを編集します。</p>
-				<p>ジョイントの <code>springiness</code> 比率を調整すると、伸縮できる量が変わります。</p>
-				<p><code>0.0</code> = 鋼鉄棒（デフォルト）<br><code>0.2</code> = 堅いバネ<br><code>0.4</code> =
-					強いバネ<br><code>0.6</code> = バウンシーなバネ<br><code>0.8</code> = スリンキー<br><code>1.0</code> = バンジーコード</p>
-				<p>また、ジョイントの <code>damping</code> 比率を調整して、振動エネルギーがどれだけ早く失われるかを変えることもできます。</p>
+				<h2 id="ディスタンスジョイント">ディスタンスジョイント</h2>
+				<p><code>DistanceJoint</code>
+					（ディスタンスジョイント）とは、ゴムひものように伸び縮みしつつも、一定の距離（ディスタンス）に収束するジョイントのことです。デフォルトではこのジョイントは、互いのスプライトの中心どうしを接続します。ジョイントの取り付け位置を変更するには、その
+					<code>offsetA</code> （第 1 引数で指定したスプライト）と <code>offsetB</code> （第 2 引数で指定したスプライト）の、 x, y の値を編集します。
+				</p>
+				<p>ジョイントの <code>springiness</code> （弾力性）係数を調節して、その伸び縮み加減を変更できます。</p>
+				<p><code>0.0</code> = 鉄の棒（デフォルト）<br><code>0.2</code> = ガッチリ硬いバネ<br><code>0.4</code> =
+					硬めのバネ<br><code>0.6</code> = 普通のバネ<br><code>0.8</code> = トムボーイ（バネのおもちゃ）<br><code>1.0</code> = ゴムひも
+				</p>
+				<p>また、ジョイントの <code>damping</code> （減衰）係数を調整して、振動エネルギーの失われる速さを変更することもできます。</p>
 			</md>
 			<script type="mie/p5" id="swing" lines="13">
 let sA, sB, j;
@@ -125,14 +129,17 @@ function draw() {
 		</div>
 		<div id="page-2" class="page">
 			<md id="md2-0">
-				<h2 id="wheeljoint">WheelJoint</h2>
-				<p><code>WheelJoint</code> は、車両のボディを車輪に接続します。ドライブ可能な車両を作るためにホイールジョイントを使用してください！</p>
-				<p>すべてのホイールジョイントにはモーターがあり、ジョイントの <code>speed</code> を所望のモーター速度に設定し、<code>maxPower</code>
-					を正の値に設定するか、<code>motorEnabled</code> を true にすることで有効にすることができます。</p>
-				<p>ホイールジョイントモーターを無効にすることは、車をニュートラルにするようなもので、車輪が自由に転がるようになります。車輪をブレーキさせるには、ジョイントの速度をゼロに設定する必要があります。</p>
-				<p>デフォルトでは、ホイールジョイントは <code>maxPower</code> が 1000、<code>springiness</code> が 0.1、<code>damping</code> が
-					0.7、取り付け角度 <code>angle</code> が 90 度に設定されています。</p>
-				<p>この例の車を運転してみてください！道路の終わりまで行くことができますか？車輪の位置や取り付け角度を変えて、車をカスタマイズしてみてください。</p>
+				<h2 id="ホイールジョイント">ホイールジョイント</h2>
+				<p><code>WheelJoint</code> （ホイールジョイント）とは、自動車などの車体を、回転する車輪（ホイール）に接続するジョイントです。ホイールジョイントを使って、運転できる車を作りましょう！
+				</p>
+				<p>すべてのホイールジョイントには、「モーター」があり、ジョイントの <code>speed</code> をお望みの速度に設定するか、 <code>maxPower</code> を正の値に設定するか、
+					<code>motorEnabled</code> を true に設定するかのいずれかによって、そのモーターは有効になります。</p>
+				<p>ホイールジョイントのモーターを無効にすることは、車のギアをニュートラルにするようなもので、ホイールは自由に転がるようになります。ホイールに「ブレーキをかける」には、ジョイントの speed を明示的に
+					0 に設定しなければなりません。</p>
+				<p>デフォルトでは、ホイールジョイントは <code>maxPower</code> が 1000 、<code>springiness</code> が 0.1 、
+					<code>damping</code> が 0.7 、そして取り付け角度である <code>angle</code> が 90 度（ 0
+					で真右、大きくすると時計回りに角度が増える）に設定されています。</p>
+				<p>このコードサンプルの車を、運転してみてください！　道路の端まで行けるでしょうか？　ホイールの位置や、取り付け角度を変えて、車をカスタマイズしてみましょう。</p>
 			</md>
 
 			<script type="mie/p5" id="car">
@@ -172,12 +179,11 @@ function draw() {
 		</div>
 		<div id="page-3" class="page">
 			<md id="md3-0">
-				<h2 id="hingejoint">HingeJoint</h2>
-				<p><code>HingeJoint</code> は、一つまたは二つのスプライトが同じ点の周りを回転できるようにします。</p>
-				<p>回転の点を変更するには、ジョイントの <code>offsetA</code> または <code>offsetB</code> ベクターを編集してください。</p>
-				<p>小さな <code>maxPower</code> を持つヒンジジョイントで、デフォルトの <code>speed</code> がゼロの場合、移動されるのを抵抗するブレーキングフォースが適用されます。
-				</p>
-				<p>この例でシーソーに小箱を落としてみてください。シーソーが傾く前に何個の箱を乗せることができますか？</p>
+				<h2 id="ヒンジジョイント">ヒンジジョイント</h2>
+				<p><code>HingeJoint</code> （ヒンジジョイント）とは、片方または両方のスプライトが、ちょうつがい（ヒンジ）のように、同じ点を軸にして回転できるようにするジョイントです。</p>
+				<p>ディスタンス同様、回転軸の位置を変更するには、ジョイントの <code>offsetA</code> または <code>offsetB</code> の x, y の値を編集してください。</p>
+				<p><code>maxPower</code> が小さく、デフォルトの <code>speed</code> が 0 のヒンジジョイントには、動かそうとする力に逆らう「ブレーキ」がかかります。</p>
+				<p>このコードサンプルで、マウスをかちかちクリックして、シーソーに小さなボックスを何個も乗せてみましょう。シーソーが傾くまでに、あなたはボックスをいくつ乗せられるでしょうか？</p>
 			</md>
 			<script type="mie/p5" id="seesaw">
 let s0, s1, j;
@@ -204,13 +210,14 @@ function draw() {
 		</div>
 		<div id="page-4" class="page">
 			<md id="md4-0">
-				<h2 id="sliderjoint">SliderJoint</h2>
-				<p><code>SliderJoint</code> は、二つのスプライトの動きを共通の軸に沿ってスライドするように制約しますが、回転はしません。</p>
-				<p>ジョイントの <code>range</code> は、接続されたスプライトが互いにどれだけ離れることができるかを決定します。ジョイントの <code>angle</code>
-					を変更すると、スプライトがスライドできる方向が変わります。</p>
-				<p>デフォルトではジョイントのモーターは <code>speed</code> が 0 で有効になっているので、<code>maxPower</code>
-					はジョイントがスライドにどれだけ抵抗できるかを決定します。</p>
-				<p>マウスをクリックして、天秤に箱を落としてみてください。天秤が限界に達する前に何個の箱を積み重ねることができますか？その角度を変えてみるのも面白いでしょう。</p>
+				<h2 id="スライダージョイント">スライダージョイント</h2>
+				<p><code>SliderJoint</code> （スライダージョイント）とは、 2 つのスプライトに対し、回転させず、同じ軸に沿ってスライドするよう、動きを制限するジョイントです。</p>
+				<p>ジョイントの <code>range</code> は、接続されたスプライト同士が離れられる最大距離です。ジョイントの <code>angle</code>
+					を変更すると、スプライトがスライドできる向きが変わります（ 0 で真右、大きくすると時計回りに角度が増える）。</p>
+				<p>デフォルトでは、このジョイントのモーターは有効で、 <code>speed</code> は 0 です。 <code>maxPower</code>
+					は、このジョイントがスライドにどれだけ抵抗できるかを決定します。</p>
+				<p>コードサンプルでマウスをクリックし、ばね秤に箱を落としてみてください。ばね秤が限界に達するまでに、あなたは箱をいくつ積み重ねることができるでしょうか？　 angle を変えることも試してくださいね。
+				</p>
 			</md>
 			<script type="mie/p5" id="weight scale" horiz="">
 let floor, scale, j;
@@ -244,11 +251,11 @@ function draw() {
 		<div id="toc">
 			<a id="prevPage" class="navLink">前へ</a>
 			<div id="pageNav" class="submenu">
-				<a data-page="0" href="joints.html?page=0">グルー</a>
-				<a data-page="1" href="joints.html?page=1">ディスタンス</a>
-				<a data-page="2" href="joints.html?page=2">ホイール</a>
-				<a data-page="3" href="joints.html?page=3">ヒンジ</a>
-				<a data-page="4" href="joints.html?page=4">スライダー</a>
+				<a data-page="0" href="joints.html?page=0">グルージョイント</a>
+				<a data-page="1" href="joints.html?page=1">ディスタンスジョイント</a>
+				<a data-page="2" href="joints.html?page=2">ホイールジョイント</a>
+				<a data-page="3" href="joints.html?page=3">ヒンジジョイント</a>
+				<a data-page="4" href="joints.html?page=4">スライダージョイント</a>
 			</div>
 			<a id="nextPage" class="navLink">次へ</a>
 		</div>
