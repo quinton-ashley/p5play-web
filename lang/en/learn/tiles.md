@@ -28,4 +28,4 @@ If tile size is 8, then an x/y position of 1 represents 8 pixels, 2 represents 1
 
 In this mini-example, moving a sprite 1 tile causes it to move 32 pixels. Grid lines are drawn to visually illustrate the tile size.
 
-With just two collision rules, the player can push around the blocks and blocks can push each other. Although this example would benefit from input buffering to ensure the player completes a move before starting another.
+With just two collision rules, the player can push around the blocks and blocks can push each other. Although, this code example could be improved by adding input buffering, to ensure that the player completes one move before starting another.
