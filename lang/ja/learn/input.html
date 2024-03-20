@@ -37,14 +37,15 @@
 				<h2 id="入力デバイス">入力デバイス</h2>
 				<p>p5play で利用可能な入力デバイスは次のとおりです:</p>
 				<ul>
-					<li><code>kb</code>または<code>keyboard</code>はキーボード</li>
-					<li><code>mouse</code>はマウス</li>
-					<li><code>contro</code>または<code>controllers</code>はゲームコントローラー</li>
+					<li><code>kb</code> / <code>keyboard</code> …キーボード</li>
+					<li><code>mouse</code> …マウス</li>
+					<li><code>contro</code> / <code>controllers</code> …ゲームコントローラー</li>
+					<li><code>touches</code> …タッチスクリーン</li>
 				</ul>
-				<p>これらの入力デバイスはすべて、入力の状態を取得するためのシンプルな関数、<code>presses</code>、<code>pressing</code>、<code>released</code>を使用します。
-				</p>
-				<p>また、彼らの全ての入力の状態をプロパティとして保存します。例えば、<code>kb.space</code>はユーザーがスペースキーを押し続けているフレーム数を保存します。ユーザーが入力を解放するとリセットされます。
-				</p>
+				<p>これらの入力デバイスはすべて、入力状態を取得する、シンプルな <code>presses</code> 、 <code>pressing</code> 、 <code>released</code>
+					関数を実装しています。</p>
+				<p>また、入力デバイスは全ての入力状態を、プロパティとして保持しています。例えば <code>kb.space</code>
+					は、ユーザーがスペースキーを押し続けているフレーム数を保持します。ユーザーがその入力をやめると、プロパティはリセットされます。</p>
 			</md>
 			<script type="mie/p5" id="hidden" base-0="" hide="">
 function setup() {
@@ -79,10 +80,9 @@ if (kb.released(' ')) {
 				</script>
 			</div>
 			<md id="md0-1">
-				<p>p5play は、<a
-						href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_OR"
-						target="_blank">ブール論理</a>を使用して、異なる入力デバイスを介して同じアクションをトリガーすることを容易にします。</p>
-				<p>ミニ例では、スプライトはスペースキーを押すかマウスをクリックすると赤くなります。</p>
+				<p>p5play は、<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Operators/Logical_OR"
+						target="_blank">論理和</a>を使用して、異なる入力デバイスから同じアクションを簡単にトリガーできます。</p>
+				<p>このコードサンプルでは、スペースキーを押すか、マウスをクリックすると、スプライトが緑色になります。</p>
 			</md>
 			<script type="mie/p5" id="hidden" base-1="" hide="">
 let sprite;
@@ -106,13 +106,14 @@ if (kb.pressing('space') || mouse.pressing()) {
 		<div id="page-1" class="page">
 			<md id="md1-0">
 				<h2 id="キーボード">キーボード</h2>
-				<p><code>kb</code> は、'enter'、'backspace'、'control' を含む、キーボードのほぼすべてのキーを追跡します。</p>
-				<p>大文字と小文字の文字入力は区別しません。ユーザーがシフトキーを押しているかどうかを確認するには、<code>kb.pressing('shift')</code> を使用してください。</p>
-				<p>WASD キーはプレイヤーキャラクターの移動を制御するためによく使用されるため、WASD および矢印キーの押下を検出するために 'up'、'down'、'left'、'right'
-					の方向名を使用できます。</p>
-				<p>矢印キーは、'arrowUp'、'arrowDown'、'arrowLeft'、'arrowRight' を使用して個別に検出することもできます。</p>
-				<p>ローカルの二人用ゲームでは、第二のプレイヤーが移動に IJKL キーを使用することが一般的です。これらのキーは 'up2'、'down2'、'left2'、'right2' を使用して参照できます。
-				</p>
+				<p><code>kb</code> は、 'enter' 、 'backspace' 、 'control' を含む、キーボードのほぼすべてのキーを検知します。</p>
+				<p>アルファベットキーの指定は、大文字と小文字を区別しません。ユーザーがシフトキーを押しているかどうかを確認するには、 <code>kb.pressing('shift')</code>
+					を使用してください。</p>
+				<p>WASD キーはプレイヤーキャラクターの移動によく使われるため、 WASD キーとカーソルキーの押下が同じ意味であることを検出する、 'up' 、 'down' 、 'left' 、 'right'
+					という方向名も指定することができます。</p>
+				<p>カーソルキーを個別に検知できるよう、 'arrowUp' 、 'arrowDown' 、 'arrowLeft' 、 'arrowRight' も指定することができます。</p>
+				<p>二人同時プレイのゲームでは、ふたりめのプレイヤーは移動に IJKL キーを使用することが一般的です。これらのキーは 'up2' 、 'down2' 、 'left2' 、 'right2'
+					を指定して参照できます。</p>
 				<p><a href="https://github.com/quinton-ashley/p5play/wiki/FAQ#is-p5plays-kb-input-system-compatible-with-non-qwerty-keyboards"
 						target="_blank">QWERTY 以外のキーボードを使用していますか？</a></p>
 			</md>
@@ -146,12 +147,14 @@ function draw() {
 		<div id="page-2" class="page">
 			<md id="md2-0">
 				<h2 id="マウス">マウス</h2>
-				<p>デフォルトのマウス入力は「left」ボタンで、トラックパッドでの単一指のクリックです。また、'right'（二本指クリック）と 'center' も使用できます。</p>
-				<p><code>mouse.x</code> と <code>mouse.y</code> はマウスのキャンバス上の位置を格納します。</p>
-				<p><code>mouse.visible</code> は、マウスが表示されるかどうかを決定するブール値です。</p>
-				<p><code>mouse.cursor</code> は <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/cursor"
-						target="_blank">カーソルスタイル</a> に設定できます。デフォルトは 'default' で、他のオプションには 'grab'、'move'、'pointer'、'wait'
-					などがあります。</p>
+				<p>デフォルトのマウス入力は 'left' （左）ボタンで、トラックパッドでの一本指でのクリックです。また、マウスの 'right' （右）ボタン（トラックパッドでの二本指クリック）やマウスの
+					'center' （中央）ボタンも使用できます。</p>
+				<p><code>mouse.x</code> と <code>mouse.y</code> は、カメラの位置に基づいた、ワールド内でのマウスカーソルの座標です。</p>
+				<p><code>mouse.canvasPos</code> は、ワールドにかかわらず、キャンバスに対する絶対座標を表します。</p>
+				<p><code>mouse.visible</code> は、マウスカーソルが表示されるかどうかを決定するブール値です。</p>
+				<p><code>mouse.cursor</code> には <a href="https://developer.mozilla.org/docs/Web/CSS/cursor"
+						target="_blank">カーソルスタイル</a> の値を設定できます。デフォルトは 'default' で、他には 'grab' 、 'move' 、 'pointer' 、
+					'wait' などがあります。</p>
 			</md>
 			<script type="mie/p5" id="mouse.visible">
 let cur;
@@ -175,13 +178,12 @@ function draw() {
 		<div id="page-3" class="page">
 			<md id="md3-0">
 				<h2 id="スプライトマウス">スプライトマウス</h2>
-				<p>物理的なコライダーを持つスプライトは、スプライト上のマウス入力を検出するための自身のマウスオブジェクトを持っています。
-					<code>sprite.mouse</code>オブジェクトは、<code>mouse</code>入力オブジェクトと同様ですが、追加の機能があります。
+				<p>コライダーを持つスプライトは、スプライト上でのマウス入力を検知するための、独自のマウスオブジェクトを持っています。
+					<code>sprite.mouse</code> オブジェクトは、 <code>mouse</code> 入力オブジェクトとほとんど同じですが、追加機能があります。
 				</p>
-				<p><code>hovers</code>と<code>hovering</code>は、ユーザーがマウスをスプライト上に移動したときに検出します。</p>
-				<p><code>dragging</code>は、ユーザーがマウスボタンをクリックし続けてマウスを移動するときに検出します。
-					<code>mouse.x</code>はキャンバス上のマウスの x 位置であり、<code>sprite.mouse.x</code>はスプライトに対するマウスの x 位置です。
-				</p>
+				<p><code>hovers</code> と <code>hovering</code> は、ユーザーがマウスカーソルをスプライトに重ねたことを検知します。</p>
+				<p><code>dragging</code> は、ユーザーがマウスボタンを押下しながらマウスを移動している間、検知し続けます。</p>
+				<p><code>mouse.x</code> はキャンバスに対するマウスの x 座標であり、 <code>sprite.mouse.x</code> はスプライトに対するマウスの x 座標です。</p>
 			</md>
 			<script type="mie/p5" id="sprite.mouse">
 let sprite;
@@ -214,18 +216,19 @@ function draw() {
 		</div>
 		<div id="page-4" class="page">
 			<md id="md4-0">
-				<h2 id="ゲームコントローラ">ゲームコントローラ</h2>
-				<p><code>contro</code> オブジェクトは、ゲームコントローラのボタンの入力状態を提供します:</p>
-				<p><code>a</code>、<code>b</code>、<code>x</code>、<code>y</code>、<code>l</code>（左バンパー）、<code>r</code>（右バンパー）、<code>lt</code>（左トリガー）、<code>rt</code>（右トリガー）、<code>up</code>、<code>down</code>、<code>left</code>、<code>right</code>（D
-					パッド）、<code>lsb</code>（左スティックボタン）、<code>rsb</code>（右スティックボタン）、<code>start</code>、および
-					<code>select</code></p>
-				<p><code>contro.leftStick</code> と <code>contro.rightStick</code> は、コントローラのアナログスティックの位置を x と y
-					プロパティを持つオブジェクトとして表します。これらの値は -1 から 1 の範囲で、0 は中央位置を示します。</p>
-				<p>一部のコントローラにはアナログトリガーがあり、その位置は <code>contro.leftTrigger</code> と <code>contro.rightTrigger</code> に 0
-					から 1 の範囲の数値として格納されます。</p>
-				<p><code>contro</code> オブジェクト（別名 <code>controllers</code>）は、Web
-					ブラウザによって検出されたすべての接続されたゲームコントローラを含む配列です。インデックスを使用して接続されたコントローラにアクセスできます。例えば、<code>contro[0]</code> と
-					<code>contro[1]</code> は最初のコントローラと 2 番目のコントローラです。JavaScript の仕組みにより、<code>contro</code> を使用して
+				<h2 id="ゲームコントローラー">ゲームコントローラー</h2>
+				<p><code>contro</code> オブジェクトは、ゲームコントローラーの、以下のボタンの入力状態を取得します:</p>
+				<p><code>a</code> 、 <code>b</code> 、 <code>x</code> 、 <code>y</code> （それぞれ、 XBox
+					コントローラーでのボタン名です。別のコントローラーの場合、適宜読み替えてください）、<code>l</code>（左ショルダー/バンパー）、<code>r</code>（右ショルダー/バンパー）、<code>lt</code>（左トリガー）、<code>rt</code>（右トリガー）、<code>up</code>、<code>down</code>、<code>left</code>、<code>right</code>
+					（それぞれ、十字ボタンの方向）、<code>lsb</code>（左スティック押し込み）、<code>rsb</code>（右スティック押し込み）、<code>start</code> 、
+					<code>select</code> 。</p>
+				<p><code>contro.leftStick</code> と <code>contro.rightStick</code> は、コントローラーのアナログスティックが倒れている状態を、 x と y
+					のプロパティを持つオブジェクトとして表します。これらの値は、それぞれの成分方向に倒れる深さを -1 ～ 1 の範囲で示しており、 0 は、その方向には倒れていないことを意味します。</p>
+				<p>一部のコントローラーにはアナログトリガーがあり、その押し込みの深さは <code>contro.leftTrigger</code> と <code>contro.rightTrigger</code>
+					によって 0 ～ 1 の数値として示されます。</p>
+				<p><code>contro</code> オブジェクト（別名 <code>controllers</code> ）は、 Web
+					ブラウザが検出した、すべての接続中のゲームコントローラーを格納した配列です。各接続コントローラーには、この配列の添字でアクセスします。例えば、 <code>contro[0]</code> と
+					<code>contro[1]</code> は、 1 番目と 2 番目のコントローラーです。 JavaScript の仕組みにより、 <code>contro</code> を使用して
 					<code>contro[0]</code> の入力状態を取得できます。</p>
 			</md>
 			<div class="minis horiz">
@@ -264,22 +267,23 @@ lsb.y = 100 + contro.leftStick.y * 40;
 if (contro.pressing('lsb')) lsb.color = 'white';
 				</script>
 				<md id="md4-1">
-					<p>試してみてください！ゲームコントローラを接続し、そのいずれかのボタンを押すと、p5play によって検出されます。</p>
+					<p>お試しあれ！　ゲームコントローラーを接続し、そのいずれかのボタンを押すと、p5play によって検知されます。</p>
+					<p>➡️ <a href="https://openprocessing.org/sketch/2120550" target="_blank">full demo</a></p>
 				</md>
 			</div>
 		</div>
 		<div id="page-5" class="page">
 			<md id="md5-0">
 				<h2 id="タッチ">タッチ</h2>
-				<p>すべてのタッチスクリーンのインタラクションは、<code>touches</code>配列に追加されるタッチオブジェクトを生成します。</p>
-				<p>各タッチには、押下とドラッグの入力状態を検出するための独自の関数があります。</p>
-				<p><code>touch.x</code>と<code>touch.y</code>は、カメラの位置に基づいて、ワールド内のタッチの位置を保存します。</p>
-				<p><code>touch.canvasPos</code>は、キャンバス上のタッチの絶対位置を保存します。</p>
-				<p><code>touch.id</code>は、タッチを識別するユニークな番号です。</p>
-				<p><code>touch.duration</code>は、タッチがアクティブであったフレーム数を保存します。</p>
-				<p>タッチが終了した後のフレームでは、そのタッチオブジェクトは<code>touches</code>配列から削除されます。<code>touches[0]</code>は<code>mouse</code>にマッピングされます。
-				</p>
-				<p>タッチのデモでは、画面をタップしてボックスを作成し、ドラッグしてそれらを投げ回してみてください！</p>
+				<p>タッチスクリーンを操作するたびに、 touch （タッチ）オブジェクトが生成され、 <code>touches</code> 配列に追加されてゆきます。</p>
+				<p>各タッチオブジェクトには、タップやドラッグの状態を検出する、独自の関数があります。</p>
+				<p><code>touch.x</code> と <code>touch.y</code> は、カメラの位置に基づいた、ワールド内でのタッチの座標です。</p>
+				<p><code>touch.canvasPos</code> は、ワールドにかかわらず、キャンバスに対する絶対座標を表します。</p>
+				<p><code>touch.id</code> は、タッチを識別する、一意の番号です。</p>
+				<p><code>touch.duration</code> は、タッチが発生していたフレーム数です。</p>
+				<p>各タッチが終了した後のフレームでは、そのタッチオブジェクトは <code>touches</code> 配列から削除されます。 <code>touches[0]</code> は、
+					<code>mouse</code> と同じ意味になります。</p>
+				<p>このタッチのデモでは、スクリーンをタップするとボックスが生成され、ドラッグで放り投げられます！</p>
 			</md>
 			<script type="mie/p5" id="touches demo">
 let boxes = {};
