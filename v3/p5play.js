@@ -8156,6 +8156,7 @@ p5.prototype.registerMethod('init', function p5playInit() {
 			case 'editor.p5js.org':
 			case 'codepen.io':
 			case 'codera.app':
+			case 'aug4th.com':
 			case 'cdpn.io':
 			case 'glitch.com':
 			case 'replit.com':
