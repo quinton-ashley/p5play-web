@@ -30,7 +30,7 @@ Click the canvas in the example to make the physics simulation progress in slow 
 
 ## Performance Testing
 
-The `renderStats` function displays the number of sprites drawn and FPS approximations. For more accurate results, use your web browser's performance testing tools.
+Set `p5play.renderStats` to true to display the number of sprites drawn, display rate, and FPS calculations. For more comprehensive results, use your web browser's performance testing tools.
 
 FPS in this context refers to how many frames per second your computer can generate, not including the delay between when frames are actually shown on the screen. The higher the FPS, the better your game is performing.
 

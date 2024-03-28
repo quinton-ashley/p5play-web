@@ -131,8 +131,9 @@ function draw() {
 		<div id="page-2" class="page">
 			<md id="md2-0">
 				<h2 id="performance-testing">Performance Testing</h2>
-				<p>The <code>renderStats</code> function displays the number of sprites drawn and FPS approximations.
-					For more accurate results, use your web browser's performance testing tools.</p>
+				<p>Set <code>p5play.renderStats</code> to true to display the number of sprites drawn, display rate, and
+					FPS calculations. For more comprehensive results, use your web browser's performance testing tools.
+				</p>
 				<p>FPS in this context refers to how many frames per second your computer can generate, not including
 					the delay between when frames are actually shown on the screen. The higher the FPS, the better your
 					game is performing.</p>
@@ -148,6 +149,7 @@ function draw() {
 			<script type="mie/p5" id="renderStats">
 function setup() {
 	new Canvas(500, 250);
+	p5play.renderStats = true;
 
 	for (let i = 0; i < 25; i++) {
 		let x = 430 - i * 20;
@@ -159,8 +161,6 @@ function setup() {
 
 function draw() {
 	background(20);
-
-	renderStats();
 
 	world.velocityIterations = 8;
 	world.positionIterations = 3;
