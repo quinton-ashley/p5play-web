@@ -48,36 +48,27 @@ function preload() {
 	new Canvas(500, 400);
 	world.gravity.y = 10;
 
-	tumbler = new Sprite(250, 200, 700, 'k');
+	tumbler = new Sprite(250, 50, 600, 800, 'k');
 	tumbler.shape = 'chain';
+	tumbler.strokeWeight = 0;
 
 	logos = new Group();
 	logos.spriteSheet = 'p5play_logos.png';
-	logos.addAni({ size: 256, frames: 12 });
+	logos.addAni({ size: 128, frames: 12 });
 	logos.ani.stop();
 	logos.x = () => random(100, 400);
-	logos.y = () => random(100, 400);
-	logos.d = 256;
-	logos.scale = 0.25;
-}
-
-function setup() {
-	while (logos.length < 60) {
-		let logo = new logos.Sprite();
-		logo.ani.frame = floor(random(12));
-		logo.d = 60;
-	}
+	logos.y = () => -60;
+	logos.scale = () => random(0.25, 0.5);
 }
 
 function draw() {
 	clear();
-	for (let l of logos) {
-		if (l.mouse.dragging()) {
-			l.moveTowards(mouse.x + l.mouse.x, mouse.y + l.mouse.y, 1);
-		}
+	if (logos.length < 100 && frameCount % 5 === 0) {
+		let logo = new logos.Sprite();
+		logo.d = logo.w * 1.2;
+		logo.ani.frame = floor(random(12));
 	}
 }
-
 
 			</script>
 			<div>

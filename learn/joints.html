@@ -75,7 +75,7 @@ function draw() {
 					throw the ball straight up in the air and try to stick it to the top of the stick!</p>
 			</md>
 			<script type="mie/p5" id="glue-and-unglue">
-let floor, stick, ball, j;
+let floor, stick, ball;
 
 function setup() {
 	new Canvas(500, 400);
@@ -90,8 +90,8 @@ function draw() {
 	stick.moveTowards(mouse);
 
 	if (mouse.presses()) {
-		if (stick.joints.length > 0) j.remove();
-		else j = new GlueJoint(stick, ball);
+		if (stick.joints[0]) stick.joints[0].remove();
+		else new GlueJoint(stick, ball);
 	}
 }
       </script>
@@ -142,7 +142,8 @@ function draw() {
 				<p>Disabling a wheel joint motor is like putting a car in neutral, it causes the wheel to roll freely.
 					The joint's speed must be set to zero for the wheel to brake.</p>
 				<p>By default, wheel joints have a <code>maxPower</code> of 1000, <code>springiness</code> of 0.1,
-					<code>damping</code> of 0.7, and angle of attachment <code>angle</code> of 90 degrees.</p>
+					<code>damping</code> of 0.7, and angle of attachment <code>angle</code> of 90 degrees.
+				</p>
 				<p>Try driving the car in this example! Can you make it to the end of the road? Customize the car by
 					changing the position of its wheels and the angle at which they're attached.</p>
 			</md>
@@ -273,14 +274,14 @@ function draw() {
 	</article>
 
 	<script src="/v3/q5.min.js"></script>
-<script src="/v3/planck.min.js"></script>
-<script src="/v3/p5play.min.js"></script>
-<script>
-window.mie = { autoLoad: false };
+	<script src="/v3/planck.min.js"></script>
+	<script src="/v3/p5play.min.js"></script>
+	<script>
+		window.mie = { autoLoad: false };
 
 	</script>
 	<script src="/learn/mie.js"></script>
-<script src="/learn/learn.js"></script>
+	<script src="/learn/learn.js"></script>
 </body>
 
 </html>
