@@ -8255,7 +8255,6 @@ p5.prototype.registerMethod('init', function p5playInit() {
 		} else {
 			logo.src = 'https://p5play.org/assets/made_with_p5play.webp';
 		}
-
 		await new Promise((r) => (logo.onload = r));
 		d.append(logo);
 		document.body.append(d);
@@ -8289,6 +8288,7 @@ p5.prototype.registerMethod('init', function p5playInit() {
 			case 'jsfiddle.net':
 			case 'aijs.io':
 			case 'preview-aijs.web.app':
+			case 'quinton-ashley.github.io':
 				break;
 			default:
 				if (
