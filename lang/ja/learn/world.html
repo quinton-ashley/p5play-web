@@ -127,8 +127,8 @@ function draw() {
 		<div id="page-2" class="page">
 			<md id="md2-0">
 				<h2 id="パフォーマンスのテスト">パフォーマンスのテスト</h2>
-				<p><code>renderStats</code> 関数は、描画されたスプライトの数と、おおよその FPS
-					を表示します。より正確な結果を得るには、ウェブブラウザのパフォーマンステストツールを使用してください。</p>
+				<p><code>p5play.renderStats</code> を true に設定すると、描画されたスプライト数、ディスプレイのリフレッシュレート、 FPS
+					の計算値を表示します。より包括的な結果を得るには、ウェブブラウザのパフォーマンステストツールを使用してください。</p>
 				<p>ここでいう FPS とは、実際に画面にフレームが表示されるまでの遅延を除いた、「コンピュータが 1 秒間に生成できるフレーム数 (Frames Per Second) 」のことです。 FPS
 					が高いほど、ゲームのパフォーマンスが高いことを意味します。</p>
 				<p>一般に、スプライトの数が少なく、使用するキャンバスがより小さいほど、ゲームのパフォーマンスは向上します。さらに良好なパフォーマンスを得るには、p5.js の <code>clear</code>
@@ -141,6 +141,7 @@ function draw() {
 			<script type="mie/p5" id="renderStats">
 function setup() {
 	new Canvas(500, 250);
+	p5play.renderStats = true;
 
 	for (let i = 0; i < 25; i++) {
 		let x = 430 - i * 20;
@@ -152,8 +153,6 @@ function setup() {
 
 function draw() {
 	background(20);
-
-	renderStats();
 
 	world.velocityIterations = 8;
 	world.positionIterations = 3;
