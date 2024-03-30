@@ -44,31 +44,31 @@
 						tu juego!</a> 🎉</h2>
 			</md>
 			<script type="mie/p5" name="Jam!" hide-editor="">
-let logosAni;
+let tumbler, logos;
 
-function setup() {
+function preload() {
 	new Canvas(500, 400);
-	let logos = [];
-	for (let i = 0; i < 25; i++) {
-		logos.push('/jam/svg/logo' + i + '.svg');
-	}
-	logosAni = new SpriteAnimation(...logos);
-	stroke(239, 53, 107);
-	strokeWeight(4);
-	logosAni.frame = 12;
-	allSprites.cull(100);
-	while (allSprites.length < 20) {
-		logosAni.frame = round(random(1, 24));
-		new Sprite(logosAni.frameImage, random(width), random(height), 160);
-	}
+	world.gravity.y = 10;
+
+	tumbler = new Sprite(250, 50, 600, 800, 'k');
+	tumbler.shape = 'chain';
+	tumbler.strokeWeight = 0;
+
+	logos = new Group();
+	logos.spriteSheet = '/jam/p5play_logos.png';
+	logos.addAni({ size: 128, frames: 12 });
+	logos.ani.stop();
+	logos.x = () => random(100, 400);
+	logos.y = () => -60;
+	logos.scale = () => random(0.25, 0.5);
 }
 
 function draw() {
 	clear();
-	for (let s of allSprites) {
-		if (s.mouse.dragging()) {
-			s.moveTowards(mouse.x + s.mouse.x, mouse.y + s.mouse.y, 1);
-		}
+	if (logos.length < 100 && frameCount % 5 === 0) {
+		let logo = new logos.Sprite();
+		logo.d = logo.w * 1.2;
+		logo.ani.frame = floor(random(12));
 	}
 }
 

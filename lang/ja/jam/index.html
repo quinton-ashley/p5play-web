@@ -38,41 +38,33 @@
 				<p>ゲームは最新バージョンの p5play を使用していなければならず、2024 年 6 月 20 日までに提出されなければなりません。</p>
 				<h2 id="🎉-ゲームを提出する！-🎉">🎉 <a href="https://forms.gle/xn2PvsC8FA8Hf8Qo8" target="_blank">ゲームを提出する！</a>
 					🎉</h2>
-				<h2 id="🥇-2023-年冬--pannawit0">🥇 2023 年冬 : <a href="https://www.youtube.com/@hazu0"
-						target="_blank">@pannawit0</a></h2>
-				<p><a href="https://pannawit0.github.io/SkullKnight"
-						target="_blank">"スカルナイト"</a>はサバイバルゲームです。あなたは危険な罠やモンスターで満ちた城で、浮遊する頭蓋骨の仲間を持つ騎士としてプレイします。</p>
-				<p>このゲームは、その雰囲気あるデザインと挑戦的なゲームプレイのために勝ち取りました。Pannawit が p5play の移動と回転機能を使用して敵 AI
-					とテキストアニメーションを作成した方法を見るために、ゲームの<a
-						href="https://github.com/Pannawit0/SkullKnight/blob/master/skullKnight.js"
-						target="_blank">コード</a>をチェックしてみてください。</p>
 			</md>
 			<script type="mie/p5" name="Jam!" hide-editor="">
-let logosAni;
+let tumbler, logos;
 
-function setup() {
+function preload() {
 	new Canvas(500, 400);
-	let logos = [];
-	for (let i = 0; i < 25; i++) {
-		logos.push('/jam/svg/logo' + i + '.svg');
-	}
-	logosAni = new SpriteAnimation(...logos);
-	stroke(239, 53, 107);
-	strokeWeight(4);
-	logosAni.frame = 12;
-	allSprites.cull(100);
-	while (allSprites.length < 20) {
-		logosAni.frame = round(random(1, 24));
-		new Sprite(logosAni.frameImage, random(width), random(height), 160);
-	}
+	world.gravity.y = 10;
+
+	tumbler = new Sprite(250, 50, 600, 800, 'k');
+	tumbler.shape = 'chain';
+	tumbler.strokeWeight = 0;
+
+	logos = new Group();
+	logos.spriteSheet = '/jam/p5play_logos.png';
+	logos.addAni({ size: 128, frames: 12 });
+	logos.ani.stop();
+	logos.x = () => random(100, 400);
+	logos.y = () => -60;
+	logos.scale = () => random(0.25, 0.5);
 }
 
 function draw() {
 	clear();
-	for (let s of allSprites) {
-		if (s.mouse.dragging()) {
-			s.moveTowards(mouse.x + s.mouse.x, mouse.y + s.mouse.y, 1);
-		}
+	if (logos.length < 100 && frameCount % 5 === 0) {
+		let logo = new logos.Sprite();
+		logo.d = logo.w * 1.2;
+		logo.ani.frame = floor(random(12));
 	}
 }
 
@@ -82,15 +74,14 @@ function draw() {
 					alt="Skull Knight image" style="width: 100%">
 			</div>
 			<md id="w2023">
-				<h2 id="🥇-winter-2023--pannawit0">🥇 Winter 2023 : <a href="https://www.youtube.com/@hazu0"
+				<h2 id="🥇-2023-年冬--pannawit0">🥇 2023 年冬 : <a href="https://www.youtube.com/@hazu0"
 						target="_blank">@pannawit0</a></h2>
-				<p><a href="https://pannawit0.github.io/SkullKnight" target="_blank">"Skull Knight"</a> is a survival
-					game. You play as a knight with a floating skull companion in a castle filled with dangerous traps
-					and monsters.</p>
-				<p>This game won because of its atmospheric design and challenging gameplay. Check out the game's <a
+				<p><a href="https://pannawit0.github.io/SkullKnight"
+						target="_blank">"スカルナイト"</a>はサバイバルゲームです。あなたは危険な罠やモンスターで満ちた城で、浮遊する頭蓋骨の仲間を持つ騎士としてプレイします。</p>
+				<p>このゲームは、その雰囲気あるデザインと挑戦的なゲームプレイのために勝ち取りました。Pannawit が p5play の移動と回転機能を使用して敵 AI
+					とテキストアニメーションを作成した方法を見るために、ゲームの<a
 						href="https://github.com/Pannawit0/SkullKnight/blob/master/skullKnight.js"
-						target="_blank">code</a> to see how Pannawit used p5play's movement and rotation functions to
-					create enemy AI and text animations.</p>
+						target="_blank">コード</a>をチェックしてみてください。</p>
 			</md>
 			<md id="s2023">
 				<h2 id="🥇-2023-年夏--tezumies">🥇 2023 年夏 : <a href="https://twitter.com/Tezumies"
