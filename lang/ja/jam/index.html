@@ -21,7 +21,7 @@
 			<!-- <a id="editor" href="../editor">Editor</a> -->
 			<a id="jam" href="../jam" class="active">ジャム!</a>
 			<a id="pro" href="../pro">Pro(有償プラン)</a>
-			<a id="play" href="../play">プレイ</a>
+			<a id="play" href="../play">Play</a>
 			<hr>
 			<a id="darkMode" onclick="toggleDarkMode()" tabindex="0" role="button" title="dark mode toggle">
 				<div id="darkModeIcon"></div>
@@ -32,47 +32,40 @@
 		<div class="page" style="display: flex">
 			<md id="md0-0">
 				<h2 id="p5play-ゲームジャム！🔥">p5play ゲームジャム！🔥</h2>
-				<p>p5play ゲームジャムは、p5play を使用して最高のゲームを作成できるかを競う半年ごとに開催されるコンペティションです！</p>
-				<p>個人で参加することも、チームで参加することもできます。ゲームを完成させる前に、コンペティションが終了する前にフィードバックを受けるために、Discord の <a
-						href="https://discord.gg/EJwnJATmj7" target="_blank">#share</a> チャンネルでゲームを共有してください。</p>
-				<p>ゲームは最新バージョンの p5play を使用していなければならず、2024 年 6 月 20 日までに提出されなければなりません。</p>
-				<h2 id="🎉-ゲームを提出する！-🎉">🎉 <a href="https://forms.gle/xn2PvsC8FA8Hf8Qo8" target="_blank">ゲームを提出する！</a>
-					🎉</h2>
-				<h2 id="🥇-2023-年冬--pannawit0">🥇 2023 年冬 : <a href="https://www.youtube.com/@hazu0"
-						target="_blank">@pannawit0</a></h2>
-				<p><a href="https://pannawit0.github.io/SkullKnight"
-						target="_blank">"スカルナイト"</a>はサバイバルゲームです。あなたは危険な罠やモンスターで満ちた城で、浮遊する頭蓋骨の仲間を持つ騎士としてプレイします。</p>
-				<p>このゲームは、その雰囲気あるデザインと挑戦的なゲームプレイのために勝ち取りました。Pannawit が p5play の移動と回転機能を使用して敵 AI
-					とテキストアニメーションを作成した方法を見るために、ゲームの<a
-						href="https://github.com/Pannawit0/SkullKnight/blob/master/skullKnight.js"
-						target="_blank">コード</a>をチェックしてみてください。</p>
+				<p>「 p5play ゲームジャム」とは、半年に一度開催される、 p5play で作ったゲームの応募作の中から最優秀作の作者を選ぶコンテストです！</p>
+				<p>個人・団体を問わず、ご応募いただけます。コンテストの終了前に、 Discord の <a href="https://discord.gg/EJwnJATmj7"
+						target="_blank">#share</a> チャンネルで対象のゲーム作品をシェアし、フィードバックを受け取ってください。その後、下のリンク先の google
+					フォームから、その作品をご応募ください。</p>
+				<p>応募条件は、ゲームが p5play の最新バージョンを使用していることです。締め切りは 2024 年 6 月 20 日です。</p>
+				<h2 id="🎉-作品のご応募はこちら！-🎉">🎉 <a href="https://forms.gle/xn2PvsC8FA8Hf8Qo8"
+						target="_blank">作品のご応募はこちら！</a> 🎉</h2>
 			</md>
 			<script type="mie/p5" name="Jam!" hide-editor="">
-let logosAni;
+let tumbler, logos;
 
-function setup() {
+function preload() {
 	new Canvas(500, 400);
-	let logos = [];
-	for (let i = 0; i < 25; i++) {
-		logos.push('/jam/svg/logo' + i + '.svg');
-	}
-	logosAni = new SpriteAnimation(...logos);
-	stroke(239, 53, 107);
-	strokeWeight(4);
-	logosAni.frame = 12;
-	allSprites.cull(100);
-	while (allSprites.length < 20) {
-		logosAni.frame = round(random(1, 24));
-		new Sprite(logosAni.frameImage, random(width), random(height), 160);
-	}
+	world.gravity.y = 10;
+
+	tumbler = new Sprite(250, 50, 600, 800, 'k');
+	tumbler.shape = 'chain';
+	tumbler.strokeWeight = 0;
+
+	logos = new Group();
+	logos.spriteSheet = 'p5play_logos.png';
+	logos.addAni({ size: 128, frames: 12 });
+	logos.ani.stop();
+	logos.x = () => random(100, 400);
+	logos.y = () => -60;
+	logos.scale = () => random(0.25, 0.5);
 }
 
 function draw() {
 	clear();
-	for (let s of allSprites) {
-		if (s.mouse.dragging()) {
-			s.moveTowards(mouse.x + s.mouse.x, mouse.y + s.mouse.y, 1);
-		}
+	if (logos.length < 100 && frameCount % 5 === 0) {
+		let logo = new logos.Sprite();
+		logo.d = logo.w * 1.2;
+		logo.ani.frame = floor(random(12));
 	}
 }
 
@@ -82,24 +75,23 @@ function draw() {
 					alt="Skull Knight image" style="width: 100%">
 			</div>
 			<md id="w2023">
-				<h2 id="🥇-winter-2023--pannawit0">🥇 Winter 2023 : <a href="https://www.youtube.com/@hazu0"
+				<h2 id="🥇-2023-年冬--pannawit0">🥇 2023 年冬 : <a href="https://www.youtube.com/@hazu0"
 						target="_blank">@pannawit0</a></h2>
-				<p><a href="https://pannawit0.github.io/SkullKnight" target="_blank">"Skull Knight"</a> is a survival
-					game. You play as a knight with a floating skull companion in a castle filled with dangerous traps
-					and monsters.</p>
-				<p>This game won because of its atmospheric design and challenging gameplay. Check out the game's <a
+				<p><a href="https://pannawit0.github.io/SkullKnight" target="_blank">"Skull Knight"</a>
+					はサバイバルゲームです。宙に浮かぶ髑髏を連れた騎士を操作し、危険な罠やモンスターで満ちた城をプレイします。</p>
+				<p>本作は、その雰囲気のあるデザインと歯ごたえのあるゲーム性によって、優勝を勝ち取りました。ゲームの<a
 						href="https://github.com/Pannawit0/SkullKnight/blob/master/skullKnight.js"
-						target="_blank">code</a> to see how Pannawit used p5play's movement and rotation functions to
-					create enemy AI and text animations.</p>
+						target="_blank">コード</a>をチェックして、 Pannawit が p5play の移動と回転機能で敵 AI
+					とテキストアニメーションをどのように作成したのかを見てみてください。</p>
 			</md>
 			<md id="s2023">
 				<h2 id="🥇-2023-年夏--tezumies">🥇 2023 年夏 : <a href="https://twitter.com/Tezumies"
 						target="_blank">@Tezumies</a></h2>
 				<p><a href="https://tezumie.github.io/into-the-mines" target="_blank">"Into the Mines"</a>
-					は、オープンワールドのプラットフォーマーゲームです。あなたは壁を登り、魔法のグラップリングアックスを使うことができるひげを生やした鉱夫としてプレイします！</p>
-				<p>このゲームは、その信じられないほどのピクセルアート、レベルデザイン、そして滑らかなプレイヤーコントロールのために優勝しました。Tezumie がゲームコントローラー入力のために p5play の
-					<code>contro</code> インターフェースをどのように使用したかを確認するために、ゲームの <a
-						href="https://github.com/Tezumie/into-the-mines" target="_blank">コード</a> を見てみてください。</p>
+					は、オープンワールドのプラットフォーマーゲームです。壁をよじ登り、魔法のフックの付いた斧を使う、ひげ面の鉱夫を操作しプレイします！</p>
+				<p>本作は、素晴らしいピクセルアート、ステージ構成、そしてスムースな操作性によって、優勝を勝ち取りました。ゲームの<a
+						href="https://github.com/Tezumie/into-the-mines" target="_blank">コード</a>をご覧いただき、 Tezumie がどのように
+					p5play の <code>contro</code> インターフェイスでゲームコントローラー入力に対応したのかを見てみてください。</p>
 			</md>
 			<div>
 				<img src="https://tezumie.github.io/into-the-mines/into-the-mines.png" alt="Into the Mines image"
@@ -113,11 +105,10 @@ function draw() {
 				<h2 id="🥇-2022-年冬--kevin98799">🥇 2022 年冬 : <a href="https://kevin98799.itch.io"
 						target="_blank">@kevin98799</a></h2>
 				<p><a href="https://kevin98799.itch.io/puzzling-magnetism-recharged" target="_blank">"Puzzling Magnetism
-						Recharged"</a>では、逆の磁気チャージを持つ 2 つのキャラクターを操作して、それぞれの磁気に応じてボックスを押したり引いたりします。</p>
-				<p>このゲームは、ユニークで進行が難しいレベルデザインが評価され、またコードでは Groups と Tiles のコンストラクタをうまく活用しています。</p>
-				<p>ケビンに大きな祝福を！ 🥳</p>
-				<pre><code>
-</code></pre>
+						Recharged"</a> は、逆の磁気を持つ二人のキャラクターを操作し、それぞれの磁力によって箱を押したり引いたりするゲームです。</p>
+				<p>本作は、ユニークなゲーム性と次第に難易度の上がるゲームバランスによって、優勝を勝ち取りました。ゲームの<a
+						href="https://v6p9d9t4.ssl.hwcdn.net/html/7146864/sketch.js" target="_blank">コード</a>をチェックして、
+					Kevin の絶妙な <code>Tiles</code> コンストラクタ処理を見てみてください。</p>
 			</md>
 		</div>
 

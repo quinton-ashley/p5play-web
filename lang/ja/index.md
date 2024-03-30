@@ -24,7 +24,7 @@
 
 ## コミュニティに参加する 👾
 
-わからないことが出てきたら、私たちが運営する [p5play Discord サーバ](https://discord.gg/EJwnJATmj7)に参加して、インタラクティブアートやゲームの制作者たちによるコミュニティメンバーに、直接質問してみましょう。
+わからないことが出てきたら、私たちの [p5play Discord サーバ](https://discord.gg/EJwnJATmj7)に参加して、インタラクティブアートやゲームの制作者たちによるコミュニティメンバーに、直接質問してみましょう。
 
 # 11
 
@@ -32,7 +32,7 @@
 
 p5play は、 [AGPLv3](https://github.com/quinton-ashley/p5play-web/blob/main/LICENSING.md) ライセンスの下、無料で利用できるオープンソースプロジェクトです。
 
-ただし、 p5play の[商用利用](https://github.com/quinton-ashley/p5play-web/blob/main/LICENSING.md)をご希望される場合は、 [p5play プロフェッショナルライセンス](https://github.com/quinton-ashley/p5play-web/blob/main/pro/LICENSE.md)プランへのご加入をお願いしております。
+ただし、 p5play の[商用利用](https://github.com/quinton-ashley/p5play-web/blob/main/LICENSING.md)をご希望される場合は、 [p5play Professional License](https://github.com/quinton-ashley/p5play-web/blob/main/pro/LICENSE.md)プランへのご加入をお願いしております。
 
 # 12
 
@@ -136,7 +136,7 @@ p5play に関するあなたのレビューを[info@p5play.org](mailto:info@p5pl
 
 中学校や高校の授業で、生徒たちにオブジェクト指向プログラミングに興味を持ってもらうには、 p5play はうってつけの教材です。
 
-私は教員向けに、 Professional Development 講座を開催しています。たとえ皆さんが「ゲーマー」でなくても、ゲームデザインの経験がなくても、 p5play 指導のエキスパートになれます！ 皆さんの生徒たちは、自発的にゲームやインタラクティブアートを作ることに熱中するでしょう。私の Professional Development コースで、授業での教育課程の策定、生徒の提出物の評価方法、厳選された生徒向け教材……など、諸々について皆さんにアドバイスさせていただきます！
+私は教員向けに、 Professional Development 講座を開催しています (英語のみの受け付けです) 。たとえ皆さんが「ゲーマー」でなくても、ゲームデザインの経験がなくても、 p5play 指導のエキスパートになれます！ 皆さんの生徒たちは、自発的にゲームやインタラクティブアートを作ることに熱中するでしょう。私の Professional Development コースで、授業での教育課程の策定、生徒の提出物の評価方法、厳選された生徒向け教材……など、諸々について皆さんにアドバイスさせていただきます！
 
 Professional Development に関するお問い合わせは、メールにて: [info@p5play.org](mailto:info@p5play.org)
 
@@ -148,7 +148,7 @@ Professional Development に関するお問い合わせは、メールにて: [i
 
 そうでない場合は、私が開設している、オンライン講座をご利用ください。内容は： AP Computer Science Principles, AP CS A, IGCSE Computer Science, などなど。楽しみながら、いっしょに業界標準のコンピュータ・サイエンスを学びましょう！
 
-また、私はゲームデザインの基礎も教えています。 p5play の使い方を学んで、皆さんのプログラミング技術をレベルアップ！ 皆さんの作ったゲームが世界中に広まるよう、お手伝いします！
+また、私はゲームデザインの基礎も教えています (英語のみの受け付けです) 。 p5play の使い方を学んで、皆さんのプログラミング技術をレベルアップ！ 皆さんの作ったゲームが世界中に広まるよう、お手伝いします！
 
 ご両親に [info@p5play.org](mailto:info@p5play.org) までメールを送ってもらい、家庭教師についてお問い合わせください。
 
