@@ -61,11 +61,13 @@ function preload() {
 
 function draw() {
 	clear();
-	if (logos.length < 100 && frameCount % 5 === 0) {
+	if (logos.length < 100) {
+		if (frameCount % 5 === 0) {
 		let logo = new logos.Sprite();
 		logo.d = logo.w * 1.2;
 		logo.ani.frame = floor(random(12));
-	}
+		}
+	} else noLoop();
 }
 
 			</script>

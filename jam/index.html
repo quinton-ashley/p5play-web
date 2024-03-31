@@ -63,11 +63,13 @@ function preload() {
 
 function draw() {
 	clear();
-	if (logos.length < 100 && frameCount % 5 === 0) {
+	if (logos.length < 100) {
+		if (frameCount % 5 === 0) {
 		let logo = new logos.Sprite();
 		logo.d = logo.w * 1.2;
 		logo.ani.frame = floor(random(12));
-	}
+		}
+	} else noLoop();
 }
 
 			</script>
@@ -111,7 +113,7 @@ function draw() {
 						Magnetism Recharged"</a> you play as two characters with opposite magnetic charges that can push
 					or pull boxes respective to their magnetism.</p>
 				<p>This game won because of it's unique gameplay and progressively challenging level design. Check out
-					game's <a href="https://v6p9d9t4.ssl.hwcdn.net/html/7146864/sketch.js" target="_blank">code</a> to
+					game's <a href="https://html-classic.itch.zone/html/7146864/sketch.js" target="_blank">code</a> to
 					see how Kevin made great use of p5play's <code>Tiles</code> constructor.</p>
 			</md>
 		</div>

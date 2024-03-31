@@ -65,11 +65,13 @@ function preload() {
 
 function draw() {
 	clear();
-	if (logos.length < 100 && frameCount % 5 === 0) {
+	if (logos.length < 100) {
+		if (frameCount % 5 === 0) {
 		let logo = new logos.Sprite();
 		logo.d = logo.w * 1.2;
 		logo.ani.frame = floor(random(12));
-	}
+		}
+	} else noLoop();
 }
 
 			</script>
@@ -113,8 +115,9 @@ function draw() {
 				<p>En <a href="https://kevin98799.itch.io/puzzling-magnetism-recharged" target="_blank">"Puzzling
 						Magnetism Recharged"</a> juegas como dos personajes con cargas magnéticas opuestas que pueden
 					empujar o atraer cajas según su magnetismo.</p>
-				<p>Este juego ganó porque es único y tiene un diseño de niveles progresivamente desafiante. El código
-					también hace un gran uso de Grupos y el constructor de Tiles.</p>
+				<p>Este juego ganó porque es único y tiene un diseño de niveles progresivamente desafiante. El <a
+						href="https://html-classic.itch.zone/html/7146864/sketch.js" target="_blank">código</a> también
+					hace un gran uso de Grupos y el constructor de Tiles.</p>
 				<p>¡Enhorabuena a Kevin! 🥳</p>
 			</md>
 		</div>
