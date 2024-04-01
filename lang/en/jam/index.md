@@ -32,4 +32,4 @@ This game won because of its incredible pixel art, level design, and fluid playe
 
 In ["Puzzling Magnetism Recharged"](https://kevin98799.itch.io/puzzling-magnetism-recharged) you play as two characters with opposite magnetic charges that can push or pull boxes respective to their magnetism.
 
-This game won because of it's unique gameplay and progressively challenging level design. Check out game's [code](https://v6p9d9t4.ssl.hwcdn.net/html/7146864/sketch.js) to see how Kevin made great use of p5play's `Tiles` constructor.
+This game won because of it's unique gameplay and progressively challenging level design. Check out game's [code](https://html-classic.itch.zone/html/7146864/sketch.js) to see how Kevin made great use of p5play's `Tiles` constructor.

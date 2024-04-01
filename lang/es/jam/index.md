@@ -32,6 +32,6 @@ Este juego ganó debido a su increíble arte de píxeles, diseño de niveles y c
 
 En ["Puzzling Magnetism Recharged"](https://kevin98799.itch.io/puzzling-magnetism-recharged) juegas como dos personajes con cargas magnéticas opuestas que pueden empujar o atraer cajas según su magnetismo.
 
-Este juego ganó porque es único y tiene un diseño de niveles progresivamente desafiante. El código también hace un gran uso de Grupos y el constructor de Tiles.
+Este juego ganó porque es único y tiene un diseño de niveles progresivamente desafiante. El [código](https://html-classic.itch.zone/html/7146864/sketch.js) también hace un gran uso de Grupos y el constructor de Tiles.
 
 ¡Enhorabuena a Kevin! 🥳
