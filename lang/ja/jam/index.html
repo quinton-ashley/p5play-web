@@ -52,7 +52,7 @@ function preload() {
 	tumbler.strokeWeight = 0;
 
 	logos = new Group();
-	logos.spriteSheet = 'p5play_logos.png';
+	logos.spriteSheet = '/jam/p5play_logos.png';
 	logos.addAni({ size: 128, frames: 12 });
 	logos.ani.stop();
 	logos.x = () => random(100, 400);
@@ -62,11 +62,13 @@ function preload() {
 
 function draw() {
 	clear();
-	if (logos.length < 100 && frameCount % 5 === 0) {
+	if (logos.length < 100) {
+		if (frameCount % 5 === 0) {
 		let logo = new logos.Sprite();
 		logo.d = logo.w * 1.2;
 		logo.ani.frame = floor(random(12));
-	}
+		}
+	} else noLoop();
 }
 
 			</script>
@@ -107,7 +109,7 @@ function draw() {
 				<p><a href="https://kevin98799.itch.io/puzzling-magnetism-recharged" target="_blank">"Puzzling Magnetism
 						Recharged"</a> は、逆の磁気を持つ二人のキャラクターを操作し、それぞれの磁力によって箱を押したり引いたりするゲームです。</p>
 				<p>本作は、ユニークなゲーム性と次第に難易度の上がるゲームバランスによって、優勝を勝ち取りました。ゲームの<a
-						href="https://v6p9d9t4.ssl.hwcdn.net/html/7146864/sketch.js" target="_blank">コード</a>をチェックして、
+						href="https://html-classic.itch.zone/html/7146864/sketch.js" target="_blank">コード</a>をチェックして、
 					Kevin の絶妙な <code>Tiles</code> コンストラクタ処理を見てみてください。</p>
 			</md>
 		</div>

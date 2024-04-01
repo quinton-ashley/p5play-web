@@ -12,8 +12,6 @@
 
 # w2023
 
-# w2023
-
 ## 🥇 2023 年冬 : [@pannawit0](https://www.youtube.com/@hazu0)
 
 ["Skull Knight"](https://pannawit0.github.io/SkullKnight) はサバイバルゲームです。宙に浮かぶ髑髏を連れた騎士を操作し、危険な罠やモンスターで満ちた城をプレイします。
@@ -34,4 +32,4 @@
 
 ["Puzzling Magnetism Recharged"](https://kevin98799.itch.io/puzzling-magnetism-recharged) は、逆の磁気を持つ二人のキャラクターを操作し、それぞれの磁力によって箱を押したり引いたりするゲームです。
 
-本作は、ユニークなゲーム性と次第に難易度の上がるゲームバランスによって、優勝を勝ち取りました。ゲームの[コード](https://v6p9d9t4.ssl.hwcdn.net/html/7146864/sketch.js)をチェックして、 Kevin の絶妙な `Tiles` コンストラクタ処理を見てみてください。
+本作は、ユニークなゲーム性と次第に難易度の上がるゲームバランスによって、優勝を勝ち取りました。ゲームの[コード](https://html-classic.itch.zone/html/7146864/sketch.js)をチェックして、 Kevin の絶妙な `Tiles` コンストラクタ処理を見てみてください。
