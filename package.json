@@ -1,40 +1,40 @@
 {
-	"name": "p5play-web",
-	"productName": "p5play editor",
-	"author": "quinton-ashley <qashto@gmail.com>",
-	"description": "The website for p5play",
-	"dependencies": {
-		"@bitjson/qr-code": "^1.0.2",
-		"@types/p5": "^1.7.4",
-		"js-beautify": "^1.15.1",
-		"p5": "^1.9.0",
-		"planck": "^1.0.0"
-	},
-	"devDependencies": {
-		"bun-types": "^1.0.1",
-		"canvas": "^2.11.2",
-		"jest-cli": "^29.3.1",
-		"jest-environment-jsdom": "^29.3.1",
-		"taffydb": "^2.7.3"
-	},
-	"homepage": "https://github.com/quinton-ashley/p5play-web",
-	"jest": {
-		"testEnvironmentOptions": {
-			"resources": "usable"
-		}
-	},
-	"license": "NONE",
-	"main": "app/app.js",
-	"scripts": {
-		"tests": "jest tests",
-		"types": "bun types/types.js && cp v3/p5play.d.ts ../../pkg/p5play/p5play.d.ts",
-		"docs": "jsdoc --configure docs/config/jsdoc.json",
-		"min": "terser v3/p5play.js --compress ecma=2024 --mangle > v3/p5play.min.js",
-		"dist": "bun min && cp v3/p5play.js ../../pkg/p5play/p5play.js && cp v3/p5play.min.js ../../pkg/p5play/p5play.min.js",
-		"v": "npm version patch --force",
-		"V": "npm version minor --force",
-		"version": "git add -A",
-		"postversion": "git push"
-	},
-	"version": "1.9.54"
+  "name": "p5play-web",
+  "productName": "p5play editor",
+  "author": "quinton-ashley <qashto@gmail.com>",
+  "description": "The website for p5play",
+  "dependencies": {
+    "@bitjson/qr-code": "^1.0.2",
+    "@types/p5": "^1.7.4",
+    "js-beautify": "^1.15.1",
+    "p5": "^1.9.0",
+    "planck": "^1.0.0"
+  },
+  "devDependencies": {
+    "bun-types": "^1.0.1",
+    "canvas": "^2.11.2",
+    "jest-cli": "^29.3.1",
+    "jest-environment-jsdom": "^29.3.1",
+    "taffydb": "^2.7.3"
+  },
+  "homepage": "https://github.com/quinton-ashley/p5play-web",
+  "jest": {
+    "testEnvironmentOptions": {
+      "resources": "usable"
+    }
+  },
+  "license": "NONE",
+  "main": "app/app.js",
+  "scripts": {
+    "tests": "jest tests",
+    "types": "bun types/types.js && cp v3/p5play.d.ts ../../pkg/p5play/p5play.d.ts",
+    "docs": "jsdoc --configure docs/config/jsdoc.json",
+    "min": "terser v3/p5play.js --compress ecma=2024 --mangle > v3/p5play.min.js",
+    "dist": "bun min && cp v3/p5play.js ../../pkg/p5play/p5play.js && cp v3/p5play.min.js ../../pkg/p5play/p5play.min.js",
+    "v": "npm version patch --force",
+    "V": "npm version minor --force",
+    "version": "git add -A",
+    "postversion": "git push"
+  },
+  "version": "1.9.55"
 }
