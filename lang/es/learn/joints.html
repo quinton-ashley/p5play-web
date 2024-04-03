@@ -78,7 +78,7 @@ function draw() {
 					bola directamente hacia arriba y trata de pegarla a la parte superior del palo!</p>
 			</md>
 			<script type="mie/p5" id="glue-and-unglue">
-let floor, stick, ball, j;
+let floor, stick, ball;
 
 function setup() {
 	new Canvas(500, 400);
@@ -93,8 +93,8 @@ function draw() {
 	stick.moveTowards(mouse);
 
 	if (mouse.presses()) {
-		if (stick.joints.length > 0) j.remove();
-		else j = new GlueJoint(stick, ball);
+		if (stick.joints[0]) stick.joints[0].remove();
+		else new GlueJoint(stick, ball);
 	}
 }
       </script>

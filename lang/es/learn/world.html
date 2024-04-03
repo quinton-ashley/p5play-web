@@ -146,6 +146,7 @@ function draw() {
 			<script type="mie/p5" id="renderStats">
 function setup() {
 	new Canvas(500, 250);
+	p5play.renderStats = true;
 
 	for (let i = 0; i < 25; i++) {
 		let x = 430 - i * 20;
@@ -157,8 +158,6 @@ function setup() {
 
 function draw() {
 	background(20);
-
-	renderStats();
 
 	world.velocityIterations = 8;
 	world.positionIterations = 3;

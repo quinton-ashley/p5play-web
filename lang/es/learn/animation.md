@@ -82,7 +82,7 @@ Los objetos atlas pueden tener las siguientes propiedades:
 
 En el ejemplo del "héroe", el tamaño del sprite del héroe se establece en 32x32 píxeles en el constructor `Sprite`. Ese tamaño se utiliza como un multiplicador para el valor de la fila proporcionado.
 
-Haz clic en este enlace para ver la hoja de sprites completa [questKid](assets/questKid.png) utilizada en el ejemplo.
+Haz clic en este enlace para ver la hoja de sprites completa [questKid](/learn/assets/questKid.png) utilizada en el ejemplo.
 
 Si deseas apreciar realmente lo bueno que es p5play, compara el código de mi ejemplo con [esta demostración de Phaser](https://labs.phaser.io/view.html?src=src/animation/create%20animation%20from%20sprite%20sheet.js). ¡Ja!
 

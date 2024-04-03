@@ -87,7 +87,7 @@ In the "hero" example the size of the hero sprite is set to 32x32 pixels in the 
 
 The `ani.offset` property is used to adjust the position of an animation relative to the sprite's position.
 
-Click this link to see the full [questKid](assets/questKid.png) sprite sheet used in the example.
+Click this link to see the full [questKid](/learn/assets/questKid.png) sprite sheet used in the example.
 
 If you'd like to truly appreciate how good p5play is, try comparing the code from my example to [this Phaser demo](https://labs.phaser.io/view.html?src=src/animation/create%20animation%20from%20sprite%20sheet.js). Ha!
 

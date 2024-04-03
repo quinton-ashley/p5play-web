@@ -87,9 +87,9 @@ p5play では、アニメーションを完全に制御できます。
 
 `ani.offset` プロパティは、スプライトの座標に対するアニメーションの位置を微調整するために使用します。
 
-このコードサンプルで使用している [questKid](assets/questKid.png) スプライトシート画像全体は、リンクをクリックして確認してください。
+このコードサンプルで使用している [questKid](/learn/assets/questKid.png) スプライトシート画像全体は、リンクをクリックして確認してください。
 
-p5play がいかに素晴らしいかをを実感したいなら、私の作ったコードサンプルと、[この Phaser のデモ](https://labs.phaser.io/view.html?src=src/animation/create%20animation%20from%20sprite%20sheet.js)とを比べてみてください。(ﾉ∀`)ｱﾁｬｰ
+p5play がいかに素晴らしいかをを実感したいなら、私の作ったコードサンプルと、[この Phaser のデモ](https://labs.phaser.io/view.html?src=src/animation/create%20animation%20from%20sprite%20sheet.js)とを比べてみてください。(ﾉ ∀`)ｱﾁｬｰ
 
 １つのスプライトシートでは、アニメーションのすべてのフレームを同じ大きさにし、左から右に順番に並べることをおすすめします。そうでない場合は、アトラスオブジェクトの代わりに座標の配列を使用し、各フレームの座標を手動で指定する必要があります。
 
