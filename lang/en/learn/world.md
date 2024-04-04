@@ -26,6 +26,10 @@ Note that the Box2D physics engine solver is only stable up to a time scale of 2
 
 Click the canvas in the example to make the physics simulation progress in slow motion, 1/4th real time. The Matrix bullet time effect is achieved by making the background of each frame slightly transparent.
 
+`world.realTime` stores how many real time seconds have elapsed since the start of the world, including pauses.
+
+`world.physicsTime` stores how many seconds have elapsed in the physics simulation.
+
 # 2-0
 
 ## Performance Testing

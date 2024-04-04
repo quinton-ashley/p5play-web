@@ -6,7 +6,7 @@ Here are the input devices available in p5play:
 
 - `kb` / `keyboard` for the keyboard
 - `mouse` for the mouse
-- `contro` / `controllers` for game controllers
+- `contros` / `controllers` for game controllers
 - `touches` for touch screen inputs
 
 These input devices all use the same simple functions for getting the state of an input: `presses`, `pressing`, and `released`.
@@ -66,21 +66,23 @@ Note that `mouse.x` is the x position of the mouse on the canvas and `sprite.mou
 
 ## Game Controllers
 
-The `contro` object provides the input state of game controller buttons:
+The `contros` array (aka `controllers`) contains an object for each connected game controller detected by your web browser. Each controller object stores the input states of these buttons:
 
 `a`, `b`, `x`, `y`, `l` (left bumper), `r` (right bumper), `lt` (left trigger), `rt` (right trigger), `up`, `down`, `left`, `right` (D-pad), `lsb` (left stick button), `rsb` (right stick button), `start`, and `select`
 
-`contro.leftStick` and `contro.rightStick` represent the positions of the analog sticks as objects with x and y properties. These values range from -1 to 1, with 0 indicating the center position.
+`leftStick` and `rightStick` represent the positions of the analog sticks as objects with x and y properties. These values range from -1 to 1, with 0 indicating the center position.
 
-Some controllers have analog triggers, and their positions are stored as numbers ranging from 0 to 1 in `contro.leftTrigger` and `contro.rightTrigger`.
+Some controllers have analog triggers, and their positions are stored as numbers ranging from 0 to 1 in `leftTrigger` and `rightTrigger`.
 
-The `contro` object (aka `controllers`) is an array that contains all the connected game controllers detected by your web browser. Access connected controllers by index. For example, `contro[0]` and `contro[1]` are the first and second controllers. Through JS magic, `contro` can be used to get the input states of `contro[0]`.
+Just like with a standard JavaScript array, you can access connected controllers by index. For example, `contros[0]` and `contros[1]` are the first and second controllers. Remember to check if a controller exists in the array before checking its input.
 
 # 4-1
 
+For convenience, `contro` can be used to attempt to check the input states of `contros[0]` and won't throw errors if a controller isn't connected yet.
+
 Try it! Connect a game controller and press any button on it for it to be detected by p5play.
 
-➡️ [full demo](https://openprocessing.org/sketch/2120550)
+➡️ [full controller test demo](https://aijs.io/editor?user=quinton-ashley&project=p5play_Controller_Test)
 
 # 5-0
 

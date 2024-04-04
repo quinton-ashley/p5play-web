@@ -39,7 +39,7 @@
 				<ul>
 					<li><code>kb</code> / <code>keyboard</code> for the keyboard</li>
 					<li><code>mouse</code> for the mouse</li>
-					<li><code>contro</code> / <code>controllers</code> for game controllers</li>
+					<li><code>contros</code> / <code>controllers</code> for game controllers</li>
 					<li><code>touches</code> for touch screen inputs</li>
 				</ul>
 				<p>These input devices all use the same simple functions for getting the state of an input:
@@ -225,22 +225,22 @@ function draw() {
 		<div id="page-4" class="page">
 			<md id="md4-0">
 				<h2 id="game-controllers">Game Controllers</h2>
-				<p>The <code>contro</code> object provides the input state of game controller buttons:</p>
+				<p>The <code>contros</code> array (aka <code>controllers</code>) contains an object for each connected
+					game controller detected by your web browser. Each controller object stores the input states of
+					these buttons:</p>
 				<p><code>a</code>, <code>b</code>, <code>x</code>, <code>y</code>, <code>l</code> (left bumper),
 					<code>r</code> (right bumper), <code>lt</code> (left trigger), <code>rt</code> (right trigger),
 					<code>up</code>, <code>down</code>, <code>left</code>, <code>right</code> (D-pad), <code>lsb</code>
 					(left stick button), <code>rsb</code> (right stick button), <code>start</code>, and
 					<code>select</code></p>
-				<p><code>contro.leftStick</code> and <code>contro.rightStick</code> represent the positions of the
-					analog sticks as objects with x and y properties. These values range from -1 to 1, with 0 indicating
-					the center position.</p>
+				<p><code>leftStick</code> and <code>rightStick</code> represent the positions of the analog sticks as
+					objects with x and y properties. These values range from -1 to 1, with 0 indicating the center
+					position.</p>
 				<p>Some controllers have analog triggers, and their positions are stored as numbers ranging from 0 to 1
-					in <code>contro.leftTrigger</code> and <code>contro.rightTrigger</code>.</p>
-				<p>The <code>contro</code> object (aka <code>controllers</code>) is an array that contains all the
-					connected game controllers detected by your web browser. Access connected controllers by index. For
-					example, <code>contro[0]</code> and <code>contro[1]</code> are the first and second controllers.
-					Through JS magic, <code>contro</code> can be used to get the input states of <code>contro[0]</code>.
-				</p>
+					in <code>leftTrigger</code> and <code>rightTrigger</code>.</p>
+				<p>Just like with a standard JavaScript array, you can access connected controllers by index. For
+					example, <code>contros[0]</code> and <code>contros[1]</code> are the first and second controllers.
+					Remember to check if a controller exists in the array before checking its input.</p>
 			</md>
 			<div class="minis horiz">
 				<script type="mie/p5" base-2="" hidden="">
@@ -278,8 +278,11 @@ lsb.y = 100 + contro.leftStick.y * 40;
 if (contro.pressing('lsb')) lsb.color = 'white';
 				</script>
 				<md id="md4-1">
+					<p>For convenience, <code>contro</code> can be used to attempt to check the input states of
+						<code>contros[0]</code> and won't throw errors if a controller isn't connected yet.</p>
 					<p>Try it! Connect a game controller and press any button on it for it to be detected by p5play.</p>
-					<p>➡️ <a href="https://openprocessing.org/sketch/2120550" target="_blank">full demo</a></p>
+					<p>➡️ <a href="https://aijs.io/editor?user=quinton-ashley&amp;project=p5play_Controller_Test"
+							target="_blank">full controller test demo</a></p>
 				</md>
 			</div>
 		</div>
