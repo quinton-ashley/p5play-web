@@ -26,7 +26,7 @@ The player and environment of your game should be drawn after the camera is turn
 
 UI or HUD sprites, represented by orange squares in this examples, should be drawn after the camera is turned off with `camera.off()`.
 
-`mouse.x` stores the x position of the mouse in relation to the world, which can be larger than the canvas. `camera.mouse.x` stores the x position of the mouse in relation to the canvas.
+`mouse.x` stores the x position of the mouse in relation to the world, which can be larger than the canvas. `mouse.canvasPos.x` stores the x position of the mouse in relation to the canvas.
 
 # 3-0
 

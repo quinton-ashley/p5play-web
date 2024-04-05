@@ -51,7 +51,7 @@ let refs = {
 	},
 	'Input_Devices.html': {
 		0: ['mouse', 'presses', 'pressing', 'released', 'kb / keyboard'],
-		4: ['contro / controllers'],
+		4: ['contros / controllers', 'contro'],
 		5: ['touches']
 	},
 	'Joints.html': {
@@ -62,13 +62,14 @@ let refs = {
 		4: ['SliderJoint']
 	},
 	'Camera.html': {
-		0: ['x', 'y'],
+		0: ['x', 'y', 'moveTo'],
 		1: ['zoom', 'zoomTo'],
-		2: ['on', 'off', 'mouse']
+		2: ['on', 'off']
 	},
 	'Canvas.html': {
-		0: ['w', 'h', '"w:h"'],
-		1: ['"pixelated"']
+		0: ['w', 'h', '"w:h"', '"fullscreen"'],
+		1: ['"pixelated"'],
+		2: ['resize']
 	},
 	'Tiles.html': {
 		0: ['Tiles'],
@@ -76,7 +77,8 @@ let refs = {
 	},
 	'World.html': {
 		0: ['gravity', 'allowSleeping'],
-		1: ['autoStep', 'step']
+		1: ['timeScale', 'physicsTime', 'realTime', 'step'],
+		2: ['velocityIterations', 'positionIterations']
 	},
 	'q5.js basics': {
 		'https://p5js.org/reference/#/p5': [

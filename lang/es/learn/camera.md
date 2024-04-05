@@ -20,7 +20,7 @@ El jugador y el entorno de tu juego deben ser dibujados con la cámara encendida
 
 Los sprites de la IU o HUD, representados por cuadrados naranjas en estos ejemplos, deben ser dibujados cuando la cámara está apagada.
 
-`mouse.x` almacena la posición x del ratón en relación con el mundo, que puede ser mayor que el canvas. `camera.mouse.x` almacena la posición x del ratón en relación con el canvas.
+`mouse.x` almacena la posición x del ratón en relación con el mundo, que puede ser mayor que el canvas. `mouse.canvasPos.x` almacena la posición x del ratón en relación con el canvas.
 
 # 3-0
 

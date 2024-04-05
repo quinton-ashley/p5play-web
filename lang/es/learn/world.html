@@ -89,14 +89,19 @@ function draw() {
 			<div class="minis horiz">
 				<md id="md1-0">
 					<h2 id="controlando-el-tiempo">Controlando el Tiempo</h2>
-					<p>Por defecto, después de cada vez que se ejecuta la función draw de p5.js, p5play llama a tres
-						funciones en este orden:</p>
-					<ul>
-						<li><code>allSprites.draw()</code> : dibuja todos los sprites</li>
-						<li><code>world.step()</code> : avanza la simulación de física</li>
-						<li><code>allSprites.update()</code> : actualiza animaciones y eventos del ratón</li>
-					</ul>
-					<p>Pero también puedes tomar control manual de estos procesos llamándolos tú mismo.</p>
+					<p>La proporción de <code>world.timeScale</code> se establece por defecto en 1 para la simulación de
+						física en tiempo real. ¡Establécelo más bajo para cámara lenta. Hazlo 0 para pausar el tiempo!
+					</p>
+					<p>Ten en cuenta que el solucionador del motor de física Box2D solo es estable hasta una escala de
+						tiempo de 2. Si quieres avanzar la simulación por una cantidad mayor de tiempo, ejecuta la
+						función <code>world.step</code> varias veces.</p>
+					<p>Haz clic en el lienzo en el ejemplo para hacer que la simulación física avance en cámara lenta,
+						1/4 del tiempo real. El efecto de tiempo bala de Matrix se logra haciendo el fondo de cada
+						cuadro ligeramente transparente.</p>
+					<p><code>world.realTime</code> almacena cuántos segundos de tiempo real han transcurrido desde el
+						inicio del mundo, incluidas las pausas.</p>
+					<p><code>world.physicsTime</code> almacena cuántos segundos han transcurrido en la simulación
+						física.</p>
 				</md>
 			</div>
 			<script type="mie/p5" id="Slow Motion">
@@ -130,18 +135,21 @@ function draw() {
 		<div id="page-2" class="page">
 			<md id="md2-0">
 				<h2 id="pruebas-de-rendimiento">Pruebas de Rendimiento</h2>
-				<p>La función <code>renderStats</code> muestra el número de sprites dibujados, una aproximación de los
-					FPS (fotogramas por segundo) actuales, así como el promedio, mínimo y máximo de FPS alcanzados
-					durante el segundo anterior.</p>
-				<p>Los FPS en este contexto se refieren a cuántos cuadros por segundo puede generar tu computadora,
-					incluyendo cálculos de física y cualquier otro proceso necesario para generar un cuadro, pero sin
-					incluir la demora entre cuándo se muestran realmente los cuadros en la pantalla. Cuanto más altos
-					sean los FPS, mejor rendimiento tendrá tu juego.</p>
-				<p>Puedes utilizar esta función para realizar pruebas de rendimiento aproximadas. Para obtener
-					resultados más precisos, utiliza las herramientas de prueba de rendimiento de tu navegador web.</p>
-				<p>En general, tener menos sprites y usar un lienzo más pequeño hará que tu juego tenga un mejor
-					rendimiento. Para un mejor rendimiento, no utilices la función <code>clear</code> de p5.js ni
-					muestrees los colores de los píxeles en tu lienzo utilizando <code>canvas.get</code>.</p>
+				<p>Establece <code>p5play.renderStats</code> en verdadero para mostrar el número de sprites dibujados,
+					tasa de visualización y cálculos de FPS. Para resultados más completos, usa las herramientas de
+					prueba de rendimiento de tu navegador web.</p>
+				<p>FPS en este contexto se refiere a cuántos cuadros por segundo puede generar tu computadora, sin
+					incluir el retraso entre cuando los cuadros se muestran realmente en la pantalla. Cuanto más alto
+					sea el FPS, mejor está funcionando tu juego.</p>
+				<p>Tener menos sprites y usar un lienzo más pequeño hará que tu juego funcione mejor. Para un mejor
+					rendimiento, no uses la función <code>clear</code> de p5.js o muestrees los colores de los píxeles
+					en tu lienzo usando <code>canvas.get</code>.</p>
+				<p>Por defecto, el motor de física Box2D realiza 8 iteraciones de velocidad
+					<code>world.velocityIterations</code> y 3 iteraciones de posición
+					<code>world.positionIterations</code>. Disminuir estos valores hará que la simulación sea más rápida
+					pero también menos precisa.</p>
+				<p>He probado p5play en todos los navegadores web y encontré que Google Chrome tiene el mejor
+					rendimiento.</p>
 			</md>
 			<script type="mie/p5" id="renderStats">
 function setup() {

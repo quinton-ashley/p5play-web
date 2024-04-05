@@ -6,7 +6,7 @@ p5play で利用可能な入力デバイスは次のとおりです:
 
 - `kb` / `keyboard` …キーボード
 - `mouse` …マウス
-- `contro` / `controllers` …ゲームコントローラー
+- `contros` / `controllers` …ゲームコントローラー
 - `touches` …タッチスクリーン
 
 これらの入力デバイスはすべて、入力状態を取得する、シンプルな `presses` 、 `pressing` 、 `released` 関数を実装しています。

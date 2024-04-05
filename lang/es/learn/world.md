@@ -20,32 +20,26 @@ Puedes despertar un sprite que duerme estableciendo `sprite.sleeping` en falso. 
 
 ## Controlando el Tiempo
 
-Por defecto, después de cada vez que se ejecuta la función draw de p5.js, p5play llama a tres funciones en este orden:
+La proporción de `world.timeScale` se establece por defecto en 1 para la simulación de física en tiempo real. ¡Establécelo más bajo para cámara lenta. Hazlo 0 para pausar el tiempo!
 
-- `allSprites.draw()` : dibuja todos los sprites
-- `world.step()` : avanza la simulación de física
-- `allSprites.update()` : actualiza animaciones y eventos del ratón
+Ten en cuenta que el solucionador del motor de física Box2D solo es estable hasta una escala de tiempo de 2. Si quieres avanzar la simulación por una cantidad mayor de tiempo, ejecuta la función `world.step` varias veces.
 
-Pero también puedes tomar control manual de estos procesos llamándolos tú mismo.
+Haz clic en el lienzo en el ejemplo para hacer que la simulación física avance en cámara lenta, 1/4 del tiempo real. El efecto de tiempo bala de Matrix se logra haciendo el fondo de cada cuadro ligeramente transparente.
 
-# 1-1
+`world.realTime` almacena cuántos segundos de tiempo real han transcurrido desde el inicio del mundo, incluidas las pausas.
 
-## world.step
-
-La función `world.step` calcula las posiciones y velocidades de todos los sprites después de avanzar la simulación de física por 1/60 de segundo por defecto.
-
-Establece `world.autoStep = false` para desactivar el avance automático, ¡lo que efectivamente pausa el tiempo! Luego puedes llamar a `world.step` manualmente cuando quieras avanzar la simulación de física. Solo ejecútalo después de que todos los sprites hayan sido dibujados.
-
-Este mini ejemplo muestra cómo un paso de tiempo puede ser proporcionado como un parámetro de entrada, pero ten en cuenta que el solucionador del motor de física Box2D solo es estable hasta un paso de tiempo de 1/30 de segundo. Si quieres avanzar la simulación por una cantidad de tiempo mayor, llama a `world.step` varias veces.
+`world.physicsTime` almacena cuántos segundos han transcurrido en la simulación física.
 
 # 2-0
 
 ## Pruebas de Rendimiento
 
-La función `renderStats` muestra el número de sprites dibujados, una aproximación de los FPS (fotogramas por segundo) actuales, así como el promedio, mínimo y máximo de FPS alcanzados durante el segundo anterior.
+Establece `p5play.renderStats` en verdadero para mostrar el número de sprites dibujados, tasa de visualización y cálculos de FPS. Para resultados más completos, usa las herramientas de prueba de rendimiento de tu navegador web.
 
-Los FPS en este contexto se refieren a cuántos cuadros por segundo puede generar tu computadora, incluyendo cálculos de física y cualquier otro proceso necesario para generar un cuadro, pero sin incluir la demora entre cuándo se muestran realmente los cuadros en la pantalla. Cuanto más altos sean los FPS, mejor rendimiento tendrá tu juego.
+FPS en este contexto se refiere a cuántos cuadros por segundo puede generar tu computadora, sin incluir el retraso entre cuando los cuadros se muestran realmente en la pantalla. Cuanto más alto sea el FPS, mejor está funcionando tu juego.
 
-Puedes utilizar esta función para realizar pruebas de rendimiento aproximadas. Para obtener resultados más precisos, utiliza las herramientas de prueba de rendimiento de tu navegador web.
+Tener menos sprites y usar un lienzo más pequeño hará que tu juego funcione mejor. Para un mejor rendimiento, no uses la función `clear` de p5.js o muestrees los colores de los píxeles en tu lienzo usando `canvas.get`.
 
-En general, tener menos sprites y usar un lienzo más pequeño hará que tu juego tenga un mejor rendimiento. Para un mejor rendimiento, no utilices la función `clear` de p5.js ni muestrees los colores de los píxeles en tu lienzo utilizando `canvas.get`.
+Por defecto, el motor de física Box2D realiza 8 iteraciones de velocidad `world.velocityIterations` y 3 iteraciones de posición `world.positionIterations`. Disminuir estos valores hará que la simulación sea más rápida pero también menos precisa.
+
+He probado p5play en todos los navegadores web y encontré que Google Chrome tiene el mejor rendimiento.

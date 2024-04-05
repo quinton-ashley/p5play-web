@@ -91,7 +91,7 @@ function draw() {
 				<p>Los sprites de la IU o HUD, representados por cuadrados naranjas en estos ejemplos, deben ser
 					dibujados cuando la cámara está apagada.</p>
 				<p><code>mouse.x</code> almacena la posición x del ratón en relación con el mundo, que puede ser mayor
-					que el canvas. <code>camera.mouse.x</code> almacena la posición x del ratón en relación con el
+					que el canvas. <code>mouse.canvasPos.x</code> almacena la posición x del ratón en relación con el
 					canvas.</p>
 			</md>
 			<script type="mie/p5" id="overhead-camera">
@@ -100,14 +100,13 @@ let player, ui;
 function setup() {
 	new Canvas(500, 240);
 	player = new Sprite();
-	player.d = 80;
+	player.d = 40;
 	player.color = 'magenta';
 
 	ui = new Group();
 	for (let i = 0; i < 9; i++) {
 		new ui.Sprite(100 + i * 40, 210, 35, 35, 'n');
 	}
-	camera.zoom = 0.5;
 }
 
 function draw() {
@@ -117,9 +116,9 @@ function draw() {
 
 	for (let i = 0; i < 10; i++) {
 		fill(i * 20, 200, 200); // blue to gray
-		rect(-250 + i * 50, -250 + i * 100, 750, 50);
+		rect(i * 25, i * 100, 400, 40);
 	}
-	player.moveTowards(mouse, 0.01);
+	player.moveTowards(mouse, 0.02);
 	player.draw();
 	camera.x = player.x;
 	camera.y = player.y;

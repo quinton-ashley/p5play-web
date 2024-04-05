@@ -6,7 +6,7 @@ Aquí están los dispositivos de entrada disponibles en p5play:
 
 - `kb` / `keyboard` para el teclado
 - `mouse` para el ratón
-- `contro` / `controllers` para los controles de juegos
+- `contros` / `controllers` para los controles de juegos
 - `touches` para entradas de pantalla táctil
 
 Todos estos dispositivos de entrada utilizan las mismas funciones simples para obtener el estado de una entrada: `presses`, `pressing` y `released`.
@@ -66,21 +66,23 @@ Nota que `mouse.x` es la posición x del ratón en el lienzo y `sprite.mouse.x` 
 
 ## Controles de Juego
 
-El objeto `contro` proporciona el estado de entrada de los botones de control de juego:
+El arreglo `contros` (también conocido como `controllers`) contiene un objeto por cada control de juego conectado detectado por tu navegador web. Cada objeto controlador almacena los estados de entrada de estos botones:
 
-`a`, `b`, `x`, `y`, `l` (botón izquierdo), `r` (botón derecho), `lt` (gatillo izquierdo), `rt` (gatillo derecho), `up`, `down`, `left`, `right` (D-pad), `lsb` (botón del stick izquierdo), `rsb` (botón del stick derecho), `start` y `select`
+`a`, `b`, `x`, `y`, `l` (botón izquierdo), `r` (botón derecho), `lt` (gatillo izquierdo), `rt` (gatillo derecho), `arriba`, `abajo`, `izquierda`, `derecha` (D-pad), `lsb` (botón del stick izquierdo), `rsb` (botón del stick derecho), `start` y `select`
 
-`contro.leftStick` y `contro.rightStick` representan las posiciones de los sticks análogos como objetos con propiedades x e y. Estos valores van de -1 a 1, siendo 0 la posición central.
+`leftStick` y `rightStick` representan las posiciones de los sticks análogos como objetos con propiedades x e y. Estos valores varían de -1 a 1, siendo 0 la posición central.
 
-Algunos controles tienen gatillos análogos, y sus posiciones se almacenan como números que van de 0 a 1 en `contro.leftTrigger` y `contro.rightTrigger`.
+Algunos controles tienen gatillos análogos, y sus posiciones se almacenan como números que van de 0 a 1 en `leftTrigger` y `rightTrigger`.
 
-El objeto `contro` (también conocido como `controllers`) es un arreglo que contiene todos los controles de juego conectados detectados por tu navegador web. Accede a los controles conectados por índice. Por ejemplo, `contro[0]` y `contro[1]` son el primer y segundo control. A través de magia JS, `contro` se puede usar para obtener los estados de entrada de `contro[0]`.
+Al igual que con un arreglo estándar de JavaScript, puedes acceder a los controles conectados por índice. Por ejemplo, `contros[0]` y `contros[1]` son el primer y segundo control. Recuerda verificar si un control existe en el arreglo antes de revisar su entrada.
 
 # 4-1
 
+Para mayor conveniencia, `contro` se puede utilizar para intentar verificar los estados de entrada de `contros[0]` y no generará errores si un control aún no está conectado.
+
 ¡Pruébalo! Conecta un control de juego y presiona cualquier botón en él para que sea detectado por p5play.
 
-➡️ [demo completa](https://openprocessing.org/sketch/2120550)
+➡️ [demo completa de prueba de control](https://aijs.io/editor?user=quinton-ashley&project=p5play_Controller_Test)
 
 # 5-0
 

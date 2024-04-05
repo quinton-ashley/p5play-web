@@ -39,7 +39,7 @@
 				<ul>
 					<li><code>kb</code> / <code>keyboard</code> para el teclado</li>
 					<li><code>mouse</code> para el ratón</li>
-					<li><code>contro</code> / <code>controllers</code> para los controles de juegos</li>
+					<li><code>contros</code> / <code>controllers</code> para los controles de juegos</li>
 					<li><code>touches</code> para entradas de pantalla táctil</li>
 				</ul>
 				<p>Todos estos dispositivos de entrada utilizan las mismas funciones simples para obtener el estado de
@@ -230,23 +230,22 @@ function draw() {
 		<div id="page-4" class="page">
 			<md id="md4-0">
 				<h2 id="controles-de-juego">Controles de Juego</h2>
-				<p>El objeto <code>contro</code> proporciona el estado de entrada de los botones de control de juego:
-				</p>
+				<p>El arreglo <code>contros</code> (también conocido como <code>controllers</code>) contiene un objeto
+					por cada control de juego conectado detectado por tu navegador web. Cada objeto controlador almacena
+					los estados de entrada de estos botones:</p>
 				<p><code>a</code>, <code>b</code>, <code>x</code>, <code>y</code>, <code>l</code> (botón izquierdo),
 					<code>r</code> (botón derecho), <code>lt</code> (gatillo izquierdo), <code>rt</code> (gatillo
-					derecho), <code>up</code>, <code>down</code>, <code>left</code>, <code>right</code> (D-pad),
-					<code>lsb</code> (botón del stick izquierdo), <code>rsb</code> (botón del stick derecho),
+					derecho), <code>arriba</code>, <code>abajo</code>, <code>izquierda</code>, <code>derecha</code>
+					(D-pad), <code>lsb</code> (botón del stick izquierdo), <code>rsb</code> (botón del stick derecho),
 					<code>start</code> y <code>select</code></p>
-				<p><code>contro.leftStick</code> y <code>contro.rightStick</code> representan las posiciones de los
-					sticks análogos como objetos con propiedades x e y. Estos valores van de -1 a 1, siendo 0 la
-					posición central.</p>
+				<p><code>leftStick</code> y <code>rightStick</code> representan las posiciones de los sticks análogos
+					como objetos con propiedades x e y. Estos valores varían de -1 a 1, siendo 0 la posición central.
+				</p>
 				<p>Algunos controles tienen gatillos análogos, y sus posiciones se almacenan como números que van de 0 a
-					1 en <code>contro.leftTrigger</code> y <code>contro.rightTrigger</code>.</p>
-				<p>El objeto <code>contro</code> (también conocido como <code>controllers</code>) es un arreglo que
-					contiene todos los controles de juego conectados detectados por tu navegador web. Accede a los
-					controles conectados por índice. Por ejemplo, <code>contro[0]</code> y <code>contro[1]</code> son el
-					primer y segundo control. A través de magia JS, <code>contro</code> se puede usar para obtener los
-					estados de entrada de <code>contro[0]</code>.</p>
+					1 en <code>leftTrigger</code> y <code>rightTrigger</code>.</p>
+				<p>Al igual que con un arreglo estándar de JavaScript, puedes acceder a los controles conectados por
+					índice. Por ejemplo, <code>contros[0]</code> y <code>contros[1]</code> son el primer y segundo
+					control. Recuerda verificar si un control existe en el arreglo antes de revisar su entrada.</p>
 			</md>
 			<div class="minis horiz">
 				<script type="mie/p5" base-2="" hidden="">
@@ -284,9 +283,13 @@ lsb.y = 100 + contro.leftStick.y * 40;
 if (contro.pressing('lsb')) lsb.color = 'white';
 				</script>
 				<md id="md4-1">
+					<p>Para mayor conveniencia, <code>contro</code> se puede utilizar para intentar verificar los
+						estados de entrada de <code>contros[0]</code> y no generará errores si un control aún no está
+						conectado.</p>
 					<p>¡Pruébalo! Conecta un control de juego y presiona cualquier botón en él para que sea detectado
 						por p5play.</p>
-					<p>➡️ <a href="https://openprocessing.org/sketch/2120550" target="_blank">demo completa</a></p>
+					<p>➡️ <a href="https://aijs.io/editor?user=quinton-ashley&amp;project=p5play_Controller_Test"
+							target="_blank">demo completa de prueba de control</a></p>
 				</md>
 			</div>
 		</div>
