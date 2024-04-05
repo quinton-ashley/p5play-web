@@ -137,7 +137,7 @@ test('SpriteAnimation : SpriteSheet mode', () => {
 				};
 
 				const spriteAnimation = new p.SpriteAnimation(owner, owner.spriteSheet);
-				expect(spriteAnimation.frames.length).toBe(2);
+				expect(spriteAnimation.length).toBe(2);
 
 				resolve();
 			};
