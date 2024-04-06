@@ -66,7 +66,7 @@ Note that `mouse.x` is the x position of the mouse on the canvas and `sprite.mou
 
 ## Game Controllers
 
-The `contros` array (aka `controllers`) contains an object for each connected game controller detected by your web browser. Each controller object stores the input states of these buttons:
+The `contros` array (aka `controllers`) contains an object for each game controller detected by your web browser. Each controller object stores the input states of these buttons:
 
 `a`, `b`, `x`, `y`, `l` (left bumper), `r` (right bumper), `lt` (left trigger), `rt` (right trigger), `up`, `down`, `left`, `right` (D-pad), `lsb` (left stick button), `rsb` (right stick button), `start`, and `select`
 
