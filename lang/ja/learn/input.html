@@ -217,19 +217,19 @@ function draw() {
 		<div id="page-4" class="page">
 			<md id="md4-0">
 				<h2 id="ゲームコントローラー">ゲームコントローラー</h2>
-				<p><code>contro</code> オブジェクトは、ゲームコントローラーの、以下のボタンの入力状態を取得します:</p>
+				<p><code>contros</code> （別名 <code>controllers</code> ）配列は、 Web
+					ブラウザがマシンへの接続を認識したゲームコントローラーを、オブジェクト形式の要素として格納しています。それぞれのゲームコントローラーオブジェクトは、以下のボタンの入力状態を取得します:</p>
 				<p><code>a</code> 、 <code>b</code> 、 <code>x</code> 、 <code>y</code> （それぞれ、 XBox
 					コントローラーでのボタン名です。別のコントローラーの場合、適宜読み替えてください）、<code>l</code>（左ショルダー/バンパー）、<code>r</code>（右ショルダー/バンパー）、<code>lt</code>（左トリガー）、<code>rt</code>（右トリガー）、<code>up</code>、<code>down</code>、<code>left</code>、<code>right</code>
 					（それぞれ、十字ボタンの方向）、<code>lsb</code>（左スティック押し込み）、<code>rsb</code>（右スティック押し込み）、<code>start</code> 、
 					<code>select</code> 。</p>
-				<p><code>contro.leftStick</code> と <code>contro.rightStick</code> は、コントローラーのアナログスティックが倒れている状態を、 x と y
+				<p><code>leftStick</code> と <code>rightStick</code> は、コントローラーの各アナログスティックの倒れ方を、 x と y
 					のプロパティを持つオブジェクトとして表します。これらの値は、それぞれの成分方向に倒れる深さを -1 ～ 1 の範囲で示しており、 0 は、その方向には倒れていないことを意味します。</p>
-				<p>一部のコントローラーにはアナログトリガーがあり、その押し込みの深さは <code>contro.leftTrigger</code> と <code>contro.rightTrigger</code>
-					によって 0 ～ 1 の数値として示されます。</p>
-				<p><code>contro</code> オブジェクト（別名 <code>controllers</code> ）は、 Web
-					ブラウザが検出した、すべての接続中のゲームコントローラーを格納した配列です。各接続コントローラーには、この配列の添字でアクセスします。例えば、 <code>contro[0]</code> と
-					<code>contro[1]</code> は、 1 番目と 2 番目のコントローラーです。 JavaScript の仕組みにより、 <code>contro</code> を使用して
-					<code>contro[0]</code> の入力状態を取得できます。</p>
+				<p>一部のコントローラーには、押し込みの深さを検知するアナログトリガーがあり、その深さは <code>leftTrigger</code> と <code>rightTrigger</code> によって、
+					0 ～ 1 の数値として示されます。</p>
+				<p>通常の JavaScript 配列と同様、接続された特定のコントローラーには、添字でアクセスできます。例えば、 <code>contros[0]</code> と
+					<code>contros[1]</code> は、 1 番目と 2
+					番目のコントローラーです。ただし、入力状態を取得する前に、この配列にゲームコントローラーが存在するかどうか、忘れずに確認してください。</p>
 			</md>
 			<div class="minis horiz">
 				<script type="mie/p5" base-2="" hidden="">
@@ -267,8 +267,11 @@ lsb.y = 100 + contro.leftStick.y * 40;
 if (contro.pressing('lsb')) lsb.color = 'white';
 				</script>
 				<md id="md4-1">
+					<p>便利なショートカットアクセサとして、 <code>contro</code> を用意しています。これは <code>contros[0]</code>
+						の入力を取得することができ、かつ、ゲームコントローラーが接続されていなくても例外をスローすることがありません。</p>
 					<p>お試しあれ！　ゲームコントローラーを接続し、そのいずれかのボタンを押すと、p5play によって検知されます。</p>
-					<p>➡️ <a href="https://openprocessing.org/sketch/2120550" target="_blank">full demo</a></p>
+					<p>➡️ <a href="https://aijs.io/editor?user=quinton-ashley&amp;project=p5play_Controller_Test"
+							target="_blank">ゲームコントローラーの全ての入力デモ</a></p>
 				</md>
 			</div>
 		</div>
