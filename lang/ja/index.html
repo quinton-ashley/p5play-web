@@ -161,13 +161,15 @@ function dropSprite() {
 						<a id="strive-brand" href="https://www.strivemath.com/">
 							<img src="/assets/brands/strive_brand.webp" alt="Strive Math">
 						</a>
-						<a id="codeorg-brand" href="https://code.org/educate/gamelab" target="_blank">
-							<img src="/assets/brands/codeorg_brand.svg" alt="CODE.org">
-						</a>
 						<a id="nyuitp-brand"
 							href="https://creative-coding.decontextualize.com/making-games-with-p5-play/"
 							target="_blank">
 							<img src="/assets/brands/nyuitp_brand.svg" alt="NYU Tisch">
+						</a>
+						<a id="tmu-brand"
+							href="https://www.youtube.com/watch?v=ZQ23FHfgA0A&amp;list=PLLx7jIm38p9lXfNW3_PyXCfTNOiaP4vF0&amp;index=18"
+							target="_blank">
+							<img src="/assets/brands/tmu_brand.svg" alt="Toronto Metropolitan University">
 						</a>
 						<a id="dalton-brand" href="https://www.dalton.org/">
 							<img src="/assets/brands/dalton_brand.webp" alt="The Dalton School">
@@ -186,16 +188,15 @@ function dropSprite() {
 						<a id="lsu-brand" href="https://pdm.lsupathways.org/2_graphics/" target="_blank">
 							<img src="/assets/brands/lsu_brand.svg" alt="LSU DDEM">
 						</a>
-						<!-- <a id="tywls-brand" href="https://tywlsbronx.org/">
-							<img src="/assets/brands/tywls_logo.webp" alt="The Young Women's Leadership School of the Bronx">
-						</a> -->
 						<a id="codehs-brand" href="https://codehs.com/course/gamedesign_p5play/overview"
 							target="_blank">
 							<img src="/assets/brands/codehs_brand.webp" alt="CodeHS">
 						</a>
-
 						<a id="ttu-brand" href="https://wreckem.itch.io/p5play-games" target="_blank">
 							<img src="/assets/brands/ttu_logo.webp" alt="Texas Tech University">
+						</a>
+						<a id="codeorg-brand" href="https://code.org/educate/gamelab" target="_blank">
+							<img src="/assets/brands/codeorg_brand.svg" alt="CODE.org">
 						</a>
 					</div>
 				</div>
@@ -213,11 +214,14 @@ function dropSprite() {
 						<p>わからないことが出てきたら、私たちの <a href="https://discord.gg/EJwnJATmj7" target="_blank">p5play Discord
 								サーバ</a>に参加して、インタラクティブアートやゲームの制作者たちによるコミュニティメンバーに、直接質問してみましょう。</p>
 					</md>
-					<p>
+					<div id="socials">
 						<a id="discord-brand" href="https://discord.gg/3UTbqUgmPF" target="_blank">
 							<img id="discord-brand" src="/assets/brands/discord_brand.svg" alt="Discord brand">
 						</a>
-					</p>
+						<a id="youtube-brand" href="https://www.youtube.com/@p5play_js/featured" target="_blank">
+							<img id="youtube-brand" src="/assets/brands/youtube_brand.svg" alt="YouTube brand">
+						</a>
+					</div>
 				</div>
 				<div>
 					<md id="md11">
@@ -248,6 +252,9 @@ function dropSprite() {
 						<p>Google Chromebook でも問題ナシ！ 以下のオンラインコードエディタサービスのすべてで、問題なく使えます。オススメは OpenProcessing です。</p>
 					</md>
 					<div id="editors">
+						<a href="https://aijs.io/editor?user=quinton-ashley&amp;project=p5play_starter" target="_blank">
+							<img id="aijs-brand" src="/assets/brands/aijs_brand.svg" alt="aijs brand">
+						</a>
 						<a href="https://openprocessing.org/sketch/1717172" target="_blank">
 							<img alt="OpenProcessing logo" id="openprocessing-brand"
 								src="/assets/brands/openprocessing_brand.webp" height="40px">
@@ -267,10 +274,6 @@ function dropSprite() {
 								</path>
 							</svg>
 						</a>
-						<a href="https://glitch.com/edit/#!/p5play-v3-starter-code?path=sketch.js%3A1%3A0"
-							target="_blank">
-							<img id="glitch-brand" src="/assets/brands/glitch_brand.svg" alt="glitch brand">
-						</a>
 					</div>
 				</div>
 				<div>
@@ -285,11 +288,16 @@ function dropSprite() {
 		
 &lt;script src="https://p5play.org/v3/planck.min.js"&gt;&lt;/script&gt;
 &lt;script src="https://p5play.org/v3/p5play.js"&gt;&lt;/script&gt;</textarea>
-					<md id="md13-1">
-						<p>npm でも利用可能です：<code>npm i p5play</code></p>
-						<p><a href="https://github.com/quinton-ashley/p5play/wiki/Get-Started" target="_blank">オフラインで
-								p5play を使うには？</a></p>
-					</md>
+					<div id="local">
+						<a id="vscode-brand" href="https://github.com/quinton-ashley/p5play/wiki/Get-Started"
+							target="_blank">
+							<img id="vscode-logo" src="/assets/brands/vscode_logo.svg" alt="vscode logo">
+							<span class="segoe">VSCode</span>
+						</a>
+						<a id="npm-brand" href="https://www.npmjs.com/package/p5play" target="_blank">
+							<img src="/assets/brands/npm_brand.svg" alt="npm brand">
+						</a>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -428,8 +436,8 @@ function dropSprite() {
 							は、私たちのカリキュラムに大いに貢献してくれました。オブジェクト指向プログラミングの学習において、より独創的な手法を模索することができ、生徒への課題を作成する際にも欠かせないものとなりました。
 						</p>
 						<p>p5 と p5play を導入して以来、生徒の増加率は 100 ％を超え、生徒の学習にも大きな効果が出ています。 p5 と p5play
-							をカリキュラムに導入することを強くお勧めします。私たちは現在イギリスで、より多くの学校がカリキュラムにp5playを導入できるよう、ビデオチュートリアルの特別シリーズを開発しました。」
-						</p>
+							をカリキュラムに導入することを強くお勧めします。私たちは現在イギリスで、より多くの学校がカリキュラムに p5play
+							を導入できるよう、ビデオチュートリアルの特別シリーズを開発しました。」</p>
 					</md>
 					<div class="testimonial-bio">
 						<img src="/assets/bios/rhys_drury.webp" alt="Rhys">
@@ -569,7 +577,7 @@ function dropSprite() {
 				</md>
 				<md id="md17-1" class="closed">
 					<h2 id="学生が-p5play-を学ぶべき理由は？-🤔">学生が p5play を学ぶべき理由は？ 🤔</h2>
-					<p>どのエドテック（IT教育）企業も、自社の「簡単で楽しく使える」ソフトウェアが、学生の「クリエイティビティを刺激する」とうたっていますが、たいていは単なるセールストークに過ぎません。</p>
+					<p>どのエドテック（IT 教育）企業も、自社の「簡単で楽しく使える」ソフトウェアが、学生の「クリエイティビティを刺激する」とうたっていますが、たいていは単なるセールストークに過ぎません。</p>
 					<p>もしこうしたプラットフォームが本当に「楽しく」、「クリエイティビティを刺激」してくれるのであれば、学生たちがそれらを学校の課題をこなすためだけに使っているだなんて、おかしいと思いませんか？
 					</p>
 					<p>p5play は違います！ 物理ベースの衝突処理、入力の検出、アニメーション、カメラ、ジョイントなど、学生がゲームエンジンに求めるすべての機能を備えています。</p>

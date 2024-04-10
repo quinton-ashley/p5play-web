@@ -4,6 +4,12 @@
 	font-display: swap;
 }
 
+@font-face {
+	font-family: "Segoe UI";
+	src: url("/assets/fonts/segoe.woff2");
+	font-display: swap;
+}
+
 article {
 	width: 100%;
 	position: absolute;
@@ -186,13 +192,21 @@ html.ja #bigInfo h3 {
 	background: none;
 }
 
+#socials,
 #editors,
+#local,
 #support {
-	margin-top: 32px;
+	margin-top: 24px;
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
+	align-items: center;
 	gap: 32px;
+}
+
+#local {
+	margin-top: 4px;
+	margin-bottom: 10px;
 }
 
 .apps {
@@ -232,6 +246,10 @@ html.ja #bigInfo h3 {
 	width: fit-content;
 }
 
+#youtube-brand {
+	height: 40px;
+}
+
 #user-brands {
 	display: flex;
 	align-items: center;
@@ -246,6 +264,10 @@ html.ja #bigInfo h3 {
 	height: 42px;
 	gap: 20px;
 	width: min-content;
+}
+
+body.dark #youtube-brand img {
+	filter: invert(80%) hue-rotate(180deg);
 }
 
 body.dark #patreon-brand {
@@ -304,9 +326,9 @@ body:not(.dark) #discord-brand img {
 	width: 360px;
 }
 
-#tywls-brand {
-	background-color: #152253;
-	width: 100px;
+#tmu-brand {
+	background-color: #fff;
+	width: 160px;
 }
 
 #nyuitp-brand {
@@ -357,7 +379,7 @@ body:not(.dark) #discord-brand img {
 }
 
 .p5js-web-editor-brand {
-	margin-bottom: -10px;
+	margin-bottom: -3px;
 }
 
 .p5js-web-editor-brand,
@@ -382,7 +404,12 @@ body:not(.dark) #discord-brand img {
 	font-weight: 300;
 	line-height: 1;
 	color: var(--primary);
-	font-size: 28px;
+	font-size: 32px;
+}
+
+.segoe {
+	font-family: "Segoe UI", "Helvetica Neue", "Helvetica", Arial, sans-serif;
+	font-size: 42px;
 }
 
 #glitch-brand,
@@ -413,6 +440,31 @@ body:not(.dark) #discord-brand img {
 .light .discord-brand,
 .light .discord-logo {
 	filter: invert(1);
+}
+
+#vscode-brand {
+	display: flex;
+	gap: 16px;
+	align-items: center;
+	height: 48px;
+}
+
+#vscode-logo {
+	height: 56px;
+}
+
+#aijs-brand {
+	height: 72px;
+}
+
+#npm-brand {
+	height: 42px;
+}
+
+#npm-brand img {
+	margin-top: 6px;
+	margin-right: 4px;
+	height: 42px;
 }
 
 #lib-links {
@@ -695,6 +747,10 @@ footer {
 	#nyuitp-brand {
 		width: 195px;
 	}
+
+	#tmu-brand {
+		width: 120px;
+	}
 }
 
 @media screen and (max-width: 760px) {
@@ -796,7 +852,8 @@ footer {
 		width: 40px;
 	}
 
-	#girlswhocode-brand {
+	#girlswhocode-brand,
+	#tmu-brand {
 		width: 80px;
 	}
 

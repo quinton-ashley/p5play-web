@@ -46,12 +46,6 @@ Puedes utilizar cualquiera de estas plantillas de editores de código en línea.
 
 Usa p5play en tu propio sitio web añadiendo estos enlaces a tu archivo HTML. ¿El cortafuegos de tu escuela bloquea p5play.org? Consulta las [preguntas frecuentes (FAQs)](https://github.com/quinton-ashley/p5play/wiki/FAQ#school-firewall-blocking-p5playorg)
 
-# 13-1
-
-p5play también está disponible en npm: `npm i p5play`
-
-[¿Quieres usar p5play sin conexión?](https://github.com/quinton-ashley/p5play/wiki/Get-Started)
-
 # r00
 
 "Ayer estuve mirando el nuevo p5play (v3) y me di cuenta de que hacía mucho tiempo que no lo probaba. ¡No me di cuenta de que tenía física incorporada! Me ENCANTARÍA hacer algunos videos con él. Este es un trabajo maravilloso, ¡gracias por apoyar a la comunidad de esta manera!"

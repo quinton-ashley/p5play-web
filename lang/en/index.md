@@ -38,19 +38,13 @@ Support p5play at the appropriate tier to obtain the [p5play Professional Licens
 
 ## No installation required 🤩
 
-Works great on Google Chromebooks! You can use any of these online code editor templates. We recommend using OpenProcessing.
+Works great on Google Chromebooks! Start creating your own p5play project with one of these online code editor templates. We recommend using Aijs.
 
 # 13-0
 
 ## Local Development 🔨
 
 Use p5play on your own website by adding these links to your HTML file. School firewall blocking p5play.org? See the [FAQs](https://github.com/quinton-ashley/p5play/wiki/FAQ#school-firewall-blocking-p5playorg)
-
-# 13-1
-
-Available on [npm](https://www.npmjs.com/package/p5play): `npm i p5play`
-
-[Want to use p5play offline?](https://github.com/quinton-ashley/p5play/wiki/Get-Started)
 
 # r00
 
