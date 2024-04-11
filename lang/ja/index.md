@@ -38,7 +38,7 @@ p5play は、 [AGPLv3](https://github.com/quinton-ashley/p5play-web/blob/main/LI
 
 ## インストール不要 🤩
 
-Google Chromebook でも問題ナシ！ 以下のオンラインコードエディタサービスのすべてで、問題なく使えます。オススメは OpenProcessing です。
+Google Chromebook でも問題ナシ！ 以下のオンラインコードエディタに、コードのテンプレートを用意してますので、ここからご自身の p5play プロジェクトを作り始められます。オススメは Aijs です。
 
 # 13-0
 
