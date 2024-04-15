@@ -199,9 +199,18 @@ html.ja #bigInfo h3 {
 	margin-top: 24px;
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: space-between;
+	justify-content: center;
 	align-items: center;
 	gap: 32px;
+	transition: 0.3s;
+}
+
+#socials a:hover,
+#editors a:hover,
+#local a:hover,
+#support a:hover {
+	text-decoration: none;
+	scale: 1.1;
 }
 
 #local {
@@ -284,6 +293,8 @@ body:not(.dark) #discord-brand img {
 
 #usedBy {
 	padding: 0;
+	width: 100%;
+	max-width: 100%;
 }
 
 #user-brands a,
@@ -387,18 +398,6 @@ body:not(.dark) #discord-brand img {
 	height: 40px;
 }
 
-#discord-brand:hover span {
-	color: var(--pink);
-}
-
-#discord-brand:hover {
-	text-decoration: none;
-}
-
-.dark #glitch-brand {
-	filter: hue-rotate(180deg) invert() opacity(80%);
-}
-
 .bariol {
 	font-family: "bariol", "source sans pro", "helvetica";
 	font-weight: 300;
@@ -410,25 +409,6 @@ body:not(.dark) #discord-brand img {
 .segoe {
 	font-family: "Segoe UI", "Helvetica Neue", "Helvetica", Arial, sans-serif;
 	font-size: 42px;
-}
-
-#glitch-brand,
-#codepen-brand,
-#replit-brand,
-#discord-brand,
-#patreon-brand,
-#github-brand {
-	border-bottom: 1px solid transparent;
-}
-
-#glitch-brand:hover,
-#codepen-brand:hover,
-#replit-brand:hover,
-#discord-brand:hover,
-#patreon-brand:hover,
-#github-brand:hover {
-	color: var(--pink);
-	border-bottom: 1px solid var(--pink);
 }
 
 #replit-brand {
@@ -701,6 +681,10 @@ footer {
 		width: 300px;
 	}
 
+	#tmu-brand {
+		width: 120px;
+	}
+
 	#reel6 img {
 		margin-left: 250px;
 	}
@@ -746,10 +730,6 @@ footer {
 
 	#nyuitp-brand {
 		width: 195px;
-	}
-
-	#tmu-brand {
-		width: 120px;
 	}
 }
 
@@ -902,12 +882,17 @@ footer {
 	.page>.mie {
 		width: calc(100vw - 40px);
 	}
+
 }
 
 @media screen and (max-width: 440px) {
 
 	#user-brands {
 		justify-content: center;
+	}
+
+	#codehs-brand {
+		width: 80px;
 	}
 
 }
