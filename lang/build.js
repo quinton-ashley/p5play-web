@@ -150,6 +150,23 @@ async function translatePage(pageGroup, page) {
 		}
 	}
 
+	if (langCode == 'ja') {
+		const googleAPI = document.createElement('link');
+		googleAPI.rel = 'preconnect';
+		googleAPI.href = 'https://fonts.googleapis.com';
+		const gstatic = document.createElement('link');
+		gstatic.rel = 'preconnect';
+		gstatic.href = 'https://fonts.gstatic.com';
+		gstatic.crossOrigin = '';
+		const fonts = document.createElement('link');
+		fonts.rel = 'stylesheet';
+		fonts.href = `https://fonts.googleapis.com/css2?family=Roboto&family=Noto+Sans+JP&family=Noto+Color+Emoji&display=swap`;
+
+		document.head.appendChild(googleAPI);
+		document.head.appendChild(gstatic);
+		document.head.appendChild(fonts);
+	}
+
 	html = dom.serialize();
 
 	html = await beautify(html, {
