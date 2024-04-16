@@ -148,9 +148,6 @@ video {
 	overflow-x: visible;
 }
 
-html.ja #bigInfo h3 {
-	font-size: 2.4vw;
-}
 
 @keyframes scrollUp {
 

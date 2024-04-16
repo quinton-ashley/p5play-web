@@ -252,6 +252,11 @@ a.navLink {
 	vertical-align: middle;
 }
 
+html.ja nav a,
+html.ja a.navLink {
+	flex: 1 0 auto;
+}
+
 a.navLink {
 	text-align: center;
 	line-height: 1.5;
@@ -586,7 +591,8 @@ footer p {
 		display: flex;
 		align-items: center;
 		width: 100%;
-		overflow: scroll;
+		overflow-x: scroll;
+		overflow-y: hidden;
 		gap: 10px;
 	}
 
