@@ -95,6 +95,10 @@ body {
 	font-size: 18px;
 }
 
+html.ja body {
+	font-family: "Roboto", "Noto Sans JP", "Noto Color Emoji", "Hiragino Sans", "Yu Gothic", sans-serif;
+}
+
 article {
 	display: flex;
 	margin: auto;
@@ -115,6 +119,12 @@ h2 {
 	font-family: Mont;
 	margin-block-end: 0.6em;
 	font-weight: normal;
+}
+
+html.ja h1,
+html.ja h2 {
+	font-family: Mont, "Noto Sans JP", "Noto Color Emoji", "Hiragino Sans", "Yu Gothic", sans-serif;
+	font-weight: 600;
 }
 
 #darkModeIcon {
@@ -234,6 +244,10 @@ nav {
 #topNav {
 	font-family: Mont, sans-serif;
 	font-display: swap;
+}
+
+html.ja #topNav {
+	font-family: Mont, "Noto Sans JP", "Noto Color Emoji", "Hiragino Sans", "Yu Gothic", sans-serif;
 }
 
 nav a,
@@ -591,7 +605,7 @@ footer p {
 		display: flex;
 		align-items: center;
 		width: 100%;
-		overflow-x: scroll;
+		overflow-x: auto;
 		overflow-y: hidden;
 		gap: 10px;
 	}
