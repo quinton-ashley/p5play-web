@@ -197,6 +197,74 @@ for (let refPage in refs) {
 		}
 	}
 
+	// Step 1: Listen for Input Events
+	const searchInput = document.getElementById('searchInput');
+	const searchResults = document.getElementById('searchResults');
+
+	searchInput.addEventListener('input', function(event) {
+		const searchTerm = event.target.value.toLowerCase();
+		
+		// Step 2: Filter the References
+		const filteredResults = filterReferences(searchTerm);
+
+		// Step 3: Display Results
+		displayResults(filteredResults);
+	});
+
+	// Function to filter references based on search term
+	function filterReferences(searchTerm) {
+		const filteredResults = {};
+		for (let refPage in refs) {
+			const pageResults = refs[refPage];
+			for (let pageNum in pageResults) {
+				const topics = pageResults[pageNum];
+				for (let topic of topics) {
+					if (topic.toLowerCase().includes(searchTerm)) {
+						if (!filteredResults[refPage]) {
+							filteredResults[refPage] = {};
+						}
+						filteredResults[refPage][pageNum] = [topic];
+						break;
+					}
+				}
+			}
+		}
+		return filteredResults;
+	}
+
+	// Function to display filtered results
+	function displayResults(filteredResults) {
+		searchResults.innerHTML = '';
+
+		for (let refPage in filteredResults) {
+			const pageResults = filteredResults[refPage];
+			const heading = document.createElement('h3');
+			heading.textContent = refPage;
+			searchResults.appendChild(heading);
+
+			for (let pageNum in pageResults) {
+				const topics = pageResults[pageNum];
+				for (let topic of topics) {
+					const link = document.createElement('a');
+					link.textContent = topic;
+					link.href = generateUrl(refPage, pageNum);
+					searchResults.appendChild(link);
+				}
+			}
+		}
+	}
+
+	// Function to generate URL based on page and section number
+	function generateUrl(refPage, pageNum) {
+		let url;
+		if (pageNum.length <= 2) {
+			url = refPage + '?page=' + pageNum;
+		} else {
+			url = pageNum;
+		}
+		return url;
+	}
+
 	// if (className == 'Sprite') {
 	// 	links = [
 	// 		...links.slice(0, 4),
