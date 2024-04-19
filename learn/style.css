@@ -597,14 +597,6 @@ nav {
     background-color: #f1f1f1;
 }
 
-#searchInput:focus + .search-results {
-    display: block;
-}
-
-/* Show search results when there are search results to display */
-.search-results.active {
-    display: block;
-}
 
 #otherLinks {
 	display: flex;

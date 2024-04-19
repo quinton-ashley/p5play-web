@@ -209,6 +209,8 @@ for (let refPage in refs) {
 
 		// Step 3: Display Results
 		displayResults(filteredResults);
+
+		searchResults.style.display = 'block';
 	});
 
 	// Function to filter references based on search term
@@ -257,6 +259,7 @@ for (let refPage in refs) {
 	// Function to generate URL based on page and section number
 	function generateUrl(refPage, pageNum) {
 		let url;
+		refPage = refPage.toLowerCase();
 		if (pageNum.length <= 2) {
 			url = refPage + '?page=' + pageNum;
 		} else {
@@ -265,10 +268,20 @@ for (let refPage in refs) {
 		return url;
 	}
 
+	//hides search bar after clicking off 
+	document.addEventListener('click', function(event) {
+		const isSearchInput = event.target.matches('#searchInput');
+		const isSearchResults = event.target.matches('#searchResults') || event.target.closest('#searchResults');
+		if (!isSearchInput && !isSearchResults) {
+			searchResults.style.display = 'none';
+		}
+	});
+
+
 	// if (className == 'Sprite') {
 	// 	links = [
 	// 		...links.slice(0, 4),
-	// 		...links.slice(4).sort((a, b) => {
+	// 		...links.slice(4).sort((a, b) =>s{
 	// 			let aText = a.innerHTML;
 	// 			let bText = b.innerHTML;
 	// 			if (aText < bText) {
