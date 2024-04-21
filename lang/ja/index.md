@@ -272,4 +272,4 @@ p5play の裏で使用されている Box2D の JavaScript 移植版 planck.js �
 
 # ft
 
-p5play.org は<wbr /> クイントン・アシュリー（@quinton-ashley）により<wbr />制作された<wbr />著作物です。<wbr /> Copyright ©2022-2024. [info@p5play.org](mailto:info@p5play.org)<wbr /> p5play の[旧バージョンはこちら](https://quinton-ashley.github.io/p5play-web-archive/v2)。
+p5play.org は<wbr /> クイントン・アシュリー（@quinton-ashley）により<wbr />制作された<wbr />著作物です。<wbr /> Copyright ©2022-2024. [info@p5play.org](mailto:info@p5play.org)<wbr /> p5play の[旧バージョンはこちら](https://quinton-ashley.github.io/p5play-web-archive/v2)。<br />翻訳: [Shi MeiWo](https://github.com/ShiMeiWo)
