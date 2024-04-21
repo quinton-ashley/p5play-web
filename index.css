@@ -554,6 +554,11 @@ body:not(.dark) #discord-brand img {
 	text-align: center;
 }
 
+html.ja #md14 {
+	word-break: keep-all;
+	overflow-wrap: anywhere;
+}
+
 #reviews {
 	display: flex;
 	justify-content: start;
@@ -588,6 +593,11 @@ body:not(.dark) #discord-brand img {
 
 footer {
 	margin-bottom: 300px;
+}
+
+html.ja footer {
+	word-break: keep-all;
+	overflow-wrap: anywhere;
 }
 
 #reel0 {
@@ -880,6 +890,10 @@ footer {
 		width: calc(100vw - 40px);
 	}
 
+	#md15 {
+		height: calc(100% - 40px);
+		overflow-y: auto;
+	}
 }
 
 @media screen and (max-width: 440px) {
