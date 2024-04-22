@@ -114,13 +114,13 @@ p5play に関するあなたのレビューを[info@p5play.org](mailto:info@p5pl
 
 # 14
 
-## +40,000 人のアクティブユーザーに参加しましょう！
+## +40,000 人の<wbr />アクティブユーザーに<wbr />参加しましょう！
 
-### まずは、インタラクティブな[「学ぶ」](learn/sprite.html)ページから始めましょう。
+### まずは、<wbr />インタラクティブな<wbr />[「学ぶ」](learn/sprite.html)ページ<wbr />から<wbr />始めましょう。
 
 # 15
 
-## Quinton Ashley によって作成されました
+## Quinton Ashley により作成
 
 私、 Quinton Ashley （クイントン・アシュリー）は、ゲームデザインに情熱を燃やすコンピュータ・サイエンスの教育者で、 7 年の指導経験があります！
 
@@ -272,4 +272,4 @@ p5play の裏で使用されている Box2D の JavaScript 移植版 planck.js �
 
 # ft
 
-p5play.org は クイントン・アシュリー（@quinton-ashley）により制作された著作物です。 Copyright ©2022-2024。[info@p5play.org](mailto:info@p5play.org). p5play の[旧バージョンはこちら](https://quinton-ashley.github.io/p5play-web-archive/v2)。
+p5play.org は<wbr /> クイントン・アシュリー（@quinton-ashley）により<wbr />制作された<wbr />著作物です。<wbr /> Copyright ©2022-2024. [info@p5play.org](mailto:info@p5play.org)<wbr /> p5play の[旧バージョンはこちら](https://quinton-ashley.github.io/p5play-web-archive/v2)。<br />翻訳: [Shi MeiWo](https://github.com/ShiMeiWo)
