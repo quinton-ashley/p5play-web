@@ -240,31 +240,54 @@ for (let refPage in refs) {
 
 		for (let refPage in filteredResults) {
 			const pageResults = filteredResults[refPage];
+
+			let className = refPage;
+			let p5js = false;
+
+			// format headings
+			if (className.slice(0, 2) != 'q5') {
+				className = className.split('.')[0];
+				if (className == 'Sprite_Animation') className = 'Animation';
+				if (className == 'Input_Devices') className = 'Input';
+				className = className.charAt(0).toUpperCase() + className.slice(1);
+			} else {
+				if (className == 'q5.js basics') className = 'JavaScript Basics';
+				//className = 'p5.js ' + className.slice(5);
+				p5js = true;
+			}
+
 			const heading = document.createElement('h3');
-			heading.textContent = refPage;
+			heading.textContent = className;
 			searchResults.appendChild(heading);
 
+			//add links
 			for (let pageNum in pageResults) {
 				const topics = pageResults[pageNum];
 				for (let topic of topics) {
 					const link = document.createElement('a');
 					link.textContent = topic;
-					link.href = generateUrl(refPage, pageNum);
+					link.href = generateUrl(refPage, pageNum, topic, p5js);
 					searchResults.appendChild(link);
 				}
 			}
 		}
 	}
 
-	// Function to generate URL based on page and section number
-	function generateUrl(refPage, pageNum) {
+	//generate URL based on page and section number
+	function generateUrl(refPage, pageNum, topic, p5js) {
 		let url;
 		refPage = refPage.toLowerCase();
+
 		if (pageNum.length <= 2) {
 			url = refPage + '?page=' + pageNum;
 		} else {
 			url = pageNum;
 		}
+		
+		if (p5js) {
+			url = url + '/' + topic;
+		}
+		
 		return url;
 	}
 
