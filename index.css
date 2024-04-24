@@ -612,7 +612,9 @@ html.ja footer {
 
 #reel6 {
 	height: 320px;
-	background-color: #002D3F;
+	background: url(/assets/bios/quinton-ashley.webp) #002D3F no-repeat;
+	background-size: cover;
+	background-position: center;
 }
 
 #reel6>img {
@@ -690,6 +692,10 @@ html.ja footer {
 
 	#tmu-brand {
 		width: 120px;
+	}
+
+	#reel6 {
+		background-position: calc(50% + 250px / 2) center;
 	}
 
 	#reel6 img {
@@ -881,6 +887,11 @@ html.ja footer {
 		font-size: 18px;
 	}
 
+	#reel6 {
+		height: auto;
+		background-position: 38.6% center;
+	}
+
 	.app p {
 		font-size: 10px;
 	}
@@ -888,11 +899,6 @@ html.ja footer {
 	.page>.minis,
 	.page>.mie {
 		width: calc(100vw - 40px);
-	}
-
-	#md15 {
-		height: calc(100% - 40px);
-		overflow-y: auto;
 	}
 }
 
