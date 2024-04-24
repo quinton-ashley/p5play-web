@@ -197,10 +197,114 @@ for (let refPage in refs) {
 		}
 	}
 
+	// Step 1: Listen for Input Events
+	const searchInput = document.getElementById('searchInput');
+	const searchResults = document.getElementById('searchResults');
+
+	searchInput.addEventListener('input', function(event) {
+		const searchTerm = event.target.value.toLowerCase();
+		
+		// Step 2: Filter the References
+		const filteredResults = filterReferences(searchTerm);
+
+		// Step 3: Display Results
+		displayResults(filteredResults);
+
+		searchResults.style.display = 'block';
+	});
+
+	// Function to filter references based on search term
+	function filterReferences(searchTerm) {
+		const filteredResults = {};
+		for (let refPage in refs) {
+			const pageResults = refs[refPage];
+			for (let pageNum in pageResults) {
+				const topics = pageResults[pageNum];
+				for (let topic of topics) {
+					if (topic.toLowerCase().includes(searchTerm)) {
+						if (!filteredResults[refPage]) {
+							filteredResults[refPage] = {};
+						}
+						filteredResults[refPage][pageNum] = [topic];
+						break;
+					}
+				}
+			}
+		}
+		return filteredResults;
+	}
+
+	// Function to display filtered results
+	function displayResults(filteredResults) {
+		searchResults.innerHTML = '';
+
+		for (let refPage in filteredResults) {
+			const pageResults = filteredResults[refPage];
+
+			let className = refPage;
+			let p5js = false;
+
+			// format headings
+			if (className.slice(0, 2) != 'q5') {
+				className = className.split('.')[0];
+				if (className == 'Sprite_Animation') className = 'Animation';
+				if (className == 'Input_Devices') className = 'Input';
+				className = className.charAt(0).toUpperCase() + className.slice(1);
+			} else {
+				if (className == 'q5.js basics') className = 'JavaScript Basics';
+				//className = 'p5.js ' + className.slice(5);
+				p5js = true;
+			}
+
+			const heading = document.createElement('h3');
+			heading.textContent = className;
+			searchResults.appendChild(heading);
+
+			//add links
+			for (let pageNum in pageResults) {
+				const topics = pageResults[pageNum];
+				for (let topic of topics) {
+					const link = document.createElement('a');
+					link.textContent = topic;
+					link.href = generateUrl(refPage, pageNum, topic, p5js);
+					searchResults.appendChild(link);
+				}
+			}
+		}
+	}
+
+	//generate URL based on page and section number
+	function generateUrl(refPage, pageNum, topic, p5js) {
+		let url;
+		refPage = refPage.toLowerCase();
+
+		if (pageNum.length <= 2) {
+			url = refPage + '?page=' + pageNum;
+		} else {
+			url = pageNum;
+		}
+		
+		if (p5js) {
+			url = url + '/' + topic;
+		}
+		
+		return url;
+	}
+
+	//hides search bar after clicking off 
+	document.addEventListener('click', function(event) {
+		const isSearchInput = event.target.matches('#searchInput');
+		const isSearchResults = event.target.matches('#searchResults') || event.target.closest('#searchResults');
+		if (!isSearchInput && !isSearchResults) {
+			searchResults.style.display = 'none';
+		}
+	});
+
+
 	// if (className == 'Sprite') {
 	// 	links = [
 	// 		...links.slice(0, 4),
-	// 		...links.slice(4).sort((a, b) => {
+	// 		...links.slice(4).sort((a, b) =>s{
 	// 			let aText = a.innerHTML;
 	// 			let bText = b.innerHTML;
 	// 			if (aText < bText) {
