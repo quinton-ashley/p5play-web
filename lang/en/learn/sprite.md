@@ -454,9 +454,7 @@ Thanks to some behind the scenes magic, overriding the function will not replace
 
 ## Movement Sequencing
 
-These examples use a `Turtle` sprite which is just a regular sprite
-that's green and shaped like a triangle for that classic turtle
-programming look.
+These examples use a `Turtle` sprite which is green and shaped like a triangle for that classic turtle programming look. Unlike regular sprites, the turtle's direction is always the same as its rotation.
 
 You can use the `await` keyword inside an `async` function to wait for a movement to finish before continuing with the next movement. This is useful for making a sprite move in a sequence.
 
