@@ -37,12 +37,13 @@ let refs = {
 		'input.html?page=3': ['mouse']
 	},
 	'Group.html': {
-		0: ['sprite properties', 'GroupSprite', 'move'],
-		1: ['collides', 'amount', 'arrow setters'],
-		2: ['overlaps'],
+		0: ['GroupSprite', 'move'],
+		1: ['amount', '=>'],
+		2: ['collides', 'overlaps'],
 		3: ['allSprites'],
 		5: ['remove', 'removeAll', 'SubGroup'],
-		'group.html?page=6': ['autoCull', 'cull']
+		6: ['autoCull', 'cull'],
+		7: ['autoDraw', 'autoUpdate']
 	},
 	'Sprite_Animation.html': {
 		0: ['animation', 'loadAni / loadAnimation', 'frameDelay'],
@@ -50,7 +51,7 @@ let refs = {
 		4: ['offset']
 	},
 	'Input_Devices.html': {
-		0: ['mouse', 'presses', 'pressing', 'released', 'kb / keyboard'],
+		0: ['presses', 'pressing', 'released', 'mouse', 'kb / keyboard'],
 		4: ['contros / controllers', 'contro'],
 		5: ['touches']
 	},
@@ -67,7 +68,7 @@ let refs = {
 		2: ['on', 'off']
 	},
 	'Canvas.html': {
-		0: ['w', 'h', '"w:h"', '"fullscreen"'],
+		0: ['w', 'h', 'hw', 'hh', '"w:h"', '"fullscreen"'],
 		1: ['"pixelated"'],
 		2: ['resize']
 	},
@@ -77,7 +78,7 @@ let refs = {
 	},
 	'World.html': {
 		0: ['gravity', 'allowSleeping'],
-		1: ['timeScale', 'physicsTime', 'realTime', 'step'],
+		1: ['timeScale', 'physicsTime', 'realTime', 'autoStep', 'step'],
 		2: ['velocityIterations', 'positionIterations']
 	},
 	'q5.js basics': {
@@ -113,7 +114,6 @@ let refs = {
 			'height',
 			'frameCount',
 			'frameRate',
-			'noCursor',
 			'noLoop',
 			'loadImage',
 			'loadFont',
@@ -201,9 +201,9 @@ for (let refPage in refs) {
 	const searchInput = document.getElementById('searchInput');
 	const searchResults = document.getElementById('searchResults');
 
-	searchInput.addEventListener('input', function(event) {
+	searchInput.addEventListener('input', function (event) {
 		const searchTerm = event.target.value.toLowerCase();
-		
+
 		// Step 2: Filter the References
 		const filteredResults = filterReferences(searchTerm);
 
@@ -283,23 +283,22 @@ for (let refPage in refs) {
 		} else {
 			url = pageNum;
 		}
-		
+
 		if (p5js) {
 			url = url + '/' + topic;
 		}
-		
+
 		return url;
 	}
 
-	//hides search bar after clicking off 
-	document.addEventListener('click', function(event) {
+	//hides search bar after clicking off
+	document.addEventListener('click', function (event) {
 		const isSearchInput = event.target.matches('#searchInput');
 		const isSearchResults = event.target.matches('#searchResults') || event.target.closest('#searchResults');
 		if (!isSearchInput && !isSearchResults) {
 			searchResults.style.display = 'none';
 		}
 	});
-
 
 	// if (className == 'Sprite') {
 	// 	links = [
