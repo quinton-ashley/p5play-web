@@ -50,16 +50,6 @@ body.dark {
 		--blue0: oklch(90.7% 0.073 218.6);
 		--blue1: oklch(0.56 0.163 241.961);
 		--blue2: oklch(0.975 0.015 239.425);
-
-		--primary: #000;
-		--secondary: #fff;
-		--bright: #000;
-		--dark: #d1cdc9;
-		--background: #eee;
-	}
-
-	html:has(body.dark) {
-		--background: #242424;
 	}
 
 	body.dark {
@@ -70,13 +60,6 @@ body.dark {
 		--blue0: oklch(0.714 0.147 232.544);
 		--blue1: oklch(0.714 0.147 232.544);
 		--blue2: oklch(0.249 0.077 241.818);
-
-		--primary: #c8c3bc;
-		--secondary: #131516;
-
-		--bright: #eee;
-		--dark: #66615a;
-		--background: #000;
 	}
 }
 
@@ -454,14 +437,17 @@ code {
 nav,
 .page>md,
 .page>div:not(.mie):not(.break):not(.minis),
-.minis>md {
+.minis>md,
+.minis>.mini {
 	padding: 20px;
 	/* border: 2px solid var(--dark); */
 	border-radius: 10px;
 	background-color: var(--secondary);
 }
 
-.minis>md {
+.minis>md,
+.minis>.mini {
+	width: 100%;
 	padding: 4%;
 }
 
@@ -526,7 +512,8 @@ nav {
 
 .page>md> :first-child,
 .page>div:not(.mie):not(.break):not(.minis)> :first-child,
-.page>div>md> :first-child {
+.page>div>md> :first-child,
+.mini :first-child {
 	margin-top: 0;
 }
 

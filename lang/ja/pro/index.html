@@ -33,68 +33,82 @@
 		</nav>
 		<div class="top big break"></div>
 
-		<div id="noauth" class="page">
-			<md id="md0-0">
-				<h2 id="p5play-メンバーシップ">p5play メンバーシップ</h2>
-				<p>ゲームの収益化をご希望ですか？</p>
-				<p><a href="https://github.com/quinton-ashley/p5play-novice/blob/main/LICENSE.md"
-						target="_blank">Novice</a> または <a
-						href="https://github.com/quinton-ashley/p5play-web/blob/main/pro/LICENSE.md"
-						target="_blank">Professional</a> メンバーになると、 p5play で iOS アプリをビルドできるようになり、 Apple のApp Store
-					でのゲームの販売や、広告収入の獲得ができるようになります。</p>
-				<h2 id="近日公開！">近日公開！</h2>
-			</md>
-			<div class="minis horiz">
-				<md>
-					<md id="md0-1">
-						<p>今すぐ無料会員アカウントにサインアップして、 Pro 機能が利用可能になり次第、お知らせメールを受け取りましょう。</p>
-					</md>
-					<div class="login">
-						<a class="btn" href="/pro/signup.html">Sign Up</a>
-						<a class="btn"
-							href="https://p5play.auth.us-west-2.amazoncognito.com/login?redirect_uri=https%3A%2F%2Fp5play.org%2Fpro%2Findex.html&amp;client_id=3oegfdhu2r7eo8nr371496718c&amp;response_type=token&amp;scope=email+openid+phone">Login</a>
-					</div>
+		<div class="page">
+			<div id="noauth">
+				<md id="md0-0">
+					<h2 id="アカウント">アカウント</h2>
+					<p>新機能やアップデートに関する通知を受け取るために無料アカウントにサインアップしましょう！</p>
 				</md>
-				<md>
-					<md id="md0-2">
-						<p>一部の機能は、 <a href="https://github.com/sponsors/quinton-ashley" target="_blank">GitHub
-								Sponsors</a> および <a href="https://www.patreon.com/p5play" target="_blank">Patreon</a>
-							メンバー限定で、 <a href="https://github.com/quinton-ashley/p5play-web/blob/main/pro/LICENSE.md"
-								target="_blank">p5play Professional License</a> に基づいて提供されます。今すぐ参加して、 p5play
-							開発へのご支援をお願いいたします！</p>
-						<p>支払いが困難な場合は、無料の <a href="https://github.com/quinton-ashley/p5play-novice/blob/main/LICENSE.md"
-								target="_blank">p5play Novice License</a> を申請することができます。詳しくは <a
-								href="https://github.com/quinton-ashley/p5play-web/blob/main/LICENSING.md"
-								target="_blank">LICENSING.md</a> をご覧ください。</p>
-					</md>
-					<div id="support">
-						<a id="github-brand" href="https://github.com/sponsors/quinton-ashley"
-							aria-label="GitHub Sponsors for p5play" title="GitHub Sponsors">
-							<img src="/assets/brands/github_logo.svg" alt="" height="42px">
-							<img src="/assets/brands/github_brand.webp" alt="Github" height="42px">
-						</a>
-						<a id="patreon-brand" href="https://www.patreon.com/p5play"
-							aria-label="Patreon page for p5play">
-							<img src="/assets/brands/patreon_logo.webp" alt="" height="42px">
-							<img src="/assets/brands/patreon_brand.webp" alt="Patreon" height="28px">
-						</a>
-					</div>
+				<div class="login">
+					<a class="btn" href="/pro/signup.html">Sign Up</a>
+					<a class="btn"
+						href="https://p5play.auth.us-west-2.amazoncognito.com/login?redirect_uri=https%3A%2F%2Fp5play.org%2Fpro%2Findex.html&amp;client_id=3oegfdhu2r7eo8nr371496718c&amp;response_type=token&amp;scope=email+openid+phone">Login</a>
+				</div>
+			</div>
+			<div id="auth" class="mini">
+				<md id="md0-1">
+					<h2 id="アカウント">アカウント</h2>
+					<p>ようこそ <span id="username"></span> さん！</p>
+					<p>今後、<a href="../learn" target="_blank">Learn</a> ページにアクセスできるようになり、新機能に関する通知をメールで受け取れるようになりました。</p>
 				</md>
 			</div>
-		</div>
-		<div id="md1-0" class="page">
-			<h2 id="p5play-メンバーシップ">p5play メンバーシップ</h2>
-			<p>ようこそ！</p>
-			<p>サインアップいただきありがとうございます。 Pro 機能が利用可能になり次第、お知らせメールを送信いたします！</p>
-			<p>以下の無料のリソースをチェックしてください：</p>
-			<ul>
-				<li><a href="https://github.com/quinton-ashley/p5play-vscode" target="_blank">p5play-vscode</a>: VSCode
-					拡張機能</li>
-				<li><a href="https://github.com/quinton-ashley/p5play-template" target="_blank">p5play-template</a>:
-					コードのオートコンプリートが有効になる VSCode スターターコード</li>
-				<li><a href="https://github.com/quinton-ashley/p5play-desktop" target="_blank">p5play-desktop</a>: <a
-						href="https://www.electronjs.org/" target="_blank">Electron</a> 向けのデスクトップアプリ用テンプレート</li>
-			</ul>
+			<md id="md0-2">
+				<h2 id="無料リソース">無料リソース</h2>
+				<ul>
+					<li><a href="https://github.com/quinton-ashley/p5play-vscode" target="_blank">p5play-vscode</a> :
+						VSCode 拡張機能</li>
+					<li><a href="https://github.com/quinton-ashley/p5play-template" target="_blank">p5play-template</a>
+						: スターターコード</li>
+					<li><a href="https://github.com/quinton-ashley/p5play-desktop" target="_blank">p5play-desktop</a> :
+						デスクトップアプリのテンプレート</li>
+				</ul>
+			</md>
+			<div class="break"></div>
+			<div>
+				<md id="md0-3">
+					<h2 id="pro">PRO$</h2>
+					<p>p5play で実際のお金を稼ぎましょう！</p>
+					<p><a href="https://www.patreon.com/p5play" target="_blank">Patreon</a> や <a
+							href="https://github.com/sponsors/quinton-ashley" target="_blank">GitHub Sponsors</a> で
+						p5play をサポートして <em>PRO</em> になり、独占コンテンツにアクセスしましょう！</p>
+				</md>
+				<div id="support">
+					<a id="patreon-brand" href="https://www.patreon.com/p5play" aria-label="Patreon page for p5play">
+						<img src="/assets/brands/patreon_logo.webp" alt="" height="42px">
+						<img src="/assets/brands/patreon_brand.webp" alt="Patreon" height="28px">
+					</a>
+					<a id="github-brand" href="https://github.com/sponsors/quinton-ashley"
+						aria-label="GitHub Sponsors for p5play" title="GitHub Sponsors">
+						<img src="/assets/brands/github_logo.svg" alt="" height="42px">
+						<img src="/assets/brands/github_brand.webp" alt="Github" height="42px">
+					</a>
+				</div>
+			</div>
+			<md id="md0-4">
+				<h2 id="商用利用">商用利用</h2>
+				<p><em>PRO</em> メンバーは <a href="https://github.com/quinton-ashley/p5play-web/blob/main/pro/LICENSE.md"
+						target="_blank">p5play Professional License</a> を授与され、p5play の <a
+						href="https://github.com/quinton-ashley/p5play-web/blob/main/LICENSING.md"
+						target="_blank">商用利用</a> が可能です：</p>
+				<ul>
+					<li>無料ではないクラスの教えること</li>
+					<li>有料または収益化されたゲームを公開すること</li>
+					<li>公にアクセスできないカリキュラムの執筆</li>
+					<li>有料のクライアント向けにゲームを開発すること</li>
+					<li>API サービスやウェブサイトの収益化</li>
+				</ul>
+			</md>
+			<md id="md0-5">
+				<h2 id="ios-アプリのテンプレート">iOS アプリのテンプレート</h2>
+				<p><em>PRO</em> メンバーは Swift でコーディングせずに iOS アプリを作成するためのテンプレートを使用できます。p5play の iOS アプリテンプレートで Apple の App
+					Store でゲームを販売したり、広告収入を得ることができます！</p>
+			</md>
+			<md id="md0-6">
+				<h2 id="カリキュラム">カリキュラム</h2>
+				<p>"p5play ゲームデザイン基礎" は、p5play v3 の作者である Quinton Ashley によって作成された CS 教育者向けのカリキュラムです！</p>
+				<p><em>PRO</em> メンバーは、Google ドライブフォルダーにスライドとアクティビティが含まれているため、これらを授業で使用したり、独自のカリキュラムのインスピレーションを得ることができます。
+				</p>
+			</md>
 		</div>
 		<div class="break"></div>
 		<footer id="credits" class="text-small">
@@ -108,11 +122,16 @@
 		"></script>
 	<script src="/pro/pro.js"></script>
 <style>
+.page {
+	display: flex;
+}
+
 #auth {
 	display: none;
 }
 
 .login {
+	margin-top: 16px;
 	font-size: 32px;
 	font-weight: bold;
 	display: flex;
@@ -122,6 +141,10 @@
 
 md p:first-child {
 	margin-top: 0;
+}
+
+#username {
+	font-weight: bold;
 }
 
 #support {

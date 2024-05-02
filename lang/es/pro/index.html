@@ -29,58 +29,87 @@
 		</nav>
 		<div class="top big break"></div>
 
-		<div id="noauth" class="page">
-			<md id="md0-0">
-				<h2 id="membresía-p5play">Membresía p5play</h2>
-				<p>¿Listo para ganar dinero real con tus juegos?</p>
-				<p>Como miembro Pro, podrás crear aplicaciones iOS usando p5play, lo que te permitirá vender tus juegos
-					en la App Store de Apple o ganar ingresos a través de publicidad.</p>
-				<h2 id="¡próximamente">¡Próximamente!</h2>
-			</md>
-			<div class="minis horiz">
-				<md>
-					<md id="md0-1">
-						<p>Regístrate ahora para recibir notificaciones de cuando las funciones Pro estén disponibles.
-						</p>
-					</md>
-					<div class="login">
-						<a class="btn" href="/pro/signup.html">Sign Up</a>
-						<a class="btn"
-							href="https://p5play.auth.us-west-2.amazoncognito.com/login?redirect_uri=https%3A%2F%2Fp5play.org%2Fpro%2Findex.html&amp;client_id=3oegfdhu2r7eo8nr371496718c&amp;response_type=token&amp;scope=email+openid+phone">Login</a>
-					</div>
+		<div class="page">
+			<div id="noauth">
+				<md id="md0-0">
+					<h2 id="cuenta">Cuenta</h2>
+					<p>¡Regístrate para obtener una cuenta gratuita y recibir notificaciones sobre nuevas funciones y
+						actualizaciones!</p>
 				</md>
-				<md>
-					<md id="md0-2">
-						<p>Las funciones Pro solo estarán disponibles para los miembros de <a
-								href="https://github.com/sponsors/quinton-ashley" target="_blank">GitHub Sponsors</a> o
-							<a href="https://www.patreon.com/p5play" target="_blank">Patreon</a>. ¡Únete ahora para
-							apoyar el desarrollo de p5play!</p>
-						<p>Si no puedes permitirte pagar, puedes solicitar la <a
-								href="https://github.com/quinton-ashley/p5play-novice/blob/main/LICENSE.md"
-								target="_blank">Licencia Novato de p5play</a> gratuita. Consulta <a
-								href="https://github.com/quinton-ashley/p5play-web/blob/main/LICENSING.md"
-								target="_blank">LICENSING.md</a> para más información.</p>
-					</md>
-					<div id="support">
-						<a id="github-brand" href="https://github.com/sponsors/quinton-ashley"
-							aria-label="GitHub Sponsors for p5play" title="GitHub Sponsors">
-							<img src="/assets/brands/github_logo.svg" alt="" height="42px">
-							<img src="/assets/brands/github_brand.webp" alt="Github" height="42px">
-						</a>
-						<a id="patreon-brand" href="https://www.patreon.com/p5play"
-							aria-label="Patreon page for p5play">
-							<img src="/assets/brands/patreon_logo.webp" alt="" height="42px">
-							<img src="/assets/brands/patreon_brand.webp" alt="Patreon" height="28px">
-						</a>
-					</div>
+				<div class="login">
+					<a class="btn" href="/pro/signup.html">Sign Up</a>
+					<a class="btn"
+						href="https://p5play.auth.us-west-2.amazoncognito.com/login?redirect_uri=https%3A%2F%2Fp5play.org%2Fpro%2Findex.html&amp;client_id=3oegfdhu2r7eo8nr371496718c&amp;response_type=token&amp;scope=email+openid+phone">Login</a>
+				</div>
+			</div>
+			<div id="auth" class="mini">
+				<md id="md0-1">
+					<h2 id="cuenta">Cuenta</h2>
+					<p>¡Bienvenido <span id="username"></span>!</p>
+					<p>Ahora puedes acceder a las páginas de <a href="../learn" target="_blank">Aprender</a> y recibirás
+						notificaciones sobre nuevas funciones por correo electrónico.</p>
 				</md>
 			</div>
-		</div>
-		<div id="md1-0" class="page">
-			<h2 id="membresía-p5play">Membresía p5play</h2>
-			<p>¡Bienvenido!</p>
-			<p>Gracias por registrarte. ¡Serás notificado por correo electrónico cuando las funciones pro estén
-				disponibles!</p>
+			<md id="md0-2">
+				<h2 id="recursos-gratuitos">Recursos Gratuitos</h2>
+				<ul>
+					<li><a href="https://github.com/quinton-ashley/p5play-vscode" target="_blank">p5play-vscode</a> :
+						Extensión para VSCode</li>
+					<li><a href="https://github.com/quinton-ashley/p5play-template" target="_blank">p5play-template</a>
+						: Código de inicio</li>
+					<li><a href="https://github.com/quinton-ashley/p5play-desktop" target="_blank">p5play-desktop</a> :
+						Plantilla de aplicación de escritorio</li>
+				</ul>
+			</md>
+			<div class="break"></div>
+			<div>
+				<md id="md0-3">
+					<h2 id="pro">PRO$</h2>
+					<p>¿Listo para ganar dinero real con p5play?</p>
+					<p>Conviértete en <em>PRO</em> apoyando a p5play en <a href="https://www.patreon.com/p5play"
+							target="_blank">Patreon</a> o <a href="https://github.com/sponsors/quinton-ashley"
+							target="_blank">GitHub Sponsors</a> para acceder a contenido exclusivo.</p>
+				</md>
+				<div id="support">
+					<a id="patreon-brand" href="https://www.patreon.com/p5play" aria-label="Patreon page for p5play">
+						<img src="/assets/brands/patreon_logo.webp" alt="" height="42px">
+						<img src="/assets/brands/patreon_brand.webp" alt="Patreon" height="28px">
+					</a>
+					<a id="github-brand" href="https://github.com/sponsors/quinton-ashley"
+						aria-label="GitHub Sponsors for p5play" title="GitHub Sponsors">
+						<img src="/assets/brands/github_logo.svg" alt="" height="42px">
+						<img src="/assets/brands/github_brand.webp" alt="Github" height="42px">
+					</a>
+				</div>
+			</div>
+			<md id="md0-4">
+				<h2 id="uso-comercial">Uso Comercial</h2>
+				<p>Los miembros <em>PRO</em> reciben la <a
+						href="https://github.com/quinton-ashley/p5play-web/blob/main/pro/LICENSE.md"
+						target="_blank">Licencia Profesional de p5play</a> que permite el <a
+						href="https://github.com/quinton-ashley/p5play-web/blob/main/LICENSING.md" target="_blank">uso
+						comercial</a> de p5play:</p>
+				<ul>
+					<li>enseñar una clase que no sea gratuita</li>
+					<li>publicar un juego de pago o monetizado</li>
+					<li>escribir un plan de estudios que no sea de acceso público</li>
+					<li>desarrollar un juego para un cliente de pago</li>
+					<li>monetizar un servicio de API o un sitio web</li>
+				</ul>
+			</md>
+			<md id="md0-5">
+				<h2 id="plantillas-de-aplicaciones-ios">Plantillas de Aplicaciones iOS</h2>
+				<p>Los miembros <em>PRO</em> pueden utilizar plantillas para construir aplicaciones iOS sin programar en
+					Swift. ¡Vende juegos en la App Store de Apple o genera ingresos con publicidad con las plantillas de
+					aplicaciones iOS de p5play!</p>
+			</md>
+			<md id="md0-6">
+				<h2 id="plan-de-estudios">Plan de Estudios</h2>
+				<p>"Fundamentos del Diseño de Juegos p5play" es un plan de estudios para educadores de informática
+					creado por Quinton Ashley, ¡el creador de p5play v3!</p>
+				<p>Los miembros <em>PRO</em> reciben acceso a una carpeta de Google Drive que contiene diapositivas y
+					actividades. Úsalas en tus lecciones o inspírate para crear tu propio plan de estudios.</p>
+			</md>
 		</div>
 		<div class="break"></div>
 		<footer id="credits" class="text-small">
@@ -94,11 +123,16 @@
 		"></script>
 	<script src="/pro/pro.js"></script>
 <style>
+.page {
+	display: flex;
+}
+
 #auth {
 	display: none;
 }
 
 .login {
+	margin-top: 16px;
 	font-size: 32px;
 	font-weight: bold;
 	display: flex;
@@ -108,6 +142,10 @@
 
 md p:first-child {
 	margin-top: 0;
+}
+
+#username {
+	font-weight: bold;
 }
 
 #support {

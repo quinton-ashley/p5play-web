@@ -20,7 +20,7 @@
 
 		// if there's no token, display the unauthorized section of the page
 		if (!idToken) {
-			document.getElementById('noauth').style.display = 'flex';
+			document.getElementById('noauth').style.display = 'block';
 			return;
 		}
 		// else, decode the token

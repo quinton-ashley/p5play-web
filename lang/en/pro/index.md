@@ -1,33 +1,55 @@
 # 0-0
 
-## p5play Membership
+## Account
 
-Ready to make real money from your games?
-
-As a [Novice](https://github.com/quinton-ashley/p5play-novice/blob/main/LICENSE.md) or [Professional](https://github.com/quinton-ashley/p5play-web/blob/main/pro/LICENSE.md) member you'll be able to build iOS apps using p5play, enabling you to sell your games on Apple's App Store or earn revenue from advertisements.
-
-## Coming soon!
+Sign up for a free account to be notified about new features and updates!
 
 # 0-1
 
-Sign up for a free membership account now to be notified of when Pro features will be available.
+## Account
+
+Welcome <span id="username"></span>!
+
+You can now access the [Learn](../learn) pages and will be notified about new features by email.
 
 # 0-2
 
-Some features will only be available to [GitHub Sponsors](https://github.com/sponsors/quinton-ashley) or [Patreon](https://www.patreon.com/p5play) members under the [p5play Professional License](https://github.com/quinton-ashley/p5play-web/blob/main/pro/LICENSE.md). Join now to support the development of p5play!
+## Free Resources
 
-If you can't afford to pay, you can apply for the free [p5play Novice License](https://github.com/quinton-ashley/p5play-novice/blob/main/LICENSE.md). See [LICENSING.md](https://github.com/quinton-ashley/p5play-web/blob/main/LICENSING.md) for more info.
+- [p5play-vscode](https://github.com/quinton-ashley/p5play-vscode) : VSCode extension
+- [p5play-template](https://github.com/quinton-ashley/p5play-template) : starter code
+- [p5play-desktop](https://github.com/quinton-ashley/p5play-desktop) : desktop app template
 
-# 1-0
+# 0-3
 
-## p5play Membership
+## PRO$
 
-Welcome !
+Ready to earn real money with p5play?
 
-Thanks for signing up. You'll be notified by email when pro features are available!
+Become a _PRO_ by supporting p5play on [Patreon](https://www.patreon.com/p5play) or [GitHub Sponsors](https://github.com/sponsors/quinton-ashley) to gain access to exclusive content!
 
-Check out these free resources:
+# 0-4
 
-- [p5play-vscode](https://github.com/quinton-ashley/p5play-vscode) install the VSCode extension
-- [p5play-template](https://github.com/quinton-ashley/p5play-template) starter code with VSCode auto-completion enabled
-- [p5play-desktop](https://github.com/quinton-ashley/p5play-desktop) desktop app template with [Electron](https://www.electronjs.org/)
+## Commercial Use
+
+_PRO_ members are awarded the [p5play Professional License](https://github.com/quinton-ashley/p5play-web/blob/main/pro/LICENSE.md) which enables [commercial use](https://github.com/quinton-ashley/p5play-web/blob/main/LICENSING.md) of p5play:
+
+- teaching a class that's not free
+- publishing a paid or monetized game
+- writing curriculum that's not publicly accessible
+- developing a game for a paying client
+- monetizing an API service or website
+
+# 0-5
+
+## iOS App Templates
+
+_PRO_ members can use templates to build iOS apps without coding in Swift. Sell games on Apple's App Store or earn revenue from advertisements with p5play's iOS app templates!
+
+# 0-6
+
+## Curriculum
+
+"p5play Game Design Fundamentals" is a curriculum for CS educators made by Quinton Ashley, the creator of p5play v3!
+
+_PRO_ members receive access to a Google Drive folder containing slide and activities. Use them in your lessons or take inspiration for your own curriculum.
