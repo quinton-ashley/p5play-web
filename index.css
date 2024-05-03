@@ -14,10 +14,18 @@ article {
 	width: 100%;
 	position: absolute;
 	top: 0;
+	flex-direction: column;
+	align-items: center;
 }
 
 nav {
 	width: fit-content;
+}
+
+.big.break {
+	width: fit-content;
+	padding-left: 4px;
+	padding-right: 4px;
 }
 
 #reels {

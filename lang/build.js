@@ -106,7 +106,7 @@ async function translatePage(pageGroup, page) {
 
 		if (key == 'main') return;
 
-		if (pageGroup == 'learn' && page != 'index') {
+		if (pageGroup == 'learn' && page != 'index' && page != 'activism') {
 			const pageNav = document.getElementById('pageNav');
 			lang = lang[page];
 			for (let pageBtn of pageNav.children) {

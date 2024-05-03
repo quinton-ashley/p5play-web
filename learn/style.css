@@ -535,6 +535,14 @@ nav {
 	box-shadow: 4px 4px 0px var(--blue0);
 }
 
+.big.break {
+	text-align: center;
+	background-color: var(--blue2);
+	border-width: 0;
+	border-top-width: 4px;
+	border-left-width: 4px;
+}
+
 .page>.break {
 	width: 100%;
 	margin-top: 0;
