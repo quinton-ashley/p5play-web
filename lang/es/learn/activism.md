@@ -12,7 +12,7 @@ El antisionismo no es antisemitismo. [Jewish Voice for Peace](https://www.jewish
 
 ## NYU se niega a desinvertir 💸
 
-p5.js es un proyecto de [The Processing Foundation](https://processingfoundation.org/people), que está principalmente financiado y compuesto por empleados de NYU.
+p5.js es un proyecto liderado por la profesora de la USC, Qianqian Ye de [The Processing Foundation](https://processingfoundation.org/people), que principalmente recibe financiamiento y cuenta con personal de la NYU.
 
 El portavoz de NYU, John Beckman, dijo [que la universidad no está considerando la desinversión porque está tratando de maximizar los retornos de su dotación](https://nyunews.com/news/2024/04/25/israel-divertment-protests-continue/).
 
@@ -22,7 +22,7 @@ NYU, mi alma mater, está claramente dirigida por fascistas que valoran el benef
 
 ## Prohibición 🚫
 
-Con efecto inmediato, NYU y otras universidades que se nieguen a desinvertir de Israel y del complejo industrial militar de EE. UU. están prohibidas de usar p5play comercialmente.
+Con efecto inmediato, NYU, USC, y otras universidades que se nieguen a desinvertir de Israel y del complejo industrial militar de EE. UU. están prohibidas de usar p5play comercialmente.
 
 ¡Insto a los profesores a tomar una posición y apoyar a sus estudiantes!
 

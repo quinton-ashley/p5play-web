@@ -12,7 +12,7 @@ Anti-Zionism is not anti-semitism. [Jewish Voice for Peace](https://www.jewishvo
 
 ## NYU refuses to divest 💸
 
-p5.js is a project of [The Processing Foundation](https://processingfoundation.org/people), which is primarily funded and staffed by employees of NYU.
+p5.js is a project led by USC professor, Qianqian Ye of [The Processing Foundation](https://processingfoundation.org/people), which is primarily funded and staffed by employees of NYU.
 
 NYU spokesperson John Beckman said [the university is not considering divestment because it is trying to maximize returns on its endowment](https://nyunews.com/news/2024/04/25/israel-divertment-protests-continue/).
 
@@ -22,7 +22,7 @@ NYU, my alma mater, is clearly run by fascists that value profit over human righ
 
 ## Ban 🚫
 
-Effective immediately, NYU and other universities that refuse to divest from Israel and the US military industrial complex are banned from using p5play commercially.
+Effective immediately, NYU, USC, and other universities that refuse to divest from Israel and the US military industrial complex are banned from using p5play commercially.
 
 I urge professors to take a stand and support their students!
 

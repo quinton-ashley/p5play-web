@@ -12,7 +12,7 @@
 
 ## NYU は投資撤退を拒否 💸
 
-p5.js は[The Processing Foundation](https://processingfoundation.org/people)のプロジェクトであり、主に NYU の従業員によって資金提供され、運営されています。
+p5.js は、主に NYU の従業員によって資金提供およびスタッフが提供されている[The Processing Foundation](https://processingfoundation.org/people)の USC 教授である Qianqian Ye によって指導されているプロジェクトです。
 
 NYU のスポークスパーソンである John Beckman は[大学はその基金のリターンを最大化しようとしているため、投資撤退を検討していない](https://nyunews.com/news/2024/04/25/israel-divertment-protests-continue/)と述べました。
 
@@ -22,7 +22,7 @@ NYU のスポークスパーソンである John Beckman は[大学はその基�
 
 ## 禁止 🚫
 
-即効で、イスラエルおよび米国の軍産複合体からの投資撤退を拒否する NYU を含むその他の大学は、p5play を商業的に使用することが禁止されます。
+即効で、イスラエルおよび米国の軍産複合体からの投資撤退を拒否する NYU, USC, を含むその他の大学は、p5play を商業的に使用することが禁止されます。
 
 私は教授たちに立ち上がり、自分たちの学生を支援するよう呼びかけます！
 
