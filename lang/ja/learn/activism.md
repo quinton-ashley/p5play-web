@@ -8,6 +8,8 @@
 
 反シオニズムは反ユダヤ主義ではありません。[Jewish Voice for Peace](https://www.jewishvoiceforpeace.org) および多くの他のユダヤ人組織は、イスラエルによるパレスチナの植民地占領に反対しています。
 
+[イスラエルによる殺害された子供は、国連児童基金によると 13,000 人以上です。](https://www.reuters.com/world/middle-east/unicef-says-over-13000-children-killed-gaza-israel-offensive-2024-03-17/)
+
 # 0-1
 
 ## NYU は投資撤退を拒否 💸

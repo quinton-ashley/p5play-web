@@ -18,6 +18,8 @@ El portavoz de NYU, John Beckman, dijo [que la universidad no está considerando
 
 NYU, mi alma mater, está claramente dirigida por fascistas que valoran el beneficio sobre los derechos humanos. The Processing Foundation, que tiene un historial de ser franca en temas sociales, ha sido notablemente silenciosa y cómplice.
 
+[Más de 13,000 niños han sido asesinados por Israel según UNICEF.](https://www.reuters.com/world/middle-east/unicef-says-over-13000-children-killed-gaza-israel-offensive-2024-03-17/)
+
 # 0-2
 
 ## Prohibición 🚫

@@ -8,6 +8,8 @@ Educators, regardless of their own political views, should be at the forefront o
 
 Anti-Zionism is not anti-semitism. [Jewish Voice for Peace](https://www.jewishvoiceforpeace.org) and many other Jewish organizations stand against the colonial occupation of Palestine by Israel.
 
+[Over 13,000 children have been murdered by Israel according to UNICEF.](https://www.reuters.com/world/middle-east/unicef-says-over-13000-children-killed-gaza-israel-offensive-2024-03-17/)
+
 # 0-1
 
 ## NYU refuses to divest 💸
