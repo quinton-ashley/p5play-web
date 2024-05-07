@@ -161,6 +161,10 @@ video {
 	overflow-x: visible;
 }
 
+html.ja #bigInfo h3 {
+	font-family: Mont, "Noto Sans JP", "Noto Color Emoji", "Hiragino Sans", "Yu Gothic", sans-serif;
+	font-weight: 600;
+}
 
 @keyframes scrollUp {
 
