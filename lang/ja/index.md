@@ -116,7 +116,7 @@ p5play に関するあなたのレビューを[info@p5play.org](mailto:info@p5pl
 
 ## +40,000 人の<wbr />アクティブユーザーに<wbr />参加しましょう！
 
-### まずは、<wbr />インタラクティブな<wbr />[「学ぶ」](learn/sprite.html)ページ<wbr />から<wbr />始めましょう。
+### [まずは、<wbr />インタラクティブな<wbr />「学ぶ」ページ<wbr />から<wbr />始めましょう。](learn/sprite.html)
 
 # 15
 
