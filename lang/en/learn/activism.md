@@ -18,7 +18,7 @@ p5.js is a project led by USC professor, Qianqian Ye of [The Processing Foundati
 
 NYU spokesperson John Beckman said [the university is not considering divestment because it is trying to maximize returns on its endowment](https://nyunews.com/news/2024/04/25/israel-divertment-protests-continue/).
 
-NYU, my alma mater, is clearly run by fascists that value profit over human rights. The Processing Foundation, which has a history of being outspoken on social issues, has been notably silent and complicit.
+NYU, my alma mater, clearly values profit over human rights. The Processing Foundation, which has a history of being outspoken on social issues, has been notably silent and complicit.
 
 # 0-2
 

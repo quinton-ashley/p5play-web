@@ -114,7 +114,7 @@ Envía tu opinión sobre p5play a [info@p5play.org](mailto:info@p5play.org)
 
 ## ¡Únete a más de 40,000 usuarios activos!
 
-### Comienza con nuestras páginas interactivas de [Aprender](learn/sprite.html).
+### [Comienza con nuestras páginas interactivas de Aprender.](learn/sprite.html)
 
 # 15
 

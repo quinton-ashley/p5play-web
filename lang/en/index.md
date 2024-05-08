@@ -116,7 +116,7 @@ Send your review of p5play to [info@p5play.org](mailto:info@p5play.org)
 
 ## Join +40,000 active users!
 
-### Get started with our interactive [Learn](learn/sprite.html) pages.
+### [Get started with our interactive Learn pages.](learn/sprite.html)
 
 # 15
 
