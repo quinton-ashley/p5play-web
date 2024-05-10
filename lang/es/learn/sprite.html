@@ -436,10 +436,13 @@ function setup() {
 	new Canvas(500, 100);
 
 	player = new Sprite();
-	player.diameter = 50;
 	player.x = 400;
+	player.diameter = 50;
+	player.image = random('😍 🥰 🧐 🤓 😎 😋 😉 🤩 🥸 😯 😵‍💫'.split(' '));
 
 	block = new Sprite();
+	// colored box emoji
+	block.image = random(['🟥', '🟦', '🟩', '🟨', '🟧', '🟪', '🟫']);
 }
 
 function draw() {
