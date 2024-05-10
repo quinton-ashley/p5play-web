@@ -71,11 +71,11 @@ Try clicking on the canvas of this example. When the `sprite.debug` property is 
 
 ## Emoji Sprites
 
-No image? 🫥 No problem! 😄
+No images? 🫥 No problem! 😄
 
 You can use any emoji as the image for your sprite.
 
-The size of the emoji image will be based on the sprite's size.
+The size of the emoji image will be based on the sprite's size. Great for quick prototyping! 🧪
 
 # 2-2
 
