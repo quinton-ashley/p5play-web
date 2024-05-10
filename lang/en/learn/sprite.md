@@ -57,15 +57,27 @@ For an extra challenge, try resetting the block to its original position after i
 
 ## Sprites with an Image
 
-`sprite.image` or `sprite.img` can be set to a p5.Image or a url path to an image file.
+`sprite.image` (aka `sprite.img`) can be set to a p5.Image or a url path to an image file.
 
 If you need an image to be loaded before your program starts, it's best to use [`loadImage`](https://p5js.org/reference/#/p5/loadImage) inside the p5.js `preload` function.
 
-`sprite.scale` changes the size of both the sprite's collider and visual appearance. A scale value of 2 doubles the size of the sprite.
+`sprite.image.offset` can be used to offset the image relative to the sprite's center. This can help better align the image with the sprite's physics collider.
 
-Try pressing the left mouse button. When the `sprite.debug` property is set to true you can see the sprite's physics body collider. You can make the size of the collider different from the size of the image!
+`sprite.image.scale` changes the display size of the sprite's image. The default is 1.0. If the image appears way too big or small, you should probably change the size of the image file itself.
+
+Try clicking on the canvas of this example. When the `sprite.debug` property is set to true you can see the sprite's physics body collider.
 
 # 2-1
+
+## Emoji Sprites
+
+No image? 🫥 No problem! 😄
+
+You can use any emoji as the image for your sprite.
+
+The size of the emoji image will be based on the sprite's size.
+
+# 2-2
 
 ## Pixel Art
 
@@ -73,13 +85,13 @@ You can use the `spriteArt` function to create pixel art images for your sprites
 
 The second input parameter to the `spriteArt` function is the scale of the image.
 
-# 2-2
+# 2-3
 
 ## Try it!
 
 Try making your own pixel art! Take a look at the alphabet below to see what color each letter represents by default.
 
-# 2-3
+# 2-4
 
 ## Custom Colors
 

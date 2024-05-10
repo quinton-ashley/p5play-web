@@ -50,71 +50,29 @@ Para un desafío adicional, intenta restablecer la posición original del bloque
 
 # 2-0
 
-## Movimiento del Sprite
+## Sprites con una Imagen
 
-Mover un sprite editando directamente sus coordenadas (x, y) lo teletransportará a la nueva posición, sin moverlo a través de posiciones intermedias.
-
-Prueba haciendo clic en este mini ejemplo.
-
-# 2-1
-
-Si deseas que un sprite interactúe físicamente con otros sprites mientras se mueve, ¡no lo teletransportes!
-
-Este mal ejemplo muestra lo que sucede si un sprite es teletransportado cada vez que la función de dibujo (draw) de p5.js renderiza un fotograma.
-
-# 2-2
-
-Todos los otros métodos de movimiento en esta página funcionan cambiando las velocidades de los ejes x e y del sprite. `velocity` también conocida como `vel` es un Vector de p5.js, puedes usar cualquier función de Vector en él.
-
-Puede que tengas que reiniciar este ejemplo para ver moverse al sprite.
-
-# 2-3
-
-Mueve el sprite indefinidamente estableciendo su `direction` y `speed`.
-
-También puedes establecer la dirección de un sprite usando un nombre de dirección como: 'up', 'down', 'left', 'right', 'upLeft', 'upRight', 'downLeft', 'downRight'.
-
-Nota que p5play convierte estos nombres de dirección a sus correspondientes valores de ángulo.
-
-# 2-4
-
-La función `move` mueve un sprite a través de una distancia fija. La dirección y la velocidad del movimiento pueden especificarse como parámetros de la función o establecerse por separado.
-
-# 2-5
-
-La función `moveTowards` mueve un sprite hacia una posición, a un porcentaje de la distancia a esa posición.
-
-En este ejemplo, el jugador se mueve el 10% de la distancia al ratón en cada llamada de dibujo de p5.js. Su velocidad, y la fuerza que ejerce sobre el bloque, es proporcional a la distancia que se mueve.
-
-# 2-6
-
-La función `moveTo` genera un impulso que mueve un sprite a una posición a una velocidad constante.
-
-Pero ten en cuenta que si el sprite es actuado por una fuerza como la gravedad o choca con otro sprite, su velocidad y dirección se verán afectadas y puede que no llegue a la posición objetivo.
-
-Cualquier función de movimiento que acepte un objeto con propiedades x e y podría en su lugar ser llamada con números de posición (x, y).
-
-# 2-7
-
-Esperamos que los ejemplos en esta página te ayuden a entender algunas de las opciones de movimiento disponibles en p5play.
-
-Ten en cuenta que las funciones move, moveTo y moveTowards anulan el movimiento actual de un sprite, obligándolo a moverse en una nueva dirección. ¡Eso podría no ser siempre lo que quieres!
-
-Para aprender más sobre el movimiento de sprites, lee las páginas de "Secuenciación de Movimientos" y "Movimiento Avanzado".
-
-# 3-0
-
-## Imagen de sprite
-
-`sprite.image` o `sprite.img` puede establecerse en una p5.Image o una ruta de url a un archivo de imagen.
+`sprite.image` (o `sprite.img`) puede establecerse como un p5.Image o una ruta de URL a un archivo de imagen.
 
 Si necesitas que una imagen se cargue antes de que comience tu programa, es mejor usar [`loadImage`](https://p5js.org/reference/#/p5/loadImage) dentro de la función `preload` de p5.js.
 
-`sprite.scale` cambia el tamaño tanto del colisionador del sprite como de su apariencia visual. Un valor de escala de 2 duplica el tamaño del sprite.
+`sprite.image.offset` se puede usar para desplazar la imagen en relación con el centro del sprite. Esto puede ayudar a alinear mejor la imagen con el colisionador de física del sprite.
 
-Intenta presionar el botón izquierdo del ratón. Cuando la propiedad `sprite.debug` está establecida en true puedes ver el colisionador del cuerpo físico del sprite. ¡Puedes hacer que el tamaño del colisionador sea diferente del tamaño de la imagen!
+`sprite.image.scale` cambia el tamaño de visualización de la imagen del sprite. El valor predeterminado es 1.0. Si la imagen aparece demasiado grande o pequeña, probablemente debas cambiar el tamaño del archivo de imagen en sí mismo.
 
-# 3-1
+Intenta hacer clic en el lienzo de este ejemplo. Cuando la propiedad `sprite.debug` está establecida en true, puedes ver el colisionador del cuerpo físico del sprite.
+
+# 2-1
+
+## Sprites de Emoji
+
+¿Sin imagen? 🫥 ¡No hay problema! 😄
+
+Puedes usar cualquier emoji como la imagen para tu sprite.
+
+El tamaño de la imagen del emoji se basará en el tamaño del sprite.
+
+# 2-2
 
 ## Arte de Píxeles
 
@@ -122,13 +80,13 @@ Puedes utilizar la función `spriteArt` para crear imágenes de arte de píxeles
 
 El segundo parámetro de entrada de la función `spriteArt` es la escala de la imagen.
 
-# 3-2
+# 2-3
 
 ## ¡Pruébalo!
 
 ¡Intenta crear tu propio arte de píxeles! Echa un vistazo al alfabeto a continuación para ver qué color representa cada letra de forma predeterminada.
 
-# 3-3
+# 2-4
 
 ## Colores Personalizados
 
@@ -137,6 +95,60 @@ También puedes crear arte de píxeles que utilice colores personalizados creand
 Las paletas de colores en p5play deben proporcionarse en formato [Objeto JavaScript](https://p5js.org/reference/#/p5/object). Un objeto JS simple es como un diccionario. Puedes definir un color para cada letra que uses en tu arte de píxeles. Para crear un color, utiliza la función [`color`](https://p5js.org/reference/#/p5/color) de p5.js, que acepta valores RGB (rojo, verde, azul) o códigos de color HEX.
 
 La forma más sencilla de encontrar colores es utilizar un [selector de colores](https://www.google.com/search?q=selector+de+colores+google).
+
+# 3-0
+
+## Movimiento del Sprite
+
+Mover un sprite editando directamente sus coordenadas (x, y) lo teletransportará a la nueva posición, sin moverlo a través de posiciones intermedias.
+
+Prueba haciendo clic en este mini ejemplo.
+
+# 3-1
+
+Si deseas que un sprite interactúe físicamente con otros sprites mientras se mueve, ¡no lo teletransportes!
+
+Este mal ejemplo muestra lo que sucede si un sprite es teletransportado cada vez que la función de dibujo (draw) de p5.js renderiza un fotograma.
+
+# 3-2
+
+Todos los otros métodos de movimiento en esta página funcionan cambiando las velocidades de los ejes x e y del sprite. `velocity` también conocida como `vel` es un Vector de p5.js, puedes usar cualquier función de Vector en él.
+
+Puede que tengas que reiniciar este ejemplo para ver moverse al sprite.
+
+# 3-3
+
+Mueve el sprite indefinidamente estableciendo su `direction` y `speed`.
+
+También puedes establecer la dirección de un sprite usando un nombre de dirección como: 'up', 'down', 'left', 'right', 'upLeft', 'upRight', 'downLeft', 'downRight'.
+
+Nota que p5play convierte estos nombres de dirección a sus correspondientes valores de ángulo.
+
+# 3-4
+
+La función `move` mueve un sprite a través de una distancia fija. La dirección y la velocidad del movimiento pueden especificarse como parámetros de la función o establecerse por separado.
+
+# 3-5
+
+La función `moveTowards` mueve un sprite hacia una posición, a un porcentaje de la distancia a esa posición.
+
+En este ejemplo, el jugador se mueve el 10% de la distancia al ratón en cada llamada de dibujo de p5.js. Su velocidad, y la fuerza que ejerce sobre el bloque, es proporcional a la distancia que se mueve.
+
+# 3-6
+
+La función `moveTo` genera un impulso que mueve un sprite a una posición a una velocidad constante.
+
+Pero ten en cuenta que si el sprite es actuado por una fuerza como la gravedad o choca con otro sprite, su velocidad y dirección se verán afectadas y puede que no llegue a la posición objetivo.
+
+Cualquier función de movimiento que acepte un objeto con propiedades x e y podría en su lugar ser llamada con números de posición (x, y).
+
+# 3-7
+
+Esperamos que los ejemplos en esta página te ayuden a entender algunas de las opciones de movimiento disponibles en p5play.
+
+Ten en cuenta que las funciones move, moveTo y moveTowards anulan el movimiento actual de un sprite, obligándolo a moverse en una nueva dirección. ¡Eso podría no ser siempre lo que quieres!
+
+Para aprender más sobre el movimiento de sprites, lee las páginas de "Secuenciación de Movimientos" y "Movimiento Avanzado".
 
 # 4-0
 

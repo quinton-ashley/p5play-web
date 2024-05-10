@@ -275,16 +275,18 @@ function draw() {
 		<div id="page-2" class="page">
 			<md id="md2-0">
 				<h2 id="sprites-with-an-image">Sprites with an Image</h2>
-				<p><code>sprite.image</code> or <code>sprite.img</code> can be set to a p5.Image or a url path to an
+				<p><code>sprite.image</code> (aka <code>sprite.img</code>) can be set to a p5.Image or a url path to an
 					image file.</p>
 				<p>If you need an image to be loaded before your program starts, it's best to use <a
 						href="https://p5js.org/reference/#/p5/loadImage" target="_blank"><code>loadImage</code></a>
 					inside the p5.js <code>preload</code> function.</p>
-				<p><code>sprite.scale</code> changes the size of both the sprite's collider and visual appearance. A
-					scale value of 2 doubles the size of the sprite.</p>
-				<p>Try pressing the left mouse button. When the <code>sprite.debug</code> property is set to true you
-					can see the sprite's physics body collider. You can make the size of the collider different from the
-					size of the image!</p>
+				<p><code>sprite.image.offset</code> can be used to offset the image relative to the sprite's center.
+					This can help better align the image with the sprite's physics collider.</p>
+				<p><code>sprite.image.scale</code> changes the display size of the sprite's image. The default is 1.0.
+					If the image appears way too big or small, you should probably change the size of the image file
+					itself.</p>
+				<p>Try clicking on the canvas of this example. When the <code>sprite.debug</code> property is set to
+					true you can see the sprite's physics body collider.</p>
 			</md>
 			<script type="mie/p5" id="image">
 let monster;
@@ -293,28 +295,47 @@ function setup() {
 	new Canvas(500, 120);
 
 	monster = new Sprite();
-	monster.img = 'assets/monster.png';
 	monster.diameter = 70;
+	monster.image = 'assets/monster.png';
+	monster.image.offset.y = 6;
 }
 
 function draw() {
 	clear();
-	if (kb.presses(2)) {
-		monster.scale = 2;
-	}
 	monster.debug = mouse.pressing();
 }
 			</script>
 			<div class="break"></div>
+			<md id="md2-1">
+				<h2 id="emoji-sprites">Emoji Sprites</h2>
+				<p>No image? 🫥 No problem! 😄</p>
+				<p>You can use any emoji as the image for your sprite.</p>
+				<p>The size of the emoji image will be based on the sprite's size.</p>
+			</md>
+			<script type="mie/p5" id="emoji image" lines="8" horiz="">
+function setup() {
+	new Canvas(160, 160);
+
+	let painting = new Sprite();
+	painting.width = 100;
+	painting.height = 100;
+	painting.image = '🖼️';
+}
+
+function draw() {
+	noLoop();
+}
+			</script>
+			<div class="break"></div>
 			<div class="minis">
-				<md id="md2-1">
+				<md id="md2-2">
 					<h2 id="pixel-art">Pixel Art</h2>
 					<p>You can use the <code>spriteArt</code> function to create pixel art images for your sprites. It
 						takes a string as input and returns an image. Each character in the string represents the color
 						value of a pixel in the image.</p>
 					<p>The second input parameter to the <code>spriteArt</code> function is the scale of the image.</p>
 				</md>
-				<md id="md2-2">
+				<md id="md2-3">
 					<h2 id="try-it">Try it!</h2>
 					<p>Try making your own pixel art! Take a look at the alphabet below to see what color each letter
 						represents by default.</p>
@@ -365,7 +386,7 @@ function draw() {}
         </script>
 			</div>
 			<div class="break"></div>
-			<md id="md2-3">
+			<md id="md2-4">
 				<h2 id="custom-colors">Custom Colors</h2>
 				<p>You can also make pixel art that uses custom colors by creating a color palette and passing it as the
 					third parameter to the <code>spriteArt</code> function.</p>
