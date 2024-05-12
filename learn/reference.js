@@ -21,7 +21,7 @@ let refs = {
 		3: ['vel / velocity', 'speed', 'direction', 'move', 'moveTo', 'moveTowards', 'angleTo'],
 		5: ['collides', 'colliding', 'collided'],
 		6: ['overlaps', 'overlapping', 'overlapped', 'layer', 'remove'],
-		7: ['rotate', 'rotateTo', 'rotateTowards', 'rotationSpeed'],
+		7: ['rotate', 'rotateTo', 'rotateTowards', 'rotationSpeed', 'offset'],
 		9: ['bounciness', 'drag', 'friction', 'mass', 'rotationDrag', 'rotationLock'],
 		10: ['applyForce', 'applyForceScaled', 'bearing', 'attractTo', 'applyTorque'],
 		12: ['shape'],
@@ -45,12 +45,12 @@ let refs = {
 		6: ['autoCull', 'cull'],
 		7: ['autoDraw', 'autoUpdate']
 	},
-	'Sprite_Animation.html': {
+	'Animation.html': {
 		0: ['animation', 'loadAni / loadAnimation', 'frameDelay'],
 		1: ['play', 'stop', 'rewind', 'loop', 'noLoop', 'frame', 'nextFrame', 'previousFrame', 'scale'],
 		4: ['offset']
 	},
-	'Input_Devices.html': {
+	'Input.html': {
 		0: ['presses', 'pressing', 'released', 'mouse', 'kb / keyboard'],
 		4: ['contros / controllers', 'contro'],
 		5: ['touches']
