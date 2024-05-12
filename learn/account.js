@@ -59,8 +59,14 @@ function jwtDecode(token, options) {
 	let user;
 	let idToken = localStorage.getItem('idToken');
 
-	if (idToken && idToken != 'null') user = jwtDecode(idToken);
-	else idToken = null;
+	if (idToken && idToken != 'null') {
+		try {
+			user = jwtDecode(idToken);
+		} catch (e) {
+			console.error(e);
+			idToken = null;
+		}
+	} else idToken = null;
 
 	// check if there's no token or if it's expired
 	if (!idToken || user.exp < Date.now() / 1000) {
@@ -72,6 +78,15 @@ function jwtDecode(token, options) {
 		// save to local storage
 		localStorage.setItem('idToken', idToken);
 
+		if (idToken) {
+			try {
+				user = jwtDecode(idToken);
+			} catch (e) {
+				console.error(e);
+				idToken = null;
+			}
+		}
+
 		// if there's no token, display the unauthorized section of the page
 		if (!idToken) {
 			if (window.showUnauthContent) showUnauthContent();
@@ -79,8 +94,6 @@ function jwtDecode(token, options) {
 			for (let el of els) el.style.display = 'block';
 			return;
 		}
-		// else, decode the token
-		user = jwt_decode(idToken);
 
 		// hide the token from the URL
 		window.history.pushState(null, '', location.href.split(/[?#]/)[0]);
