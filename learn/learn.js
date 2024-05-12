@@ -201,6 +201,12 @@ function showUnauthContent() {
 			<a class="accountBtns" href="../pro/signup.html">Sign Up</a>
 		</div>
 	</div>
+	<style>
+body {
+	height: 100vh;
+  overflow: hidden;
+}
+	</style>
 </div>`
 	);
 }

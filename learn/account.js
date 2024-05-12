@@ -86,9 +86,6 @@ function jwtDecode(token, options) {
 		window.history.pushState(null, '', location.href.split(/[?#]/)[0]);
 	}
 
-	window.idToken = idToken; // for debugging
-
-	console.log(user);
 	window.p5playAccount = user;
 
 	// show section of page that requires authentication

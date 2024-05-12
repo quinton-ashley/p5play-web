@@ -186,6 +186,12 @@ function checkResetPasswordMatch() {
 
 document.getElementById('');
 
+function birthdayFocus() {
+	if (this.type == 'date') return;
+	this.type = 'date';
+	this.click();
+}
+
 function checkIfValid() {
 	// Check if the full name input is valid
 	if ($('#full-name').val().length > 0) {

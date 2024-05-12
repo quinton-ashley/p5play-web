@@ -107,7 +107,7 @@ video {
 	flex-wrap: nowrap;
 }
 
-#logoLink.active {
+.logoLink.active {
 	text-shadow: 0.5vw 0.5vw 0px var(--blue0);
 }
 
@@ -127,7 +127,7 @@ video {
 	padding: 0;
 }
 
-#bigBrand #logoLink {
+#bigBrand .logoLink {
 	font-size: 6vw;
 }
 
@@ -786,7 +786,7 @@ html.ja footer {
 		margin-right: 8px;
 	}
 
-	#bigBrand #logoLink {
+	#bigBrand .logoLink {
 		font-size: 12vw;
 	}
 
@@ -884,7 +884,7 @@ html.ja footer {
 		width: 150px;
 	}
 
-	#bigBrand #logoLink {
+	#bigBrand .logoLink {
 		font-size: 15vw;
 	}
 
