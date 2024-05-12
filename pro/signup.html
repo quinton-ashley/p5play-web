@@ -84,9 +84,12 @@
 						<div class="mini-row">
 							<input type="text" name="requiredAttributes[gender]" class="form-control inputField-customizable"
 								required="" aria-label="Gender" placeholder="Gender" onkeyup="checkIfValid();" id="gender" />
-
-							<input type="date" name="requiredAttributes[birthdate]" class="form-control inputField-customizable"
-								required="" aria-label="Birthday" id="birthday" placeholder="Birthday" onchange="checkIfValid();" />
+							<div id="birthdayDiv">
+								<label id="birthdayLbl" for="birthday">Birthday &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+								<input type="date" name="requiredAttributes[birthdate]" class="form-control inputField-customizable"
+									required="" aria-label="Birthday" id="birthday" placeholder="Birthday" onfocus="birthdayFocus();"
+									onchange="checkIfValid();" />
+							</div>
 						</div>
 						<div class="mini-row">
 							<select type="text" name="requiredAttributes[middle_name]" class="form-control inputField-customizable"

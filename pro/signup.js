@@ -14,6 +14,11 @@ document.getElementById('localeInput').value = navigator.languages[0] || navigat
 
 document.getElementById('todaysDate').value = Math.floor(new Date().getTime() / 1000);
 
+function birthdayFocus() {
+	let el = document.getElementById('birthdayLbl');
+	if (el) el.remove();
+}
+
 function checkPasswordHelper(password) {
 	var passwordPolicy = [];
 	passwordPolicy.lowercase = 'Password must contain a lower case letter';
