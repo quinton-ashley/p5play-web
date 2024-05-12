@@ -14,7 +14,7 @@ Ahora puedes acceder a las páginas de [Aprender](../learn) y recibirás notific
 
 # 0-2
 
-## Recursos Gratuitos
+## Recursos
 
 - [p5play-vscode](https://github.com/quinton-ashley/p5play-vscode) : Extensión para VSCode
 - [p5play-template](https://github.com/quinton-ashley/p5play-template) : Código de inicio

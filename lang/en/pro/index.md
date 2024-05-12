@@ -14,7 +14,7 @@ You can now access the [Learn](../learn) pages and will be notified about new fe
 
 # 0-2
 
-## Free Resources
+## Resources
 
 - [p5play-vscode](https://github.com/quinton-ashley/p5play-vscode) : VSCode extension
 - [p5play-template](https://github.com/quinton-ashley/p5play-template) : starter code

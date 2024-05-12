@@ -143,7 +143,7 @@ div.modal-dialog {
 		flex-direction: column;
 	}
 
-	div.row2 {
+	.mini-row {
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
@@ -151,8 +151,8 @@ div.modal-dialog {
 		/* this will center children vertically */
 	}
 
-	div.row2 select,
-	div.row2 input {
+	.mini-row select,
+	.mini-row input {
 		width: 250px;
 	}
 

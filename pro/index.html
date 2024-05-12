@@ -34,7 +34,7 @@
 		</div>
 
 		<div class="page">
-			<div id="noauth">
+			<div class="unauth">
 				<md id="md0-0">
 					<h2 id="account">Account</h2>
 					<p>Sign up for a free account to be notified about new features and updates!</p>
@@ -45,7 +45,7 @@
 						href="https://p5play.auth.us-west-2.amazoncognito.com/login?redirect_uri=https%3A%2F%2Fp5play.org%2Fpro%2Findex.html&amp;client_id=3oegfdhu2r7eo8nr371496718c&amp;response_type=token&amp;scope=email+openid+phone">Login</a>
 				</div>
 			</div>
-			<div id="auth" class="mini">
+			<div class="auth">
 				<md id="md0-1">
 					<h2 id="account">Account</h2>
 					<p>Welcome <span id="username"></span>!</p>
@@ -54,7 +54,7 @@
 				</md>
 			</div>
 			<md id="md0-2">
-				<h2 id="free-resources">Free Resources</h2>
+				<h2 id="resources">Resources</h2>
 				<ul>
 					<li><a href="https://github.com/quinton-ashley/p5play-vscode" target="_blank">p5play-vscode</a> :
 						VSCode extension</li>
@@ -120,16 +120,19 @@
 	</article>
 
 	<script src="/learn/main.js"></script>
-<script src="
-		https://cdn.jsdelivr.net/npm/jwt-decode@3.1.2/build/jwt-decode.min.js
-		"></script>
-	<script src="/pro/pro.js"></script>
-<style>
+<script src="/learn/account.js"></script>
+<script>
+function showAuthContent() {
+	document.getElementById('username').innerHTML = p5playAccount.email.split('@')[0];
+}
+
+	</script>
+	<style>
 .page {
 	display: flex;
 }
 
-#auth {
+.auth {
 	display: none;
 }
 

@@ -37,7 +37,7 @@
 		</div>
 
 		<div class="page">
-			<div id="noauth">
+			<div class="unauth">
 				<md id="md0-0">
 					<h2 id="アカウント">アカウント</h2>
 					<p>無料会員アカウントにサインアップして、新機能やアップデートなどの通知を受け取りましょう！</p>
@@ -48,7 +48,7 @@
 						href="https://p5play.auth.us-west-2.amazoncognito.com/login?redirect_uri=https%3A%2F%2Fp5play.org%2Fpro%2Findex.html&amp;client_id=3oegfdhu2r7eo8nr371496718c&amp;response_type=token&amp;scope=email+openid+phone">Login</a>
 				</div>
 			</div>
-			<div id="auth" class="mini">
+			<div class="auth">
 				<md id="md0-1">
 					<h2 id="アカウント">アカウント</h2>
 					<p>ようこそ、 <span id="username"></span> さん！</p>
@@ -57,7 +57,7 @@
 				</md>
 			</div>
 			<md id="md0-2">
-				<h2 id="無料リソース">無料リソース</h2>
+				<h2 id="リソース">リソース</h2>
 				<ul>
 					<li><a href="https://github.com/quinton-ashley/p5play-vscode" target="_blank">p5play-vscode</a> :
 						VSCode 拡張機能</li>
@@ -122,16 +122,19 @@
 	</article>
 
 	<script src="/learn/main.js"></script>
-<script src="
-		https://cdn.jsdelivr.net/npm/jwt-decode@3.1.2/build/jwt-decode.min.js
-		"></script>
-	<script src="/pro/pro.js"></script>
-<style>
+<script src="/learn/account.js"></script>
+<script>
+function showAuthContent() {
+	document.getElementById('username').innerHTML = p5playAccount.email.split('@')[0];
+}
+
+	</script>
+	<style>
 .page {
 	display: flex;
 }
 
-#auth {
+.auth {
 	display: none;
 }
 

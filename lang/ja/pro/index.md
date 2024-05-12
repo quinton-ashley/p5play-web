@@ -14,7 +14,7 @@
 
 # 0-2
 
-## 無料リソース
+## リソース
 
 - [p5play-vscode](https://github.com/quinton-ashley/p5play-vscode) : VSCode 拡張機能
 - [p5play-template](https://github.com/quinton-ashley/p5play-template) : スターターコード

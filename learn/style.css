@@ -116,6 +116,72 @@ html.ja h2 {
 	font-weight: 600;
 }
 
+.popup-bg {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	background-color: rgba(0, 0, 0, 0.5);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 100;
+}
+
+#unauth-popup {
+	width: 250px;
+	background-color: var(--secondary);
+	border-radius: 10px;
+	padding: 20px;
+	z-index: 101;
+	display: flex;
+	flex-direction: column;
+	box-shadow: 0px 0px 1000px var(--primary);
+}
+
+#unauth-popup p {
+	text-align: center;
+}
+
+#unauth-popup .p5play_logo {
+	height: 220px;
+}
+
+#unauth-popup .navLink {
+	display: flex;
+	font-size: 56px;
+	flex-direction: column;
+}
+
+#unauth-popup .navLink span {
+	text-shadow: 4px 4px 0px var(--blue0);
+}
+
+.accountBtns {
+	cursor: pointer;
+	background-color: var(--secondary);
+	border: 5px solid var(--pink0);
+	border-bottom: 0;
+	border-right: 0;
+	box-shadow: 5px 5px 0px var(--blue0);
+	border-radius: 10px;
+	font-size: 18px;
+	font-weight: bold;
+	padding: 10px 20px;
+	margin-top: 16px;
+	transition: 0.3s;
+	text-align: center;
+}
+
+.accountBtns:hover {
+	background-color: var(--secondary);
+	border: 5px solid var(--blue0);
+	border-bottom: 0;
+	border-right: 0;
+	box-shadow: 5px 5px 0px var(--pink0);
+}
+
 #darkModeIcon {
 	display: inline-block;
 	vertical-align: middle;
@@ -230,24 +296,24 @@ nav {
 	margin-top: 16px;
 }
 
-#topNav {
+#topNav,
+.navLink {
 	font-family: Mont, sans-serif;
 	font-display: swap;
 }
 
-html.ja #topNav {
+html.ja #topNav,
+html.ja .navLink {
 	font-family: Mont, "Noto Sans JP", "Noto Color Emoji", "Hiragino Sans", "Yu Gothic", sans-serif;
 }
 
 nav a,
-a.navLink {
+.navLink {
 	display: inline-block;
 	font-size: 24px;
 	font-weight: normal;
 	user-select: none;
 	color: var(--blue1);
-	/* 	-webkit-text-stroke: 1.6px var(--pink0); */
-	/* 	text-shadow: 3px 1.8px 0px var(--blue1); */
 	text-decoration: none;
 	transition: 100ms;
 	padding-left: 8px;
@@ -256,22 +322,23 @@ a.navLink {
 }
 
 html.ja nav a,
-html.ja a.navLink {
+html.ja .navLink {
 	flex: 1 0 auto;
 }
 
-a.navLink {
+.navLink {
 	text-align: center;
 	line-height: 1.5;
 }
 
 #topNav a.active,
+.navLink.active,
 #topNav a:hover {
 	color: var(--pink0);
 	text-shadow: 2px 2px 0px var(--blue0);
 }
 
-#logoLink {
+.logoLink {
 	font-family: Mont, sans-serif;
 	font-display: swap;
 	font-size: 48px;
@@ -279,12 +346,13 @@ a.navLink {
 	text-shadow: 3px 3px 0px var(--blue0);
 }
 
-#logoLink:hover {
+.logoLink:hover {
 	color: transparent !important;
 	-webkit-text-stroke: 1.6px var(--pink0);
 }
 
-#topNav a.active {
+#topNav a.active,
+.navLink.active {
 	font-size: 34px;
 }
 
@@ -298,7 +366,7 @@ a.navLink {
 	vertical-align: middle;
 }
 
-#topNav .p5play_logo {
+.p5play_logo {
 	height: 48px;
 }
 

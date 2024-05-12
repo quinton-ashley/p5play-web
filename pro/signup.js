@@ -205,15 +205,6 @@ function checkIfValid() {
 		$('#gender').addClass('not-valid');
 	}
 
-	// Check if the country input is valid
-	if ($('#country').val().length > 0) {
-		$('#country').removeClass('not-valid');
-		$('#country').addClass('is-valid');
-	} else {
-		$('#country').removeClass('is-valid');
-		$('#country').addClass('not-valid');
-	}
-
 	// Check if the birthday input is valid
 	var enteredDate = new Date($('#birthday').val());
 
@@ -226,6 +217,33 @@ function checkIfValid() {
 	} else {
 		$('#birthday').removeClass('is-valid');
 		$('#birthday').addClass('not-valid');
+	}
+
+	// Check if the account_type input is valid
+	if ($('#account_type').val() != 'nil') {
+		$('#account_type').removeClass('not-valid');
+		$('#account_type').addClass('is-valid');
+	} else {
+		$('#account_type').removeClass('is-valid');
+		$('#account_type').addClass('not-valid');
+	}
+
+	// Check if the country input is valid
+	if ($('#school').val().length > 0) {
+		$('#school').removeClass('not-valid');
+		$('#school').addClass('is-valid');
+	} else {
+		$('#school').removeClass('is-valid');
+		$('#school').addClass('not-valid');
+	}
+
+	// Check if the country input is valid
+	if ($('#country').val().length > 0) {
+		$('#country').removeClass('not-valid');
+		$('#country').addClass('is-valid');
+	} else {
+		$('#country').removeClass('is-valid');
+		$('#country').addClass('not-valid');
 	}
 
 	// Check if the email input is valid
