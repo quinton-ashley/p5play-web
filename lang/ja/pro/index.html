@@ -50,8 +50,9 @@
 				<md id="md0-1">
 					<h2 id="アカウント">アカウント</h2>
 					<p>ようこそ、 <span id="username"></span> さん！</p>
-					<p>現在、 <a href="../learn" target="_blank">Learn</a> ページへのアクセスが可能です。また、新機能に関する通知をメールでお送りさせていただいております。
+					<p>あなたは個人的な使用のために無料の「学習」ページにアクセスできます。教育者は、授業時間やコースワークでこれらのページを使用するためには <em>PRO</em> メンバーである必要があります。
 					</p>
+					<p>また、新機能についてはメールで通知されます。</p>
 				</md>
 			</div>
 			<md id="md0-4">
@@ -73,7 +74,6 @@
 			<div>
 				<md id="md0-3">
 					<h2 id="pro-有償プラン">PRO (有償プラン)</h2>
-					<p>p5play で作成したゲームの収益化をご希望ですか？</p>
 					<p><a href="https://www.patreon.com/p5play" target="_blank">Patreon</a> や <a
 							href="https://github.com/sponsors/quinton-ashley" target="_blank">GitHub Sponsors</a> から
 						p5play へご支援いただくことで、 <em>PRO</em> メンバーとなり、無償利用時よりもさらに多くの資料に、アクセスが可能となります！</p>
@@ -92,6 +92,7 @@
 			</div>
 			<md id="md0-5">
 				<h2 id="ios-アプリのテンプレート">iOS アプリのテンプレート</h2>
+				<p>p5play で作成したゲームの収益化をご希望ですか？</p>
 				<p><em>PRO</em> メンバーは、 Swift によるコーディングが不要な、 iOS アプリ作成用テンプレートを使用できます。 p5play の iOS アプリテンプレートを使って、 Apple の
 					App Store でゲームを販売したり、広告収入を得たりすることができます！</p>
 			</md>
@@ -120,14 +121,14 @@
 	</article>
 
 	<script src="/learn/main.js"></script>
-<script src="/learn/account.js"></script>
 <script>
 function showAuthContent() {
 	document.getElementById('username').innerHTML = p5playAccount.email.split('@')[0];
 }
 
 	</script>
-	<style>
+	<script src="/learn/account.js"></script>
+<style>
 .page {
 	display: flex;
 }

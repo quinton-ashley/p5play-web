@@ -10,7 +10,9 @@
 
 ¡Bienvenido <span id="username"></span>!
 
-Ahora puedes acceder a las páginas de [Aprender](../learn) y recibirás notificaciones sobre nuevas funciones por correo electrónico.
+Tienes acceso a las páginas de Aprendizaje, que son gratuitas para uso personal. Los educadores deben ser miembros _PRO_ para usar estas páginas durante el tiempo de instrucción o para trabajos de curso.
+
+También serás notificado por correo electrónico sobre nuevas características.
 
 # 0-2
 
@@ -23,8 +25,6 @@ Ahora puedes acceder a las páginas de [Aprender](../learn) y recibirás notific
 # 0-3
 
 ## PRO$
-
-¿Listo para ganar dinero real con p5play?
 
 Conviértete en _PRO_ apoyando a p5play en [Patreon](https://www.patreon.com/p5play) o [GitHub Sponsors](https://github.com/sponsors/quinton-ashley) para acceder a contenido exclusivo.
 
@@ -43,6 +43,8 @@ Los miembros _PRO_ reciben la [Licencia Profesional de p5play](https://github.co
 # 0-5
 
 ## Plantillas de Aplicaciones iOS
+
+¿Listo para ganar dinero real con p5play?
 
 Los miembros _PRO_ pueden utilizar plantillas para construir aplicaciones iOS sin programar en Swift. ¡Vende juegos en la App Store de Apple o genera ingresos con publicidad con las plantillas de aplicaciones iOS de p5play!
 

@@ -2,7 +2,7 @@
 
 ## Account
 
-Sign up for a free account to be notified about new features and updates!
+Sign up for a free account to access the Learn pages and be notified via email about new features!
 
 # 0-1
 
@@ -10,7 +10,9 @@ Sign up for a free account to be notified about new features and updates!
 
 Welcome <span id="username"></span>!
 
-You can now access the [Learn](../learn) pages and will be notified about new features by email.
+You now have access to the Learn pages, which are free for personal use. Educators must be _PRO_ members to use these pages during instructional time or for coursework.
+
+You'll also be notified via email about new features.
 
 # 0-2
 
@@ -23,8 +25,6 @@ You can now access the [Learn](../learn) pages and will be notified about new fe
 # 0-3
 
 ## PRO$
-
-Ready to earn real money with p5play?
 
 Become a _PRO_ by supporting p5play on [Patreon](https://www.patreon.com/p5play) or [GitHub Sponsors](https://github.com/sponsors/quinton-ashley) to gain access to exclusive content!
 
@@ -45,6 +45,8 @@ _PRO_ members are awarded the [p5play Professional License](https://github.com/q
 # 0-5
 
 ## iOS App Templates
+
+Ready to earn real money with p5play?
 
 _PRO_ members can use templates to build iOS apps without coding in Swift. Sell games on Apple's App Store or earn revenue from advertisements with p5play's iOS app templates!
 

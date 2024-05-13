@@ -2,7 +2,9 @@
 
 ## Aprender
 
-Estas páginas de referencia "Aprender" proporcionan mini ejemplos interactivos para las características más importantes de p5play.
+Aprende sobre p5play con estas páginas de referencia llenas de ejemplos de código interactivo!
+
+Este recurso es gratuito solo para uso personal. Los educadores deben ser [miembros PRO](../pro) para usar estas páginas durante el tiempo de instrucción o para trabajos de curso.
 
 # 0-1
 
