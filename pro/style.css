@@ -194,6 +194,7 @@ select {
 	color: var(--primary) !important;
 }
 
+#permission,
 input::placeholder,
 select::placeholder {
 	color: var(--primary) !important;
