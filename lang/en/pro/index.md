@@ -34,7 +34,7 @@ Become a _PRO_ by supporting p5play on [Patreon](https://www.patreon.com/p5play)
 
 p5play is free for personal use, but [commercial use](https://github.com/quinton-ashley/p5play-web/blob/main/LICENSING.md) requires a _PRO_ membership.
 
-- teaching a class that's not free
+- teaching a class that's not free for the general public
 - publishing a paid or monetized game
 - writing curriculum that's not publicly accessible
 - developing a game for a paying client
