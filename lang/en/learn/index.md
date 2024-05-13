@@ -4,7 +4,7 @@
 
 Learn about p5play from these reference pages packed with interactive code examples!
 
-This resource is free for personal use only. Educators must be [PRO members](https://p5play.org/pro) to use these pages during instructional time or for coursework.
+This resource is free for personal use only. Educators must be [PRO members](../pro) to use these pages during instructional time or for coursework.
 
 # 0-1
 
