@@ -286,9 +286,10 @@ a {
 	margin-top: 6px;
 	margin-left: 6px;
 	padding: 10px;
-	background-color: var(--secondary);
 	z-index: 2;
 	font-weight: normal;
+	background-color: var(--input-color);
+	color: var(--primary);
 }
 
 @media (max-width: 726px) {

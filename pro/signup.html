@@ -14,8 +14,7 @@
 		function getAdvancedSecurityData(formReference) {
 			if (typeof AmazonCognitoAdvancedSecurityData === 'undefined') {
 				return true;
-			} // UserpoolId is not available on frontend for springboard. We do not use userPoolId
-			// anyway other than put in context data.
+			}
 			var userPoolId = '';
 			var clientId = getUrlParameter('client_id');
 			var username = '';
@@ -380,13 +379,11 @@
 						</div>
 
 						<div>
-							<!-- <label class="label-customizable">Email</label> -->
 							<input name="username" onkeyup="checkIfValid();" type="email" value="" autocapitalize="none"
 								class="form-control inputField-customizable" placeholder="Email" required="" aria-label="Email"
 								id="email" />
 						</div>
 						<div>
-							<!-- <label class="label-customizable">Password</label> -->
 							<input type="password" autocomplete="new-password" name="password"
 								onkeyup="checkPasswordMatch(); checkIfValid();" value="" class="form-control inputField-customizable"
 								placeholder="Password" required="" aria-label="Password" id="password" />
@@ -394,7 +391,7 @@
 
 						<div>
 							<div>
-								<div class=" checkPassword-lowerletter passwordCheck-notValid-customizable">
+								<div class="checkPassword-lowerletter passwordCheck-notValid-customizable">
 									<span aria-hidden="true" class="check-lowerletter"></span>
 									<span class="checkPasswordText-lowerletter"></span>
 								</div>
