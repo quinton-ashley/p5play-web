@@ -28,6 +28,8 @@ You'll also be notified via email about new features.
 
 Become a _PRO_ by supporting p5play on [Patreon](https://www.patreon.com/p5play) or [GitHub Sponsors](https://github.com/sponsors/quinton-ashley) to gain access to exclusive content!
 
+If you're an educator at a school that will not pay for subscriptions, you can request a custom invoice for a one-time payment. Let me know how long you plan to use p5play and how many students you have. Contact: [info@p5play.org](mailto:info@p5play.org)
+
 # 0-4
 
 ## Commercial Use

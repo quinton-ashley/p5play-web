@@ -28,6 +28,8 @@
 
 [Patreon](https://www.patreon.com/p5play) や [GitHub Sponsors](https://github.com/sponsors/quinton-ashley) から p5play へご支援いただくことで、 _PRO_ メンバーとなり、無償利用時よりもさらに多くの資料に、アクセスが可能となります！
 
+あなたが定期購読を支払うことができない学校の教育者である場合、一回払いのカスタム請求書をリクエストすることができます。p5play をどのくらいの期間使用する予定で、何人の生徒がいるのかを教えてください。連絡先: [info@p5play.org](mailto:info@p5play.org)
+
 # 0-4
 
 ## 商用利用
