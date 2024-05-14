@@ -30,6 +30,14 @@
 	max-width: 464px;
 }
 
+body.light #learn-p5play_img img:first-child {
+	display: none;
+}
+
+body.dark #learn-p5play_img img:nth-child(2) {
+	display: none;
+}
+
 #learnOptions {
 	display: flex;
 	width: 100%;
@@ -147,14 +155,14 @@
 					<p>Educators/schools must become <a href="../pro" target="_blank">PRO members</a> to use these pages
 						in class or coursework. The monthly subscription cost for this interactive textbook is fair and
 						affordable: starting at just ~25¢ per student.</p>
-					<p>Japanese translation by <a href="https://github.com/ShiMeiWo" target="_blank">Shi Mei Wo</a>.</p>
 				</md>
 				<div id="learnOptions" class="mini">
 					<a id="getStarted" class="btn" href="sprite.html">Get Started!</a>
 				</div>
 			</div>
 			<div id="learn-p5play_img">
-				<img src="/assets/Learn_p5play_dark.webp" alt="Learn p5play cover">
+				<img src="/assets/Learn_p5play_dark.webp" alt="Learn p5play cover (dark)">
+				<img src="/assets/Learn_p5play.webp" alt="Learn p5play cover (light)">
 			</div>
 		</div>
 
@@ -166,12 +174,17 @@
 				<div class="search-results" id="searchResults"></div>
 			</div>
 
-			<md id="md0-3" class="ref full">
+			<md id="md0-1" class="full">
+				<h2 id="credits">Credits</h2>
+				<p>Japanese translation by <a href="https://github.com/ShiMeiWo" target="_blank">Shi Mei Wo</a>.</p>
+				<p>Special thanks to the p5play community for helping me edit and improve these pages!</p>
+			</md>
+
+			<md id="md0-2" class="full">
 				<p>Can't find what you're looking for? Try the <a href="/docs/Sprite.html" target="_blank">full
 						documentation for p5play</a>, <a href="https://p5js.org/reference/" target="_blank">p5.js
 						reference</a>, <a href="https://p5js.org/reference/#/libraries/p5.sound"
-						target="_blank">p5.sound
-						reference</a>, or look at some <a
+						target="_blank">p5.sound reference</a>, or look at some <a
 						href="https://openprocessing.org/user/350295?o=35&amp;view=sketches" target="_blank">demos</a>.
 				</p>
 			</md>

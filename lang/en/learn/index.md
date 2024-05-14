@@ -8,8 +8,14 @@ Free for personal use!
 
 Educators/schools must become [PRO members](../pro) to use these pages in class or coursework. The monthly subscription cost for this interactive textbook is fair and affordable: starting at just ~25¢ per student.
 
+# 0-1
+
+## Credits
+
 Japanese translation by [Shi Mei Wo](https://github.com/ShiMeiWo).
 
-# 0-1
+Special thanks to the p5play community for helping me edit and improve these pages!
+
+# 0-2
 
 Can't find what you're looking for? Try the [full documentation for p5play](/docs/Sprite.html), [p5.js reference](https://p5js.org/reference/), [p5.sound reference](https://p5js.org/reference/#/libraries/p5.sound), or look at some [demos](https://openprocessing.org/user/350295?o=35&view=sketches).

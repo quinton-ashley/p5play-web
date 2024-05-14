@@ -8,8 +8,14 @@
 
 教育者/学校は、これらのページをクラスやコースワークで使用するために[PRO メンバー](../pro)になる必要があります。このインタラクティブな教科書の月額購読費用は公正で手頃な価格です：生徒一人あたりわずか~25¢ から始まります。
 
+# 0-1
+
+## クレジット
+
 日本語訳は[Shi Mei Wo](https://github.com/ShiMeiWo)によるものです。
 
-# 0-1
+p5play コミュニティの皆様に、これらのページの編集と改善を手伝っていただき、特別な感謝を申し上げます！
+
+# 0-2
 
 お探しの情報が見つからない場合は、[p5play の完全なドキュメンテーション](/docs/Sprite.html)、[p5.js リファレンス](https://p5js.org/reference/)、または [p5.sound リファレンス](https://p5js.org/reference/#/libraries/p5.sound) を試してみるか、[デモ](https://openprocessing.org/user/350295?o=35&view=sketches)を見てみてください。

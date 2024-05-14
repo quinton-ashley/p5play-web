@@ -173,7 +173,7 @@ for (let refPage in refs) {
 	let heading = document.createElement('h2');
 	heading.innerHTML = `<a href="${refPage}">${className}</a>`;
 	div.append(heading);
-	refsDiv.children[refsDiv.children.length - 2].insertAdjacentElement('afterend', div);
+	refsDiv.children[refsDiv.children.length - 3].insertAdjacentElement('afterend', div);
 
 	let links = [];
 	for (let pageNum in ref) {

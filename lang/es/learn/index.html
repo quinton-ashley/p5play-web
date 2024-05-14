@@ -30,6 +30,14 @@
 	max-width: 464px;
 }
 
+body.light #learn-p5play_img img:first-child {
+	display: none;
+}
+
+body.dark #learn-p5play_img img:nth-child(2) {
+	display: none;
+}
+
 #learnOptions {
 	display: flex;
 	width: 100%;
@@ -147,15 +155,14 @@
 					<p>Los educadores/escuelas deben convertirse en <a href="../pro" target="_blank">miembros PRO</a>
 						para usar estas páginas en clase o en trabajos de curso. El costo de la suscripción mensual para
 						este libro de texto interactivo es justo y asequible: comienza en solo ~25¢ por estudiante.</p>
-					<p>Traducción al japonés por <a href="https://github.com/ShiMeiWo" target="_blank">Shi Mei Wo</a>.
-					</p>
 				</md>
 				<div id="learnOptions" class="mini">
 					<a id="getStarted" class="btn" href="sprite.html">¡Empezar!</a>
 				</div>
 			</div>
 			<div id="learn-p5play_img">
-				<img src="/assets/Learn_p5play_dark.webp" alt="Learn p5play cover">
+				<img src="/assets/Learn_p5play_dark.webp" alt="Learn p5play cover (dark)">
+				<img src="/assets/Learn_p5play.webp" alt="Learn p5play cover (light)">
 			</div>
 		</div>
 
@@ -167,20 +174,25 @@
 				<div class="search-results" id="searchResults"></div>
 			</div>
 
-			<md id="md0-3" class="ref full">
-				<p>Can't find what you're looking for? Try the <a href="/docs/Sprite.html" target="_blank">full
-						documentation for p5play</a>, <a href="https://p5js.org/reference/" target="_blank">p5.js
-						reference</a>, <a href="https://p5js.org/reference/#/libraries/p5.sound"
-						target="_blank">p5.sound
-						reference</a>, or look at some <a
-						href="https://openprocessing.org/user/350295?o=35&amp;view=sketches" target="_blank">demos</a>.
+			<md id="md0-1" class="full">
+				<h2 id="créditos">Créditos</h2>
+				<p>Traducción al japonés por <a href="https://github.com/ShiMeiWo" target="_blank">Shi Mei Wo</a>.</p>
+				<p>¡Un agradecimiento especial a la comunidad de p5play por ayudarme a editar y mejorar estas páginas!
 				</p>
+			</md>
+
+			<md id="md0-2" class="full">
+				<p>¿No encuentras lo que buscas? Prueba la <a href="/docs/Sprite.html" target="_blank">documentación
+						completa de p5play</a>, la <a href="https://p5js.org/reference/" target="_blank">referencia de
+						p5.js</a> o la <a href="https://p5js.org/reference/#/libraries/p5.sound"
+						target="_blank">referencia de p5.sound</a>, o echa un vistazo a algunas <a
+						href="https://openprocessing.org/user/350295?o=35&amp;view=sketches"
+						target="_blank">demostraciones</a>.</p>
 			</md>
 		</div>
 
 		<div class="break"></div>
-		<footer id="credits" class="text-small">Creado por Quinton Ashley (@quinton-ashley) derechos de autor 2022-2024
-		</footer>
+		<footer id="credits" class="text-small">Created by Quinton Ashley (@quinton-ashley) Copyright 2022-2024</footer>
 	</article>
 
 	<script>

@@ -30,6 +30,14 @@
 	max-width: 464px;
 }
 
+body.light #learn-p5play_img img:first-child {
+	display: none;
+}
+
+body.dark #learn-p5play_img img:nth-child(2) {
+	display: none;
+}
+
 #learnOptions {
 	display: flex;
 	width: 100%;
@@ -148,14 +156,14 @@
 					<p>個人使用は無料です！</p>
 					<p>教育者/学校は、これらのページをクラスやコースワークで使用するために<a href="../pro" target="_blank">PRO
 							メンバー</a>になる必要があります。このインタラクティブな教科書の月額購読費用は公正で手頃な価格です：生徒一人あたりわずか~25¢ から始まります。</p>
-					<p>日本語訳は<a href="https://github.com/ShiMeiWo" target="_blank">Shi Mei Wo</a>によるものです。</p>
 				</md>
 				<div id="learnOptions" class="mini">
 					<a id="getStarted" class="btn" href="sprite.html">始める！</a>
 				</div>
 			</div>
 			<div id="learn-p5play_img">
-				<img src="/assets/Learn_p5play_dark.webp" alt="Learn p5play cover">
+				<img src="/assets/Learn_p5play_dark.webp" alt="Learn p5play cover (dark)">
+				<img src="/assets/Learn_p5play.webp" alt="Learn p5play cover (light)">
 			</div>
 		</div>
 
@@ -167,22 +175,23 @@
 				<div class="search-results" id="searchResults"></div>
 			</div>
 
-			<md id="md0-3" class="ref full">
-				<p>Can't find what you're looking for? Try the <a href="/docs/Sprite.html" target="_blank">full
-						documentation for p5play</a>, <a href="https://p5js.org/reference/" target="_blank">p5.js
-						reference</a>, <a href="https://p5js.org/reference/#/libraries/p5.sound"
-						target="_blank">p5.sound
-						reference</a>, or look at some <a
-						href="https://openprocessing.org/user/350295?o=35&amp;view=sketches" target="_blank">demos</a>.
-				</p>
+			<md id="md0-1" class="full">
+				<h2 id="クレジット">クレジット</h2>
+				<p>日本語訳は<a href="https://github.com/ShiMeiWo" target="_blank">Shi Mei Wo</a>によるものです。</p>
+				<p>p5play コミュニティの皆様に、これらのページの編集と改善を手伝っていただき、特別な感謝を申し上げます！</p>
+			</md>
+
+			<md id="md0-2" class="full">
+				<p>お探しの情報が見つからない場合は、<a href="/docs/Sprite.html" target="_blank">p5play の完全なドキュメンテーション</a>、<a
+						href="https://p5js.org/reference/" target="_blank">p5.js リファレンス</a>、または <a
+						href="https://p5js.org/reference/#/libraries/p5.sound" target="_blank">p5.sound リファレンス</a>
+					を試してみるか、<a href="https://openprocessing.org/user/350295?o=35&amp;view=sketches"
+						target="_blank">デモ</a>を見てみてください。</p>
 			</md>
 		</div>
 
 		<div class="break"></div>
-		<footer id="credits" class="text-small">
-			<p>制作・著作: クイントン・アシュリー（@quinton-ashley） ©2022-2024</p>
-			<p>翻訳: <a href="https://github.com/ShiMeiWo" target="_blank">Shi MeiWo</a></p>
-		</footer>
+		<footer id="credits" class="text-small">Created by Quinton Ashley (@quinton-ashley) Copyright 2022-2024</footer>
 	</article>
 
 	<script>
