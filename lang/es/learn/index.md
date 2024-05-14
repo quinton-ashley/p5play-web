@@ -2,9 +2,13 @@
 
 ## Aprender
 
-Aprende sobre p5play con estas páginas de referencia llenas de ejemplos de código interactivo!
+[**_Aprende p5play: Una Introducción a la Programación Orientada a Objetos_**](.) fue escrito por Quinton Ashley, el creador de p5play v3. Está lleno de documentación de referencia amigable para principiantes y ejemplos de código interactivo.
 
-Este recurso es gratuito solo para uso personal. Los educadores deben ser [miembros PRO](../pro) para usar estas páginas durante el tiempo de instrucción o para trabajos de curso.
+¡Gratis para uso personal!
+
+Los educadores/escuelas deben convertirse en [miembros PRO](../pro) para usar estas páginas en clase o en trabajos de curso. El costo de la suscripción mensual para este libro de texto interactivo es justo y asequible: comienza en solo ~25¢ por estudiante.
+
+Traducción al japonés por [Shi Mei Wo](https://github.com/ShiMeiWo).
 
 # 0-1
 

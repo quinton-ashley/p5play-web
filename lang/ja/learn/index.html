@@ -8,72 +8,82 @@
 	<link rel="icon" href="/assets/p5play_logo.svg">
 	<link rel="stylesheet" href="/learn/style.css">
 	<style>
-#refs {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-	align-items: flex-start;
-}
+		#learn-p5play {
+			display: flex;
+		}
 
-#learnOptions {
-	display: flex;
-	width: 100%;
-	justify-content: center;
-	gap: 16px;
-	margin-top: 16px;
-}
+		#refs {
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+			align-items: flex-start;
+		}
 
-#refs>div {
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	gap: 4px;
-	align-content: start;
-}
+		#learn-p5play_img {
+			width: 100%;
+		}
 
-#refs div:first-child .btn {
-	font-size: 27px;
-}
+		#learnOptions {
+			display: flex;
+			width: 100%;
+			justify-content: center;
+			margin-top: 32px;
+		}
 
-#refs div:not(:first-child) h2 a:hover {
-	color: var(--pink);
-	text-decoration: underline;
-}
+		#getStarted {
+			font-size: 32px;
+		}
 
-#refs>div:nth-child(7),
-#refs>div:nth-child(8),
-#refs>div:nth-child(9),
-#refs>div:nth-child(10) {
-	width: 19.75%;
-}
+		#refs>div {
+			display: flex;
+			flex-direction: row;
+			flex-wrap: wrap;
+			gap: 4px;
+			align-content: start;
+		}
 
-@media screen and (max-width: 1030px) {
+		#refs div:first-child .btn {
+			font-size: 27px;
+		}
 
-	#refs>div,
-	#refs>div:nth-child(7),
-	#refs>div:nth-child(8),
-	#refs>div:nth-child(9),
-	#refs>div:nth-child(10) {
-		width: 45%;
-	}
+		#refs div:not(:first-child) h2 a:hover {
+			color: var(--pink);
+			text-decoration: underline;
+		}
 
-	#refs>div:nth-child(1),
-	#refs>div:nth-child(2) {
-		width: 96%;
-	}
-}
+		#refs>div:nth-child(7),
+		#refs>div:nth-child(8),
+		#refs>div:nth-child(9),
+		#refs>div:nth-child(10) {
+			width: 19.75%;
+		}
 
-@media screen and (max-width: 540px) {
+		@media screen and (max-width: 1030px) {
 
-	#refs>div,
-	#refs>div:nth-child(7),
-	#refs>div:nth-child(8),
-	#refs>div:nth-child(9),
-	#refs>div:nth-child(10) {
-		width: 96%;
-	}
-}
+			#refs>div,
+			#refs>div:nth-child(7),
+			#refs>div:nth-child(8),
+			#refs>div:nth-child(9),
+			#refs>div:nth-child(10) {
+				width: 45%;
+			}
 
+			#refs>div:nth-child(1),
+			#refs>div:nth-child(2) {
+				width: 96%;
+			}
+		}
+
+		@media screen and (max-width: 540px) {
+
+			#refs>div,
+			#refs>div:nth-child(7),
+			#refs>div:nth-child(8),
+			#refs>div:nth-child(9),
+			#refs>div:nth-child(10) {
+				width: 96%;
+			}
+		}
 	</style>
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
@@ -121,30 +131,41 @@
 			<div class="break"></div>
 		</div>
 
-		<div id="refs" class="page">
-			<div class="full">
+		<div id="learn-p5play" class="page">
+			<div>
 				<md id="md0-0">
 					<h2 id="学ぶ">学ぶ</h2>
-					<p>これらの参照ページからインタラクティブなコード例を使って p5play について学びましょう！</p>
-					<p>このリソースは個人使用のみ無料です。教育者は、指導時間やコースワークでこれらのページを使用するためには<a href="../pro" target="_blank">PRO
-							メンバー</a>である必要があります。</p>
+					<p><a href="." target="_blank"><strong><em>p5play を学ぶ: オブジェクト指向プログラミング入門</em></strong></a>は、p5play
+						v3 の作成者である Quinton Ashley によって書かれました。初心者に優しい参照ドキュメンテーションとインタラクティブなコード例で満たされています。</p>
+					<p>個人使用は無料です！</p>
+					<p>教育者/学校は、これらのページをクラスやコースワークで使用するために<a href="../pro" target="_blank">PRO
+							メンバー</a>になる必要があります。このインタラクティブな教科書の月額購読費用は公正で手頃な価格です：生徒一人あたりわずか~25¢ から始まります。</p>
+					<p>日本語訳は<a href="https://github.com/ShiMeiWo" target="_blank">Shi Mei Wo</a>によるものです。</p>
 				</md>
-				<div id="learnOptions">
+				<div id="learnOptions" class="mini">
 					<a id="getStarted" class="btn" href="sprite.html">始める！</a>
 				</div>
 			</div>
-			<div class="full">
-				<div class="search-container">
-					<input type="text" id="searchInput" placeholder="Search...">
-					<div class="search-results" id="searchResults"></div>
-				</div>
+			<div>
+				<img id="learn-p5play_img" src="/assets/Learn_p5play_dark.webp" alt="Learn p5play cover">
 			</div>
-			<md id="md0-1" class="ref full">
-				<p>お探しの情報が見つからない場合は、<a href="/docs/Sprite.html" target="_blank">p5play の完全なドキュメンテーション</a>、<a
-						href="https://p5js.org/reference/" target="_blank">p5.js リファレンス</a>、または <a
-						href="https://p5js.org/reference/#/libraries/p5.sound" target="_blank">p5.sound リファレンス</a>
-					を試してみるか、<a href="https://openprocessing.org/user/350295?o=35&amp;view=sketches"
-						target="_blank">デモ</a>を見てみてください。</p>
+		</div>
+
+		<div class="break"></div>
+
+		<div id="refs" class="page">
+			<div class="full search-container">
+				<input type="text" id="searchInput" placeholder="Search...">
+				<div class="search-results" id="searchResults"></div>
+			</div>
+
+			<md id="md0-3" class="ref full">
+				<p>Can't find what you're looking for? Try the <a href="/docs/Sprite.html" target="_blank">full
+						documentation for p5play</a>, <a href="https://p5js.org/reference/" target="_blank">p5.js
+						reference</a>, <a href="https://p5js.org/reference/#/libraries/p5.sound" target="_blank">p5.sound
+						reference</a>, or look at some <a href="https://openprocessing.org/user/350295?o=35&amp;view=sketches"
+						target="_blank">demos</a>.
+				</p>
 			</md>
 		</div>
 
@@ -160,8 +181,8 @@
 	</script>
 
 	<script src="/learn/main.js"></script>
-<script src="/learn/learn.js"></script>
-<script src="/learn/reference.js"></script>
+	<script src="/learn/learn.js"></script>
+	<script src="/learn/reference.js"></script>
 </body>
 
 </html>

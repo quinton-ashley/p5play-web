@@ -2,9 +2,13 @@
 
 ## Learn
 
-Learn about p5play from these reference pages packed with interactive code examples!
+[**_Learn p5play: An Introduction to Object Oriented Programming_**](.) was written by Quinton Ashley, the creator of p5play v3. It's packed with beginner friendly reference documentation and interactive code examples.
 
-This resource is free for personal use only. Educators must be [PRO members](../pro) to use these pages during instructional time or for coursework.
+Free for personal use!
+
+Educators/schools must become [PRO members](../pro) to use these pages in class or coursework. The monthly subscription cost for this interactive textbook is fair and affordable: starting at just ~25¢ per student.
+
+Japanese translation by [Shi Mei Wo](https://github.com/ShiMeiWo).
 
 # 0-1
 
