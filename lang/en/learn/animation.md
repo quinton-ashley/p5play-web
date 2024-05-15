@@ -115,6 +115,6 @@ This example shows how the hero character can be moved around the screen using W
 
 ## Advanced Animation Sequencing
 
-`sprite.changeAni` is an async function, you can use it to wait for animations to finish playing. It's particularly useful for scripted animation sequences for NPCs. It could also be used when the player character is idling (not moving), they could sit down and eventually fall asleep.
+`sprite.changeAni` is an async function, you can use it to wait for animations to finish playing. It's particularly useful for scripted animation sequences for [NPCs](https://en.wikipedia.org/wiki/Non-player_character).
 
-Code example coming soon!
+In this example, the hero character is practicing their sword wielding skills.

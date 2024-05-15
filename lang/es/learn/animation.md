@@ -112,6 +112,6 @@ De manera predeterminada, si la repetición está habilitada, la última animaci
 
 ## Secuenciación de Animaciones Avanzada
 
-`sprite.changeAni` es una función asíncrona, puedes usarla para esperar a que las animaciones terminen de reproducirse.
+`sprite.changeAni` es una función asíncrona, puedes usarla para esperar a que las animaciones terminen de reproducirse. Es particularmente útil para secuencias de animación programadas para [NPCs](https://es.wikipedia.org/wiki/Personaje_no_jugador).
 
-¡Ejemplo próximamente!
+En este ejemplo, el personaje héroe está practicando sus habilidades con la espada.

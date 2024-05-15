@@ -326,6 +326,7 @@ function preload() {
 	hero.spriteSheet = 'assets/questKid.png';
 	hero.anis.offset.x = 2;
 	hero.anis.frameDelay = 8;
+	hero.friction = 0;
 
 	hero.addAnis({
 		run: { row: 0, frames: 8 },
@@ -373,6 +374,7 @@ function preload() {
 	hero.anis.offset.x = 2;
 	hero.anis.offset.y = 2;
 	hero.anis.frameDelay = 8;
+	hero.friction = 0;
 
 	hero.addAnis({
 		run: { row: 0, frames: 8 },
@@ -422,11 +424,66 @@ if (hero.ani.name != 'jump' && hero.ani.name != 'roll') {
 			<md id="md6-0">
 				<h2 id="advanced-animation-sequencing">Advanced Animation Sequencing</h2>
 				<p><code>sprite.changeAni</code> is an async function, you can use it to wait for animations to finish
-					playing. It's particularly useful for scripted animation sequences for NPCs. It could also be used
-					when the player character is idling (not moving), they could sit down and eventually fall asleep.
-				</p>
-				<p>Code example coming soon!</p>
+					playing. It's particularly useful for scripted animation sequences for <a
+						href="https://en.wikipedia.org/wiki/Non-player_character" target="_blank">NPCs</a>.</p>
+				<p>In this example, the hero character is practicing their sword wielding skills.</p>
 			</md>
+			<script type="mie/p5" id="advanced-sequencing" lines="18">
+let hero, floor;
+
+async function practice() {
+	await hero.changeAni('slashUp');
+	hero.changeAni('run');
+	hero.mirror.x = true;
+	await hero.move(60, 180, 1);
+	hero.speed = 0;
+
+	await hero.changeAni('slashDown');
+	hero.changeAni('roll');
+	hero.ani.frame = 1;
+	hero.mirror.x = false;
+	await hero.move(60, 0, 1);
+	hero.speed = 0;
+
+	practice();
+}
+
+function preload() {
+	hero = new Sprite(90, 24, 32, 32);
+	hero.spriteSheet = 'assets/questKid.png';
+	hero.anis.offset.x = 2;
+	hero.anis.offset.y = 2;
+	hero.anis.frameDelay = 8;
+	hero.friction = 0;
+
+	hero.addAnis({
+		run: { row: 0, frames: 8 },
+		jump: { row: 1, frames: 6 },
+		roll: { row: 2, frames: 5, frameDelay: 14 },
+		turn: { row: 3, frames: 7 },
+		stand: { row: 3 },
+		slashUp: { row: 10, frames: 10 },
+		slashDown: { row: 11, frames: 10 }
+	});
+	hero.changeAni('stand');
+}
+
+function setup() {
+	new Canvas(125, 48, 'pixelated x4');
+	world.gravity.y = 10;
+	allSprites.pixelPerfect = true;
+
+	floor = new Sprite(62.5, 48, 125, 8, 's');
+	floor.color = color(133, 228, 62);
+
+	practice();
+}
+
+function draw() {
+	clear();
+}
+
+			</script>
 		</div>
 
 		<div class="break"></div>
