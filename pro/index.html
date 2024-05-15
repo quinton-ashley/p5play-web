@@ -47,38 +47,34 @@
 				<md id="md0-1">
 					<h2 id="account">Account</h2>
 					<p>Welcome <span id="username"></span>!</p>
-					<p>You now have access to the Learn pages, which are free for personal use. Educators must be
-						<em>PRO</em> members to use these pages during instructional time or for coursework.</p>
-					<p>You'll also be notified via email about new features.</p>
+					<p>You'll be notified via email about new features.</p>
 				</md>
 			</div>
-			<md id="md0-4">
-				<h2 id="commercial-use">Commercial Use</h2>
-				<p>p5play is free for personal use, but <a
-						href="https://github.com/quinton-ashley/p5play-web/blob/main/LICENSING.md"
-						target="_blank">commercial use</a> requires a <em>PRO</em> membership.</p>
-				<ul>
-					<li>teaching a class that's not free for the general public</li>
-					<li>publishing a paid or monetized game</li>
-					<li>writing curriculum that's not publicly accessible</li>
-					<li>developing a game for a paying client</li>
-					<li>monetizing an API service or website</li>
-				</ul>
-				<p><em>PRO</em> members are awarded the <a
-						href="https://github.com/quinton-ashley/p5play-web/blob/main/pro/LICENSE.md"
-						target="_blank">p5play Professional License</a>.</p>
+			<md id="md0-2">
+				<h2 id="free-use">Free Use</h2>
+				<p>Free use of p5play must comply with the terms of the <a
+						href="https://github.com/quinton-ashley/p5play/blob/main/LICENSE.md" target="_blank">AGPL</a>.
+					In summary, any work that incorporates p5play must be made publicly open source.</p>
+				<p>Therefore, typical use by schools and commercial game developers requires <em>PRO</em> membership.
+				</p>
 			</md>
+			<!-- <div id="p5play-pro">
+				<img src="/assets/p5play-pro_logo.webp" alt="">
+				<div>
+					<span>p5play-pro</span>
+					<p>Coming soon!</p>
+				</div>
+			</div> -->
 			<div class="break"></div>
 			<div>
-				<md id="md0-3">
+				<md id="md1-0">
 					<h2 id="pro">PRO$</h2>
-					<p>Become a <em>PRO</em> by supporting p5play on <a href="https://www.patreon.com/p5play"
+					<p>Become a <em>PRO</em> member by supporting p5play on <a href="https://www.patreon.com/p5play"
 							target="_blank">Patreon</a> or <a href="https://github.com/sponsors/quinton-ashley"
-							target="_blank">GitHub Sponsors</a> to gain access to exclusive content!</p>
-					<p>If you're an educator at a school that will not pay for subscriptions, you can request a custom
-						invoice for a one-time payment. Let me know how long you plan to use p5play and how many
-						students you have. Contact: <a href="mailto:info@p5play.org" target="_blank">info@p5play.org</a>
-					</p>
+							target="_blank">GitHub Sponsors</a>.</p>
+					<p>If your school or university would prefer a custom one time invoice instead of a subscription, I
+						can make one. Let me know how many students will use p5play and the duration of use. Contact: <a
+							href="mailto:info@p5play.org" target="_blank">info@p5play.org</a></p>
 				</md>
 				<div id="support">
 					<a id="patreon-brand" href="https://www.patreon.com/p5play" aria-label="Patreon page for p5play">
@@ -92,20 +88,33 @@
 					</a>
 				</div>
 			</div>
-			<md id="md0-5">
+			<md id="md1-1">
+				<h2 id="paid-use">Paid Use</h2>
+				<p><em>PRO</em> membership unlocks exclusive features and content:</p>
+				<ul>
+					<li>the <a href="https://github.com/quinton-ashley/p5play-web/blob/main/pro/LICENSE.md"
+							target="_blank">p5play
+							Professional License</a> which enables commercial and closed source use</li>
+					<li>non-personal use of the Learn pages</li>
+					<li>iOS app templates</li>
+					<li>"Game Design Fundamentals" curriculum</li>
+				</ul>
+			</md>
+
+			<md id="md1-2">
 				<h2 id="ios-app-templates">iOS App Templates</h2>
 				<p>Ready to earn real money with p5play?</p>
 				<p><em>PRO</em> members can use templates to build iOS apps without coding in Swift. Sell games on
 					Apple's App Store or earn revenue from advertisements with p5play's iOS app templates!</p>
 			</md>
-			<md id="md0-6">
+			<md id="md1-3">
 				<h2 id="curriculum">Curriculum</h2>
 				<p>"p5play Game Design Fundamentals" is a curriculum for CS educators made by Quinton Ashley, the
 					creator of p5play v3!</p>
 				<p><em>PRO</em> members receive access to a Google Drive folder containing slide and activities. Use
 					them in your lessons or take inspiration for your own curriculum.</p>
 			</md>
-			<md id="md0-2">
+			<md id="md1-4">
 				<h2 id="resources">Resources</h2>
 				<ul>
 					<li><a href="https://github.com/quinton-ashley/p5play-vscode" target="_blank">p5play-vscode</a> :
@@ -151,6 +160,38 @@ function showAuthContent() {
 
 md p:first-child {
 	margin-top: 0;
+}
+
+#p5play-pro {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#p5play-pro div {
+	margin-top: 32px;
+}
+
+#p5play-pro p {
+	text-align: center;
+}
+
+#p5play-pro span {
+	font-family: Mont;
+	font-size: 40px;
+	color: cyan;
+	text-shadow: 3px 3px 0px var(--pink0);
+	margin: 0 16px;
+}
+
+#p5play-pro span:hover {
+	color: transparent !important;
+	-webkit-text-stroke: 1.6px cyan;
+}
+
+#p5play-pro img {
+	width: 180px;
+	max-width: 50%;
 }
 
 #username {

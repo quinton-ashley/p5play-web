@@ -2,58 +2,64 @@
 
 ## アカウント
 
-無料会員アカウントにサインアップして、新機能やアップデートなどの通知を受け取りましょう！
+無料アカウントを登録して、学習ページにアクセスしたり、新機能についてメールで通知を受けたりしましょう！
 
 # 0-1
 
 ## アカウント
 
-ようこそ、 <span id="username"></span> さん！
+ようこそ <span id="username"></span>さん！
 
-あなたは個人的な使用のために無料の「学習」ページにアクセスできます。教育者は、授業時間やコースワークでこれらのページを使用するためには _PRO_ メンバーである必要があります。
-
-また、新機能についてはメールで通知されます。
+新機能についてはメールで通知されます。
 
 # 0-2
+
+## 無料利用
+
+p5play の無料利用は、[AGPL](https://github.com/quinton-ashley/p5play/blob/main/LICENSE.md)の条項を遵守する必要があります。要約すると、p5play を組み込んだ作品は公開されるオープンソースでなければなりません。
+
+したがって、学校や商用ゲーム開発者による一般的な利用は、_PRO_ メンバーシップが必要です。
+
+# 1-0
+
+## PRO$
+
+[Patreon](https://www.patreon.com/p5play) または [GitHub Sponsors](https://github.com/sponsors/quinton-ashley) で p5play をサポートして _PRO_ メンバーになりましょう。
+
+もし、あなたの学校や大学がサブスクリプションではなく一度だけのカスタム請求書を希望する場合は、作成することができます。p5play を何人の学生が使用し、使用期間はどのくらいかを教えてください。連絡先: [info@p5play.org](mailto:info@p5play.org)
+
+# 1-1
+
+## 有料利用
+
+_PRO_ メンバーシップは、以下の独占的な機能とコンテンツを解放します：
+
+- 商用利用とクローズドソース利用を可能にする [p5play
+  プロフェッショナルライセンス](https://github.com/quinton-ashley/p5play-web/blob/main/pro/LICENSE.md)
+- 学習ページの非個人的な利用
+- iOS アプリのテンプレート
+- "ゲームデザインの基礎"カリキュラム
+
+# 1-2
+
+## iOS アプリテンプレート
+
+p5play で本当のお金を稼ぎたいですか？
+
+_PRO_ メンバーは、Swift でコーディングすることなく iOS アプリを構築するためのテンプレートを使用できます。Apple の App Store でゲームを販売したり、p5play の iOS アプリテンプレートで広告から収益を得たりしましょう！
+
+# 1-3
+
+## カリキュラム
+
+"p5play ゲームデザインの基礎"は、p5play v3 の作成者である Quinton Ashley によって作られた CS 教育者のためのカリキュラムです！
+
+_PRO_ メンバーは、スライドと活動を含む Google Drive フォルダへのアクセスを受け取ります。それらをあなたのレッスンで使用したり、あなた自身のカリキュラムのインスピレーションを得たりしましょう。
+
+# 1-4
 
 ## リソース
 
 - [p5play-vscode](https://github.com/quinton-ashley/p5play-vscode) : VSCode 拡張機能
 - [p5play-template](https://github.com/quinton-ashley/p5play-template) : スターターコード
-- [p5play-desktop](https://github.com/quinton-ashley/p5play-desktop) : デスクトップアプリのテンプレート
-
-# 0-3
-
-## PRO (有償プラン)
-
-[Patreon](https://www.patreon.com/p5play) や [GitHub Sponsors](https://github.com/sponsors/quinton-ashley) から p5play へご支援いただくことで、 _PRO_ メンバーとなり、無償利用時よりもさらに多くの資料に、アクセスが可能となります！
-
-あなたが定期購読を支払うことができない学校の教育者である場合、一回払いのカスタム請求書をリクエストすることができます。p5play をどのくらいの期間使用する予定で、何人の生徒がいるのかを教えてください。連絡先: [info@p5play.org](mailto:info@p5play.org)
-
-# 0-4
-
-## 商用利用
-
-_PRO_ メンバーは自動的に [p5play Professional License](https://github.com/quinton-ashley/p5play-web/blob/main/pro/LICENSE.md) を付与され、 p5play を用いて以下の [商用利用](https://github.com/quinton-ashley/p5play-web/blob/main/LICENSING.md) が可能となります：
-
-- 有料の授業を開催すること
-- 買い切り、または課金要素を有するゲームを公開すること
-- 公にアクセスできないカリキュラムを作成すること
-- 外部からの委託で、有償でゲーム開発を請け負うこと
-- API サービスやウェブサイトの収益化
-
-# 0-5
-
-## iOS アプリのテンプレート
-
-p5play で作成したゲームの収益化をご希望ですか？
-
-_PRO_ メンバーは、 Swift によるコーディングが不要な、 iOS アプリ作成用テンプレートを使用できます。 p5play の iOS アプリテンプレートを使って、 Apple の App Store でゲームを販売したり、広告収入を得たりすることができます！
-
-# 0-6
-
-## カリキュラム
-
-「 p5play ゲームデザイン基礎」は、 p5play v3 の作者である Quinton Ashley によって作成された、コンピュータ・サイエンス教育者向けのカリキュラムです！
-
-_PRO_ メンバーには、教材用のスライドと実習教材が含まれている Google ドライブのフォルダーへのアクセス権が付与されるため、これらを授業で使用したり、独自のカリキュラムのヒントとしてご活用いただけます。
+- [p5play-desktop](https://github.com/quinton-ashley/p5play-desktop) : デスクトップアプリテンプレート
