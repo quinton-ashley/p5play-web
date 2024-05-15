@@ -40,6 +40,8 @@ _PRO_ membership unlocks exclusive features and content:
 - iOS app templates
 - "Game Design Fundamentals" curriculum
 
+The monthly cost for schools is fair and affordable: starting at just ~25¢ per student.
+
 # 1-2
 
 ## iOS App Templates

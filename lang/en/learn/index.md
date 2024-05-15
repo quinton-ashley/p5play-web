@@ -6,7 +6,7 @@
 
 Free for personal use!
 
-Educators/schools must become [PRO members](../pro) to use these pages in class or coursework. The monthly subscription cost for this interactive textbook is fair and affordable: starting at just ~25¢ per student.
+Educators/schools must become [PRO members](../pro) to use these pages in class or coursework.
 
 # 0-1
 

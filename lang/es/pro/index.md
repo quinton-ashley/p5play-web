@@ -39,6 +39,8 @@ La membresía _PRO_ desbloquea características y contenido exclusivos:
 - plantillas de aplicaciones iOS
 - currículo de "Fundamentos del Diseño de Juegos"
 
+El costo mensual para escuelas es justo y asequible: comienza en solo ~25¢ por estudiante.
+
 # 1-2
 
 ## Plantillas de aplicaciones iOS
