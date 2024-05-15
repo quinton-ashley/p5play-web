@@ -181,7 +181,11 @@ window.addEventListener('keydown', function (e) {
 });
 
 async function showUnauthContent() {
-	if ((!args.page || args.page == 0 || args.page == 1) && location.pathname.endsWith('sprite.html')) return;
+	if (
+		(!args.page || args.page <= 2) &&
+		(location.pathname.endsWith('sprite.html') || location.pathname.endsWith('group.html'))
+	)
+		return;
 
 	document.body.insertAdjacentHTML(
 		'beforeend',
