@@ -415,10 +415,10 @@ if (hero.ani.name != 'jump' && hero.ani.name != 'roll') {
 		<div id="page-6" class="page">
 			<md id="md6-0">
 				<h2 id="複雑でシーケンシャルなアニメーション定義">複雑でシーケンシャルなアニメーション定義</h2>
-				<p><code>sprite.changeAni</code> は async 関数です。これを利用して、アニメーション再生の終了を待つ事ができます。特に、 <a
-						href="https://ja.wikipedia.org/wiki/%E3%83%8E%E3%83%B3%E3%83%97%E3%83%AC%E3%82%A4%E3%83%A4%E3%83%BC%E3%82%AD%E3%83%A3%E3%83%A9%E3%82%AF%E3%82%BF%E3%83%BC"
-						target="_blank">NPC</a> のシーケンシャルなアニメーション定義をスクリプト化するのにうってつけです。</p>
-				<p>この例では、ヒーローキャラクターが剣を振るうスキルを練習しています。</p>
+				<p><code>sprite.changeAni</code> は async 関数なので、 await などでアニメーションの完了を待機する事ができます。特に、 <a
+						href="http://ja.wikipedia.org/w/index.php?curid=2031381" target="_blank">NPC</a>
+					が行う一連のアニメーションを、プログラマブルに定義するのに最適です。</p>
+				<p>このコードサンプルでは、「勇者くん」が剣技の修行をしています。</p>
 			</md>
 			<script type="mie/p5" id="advanced-sequencing" lines="18">
 let hero, floor;

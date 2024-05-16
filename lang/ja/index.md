@@ -32,7 +32,7 @@
 
 p5play は、 [AGPLv3](https://github.com/quinton-ashley/p5play-web/blob/main/LICENSING.md) ライセンスの下、無料で利用できるオープンソースプロジェクトです。
 
-ただし、 p5play の[商用利用](https://github.com/quinton-ashley/p5play-web/blob/main/LICENSING.md)をご希望される場合は、 [p5play Professional License](https://github.com/quinton-ashley/p5play-web/blob/main/pro/LICENSE.md)プランへのご加入をお願いしております。
+さらに、 [_PRO_ メンバー](pro)に加入すれば、 [p5play Professional License](https://github.com/quinton-ashley/p5play-web/blob/main/pro/LICENSE.md) が得られることで、サイト内の限定コンテンツがアンロックされます！
 
 # 12
 
