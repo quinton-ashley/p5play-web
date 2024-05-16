@@ -57,10 +57,16 @@ Los miembros _PRO_ pueden usar plantillas para construir aplicaciones iOS sin pr
 
 Los miembros _PRO_ reciben acceso a una carpeta de Google Drive que contiene diapositivas y actividades. Úsalos en tus lecciones o toma inspiración para tu propio currículo.
 
-# 1-4
+# 2-0
 
 ## Recursos
 
 - [p5play-vscode](https://github.com/quinton-ashley/p5play-vscode) : extensión de VSCode
 - [p5play-template](https://github.com/quinton-ashley/p5play-template) : código de inicio
 - [p5play-desktop](https://github.com/quinton-ashley/p5play-desktop) : plantilla de aplicación de escritorio
+
+# 2-1
+
+## Licencia para Novatos
+
+Si no puedes permitirte pagar la membresía _PRO_, puedes solicitar obtener la [Licencia para Novatos de p5play](https://github.com/quinton-ashley/p5play-novice/blob/main/LICENSE.md). Al solicitarla, afirmas que eres un solicitante de bajos ingresos según se define en la licencia. Contacto: [info@p5play.org](mailto:info@p5play.org)

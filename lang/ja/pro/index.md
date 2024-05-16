@@ -58,10 +58,16 @@ _PRO_ メンバーは、Swift でコーディングすることなく iOS アプ
 
 _PRO_ メンバーは、スライドと活動を含む Google Drive フォルダへのアクセスを受け取ります。それらをあなたのレッスンで使用したり、あなた自身のカリキュラムのインスピレーションを得たりしましょう。
 
-# 1-4
+# 2-0
 
 ## リソース
 
 - [p5play-vscode](https://github.com/quinton-ashley/p5play-vscode) : VSCode 拡張機能
 - [p5play-template](https://github.com/quinton-ashley/p5play-template) : スターターコード
 - [p5play-desktop](https://github.com/quinton-ashley/p5play-desktop) : デスクトップアプリテンプレート
+
+# 2-1
+
+## ノービスライセンス
+
+_PRO_ メンバーシップの費用を負担できない場合は、[p5play ノービスライセンス](https://github.com/quinton-ashley/p5play-novice/blob/main/LICENSE.md)を取得するための申請を行うことができます。申請することで、ライセンスで定義されている低所得の申請者であることを確認します。連絡先: [info@p5play.org](mailto:info@p5play.org)

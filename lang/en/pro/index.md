@@ -58,10 +58,16 @@ _PRO_ members can use templates to build iOS apps without coding in Swift. Sell 
 
 _PRO_ members receive access to a Google Drive folder containing slide and activities. Use them in your lessons or take inspiration for your own curriculum.
 
-# 1-4
+# 2-0
 
 ## Resources
 
 - [p5play-vscode](https://github.com/quinton-ashley/p5play-vscode) : VSCode extension
 - [p5play-template](https://github.com/quinton-ashley/p5play-template) : starter code
 - [p5play-desktop](https://github.com/quinton-ashley/p5play-desktop) : desktop app template
+
+# 2-1
+
+## Novice License
+
+If you can't afford to pay for the _PRO_ membership, you can apply to obtain the [p5play Novice License](https://github.com/quinton-ashley/p5play-novice/blob/main/LICENSE.md). By applying, you affirm that you are a low-income applicant as defined in the license. Contact: [info@p5play.org](mailto:info@p5play.org)
