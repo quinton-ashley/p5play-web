@@ -40,12 +40,12 @@
 				<div class="login">
 					<a class="accountBtns" href="/pro/signup.html">Sign Up</a>
 					<a class="accountBtns"
-						href="https://p5play.auth.us-west-2.amazoncognito.com/login?redirect_uri=https%3A%2F%2Fp5play.org%2Fpro%2Findex.html&amp;client_id=3oegfdhu2r7eo8nr371496718c&amp;response_type=token&amp;scope=email+openid+phone">Login</a>
+						href="https://p5play.auth.us-west-2.amazoncognito.com/login?redirect_uri=https%3A%2F%2Fp5play.org%2Fpro%2Findex.html&amp;client_id=3oegfdhu2r7eo8nr371496718c&amp;response_type=token&amp;scope=email+openid+profile">Login</a>
 				</div>
 			</div>
 			<div class="auth">
 				<md id="md0-1">
-					<h2 id="account">Account</h2>
+					<h2 id="-account"><span id="account-type"></span> Account</h2>
 					<p>Welcome <span id="username"></span>!</p>
 					<p>You'll be notified via email about new features.</p>
 				</md>
@@ -72,8 +72,8 @@
 					<p>Become a <em>PRO</em> member by supporting p5play on <a href="https://www.patreon.com/p5play"
 							target="_blank">Patreon</a> or <a href="https://github.com/sponsors/quinton-ashley"
 							target="_blank">GitHub Sponsors</a>.</p>
-					<p>If your school or university would prefer a custom one time invoice instead of a subscription, I
-						can make one. Let me know how many students will use p5play and the duration of use. Contact: <a
+					<p>Educators, if your school or university would prefer a custom invoice instead of a subscription,
+						let me know how many students will use p5play and the duration of use. Contact: <a
 							href="mailto:info@p5play.org" target="_blank">info@p5play.org</a></p>
 				</md>
 				<div id="support">
@@ -134,13 +134,8 @@
 	</article>
 
 	<script src="/learn/main.js"></script>
-<script>
-function showAuthContent() {
-	document.getElementById('username').innerHTML = p5playAccount.email.split('@')[0];
-}
-
-	</script>
-	<script src="/learn/account.js"></script>
+<script src="/pro/accountInfo.js"></script>
+<script src="/learn/account.js"></script>
 <style>
 .page {
 	display: flex;

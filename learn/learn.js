@@ -199,7 +199,7 @@ async function showUnauthContent() {
 			</div>
 			<p id="unauthorized-text">Login to access this page.</p>
 			<a class="accountBtns"
-				href="https://p5play.auth.us-west-2.amazoncognito.com/login?redirect_uri=https%3A%2F%2Fp5play.org%2Fpro%2Findex.html&client_id=3oegfdhu2r7eo8nr371496718c&response_type=token&scope=email+openid+phone">Login</a>
+				href="https://p5play.auth.us-west-2.amazoncognito.com/login?redirect_uri=https%3A%2F%2Fp5play.org%2Fpro%2Findex.html&client_id=3oegfdhu2r7eo8nr371496718c&response_type=token&scope=email+openid+profile">Login</a>
 			<a class="accountBtns" href="/pro/signup.html">Sign Up</a>
 		</div>
 	</div>

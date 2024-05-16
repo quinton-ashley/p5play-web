@@ -6,7 +6,7 @@
 
 # 0-1
 
-## Cuenta
+## Cuenta de <span id="account-type"></span>
 
 ¡Bienvenido <span id="username"></span>!
 

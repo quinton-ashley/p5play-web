@@ -6,7 +6,7 @@
 
 # 0-1
 
-## アカウント
+## <span id="account-type"></span> アカウント
 
 ようこそ <span id="username"></span>さん！
 

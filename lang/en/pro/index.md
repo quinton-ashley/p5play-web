@@ -6,7 +6,7 @@ Sign up for a free account to access the Learn pages and be notified via email a
 
 # 0-1
 
-## Account
+## <span id="account-type"></span> Account
 
 Welcome <span id="username"></span>!
 
@@ -26,7 +26,7 @@ Therefore, typical use by schools and commercial game developers requires _PRO_ 
 
 Become a _PRO_ member by supporting p5play on [Patreon](https://www.patreon.com/p5play) or [GitHub Sponsors](https://github.com/sponsors/quinton-ashley).
 
-If your school or university would prefer a custom one time invoice instead of a subscription, I can make one. Let me know how many students will use p5play and the duration of use. Contact: [info@p5play.org](mailto:info@p5play.org)
+Educators, if your school or university would prefer a custom invoice instead of a subscription, let me know how many students will use p5play and the duration of use. Contact: [info@p5play.org](mailto:info@p5play.org)
 
 # 1-1
 
