@@ -76,8 +76,6 @@ function jwtDecode(token, options) {
 		if (!params) params = '?' + location.hash.slice(1);
 		const urlParams = new URLSearchParams(params);
 		idToken = urlParams.get('id_token');
-		// save to local storage
-		localStorage.setItem('idToken', idToken);
 
 		if (idToken) {
 			try {
@@ -98,6 +96,9 @@ function jwtDecode(token, options) {
 
 		// hide the token from the URL
 		window.history.pushState(null, '', location.href.split(/[?#]/)[0]);
+
+		// save to local storage
+		localStorage.setItem('idToken', idToken);
 	}
 
 	window.p5playAccount = user;
