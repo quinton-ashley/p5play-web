@@ -70,7 +70,7 @@ function jwtDecode(token, options) {
 
 	// check if there's no token or
 	// if it's been expired for more than a month
-	if (!idToken || user.exp + 2419200 < Date.now() / 1000) {
+	if (!idToken || !user.given_name || user.exp + 2419200 < Date.now() / 1000) {
 		// tries to get the AWS Cognito id_token from the URL
 		let params = location.search;
 		if (!params) params = '?' + location.hash.slice(1);
