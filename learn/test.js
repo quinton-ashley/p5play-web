@@ -21,7 +21,7 @@ let refs = {
 		3: ['vel / velocity', 'speed', 'direction', 'move', 'moveTo', 'moveTowards', 'angleTo'],
 		5: ['collides', 'colliding', 'collided'],
 		6: ['overlaps', 'overlapping', 'overlapped', 'layer', 'remove'],
-		7: ['rotate', 'rotateTo', 'rotateTowards', 'rotationSpeed', 'offset'],
+		7: ['rotate', 'rotateTo', 'rotateTowards', 'rotationSpeed'],
 		9: ['bounciness', 'drag', 'friction', 'mass', 'rotationDrag', 'rotationLock'],
 		10: ['applyForce', 'applyForceScaled', 'bearing', 'attractTo', 'applyTorque'],
 		12: ['shape'],
@@ -45,12 +45,12 @@ let refs = {
 		6: ['autoCull', 'cull'],
 		7: ['autoDraw', 'autoUpdate']
 	},
-	'Animation.html': {
+	'Sprite_Animation.html': {
 		0: ['animation', 'loadAni / loadAnimation', 'frameDelay'],
 		1: ['play', 'stop', 'rewind', 'loop', 'noLoop', 'frame', 'nextFrame', 'previousFrame', 'scale'],
 		4: ['offset']
 	},
-	'Input.html': {
+	'Input_Devices.html': {
 		0: ['presses', 'pressing', 'released', 'mouse', 'kb / keyboard'],
 		4: ['contros / controllers', 'contro'],
 		5: ['touches']
@@ -173,7 +173,7 @@ for (let refPage in refs) {
 	let heading = document.createElement('h2');
 	heading.innerHTML = `<a href="${refPage}">${className}</a>`;
 	div.append(heading);
-	refsDiv.children[refsDiv.children.length - 3].insertAdjacentElement('afterend', div);
+	refsDiv.children[refsDiv.children.length - 2].insertAdjacentElement('afterend', div);
 
 	let links = [];
 	for (let pageNum in ref) {
@@ -205,12 +205,20 @@ for (let refPage in refs) {
 	searchInput.addEventListener('input', function (event) {
 		const searchTerm = event.target.value.toLowerCase();
 
-		// filter results based on search
+		// Step 2: Filter the References
 		filterReferences(searchTerm);
+
+		// Step 3: Display Results
+		//displayResults(filteredResults);
+
+		//searchResults.style.display = 'block';
 	});
 
+	// Function to filter references based on search term
+	//hides other elements when not matching search
+	//	- needs to only show topics rather than refpages
+	//	- needs formatting
 
-	// filter the references on the page 
 	function filterReferences(searchTerm) {
 		const refsElements = refsContainer.querySelectorAll('.ref');
 
