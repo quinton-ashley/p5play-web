@@ -6,8 +6,6 @@
 
 ¡Gratis para uso personal!
 
-Los educadores/escuelas deben convertirse en [miembros PRO](../pro) para usar estas páginas en clase o en trabajos de curso.
-
 # 0-1
 
 ## Créditos
