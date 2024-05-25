@@ -475,6 +475,27 @@ p {
 	line-height: 1.3;
 }
 
+.refs {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.refs > div {
+	margin: 10px;
+}
+
+.hidden {
+	display: none;
+}
+
+.ref a {
+	display: block;
+}
+
+.ref a.hidden {
+	display: none;
+}
+
 code {
 	padding: 2px;
 	border: 1px solid gray;
