@@ -39,4 +39,4 @@ Donar ayuda a Palestina no es suficiente, debemos hacer todo lo que esté en nue
 - escribiendo páginas de referencia para [q5js.org](https://q5js.org)
 - implementando un complemento que hará que las funciones de q5 muestren errores amigables
 
-Cuando este trabajo esté mayormente terminado, lanzaré q5 bajo la misma licencia de código abierto que p5. Si estás interesado en colaborar conmigo, por favor, contacta a través de [GitHub](https://github.com/quinton-ashley/q5.js) o por correo electrónico: <info@p5play.org>
+q5 está licenciado bajo la LGPL, la misma licencia de código abierto que p5.js. Si estás interesado en colaborar conmigo, por favor, contacta a través de [GitHub](https://github.com/quinton-ashley/q5.js) o por correo electrónico: <info@p5play.org>

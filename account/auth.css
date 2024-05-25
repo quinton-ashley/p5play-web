@@ -1,0 +1,68 @@
+body {
+	height: 100vh;
+	max-height: max-content;
+}
+
+.popup-bg {
+	align-items: start;
+	padding-top: 16px;
+}
+
+.fundraising-bar {
+	background-color: var(--background);
+	border: 1px solid var(--blue0);
+	height: 20px;
+	width: 100%;
+	border-radius: 10px;
+	/* Added for a rounded look */
+	overflow: hidden;
+	animation: pulse 1.5s infinite;
+}
+
+.fundraising-bar-progress {
+	background-color: var(--blue0);
+	height: 100%;
+}
+
+@keyframes pulse {
+	0% {
+		background-color: var(--background);
+	}
+
+	50% {
+		background-color: var(--pink2);
+	}
+
+	100% {
+		background-color: var(--background);
+	}
+}
+
+#auth-popup {
+	width: 750px;
+	background-color: var(--secondary);
+	border-radius: 10px;
+	padding: 20px;
+	padding-top: 0;
+	z-index: 101;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	box-shadow: 0px 0px 1000px var(--primary);
+}
+
+#auth-popup md:first-child h2 {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	font-size: 32px;
+}
+
+#auth-popup .btn {
+	width: 100%;
+	text-align: center;
+	cursor: pointer;
+	font-size: 20px;
+	border: 0;
+	box-sizing: border-box;
+}

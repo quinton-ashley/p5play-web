@@ -99,7 +99,7 @@ async function start() {
 
 		if (typeof mie != 'undefined') {
 			(async () => {
-				let data = await fetch('ace/completions.json');
+				let data = await fetch('/learn/ace/completions.json');
 				let json = await data.json();
 				mie.lang.p5.completions = json;
 
@@ -180,35 +180,63 @@ window.addEventListener('keydown', function (e) {
 	}
 });
 
-async function showUnauthContent() {
-	if (
-		(!args.page || args.page <= 2) &&
-		(location.pathname.endsWith('sprite.html') || location.pathname.endsWith('group.html'))
-	)
-		return;
+let trialPages =
+	(!args.page || args.page <= 2) &&
+	(location.pathname.endsWith('sprite.html') || location.pathname.endsWith('group.html'));
 
-	document.body.insertAdjacentHTML(
-		'beforeend',
-		`
-<div class="unauth">
-	<div class="popup-bg">
-		<div id="unauth-popup">
-			<div class="navLink active">
-				<img alt="p5play logo" src="/assets/p5play_logo.svg" class="p5play_logo">
-				<span>p5play</span>
-			</div>
-			<p id="unauthorized-text">Login to access this page.</p>
-			<a class="accountBtns"
-				href="https://p5play.auth.us-west-2.amazoncognito.com/login?redirect_uri=https%3A%2F%2Fp5play.org%2Fpro%2Findex.html&client_id=3oegfdhu2r7eo8nr371496718c&response_type=token&scope=email+openid+profile">Login</a>
-			<a class="accountBtns" href="/pro/signup.html">Sign Up</a>
-		</div>
-	</div>
-	<style>
-body {
-	height: 100vh;
-  overflow: hidden;
+async function showUnauthContent() {
+	if (trialPages) return;
+
+	let unauth = await (await fetch('../account/unauth.html')).text();
+
+	document.body.insertAdjacentHTML('beforeend', unauth);
 }
-	</style>
-</div>`
-	);
+
+async function showAuthContent() {
+	if (trialPages) return;
+
+	if (p5playAccount.type == 'Teacher') {
+		if (localStorage.getItem('trialTime') > Date.now()) {
+			return;
+		}
+		let auth = await (await fetch('../account/auth.html')).text();
+		document.body.insertAdjacentHTML('beforeend', auth);
+
+		function removePopup() {
+			let pu = document.getElementById('auth-popup');
+			pu.parentElement.remove();
+			document.body.scrollTop = 0;
+			document.documentElement.scrollTop = 0;
+
+			// add 2 days to the trial
+			localStorage.setItem('trialTime', Date.now() + 172800000);
+		}
+
+		setTimeout(() => {
+			document.querySelectorAll('md.closed').forEach((md) => {
+				md.onclick = () => md.classList.toggle('closed');
+			});
+
+			document.getElementById('remind-me-later').addEventListener('click', () => {
+				alert("We'll remind you later ⏰");
+				removePopup();
+			});
+
+			document.getElementById('no-support').addEventListener('click', (e) => {
+				let res = confirm("Are you sure? 😥 You'll need to send us a request to delete your account.");
+				if (res) removePopup();
+				else e.preventDefault();
+			});
+
+			document.getElementById('will-support').addEventListener('click', (e) => {
+				let res = confirm('To confirm your support please email us! ☺️');
+				if (res) removePopup();
+				else e.preventDefault();
+			});
+
+			document.getElementById('support-now').addEventListener('click', (e) => {
+				removePopup();
+			});
+		}, 100);
+	}
 }

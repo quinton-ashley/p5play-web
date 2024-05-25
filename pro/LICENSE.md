@@ -4,7 +4,7 @@ This License Agreement ("Agreement") is made between Quinton Ashley, the sole co
 
 ## 1. License Grant
 
-This Agreement covers the p5play, p5play-pro, and q5 software libraries ("Content") and any proprietary supplemental materials ("Supplemental Materials") provided privately to Licensees only.
+This Agreement covers the p5play and p5play-pro software libraries ("Content") and any proprietary supplemental materials ("Supplemental Materials") provided privately to Licensees only.
 
 The Licensor grants to the Licensee a non-exclusive, non-transferable, and non-perpetual worldwide license to use the Content and Supplemental Materials in closed-source commercial projects, subject to the following restrictions:
 
@@ -16,7 +16,7 @@ The Licensor grants to the Licensee a non-exclusive, non-transferable, and non-p
 
 4. No NFT or Cryptocurrency Use: The use of the Content in connection with Non-Fungible Tokens (NFTs), cryptocurrency transactions, or related blockchain technologies is strictly prohibited.
 
-Licensees retain the option to use the p5play, p5play-pro, and q5 libraries under the terms of the AGPLv3.
+Licensees retain the option to use the p5play and p5play-pro libraries under the terms of the AGPLv3.
 
 ## 2. Licensee Eligibility
 

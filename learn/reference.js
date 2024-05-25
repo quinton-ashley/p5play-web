@@ -209,29 +209,26 @@ for (let refPage in refs) {
 		filterReferences(searchTerm);
 	});
 
-
-	// filter the references on the page 
+	// filter the references on the page
 	function filterReferences(searchTerm) {
 		const refsElements = refsContainer.querySelectorAll('.ref');
 
-		refsElements.forEach(refElement => {
+		for (let refElement of refsElements) {
 			const topics = refElement.querySelectorAll('a:not(h2 a)');
 			let hasMatchingTopic = false;
 
-			topics.forEach(topic => {
+			for (let topic of topics) {
 				if (topic.textContent.toLowerCase().includes(searchTerm)) {
-
-					topic.style.display = 'block';
+					topic.style.display = 'flex';
 					hasMatchingTopic = true;
 				} else {
 					topic.style.display = 'none';
 				}
-			});
+			}
 
-			refElement.style.display = hasMatchingTopic? 'block' : 'none';
-		});
+			refElement.style.display = hasMatchingTopic ? 'flex' : 'none';
+		}
 	}
-
 
 	for (let link of links) {
 		div.append(link);

@@ -6,8 +6,6 @@
 
 Free for personal use!
 
-Educators/schools must become [PRO members](../pro) to use these pages in class or coursework.
-
 # 0-1
 
 ## Credits

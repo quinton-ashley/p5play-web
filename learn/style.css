@@ -129,35 +129,6 @@ html.ja h2 {
 	z-index: 100;
 }
 
-#unauth-popup {
-	width: 250px;
-	background-color: var(--secondary);
-	border-radius: 10px;
-	padding: 20px;
-	z-index: 101;
-	display: flex;
-	flex-direction: column;
-	box-shadow: 0px 0px 1000px var(--primary);
-}
-
-#unauth-popup p {
-	text-align: center;
-}
-
-#unauth-popup .p5play_logo {
-	height: 220px;
-}
-
-#unauth-popup .navLink {
-	display: flex;
-	font-size: 56px;
-	flex-direction: column;
-}
-
-#unauth-popup .navLink span {
-	text-shadow: 4px 4px 0px var(--blue0);
-}
-
 .accountBtns {
 	cursor: pointer;
 	background-color: var(--secondary);
@@ -405,13 +376,14 @@ nav hr {
 	flex-wrap: wrap;
 }
 
-a.btn,
+.btn,
 #toc a,
 #refs :not(:last-child) a:not(:first-child) {
 	background-color: var(--blue2);
 	color: var(--blue1);
 	box-shadow: var(--blue0) 3px 3px 0px;
 	height: min-content;
+	width: fit-content;
 	padding: 6px;
 	margin: 2px;
 	transition: ease-out color 0.3s, ease-out background-color 0.3s;
@@ -431,7 +403,7 @@ a.btn,
 	margin-left: 20px;
 }
 
-a.btn:hover,
+.btn:hover,
 #toc a.active,
 #toc a:hover,
 #refs :not(:last-child) a:not(:first-child).active,
@@ -449,7 +421,7 @@ a.btn:hover,
 	box-shadow: var(--pink1) 3px 3px 0px;
 }
 
-a.btn:hover,
+.btn:hover,
 #toc a:hover,
 #refs :not(:last-child) a:not(:first-child):hover {
 	scale: 1.05;
@@ -480,7 +452,7 @@ p {
 	flex-wrap: wrap;
 }
 
-.refs > div {
+.refs>div {
 	margin: 10px;
 }
 

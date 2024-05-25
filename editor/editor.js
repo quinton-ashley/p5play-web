@@ -244,7 +244,7 @@ async function loadCodeEditor(file, idx) {
 	editor.setTheme('ace/theme/dracula');
 	editor.getSession().on('change', codeEditing);
 
-	let data = await fetch('../learn/ace/completions.json');
+	let data = await fetch('/learn/ace/completions.json');
 	let completions = await data.json();
 
 	ed.select = () => {

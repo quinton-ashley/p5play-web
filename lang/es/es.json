@@ -12,6 +12,17 @@
 			"banner": "🇵🇸 ¡Apoyamos a los estudiantes que protestan por la paz y la justicia! 🇵🇸"
 		}
 	},
+	"account": {
+		"DOM": {
+			"login-btn": "Iniciar sesión",
+			"signup-btn": "Registrarse",
+			"fundraising": "Progreso de recaudación de fondos: ",
+			"remind-me-later": "Recordarme más tarde",
+			"no-support": "No planeo apoyar a p5play",
+			"will-support": "Apoyaré a p5play el próximo año escolar",
+			"support-now": "¡Apoya a p5play ahora!"
+		}
+	},
 	"editor": {
 		"DOM": {
 			"openProjectLabel": "Select your p5play project folder",

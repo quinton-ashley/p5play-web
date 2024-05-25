@@ -12,6 +12,10 @@ let langCodes = ['en', 'es', 'ja'];
 
 let langJSON;
 
+// add the "account" page group to build those pages
+// they're not included by default because their format is different
+let pageGroups = ['learn', 'jam', 'pro', 'play'];
+
 async function main() {
 	if (langCode) langCodes = [langCode];
 
@@ -26,7 +30,7 @@ async function main() {
 			await translatePage('index');
 		}
 
-		for (let pageGroup of ['learn', 'jam', 'pro', 'play']) {
+		for (let pageGroup of pageGroups) {
 			const pages = await getPagesInDirectory(pageGroup);
 			for (const page of pages) {
 				if (page == 'signup' || page == 'tos') continue;
