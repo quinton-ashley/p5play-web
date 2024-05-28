@@ -41,6 +41,9 @@ class MiniEditor {
 		else mini.className += ' vert';
 		mini.id = 'mie-' + this.id;
 		mini.style = script.style.cssText;
+		if (!script.style.cssText.includes('width')) {
+			mini.style.width = props.width || 'fit-content';
+		}
 		script.after(mini);
 		this.elem = mini;
 
@@ -244,7 +247,8 @@ mie.lang.p5.functionNames = [
 	'mouseClicked',
 	'touchStarted',
 	'touchMoved',
-	'touchEnded'
+	'touchEnded',
+	'windowResized'
 ];
 
 mie.lang.p5.play = function (code) {
@@ -265,6 +269,8 @@ mie.lang.p5.remove = function () {
 	if (this.player?.remove) this.player.remove();
 };
 
+mie.lang.q5 = mie.lang.p5;
+
 if (mie.autoLoad !== false) mie.load();
 
 {
@@ -276,6 +282,7 @@ if (mie.autoLoad !== false) mie.load();
 	border-radius: 10px;
 	font-family: sans-serif;
 	box-sizing: border-box;
+	background-color: #fff;
 	padding: 6px;
 }
 
@@ -306,8 +313,14 @@ if (mie.autoLoad !== false) mie.load();
 }
 
 .mie.p5 .mie-logo {
-	width: 36px;
+	width: 16px;
+	height: 14px;
 	background-image: url("https://p5js.org/assets/img/p5js.svg");
+}
+
+.mie.q5 .mie-logo {
+	width: 16px;
+	background-image: url("https://q5js.org/q5js_logo.webp");
 }
 
 .mie-preview {
@@ -381,6 +394,14 @@ if (mie.autoLoad !== false) mie.load();
 
 .ace_scroller {
 	left: 4px !important;
+}
+
+.ace_active-line {
+	background-color: unset !important;
+}
+
+.ace_hidden-cursors {
+	opacity: 0;
 }
 
 @media screen and (max-width: 600px) {

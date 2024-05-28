@@ -196,8 +196,8 @@ md.closed h2 {
 }
 
 .mie {
-	background-color: var(--secondary);
-	color: var(--primary);
+	background-color: var(--secondary) !important;
+	color: var(--primary) !important;
 }
 
 .mie * {
