@@ -110,7 +110,7 @@ Since introducing p5 and p5play we have seen an uptake of over 100% for students
 
 ## Let us know what you think! 😄
 
-Send your review of p5play to [info@p5play.org](mailto:info@p5play.org)
+Send your review of p5play to [p5play.js@gmail.com](mailto:p5play.js@gmail.com)
 
 # 14
 
@@ -132,7 +132,7 @@ Using p5play in your middle or high school curriculum is a great way to get your
 
 Quinton offers Professional Development sessions for teachers. Even if you're not a "gamer" and have no experience with game design, you can become an expert at teaching p5play! Your students will love making their own games and interactive art. During my PD course you'll receive advice on curriculum design, analysis of student work, curated resources for your students to use, and more!
 
-Inquire about Professional Development via email: [info@p5play.org](mailto:info@p5play.org)
+Inquire about Professional Development via email: [p5play.js@gmail.com](mailto:p5play.js@gmail.com)
 
 # 16-1
 
@@ -144,7 +144,7 @@ If not, Quinton teaches the following courses online: AP Computer Science Princi
 
 Quinton also teaches Game Design Fundamentals. Level up your programming skills by learning how to use p5play. I'll help you design your own game and share it with the world!
 
-Ask your parents to send an email to [info@p5play.org](mailto:info@p5play.org) and inquire about private tutoring.
+Ask your parents to send an email to [p5play.js@gmail.com](mailto:p5play.js@gmail.com) and inquire about private tutoring.
 
 # 17-0
 
@@ -272,4 +272,4 @@ In addition, I appreciate the Colombian government 🇨🇴 of Gustavo Petro for
 
 # ft
 
-p5play.org was created by Quinton Ashley. Copyright ©2022-2024. [info@p5play.org](mailto:info@p5play.org) Looking for the [legacy version](https://quinton-ashley.github.io/p5play-web-archive/v2) of p5play?
+p5play.org was created by Quinton Ashley. Copyright ©2022-2024. [p5play.js@gmail.com](mailto:p5play.js@gmail.com) Looking for the [legacy version](https://quinton-ashley.github.io/p5play-web-archive/v2) of p5play?

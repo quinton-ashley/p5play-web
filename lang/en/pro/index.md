@@ -26,7 +26,7 @@ Therefore, typical use by schools and commercial game developers requires _PRO_ 
 
 Become a _PRO_ member by supporting p5play on [Patreon](https://www.patreon.com/p5play) or [GitHub Sponsors](https://github.com/sponsors/quinton-ashley).
 
-Educators, if your school or university would prefer a custom invoice instead of a subscription, let me know how many students will use p5play and the duration of use. Contact: [info@p5play.org](mailto:info@p5play.org)
+Educators, if your school or university would prefer a custom invoice instead of a subscription, let me know how many students will use p5play and the duration of use. Contact: [p5play.js@gmail.com](mailto:p5play.js@gmail.com)
 
 # 1-1
 
@@ -70,4 +70,4 @@ _PRO_ members receive access to a Google Drive folder containing slide and activ
 
 ## Novice License
 
-If you can't afford to pay for the _PRO_ membership, you can apply to obtain the [p5play Novice License](https://github.com/quinton-ashley/p5play-novice/blob/main/LICENSE.md). By applying, you affirm that you are a low-income applicant as defined in the license. Contact: [info@p5play.org](mailto:info@p5play.org)
+If you can't afford to pay for the _PRO_ membership, you can apply to obtain the [p5play Novice License](https://github.com/quinton-ashley/p5play-novice/blob/main/LICENSE.md). By applying, you affirm that you are a low-income applicant as defined in the license. Contact: [p5play.js@gmail.com](mailto:p5play.js@gmail.com)

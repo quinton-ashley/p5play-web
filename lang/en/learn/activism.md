@@ -39,4 +39,4 @@ Donating aid to Palestine is not enough, we must do anything in our power to dis
 - writing reference pages for [q5js.org](https://q5js.org)
 - implementing an addon that'll make q5 functions throw friendly errors
 
-q5 is licensed under the LGPL, the same open source license as p5.js. If you're interested in collaborating with me, please reach out on [GitHub](https://github.com/quinton-ashley/q5.js) or via email: <info@p5play.org>
+q5 is licensed under the LGPL, the same open source license as p5.js. If you're interested in collaborating with me, please reach out on [GitHub](https://github.com/quinton-ashley/q5.js) or via email: <p5play.js@gmail.com>

@@ -26,7 +26,7 @@ p5play の無料利用は、 [AGPL](https://github.com/quinton-ashley/p5play/blo
 
 p5play をご支援いただけるという場合は、 [Patreon](https://www.patreon.com/p5play) や [GitHub Sponsors](https://github.com/sponsors/quinton-ashley) 経由での _PRO_ メンバー加入を歓迎しております。
 
-教職員の方へ、もしお勤めの教育機関が、サブスクリプション式ではなく自前の請求書によるお支払いを必要としている場合は、 p5play を学習する生徒の人数、および利用期間をご連絡いただければ、対応いたします。連絡先: [info@p5play.org](mailto:info@p5play.org)
+教職員の方へ、もしお勤めの教育機関が、サブスクリプション式ではなく自前の請求書によるお支払いを必要としている場合は、 p5play を学習する生徒の人数、および利用期間をご連絡いただければ、対応いたします。連絡先: [p5play.js@gmail.com](mailto:p5play.js@gmail.com)
 
 # 1-1
 
@@ -70,4 +70,4 @@ _PRO_ メンバーは、スライドと実習を含む Google Drive フォルダ
 
 ## Novice License (ノービスライセンス)
 
-もしあなたが _PRO_ メンバーシップ費用を負担することが困難な場合は、 [p5play Novice License](https://github.com/quinton-ashley/p5play-novice/blob/main/LICENSE.md) を申請することができます。この申請をもって、あなたはライセンスで定義される「低所得申請者」とみなされます。連絡先: [info@p5play.org](mailto:info@p5play.org)
+もしあなたが _PRO_ メンバーシップ費用を負担することが困難な場合は、 [p5play Novice License](https://github.com/quinton-ashley/p5play-novice/blob/main/LICENSE.md) を申請することができます。この申請をもって、あなたはライセンスで定義される「低所得申請者」とみなされます。連絡先: [p5play.js@gmail.com](mailto:p5play.js@gmail.com)

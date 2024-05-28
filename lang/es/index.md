@@ -108,7 +108,7 @@ Desde que introdujimos p5 y p5play, hemos visto un aumento de más del 100% en l
 
 ## ¡Haznos saber qué piensas! 😄
 
-Envía tu opinión sobre p5play a [info@p5play.org](mailto:info@p5play.org)
+Envía tu opinión sobre p5play a [p5play.js@gmail.com](mailto:p5play.js@gmail.com)
 
 # 14
 
@@ -228,4 +228,4 @@ Además, agradezco al gobierno colombiano 🇨🇴 de Gustavo Petro por otorgar 
 
 # ft
 
-p5play.org fue creado por Quinton Ashley. Copyright ©2022-2024. [info@p5play.org](mailto:info@p5play.org) ¿Buscas la [versión legado](https://quinton-ashley.github.io/p5play-web-archive/v2) de p5play?
+p5play.org fue creado por Quinton Ashley. Copyright ©2022-2024. [p5play.js@gmail.com](mailto:p5play.js@gmail.com) ¿Buscas la [versión legado](https://quinton-ashley.github.io/p5play-web-archive/v2) de p5play?

@@ -22,7 +22,7 @@ Licensees retain the option to use the p5play and p5play-pro libraries under the
 
 The Licensee must meet one of the following requirements to be eligible for this Agreement:
 
-1. Be a current, paying subscriber to the Licensor's [GitHub Sponsors](https://github.com/sponsors/quinton-ashley) or [Patreon](https://www.patreon.com/p5play) at the appropriate tier, as determined by the Licensor. If Licensees have any concerns about what tier is appropriate for their use, they must contact the Licensor at info@p5play.org and explain their planned use of the Content.
+1. Be a current, paying subscriber to the Licensor's [GitHub Sponsors](https://github.com/sponsors/quinton-ashley) or [Patreon](https://www.patreon.com/p5play) at the appropriate tier, as determined by the Licensor. If Licensees have any concerns about what tier is appropriate for their use, they must contact the Licensor at p5play.js@gmail.com and explain their planned use of the Content.
 
 2. Pay a custom invoice to the Licensor, as agreed upon by both parties.
 
@@ -46,7 +46,7 @@ The Content is provided "as is." The Licensor makes no warranties, express or im
 
 ## 5. Limitation of Liability
 
-If Licensee has any issues with the Content, they must contact the Licensor at info@p5play.org. The Licensor will make a reasonable effort to resolve the issue in a timely manner.
+If Licensee has any issues with the Content, they must contact the Licensor at p5play.js@gmail.com. The Licensor will make a reasonable effort to resolve the issue in a timely manner.
 
 If the Licensee is not satisfied with the Content, it is their responsibility to discontinue use of the Content and terminate their renewal of this Agreement.
 

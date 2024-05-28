@@ -26,7 +26,7 @@ Por lo tanto, el uso típico por parte de las escuelas y los desarrolladores de 
 
 Conviértete en miembro _PRO_ apoyando a p5play en [Patreon](https://www.patreon.com/p5play) o [GitHub Sponsors](https://github.com/sponsors/quinton-ashley).
 
-Si tu escuela o universidad prefiere una factura personalizada única en lugar de una suscripción, puedo hacer una. Avísame cuántos estudiantes usarán p5play y la duración del uso. Contacto: [info@p5play.org](mailto:info@p5play.org)
+Si tu escuela o universidad prefiere una factura personalizada única en lugar de una suscripción, puedo hacer una. Avísame cuántos estudiantes usarán p5play y la duración del uso. Contacto: [p5play.js@gmail.com](mailto:p5play.js@gmail.com)
 
 # 1-1
 
@@ -69,4 +69,4 @@ Los miembros _PRO_ reciben acceso a una carpeta de Google Drive que contiene dia
 
 ## Licencia para Novatos
 
-Si no puedes permitirte pagar la membresía _PRO_, puedes solicitar obtener la [Licencia para Novatos de p5play](https://github.com/quinton-ashley/p5play-novice/blob/main/LICENSE.md). Al solicitarla, afirmas que eres un solicitante de bajos ingresos según se define en la licencia. Contacto: [info@p5play.org](mailto:info@p5play.org)
+Si no puedes permitirte pagar la membresía _PRO_, puedes solicitar obtener la [Licencia para Novatos de p5play](https://github.com/quinton-ashley/p5play-novice/blob/main/LICENSE.md). Al solicitarla, afirmas que eres un solicitante de bajos ingresos según se define en la licencia. Contacto: [p5play.js@gmail.com](mailto:p5play.js@gmail.com)
