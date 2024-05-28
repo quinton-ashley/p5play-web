@@ -24,7 +24,7 @@ If you're a student, independent developer, or small development team and can't 
 
 This license exists to give novice developers the opportunity to use p5play commercially. But if you can afford to pay for a professional license, please do so to support the development of p5play.
 
-Using the same email you used to sign up for a [p5play membership][], send a message to p5play.js@gmail.com with the title "novice applicant". In the body of the email write a description of how you plan to use p5play commercially. If you're approved, you will be notified via a response to your email.
+Using the same email you used to sign up for a [p5play membership][], send a message to info@p5play.org with the title "novice applicant". In the body of the email write a description of how you plan to use p5play commercially. If you're approved, you will be notified via a response to your email.
 
 ## p5play Professional License
 
@@ -60,7 +60,7 @@ Also, none of p5play's licenses allow users to make closed source modifications 
 
 On the other hand, I want p5play to generate revenue so I can continue to develop it and make it better. I think p5play's ease of use compared to other game engines has real value and it's why people are willing to support the project financially.
 
-If you have a strong opinion about p5play's business model, I'd like to hear it! Please send me an email to p5play.js@gmail.com
+If you have a strong opinion about p5play's business model, I'd like to hear it! Please send me an email to info@p5play.org
 
 ## p5play logos
 
@@ -78,7 +78,7 @@ The lessons and everything else in this repository, "p5play-web", are owned by Q
 
 ## Contributions to p5play
 
-In the future, I would like to hire developers to help me work on p5play but unfortunately, I can't afford to pay anyone right now. If you're interested in working for p5play send an email to p5play.js@gmail.com with your resume and a link to your GitHub profile.
+In the future, I would like to hire developers to help me work on p5play but unfortunately, I can't afford to pay anyone right now. If you're interested in working for p5play send an email to info@p5play.org with your resume and a link to your GitHub profile.
 
 Currently, if you'd like to make contributions to the p5play library, you can do so on a volunteer basis. Significant contributions to the p5play library will be credited on the home page of p5play.org and in the p5play changelog on GitHub, unless you'd prefer to make contributions anonymously.
 

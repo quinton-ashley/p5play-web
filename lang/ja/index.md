@@ -110,7 +110,7 @@ p5 と p5play を導入して以来、生徒の増加率は 100 ％を超え、�
 
 ## ぜひご意見をお聞かせください！ 😄
 
-p5play に関するあなたのレビューを[p5play.js@gmail.com](mailto:p5play.js@gmail.com)に送ってください
+p5play に関するあなたのレビューを[info@p5play.org](mailto:info@p5play.org)に送ってください
 
 # 14
 
@@ -132,7 +132,7 @@ p5play に関するあなたのレビューを[p5play.js@gmail.com](mailto:p5pla
 
 私は教員向けに、 Professional Development 講座を開催しています (英語のみの受け付けです) 。たとえ皆さんが「ゲーマー」でなくても、ゲームデザインの経験がなくても、 p5play 指導のエキスパートになれます！ 皆さんの生徒たちは、自発的にゲームやインタラクティブアートを作ることに熱中するでしょう。私の Professional Development コースで、授業での教育課程の策定、生徒の提出物の評価方法、厳選された生徒向け教材……など、諸々について皆さんにアドバイスさせていただきます！
 
-Professional Development に関するお問い合わせは、メールにて: [p5play.js@gmail.com](mailto:p5play.js@gmail.com)
+Professional Development に関するお問い合わせは、メールにて: [info@p5play.org](mailto:info@p5play.org)
 
 # 16-1
 
@@ -144,7 +144,7 @@ Professional Development に関するお問い合わせは、メールにて: [p
 
 また、私はゲームデザインの基礎も教えています (英語のみの受け付けです) 。 p5play の使い方を学んで、皆さんのプログラミング技術をレベルアップ！ 皆さんの作ったゲームが世界中に広まるよう、お手伝いします！
 
-ご両親に [p5play.js@gmail.com](mailto:p5play.js@gmail.com) までメールを送ってもらい、家庭教師についてお問い合わせください。
+ご両親に [info@p5play.org](mailto:info@p5play.org) までメールを送ってもらい、家庭教師についてお問い合わせください。
 
 # 17-0
 
@@ -272,4 +272,4 @@ p5play の裏で使用されている Box2D の JavaScript 移植版 planck.js �
 
 # ft
 
-p5play.org は<wbr /> クイントン・アシュリー（@quinton-ashley）により<wbr />制作された<wbr />著作物です。<wbr /> Copyright ©2022-2024. [p5play.js@gmail.com](mailto:p5play.js@gmail.com)<wbr /> p5play の[旧バージョンはこちら](https://quinton-ashley.github.io/p5play-web-archive/v2)。<br />翻訳: [Shi MeiWo](https://github.com/ShiMeiWo)
+p5play.org は<wbr /> クイントン・アシュリー（@quinton-ashley）により<wbr />制作された<wbr />著作物です。<wbr /> Copyright ©2022-2024. [info@p5play.org](mailto:info@p5play.org)<wbr /> p5play の[旧バージョンはこちら](https://quinton-ashley.github.io/p5play-web-archive/v2)。<br />翻訳: [Shi MeiWo](https://github.com/ShiMeiWo)

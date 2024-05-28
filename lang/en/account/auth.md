@@ -60,4 +60,4 @@ p5play now has +50,000 users a month. If every teacher who uses p5play gets thei
 
 I need grassroots funding to continue working on p5play's upcoming mobile development and multiplayer server features. I hope you'll confirm your support!
 
-Please email [p5play.js@gmail.com](mailto:p5play.js@gmail.com) with any questions or concerns.
+Please email [info@p5play.org](mailto:info@p5play.org) with any questions or concerns.
