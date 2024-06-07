@@ -38,7 +38,7 @@ Unlock exclusive content and obtain the [p5play Professional License](https://gi
 
 ## No installation required 🤩
 
-Works great on Google Chromebooks! Start creating your own p5play project with one of these online code editor templates. We recommend using Aijs.
+Works great on Google Chromebooks! Start creating your own p5play project with one of these online code editors.
 
 # 13-0
 

@@ -407,6 +407,10 @@ body:not(.dark) #discord-brand img {
 	margin-bottom: -3px;
 }
 
+.strive-editor-brand {
+	height: 64px;
+}
+
 .p5js-web-editor-brand,
 .p5js-web-editor-logo {
 	height: 40px;

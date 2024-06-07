@@ -59,9 +59,9 @@ async function start() {
 
 	if (navigator.onLine) {
 		await loadScripts([
-			'https://cdn.jsdelivr.net/npm/ace-builds@1.18.0/src-min-noconflict/ace.min.js',
-			'https://cdn.jsdelivr.net/npm/ace-builds@1.18.0/src-min-noconflict/ext-language_tools.js',
-			'https://cdn.jsdelivr.net/npm/ace-builds@1.18.0/src-min-noconflict/ext-beautify.js'
+			'https://cdn.jsdelivr.net/npm/ace-builds@1.34.2/src-min-noconflict/ace.min.js',
+			'https://cdn.jsdelivr.net/npm/ace-builds@1.34.2/src-min-noconflict/ext-language_tools.js',
+			'https://cdn.jsdelivr.net/npm/ace-builds@1.34.2/src-min-noconflict/ext-beautify.js'
 		]);
 	} else {
 		await loadScripts([
