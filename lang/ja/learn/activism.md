@@ -39,4 +39,4 @@ NYU のスポークスマンであるジョン・ベックマン (John Beckman) 
 - [q5js.org](https://q5js.org) のリファレンスページを書く
 - q5 の関数が、デベロッパーフレンドリーなエラーを投げるアドオンを実装する
 
-q5 は、p5.js と同じオープンソースライセンスである LGPL の下でライセンスされています。私に協力してくれる方がいれば、[GitHub](https://github.com/quinton-ashley/q5.js) またはメールでお知らせください： <info@p5play.org>
+q5 は p5.js と同様、 LGPL の下でオープンソースライセンスされています。私への開発協力にご興味のある方は、 [GitHub](https://github.com/quinton-ashley/q5.js) またはメールにてご連絡ください： <info@p5play.org>
