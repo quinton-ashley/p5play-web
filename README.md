@@ -58,7 +58,7 @@ dev
 See the [LICENSING.md][] file.
 
 [licensing.md]: LICENSING.md
-[p5play project planning page]: https://github.com/quinton-ashley/p5play/projects/1
+[p5play project planning page]: https://github.com/users/quinton-ashley/projects/5
 [mie]: https://github.com/quinton-ashley/mie
 [translations]: /lang/instructions.md
 
