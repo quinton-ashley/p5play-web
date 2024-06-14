@@ -68,7 +68,7 @@ Look at the World reference pages before reading these docs.
 </a>
 
 A `world` object is created automatically by p5play. There can only
-be one world per p5.js instance.
+be one world per sketch (instance of p5 or q5).
 
 This class extends `planck.World` and adds some p5play specific
 features.
@@ -107,7 +107,7 @@ features.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line6513">line 6513</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line6528">line 6528</a>
     </li></ul></dd>
     
 
@@ -230,7 +230,7 @@ shouldn't disable for every sprite in the world.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line6939">line 6939</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line6954">line 6954</a>
     </li></ul></dd>
     
 
@@ -388,7 +388,7 @@ shouldn't disable for every sprite in the world.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line6646">line 6646</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line6661">line 6661</a>
     </li></ul></dd>
     
 
@@ -463,7 +463,7 @@ time spent paused.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line6741">line 6741</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line6756">line 6756</a>
     </li></ul></dd>
     
 
@@ -543,7 +543,7 @@ Accepts decimal values between 0 and 2.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line6660">line 6660</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line6675">line 6675</a>
     </li></ul></dd>
     
 
@@ -627,7 +627,7 @@ which will hurt performance.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line6687">line 6687</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line6702">line 6702</a>
     </li></ul></dd>
     
 
@@ -714,7 +714,7 @@ Optionally you can specify a group to search.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line6797">line 6797</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line6812">line 6812</a>
     </li></ul></dd>
     
 
@@ -956,7 +956,7 @@ Optionally you can specify a group to search.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line6757">line 6757</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line6772">line 6772</a>
     </li></ul></dd>
     
 
@@ -1236,7 +1236,7 @@ Can also be given a starting position and a maximum end position.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line6956">line 6956</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line6971">line 6971</a>
     </li></ul></dd>
     
 
@@ -1451,7 +1451,7 @@ Can also be given a starting position and a maximum end position.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line6972">line 6972</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line6987">line 6987</a>
     </li></ul></dd>
     
 
@@ -1692,7 +1692,7 @@ Can also be given a starting position and a maximum end position.
     Performs a physics simulation step that advances all sprites'
 forward in time by 1/60th of a second if no timeStep is given.
 
-This function is automatically called at the end of the p5.js draw
+This function is automatically called at the end of the draw
 loop, unless it was already called inside the draw loop.
 
 Decreasing velocityIterations and positionIterations will improve
@@ -1732,7 +1732,7 @@ performance but decrease simulation quality.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line6708">line 6708</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line6723">line 6723</a>
     </li></ul></dd>
     
 
@@ -1920,7 +1920,7 @@ performance but decrease simulation quality.
 <br class="clear">
 
 <footer>
-    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Fri May 10 2024 11:10:02 GMT-0500 (Colombia Standard Time) using the Minami theme.
+    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Thu Jun 13 2024 19:01:23 GMT-0500 (Colombia Standard Time) using the Minami theme.
 </footer>
 
 <script>prettyPrint();</script>
