@@ -193,48 +193,48 @@ async function showUnauthContent() {
 async function showAuthContent() {
 	if (trialPages) return;
 
-	if (p5playAccount.type == 'Teacher') {
-		if (localStorage.getItem('trialTime') > Date.now()) {
-			return;
-		}
-		let auth = await (await fetch('../account/auth.html')).text();
-		document.body.insertAdjacentHTML('beforeend', auth);
+	// if (p5playAccount.type == 'Teacher') {
+	// 	if (localStorage.getItem('trialTime') > Date.now()) {
+	// 		return;
+	// 	}
+	// 	let auth = await (await fetch('../account/auth.html')).text();
+	// 	document.body.insertAdjacentHTML('beforeend', auth);
 
-		function removePopup() {
-			let pu = document.getElementById('auth-popup');
-			pu.parentElement.remove();
-			document.body.scrollTop = 0;
-			document.documentElement.scrollTop = 0;
+	// 	function removePopup() {
+	// 		let pu = document.getElementById('auth-popup');
+	// 		pu.parentElement.remove();
+	// 		document.body.scrollTop = 0;
+	// 		document.documentElement.scrollTop = 0;
 
-			// add 2 days to the trial
-			localStorage.setItem('trialTime', Date.now() + 172800000);
-		}
+	// 		// add 2 days to the trial
+	// 		localStorage.setItem('trialTime', Date.now() + 172800000);
+	// 	}
 
-		setTimeout(() => {
-			document.querySelectorAll('md.closed').forEach((md) => {
-				md.onclick = () => md.classList.toggle('closed');
-			});
+	// 	setTimeout(() => {
+	// 		document.querySelectorAll('md.closed').forEach((md) => {
+	// 			md.onclick = () => md.classList.toggle('closed');
+	// 		});
 
-			document.getElementById('remind-me-later').addEventListener('click', () => {
-				alert("We'll remind you later ⏰");
-				removePopup();
-			});
+	// 		document.getElementById('remind-me-later').addEventListener('click', () => {
+	// 			alert("We'll remind you later ⏰");
+	// 			removePopup();
+	// 		});
 
-			document.getElementById('no-support').addEventListener('click', (e) => {
-				let res = confirm("Are you sure? 😥 You'll need to send us a request to delete your account.");
-				if (res) removePopup();
-				else e.preventDefault();
-			});
+	// 		document.getElementById('no-support').addEventListener('click', (e) => {
+	// 			let res = confirm("Are you sure? 😥 You'll need to send us a request to delete your account.");
+	// 			if (res) removePopup();
+	// 			else e.preventDefault();
+	// 		});
 
-			document.getElementById('will-support').addEventListener('click', (e) => {
-				let res = confirm('To confirm your support please email us! ☺️');
-				if (res) removePopup();
-				else e.preventDefault();
-			});
+	// 		document.getElementById('will-support').addEventListener('click', (e) => {
+	// 			let res = confirm('To confirm your support please email us! ☺️');
+	// 			if (res) removePopup();
+	// 			else e.preventDefault();
+	// 		});
 
-			document.getElementById('support-now').addEventListener('click', (e) => {
-				removePopup();
-			});
-		}, 100);
-	}
+	// 		document.getElementById('support-now').addEventListener('click', (e) => {
+	// 			removePopup();
+	// 		});
+	// 	}, 100);
+	// }
 }

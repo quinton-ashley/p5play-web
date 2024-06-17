@@ -117,27 +117,18 @@ test('SpriteAnimation : Sequence mode', () => {
 test('SpriteAnimation : SpriteSheet mode', () => {
 	return new Promise((resolve) => {
 		const sketch = (p) => {
-			let spritesheet0;
+			let spriteSheet0;
 			p.preload = () => {
-				spritesheet0 = p.loadImage(host + '/learn/assets/questKid.png');
+				spriteSheet0 = p.loadImage(host + '/learn/assets/questKid.png');
 			};
 			p.setup = () => {
 				new p.Canvas(400, 400);
 				p.noLoop();
 
-				const owner = {
-					spriteSheet: spritesheet0,
-					anis: {
-						frameSize: 2,
-						w: 5,
-						h: 5
-					},
-					tileSize: 1,
-					_dimensionsUndefinedByUser: true
-				};
+				let s = new p.Sprite(200, 200, 32, 32);
 
-				const spriteAnimation = new p.SpriteAnimation(owner, owner.spriteSheet);
-				expect(spriteAnimation.length).toBe(2);
+				const spriteAnimation = new p.SpriteAnimation(s, spriteSheet0, { row: 0, frames: 8 });
+				expect(spriteAnimation.length).toBe(8);
 
 				resolve();
 			};

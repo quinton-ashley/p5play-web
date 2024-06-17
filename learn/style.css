@@ -224,8 +224,11 @@ md.closed h2 {
 }
 
 .mie.p5 .mie-logo {
-	width: 16px !important;
-	background-image: url('../assets/favicon.png') !important;
+	background-image: url('../assets/icon_sm.png') !important;
+}
+
+.mie .mie-title {
+	font-size: 18px;
 }
 
 /* .mie.p5 .mie-logo::before {
