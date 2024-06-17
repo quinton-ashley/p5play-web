@@ -1,6 +1,6 @@
 /**
  * q5.js
- * @version 2.0-beta22
+ * @version 2.0-beta24
  * @author quinton-ashley, Tezumie, and LingDong-
  * @license LGPL-3.0
  * @class Q5
@@ -2224,6 +2224,8 @@ main {
 	};
 };
 Q5.modules.input = ($, p) => {
+	if ($._scope == 'graphics') return;
+
 	$.mouseX = 0;
 	$.mouseY = 0;
 	$.pmouseX = 0;
@@ -2235,20 +2237,18 @@ Q5.modules.input = ($, p) => {
 	$.key = null;
 	$.keyCode = null;
 
-	$.ALT = 18;
-	$.BACKSPACE = 8;
-	$.CONTROL = 17;
-	$.DELETE = 46;
+	$.UP_ARROW = 38;
 	$.DOWN_ARROW = 40;
-	$.ENTER = 13;
-	$.ESCAPE = 27;
 	$.LEFT_ARROW = 37;
-	$.OPTION = 18;
-	$.RETURN = 13;
 	$.RIGHT_ARROW = 39;
 	$.SHIFT = 16;
 	$.TAB = 9;
-	$.UP_ARROW = 38;
+	$.BACKSPACE = 8;
+	$.ENTER = $.RETURN = 13;
+	$.ALT = $.OPTION = 18;
+	$.CONTROL = 17;
+	$.DELETE = 46;
+	$.ESCAPE = 27;
 
 	$.ARROW = 'default';
 	$.CROSS = 'crosshair';
@@ -2258,6 +2258,8 @@ Q5.modules.input = ($, p) => {
 
 	let keysHeld = {};
 	let mouseBtns = [$.LEFT, $.CENTER, $.RIGHT];
+
+	let c = $.canvas;
 
 	$._startAudio = () => {
 		if ($.getAudioContext && $.getAudioContext()?.state == 'suspended') $.userStartAudio();
@@ -2294,6 +2296,10 @@ Q5.modules.input = ($, p) => {
 		$.mouseClicked(e);
 		p.mouseIsPressed = false;
 	};
+	c.addEventListener('mousedown', (e) => $._onmousedown(e));
+	c.addEventListener('mouseup', (e) => $._onmouseup(e));
+	c.addEventListener('click', (e) => $._onclick(e));
+
 	$.cursor = (name, x, y) => {
 		let pfx = '';
 		if (name.includes('.')) {
@@ -2308,6 +2314,8 @@ Q5.modules.input = ($, p) => {
 	$.noCursor = () => {
 		$.canvas.style.cursor = 'none';
 	};
+	$.requestPointerLock = document.body.requestPointerLock;
+	$.exitPointerLock = document.exitPointerLock;
 
 	$._onkeydown = (e) => {
 		if (e.repeat) return;
@@ -2315,7 +2323,7 @@ Q5.modules.input = ($, p) => {
 		p.keyIsPressed = true;
 		p.key = e.key;
 		p.keyCode = e.keyCode;
-		keysHeld[$.keyCode] = true;
+		keysHeld[$.keyCode] = keysHeld[$.key] = true;
 		$.keyPressed(e);
 		if (e.key.length == 1) {
 			$.keyTyped(e);
@@ -2325,9 +2333,10 @@ Q5.modules.input = ($, p) => {
 		p.keyIsPressed = false;
 		p.key = e.key;
 		p.keyCode = e.keyCode;
-		keysHeld[$.keyCode] = false;
+		keysHeld[$.keyCode] = keysHeld[$.key] = false;
 		$.keyReleased(e);
 	};
+	$.keyIsDown = (x) => !!keysHeld[x];
 
 	function getTouchInfo(touch) {
 		const rect = $.canvas.getBoundingClientRect();
@@ -2368,23 +2377,16 @@ Q5.modules.input = ($, p) => {
 		}
 		if (!$.touchEnded(e)) e.preventDefault();
 	};
-	$.requestPointerLock = document.body.requestPointerLock;
-	$.exitPointerLock = document.exitPointerLock;
-
-	if ($._scope == 'graphics') return;
-
-	$.keyIsDown = (x) => !!keysHeld[x];
-	$.canvas.onmousedown = (e) => $._onmousedown(e);
-	$.canvas.onmouseup = (e) => $._onmouseup(e);
-	$.canvas.onclick = (e) => $._onclick(e);
-	$.canvas.ontouchstart = (e) => $._ontouchstart(e);
-	$.canvas.ontouchmove = (e) => $._ontouchmove(e);
-	$.canvas.ontouchcancel = $.canvas.ontouchend = (e) => $._ontouchend(e);
+	c.addEventListener('touchstart', (e) => $._ontouchstart(e));
+	c.addEventListener('touchmove', (e) => $._ontouchmove(e));
+	c.addEventListener('touchcancel', (e) => $._ontouchend(e));
+	c.addEventListener('touchend', (e) => $._ontouchend(e));
 
 	if (window) {
-		window.addEventListener('mousemove', (e) => $._onmousemove(e), false);
-		window.addEventListener('keydown', (e) => $._onkeydown(e), false);
-		window.addEventListener('keyup', (e) => $._onkeyup(e), false);
+		let l = window.addEventListener;
+		l('mousemove', (e) => $._onmousemove(e), false);
+		l('keydown', (e) => $._onkeydown(e), false);
+		l('keyup', (e) => $._onkeyup(e), false);
 	}
 };
 Q5.modules.math = ($, p) => {
