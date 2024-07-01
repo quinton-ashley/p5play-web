@@ -32,7 +32,7 @@ Ask questions and meet other people making interactive art and games with p5play
 
 p5play is open source and free to use under the terms of the [AGPLv3](https://github.com/quinton-ashley/p5play/blob/main/LICENSE.md).
 
-Unlock exclusive content and obtain the [p5play Professional License](https://github.com/quinton-ashley/p5play-web/blob/main/pro/LICENSE.md) by becoming a [_PRO_ member](pro)!
+Unlock exclusive content and obtain the [p5play Professional License](https://github.com/quinton-ashley/p5play-web/blob/main/pro/PRO_LICENSE.md) by becoming a [_PRO_ member](pro)!
 
 # 12
 
@@ -234,7 +234,7 @@ Here are some examples of commercial use:
 - developing a game for a paying client
 - monetizing an API service or website
 
-Yes! You can use p5play commercially in closed source projects under the terms of the [p5play Professional License](https://github.com/quinton-ashley/p5play-web/blob/main/pro/LICENSE.md), which is available to [Patreon](https://www.patreon.com/p5play) members.
+Yes! You can use p5play commercially in closed source projects under the terms of the [p5play Professional License](https://github.com/quinton-ashley/p5play-web/blob/main/pro/PRO_LICENSE.md), which is available to [Patreon](https://www.patreon.com/p5play) members.
 
 If you can't afford to pay, you can apply for the free [p5play Novice License](https://github.com/quinton-ashley/p5play-novice/blob/main/LICENSE.md). See [LICENSING.md](https://github.com/quinton-ashley/p5play-web/blob/main/LICENSING.md) for more info.
 

@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>p5play : PRO$</title>
+	<title>p5play : Pro</title>
 	<link rel="icon" href="/assets/p5play_logo.svg">
 	<link rel="stylesheet" href="/learn/style.css">
 </head>
@@ -18,62 +18,35 @@
 			</a>
 			<hr>
 			<a id="learn" href="../learn">Learn</a>
-			<a id="jam" href="../jam">Jam!</a>
-			<a id="pro" href="../pro" class="active">PRO$</a>
+			<a id="pro" href="../pro" class="active">Pro</a>
 			<a id="play" href="../play">Play</a>
-			<hr>
-			<a id="darkMode" onclick="toggleDarkMode()" tabindex="0" role="button" title="dark mode toggle">
-				<div id="darkModeIcon"></div>
-			</a>
+			<a id="jam" href="../jam">Jam</a>
+			<a id="teach" href="../teach">Teach</a>
+
+			<div id="navRight">
+				<hr>
+				<a id="darkMode" onclick="toggleDarkMode()" tabindex="0" role="button" title="dark mode toggle">
+					<div id="darkModeIcon"></div>
+				</a>
+				<a id="accountIcon" href="../account">
+					<svg viewBox="0 0 20 20">
+						<path
+							d="M16.563 18H3.438c-.706 0-1.228-.697-.961-1.338C3.713 13.698 6.617 12 10 12c3.384 0 6.288 1.698 7.524 4.662.267.641-.255 1.338-.961 1.338M5.917 6c0-2.206 1.832-4 4.083-4 2.252 0 4.083 1.794 4.083 4S12.252 10 10 10c-2.251 0-4.083-1.794-4.083-4m14.039 11.636c-.742-3.359-3.064-5.838-6.119-6.963 1.619-1.277 2.563-3.342 2.216-5.603-.402-2.623-2.63-4.722-5.318-5.028C7.023-.381 3.875 2.449 3.875 6c0 1.89.894 3.574 2.289 4.673-3.057 1.125-5.377 3.604-6.12 6.963C-.226 18.857.779 20 2.054 20h15.892c1.276 0 2.28-1.143 2.01-2.364"
+							fill="#000" fill-rule="evenodd"></path>
+					</svg>
+				</a>
+			</div>
 		</nav>
 
 		<div class="break"></div>
 
 		<div class="page">
-			<div class="unauth">
-				<md id="md0-0">
-					<h2 id="account">Account</h2>
-					<p>Sign up for a free account to access the Learn pages and be notified via email about new
-						features!</p>
-				</md>
-				<div class="login">
-					<a class="accountBtns" href="/pro/signup.html">Sign Up</a>
-					<a class="accountBtns"
-						href="https://p5play.auth.us-west-2.amazoncognito.com/login?redirect_uri=https%3A%2F%2Fp5play.org%2Fpro%2Findex.html&amp;client_id=3oegfdhu2r7eo8nr371496718c&amp;response_type=token&amp;scope=email+openid+profile">Login</a>
-				</div>
-			</div>
-			<div class="auth">
-				<md id="md0-1">
-					<h2 id="-account"><span id="account-type"></span> Account</h2>
-					<p>Welcome <span id="username"></span>!</p>
-					<p>You'll be notified via email about new features.</p>
-				</md>
-			</div>
-			<md id="md0-2">
-				<h2 id="free-use">Free Use</h2>
-				<p>Free use of p5play must comply with the terms of the <a
-						href="https://github.com/quinton-ashley/p5play/blob/main/LICENSE.md" target="_blank">AGPL</a>.
-					In summary, any work that incorporates p5play must be made publicly open source.</p>
-				<p>Therefore, typical use by schools and commercial game developers requires <em>PRO</em> membership.
-				</p>
-			</md>
-			<!-- <div id="p5play-pro">
-				<img src="/assets/p5play-pro_logo.webp" alt="">
-				<div>
-					<span>p5play-pro</span>
-					<p>Coming soon!</p>
-				</div>
-			</div> -->
-			<div class="break"></div>
 			<div>
-				<md id="md1-0">
-					<h2 id="pro">PRO$</h2>
-					<p>Become a <em>PRO</em> member by supporting p5play on <a href="https://www.patreon.com/p5play"
+				<md id="md0-0">
+					<h2 id="pro-membership">Pro Membership</h2>
+					<p>Become a Pro member by supporting p5play on <a href="https://www.patreon.com/p5play"
 							target="_blank">Patreon</a> or <a href="https://github.com/sponsors/quinton-ashley"
 							target="_blank">GitHub Sponsors</a>.</p>
-					<p>Educators, if your school or university would prefer a custom invoice instead of a subscription,
-						let me know how many students will use p5play and the duration of use. Contact: <a
-							href="mailto:info@p5play.org" target="_blank">info@p5play.org</a></p>
 				</md>
 				<div id="support">
 					<a id="patreon-brand" href="https://www.patreon.com/p5play" aria-label="Patreon page for p5play">
@@ -87,32 +60,35 @@
 					</a>
 				</div>
 			</div>
+			<div id="p5play-pro">
+				<img src="/assets/p5play-pro_logo.webp" alt="">
+				<div>
+					<a href="https://github.com/quinton-ashley/p5play-pro">
+						<span>p5play-pro</span>
+					</a>
+					<md id="md0-1">
+						<p>Documentation coming soon!</p>
+					</md>
+				</div>
+			</div>
 			<md id="md1-1">
-				<h2 id="paid-use">Paid Use</h2>
-				<p><em>PRO</em> membership unlocks exclusive features and content:</p>
-				<ul>
-					<li>the <a href="https://github.com/quinton-ashley/p5play-web/blob/main/pro/LICENSE.md"
-							target="_blank">p5play
-							Professional License</a> which enables commercial and closed source use</li>
-					<li>non-personal use of the Learn pages</li>
-					<li>iOS app templates</li>
-					<li>"Game Design Fundamentals" curriculum</li>
-				</ul>
-				<p>The monthly cost for schools is fair and affordable: starting at just ~25¢ per student.</p>
+				<h2 id="commercial-use">Commercial Use</h2>
+				<p>Pro members can use p5play commercially, without needing to open source their work, by utilizing the
+					<a href="https://github.com/quinton-ashley/p5play-web/blob/main/pro/PRO_LICENSE.md"
+						target="_blank">p5play Professional License</a>.</p>
 			</md>
 
 			<md id="md1-2">
 				<h2 id="ios-app-templates">iOS App Templates</h2>
-				<p>Ready to earn real money with p5play?</p>
-				<p><em>PRO</em> members can use templates to build iOS apps without coding in Swift. Sell games on
-					Apple's App Store or earn revenue from advertisements with p5play's iOS app templates!</p>
+				<p>Pro members can use templates to build iOS apps without coding in Swift. Sell games on Apple's App
+					Store or earn revenue from advertisements!</p>
 			</md>
 			<md id="md1-3">
 				<h2 id="curriculum">Curriculum</h2>
-				<p>"p5play Game Design Fundamentals" is a curriculum for CS educators made by Quinton Ashley, the
-					creator of p5play v3!</p>
-				<p><em>PRO</em> members receive access to a Google Drive folder containing slide and activities. Use
-					them in your lessons or take inspiration for your own curriculum.</p>
+				<p>"p5play Game Design Fundamentals" is a curriculum made by Quinton Ashley, the creator of p5play v3!
+				</p>
+				<p>Pro members receive access to slides and activities, so you can level up your skills as a game
+					designer.</p>
 			</md>
 			<div class="break"></div>
 			<md id="md2-0">
@@ -127,12 +103,10 @@
 				</ul>
 			</md>
 			<md id="md2-1">
-				<h2 id="novice-license">Novice License</h2>
-				<p>If you can't afford to pay for the <em>PRO</em> membership, you can apply to obtain the <a
-						href="https://github.com/quinton-ashley/p5play-novice/blob/main/LICENSE.md"
-						target="_blank">p5play Novice License</a>. By applying, you affirm that you are a low-income
-					applicant as defined in the license. Contact: <a href="mailto:info@p5play.org"
-						target="_blank">info@p5play.org</a></p>
+				<h2 id="equitable-access">Equitable Access</h2>
+				<p>If you can't afford to pay for a Pro membership, contact us at <a href="mailto:info@p5play.org"
+						target="_blank">info@p5play.org</a>. Please put "Equitable Access" in the subject line and
+					explain your intended use of p5play.</p>
 			</md>
 		</div>
 		<div class="break"></div>
@@ -142,24 +116,9 @@
 	</article>
 
 	<script src="/learn/main.js"></script>
-<script src="/pro/accountInfo.js"></script>
-<script src="/account/account.js"></script>
 <style>
 .page {
 	display: flex;
-}
-
-.auth {
-	display: none;
-}
-
-.login {
-	margin-top: 16px;
-	font-size: 32px;
-	font-weight: bold;
-	display: flex;
-	justify-content: center;
-	gap: 50px;
 }
 
 md p:first-child {
@@ -169,11 +128,14 @@ md p:first-child {
 #p5play-pro {
 	display: flex;
 	justify-content: center;
-	align-items: center;
+	align-items: end;
 }
 
 #p5play-pro div {
-	margin-top: 32px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 22px;
 }
 
 #p5play-pro p {

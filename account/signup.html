@@ -7,7 +7,7 @@
 		media="screen" />
 	<link href="https://dpp0gtxikpq3y.cloudfront.net/20221014152150/css/cognito-login.css" rel="stylesheet"
 		media="screen" />
-	<link rel="stylesheet" href="style.css" />
+	<link rel="stylesheet" href="signup.css" />
 	<script
 		src="https://dpp0gtxikpq3y.cloudfront.net/20221014152150/js/amazon-cognito-advanced-security-data.min.js"></script>
 	<script>
@@ -66,7 +66,7 @@
 						<a href="/index.html" id="brand">p5play</a>
 					</div>
 					<form name="signupform"
-						action="https://p5play.auth.us-west-2.amazoncognito.com/signup?client_id=3oegfdhu2r7eo8nr371496718c&amp;response_type=token&amp;scope=email+openid+profile&amp;redirect_uri=https%3A%2F%2Fp5play.org%2Fpro%2Findex.html"
+						action="https://p5play.auth.us-west-2.amazoncognito.com/signup?client_id=3oegfdhu2r7eo8nr371496718c&amp;response_type=token&amp;scope=email+openid+profile&amp;redirect_uri=https%3A%2F%2Fp5play.org%2Faccount%2Findex.html"
 						method="post" class="cognito-asf" onsubmit="onSubmit(event, this, 'signUpButton')">
 						<input type="hidden" name="_csrf" value="15af2289-bf9e-47f4-be85-173d1cd3ba38" />
 
@@ -421,9 +421,17 @@
 								</div>
 							</div>
 						</div>
-						<p id="permission">
-							If you are under 18 years old, you must obtain permission from your parent or guardian to sign up. By
-							signing up, you agree to receive occasional emails from p5play.
+						<p>
+							<input type="checkbox" id="tos" name="tos" required>
+							<span id="tosInfo">I agree to the <a href="tos.md">Terms of Service</a> and <a
+									href="privacy_policy.md">Privacy
+									Policy</a>.</span>
+						</p>
+						<p>
+							<input type="checkbox" id="newsletter" name="newsletter">
+							<span id="newsletterInfo">
+								I'd like to receive occasional newsletters via email from p5play.
+							</span>
 						</p>
 						<button type="submit" name="signUpButton" class="btn btn-primary signUpButton submitButton-customizable"
 							disabled="">
@@ -431,7 +439,7 @@
 						</button>
 						<p class="redirect-customizable">
 							<span class="ask-account-check">Already have an account?</span>&nbsp;<a
-								href="https://p5play.auth.us-west-2.amazoncognito.com/login?client_id=3oegfdhu2r7eo8nr371496718c&amp;response_type=token&amp;scope=email+openid+profile&amp;redirect_uri=https%3A%2F%2Fp5play.org%2Fpro%2Findex.html">Sign
+								href="https://p5play.auth.us-west-2.amazoncognito.com/login?client_id=3oegfdhu2r7eo8nr371496718c&amp;response_type=token&amp;scope=email+openid+profile&amp;redirect_uri=https%3A%2F%2Fp5play.org%2Faccount%2Findex.html">Sign
 								in</a>
 						</p>
 					</form>

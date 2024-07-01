@@ -32,7 +32,7 @@
 
 p5play は、 [AGPLv3](https://github.com/quinton-ashley/p5play-web/blob/main/LICENSING.md) ライセンスの下、無料で利用できるオープンソースプロジェクトです。
 
-さらに、 [_PRO_ メンバー](pro)に加入すれば、 [p5play Professional License](https://github.com/quinton-ashley/p5play-web/blob/main/pro/LICENSE.md) が得られることで、サイト内の限定コンテンツがアンロックされます！
+さらに、 [_PRO_ メンバー](pro)に加入すれば、 [p5play Professional License](https://github.com/quinton-ashley/p5play-web/blob/main/pro/PRO_LICENSE.md) が得られることで、サイト内の限定コンテンツがアンロックされます！
 
 # 12
 
@@ -234,7 +234,7 @@ p5play を使用することにより、 [EULA](https://github.com/quinton-ashle
 - 発注元から報酬を受けてゲームを開発
 - API サービスやウェブサイトの収益化
 
-はい、可能です！ [p5play Professional License](https://github.com/quinton-ashley/p5play-web/blob/main/pro/LICENSE.md) の条件下で、 p5play をクローズドソースプロジェクト内で商業利用できます。このライセンスは [Patreon](https://www.patreon.com/p5play) メンバーに提供されます。
+はい、可能です！ [p5play Professional License](https://github.com/quinton-ashley/p5play-web/blob/main/pro/PRO_LICENSE.md) の条件下で、 p5play をクローズドソースプロジェクト内で商業利用できます。このライセンスは [Patreon](https://www.patreon.com/p5play) メンバーに提供されます。
 
 支払いが困難な場合は、無料の [p5play Novice License](https://github.com/quinton-ashley/p5play-novice/blob/main/LICENSE.md) を申請することができます。詳しくは [LICENSING.md](https://github.com/quinton-ashley/p5play-web/blob/main/LICENSING.md) をご覧ください。
 

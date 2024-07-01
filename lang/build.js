@@ -14,7 +14,7 @@ let langJSON;
 
 // add the "account" page group to build those pages
 // they're not included by default because their format is different
-let pageGroups = ['learn', 'jam', 'pro', 'play'];
+let pageGroups = ['learn', 'pro', 'play', 'jam', 'teach', 'account'];
 
 async function main() {
 	if (langCode) langCodes = [langCode];

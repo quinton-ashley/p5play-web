@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>p5play : PRO$</title>
+	<title>p5play : Pro</title>
 	<link rel="icon" href="/assets/p5play_logo.svg">
 	<link rel="stylesheet" href="/learn/style.css">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,59 +22,35 @@
 			</a>
 			<hr>
 			<a id="learn" href="../learn">学ぶ</a>
-			<a id="jam" href="../jam">ジャム!</a>
-			<a id="pro" href="../pro" class="active">Pro(有償プラン)</a>
-			<a id="play" href="../play">Play</a>
-			<hr>
-			<a id="darkMode" onclick="toggleDarkMode()" tabindex="0" role="button" title="dark mode toggle">
-				<div id="darkModeIcon"></div>
-			</a>
+			<a id="pro" href="../pro" class="active">有償プラン</a>
+			<a id="play" href="../play">遊ぶ</a>
+			<a id="jam" href="../jam">ジャム</a>
+			<a id="teach" href="../teach">教える</a>
+
+			<div id="navRight">
+				<hr>
+				<a id="darkMode" onclick="toggleDarkMode()" tabindex="0" role="button" title="dark mode toggle">
+					<div id="darkModeIcon"></div>
+				</a>
+				<a id="accountIcon" href="../account">
+					<svg viewBox="0 0 20 20">
+						<path
+							d="M16.563 18H3.438c-.706 0-1.228-.697-.961-1.338C3.713 13.698 6.617 12 10 12c3.384 0 6.288 1.698 7.524 4.662.267.641-.255 1.338-.961 1.338M5.917 6c0-2.206 1.832-4 4.083-4 2.252 0 4.083 1.794 4.083 4S12.252 10 10 10c-2.251 0-4.083-1.794-4.083-4m14.039 11.636c-.742-3.359-3.064-5.838-6.119-6.963 1.619-1.277 2.563-3.342 2.216-5.603-.402-2.623-2.63-4.722-5.318-5.028C7.023-.381 3.875 2.449 3.875 6c0 1.89.894 3.574 2.289 4.673-3.057 1.125-5.377 3.604-6.12 6.963C-.226 18.857.779 20 2.054 20h15.892c1.276 0 2.28-1.143 2.01-2.364"
+							fill="#000" fill-rule="evenodd"></path>
+					</svg>
+				</a>
+			</div>
 		</nav>
 
 		<div class="break"></div>
 
 		<div class="page">
-			<div class="unauth">
-				<md id="md0-0">
-					<h2 id="アカウント">アカウント</h2>
-					<p>無料アカウントにサインアップすると、「学ぶ」ページにアクセスしたり、新機能についてメールで通知を受けたりすることができます！</p>
-				</md>
-				<div class="login">
-					<a class="accountBtns" href="/pro/signup.html">Sign Up</a>
-					<a class="accountBtns"
-						href="https://p5play.auth.us-west-2.amazoncognito.com/login?redirect_uri=https%3A%2F%2Fp5play.org%2Fpro%2Findex.html&amp;client_id=3oegfdhu2r7eo8nr371496718c&amp;response_type=token&amp;scope=email+openid+profile">Login</a>
-				</div>
-			</div>
-			<div class="auth">
-				<md id="md0-1">
-					<h2 id="-アカウント"><span id="account-type"></span> アカウント</h2>
-					<p>ようこそ <span id="username"></span>さん！</p>
-					<p>新機能について、メールで通知されます。</p>
-				</md>
-			</div>
-			<md id="md0-2">
-				<h2 id="無料利用">無料利用</h2>
-				<p>p5play の無料利用は、 <a href="https://github.com/quinton-ashley/p5play/blob/main/LICENSE.md"
-						target="_blank">AGPL</a> の条項を遵守する必要があります。要するに、 p5play を組み込んだ作品は、完全にオープンソースとして公開しなければなりません。</p>
-				<p>つきましては、教職員や商用ゲーム開発者のみなさまによる、本格的なご利用には、<em>PRO</em> メンバーシップへの加入を必須とさせていただきます。</p>
-			</md>
-			<!-- <div id="p5play-pro">
-				<img src="/assets/p5play-pro_logo.webp" alt="">
-				<div>
-					<span>p5play-pro</span>
-					<p>Coming soon!</p>
-				</div>
-			</div> -->
-			<div class="break"></div>
 			<div>
-				<md id="md1-0">
-					<h2 id="pro-有償プラン">PRO (有償プラン)</h2>
+				<md id="md0-0">
+					<h2 id="pro-有償プラン">Pro (有償プラン)</h2>
 					<p>p5play をご支援いただけるという場合は、 <a href="https://www.patreon.com/p5play" target="_blank">Patreon</a> や <a
 							href="https://github.com/sponsors/quinton-ashley" target="_blank">GitHub Sponsors</a> 経由での
-						<em>PRO</em> メンバー加入を歓迎しております。</p>
-					<p>教職員の方へ、もしお勤めの教育機関が、サブスクリプション式ではなく自前の請求書によるお支払いを必要としている場合は、 p5play
-						を学習する生徒の人数、および利用期間をご連絡いただければ、対応いたします。連絡先: <a href="mailto:info@p5play.org"
-							target="_blank">info@p5play.org</a></p>
+						Pro メンバー加入を歓迎しております。</p>
 				</md>
 				<div id="support">
 					<a id="patreon-brand" href="https://www.patreon.com/p5play" aria-label="Patreon page for p5play">
@@ -88,31 +64,33 @@
 					</a>
 				</div>
 			</div>
+			<div id="p5play-pro">
+				<img src="/assets/p5play-pro_logo.webp" alt="">
+				<div>
+					<a href="https://github.com/quinton-ashley/p5play-pro">
+						<span>p5play-pro</span>
+					</a>
+					<md id="md0-1">
+						<p>近日中にドキュメントが公開されます！</p>
+					</md>
+				</div>
+			</div>
 			<md id="md1-1">
-				<h2 id="有料利用">有料利用</h2>
-				<p><em>PRO</em> メンバーシップに加入すると、以下のメンバー限定機能とコンテンツがアンロックされます：</p>
-				<ul>
-					<li><a href="https://github.com/quinton-ashley/p5play-web/blob/main/pro/LICENSE.md"
-							target="_blank">p5play
-							プロフェッショナルライセンス</a> が付与されることで、商用利用およびクローズドな開発が可能になります</li>
-					<li>「学ぶ」ページが個人利用だけでなく、公の場でも利用できます</li>
-					<li>iOS アプリのテンプレート</li>
-					<li>「ゲームデザイン基礎」カリキュラム</li>
-				</ul>
-				<p>学校での月額費用は、生徒 1 人あたりわずか 25 セント～と、リーズナブルでお手頃な価格です。</p>
+				<h2 id="商用利用">商用利用</h2>
+				<p>Pro メンバーは、<a href="https://github.com/quinton-ashley/p5play-web/blob/main/pro/PRO_LICENSE.md"
+						target="_blank">p5play プロフェッショナルライセンス</a>を利用することで、ソースコードを公開せずに商用利用できます。</p>
 			</md>
 
 			<md id="md1-2">
 				<h2 id="ios-アプリテンプレート">iOS アプリテンプレート</h2>
 				<p>p5play で作成したゲームでの収益化をご希望ですか？</p>
-				<p><em>PRO</em> メンバーは、Swift でコーディングすることなく iOS アプリを構築するためのテンプレートを使用できます。Apple の App Store でゲームを販売したり、
-					p5play の iOS アプリテンプレートで広告から収益を得たりすることが可能になります！</p>
+				<p>Pro メンバーは、Swift でコーディングすることなく iOS アプリを構築するためのテンプレートを使用できます。Apple の App Store でゲームを販売したり、 p5play の iOS
+					アプリテンプレートで広告から収益を得たりすることが可能になります！</p>
 			</md>
 			<md id="md1-3">
 				<h2 id="カリキュラム">カリキュラム</h2>
 				<p>「p5play ゲームデザイン基礎」は、 p5play v3 の開発者である Quinton Ashley が作成した、コンピュータ・サイエンス教員向けのカリキュラムです！</p>
-				<p><em>PRO</em> メンバーは、スライドと実習を含む Google Drive
-					フォルダへのアクセス権を得られます。授業の教材に使ったり、あなた自身のカリキュラムのヒントにと、大いにご活用ください。</p>
+				<p>Pro メンバーは、スライドと実習を含む Google Drive フォルダへのアクセス権を得られます。授業の教材に使ったり、あなた自身のカリキュラムのヒントにと、大いにご活用ください。</p>
 			</md>
 			<div class="break"></div>
 			<md id="md2-0">
@@ -127,12 +105,9 @@
 				</ul>
 			</md>
 			<md id="md2-1">
-				<h2 id="novice-license-ノービスライセンス">Novice License (ノービスライセンス)</h2>
-				<p>もしあなたが <em>PRO</em> メンバーシップ費用を負担することが困難な場合は、 <a
-						href="https://github.com/quinton-ashley/p5play-novice/blob/main/LICENSE.md"
-						target="_blank">p5play Novice License</a>
-					を申請することができます。この申請をもって、あなたはライセンスで定義される「低所得申請者」とみなされます。連絡先: <a href="mailto:info@p5play.org"
-						target="_blank">info@p5play.org</a></p>
+				<h2 id="公平なアクセス">公平なアクセス</h2>
+				<p>支払いが難しい場合は、<a href="mailto:info@p5play.org"
+						target="_blank">info@p5play.org</a>までご連絡ください。件名に「公平なアクセス」と記載し、p5play の使用目的を説明してください。</p>
 			</md>
 		</div>
 		<div class="break"></div>
@@ -142,24 +117,9 @@
 	</article>
 
 	<script src="/learn/main.js"></script>
-<script src="/pro/accountInfo.js"></script>
-<script src="/account/account.js"></script>
 <style>
 .page {
 	display: flex;
-}
-
-.auth {
-	display: none;
-}
-
-.login {
-	margin-top: 16px;
-	font-size: 32px;
-	font-weight: bold;
-	display: flex;
-	justify-content: center;
-	gap: 50px;
 }
 
 md p:first-child {
@@ -169,11 +129,14 @@ md p:first-child {
 #p5play-pro {
 	display: flex;
 	justify-content: center;
-	align-items: center;
+	align-items: end;
 }
 
 #p5play-pro div {
-	margin-top: 32px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 22px;
 }
 
 #p5play-pro p {

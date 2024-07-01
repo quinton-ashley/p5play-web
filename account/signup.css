@@ -194,10 +194,16 @@ select {
 	color: var(--primary) !important;
 }
 
-#permission,
+span,
 input::placeholder,
 select::placeholder {
 	color: var(--primary) !important;
+}
+
+input[type="checkbox"] {
+	height: unset !important;
+	margin: 0;
+	margin-right: 2px;
 }
 
 .label-customizable {

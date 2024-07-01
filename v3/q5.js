@@ -102,6 +102,7 @@ function Q5(scope, parent) {
 		$._loop = true;
 		if (looper == null) _draw();
 	};
+	$.isLooping = () => $._loop;
 	$.redraw = (n = 1) => {
 		$._redraw = true;
 		for (let i = 0; i < n; i++) {
@@ -1238,9 +1239,7 @@ Q5.modules.q2d_image = ($, p) => {
 		let a = document.createElement('a');
 		a.href = data;
 		a.download = name + '.' + ext;
-		document.body.append(a);
 		a.click();
-		document.body.removeChild(a);
 		URL.revokeObjectURL(a.href);
 	};
 	$.save = (a, b, c) => {
@@ -1932,6 +1931,7 @@ Q5.modules.ai = ($) => {
 };
 Q5.modules.color = ($, p) => {
 	$.RGB = $.RGBA = $._colorMode = 'rgb';
+	$.OKLCH = 'oklch';
 
 	if (Q5.supportsHDR) $.Color = Q5.ColorRGBA_P3;
 	else $.Color = Q5.ColorRGBA;
@@ -1997,29 +1997,28 @@ Q5.modules.color = ($, p) => {
 							parseInt(c0[3] + c0[3], 16),
 							c0.length == 4 ? null : parseInt(c0[4] + c0[4], 16)
 						);
-					} else {
-						return new C(
-							parseInt(c0.slice(1, 3), 16),
-							parseInt(c0.slice(3, 5), 16),
-							parseInt(c0.slice(5, 7), 16),
-							c0.length == 7 ? null : parseInt(c0.slice(7, 9), 16)
-						);
 					}
-				} else if ($._namedColors[c0]) return new C(...$._namedColors[c0]);
-				else {
-					console.error(
-						"q5 can't parse color: " + c0 + '\nOnly numeric input, hex, and common named colors are supported.'
+					return new C(
+						parseInt(c0.slice(1, 3), 16),
+						parseInt(c0.slice(3, 5), 16),
+						parseInt(c0.slice(5, 7), 16),
+						c0.length == 7 ? null : parseInt(c0.slice(7, 9), 16)
 					);
-					return new C(0, 0, 0);
 				}
-			} else if (Array.isArray(c0)) return new C(...c0);
+				if ($._namedColors[c0]) return new C(...$._namedColors[c0]);
+				console.error(
+					"q5 can't parse color: " + c0 + '\nOnly numeric input, hex, and common named colors are supported.'
+				);
+				return new C(0, 0, 0);
+			}
+			if (Array.isArray(c0)) return new C(...c0);
 		}
 		if ($._colorMode == 'rgb') {
 			if (args.length == 1) return new C(c0, c0, c0);
-			else if (args.length == 2) return new C(c0, c0, c0, c1);
-			else if (args.length == 3) return new C(c0, c1, c2);
-			else if (args.length == 4) return new C(c0, c1, c2, c3);
+			if (args.length == 2) return new C(c0, c0, c0, c1);
 		}
+		if (args.length == 3) return new C(c0, c1, c2);
+		if (args.length == 4) return new C(c0, c1, c2, c3);
 	};
 
 	$.red = (c) => c.r;
@@ -2071,7 +2070,7 @@ Q5.ColorOKLCH = class extends Q5.Color {
 		this.a = a ?? 1;
 	}
 	toString() {
-		return `color(oklch ${this.l} ${this.c} ${this.h} / ${this.a})`;
+		return `oklch(${this.l} ${this.c} ${this.h} / ${this.a})`;
 	}
 };
 Q5.ColorRGBA = class extends Q5.Color {
@@ -2818,30 +2817,44 @@ Q5.PerlinNoise = class extends Q5.Noise {
 	}
 };
 Q5.modules.sound = ($, p) => {
+	$.Sound = Q5.Sound;
 	$.loadSound = (path, cb) => {
 		p._preloadCount++;
-		$.aud ??= new window.AudioContext();
-		let a = new Audio(path);
+		Q5.aud ??= new window.AudioContext();
+		let a = new Q5.Sound(path, cb);
 		a.addEventListener('canplaythrough', () => {
 			p._preloadCount--;
 			if (cb) cb(a);
 		});
+		return a;
+	};
+	$.getAudioContext = () => Q5.aud;
+	$.userStartAudio = () => Q5.aud.resume();
+};
+
+Q5.Sound = class extends Audio {
+	constructor(path) {
+		super(path);
+		let a = this;
 		a.load();
-		a.setVolume = (l) => (a.volume = l);
-		a.setLoop = (l) => (a.loop = l);
-		a.panner = $.aud.createStereoPanner();
-		a.source = $.aud.createMediaElementSource(a);
+		a.panner = Q5.aud.createStereoPanner();
+		a.source = Q5.aud.createMediaElementSource(a);
 		a.source.connect(a.panner);
-		a.panner.connect($.aud.destination);
+		a.panner.connect(Q5.aud.destination);
 		Object.defineProperty(a, 'pan', {
 			get: () => a.panner.pan.value,
 			set: (v) => (a.panner.pan.value = v)
 		});
-		a.setPan = (v) => (a.pan = v);
-		return a;
-	};
-	$.getAudioContext = () => $.aud;
-	$.userStartAudio = () => $.aud.resume();
+	}
+	setVolume(level) {
+		this.volume = level;
+	}
+	setLoop(loop) {
+		this.loop = loop;
+	}
+	setPan(value) {
+		this.pan = value;
+	}
 };
 Q5.modules.util = ($, p) => {
 	$._loadFile = (path, cb, type) => {

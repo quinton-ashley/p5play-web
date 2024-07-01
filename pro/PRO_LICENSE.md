@@ -10,23 +10,17 @@ The Licensor grants to the Licensee a non-exclusive, non-transferable, and non-p
 
 1. No Closed Source Modifications: The Licensee is expressly forbidden from creating a closed source fork of the Content or using modified versions of the Content in closed source projects.
 
-2. Limited Redistribution: The Licensee is only allowed to redistribute the Supplemental Materials to their students, student peers, team members, or co-workers. The Licensee can not sublicense or sell the Content or Supplemental Materials to anyone. The Licensee is expressly forbidden from redistributing the Supplemental Materials in any way that would allow the general public to access them.
+2. Limited Redistribution: The Licensee is only allowed to redistribute the Supplemental Materials to their team members or co-workers. The Licensee can not sublicense or sell the Content or Supplemental Materials to anyone. The Licensee is expressly forbidden from redistributing the Supplemental Materials in any way that would allow the general public to access them.
 
 3. No Military Use: The Licensee is expressly forbidden from using the Content in projects that are directly sponsored by military organizations or military contractors.
-
-4. No NFT or Cryptocurrency Use: The use of the Content in connection with Non-Fungible Tokens (NFTs), cryptocurrency transactions, or related blockchain technologies is strictly prohibited.
 
 Licensees retain the option to use the p5play and p5play-pro libraries under the terms of the AGPLv3.
 
 ## 2. Licensee Eligibility
 
-The Licensee must meet one of the following requirements to be eligible for this Agreement:
+The Licensee must be a current, paying subscriber to the Licensor's [GitHub Sponsors](https://github.com/sponsors/quinton-ashley) or [Patreon](https://www.patreon.com/p5play) at the appropriate tier, as determined by the Licensor.
 
-1. Be a current, paying subscriber to the Licensor's [GitHub Sponsors](https://github.com/sponsors/quinton-ashley) or [Patreon](https://www.patreon.com/p5play) at the appropriate tier, as determined by the Licensor. If Licensees have any concerns about what tier is appropriate for their use, they must contact the Licensor at info@p5play.org and explain their planned use of the Content.
-
-2. Pay a custom invoice to the Licensor, as agreed upon by both parties.
-
-Licensing fees are based on the scale of the Licensee's use of the Content at a per student, per month rate.
+Licensing fees are based on the scale of the Licensee's use of the Content. If Licensees have any concerns about what tier is appropriate for their use, they must contact the Licensor at info@p5play.org and explain their planned use of the Content.
 
 Renewal of this Agreement can only be achieved through payments on a monthly or yearly basis, depending on the tier or payment plan chosen by the Licensee.
 
@@ -38,7 +32,7 @@ Note that the Licensor reserves the right to change the tier costs at any time, 
 
 The Licensee must publicly display appropriate credit to the Licensor for the Content, but not in any way that suggests the Licensor endorses the Licensee or the Licensee's use, unless the Licensor has given prior written consent.
 
-Attribution can be accomplished by maintaining the "made with p5play" Loading Screen, which is enabled by default, or in any reasonable manner.
+Attribution can be accomplished by maintaining the "made with p5play" Loading Screen, which is enabled by default, or in any reasonable manner, such as displaying the "made with p5play" image in a website's footer or game's credits section.
 
 ## 4. No Warranty
 

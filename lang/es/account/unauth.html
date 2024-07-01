@@ -1,19 +1,28 @@
-<link rel="stylesheet" href="/account/unauth.css">
+<html lang="es" class="es">
 
-<div class="unauth">
-	<div class="popup-bg">
-		<div id="unauth-popup">
-			<div class="navLink active">
-				<img alt="p5play logo" src="/assets/p5play_logo.svg" class="p5play_logo">
-				<span>p5play</span>
+<head>
+	<link rel="stylesheet" href="/account/unauth.css">
+</head>
+
+<body>
+	<div class="unauth">
+		<div class="popup-bg">
+			<div id="unauth-popup">
+				<div class="navLink active">
+					<img alt="p5play logo" src="/assets/p5play_logo.svg" class="p5play_logo">
+					<span>p5play</span>
+				</div>
+				<md id="md0-0">
+					<p>Inicia sesión para acceder a esta página.</p>
+				</md>
+				<a id="login-btn" class="accountBtns"
+					href="https://p5play.auth.us-west-2.amazoncognito.com/login?redirect_uri=https%3A%2F%2Fp5play.org%2Faccount%2Findex.html&amp;client_id=3oegfdhu2r7eo8nr371496718c&amp;response_type=token&amp;scope=email+openid+profile">Iniciar
+					sesión</a>
+				<a id="signup-btn" class="accountBtns" href="/account/signup.html">Registrarse</a>
 			</div>
-			<md id="md0-0">
-				<p>Inicia sesión para acceder a esta página.</p>
-			</md>
-			<a id="login-btn" class="accountBtns"
-				href="https://p5play.auth.us-west-2.amazoncognito.com/login?redirect_uri=https%3A%2F%2Fp5play.org%2Fpro%2Findex.html&amp;client_id=3oegfdhu2r7eo8nr371496718c&amp;response_type=token&amp;scope=email+openid+profile">Iniciar
-				sesión</a>
-			<a id="signup-btn" class="accountBtns" href="/pro/signup.html">Registrarse</a>
 		</div>
 	</div>
-</div>
+
+</body>
+
+</html>

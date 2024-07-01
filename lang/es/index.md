@@ -190,7 +190,7 @@ Consulta a [@quinton-ashley](https://openprocessing.org/user/350295?o=35&view=sk
 
 ## ¿Puedo usarlo comercialmente? 🤑
 
-¡Sí! Puedes usar p5play comercialmente en proyectos de código cerrado bajo los términos de la [Licencia Profesional de p5play](https://github.com/quinton-ashley/p5play-web/blob/main/pro/LICENSE.md), que está disponible para los miembros de [Patreon](https://www.patreon.com/p5play).
+¡Sí! Puedes usar p5play comercialmente en proyectos de código cerrado bajo los términos de la [Licencia Profesional de p5play](https://github.com/quinton-ashley/p5play-web/blob/main/pro/PRO_LICENSE.md), que está disponible para los miembros de [Patreon](https://www.patreon.com/p5play).
 
 Si no puedes permitirte pagar, puedes solicitar la [Licencia para Novatos de p5play](https://github.com/quinton-ashley/p5play-novice/blob/main/LICENSE.md) gratis. Consulta [LICENSING.md](https://github.com/quinton-ashley/p5play-web/blob/main/LICENSING.md) para más información.
 

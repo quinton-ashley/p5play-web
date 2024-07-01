@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es" class="es">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>p5play : Account</title>
+	<link rel="icon" href="/assets/p5play_logo.svg">
+	<link rel="stylesheet" href="/learn/style.css">
+</head>
+
+<body class="dark">
+	<article>
+		<nav id="topNav">
+			<a href="../index.html" class="logoLink active">
+				<img alt="p5play logo" src="/assets/p5play_logo.svg" class="p5play_logo">
+				<span>p5play</span>
+			</a>
+			<hr>
+			<a id="learn" href="../learn">Aprender</a>
+			<a id="pro" href="../pro">Pro</a>
+			<a id="play" href="../play">Juego</a>
+			<a id="jam" href="../jam">Jam</a>
+			<a id="teach" href="../teach">Enseña</a>
+
+			<div id="navRight">
+				<hr>
+				<a id="darkMode" onclick="toggleDarkMode()" tabindex="0" role="button" title="dark mode toggle">
+					<div id="darkModeIcon"></div>
+				</a>
+				<a id="accountIcon" href="../account">
+					<svg viewBox="0 0 20 20">
+						<path
+							d="M16.563 18H3.438c-.706 0-1.228-.697-.961-1.338C3.713 13.698 6.617 12 10 12c3.384 0 6.288 1.698 7.524 4.662.267.641-.255 1.338-.961 1.338M5.917 6c0-2.206 1.832-4 4.083-4 2.252 0 4.083 1.794 4.083 4S12.252 10 10 10c-2.251 0-4.083-1.794-4.083-4m14.039 11.636c-.742-3.359-3.064-5.838-6.119-6.963 1.619-1.277 2.563-3.342 2.216-5.603-.402-2.623-2.63-4.722-5.318-5.028C7.023-.381 3.875 2.449 3.875 6c0 1.89.894 3.574 2.289 4.673-3.057 1.125-5.377 3.604-6.12 6.963C-.226 18.857.779 20 2.054 20h15.892c1.276 0 2.28-1.143 2.01-2.364"
+							fill="#000" fill-rule="evenodd"></path>
+					</svg>
+				</a>
+			</div>
+		</nav>
+
+		<div class="break"></div>
+
+		<div class="page">
+			<div class="unauth">
+				<md id="md0-0">
+					<h2 id="cuenta">Cuenta</h2>
+					<p>¡Regístrate para obtener una cuenta gratuita y acceder a las páginas de aprendizaje, además de
+						recibir notificaciones por correo electrónico sobre nuevas características!</p>
+				</md>
+				<div class="login">
+					<a class="accountBtns" href="/account/signup.html">Sign Up</a>
+					<a class="accountBtns"
+						href="https://p5play.auth.us-west-2.amazoncognito.com/login?redirect_uri=https%3A%2F%2Fp5play.org%2Faccount%2Findex.html&amp;client_id=3oegfdhu2r7eo8nr371496718c&amp;response_type=token&amp;scope=email+openid+profile">Login</a>
+				</div>
+			</div>
+			<div class="auth">
+				<md id="md0-1">
+					<h2 id="cuenta-">Cuenta <span id="account-type"></span></h2>
+					<p>¡Bienvenido <span id="username"></span>!</p>
+					<p>Recibirás notificaciones por correo electrónico sobre nuevas características.</p>
+				</md>
+			</div>
+			<md id="md1-0">
+				<h2 id="limitaciones-del-uso-gratuito">Limitaciones del Uso Gratuito</h2>
+				<p>El uso gratuito bajo la <a href="https://github.com/quinton-ashley/p5play/blob/main/LICENSE.md"
+						target="_blank">AGPL</a> está limitado: cualquier trabajo que incorpore p5play debe ser de
+					código abierto y público.</p>
+				<p>El uso típico por parte de escuelas y desarrolladores de juegos comerciales requiere una licencia
+					propietaria. Consulta las páginas de <a href="../teach" target="_blank">Teach</a> o <a href="../pro"
+						target="_blank">Pro</a> para más información.</p>
+			</md>
+		</div>
+		<div class="break"></div>
+		<footer id="credits" class="text-small">
+			Created by Quinton Ashley (@quinton-ashley) Copyright 2022-2024.
+		</footer>
+	</article>
+
+	<script src="/learn/main.js"></script>
+<script src="/account/accountInfo.js"></script>
+<script src="/account/account.js"></script>
+<style>
+.page {
+	display: flex;
+}
+
+.auth {
+	display: none;
+}
+
+.login {
+	margin-top: 16px;
+	font-size: 32px;
+	font-weight: bold;
+	display: flex;
+	justify-content: center;
+	gap: 50px;
+}
+
+md p:first-child {
+	margin-top: 0;
+}
+
+#p5play-pro {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#p5play-pro div {
+	margin-top: 32px;
+}
+
+#p5play-pro p {
+	text-align: center;
+}
+
+#p5play-pro span {
+	font-family: Mont;
+	font-size: 40px;
+	color: cyan;
+	text-shadow: 3px 3px 0px var(--pink0);
+	margin: 0 16px;
+}
+
+#p5play-pro span:hover {
+	color: transparent !important;
+	-webkit-text-stroke: 1.6px cyan;
+}
+
+#p5play-pro img {
+	width: 180px;
+	max-width: 50%;
+}
+
+#username {
+	font-weight: bold;
+}
+
+#support {
+	margin-top: 32px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	gap: 32px;
+}
+
+#patreon-brand {
+	display: flex;
+	align-items: center;
+	height: 42px;
+	gap: 20px;
+	width: min-content;
+}
+
+#patreon-brand,
+#github-brand {
+	border-bottom: 1px solid transparent;
+}
+
+#patreon-brand:hover,
+#github-brand:hover {
+	color: var(--pink);
+	border-bottom: 1px solid var(--pink);
+}
+
+body.dark #patreon-brand {
+	filter: invert(90%);
+}
+
+body.dark #github-brand :nth-child(2) {
+	filter: invert(100%);
+}
+
+	</style>
+
+</body>
+
+</html>
