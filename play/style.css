@@ -172,6 +172,14 @@
 		width: 96vw;
 	}
 
+	#lg1 {
+		order: 2;
+	}
+
+	#lg2 {
+		order: 1;
+	}
+
 	.card,
 	.card .thumbnail {
 		height: 26.4375vw;

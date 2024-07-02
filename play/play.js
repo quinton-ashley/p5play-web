@@ -7,6 +7,13 @@ let projects = [
 		video: true
 	},
 	{
+		title: 'Gun Gaem',
+		author: '@coding398',
+		url: 'https://gungame-aus.coding398.dev/',
+		size: 1,
+		video: true
+	},
+	{
 		title: 'Into the Mines',
 		author: '@Tezumies',
 		url: 'https://tezumie.github.io/into-the-mines/',
@@ -33,13 +40,6 @@ let projects = [
 		video: true
 	},
 	{
-		title: 'Break Those Blocks',
-		author: '@moonflower2022',
-		url: 'https://moonflower2022.github.io/break-those-blocks/',
-		size: 1,
-		video: true
-	},
-	{
 		title: 'Puzzling Magnetism Recharged',
 		author: '@kevin98799',
 		url: 'https://kevin98799.itch.io/puzzling-magnetism-recharged',
@@ -60,17 +60,23 @@ let projects = [
 	{
 		title: 'Lily Leap',
 		author: '@AmaniZungu',
-		url: 'https://quintos.org/?user=AmaniZungu&game=LilyLeap&v=4'
-	},
-	{
-		title: 'Sun Warrior',
-		author: '@andyjshaw000',
-		url: 'https://andyjshaw000.github.io/Final438/'
+		url: 'https://quinton-ashley.github.io/quintos/?user=AmaniZungu&game=LilyLeap&v=4'
 	},
 	{
 		title: 'Dodeca Done',
 		author: '@coding398',
 		url: 'https://store.steampowered.com/app/2754840/Dodecadone/'
+	},
+	{
+		title: 'Break Those Blocks',
+		author: '@moonflower2022',
+		url: 'https://moonflower2022.github.io/break-those-blocks/',
+		video: true
+	},
+	{
+		title: 'Sun Warrior',
+		author: '@andyjshaw000',
+		url: 'https://andyjshaw000.github.io/Final438/'
 	},
 	{
 		title: 'Save the Mushrooms',
