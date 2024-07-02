@@ -210,9 +210,7 @@ p5play を無料で使用可能な事例には、以下のものが含まれま�
 - フリーゲームの開発
 - そのソースコードとともに、有料のゲームを公開
 
-上記以外のほとんどの使用例は、法的にはクローズドソースの商用利用とみなされ、プロプライエタリソフトウェアライセンスを必要とします。
-
-p5play を使用することにより、 [EULA](https://github.com/quinton-ashley/p5play/blob/main/EULA.md) に同意したことになります。
+上記以外のほとんどの使用例は、法的にはクローズドソースの商用利用とみなされ、プロプライエタリソフトウェアライセンスを必要とします。詳細については、[Pro](pro)または[Teach](teach)のページをご覧ください。
 
 # 17-5
 
@@ -223,30 +221,6 @@ p5play を使用することにより、 [EULA](https://github.com/quinton-ashle
 また、 OpenProcessing の [@quinton-ashley](https://openprocessing.org/user/350295?o=35&view=sketches) や、 [p5play's community Discord](https://discord.gg/EJwnJATmj7) の #share チャンネルで、みんなが p5play で何を作っているのかチェックしてみましょう。
 
 # 17-6
-
-## 商業利用は可能ですか？ 🤑
-
-商業利用の例をいくつか紹介します：
-
-- 有料または不特定多数に公開されていない講習での指導
-- 有料または収益化されたゲームの公開
-- 公的にアクセスできない教育課程の作成
-- 発注元から報酬を受けてゲームを開発
-- API サービスやウェブサイトの収益化
-
-はい、可能です！ [p5play Professional License](https://github.com/quinton-ashley/p5play-web/blob/main/pro/PRO_LICENSE.md) の条件下で、 p5play をクローズドソースプロジェクト内で商業利用できます。このライセンスは [Patreon](https://www.patreon.com/p5play) メンバーに提供されます。
-
-支払いが困難な場合は、無料の [p5play Novice License](https://github.com/quinton-ashley/p5play-novice/blob/main/LICENSE.md) を申請することができます。詳しくは [LICENSING.md](https://github.com/quinton-ashley/p5play-web/blob/main/LICENSING.md) をご覧ください。
-
-# 17-7
-
-## Quinton Ashley とは誰ですか？ 👨‍💻
-
-こんにちは、私は Quinton （クイントン）と申します。 p5play （バージョン 3 ）と p5play.org の作者です。
-
-p5play での私の仕事については、個人ブログ形式でつづっている私の [developer log](https://github.com/quinton-ashley/p5play/wiki/Developer-Log) をチェックしてください。
-
-# 17-8
 
 ## クレジット ⭐️
 
@@ -262,7 +236,7 @@ p5play の裏で使用されている Box2D の JavaScript 移植版 planck.js �
 
 テスターとバグレポーター： Raj Raizada 、 Nathan Anil 、 Chayarat Wangweera 、 Zhiyuan Guo 、 Aarnav Gupta 、そして Carter Noa 。
 
-# 17-9
+# 17-7
 
 ## スペシャルサンクス 🙌
 

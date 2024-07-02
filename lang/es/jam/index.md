@@ -6,9 +6,19 @@
 
 Puedes trabajar de forma individual o en equipo. Comparte tu juego en el canal [#share](https://discord.gg/EJwnJATmj7) en Discord para recibir comentarios antes de que termine la competencia. Envía tu juego utilizando el formulario de Google vinculado a continuación.
 
-Los juegos deben utilizar la última versión de p5play y deben enviarse antes del 20 de junio de 2024.
+Los juegos deben utilizar la última versión de p5play y deben enviarse antes del 20 de Diciembre de 2024.
 
 ## 🎉 [¡Envía tu juego!](https://forms.gle/xn2PvsC8FA8Hf8Qo8) 🎉
+
+# s2024
+
+## 🥇 Verano 2024 : [@coding398](https://coding398.dev/)
+
+["Gun Gaem"](https://gungame-aus.coding398.dev/), por Lachlan Noble (15 años), es un juego de disparos multijugador en línea con vista cenital. En cada vida obtienes algunas cosas aleatorias para luchar... ¡o morir en el intento! Podrías obtener un arma normal, pero también es probable que obtengas bolas de boliche, estrellas ninja o incluso una mesa de DJ.
+
+También hay una gran variedad de mapas y modos de juego para probar. Enfréntate en un todos contra todos, captura la bandera o únete a tus amigos para una pelea de jefes con Vectah.
+
+Este juego ganó debido a su jugabilidad alocada, rápida y caótica. El código del juego hace un gran uso del raycasting para la detección de impactos y tiene una impresionante IA de bots. Pero lo más notable es que es el primer juego en usar p5play del lado del servidor para multijugador en línea.
 
 # w2023
 

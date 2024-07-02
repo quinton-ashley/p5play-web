@@ -210,9 +210,7 @@ Acceptable free use of p5play includes:
 - developing a game that is not monetized
 - publishing a monetized game if you publicly share the source code
 
-Almost any other use case is legally considered closed-source commercial use and requires a proprietary license.
-
-By using p5play you agree to the [EULA](https://github.com/quinton-ashley/p5play/blob/main/EULA.md).
+Typical use by schools and commercial game developers requires a proprietary license. See the [Pro](pro) or [Teach](teach) pages for more information.
 
 # 17-5
 
@@ -223,30 +221,6 @@ Take a look at the student projects featured on the [Play page](play/index.html)
 Also check out [@quinton-ashley](https://openprocessing.org/user/350295?o=35&view=sketches) on OpenProcessing and the #share channel on [p5play's community Discord](https://discord.gg/EJwnJATmj7) to see what people are making with p5play.
 
 # 17-6
-
-## Can I use it commercially? 🤑
-
-Here are some examples of commercial use:
-
-- teaching a class that's not free or not open to the general public
-- publishing a paid or monetized game
-- writing curriculum that's not publicly accessible
-- developing a game for a paying client
-- monetizing an API service or website
-
-Yes! You can use p5play commercially in closed source projects under the terms of the [p5play Professional License](https://github.com/quinton-ashley/p5play-web/blob/main/pro/PRO_LICENSE.md), which is available to [Patreon](https://www.patreon.com/p5play) members.
-
-If you can't afford to pay, you can apply for the free [p5play Novice License](https://github.com/quinton-ashley/p5play-novice/blob/main/LICENSE.md). See [LICENSING.md](https://github.com/quinton-ashley/p5play-web/blob/main/LICENSING.md) for more info.
-
-# 17-7
-
-## Who is Quinton Ashley? 👨‍💻
-
-Hi I'm Quinton, the creator of p5play (version 3) and p5play.org.
-
-Check out my [developer log](https://github.com/quinton-ashley/p5play/wiki/Developer-Log) for personal blog style writing about my work on p5play.
-
-# 17-8
 
 ## Credits ⭐️
 
@@ -262,7 +236,7 @@ Current contributors: @Tezumie, Oliver Zell, Caleb Foss, and Bobby S.
 
 Testers and bug reporters: Raj Raizada, Nathan Anil, Chayarat Wangweera, Zhiyuan Guo, Aarnav Gupta, and Carter Noa.
 
-# 17-9
+# 17-7
 
 ## Special Thanks 🙌
 

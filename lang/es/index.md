@@ -174,11 +174,19 @@ p5play definitivamente cierra la brecha entre Scratch y motores de juego profesi
 
 # 17-4
 
-## ¿Es de código abierto? 📖
+## ¿Puedo usar p5play gratis? 📖
 
-p5play v3 es de código abierto bajo la licencia AGPLv3 para apoyar el desarrollo de juegos independiente.
+p5play es de código abierto y [tiene múltiples licencias](https://github.com/quinton-ashley/p5play-web/blob/main/LICENSING.md). Solo se puede usar gratis bajo los términos de la [AGPLv3](https://github.com/quinton-ashley/p5play/blob/main/LICENSE.md).
 
-Al usar p5play, aceptas la [EULA](https://github.com/quinton-ashley/p5play/blob/main/EULA.md).
+El uso gratuito aceptable de p5play incluye:
+
+- enseñar una clase gratuita que esté abierta al público general
+- como parte de un currículo que está disponible gratuitamente para el público
+- publicar un video tutorial en YouTube, incluso si está monetizado (protegido por el uso justo)
+- desarrollar un juego que no esté monetizado
+- publicar un juego monetizado si compartes públicamente el código fuente
+
+Casi cualquier otro uso requiere una licencia propietaria. Consulte las páginas [Pro](pro) o [Teach](teach) para obtener más información.
 
 # 17-5
 
@@ -187,22 +195,6 @@ Al usar p5play, aceptas la [EULA](https://github.com/quinton-ashley/p5play/blob/
 Consulta a [@quinton-ashley](https://openprocessing.org/user/350295?o=35&view=sketches) en OpenProcessing y el canal #share en [el Discord comunitario de p5play](https://discord.gg/EJwnJATmj7) para ver lo que la gente está haciendo con p5play.
 
 # 17-6
-
-## ¿Puedo usarlo comercialmente? 🤑
-
-¡Sí! Puedes usar p5play comercialmente en proyectos de código cerrado bajo los términos de la [Licencia Profesional de p5play](https://github.com/quinton-ashley/p5play-web/blob/main/pro/PRO_LICENSE.md), que está disponible para los miembros de [Patreon](https://www.patreon.com/p5play).
-
-Si no puedes permitirte pagar, puedes solicitar la [Licencia para Novatos de p5play](https://github.com/quinton-ashley/p5play-novice/blob/main/LICENSE.md) gratis. Consulta [LICENSING.md](https://github.com/quinton-ashley/p5play-web/blob/main/LICENSING.md) para más información.
-
-# 17-7
-
-## ¿Quién es Quinton Ashley? 👨‍💻
-
-Hola, soy Quinton, el creador de p5play (v3) y p5play.org. También soy un Educador de CS con 7 años de experiencia. ¡Contáctame si estás interesado en clases particulares! <mailto:quintonashley5@gmail.com>
-
-Consulta mi [registro de desarrollador](https://github.com/quinton-ashley/p5play/wiki/Developer-Log) para escritura estilo blog personal sobre mi trabajo en p5play.
-
-# 17-8
 
 ## Créditos ⭐️
 
@@ -218,7 +210,7 @@ Contribuyentes actuales: @Tezumie, Oliver Zell, Caleb Foss y Bobby S.
 
 Probadores y reporteros de errores: Raj Raizada, Nathan Anil, Chayarat Wangweera, Zhiyuan Guo, Aarnav Gupta y Carter Noa.
 
-# 17-9
+# 17-7
 
 ## Agradecimientos especiales 🙌
 
