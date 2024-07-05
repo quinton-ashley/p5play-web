@@ -57,10 +57,25 @@ dev
 
 See the [LICENSING.md][] file.
 
-[licensing.md]: LICENSING.md
-[p5play project planning page]: https://github.com/users/quinton-ashley/projects/5
-[mie]: https://github.com/quinton-ashley/mie
-[translations]: /lang/instructions.md
+## Credits
+
+[Certificate icons created by Freepik - Flaticon](https://www.flaticon.com/free-icon/certificate_3135807)
+
+[Interactive Textbook icons created by Freepik - Flaticon](https://www.flaticon.com/free-icon/online-learning_2949758)
+
+[Game Design icons created by wanicon - Flaticon](https://www.flaticon.com/free-icon/game_3938651)
+
+[Teaching icons created by Eucalyp - Flaticon](https://www.flaticon.com/free-icon/lecture_2643368)
+
+[School icons created by Freepik - Flaticon](https://www.flaticon.com/free-icon/school_2602414)
+
+[Mobile-game icons created by Rabit Jes - Flaticon](https://www.flaticon.com/free-icon/mobile-game_4519176)
+
+[Game Controller icons created by Freepik - Flaticon](https://www.flaticon.com/free-icon/game-control_6875330)
+
+[Developer icons created by Becris - Flaticon](https://www.flaticon.com/free-icon/developer_5966282)
+
+[Control Design icons created by Pixelmeetup - Flaticon](https://www.flaticon.com/free-icon/visuals_1792271)
 
 ## Release Checklist
 
@@ -70,3 +85,8 @@ See the [LICENSING.md][] file.
 - [ ] Minify and distribute, run `bun dist` in `p5play-web`
 - [ ] Run `bun v` (minor update) or `bun V` (major update) in `p5play-web` and `p5play`
 - [ ] Run `npm publish` in `p5play`
+
+[licensing.md]: LICENSING.md
+[p5play project planning page]: https://github.com/users/quinton-ashley/projects/5
+[mie]: https://github.com/quinton-ashley/mie
+[translations]: /lang/instructions.md

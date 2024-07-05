@@ -37,17 +37,21 @@
 			<a id="darkMode" onclick="toggleDarkMode()" tabindex="0" role="button" title="dark mode toggle">
 				<div id="darkModeIcon"></div>
 			</a>
-			<hr>
-			<div id="littleLangs">
-				<a href="/" lang="en" class="" title="English">English</a>
-				<a href="/lang/es" lang="es" title="Spanish">Español</a>
-				<a href="/lang/ja" lang="ja" title="Japanese" class="active">日本語</a>
-			</div>
+			<a id="accountIcon" href="../account">
+				<svg viewBox="0 0 20 20">
+					<path
+						d="M16.563 18H3.438c-.706 0-1.228-.697-.961-1.338C3.713 13.698 6.617 12 10 12c3.384 0 6.288 1.698 7.524 4.662.267.641-.255 1.338-.961 1.338M5.917 6c0-2.206 1.832-4 4.083-4 2.252 0 4.083 1.794 4.083 4S12.252 10 10 10c-2.251 0-4.083-1.794-4.083-4m14.039 11.636c-.742-3.359-3.064-5.838-6.119-6.963 1.619-1.277 2.563-3.342 2.216-5.603-.402-2.623-2.63-4.722-5.318-5.028C7.023-.381 3.875 2.449 3.875 6c0 1.89.894 3.574 2.289 4.673-3.057 1.125-5.377 3.604-6.12 6.963C-.226 18.857.779 20 2.054 20h15.892c1.276 0 2.28-1.143 2.01-2.364"
+						fill="#000" fill-rule="evenodd"></path>
+				</svg>
+			</a>
 		</nav>
-		<div class="spacer"></div>
-		<div class="big break">
-			<a href="learn/activism.html" id="banner">🇵🇸 私たちは、平和と正義のために抗議する学生を支援します! 🇵🇸</a>
-		</div>
+		<div class="nav-spacer"></div>
+		<nav id="langNav">
+			<a href="/" lang="en" class="" title="English">English</a>
+			<!-- <a href="/lang/zh" lang="zh" title="Chinese">中文</a> -->
+			<a href="/lang/es" lang="es" title="Spanish">Español</a>
+			<a href="/lang/ja" lang="ja" title="Japanese" class="active">日本語</a>
+		</nav>
 	</article>
 
 	<div id="reels">
@@ -509,17 +513,6 @@ function dropSprite() {
 			</div>
 
 			<div class="page">
-
-				<div class="break"></div>
-
-				<div class="full">
-					<md id="md14">
-						<h2 id="50000-人のアクティブユーザーに参加しましょう！">+50,000 人の<wbr>アクティブユーザーに<wbr>参加しましょう！</h2>
-						<h3 id="まずは、インタラクティブな「学ぶ」ページから始めましょう。"><a href="learn/sprite.html"
-								target="_blank">まずは、<wbr>インタラクティブな<wbr>「学ぶ」ページ<wbr>から<wbr>始めましょう。</a></h3>
-					</md>
-				</div>
-
 				<div class="break"></div>
 			</div>
 		</div>
@@ -539,25 +532,13 @@ function dropSprite() {
 			<div class="page">
 				<div class="break"></div>
 
-				<md id="md16-0">
-					<h2 id="教員の方ですか？-👩🏫-🧑🏫-👨🏫">教員の方ですか？ 👩‍🏫 🧑‍🏫 👨‍🏫</h2>
-					<p>中学校や高校の授業で、生徒たちにオブジェクト指向プログラミングに興味を持ってもらうには、 p5play はうってつけの教材です。</p>
-					<p>私は教員向けに、 Professional Development 講座を開催しています (英語のみの受け付けです) 。たとえ皆さんが「ゲーマー」でなくても、ゲームデザインの経験がなくても、
-						p5play 指導のエキスパートになれます！ 皆さんの生徒たちは、自発的にゲームやインタラクティブアートを作ることに熱中するでしょう。私の Professional Development
-						コースで、授業での教育課程の策定、生徒の提出物の評価方法、厳選された生徒向け教材……など、諸々について皆さんにアドバイスさせていただきます！</p>
-					<p>Professional Development に関するお問い合わせは、メールにて: <a href="mailto:info@p5play.org"
-							target="_blank">info@p5play.org</a></p>
-				</md>
-				<md id="md16-1">
-					<h2 id="学生の方ですか？-🙋♀️-🙋-🙋♂️">学生の方ですか？ 🙋‍♀️ 🙋 🙋‍♂️</h2>
-					<p>皆さんの学校にコンピュータ・サイエンスの先生がいたら、 p5play をぜひ紹介してあげてください！</p>
-					<p>そうでない場合は、私が開設している、オンライン講座をご利用ください。内容は： AP Computer Science Principles, AP CS A, IGCSE Computer
-						Science, などなど。楽しみながら、いっしょに業界標準のコンピュータ・サイエンスを学びましょう！</p>
-					<p>また、私はゲームデザインの基礎も教えています (英語のみの受け付けです) 。 p5play の使い方を学んで、皆さんのプログラミング技術をレベルアップ！
-						皆さんの作ったゲームが世界中に広まるよう、お手伝いします！</p>
-					<p>ご両親に <a href="mailto:info@p5play.org" target="_blank">info@p5play.org</a>
-						までメールを送ってもらい、家庭教師についてお問い合わせください。</p>
-				</md>
+				<div class="full">
+					<md id="md14">
+						<h2 id="50000-人のアクティブユーザーに参加しましょう！">+50,000 人の<wbr>アクティブユーザーに<wbr>参加しましょう！</h2>
+						<h3 id="まずは、インタラクティブな「学ぶ」ページから始めましょう。"><a href="learn/sprite.html"
+								target="_blank">まずは、<wbr>インタラクティブな<wbr>「学ぶ」ページ<wbr>から<wbr>始めましょう。</a></h3>
+					</md>
+				</div>
 
 				<div class="break"></div>
 

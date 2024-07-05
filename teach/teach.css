@@ -1,0 +1,168 @@
+article {
+	width: 100%;
+	position: absolute;
+	top: 0;
+	flex-direction: row;
+}
+
+.page {
+	display: flex;
+	width: 1030px;
+	padding: 20px;
+}
+
+.spacer {
+	padding: 0 !important;
+}
+
+.shell {
+	background-color: transparent !important;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+md p:first-child {
+	margin-top: 0;
+}
+
+#p5play_logo0 {
+	position: absolute;
+	width: 200vw;
+	top: -77vw;
+	left: -15vw;
+	z-index: -1;
+	opacity: 0.75;
+	transition: transform 0.5s;
+	animation: grow 5s infinite alternate;
+}
+
+/* grow and shrink css animation */
+@keyframes grow {
+	0% {
+		transform: scale(1);
+	}
+
+	100% {
+		transform: scale(1.1);
+	}
+}
+
+
+.reel {
+	width: 100vw;
+	height: 56.25vw;
+	overflow: hidden;
+	display: flex;
+	justify-content: center;
+}
+
+video {
+	object-fit: cover;
+	width: 100vw;
+	position: absolute;
+	left: 0;
+	z-index: -2;
+	image-rendering: pixelated;
+}
+
+#page0 {
+	justify-content: start;
+	align-content: center;
+	gap: 16px;
+}
+
+#page0>div {
+	width: fit-content;
+}
+
+h3 {
+	margin: 0;
+}
+
+#page0 md {
+	width: fit-content;
+}
+
+.hero-icon {
+	display: flex;
+	height: line-height;
+	background-color: transparent;
+	align-items: center;
+	background-color: var(--secondary);
+	gap: 8px;
+	border-radius: 8px;
+}
+
+.hero-icon h2 {
+	margin-top: 0;
+}
+
+.page>.hero-icon {
+	padding: 8px;
+	margin-top: 64px;
+	margin-left: 48px;
+}
+
+.page>.hero-icon>h2 {
+	margin: 0;
+}
+
+.hero-icon img {
+	width: 120px;
+	height: 120px;
+	margin-top: -90px;
+}
+
+.page>.hero-icon img {
+	margin-left: -48px;
+}
+
+/* @media screen and (max-width: 1300px) {
+
+} */
+
+@media screen and (max-width: 1030px) {
+
+	.reel,
+	video {
+		height: 70vw;
+	}
+
+	.page {
+		width: 100%;
+		align-content: flex-end;
+	}
+
+	#page0 {
+		gap: 72px;
+	}
+
+	#topNav>hr:first-of-type {
+		order: unset;
+	}
+}
+
+@media screen and (max-width: 730px) {
+
+	.reel,
+	video {
+		height: 100vw;
+	}
+}
+
+@media screen and (max-width: 630px) {
+
+	.reel,
+	video {
+		height: 150vw;
+	}
+}
+
+@media screen and (max-width: 400px) {
+
+	.reel,
+	video {
+		height: 200vw;
+	}
+}

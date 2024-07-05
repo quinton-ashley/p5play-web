@@ -38,7 +38,7 @@ Unlock exclusive content and obtain the [p5play Professional License](https://gi
 
 ## No installation required 🤩
 
-Works great on Google Chromebooks! Start creating your own p5play project with one of these online code editors.
+Works great on iPads and Chromebooks! Start creating your own p5play project with one of these online code editors.
 
 # 13-0
 
@@ -150,13 +150,13 @@ Ask your parents to send an email to [info@p5play.org](mailto:info@p5play.org) a
 
 ## Why do Computer Science educators love p5play?! 😍
 
-The [p5.js](https://p5js.org/) graphics library is already popular among CS educators, so p5play is a natural addition to many curriculums.
+p5play makes Object Oriented Programming tangible. Changing the properties of game objects called [sprites](../learn/sprite.html) produces immediate visual feedback.
 
-p5play is great for teaching Object Oriented Programming concepts. Instead of manipulating abstract data in a console, students can create game objects called [sprites](../learn/sprite.html) that they can see and physically interact with. Students can also learn about arrays and class-like inheritance by using [groups](../learn/group.html).
+p5play is a natural addition to [p5.js](https://p5js.org/) based curriculum, which is already popular in schools.
 
-p5play is also entirely code based, so students don't need a specialized editor app to use it (unlike with Unity). With p5play, students gain practical, transferrable JavaScript programming skills and experience with online code editors or industry standard IDEs like [Visual Studio Code](https://code.visualstudio.com/).
+Also, since it doesn't require a bespoke game editor, students gain transferrable, text based coding skills.
 
-p5play is also well designed and documented. Check out the [Learn pages](../learn), a free resource packed with interactive examples and exercises.
+p5play is well designed and documented. Check out the [Learn pages](../learn), a free resource packed with interactive examples and exercises.
 
 # 17-1
 
@@ -166,9 +166,9 @@ Every EdTech company claims their "easy and fun to use" software empowers studen
 
 If these platforms are so fun and creatively empowering, why are students only using them to complete assignments?
 
-p5play is different! It has all the features that students could want from a game engine: physics based contact handling, input detection, animations, a camera, joints, and more.
+p5play makes the art of game design more accessible, without being reductive. We believe in rewarding students for learning the basics by enabling them to go beyond.
 
-Since p5play is web based, students can share their projects online. That's not so easy to do with a Python, C#, or Java project. Being able to share projects with family and friends can motivate students to make something worth sharing!
+Check out the incredible games that students have [made with p5play](../play).
 
 # 17-2
 
@@ -176,25 +176,23 @@ Since p5play is web based, students can share their projects online. That's not 
 
 [Scratch](https://scratch.mit.edu/) is great for students ages 8-11, but older students have higher expectations that Scratch can't meet.
 
-One of the biggest problems: Scratch has no built-in physics engine. That means even something super easy to make in p5play, like a ball rolling down a slope, requires a lot of math and is incredibly tedious to implement in Scratch's block based environment.
+Scratch has no built-in physics engine. That means even something like a ball rolling down a slope, requires a lot of math and is incredibly tedious to implement in Scratch's block based environment.
 
-The featured games on the Scratch website are inspiring to students, but they were made by adults with extreme patience. If a student is really determined to make an impressive game in Scratch, they'll probably have to spend 20 hours copying from YouTube tutorials. With p5play, students can get results way faster and with less frustration.
+Many of the featured games on the Scratch website were clearly made by adults. That can give students false hope that they can make something similar, without copying from YouTube tutorials for 20 hours.
+
+With p5play, students don't have to write their own boilerplate code for basic functionality. They can focus on the fun parts of game design!
 
 # 17-3
 
 ## Why was p5play created? 🎨
 
-Corporations shouldn't have a monopoly on the art of game development! p5play was created to make this medium more accessible to students, educators, and indie developers.
+Virtual worlds and game systems are powerful tools for artistic expression. Corporations shouldn't have a monopoly on the art of game development!
 
-In the early days of the internet, Adobe Flash made it easier for hobbyists to develop, share games, and garner an audience, than ever before. But since Flash was phased out, gaming became more commercialized. Corporations like Meta (FaceBook) and Apple heavily promoted games poisoned by micro-transactions and loot boxes, mechanics designed to maximize profit. Hobbyists were left in the dust. Now gamers are sick of being exploited, they want originality, but in a polished package.
-
-That's why Roblox, Minecraft for Education, and Fortnite all enable young developers to create and share game modes and experiences. They promise massive potential audiences but insidiously, these platforms are walled gardens that restrict artistic freedom and exploit developers. These corporations regularly remove or shadow ban content they dislike, and they can do so without explanation or recourse. These corporations explicitly forbid political art and only want un-controversial content they can monetize to extend the life of their decades old games.
-
-But virtual worlds and game systems are powerful tools for artistic expression. Young game designers will always be able to use p5play freely, without corporate restrictions.
+p5play was created so that young game developers could create freely, without corporate restrictions.
 
 **"Only the best is good enough"** - Godtfred Kirk Christiansen, founder of LEGO
 
-p5play was made to definitively bridge the gap between Scratch and professional game engines like Unity, which are too complex for beginners and too specialized to be used for general CS education.
+p5play definitively bridges the gap between Scratch and professional game engines like Unity.
 
 # 17-4
 
@@ -205,10 +203,10 @@ p5play is open source and [multi-licensed](https://github.com/quinton-ashley/p5p
 Acceptable free use of p5play includes:
 
 - teaching a free class that's open to the general public
-- as part of a curriculum that is freely available to the public
+- in curriculum that is freely available to the public
 - posting a tutorial video on YouTube, even if it's monetized (protected by fair use)
 - developing a game that is not monetized
-- publishing a monetized game if you publicly share the source code
+- publishing a game that's open source
 
 Typical use by schools and commercial game developers requires a proprietary license. See the [Pro](pro) or [Teach](teach) pages for more information.
 
@@ -224,13 +222,15 @@ Also check out [@quinton-ashley](https://openprocessing.org/user/350295?o=35&vie
 
 ## Credits ⭐️
 
-Huge thanks to everyone that's contributed to creating p5play (version 3)! 😄
+p5play (version 3) was created by Quinton Ashley.
 
-Paolo Pedercini, creator p5.play (version 1), who trusted me to take over the project! [molleindustria.org](http://molleindustria.org)
+Huge thanks to everyone that's helped with p5play! 🙏
 
-Erin Catto, creator of the Box2D physics simulator. [box2d.org](https://box2d.org)
+[Paolo Pedercini](http://molleindustria.org), creator p5.play (version 1), who trusted me to take over the project!
 
-Ali Shakiba, creator of planck.js, a JavaScript port of Box2D used behind the scenes by p5play. [piqnt.com/planck.js](https://piqnt.com/planck.js)
+Erin Catto, creator of the [Box2D](https://box2d.org) physics simulator.
+
+Ali Shakiba, creator of [planck.js](https://piqnt.com/planck.js), a JavaScript port of Box2D used behind the scenes by p5play.
 
 Current contributors: @Tezumie, Oliver Zell, Caleb Foss, and Bobby S.
 

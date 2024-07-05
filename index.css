@@ -21,11 +21,6 @@ nav {
 	width: fit-content;
 }
 
-.spacer {
-	flex-basis: 100%;
-	height: 0;
-}
-
 .big.break {
 	width: fit-content;
 	max-width: 90%;
@@ -70,17 +65,9 @@ video {
 	flex-wrap: wrap;
 }
 
-#littleLangs {
-	display: inline-flex;
-	align-items: center;
-}
-
-#littleLangs a.active,
-#littleLangs a:hover,
-#littleLangs a {
-	font-size: 16px;
-	text-shadow: none;
-	transition: 0.3s;
+#langNav {
+	border-radius: 8px;
+	overflow-x: scroll;
 }
 
 .page {
@@ -650,6 +637,10 @@ html.ja footer {
 
 .spacer {
 	padding: 0 !important;
+}
+
+ul {
+	padding-inline-start: 20px;
 }
 
 @media screen and (max-width: 1500px) {
