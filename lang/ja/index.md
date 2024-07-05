@@ -32,7 +32,7 @@
 
 p5play は、 [AGPLv3](https://github.com/quinton-ashley/p5play-web/blob/main/LICENSING.md) ライセンスの下、無料で利用できるオープンソースプロジェクトです。
 
-さらに、 [_PRO_ メンバー](pro)に加入すれば、 [p5play Professional License](https://github.com/quinton-ashley/p5play-web/blob/main/pro/PRO_LICENSE.md) が得られることで、サイト内の限定コンテンツがアンロックされます！
+[_PRO_ メンバー](pro)になると、限定コンテンツがアンロックされ、[p5play プロフェッショナルライセンス](https://github.com/quinton-ashley/p5play-web/blob/main/pro/PRO_LICENSE.md)を取得できます！
 
 # 12
 
@@ -210,7 +210,7 @@ p5play を無料で使用可能な事例には、以下のものが含まれま�
 - フリーゲームの開発
 - そのソースコードとともに、有料のゲームを公開
 
-上記以外のほとんどの使用例は、法的にはクローズドソースの商用利用とみなされ、プロプライエタリソフトウェアライセンスを必要とします。詳細については、[Pro](pro)または[Teach](teach)のページをご覧ください。
+通常、教育機関での教材や、商用ゲーム開発者による使用には、プロプライエタリ・ライセンスが必要です。くわしくは[有償プラン](pro)または[教える](teach)のページをご覧ください。
 
 # 17-5
 
@@ -228,13 +228,13 @@ p5play （バージョン 3 ）の作成に貢献してくれたすべての人�
 
 p5.play （バージョン 1 ）の作成者である Paolo Pedercini は、このプロジェクトを引き継ぐことを私に任せてくれました！ [molleindustria.org](http://molleindustria.org)
 
-Box2D 物理シミュレータの作成者、 Erin Catto 。 [box2d.org](https://box2d.org)
+Box2D 物理シミュレータの作成者、 Erin Catto。 [box2d.org](https://box2d.org)
 
-p5play の裏で使用されている Box2D の JavaScript 移植版 planck.js の作成者、 Ali Shakiba 。 [piqnt.com/planck.js](https://piqnt.com/planck.js)
+p5play の裏で使用されている Box2D の JavaScript 移植版 planck.js の作成者、 Ali Shakiba。 [piqnt.com/planck.js](https://piqnt.com/planck.js)
 
-現在のコントリビューター： @Tezumie、 Oliver Zell 、Caleb Foss 、そして Bobby S。
+現在のコントリビューター： @Tezumie、 Oliver Zell、Caleb Foss、そして Bobby S。
 
-テスターとバグレポーター： Raj Raizada 、 Nathan Anil 、 Chayarat Wangweera 、 Zhiyuan Guo 、 Aarnav Gupta 、そして Carter Noa 。
+テスターとバグレポーター： Raj Raizada、 Nathan Anil、 Chayarat Wangweera、 Zhiyuan Guo、 Aarnav Gupta、そして Carter Noa。
 
 # 17-7
 

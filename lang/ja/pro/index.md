@@ -1,34 +1,32 @@
 # 0-0
 
-## Pro (有償プラン)
+## Pro メンバーシップ
 
-p5play をご支援いただけるという場合は、 [Patreon](https://www.patreon.com/p5play) や [GitHub Sponsors](https://github.com/sponsors/quinton-ashley) 経由での Pro メンバー加入を歓迎しております。
+[Patreon](https://www.patreon.com/p5play) や [GitHub Sponsors](https://github.com/sponsors/quinton-ashley) で p5play を支援して、 Pro メンバーになりましょう。
 
 # 0-1
 
-近日中にドキュメントが公開されます！
+ドキュメントは近日公開予定！
 
 # 1-1
 
 ## 商用利用
 
-Pro メンバーは、[p5play プロフェッショナルライセンス](https://github.com/quinton-ashley/p5play-web/blob/main/pro/PRO_LICENSE.md)を利用することで、ソースコードを公開せずに商用利用できます。
+Pro メンバーは、 [p5play プロフェッショナルライセンス](https://github.com/quinton-ashley/p5play-web/blob/main/pro/PRO_LICENSE.md)が適用されることで、制作物のソースコードを公開することなく、 p5play を商用利用することができます。
 
 # 1-2
 
 ## iOS アプリテンプレート
 
-p5play で作成したゲームでの収益化をご希望ですか？
-
-Pro メンバーは、Swift でコーディングすることなく iOS アプリを構築するためのテンプレートを使用できます。Apple の App Store でゲームを販売したり、 p5play の iOS アプリテンプレートで広告から収益を得たりすることが可能になります！
+Pro メンバーはテンプレートを使うことで、 Swift のコーディングをすることなく iOS アプリを制作できます。Apple の App Store でゲームを販売したり、広告収入を得たりすることが可能になります！
 
 # 1-3
 
 ## カリキュラム
 
-「p5play ゲームデザイン基礎」は、 p5play v3 の開発者である Quinton Ashley が作成した、コンピュータ・サイエンス教員向けのカリキュラムです！
+「p5play ゲームデザイン基礎」は、 p5play v3 の開発者である Quinton Ashley が制作したカリキュラムです！
 
-Pro メンバーは、スライドと実習を含む Google Drive フォルダへのアクセス権を得られます。授業の教材に使ったり、あなた自身のカリキュラムのヒントにと、大いにご活用ください。
+Pro メンバーは、このカリキュラムのスライドや実習内容へのアクセス権を得られるので、皆さまのゲームデザインスキルのレベルアップに、存分にお役立てください。
 
 # 2-0
 
@@ -40,6 +38,6 @@ Pro メンバーは、スライドと実習を含む Google Drive フォルダ�
 
 # 2-1
 
-## 公平なアクセス
+## 教育機会の均等化（イクイタブル・アクセス）にむけて
 
-支払いが難しい場合は、[info@p5play.org](mailto:info@p5play.org)までご連絡ください。件名に「公平なアクセス」と記載し、p5play の使用目的を説明してください。
+もし Pro メンバーシップを購入する経済的余裕がない場合は、 [info@p5play.org](mailto:info@p5play.org) までお問い合わせください。その際、メールの件名に "Equitable Access" とご記入の上、 p5play の使用目的について、ご説明をお願いいたします。
