@@ -1,3 +1,42 @@
+function getAdvancedSecurityData(formReference) {
+	if (typeof AmazonCognitoAdvancedSecurityData === 'undefined') {
+		return true;
+	}
+	var userPoolId = '';
+	var clientId = getUrlParameter('client_id');
+	var username = '';
+	var usernameInput = document.getElementsByName('username')[0];
+	if (usernameInput && usernameInput.value) {
+		username = usernameInput.value;
+	}
+	var asfData = AmazonCognitoAdvancedSecurityData.getData(username, userPoolId, clientId);
+	if (typeof asfData === 'undefined') {
+		return true;
+	}
+	if (formReference && formReference.cognitoAsfData) {
+		formReference.cognitoAsfData.value = asfData;
+	}
+	return true;
+}
+
+function getUrlParameter(name) {
+	name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+	var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+	var results = regex.exec(location.search);
+	return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+}
+
+function onSubmit(evt, formRef) {
+	formRef.querySelector('button[type="submit"]').disabled = true;
+	if (!!formRef.submitted) {
+		evt.preventDefault();
+		return false;
+	} else {
+		formRef.submitted = true;
+		return getAdvancedSecurityData(formRef);
+	}
+}
+
 var $inputs = $(':input');
 $inputs.on('input', function () {
 	var self = this;
@@ -13,11 +52,6 @@ $inputs.on('input', function () {
 document.getElementById('localeInput').value = navigator.languages[0] || navigator.language || navigator.userLanguage;
 
 document.getElementById('todaysDate').value = Math.floor(new Date().getTime() / 1000);
-
-function birthdayFocus() {
-	let el = document.getElementById('birthdayLbl');
-	if (el) el.remove();
-}
 
 function checkPasswordHelper(password) {
 	var passwordPolicy = [];
@@ -210,18 +244,16 @@ function checkIfValid() {
 		$('#gender').addClass('not-valid');
 	}
 
-	// Check if the birthday input is valid
-	var enteredDate = new Date($('#birthday').val());
-
-	var today = new Date();
-	today.setHours(0, 0, 0, 0);
-
-	if (enteredDate && enteredDate < today) {
-		$('#birthday').removeClass('not-valid');
-		$('#birthday').addClass('is-valid');
+	if ($('#age').val() < 100) {
+		$('#age').removeClass('not-valid');
+		$('#age').addClass('is-valid');
+		let age = Number($('#age').val());
+		let currentYear = new Date().getFullYear();
+		let birthYear = Math.round(currentYear - age);
+		$('#birthday').val(birthYear + '-01-01');
 	} else {
-		$('#birthday').removeClass('is-valid');
-		$('#birthday').addClass('not-valid');
+		$('#age').removeClass('is-valid');
+		$('#age').addClass('not-valid');
 	}
 
 	// Check if the account_type input is valid
@@ -288,8 +320,3 @@ function isValidEmail(email) {
 	var regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
 	return regex.test(email);
 }
-
-// To set the max birthday
-$(document).ready(function () {
-	$('#birthday').attr('max', new Date().toISOString().split('T')[0]);
-});

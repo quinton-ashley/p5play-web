@@ -5,50 +5,6 @@ article {
 	flex-direction: row;
 }
 
-.page {
-	display: flex;
-	width: 1030px;
-	padding: 20px;
-}
-
-.spacer {
-	padding: 0 !important;
-}
-
-.shell {
-	background-color: transparent !important;
-	display: flex;
-	flex-direction: column;
-	gap: 8px;
-}
-
-md p:first-child {
-	margin-top: 0;
-}
-
-#p5play_logo0 {
-	position: absolute;
-	width: 200vw;
-	top: -77vw;
-	left: -15vw;
-	z-index: -1;
-	opacity: 0.75;
-	transition: transform 0.5s;
-	animation: grow 5s infinite alternate;
-}
-
-/* grow and shrink css animation */
-@keyframes grow {
-	0% {
-		transform: scale(1);
-	}
-
-	100% {
-		transform: scale(1.1);
-	}
-}
-
-
 .reel {
 	width: 100vw;
 	height: 56.25vw;
@@ -66,22 +22,42 @@ video {
 	image-rendering: pixelated;
 }
 
-#page0 {
-	justify-content: start;
-	align-content: center;
-	gap: 16px;
+.page {
+	display: flex;
+	width: 1030px;
+	padding: 20px;
 }
 
-#page0>div {
-	width: fit-content;
+.spacer {
+	padding: 0 !important;
 }
 
-h3 {
-	margin: 0;
+.shell {
+	background-color: transparent !important;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
 }
 
-#page0 md {
-	width: fit-content;
+#p5play_logo0 {
+	position: absolute;
+	width: 200vw;
+	top: -77vw;
+	left: -15vw;
+	z-index: -1;
+	opacity: 0.75;
+	transition: transform 0.5s;
+	animation: osc 5s infinite alternate;
+}
+
+@keyframes osc {
+	0% {
+		transform: scale(1);
+	}
+
+	100% {
+		transform: scale(1.1);
+	}
 }
 
 .hero-icon {
@@ -92,6 +68,7 @@ h3 {
 	background-color: var(--secondary);
 	gap: 8px;
 	border-radius: 8px;
+	margin-top: 16px !important;
 }
 
 .hero-icon h2 {
@@ -118,9 +95,31 @@ h3 {
 	margin-left: -48px;
 }
 
-/* @media screen and (max-width: 1300px) {
+#page0 {
+	justify-content: start;
+	align-content: center;
+	gap: 16px;
+}
 
-} */
+#page0>div {
+	width: fit-content;
+}
+
+md {
+	margin-top: -44px;
+}
+
+h2 {
+	margin-left: 134px;
+}
+
+#md0-0 h2 {
+	margin-left: 0;
+}
+
+#page0 md {
+	width: fit-content;
+}
 
 @media screen and (max-width: 1030px) {
 

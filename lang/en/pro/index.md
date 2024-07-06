@@ -1,10 +1,15 @@
 # 0-0
 
-## Pro Membership
-
-Become a Pro member by supporting p5play on [Patreon](https://www.patreon.com/p5play) or [GitHub Sponsors](https://github.com/sponsors/quinton-ashley).
+## Be a Pro at
 
 # 0-1
+
+## Pro Membership
+
+Become a Pro member by supporting  
+p5play on [Patreon](https://www.patreon.com/p5play) or [GitHub Sponsors](https://github.com/sponsors/quinton-ashley).
+
+# 1-0
 
 Documentation coming soon!
 

@@ -10,44 +10,6 @@
 	<link rel="stylesheet" href="signup.css" />
 	<script
 		src="https://dpp0gtxikpq3y.cloudfront.net/20221014152150/js/amazon-cognito-advanced-security-data.min.js"></script>
-	<script>
-		function getAdvancedSecurityData(formReference) {
-			if (typeof AmazonCognitoAdvancedSecurityData === 'undefined') {
-				return true;
-			}
-			var userPoolId = '';
-			var clientId = getUrlParameter('client_id');
-			var username = '';
-			var usernameInput = document.getElementsByName('username')[0];
-			if (usernameInput && usernameInput.value) {
-				username = usernameInput.value;
-			}
-			var asfData = AmazonCognitoAdvancedSecurityData.getData(username, userPoolId, clientId);
-			if (typeof asfData === 'undefined') {
-				return true;
-			}
-			if (formReference && formReference.cognitoAsfData) {
-				formReference.cognitoAsfData.value = asfData;
-			}
-			return true;
-		}
-		function getUrlParameter(name) {
-			name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
-			var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
-			var results = regex.exec(location.search);
-			return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
-		}
-		function onSubmit(evt, formRef) {
-			formRef.querySelector('button[type="submit"]').disabled = true;
-			if (!!formRef.submitted) {
-				evt.preventDefault();
-				return false;
-			} else {
-				formRef.submitted = true;
-				return getAdvancedSecurityData(formRef);
-			}
-		}
-	</script>
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<style></style>
 </head>
@@ -83,12 +45,12 @@
 						<div class="mini-row">
 							<input type="text" name="requiredAttributes[gender]" class="form-control inputField-customizable"
 								required="" aria-label="Gender" placeholder="Gender" onkeyup="checkIfValid();" id="gender" />
-							<div id="birthdayDiv">
-								<label id="birthdayLbl" for="birthday">Birthday &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-								<input type="date" name="requiredAttributes[birthdate]" class="form-control inputField-customizable"
-									required="" aria-label="Birthday" id="birthday" placeholder="Birthday" onfocus="birthdayFocus();"
-									onchange="checkIfValid();" />
-							</div>
+
+							<input type="date" name="requiredAttributes[birthdate]" class="form-control inputField-customizable"
+								aria-label="Birthday" id="birthday" placeholder="Birthday" />
+
+							<input type="number" class="form-control inputField-customizable" required="" aria-label="Age" id="age"
+								placeholder="Age" onchange="checkIfValid();" />
 						</div>
 						<div class="mini-row">
 							<select type="text" name="requiredAttributes[middle_name]" class="form-control inputField-customizable"
@@ -106,6 +68,9 @@
 							<select name="requiredAttributes[address]" class="form-control inputField-customizable" required=""
 								aria-label="Country" id="country" onchange="checkIfValid();">
 								<option value="" label="Country" selected="selected">Country</option>
+								<option value="AU" label="Australia">Australia</option>
+								<option value="JP" label="Japan">Japan</option>
+								<option value="US" label="United States">United States</option>
 								<optgroup id="country-optgroup-Africa" label="Africa">
 									<option value="DZ" label="Algeria">Algeria</option>
 									<option value="AO" label="Angola">Angola</option>
@@ -217,7 +182,6 @@
 									<option value="TT" label="Trinidad and Tobago">Trinidad and Tobago</option>
 									<option value="TC" label="Turks and Caicos Islands">Turks and Caicos Islands</option>
 									<option value="VI" label="U.S. Virgin Islands">U.S. Virgin Islands</option>
-									<option value="US" label="United States">United States</option>
 									<option value="UY" label="Uruguay">Uruguay</option>
 									<option value="VE" label="Venezuela">Venezuela</option>
 								</optgroup>
@@ -238,7 +202,6 @@
 									<option value="IR" label="Iran">Iran</option>
 									<option value="IQ" label="Iraq">Iraq</option>
 									<option value="IL" label="Israel">Israel</option>
-									<option value="JP" label="Japan">Japan</option>
 									<option value="JO" label="Jordan">Jordan</option>
 									<option value="KZ" label="Kazakhstan">Kazakhstan</option>
 									<option value="KW" label="Kuwait">Kuwait</option>
@@ -338,7 +301,6 @@
 								<optgroup id="country-optgroup-Oceania" label="Oceania">
 									<option value="AS" label="American Samoa">American Samoa</option>
 									<option value="AQ" label="Antarctica">Antarctica</option>
-									<option value="AU" label="Australia">Australia</option>
 									<option value="BV" label="Bouvet Island">Bouvet Island</option>
 									<option value="IO" label="British Indian Ocean Territory">British Indian Ocean Territory
 									</option>

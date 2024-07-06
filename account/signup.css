@@ -68,6 +68,9 @@ body.dark {
 	}
 }
 
+#birthday {
+	display: none;
+}
 
 div.signup-box {
 	border-radius: 10px;
@@ -78,12 +81,10 @@ body {
 }
 
 .right-side {
-	background-image: url('/pro/p5play_signup.png');
+	background-image: url('/account/p5play_signup.webp');
 	background-size: cover;
-	/* <------ */
 	background-repeat: no-repeat;
 	background-position: center center;
-	/* optional, center the image */
 	position: absolute;
 	top: 0;
 	left: 50%;
@@ -281,30 +282,6 @@ a {
 
 .passwordCheck-valid-customizable {
 	color: var(--blue1);
-}
-
-#birthdayDiv {
-	display: flex;
-	flex-direction: column;
-}
-
-#birthdayLbl {
-	position: absolute;
-	margin-top: 6px;
-	margin-left: 6px;
-	padding: 10px;
-	z-index: 2;
-	font-weight: normal;
-	background-color: var(--input-color);
-	color: var(--primary);
-}
-
-@media (max-width: 726px) {
-	#birthdayLbl {
-		margin-top: 2px;
-		margin-left: 8px;
-		padding: 5px;
-	}
 }
 
 @media (max-width: 500px) {
