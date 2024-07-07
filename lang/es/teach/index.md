@@ -42,4 +42,6 @@ _Exclusivo para clientes que adquieren la subscripcion educativa._
 
 Nuestros precios son justos y asequibles, comenzando desde solo $5 USD por estudiante cada semestre.
 
+El acceso equitativo es importante para nosotros. Ofrecemos descuentos para escuelas en áreas de bajos ingresos. Si deseas usar p5play, trabajaremos contigo para hacerlo posible.
+
 Contáctanos para recibir una factura personalizada para tu escuela u organización.

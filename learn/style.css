@@ -156,6 +156,11 @@ html.ja h2 {
 	box-shadow: 5px 5px 0px var(--pink0);
 }
 
+.heroBtns h2 {
+	margin: 0;
+	padding: 0;
+}
+
 #navRight {
 	float: right;
 	display: inline-flex;

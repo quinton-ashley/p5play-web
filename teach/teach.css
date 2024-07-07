@@ -71,20 +71,6 @@ video {
 	margin-top: 16px !important;
 }
 
-.hero-icon h2 {
-	margin-top: 0;
-}
-
-.page>.hero-icon {
-	padding: 8px;
-	margin-top: 64px;
-	margin-left: 48px;
-}
-
-.page>.hero-icon>h2 {
-	margin: 0;
-}
-
 .hero-icon img {
 	width: 120px;
 	height: 120px;

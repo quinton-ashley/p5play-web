@@ -6,7 +6,7 @@
 
 ## Edu License
 
-Obtain the [Educational License](/teach/EDU_LICENSE.md) to unlock  
+Obtain the [Educational License](https://github.com/quinton-ashley/p5play-web/blob/main/teach/EDU_LICENSE.md) to unlock  
 the power of p5play in your classroom!
 
 # 1-0
@@ -42,5 +42,7 @@ _Exclusively for Edu Licensees._
 ## Custom Invoice
 
 Our pricing is fair and affordable, starting at just $5 USD per student per semester.
+
+Equitable access is important to us. We offer discounts for schools in low-income areas. If you want to use p5play, we will work with you to make it happen!
 
 Contact us to receive a custom invoice for your school or organization.
