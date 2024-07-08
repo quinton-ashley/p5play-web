@@ -40,7 +40,7 @@ _Exclusively for Pro members._
 
 # 4-0
 
-## Pricing
+## Subscribe
 
 Take a look at our tier pricing on [Patreon](https://www.patreon.com/p5play) or [GitHub Sponsors](https://github.com/sponsors/quinton-ashley). We support indie devs by offering discounts for students and small development teams!
 

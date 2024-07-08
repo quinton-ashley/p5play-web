@@ -40,7 +40,7 @@ _プロメンバー限定。_
 
 # 4-0
 
-## 価格設定
+## 購読する
 
 [Patreon](https://www.patreon.com/p5play)または[GitHub Sponsors](https://github.com/sponsors/quinton-ashley)で私たちのティア価格をご覧ください。学生や小規模な開発チームに割引を提供することで、独立した開発者をサポートしています。
 

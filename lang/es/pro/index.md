@@ -40,7 +40,7 @@ _Exclusivamente para miembros Pro._
 
 # 4-0
 
-## Precios
+## Suscríbete
 
 Consulta nuestros precios por niveles en [Patreon](https://www.patreon.com/p5play) o [GitHub Sponsors](https://github.com/sponsors/quinton-ashley). Apoyamos a los desarrolladores independientes ofreciendo descuentos para estudiantes y pequeños equipos de desarrollo.
 

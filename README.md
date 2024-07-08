@@ -59,6 +59,51 @@ See the [LICENSING.md][] file.
 
 ## Credits
 
+### Videos
+
+Homepage:
+
+https://www.pexels.com/video/a-smiling-young-man-sitting-on-the-floor-playing-video-games-12715397/
+
+Pro:
+
+reel0
+https://www.pexels.com/video/close-up-video-of-people-playing-video-games-8127934/
+
+reel1
+https://www.pexels.com/video/young-woman-winning-a-computer-game-8128413/
+
+reel2
+https://www.pexels.com/video/a-man-using-smartphone-7252631/
+
+reel3
+https://www.pexels.com/video/freelance-courses-online-courses-4443250/
+
+reel4
+https://www.pexels.com/video/person-typing-in-a-keyboard-9070659/
+
+reel5
+https://www.pexels.com/video/girl-internet-computer-teenager-4498282/
+
+Teach:
+
+reel0
+https://www.pexels.com/video/students-working-on-a-laptop-in-a-classroom-5200028/
+
+reel1
+https://www.pexels.com/video/teacher-and-students-together-looking-at-laptop-5200029/
+
+reel2
+https://www.pexels.com/video/man-using-laptop-in-classroom-9198421/
+
+reel3
+https://www.pexels.com/video/two-women-doing-some-school-works-5530408/
+
+reel4
+https://www.pexels.com/video/skater-girl-meeting-with-her-friends-5200356/
+
+### Icons
+
 [Certificate icons created by Freepik - Flaticon](https://www.flaticon.com/free-icon/certificate_3135807)
 
 [Interactive Textbook icons created by Freepik - Flaticon](https://www.flaticon.com/free-icon/online-learning_2949758)
