@@ -132,41 +132,66 @@ h2 {
 	max-width: 50%;
 }
 
-#username {
-	font-weight: bold;
+#md0-1 {
+	max-width: 360px;
 }
 
-#support {
-	margin-top: 32px;
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
-	gap: 32px;
+@media screen and (max-width: 1030px) {
+
+	.reel,
+	video {
+		height: 70vw;
+	}
+
+	.page {
+		width: 100%;
+		align-content: flex-end;
+	}
+
+	#page0 {
+		gap: 72px;
+	}
+
+	#topNav>hr:first-of-type {
+		order: unset;
+	}
 }
 
-#patreon-brand {
-	display: flex;
-	align-items: center;
-	height: 42px;
-	gap: 20px;
-	width: min-content;
+@media screen and (max-width: 730px) {
+
+	.reel,
+	video {
+		height: 100vw;
+	}
 }
 
-#patreon-brand,
-#github-brand {
-	border-bottom: 1px solid transparent;
+@media screen and (max-width: 630px) {
+
+	.reel,
+	video {
+		height: 150vw;
+	}
 }
 
-#patreon-brand:hover,
-#github-brand:hover {
-	color: var(--pink);
-	border-bottom: 1px solid var(--pink);
+@media screen and (max-width: 500px) {
+
+	.hero-icon {
+		margin-bottom: 16px;
+	}
+
+	md {
+		margin-top: 0;
+	}
+
+	h2 {
+		margin-left: 0;
+	}
 }
 
-body.dark #patreon-brand {
-	filter: invert(90%);
-}
+@media screen and (max-width: 400px) {
 
-body.dark #github-brand :nth-child(2) {
-	filter: invert(100%);
+	.reel,
+	video {
+		height: 200vw;
+	}
 }

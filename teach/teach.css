@@ -103,6 +103,10 @@ h2 {
 	margin-left: 0;
 }
 
+#md0-1 {
+	max-width: 360px;
+}
+
 #page0 md {
 	width: fit-content;
 }
@@ -141,6 +145,21 @@ h2 {
 	.reel,
 	video {
 		height: 150vw;
+	}
+}
+
+@media screen and (max-width: 500px) {
+
+	.hero-icon {
+		margin-bottom: 16px;
+	}
+
+	md {
+		margin-top: 0;
+	}
+
+	h2 {
+		margin-left: 0;
 	}
 }
 

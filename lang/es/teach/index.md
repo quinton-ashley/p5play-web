@@ -4,7 +4,7 @@
 
 # 0-1
 
-## Licencia Educativa
+## Licencia Edu
 
 ¡Obtén la [Licencia Educativa](/teach/EDU_LICENSE.md) para desbloquear el poder de p5play en tu aula!
 
@@ -45,3 +45,7 @@ Nuestros precios son justos y asequibles, comenzando desde solo $5 USD por estud
 El acceso equitativo es importante para nosotros. Ofrecemos descuentos para escuelas en áreas de bajos ingresos. Si deseas usar p5play, trabajaremos contigo para hacerlo posible.
 
 Contáctanos para recibir una factura personalizada para tu escuela u organización.
+
+# 4-1
+
+## ¡Dame la factura!
