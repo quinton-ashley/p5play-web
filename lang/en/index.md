@@ -30,9 +30,9 @@ Ask questions and meet other people making interactive art and games with p5play
 
 ## Support this project 🤝
 
-p5play is open source and free to use under the terms of the [AGPLv3](https://github.com/quinton-ashley/p5play/blob/main/LICENSE.md).
+p5play is open source and free to use under the terms of the [AGPLv3](https://github.com/quinton-ashley/p5play/blob/main/LICENSE.md). For typical use by schools, see the [Teach](teach) page.
 
-Unlock exclusive content and obtain the [p5play Professional License](https://github.com/quinton-ashley/p5play-web/blob/main/pro/PRO_LICENSE.md) by becoming a [_PRO_ member](pro)!
+Unlock exclusive content by becoming a [Pro member](pro)!
 
 # 12
 
@@ -156,7 +156,7 @@ p5play is a natural addition to [p5.js](https://p5js.org/) based curriculum, whi
 
 Also, since it doesn't require a bespoke game editor, students gain transferrable, text based coding skills.
 
-p5play is well designed and documented. Check out the [Learn pages](../learn), a free resource packed with interactive examples and exercises.
+See the [Teach](teach) page for more information.
 
 # 17-1
 

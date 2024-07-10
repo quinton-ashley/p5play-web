@@ -6,6 +6,8 @@
 
 ¡Gratis para uso personal!
 
+Para obtener información sobre precios para uso educativo, por favor visita la página de [Enseña](../teach).
+
 # 0-1
 
 ## Créditos

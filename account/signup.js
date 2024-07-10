@@ -244,7 +244,7 @@ function checkIfValid() {
 		$('#gender').addClass('not-valid');
 	}
 
-	if ($('#age').val() < 100) {
+	if ($('#age').val() && $('#age').val() < 100) {
 		$('#age').removeClass('not-valid');
 		$('#age').addClass('is-valid');
 		let age = Number($('#age').val());
@@ -257,7 +257,7 @@ function checkIfValid() {
 	}
 
 	// Check if the account_type input is valid
-	if ($('#account_type').val() != 'nil') {
+	if ($('#account_type').val() != '') {
 		$('#account_type').removeClass('not-valid');
 		$('#account_type').addClass('is-valid');
 	} else {
