@@ -1,12 +1,12 @@
 # 0-0
 
-## プロになる
+## Pro への加入はこちらから
 
 # 0-1
 
-## プロメンバーシップ
+## Pro メンバーシップ
 
-[p5play](https://www.patreon.com/p5play)を[Patreon](https://www.patreon.com/p5play)または[GitHub Sponsors](https://github.com/sponsors/quinton-ashley)でサポートしてプロメンバーになりましょう。
+[Patreon](https://www.patreon.com/p5play) や [GitHub Sponsors](https://github.com/sponsors/quinton-ashley) で [p5play](https://www.patreon.com/p5play) を支援して、Pro メンバーになりましょう。
 
 # 1-0
 
@@ -22,7 +22,7 @@ _プロメンバー限定。_
 
 ## iOS アプリテンプレート
 
-テンプレートを使用して、Swift でコーディングせずに iOS アプリを作成します。[Apple の App Store](https://www.apple.com/app-store/) でゲームを販売したり、広告から収益を得たりできます。
+テンプレートを使用すると、Swift によるコーディング不要で iOS アプリを作成できます。[Apple の App Store](https://www.apple.com/app-store/) でゲームを販売したり、広告収入を得たりすることができます。
 
 [Apple Developer](https://developer.apple.com/programs/) アカウントと Xcode が必要です。
 
@@ -40,11 +40,11 @@ _プロメンバー限定。_
 
 # 4-0
 
-## 購読する
+## 購入について
 
-[Patreon](https://www.patreon.com/p5play)または[GitHub Sponsors](https://github.com/sponsors/quinton-ashley)で私たちのティア価格をご覧ください。学生や小規模な開発チームに割引を提供することで、独立した開発者をサポートしています。
+まずは [Patreon](https://www.patreon.com/p5play) および [GitHub Sponsors](https://github.com/sponsors/quinton-ashley) 記載の、ご利用プラン一覧をご一読ください。学生や小規模開発チームの皆さまには特別割引を提供し、インディーズ開発者をサポートしています！
 
-プロメンバーシップの料金を支払う余裕がない場合は、[info@p5play.org](mailto:info@p5play.org?subject=Equitable%20Access)までご連絡いただき、p5play の使用目的を説明してください。
+Pro メンバーシップの料金を支払う余裕がない場合は、[info@p5play.org](mailto:info@p5play.org?subject=Equitable%20Access) までご連絡いただき、p5play の使用目的のご説明をお願いいたします。
 
 # 5-0
 
