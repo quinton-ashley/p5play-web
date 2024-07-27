@@ -9,7 +9,7 @@ When you create an account on p5play.org, we collect your email address and pass
 We also collect user's:
 
 - gender: Used to address users properly in emails.
-- birthday: Used to understand the developmental stage of Students in order to offer an age-appropriate experience for each Student.
+- age: Used to understand the developmental stage of Students in order to offer an age-appropriate experience.
 - account type: The account type can be either "Student", "Teacher", or "Indie Dev". Used to provide a more personalized experience on the site, and to help us understand our users better.
 - school/company: Used to report to schools or companies about the usage of p5play.org by their students, teachers, or employees. See p5play.org's Terms of Service for more information.
 - country of residence: Used to understand the distribution of users around the world and show localized content.

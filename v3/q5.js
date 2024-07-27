@@ -1,15 +1,15 @@
 /**
  * q5.js
- * @version 2.0
+ * @version 2.1
  * @author quinton-ashley, Tezumie, and LingDong-
  * @license LGPL-3.0
  * @class Q5
  */
-function Q5(scope, parent) {
+function Q5(scope, parent, renderer) {
 	let $ = this;
 	$._q5 = true;
-	$._scope = scope;
 	$._parent = parent;
+	$._renderer = renderer || 'q2d';
 	$._preloadCount = 0;
 
 	scope ??= 'global';
@@ -17,13 +17,14 @@ function Q5(scope, parent) {
 		if (!(window.setup || window.draw)) return;
 		scope = 'global';
 	}
+	$._scope = scope;
 	let globalScope;
 	if (scope == 'global') {
 		Q5._hasGlobal = $._isGlobal = true;
 		globalScope = !Q5._nodejs ? window : global;
 	}
 
-	let p = new Proxy($, {
+	let q = new Proxy($, {
 		set: (t, p, v) => {
 			$[p] = v;
 			if ($._isGlobal) globalScope[p] = v;
@@ -41,6 +42,10 @@ function Q5(scope, parent) {
 	$._targetFrameDuration = 16.666666666666668;
 	$._frameRate = $._fps = 60;
 	$._loop = true;
+	$._hooks = {
+		postCanvas: [],
+		preRender: []
+	};
 
 	let millisStart = 0;
 	$.millis = () => performance.now() - millisStart;
@@ -48,7 +53,7 @@ function Q5(scope, parent) {
 	$.noCanvas = () => {
 		if ($.canvas?.remove) $.canvas.remove();
 		$.canvas = 0;
-		p.ctx = p.drawingContext = 0;
+		q.ctx = q.drawingContext = 0;
 	};
 
 	if (window) {
@@ -57,10 +62,10 @@ function Q5(scope, parent) {
 		$.deviceOrientation = window.screen?.orientation?.type;
 	}
 
-	$._incrementPreload = () => p._preloadCount++;
-	$._decrementPreload = () => p._preloadCount--;
+	$._incrementPreload = () => q._preloadCount++;
+	$._decrementPreload = () => q._preloadCount--;
 
-	function _draw(timestamp) {
+	$._draw = (timestamp) => {
 		let ts = timestamp || performance.now();
 		$._lastFrameTime ??= ts - $._targetFrameDuration;
 
@@ -69,44 +74,43 @@ function Q5(scope, parent) {
 			$._shouldResize = false;
 		}
 
-		if ($._loop) looper = raf(_draw);
+		if ($._loop) looper = raf($._draw);
 		else if ($.frameCount && !$._redraw) return;
 
 		if (looper && $.frameCount) {
 			let time_since_last = ts - $._lastFrameTime;
-			if (time_since_last < $._targetFrameDuration - 1) return;
+			if (time_since_last < $._targetFrameDuration - 4) return;
 		}
-		p.deltaTime = ts - $._lastFrameTime;
+		q.deltaTime = ts - $._lastFrameTime;
 		$._frameRate = 1000 / $.deltaTime;
-		p.frameCount++;
+		q.frameCount++;
 		let pre = performance.now();
-		for (let m of Q5.prototype._methods.pre) m.call($);
-		if ($.ctx) $.ctx.save();
+		if ($._beginRender) $._beginRender();
+		if ($.ctx) $.resetMatrix();
+		for (let m of Q5.methods.pre) m.call($);
 		$.draw();
-		for (let m of Q5.prototype._methods.post) m.call($);
-		if ($.ctx) {
-			$.ctx.restore();
-			$.resetMatrix();
-		}
-		p.pmouseX = $.mouseX;
-		p.pmouseY = $.mouseY;
+		if ($._render) $._render();
+		for (let m of Q5.methods.post) m.call($);
+		if ($._finishRender) $._finishRender();
+		q.pmouseX = $.mouseX;
+		q.pmouseY = $.mouseY;
 		$._lastFrameTime = ts;
 		let post = performance.now();
 		$._fps = Math.round(1000 / (post - pre));
-	}
+	};
 	$.noLoop = () => {
 		$._loop = false;
 		looper = null;
 	};
 	$.loop = () => {
 		$._loop = true;
-		if (looper == null) _draw();
+		if (looper == null) $._draw();
 	};
 	$.isLooping = () => $._loop;
 	$.redraw = (n = 1) => {
 		$._redraw = true;
 		for (let i = 0; i < n; i++) {
-			_draw();
+			$._draw();
 		}
 		$._redraw = false;
 	};
@@ -136,7 +140,12 @@ function Q5(scope, parent) {
 	$.describe = () => {};
 
 	for (let m in Q5.modules) {
-		Q5.modules[m]($, p);
+		Q5.modules[m]($, q);
+	}
+
+	let r = Q5.renderers[$._renderer];
+	for (let m in r) {
+		r[m]($, q);
 	}
 
 	// INIT
@@ -147,12 +156,14 @@ function Q5(scope, parent) {
 		}
 	}
 
+	if (scope == 'graphics') return;
+
 	if (scope == 'global') {
 		Object.assign(Q5, $);
 		delete Q5.Q5;
 	}
 
-	for (let m of Q5.prototype._methods.init) {
+	for (let m of Q5.methods.init) {
 		m.call($);
 	}
 
@@ -168,8 +179,6 @@ function Q5(scope, parent) {
 	}
 
 	if (typeof scope == 'function') scope($);
-
-	if (scope == 'graphics') return;
 
 	Q5._instanceCount++;
 
@@ -218,8 +227,6 @@ function Q5(scope, parent) {
 
 	if (!($.setup || $.draw)) return;
 
-	$._startDone = false;
-
 	async function _start() {
 		$._startDone = true;
 		if ($._preloadCount > 0) return raf(_start);
@@ -229,7 +236,7 @@ function Q5(scope, parent) {
 		if ($.ctx === null) $.createCanvas(100, 100);
 		$._setupDone = true;
 		if ($.ctx) $.resetMatrix();
-		raf(_draw);
+		raf($._draw);
 	}
 
 	if ((arguments.length && scope != 'namespace') || preloadDefined) {
@@ -243,6 +250,7 @@ function Q5(scope, parent) {
 	}
 }
 
+Q5.renderers = {};
 Q5.modules = {};
 
 Q5._nodejs = typeof process == 'object';
@@ -253,13 +261,13 @@ Q5._friendlyError = (msg, func) => {
 };
 Q5._validateParameters = () => true;
 
-Q5.prototype._methods = {
+Q5.methods = {
 	init: [],
 	pre: [],
 	post: [],
 	remove: []
 };
-Q5.prototype.registerMethod = (m, fn) => Q5.prototype._methods[m].push(fn);
+Q5.prototype.registerMethod = (m, fn) => Q5.methods[m].push(fn);
 Q5.prototype.registerPreloadMethod = (n, fn) => (Q5.prototype[n] = fn[n]);
 
 if (Q5._nodejs) global.p5 ??= global.Q5 = Q5;
@@ -271,7 +279,7 @@ if (typeof document == 'object') {
 		if (!Q5._hasGlobal) new Q5('auto');
 	});
 }
-Q5.modules.q2d_canvas = ($, p) => {
+Q5.modules.canvas = ($, q) => {
 	$._OffscreenCanvas =
 		window.OffscreenCanvas ||
 		function () {
@@ -280,31 +288,131 @@ Q5.modules.q2d_canvas = ($, p) => {
 
 	if (Q5._nodejs) {
 		if (Q5._createNodeJSCanvas) {
-			p.canvas = Q5._createNodeJSCanvas(100, 100);
+			q.canvas = Q5._createNodeJSCanvas(100, 100);
 		}
 	} else if ($._scope == 'image' || $._scope == 'graphics') {
-		p.canvas = new $._OffscreenCanvas(100, 100);
+		q.canvas = new $._OffscreenCanvas(100, 100);
 	}
+
 	if (!$.canvas) {
 		if (typeof document == 'object') {
-			p.canvas = document.createElement('canvas');
+			q.canvas = document.createElement('canvas');
 			$.canvas.id = 'q5Canvas' + Q5._instanceCount;
 			$.canvas.classList.add('q5Canvas');
 		} else $.noCanvas();
 	}
 
 	let c = $.canvas;
-
 	c.width = $.width = 100;
 	c.height = $.height = 100;
+	if ($._scope != 'image') {
+		c.renderer = $._renderer;
+		c[$._renderer] = true;
+	}
+	$._pixelDensity = 1;
 
-	if (c && $._scope != 'graphics' && $._scope != 'image') {
-		$._setupDone = false;
-		let parent = $._parent;
-		if (parent && typeof parent == 'string') {
-			parent = document.getElementById(parent);
+	$._adjustDisplay = () => {
+		if (c.style) {
+			c.style.width = c.w + 'px';
+			c.style.height = c.h + 'px';
 		}
+	};
+
+	$.createCanvas = function (w, h, options) {
+		options ??= arguments[3];
+
+		let opt = Object.assign({}, Q5.canvasOptions);
+		if (typeof options == 'object') Object.assign(opt, options);
+
+		if ($._scope != 'image') {
+			let pd = $.displayDensity();
+			if ($._scope == 'graphics') pd = this._pixelDensity;
+			else if (window.IntersectionObserver) {
+				new IntersectionObserver((e) => {
+					c.visible = e[0].isIntersecting;
+				}).observe(c);
+			}
+			$._pixelDensity = Math.ceil(pd);
+		}
+
+		$._setCanvasSize(w, h);
+
+		Object.assign(c, opt);
+		let rend = $._createCanvas(c.w, c.h, opt);
+
+		if ($._hooks) {
+			for (let m of $._hooks.postCanvas) m();
+		}
+		return rend;
+	};
+
+	$._save = async (data, name, ext) => {
+		name = name || 'untitled';
+		ext = ext || 'png';
+		if (ext == 'jpg' || ext == 'png' || ext == 'webp') {
+			if (data instanceof OffscreenCanvas) {
+				const blob = await data.convertToBlob({ type: 'image/' + ext });
+				data = await new Promise((resolve) => {
+					const reader = new FileReader();
+					reader.onloadend = () => resolve(reader.result);
+					reader.readAsDataURL(blob);
+				});
+			} else {
+				data = data.toDataURL('image/' + ext);
+			}
+		} else {
+			let type = 'text/plain';
+			if (ext == 'json') {
+				if (typeof data != 'string') data = JSON.stringify(data);
+				type = 'text/json';
+			}
+			data = new Blob([data], { type });
+			data = URL.createObjectURL(data);
+		}
+		let a = document.createElement('a');
+		a.href = data;
+		a.download = name + '.' + ext;
+		a.click();
+		URL.revokeObjectURL(a.href);
+	};
+	$.save = (a, b, c) => {
+		if (!a || (typeof a == 'string' && (!b || (!c && b.length < 5)))) {
+			c = b;
+			b = a;
+			a = $.canvas;
+		}
+		if (c) return $._save(a, b, c);
+		if (b) {
+			b = b.split('.');
+			$._save(a, b[0], b.at(-1));
+		} else $._save(a);
+	};
+
+	$._setCanvasSize = (w, h) => {
+		w ??= window.innerWidth;
+		h ??= window.innerHeight;
+		c.w = w = Math.ceil(w);
+		c.h = h = Math.ceil(h);
+		c.hw = w / 2;
+		c.hh = h / 2;
+		c.width = Math.ceil(w * $._pixelDensity);
+		c.height = Math.ceil(h * $._pixelDensity);
+
+		if (!$._da) {
+			q.width = w;
+			q.height = h;
+		} else $.flexibleCanvas($._dau);
+
+		if ($.displayMode && !c.displayMode) $.displayMode();
+		else $._adjustDisplay();
+	};
+
+	if ($._scope == 'image') return;
+
+	if (c && $._scope != 'graphics') {
 		c.parent = (el) => {
+			if (c.parentElement) c.parentElement.removeChild(c);
+
 			if (typeof el == 'string') el = document.getElementById(el);
 			el.append(c);
 
@@ -317,147 +425,132 @@ Q5.modules.q2d_canvas = ($, p) => {
 			if (typeof ResizeObserver == 'function') {
 				if ($._ro) $._ro.disconnect();
 				$._ro = new ResizeObserver(parentResized);
-				$._ro.observe(parent);
+				$._ro.observe(el);
 			} else if (!$.frameCount) {
 				window.addEventListener('resize', parentResized);
 			}
 		};
-		function appendCanvas() {
-			parent ??= document.getElementsByTagName('main')[0];
-			if (!parent) {
-				parent = document.createElement('main');
-				document.body.append(parent);
+
+		function addCanvas() {
+			let el = $._parent;
+			el ??= document.getElementsByTagName('main')[0];
+			if (!el) {
+				el = document.createElement('main');
+				document.body.append(el);
 			}
-			c.parent(parent);
+			c.parent(el);
 		}
-		if (document.body) appendCanvas();
-		else document.addEventListener('DOMContentLoaded', appendCanvas);
-	}
-
-	$._adjustDisplay = () => {
-		if (c.style) {
-			c.style.width = c.w + 'px';
-			c.style.height = c.h + 'px';
-		}
-	};
-
-	$.createCanvas = function (w, h, renderer, options) {
-		if (renderer == 'webgl') throw Error(`webgl renderer is not supported in q5, use '2d'`);
-		if (typeof renderer == 'object') options = renderer;
-		p.width = c.width = c.w = w || window.innerWidth;
-		p.height = c.height = c.h = h || window.innerHeight;
-		c.hw = w / 2;
-		c.hh = h / 2;
-		c.renderer = '2d';
-		let opt = Object.assign({}, Q5.canvasOptions);
-		if (options) Object.assign(opt, options);
-
-		p.ctx = p.drawingContext = c.getContext('2d', opt);
-		Object.assign(c, opt);
-		if ($._colorMode == 'rgb') $.colorMode('rgb');
-		if ($._scope != 'image') {
-			$._defaultStyle();
-			$._da = 0;
-		}
-		$.ctx.save();
-		if ($._scope != 'image') {
-			let pd = $.displayDensity();
-			if ($._scope == 'graphics') pd = this._pixelDensity;
-			else if (window.IntersectionObserver) {
-				new IntersectionObserver((e) => {
-					c.visible = e[0].isIntersecting;
-				}).observe(c);
-			}
-			$.pixelDensity(Math.ceil(pd));
-		} else this._pixelDensity = 1;
-
-		if ($.displayMode) $.displayMode();
-		else $._adjustDisplay();
-		return c;
-	};
-	$._createCanvas = $.createCanvas;
-
-	if ($._scope == 'image') return;
-
-	$._defaultStyle = () => {
-		$.ctx.fillStyle = 'white';
-		$.ctx.strokeStyle = 'black';
-		$.ctx.lineCap = 'round';
-		$.ctx.lineJoin = 'miter';
-		$.ctx.textAlign = 'left';
-	};
-
-	function cloneCtx() {
-		let t = {};
-		for (let prop in $.ctx) {
-			if (typeof $.ctx[prop] != 'function') t[prop] = $.ctx[prop];
-		}
-		delete t.canvas;
-		return t;
-	}
-
-	function _resizeCanvas(w, h) {
-		w ??= window.innerWidth;
-		h ??= window.innerHeight;
-
-		let t = cloneCtx();
-		let o;
-		if ($.frameCount) {
-			o = new $._OffscreenCanvas(c.width, c.height);
-			o.w = c.w;
-			o.h = c.h;
-			let oCtx = o.getContext('2d');
-			oCtx.drawImage(c, 0, 0);
-		}
-
-		c.width = Math.ceil(w * $._pixelDensity);
-		c.height = Math.ceil(h * $._pixelDensity);
-		c.w = w;
-		c.h = h;
-		c.hw = w / 2;
-		c.hh = h / 2;
-		for (let prop in t) $.ctx[prop] = t[prop];
-		$.ctx.scale($._pixelDensity, $._pixelDensity);
-
-		if ($.frameCount) $.ctx.drawImage(o, 0, 0, o.w, o.h);
-
-		if (!$._da) {
-			p.width = w;
-			p.height = h;
-		} else $.flexibleCanvas($._dau);
-
-		if ($.frameCount != 0) $._adjustDisplay();
+		if (document.body) addCanvas();
+		else document.addEventListener('DOMContentLoaded', addCanvas);
 	}
 
 	$.resizeCanvas = (w, h) => {
+		if (!$.ctx) return $.createCanvas(w, h);
 		if (w == c.w && h == c.h) return;
-		_resizeCanvas(w, h);
+
+		$._resizeCanvas(w, h);
 	};
 
-	$._pixelDensity = 1;
+	$.canvas.resize = $.resizeCanvas;
+	$.canvas.save = $.saveCanvas = $.save;
+
 	$.displayDensity = () => window.devicePixelRatio;
 	$.pixelDensity = (v) => {
 		if (!v || v == $._pixelDensity) return $._pixelDensity;
 		$._pixelDensity = v;
-		_resizeCanvas(c.w, c.h);
+		$._setCanvasSize(c.w, c.h);
 		return v;
-	};
-
-	if ($._scope == 'image') return;
-
-	$.fullscreen = (v) => {
-		if (v === undefined) return document.fullscreenElement;
-		if (v) document.body.requestFullscreen();
-		else document.body.exitFullscreen();
 	};
 
 	$.flexibleCanvas = (unit = 400) => {
 		if (unit) {
 			$._da = c.width / (unit * $._pixelDensity);
-			p.width = $._dau = unit;
-			p.height = (c.h / c.w) * unit;
+			q.width = $._dau = unit;
+			q.height = (c.h / c.w) * unit;
 		} else $._da = 0;
 	};
+};
+
+Q5.canvasOptions = {
+	alpha: false,
+	colorSpace: 'display-p3'
+};
+
+if (!window.matchMedia || !matchMedia('(dynamic-range: high) and (color-gamut: p3)').matches) {
+	Q5.canvasOptions.colorSpace = 'srgb';
+} else Q5.supportsHDR = true;
+Q5.renderers.q2d = {};
+
+Q5.renderers.q2d.canvas = ($, q) => {
+	let c = $.canvas;
+
+	if ($.colorMode) $.colorMode('rgb', 'integer');
+
+	$._createCanvas = function (w, h, options) {
+		q.ctx = q.drawingContext = c.getContext('2d', options);
+
+		if ($._scope != 'image') {
+			// default styles
+			$.ctx.fillStyle = 'white';
+			$.ctx.strokeStyle = 'black';
+			$.ctx.lineCap = 'round';
+			$.ctx.lineJoin = 'miter';
+			$.ctx.textAlign = 'left';
+		}
+		$.ctx.scale($._pixelDensity, $._pixelDensity);
+		$.ctx.save();
+		return c;
+	};
+
+	if ($._scope == 'image') return;
+
+	$._resizeCanvas = (w, h) => {
+		let t = {};
+		for (let prop in $.ctx) {
+			if (typeof $.ctx[prop] != 'function') t[prop] = $.ctx[prop];
+		}
+		delete t.canvas;
+
+		let o = new $._OffscreenCanvas(c.width, c.height);
+		o.w = c.w;
+		o.h = c.h;
+		let oCtx = o.getContext('2d');
+		oCtx.drawImage(c, 0, 0);
+
+		$._setCanvasSize(w, h);
+
+		for (let prop in t) $.ctx[prop] = t[prop];
+		$.scale($._pixelDensity);
+		$.ctx.drawImage(o, 0, 0, o.w, o.h);
+	};
+
+	$.strokeWeight = (n) => {
+		if (!n) $._doStroke = false;
+		if ($._da) n *= $._da;
+		$.ctx.lineWidth = n || 0.0001;
+	};
+	$.stroke = function (c) {
+		$._doStroke = true;
+		$._strokeSet = true;
+		if (Q5.Color) {
+			if (!c._q5Color && typeof c != 'string') c = $.color(...arguments);
+			else if ($._namedColors[c]) c = $.color(...$._namedColors[c]);
+			if (c.a <= 0) return ($._doStroke = false);
+		}
+		$.ctx.strokeStyle = c.toString();
+	};
+	$.noStroke = () => ($._doStroke = false);
+	$.fill = function (c) {
+		$._doFill = true;
+		$._fillSet = true;
+		if (Q5.Color) {
+			if (!c._q5Color && typeof c != 'string') c = $.color(...arguments);
+			else if ($._namedColors[c]) c = $.color(...$._namedColors[c]);
+			if (c.a <= 0) return ($._doFill = false);
+		}
+		$.ctx.fillStyle = c.toString();
+	};
+	$.noFill = () => ($._doFill = false);
 
 	// DRAWING MATRIX
 
@@ -482,7 +575,7 @@ Q5.modules.q2d_canvas = ($, p) => {
 	$.shearY = (ang) => $.ctx.transform(1, $.tan(ang), 0, 1, 0, 0);
 	$.resetMatrix = () => {
 		$.ctx.resetTransform();
-		$.ctx.scale($._pixelDensity, $._pixelDensity);
+		$.scale($._pixelDensity);
 	};
 
 	$._styleNames = [
@@ -536,29 +629,20 @@ Q5.modules.q2d_canvas = ($, p) => {
 		opt ??= {};
 		opt.alpha ??= true;
 		opt.colorSpace ??= $.canvas.colorSpace;
-		g._createCanvas.call($, w, h, opt);
+		g.createCanvas.call($, w, h, opt);
 		return g;
 	};
 
 	if (window && $._scope != 'graphics') {
 		window.addEventListener('resize', () => {
 			$._shouldResize = true;
-			p.windowWidth = window.innerWidth;
-			p.windowHeight = window.innerHeight;
-			p.deviceOrientation = window.screen?.orientation?.type;
+			q.windowWidth = window.innerWidth;
+			q.windowHeight = window.innerHeight;
+			q.deviceOrientation = window.screen?.orientation?.type;
 		});
 	}
 };
-
-Q5.canvasOptions = {
-	alpha: false,
-	colorSpace: 'display-p3'
-};
-
-if (!window.matchMedia || !matchMedia('(dynamic-range: high) and (color-gamut: p3)').matches) {
-	Q5.canvasOptions.colorSpace = 'srgb';
-} else Q5.supportsHDR = true;
-Q5.modules.q2d_drawing = ($) => {
+Q5.renderers.q2d.drawing = ($) => {
 	$.CHORD = 0;
 	$.PIE = 1;
 	$.OPEN = 2;
@@ -620,33 +704,6 @@ Q5.modules.q2d_drawing = ($) => {
 
 	// DRAWING SETTINGS
 
-	$.strokeWeight = (n) => {
-		if (!n) $._doStroke = false;
-		if ($._da) n *= $._da;
-		$.ctx.lineWidth = n || 0.0001;
-	};
-	$.stroke = function (c) {
-		$._doStroke = true;
-		$._strokeSet = true;
-		if (Q5.Color) {
-			if (!c._q5Color && typeof c != 'string') c = $.color(...arguments);
-			else if ($._namedColors[c]) c = $.color(...$._namedColors[c]);
-			if (c.a <= 0) return ($._doStroke = false);
-		}
-		$.ctx.strokeStyle = c.toString();
-	};
-	$.noStroke = () => ($._doStroke = false);
-	$.fill = function (c) {
-		$._doFill = true;
-		$._fillSet = true;
-		if (Q5.Color) {
-			if (!c._q5Color && typeof c != 'string') c = $.color(...arguments);
-			else if ($._namedColors[c]) c = $.color(...$._namedColors[c]);
-			if (c.a <= 0) return ($._doFill = false);
-		}
-		$.ctx.fillStyle = c.toString();
-	};
-	$.noFill = () => ($._doFill = false);
 	$.blendMode = (x) => ($.ctx.globalCompositeOperation = x);
 	$.strokeCap = (x) => ($.ctx.lineCap = x);
 	$.strokeJoin = (x) => ($.ctx.lineJoin = x);
@@ -849,22 +906,18 @@ Q5.modules.q2d_drawing = ($) => {
 		return $.rect(x, y, s, s, tl, tr, br, bl);
 	};
 
-	function clearBuff() {
-		curveBuff = [];
-	}
-
 	$.beginShape = () => {
-		clearBuff();
+		curveBuff = [];
 		$.ctx.beginPath();
 		firstVertex = true;
 	};
 	$.beginContour = () => {
 		$.ctx.closePath();
-		clearBuff();
+		curveBuff = [];
 		firstVertex = true;
 	};
 	$.endContour = () => {
-		clearBuff();
+		curveBuff = [];
 		firstVertex = true;
 	};
 	$.vertex = (x, y) => {
@@ -872,7 +925,7 @@ Q5.modules.q2d_drawing = ($) => {
 			x *= $._da;
 			y *= $._da;
 		}
-		clearBuff();
+		curveBuff = [];
 		if (firstVertex) {
 			$.ctx.moveTo(x, y);
 		} else {
@@ -889,7 +942,7 @@ Q5.modules.q2d_drawing = ($) => {
 			x *= $._da;
 			y *= $._da;
 		}
-		clearBuff();
+		curveBuff = [];
 		$.ctx.bezierCurveTo(cp1x, cp1y, cp2x, cp2y, x, y);
 	};
 	$.quadraticVertex = (cp1x, cp1y, x, y) => {
@@ -899,7 +952,7 @@ Q5.modules.q2d_drawing = ($) => {
 			x *= $._da;
 			y *= $._da;
 		}
-		clearBuff();
+		curveBuff = [];
 		$.ctx.quadraticCurveTo(cp1x, cp1y, x, y);
 	};
 	$.bezier = (x1, y1, x2, y2, x3, y3, x4, y4) => {
@@ -924,7 +977,7 @@ Q5.modules.q2d_drawing = ($) => {
 		$.endShape($.CLOSE);
 	};
 	$.endShape = (close) => {
-		clearBuff();
+		curveBuff = [];
 		if (close) $.ctx.closePath();
 		ink();
 	};
@@ -1076,7 +1129,32 @@ Q5.modules.q2d_drawing = ($) => {
 		return $.ctx.isPointInStroke(x * pd, y * pd);
 	};
 };
-Q5.modules.q2d_image = ($, p) => {
+Q5.renderers.q2d.image = ($, q) => {
+	class Q5Image {
+		constructor(w, h, opt) {
+			let $ = this;
+			$._scope = 'image';
+			$.canvas = $.ctx = $.drawingContext = null;
+			$.pixels = [];
+			Q5.modules.canvas($, $);
+			let r = Q5.renderers.q2d;
+			for (let m of ['canvas', 'image', 'soft_filters']) {
+				if (r[m]) r[m]($, $);
+			}
+			$.createCanvas(w, h, opt);
+			delete $.createCanvas;
+			$._loop = false;
+		}
+		get w() {
+			return this.width;
+		}
+		get h() {
+			return this.height;
+		}
+	}
+
+	Q5.Image ??= Q5Image;
+
 	$.createImage = (w, h, opt) => {
 		opt ??= {};
 		opt.alpha ??= true;
@@ -1084,115 +1162,145 @@ Q5.modules.q2d_image = ($, p) => {
 		return new Q5.Image(w, h, opt);
 	};
 
+	$.loadImage = function (url, cb, opt) {
+		if (url.canvas) return url;
+		if (url.slice(-3).toLowerCase() == 'gif') {
+			throw new Error(`q5 doesn't support GIFs due to their impact on performance. Use a video or animation instead.`);
+		}
+		q._preloadCount++;
+		let last = [...arguments].at(-1);
+		opt = typeof last == 'object' ? last : null;
+
+		let g = $.createImage(1, 1, opt);
+
+		function loaded(img) {
+			g.resize(img.naturalWidth || img.width, img.naturalHeight || img.height);
+			g.ctx.drawImage(img, 0, 0);
+			q._preloadCount--;
+			if (cb) cb(g);
+		}
+
+		if (Q5._nodejs && global.CairoCanvas) {
+			global.CairoCanvas.loadImage(url)
+				.then(loaded)
+				.catch((e) => {
+					q._preloadCount--;
+					throw e;
+				});
+		} else {
+			let img = new window.Image();
+			img.src = url;
+			img.crossOrigin = 'Anonymous';
+			img._pixelDensity = 1;
+			img.onload = () => loaded(img);
+			img.onerror = (e) => {
+				q._preloadCount--;
+				throw e;
+			};
+		}
+		return g;
+	};
+
+	$.imageMode = (mode) => ($._imageMode = mode);
+	$.image = (img, dx, dy, dw, dh, sx = 0, sy = 0, sw, sh) => {
+		let drawable = img.canvas || img;
+		if (Q5._createNodeJSCanvas) {
+			drawable = drawable.context.canvas;
+		}
+		dw ??= img.width || img.videoWidth;
+		dh ??= img.height || img.videoHeight;
+		if ($._imageMode == 'center') {
+			dx -= dw * 0.5;
+			dy -= dh * 0.5;
+		}
+		if ($._da) {
+			dx *= $._da;
+			dy *= $._da;
+			dw *= $._da;
+			dh *= $._da;
+			sx *= $._da;
+			sy *= $._da;
+			sw *= $._da;
+			sh *= $._da;
+		}
+		let pd = img._pixelDensity || 1;
+		if (!sw) {
+			sw = drawable.width || drawable.videoWidth;
+		} else sw *= pd;
+		if (!sh) {
+			sh = drawable.height || drawable.videoHeight;
+		} else sh *= pd;
+		$.ctx.drawImage(drawable, sx * pd, sy * pd, sw, sh, dx, dy, dw, dh);
+
+		if ($._tint) {
+			$.ctx.globalCompositeOperation = 'multiply';
+			$.ctx.fillStyle = $._tint.toString();
+			$.ctx.fillRect(dx, dy, dw, dh);
+			$.ctx.globalCompositeOperation = 'source-over';
+		}
+	};
+
 	$._tint = null;
 	let imgData = null;
-	let tmpCtx = null;
-	let tmpCt2 = null;
-
-	function makeTmpCtx(w, h) {
-		h ??= w || $.canvas.height;
-		w ??= $.canvas.width;
-		if (tmpCtx == null) {
-			tmpCtx = new $._OffscreenCanvas(w, h).getContext('2d', {
-				colorSpace: $.canvas.colorSpace
-			});
-		}
-		if (tmpCtx.canvas.width != w || tmpCtx.canvas.height != h) {
-			tmpCtx.canvas.width = w;
-			tmpCtx.canvas.height = h;
-		}
-	}
-
-	function makeTmpCt2(w, h) {
-		h ??= w || $.canvas.height;
-		w ??= $.canvas.width;
-		if (tmpCt2 == null) {
-			tmpCt2 = new $._OffscreenCanvas(w, h).getContext('2d', {
-				colorSpace: $.canvas.colorSpace
-			});
-		}
-		if (tmpCt2.canvas.width != w || tmpCt2.canvas.height != h) {
-			tmpCt2.canvas.width = w;
-			tmpCt2.canvas.height = h;
-		}
-	}
 
 	$._softFilter = () => {
-		throw 'Load q5-2d-soft-filters.js to use software filters.';
+		throw new Error('Load q5-2d-soft-filters.js to use software filters.');
 	};
 
-	function nativeFilter(filt) {
-		tmpCtx.clearRect(0, 0, tmpCtx.canvas.width, tmpCtx.canvas.height);
-		tmpCtx.filter = filt;
-		tmpCtx.drawImage($.canvas, 0, 0);
-		$.ctx.save();
-		$.ctx.resetTransform();
-		$.ctx.clearRect(0, 0, $.canvas.width, $.canvas.height);
-		$.ctx.drawImage(tmpCtx.canvas, 0, 0);
-		$.ctx.restore();
-	}
+	$.filter = (type, x) => {
+		if (!$.ctx.filter) return $._softFilter(type, x);
 
-	$.filter = (typ, x) => {
-		if (!$.ctx.filter) return $._softFilter(typ, x);
-		makeTmpCtx();
-		if (typeof typ == 'string') {
-			nativeFilter(typ);
-		} else if (typ == Q5.THRESHOLD) {
+		if (typeof type == 'string') f = type;
+		else if (type == Q5.GRAY) f = `saturate(0%)`;
+		else if (type == Q5.INVERT) f = `invert(100%)`;
+		else if (type == Q5.BLUR) {
+			let r = Math.ceil(x * $._pixelDensity) || 1;
+			f = `blur(${r}px)`;
+		} else if (type == Q5.THRESHOLD) {
 			x ??= 0.5;
-			x = Math.max(x, 0.00001);
-			let b = Math.floor((0.5 / x) * 100);
-			nativeFilter(`saturate(0%) brightness(${b}%) contrast(1000000%)`);
-		} else if (typ == Q5.GRAY) {
-			nativeFilter(`saturate(0%)`);
-		} else if (typ == Q5.OPAQUE) {
-			tmpCtx.fillStyle = 'black';
-			tmpCtx.fillRect(0, 0, tmpCtx.canvas.width, tmpCtx.canvas.height);
-			tmpCtx.drawImage($.canvas, 0, 0);
-			$.ctx.save();
-			$.ctx.resetTransform();
-			$.ctx.drawImage(tmpCtx.canvas, 0, 0);
-			$.ctx.restore();
-		} else if (typ == Q5.INVERT) {
-			nativeFilter(`invert(100%)`);
-		} else if (typ == Q5.BLUR) {
-			nativeFilter(`blur(${Math.ceil((x * $._pixelDensity) / 1) || 1}px)`);
-		} else {
-			$._softFilter(typ, x);
-		}
+			let b = Math.floor((0.5 / Math.max(x, 0.00001)) * 100);
+			f = `saturate(0%) brightness(${b}%) contrast(1000000%)`;
+		} else return $._softFilter(type, x);
+
+		$.ctx.filter = f;
+		$.ctx.drawImage($.canvas, 0, 0, $.canvas.w, $.canvas.h);
+		$.ctx.filter = 'none';
 	};
 
-	$.resize = (w, h) => {
-		makeTmpCtx();
-		tmpCtx.drawImage($.canvas, 0, 0);
-		p.width = w;
-		p.height = h;
-		$.canvas.width = w * $._pixelDensity;
-		$.canvas.height = h * $._pixelDensity;
-		$.ctx.save();
-		$.ctx.resetTransform();
-		$.ctx.clearRect(0, 0, $.canvas.width, $.canvas.height);
-		$.ctx.drawImage(tmpCtx.canvas, 0, 0, $.canvas.width, $.canvas.height);
-		$.ctx.restore();
-	};
+	if ($._scope == 'image') {
+		$.resize = (w, h) => {
+			let o = new $._OffscreenCanvas($.canvas.width, $.canvas.height);
+			let tmpCtx = o.getContext('2d', {
+				colorSpace: $.canvas.colorSpace
+			});
+			tmpCtx.drawImage($.canvas, 0, 0);
+			$._setCanvasSize(w, h);
+
+			$.ctx.clearRect(0, 0, $.canvas.width, $.canvas.height);
+			$.ctx.drawImage(o, 0, 0, $.canvas.width, $.canvas.height);
+		};
+	}
 
 	$.trim = () => {
 		let pd = $._pixelDensity || 1;
-		let imgData = $.ctx.getImageData(0, 0, $.width * pd, $.height * pd);
-		let data = imgData.data;
-		let left = $.width,
+		let w = $.canvas.width;
+		let h = $.canvas.height;
+		let data = $.ctx.getImageData(0, 0, w, h).data;
+		let left = w,
 			right = 0,
-			top = $.height,
+			top = h,
 			bottom = 0;
 
-		for (let y = 0; y < $.height * pd; y++) {
-			for (let x = 0; x < $.width * pd; x++) {
-				let index = (y * $.width * pd + x) * 4;
-				if (data[index + 3] !== 0) {
+		let i = 3;
+		for (let y = 0; y < h; y++) {
+			for (let x = 0; x < w; x++) {
+				if (data[i] !== 0) {
 					if (x < left) left = x;
 					if (x > right) right = x;
 					if (y < top) top = y;
 					if (y > bottom) bottom = y;
 				}
+				i += 4;
 			}
 		}
 		top = Math.floor(top / pd);
@@ -1211,48 +1319,6 @@ Q5.modules.q2d_image = ($, p) => {
 		$.ctx.drawImage(img.canvas, 0, 0);
 		$.ctx.globalCompositeOperation = old;
 		$.ctx.restore();
-	};
-
-	$._save = async (data, name, ext) => {
-		name = name || 'untitled';
-		ext = ext || 'png';
-		if (ext == 'jpg' || ext == 'png' || ext == 'webp') {
-			if (data instanceof OffscreenCanvas) {
-				const blob = await data.convertToBlob({ type: 'image/' + ext });
-				data = await new Promise((resolve) => {
-					const reader = new FileReader();
-					reader.onloadend = () => resolve(reader.result);
-					reader.readAsDataURL(blob);
-				});
-			} else {
-				data = data.toDataURL('image/' + ext);
-			}
-		} else {
-			let type = 'text/plain';
-			if (ext == 'json') {
-				if (typeof data != 'string') data = JSON.stringify(data);
-				type = 'text/json';
-			}
-			data = new Blob([data], { type });
-			data = URL.createObjectURL(data);
-		}
-		let a = document.createElement('a');
-		a.href = data;
-		a.download = name + '.' + ext;
-		a.click();
-		URL.revokeObjectURL(a.href);
-	};
-	$.save = (a, b, c) => {
-		if (!a || (typeof a == 'string' && (!b || (!c && b.length < 5)))) {
-			c = b;
-			b = a;
-			a = $.canvas;
-		}
-		if (c) return $._save(a, b, c);
-		if (b) {
-			b = b.split('.');
-			$._save(a, b[0], b.at(-1));
-		} else $._save(a);
 	};
 
 	$.get = (x, y, w, h) => {
@@ -1299,41 +1365,10 @@ Q5.modules.q2d_image = ($, p) => {
 
 	$.loadPixels = () => {
 		imgData = $.ctx.getImageData(0, 0, $.canvas.width, $.canvas.height);
-		p.pixels = imgData.data;
+		q.pixels = imgData.data;
 	};
 	$.updatePixels = () => {
 		if (imgData != null) $.ctx.putImageData(imgData, 0, 0);
-	};
-
-	$._tinted = function (col) {
-		let alpha = col.a;
-		col.a = 255;
-		makeTmpCtx();
-		tmpCtx.clearRect(0, 0, tmpCtx.canvas.width, tmpCtx.canvas.height);
-		tmpCtx.fillStyle = col.toString();
-		tmpCtx.fillRect(0, 0, tmpCtx.canvas.width, tmpCtx.canvas.height);
-		tmpCtx.globalCompositeOperation = 'multiply';
-		tmpCtx.drawImage($.ctx.canvas, 0, 0);
-		tmpCtx.globalCompositeOperation = 'source-over';
-
-		$.ctx.save();
-		$.ctx.resetTransform();
-		let old = $.ctx.globalCompositeOperation;
-		$.ctx.globalCompositeOperation = 'source-in';
-		$.ctx.drawImage(tmpCtx.canvas, 0, 0);
-		$.ctx.globalCompositeOperation = old;
-		$.ctx.restore();
-
-		tmpCtx.globalAlpha = alpha / 255;
-		tmpCtx.clearRect(0, 0, tmpCtx.canvas.width, tmpCtx.canvas.height);
-		tmpCtx.drawImage($.ctx.canvas, 0, 0);
-		tmpCtx.globalAlpha = 1;
-
-		$.ctx.save();
-		$.ctx.resetTransform();
-		$.ctx.clearRect(0, 0, $.ctx.canvas.width, $.ctx.canvas.height);
-		$.ctx.drawImage(tmpCtx.canvas, 0, 0);
-		$.ctx.restore();
 	};
 
 	$.smooth = () => ($.ctx.imageSmoothingEnabled = true);
@@ -1341,131 +1376,11 @@ Q5.modules.q2d_image = ($, p) => {
 
 	if ($._scope == 'image') return;
 
-	$.saveCanvas = $.canvas.save = $.save;
-
 	$.tint = function (c) {
 		$._tint = c._q5Color ? c : $.color(...arguments);
 	};
 	$.noTint = () => ($._tint = null);
-
-	// IMAGING
-
-	$.imageMode = (mode) => ($._imageMode = mode);
-	$.image = (img, dx, dy, dWidth, dHeight, sx = 0, sy = 0, sWidth, sHeight) => {
-		if ($._da) {
-			dx *= $._da;
-			dy *= $._da;
-			dWidth *= $._da;
-			dHeight *= $._da;
-			sx *= $._da;
-			sy *= $._da;
-			sWidth *= $._da;
-			sHeight *= $._da;
-		}
-		let drawable = img.canvas || img;
-		if (Q5._createNodeJSCanvas) {
-			drawable = drawable.context.canvas;
-		}
-		function reset() {
-			if (!img._q5 || !$._tint) return;
-			let c = img.ctx;
-			c.save();
-			c.resetTransform();
-			c.clearRect(0, 0, c.canvas.width, c.canvas.height);
-			c.drawImage(tmpCt2.canvas, 0, 0);
-			c.restore();
-		}
-		if (img.canvas && $._tint != null) {
-			makeTmpCt2(img.canvas.width, img.canvas.height);
-			tmpCt2.drawImage(img.canvas, 0, 0);
-			img._tinted($._tint);
-		}
-		dWidth ??= img.width || img.videoWidth;
-		dHeight ??= img.height || img.videoHeight;
-		if ($._imageMode == 'center') {
-			dx -= dWidth * 0.5;
-			dy -= dHeight * 0.5;
-		}
-		let pd = img._pixelDensity || 1;
-		if (!sWidth) {
-			sWidth = drawable.width || drawable.videoWidth;
-		} else sWidth *= pd;
-		if (!sHeight) {
-			sHeight = drawable.height || drawable.videoHeight;
-		} else sHeight *= pd;
-		$.ctx.drawImage(drawable, sx * pd, sy * pd, sWidth, sHeight, dx, dy, dWidth, dHeight);
-		reset();
-	};
-
-	$.loadImage = function (url, cb, opt) {
-		if (url.canvas) return url;
-		if (url.slice(-3).toLowerCase() == 'gif') {
-			throw new Error(`q5 doesn't support GIFs due to their impact on performance. Use a video or animation instead.`);
-		}
-		p._preloadCount++;
-		let last = [...arguments].at(-1);
-		opt = typeof last == 'object' ? last : null;
-
-		let g = $.createImage(1, 1, opt);
-
-		function loaded(img) {
-			let c = g.ctx;
-			g.width = c.canvas.width = img.naturalWidth || img.width;
-			g.height = c.canvas.height = img.naturalHeight || img.height;
-			c.drawImage(img, 0, 0);
-			p._preloadCount--;
-			if (cb) cb(g);
-		}
-
-		if (Q5._nodejs && global.CairoCanvas) {
-			global.CairoCanvas.loadImage(url)
-				.then(loaded)
-				.catch((e) => {
-					p._preloadCount--;
-					throw e;
-				});
-		} else {
-			let img = new window.Image();
-			img.src = url;
-			img.crossOrigin = 'Anonymous';
-			img._pixelDensity = 1;
-			img.onload = () => loaded(img);
-			img.onerror = (e) => {
-				p._preloadCount--;
-				throw e;
-			};
-		}
-		return g;
-	};
 };
-
-// IMAGE CLASS
-
-Q5.imageModules = ['q2d_canvas', 'q2d_image'];
-
-class _Q5Image {
-	constructor(w, h, opt) {
-		let $ = this;
-		$._scope = 'image';
-		$.canvas = $.ctx = $.drawingContext = null;
-		$.pixels = [];
-		for (let m of Q5.imageModules) {
-			Q5.modules[m]($, $);
-		}
-		delete this.createCanvas;
-
-		this._createCanvas(w, h, '2d', opt);
-		this._loop = false;
-	}
-	get w() {
-		return this.width;
-	}
-	get h() {
-		return this.height;
-	}
-}
-
-Q5.Image ??= _Q5Image;
 
 Q5.THRESHOLD = 1;
 Q5.GRAY = 2;
@@ -1476,12 +1391,12 @@ Q5.DILATE = 6;
 Q5.ERODE = 7;
 Q5.BLUR = 8;
 /* software implementation of image filters */
-Q5.modules.q2d_soft_filters = ($) => {
+Q5.renderers.q2d.soft_filters = ($) => {
 	let tmpBuf = null;
 
-	function makeTmpBuf() {
+	function ensureTmpBuf() {
 		let l = $.canvas.width * $.canvas.height * 4;
-		if (!tmpBuf || l != tmpBuf.length) {
+		if (!tmpBuf || tmpBuf.length != l) {
 			tmpBuf = new Uint8ClampedArray(l);
 		}
 	}
@@ -1523,7 +1438,7 @@ Q5.modules.q2d_soft_filters = ($) => {
 			}
 		};
 		$._filters[Q5.DILATE] = (data) => {
-			makeTmpBuf();
+			ensureTmpBuf();
 			tmpBuf.set(data);
 			let [w, h] = [$.canvas.width, $.canvas.height];
 			for (let i = 0; i < h; i++) {
@@ -1550,7 +1465,7 @@ Q5.modules.q2d_soft_filters = ($) => {
 			}
 		};
 		$._filters[Q5.ERODE] = (data) => {
-			makeTmpBuf();
+			ensureTmpBuf();
 			tmpBuf.set(data);
 			let [w, h] = [$.canvas.width, $.canvas.height];
 			for (let i = 0; i < h; i++) {
@@ -1579,7 +1494,7 @@ Q5.modules.q2d_soft_filters = ($) => {
 		$._filters[Q5.BLUR] = (data, rad) => {
 			rad = rad || 1;
 			rad = Math.floor(rad * $._pixelDensity);
-			makeTmpBuf();
+			ensureTmpBuf();
 			tmpBuf.set(data);
 
 			let ksize = rad * 2 + 1;
@@ -1651,7 +1566,7 @@ Q5.modules.q2d_soft_filters = ($) => {
 		$.ctx.putImageData(imgData, 0, 0);
 	};
 };
-Q5.modules.q2d_text = ($, p) => {
+Q5.renderers.q2d.text = ($, q) => {
 	$.NORMAL = 'normal';
 	$.ITALIC = 'italic';
 	$.BOLD = 'bold';
@@ -1671,12 +1586,12 @@ Q5.modules.q2d_text = ($, p) => {
 	$._textStyle = 'normal';
 
 	$.loadFont = (url, cb) => {
-		p._preloadCount++;
+		q._preloadCount++;
 		let name = url.split('/').pop().split('.')[0].replace(' ', '');
 		let f = new FontFace(name, `url(${url})`);
 		document.fonts.add(f);
 		f.load().then(() => {
-			p._preloadCount--;
+			q._preloadCount--;
 			if (cb) cb(name);
 		});
 		return name;
@@ -1865,8 +1780,8 @@ Q5.modules.q2d_text = ($, p) => {
 	};
 };
 Q5.modules.ai = ($) => {
-	$.askAI = (q = '') => {
-		throw Error('Ask AI ✨ ' + q);
+	$.askAI = (question = '') => {
+		throw Error('Ask AI ✨ ' + question);
 	};
 
 	$._aiErrorAssistance = async (e) => {
@@ -1929,22 +1844,24 @@ Q5.modules.ai = ($) => {
 		} catch (err) {}
 	};
 };
-Q5.modules.color = ($, p) => {
+Q5.modules.color = ($, q) => {
 	$.RGB = $.RGBA = $._colorMode = 'rgb';
 	$.OKLCH = 'oklch';
 
-	if (Q5.supportsHDR) $.Color = Q5.ColorRGBA_P3;
-	else $.Color = Q5.ColorRGBA;
-
-	$.colorMode = (mode) => {
+	$.colorMode = (mode, format) => {
 		$._colorMode = mode;
+		let srgb = $.canvas.colorSpace == 'srgb' || mode == 'srgb';
+		format ??= srgb ? 'integer' : 'float';
+		$._colorFormat = format;
 		if (mode == 'oklch') {
-			p.Color = Q5.ColorOKLCH;
-		} else if (mode == 'rgb') {
-			if ($.canvas.colorSpace == 'srgb') p.Color = Q5.ColorRGBA;
-			else p.Color = Q5.ColorRGBA_P3;
-		} else if (mode == 'srgb') {
-			p.Color = Q5.ColorRGBA;
+			q.Color = Q5.ColorOKLCH;
+		} else {
+			let srgb = $.canvas.colorSpace == 'srgb';
+			if ($._colorFormat == 'integer') {
+				q.Color = srgb ? Q5.ColorRGBA_8 : Q5.ColorRGBA_P3_8;
+			} else {
+				q.Color = srgb ? Q5.ColorRGBA : Q5.ColorRGBA_P3;
+			}
 			$._colorMode = 'rgb';
 		}
 	};
@@ -1989,27 +1906,33 @@ Q5.modules.color = ($, p) => {
 		let args = arguments;
 		if (args.length == 1) {
 			if (typeof c0 == 'string') {
+				let r, g, b, a;
 				if (c0[0] == '#') {
 					if (c0.length <= 5) {
-						return new C(
-							parseInt(c0[1] + c0[1], 16),
-							parseInt(c0[2] + c0[2], 16),
-							parseInt(c0[3] + c0[3], 16),
-							c0.length == 4 ? null : parseInt(c0[4] + c0[4], 16)
-						);
+						r = parseInt(c0[1] + c0[1], 16);
+						g = parseInt(c0[2] + c0[2], 16);
+						b = parseInt(c0[3] + c0[3], 16);
+						a = c0.length == 4 ? null : parseInt(c0[4] + c0[4], 16);
+					} else {
+						r = parseInt(c0.slice(1, 3), 16);
+						g = parseInt(c0.slice(3, 5), 16);
+						b = parseInt(c0.slice(5, 7), 16);
+						a = c0.length == 7 ? null : parseInt(c0.slice(7, 9), 16);
 					}
-					return new C(
-						parseInt(c0.slice(1, 3), 16),
-						parseInt(c0.slice(3, 5), 16),
-						parseInt(c0.slice(5, 7), 16),
-						c0.length == 7 ? null : parseInt(c0.slice(7, 9), 16)
+				} else if ($._namedColors[c0]) [r, g, b] = $._namedColors[c0];
+				else {
+					console.error(
+						"q5 can't parse color: " + c0 + '\nOnly numeric input, hex, and common named colors are supported.'
 					);
+					return new C(0, 0, 0);
 				}
-				if ($._namedColors[c0]) return new C(...$._namedColors[c0]);
-				console.error(
-					"q5 can't parse color: " + c0 + '\nOnly numeric input, hex, and common named colors are supported.'
-				);
-				return new C(0, 0, 0);
+				if ($._colorFormat != 'integer') {
+					r /= 255;
+					g /= 255;
+					b /= 255;
+					if (a != null) a /= 255;
+				}
+				return new C(r, g, b, a);
 			}
 			if (Array.isArray(c0)) return new C(...c0);
 		}
@@ -2079,7 +2002,24 @@ Q5.ColorRGBA = class extends Q5.Color {
 		this.r = r;
 		this.g = g;
 		this.b = b;
-		this.a = a ?? 255;
+		this.a = a ?? 1;
+	}
+	get levels() {
+		return [this.r, this.g, this.b, this.a];
+	}
+	toString() {
+		return `color(srgb ${this.r} ${this.g} ${this.b} / ${this.a})`;
+	}
+};
+Q5.ColorRGBA_P3 = class extends Q5.ColorRGBA {
+	toString() {
+		return `color(display-p3 ${this.r} ${this.g} ${this.b} / ${this.a})`;
+	}
+};
+// legacy 8-bit (0-255) integer color format
+Q5.ColorRGBA_8 = class extends Q5.ColorRGBA {
+	constructor(r, g, b, a) {
+		super(r, g, b, a ?? 255);
 	}
 	setRed(v) {
 		this.r = v;
@@ -2100,9 +2040,10 @@ Q5.ColorRGBA = class extends Q5.Color {
 		return `rgb(${this.r} ${this.g} ${this.b} / ${this.a / 255})`;
 	}
 };
-Q5.ColorRGBA_P3 = class extends Q5.ColorRGBA {
+// p3 10-bit color in integer color format, for backwards compatibility
+Q5.ColorRGBA_P3_8 = class extends Q5.ColorRGBA {
 	constructor(r, g, b, a) {
-		super(r, g, b, a);
+		super(r, g, b, a ?? 255);
 		this._edited = true;
 	}
 	get r() {
@@ -2231,8 +2172,14 @@ main {
 		Object.assign(c, { displayMode, renderQuality, displayScale });
 		$._adjustDisplay();
 	};
+
+	$.fullscreen = (v) => {
+		if (v === undefined) return document.fullscreenElement;
+		if (v) document.body.requestFullscreen();
+		else document.body.exitFullscreen();
+	};
 };
-Q5.modules.input = ($, p) => {
+Q5.modules.input = ($, q) => {
 	if ($._scope == 'graphics') return;
 
 	$.mouseX = 0;
@@ -2276,17 +2223,26 @@ Q5.modules.input = ($, p) => {
 
 	$._updateMouse = (e) => {
 		if (e.changedTouches) return;
-		let rect = $.canvas.getBoundingClientRect();
-		let sx = $.canvas.scrollWidth / $.width || 1;
-		let sy = $.canvas.scrollHeight / $.height || 1;
-		p.mouseX = (e.clientX - rect.left) / sx;
-		p.mouseY = (e.clientY - rect.top) / sy;
+		if (c) {
+			let rect = c.getBoundingClientRect();
+			let sx = c.scrollWidth / $.width || 1;
+			let sy = c.scrollHeight / $.height || 1;
+			q.mouseX = (e.clientX - rect.left) / sx;
+			q.mouseY = (e.clientY - rect.top) / sy;
+			if (c.renderer == 'webgpu') {
+				q.mouseX -= c.hw;
+				q.mouseY -= c.hh;
+			}
+		} else {
+			q.mouseX = e.clientX;
+			q.mouseY = e.clientY;
+		}
 	};
 	$._onmousedown = (e) => {
 		$._startAudio();
 		$._updateMouse(e);
-		p.mouseIsPressed = true;
-		p.mouseButton = mouseBtns[e.button];
+		q.mouseIsPressed = true;
+		q.mouseButton = mouseBtns[e.button];
 		$.mousePressed(e);
 	};
 	$._onmousemove = (e) => {
@@ -2296,18 +2252,15 @@ Q5.modules.input = ($, p) => {
 	};
 	$._onmouseup = (e) => {
 		$._updateMouse(e);
-		p.mouseIsPressed = false;
+		q.mouseIsPressed = false;
 		$.mouseReleased(e);
 	};
 	$._onclick = (e) => {
 		$._updateMouse(e);
-		p.mouseIsPressed = true;
+		q.mouseIsPressed = true;
 		$.mouseClicked(e);
-		p.mouseIsPressed = false;
+		q.mouseIsPressed = false;
 	};
-	c.addEventListener('mousedown', (e) => $._onmousedown(e));
-	c.addEventListener('mouseup', (e) => $._onmouseup(e));
-	c.addEventListener('click', (e) => $._onclick(e));
 
 	$.cursor = (name, x, y) => {
 		let pfx = '';
@@ -2329,17 +2282,17 @@ Q5.modules.input = ($, p) => {
 	$._onkeydown = (e) => {
 		if (e.repeat) return;
 		$._startAudio();
-		p.keyIsPressed = true;
-		p.key = e.key;
-		p.keyCode = e.keyCode;
+		q.keyIsPressed = true;
+		q.key = e.key;
+		q.keyCode = e.keyCode;
 		keysHeld[$.keyCode] = keysHeld[$.key.toLowerCase()] = true;
 		$.keyPressed(e);
 		if (e.key.length == 1) $.keyTyped(e);
 	};
 	$._onkeyup = (e) => {
-		p.keyIsPressed = false;
-		p.key = e.key;
-		p.keyCode = e.keyCode;
+		q.keyIsPressed = false;
+		q.key = e.key;
+		q.keyCode = e.keyCode;
 		keysHeld[$.keyCode] = keysHeld[$.key.toLowerCase()] = false;
 		$.keyReleased(e);
 	};
@@ -2357,37 +2310,43 @@ Q5.modules.input = ($, p) => {
 	}
 	$._ontouchstart = (e) => {
 		$._startAudio();
-		p.touches = [...e.touches].map(getTouchInfo);
+		q.touches = [...e.touches].map(getTouchInfo);
 		if (!$._isTouchAware) {
-			p.mouseX = $.touches[0].x;
-			p.mouseY = $.touches[0].y;
-			p.mouseIsPressed = true;
-			p.mouseButton = $.LEFT;
+			q.mouseX = $.touches[0].x;
+			q.mouseY = $.touches[0].y;
+			q.mouseIsPressed = true;
+			q.mouseButton = $.LEFT;
 			if (!$.mousePressed(e)) e.preventDefault();
 		}
 		if (!$.touchStarted(e)) e.preventDefault();
 	};
 	$._ontouchmove = (e) => {
-		p.touches = [...e.touches].map(getTouchInfo);
+		q.touches = [...e.touches].map(getTouchInfo);
 		if (!$._isTouchAware) {
-			p.mouseX = $.touches[0].x;
-			p.mouseY = $.touches[0].y;
+			q.mouseX = $.touches[0].x;
+			q.mouseY = $.touches[0].y;
 			if (!$.mouseDragged(e)) e.preventDefault();
 		}
 		if (!$.touchMoved(e)) e.preventDefault();
 	};
 	$._ontouchend = (e) => {
-		p.touches = [...e.touches].map(getTouchInfo);
+		q.touches = [...e.touches].map(getTouchInfo);
 		if (!$._isTouchAware && !$.touches.length) {
-			p.mouseIsPressed = false;
+			q.mouseIsPressed = false;
 			if (!$.mouseReleased(e)) e.preventDefault();
 		}
 		if (!$.touchEnded(e)) e.preventDefault();
 	};
-	c.addEventListener('touchstart', (e) => $._ontouchstart(e));
-	c.addEventListener('touchmove', (e) => $._ontouchmove(e));
-	c.addEventListener('touchcancel', (e) => $._ontouchend(e));
-	c.addEventListener('touchend', (e) => $._ontouchend(e));
+
+	if (c) {
+		c.addEventListener('mousedown', (e) => $._onmousedown(e));
+		c.addEventListener('mouseup', (e) => $._onmouseup(e));
+		c.addEventListener('click', (e) => $._onclick(e));
+		c.addEventListener('touchstart', (e) => $._ontouchstart(e));
+		c.addEventListener('touchmove', (e) => $._ontouchmove(e));
+		c.addEventListener('touchcancel', (e) => $._ontouchend(e));
+		c.addEventListener('touchend', (e) => $._ontouchend(e));
+	}
 
 	if (window) {
 		let l = window.addEventListener;
@@ -2396,7 +2355,7 @@ Q5.modules.input = ($, p) => {
 		l('keyup', (e) => $._onkeyup(e), false);
 	}
 };
-Q5.modules.math = ($, p) => {
+Q5.modules.math = ($, q) => {
 	$.DEGREES = 'degrees';
 	$.RADIANS = 'radians';
 
@@ -2425,7 +2384,7 @@ Q5.modules.math = ($, p) => {
 	$.degrees = (x) => x * $._RADTODEG;
 	$.radians = (x) => x * $._DEGTORAD;
 
-	$.map = (value, istart, istop, ostart, ostop, clamp) => {
+	$.map = Q5.prototype.map = (value, istart, istop, ostart, ostop, clamp) => {
 		let val = ostart + (ostop - ostart) * (((value - istart) * 1.0) / (istop - istart));
 		if (!clamp) {
 			return val;
@@ -2683,7 +2642,7 @@ Q5.modules.math = ($, p) => {
 	let _noise;
 
 	$.noiseMode = (mode) => {
-		p.Noise = Q5[mode[0].toUpperCase() + mode.slice(1) + 'Noise'];
+		q.Noise = Q5[mode[0].toUpperCase() + mode.slice(1) + 'Noise'];
 		_noise = null;
 	};
 	$.noiseSeed = (seed) => {
@@ -2816,14 +2775,15 @@ Q5.PerlinNoise = class extends Q5.Noise {
 		return (total / maxAmp + 1) / 2;
 	}
 };
-Q5.modules.sound = ($, p) => {
+Q5.modules.sound = ($, q) => {
 	$.Sound = Q5.Sound;
 	$.loadSound = (path, cb) => {
-		p._preloadCount++;
+		q._preloadCount++;
 		Q5.aud ??= new window.AudioContext();
 		let a = new Q5.Sound(path, cb);
 		a.addEventListener('canplaythrough', () => {
-			p._preloadCount--;
+			q._preloadCount--;
+			a.loaded = true;
 			if (cb) cb(a);
 		});
 		return a;
@@ -2855,10 +2815,16 @@ Q5.Sound = class extends Audio {
 	setPan(value) {
 		this.pan = value;
 	}
+	isLoaded() {
+		return this.loaded;
+	}
+	isPlaying() {
+		return !this.paused;
+	}
 };
-Q5.modules.util = ($, p) => {
+Q5.modules.util = ($, q) => {
 	$._loadFile = (path, cb, type) => {
-		p._preloadCount++;
+		q._preloadCount++;
 		let ret = {};
 		fetch(path)
 			.then((r) => {
@@ -2866,7 +2832,7 @@ Q5.modules.util = ($, p) => {
 				if (type == 'text') return r.text();
 			})
 			.then((r) => {
-				p._preloadCount--;
+				q._preloadCount--;
 				Object.assign(ret, r);
 				if (cb) cb(r);
 			});
@@ -2911,7 +2877,7 @@ Q5.Vector = class {
 		return new Q5.Vector(this.x, this.y, this.z);
 	}
 	_arg2v(x, y, z) {
-		if (x.x !== undefined) return x;
+		if (x?.x !== undefined) return x;
 		if (y !== undefined) {
 			return { x, y, z: z || 0 };
 		}

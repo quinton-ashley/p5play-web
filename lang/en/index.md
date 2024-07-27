@@ -24,13 +24,13 @@
 
 ## Join the community 👾
 
-Ask questions and meet other people making interactive art and games with p5play on our [community Discord server](https://discord.gg/EJwnJATmj7).
+Ask questions, meet people, and share your games made with p5play on our [community Discord server](https://discord.gg/EJwnJATmj7).
 
 # 11
 
 ## Support this project 🤝
 
-p5play is open source and free to use under the terms of the [AGPLv3](https://github.com/quinton-ashley/p5play/blob/main/LICENSE.md). For typical use by schools, see the [Teach](teach) page.
+p5play is open source and free to use under the [AGPLv3](https://github.com/quinton-ashley/p5play/blob/main/LICENSE.md). For typical use in schools, see the [Teach](teach) page.
 
 Unlock exclusive content by becoming a [Pro member](pro)!
 
@@ -38,7 +38,7 @@ Unlock exclusive content by becoming a [Pro member](pro)!
 
 ## No installation required 🤩
 
-Works great on iPads and Chromebooks! Start creating your own p5play project with one of these online code editors.
+Works great on iPads and Chromebooks! Start creating your own p5play project with an online code editor.
 
 # 13-0
 
