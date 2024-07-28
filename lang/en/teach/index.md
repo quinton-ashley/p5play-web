@@ -16,7 +16,7 @@ The [_Learn p5play_](../learn) interactive textbook makes Object Oriented Progra
 
 It's packed with reference documentation and code examples that students can experiment with right in their web browser. Works great on iPads and Chromebooks.
 
-_Use in class and coursework requires the Edu License._
+_Teachers can evaluate this resource for free. Use in class and coursework requires the Edu License._
 
 # 2-0
 
@@ -26,7 +26,7 @@ _Use in class and coursework requires the Edu License._
 
 Even if you're not a "gamer", you can still competently teach game design. Use the GDF slides and activities verbatim or as inspiration for your own lesson material.
 
-_Exclusively for Edu Licensees._
+_2 lessons provided as a free sample. Additional lessons are exclusively for Edu Licensees._
 
 # 3-0
 
@@ -38,14 +38,16 @@ _Exclusively for Edu Licensees._
 
 # 4-0
 
-## Custom Invoice
+## Educational Pricing
 
-Our pricing is fair and affordable, starting at just $5 USD per student per semester.
+### $5 USD
 
-Equitable access is important to us. We offer discounts for schools in low-income areas. If you want to use p5play, we will work with you to make it happen!
-
-Contact us to receive a custom invoice for your school or organization.
+per student per semester
 
 # 4-1
 
-## Get a quote!
+## Request Invoice
+
+# 4-2
+
+Equitable access is important to us. We offer discounts for schools in low-income areas. If you want to use p5play, we'll work with you to make it happen!

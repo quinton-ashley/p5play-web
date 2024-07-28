@@ -111,6 +111,40 @@ h2 {
 	width: fit-content;
 }
 
+#reel4 .hero-icon {
+	margin-left: calc(50% - 60px);
+	margin-top: -16px !important;
+}
+
+#reel4 md {
+	margin: 0;
+}
+
+#reel4 h2 {
+	margin-left: 0;
+}
+
+#reel4 h2,
+#reel4 h3,
+#md4-0 p {
+	text-align: center;
+}
+
+#reel4 h3,
+#reel4 p {
+	margin: 0;
+}
+
+#reel4 h3 {
+	margin-top: 24px;
+	color: var(--blue);
+	font-size: 40px;
+}
+
+#reel4 .shell {
+	margin-top: 16px;
+}
+
 @media screen and (max-width: 1030px) {
 
 	.reel,

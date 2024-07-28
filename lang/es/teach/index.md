@@ -40,12 +40,14 @@ _Exclusivo para clientes que adquieren la subscripcion educativa._
 
 ## Factura Personalizada
 
-Nuestros precios son justos y asequibles, comenzando desde solo $5 USD por estudiante cada semestre.
+### $5 USD
 
-El acceso equitativo es importante para nosotros. Ofrecemos descuentos para escuelas en áreas de bajos ingresos. Si deseas usar p5play, trabajaremos contigo para hacerlo posible.
-
-Contáctanos para recibir una factura personalizada para tu escuela u organización.
+por estudiante cada semestre
 
 # 4-1
 
 ## ¡Dame la factura!
+
+# 4-2
+
+El acceso equitativo es importante para nosotros. Ofrecemos descuentos para escuelas en áreas de bajos ingresos. Si deseas usar p5play, trabajaremos contigo para hacerlo posible.
