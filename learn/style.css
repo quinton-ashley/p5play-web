@@ -9,6 +9,7 @@ html {
 	--blue0: #b7ebff;
 	--blue1: #1779c4;
 	--blue2: #f0f8ff;
+	--blue3: #4eaee9;
 
 	--primary: #000;
 	--secondary: #fff;
@@ -29,6 +30,7 @@ body.dark {
 	--blue0: #4eaee9;
 	--blue1: #4eaee9;
 	--blue2: #002340;
+	--blue3: #b7ebff;
 
 	--primary: #c8c3bc;
 	--secondary: #202324;
@@ -47,9 +49,10 @@ body.dark {
 		--pink1: oklch(0.615 0.278 18.568);
 		--pink2: oklch(0.966 0.024 358.907);
 
-		--blue0: oklch(90.7% 0.073 218.6);
+		--blue0: oklch(0.907 0.074 218.641);
 		--blue1: oklch(0.56 0.163 241.961);
 		--blue2: oklch(0.975 0.015 239.425);
+		--blue3: oklch(0.714 0.147 232.544);
 	}
 
 	body.dark {
@@ -60,6 +63,7 @@ body.dark {
 		--blue0: oklch(0.714 0.147 232.544);
 		--blue1: oklch(0.714 0.147 232.544);
 		--blue2: oklch(0.249 0.077 241.818);
+		--blue3: oklch(0.907 0.074 218.641);
 	}
 }
 
@@ -149,11 +153,14 @@ html.ja h2 {
 }
 
 .heroBtns:hover {
-	background-color: var(--secondary);
 	border: 5px solid var(--blue0);
 	border-bottom: 0;
 	border-right: 0;
 	box-shadow: 5px 5px 0px var(--pink0);
+}
+
+.dark .heroBtns:hover {
+	color: var(--blue3);
 }
 
 .heroBtns h2 {
@@ -215,12 +222,6 @@ md {
 
 md.closed {
 	cursor: pointer;
-}
-
-md.closed:hover {
-	background: linear-gradient(90deg, var(--secondary) 0%, var(--blue0) 50%, var(--secondary) 100%);
-	background-size: 200% 200%;
-	animation: shimmer 1.2s infinite;
 }
 
 @keyframes shimmer {
@@ -290,11 +291,13 @@ a {
 
 /* shimmer text on hover */
 a:hover {
-	color: var(--pink0);
+	color: var(--blue3);
 	text-decoration: underline;
 }
 
-p a:hover {
+md.closed:hover,
+p a:hover,
+.heroBtns:hover {
 	background: linear-gradient(90deg, var(--secondary) 0%, var(--blue0) 50%, var(--secondary) 100%);
 	background-size: 200% 200%;
 	animation: shimmer 1.2s infinite;

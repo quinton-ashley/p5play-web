@@ -44,7 +44,7 @@ Works great on iPads and Chromebooks! Start creating your own p5play project wit
 
 ## Local Development 🔨
 
-Use p5play on your own website by adding these links to your HTML file. School firewall blocking p5play.org? See the [FAQs](https://github.com/quinton-ashley/p5play/wiki/FAQ#school-firewall-blocking-p5playorg)
+You can [use p5play offline](https://github.com/quinton-ashley/p5play-template) or use these tags in your HTML to always get the latest version.
 
 # r00
 
