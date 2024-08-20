@@ -32,42 +32,34 @@
 						method="post" class="cognito-asf" onsubmit="onSubmit(event, this, 'signUpButton')">
 						<input type="hidden" name="_csrf" value="15af2289-bf9e-47f4-be85-173d1cd3ba38" />
 
-						<div>
-							<input type="text" name="requiredAttributes[given_name]" class="form-control inputField-customizable"
-								aria-label="Full Name" placeholder="Full Name" onkeyup="checkIfValid();" id="full-name" />
-						</div>
-						<div style="display: none">
-							<input type="text" name="requiredAttributes[locale]" class="form-control inputField-customizable"
-								required="" aria-label="locale" value="nil" id="localeInput" />
-							<input type="text" name="requiredAttributes[updated_at]" class="form-control inputField-customizable"
-								required="" aria-label="updated_at" value="nil" id="todaysDate" />
-						</div>
-						<div class="mini-row">
-							<input type="text" name="requiredAttributes[gender]" class="form-control inputField-customizable"
-								required="" aria-label="Gender" placeholder="Gender" onkeyup="checkIfValid();" id="gender" />
-
-							<input type="date" name="requiredAttributes[birthdate]" class="form-control inputField-customizable"
-								aria-label="Birthday" id="birthday" placeholder="Birthday" />
-
-							<input type="number" class="form-control inputField-customizable" required="" aria-label="Age" id="age"
-								placeholder="Age" onchange="checkIfValid();" />
-						</div>
 						<div class="mini-row">
 							<select type="text" name="requiredAttributes[middle_name]" class="form-control inputField-customizable"
 								required="" aria-label="Account Type" onchange="checkIfValid();" id="account_type" />
 							<option value="" hidden>Account Type</option>
 							<option value="Student">Student</option>
 							<option value="Teacher">Teacher</option>
-							<option value="Developer">Indie Dev</option>
+							<option value="Developer">Developer</option>
 							</select>
 
+							<input type="date" name="requiredAttributes[birthdate]" class="form-control inputField-customizable"
+								aria-label="Birthday" id="birthday" placeholder="Birthday" />
+							<input type="number" class="form-control inputField-customizable" required="" aria-label="Age" id="age"
+								placeholder="Age" onkeyup="checkIfValid();" />
+						</div>
+						<div class="mini-row personal">
+							<input type="text" name="requiredAttributes[given_name]" class="form-control inputField-customizable"
+								aria-label="Full Name" placeholder="Full Name" onkeyup="checkIfValid();" id="full-name" />
+
+							<input type="text" name="requiredAttributes[gender]" class="form-control inputField-customizable"
+								required="" aria-label="Gender" placeholder="Gender" onkeyup="checkIfValid();" id="gender" />
+						</div>
+						<div class="mini-row personal">
 							<input type="text" name="requiredAttributes[family_name]" class="form-control inputField-customizable"
 								required="" aria-label="School" placeholder="School / Company" onchange="checkIfValid();" id="school" />
-						</div>
-						<div>
-							<select name="requiredAttributes[address]" class="form-control inputField-customizable" required=""
-								aria-label="Country" id="country" onchange="checkIfValid();">
-								<option value="" label="Country" selected="selected">Country</option>
+
+							<select class="form-control inputField-customizable" required="" aria-label="Country" id="country"
+								onchange="checkIfValid();">
+								<option value="" label="Country" hidden>Country</option>
 								<option value="AU" label="Australia">Australia</option>
 								<option value="JP" label="Japan">Japan</option>
 								<option value="US" label="United States">United States</option>
@@ -340,19 +332,24 @@
 								</optgroup>
 							</select>
 						</div>
+						<div style="display: none">
+							<input type="text" name="requiredAttributes[locale]" aria-label="locale" value="nil" id="localeInput" />
+							<input type="text" name="requiredAttributes[updated_at]" aria-label="updated_at" value="nil"
+								id="todaysDate" />
+						</div>
 
-						<div>
+						<div class="personal">
 							<input name="username" onkeyup="checkIfValid();" type="email" value="" autocapitalize="none"
 								class="form-control inputField-customizable" placeholder="Email" required="" aria-label="Email"
 								id="email" />
 						</div>
-						<div>
-							<input type="password" autocomplete="new-password" name="password"
-								onkeyup="checkPasswordMatch(); checkIfValid();" value="" class="form-control inputField-customizable"
-								placeholder="Password" required="" aria-label="Password" id="password" />
+						<div class="personal">
+							<input type="password" autocomplete="new-password" name="password" onkeyup="checkIfValid();" value=""
+								class="form-control inputField-customizable" placeholder="Password" required="" aria-label="Password"
+								id="password" />
 						</div>
 
-						<div>
+						<div id="checkPassword">
 							<div>
 								<div class="checkPassword-lowerletter passwordCheck-notValid-customizable">
 									<span aria-hidden="true" class="check-lowerletter"></span>
@@ -384,28 +381,48 @@
 								</div>
 							</div>
 						</div>
-						<p>
-							<input type="checkbox" id="tos" name="tos" required>
-							<span id="tosInfo">I agree to the <a href="tos.md">Terms of Service</a> and <a
-									href="privacy_policy.md">Privacy
-									Policy</a>.</span>
-						</p>
-						<p>
-							<input type="checkbox" id="newsletter" name="newsletter">
-							<span id="newsletterInfo">
-								I'd like to receive occasional newsletters via email from p5play.
-							</span>
-						</p>
-						<button type="submit" name="signUpButton" class="btn btn-primary signUpButton submitButton-customizable"
-							disabled="">
+						<div class="personal">
+							<p>
+								<input type="checkbox" id="tos" name="tos" required>
+								<span id="tosInfo">I agree to the <a href="tos.md" target="_blank">Terms of Service</a> and <a
+										href="privacy_policy.md" target="_blank">Privacy
+										Policy</a>.</span>
+							</p>
+						</div>
+						<div class="personal">
+							<p id="newsletterGroup">
+								<input type="checkbox" id="newsletter" name="newsletter">
+								<span id="newsletterInfo">I'd like to receive occasional newsletters via email from p5play.</span>
+							</p>
+						</div>
+						<button id="signup" type="submit" name="signUpButton"
+							class="btn btn-primary signUpButton submitButton-customizable" disabled="">
 							Sign up
 						</button>
-						<p class="redirect-customizable">
-							<span class="ask-account-check">Already have an account?</span>&nbsp;<a
-								href="https://p5play.auth.us-west-2.amazoncognito.com/login?client_id=3oegfdhu2r7eo8nr371496718c&amp;response_type=token&amp;scope=email+openid+profile&amp;redirect_uri=https%3A%2F%2Fp5play.org%2Faccount%2Findex.html">Sign
-								in</a>
+						<p id="signin" class="redirect-customizable">
+							<span class="ask-account-check">Already have an account?</span>&nbsp;<a href="login.html">Login</a>
 						</p>
 					</form>
+					<div class="student">
+						<form onsubmit="onStudentSubmit(event);">
+							<input id="class_id" onkeyup="checkIfValid();" type="text" name="classID" value="" aria-label="class_id"
+								autocapitalize="none" class="form-control inputField-customizable"
+								placeholder="Class ID (ask your teacher for it)" required="" />
+							<input id="student_id" onkeyup="checkIfValid();" name="studentID" value="" aria-label="class_id"
+								autocapitalize="none" class="form-control inputField-customizable" placeholder="Student ID or Initials"
+								required="" />
+							<p>
+								<input type="checkbox" id="student_tos" name="tos" required>
+								<span id="tosInfo">I agree to the <a href="tos.md" target="_blank">Terms of Service</a> and <a
+										href="privacy_policy.md" target="_blank">Privacy
+										Policy</a>.</span>
+							</p>
+							<button id="studentSignUp" type="submit" class="btn btn-primary signUpButton submitButton-customizable"
+								disabled="">
+								Sign up
+							</button>
+						</form>
+					</div>
 				</div>
 			</div>
 		</div>

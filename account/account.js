@@ -68,12 +68,18 @@ function jwtDecode(token, options) {
 		}
 	} else idToken = null;
 
-	// code for checking if the token has been expired for more than a month
-	// user.exp + 2419200 < Date.now() / 1000
+	// if the user is trying to access the account page
+	// and the token is expired, force the user to login again
+	// otherwise they can access the page with an expired token
+	let expired =
+		user &&
+		((location.pathname.includes('account') && user.exp < Date.now() / 1000) ||
+			user.exp + 13500000 < Date.now() / 1000);
 
 	// check if there's no token
 	// expired tokens are accepted so users don't have to login again
-	if (!idToken || !user.given_name) {
+	// unless the user is trying to access the account page
+	if (!idToken || expired) {
 		// tries to get the token from the URL
 		let params = location.search;
 		if (!params) params = '?' + location.hash.slice(1);
@@ -122,17 +128,4 @@ function jwtDecode(token, options) {
 	for (let el of els) el.style.display = 'none';
 	els = document.getElementsByClassName('auth');
 	for (let el of els) el.style.display = 'block';
-
-	// let apiUrl = 'https://ntaknarhb9.execute-api.us-west-2.amazonaws.com/prod';
-	// let res = await (
-	// 	await fetch(apiUrl + '/getUserData', {
-	// 		method: 'GET',
-	// 		headers: {
-	// 			Authorization: idToken,
-	// 			'Content-Type': 'application/json'
-	// 		}
-	// 	})
-	// ).json();
-
-	// console.log(res);
 })();

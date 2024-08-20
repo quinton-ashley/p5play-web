@@ -14,7 +14,7 @@ Games must use the latest version of p5play and be submitted before December 20t
 
 ## 🥇 Summer 2024 : [@coding398](https://coding398.dev/)
 
-["Gun Gaem"](https://gungame-aus.coding398.dev/), by Lachlan Noble (age 15), is an online multiplayer top-down shooter. Each life you get some random things to fight with... or die trying! You could get a normal gun, but are just as likely to get bowling balls, ninja stars, or even a DJ deck?!
+["Shenaniguns"](https://shenanimerica.coding398.dev/), by Lachlan Noble (age 15), is an online multiplayer top-down shooter. Each life you get some random things to fight with... or die trying! You could get a normal gun, but are just as likely to get bowling balls, ninja stars, or even a DJ deck?!
 
 There's also a wide variety of maps and game modes to try out. Go head to head in a free for all, capture the flag, or team up with friends for a boss fight with Vectah.
 

@@ -68,8 +68,19 @@ body.dark {
 	}
 }
 
+.mini-row {
+	display: flex;
+}
+
+.student,
+.personal,
 #birthday {
 	display: none;
+}
+
+.info {
+	color: var(--primary);
+	margin-bottom: 20px;
 }
 
 div.signup-box {
@@ -137,6 +148,10 @@ div.modal-dialog {
 	background-color: var(--secondary) !important;
 }
 
+form {
+	margin: 0;
+}
+
 @media (min-width: 726px) {
 	div.signup-box {
 		max-width: 1000px;
@@ -145,7 +160,6 @@ div.modal-dialog {
 	}
 
 	.mini-row {
-		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
 		align-items: center;
@@ -181,7 +195,7 @@ div.modal-dialog {
 	font-size: 18px !important;
 	font-weight: bold !important;
 	padding: 10px 20px !important;
-	margin-top: 16px !important;
+	margin: 10px 0px !important;
 	transition: 0.3s !important;
 	text-align: center;
 	padding: 0 !important;

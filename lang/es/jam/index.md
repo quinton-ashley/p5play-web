@@ -14,7 +14,7 @@ Los juegos deben utilizar la última versión de p5play y deben enviarse antes d
 
 ## 🥇 Verano 2024 : [@coding398](https://coding398.dev/)
 
-["Gun Gaem"](https://gungame-aus.coding398.dev/), por Lachlan Noble (15 años), es un juego de disparos multijugador en línea con vista cenital. En cada vida obtienes algunas cosas aleatorias para luchar... ¡o morir en el intento! Podrías obtener un arma normal, pero también es probable que obtengas bolas de boliche, estrellas ninja o incluso una mesa de DJ.
+["Shenaniguns"](https://shenanimerica.coding398.dev/), por Lachlan Noble (15 años), es un juego de disparos multijugador en línea con vista cenital. En cada vida obtienes algunas cosas aleatorias para luchar... ¡o morir en el intento! Podrías obtener un arma normal, pero también es probable que obtengas bolas de boliche, estrellas ninja o incluso una mesa de DJ.
 
 También hay una gran variedad de mapas y modos de juego para probar. Enfréntate en un todos contra todos, captura la bandera o únete a tus amigos para una pelea de jefes con Vectah.
 

@@ -82,7 +82,7 @@ let refs = {
 		2: ['velocityIterations', 'positionIterations']
 	},
 	'q5.js basics': {
-		'https://p5js.org/reference/#/p5': [
+		'https://p5js.org/reference/p5': [
 			'let',
 			'const',
 			'===',
@@ -109,7 +109,7 @@ let refs = {
 		]
 	},
 	'q5.js environment': {
-		'https://p5js.org/reference/#/p5': [
+		'https://p5js.org/reference/p5': [
 			'width',
 			'height',
 			'frameCount',
@@ -125,7 +125,7 @@ let refs = {
 		]
 	},
 	'q5.js 2D': {
-		'https://p5js.org/reference/#/p5': [
+		'https://p5js.org/reference/p5': [
 			'background',
 			'clear',
 			'color',
@@ -145,8 +145,8 @@ let refs = {
 		]
 	},
 	'q5.js sound': {
-		'https://p5js.org/reference/#/p5': ['loadSound'],
-		'https://p5js.org/reference/#/p5.SoundFile': ['play', 'stop', 'loop', 'setVolume', 'pan']
+		'https://p5js.org/reference/p5': ['loadSound'],
+		'https://p5js.org/reference/p5.SoundFile': ['play', 'stop', 'loop', 'setVolume', 'pan']
 	}
 };
 

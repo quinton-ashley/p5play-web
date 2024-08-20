@@ -1,0 +1,55 @@
+<html lang="en">
+
+<head>
+	<link rel="icon" href="/assets/p5play_logo.svg">
+	<title>p5play : Login</title>
+	<link href="https://dpp0gtxikpq3y.cloudfront.net/20221014152150/css/bootstrap.min.css" rel="stylesheet"
+		media="screen" />
+	<link href="https://dpp0gtxikpq3y.cloudfront.net/20221014152150/css/cognito-login.css" rel="stylesheet"
+		media="screen" />
+	<link rel="stylesheet" href="signup.css" />
+	<script
+		src="https://dpp0gtxikpq3y.cloudfront.net/20221014152150/js/amazon-cognito-advanced-security-data.min.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<style></style>
+</head>
+
+<body spellcheck="false">
+	<script src="/learn/main.js"></script>
+	<div class="right-side"></div>
+	<div class="container">
+		<div class="modal-dialog">
+
+			<div class="modal-content background-customizable  modal-dialog-centered signup-box">
+
+				<div class="modal-body">
+					<div id="brand-parent">
+						<img src="/assets/p5play_logo.svg" alt="Logo" id="logo-image">
+						<a href="/index.html" id="brand">p5play</a>
+					</div>
+
+					<form onsubmit="onStudentLogin(event);">
+						<input id="class_id" onkeyup="checkIfValid();" type="text" name="classCode" value="" aria-label="class_id"
+							autocapitalize="none" class="form-control inputField-customizable" placeholder="Class Code" required="" />
+						<input id="student_id" onkeyup="checkIfValid();" name="studentID" value="" aria-label="class_id"
+							autocapitalize="none" class="form-control inputField-customizable" placeholder="Student ID or Initials"
+							required="" />
+						<button id="studentSignUp" type="submit" class="btn btn-primary signUpButton submitButton-customizable">
+							Student Login
+						</button>
+						<p id="signin" class="redirect-customizable">
+							<span class="ask-account-check">Do you have a Teacher or Developer account?</span>&nbsp;<a
+								href="https://p5play.auth.us-west-2.amazoncognito.com/login?client_id=3oegfdhu2r7eo8nr371496718c&amp;response_type=token&amp;scope=email+openid+profile&amp;redirect_uri=https%3A%2F%2Fp5play.org%2Faccount%2Findex.html">Sign
+								in</a>
+						</p>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="https://dpp0gtxikpq3y.cloudfront.net/20221014152150/js/jquery-3.5.1.min.js"></script>
+	<script src="login.js"></script>
+	<div class="fwcim-container"></div>
+</body>
+
+</html>

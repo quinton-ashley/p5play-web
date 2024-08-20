@@ -1,3 +1,5 @@
+// this file contains mostly AWS cognito template code
+
 function getAdvancedSecurityData(formReference) {
 	if (typeof AmazonCognitoAdvancedSecurityData === 'undefined') {
 		return true;
@@ -27,7 +29,7 @@ function getUrlParameter(name) {
 }
 
 function onSubmit(evt, formRef) {
-	formRef.querySelector('button[type="submit"]').disabled = true;
+	formRef.querySelector('#signup').disabled = true;
 	if (!!formRef.submitted) {
 		evt.preventDefault();
 		return false;
@@ -35,6 +37,34 @@ function onSubmit(evt, formRef) {
 		formRef.submitted = true;
 		return getAdvancedSecurityData(formRef);
 	}
+}
+
+// students do not have account with AWS Cognito
+// their account is stored in a classroom JSON file in an S3 bucket
+async function onStudentSubmit(evt) {
+	evt.preventDefault();
+
+	const f = Object.fromEntries(new FormData(evt.target).entries());
+
+	let apiUrl = 'https://ntaknarhb9.execute-api.us-west-2.amazonaws.com/prod/p5play-public';
+	let age = new Date().getFullYear() - f.age;
+	let reqParams = `?req=studentSignup&classID=${f.classID}&studentID=${f.studentID}&birthYear=${age}`;
+	let res = await fetch(apiUrl + reqParams, {
+		method: 'GET',
+		headers: {
+			'Content-Type': 'application/json'
+		}
+	});
+
+	if (res.statusCode >= 400) {
+		alert('Invalid class ID or student ID. Try typing it again or ask your teacher for help.');
+		return;
+	}
+
+	let data = await res.json();
+	localStorage.userData = data;
+
+	open('account');
 }
 
 var $inputs = $(':input');
@@ -185,18 +215,6 @@ function checkPasswordHelper(password) {
 		requireNoLeadingOrTrailingSpaces
 	);
 }
-function checkPasswordMatch() {
-	var hasUsername = $('input[name="username"]').val() != '';
-	var password = $('input[name="password"]').val();
-	var hasValidPassword = checkPasswordHelper(password);
-	var formSubmitted = false;
-	var nodes = document.getElementsByName('signupform');
-	for (var i = 0; i < nodes.length; i++) {
-		formSubmitted = !!nodes[i].submitted || formSubmitted;
-	}
-	var canSubmit = hasUsername && hasValidPassword && !formSubmitted;
-	$('button[name="signUpButton"]').prop('disabled', !canSubmit);
-}
 function checkConfirmForgotPasswordMatch() {
 	checkResetPasswordMatch();
 }
@@ -225,81 +243,128 @@ function checkResetPasswordMatch() {
 
 document.getElementById('');
 
+function validate(selector) {
+	let el = $(selector);
+	el.removeClass('not-valid');
+	el.addClass('is-valid');
+}
+
+function invalidate(selector) {
+	let el = $(selector);
+	el.removeClass('is-valid');
+	el.addClass('not-valid');
+}
+
 function checkIfValid() {
-	// Check if the full name input is valid
-	if ($('#full-name').val().length > 0) {
-		$('#full-name').removeClass('not-valid');
-		$('#full-name').addClass('is-valid');
-	} else {
-		$('#full-name').removeClass('is-valid');
-		$('#full-name').addClass('not-valid');
-	}
+	// Check if the account_type input is valid
+	let accountType = $('#account_type').val();
 
-	// Check if the gender input is valid
-	if ($('#gender').val().length > 0) {
-		$('#gender').removeClass('not-valid');
-		$('#gender').addClass('is-valid');
-	} else {
-		$('#gender').removeClass('is-valid');
-		$('#gender').addClass('not-valid');
-	}
+	if (accountType != '') validate('#account_type');
+	else invalidate('#account_type');
 
-	if ($('#age').val() && $('#age').val() < 100) {
-		$('#age').removeClass('not-valid');
-		$('#age').addClass('is-valid');
-		let age = Number($('#age').val());
+	let ageIsValid = false;
+	let age = Number($('#age').val());
+	if ($('#age').val() && age > 6 && age < 100) {
+		if (age < 13 && accountType == 'Developer') {
+			alert('You must be at least 13 years old to sign up for a Developer account.');
+			$('#account_type').val('Student');
+		} else if (age < 18 && accountType == 'Teacher') {
+			alert('You must be at least 18 years old to sign up for a Teacher account.');
+			$('#account_type').val('Student');
+		}
+		accountType = $('#account_type').val();
+
+		if (accountType == 'Student') {
+			$('.student').show();
+			$('.personal').hide();
+			$('#signup').hide();
+			$('#signin').hide();
+		} else {
+			$('.student').hide();
+			$('.personal').css('display', 'flex');
+			$('#signup').show();
+			$('#signin').show();
+		}
+
+		ageIsValid = true;
+
 		let currentYear = new Date().getFullYear();
 		let birthYear = Math.round(currentYear - age);
 		$('#birthday').val(birthYear + '-01-01');
-	} else {
-		$('#age').removeClass('is-valid');
-		$('#age').addClass('not-valid');
 	}
 
-	// Check if the account_type input is valid
-	if ($('#account_type').val() != '') {
-		$('#account_type').removeClass('not-valid');
-		$('#account_type').addClass('is-valid');
+	if (ageIsValid) {
+		validate('#age');
 	} else {
-		$('#account_type').removeClass('is-valid');
-		$('#account_type').addClass('not-valid');
+		invalidate('#age');
 	}
 
-	// Check if the country input is valid
+	if (accountType == 'Student') {
+		let enableSignUp = true;
+		if ($('#class_id').val().length == 5) {
+			validate('#class_id');
+		} else {
+			invalidate('#class_id');
+			enableSignUp = false;
+		}
+		if ($('#student_id').val().length > 1) {
+			validate('#student_id');
+		} else {
+			invalidate('#student_id');
+			enableSignUp = false;
+		}
+		$('#studentSignUp').prop('disabled', !enableSignUp);
+		return;
+	}
+
+	if ($('#full-name').val().length > 0) {
+		validate('#full-name');
+	} else {
+		invalidate('#full-name');
+	}
+
+	if ($('#gender').val().length > 0) {
+		validate('#gender');
+	} else {
+		invalidate('#gender');
+	}
+
 	if ($('#school').val().length > 0) {
-		$('#school').removeClass('not-valid');
-		$('#school').addClass('is-valid');
+		validate('#school');
 	} else {
-		$('#school').removeClass('is-valid');
-		$('#school').addClass('not-valid');
+		invalidate('#school');
 	}
 
-	// Check if the country input is valid
 	if ($('#country').val().length > 0) {
-		$('#country').removeClass('not-valid');
-		$('#country').addClass('is-valid');
+		validate('#country');
+		document.getElementById('localeInput').value += ' ' + $('#country').val();
 	} else {
-		$('#country').removeClass('is-valid');
-		$('#country').addClass('not-valid');
+		invalidate('#country');
 	}
 
-	// Check if the email input is valid
+	let hasValidEmail = false;
 	if (isValidEmail($('#email').val())) {
-		$('#email').removeClass('not-valid');
-		$('#email').addClass('is-valid');
+		validate('#email');
+		hasValidEmail = true;
 	} else {
-		$('#email').removeClass('is-valid');
-		$('#email').addClass('not-valid');
+		invalidate('#email');
 	}
 
-	// Check if the password input is valid
-	if (isValidPassword($('#password').val())) {
-		$('#password').removeClass('not-valid');
-		$('#password').addClass('is-valid');
+	let hasValidPassword = true;
+	let password = $('#password').val();
+	if (isValidPassword(password)) {
+		validate('#password');
+		$('#checkPassword').hide();
 	} else {
-		$('#password').removeClass('is-valid');
-		$('#password').addClass('not-valid');
+		invalidate('#password');
+		if (password) {
+			$('#checkPassword').show();
+			checkPasswordHelper(password);
+		}
 	}
+
+	let canSubmit = hasValidEmail && hasValidPassword;
+	$('#signup').prop('disabled', !canSubmit);
 }
 function isValidPassword(password) {
 	var regex =
