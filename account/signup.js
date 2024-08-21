@@ -1,7 +1,5 @@
 // this file contains mostly AWS cognito template code
 
-import { $ } from 'bun';
-
 function getAdvancedSecurityData(formReference) {
 	if (typeof AmazonCognitoAdvancedSecurityData === 'undefined') {
 		return true;
