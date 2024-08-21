@@ -8,8 +8,6 @@
 	<link href="https://dpp0gtxikpq3y.cloudfront.net/20221014152150/css/cognito-login.css" rel="stylesheet"
 		media="screen" />
 	<link rel="stylesheet" href="signup.css" />
-	<script
-		src="https://dpp0gtxikpq3y.cloudfront.net/20221014152150/js/amazon-cognito-advanced-security-data.min.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<style></style>
 </head>
@@ -29,8 +27,8 @@
 					</div>
 
 					<form onsubmit="onStudentLogin(event);">
-						<input id="class_id" onkeyup="checkIfValid();" type="text" name="classCode" value="" aria-label="class_id"
-							autocapitalize="none" class="form-control inputField-customizable" placeholder="Class Code" required="" />
+						<input id="class_id" onkeyup="checkIfValid();" type="text" name="classID" value="" aria-label="class_id"
+							autocapitalize="none" class="form-control inputField-customizable" placeholder="Class ID" required="" />
 						<input id="student_id" onkeyup="checkIfValid();" name="studentID" value="" aria-label="class_id"
 							autocapitalize="none" class="form-control inputField-customizable" placeholder="Student ID or Initials"
 							required="" />
@@ -47,9 +45,7 @@
 			</div>
 		</div>
 	</div>
-	<script src="https://dpp0gtxikpq3y.cloudfront.net/20221014152150/js/jquery-3.5.1.min.js"></script>
 	<script src="login.js"></script>
-	<div class="fwcim-container"></div>
 </body>
 
 </html>

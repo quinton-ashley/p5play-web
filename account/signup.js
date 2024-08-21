@@ -1,5 +1,7 @@
 // this file contains mostly AWS cognito template code
 
+import { $ } from 'bun';
+
 function getAdvancedSecurityData(formReference) {
 	if (typeof AmazonCognitoAdvancedSecurityData === 'undefined') {
 		return true;
@@ -48,7 +50,7 @@ async function onStudentSubmit(evt) {
 
 	let apiUrl = 'https://ntaknarhb9.execute-api.us-west-2.amazonaws.com/prod/p5play-public';
 	let age = new Date().getFullYear() - f.age;
-	let reqParams = `?req=studentSignup&classID=${f.classID}&studentID=${f.studentID}&birthYear=${age}`;
+	let reqParams = `?req=studentSignUp&classID=${f.classID}&studentID=${f.studentID}&birthYear=${age}`;
 	let res = await fetch(apiUrl + reqParams, {
 		method: 'GET',
 		headers: {
@@ -56,13 +58,14 @@ async function onStudentSubmit(evt) {
 		}
 	});
 
-	if (res.statusCode >= 400) {
+	if (res.status >= 400) {
 		alert('Invalid class ID or student ID. Try typing it again or ask your teacher for help.');
 		return;
 	}
 
 	let data = await res.json();
-	localStorage.userData = data;
+	data.type = 'Student';
+	localStorage.setItem('p5playAccount', data);
 
 	open('account');
 }
