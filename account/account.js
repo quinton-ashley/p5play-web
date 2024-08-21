@@ -56,39 +56,34 @@ function jwtDecode(token, options) {
 
 // Parse the URL to extract the id_token parameter
 (async () => {
-	let user;
-	let idToken = localStorage.getItem('idToken');
-
-	if (idToken && idToken != 'null') {
-		try {
-			user = jwtDecode(idToken);
-		} catch (e) {
-			console.error(e);
-			idToken = null;
-		}
-	} else idToken = null;
+	{
+		let acc = localStorage.getItem('p5playAccount');
+		if (acc) window.p5playAccount = JSON.parse(acc);
+	}
 
 	// if the user is trying to access the account page
 	// and the token is expired, force the user to login again
 	// otherwise they can access the page with an expired token
-	let expired =
-		user &&
-		((location.pathname.includes('account') && user.exp < Date.now() / 1000) ||
-			user.exp + 13500000 < Date.now() / 1000);
+	let expired;
+	if (window.p5playAccount) {
+		let now = Date.now() / 1000;
+		expired = (location.pathname.includes('account') && p5playAccount.tokenExp < now) || p5playAccount.exp < now;
+	}
 
 	// check if there's no token
 	// expired tokens are accepted so users don't have to login again
 	// unless the user is trying to access the account page
-	if (!idToken || expired) {
+	if (!window.p5playAccount || expired) {
 		// tries to get the token from the URL
 		let params = location.search;
 		if (!params) params = '?' + location.hash.slice(1);
 		const urlParams = new URLSearchParams(params);
-		idToken = urlParams.get('id_token');
+		let idToken = urlParams.get('id_token');
 
+		let usr;
 		if (idToken) {
 			try {
-				user = jwtDecode(idToken);
+				usr = jwtDecode(idToken);
 			} catch (e) {
 				console.error(e);
 				idToken = null;
@@ -106,20 +101,24 @@ function jwtDecode(token, options) {
 		// hide the token from the URL
 		window.history.pushState(null, '', location.href.split(/[?#]/)[0]);
 
-		// save to local storage
+		// save the token in local storage
 		localStorage.setItem('idToken', idToken);
-	}
 
-	window.p5playAccount = {
-		birthdate: user.birthdate,
-		company: user.family_name,
-		country: user.address?.formatted,
-		email: user.email,
-		full_name: user.given_name,
-		username: user['cognito:username'],
-		type: user.middle_name,
-		locale: user.locale
-	};
+		window.p5playAccount = {
+			birthdate: usr.birthdate,
+			company: usr.family_name,
+			country: usr.address?.formatted,
+			email: usr.email,
+			tokenExp: usr.exp,
+			exp: usr.exp + 13500000,
+			full_name: usr.given_name,
+			username: usr['cognito:username'],
+			type: usr.middle_name,
+			locale: usr.locale
+		};
+
+		localStorage.setItem('p5playAccount', JSON.stringify(p5playAccount));
+	}
 
 	// show section of page that requires authentication
 	if (window.showAuthContent) await showAuthContent();

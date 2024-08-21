@@ -2,9 +2,14 @@ function showAuthContent() {
 	let $ = (n) => document.getElementById(n);
 	let usr = p5playAccount;
 	$('account-type').innerHTML = usr.type;
-	$('username').innerHTML = usr.full_name.split(' ')[0];
-
-	loadUserData();
+	let name;
+	if (usr.type == 'Student') {
+		name = usr.classID + '-' + usr.studentID;
+	} else {
+		name = usr.full_name.split(' ')[0];
+		// loadUserData();
+	}
+	$('username').innerHTML = name;
 }
 
 async function loadUserData() {

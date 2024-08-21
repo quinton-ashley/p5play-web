@@ -10,8 +10,6 @@
 
 ¡Bienvenido <span id="username"></span>!
 
-Recibirás notificaciones por correo electrónico sobre nuevas características.
-
 # 1-0
 
 ## Limitaciones del Uso Gratuito

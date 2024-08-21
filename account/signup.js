@@ -47,8 +47,8 @@ async function onStudentSubmit(evt) {
 	const f = Object.fromEntries(new FormData(evt.target).entries());
 
 	let apiUrl = 'https://ntaknarhb9.execute-api.us-west-2.amazonaws.com/prod/p5play-public';
-	let age = new Date().getFullYear() - f.age;
-	let reqParams = `?req=studentSignUp&classID=${f.classID}&studentID=${f.studentID}&birthYear=${age}`;
+	let birthYear = new Date().getFullYear() - $('#age').val();
+	let reqParams = `?req=studentSignUp&classID=${f.classID}&studentID=${f.studentID}&birthYear=${birthYear}`;
 	let res = await fetch(apiUrl + reqParams, {
 		method: 'GET',
 		headers: {
@@ -56,16 +56,19 @@ async function onStudentSubmit(evt) {
 		}
 	});
 
-	if (res.status >= 400) {
-		alert('Invalid class ID or student ID. Try typing it again or ask your teacher for help.');
-		return;
+	if (res.status != 200) {
+		let msg = await res.text();
+		return alert(msg);
 	}
 
-	let data = await res.json();
-	data.type = 'Student';
-	localStorage.setItem('p5playAccount', data);
+	let usr = await res.json();
+	usr.classID = f.classID;
+	usr.studentID = f.studentID;
+	usr.type = 'Student';
+	usr.exp = Math.round(Date.now() / 1000) + 2600000;
+	localStorage.setItem('p5playAccount', JSON.stringify(usr));
 
-	open('account');
+	open('index.html', '_self');
 }
 
 var $inputs = $(':input');

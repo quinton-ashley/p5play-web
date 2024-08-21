@@ -10,8 +10,6 @@ Sign up for a free account to access the Learn pages and be notified via email a
 
 Welcome <span id="username"></span>!
 
-You'll be notified via email about new features.
-
 # 1-0
 
 ## Free Use Limitations

@@ -29,10 +29,11 @@
 					<form onsubmit="onStudentLogin(event);">
 						<input id="class_id" onkeyup="checkIfValid();" type="text" name="classID" value="" aria-label="class_id"
 							autocapitalize="none" class="form-control inputField-customizable" placeholder="Class ID" required="" />
-						<input id="student_id" onkeyup="checkIfValid();" name="studentID" value="" aria-label="class_id"
+						<input id="student_id" onkeyup="checkIfValid();" name="studentID" value="" aria-label="student_id"
 							autocapitalize="none" class="form-control inputField-customizable" placeholder="Student ID or Initials"
 							required="" />
-						<button id="studentSignUp" type="submit" class="btn btn-primary signUpButton submitButton-customizable">
+						<button id="studentLogin" type="submit" class="btn btn-primary signUpButton submitButton-customizable"
+							disabled>
 							Student Login
 						</button>
 						<p id="signin" class="redirect-customizable">
