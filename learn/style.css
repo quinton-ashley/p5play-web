@@ -129,7 +129,7 @@ html.ja h2 {
 	left: 0;
 	width: 100vw;
 	height: 100vh;
-	background-color: rgba(0, 0, 0, 0.5);
+	background-color: #00000080;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -238,9 +238,16 @@ md.closed h2 {
 	margin: 0;
 }
 
-.mie {
+.mie,
+.card {
 	background-color: var(--secondary) !important;
 	color: var(--primary) !important;
+	box-shadow: 2px 2px 5px #00000033;
+}
+
+.dark .mie,
+.dark .card {
+	box-shadow: 2px 2px 5px #ffffff33;
 }
 
 .mie * {
@@ -551,6 +558,19 @@ nav,
 	/* border: 2px solid var(--dark); */
 	border-radius: 10px;
 	background-color: var(--secondary);
+	background: linear-gradient(217deg, #fffffa, #00000000), linear-gradient(127deg, #faffff, #00000000), linear-gradient(336deg, #fff5ff, #00000000);
+	box-shadow: 2px 2px 5px #00000022;
+}
+
+.dark nav,
+.dark .page>md,
+.dark .page>div:not(.mie):not(.break):not(.minis),
+.dark .minis>md,
+.dark .minis>.mini {
+	background: linear-gradient(217deg, #282324, #00000000),
+		linear-gradient(127deg, #201e24, #00000000),
+		linear-gradient(336deg, #20232a, #00000000);
+	box-shadow: 2px 2px 5px #ffffff33;
 }
 
 .minis>md,
@@ -701,7 +721,7 @@ nav {
 	position: absolute;
 	background-color: var(--background);
 	min-width: 100%;
-	box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+	box-shadow: 0 8px 16px 0 #00000033;
 	z-index: 1;
 	top: 80px;
 }

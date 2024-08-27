@@ -102,6 +102,7 @@ video {
 	display: flex;
 	align-items: center;
 	background: none;
+	box-shadow: none;
 }
 
 #bigLogo .p5play_logo {
@@ -459,7 +460,7 @@ body:not(.dark) #discord-brand img {
 	white-space: pre;
 	overflow-wrap: normal;
 	overflow-x: scroll;
-	background-color: var(--secondary);
+	background-color: transparent;
 	color: var(--primary);
 	border: none;
 	resize: none;

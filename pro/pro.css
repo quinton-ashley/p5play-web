@@ -65,7 +65,6 @@ video {
 	height: line-height;
 	background-color: transparent;
 	align-items: center;
-	background-color: var(--secondary);
 	gap: 8px;
 	border-radius: 8px;
 	margin-top: 16px !important;
