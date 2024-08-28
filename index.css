@@ -108,6 +108,7 @@ video {
 #bigLogo .p5play_logo {
 	width: 20vw;
 	height: 20vw;
+	filter: drop-shadow(2px 2px 5px #00000033);
 }
 
 #bigLogo {
@@ -192,6 +193,7 @@ html.ja #bigInfo h3 {
 
 #usedBy {
 	background: none;
+	box-shadow: none;
 }
 
 #socials,

@@ -303,6 +303,7 @@ a:hover {
 }
 
 md.closed:hover,
+.dark md.closed:hover,
 p a:hover,
 .heroBtns:hover {
 	background: linear-gradient(90deg, var(--secondary) 0%, var(--blue0) 50%, var(--secondary) 100%);
@@ -555,7 +556,6 @@ nav,
 .minis>md,
 .minis>.mini {
 	padding: 20px;
-	/* border: 2px solid var(--dark); */
 	border-radius: 10px;
 	background-color: var(--secondary);
 	background: linear-gradient(217deg, #fffffa, #00000000), linear-gradient(127deg, #faffff, #00000000), linear-gradient(336deg, #fff5ff, #00000000);
@@ -600,7 +600,7 @@ nav {
 #langBreak .break {
 	width: unset;
 	flex-grow: 1;
-	box-shadow: 0px 4px 0px var(--blue0);
+	box-shadow: 0px 4px 0px var(--pink2);
 }
 
 #langNav {
@@ -609,8 +609,7 @@ nav {
 	border-radius: 8px;
 	padding-top: 2px;
 	padding-bottom: 2px;
-	border-bottom: 3px solid var(--pink0);
-	box-shadow: 0px 3px 0px var(--blue0);
+	border-bottom: 3px solid var(--pink2);
 	overflow-x: hidden;
 }
 
@@ -649,8 +648,8 @@ nav {
 	width: 100%;
 	margin-top: 20px;
 	margin-bottom: 16px;
-	border: var(--pink0) 2px solid;
-	box-shadow: 4px 4px 0px var(--blue0);
+	border: var(--blue2) 2px solid;
+	box-shadow: 4px 4px 0px var(--pink2);
 }
 
 .big.break {
