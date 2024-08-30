@@ -46,8 +46,16 @@ per student per semester
 
 # 4-1
 
-## Request Invoice
+Buy Now (Semester)
 
 # 4-2
+
+Buy Now (Full Year)
+
+# 4-3
+
+## Request Invoice
+
+# 4-4
 
 Equitable access is important to us. We offer discounts for schools in low-income areas. If you want to use p5play, we'll work with you to make it happen!

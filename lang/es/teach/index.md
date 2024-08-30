@@ -46,8 +46,16 @@ por estudiante cada semestre
 
 # 4-1
 
-## ¡Dame la factura!
+Comprar Ahora (Semestre)
 
 # 4-2
+
+Comprar Ahora (Año Completo)
+
+# 4-3
+
+## ¡Dame la factura!
+
+# 4-4
 
 El acceso equitativo es importante para nosotros. Ofrecemos descuentos para escuelas en áreas de bajos ingresos. Si deseas usar p5play, trabajaremos contigo para hacerlo posible.
