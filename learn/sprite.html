@@ -34,14 +34,13 @@
 
 		<div id="page-0" class="page">
 			<md id="md0-0">
-				<h2 id="setup-and-draw">Setup and Draw</h2>
-				<p>The code inside the <a href="https://p5js.org" target="_blank">p5.js</a> (or <a
-						href="https://github.com/quinton-ashley/q5.js" target="_blank">q5.js</a>) <code>setup</code>
-					function runs when the program starts. The <code>new Canvas()</code> constructor creates a section
-					of the screen that the program can draw on.</p>
-				<p>The p5.js <code>draw</code> function is run 60 times per second by default. The
-					<code>background</code> function can be used to fill the canvas with a color each time it is drawn.
-				</p>
+				<h2 id="setup">Setup</h2>
+				<p>The code inside the <a href="https://q5js.org" target="_blank">q5.js</a> (or <a
+						href="https://p5js.org" target="_blank">p5.js</a>) <code>setup</code> function runs when the
+					program starts. The <code>new Canvas()</code> constructor creates a section of the screen that the
+					program can draw on.</p>
+				<p>The q5 <code>draw</code> function is run 60 times per second by default. The <code>background</code>
+					function can be used to fill the canvas with a color each time it is drawn.</p>
 				<p>Try changing the width and height of the canvas (the numbers inside the <code>Canvas</code>
 					constructor), then restart the example program!</p>
 			</md>
@@ -227,7 +226,7 @@ floor.collider = 'none';
 					<p>Try creating a sprite named <code>peg</code> with a static collider and circle shape. Create a
 						sprite <code>block</code> with a dynamic collider and box shape. Position the block so that it
 						hits the peg and falls to the right.</p>
-					<p>Each time the p5.js <code>draw</code> function finishes, sprites are automatically drawn and
+					<p>Each time the q5 <code>draw</code> function finishes, sprites are automatically drawn and
 						updated. Note that <code>world</code> is created when p5play loads but by default there's no
 						gravity. Try setting <code>world.gravity.y</code> to a positive number.</p>
 					<p>For an extra challenge, try resetting the block to its original position after it falls.</p>
@@ -272,11 +271,11 @@ function draw() {
 		<div id="page-2" class="page">
 			<md id="md2-0">
 				<h2 id="sprites-with-an-image">Sprites with an Image</h2>
-				<p><code>sprite.image</code> (aka <code>sprite.img</code>) can be set to a p5.Image or a url path to an
+				<p><code>sprite.image</code> (aka <code>sprite.img</code>) can be set to a Q5.Image or a url path to an
 					image file.</p>
 				<p>If you need an image to be loaded before your program starts, it's best to use <a
-						href="https://p5js.org/reference/#/p5/loadImage" target="_blank"><code>loadImage</code></a>
-					inside the p5.js <code>preload</code> function.</p>
+						href="https://p5js.org/reference/p5/loadImage" target="_blank"><code>loadImage</code></a> inside
+					the q5 <code>preload</code> function.</p>
 				<p><code>sprite.image.offset</code> can be used to offset the image relative to the sprite's center.
 					This can help better align the image with the sprite's physics collider.</p>
 				<p><code>sprite.image.scale</code> changes the display size of the sprite's image. The default is 1.0.
@@ -387,11 +386,11 @@ function draw() {}
 				<h2 id="custom-colors">Custom Colors</h2>
 				<p>You can also make pixel art that uses custom colors by creating a color palette and passing it as the
 					third parameter to the <code>spriteArt</code> function.</p>
-				<p>Color palettes in p5play must be provided in <a href="https://p5js.org/reference/#/p5/object"
+				<p>Color palettes in p5play must be provided in <a href="https://p5js.org/reference/p5/object"
 						target="_blank">JavaScript Object</a> format. A simple JS object is like a dictionary. You can
-					define a color for each letter you use in your pixel art. To create a color use the p5.js <a
-						href="https://p5js.org/reference/#/p5/color" target="_blank"><code>color</code></a> function
-					which accepts RGB (red, green, blue) values or HEX color codes.</p>
+					define a color for each letter you use in your pixel art. To create a color use the q5 <a
+						href="https://p5js.org/reference/p5/color" target="_blank"><code>color</code></a> function which
+					accepts RGB (red, green, blue) values or HEX color codes.</p>
 				<p>The easiest way to find colors is to use a <a
 						href="https://www.google.com/search?q=google+color+picker" target="_blank">color picker</a>.</p>
 			</md>
@@ -468,7 +467,7 @@ player.y = mouse.y;
 			<md id="md3-2">
 				<p>All the other movement methods on this page change the sprite's <code>velocity</code>, aka
 					<code>vel</code>, which is its rate of motion along the x and y axis.</p>
-				<p><code>vel</code> is a p5.js Vector, you can use any vector functions on it.</p>
+				<p><code>vel</code> is Q5.Vector, you can use any vector functions on it.</p>
 				<p>Restart this example to see the player sprite hit the block!</p>
 			</md>
 			<script type="mie/p5" id="velocity-:-continuously" base="3">
@@ -499,8 +498,8 @@ if (kb.presses('left')) {
 			<md id="md3-5">
 				<p>The <code>moveTowards</code> function moves a sprite towards a position, at a percentage of the
 					distance to that position.</p>
-				<p>In this example, the player moves 10% of the distance to the mouse on every p5.js draw call. Its
-					speed, and the force it exerts on the block, is proportional to the distance it moves.</p>
+				<p>In this example, the player moves 10% of the distance to the mouse on every q5 <code>draw</code>
+					call. Its speed, and the force it exerts on the block, is proportional to the distance it moves.</p>
 			</md>
 			<script type="mie/p5" id="moveTowards-:-continuously" base="3">
 //                (x, y, tracking)
@@ -621,7 +620,7 @@ function draw() {
 		<div id="page-5" class="page">
 			<md id="md5-0">
 				<h2 id="collisions">Collisions</h2>
-				<p>To check for collisions use these functions inside the p5.js <code>draw</code> function.</p>
+				<p>To check for collisions use these functions inside the q5 <code>draw</code> function.</p>
 				<p>On the first frame that a sprite collides with another sprite, the <code>collides</code> function
 					returns true.</p>
 				<p>While a sprite is colliding with another sprite, the <code>colliding</code> function returns the
@@ -723,7 +722,7 @@ spriteB.layer = 1;
 spriteB.text = 'Layer 1';
 			</script>
 			<md id="md6-2">
-				<p>For detecting overlaps, use these functions inside the p5.js <code>draw</code> function.</p>
+				<p>For detecting overlaps, use these functions inside the q5 <code>draw</code> function.</p>
 				<p>On the first frame that a sprite overlaps with another sprite, the <code>overlaps</code> function
 					returns true.</p>
 				<p>While a sprite is overlapping with another sprite, the <code>overlapping</code> function returns the
@@ -1562,8 +1561,8 @@ function draw() {
 				</md>
 				<md id="md14-1">
 					<h2 id="custom-update">Custom Update</h2>
-					<p>A sprite's <code>update</code> function runs at the end of the p5.js draw loop by default. It
-						updates the sprite's animation (if it has one) and mouse event tracking.</p>
+					<p>A sprite's <code>update</code> function runs at the end of the q5 <code>draw</code> loop by
+						default. It updates the sprite's animation (if it has one) and mouse event tracking.</p>
 					<p>Thanks to some behind the scenes magic, overriding the function will not replace the default
 						behavior, but allows you to add to it.</p>
 				</md>
@@ -1663,8 +1662,9 @@ function draw() {
 					repeatedly, without waiting for the sprite to reach its destination. But for better performance, try
 					using the <code>angleTo</code> function, which gets the angle between a sprite and a position. This
 					angle can be used to change the direction that the sprite moves in.</p>
-				<p>In this example, the <a href="https://p5js.org/reference/#/p5/dist" target="_blank">p5.js dist</a>
-					function is used to calculate the distance between the player and its ally.</p>
+				<p>In this example, the q5 <a href="https://p5js.org/reference/p5/dist"
+						target="_blank"><code>dist</code></a> function is used to calculate the distance between the
+					player and its ally.</p>
 			</md>
 			<script type="mie/p5" base-8="" hidden="">
 let player, ally;

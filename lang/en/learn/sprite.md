@@ -1,10 +1,10 @@
 # 0-0
 
-## Setup and Draw
+## Setup
 
-The code inside the [p5.js](https://p5js.org) (or [q5.js](https://github.com/quinton-ashley/q5.js)) `setup` function runs when the program starts. The `new Canvas()` constructor creates a section of the screen that the program can draw on.
+The code inside the [q5.js](https://q5js.org) (or [p5.js](https://p5js.org)) `setup` function runs when the program starts. The `new Canvas()` constructor creates a section of the screen that the program can draw on.
 
-The p5.js `draw` function is run 60 times per second by default. The `background` function can be used to fill the canvas with a color each time it is drawn.
+The q5 `draw` function is run 60 times per second by default. The `background` function can be used to fill the canvas with a color each time it is drawn.
 
 Try changing the width and height of the canvas (the numbers inside the `Canvas` constructor), then restart the example program!
 
@@ -49,7 +49,7 @@ Click the reload icon on the top right corner of a code example to replay it!
 
 Try creating a sprite named `peg` with a static collider and circle shape. Create a sprite `block` with a dynamic collider and box shape. Position the block so that it hits the peg and falls to the right.
 
-Each time the p5.js `draw` function finishes, sprites are automatically drawn and updated. Note that `world` is created when p5play loads but by default there's no gravity. Try setting `world.gravity.y` to a positive number.
+Each time the q5 `draw` function finishes, sprites are automatically drawn and updated. Note that `world` is created when p5play loads but by default there's no gravity. Try setting `world.gravity.y` to a positive number.
 
 For an extra challenge, try resetting the block to its original position after it falls.
 
@@ -57,9 +57,9 @@ For an extra challenge, try resetting the block to its original position after i
 
 ## Sprites with an Image
 
-`sprite.image` (aka `sprite.img`) can be set to a p5.Image or a url path to an image file.
+`sprite.image` (aka `sprite.img`) can be set to a Q5.Image or a url path to an image file.
 
-If you need an image to be loaded before your program starts, it's best to use [`loadImage`](https://p5js.org/reference/#/p5/loadImage) inside the p5.js `preload` function.
+If you need an image to be loaded before your program starts, it's best to use [`loadImage`](https://p5js.org/reference/p5/loadImage) inside the q5 `preload` function.
 
 `sprite.image.offset` can be used to offset the image relative to the sprite's center. This can help better align the image with the sprite's physics collider.
 
@@ -97,7 +97,7 @@ Try making your own pixel art! Take a look at the alphabet below to see what col
 
 You can also make pixel art that uses custom colors by creating a color palette and passing it as the third parameter to the `spriteArt` function.
 
-Color palettes in p5play must be provided in [JavaScript Object](https://p5js.org/reference/#/p5/object) format. A simple JS object is like a dictionary. You can define a color for each letter you use in your pixel art. To create a color use the p5.js [`color`](https://p5js.org/reference/#/p5/color) function which accepts RGB (red, green, blue) values or HEX color codes.
+Color palettes in p5play must be provided in [JavaScript Object](https://p5js.org/reference/p5/object) format. A simple JS object is like a dictionary. You can define a color for each letter you use in your pixel art. To create a color use the q5 [`color`](https://p5js.org/reference/p5/color) function which accepts RGB (red, green, blue) values or HEX color codes.
 
 The easiest way to find colors is to use a [color picker](https://www.google.com/search?q=google+color+picker).
 
@@ -119,7 +119,7 @@ This bad example shows what happens if a sprite is teleported every time the p5.
 
 All the other movement methods on this page change the sprite's `velocity`, aka `vel`, which is its rate of motion along the x and y axis.
 
-`vel` is a p5.js Vector, you can use any vector functions on it.
+`vel` is Q5.Vector, you can use any vector functions on it.
 
 Restart this example to see the player sprite hit the block!
 
@@ -137,7 +137,7 @@ The `move` function moves a sprite across a fixed distance. The direction and sp
 
 The `moveTowards` function moves a sprite towards a position, at a percentage of the distance to that position.
 
-In this example, the player moves 10% of the distance to the mouse on every p5.js draw call. Its speed, and the force it exerts on the block, is proportional to the distance it moves.
+In this example, the player moves 10% of the distance to the mouse on every q5 `draw` call. Its speed, and the force it exerts on the block, is proportional to the distance it moves.
 
 # 3-6
 
@@ -173,7 +173,7 @@ Try creating two sprites using the sprite constructor.
 
 ## Collisions
 
-To check for collisions use these functions inside the p5.js `draw` function.
+To check for collisions use these functions inside the q5 `draw` function.
 
 On the first frame that a sprite collides with another sprite, the `collides` function returns true.
 
@@ -197,7 +197,7 @@ You can change the draw order by editing a sprite's `.layer` property. Sprites w
 
 # 6-2
 
-For detecting overlaps, use these functions inside the p5.js `draw` function.
+For detecting overlaps, use these functions inside the q5 `draw` function.
 
 On the first frame that a sprite overlaps with another sprite, the `overlaps` function returns true.
 
@@ -458,7 +458,7 @@ This code example rotates the sprite's ellipse to the direction it's moving and 
 
 ## Custom Update
 
-A sprite's `update` function runs at the end of the p5.js draw loop by default. It updates the sprite's animation (if it has one) and mouse event tracking.
+A sprite's `update` function runs at the end of the q5 `draw` loop by default. It updates the sprite's animation (if it has one) and mouse event tracking.
 
 Thanks to some behind the scenes magic, overriding the function will not replace the default behavior, but allows you to add to it.
 
@@ -482,4 +482,4 @@ But, if the sprite's movement is interrupted by a new movement or a collision th
 
 If you want a sprite to follow another sprite, you may be tempted to use `moveTo` repeatedly, without waiting for the sprite to reach its destination. But for better performance, try using the `angleTo` function, which gets the angle between a sprite and a position. This angle can be used to change the direction that the sprite moves in.
 
-In this example, the [p5.js dist](https://p5js.org/reference/#/p5/dist) function is used to calculate the distance between the player and its ally.
+In this example, the q5 [`dist`](https://p5js.org/reference/p5/dist) function is used to calculate the distance between the player and its ally.

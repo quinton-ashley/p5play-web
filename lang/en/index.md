@@ -6,7 +6,7 @@
 
 ### uses [p5.js](http://p5js.org/) for graphics
 
-### is easy to learn!
+### is intuitive
 
 ### uses [Box2D](https://piqnt.com/planck.js/) for physics
 

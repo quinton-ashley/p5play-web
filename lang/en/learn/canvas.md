@@ -26,7 +26,7 @@ This preset will make the canvas fit the screen, unless you specify a multiplier
 
 To display all sprites at integer coordinates, set `allSprites.pixelPerfect` to true and use integer coordinates for the camera's position and zoom.
 
-Note that modern fonts are vector based, so they won't look very good in pixelated mode. Load a bitmap font instead with the p5.js [`loadFont`](https://p5js.org/reference/#/p5/loadFont) function.
+Note that modern fonts are vector based, so they won't look very good in pixelated mode. Load a bitmap font instead with the p5.js [`loadFont`](https://p5js.org/reference/p5/loadFont) function.
 
 # 2-0
 

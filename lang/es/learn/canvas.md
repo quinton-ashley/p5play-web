@@ -26,7 +26,7 @@ Este preajuste hará que el lienzo se ajuste a la pantalla, a menos que especifi
 
 Para mostrar todos los sprites en coordenadas enteras, establece `allSprites.pixelPerfect` en verdadero y usa coordenadas enteras para la posición y el zoom de la cámara.
 
-Ten en cuenta que las fuentes modernas están basadas en vectores, por lo que no se verán muy bien en modo pixelado. Carga en su lugar una fuente de mapa de bits con la función [`loadFont`](https://p5js.org/reference/#/p5/loadFont) de p5.js.
+Ten en cuenta que las fuentes modernas están basadas en vectores, por lo que no se verán muy bien en modo pixelado. Carga en su lugar una fuente de mapa de bits con la función [`loadFont`](https://p5js.org/reference/p5/loadFont) de p5.js.
 
 # 2-0
 

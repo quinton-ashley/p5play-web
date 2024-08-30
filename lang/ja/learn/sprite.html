@@ -39,8 +39,8 @@
 		<div id="page-0" class="page">
 			<md id="md0-0">
 				<h2 id="セットアップと描画">セットアップと描画</h2>
-				<p><a href="https://p5js.org" target="_blank">p5.js</a> (または <a
-						href="https://github.com/quinton-ashley/q5.js" target="_blank">q5.js</a>) の <code>setup</code>
+				<p><a href="https://p5js.org" target="_blank">p5.js</a> (または <a href="https://github.com/quinton-ashley/q5.js"
+						target="_blank">q5.js</a>) の <code>setup</code>
 					関数内のコードは、プログラムの開始とともに実行されます。<code>new Canvas()</code> コンストラクタは、スクリーン内にプログラムが描画できる領域を作成します。</p>
 				<p>p5.js の <code>draw</code> 関数は、デフォルトでは 1 秒間に 60 回実行されます。<code>background</code>
 					関数は、キャンバスが描画されるたびに、それを指定した色で塗りつぶすために使用します。</p>
@@ -272,7 +272,7 @@ function draw() {
 				<p><code>sprite.image</code> または <code>sprite.img</code> に、p5.Image 画像オブジェクトそのもの、または画像ファイルへの URL
 					パスを設定することで、スプライトに指定した画像を割り当てることができます。</p>
 				<p>画像の読み込みが完了してからプログラムを開始したい、という場合は、 p5.js の <code>preload</code> 関数で <a
-						href="https://p5js.org/reference/#/p5/loadImage" target="_blank"><code>loadImage</code></a>
+						href="https://p5js.org/reference/p5/loadImage" target="_blank"><code>loadImage</code></a>
 					を使用するのがベストです。</p>
 				<p><code>sprite.image.offset</code>
 					は、画像をスプライトの中心に対してオフセットさせるために使用できます。これにより、画像をスプライトの物理的な衝突判定とよりよく整列させることができます。</p>
@@ -380,10 +380,10 @@ function draw() {}
 			<md id="md2-4">
 				<h2 id="カスタムカラー">カスタムカラー</h2>
 				<p>さらに、「カラーパレット」を作成して、<code>spriteArt</code> 関数への第 3 引数に渡すことで、カスタムカラーを使ったピクセルアートを作成することもできます。</p>
-				<p>p5play のカラーパレットは<a href="https://p5js.org/reference/#/p5/object" target="_blank">JavaScript
+				<p>p5play のカラーパレットは<a href="https://p5js.org/reference/p5/object" target="_blank">JavaScript
 						オブジェクト</a>形式でなければなりません。シンプルな JS
 					オブジェクトとは、見出しと値のペアの集まりです。ピクセルアートで使用するそれぞれの文字に対し、任意の色を定義することができます。色を作成するには、p5.js の<a
-						href="https://p5js.org/reference/#/p5/color" target="_blank"><code>color</code></a>関数に、
+						href="https://p5js.org/reference/p5/color" target="_blank"><code>color</code></a>関数に、
 					RGB（赤、緑、青）値、または HEX カラーコードを引数として渡します。</p>
 				<p>色の指定値を調べるには、<a href="https://www.google.com/search?q=google+color+picker"
 						target="_blank">カラーピッカー</a>を使うのがいちばんお手軽です。</p>
@@ -1082,7 +1082,8 @@ function draw() {
 }
 			</script>
 			<md id="md9-5">
-				<p>次のコードサンプルでは、ブロックと動く床がコリジョンを発生させたとき、ブロックに赤く色をつけるようにしています。床によってブロックが持ち上げられている間のコリジョンは、感覚的には衝突ではなく「接触」なのですから、ブロックが赤色のままであることを期待するでしょう。しかしご覧のとおり、ブロックは赤と青で点滅するのです。
+				<p>
+					次のコードサンプルでは、ブロックと動く床がコリジョンを発生させたとき、ブロックに赤く色をつけるようにしています。床によってブロックが持ち上げられている間のコリジョンは、感覚的には衝突ではなく「接触」なのですから、ブロックが赤色のままであることを期待するでしょう。しかしご覧のとおり、ブロックは赤と青で点滅するのです。
 				</p>
 				<p>現実世界では、人がエレベーターに乗って上昇すると、その人とエレベーターの床とのコリジョンは「接触」であるとみなすはずです。</p>
 				<p>しかし、 planck では、コライダーが他のコライダーによって移動させられたとき、それらは「接触の継続」ではなく、「コリジョンの発生」と「コリジョンの終了」が激しく繰り返されているとみなされます。
@@ -1305,7 +1306,8 @@ function draw() {
 				<p>ポリゴン名として使用できる文字列は次の通りです: <code>'triangle'</code> (三角形)、 <code>'square'</code> (四角形)、
 					<code>'pentagon'</code> (五角形)、 <code>'hexagon'</code> (六角形)、 <code>'septagon'</code> (七角形)、
 					<code>'octagon'</code> (八角形)、 <code>'enneagon'</code> (九角形)、 <code>'decagon'</code> (十角形)、
-					<code>'hendecagon'</code> (十一角形)、 <code>'dodecagon'</code> (十二角形)。</p>
+					<code>'hendecagon'</code> (十一角形)、 <code>'dodecagon'</code> (十二角形)。
+				</p>
 			</md>
 			<script type="mie/p5" id="pentagon" lines="6">
 function setup() {
@@ -1594,7 +1596,7 @@ function draw() {
 				<p>あるスプライトを、移動指定をした別のスプライトに追従させたい場合、そのスプライトが目的地に達するのを待つのでなく、追従させる方のスプライトで <code>moveTo</code>
 					を何度も繰り返したくなるかもしれません。しかし、パフォーマンスを向上させるためには、そのスプライトと対象の位置との角度を取得する <code>angleTo</code>
 					関数の使用を検討してください。この角度は、スプライトが移動する方向を変更するために使用できます。</p>
-				<p>このコードサンプルでは、 <a href="https://p5js.org/reference/#/p5/dist" target="_blank">p5.js dist</a>
+				<p>このコードサンプルでは、 <a href="https://p5js.org/reference/p5/dist" target="_blank">p5.js dist</a>
 					関数が使用されており、プレイヤーとその味方との間の距離を計算しています。</p>
 			</md>
 			<script type="mie/p5" base-8="" hidden="">
@@ -1655,16 +1657,16 @@ if (distance > 40) {
 	</article>
 
 	<!-- <script src="https://cdn.jsdelivr.net/npm/p5@1/lib/p5.min.js"></script> -->
-<script src="/v3/q5.min.js"></script>
-<script src="/v3/planck.min.js"></script>
-<script src="/v3/p5play.min.js"></script>
-<script>
-window.mie = { autoLoad: false };
+	<script src="/v3/q5.min.js"></script>
+	<script src="/v3/planck.min.js"></script>
+	<script src="/v3/p5play.min.js"></script>
+	<script>
+		window.mie = { autoLoad: false };
 
 	</script>
 	<script src="/learn/mie.js"></script>
-<script src="/learn/learn.js"></script>
-<script src="/account/account.js"></script>
+	<script src="/learn/learn.js"></script>
+	<script src="/account/account.js"></script>
 </body>
 
 </html>
