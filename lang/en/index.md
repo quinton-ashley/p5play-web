@@ -168,7 +168,7 @@ If these platforms are so fun and creatively empowering, why are students only u
 
 p5play makes the art of game design more accessible, without being reductive. We believe in rewarding students for learning the basics by enabling them to go beyond.
 
-Check out the incredible games that students have [made with p5play](../play).
+Check out the incredible games that students have [made with p5play](../play)!
 
 # 17-2
 
@@ -178,7 +178,7 @@ Check out the incredible games that students have [made with p5play](../play).
 
 Scratch has no built-in physics engine. That means even something like a ball rolling down a slope, requires a lot of math and is incredibly tedious to implement in Scratch's block based environment.
 
-Many of the featured games on the Scratch website were clearly made by adults. That can give students false hope that they can make something similar.
+Many of the featured games on the Scratch website were evidently made by adults. That can give students false hope that they can make something similar.
 
 With p5play, students don't have to write their own boilerplate code for basic functionality. They can focus on the fun parts of game design!
 

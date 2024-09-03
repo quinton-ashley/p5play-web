@@ -29,7 +29,12 @@ function getUrlParameter(name) {
 }
 
 function onSubmit(evt, formRef) {
-	formRef.querySelector('#signup').disabled = true;
+	let signup = formRef.querySelector('#signup');
+	signup.disabled = true;
+	signup.innerHTML = 'Signing up...';
+
+	document.getElementById('localeInput').value += ' ' + $('#country').val();
+
 	if (!!formRef.submitted) {
 		evt.preventDefault();
 		return false;
@@ -341,7 +346,6 @@ function checkIfValid() {
 
 	if ($('#country').val().length > 0) {
 		validate('#country');
-		document.getElementById('localeInput').value += ' ' + $('#country').val();
 	} else {
 		invalidate('#country');
 	}
