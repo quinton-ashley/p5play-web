@@ -874,18 +874,7 @@ Q5.renderers.q2d.drawing = ($) => {
 			bl *= $._da;
 			br *= $._da;
 		}
-		const hh = Math.min(Math.abs(h), Math.abs(w)) / 2;
-		tl = Math.min(hh, tl);
-		tr = Math.min(hh, tr);
-		bl = Math.min(hh, bl);
-		br = Math.min(hh, br);
-		$.ctx.beginPath();
-		$.ctx.moveTo(x + tl, y);
-		$.ctx.arcTo(x + w, y, x + w, y + h, tr);
-		$.ctx.arcTo(x + w, y + h, x, y + h, br);
-		$.ctx.arcTo(x, y + h, x, y, bl);
-		$.ctx.arcTo(x, y, x + w, y, tl);
-		$.ctx.closePath();
+		$.ctx.roundRect(x, y, w, h, [tl, tr, br, bl]);
 		ink();
 	}
 
