@@ -1,6 +1,6 @@
 /**
  * q5.js
- * @version 2.2
+ * @version 2.4
  * @author quinton-ashley, Tezumie, and LingDong-
  * @license LGPL-3.0
  * @class Q5
@@ -44,7 +44,8 @@ function Q5(scope, parent, renderer) {
 	$._loop = true;
 	$._hooks = {
 		postCanvas: [],
-		preRender: []
+		preRender: [],
+		postRender: []
 	};
 
 	let millisStart = 0;
@@ -85,12 +86,12 @@ function Q5(scope, parent, renderer) {
 		$._frameRate = 1000 / $.deltaTime;
 		q.frameCount++;
 		let pre = performance.now();
-		if ($.ctx) $.resetMatrix();
+		$.resetMatrix();
 		if ($._beginRender) $._beginRender();
 		for (let m of Q5.methods.pre) m.call($);
 		$.draw();
-		if ($._render) $._render();
 		for (let m of Q5.methods.post) m.call($);
+		if ($._render) $._render();
 		if ($._finishRender) $._finishRender();
 		q.pmouseX = $.mouseX;
 		q.pmouseY = $.mouseY;
@@ -219,7 +220,7 @@ function Q5(scope, parent, renderer) {
 					return t[k]();
 				} catch (e) {
 					if ($._aiErrorAssistance) $._aiErrorAssistance(e);
-					else console.error(e);
+					throw e;
 				}
 			};
 		}
@@ -239,7 +240,7 @@ function Q5(scope, parent, renderer) {
 		raf($._draw);
 	}
 
-	if ((arguments.length && scope != 'namespace') || preloadDefined) {
+	if ((arguments.length && scope != 'namespace' && renderer != 'webgpu') || preloadDefined) {
 		$.preload();
 		_start();
 	} else {
@@ -280,6 +281,58 @@ if (typeof document == 'object') {
 	});
 }
 Q5.modules.canvas = ($, q) => {
+	$.CENTER = 'center';
+	$.LEFT = 'left';
+	$.RIGHT = 'right';
+	$.TOP = 'top';
+	$.BOTTOM = 'bottom';
+
+	$.BASELINE = 'alphabetic';
+
+	$.NORMAL = 'normal';
+	$.ITALIC = 'italic';
+	$.BOLD = 'bold';
+	$.BOLDITALIC = 'italic bold';
+
+	$.ROUND = 'round';
+	$.SQUARE = 'butt';
+	$.PROJECT = 'square';
+	$.MITER = 'miter';
+	$.BEVEL = 'bevel';
+
+	$.CHORD = 0;
+	$.PIE = 1;
+	$.OPEN = 2;
+
+	$.RADIUS = 'radius';
+	$.CORNER = 'corner';
+	$.CORNERS = 'corners';
+
+	$.CLOSE = 1;
+
+	$.LANDSCAPE = 'landscape';
+	$.PORTRAIT = 'portrait';
+
+	$.BLEND = 'source-over';
+	$.REMOVE = 'destination-out';
+	$.ADD = 'lighter';
+	$.DARKEST = 'darken';
+	$.LIGHTEST = 'lighten';
+	$.DIFFERENCE = 'difference';
+	$.SUBTRACT = 'subtract';
+	$.EXCLUSION = 'exclusion';
+	$.MULTIPLY = 'multiply';
+	$.SCREEN = 'screen';
+	$.REPLACE = 'copy';
+	$.OVERLAY = 'overlay';
+	$.HARD_LIGHT = 'hard-light';
+	$.SOFT_LIGHT = 'soft-light';
+	$.DODGE = 'color-dodge';
+	$.BURN = 'color-burn';
+
+	$.P2D = '2d';
+	$.WEBGL = 'webgl';
+
 	$._OffscreenCanvas =
 		window.OffscreenCanvas ||
 		function () {
@@ -305,11 +358,16 @@ Q5.modules.canvas = ($, q) => {
 	let c = $.canvas;
 	c.width = $.width = 100;
 	c.height = $.height = 100;
+	$._pixelDensity = 1;
+
+	$.displayDensity = () => window.devicePixelRatio || 1;
+
 	if ($._scope != 'image') {
 		c.renderer = $._renderer;
 		c[$._renderer] = true;
+
+		$._pixelDensity = Math.ceil($.displayDensity());
 	}
-	$._pixelDensity = 1;
 
 	$._adjustDisplay = () => {
 		if (c.style) {
@@ -325,14 +383,12 @@ Q5.modules.canvas = ($, q) => {
 		if (typeof options == 'object') Object.assign(opt, options);
 
 		if ($._scope != 'image') {
-			let pd = $.displayDensity();
-			if ($._scope == 'graphics') pd = this._pixelDensity;
+			if ($._scope == 'graphics') $._pixelDensity = this._pixelDensity;
 			else if (window.IntersectionObserver) {
 				new IntersectionObserver((e) => {
 					c.visible = e[0].isIntersecting;
 				}).observe(c);
 			}
-			$._pixelDensity = Math.ceil(pd);
 		}
 
 		$._setCanvasSize(w, h);
@@ -343,8 +399,16 @@ Q5.modules.canvas = ($, q) => {
 		if ($._hooks) {
 			for (let m of $._hooks.postCanvas) m();
 		}
-
 		return rend;
+	};
+
+	$.createGraphics = function (w, h, opt) {
+		let g = new Q5('graphics');
+		opt ??= {};
+		opt.alpha ??= true;
+		opt.colorSpace ??= $.canvas.colorSpace;
+		g.createCanvas.call($, w, h, opt);
+		return g;
 	};
 
 	$._save = async (data, name, ext) => {
@@ -455,7 +519,6 @@ Q5.modules.canvas = ($, q) => {
 	$.canvas.resize = $.resizeCanvas;
 	$.canvas.save = $.saveCanvas = $.save;
 
-	$.displayDensity = () => window.devicePixelRatio;
 	$.pixelDensity = (v) => {
 		if (!v || v == $._pixelDensity) return $._pixelDensity;
 		$._pixelDensity = v;
@@ -469,6 +532,36 @@ Q5.modules.canvas = ($, q) => {
 			q.width = $._dau = unit;
 			q.height = (c.h / c.w) * unit;
 		} else $._da = 0;
+	};
+
+	$._styleNames = [
+		'_doStroke',
+		'_doFill',
+		'_strokeSet',
+		'_fillSet',
+		'_tint',
+		'_imageMode',
+		'_rectMode',
+		'_ellipseMode',
+		'_textFont',
+		'_textLeading',
+		'_leadingSet',
+		'_textSize',
+		'_textAlign',
+		'_textBaseline',
+		'_textStyle',
+		'_textWrap'
+	];
+	$._styles = [];
+
+	$.pushStyles = () => {
+		let styles = {};
+		for (let s of $._styleNames) styles[s] = $[s];
+		$._styles.push(styles);
+	};
+	$.popStyles = () => {
+		let styles = $._styles.pop();
+		for (let s of $._styleNames) $[s] = styles[s];
 	};
 };
 
@@ -503,6 +596,13 @@ Q5.renderers.q2d.canvas = ($, q) => {
 		return c;
 	};
 
+	$.clear = () => {
+		$.ctx.save();
+		$.ctx.resetTransform();
+		$.ctx.clearRect(0, 0, $.canvas.width, $.canvas.height);
+		$.ctx.restore();
+	};
+
 	if ($._scope == 'image') return;
 
 	$._resizeCanvas = (w, h) => {
@@ -512,39 +612,47 @@ Q5.renderers.q2d.canvas = ($, q) => {
 		}
 		delete t.canvas;
 
-		let o = new $._OffscreenCanvas(c.width, c.height);
-		o.w = c.w;
-		o.h = c.h;
-		let oCtx = o.getContext('2d');
-		oCtx.drawImage(c, 0, 0);
+		let o;
+		if ($.frameCount > 1) {
+			o = new $._OffscreenCanvas(c.width, c.height);
+			o.w = c.w;
+			o.h = c.h;
+			let oCtx = o.getContext('2d');
+			oCtx.drawImage(c, 0, 0);
+		}
 
 		$._setCanvasSize(w, h);
 
 		for (let prop in t) $.ctx[prop] = t[prop];
 		$.scale($._pixelDensity);
-		$.ctx.drawImage(o, 0, 0, o.w, o.h);
+
+		if (o) $.ctx.drawImage(o, 0, 0, o.w, o.h);
 	};
 
 	$.fill = function (c) {
 		$._doFill = true;
 		$._fillSet = true;
 		if (Q5.Color) {
-			if (!c._q5Color && typeof c != 'string') c = $.color(...arguments);
-			else if ($._namedColors[c]) c = $.color(...$._namedColors[c]);
+			if (!c._q5Color) {
+				if (typeof c != 'string') c = $.color(...arguments);
+				else if ($._namedColors[c]) c = $.color(...$._namedColors[c]);
+			}
 			if (c.a <= 0) return ($._doFill = false);
 		}
-		$.ctx.fillStyle = c.toString();
+		$.ctx.fillStyle = $._fillStyle = c.toString();
 	};
 	$.noFill = () => ($._doFill = false);
 	$.stroke = function (c) {
 		$._doStroke = true;
 		$._strokeSet = true;
 		if (Q5.Color) {
-			if (!c._q5Color && typeof c != 'string') c = $.color(...arguments);
-			else if ($._namedColors[c]) c = $.color(...$._namedColors[c]);
+			if (!c._q5Color) {
+				if (typeof c != 'string') c = $.color(...arguments);
+				else if ($._namedColors[c]) c = $.color(...$._namedColors[c]);
+			}
 			if (c.a <= 0) return ($._doStroke = false);
 		}
-		$.ctx.strokeStyle = c.toString();
+		$.ctx.strokeStyle = $._strokeStyle = c.toString();
 	};
 	$.strokeWeight = (n) => {
 		if (!n) $._doStroke = false;
@@ -552,7 +660,8 @@ Q5.renderers.q2d.canvas = ($, q) => {
 		$.ctx.lineWidth = n || 0.0001;
 	};
 	$.noStroke = () => ($._doStroke = false);
-	$.clear = () => $.ctx.clearRect(0, 0, $.canvas.width, $.canvas.height);
+
+	$.opacity = (a) => ($.ctx.globalAlpha = a);
 
 	// DRAWING MATRIX
 
@@ -564,14 +673,13 @@ Q5.renderers.q2d.canvas = ($, q) => {
 		$.ctx.translate(x, y);
 	};
 	$.rotate = (r) => {
-		if ($._angleMode == 'degrees') r = $.radians(r);
+		if ($._angleMode) r = $.radians(r);
 		$.ctx.rotate(r);
 	};
 	$.scale = (x, y) => {
 		y ??= x;
 		$.ctx.scale(x, y);
 	};
-	$.opacity = (a) => ($.ctx.globalAlpha = a);
 	$.applyMatrix = (a, b, c, d, e, f) => $.ctx.transform(a, b, c, d, e, f);
 	$.shearX = (ang) => $.ctx.transform(1, 0, $.tan(ang), 1, 0, 0);
 	$.shearY = (ang) => $.ctx.transform(1, $.tan(ang), 0, 1, 0, 0);
@@ -580,36 +688,16 @@ Q5.renderers.q2d.canvas = ($, q) => {
 		$.scale($._pixelDensity);
 	};
 
-	$._styleNames = [
-		'_doStroke',
-		'_doFill',
-		'_strokeSet',
-		'_fillSet',
-		'_tint',
-		'_imageMode',
-		'_rectMode',
-		'_ellipseMode',
-		'_textFont',
-		'_textLeading',
-		'_leadingSet',
-		'_textSize',
-		'_textAlign',
-		'_textBaseline',
-		'_textStyle',
-		'_textWrap'
-	];
-	$._styles = [];
+	$.pushMatrix = () => $.ctx.save();
+	$.popMatrix = () => $.ctx.restore();
 
-	$.push = $.pushMatrix = () => {
+	$.push = () => {
 		$.ctx.save();
-		let styles = {};
-		for (let s of $._styleNames) styles[s] = $[s];
-		$._styles.push(styles);
+		$.pushStyles();
 	};
-	$.pop = $.popMatrix = () => {
+	$.pop = () => {
 		$.ctx.restore();
-		let styles = $._styles.pop();
-		for (let s of $._styleNames) $[s] = styles[s];
+		$.popStyles();
 	};
 
 	$.createCapture = (x) => {
@@ -626,15 +714,6 @@ Q5.renderers.q2d.canvas = ($, q) => {
 		return vid;
 	};
 
-	$.createGraphics = function (w, h, opt) {
-		let g = new Q5('graphics');
-		opt ??= {};
-		opt.alpha ??= true;
-		opt.colorSpace ??= $.canvas.colorSpace;
-		g.createCanvas.call($, w, h, opt);
-		return g;
-	};
-
 	if (window && $._scope != 'graphics') {
 		window.addEventListener('resize', () => {
 			$._shouldResize = true;
@@ -645,48 +724,6 @@ Q5.renderers.q2d.canvas = ($, q) => {
 	}
 };
 Q5.renderers.q2d.drawing = ($) => {
-	$.CHORD = 0;
-	$.PIE = 1;
-	$.OPEN = 2;
-
-	$.RADIUS = 'radius';
-	$.CORNER = 'corner';
-	$.CORNERS = 'corners';
-
-	$.ROUND = 'round';
-	$.SQUARE = 'butt';
-	$.PROJECT = 'square';
-	$.MITER = 'miter';
-	$.BEVEL = 'bevel';
-
-	$.CLOSE = 1;
-
-	$.CENTER = 'center';
-	$.LEFT = 'left';
-	$.RIGHT = 'right';
-	$.TOP = 'top';
-	$.BOTTOM = 'bottom';
-
-	$.LANDSCAPE = 'landscape';
-	$.PORTRAIT = 'portrait';
-
-	$.BLEND = 'source-over';
-	$.REMOVE = 'destination-out';
-	$.ADD = 'lighter';
-	$.DARKEST = 'darken';
-	$.LIGHTEST = 'lighten';
-	$.DIFFERENCE = 'difference';
-	$.SUBTRACT = 'subtract';
-	$.EXCLUSION = 'exclusion';
-	$.MULTIPLY = 'multiply';
-	$.SCREEN = 'screen';
-	$.REPLACE = 'copy';
-	$.OVERLAY = 'overlay';
-	$.HARD_LIGHT = 'hard-light';
-	$.SOFT_LIGHT = 'soft-light';
-	$.DODGE = 'color-dodge';
-	$.BURN = 'color-burn';
-
 	$._doStroke = true;
 	$._doFill = true;
 	$._strokeSet = false;
@@ -718,15 +755,17 @@ Q5.renderers.q2d.drawing = ($) => {
 	// DRAWING
 
 	$.background = function (c) {
-		if (c.canvas) return $.image(c, 0, 0, $.width, $.height);
 		$.ctx.save();
 		$.ctx.resetTransform();
-		if (Q5.Color) {
-			if (!c._q5Color && typeof c != 'string') c = $.color(...arguments);
-			else if ($._namedColors[c]) c = $.color(...$._namedColors[c]);
+		if (c.canvas) $.image(c, 0, 0, $.width, $.height);
+		else {
+			if (Q5.Color && !c._q5Color) {
+				if (typeof c != 'string') c = $.color(...arguments);
+				else if ($._namedColors[c]) c = $.color(...$._namedColors[c]);
+			}
+			$.ctx.fillStyle = c.toString();
+			$.ctx.fillRect(0, 0, $.canvas.width, $.canvas.height);
 		}
-		$.ctx.fillStyle = c.toString();
-		$.ctx.fillRect(0, 0, $.canvas.width, $.canvas.height);
 		$.ctx.restore();
 	};
 
@@ -747,7 +786,7 @@ Q5.renderers.q2d.drawing = ($) => {
 
 	function arc(x, y, w, h, lo, hi, mode, detail) {
 		if (!$._doFill && !$._doStroke) return;
-		let d = $._angleMode == 'degrees';
+		let d = $._angleMode;
 		let full = d ? 360 : $.TAU;
 		lo %= full;
 		hi %= full;
@@ -1128,6 +1167,7 @@ Q5.renderers.q2d.image = ($, q) => {
 			for (let m of ['canvas', 'image', 'soft_filters']) {
 				if (r[m]) r[m]($, $);
 			}
+			$._pixelDensity = opt.pixelDensity || 1;
 			$.createCanvas(w, h, opt);
 			delete $.createCanvas;
 			$._loop = false;
@@ -1268,11 +1308,15 @@ Q5.renderers.q2d.image = ($, q) => {
 		};
 	}
 
+	$._getImageData = (x, y, w, h) => {
+		return $.ctx.getImageData(x, y, w, h, { colorSpace: $.canvas.colorSpace });
+	};
+
 	$.trim = () => {
 		let pd = $._pixelDensity || 1;
 		let w = $.canvas.width;
 		let h = $.canvas.height;
-		let data = $.ctx.getImageData(0, 0, w, h).data;
+		let data = $._getImageData(0, 0, w, h).data;
 		let left = w,
 			right = 0,
 			top = h,
@@ -1311,7 +1355,7 @@ Q5.renderers.q2d.image = ($, q) => {
 	$.get = (x, y, w, h) => {
 		let pd = $._pixelDensity || 1;
 		if (x !== undefined && w === undefined) {
-			let c = $.ctx.getImageData(x * pd, y * pd, 1, 1).data;
+			let c = $._getImageData(x * pd, y * pd, 1, 1).data;
 			return new $.Color(c[0], c[1], c[2], c[3] / 255);
 		}
 		x = (x || 0) * pd;
@@ -1321,7 +1365,7 @@ Q5.renderers.q2d.image = ($, q) => {
 		w *= pd;
 		h *= pd;
 		let img = $.createImage(w, h);
-		let imgData = $.ctx.getImageData(x, y, w, h);
+		let imgData = $._getImageData(x, y, w, h);
 		img.ctx.putImageData(imgData, 0, 0);
 		img._pixelDensity = pd;
 		img.width = _w;
@@ -1351,7 +1395,7 @@ Q5.renderers.q2d.image = ($, q) => {
 	};
 
 	$.loadPixels = () => {
-		imgData = $.ctx.getImageData(0, 0, $.canvas.width, $.canvas.height);
+		imgData = $._getImageData(0, 0, $.canvas.width, $.canvas.height);
 		q.pixels = imgData.data;
 	};
 	$.updatePixels = () => {
@@ -1377,200 +1421,17 @@ Q5.POSTERIZE = 5;
 Q5.DILATE = 6;
 Q5.ERODE = 7;
 Q5.BLUR = 8;
-/* software implementation of image filters */
-Q5.renderers.q2d.soft_filters = ($) => {
-	let tmpBuf = null;
-
-	function ensureTmpBuf() {
-		let l = $.canvas.width * $.canvas.height * 4;
-		if (!tmpBuf || tmpBuf.length != l) {
-			tmpBuf = new Uint8ClampedArray(l);
-		}
-	}
-
-	function initSoftFilters() {
-		$._filters = [];
-		$._filters[Q5.THRESHOLD] = (data, thresh) => {
-			if (thresh === undefined) thresh = 127.5;
-			else thresh *= 255;
-			for (let i = 0; i < data.length; i += 4) {
-				const gray = 0.2126 * data[i] + 0.7152 * data[i + 1] + 0.0722 * data[i + 2];
-				data[i] = data[i + 1] = data[i + 2] = gray >= thresh ? 255 : 0;
-			}
-		};
-		$._filters[Q5.GRAY] = (data) => {
-			for (let i = 0; i < data.length; i += 4) {
-				const gray = 0.2126 * data[i] + 0.7152 * data[i + 1] + 0.0722 * data[i + 2];
-				data[i] = data[i + 1] = data[i + 2] = gray;
-			}
-		};
-		$._filters[Q5.OPAQUE] = (data) => {
-			for (let i = 0; i < data.length; i += 4) {
-				data[i + 3] = 255;
-			}
-		};
-		$._filters[Q5.INVERT] = (data) => {
-			for (let i = 0; i < data.length; i += 4) {
-				data[i] = 255 - data[i];
-				data[i + 1] = 255 - data[i + 1];
-				data[i + 2] = 255 - data[i + 2];
-			}
-		};
-		$._filters[Q5.POSTERIZE] = (data, lvl = 4) => {
-			let lvl1 = lvl - 1;
-			for (let i = 0; i < data.length; i += 4) {
-				data[i] = (((data[i] * lvl) >> 8) * 255) / lvl1;
-				data[i + 1] = (((data[i + 1] * lvl) >> 8) * 255) / lvl1;
-				data[i + 2] = (((data[i + 2] * lvl) >> 8) * 255) / lvl1;
-			}
-		};
-		$._filters[Q5.DILATE] = (data) => {
-			ensureTmpBuf();
-			tmpBuf.set(data);
-			let [w, h] = [$.canvas.width, $.canvas.height];
-			for (let i = 0; i < h; i++) {
-				for (let j = 0; j < w; j++) {
-					let l = 4 * Math.max(j - 1, 0);
-					let r = 4 * Math.min(j + 1, w - 1);
-					let t = 4 * Math.max(i - 1, 0) * w;
-					let b = 4 * Math.min(i + 1, h - 1) * w;
-					let oi = 4 * i * w;
-					let oj = 4 * j;
-					for (let k = 0; k < 4; k++) {
-						let kt = k + t;
-						let kb = k + b;
-						let ko = k + oi;
-						data[oi + oj + k] = Math.max(
-							/*tmpBuf[kt+l],*/ tmpBuf[kt + oj] /*tmpBuf[kt+r],*/,
-							tmpBuf[ko + l],
-							tmpBuf[ko + oj],
-							tmpBuf[ko + r],
-							/*tmpBuf[kb+l],*/ tmpBuf[kb + oj] /*tmpBuf[kb+r],*/
-						);
-					}
-				}
-			}
-		};
-		$._filters[Q5.ERODE] = (data) => {
-			ensureTmpBuf();
-			tmpBuf.set(data);
-			let [w, h] = [$.canvas.width, $.canvas.height];
-			for (let i = 0; i < h; i++) {
-				for (let j = 0; j < w; j++) {
-					let l = 4 * Math.max(j - 1, 0);
-					let r = 4 * Math.min(j + 1, w - 1);
-					let t = 4 * Math.max(i - 1, 0) * w;
-					let b = 4 * Math.min(i + 1, h - 1) * w;
-					let oi = 4 * i * w;
-					let oj = 4 * j;
-					for (let k = 0; k < 4; k++) {
-						let kt = k + t;
-						let kb = k + b;
-						let ko = k + oi;
-						data[oi + oj + k] = Math.min(
-							/*tmpBuf[kt+l],*/ tmpBuf[kt + oj] /*tmpBuf[kt+r],*/,
-							tmpBuf[ko + l],
-							tmpBuf[ko + oj],
-							tmpBuf[ko + r],
-							/*tmpBuf[kb+l],*/ tmpBuf[kb + oj] /*tmpBuf[kb+r],*/
-						);
-					}
-				}
-			}
-		};
-		$._filters[Q5.BLUR] = (data, rad) => {
-			rad = rad || 1;
-			rad = Math.floor(rad * $._pixelDensity);
-			ensureTmpBuf();
-			tmpBuf.set(data);
-
-			let ksize = rad * 2 + 1;
-
-			function gauss1d(ksize) {
-				let im = new Float32Array(ksize);
-				let sigma = 0.3 * rad + 0.8;
-				let ss2 = sigma * sigma * 2;
-				for (let i = 0; i < ksize; i++) {
-					let x = i - ksize / 2;
-					let z = Math.exp(-(x * x) / ss2) / (2.5066282746 * sigma);
-					im[i] = z;
-				}
-				return im;
-			}
-
-			let kern = gauss1d(ksize);
-			let [w, h] = [$.canvas.width, $.canvas.height];
-			for (let i = 0; i < h; i++) {
-				for (let j = 0; j < w; j++) {
-					let s0 = 0,
-						s1 = 0,
-						s2 = 0,
-						s3 = 0;
-					for (let k = 0; k < ksize; k++) {
-						let jk = Math.min(Math.max(j - rad + k, 0), w - 1);
-						let idx = 4 * (i * w + jk);
-						s0 += tmpBuf[idx] * kern[k];
-						s1 += tmpBuf[idx + 1] * kern[k];
-						s2 += tmpBuf[idx + 2] * kern[k];
-						s3 += tmpBuf[idx + 3] * kern[k];
-					}
-					let idx = 4 * (i * w + j);
-					data[idx] = s0;
-					data[idx + 1] = s1;
-					data[idx + 2] = s2;
-					data[idx + 3] = s3;
-				}
-			}
-			tmpBuf.set(data);
-			for (let i = 0; i < h; i++) {
-				for (let j = 0; j < w; j++) {
-					let s0 = 0,
-						s1 = 0,
-						s2 = 0,
-						s3 = 0;
-					for (let k = 0; k < ksize; k++) {
-						let ik = Math.min(Math.max(i - rad + k, 0), h - 1);
-						let idx = 4 * (ik * w + j);
-						s0 += tmpBuf[idx] * kern[k];
-						s1 += tmpBuf[idx + 1] * kern[k];
-						s2 += tmpBuf[idx + 2] * kern[k];
-						s3 += tmpBuf[idx + 3] * kern[k];
-					}
-					let idx = 4 * (i * w + j);
-					data[idx] = s0;
-					data[idx + 1] = s1;
-					data[idx + 2] = s2;
-					data[idx + 3] = s3;
-				}
-			}
-		};
-	}
-
-	$._softFilter = (typ, x) => {
-		if (!$._filters) initSoftFilters();
-		let imgData = $.ctx.getImageData(0, 0, $.canvas.width, $.canvas.height);
-		$._filters[typ](imgData.data, x);
-		$.ctx.putImageData(imgData, 0, 0);
-	};
-};
 Q5.renderers.q2d.text = ($, q) => {
-	$.NORMAL = 'normal';
-	$.ITALIC = 'italic';
-	$.BOLD = 'bold';
-	$.BOLDITALIC = 'italic bold';
+	$._textAlign = 'left';
+	$._textBaseline = 'alphabetic';
 
-	$.CENTER = 'center';
-	$.LEFT = 'left';
-	$.RIGHT = 'right';
-	$.TOP = 'top';
-	$.BOTTOM = 'bottom';
-	$.BASELINE = 'alphabetic';
-
-	$._textFont = 'sans-serif';
-	$._textSize = 12;
-	$._textLeading = 15;
-	$._textLeadDiff = 3;
-	$._textStyle = 'normal';
+	let font = 'sans-serif',
+		tSize = 12,
+		leading = 15,
+		leadDiff = 3,
+		emphasis = 'normal',
+		styleHash = 0,
+		fontMod = false;
 
 	$.loadFont = (url, cb) => {
 		q._preloadCount++;
@@ -1583,175 +1444,216 @@ Q5.renderers.q2d.text = ($, q) => {
 		});
 		return name;
 	};
-	$.textFont = (x) => ($._textFont = x);
+
+	$.textFont = (x) => {
+		font = x;
+		fontMod = true;
+		styleHash = -1;
+	};
 	$.textSize = (x) => {
-		if (x === undefined) return $._textSize;
+		if (x === undefined) return tSize;
 		if ($._da) x *= $._da;
-		$._textSize = x;
+		tSize = x;
+		fontMod = true;
+		styleHash = -1;
 		if (!$._leadingSet) {
-			$._textLeading = x * 1.25;
-			$._textLeadDiff = $._textLeading - x;
+			leading = x * 1.25;
+			leadDiff = leading - x;
 		}
+	};
+	$.textStyle = (x) => {
+		emphasis = x;
+		fontMod = true;
+		styleHash = -1;
 	};
 	$.textLeading = (x) => {
-		if (x === undefined) return $._textLeading;
+		if (x === undefined) return leading;
 		if ($._da) x *= $._da;
-		$._textLeading = x;
-		$._textLeadDiff = x - $._textSize;
+		leading = x;
+		leadDiff = x - tSize;
 		$._leadingSet = true;
+		styleHash = -1;
 	};
-	$.textStyle = (x) => ($._textStyle = x);
 	$.textAlign = (horiz, vert) => {
-		$.ctx.textAlign = horiz;
+		$.ctx.textAlign = $._textAlign = horiz;
 		if (vert) {
-			$.ctx.textBaseline = vert == $.CENTER ? 'middle' : vert;
+			$.ctx.textBaseline = $._textBaseline = vert == $.CENTER ? 'middle' : vert;
 		}
+		styleHash = -1;
 	};
-	$.textWidth = (str) => {
-		$.ctx.font = `${$._textStyle} ${$._textSize}px ${$._textFont}`;
-		return $.ctx.measureText(str).width;
-	};
-	$.textAscent = (str) => {
-		$.ctx.font = `${$._textStyle} ${$._textSize}px ${$._textFont}`;
-		return $.ctx.measureText(str).actualBoundingBoxAscent;
-	};
-	$.textDescent = (str) => {
-		$.ctx.font = `${$._textStyle} ${$._textSize}px ${$._textFont}`;
-		return $.ctx.measureText(str).actualBoundingBoxDescent;
-	};
-	$._textCache = !!Q5.Image;
-	$._TimedCache = class extends Map {
-		constructor() {
-			super();
-			this.maxSize = 500;
+
+	$.textWidth = (str) => $.ctx.measureText(str).width;
+	$.textAscent = (str) => $.ctx.measureText(str).actualBoundingBoxAscent;
+	$.textDescent = (str) => $.ctx.measureText(str).actualBoundingBoxDescent;
+
+	$.textFill = $.fill;
+	$.textStroke = $.stroke;
+
+	let cache = ($._textCache = {});
+	let styleHashes = [],
+		useCache = false,
+		genTextImage = false,
+		cacheSize = 0,
+		cacheMax = 12000;
+
+	let updateStyleHash = () => {
+		let styleString = font + tSize + emphasis + leading + $._fillStyle + $._strokeStyle;
+
+		let hash = 5381;
+		for (let i = 0; i < styleString.length; i++) {
+			hash = (hash * 33) ^ styleString.charCodeAt(i);
 		}
-		set(k, v) {
-			v.lastAccessed = Date.now();
-			super.set(k, v);
-			if (this.size > this.maxSize) this.gc();
-		}
-		get(k) {
-			const v = super.get(k);
-			if (v) v.lastAccessed = Date.now();
-			return v;
-		}
-		gc() {
-			let t = Infinity;
-			let oldest;
-			let i = 0;
-			for (const [k, v] of this.entries()) {
-				if (v.lastAccessed < t) {
-					t = v.lastAccessed;
-					oldest = i;
-				}
-				i++;
-			}
-			i = oldest;
-			for (const k of this.keys()) {
-				if (i == 0) {
-					oldest = k;
-					break;
-				}
-				i--;
-			}
-			this.delete(oldest);
-		}
+		styleHash = hash >>> 0;
 	};
-	$._tic = new $._TimedCache();
-	$.textCache = (b, maxSize) => {
-		if (maxSize) $._tic.maxSize = maxSize;
-		if (b !== undefined) $._textCache = b;
-		return $._textCache;
-	};
-	$._genTextImageKey = (str, w, h) => {
-		return (
-			str.slice(0, 200) +
-			$._textStyle +
-			$._textSize +
-			$._textFont +
-			($._doFill ? $.ctx.fillStyle : '') +
-			'_' +
-			($._doStroke && $._strokeSet ? $.ctx.lineWidth + $.ctx.strokeStyle + '_' : '') +
-			(w || '') +
-			(h ? 'x' + h : '')
-		);
+
+	$.textCache = (enable, maxSize) => {
+		if (maxSize) cacheMax = maxSize;
+		if (enable !== undefined) useCache = enable;
+		return useCache;
 	};
 	$.createTextImage = (str, w, h) => {
-		let og = $._textCache;
-		$._textCache = true;
-		$._genTextImage = true;
-		$.text(str, 0, 0, w, h);
-		$._genTextImage = false;
-		let k = $._genTextImageKey(str, w, h);
-		$._textCache = og;
-		return $._tic.get(k);
+		genTextImage = true;
+		img = $.text(str, 0, 0, w, h);
+		genTextImage = false;
+		return img;
 	};
+
+	let lines = [];
 	$.text = (str, x, y, w, h) => {
-		if (str === undefined) return;
+		if (str === undefined || (!$._doFill && !$._doStroke)) return;
 		str = str.toString();
 		if ($._da) {
 			x *= $._da;
 			y *= $._da;
 		}
-		if (!$._doFill && !$._doStroke) return;
-		let c, ti, tg, k, cX, cY, _ascent, _descent;
-		let t = $.ctx.getTransform();
-		let useCache = $._genTextImage || ($._textCache && (t.b != 0 || t.c != 0));
-		if (!useCache) {
-			c = $.ctx;
-			cX = x;
-			cY = y;
-		} else {
-			k = $._genTextImageKey(str, w, h);
-			ti = $._tic.get(k);
-			if (ti && !$._genTextImage) {
-				$.textImage(ti, x, y);
-				return;
-			}
-			tg = $.createGraphics.call($, 1, 1);
-			c = tg.ctx;
-		}
-		c.font = `${$._textStyle} ${$._textSize}px ${$._textFont}`;
-		let lines = str.split('\n');
-		if (useCache) {
-			cX = 0;
-			cY = $._textLeading * lines.length;
-			let m = c.measureText(' ');
-			_ascent = m.fontBoundingBoxAscent;
-			_descent = m.fontBoundingBoxDescent;
-			h ??= cY + _descent;
-			tg.resizeCanvas(Math.ceil(c.measureText(str).width), Math.ceil(h));
+		let ctx = $.ctx;
+		let img, tX, tY;
 
-			c.fillStyle = $.ctx.fillStyle;
-			c.strokeStyle = $.ctx.strokeStyle;
-			c.lineWidth = $.ctx.lineWidth;
+		if (fontMod) {
+			ctx.font = `${emphasis} ${tSize}px ${font}`;
+			fontMod = false;
 		}
-		let f = c.fillStyle;
-		if (!$._fillSet) c.fillStyle = 'black';
-		for (let i = 0; i < lines.length; i++) {
-			if ($._doStroke && $._strokeSet) c.strokeText(lines[i], cX, cY);
-			if ($._doFill) c.fillText(lines[i], cX, cY);
-			cY += $._textLeading;
-			if (cY > h) break;
+
+		if (useCache || genTextImage) {
+			if (styleHash == -1) updateStyleHash();
+
+			img = cache[str];
+			if (img) img = img[styleHash];
+
+			if (img) {
+				if (genTextImage) return img;
+				return $.textImage(img, x, y);
+			}
 		}
-		if (!$._fillSet) c.fillStyle = f;
-		if (useCache) {
-			ti = tg.get();
-			ti._ascent = _ascent;
-			ti._descent = _descent;
-			$._tic.set(k, ti);
-			if (!$._genTextImage) $.textImage(ti, x, y);
+
+		if (str.indexOf('\n') == -1) lines[0] = str;
+		else lines = str.split('\n');
+
+		if (w) {
+			let wrapped = [];
+			for (let line of lines) {
+				let i = 0;
+
+				while (i < line.length) {
+					let max = i + w;
+					if (max >= line.length) {
+						wrapped.push(line.slice(i));
+						break;
+					}
+					let end = line.lastIndexOf(' ', max);
+					if (end === -1 || end < i) {
+						end = max;
+					}
+					wrapped.push(line.slice(i, end));
+					i = end;
+				}
+			}
+			lines = wrapped;
+		}
+
+		if (!useCache && !genTextImage) {
+			tX = x;
+			tY = y;
+		} else {
+			tX = 0;
+			tY = leading * lines.length;
+
+			if (!img) {
+				let measure = ctx.measureText(' ');
+				let ascent = measure.fontBoundingBoxAscent;
+				let descent = measure.fontBoundingBoxDescent;
+				h ??= tY + descent;
+
+				img = $.createImage.call($, Math.ceil(ctx.measureText(str).width), Math.ceil(h), {
+					pixelDensity: $._pixelDensity
+				});
+
+				img._ascent = ascent;
+				img._descent = descent;
+				img._top = descent + leadDiff;
+				img._middle = img._top + ascent * 0.5;
+				img._bottom = img._top + ascent;
+			}
+
+			img.canvas.textureIndex = undefined;
+
+			ctx = img.ctx;
+
+			ctx.font = $.ctx.font;
+			ctx.fillStyle = $._fillStyle;
+			ctx.strokeStyle = $._strokeStyle;
+			ctx.lineWidth = $.ctx.lineWidth;
+		}
+
+		let ogFill;
+		if (!$._fillSet) {
+			ogFill = ctx.fillStyle;
+			ctx.fillStyle = 'black';
+		}
+
+		for (let line of lines) {
+			if ($._doStroke && $._strokeSet) ctx.strokeText(line, tX, tY);
+			if ($._doFill) ctx.fillText(line, tX, tY);
+			tY += leading;
+			if (tY > h) break;
+		}
+		lines.length = 0;
+
+		if (!$._fillSet) ctx.fillStyle = ogFill;
+
+		if (useCache || genTextImage) {
+			styleHashes.push(styleHash);
+			(cache[str] ??= {})[styleHash] = img;
+
+			cacheSize++;
+			if (cacheSize > cacheMax) {
+				let half = Math.ceil(cacheSize / 2);
+				let hashes = styleHashes.splice(0, half);
+				for (let s in cache) {
+					s = cache[s];
+					for (let h of hashes) delete s[h];
+				}
+				cacheSize -= half;
+			}
+
+			if (genTextImage) return img;
+			$.textImage(img, x, y);
 		}
 	};
 	$.textImage = (img, x, y) => {
 		let og = $._imageMode;
 		$._imageMode = 'corner';
-		if ($.ctx.textAlign == 'center') x -= img.width * 0.5;
-		else if ($.ctx.textAlign == 'right') x -= img.width;
-		if ($.ctx.textBaseline == 'alphabetic') y -= $._textLeading;
-		if ($.ctx.textBaseline == 'middle') y -= img._descent + img._ascent * 0.5 + $._textLeadDiff;
-		else if ($.ctx.textBaseline == 'bottom') y -= img._ascent + img._descent + $._textLeadDiff;
-		else if ($.ctx.textBaseline == 'top') y -= img._descent + $._textLeadDiff;
+
+		let ta = $._textAlign;
+		if (ta == 'center') x -= img.canvas.hw;
+		else if (ta == 'right') x -= img.width;
+
+		let bl = $._textBaseline;
+		if (bl == 'alphabetic') y -= leading;
+		else if (bl == 'middle') y -= img._middle;
+		else if (bl == 'bottom') y -= img._bottom;
+		else if (bl == 'top') y -= img._top;
+
 		$.image(img, x, y);
 		$._imageMode = og;
 	};
@@ -1773,8 +1675,7 @@ Q5.modules.ai = ($) => {
 
 	$._aiErrorAssistance = async (e) => {
 		let askAI = e.message?.includes('Ask AI ✨');
-		if (!askAI) console.error(e);
-		if (Q5.disableFriendlyErrors) return;
+		if (Q5.disableFriendlyErrors && !askAI) return;
 		if (askAI || !Q5.errorTolerant) $.noLoop();
 		let stackLines = e.stack?.split('\n');
 		if (!e.stack || stackLines.length <= 1) return;
@@ -1785,7 +1686,7 @@ Q5.modules.ai = ($) => {
 			idx = 0;
 			sep = '@';
 		}
-		while (stackLines[idx].indexOf('q5.js:') >= 0) idx++;
+		while (stackLines[idx].indexOf('q5') >= 0) idx++;
 
 		let parts = stackLines[idx].split(sep).at(-1);
 		parts = parts.split(':');
@@ -1823,11 +1724,11 @@ Q5.modules.ai = ($) => {
 				'%0A%0AExcerpt+for+context%3A%0A%0A' +
 				encodeURIComponent(context);
 
-			if (!askAI) console.log('Error in ' + fileBase + ' on line ' + lineNum + ':\n\n' + errLine);
+			console.warn('Error in ' + fileBase + ' on line ' + lineNum + ':\n\n' + errLine);
 
 			console.warn('Ask AI ✨ ' + url);
 
-			if (askAI) window.open(url, '_blank');
+			if (askAI) return window.open(url, '_blank');
 		} catch (err) {}
 	};
 };
@@ -1905,27 +1806,22 @@ Q5.modules.color = ($, q) => {
 						c0 = parseInt(c0.slice(1, 3), 16);
 					}
 				} else if ($._namedColors[c0]) {
-					c0 = $._namedColors[c0];
+					[c0, c1, c2, c3] = $._namedColors[c0];
 				} else {
 					console.error(
 						"q5 can't parse color: " + c0 + '\nOnly numeric input, hex, and common named colors are supported.'
 					);
 					return new C(0, 0, 0);
 				}
-			}
-			if (Array.isArray(c0)) {
-				c1 = c0[1];
-				c2 = c0[2];
-				c3 = c0[3];
-				c0 = c0[0];
-			}
-		}
 
-		if ($._colorFormat == 1) {
-			c0 /= 255;
-			if (c1) c1 /= 255;
-			if (c2) c2 /= 255;
-			if (c3) c3 /= 255;
+				if ($._colorFormat == 1) {
+					c0 /= 255;
+					if (c1) c1 /= 255;
+					if (c2) c2 /= 255;
+					if (c3) c3 /= 255;
+				}
+			}
+			if (Array.isArray(c0)) [c0, c1, c2, c3] = c0;
 		}
 
 		if (c2 == undefined) return new C(c0, c0, c0, c1);
@@ -1937,7 +1833,28 @@ Q5.modules.color = ($, q) => {
 	$.blue = (c) => c.b;
 	$.alpha = (c) => c.a;
 	$.lightness = (c) => {
+		if (c.l) return c.l;
 		return ((0.2126 * c.r + 0.7152 * c.g + 0.0722 * c.b) * 100) / 255;
+	};
+	$.hue = (c) => {
+		if (c.h) return c.h;
+		let r = c.r;
+		let g = c.g;
+		let b = c.b;
+		if ($._colorFormat == 255) {
+			r /= 255;
+			g /= 255;
+			b /= 255;
+		}
+		let max = Math.max(r, g, b);
+		let min = Math.min(r, g, b);
+		let h;
+		if (max == min) h = 0;
+		else if (max == r) h = (60 * (g - b)) / (max - min);
+		else if (max == g) h = (60 * (b - r)) / (max - min) + 120;
+		else h = (60 * (r - g)) / (max - min) + 240;
+		if (h < 0) h += 360;
+		return h;
 	};
 
 	$.lerpColor = (a, b, t) => {
@@ -2078,6 +1995,12 @@ Q5.modules.display = ($) => {
 	if (!$.canvas || $._scope == 'graphics') return;
 
 	let c = $.canvas;
+
+	$.CENTERED = 'centered';
+	$.FULLSCREEN = 'fullscreen';
+	$.MAXED = 'maxed';
+
+	$.PIXELATED = 'pixelated';
 
 	if (Q5._instanceCount == 0 && !Q5._nodejs) {
 		document.head.insertAdjacentHTML(
@@ -2344,8 +2267,8 @@ Q5.modules.input = ($, q) => {
 	}
 };
 Q5.modules.math = ($, q) => {
-	$.DEGREES = 'degrees';
-	$.RADIANS = 'radians';
+	$.RADIANS = 0;
+	$.DEGREES = 1;
 
 	$.PI = Math.PI;
 	$.HALF_PI = Math.PI / 2;
@@ -2366,9 +2289,14 @@ Q5.modules.math = ($, q) => {
 	$.SHR3 = 1;
 	$.LCG = 2;
 
-	$.angleMode = (mode) => ($._angleMode = mode);
-	$._DEGTORAD = Math.PI / 180;
-	$._RADTODEG = 180 / Math.PI;
+	let angleMode = 0;
+
+	$.angleMode = (mode) => {
+		if (mode == 'radians') mode = 0;
+		angleMode = $._angleMode = mode;
+	};
+	let DEGTORAD = ($._DEGTORAD = Math.PI / 180);
+	let RADTODEG = ($._RADTODEG = 180 / Math.PI);
 	$.degrees = (x) => x * $._RADTODEG;
 	$.radians = (x) => x * $._DEGTORAD;
 
@@ -2393,37 +2321,27 @@ Q5.modules.math = ($, q) => {
 	$.norm = (value, start, stop) => $.map(value, start, stop, 0, 1);
 	$.sq = (x) => x * x;
 	$.fract = (x) => x - Math.floor(x);
-	$.sin = (a) => {
-		if ($._angleMode == 'degrees') a = $.radians(a);
-		return Math.sin(a);
-	};
-	$.cos = (a) => {
-		if ($._angleMode == 'degrees') a = $.radians(a);
-		return Math.cos(a);
-	};
-	$.tan = (a) => {
-		if ($._angleMode == 'degrees') a = $.radians(a);
-		return Math.tan(a);
-	};
+
+	$.sin = (a) => Math.sin(!angleMode ? a : a * DEGTORAD);
+	$.cos = (a) => Math.cos(!angleMode ? a : a * DEGTORAD);
+	$.tan = (a) => Math.tan(!angleMode ? a : a * DEGTORAD);
+
 	$.asin = (x) => {
 		let a = Math.asin(x);
-		if ($._angleMode == 'degrees') a = $.degrees(a);
-		return a;
+		return !angleMode ? a : a * RADTODEG;
 	};
 	$.acos = (x) => {
 		let a = Math.acos(x);
-		if ($._angleMode == 'degrees') a = $.degrees(a);
-		return a;
+		return !angleMode ? a : a * RADTODEG;
 	};
 	$.atan = (x) => {
 		let a = Math.atan(x);
-		if ($._angleMode == 'degrees') a = $.degrees(a);
-		return a;
+		return !angleMode ? a : a * RADTODEG;
 	};
+
 	$.atan2 = (y, x) => {
 		let a = Math.atan2(y, x);
-		if ($._angleMode == 'degrees') a = $.degrees(a);
-		return a;
+		return !angleMode ? a : a * RADTODEG;
 	};
 
 	function lcg() {
@@ -2848,18 +2766,19 @@ Q5.modules.vector = ($) => {
 };
 
 Q5.Vector = class {
-	constructor(_x, _y, _z, _$) {
-		this.x = _x || 0;
-		this.y = _y || 0;
-		this.z = _z || 0;
-		this._$ = _$ || window;
+	constructor(x, y, z, $) {
+		this.x = x || 0;
+		this.y = y || 0;
+		this.z = z || 0;
+		this._$ = $ || window;
 		this._cn = null;
 		this._cnsq = null;
 	}
-	set(_x, _y, _z) {
-		this.x = _x || 0;
-		this.y = _y || 0;
-		this.z = _z || 0;
+	set(x, y, z) {
+		this.x = x?.x || x || 0;
+		this.y = x?.y || y || 0;
+		this.z = x?.z || z || 0;
+		return this;
 	}
 	copy() {
 		return new Q5.Vector(this.x, this.y, this.z);
@@ -2981,6 +2900,12 @@ Q5.Vector = class {
 	heading() {
 		return this._$.atan2(this.y, this.x);
 	}
+	setHeading(ang) {
+		let mag = this.mag();
+		this.x = mag * this._$.cos(ang);
+		this.y = mag * this._$.sin(ang);
+		return this;
+	}
 	rotate(ang) {
 		let costh = this._$.cos(ang);
 		let sinth = this._$.sin(ang);
@@ -2998,11 +2923,50 @@ Q5.Vector = class {
 	}
 	lerp() {
 		let args = [...arguments];
-		let u = this._arg2v(...args.slice(0, -1));
 		let amt = args.at(-1);
+		if (amt == 0) return this;
+		let u = this._arg2v(...args.slice(0, -1));
 		this.x += (u.x - this.x) * amt;
 		this.y += (u.y - this.y) * amt;
 		this.z += (u.z - this.z) * amt;
+		return this;
+	}
+	slerp() {
+		let args = [...arguments];
+		let amt = args.at(-1);
+		if (amt == 0) return this;
+		let u = this._arg2v(...args.slice(0, -1));
+		if (amt == 1) return this.set(u);
+
+		let v0Mag = this.mag();
+		let v1Mag = u.mag();
+
+		if (v0Mag == 0 || v1Mag == 0) {
+			return this.mult(1 - amt).add(u.mult(amt));
+		}
+
+		let axis = Q5.Vector.cross(this, u);
+		let axisMag = axis.mag();
+		let theta = Math.atan2(axisMag, this.dot(u));
+
+		if (axisMag > 0) {
+			axis.div(axisMag);
+		} else if (theta < this._$.HALF_PI) {
+			return this.mult(1 - amt).add(u.mult(amt));
+		} else {
+			if (this.z == 0 && u.z == 0) axis.set(0, 0, 1);
+			else if (this.x != 0) axis.set(this.y, -this.x, 0).normalize();
+			else axis.set(1, 0, 0);
+		}
+
+		let ey = axis.cross(this);
+		let lerpedMagFactor = 1 - amt + (amt * v1Mag) / v0Mag;
+		let cosMultiplier = lerpedMagFactor * Math.cos(amt * theta);
+		let sinMultiplier = lerpedMagFactor * Math.sin(amt * theta);
+
+		this.x = this.x * cosMultiplier + ey.x * sinMultiplier;
+		this.y = this.y * cosMultiplier + ey.y * sinMultiplier;
+		this.z = this.z * cosMultiplier + ey.z * sinMultiplier;
 		return this;
 	}
 	reflect(n) {
@@ -3057,6 +3021,7 @@ Q5.Vector.div = (v, u) => v.copy().div(u);
 Q5.Vector.dot = (v, u) => v.copy().dot(u);
 Q5.Vector.equals = (v, u, epsilon) => v.equals(u, epsilon);
 Q5.Vector.lerp = (v, u, amt) => v.copy().lerp(u, amt);
+Q5.Vector.slerp = (v, u, amt) => v.copy().slerp(u, amt);
 Q5.Vector.limit = (v, m) => v.copy().limit(m);
 Q5.Vector.heading = (v) => this._$.atan2(v.y, v.x);
 Q5.Vector.magSq = (v) => v.x * v.x + v.y * v.y + v.z * v.z;
@@ -3068,3 +3033,1092 @@ Q5.Vector.sub = (v, u) => v.copy().sub(u);
 for (let k of ['fromAngle', 'fromAngles', 'random2D', 'random3D']) {
 	Q5.Vector[k] = (u, v, t) => new Q5.Vector()[k](u, v, t);
 }
+/**
+ * q5-webgpu
+ *
+ * EXPERIMENTAL, for developer testing only!
+ */
+Q5.renderers.webgpu = {};
+
+Q5.renderers.webgpu.canvas = ($, q) => {
+	let c = $.canvas;
+
+	c.width = $.width = 500;
+	c.height = $.height = 500;
+
+	if ($.colorMode) $.colorMode('rgb', 'float');
+
+	let pass;
+
+	$.pipelines = [];
+
+	// local variables used for slightly better performance
+	// stores pipeline shifts and vertex counts/image indices
+	let drawStack = ($.drawStack = []);
+
+	// colors used for each draw call
+	let colorsStack = ($.colorsStack = [1, 1, 1, 1]);
+
+	$._envLayout = Q5.device.createBindGroupLayout({
+		entries: [
+			{
+				binding: 0,
+				visibility: GPUShaderStage.VERTEX,
+				buffer: {
+					type: 'uniform',
+					hasDynamicOffset: false
+				}
+			}
+		]
+	});
+
+	$._transformLayout = Q5.device.createBindGroupLayout({
+		entries: [
+			{
+				binding: 0,
+				visibility: GPUShaderStage.VERTEX,
+				buffer: {
+					type: 'read-only-storage',
+					hasDynamicOffset: false
+				}
+			}
+		]
+	});
+
+	$.bindGroupLayouts = [$._envLayout, $._transformLayout];
+
+	const uniformBuffer = Q5.device.createBuffer({
+		size: 8, // Size of two floats
+		usage: GPUBufferUsage.UNIFORM | GPUBufferUsage.COPY_DST
+	});
+
+	$._createCanvas = (w, h, opt) => {
+		q.ctx = q.drawingContext = c.getContext('webgpu');
+
+		opt.format = navigator.gpu.getPreferredCanvasFormat();
+		opt.device = Q5.device;
+
+		$.ctx.configure(opt);
+
+		Q5.device.queue.writeBuffer(uniformBuffer, 0, new Float32Array([$.canvas.hw, $.canvas.hh]));
+
+		$._envBindGroup = Q5.device.createBindGroup({
+			layout: $._envLayout,
+			entries: [
+				{
+					binding: 0,
+					resource: {
+						buffer: uniformBuffer
+					}
+				}
+			]
+		});
+
+		return c;
+	};
+
+	$._resizeCanvas = (w, h) => {
+		$._setCanvasSize(w, h);
+	};
+
+	// current color index, used to associate a vertex with a color
+	let colorIndex = 0;
+	const addColor = (r, g, b, a = 1) => {
+		if (typeof r == 'string') r = $.color(r);
+		else if (b == undefined) {
+			// grayscale mode `fill(1, 0.5)`
+			a = g ?? 1;
+			g = b = r;
+		}
+		if (r._q5Color) colorsStack.push(r.r, r.g, r.b, r.a);
+		else colorsStack.push(r, g, b, a);
+		colorIndex++;
+	};
+
+	$.fill = (r, g, b, a) => {
+		addColor(r, g, b, a);
+		$._doFill = true;
+		$._fillIndex = colorIndex;
+	};
+	$.stroke = (r, g, b, a) => {
+		addColor(r, g, b, a);
+		$._doStroke = true;
+		$._strokeIndex = colorIndex;
+	};
+
+	$.noFill = () => ($._doFill = false);
+	$.noStroke = () => ($._doStroke = false);
+
+	$._strokeWeight = 1;
+	$.strokeWeight = (v) => ($._strokeWeight = Math.abs(v));
+
+	$.resetMatrix = () => {
+		// Initialize the transformation matrix as 4x4 identity matrix
+
+		// prettier-ignore
+		$._matrix = [
+			1, 0, 0, 0,
+			0, 1, 0, 0,
+			0, 0, 1, 0,
+			0, 0, 0, 1
+		];
+		$._transformIndex = 0;
+	};
+	$.resetMatrix();
+
+	// Boolean to track if the matrix has been modified
+	$._matrixDirty = false;
+
+	// Array to store transformation matrices for the render pass
+	$.transformStates = [$._matrix.slice()];
+
+	// Stack to keep track of transformation matrix indexes
+	$._transformIndexStack = [];
+
+	$.translate = (x, y, z) => {
+		if (!x && !y && !z) return;
+		// Update the translation values
+		$._matrix[3] += x;
+		$._matrix[7] -= y;
+		$._matrix[11] += z || 0;
+		$._matrixDirty = true;
+	};
+
+	$.rotate = (r) => {
+		if (!r) return;
+		if ($._angleMode) r *= $._DEGTORAD;
+
+		let cosR = Math.cos(r);
+		let sinR = Math.sin(r);
+
+		let m0 = $._matrix[0],
+			m1 = $._matrix[1],
+			m4 = $._matrix[4],
+			m5 = $._matrix[5];
+		if (!m0 && !m1 && !m4 && !m5) {
+			$._matrix[0] = cosR;
+			$._matrix[1] = sinR;
+			$._matrix[4] = -sinR;
+			$._matrix[5] = cosR;
+		} else {
+			$._matrix[0] = m0 * cosR + m4 * sinR;
+			$._matrix[1] = m1 * cosR + m5 * sinR;
+			$._matrix[4] = m0 * -sinR + m4 * cosR;
+			$._matrix[5] = m1 * -sinR + m5 * cosR;
+		}
+
+		$._matrixDirty = true;
+	};
+
+	$.scale = (sx = 1, sy, sz = 1) => {
+		sy ??= sx;
+
+		$._matrix[0] *= sx;
+		$._matrix[5] *= sy;
+		$._matrix[10] *= sz;
+
+		$._matrixDirty = true;
+	};
+
+	$.shearX = (ang) => {
+		if (!ang) return;
+		if ($._angleMode) ang *= $._DEGTORAD;
+
+		let tanAng = Math.tan(ang);
+
+		let m0 = $._matrix[0],
+			m1 = $._matrix[1],
+			m4 = $._matrix[4],
+			m5 = $._matrix[5];
+
+		$._matrix[0] = m0 + m4 * tanAng;
+		$._matrix[1] = m1 + m5 * tanAng;
+
+		$._matrixDirty = true;
+	};
+
+	$.shearY = (ang) => {
+		if (!ang) return;
+		if ($._angleMode) ang *= $._DEGTORAD;
+
+		let tanAng = Math.tan(ang);
+
+		let m0 = $._matrix[0],
+			m1 = $._matrix[1],
+			m4 = $._matrix[4],
+			m5 = $._matrix[5];
+
+		$._matrix[4] = m4 + m0 * tanAng;
+		$._matrix[5] = m5 + m1 * tanAng;
+
+		$._matrixDirty = true;
+	};
+
+	$.applyMatrix = (...args) => {
+		let m;
+		if (args.length == 1) m = args[0];
+		else m = args;
+
+		if (m.length == 9) {
+			// Convert 3x3 matrix to 4x4 matrix
+			m = [m[0], m[1], 0, m[2], m[3], m[4], 0, m[5], 0, 0, 1, 0, m[6], m[7], 0, m[8]];
+		} else if (m.length != 16) {
+			throw new Error('Matrix must be a 3x3 or 4x4 array.');
+		}
+
+		// Overwrite the current transformation matrix
+		$._matrix = m.slice();
+		$._matrixDirty = true;
+	};
+
+	// Function to save the current matrix state if dirty
+	$._saveMatrix = () => {
+		$.transformStates.push($._matrix.slice());
+		$._transformIndex = $.transformStates.length - 1;
+		$._matrixDirty = false;
+	};
+
+	// Push the current matrix index onto the stack
+	$.pushMatrix = () => {
+		if ($._matrixDirty) $._saveMatrix();
+		$._transformIndexStack.push($._transformIndex);
+	};
+	$.popMatrix = () => {
+		if (!$._transformIndexStack.length) {
+			return console.warn('Matrix index stack is empty!');
+		}
+		// Pop the last matrix index from the stack and set it as the current matrix index
+		let idx = $._transformIndexStack.pop();
+		$._matrix = $.transformStates[idx].slice();
+		$._transformIndex = idx;
+		$._matrixDirty = false;
+	};
+
+	$.push = () => {
+		$.pushMatrix();
+		$.pushStyles();
+	};
+	$.pop = () => {
+		$.popMatrix();
+		$.popStyles();
+	};
+
+	$._calcBox = (x, y, w, h, mode) => {
+		let hw = w / 2;
+		let hh = h / 2;
+
+		// left, right, top, bottom
+		let l, r, t, b;
+		if (!mode || mode == 'corner') {
+			// CORNER
+			l = x;
+			r = x + w;
+			t = -y;
+			b = -(y + h);
+		} else if (mode == 'center') {
+			l = x - hw;
+			r = x + hw;
+			t = -(y - hh);
+			b = -(y + hh);
+		} else {
+			// CORNERS
+			l = x;
+			r = w;
+			t = -y;
+			b = -h;
+		}
+
+		return [l, r, t, b];
+	};
+
+	$.clear = () => {};
+
+	$._beginRender = () => {
+		$.encoder = Q5.device.createCommandEncoder();
+
+		pass = q.pass = $.encoder.beginRenderPass({
+			label: 'q5-webgpu',
+			colorAttachments: [
+				{
+					view: ctx.getCurrentTexture().createView(),
+					loadOp: 'clear',
+					storeOp: 'store'
+				}
+			]
+		});
+	};
+
+	$._render = () => {
+		if (transformStates.length > 1 || !$._transformBindGroup) {
+			const transformBuffer = Q5.device.createBuffer({
+				size: transformStates.length * 64, // Size of 16 floats
+				usage: GPUBufferUsage.STORAGE | GPUBufferUsage.COPY_DST
+			});
+
+			Q5.device.queue.writeBuffer(transformBuffer, 0, new Float32Array(transformStates.flat()));
+
+			$._transformBindGroup = Q5.device.createBindGroup({
+				layout: $._transformLayout,
+				entries: [
+					{
+						binding: 0,
+						resource: {
+							buffer: transformBuffer
+						}
+					}
+				]
+			});
+		}
+
+		pass.setBindGroup(0, $._envBindGroup);
+		pass.setBindGroup(1, $._transformBindGroup);
+
+		for (let m of $._hooks.preRender) m();
+
+		let drawVertOffset = 0;
+		let imageVertOffset = 0;
+		let curPipelineIndex = -1;
+		let curTextureIndex = -1;
+
+		pass.setPipeline($.pipelines[0]);
+
+		for (let i = 0; i < drawStack.length; i += 2) {
+			let v = drawStack[i + 1];
+
+			if (curPipelineIndex != drawStack[i]) {
+				curPipelineIndex = drawStack[i];
+				pass.setPipeline($.pipelines[curPipelineIndex]);
+			}
+
+			if (curPipelineIndex == 0) {
+				pass.draw(v, 1, drawVertOffset, 0);
+				drawVertOffset += v;
+			} else if (curPipelineIndex == 1) {
+				if (curTextureIndex != v) {
+					pass.setBindGroup(3, $._textureBindGroups[v]);
+				}
+				pass.draw(6, 1, imageVertOffset, 0);
+				imageVertOffset += 6;
+			}
+		}
+
+		for (let m of $._hooks.postRender) m();
+	};
+
+	$._finishRender = () => {
+		pass.end();
+		const commandBuffer = $.encoder.finish();
+		Q5.device.queue.submit([commandBuffer]);
+		q.pass = $.encoder = null;
+
+		// clear the stacks for the next frame
+		$.drawStack.length = 0;
+		$.colorsStack.length = 4;
+		colorIndex = 0;
+		rotation = 0;
+		$.transformStates.length = 1;
+		$._transformIndexStack.length = 0;
+	};
+};
+
+Q5.webgpu = async function (scope, parent) {
+	if (!scope || scope == 'global') Q5._hasGlobal = true;
+	if (!navigator.gpu) {
+		console.warn('q5 WebGPU not supported on this browser!');
+		let q = new Q5(scope, parent);
+		q.colorMode('rgb', 1);
+		q._beginRender = () => q.translate(q.canvas.hw, q.canvas.hh);
+		return q;
+	}
+	let adapter = await navigator.gpu.requestAdapter();
+	if (!adapter) throw new Error('No appropriate GPUAdapter found.');
+	Q5.device = await adapter.requestDevice();
+
+	return new Q5(scope, parent, 'webgpu');
+};
+Q5.renderers.webgpu.drawing = ($, q) => {
+	let c = $.canvas;
+
+	let drawStack = $.drawStack;
+	let colorsStack = $.colorsStack;
+
+	let verticesStack = [];
+
+	let colorIndex, colorsLayout;
+
+	let vertexShader = Q5.device.createShaderModule({
+		label: 'drawingVertexShader',
+		code: `
+struct VertexOutput {
+	@builtin(position) position: vec4<f32>,
+	@location(1) colorIndex: f32
+};
+
+struct Uniforms {
+	halfWidth: f32,
+	halfHeight: f32
+};
+
+@group(0) @binding(0) var<uniform> uniforms: Uniforms;
+@group(1) @binding(0) var<storage, read> transforms: array<mat4x4<f32>>;
+
+@vertex
+fn vertexMain(@location(0) pos: vec2<f32>, @location(1) colorIndex: f32, @location(2) transformIndex: f32) -> VertexOutput {
+	var vert = vec4<f32>(pos, 0.0, 1.0);
+	vert *= transforms[i32(transformIndex)];
+	vert.x /= uniforms.halfWidth;
+	vert.y /= uniforms.halfHeight;
+
+	var output: VertexOutput;
+	output.position = vert;
+	output.colorIndex = colorIndex;
+	return output;
+}
+`
+	});
+
+	let fragmentShader = Q5.device.createShaderModule({
+		label: 'drawingFragmentShader',
+		code: `
+@group(2) @binding(0) var<storage, read> uColors : array<vec4<f32>>;
+
+@fragment
+fn fragmentMain(@location(1) colorIndex: f32) -> @location(0) vec4<f32> {
+	let index = u32(colorIndex);
+	return mix(uColors[index], uColors[index + 1u], fract(colorIndex));
+}
+`
+	});
+
+	colorsLayout = Q5.device.createBindGroupLayout({
+		entries: [
+			{
+				binding: 0,
+				visibility: GPUShaderStage.FRAGMENT,
+				buffer: {
+					type: 'read-only-storage',
+					hasDynamicOffset: false
+				}
+			}
+		]
+	});
+
+	$.bindGroupLayouts.push(colorsLayout);
+
+	let vertexBufferLayout = {
+		arrayStride: 16, // 2 coordinates + 1 color index + 1 transform index * 4 bytes each
+		attributes: [
+			{ format: 'float32x2', offset: 0, shaderLocation: 0 }, // position
+			{ format: 'float32', offset: 8, shaderLocation: 1 }, // colorIndex
+			{ format: 'float32', offset: 12, shaderLocation: 2 } // transformIndex
+		]
+	};
+
+	// prettier-ignore
+	let blendFactors = [
+			'zero',                // 0
+			'one',                 // 1
+			'src-alpha',           // 2
+			'one-minus-src-alpha', // 3
+			'dst',                 // 4
+			'dst-alpha',           // 5
+			'one-minus-dst-alpha', // 6
+			'one-minus-src'        // 7
+	];
+	let blendOps = [
+		'add', // 0
+		'subtract', // 1
+		'reverse-subtract', // 2
+		'min', // 3
+		'max' // 4
+	];
+
+	const blendModes = {
+		normal: [2, 3, 0, 2, 3, 0],
+		lighter: [2, 1, 0, 2, 1, 0],
+		subtract: [2, 1, 2, 2, 1, 2],
+		multiply: [4, 0, 0, 5, 0, 0],
+		screen: [1, 3, 0, 1, 3, 0],
+		darken: [1, 3, 3, 1, 3, 3],
+		lighten: [1, 3, 4, 1, 3, 4],
+		overlay: [2, 3, 0, 2, 3, 0],
+		hard_light: [2, 3, 0, 2, 3, 0],
+		soft_light: [2, 3, 0, 2, 3, 0],
+		difference: [2, 3, 2, 2, 3, 2],
+		exclusion: [2, 3, 0, 2, 3, 0],
+		color_dodge: [1, 7, 0, 1, 7, 0],
+		color_burn: [6, 1, 0, 6, 1, 0],
+		linear_dodge: [2, 1, 0, 2, 1, 0],
+		linear_burn: [2, 7, 1, 2, 7, 1],
+		vivid_light: [2, 7, 0, 2, 7, 0],
+		pin_light: [2, 7, 0, 2, 7, 0],
+		hard_mix: [2, 7, 0, 2, 7, 0]
+	};
+
+	$.blendConfigs = {};
+
+	for (const [name, mode] of Object.entries(blendModes)) {
+		$.blendConfigs[name] = {
+			color: {
+				srcFactor: blendFactors[mode[0]],
+				dstFactor: blendFactors[mode[1]],
+				operation: blendOps[mode[2]]
+			},
+			alpha: {
+				srcFactor: blendFactors[mode[3]],
+				dstFactor: blendFactors[mode[4]],
+				operation: blendOps[mode[5]]
+			}
+		};
+	}
+
+	$._blendMode = 'normal';
+	$.blendMode = (mode) => {
+		if (mode == $._blendMode) return;
+		if (mode == 'source-over') mode = 'normal';
+		mode = mode.toLowerCase().replace(/[ -]/g, '_');
+		$._blendMode = mode;
+		$.pipelines[0] = $._createPipeline($.blendConfigs[mode]);
+	};
+
+	let pipelineLayout = Q5.device.createPipelineLayout({
+		label: 'drawingPipelineLayout',
+		bindGroupLayouts: $.bindGroupLayouts
+	});
+
+	$._createPipeline = (blendConfig) => {
+		return Q5.device.createRenderPipeline({
+			label: 'drawingPipeline',
+			layout: pipelineLayout,
+			vertex: {
+				module: vertexShader,
+				entryPoint: 'vertexMain',
+				buffers: [vertexBufferLayout]
+			},
+			fragment: {
+				module: fragmentShader,
+				entryPoint: 'fragmentMain',
+				targets: [{ format: 'bgra8unorm', blend: blendConfig }]
+			},
+			primitive: { topology: 'triangle-list' }
+		});
+	};
+
+	$.pipelines[0] = $._createPipeline($.blendConfigs.normal);
+
+	let shapeVertices;
+
+	$.beginShape = () => {
+		shapeVertices = [];
+	};
+
+	$.vertex = (x, y) => {
+		if ($._matrixDirty) $._saveMatrix();
+		shapeVertices.push(x, -y, $._fillIndex, $._transformIndex);
+	};
+
+	$.endShape = (close) => {
+		if (!$._doFill) {
+			shapeVertices = [];
+			return;
+		}
+		let v = shapeVertices;
+		if (v.length < 12) {
+			throw new Error('A shape must have at least 3 vertices.');
+		}
+		if (close) {
+			// Close the shape by adding the first vertex at the end
+			v.push(v[0], v[1], v[2], v[3]);
+		}
+		// Convert the shape to triangles
+		let triangles = [];
+		for (let i = 4; i < v.length; i += 4) {
+			triangles.push(
+				v[0], // First vertex
+				v[1],
+				v[2],
+				v[3],
+				v[i - 4], // Previous vertex
+				v[i - 3],
+				v[i - 2],
+				v[i - 1],
+				v[i], // Current vertex
+				v[i + 1],
+				v[i + 2],
+				v[i + 3]
+			);
+		}
+		shapeVertices = [];
+
+		verticesStack.push(...triangles);
+		drawStack.push(0, triangles.length / 4);
+	};
+
+	$.triangle = (x1, y1, x2, y2, x3, y3) => {
+		$.beginShape();
+		$.vertex(x1, y1);
+		$.vertex(x2, y2);
+		$.vertex(x3, y3);
+		$.endShape(1);
+	};
+
+	$.quad = (x1, y1, x2, y2, x3, y3, x4, y4) => {
+		$.beginShape();
+		$.vertex(x1, y1);
+		$.vertex(x2, y2);
+		$.vertex(x3, y3);
+		$.vertex(x4, y4);
+		$.endShape(1);
+	};
+
+	$.rectMode = (x) => ($._rectMode = x);
+
+	$.rect = (x, y, w, h) => {
+		let [l, r, t, b] = $._calcBox(x, y, w, h, $._rectMode);
+
+		let ci = colorIndex ?? $._fillIndex;
+		if ($._matrixDirty) $._saveMatrix();
+		let ti = $._transformIndex;
+		// two triangles make a rectangle
+		// prettier-ignore
+		verticesStack.push(
+			l, t, ci, ti,
+			r, t, ci, ti,
+			l, b, ci, ti,
+			r, t, ci, ti,
+			l, b, ci, ti,
+			r, b, ci, ti
+		);
+		drawStack.push(0, 6);
+	};
+
+	$.square = (x, y, s) => $.rect(x, y, s, s);
+
+	$.point = (x, y) => {
+		colorIndex = $._strokeIndex;
+		let sw = $._strokeWeight;
+		if (sw < 2) {
+			sw = Math.round(sw);
+			$.rect(x, y, sw, sw);
+		} else $.ellipse(x, y, sw, sw);
+		colorIndex = null;
+	};
+
+	$.line = (x1, y1, x2, y2) => {
+		colorIndex = $._strokeIndex;
+
+		$.push();
+		$.translate(x1, y1);
+		$.rotate($.atan2(y2 - y1, x2 - x1));
+		let length = Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2);
+		let sw = $._strokeWeight;
+		$.rect(0, -sw / 2, length, sw);
+		$.pop();
+
+		colorIndex = null;
+	};
+
+	$.background = (r, g, b, a) => {
+		$.push();
+		$.resetMatrix();
+		if (r.src) $.image(r, -c.hw, -c.hh, c.w, c.h);
+		else {
+			$.fill(r, g, b, a);
+			$.rect(-c.hw, -c.hh, c.w, c.h);
+		}
+		$.pop();
+	};
+
+	/**
+	 * Derived from: ceil(Math.log(d) * 7) * 2 - ceil(28)
+	 * This lookup table is used for better performance.
+	 * @param {Number} d diameter of the circle
+	 * @returns n number of segments
+	 */
+	// prettier-ignore
+	const getArcSegments = (d) => 
+		d < 4 ? 6 :
+    d < 6 ? 8 :
+    d < 10 ? 10 :
+    d < 16 ? 12 :
+    d < 20 ? 14 :
+    d < 22 ? 16 :
+    d < 24 ? 18 :
+    d < 28 ? 20 :
+    d < 34 ? 22 :
+    d < 42 ? 24 :
+    d < 48 ? 26 :
+    d < 56 ? 28 :
+    d < 64 ? 30 :
+    d < 72 ? 32 :
+    d < 84 ? 34 :
+    d < 96 ? 36 :
+    d < 98 ? 38 :
+    d < 113 ? 40 :
+    d < 149 ? 44 :
+    d < 199 ? 48 :
+    d < 261 ? 52 :
+    d < 353 ? 56 :
+    d < 461 ? 60 :
+    d < 585 ? 64 :
+    d < 1200 ? 70 :
+		d < 1800 ? 80 :
+		d < 2400 ? 90 :
+		100;
+
+	$.ellipseMode = (x) => ($._ellipseMode = x);
+
+	$.ellipse = (x, y, w, h) => {
+		const n = getArcSegments(w == h ? w : Math.max(w, h));
+
+		let a = Math.max(w, 1) / 2;
+		let b = w == h ? a : Math.max(h, 1) / 2;
+
+		let t = 0; // theta
+		const angleIncrement = $.TAU / n;
+		const ci = colorIndex ?? $._fillIndex;
+		if ($._matrixDirty) $._saveMatrix();
+		const ti = $._transformIndex;
+		let vx1, vy1, vx2, vy2;
+		for (let i = 0; i <= n; i++) {
+			vx1 = vx2;
+			vy1 = vy2;
+			vx2 = x + a * Math.cos(t);
+			vy2 = y + b * Math.sin(t);
+			t += angleIncrement;
+
+			if (i == 0) continue;
+
+			verticesStack.push(x, y, ci, ti, vx1, vy1, ci, ti, vx2, vy2, ci, ti);
+		}
+
+		drawStack.push(0, n * 3);
+	};
+
+	$.circle = (x, y, d) => $.ellipse(x, y, d, d);
+
+	$._hooks.preRender.push(() => {
+		$.pass.setPipeline($.pipelines[0]);
+
+		const vertices = new Float32Array(verticesStack);
+
+		const vertexBuffer = Q5.device.createBuffer({
+			size: vertices.byteLength,
+			usage: GPUBufferUsage.VERTEX | GPUBufferUsage.COPY_DST
+		});
+
+		Q5.device.queue.writeBuffer(vertexBuffer, 0, vertices);
+		$.pass.setVertexBuffer(0, vertexBuffer);
+
+		const colorsBuffer = Q5.device.createBuffer({
+			size: colorsStack.length * 4,
+			usage: GPUBufferUsage.STORAGE | GPUBufferUsage.COPY_DST
+		});
+
+		Q5.device.queue.writeBuffer(colorsBuffer, 0, new Float32Array(colorsStack));
+
+		$._colorsBindGroup = Q5.device.createBindGroup({
+			layout: colorsLayout,
+			entries: [
+				{
+					binding: 0,
+					resource: {
+						buffer: colorsBuffer,
+						offset: 0,
+						size: colorsStack.length * 4
+					}
+				}
+			]
+		});
+
+		// set the bind group once before rendering
+		$.pass.setBindGroup(2, $._colorsBindGroup);
+	});
+
+	$._hooks.postRender.push(() => {
+		verticesStack.length = 0;
+	});
+};
+Q5.renderers.webgpu.image = ($, q) => {
+	$._textureBindGroups = [];
+	let verticesStack = [];
+
+	let vertexShader = Q5.device.createShaderModule({
+		label: 'imageVertexShader',
+		code: `
+struct VertexOutput {
+	@builtin(position) position: vec4<f32>,
+	@location(0) texCoord: vec2<f32>
+};
+
+struct Uniforms {
+	halfWidth: f32,
+	halfHeight: f32
+};
+
+@group(0) @binding(0) var<uniform> uniforms: Uniforms;
+@group(1) @binding(0) var<storage, read> transforms: array<mat4x4<f32>>;
+
+@vertex
+fn vertexMain(@location(0) pos: vec2<f32>, @location(1) texCoord: vec2<f32>, @location(2) transformIndex: f32) -> VertexOutput {
+	var vert = vec4<f32>(pos, 0.0, 1.0);
+	vert *= transforms[i32(transformIndex)];
+	vert.x /= uniforms.halfWidth;
+	vert.y /= uniforms.halfHeight;
+
+	var output: VertexOutput;
+	output.position = vert;
+	output.texCoord = texCoord;
+	return output;
+}
+	`
+	});
+
+	let fragmentShader = Q5.device.createShaderModule({
+		label: 'imageFragmentShader',
+		code: `
+@group(3) @binding(0) var samp: sampler;
+@group(3) @binding(1) var texture: texture_2d<f32>;
+
+@fragment
+fn fragmentMain(@location(0) texCoord: vec2<f32>) -> @location(0) vec4<f32> {
+	// Sample the texture using the interpolated texture coordinate
+	return textureSample(texture, samp, texCoord);
+}
+	`
+	});
+
+	let textureLayout = Q5.device.createBindGroupLayout({
+		label: 'textureLayout',
+		entries: [
+			{
+				binding: 0,
+				visibility: GPUShaderStage.FRAGMENT,
+				sampler: { type: 'filtering' }
+			},
+			{
+				binding: 1,
+				visibility: GPUShaderStage.FRAGMENT,
+				texture: { viewDimension: '2d', sampleType: 'float' }
+			}
+		]
+	});
+
+	const vertexBufferLayout = {
+		arrayStride: 20,
+		attributes: [
+			{ shaderLocation: 0, offset: 0, format: 'float32x2' },
+			{ shaderLocation: 1, offset: 8, format: 'float32x2' },
+			{ shaderLocation: 2, offset: 16, format: 'float32' } // transformIndex
+		]
+	};
+
+	$.bindGroupLayouts.push(textureLayout);
+
+	const pipelineLayout = Q5.device.createPipelineLayout({
+		label: 'imagePipelineLayout',
+		bindGroupLayouts: $.bindGroupLayouts
+	});
+
+	$.pipelines[1] = Q5.device.createRenderPipeline({
+		label: 'imagePipeline',
+		layout: pipelineLayout,
+		vertex: {
+			module: vertexShader,
+			entryPoint: 'vertexMain',
+			buffers: [{ arrayStride: 0, attributes: [] }, vertexBufferLayout]
+		},
+		fragment: {
+			module: fragmentShader,
+			entryPoint: 'fragmentMain',
+			targets: [
+				{
+					format: 'bgra8unorm',
+					blend: $.blendConfigs?.normal || {
+						color: {
+							srcFactor: 'src-alpha',
+							dstFactor: 'one-minus-src-alpha',
+							operation: 'add'
+						},
+						alpha: {
+							srcFactor: 'src-alpha',
+							dstFactor: 'one-minus-src-alpha',
+							operation: 'add'
+						}
+					}
+				}
+			]
+		},
+		primitive: {
+			topology: 'triangle-list'
+		}
+	});
+
+	let sampler = Q5.device.createSampler({
+		magFilter: 'linear',
+		minFilter: 'linear'
+	});
+
+	let MAX_TEXTURES = 12000;
+
+	let textures = [];
+	let tIdx = 0;
+
+	$._createTexture = (img) => {
+		if (img.canvas) img = img.canvas;
+
+		let textureSize = [img.width, img.height, 1];
+
+		const texture = Q5.device.createTexture({
+			size: textureSize,
+			format: 'bgra8unorm',
+			usage: GPUTextureUsage.TEXTURE_BINDING | GPUTextureUsage.COPY_DST | GPUTextureUsage.RENDER_ATTACHMENT
+		});
+
+		Q5.device.queue.copyExternalImageToTexture({ source: img }, { texture }, textureSize);
+
+		// If the texture array is full, destroy the oldest texture
+		if (textures[tIdx]) {
+			textures[tIdx].destroy();
+			delete textures[tIdx];
+			delete $._textureBindGroups[tIdx];
+		}
+
+		textures[tIdx] = texture;
+		img.textureIndex = tIdx;
+
+		const textureBindGroup = Q5.device.createBindGroup({
+			layout: textureLayout,
+			entries: [
+				{ binding: 0, resource: sampler },
+				{ binding: 1, resource: texture.createView() }
+			]
+		});
+		$._textureBindGroups[tIdx] = textureBindGroup;
+
+		tIdx = (tIdx + 1) % MAX_TEXTURES;
+	};
+
+	$.loadImage = $.loadTexture = (src) => {
+		q._preloadCount++;
+		const img = new Image();
+		img.crossOrigin = 'Anonymous';
+		img.onload = () => {
+			$._createTexture(img);
+			q._preloadCount--;
+		};
+		img.src = src;
+		return img;
+	};
+
+	$.imageMode = (x) => ($._imageMode = x);
+
+	$.image = (img, x, y, w, h) => {
+		if (img.canvas) img = img.canvas;
+		if (img.textureIndex == undefined) return;
+
+		if ($._matrixDirty) $._saveMatrix();
+		let ti = $._transformIndex;
+
+		w ??= img.width / $._pixelDensity;
+		h ??= img.height / $._pixelDensity;
+
+		let [l, r, t, b] = $._calcBox(x, y, w, h, $._imageMode);
+
+		// prettier-ignore
+		verticesStack.push(
+			l, t, 0, 0, ti,
+			r, t, 1, 0, ti,
+			l, b, 0, 1, ti,
+			r, t, 1, 0, ti,
+			l, b, 0, 1, ti,
+			r, b, 1, 1, ti
+		);
+
+		$.drawStack.push(1, img.textureIndex);
+	};
+
+	$._hooks.preRender.push(() => {
+		if (!$._textureBindGroups.length) return;
+
+		// Switch to image pipeline
+		$.pass.setPipeline($.pipelines[1]);
+
+		// Create a vertex buffer for the image quads
+		const vertices = new Float32Array(verticesStack);
+
+		const vertexBuffer = Q5.device.createBuffer({
+			size: vertices.byteLength,
+			usage: GPUBufferUsage.VERTEX | GPUBufferUsage.COPY_DST
+		});
+
+		Q5.device.queue.writeBuffer(vertexBuffer, 0, vertices);
+		$.pass.setVertexBuffer(1, vertexBuffer);
+	});
+
+	$._hooks.postRender.push(() => {
+		verticesStack.length = 0;
+	});
+};
+
+Q5.THRESHOLD = 1;
+Q5.GRAY = 2;
+Q5.OPAQUE = 3;
+Q5.INVERT = 4;
+Q5.POSTERIZE = 5;
+Q5.DILATE = 6;
+Q5.ERODE = 7;
+Q5.BLUR = 8;
+Q5.renderers.webgpu.text = ($, q) => {
+	let t = $.createGraphics(1, 1);
+	t.pixelDensity($._pixelDensity);
+	t._imageMode = 'corner';
+
+	$.loadFont = (f) => {
+		q._preloadCount++;
+		return t.loadFont(f, () => {
+			q._preloadCount--;
+		});
+	};
+
+	// directly add these text setting functions to the webgpu renderer
+	$.textFont = t.textFont;
+	$.textSize = t.textSize;
+	$.textLeading = t.textLeading;
+	$.textStyle = t.textStyle;
+	$.textAlign = t.textAlign;
+	$.textWidth = t.textWidth;
+	$.textAscent = t.textAscent;
+	$.textDescent = t.textDescent;
+
+	$.textFill = (r, g, b, a) => t.fill($.color(r, g, b, a));
+	$.textStroke = (r, g, b, a) => t.stroke($.color(r, g, b, a));
+
+	$.text = (str, x, y, w, h) => {
+		let img = t.createTextImage(str, w, h);
+
+		if (img.canvas.textureIndex === undefined) $._createTexture(img);
+
+		$.textImage(img, x, y);
+	};
+
+	$.createTextImage = t.createTextImage;
+
+	$.textImage = (img, x, y) => {
+		let og = $._imageMode;
+		$._imageMode = 'corner';
+
+		let ta = t._textAlign;
+		if (ta == 'center') x -= img.canvas.hw;
+		else if (ta == 'right') x -= img.width;
+
+		let bl = t._textBaseline;
+		if (bl == 'alphabetic') y -= t._textLeading;
+		else if (bl == 'middle') y -= img._middle;
+		else if (bl == 'bottom') y -= img._bottom;
+		else if (bl == 'top') y -= img._top;
+
+		$.image(img, x, y);
+		$._imageMode = og;
+	};
+};
