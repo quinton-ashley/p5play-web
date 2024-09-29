@@ -7,7 +7,8 @@
 		"@types/p5": "^1.7.6",
 		"js-beautify": "^1.15.1",
 		"p5": "^1.9.3",
-		"planck": "^1.0.2"
+		"planck": "^1.0.2",
+		"q5": "^2.5.1"
 	},
 	"devDependencies": {
 		"bun-types": "^1.1.7",
@@ -35,5 +36,5 @@
 		"version": "git add -A",
 		"postversion": "git push"
 	},
-	"version": "1.11.27"
+	"version": "1.11.28"
 }

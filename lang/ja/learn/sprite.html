@@ -39,8 +39,8 @@
 		<div id="page-0" class="page">
 			<md id="md0-0">
 				<h2 id="セットアップと描画">セットアップと描画</h2>
-				<p><a href="https://p5js.org" target="_blank">p5.js</a> (または <a href="https://github.com/quinton-ashley/q5.js"
-						target="_blank">q5.js</a>) の <code>setup</code>
+				<p><a href="https://p5js.org" target="_blank">p5.js</a> (または <a
+						href="https://github.com/quinton-ashley/q5.js" target="_blank">q5.js</a>) の <code>setup</code>
 					関数内のコードは、プログラムの開始とともに実行されます。<code>new Canvas()</code> コンストラクタは、スクリーン内にプログラムが描画できる領域を作成します。</p>
 				<p>p5.js の <code>draw</code> 関数は、デフォルトでは 1 秒間に 60 回実行されます。<code>background</code>
 					関数は、キャンバスが描画されるたびに、それを指定した色で塗りつぶすために使用します。</p>
@@ -1082,8 +1082,7 @@ function draw() {
 }
 			</script>
 			<md id="md9-5">
-				<p>
-					次のコードサンプルでは、ブロックと動く床がコリジョンを発生させたとき、ブロックに赤く色をつけるようにしています。床によってブロックが持ち上げられている間のコリジョンは、感覚的には衝突ではなく「接触」なのですから、ブロックが赤色のままであることを期待するでしょう。しかしご覧のとおり、ブロックは赤と青で点滅するのです。
+				<p>次のコードサンプルでは、ブロックと動く床がコリジョンを発生させたとき、ブロックに赤く色をつけるようにしています。床によってブロックが持ち上げられている間のコリジョンは、感覚的には衝突ではなく「接触」なのですから、ブロックが赤色のままであることを期待するでしょう。しかしご覧のとおり、ブロックは赤と青で点滅するのです。
 				</p>
 				<p>現実世界では、人がエレベーターに乗って上昇すると、その人とエレベーターの床とのコリジョンは「接触」であるとみなすはずです。</p>
 				<p>しかし、 planck では、コライダーが他のコライダーによって移動させられたとき、それらは「接触の継続」ではなく、「コリジョンの発生」と「コリジョンの終了」が激しく繰り返されているとみなされます。
@@ -1306,8 +1305,7 @@ function draw() {
 				<p>ポリゴン名として使用できる文字列は次の通りです: <code>'triangle'</code> (三角形)、 <code>'square'</code> (四角形)、
 					<code>'pentagon'</code> (五角形)、 <code>'hexagon'</code> (六角形)、 <code>'septagon'</code> (七角形)、
 					<code>'octagon'</code> (八角形)、 <code>'enneagon'</code> (九角形)、 <code>'decagon'</code> (十角形)、
-					<code>'hendecagon'</code> (十一角形)、 <code>'dodecagon'</code> (十二角形)。
-				</p>
+					<code>'hendecagon'</code> (十一角形)、 <code>'dodecagon'</code> (十二角形)。</p>
 			</md>
 			<script type="mie/p5" id="pentagon" lines="6">
 function setup() {
@@ -1657,16 +1655,16 @@ if (distance > 40) {
 	</article>
 
 	<!-- <script src="https://cdn.jsdelivr.net/npm/p5@1/lib/p5.min.js"></script> -->
-	<script src="/v3/q5.min.js"></script>
-	<script src="/v3/planck.min.js"></script>
-	<script src="/v3/p5play.min.js"></script>
-	<script>
-		window.mie = { autoLoad: false };
+<script src="/v3/q5.min.js"></script>
+<script src="/v3/planck.min.js"></script>
+<script src="/v3/p5play.min.js"></script>
+<script>
+window.mie = { autoLoad: false };
 
 	</script>
 	<script src="/learn/mie.js"></script>
-	<script src="/learn/learn.js"></script>
-	<script src="/account/account.js"></script>
+<script src="/learn/learn.js"></script>
+<script src="/account/account.js"></script>
 </body>
 
 </html>

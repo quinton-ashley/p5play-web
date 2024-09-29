@@ -39,11 +39,9 @@
 					programa. El constructor <code>new Canvas()</code> crea una sección de la pantalla en la que el
 					programa puede dibujar.</p>
 				<p>La función <code>draw</code> de p5.js se ejecuta 60 veces por segundo por defecto. La función
-					<code>background</code> se puede usar para llenar el canvas con un color cada vez que se dibuja.
-				</p>
+					<code>background</code> se puede usar para llenar el canvas con un color cada vez que se dibuja.</p>
 				<p>¡Intenta cambiar el ancho y la altura del canvas (los números dentro del constructor
-					<code>Canvas</code>), luego reinicia el programa de ejemplo!
-				</p>
+					<code>Canvas</code>), luego reinicia el programa de ejemplo!</p>
 			</md>
 			<script type="mie/p5" id="setup-and-draw">
 function setup() {
@@ -175,8 +173,7 @@ function draw() {
 				<p>Los colisionadores <code>'static'</code> no pueden moverse. Los colisionadores
 					<code>'kinematic'</code> pueden moverse programáticamente pero no por otros sprites. Además, no
 					colisionarán con otros colisionadores kinemáticos. Establecer el tipo de colisionador de un sprite a
-					<code>'none'</code> lo elimina de la simulación física.
-				</p>
+					<code>'none'</code> lo elimina de la simulación física.</p>
 				<p>El tipo de colisionador también puede establecerse usando la primera letra del nombre del tipo de
 					colisionador: <code>'d'</code>, <code>'s'</code>, <code>'k'</code>, o <code>'n'</code>.</p>
 				<p>¡Haz clic en el icono de recargar en la esquina superior derecha de un mini ejemplo para volver a
@@ -278,8 +275,8 @@ function draw() {
 				<p><code>sprite.image</code> (o <code>sprite.img</code>) puede establecerse como un p5.Image o una ruta
 					de URL a un archivo de imagen.</p>
 				<p>Si necesitas que una imagen se cargue antes de que comience tu programa, es mejor usar <a
-						href="https://p5js.org/reference/p5/loadImage" target="_blank"><code>loadImage</code></a>
-					dentro de la función <code>preload</code> de p5.js.</p>
+						href="https://p5js.org/reference/p5/loadImage" target="_blank"><code>loadImage</code></a> dentro
+					de la función <code>preload</code> de p5.js.</p>
 				<p><code>sprite.image.offset</code> se puede usar para desplazar la imagen en relación con el centro del
 					sprite. Esto puede ayudar a alinear mejor la imagen con el colisionador de física del sprite.</p>
 				<p><code>sprite.image.scale</code> cambia el tamaño de visualización de la imagen del sprite. El valor
@@ -392,8 +389,8 @@ function draw() {}
 				<p>También puedes crear arte de píxeles que utilice colores personalizados creando una paleta de colores
 					y pasándola como tercer parámetro a la función <code>spriteArt</code>.</p>
 				<p>Las paletas de colores en p5play deben proporcionarse en formato <a
-						href="https://p5js.org/reference/p5/object" target="_blank">Objeto JavaScript</a>. Un objeto
-					JS simple es como un diccionario. Puedes definir un color para cada letra que uses en tu arte de
+						href="https://p5js.org/reference/p5/object" target="_blank">Objeto JavaScript</a>. Un objeto JS
+					simple es como un diccionario. Puedes definir un color para cada letra que uses en tu arte de
 					píxeles. Para crear un color, utiliza la función <a href="https://p5js.org/reference/p5/color"
 						target="_blank"><code>color</code></a> de p5.js, que acepta valores RGB (rojo, verde, azul) o
 					códigos de color HEX.</p>
@@ -732,8 +729,7 @@ spriteB.text = 'Layer 1';
 			</script>
 			<md id="md6-2">
 				<p>En el primer fotograma en que un sprite se superpone con otro sprite, la función
-					<code>overlaps</code> devuelve true.
-				</p>
+					<code>overlaps</code> devuelve true.</p>
 				<p>Mientras un sprite se superpone con otro sprite, la función <code>overlapping</code> devuelve el
 					número de fotogramas que ha ocurrido la superposición.</p>
 				<p>En el primer fotograma después de que dos sprites se superpongan, la función <code>overlapped</code>
@@ -1633,8 +1629,7 @@ function draw() {
 				<p>Por defecto, la fuerza se aplica al centro de masa del sprite. Pero las funciones
 					<code>applyForce</code> y <code>applyForceScaled</code> también pueden aceptar un último parámetro
 					de entrada, un objeto de posición con propiedades x e y que especifica la posición relativa donde se
-					aplicará la fuerza en el sprite.
-				</p>
+					aplicará la fuerza en el sprite.</p>
 			</md>
 			<script type="mie/p5" id="random-sequence" horiz="" lines="17">
 let turtle, ball;
@@ -1665,8 +1660,7 @@ function draw() {
 					separados x e y.</p>
 				<p>Este ejemplo simula la órbita de un electrón alrededor del núcleo de un átomo.</p>
 				<p>Ten en cuenta que las funciones de movimiento avanzado mostradas en esta página no despertarán a los
-					<a href="./world.html" target="_blank">sprites en reposo</a>!
-				</p>
+					<a href="./world.html" target="_blank">sprites en reposo</a>!</p>
 			</md>
 			<script type="mie/p5" base-8="" hidden="">
 let player, ally;
@@ -1724,16 +1718,16 @@ if (distance > 40) {
 	</article>
 
 	<!-- <script src="https://cdn.jsdelivr.net/npm/p5@1/lib/p5.min.js"></script> -->
-	<script src="/v3/q5.min.js"></script>
-	<script src="/v3/planck.min.js"></script>
-	<script src="/v3/p5play.min.js"></script>
-	<script>
-		window.mie = { autoLoad: false };
+<script src="/v3/q5.min.js"></script>
+<script src="/v3/planck.min.js"></script>
+<script src="/v3/p5play.min.js"></script>
+<script>
+window.mie = { autoLoad: false };
 
 	</script>
 	<script src="/learn/mie.js"></script>
-	<script src="/learn/learn.js"></script>
-	<script src="/account/account.js"></script>
+<script src="/learn/learn.js"></script>
+<script src="/account/account.js"></script>
 </body>
 
 </html>

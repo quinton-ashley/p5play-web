@@ -7,9 +7,9 @@ let projects = [
 		video: true
 	},
 	{
-		title: 'Gun Gaem',
+		title: 'Shenaniguns',
 		author: '@coding398',
-		url: 'https://gungame-aus.coding398.dev/',
+		url: 'https://store.steampowered.com/app/3171380/Shenaniguns/',
 		size: 1,
 		video: true
 	},
