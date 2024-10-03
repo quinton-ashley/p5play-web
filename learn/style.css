@@ -558,8 +558,10 @@ nav,
 	padding: 20px;
 	border-radius: 10px;
 	background-color: var(--secondary);
-	background: linear-gradient(217deg, #fffffa, #00000000), linear-gradient(127deg, #faffff, #00000000), linear-gradient(336deg, #fff5ff, #00000000);
-	box-shadow: 2px 2px 5px #00000022;
+	background: linear-gradient(217deg, #fffffa, #fff0),
+		linear-gradient(127deg, #faffff, #fff0),
+		linear-gradient(336deg, #fff5ff, #fff0);
+	box-shadow: 2px 2px 5px #0002;
 }
 
 .dark nav,
@@ -567,10 +569,10 @@ nav,
 .dark .page>div:not(.mie):not(.break):not(.minis),
 .dark .minis>md,
 .dark .minis>.mini {
-	background: linear-gradient(217deg, #282324, #00000000),
-		linear-gradient(127deg, #201e24, #00000000),
-		linear-gradient(336deg, #20232a, #00000000);
-	box-shadow: 2px 2px 5px #ffffff33;
+	background: linear-gradient(217deg, #211b27, #0000),
+		linear-gradient(127deg, #1c201d, #0000),
+		linear-gradient(336deg, #241911, #0000);
+	box-shadow: 2px 2px 5px #fff3;
 }
 
 .minis>md,

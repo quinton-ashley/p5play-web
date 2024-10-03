@@ -6,7 +6,7 @@
 
 ## Licencia Edu
 
-¡Obtén la [Licencia Educativa](/teach/EDU_LICENSE.md) para desbloquear el poder de p5play en tu aula!
+¡Obtén la Licencia Educativa para desbloquear el poder de p5play en tu aula!
 
 # 1-0
 
@@ -57,5 +57,7 @@ Comprar Ahora (Año Completo)
 ## ¡Dame la factura!
 
 # 4-4
+
+Lea el [Acuerdo de Licencia Educativa de p5play](https://github.com/quinton-ashley/p5play-web/blob/main/teach/EDU_LICENSE.md) antes de realizar la compra.
 
 El acceso equitativo es importante para nosotros. Ofrecemos descuentos para escuelas en áreas de bajos ingresos. Si deseas usar p5play, trabajaremos contigo para hacerlo posible.

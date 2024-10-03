@@ -6,7 +6,7 @@
 
 ## Edu License
 
-Obtain the [Educational License](https://github.com/quinton-ashley/p5play-web/blob/main/teach/EDU_LICENSE.md) to unlock the power of p5play in your classroom!
+Obtain the Educational License to unlock the power of p5play in your classroom!
 
 # 1-0
 
@@ -34,8 +34,6 @@ _2 lessons provided as a free sample. Additional lessons are exclusively for Edu
 
 Use p5play in your own lesson materials, without needing to open source them under the AGPL.
 
-_Exclusively for Edu Licensees._
-
 # 4-0
 
 ## Educational Pricing
@@ -57,5 +55,7 @@ Buy Now (Full Year)
 ## Request Invoice
 
 # 4-4
+
+Read the [p5play Educational License](https://github.com/quinton-ashley/p5play-web/blob/main/teach/EDU_LICENSE.md) agreement before purchasing.
 
 Equitable access is important to us. We offer discounts for schools in low-income areas. If you want to use p5play, we'll work with you to make it happen!
