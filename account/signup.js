@@ -287,12 +287,12 @@ function checkIfValid() {
 			$('.student').show();
 			$('.personal').hide();
 			$('#signup').hide();
-			$('#signin').hide();
+			$('.redirect-customizable').hide();
 		} else {
 			$('.student').hide();
 			$('.personal').css('display', 'flex');
 			$('#signup').show();
-			$('#signin').show();
+			$('.redirect-customizable').show();
 		}
 
 		ageIsValid = true;

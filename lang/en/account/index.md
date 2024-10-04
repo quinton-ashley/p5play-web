@@ -4,6 +4,8 @@
 
 Sign up for a free account to access the Learn pages and be notified via email about new features!
 
+Having trouble creating an account? [Contact us!](mailto:info@p5play.org)
+
 # 0-1
 
 ## <span id="account-type"></span> Account
