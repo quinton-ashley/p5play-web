@@ -16,7 +16,9 @@ El texto interactivo llamado [_Aprende p5play_](../learn) hace que los conceptos
 
 Está lleno de documentación de referencia y ejemplos de código con los que los estudiantes pueden experimentar directamente en su navegador web. Funciona muy bien en iPads y Chromebooks.
 
-_El uso en clase y en trabajos de curso requiere la Licencia Educativa._
+Después de la compra de la Licencia Edu, se le proporcionará un ID de clase que sus estudiantes pueden usar para obtener acceso. Los estudiantes no necesitan proporcionar ninguna información personal.
+
+_Los profesores pueden evaluar este recurso de forma gratuita._
 
 # 2-0
 

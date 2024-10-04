@@ -16,7 +16,9 @@ The [_Learn p5play_](../learn) interactive textbook makes Object Oriented Progra
 
 It's packed with reference documentation and code examples that students can experiment with right in their web browser. Works great on iPads and Chromebooks.
 
-_Teachers can evaluate this resource for free. Use in class and coursework requires the Edu License._
+After purchase of the Edu License, you'll be given a class ID that your students can use to gain access. Students don't need to provide any personal information.
+
+_Teachers can evaluate this resource for free._
 
 # 2-0
 
