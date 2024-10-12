@@ -44,7 +44,7 @@
 			"getStarted": "Get Started!"
 		},
 		"camera": ["Movement", "Zoom", "On/Off", "Mouse Events with the Camera"],
-		"canvas": ["Canvas constructor", "Pixelated Mode", "Resize"],
+		"canvas": ["Canvas constructor", "Display Mode", "Resize"],
 		"group": [
 			"Soft and Dynamic Inheritance",
 			"Arrow Setters",

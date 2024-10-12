@@ -61,29 +61,48 @@
 						target="_blank"><code>loadFont</code></a>関数で、「ビットマップフォント」をロードしてください。</p>
 			</md>
 			<div class="minis horiz">
-				<script type="mie/p5" id="normal sized pixels" lines="9" hide-editor="">
+				<script type="mie/p5" id="default-pixel-size" lines="9" hide-editor="">
 function setup() {
-  new Canvas(500, 20);
+  new Canvas(60, 10);
   background(255);
   noStroke();
   fill(0);
-  for (let i = 0; i < 120; i++) {
-    rect(i, i % 5, 1, 1);
+  for (let i = 0; i < 60; i++) {
+    rect(i, i % 10, 1, 1);
   }
 }
 function draw() {
   noLoop();
 }
       	</script>
-				<script type="mie/p5" id="pixelated-preset" lines="10">
+				<script type="mie/p5" id="display-scale-x8" hide-editor="">
 function setup() {
-  //       (width, height, preset)
-  new Canvas(120, 5, 'pixelated x4');
-  background(255);
+	new Canvas(60, 10);
+
+	displayMode('centered', 'default', 8);
+
+	background(255);
+	noStroke();
+	fill(0);
+	for (let i = 0; i < 60; i++) {
+		rect(i, i % 10, 1, 1);
+	}
+}
+function draw() {
+	noLoop();
+}
+				</script>
+				<script type="mie/p5" id="pixelated-and-display-scale-x8" lines="12">
+function setup() {
+  new Canvas(60, 10);
+
+	//         (    mode, renderQuality, scale)
+	displayMode('centered', 'pixelated', 8);
+	
+  background('white');
   noStroke();
-  fill(0);
-  for (let i = 0; i < 120; i++) {
-    rect(i, i % 5, 1, 1);
+  for (let i = 0; i < 60; i++) {
+    rect(i, i % 10, 1, 1);
   }
 }
 function draw() {

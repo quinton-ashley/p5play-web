@@ -14,19 +14,23 @@ If no parameters are passed to `new Canvas()`, it will create a canvas that fill
 
 You can also pass an aspect ratio to the Canvas constructor. This will create the largest possible canvas that fits within the window, while maintaining the given aspect ratio. For example, `new Canvas('2:1')` will create a canvas that is twice as wide as it is tall.
 
-Another added feature is the `"fullscreen"` preset, `new Canvas(1920, 1080, 'fullscreen')` will letterbox the canvas to fit within the window, while maintaining a 1920x1080 resolution.
-
 # 1-0
 
-## pixelated mode
+## Display Mode
 
-Another `Canvas` feature is the `"pixelated"` preset. Use it for making 8-bit or 16-bit style retro games!
+The `displayMode` function lets you customize how your canvas is presented.
 
-This preset will make the canvas fit the screen, unless you specify a multiplier. For example, `"pixelated x2"` will create a canvas that's displayed at twice the size of the specified width and height.
+- `"normal"`, is the default, which doesn't apply styling to the canvas or its parent element
+- `"centered"` makes the canvas horizontally and vertically centered in its parent element
+- `"maxed"` makes the canvas fill the parent element with letterboxing if necessary to preserve its aspect ratio
+
+This function also accepts a render quality preset as the second input parameter. Use the `"pixelated"` preset for making 8-bit or 16-bit style retro games!
+
+In this example, a third input parameter is used to display the canvas at 8x scale.
 
 To display all sprites at integer coordinates, set `allSprites.pixelPerfect` to true and use integer coordinates for the camera's position and zoom.
 
-Note that modern fonts are vector based, so they won't look very good in pixelated mode. Load a bitmap font instead with the p5.js [`loadFont`](https://p5js.org/reference/p5/loadFont) function.
+Note that modern fonts are vector based, so they won't look good at low resolutions. Load a pixel font instead with the [`loadFont`](https://p5js.org/reference/p5/loadFont) function.
 
 # 2-0
 

@@ -9126,7 +9126,7 @@ main {
 		 * - "normal": no styling to canvas or its parent element
 		 * - "centered": canvas will be centered horizontally and vertically within its parent and if it's display size is bigger than its parent it will not clip
 		 * - "maxed": canvas will fill the parent element, same as fullscreen for a global mode canvas inside a `main` element
-		 * - "fullscreen": canvas will fill the screen with letterboxing if necessary to persevere its aspect ratio, like css object-fit contain
+		 * - "fullscreen": canvas will fill the screen with letterboxing if necessary to preserve its aspect ratio, like css object-fit contain
 		 *
 		 * Render qualities:
 		 * - "default": pixelDensity set to displayDensity

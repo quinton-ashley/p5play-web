@@ -43,7 +43,7 @@
 			"getStarted": "¡Empezar!"
 		},
 		"camera": ["Movimiento", "Acercar", "Encendido/Apagado", "Eventos del Ratón con la Cámara"],
-		"canvas": ["Constructor de Lienzo", "Modo Pixelado", "Cambiar el Tamaño"],
+		"canvas": ["Constructor de Lienzo", "Modo de visualización", "Cambiar el Tamaño"],
 		"group": [
 			"Heredencia Suave y Dinámica",
 			"Establecedores de Flecha",
