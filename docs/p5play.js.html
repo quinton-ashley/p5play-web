@@ -440,8 +440,8 @@ p5.prototype.registerMethod('init', function p5playInit() {
 			 */
 			this.joints = [];
 			this.joints.removeAll = () => {
-				for (let j of this.joints) {
-					j.remove();
+				while (this.joints.length) {
+					this.joints.at(-1).remove();
 				}
 			};
 
@@ -904,12 +904,20 @@ p5.prototype.registerMethod('init', function p5playInit() {
 				}
 			}
 
-			// "random" color that's not too dark or too light
-			this.color ??= $.color(
-				Math.round($.random(30, 245)),
-				Math.round($.random(30, 245)),
-				Math.round($.random(30, 245))
-			);
+			{
+				let r = $.random(0.12, 0.96);
+				let g = $.random(0.12, 0.96);
+				let b = $.random(0.12, 0.96);
+
+				if ($._colorFormat != 1) {
+					r *= 255;
+					g *= 255;
+					b *= 255;
+				}
+
+				// "random" color that's not too dark or too light
+				this.color ??= $.color(r, g, b);
+			}
 
 			this._textFill ??= $.color(0);
 			this._textSize ??= this.tileSize == 1 ? ($.canvas ? $.textSize() : 12) : 0.8;
@@ -3192,12 +3200,17 @@ p5.prototype.registerMethod('init', function p5playInit() {
 			if (this._strokeWeight !== undefined) {
 				$.strokeWeight(this._strokeWeight);
 			}
-			if (this._opacity) $.ctx.globalAlpha = this._opacity;
+			let ogGlobalAlpha;
+			if (this._opacity) {
+				ogGlobalAlpha = $.ctx.globalAlpha;
+				$.ctx.globalAlpha = this._opacity;
+			}
 			if (this._tint) $.tint(this._tint);
 
 			this._draw();
 
 			$.pop();
+			if (this._opacity) $.ctx.globalAlpha = ogGlobalAlpha;
 			this._cameraActiveWhenDrawn = $.camera.isActive;
 
 			if (this.autoDraw) this.autoDraw = null;
@@ -3285,7 +3298,7 @@ p5.prototype.registerMethod('init', function p5playInit() {
 		 * sprite.applyForce(x, y, {x: originX, y: originY});
 		 * sprite.applyForce({x, y}, {x: originX, y: originY});
 		 */
-		applyForce(x, y, originX, originY) {
+		applyForce(amount, origin) {
 			if (!this.body) return;
 			if (location.host == 'game.thegamebox.ca') {
 				return this.applyForceScaled(...arguments);
@@ -3301,7 +3314,7 @@ p5.prototype.registerMethod('init', function p5playInit() {
 		 * @param {Number} amount
 		 * @param {Vector} [origin]
 		 */
-		applyForceScaled() {
+		applyForceScaled(amount, origin) {
 			if (!this.body) return;
 			let { forceVector, poa } = this._parseForceArgs(...arguments);
 			forceVector.mul(this.mass);
@@ -4669,7 +4682,7 @@ p5.prototype.registerMethod('init', function p5playInit() {
 			} // end sequence mode
 
 			// spriteSheet mode
-			else if (typeof args[args.length - 1] != 'string' &amp;&amp; !(args[args.length - 1] instanceof p5.Image)) {
+			else if (typeof args.at(-1) != 'string' &amp;&amp; !(args.at(-1) instanceof p5.Image)) {
 				let sheet = owner.spriteSheet;
 				let atlas;
 				if (args[0] instanceof p5.Image || typeof args[0] == 'string') {
@@ -4933,6 +4946,7 @@ p5.prototype.registerMethod('init', function p5playInit() {
 		draw(x, y, r, sx, sy) {
 			this.x = x || 0;
 			this.y = y || 0;
+			r ??= this.rotation;
 
 			if (!this.visible) return;
 
@@ -4941,20 +4955,27 @@ p5.prototype.registerMethod('init', function p5playInit() {
 
 			$.push();
 			$.imageMode('center');
-			$.translate(this.x, this.y);
-			$.rotate(r || this.rotation);
+
+			let _x = x + this.offset.x;
+			let _y = y + this.offset.y;
+
+			if (r) {
+				$.translate(_x, _y);
+				_x = _y = 0;
+				$.rotate(r);
+			}
 			$.scale(sx * this._scale._x, sy * this._scale._y);
 			let img = this[this._frame];
 			if (img !== undefined) {
 				if (this.spriteSheet) {
 					let { x, y, w, h } = img; // image info
 					if (!this.demoMode) {
-						$.image(this.spriteSheet, this.offset.x, this.offset.y, w, h, x, y, w, h);
+						$.image(this.spriteSheet, _x, _y, w, h, x, y, w, h);
 					} else {
 						$.image(
 							this.spriteSheet,
-							this.offset.x,
-							this.offset.y,
+							_x,
+							_y,
 							this.spriteSheet.w,
 							this.spriteSheet.h,
 							x - this.spriteSheet.w / 2 + w / 2,
@@ -4962,7 +4983,7 @@ p5.prototype.registerMethod('init', function p5playInit() {
 						);
 					}
 				} else {
-					$.image(img, this.offset.x, this.offset.y);
+					$.image(img, _x, _y);
 				}
 			} else {
 				console.warn(
@@ -8383,38 +8404,44 @@ p5.prototype.registerMethod('init', function p5playInit() {
 	this.EmojiImage = function (emoji, textSize) {
 		$.push();
 		$.textSize(textSize);
-		let img = $.createTextImage(emoji);
-		if (img.trim) img = img.trim();
-		else {
-			let ctx = img.drawingContext;
-			let pd = img._pixelDensity || 1;
-			let imgData = ctx.getImageData(0, 0, img.width * pd, img.height * pd);
-			let data = imgData.data;
-			let left = img.width,
-				right = 0,
-				top = img.height,
-				bottom = 0;
+		let g = $.createGraphics(textSize, textSize * 1.25);
+		g.textSize(textSize);
+		g.textAlign($.CENTER);
+		g.text(emoji, textSize / 2, textSize);
 
-			for (let y = 0; y &lt; img.height * pd; y++) {
-				for (let x = 0; x &lt; img.width * pd; x++) {
-					let index = (y * img.width * pd + x) * 4;
-					if (data[index + 3] !== 0) {
-						if (x &lt; left) left = x;
-						if (x > right) right = x;
-						if (y &lt; top) top = y;
-						if (y > bottom) bottom = y;
-					}
+		// same code as img.trim() in q5.js
+		let ctx = g.drawingContext;
+		let pd = g._pixelDensity || 1;
+		let w = g.canvas.width;
+		let h = g.canvas.height;
+		let data = ctx.getImageData(0, 0, w, h).data;
+		let left = w,
+			right = 0,
+			top = h,
+			bottom = 0;
+
+		let i = 3;
+		for (let y = 0; y &lt; h; y++) {
+			for (let x = 0; x &lt; w; x++) {
+				if (data[i] !== 0) {
+					if (x &lt; left) left = x;
+					if (x > right) right = x;
+					if (y &lt; top) top = y;
+					if (y > bottom) bottom = y;
 				}
+				i += 4;
 			}
-			top = Math.floor(top / pd);
-			bottom = Math.floor(bottom / pd);
-			left = Math.floor(left / pd);
-			right = Math.floor(right / pd);
-			img = img.get(left, top, right - left + 1, bottom - top + 1);
 		}
+		top = Math.floor(top / pd);
+		bottom = Math.floor(bottom / pd);
+		left = Math.floor(left / pd);
+		right = Math.floor(right / pd);
+
+		g = g.get(left, top, right - left + 1, bottom - top + 1);
+
 		$.pop();
-		img.url = emoji;
-		return img;
+		g.url = emoji;
+		return g;
 	};
 
 	/**
@@ -8688,12 +8715,10 @@ p5.prototype.registerMethod('init', function p5playInit() {
 	 */
 	this.createCanvas = function () {
 		let args = [...arguments];
-		let isFullScreen, isPixelated, scale;
+		let displayMode, renderQuality, displayScale;
 		if (typeof args[0] == 'string') {
 			if (args[0].includes(':')) {
 				let ratio = args[0].split(':');
-				args[2] = args[1];
-				isFullScreen = true;
 				let rW = Number(ratio[0]);
 				let rH = Number(ratio[1]);
 				let w = window.innerWidth;
@@ -8703,7 +8728,8 @@ p5.prototype.registerMethod('init', function p5playInit() {
 					h = window.innerHeight;
 				}
 				args[0] = Math.round(w);
-				args[1] = Math.round(h);
+				args.splice(1, 0, Math.round(h));
+				displayMode = 'fullscreen';
 			} else {
 				args = [0, 0, ...args];
 			}
@@ -8711,24 +8737,28 @@ p5.prototype.registerMethod('init', function p5playInit() {
 		if (!args[0]) {
 			args[0] = window.innerWidth;
 			args[1] = window.innerHeight;
-			isFullScreen = true;
+			displayMode = 'fullscreen';
 		}
 		if (typeof args[2] == 'string') {
 			let rend = args[2].toLowerCase().split(' ');
 			if (rend[0] == 'pixelated') {
-				isPixelated = true;
-				if (!rend[1]) isFullScreen = true;
-				else scale = Number(rend[1].slice(1));
+				renderQuality = 'pixelated';
+				if (!rend[1]) displayMode = 'fullscreen';
+				else {
+					displayMode = 'centered';
+					displayScale = Number(rend[1].slice(1));
+				}
 				args.splice(2, 1);
 			} else if (rend[0] == 'fullscreen') {
-				isFullScreen = true;
+				displayMode = 'fullscreen';
 				args.splice(2, 1);
 			}
 		}
 		let rend = _createCanvas.call($, ...args);
 		$.ctx = $.drawingContext;
 		let c = rend.canvas || rend;
-		c.renderer = rend.GL ? 'webgl' : '2d';
+		if (rend.GL) c.renderer = 'webgl';
+		if (c.renderer != 'webgpu') c.renderer = '2d';
 		c.tabIndex = 0;
 		c.w = args[0];
 		c.h = args[1];
@@ -8762,12 +8792,12 @@ p5.prototype.registerMethod('init', function p5playInit() {
 		c.hh = c.h * 0.5;
 		c.mouse = { x: $.mouseX, y: $.mouseY };
 		if (c.renderer == '2d') {
-			$.camera.x = c.hw;
-			$.camera.y = c.hh;
+			$.camera.x = $.camera.ogX = c.hw;
+			$.camera.y = $.camera.ogY = c.hh;
 		} else {
 			$.camera.x = 0;
 			$.camera.y = 0;
-			$._textCache = false;
+			if (c.renderer == 'webgl') $._textCache = false;
 			$.p5play._renderStats = {
 				x: -c.hw + 10,
 				y: -c.hh + 20
@@ -8775,66 +8805,7 @@ p5.prototype.registerMethod('init', function p5playInit() {
 		}
 		if (!userDisabledP5Errors) p5.disableFriendlyErrors = false;
 
-		/* prevent callout to copy image, etc when tap to hold */
-		/* prevent webkit from resizing text to fit */
-		/* prevent copy paste, to allow, change 'none' to 'text' */
-		let style = `
-.p5Canvas, .q5Canvas {
-	outline: none;
-	-webkit-touch-callout: none;
-	-webkit-text-size-adjust: none;
-	-webkit-user-select: none;
-	overscroll-behavior: none;
-}
-main {
-	overscroll-behavior: none;
-}`;
-		if (isFullScreen) {
-			style = 'html,\nbody,\n' + style;
-			style += `
-html, body {
-	margin: 0;
-	padding: 0;
-	overflow: hidden;
-	height: 100%;
-}
-main {
-	display: flex;
-	flex-wrap: wrap;
-	align-items: center;
-	justify-content: center;
-	height: 100%;
-}`;
-		}
-		style += `\n#${c.id} {`;
-		if (isPixelated) {
-			style += `
-	image-rendering: pixelated;
-	font-smooth: never;
-	-webkit-font-smoothing: none;
-`;
-		}
-		if (isFullScreen) {
-			c.fullscreen = true;
-			if (c.w / c.h > window.innerWidth / window.innerHeight) {
-				style += 'width: 100%!important; height: auto!important;';
-			} else style += 'height: 100%!important; width: auto!important;';
-		} else if (scale) {
-			style += `
-	width: ${c.w * scale}px!important;
-	height: ${c.h * scale}px!important;
-`;
-		}
-		style += '\n}';
-		let styleElem = document.createElement('style');
-		styleElem.innerHTML = style;
-		document.head.appendChild(styleElem);
-
-		if (isPixelated) {
-			$.pixelDensity(1);
-			$.noSmooth();
-			$.textFont('monospace');
-		}
+		$.displayMode(displayMode, renderQuality, displayScale);
 
 		return rend;
 	};
@@ -8848,19 +8819,17 @@ main {
 		 * p5play adds some extra functionality to the `createCanvas`
 		 * function. See the examples below.
 		 *
-		 * This function also disables the default keydown responses for
-		 * the arrow keys, slash, and space. This is to prevent the
-		 * browser from scrolling the page when the user is playing a game
-		 * using common keyboard commands.
+		 * Creating a canvas in p5play disables the browser's default
+		 * keydown responses for the slash, space, and arrow keys to
+		 * prevent page scrolling which is disruptive to gameplay.
 		 *
-		 * Supports the '2d' and 'webgl' renderers.
+		 * For an easy way to scale the canvas or make it pixelated, use
+		 * the `displayMode` function.
 		 *
 		 * Only q5.js has support for canvas options (context attributes).
 		 *
-		 * @param {Number} width
-		 * @param {Number} height
-		 * @param {String} [preset] - 'fullscreen' or 'pixelated'
-		 * @param {String} [renderer] - '2d' (default) or 'webgl'
+		 * @param {Number} [width]
+		 * @param {Number} [height]
 		 * @param {Object} [options] - context attributes
 		 * @returns HTML5 canvas element
 		 * @example
@@ -8870,12 +8839,8 @@ main {
 		 * new Canvas('16:9');
 		 * // 800x600 pixels
 		 * new Canvas(800, 600);
-		 * // fullscreen scaling, fits window (no stretching)
-		 * new Canvas(800, 600, 'fullscreen');
-		 * // pixelated scaling, fits window (no stretching)
-		 * new Canvas(256, 240, 'pixelated');
 		 */
-		constructor(width, height, preset, renderer, options) {
+		constructor(width, height, renderer, options) {
 			/**
 			 * The width of the canvas.
 			 * @type {Number}
@@ -8928,9 +8893,9 @@ main {
 		 * Visually the canvas will shrink or extend to the new size. Sprites
 		 * will not change position.
 		 *
-		 * If you would prefer to keep the camera focused on the same area, then
-		 * you must manually adjust the camera position after calling this
-		 * function.
+		 * If you would prefer to keep the camera focused on the same area,
+		 * then you must manually adjust the camera position after calling
+		 * this function.
 		 *
 		 * @param {Number} w - the new width of the canvas
 		 * @param {Number} h - the new height of the canvas
@@ -9002,7 +8967,7 @@ main {
 	 */
 	this.background = function () {
 		let args = arguments;
-		if (args.length == 1 &amp;&amp; args[0].length == 1) {
+		if (args.length == 1 &amp;&amp; args[0]?.length == 1) {
 			_background.call($, $.colorPal(args[0]));
 		} else _background.call($, ...args);
 	};
@@ -9015,7 +8980,7 @@ main {
 	 */
 	this.fill = function () {
 		let args = arguments;
-		if (args.length == 1 &amp;&amp; args[0].length == 1) {
+		if (args.length == 1 &amp;&amp; args[0]?.length == 1) {
 			_fill.call($, $.colorPal(args[0]));
 		} else _fill.call($, ...args);
 	};
@@ -9028,7 +8993,7 @@ main {
 	 */
 	this.stroke = function () {
 		let args = arguments;
-		if (args.length == 1 &amp;&amp; args[0].length == 1) {
+		if (args.length == 1 &amp;&amp; args[0]?.length == 1) {
 			_stroke.call($, $.colorPal(args[0]));
 		} else _stroke.call($, ...args);
 	};
@@ -9118,175 +9083,109 @@ main {
 		_image.call($, ...arguments);
 	};
 
-	let enableTextCache = false;
-	if (typeof $._textCache != 'object') {
-		// if the user isn't using q5.js
-		// add text caching to p5.js, only if the user is using p5.js v1.9.0 or later
-		try {
-			enableTextCache = Number(p5.VERSION.replaceAll('.', '')) >= 190;
-		} catch (e) {}
-	}
-	if (enableTextCache) {
-		$._textCache = true;
-		$._TimedCache = class extends Map {
-			constructor() {
-				super();
-				this.maxSize = 500;
+	// if the user isn't using q5.js
+	// add a backwards compatibility layer for p5.js
+	if (!$.displayMode) {
+		document.head.insertAdjacentHTML(
+			'beforeend',
+			`&lt;style>
+html, body {
+	margin: 0;
+	padding: 0;
+}
+.p5Canvas {
+	outline: none;
+	-webkit-touch-callout: none;
+	-webkit-text-size-adjust: none;
+	-webkit-user-select: none;
+	overscroll-behavior: none;
+}
+.p5-pixelated {
+	image-rendering: pixelated;
+	font-smooth: never;
+	-webkit-font-smoothing: none;
+}
+.p5-centered,
+.p5-maxed,
+.p5-fullscreen {
+  display: flex;
+	align-items: center;
+	justify-content: center;
+}
+main.p5-centered,
+main.p5-maxed,
+.p5-fullscreen {
+	height: 100vh;
+}
+main {
+	overscroll-behavior: none;
+}
+&lt;/style>`
+		);
+
+		$._adjustDisplay = () => {
+			let c = $.canvas;
+
+			let s = c.style;
+			let p = c.parentElement;
+			if (!s || !p || !c.displayMode) return;
+			if (c.renderQuality == 'pixelated') {
+				c.classList.add('p5-pixelated');
+				$.pixelDensity(1);
+				if ($.noSmooth) $.noSmooth();
+				if ($.textFont) $.textFont('monospace');
 			}
-			set(k, v) {
-				v.lastAccessed = Date.now();
-				super.set(k, v);
-				if (this.size > this.maxSize) this.gc();
-			}
-			get(k) {
-				const v = super.get(k);
-				if (v) v.lastAccessed = Date.now();
-				return v;
-			}
-			gc() {
-				let t = Infinity;
-				let oldest;
-				let i = 0;
-				for (const [k, v] of this.entries()) {
-					if (v.lastAccessed &lt; t) {
-						t = v.lastAccessed;
-						oldest = i;
-					}
-					i++;
+			if (c.displayMode == 'normal') {
+				p.classList.remove('p5-centered', 'p5-maxed', 'p5-fullscreen');
+				s.width = c.w * c.displayScale + 'px';
+				s.height = c.h * c.displayScale + 'px';
+			} else {
+				p.classList.add('p5-' + c.displayMode);
+				p = p.getBoundingClientRect();
+				if (c.w / c.h > p.width / p.height) {
+					if (c.displayMode == 'centered') {
+						s.width = c.w * c.displayScale + 'px';
+						s.maxWidth = '100%';
+					} else s.width = '100%';
+					s.height = 'auto';
+					s.maxHeight = '';
+				} else {
+					s.width = 'auto';
+					s.maxWidth = '';
+					if (c.displayMode == 'centered') {
+						s.height = c.h * c.displayScale + 'px';
+						s.maxHeight = '100%';
+					} else s.height = '100%';
 				}
-				i = oldest;
-				for (const k of this.keys()) {
-					if (i == 0) {
-						oldest = k;
-						break;
-					}
-					i--;
-				}
-				this.delete(oldest);
 			}
 		};
-		$._tic = new $._TimedCache();
-		/**
-		 * Enables or disables text caching.
-		 * @param {Boolean} b
-		 * @param {Number} maxSize
-		 */
-		$.textCache = (b, maxSize) => {
-			if (maxSize) $._tic.maxSize = maxSize;
-			if (b !== undefined) $._textCache = b;
-			return $._textCache;
-		};
-		$._genTextImageKey = (str, w, h) => {
-			const r = $._renderer;
-			let font = r._textFont;
-			if (typeof font != 'string') {
-				font = font.font.names.fullName;
-				font = font[Object.keys(font)[0]];
-			}
-			return (
-				str.slice(0, 200) +
-				(r._textStyle || 'normal') +
-				r._textSize +
-				font +
-				(r._doFill ? $.ctx.fillStyle : '') +
-				'_' +
-				(r._doStroke &amp;&amp; r._strokeSet ? $.ctx.lineWidth + $.ctx.strokeStyle + '_' : '') +
-				(w || '') +
-				(h ? 'x' + h : '')
-			);
-		};
-		$.createTextImage = (str, w, h) => {
-			let og = $._textCache;
-			$._textCache = true;
-			$._genTextImage = true;
-			$.text(str, 0, 0, w, h);
-			$._genTextImage = false;
-			let k = $._genTextImageKey(str, w, h);
-			$._textCache = og;
-			return $._tic.get(k);
-		};
-		const _text = $.text;
-		/**
-		 * Displays text on the canvas.
+
+		/** 💻
+		 * The `displayMode` function lets you customize how your canvas is presented.
 		 *
-		 * @param {String} str - text to display
-		 * @param {Number} x
-		 * @param {Number} y
-		 * @param {Number} w - line width limit
-		 * @param {Number} h - height limit
+		 * Display modes:
+		 * - "normal": no styling to canvas or its parent element
+		 * - "centered": canvas will be centered horizontally and vertically within its parent and if it's display size is bigger than its parent it will not clip
+		 * - "maxed": canvas will fill the parent element, same as fullscreen for a global mode canvas inside a `main` element
+		 * - "fullscreen": canvas will fill the screen with letterboxing if necessary to persevere its aspect ratio, like css object-fit contain
+		 *
+		 * Render qualities:
+		 * - "default": pixelDensity set to displayDensity
+		 * - "pixelated": pixelDensity set to 1 and various css styles are applied to the canvas to make it render without image smoothing
+		 *
+		 * Display scale can be set to make small canvases appear larger.
+		 * @param displayMode
+		 * @param renderQuality
+		 * @param displayScale - can be given as a string (ex. "x2") or a number
 		 */
-		$.text = (str, x, y, w, h) => {
-			if (str === undefined) return;
-			str = str.toString();
-			const r = $._renderer;
-			if (!r._doFill &amp;&amp; !r._doStroke) return;
-			let ctx = $.ctx;
-			let useCache = $._genTextImage;
-			if (!useCache &amp;&amp; $._textCache) {
-				let t = ctx.getTransform();
-				useCache = t.b != 0 || t.c != 0;
+		$.displayMode = (displayMode = 'normal', renderQuality = 'default', displayScale = 1) => {
+			let c = $.canvas;
+
+			if (typeof displayScale == 'string') {
+				displayScale = parseFloat(displayScale.slice(1));
 			}
-			if (!useCache) return _text.call($, str, x, y, w, h);
-
-			let c, ti, k, cX, cY, _ascent, _descent;
-			k = $._genTextImageKey(str, w, h);
-			ti = $._tic.get(k);
-			if (ti &amp;&amp; !$._genTextImage) {
-				$.textImage(ti, x, y);
-				return;
-			}
-			let tg = $.createGraphics.call($, 1, 1);
-			tg.textFont($.textFont());
-			if ($.textStyle()) tg.textStyle($.textStyle());
-			tg.textSize($.textSize());
-			c = tg.canvas.getContext('2d');
-			let lines = str.split('\n');
-			cX = 0;
-			cY = r._textLeading * lines.length;
-			let m = c.measureText(' ');
-			_ascent = m.fontBoundingBoxAscent;
-			_descent = m.fontBoundingBoxDescent;
-			h ??= cY + _descent;
-			tg.resizeCanvas(Math.ceil(tg.textWidth(str)), Math.ceil(h));
-			tg.fill(ctx.fillStyle);
-			if (r._doStroke) {
-				tg.stroke(ctx.strokeStyle);
-				tg.strokeWeight(ctx.lineWidth);
-			} else tg.noStroke();
-			for (let i = 0; i &lt; lines.length; i++) {
-				tg.text(lines[i], cX, cY);
-				cY += r._textLeading;
-				if (cY > h) break;
-			}
-			ti = tg.get();
-			ti._ascent = _ascent;
-			ti._descent = _descent;
-			$._tic.set(k, ti);
-			if (!$._genTextImage) $.textImage(ti, x, y);
-		};
-		/**
-		 * Displays an image based on text alignment settings.
-		 * @param {p5.Image} img
-		 * @param {Number} x
-		 * @param {Number} y
-		 */
-		$.textImage = (img, x, y) => {
-			let og = $._renderer._imageMode;
-			$.imageMode.call($, 'corner');
-			const ctx = $.canvas.getContext('2d');
-			if (ctx.textAlign == 'center') x -= img.width * 0.5;
-			else if (ctx.textAlign == 'right') x -= img.width;
-
-			let leadDiff;
-			if (ctx.textBaseline == 'alphabetic') y -= $._renderer._textLeading;
-			else leadDiff = $._renderer._textLeading - $._renderer._textSize;
-
-			if (ctx.textBaseline == 'middle') y -= img._descent + img._ascent * 0.5 + leadDiff;
-			else if (ctx.textBaseline == 'bottom') y -= img._ascent + img._descent + leadDiff;
-			else if (ctx.textBaseline == 'top') y -= img._descent + leadDiff;
-
-			$.image.call($, img, x, y);
-			$.imageMode.call($, og);
+			Object.assign(c, { displayMode, renderQuality, displayScale });
+			$._adjustDisplay();
 		};
 	}
 
@@ -9630,6 +9529,8 @@ main {
 
 			this._visible = true;
 			this._cursor = 'default';
+			this._ogX = 0;
+			this._ogY = 0;
 		}
 
 		_ac(inp) {
@@ -9644,12 +9545,15 @@ main {
 			$.mouse.canvasPos.x = $.mouseX;
 			$.mouse.canvasPos.y = $.mouseY;
 
-			if ($.camera.x == $.canvas.hw &amp;&amp; $.camera.y == $.canvas.hh &amp;&amp; $.camera.zoom == 1) {
+			if ($.camera.x == $.camera.ogX &amp;&amp; $.camera.y == $.camera.ogY &amp;&amp; $.camera.zoom == 1) {
 				this.x = $.mouseX;
 				this.y = $.mouseY;
-			} else {
+			} else if ($.canvas.renderer != 'webgpu') {
 				this.x = ($.mouseX - $.canvas.hw) / $.camera.zoom + $.camera.x;
 				this.y = ($.mouseY - $.canvas.hh) / $.camera.zoom + $.camera.y;
+			} else {
+				this.x = $.mouseX / $.camera.zoom + $.camera.x;
+				this.y = $.mouseY / $.camera.zoom + $.camera.y;
 			}
 		}
 
@@ -10433,6 +10337,19 @@ main {
 			this.leftTrigger = 0;
 			this.rightTrigger = 0;
 		}
+		// aliases for playstation face buttons
+		get cross() {
+			return this.a;
+		}
+		get circle() {
+			return this.b;
+		}
+		get square() {
+			return this.x;
+		}
+		get triangle() {
+			return this.y;
+		}
 		/**
 		 * Alias for `leftStick`.
 		 */
@@ -10447,26 +10364,84 @@ main {
 		}
 		/**
 		 * Alias for `l` (left button).
+		 * `lb` is what the button is called on Xbox controllers.
 		 */
 		get lb() {
 			return this.l;
 		}
 		/**
 		 * Alias for `r` (right button).
+		 * `rb` is what the button is called on Xbox controllers.
 		 */
 		get rb() {
 			return this.r;
 		}
 		/**
-		 * Alias for `lsb`.
+		 * Alias for `l` (left button).
+		 * `l1` is what the button is called on PlayStation controllers.
+		 */
+		get l1() {
+			return this.l;
+		}
+		/**
+		 * Alias for `r` (right button).
+		 * `r1` is what the button is called on PlayStation controllers.
+		 */
+		get r1() {
+			return this.r;
+		}
+		/**
+		 * Alias for `lt` (digital left trigger).
+		 * `zl` is what the button is called on Nintendo controllers.
+		 */
+		get zl() {
+			return this.lt;
+		}
+		/**
+		 * Alias for `rt` (digital right trigger).
+		 * `zr` is what the button is called on Nintendo controllers.
+		 */
+		get zr() {
+			return this.rt;
+		}
+		/**
+		 * Alias for `leftTrigger` (analog left trigger).
+		 * `l2` is what the trigger is called on PlayStation controllers.
+		 */
+		get l2() {
+			return this.leftTrigger;
+		}
+		/**
+		 * Alias for `rightTrigger` (analog right trigger).
+		 * `r2` is what the trigger is called on PlayStation controllers.
+		 */
+		get r2() {
+			return this.rightTrigger;
+		}
+		/**
+		 * Verbose alias for `lsb`.
 		 */
 		get leftStickButton() {
 			return this.lsb;
 		}
 		/**
-		 * Alias for `rsb`.
+		 * Verbose alias for `rsb`.
 		 */
 		get rightStickButton() {
+			return this.rsb;
+		}
+		/**
+		 * Alias for `lsb` (left stick button).
+		 * `l3` is what the trigger is called on PlayStation controllers.
+		 */
+		get l3() {
+			return this.lsb;
+		}
+		/**
+		 * Alias for `rsb` (right stick button).
+		 * `r3` is what the trigger is called on PlayStation controllers.
+		 */
+		get r3() {
 			return this.rsb;
 		}
 	};
@@ -10487,13 +10462,12 @@ main {
 		 */
 		constructor() {
 			super();
-			let _this = this;
 			if (window) {
 				window.addEventListener('gamepadconnected', (e) => {
-					_this._onConnect(e.gamepad);
+					this._onConnect(e.gamepad);
 				});
 				window.addEventListener('gamepaddisconnected', (e) => {
-					_this._onDisconnect(e.gamepad);
+					this._onDisconnect(e.gamepad);
 				});
 			}
 
@@ -10579,7 +10553,7 @@ main {
 		_onConnect(gp) {
 			if (!gp) return;
 			for (let i = 0; i &lt; this.length; i++) {
-				if (this[i].gamepad?.index === gp.index) {
+				if (gp.index == this[i].gamepad?.index) {
 					this[i].connected = true;
 					log('contros[' + i + '] reconnected: ' + gp.id);
 					return;
@@ -10589,6 +10563,7 @@ main {
 			if (this.onConnect(gp)) {
 				let c = new $.Contro(gp);
 
+				// get the index of the next available slot
 				let index = 0;
 				for (let i = 0; i &lt; this.length; i++) {
 					if (!this[i]) {
@@ -10596,11 +10571,11 @@ main {
 						break;
 					}
 				}
-				log('contros[' + index + '] connected: ' + gp.id);
 				this[index] = c;
+				log('contros[' + index + '] connected: ' + gp.id);
 				if (index == 0) {
 					$.contro = c;
-					if (!$._q5 &amp;&amp; $._isGlobal) window.contro = c;
+					if ($._isGlobal) window.contro = c;
 				}
 			}
 		}
@@ -10712,11 +10687,6 @@ p5.prototype.registerMethod('post', function p5playPostDraw() {
 				rs.fontSize = 10;
 			}
 			rs.gap = rs.fontSize * 1.25;
-			if (!$._q5) {
-				console.warn(
-					"renderStats() produces inaccurate FPS approximations because deltaTime is calculated incorrectly in p5.js. Even if your game runs at a solid 60hz display rate, the fps calculations shown may be lower. Use q5.js (visit https://q5js.org) or your browser's performance testing tools for accurate results."
-				);
-			}
 		}
 
 		if (!$.p5play._fpsAvg || $.frameCount % 20 === 0) {
@@ -10875,7 +10845,7 @@ p5.prototype.registerMethod('post', function p5playPostDraw() {
 <br class="clear">
 
 <footer>
-    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Thu Jun 13 2024 19:01:23 GMT-0500 (Colombia Standard Time) using the Minami theme.
+    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Sat Oct 12 2024 08:03:46 GMT-0500 (Colombia Standard Time) using the Minami theme.
 </footer>
 
 <script>prettyPrint();</script>

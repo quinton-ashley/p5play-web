@@ -56,7 +56,7 @@
 
     
 
-    <h4 class="name" id="Canvas"><span class="type-signature"></span>new Canvas<span class="signature">(width, height, preset<span class="signature-attributes">opt</span>, renderer<span class="signature-attributes">opt</span>, options<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="Canvas"><span class="type-signature"></span>new Canvas<span class="signature">(width<span class="signature-attributes">opt</span>, height<span class="signature-attributes">opt</span>, options<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
 
     
 
@@ -66,12 +66,12 @@
     p5play adds some extra functionality to the `createCanvas`
 function. See the examples below.
 
-This function also disables the default keydown responses for
-the arrow keys, slash, and space. This is to prevent the
-browser from scrolling the page when the user is playing a game
-using common keyboard commands.
+Creating a canvas in p5play disables the browser's default
+keydown responses for the slash, space, and arrow keys to
+prevent page scrolling which is disruptive to gameplay.
 
-Supports the '2d' and 'webgl' renderers.
+For an easy way to scale the canvas or make it pixelated, use
+the `displayMode` function.
 
 Only q5.js has support for canvas options (context attributes).
 </div>
@@ -109,7 +109,7 @@ Only q5.js has support for canvas options (context attributes).
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line8805">line 8805</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line8776">line 8776</a>
     </li></ul></dd>
     
 
@@ -170,6 +170,8 @@ Only q5.js has support for canvas options (context attributes).
             
                 <td class="attributes">
                 
+                    &lt;optional><br>
+                
 
                 
 
@@ -204,40 +206,6 @@ Only q5.js has support for canvas options (context attributes).
             
                 <td class="attributes">
                 
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last">
-                
-                
-            </td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>preset</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><code>String</code></span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
                     &lt;optional><br>
                 
 
@@ -250,43 +218,7 @@ Only q5.js has support for canvas options (context attributes).
             
 
             <td class="description last">
-                'fullscreen' or 'pixelated'
                 
-            </td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>renderer</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><code>String</code></span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last">
-                '2d' (default) or 'webgl'
                 
             </td>
         </tr>
@@ -367,11 +299,7 @@ new Canvas();
 // max 16:9 aspect ratio dimensions that will fit the window
 new Canvas('16:9');
 // 800x600 pixels
-new Canvas(800, 600);
-// fullscreen scaling, fits window (no stretching)
-new Canvas(800, 600, 'fullscreen');
-// pixelated scaling, fits window (no stretching)
-new Canvas(256, 240, 'pixelated');</code></pre>
+new Canvas(800, 600);</code></pre>
 
 </div>
 
@@ -419,9 +347,9 @@ new Canvas(256, 240, 'pixelated');</code></pre>
 Visually the canvas will shrink or extend to the new size. Sprites
 will not change position.
 
-If you would prefer to keep the camera focused on the same area, then
-you must manually adjust the camera position after calling this
-function.
+If you would prefer to keep the camera focused on the same area,
+then you must manually adjust the camera position after calling
+this function.
 </div>
 
 
@@ -457,7 +385,7 @@ function.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line8897">line 8897</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line8862">line 8862</a>
     </li></ul></dd>
     
 
@@ -618,7 +546,7 @@ function.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line8903">line 8903</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line8868">line 8868</a>
     </li></ul></dd>
     
 
@@ -722,7 +650,7 @@ function.
 <br class="clear">
 
 <footer>
-    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Thu Jun 13 2024 19:01:23 GMT-0500 (Colombia Standard Time) using the Minami theme.
+    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Sat Oct 12 2024 08:03:46 GMT-0500 (Colombia Standard Time) using the Minami theme.
 </footer>
 
 <script>prettyPrint();</script>
