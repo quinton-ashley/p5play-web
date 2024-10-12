@@ -3298,7 +3298,8 @@ p5.prototype.registerMethod('init', function p5playInit() {
 		 */
 		attractTo(x, y, force, radius, easing) {
 			if (!this.body || this.__collider != 0) {
-				throw new Error('attractTo can only be used on sprites with dynamic colliders');
+				console.error('attractTo can only be used on sprites with dynamic colliders');
+				return;
 			}
 			if (typeof x != 'number') {
 				let obj = x;
@@ -3321,7 +3322,8 @@ p5.prototype.registerMethod('init', function p5playInit() {
 
 		repelFrom(x, y, force, radius, easing) {
 			if (!this.body || this.__collider != 0) {
-				throw new Error('repelFrom can only be used on sprites with dynamic colliders');
+				console.error('repelFrom can only be used on sprites with dynamic colliders');
+				return;
 			}
 			if (typeof x != 'number') {
 				let obj = x;
@@ -3573,7 +3575,10 @@ p5.prototype.registerMethod('init', function p5playInit() {
 		 * @param {Number} [facing] - (only specify if position is given) rotation angle the sprite should be at when "facing" the position, default is 0
 		 */
 		rotateTowards(angle, tracking) {
-			if (this.__collider == 1) throw new FriendlyError(0);
+			if (this.__collider == 1) {
+				new FriendlyError(0);
+				return;
+			}
 
 			let args = arguments;
 			let x, y, facing;
@@ -3690,7 +3695,10 @@ p5.prototype.registerMethod('init', function p5playInit() {
 		 * sprite.rotateTo({x: 0, y: 100}, 2);
 		 */
 		rotateTo(angle, speed, facing) {
-			if (this.__collider == 1) throw new FriendlyError(0);
+			if (this.__collider == 1) {
+				new FriendlyError(0);
+				return;
+			}
 
 			let args = arguments;
 			if (typeof args[0] != 'number') {
@@ -3723,7 +3731,10 @@ p5.prototype.registerMethod('init', function p5playInit() {
 		 * @param {Number} facing - relative angle the sprite should be at when "facing" the given position, default is 0
 		 */
 		rotateMinTo(angle, speed, facing) {
-			if (this.__collider == 1) throw new FriendlyError(0);
+			if (this.__collider == 1) {
+				new FriendlyError(0);
+				return;
+			}
 			let args = arguments;
 			if (typeof args[0] != 'number') {
 				angle = this.rotationToFace(args[0].x, args[0].y, facing);
@@ -3737,7 +3748,7 @@ p5.prototype.registerMethod('init', function p5playInit() {
 			if (angle == this.rotation) return;
 
 			angle = minAngleDist(angle, this.rotation);
-			speed ??= this.rotationSpeed || Math.sign(angle);
+			speed ??= this.rotationSpeed > 0.1 ? this.rotationSpeed : 1;
 			speed = Math.abs(speed) * Math.sign(angle);
 			return this.rotate(angle, speed);
 		}
@@ -3760,8 +3771,14 @@ p5.prototype.registerMethod('init', function p5playInit() {
 		 * @returns {Promise} a promise that resolves when the rotation is complete
 		 */
 		rotate(angle, speed) {
-			if (this.__collider == 1) throw new FriendlyError(0);
-			if (isNaN(angle)) throw new FriendlyError(1, [angle]);
+			if (this.__collider == 1) {
+				new FriendlyError(0);
+				return;
+			}
+			if (isNaN(angle)) {
+				new FriendlyError(1, [angle]);
+				return;
+			}
 			if (angle == 0) return;
 			speed ??= this.rotationSpeed || 1;
 
@@ -3866,8 +3883,8 @@ p5.prototype.registerMethod('init', function p5playInit() {
 		 * an animation or animation atlas as values
 		 * @example
 		 * sprite.addAnis({
-		 *  name0: atlas0,
-		 * 	name1: atlas1
+		 *   name0: atlas0,
+		 *   name1: atlas1
 		 * });
 		 */
 		addAnis() {
@@ -4708,8 +4725,8 @@ p5.prototype.registerMethod('init', function p5playInit() {
 					if (frames && Array.isArray(frames)) {
 						frameCount = frames.length;
 					} else frameCount ??= frames || 1;
-					w ??= width || owner.anis.w;
-					h ??= height || owner.anis.h;
+					w ??= width || owner.anis.w || owner.width;
+					h ??= height || owner.anis.h || owner.height;
 					x ??= col || 0;
 					y ??= line || row || 0;
 					if (pos) {
@@ -9174,6 +9191,7 @@ main {
 				1: 'Can\'t use "$0" for the angle of rotation, it must be a number.'
 			},
 			rotateTo: {},
+			rotateMinTo: {},
 			rotateTowards: {},
 			changeAnimation: `I can't find any animation named "$0".`,
 			collide: {
@@ -9202,7 +9220,10 @@ main {
 	};
 	errMsgs.Group.collide = errMsgs.Sprite.collide;
 	errMsgs.Group.overlap = errMsgs.Sprite.overlap;
-	errMsgs.Sprite.rotateTo[0] = errMsgs.Sprite.rotateTowards[0] = errMsgs.Sprite.rotate[0];
+	errMsgs.Sprite.rotateTo[0] =
+		errMsgs.Sprite.rotateMinTo[0] =
+		errMsgs.Sprite.rotateTowards[0] =
+			errMsgs.Sprite.rotate[0];
 
 	/**
 	 * A FriendlyError is a custom error class that extends the native JS
@@ -9247,10 +9268,12 @@ main {
 			if (m.base) msg = m.base + ln;
 			else msg = errMsgs.generic[Math.floor(Math.random() * errMsgs.generic.length)] + ln;
 			if (errorNum !== undefined) m = m[errorNum];
-			m = m.replace(/\$([0-9]+)/g, (m, n) => {
-				return e[n];
-			});
-			msg += m;
+			if (m) {
+				m = m.replace(/\$([0-9]+)/g, (m, n) => {
+					return e[n];
+				});
+				msg += m;
+			}
 
 			p5._friendlyError(msg, func);
 		}
