@@ -14,19 +14,23 @@ Si no se pasan parámetros a `new Canvas()`, se creará un lienzo que llena toda
 
 También puedes pasar una relación de aspecto al constructor de Canvas. Esto creará el lienzo más grande posible que se ajuste dentro de la ventana, manteniendo la relación de aspecto dada. Por ejemplo, `new Canvas('2:1')` creará un lienzo que es el doble de ancho que de alto.
 
-Otra característica añadida es el preajuste "pantalla completa", `new Canvas(1920, 1080, 'fullscreen')` ajustará el lienzo para que encaje dentro de la ventana, manteniendo una resolución de 1920x1080.
-
 # 1-0
 
-## modo pixelado
+## Modo de Visualización
 
-Otra característica de `Canvas` es el preajuste "pixelado". ¡Úsalo para hacer juegos retro de estilo 8 bits o 16 bits!
+La función `displayMode` te permite personalizar cómo se presenta tu lienzo.
 
-Este preajuste hará que el lienzo se ajuste a la pantalla, a menos que especifiques un multiplicador. Por ejemplo, "pixelado x2" creará un lienzo que se muestra al doble del tamaño del ancho y alto especificados.
+- `"normal"` es el valor predeterminado, que no aplica estilo al lienzo ni a su elemento padre.
+- `"centered"` hace que el lienzo se centre horizontal y verticalmente en su elemento padre.
+- `"maxed"` hace que el lienzo llene el elemento padre con letterboxing si es necesario para preservar su relación de aspecto.
 
-Para mostrar todos los sprites en coordenadas enteras, establece `allSprites.pixelPerfect` en verdadero y usa coordenadas enteras para la posición y el zoom de la cámara.
+Esta función también acepta un ajuste preestablecido de calidad de renderizado como segundo parámetro de entrada. ¡Usa el ajuste preestablecido `"pixelated"` para hacer juegos retro de estilo 8-bit o 16-bit!
 
-Ten en cuenta que las fuentes modernas están basadas en vectores, por lo que no se verán muy bien en modo pixelado. Carga en su lugar una fuente de mapa de bits con la función [`loadFont`](https://p5js.org/reference/p5/loadFont) de p5.js.
+En este ejemplo, se utiliza un tercer parámetro de entrada para mostrar el lienzo a una escala de 8x.
+
+Para mostrar todos los sprites en coordenadas enteras, establece `allSprites.pixelPerfect` en true y usa coordenadas enteras para la posición y el zoom de la cámara.
+
+Ten en cuenta que las fuentes modernas son vectoriales, por lo que no se verán bien a bajas resoluciones. En su lugar, carga una fuente de píxeles con la función [`loadFont`](https://p5js.org/reference/p5/loadFont).
 
 # 2-0
 

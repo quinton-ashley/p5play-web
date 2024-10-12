@@ -42,25 +42,30 @@
 				<p>También puedes pasar una relación de aspecto al constructor de Canvas. Esto creará el lienzo más
 					grande posible que se ajuste dentro de la ventana, manteniendo la relación de aspecto dada. Por
 					ejemplo, <code>new Canvas('2:1')</code> creará un lienzo que es el doble de ancho que de alto.</p>
-				<p>Otra característica añadida es el preajuste "pantalla completa", <code>new Canvas(1920, 1080,
-						'fullscreen')</code> ajustará el lienzo para que encaje dentro de la ventana, manteniendo una
-					resolución de 1920x1080.</p>
 			</md>
 		</div>
 		<div id="page-1" class="page">
 			<md id="md1-0">
-				<h2 id="modo-pixelado">modo pixelado</h2>
-				<p>Otra característica de <code>Canvas</code> es el preajuste "pixelado". ¡Úsalo para hacer juegos retro
-					de estilo 8 bits o 16 bits!</p>
-				<p>Este preajuste hará que el lienzo se ajuste a la pantalla, a menos que especifiques un multiplicador.
-					Por ejemplo, "pixelado x2" creará un lienzo que se muestra al doble del tamaño del ancho y alto
-					especificados.</p>
+				<h2 id="modo-de-visualización">Modo de Visualización</h2>
+				<p>La función <code>displayMode</code> te permite personalizar cómo se presenta tu lienzo.</p>
+				<ul>
+					<li><code>"normal"</code> es el valor predeterminado, que no aplica estilo al lienzo ni a su
+						elemento padre.</li>
+					<li><code>"centered"</code> hace que el lienzo se centre horizontal y verticalmente en su elemento
+						padre.</li>
+					<li><code>"maxed"</code> hace que el lienzo llene el elemento padre con letterboxing si es necesario
+						para preservar su relación de aspecto.</li>
+				</ul>
+				<p>Esta función también acepta un ajuste preestablecido de calidad de renderizado como segundo parámetro
+					de entrada. ¡Usa el ajuste preestablecido <code>"pixelated"</code> para hacer juegos retro de estilo
+					8-bit o 16-bit!</p>
+				<p>En este ejemplo, se utiliza un tercer parámetro de entrada para mostrar el lienzo a una escala de 8x.
+				</p>
 				<p>Para mostrar todos los sprites en coordenadas enteras, establece <code>allSprites.pixelPerfect</code>
-					en verdadero y usa coordenadas enteras para la posición y el zoom de la cámara.</p>
-				<p>Ten en cuenta que las fuentes modernas están basadas en vectores, por lo que no se verán muy bien en
-					modo pixelado. Carga en su lugar una fuente de mapa de bits con la función <a
-						href="https://p5js.org/reference/p5/loadFont" target="_blank"><code>loadFont</code></a> de
-					p5.js.</p>
+					en true y usa coordenadas enteras para la posición y el zoom de la cámara.</p>
+				<p>Ten en cuenta que las fuentes modernas son vectoriales, por lo que no se verán bien a bajas
+					resoluciones. En su lugar, carga una fuente de píxeles con la función <a
+						href="https://p5js.org/reference/p5/loadFont" target="_blank"><code>loadFont</code></a>.</p>
 			</md>
 			<div class="minis horiz">
 				<script type="mie/p5" id="default-pixel-size" lines="9" hide-editor="">
