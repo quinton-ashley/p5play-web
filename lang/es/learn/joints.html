@@ -112,20 +112,23 @@ function draw() {
 					rebotador<br><code>0.8</code> = slinky<br><code>1.0</code> = cuerda bungee</p>
 				<p>También puedes ajustar la proporción de <code>damping</code> de la articulación para cambiar qué tan
 					rápido pierde energía vibratoria.</p>
+				<p>Establezca <code>collideConnected</code> en true para que los sprites conectados colisionen entre sí.
+				</p>
 			</md>
-			<script type="mie/p5" id="swing" lines="13">
+			<script type="mie/p5" id="paddle-ball" lines="14">
 let sA, sB, j;
 function setup() {
 	new Canvas(500, 500);
 	world.gravity.y = 10;
 
-	sA = new Sprite(250, 0, 10, 50, 'k');
-	sB = new Sprite(100, 20, 20);
+	sA = new Sprite(250, 0, 300, 20, 'k');
+	sB = new Sprite(200, 20, 40);
 
 	j = new DistanceJoint(sA, sB);
-	j.offsetA.y = 25;
+	j.offsetA.y = 10;
+	j.collideConnected = true;
 
-	j.springiness = 0.6; // try changing this!
+	j.springiness = 0.8; // try changing this!
 }
 
 function draw() {

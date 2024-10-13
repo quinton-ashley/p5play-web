@@ -43,6 +43,8 @@ Ajustar la proporción de `springiness` (elasticidad) del ensamblaje cambia la c
 
 También puedes ajustar la proporción de `damping` de la articulación para cambiar qué tan rápido pierde energía vibratoria.
 
+Establezca `collideConnected` en true para que los sprites conectados colisionen entre sí.
+
 # 2-0
 
 ## WheelJoint

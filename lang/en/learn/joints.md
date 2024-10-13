@@ -43,6 +43,8 @@ Adjusting the joint's `springiness` ratio changes the amount it can stretch and 
 
 You can also adjust the joints's `damping` ratio to change how quickly it loses vibrational energy.
 
+Set `collideConnected` to true to make connected sprites collide with each other.
+
 # 2-0
 
 ## WheelJoint

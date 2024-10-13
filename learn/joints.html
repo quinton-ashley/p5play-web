@@ -109,20 +109,22 @@ function draw() {
 					cord</p>
 				<p>You can also adjust the joints's <code>damping</code> ratio to change how quickly it loses
 					vibrational energy.</p>
+				<p>Set <code>collideConnected</code> to true to make connected sprites collide with each other.</p>
 			</md>
-			<script type="mie/p5" id="swing" lines="13">
+			<script type="mie/p5" id="paddle-ball" lines="14">
 let sA, sB, j;
 function setup() {
 	new Canvas(500, 500);
 	world.gravity.y = 10;
 
-	sA = new Sprite(250, 0, 10, 50, 'k');
-	sB = new Sprite(100, 20, 20);
+	sA = new Sprite(250, 0, 300, 20, 'k');
+	sB = new Sprite(200, 20, 40);
 
 	j = new DistanceJoint(sA, sB);
-	j.offsetA.y = 25;
+	j.offsetA.y = 10;
+	j.collideConnected = true;
 
-	j.springiness = 0.6; // try changing this!
+	j.springiness = 0.8; // try changing this!
 }
 
 function draw() {

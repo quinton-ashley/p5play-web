@@ -65,7 +65,7 @@ function draw() {
 				<p><code>GlueJoint</code> （グルージョイント）とは、 2
 					つのスプライトを互いにノリ付けするように接着するだけの、最も単純なタイプのジョイントです。スプライトが物理的に触れ合っている必要はなく、ジョイントを削除しない限りは、接着が解けることはありません。
 				</p>
-				<p>でも、ちょっと待ってください。なぜ <code>sprite.addCollider</code> ではなく、グルージョイントを使うのか？ 実は、グルーならではの特徴があるからです。　</p>
+				<p>でも、ちょっと待ってください。なぜ <code>sprite.addCollider</code> ではなく、グルージョイントを使うのか？ 実は、グルーならではの特徴があるからです。</p>
 				<ul>
 					<li>各スプライトは、別々の物理的特性を持つことができます</li>
 					<li>各スプライトは、別々にコリジョンを検出できます</li>
@@ -109,20 +109,22 @@ function draw() {
 					硬めのバネ<br><code>0.6</code> = 普通のバネ<br><code>0.8</code> = トムボーイ（バネのおもちゃ）<br><code>1.0</code> = ゴムひも
 				</p>
 				<p>また、ジョイントの <code>damping</code> （減衰）係数を調整して、振動エネルギーの失われる速さを変更することもできます。</p>
+				<p><code>collideConnected</code> を true に設定して、接続されたスプライトが互いに衝突するようにします。</p>
 			</md>
-			<script type="mie/p5" id="swing" lines="13">
+			<script type="mie/p5" id="paddle-ball" lines="14">
 let sA, sB, j;
 function setup() {
 	new Canvas(500, 500);
 	world.gravity.y = 10;
 
-	sA = new Sprite(250, 0, 10, 50, 'k');
-	sB = new Sprite(100, 20, 20);
+	sA = new Sprite(250, 0, 300, 20, 'k');
+	sB = new Sprite(200, 20, 40);
 
 	j = new DistanceJoint(sA, sB);
-	j.offsetA.y = 25;
+	j.offsetA.y = 10;
+	j.collideConnected = true;
 
-	j.springiness = 0.6; // try changing this!
+	j.springiness = 0.8; // try changing this!
 }
 
 function draw() {
