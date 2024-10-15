@@ -8,6 +8,8 @@
 
 Obtain the Educational License to unlock the power of p5play in your classroom!
 
+See our [Educational Pricing](#educational-pricing) below.
+
 # 1-0
 
 ## Interactive Textbook

@@ -8,6 +8,8 @@
 
 ¡Obtén la Licencia Educativa para desbloquear el poder de p5play en tu aula!
 
+Consulte nuestros [Precios Educativos](#educational-pricing) a continuación.
+
 # 1-0
 
 ## Texto Interactivo
