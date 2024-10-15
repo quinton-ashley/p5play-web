@@ -8,7 +8,7 @@
 
 ¡Obtén la Licencia Educativa para desbloquear el poder de p5play en tu aula!
 
-Consulte nuestros [Precios Educativos](#educational-pricing) a continuación.
+Consulte nuestros [Precios Educativos](#precios-educativos) a continuación.
 
 # 1-0
 
@@ -42,7 +42,7 @@ _Exclusivo para clientes que adquieren la subscripcion educativa._
 
 # 4-0
 
-## Factura Personalizada
+## Precios Educativos
 
 ### $5 USD
 
