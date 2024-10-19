@@ -4,6 +4,7 @@
 
 const log = console.log;
 require('../v3/q5.js');
+Q5.disableFriendlyErrors = true;
 global.planck = require('../v3/planck.min.js');
 require('../v3/p5play.js');
 

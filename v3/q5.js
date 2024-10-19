@@ -1,6 +1,6 @@
 /**
  * q5.js
- * @version 2.6
+ * @version 2.7
  * @author quinton-ashley, Tezumie, and LingDong-
  * @license LGPL-3.0
  * @class Q5
@@ -89,7 +89,13 @@ function Q5(scope, parent, renderer) {
 		$.resetMatrix();
 		if ($._beginRender) $._beginRender();
 		for (let m of Q5.methods.pre) m.call($);
-		$.draw();
+		try {
+			$.draw();
+		} catch (e) {
+			if (!Q5.disableFriendlyErrors && $._askAI) $._askAI(e);
+			if (!Q5.errorTolerant) $.noLoop();
+			throw e;
+		}
 		for (let m of Q5.methods.post) m.call($);
 		if ($._render) $._render();
 		if ($._finishRender) $._finishRender();
@@ -128,7 +134,7 @@ function Q5(scope, parent, renderer) {
 		}
 		return $._frameRate;
 	};
-	$.getTargetFrameRate = () => $._targetFrameRate;
+	$.getTargetFrameRate = () => $._targetFrameRate || 60;
 	$.getFPS = () => $._fps;
 
 	$.Element = function (a) {
@@ -196,10 +202,10 @@ function Q5(scope, parent, renderer) {
 	let t = globalScope || $;
 	$._isTouchAware = t.touchStarted || t.touchMoved || t.mouseReleased;
 	let preloadDefined = t.preload;
+	$.preload ??= () => {};
+	$.setup ??= () => {};
+	$.draw ??= () => {};
 	let userFns = [
-		'setup',
-		'draw',
-		'preload',
 		'mouseMoved',
 		'mousePressed',
 		'mouseReleased',
@@ -220,14 +226,12 @@ function Q5(scope, parent, renderer) {
 				try {
 					return t[k]();
 				} catch (e) {
-					if ($._aiErrorAssistance) $._aiErrorAssistance(e);
+					if ($._askAI) $._askAI(e);
 					throw e;
 				}
 			};
 		}
 	}
-
-	if (!($.setup || $.draw)) return;
 
 	async function _start() {
 		$._startDone = true;
@@ -236,19 +240,25 @@ function Q5(scope, parent, renderer) {
 		await $.setup();
 		$._setupDone = true;
 		if ($.frameCount) return;
-		if ($.ctx === null) $.createCanvas(100, 100);
+		if ($.ctx === null) $.createCanvas(200, 200);
 		if ($.ctx) $.resetMatrix();
 		raf($._draw);
 	}
 
-	if ((arguments.length && scope != 'namespace' && renderer != 'webgpu') || preloadDefined) {
-		$.preload();
-		_start();
-	} else {
-		t.preload = $.preload = () => {
+	function _preStart() {
+		try {
+			$.preload();
 			if (!$._startDone) _start();
-		};
-		setTimeout($.preload, 32);
+		} catch (e) {
+			if ($._askAI) $._askAI(e);
+			throw e;
+		}
+	}
+
+	if (preloadDefined || (arguments.length && scope != 'instance' && renderer != 'webgpu')) {
+		_preStart();
+	} else {
+		setTimeout(_preStart, 32);
 	}
 }
 
@@ -259,7 +269,7 @@ Q5._nodejs = typeof process == 'object';
 
 Q5._instanceCount = 0;
 Q5._friendlyError = (msg, func) => {
-	console.error(func + ': ' + msg);
+	if (!Q5.disableFriendlyErrors) console.error(func + ': ' + msg);
 };
 Q5._validateParameters = () => true;
 
@@ -386,8 +396,15 @@ Q5.modules.canvas = ($, q) => {
 		if ($._scope != 'image') {
 			if ($._scope == 'graphics') $._pixelDensity = this._pixelDensity;
 			else if (window.IntersectionObserver) {
+				$._wasLooping = $._loop;
 				new IntersectionObserver((e) => {
 					c.visible = e[0].isIntersecting;
+					if (c.visible) {
+						if ($._wasLooping && !$._loop) $.loop();
+					} else {
+						$._wasLooping = $._loop;
+						$.noLoop();
+					}
 				}).observe(c);
 			}
 		}
@@ -751,7 +768,7 @@ Q5.renderers.q2d.drawing = ($) => {
 	$.background = function (c) {
 		$.ctx.save();
 		$.ctx.resetTransform();
-		if (c.canvas) $.image(c, 0, 0, $.width, $.height);
+		if (c.canvas) $.image(c, 0, 0, $.canvas.width, $.canvas.height);
 		else {
 			if (Q5.Color && !c._q5Color) {
 				if (typeof c != 'string') c = $.color(...arguments);
@@ -1224,7 +1241,8 @@ Q5.renderers.q2d.image = ($, q) => {
 
 	$.imageMode = (mode) => ($._imageMode = mode);
 	$.image = (img, dx, dy, dw, dh, sx = 0, sy = 0, sw, sh) => {
-		let drawable = img.canvas || img;
+		if (!img) return;
+		let drawable = img?.canvas || img;
 		if (Q5._createNodeJSCanvas) {
 			drawable = drawable.context.canvas;
 		}
@@ -1678,13 +1696,12 @@ Q5.renderers.q2d.text = ($, q) => {
 };
 Q5.modules.ai = ($) => {
 	$.askAI = (question = '') => {
+		Q5.disableFriendlyErrors = false;
 		throw Error('Ask AI ✨ ' + question);
 	};
 
-	$._aiErrorAssistance = async (e) => {
+	$._askAI = async (e) => {
 		let askAI = e.message?.includes('Ask AI ✨');
-		if (Q5.disableFriendlyErrors && !askAI) return;
-		if (askAI || !Q5.errorTolerant) $.noLoop();
 		let stackLines = e.stack?.split('\n');
 		if (!e.stack || stackLines.length <= 1) return;
 
@@ -2106,11 +2123,11 @@ Q5.modules.input = ($, q) => {
 	$.pmouseX = 0;
 	$.pmouseY = 0;
 	$.touches = [];
-	$.mouseButton = null;
+	$.mouseButton = '';
 	$.keyIsPressed = false;
 	$.mouseIsPressed = false;
-	$.key = null;
-	$.keyCode = null;
+	$.key = '';
+	$.keyCode = 0;
 
 	$.UP_ARROW = 38;
 	$.DOWN_ARROW = 40;
