@@ -8,8 +8,27 @@
 	<link rel="icon" href="/assets/p5play_logo.svg">
 	<link rel="stylesheet" href="/learn/style.css">
 	<style>
+.page {
+	display: flex;
+}
+
 #learn-p5play {
 	display: flex;
+	height: 18.5vw;
+	gap: 20px;
+}
+
+#learn-p5play>div {
+	width: fit-content;
+}
+
+#learnBanner {
+	position: absolute;
+	min-width: 1000px;
+	width: 100vw;
+	z-index: -1;
+	top: 126px;
+	left: 0;
 }
 
 #refs {
@@ -38,15 +57,16 @@ body.dark #learn-p5play_img img:nth-child(2) {
 	display: none;
 }
 
-#learnOptions {
-	display: flex;
-	width: 100%;
-	justify-content: center;
-	margin-top: 32px;
+#getStarted {
+	font-size: 24px;
+	margin: 0;
 }
 
-#getStarted {
-	font-size: 32px;
+#learnTitle {
+	font-family: 'Mont';
+	font-size: 56px;
+	text-shadow: 4px 4px var(--pink1);
+	-webkit-text-stroke: 2px var(--blue);
 }
 
 #refs>div {
@@ -145,26 +165,27 @@ body.dark #learn-p5play_img img:nth-child(2) {
 			<div class="break"></div>
 		</div>
 
+		<img id="learnBanner" src="/learn/assets/learnBanner.webp" alt="Learn p5play banner">
+
 		<div id="learn-p5play" class="page">
 			<div>
-				<md id="md0-0">
-					<h2 id="learn">Learn</h2>
-					<p><a href="." target="_blank"><strong><em>Learn p5play: An Introduction to Object Oriented
-									Programming</em></strong></a> was written by Quinton Ashley, the creator of p5play
-						v3. It's packed with beginner friendly reference documentation and interactive code examples.
-					</p>
-					<p>Free for personal use.</p>
-					<p>For pricing information on educational use, please visit the <a href="../teach"
-							target="_blank">Teach</a> page.</p>
-				</md>
-				<div id="learnOptions" class="mini">
-					<a id="getStarted" class="heroBtns" href="sprite.html">Get Started!</a>
-				</div>
+				<a id="learnTitle" href="sprite.html">Learn p5play</a>
 			</div>
-			<div id="learn-p5play_img">
-				<img src="/assets/Learn_p5play_dark.webp" alt="Learn p5play cover (dark)">
-				<img src="/assets/Learn_p5play.webp" alt="Learn p5play cover (light)">
-			</div>
+			<a id="getStarted" class="heroBtns active" href="sprite.html">Get Started!</a>
+		</div>
+
+		<div class="break"></div>
+
+		<div class="page">
+			<md id="md0-0">
+				<p><a href="." target="_blank"><strong><em>Learn p5play: An Introduction to Object Oriented
+								Programming</em></strong></a> was written by Quinton Ashley, the creator of p5play v3.
+					It's packed with beginner friendly reference documentation and interactive code examples.</p>
+			</md>
+			<md id="md0-1">
+				<p>Free for personal use. For pricing information on educational use, please visit the <a
+						href="../teach" target="_blank">Teach</a> page.</p>
+			</md>
 		</div>
 
 		<div class="break"></div>
@@ -175,13 +196,13 @@ body.dark #learn-p5play_img img:nth-child(2) {
 				<div class="search-results" id="searchResults"></div>
 			</div>
 
-			<md id="md0-1" class="full">
+			<md id="md1-0" class="full">
 				<h2 id="credits">Credits</h2>
 				<p>Japanese translation by <a href="https://github.com/ShiMeiWo" target="_blank">Shi Mei Wo</a>.</p>
 				<p>Special thanks to the p5play community for helping me edit and improve these pages!</p>
 			</md>
 
-			<md id="md0-2" class="full">
+			<md id="md1-1" class="full">
 				<p>Can't find what you're looking for? Try the <a href="/docs/Sprite.html" target="_blank">full
 						documentation for p5play</a>, <a href="https://p5js.org/reference/" target="_blank">p5.js
 						reference</a>, <a href="https://p5js.org/reference/libraries/p5.sound" target="_blank">p5.sound

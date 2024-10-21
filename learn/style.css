@@ -46,24 +46,25 @@ body.dark {
 		--blue: oklch(0.907 0.074 218.641);
 
 		--pink0: oklch(0.657 0.294 16.698);
-		--pink1: oklch(0.615 0.278 18.568);
-		--pink2: oklch(0.966 0.024 358.907);
+		--pink1: oklch(0.72 0.28 12);
+		--pink2: oklch(0.966 0.02 12);
 
 		--blue0: oklch(0.907 0.074 218.641);
-		--blue1: oklch(0.56 0.163 241.961);
-		--blue2: oklch(0.975 0.015 239.425);
-		--blue3: oklch(0.714 0.147 232.544);
+		--blue1: oklch(0.56 0.163 241);
+		--blue2: oklch(0.97 0.015 239);
+		--blue3: oklch(0.71 0.147 232);
 	}
 
 	body.dark {
-		--pink0: oklch(0.618 0.274 15.973);
-		--pink1: oklch(0.657 0.294 16.698);
-		--pink2: oklch(0.246 0.109 12.066);
+		--pink0: oklch(0.657 0.294 16.698);
+		--pink1: oklch(0.657 0.294 16);
+		--pink1: oklch(0.6 0.28 16);
+		--pink2: oklch(0.11 0.28 16);
 
-		--blue0: oklch(0.714 0.147 232.544);
-		--blue1: oklch(0.714 0.147 232.544);
-		--blue2: oklch(0.249 0.077 241.818);
-		--blue3: oklch(0.907 0.074 218.641);
+		--blue0: oklch(0.71 0.147 232.544);
+		--blue1: oklch(0.71 0.147 232);
+		--blue2: oklch(0.24 0.077 241);
+		--blue3: oklch(0.90 0.074 218);
 	}
 }
 
@@ -142,7 +143,7 @@ html.ja h2 {
 	border: 5px solid var(--pink0);
 	border-bottom: 0;
 	border-right: 0;
-	box-shadow: 5px 5px 0px var(--blue0);
+	box-shadow: 5px 5px 0px var(--blue);
 	border-radius: 10px;
 	font-size: 18px;
 	font-weight: bold;
@@ -152,6 +153,7 @@ html.ja h2 {
 	text-align: center;
 }
 
+.heroBtns.active,
 .heroBtns:hover {
 	border: 5px solid var(--blue0);
 	border-bottom: 0;
@@ -159,6 +161,7 @@ html.ja h2 {
 	box-shadow: 5px 5px 0px var(--pink0);
 }
 
+.dark .heroBtns.active,
 .dark .heroBtns:hover {
 	color: var(--blue3);
 }
@@ -305,6 +308,7 @@ a:hover {
 md.closed:hover,
 .dark md.closed:hover,
 p a:hover,
+.heroBtns.active,
 .heroBtns:hover {
 	background: linear-gradient(90deg, var(--secondary) 0%, var(--blue0) 50%, var(--secondary) 100%);
 	background-size: 200% 200%;
