@@ -293,7 +293,7 @@ function setup() {
 
 	monster = new Sprite();
 	monster.diameter = 70;
-	monster.image = '/learn/assets/monster.png';
+	monster.image = '/learn/assets/monster.webp';
 	monster.image.offset.y = 6;
 }
 
@@ -353,7 +353,7 @@ yybyyyybyy
 ..yyyyyy`;
 
 	smiley = new Sprite();
-	smiley.img = spriteArt(smileText, 16);
+	smiley.img = spriteArt(smileText, 32);
 }
 
 function draw() {
@@ -373,7 +373,7 @@ a.a.b.b.c...d.d.ee..fff.ggg.h.h..i...j..kk...l..mmm.n.n.o.o.p.p.q.q.r....s...t..
 `;
 
 	let alpha = new Sprite();
-	alpha.img = spriteArt(alphaText, 10);
+	alpha.img = spriteArt(alphaText, 20);
 
 	background(20);
 	noLoop();
@@ -417,7 +417,7 @@ uubuuuubuu
 	};
 
 	smiley = new Sprite();
-	smiley.img = spriteArt(smileText, 16, palette);
+	smiley.img = spriteArt(smileText, 32, palette);
 }
 
 function draw() {
@@ -942,7 +942,7 @@ function setup() {
 	new Canvas(500, 200);
 
 	sprite = new Sprite(250, 100, 90, 90);
-	sprite.img = '/learn/assets/square.png';
+	sprite.img = '/learn/assets/square.webp';
 	sprite.debug = true;
 }
 
@@ -1563,7 +1563,7 @@ function draw() {
 function setup() {
 	new Canvas(500, 200);
 
-	let face = loadImage('/learn/assets/face.png');
+	let face = loadImage('/learn/assets/face.webp');
 	let stretchy = new Sprite();
 	
 	stretchy.draw = () => {
