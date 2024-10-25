@@ -77,9 +77,9 @@ test('SpriteAnimation : List mode', () => {
 			let ani0;
 			p.preload = () => {
 				ani0 = new p.SpriteAnimation(
-					host + '/learn/assets/asterisk.png',
-					host + '/learn/assets/triangle.png',
-					host + '/learn/assets/square.png'
+					host + '/learn/assets/asterisk.webp',
+					host + '/learn/assets/triangle.webp',
+					host + '/learn/assets/square.webp'
 				);
 			};
 			p.setup = () => {
@@ -100,7 +100,7 @@ test('SpriteAnimation : Sequence mode', () => {
 		const sketch = (p) => {
 			let ani0;
 			p.preload = () => {
-				ani0 = new p.SpriteAnimation(host + '/learn/assets/cloud_breathing1.png', 9);
+				ani0 = new p.SpriteAnimation(host + '/learn/assets/cloud_breathing1.webp', 9);
 			};
 			p.setup = () => {
 				new p.Canvas(400, 400);
@@ -120,7 +120,7 @@ test('SpriteAnimation : SpriteSheet mode', () => {
 		const sketch = (p) => {
 			let spriteSheet0;
 			p.preload = () => {
-				spriteSheet0 = p.loadImage(host + '/learn/assets/questKid.png');
+				spriteSheet0 = p.loadImage(host + '/learn/assets/questKid.webp');
 			};
 			p.setup = () => {
 				new p.Canvas(400, 400);

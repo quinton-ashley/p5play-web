@@ -49,7 +49,7 @@ let cloudAni;
 function setup() {
 	new Canvas(500, 160);
 
-	cloudAni = loadAni('assets/cloud_breathing1.png', 9);
+	cloudAni = loadAni('assets/cloud_breathing1.webp', 9);
 }
 
 function draw() {
@@ -71,13 +71,13 @@ function setup() {
 	new Canvas(500, 160);
 
 	shapeShifterAni = loadAnimation(
-		'assets/asterisk.png',
-		'assets/triangle.png',
-		'assets/square.png',
-		'assets/cloud.png',
-		'assets/star.png',
-		'assets/mess.png',
-		'assets/monster.png'
+		'assets/asterisk.webp',
+		'assets/triangle.webp',
+		'assets/square.webp',
+		'assets/cloud.webp',
+		'assets/star.webp',
+		'assets/mess.webp',
+		'assets/monster.webp'
 	);
 
 	shapeShifterAni.frameDelay = 10;
@@ -103,7 +103,7 @@ let splatAni;
 function setup() {
 	new Canvas(500, 200);
 
-	splatAni = loadAnimation('assets/explode_sprite_sheet.png', { frameSize: [171, 158], frames: 11 });
+	splatAni = loadAnimation('assets/explode_sprite_sheet.webp', { frameSize: [342, 316], frames: 11 });
 }
 
 function draw() {
@@ -128,15 +128,18 @@ let ani;
 function setup() {
 	new Canvas(500, 160);
 
-	ani = loadAni('assets/asterisk_explode0001.png', 11);
+	ani = loadAni('assets/asterisk_explode01.webp', 11);
 }
 
 function draw() {
 	clear();
 
-	if (kb.presses('s')) ani.stop();
-	if (kb.presses('p')) ani.play();
-	if (kb.presses('o')) ani.play(0);
+	if (kb.presses('space')) {
+		if (ani.playing) ani.pause();
+		else ani.play();
+	}
+
+	if (kb.presses('p')) ani.play(0);
 	if (kb.presses('ArrowDown')) ani.frameDelay--;
 	if (kb.presses('ArrowUp')) ani.frameDelay++;
 	if (kb.presses('r')) ani.rewind();
@@ -185,8 +188,8 @@ function setup() {
 	new Canvas(500, 160);
 	ghost = new Sprite(250, 80, 120);
 
-	ghost.addAni('fly', 'assets/ghost_walk01.png', 3);
-	ghost.addAni('idle', 'assets/ghost_standing01.png', 7);
+	ghost.addAni('fly', 'assets/ghost_walk01.webp', 3);
+	ghost.addAni('idle', 'assets/ghost_standing01.webp', 7);
 }
 
 function draw() {
@@ -231,7 +234,7 @@ function setup() {
 	new Canvas(500, 160);
 
 	splats = new Group();
-	splats.addAni('assets/asterisk_explode0001.png', 11);
+	splats.addAni('assets/asterisk_explode0001.webp', 11);
 }
 
 function draw() {
@@ -248,7 +251,8 @@ function draw() {
 				<md id="md4-0">
 					<h2 id="sprite-sheets-with-multiple-animations">Sprite Sheets with Multiple Animations</h2>
 					<p>To load multiple animations from the same sprite sheet image, first set the
-						<code>spriteSheet</code> property of the sprite or group.</p>
+						<code>spriteSheet</code> property of the sprite or group.
+					</p>
 					<p>Next, use the <code>addAnimations</code> / <code>addAnis</code> function. They accept an object
 						that uses animation names as keys and sprite sheet atlases as values.</p>
 					<p>Using an atlas object is way easier than manually specifying the coordinates of every frame!</p>
@@ -256,12 +260,14 @@ function draw() {
 					<p><code>x</code>, <code>y</code>, <code>pos</code>, <code>w</code>/<code>width</code>,
 						<code>h</code>/<code>height</code>, <code>size</code>/<code>frameSize</code>, <code>row</code>,
 						<code>col</code>, <code>frames</code>/<code>frameCount</code>,
-						<code>delay</code>/<code>frameDelay</code>, and <code>rotation</code>.</p>
+						<code>delay</code>/<code>frameDelay</code>, and <code>rotation</code>.
+					</p>
 					<p>In the "hero" example the size of the hero sprite is set to 32x32 pixels in the
-						<code>Sprite</code> constructor. That size is used as a multiplier to the row value given.</p>
+						<code>Sprite</code> constructor. That size is used as a multiplier to the row value given.
+					</p>
 					<p>The <code>ani.offset</code> property is used to adjust the position of an animation relative to
 						the sprite's position.</p>
-					<p>Click this link to see the full <a href="/learn/assets/questKid.png" target="_blank">questKid</a>
+					<p>Click this link to see the full <a href="/learn/assets/questKid.webp" target="_blank">questKid</a>
 						sprite sheet used in the example.</p>
 					<p>If you'd like to truly appreciate p5play, compare the example code to <a
 							href="https://labs.phaser.io/view.html?src=src/animation/create%20animation%20from%20sprite%20sheet.js"
@@ -286,7 +292,7 @@ let hero;
 
 function preload() {
 	hero = new Sprite(125, 48, 32, 32);
-	hero.spriteSheet = 'assets/questKid.png';
+	hero.spriteSheet = 'assets/questKid.webp';
 	hero.anis.offset.x = 2;
 	hero.anis.frameDelay = 32;
 	hero.anis.demoMode = true;
@@ -304,7 +310,8 @@ function preload() {
 }
 
 function setup() {
-	new Canvas(250, 96, 'pixelated x2');
+	new Canvas(250, 96);
+	displayMode('default', 'pixelated', 2)
 	allSprites.pixelPerfect = true;
 }
 
@@ -323,7 +330,7 @@ let hero;
 
 function preload() {
 	hero = new Sprite(62, 24, 32, 32);
-	hero.spriteSheet = 'assets/questKid.png';
+	hero.spriteSheet = 'assets/questKid.webp';
 	hero.anis.offset.x = 2;
 	hero.anis.frameDelay = 8;
 	hero.friction = 0;
@@ -339,7 +346,8 @@ function preload() {
 }
 
 function setup() {
-	new Canvas(124, 48, 'pixelated x4');
+	new Canvas(124, 48);
+	displayMode('normal', 'pixelated', 4);
 	allSprites.pixelPerfect = true;
 }
 
@@ -370,7 +378,7 @@ let hero, floor;
 
 function preload() {
 	hero = new Sprite(62, 24, 32, 32);
-	hero.spriteSheet = 'assets/questKid.png';
+	hero.spriteSheet = 'assets/questKid.webp';
 	hero.anis.offset.x = 2;
 	hero.anis.offset.y = 2;
 	hero.anis.frameDelay = 8;
@@ -450,7 +458,7 @@ async function practice() {
 
 function preload() {
 	hero = new Sprite(90, 24, 32, 32);
-	hero.spriteSheet = 'assets/questKid.png';
+	hero.spriteSheet = 'assets/questKid.webp';
 	hero.anis.offset.x = 2;
 	hero.anis.offset.y = 2;
 	hero.anis.frameDelay = 8;
@@ -505,15 +513,15 @@ function draw() {
 	</article>
 
 	<script src="/v3/q5.min.js"></script>
-<script src="/v3/planck.min.js"></script>
-<script src="/v3/p5play.min.js"></script>
-<script>
-window.mie = { autoLoad: false };
+	<script src="/v3/planck.min.js"></script>
+	<script src="/v3/p5play.min.js"></script>
+	<script>
+		window.mie = { autoLoad: false };
 
 	</script>
 	<script src="/learn/mie.js"></script>
-<script src="/learn/learn.js"></script>
-<script src="/account/account.js"></script>
+	<script src="/learn/learn.js"></script>
+	<script src="/account/account.js"></script>
 </body>
 
 </html>

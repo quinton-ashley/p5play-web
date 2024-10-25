@@ -57,7 +57,6 @@ body.dark {
 
 	body.dark {
 		--pink0: oklch(0.657 0.294 16.698);
-		--pink1: oklch(0.657 0.294 16);
 		--pink1: oklch(0.6 0.28 16);
 		--pink2: oklch(0.11 0.28 16);
 

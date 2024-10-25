@@ -1,6 +1,6 @@
 # 0-0
 
-[**_Learn p5play: An Introduction to Object Oriented Programming_**](.) was written by Quinton Ashley, the creator of p5play v3. It's packed with beginner friendly reference documentation and interactive code examples.
+[**_Learn p5play: An Introduction to Object Oriented Programming_**](.) was written by Quinton Ashley, the creator of p5play v3. It's packed with beginner friendly reference documentation and interactive code examples!
 
 # 0-1
 

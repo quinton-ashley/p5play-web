@@ -1,6 +1,6 @@
 # 0-0
 
-## Setup
+## Setup and Draw
 
 The code inside the [q5.js](https://q5js.org) (or [p5.js](https://p5js.org)) `setup` function runs when the program starts. The `new Canvas()` constructor creates a section of the screen that the program can draw on.
 
