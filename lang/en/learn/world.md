@@ -38,7 +38,7 @@ Set `p5play.renderStats` to true to display the number of sprites drawn, display
 
 FPS in this context refers to how many frames per second your computer can generate, not including the delay between when frames are actually shown on the screen. The higher the FPS, the better your game is performing.
 
-Having less sprites and using a smaller canvas will make your game perform better. For better performance, don't use the p5.js `clear` function or sample the colors of pixels in your canvas using `canvas.get`.
+Having less sprites and using a smaller canvas will make your game perform better. For better performance, don't use the q5.js `clear` function or sample the colors of pixels in your canvas using `canvas.get`.
 
 By default the Box2D physics engine performs 8 velocity iterations `world.velocityIterations` and 3 position iterations `world.positionIterations`. Decreasing these values will make the simulation faster but also less accurate.
 

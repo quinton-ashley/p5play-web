@@ -37,11 +37,12 @@
 				<h2 id="how-to-load-animations">How to load animations</h2>
 				<p>An animation is a series of images that are displayed one after the other at a fast enough rate to
 					give the appearance of motion.</p>
-				<p>The <code>loadAni</code> function has three different modes: sequence, list, and sprite sheet.</p>
+				<p>The <code>loadAni</code>/<code>loadAnimation</code> function has three different modes: sequence,
+					list, and sprite sheet.</p>
 				<p>In this code example, the cloud breathing animation is loaded using a numbered sequence of images
 					given the path to the first image and the index of the last image in the sequence.</p>
-				<p>The <code>animation</code> function is similar to the p5.js <code>image</code> function. Use it in
-					the p5.js draw function to display an animation at a position.</p>
+				<p>The <code>animation</code> function is similar to the q5.js <code>image</code> function. Use it
+					inside the draw loop to display an animation at a position.</p>
 			</md>
 			<script type="mie/p5" id="sequence-mode">
 let cloudAni;
@@ -49,6 +50,7 @@ let cloudAni;
 function setup() {
 	new Canvas(500, 160);
 
+	//         loadAni(firstFile,         lastFrameIndex)
 	cloudAni = loadAni('assets/cloud_breathing1.webp', 9);
 }
 
@@ -58,11 +60,11 @@ function draw() {
 }
 			</script>
 			<md id="md0-1">
-				<p>In this code example the <code>loadAnimation</code> function is given a list of images.</p>
+				<p>The <code>loadAni</code> function can also be provided a list of images.</p>
 				<p>The <code>ani.frameDelay</code> property defines how many frames an image in the animation is
 					displayed before the next image is displayed. The default is 4. Higher values make the animation
 					play slower. A frame delay of 1 would make the animation play as fast as possible.</p>
-				<p>Try it! Try changing the frameDelay in this mini-example.</p>
+				<p>Try changing the frame delay in this code example!</p>
 			</md>
 			<script type="mie/p5" id="list-mode">
 let shapeShifterAni;
@@ -70,17 +72,16 @@ let shapeShifterAni;
 function setup() {
 	new Canvas(500, 160);
 
-	shapeShifterAni = loadAnimation(
+	//                loadAni(...files)
+	shapeShifterAni = loadAni(
 		'assets/asterisk.webp',
-		'assets/triangle.webp',
-		'assets/square.webp',
-		'assets/cloud.webp',
-		'assets/star.webp',
 		'assets/mess.webp',
-		'assets/monster.webp'
+		'assets/cloud.webp',
+		'assets/triangle.webp',
+		'assets/star.webp'
 	);
 
-	shapeShifterAni.frameDelay = 10;
+	shapeShifterAni.frameDelay = 20;
 }
 
 function draw() {
@@ -89,31 +90,82 @@ function draw() {
 }
 			</script>
 			<md id="md0-2">
-				<p>This code example loads an animation from a sprite sheet, which is a single image that contains all
-					the frames of an animation. Take a look at the sprite sheet in this sketch which is displayed just
-					so you can see what one looks like.</p>
-				<p>In sprite sheet mode, an atlas object can be used to specify the size of each frame and how many
-					frames of animation there are.</p>
-				<p>If you really need to use an animation when your program starts, you should load it in the p5.js
-					preload function instead of setup.</p>
+				<p>A sprite sheet is a single image that contains all the frames of an animation.
+					<code>ani.spriteSheet</code> is displayed in the sketch so you can see what one looks like.</p>
+				<p>In sprite sheet mode, <code>loadAni</code> accepts an "atlas" <a
+						href="https://p5js.org/reference/p5/Object" target="_blank">JS object</a> that specifies the
+					size of each frame and how many frames of animation there are.</p>
+				<p>This easy way to load animations requires that every frame in your sprite sheet is the same size,
+					grid aligned, and in order from left to right, top to bottom.</p>
 			</md>
-			<script type="mie/p5" id="sprite-sheet-mode">
+			<script type="mie/p5" id="sprite-sheet-mode-with-an-atlas">
 let splatAni;
 
 function setup() {
 	new Canvas(500, 200);
 
-	splatAni = loadAnimation('assets/explode_sprite_sheet.webp', { frameSize: [342, 316], frames: 11 });
+	//         loadAni(spriteSheet, atlas)
+	splatAni = loadAni('assets/explode.webp', {
+		width: 342, height: 316, frames: 11
+	});
 }
 
 function draw() {
 	clear();
 	animation(splatAni, 100, 100);
 
-	scale(0.6);
-	image(splatAni.spriteSheet, 320, 80, 500, 154);
+	image(splatAni.spriteSheet, 200, 50, 300, 92);
 }
-//
+			</script>
+			<md id="md0-3">
+				<p>If you want an animation to only uses specific frames from the sprite sheet, set the "frames"
+					property of the atlas object to an array of frame indexes.</p>
+			</md>
+			<script type="mie/p5" id="sprite-sheet-mode-with-an-atlas-2" lines="9">
+let wobbleAni;
+
+function setup() {
+	new Canvas(500, 200);
+
+	wobbleAni = loadAni('assets/explode_labeled.webp', {
+		width: 342, height: 316, frames: [0, 1, 9, 10]
+	});
+}
+
+function draw() {
+	clear();
+	animation(wobbleAni, 100, 100);
+
+	image(wobbleAni.spriteSheet, 200, 50, 300, 92);
+}
+			</script>
+			<md id="md0-4">
+				<p>Another way to use <code>loadAni</code> in sprite sheet mode, is to provide an array of frame
+					locators, arrays that specify the position and size of a frame.</p>
+				<p>When creating sprite sheets consider the tradeoff between the image space efficiency gained by
+					tightly packing irregular sized frames together, versus the ease of loading a grid aligned sprite
+					sheet.</p>
+				<p>Note that the animations in these examples are being lazy loaded in setup. If you really need to use
+					an animation when your program starts, load it in the q5.js preload function instead.</p>
+			</md>
+			<script type="mie/p5" id="sprite-sheet-mode-with-frame-locators" lines="10">
+let splatAni;
+
+function setup() {
+	new Canvas(500, 200);
+
+	splatAni = loadAni('assets/explode.webp', [
+	//[  x,   y,   w,  h]
+		[796, 138, 110, 72]
+	]);
+}
+
+function draw() {
+	clear();
+	animation(splatAni, 100, 100);
+
+	image(splatAni.spriteSheet, 200, 50, 300, 92);
+}
 			</script>
 		</div>
 		<div id="page-1" class="page">
@@ -211,7 +263,7 @@ function draw() {
 	}
 
 	if (kb.pressing('space')) {
-		ghost.ani.stop();
+		ghost.ani.pause();
 	} else {
 		ghost.ani.play();
 	}
@@ -252,26 +304,15 @@ function draw() {
 					<h2 id="sprite-sheets-with-multiple-animations">Sprite Sheets with Multiple Animations</h2>
 					<p>To load multiple animations from the same sprite sheet image, first set the
 						<code>spriteSheet</code> property of the sprite or group.</p>
-					<p>Next, use the <code>addAnimations</code> / <code>addAnis</code> function. They accept an object
-						that uses animation names as keys and sprite sheet atlases as values.</p>
-					<p>Using an atlas object is way easier than manually specifying the coordinates of every frame!</p>
-					<p>Atlas objects can have the following properties:</p>
-					<p><code>x</code>, <code>y</code>, <code>pos</code>, <code>w</code>/<code>width</code>,
-						<code>h</code>/<code>height</code>, <code>size</code>/<code>frameSize</code>, <code>row</code>,
-						<code>col</code>, <code>frames</code>/<code>frameCount</code>,
-						<code>delay</code>/<code>frameDelay</code>, and <code>rotation</code>.</p>
+					<p>Next, use the <code>addAnimations</code> / <code>addAnis</code> function, which accepts an object
+						that uses animation names as keys and atlas objects as values.</p>
 					<p>In the "hero" example the size of the hero sprite is set to 32x32 pixels in the
-						<code>Sprite</code> constructor. That size is used as a multiplier to the row value given.</p>
+						<code>Sprite</code> constructor. The sprite's size is used as a multiplier to row and col
+						(column) values.</p>
 					<p>The <code>ani.offset</code> property is used to adjust the position of an animation relative to
 						the sprite's position.</p>
-					<p>Click this link to see the full <a href="/learn/assets/questKid.png" target="_blank">questKid</a>
-						sprite sheet used in the example.</p>
-					<p>If you'd like to truly appreciate p5play, compare the example code to <a
-							href="https://labs.phaser.io/view.html?src=src/animation/create%20animation%20from%20sprite%20sheet.js"
-							target="_blank">this Phaser demo</a>. Ha!</p>
-					<p>I recommend making every frame in an animation the same size and putting them in order from left
-						to right. If not you'll need to manually specify the position of each frame, which can be done
-						using an array of coordinates instead of an atlas object.</p>
+					<p>Click this link to see the full <a href="/learn/assets/questKid.webp"
+							target="_blank">questKid</a> sprite sheet used in the example.</p>
 				</md>
 				<md id="md4-1">
 					<h2 id="anis">anis</h2>
@@ -364,7 +405,7 @@ function draw() {
 				<p>By default if looping is enabled, the last animation in the sequence will be looped. To loop the
 					entire sequence, use <code>'**'</code> as the last animation name. If instead you want the sequence
 					to stop at the end, use <code>';;'</code> as the last animation name.</p>
-				<p>This example shows how the hero character can be moved around the screen using WASD or the arrow
+				<p>This code example shows how the hero character can be moved around the screen using WASD or the arrow
 					keys!</p>
 			</md>
 			<script type="mie/p5" base-0="" hide="">
@@ -395,7 +436,7 @@ function setup() {
 	world.gravity.y = 10;
 	allSprites.pixelPerfect = true;
 
-	floor = new Sprite(62.5, 48, 125, 8, 's');
+	floor = new Sprite(62.5, 48, 200, 8, 's');
 	floor.color = color(133, 228, 62);
 }
 
@@ -430,7 +471,7 @@ if (hero.ani.name != 'jump' && hero.ani.name != 'roll') {
 				<p><code>sprite.changeAni</code> is an async function, you can use it to wait for animations to finish
 					playing. It's particularly useful for scripted animation sequences for <a
 						href="https://en.wikipedia.org/wiki/Non-player_character" target="_blank">NPCs</a>.</p>
-				<p>In this example, the hero character is practicing their sword wielding skills.</p>
+				<p>In this code example, the hero character is practicing their sword wielding skills.</p>
 			</md>
 			<script type="mie/p5" id="advanced-sequencing" lines="18">
 let hero, floor;
@@ -479,7 +520,7 @@ function setup() {
 	world.gravity.y = 10;
 	allSprites.pixelPerfect = true;
 
-	floor = new Sprite(62.5, 48, 125, 8, 's');
+	floor = new Sprite(62.5, 48, 200, 8, 's');
 	floor.color = color(133, 228, 62);
 
 	practice();

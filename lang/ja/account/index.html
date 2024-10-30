@@ -60,6 +60,9 @@
 					<h2 id="-アカウント"><span id="account-type"></span> アカウント</h2>
 					<p>ようこそ <span id="username"></span>さん！</p>
 				</md>
+				<div class="login">
+					<a id="logout" class="heroBtns" href=".">Log Out</a>
+				</div>
 			</div>
 			<md id="md1-0">
 				<h2 id="無料利用">無料利用</h2>
@@ -101,6 +104,12 @@
 }
 
 	</style>
+	<script>
+logout.addEventListener('click', () => {
+	localStorage.p5playAccount = null;
+});
+
+	</script>
 
 </body>
 

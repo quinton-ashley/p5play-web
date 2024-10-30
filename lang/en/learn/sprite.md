@@ -97,7 +97,7 @@ Try making your own pixel art! Take a look at the alphabet below to see what col
 
 You can also make pixel art that uses custom colors by creating a color palette and passing it as the third parameter to the `spriteArt` function.
 
-Color palettes in p5play must be provided in [JavaScript Object](https://p5js.org/reference/p5/object) format. A simple JS object is like a dictionary. You can define a color for each letter you use in your pixel art. To create a color use the q5 [`color`](https://p5js.org/reference/p5/color) function which accepts RGB (red, green, blue) values or HEX color codes.
+Color palettes in p5play must be provided in [JavaScript Object literal](https://p5js.org/reference/p5/Object) format. A simple JS object is like a dictionary. You can define a color for each letter you use in your pixel art. To create a color use the q5 [`color`](https://p5js.org/reference/p5/color) function which accepts RGB (red, green, blue) values or HEX color codes.
 
 The easiest way to find colors is to use a [color picker](https://www.google.com/search?q=google+color+picker).
 
@@ -113,7 +113,7 @@ Try clicking around this code example.
 
 If you want a sprite to physically interact with other sprites while it's moving, don't teleport it!
 
-This bad example shows what happens if a sprite is teleported every time the p5.js draw function renders a frame.
+This bad example shows what happens if a sprite is teleported every time the q5.js draw function renders a frame.
 
 # 3-2
 

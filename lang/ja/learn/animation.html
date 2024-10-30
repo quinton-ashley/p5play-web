@@ -53,6 +53,7 @@ let cloudAni;
 function setup() {
 	new Canvas(500, 160);
 
+	//         loadAni(firstFile,         lastFrameIndex)
 	cloudAni = loadAni('/learn/assets/cloud_breathing1.webp', 9);
 }
 
@@ -74,17 +75,16 @@ let shapeShifterAni;
 function setup() {
 	new Canvas(500, 160);
 
-	shapeShifterAni = loadAnimation(
+	//                loadAni(...files)
+	shapeShifterAni = loadAni(
 		'/learn/assets/asterisk.webp',
-		'/learn/assets/triangle.webp',
-		'/learn/assets/square.webp',
-		'/learn/assets/cloud.webp',
-		'/learn/assets/star.webp',
 		'/learn/assets/mess.webp',
-		'/learn/assets/monster.webp'
+		'/learn/assets/cloud.webp',
+		'/learn/assets/triangle.webp',
+		'/learn/assets/star.webp'
 	);
 
-	shapeShifterAni.frameDelay = 10;
+	shapeShifterAni.frameDelay = 20;
 }
 
 function draw() {
@@ -93,28 +93,76 @@ function draw() {
 }
 			</script>
 			<md id="md0-2">
-				<p>このコードサンプルでは、「スプライトシート」からアニメーションをロードしています。スプライトシートとは、 1
-					つのファイル内にすべてのアニメーションフレームが描かれた画像のことです。スプライトシートとはどういうものなのかがわかるよう、このスケッチに表示していますので、参考までにご覧ください。</p>
-				<p>スプライトシートモードでは、アトラス（特定のフレームが画像中のどこにあるのかを定義するデータ構造）オブジェクトを使用して、各フレームのサイズとアニメーションのフレーム数を指定できます。</p>
-				<p>プログラムの起動「直後」からアニメーションを使用する必要がある場合は、 setup 関数内ではなく、代わりに p5.js の preload 関数内で、ロードを行なってください。</p>
+				<p>スプライトシートは、アニメーションのすべてのフレームを含む単一の画像です。<code>ani.spriteSheet</code> がスケッチに表示されているので、その見た目を確認できます。</p>
+				<p>スプライトシートモードでは、<code>loadAni</code> は各フレームのサイズとアニメーションのフレーム数を指定する「アトラス」<a
+						href="https://p5js.org/reference/p5/Object" target="_blank">JS オブジェクト</a>を受け取ります。</p>
+				<p>この簡単なアニメーションの読み込み方法では、スプライトシート内のすべてのフレームが同じサイズで、グリッドに揃えられ、左から右、上から下の順序である必要があります。</p>
 			</md>
-			<script type="mie/p5" id="sprite-sheet-mode">
+			<script type="mie/p5" id="sprite-sheet-mode-with-an-atlas">
 let splatAni;
 
 function setup() {
 	new Canvas(500, 200);
 
-	splatAni = loadAnimation('/learn/assets/explode_sprite_sheet.webp', { frameSize: [342, 316], frames: 11 });
+	//         loadAni(spriteSheet, atlas)
+	splatAni = loadAni('/learn/assets/explode.webp', {
+		width: 342, height: 316, frames: 11
+	});
 }
 
 function draw() {
 	clear();
 	animation(splatAni, 100, 100);
 
-	scale(0.6);
-	image(splatAni.spriteSheet, 320, 80, 500, 154);
+	image(splatAni.spriteSheet, 200, 50, 300, 92);
 }
-//
+			</script>
+			<md id="md0-3">
+				<p>スプライトシートから特定のフレームのみを使用するアニメーションを作成したい場合は、アトラスオブジェクトの <code>"frames"</code> プロパティをフレームインデックスの配列に設定します。
+				</p>
+			</md>
+			<script type="mie/p5" id="sprite-sheet-mode-with-an-atlas-2" lines="9">
+let wobbleAni;
+
+function setup() {
+	new Canvas(500, 200);
+
+	wobbleAni = loadAni('/learn/assets/explode_labeled.webp', {
+		width: 342, height: 316, frames: [0, 1, 9, 10]
+	});
+}
+
+function draw() {
+	clear();
+	animation(wobbleAni, 100, 100);
+
+	image(wobbleAni.spriteSheet, 200, 50, 300, 92);
+}
+			</script>
+			<md id="md0-4">
+				<p>スプライトシートモードで <code>loadAni</code> を使用する別の方法は、フレームの位置とサイズを指定するフレームロケータの配列を提供することです。</p>
+				<p>スプライトシートを作成する際、不規則なサイズのフレームを密に詰めて画像空間の効率を高めることと、グリッドに揃えられたスプライトシートを読み込む容易さとのトレードオフを考慮してください。</p>
+				<p>これらの例のアニメーションは <code>setup</code> で遅延読み込みされていることに注意してください。プログラム開始時にアニメーションを使用する必要がある場合は、q5.js の
+					<code>preload</code> 関数で読み込んでください。</p>
+			</md>
+			<script type="mie/p5" id="sprite-sheet-mode-with-frame-locators" lines="10">
+let splatAni;
+
+function setup() {
+	new Canvas(500, 200);
+
+	splatAni = loadAni('/learn/assets/explode.webp', [
+	//[  x,   y,   w,  h]
+		[796, 138, 110, 72]
+	]);
+}
+
+function draw() {
+	clear();
+	animation(splatAni, 100, 100);
+
+	image(splatAni.spriteSheet, 200, 50, 300, 92);
+}
 			</script>
 		</div>
 		<div id="page-1" class="page">
@@ -211,7 +259,7 @@ function draw() {
 	}
 
 	if (kb.pressing('space')) {
-		ghost.ani.stop();
+		ghost.ani.pause();
 	} else {
 		ghost.ani.play();
 	}
@@ -387,7 +435,7 @@ function setup() {
 	world.gravity.y = 10;
 	allSprites.pixelPerfect = true;
 
-	floor = new Sprite(62.5, 48, 125, 8, 's');
+	floor = new Sprite(62.5, 48, 200, 8, 's');
 	floor.color = color(133, 228, 62);
 }
 
@@ -471,7 +519,7 @@ function setup() {
 	world.gravity.y = 10;
 	allSprites.pixelPerfect = true;
 
-	floor = new Sprite(62.5, 48, 125, 8, 's');
+	floor = new Sprite(62.5, 48, 200, 8, 's');
 	floor.color = color(133, 228, 62);
 
 	practice();

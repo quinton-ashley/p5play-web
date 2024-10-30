@@ -20,7 +20,7 @@ In this example the camera follows the player's x axis movement.
 
 ## Camera On & Off
 
-By default, `allSprites.draw()` is called at the end of the p5.js draw loop, where the camera is automatically turned on. However, if you want to control when sprites and groups are drawn, you can draw them separately.
+By default, `allSprites.draw()` is called at the end of the q5.js draw loop, where the camera is automatically turned on. However, if you want to control when sprites and groups are drawn, you can draw them separately.
 
 The player and environment of your game should be drawn after the camera is turned on with `camera.on()`.
 

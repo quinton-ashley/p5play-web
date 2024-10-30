@@ -9,24 +9,24 @@ global.planck = require('../v3/planck.min.js');
 require('../v3/p5play.js');
 
 // path to my VSCode Live Server
-// let host = 'http://127.0.0.1:5501';
+// let host = 'http://127.0.0.1:5502';
 
 // alternatively images can be loaded from p5play.org
 let host = 'https://p5play.org';
 
-test('SpriteAnimation : properties', () => {
+test('Ani : properties', () => {
 	const sketch = (p) => {
 		p.setup = () => {
 			new p.Canvas(400, 400);
 			p.noLoop();
 
-			expect(p.SpriteAnimation).toBeInstanceOf(Function);
+			expect(p.Ani).toBeInstanceOf(Function);
 
 			// test basic usage with list mode
 			let images0 = [p.spriteArt('bww'), p.spriteArt('wbw'), p.spriteArt('wwb')];
-			let ani0 = new p.SpriteAnimation(...images0);
+			let ani0 = new p.Ani(...images0);
 
-			expect(ani0).toBeInstanceOf(p.SpriteAnimation);
+			expect(ani0).toBeInstanceOf(p.Ani);
 
 			expect(ani0.length).toBe(3);
 			expect(ani0.name).toBe('default');
@@ -48,22 +48,22 @@ test('SpriteAnimation : properties', () => {
 			expect(ani0.frame).toBe(1);
 
 			const images1 = [p.createImage(32, 32)];
-			const ani1 = new p.SpriteAnimation('custom', ...images1);
+			const ani1 = new p.Ani('custom', ...images1);
 
-			expect(ani1).toBeInstanceOf(p.SpriteAnimation);
+			expect(ani1).toBeInstanceOf(p.Ani);
 			expect(ani1.name).toBe('custom');
 
 			// test that sprite s0 is the parent of ani2
 			const s0 = new p.Sprite();
 			const images2 = [p.createImage(32, 32), p.createImage(32, 32)];
-			const ani2 = new p.SpriteAnimation(s0, ...images2);
+			const ani2 = new p.Ani(s0, ...images2);
 
 			expect(s0.ani.length).toBe(ani2.length);
 
 			// test that group g0 is the parent of ani3
 			const g0 = new p.Group();
 			const images3 = [p.createImage(32, 32), p.createImage(32, 32), p.createImage(32, 32)];
-			const ani3 = new p.SpriteAnimation(g0, ...images3);
+			const ani3 = new p.Ani(g0, ...images3);
 
 			expect(g0.ani.length).toBe(ani3.length);
 		};
@@ -71,16 +71,12 @@ test('SpriteAnimation : properties', () => {
 	new p5(sketch);
 });
 
-test('SpriteAnimation : List mode', () => {
+test('Ani : List mode', () => {
 	return new Promise((resolve) => {
 		const sketch = (p) => {
 			let ani0;
 			p.preload = () => {
-				ani0 = new p.SpriteAnimation(
-					host + '/learn/assets/asterisk.webp',
-					host + '/learn/assets/triangle.webp',
-					host + '/learn/assets/square.webp'
-				);
+				ani0 = new p.Ani(host + '/tests/assets/asterisk.png', host + '/tests/assets/square.png');
 			};
 			p.setup = () => {
 				new p.Canvas(400, 400);
@@ -95,12 +91,12 @@ test('SpriteAnimation : List mode', () => {
 	});
 });
 
-test('SpriteAnimation : Sequence mode', () => {
+test('Ani : Sequence mode', () => {
 	return new Promise((resolve) => {
 		const sketch = (p) => {
 			let ani0;
 			p.preload = () => {
-				ani0 = new p.SpriteAnimation(host + '/learn/assets/cloud_breathing1.webp', 9);
+				ani0 = new p.Ani(host + '/tests/assets/cloud_breathing1.png', 3);
 			};
 			p.setup = () => {
 				new p.Canvas(400, 400);
@@ -115,12 +111,12 @@ test('SpriteAnimation : Sequence mode', () => {
 	});
 });
 
-test('SpriteAnimation : SpriteSheet mode', () => {
+test('Ani : SpriteSheet mode', () => {
 	return new Promise((resolve) => {
 		const sketch = (p) => {
 			let spriteSheet0;
 			p.preload = () => {
-				spriteSheet0 = p.loadImage(host + '/learn/assets/questKid.webp');
+				spriteSheet0 = p.loadImage(host + '/tests/assets/questKid.png');
 			};
 			p.setup = () => {
 				new p.Canvas(400, 400);
@@ -128,7 +124,7 @@ test('SpriteAnimation : SpriteSheet mode', () => {
 
 				let s = new p.Sprite(200, 200, 32, 32);
 
-				const spriteAnimation = new p.SpriteAnimation(s, spriteSheet0, { row: 0, frames: 8 });
+				const spriteAnimation = new p.Ani(s, spriteSheet0, { row: 0, frames: 8 });
 				expect(spriteAnimation.length).toBe(8);
 
 				resolve();
@@ -138,13 +134,13 @@ test('SpriteAnimation : SpriteSheet mode', () => {
 	});
 });
 
-test('SpriteAnimations', () => {
+test('Anis', () => {
 	const sketch = (p) => {
 		p.setup = () => {
 			new p.Canvas(400, 400);
 			p.noLoop();
 
-			const group = new p.SpriteAnimation();
+			const group = new p.Ani();
 
 			// test setting and getting a custom property
 			group.duration = 100;
@@ -154,8 +150,8 @@ test('SpriteAnimations', () => {
 			group.offset.x = 50;
 			expect(group.offset.x).toBe(50);
 
-			const sprite1 = new p.SpriteAnimation();
-			const sprite2 = new p.SpriteAnimation();
+			const sprite1 = new p.Ani();
+			const sprite2 = new p.Ani();
 			group.sprite1 = sprite1;
 			group.sprite2 = sprite2;
 

@@ -57,6 +57,9 @@
 					<h2 id="cuenta-">Cuenta <span id="account-type"></span></h2>
 					<p>¡Bienvenido <span id="username"></span>!</p>
 				</md>
+				<div class="login">
+					<a id="logout" class="heroBtns" href=".">Log Out</a>
+				</div>
 			</div>
 			<md id="md1-0">
 				<h2 id="limitaciones-del-uso-gratuito">Limitaciones del Uso Gratuito</h2>
@@ -100,6 +103,12 @@
 }
 
 	</style>
+	<script>
+logout.addEventListener('click', () => {
+	localStorage.p5playAccount = null;
+});
+
+	</script>
 
 </body>
 

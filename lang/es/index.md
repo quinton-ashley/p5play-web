@@ -4,7 +4,7 @@
 
 ### motor de juego en JS
 
-### [p5.js](http://p5js.org/) para gráficos
+### [q5.js](http://q5js.org/) para gráficos
 
 ### ¡es fácil de aprender!
 

@@ -49,6 +49,7 @@ let cloudAni;
 function setup() {
 	new Canvas(500, 160);
 
+	//         loadAni(firstFile,         lastFrameIndex)
 	cloudAni = loadAni('/learn/assets/cloud_breathing1.webp', 9);
 }
 
@@ -71,17 +72,16 @@ let shapeShifterAni;
 function setup() {
 	new Canvas(500, 160);
 
-	shapeShifterAni = loadAnimation(
+	//                loadAni(...files)
+	shapeShifterAni = loadAni(
 		'/learn/assets/asterisk.webp',
-		'/learn/assets/triangle.webp',
-		'/learn/assets/square.webp',
-		'/learn/assets/cloud.webp',
-		'/learn/assets/star.webp',
 		'/learn/assets/mess.webp',
-		'/learn/assets/monster.webp'
+		'/learn/assets/cloud.webp',
+		'/learn/assets/triangle.webp',
+		'/learn/assets/star.webp'
 	);
 
-	shapeShifterAni.frameDelay = 10;
+	shapeShifterAni.frameDelay = 20;
 }
 
 function draw() {
@@ -90,31 +90,84 @@ function draw() {
 }
 			</script>
 			<md id="md0-2">
-				<p>Este mini ejemplo carga una animación desde una hoja de sprites, que es una sola imagen que contiene
-					todos los frames de una animación. Echa un vistazo a la hoja de sprites en este sketch que se
-					muestra sólo para que puedas ver cómo es una.</p>
-				<p>En el modo de hoja de sprites, se puede utilizar un objeto atlas para especificar el tamaño de cada
-					frame y cuántos frames de animación hay.</p>
-				<p>Si realmente necesitas usar una animación cuando tu programa comienza, deberías cargarla en la
-					función preload de p5.js en lugar de en setup.</p>
+				<p>Una hoja de sprites es una sola imagen que contiene todos los fotogramas de una animación.
+					<code>ani.spriteSheet</code> se muestra en el boceto para que puedas ver cómo es.</p>
+				<p>En el modo de hoja de sprites, <code>loadAni</code> acepta un "atlas" <a
+						href="https://p5js.org/reference/p5/Object" target="_blank">objeto JS</a> que especifica el
+					tamaño de cada fotograma y cuántos fotogramas de animación hay.</p>
+				<p>Esta forma sencilla de cargar animaciones requiere que cada fotograma en tu hoja de sprites sea del
+					mismo tamaño, esté alineado en una cuadrícula y en orden de izquierda a derecha, de arriba a abajo.
+				</p>
 			</md>
-			<script type="mie/p5" id="sprite-sheet-mode">
+			<script type="mie/p5" id="sprite-sheet-mode-with-an-atlas">
 let splatAni;
 
 function setup() {
 	new Canvas(500, 200);
 
-	splatAni = loadAnimation('/learn/assets/explode_sprite_sheet.webp', { frameSize: [342, 316], frames: 11 });
+	//         loadAni(spriteSheet, atlas)
+	splatAni = loadAni('/learn/assets/explode.webp', {
+		width: 342, height: 316, frames: 11
+	});
 }
 
 function draw() {
 	clear();
 	animation(splatAni, 100, 100);
 
-	scale(0.6);
-	image(splatAni.spriteSheet, 320, 80, 500, 154);
+	image(splatAni.spriteSheet, 200, 50, 300, 92);
 }
-//
+			</script>
+			<md id="md0-3">
+				<p>Si deseas que una animación solo use fotogramas específicos de la hoja de sprites, establece la
+					propiedad "frames" del objeto atlas a un arreglo de índices de fotogramas.</p>
+			</md>
+			<script type="mie/p5" id="sprite-sheet-mode-with-an-atlas-2" lines="9">
+let wobbleAni;
+
+function setup() {
+	new Canvas(500, 200);
+
+	wobbleAni = loadAni('/learn/assets/explode_labeled.webp', {
+		width: 342, height: 316, frames: [0, 1, 9, 10]
+	});
+}
+
+function draw() {
+	clear();
+	animation(wobbleAni, 100, 100);
+
+	image(wobbleAni.spriteSheet, 200, 50, 300, 92);
+}
+			</script>
+			<md id="md0-4">
+				<p>Otra forma de usar <code>loadAni</code> en modo de hoja de sprites es proporcionar un arreglo de
+					localizadores de fotogramas, arreglos que especifican la posición y tamaño de un fotograma.</p>
+				<p>Al crear hojas de sprites, considera la compensación entre la eficiencia del espacio de imagen
+					obtenida al empaquetar estrechamente fotogramas de tamaños irregulares, versus la facilidad de
+					cargar una hoja de sprites alineada en cuadrícula.</p>
+				<p>Ten en cuenta que las animaciones en estos ejemplos se están cargando de forma diferida en
+					<code>setup</code>. Si realmente necesitas usar una animación cuando tu programa comienza, cárgala
+					en la función <code>preload</code> de q5.js en su lugar.</p>
+			</md>
+			<script type="mie/p5" id="sprite-sheet-mode-with-frame-locators" lines="10">
+let splatAni;
+
+function setup() {
+	new Canvas(500, 200);
+
+	splatAni = loadAni('/learn/assets/explode.webp', [
+	//[  x,   y,   w,  h]
+		[796, 138, 110, 72]
+	]);
+}
+
+function draw() {
+	clear();
+	animation(splatAni, 100, 100);
+
+	image(splatAni.spriteSheet, 200, 50, 300, 92);
+}
 			</script>
 		</div>
 		<div id="page-1" class="page">
@@ -211,7 +264,7 @@ function draw() {
 	}
 
 	if (kb.pressing('space')) {
-		ghost.ani.stop();
+		ghost.ani.pause();
 	} else {
 		ghost.ani.play();
 	}
@@ -401,7 +454,7 @@ function setup() {
 	world.gravity.y = 10;
 	allSprites.pixelPerfect = true;
 
-	floor = new Sprite(62.5, 48, 125, 8, 's');
+	floor = new Sprite(62.5, 48, 200, 8, 's');
 	floor.color = color(133, 228, 62);
 }
 
@@ -486,7 +539,7 @@ function setup() {
 	world.gravity.y = 10;
 	allSprites.pixelPerfect = true;
 
-	floor = new Sprite(62.5, 48, 125, 8, 's');
+	floor = new Sprite(62.5, 48, 200, 8, 's');
 	floor.color = color(133, 228, 62);
 
 	practice();

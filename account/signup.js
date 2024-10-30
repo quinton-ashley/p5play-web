@@ -29,7 +29,7 @@ function getUrlParameter(name) {
 }
 
 function onSubmit(evt, formRef) {
-	let signup = formRef.querySelector('#signup');
+	let signup = document.getElementById('signup');
 	signup.disabled = true;
 	signup.innerHTML = 'Signing up...';
 
@@ -49,6 +49,10 @@ function onSubmit(evt, formRef) {
 async function onStudentSubmit(evt) {
 	evt.preventDefault();
 
+	let signup = document.getElementById('studentSignUp');
+	signup.disabled = true;
+	signup.innerHTML = 'Signing up...';
+
 	const f = Object.fromEntries(new FormData(evt.target).entries());
 
 	let apiUrl = 'https://ntaknarhb9.execute-api.us-west-2.amazonaws.com/prod/p5play-public';
@@ -63,6 +67,7 @@ async function onStudentSubmit(evt) {
 
 	if (res.status != 200) {
 		let msg = await res.text();
+		signup.disabled = false;
 		return alert(msg);
 	}
 

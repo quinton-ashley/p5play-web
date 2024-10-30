@@ -20,11 +20,23 @@ La propiedad `ani.frameDelay` define cuántos frames se muestra una imagen en la
 
 # 0-2
 
-Este mini ejemplo carga una animación desde una hoja de sprites, que es una sola imagen que contiene todos los frames de una animación. Echa un vistazo a la hoja de sprites en este sketch que se muestra sólo para que puedas ver cómo es una.
+Una hoja de sprites es una sola imagen que contiene todos los fotogramas de una animación. `ani.spriteSheet` se muestra en el boceto para que puedas ver cómo es.
 
-En el modo de hoja de sprites, se puede utilizar un objeto atlas para especificar el tamaño de cada frame y cuántos frames de animación hay.
+En el modo de hoja de sprites, `loadAni` acepta un "atlas" [objeto JS](https://p5js.org/reference/p5/Object) que especifica el tamaño de cada fotograma y cuántos fotogramas de animación hay.
 
-Si realmente necesitas usar una animación cuando tu programa comienza, deberías cargarla en la función preload de p5.js en lugar de en setup.
+Esta forma sencilla de cargar animaciones requiere que cada fotograma en tu hoja de sprites sea del mismo tamaño, esté alineado en una cuadrícula y en orden de izquierda a derecha, de arriba a abajo.
+
+# 0-3
+
+Si deseas que una animación solo use fotogramas específicos de la hoja de sprites, establece la propiedad "frames" del objeto atlas a un arreglo de índices de fotogramas.
+
+# 0-4
+
+Otra forma de usar `loadAni` en modo de hoja de sprites es proporcionar un arreglo de localizadores de fotogramas, arreglos que especifican la posición y tamaño de un fotograma.
+
+Al crear hojas de sprites, considera la compensación entre la eficiencia del espacio de imagen obtenida al empaquetar estrechamente fotogramas de tamaños irregulares, versus la facilidad de cargar una hoja de sprites alineada en cuadrícula.
+
+Ten en cuenta que las animaciones en estos ejemplos se están cargando de forma diferida en `setup`. Si realmente necesitas usar una animación cuando tu programa comienza, cárgala en la función `preload` de q5.js en su lugar.
 
 # 1-0
 

@@ -4,7 +4,7 @@
 
 ### is a JS game engine.
 
-### uses [p5.js](http://p5js.org/) for graphics
+### uses [q5.js](http://q5js.org/) for graphics
 
 ### is easy to learn!
 
@@ -226,15 +226,15 @@ p5play (version 3) was created by Quinton Ashley.
 
 Huge thanks to everyone that's helped with p5play! 🙏
 
-[Paolo Pedercini](http://molleindustria.org), creator p5.play (version 1), who trusted me to take over the project!
+Paolo Pedercini, creator of p5.play (version 1), who trusted me to take over the project.
 
-Erin Catto, creator of the [Box2D](https://box2d.org) physics simulator.
+Erin Catto, creator of the Box2D physics simulator.
 
-Ali Shakiba, creator of [planck.js](https://piqnt.com/planck.js), a JavaScript port of Box2D used behind the scenes by p5play.
+Ali Shakiba, creator of planck.js, a JavaScript port of Box2D used behind the scenes by p5play.
 
-Current contributors: @Tezumie, Oliver Zell, Caleb Foss, and Bobby S.
+Contributors: @Tezumie, Oliver Zell, Caleb Foss, and Bobby S.
 
-Testers and bug reporters: Raj Raizada, Nathan Anil, Chayarat Wangweera, Zhiyuan Guo, Aarnav Gupta, and Carter Noa.
+Testers and bug reporters: Lachlan Noble, Raj Raizada, Nathan Anil, Chayarat Wangweera, Zhiyuan Guo, Aarnav Gupta, and Carter Noa.
 
 # 17-7
 

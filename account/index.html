@@ -44,10 +44,9 @@
 			<div class="unauth">
 				<md id="md0-0">
 					<h2 id="account">Account</h2>
-					<p>Sign up for a free account to access the Learn pages and be notified via email about new
-						features!</p>
+					<p>Sign up for a free account to access the Learn pages!</p>
 					<p>Having trouble creating an account? <a href="mailto:info@p5play.org" target="_blank">Contact
-							us!</a></p>
+							us.</a></p>
 				</md>
 				<div class="login">
 					<a class="heroBtns" href="/account/signup.html">Sign Up</a>
@@ -59,6 +58,9 @@
 					<h2 id="-account"><span id="account-type"></span> Account</h2>
 					<p>Welcome <span id="username"></span>!</p>
 				</md>
+				<div class="login">
+					<a id="logout" class="heroBtns" href=".">Log Out</a>
+				</div>
 			</div>
 			<md id="md1-0">
 				<h2 id="free-use-limitations">Free Use Limitations</h2>
@@ -102,6 +104,12 @@
 }
 
 	</style>
+	<script>
+logout.addEventListener('click', () => {
+	localStorage.p5playAccount = null;
+});
+
+	</script>
 
 </body>
 
