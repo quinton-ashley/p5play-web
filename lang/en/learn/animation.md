@@ -28,7 +28,7 @@ This easy way to load animations requires that every frame in your sprite sheet 
 
 # 0-3
 
-If you want an animation to only uses specific frames from the sprite sheet, set the "frames" property of the atlas object to an array of frame indexes.
+If you want an animation to only use specific frames from the sprite sheet, set the "frames" property of the atlas object to an array of frame indexes.
 
 # 0-4
 
