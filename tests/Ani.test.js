@@ -14,6 +14,9 @@ require('../v3/p5play.js');
 // alternatively images can be loaded from p5play.org
 let host = 'https://p5play.org';
 
+// the npm canvas library doesn't support loading webp images
+// so we need to use png images for testing
+
 test('Ani : properties', () => {
 	const sketch = (p) => {
 		p.setup = () => {

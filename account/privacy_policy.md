@@ -13,15 +13,13 @@ Optionally for schools that don't assign Students an ID number, teachers can tel
 
 ## Teacher/Developer Account Creation
 
-When teachers or developers create an account on p5play.org, we collect an email address and password. This information is used to provide you with access to the p5play.org website and to
-
-We also collect user's:
+When teachers or developers create an account on p5play.org, we collect user's:
 
 - email: Used to communicate with you about your account.
 - password: Used to authenticate users when they log in. The password is encrypted and stored securely by AWS Cognito.
-- gender: Used to address users properly in emails.
+- gender: Used to address users properly on p5play.org and in emails.
 - age: Used to understand the developmental stage of young developers in order to offer an age-appropriate experience.
-- school/company: Used to report to schools or companies about the usage of p5play.org by their Students, teachers, or employees. See p5play.org's Terms of Service for more information.
+- school/company: Can be used to contact schools or companies about the usage of p5play.org by Students, teachers, or employees. See p5play.org's Terms of Service for more information.
 - country of residence: Used to understand the distribution of users around the world and show localized content.
 
 ## Teachers can create accounts on behalf of Students
