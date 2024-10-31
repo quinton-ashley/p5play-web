@@ -160,17 +160,16 @@ Los juegos destacados en el sitio web de Scratch son inspiradores para los estud
 
 ## ¿Por qué se creó p5play? 🎨
 
-¡Las corporaciones no deberían tener un monopolio sobre el arte del desarrollo de juegos! p5play fue creado para hacer que este medio sea más accesible para estudiantes, educadores y desarrolladores independientes.
+p5play fue creado para cerrar definitivamente la brecha entre Scratch y motores de juego profesionales como Unity.
 
-En los primeros días de Internet, Adobe Flash facilitó que los aficionados desarrollaran, compartieran juegos y atrajeran audiencias como nunca antes. Pero desde que Flash quedó obsoleto, los juegos se comercializaron más. Empresas como Meta (Facebook) y Apple promovieron fuertemente juegos envenenados por microtransacciones y cajas de botín, mecánicas diseñadas para maximizar el beneficio. Los aficionados fueron dejados de lado. Ahora, los jugadores están hartos de ser explotados, quieren originalidad, pero en un paquete pulido.
+En p5play, los sprites pueden tener [colisionadores físicos](learn/sprite.html?page=1) y mostrar [animaciones](learn/animation.html). Se admiten múltiples [dispositivos de entrada](learn/input_devices.html), incluidos teclado, ratón, controladores de juego y pantallas táctiles. [Los grupos](learn/Group.html) permiten a los programadores novatos aprovechar el poder de la herencia de clases.
 
-Es por eso que Roblox, Minecraft para Educación y Fortnite permiten a los jóvenes desarrolladores crear y compartir modos de juego y experiencias. Prometen audiencias potenciales masivas, pero insidiosamente, estas plataformas son jardines amurallados que restringen la libertad artística y explotan a los desarrolladores. Estas corporaciones eliminan regularmente o ocultan contenido que no les gusta, y pueden hacerlo sin explicación ni recurso. Estas corporaciones prohíben explícitamente el arte político y solo quieren contenido no controvertido que puedan monetizar para extender la vida de sus juegos de décadas.
+**"Solo lo mejor es suficientemente bueno"**  
+Ole Kirk Christiansen, fundador de LEGO
 
-Pero los mundos virtuales y los sistemas de juegos son una herramienta poderosa para la expresión política. p5play fue especialmente creado para ayudar a los jóvenes diseñadores de juegos a crear arte que desafíe a los jugadores a pensar críticamente sobre nuestro mundo real y los sistemas que lo gobiernan.
+No creo en escatimar en calidad para hacer algo "solo para niños". p5play no es simplemente un peldaño, su elegante API lo hace un placer de usar para todos.
 
-**"Solo lo mejor es suficientemente bueno"** - Godtfred Kirk Christiansen, fundador de LEGO
-
-p5play definitivamente cierra la brecha entre Scratch y motores de juego profesionales como Unity, que son demasiado complejos para principiantes y demasiado especializados para ser utilizados en la educación general de ciencias de la computación.
+Ya seas principiante, aficionado o desarrollador profesional: ¡p5play fue creado para ti!
 
 # 17-4
 

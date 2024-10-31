@@ -186,13 +186,16 @@ With p5play, students don't have to write their own boilerplate code for basic f
 
 ## Why was p5play created? 🎨
 
-Virtual worlds and game systems are powerful tools for artistic expression. Corporations shouldn't have a monopoly on the art of game development!
+p5play was created to definitively bridge the gap between Scratch and more complex game engines like Unity.
 
-p5play was created so that young game developers could create freely, without corporate restrictions.
+In p5play, sprites can have [physics colliders](../learn/sprite.html?page=1) and display [animations](../learn/animation.html). Multiple [input devices](../learn/input_devices.html) are supported, including keyboard, mouse, game controllers, and touch screens. [Groups](../learn/Group.html) enable novice programmers to harness the power of class inheritance.
 
-**"Only the best is good enough"** - Godtfred Kirk Christiansen, founder of LEGO
+**"Only the best is good enough"**  
+Ole Kirk Christiansen, founder of LEGO
 
-p5play definitively bridges the gap between Scratch and professional game engines like Unity.
+I don't believe in skimping on quality to make something "just for kids". p5play isn't merely a stepping stone, its elegant API makes it a joy to use for all.
+
+Whether you're a beginner, hobbyist, or professional developer: p5play was created for you!
 
 # 17-4
 
