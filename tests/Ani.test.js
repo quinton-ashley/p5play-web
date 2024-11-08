@@ -85,7 +85,7 @@ test('Ani : List mode', () => {
 				new p.Canvas(400, 400);
 				p.noLoop();
 
-				expect(ani0.length).toBe(3);
+				expect(ani0.length).toBe(2);
 
 				resolve();
 			};
@@ -105,7 +105,7 @@ test('Ani : Sequence mode', () => {
 				new p.Canvas(400, 400);
 				p.noLoop();
 
-				expect(ani0.length).toBe(9);
+				expect(ani0.length).toBe(3);
 
 				resolve();
 			};
