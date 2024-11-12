@@ -287,7 +287,8 @@ Q5.prototype.registerMethod = (m, fn) => Q5.methods[m].push(fn);
 Q5.prototype.registerPreloadMethod = (n, fn) => (Q5.prototype[n] = fn[n]);
 
 if (Q5._nodejs) global.p5 ??= global.Q5 = Q5;
-else if (typeof window == 'object') window.p5 ??= window.Q5 = Q5;
+
+if (typeof window == 'object') window.p5 ??= window.Q5 = Q5;
 else global.window = 0;
 
 function createCanvas(w, h, opt) {
@@ -432,6 +433,8 @@ Q5.modules.canvas = ($, q) => {
 		if ($._hooks) {
 			for (let m of $._hooks.postCanvas) m();
 		}
+		if ($._beginRender) $._beginRender();
+
 		return rend;
 	};
 
@@ -2271,8 +2274,10 @@ Q5.modules.input = ($, q) => {
 	$.noCursor = () => {
 		$.canvas.style.cursor = 'none';
 	};
-	$.requestPointerLock = document.body?.requestPointerLock;
-	$.exitPointerLock = document.exitPointerLock;
+	if (window) {
+		$.requestPointerLock = document.body?.requestPointerLock;
+		$.exitPointerLock = document.exitPointerLock;
+	}
 
 	$._onkeydown = (e) => {
 		if (e.repeat) return;
@@ -2783,36 +2788,38 @@ Q5.modules.sound = ($, q) => {
 	$.userStartAudio = () => Q5.aud.resume();
 };
 
-Q5.Sound = class extends Audio {
-	constructor(path) {
-		super(path);
-		let a = this;
-		a.load();
-		a.panner = Q5.aud.createStereoPanner();
-		a.source = Q5.aud.createMediaElementSource(a);
-		a.source.connect(a.panner);
-		a.panner.connect(Q5.aud.destination);
-		Object.defineProperty(a, 'pan', {
-			get: () => a.panner.pan.value,
-			set: (v) => (a.panner.pan.value = v)
-		});
-	}
-	setVolume(level) {
-		this.volume = level;
-	}
-	setLoop(loop) {
-		this.loop = loop;
-	}
-	setPan(value) {
-		this.pan = value;
-	}
-	isLoaded() {
-		return this.loaded;
-	}
-	isPlaying() {
-		return !this.paused;
-	}
-};
+if (window.Audio) {
+	Q5.Sound = class extends Audio {
+		constructor(path) {
+			super(path);
+			let a = this;
+			a.load();
+			a.panner = Q5.aud.createStereoPanner();
+			a.source = Q5.aud.createMediaElementSource(a);
+			a.source.connect(a.panner);
+			a.panner.connect(Q5.aud.destination);
+			Object.defineProperty(a, 'pan', {
+				get: () => a.panner.pan.value,
+				set: (v) => (a.panner.pan.value = v)
+			});
+		}
+		setVolume(level) {
+			this.volume = level;
+		}
+		setLoop(loop) {
+			this.loop = loop;
+		}
+		setPan(value) {
+			this.pan = value;
+		}
+		isLoaded() {
+			return this.loaded;
+		}
+		isPlaying() {
+			return !this.paused;
+		}
+	};
+}
 Q5.modules.util = ($, q) => {
 	$._loadFile = (path, cb, type) => {
 		q._preloadCount++;
@@ -4304,24 +4311,34 @@ fn fragmentMain(@location(0) texCoord: vec2f) -> @location(0) vec4f {
 
 	$.imageMode = (x) => ($._imageMode = x);
 
-	$.image = (img, x, y, w, h) => {
+	$.image = (img, dx, dy, dw, dh, sx = 0, sy = 0, sw, sh) => {
 		if (img.canvas) img = img.canvas;
 		if (img.textureIndex == undefined) return;
 
 		if ($._matrixDirty) $._saveMatrix();
 		let ti = $._transformIndex;
 
-		w ??= img.defaultWidth;
-		h ??= img.defaultHeight;
+		let w = img.defaultWidth;
+		let h = img.defaultHeight;
 
-		let [l, r, t, b] = $._calcBox(x, y, w, h, $._imageMode);
+		dw ??= w;
+		dh ??= h;
+		sw ??= w;
+		sh ??= h;
+
+		let [l, r, t, b] = $._calcBox(dx, dy, dw, dh, $._imageMode);
+
+		let u0 = sx / w;
+		let v0 = sy / h;
+		let u1 = (sx + sw) / w;
+		let v1 = (sy + sh) / h;
 
 		// prettier-ignore
 		vertexStack.push(
-			l, t, 0, 0, ti,
-			r, t, 1, 0, ti,
-			l, b, 0, 1, ti,
-			r, b, 1, 1, ti
+			l, t, u0, v0, ti,
+			r, t, u1, v0, ti,
+			l, b, u0, v1, ti,
+			r, b, u1, v1, ti
 		);
 
 		$.drawStack.push(1, img.textureIndex);
