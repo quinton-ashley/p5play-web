@@ -218,6 +218,7 @@ function Q5(scope, parent, renderer) {
 		'mouseReleased',
 		'mouseDragged',
 		'mouseClicked',
+		'mouseWheel',
 		'keyPressed',
 		'keyReleased',
 		'keyTyped',
@@ -229,9 +230,9 @@ function Q5(scope, parent, renderer) {
 	for (let k of userFns) {
 		if (!t[k]) $[k] = () => {};
 		else if ($._isGlobal) {
-			$[k] = () => {
+			$[k] = (event) => {
 				try {
-					return t[k]();
+					return t[k](event);
 				} catch (e) {
 					if ($._askAI) $._askAI(e);
 					throw e;
@@ -592,6 +593,8 @@ Q5.modules.canvas = ($, q) => {
 	};
 
 	$._styleNames = [
+		'_fill',
+		'_stroke',
 		'_doStroke',
 		'_doFill',
 		'_strokeSet',
@@ -646,8 +649,8 @@ Q5.renderers.q2d.canvas = ($, q) => {
 
 		if ($._scope != 'image') {
 			// default styles
-			$.ctx.fillStyle = 'white';
-			$.ctx.strokeStyle = 'black';
+			$.ctx.fillStyle = $._fill = 'white';
+			$.ctx.strokeStyle = $._stroke = 'black';
 			$.ctx.lineCap = 'round';
 			$.ctx.lineJoin = 'miter';
 			$.ctx.textAlign = 'left';
@@ -756,6 +759,15 @@ Q5.renderers.q2d.canvas = ($, q) => {
 	$.pushMatrix = () => $.ctx.save();
 	$.popMatrix = () => $.ctx.restore();
 
+	$.popStyles = () => {
+		let styles = $._styles.pop();
+		for (let s of $._styleNames) $[s] = styles[s];
+
+		$.ctx.fillStyle = $._fill;
+		$.ctx.strokeStyle = $._stroke;
+		$.ctx.lineWidth = $._strokeWeight;
+	};
+
 	$.push = () => {
 		$.ctx.save();
 		$.pushStyles();
@@ -843,14 +855,15 @@ Q5.renderers.q2d.drawing = ($) => {
 
 	function arc(x, y, w, h, lo, hi, mode, detail) {
 		if (!$._doFill && !$._doStroke) return;
+
 		let d = $._angleMode;
 		let full = d ? 360 : $.TAU;
 		lo %= full;
 		hi %= full;
 		if (lo < 0) lo += full;
 		if (hi < 0) hi += full;
-		if (lo == 0 && hi == 0) return;
-		if (lo > hi) [lo, hi] = [hi, lo];
+		if (lo > hi) hi += full;
+
 		$.ctx.beginPath();
 		if (w == h) {
 			if (d) {
@@ -858,6 +871,15 @@ Q5.renderers.q2d.drawing = ($) => {
 				hi = $.radians(hi);
 			}
 			$.ctx.arc(x, y, w / 2, lo, hi);
+
+			if (mode == $.CHORD) {
+				$.ctx.lineTo(x + (Math.cos(hi) * w) / 2, y + (Math.sin(hi) * h) / 2);
+				$.ctx.lineTo(x + (Math.cos(lo) * w) / 2, y + (Math.sin(lo) * h) / 2);
+				$.ctx.closePath();
+			} else if (mode == $.PIE) {
+				$.ctx.lineTo(x, y);
+				$.ctx.closePath();
+			}
 		} else {
 			for (let i = 0; i < detail + 1; i++) {
 				let t = i / detail;
@@ -866,7 +888,10 @@ Q5.renderers.q2d.drawing = ($) => {
 				let dy = ($.sin(a) * h) / 2;
 				$.ctx[i ? 'lineTo' : 'moveTo'](x + dx, y + dy);
 			}
+
 			if (mode == $.CHORD) {
+				$.ctx.lineTo(x + ($.cos(hi) * w) / 2, y + ($.sin(hi) * h) / 2);
+				$.ctx.lineTo(x + ($.cos(lo) * w) / 2, y + ($.sin(lo) * h) / 2);
 				$.ctx.closePath();
 			} else if (mode == $.PIE) {
 				$.ctx.lineTo(x, y);
@@ -925,6 +950,7 @@ Q5.renderers.q2d.drawing = ($) => {
 			ink();
 		} else $.ellipse(x, y, d, d);
 	};
+
 	$.point = (x, y) => {
 		if ($._doStroke) {
 			if (x.x) {
@@ -941,6 +967,7 @@ Q5.renderers.q2d.drawing = ($) => {
 			$.ctx.stroke();
 		}
 	};
+
 	function rect(x, y, w, h) {
 		if ($._da) {
 			x *= $._da;
@@ -1942,13 +1969,9 @@ Q5.modules.color = ($, q) => {
 	};
 
 	$.lerpColor = (a, b, t) => {
+		t = Math.max(0, Math.min(1, t));
 		if ($._colorMode == 'rgb') {
-			return new $.Color(
-				$.constrain($.lerp(a.r, b.r, t), 0, 255),
-				$.constrain($.lerp(a.g, b.g, t), 0, 255),
-				$.constrain($.lerp(a.b, b.b, t), 0, 255),
-				$.constrain($.lerp(a.a, b.a, t), 0, 255)
-			);
+			return new $.Color($.lerp(a.r, b.r, t), $.lerp(a.g, b.g, t), $.lerp(a.b, b.b, t), $.lerp(a.a, b.a, t));
 		} else {
 			let deltaH = b.h - a.h;
 			if (deltaH > 180) deltaH -= 360;
@@ -1956,12 +1979,7 @@ Q5.modules.color = ($, q) => {
 			let h = a.h + t * deltaH;
 			if (h < 0) h += 360;
 			if (h > 360) h -= 360;
-			return new $.Color(
-				$.constrain($.lerp(a.l, b.l, t), 0, 100),
-				$.constrain($.lerp(a.c, b.c, t), 0, 100),
-				h,
-				$.constrain($.lerp(a.a, b.a, t), 0, 255)
-			);
+			return new $.Color($.lerp(a.l, b.l, t), $.lerp(a.c, b.c, t), h, $.lerp(a.a, b.a, t));
 		}
 	};
 };
@@ -2259,6 +2277,11 @@ Q5.modules.input = ($, q) => {
 		$.mouseClicked(e);
 		q.mouseIsPressed = false;
 	};
+	$._onwheel = (e) => {
+		$._updateMouse(e);
+		e.delta = e.deltaY;
+		if ($.mouseWheel(e) == false) e.preventDefault();
+	};
 
 	$.cursor = (name, x, y) => {
 		let pfx = '';
@@ -2341,6 +2364,7 @@ Q5.modules.input = ($, q) => {
 	if (c) {
 		c.addEventListener('mousedown', (e) => $._onmousedown(e));
 		c.addEventListener('mouseup', (e) => $._onmouseup(e));
+		c.addEventListener('wheel', (e) => $._onwheel(e));
 		c.addEventListener('click', (e) => $._onclick(e));
 		c.addEventListener('touchstart', (e) => $._ontouchstart(e));
 		c.addEventListener('touchmove', (e) => $._ontouchmove(e));
@@ -3290,18 +3314,18 @@ Q5.renderers.webgpu.canvas = ($, q) => {
 		colorIndex++;
 	};
 
-	$._fillIndex = $._strokeIndex = 0;
+	$._fill = $._stroke = 0;
 	$._doFill = $._doStroke = true;
 
 	$.fill = (r, g, b, a) => {
 		addColor(r, g, b, a);
 		$._doFill = $._fillSet = true;
-		$._fillIndex = colorIndex;
+		$._fill = colorIndex;
 	};
 	$.stroke = (r, g, b, a) => {
 		addColor(r, g, b, a);
 		$._doStroke = $._strokeSet = true;
-		$._strokeIndex = colorIndex;
+		$._stroke = colorIndex;
 	};
 
 	$.noFill = () => ($._doFill = false);
@@ -3830,6 +3854,7 @@ fn fragmentMain(@location(0) color: vec4f) -> @location(0) vec4f {
 	};
 
 	const addEllipse = (x, y, a, b, n, ci, ti) => {
+		y = -y;
 		let t = 0,
 			angleIncrement = $.TAU / n;
 
@@ -3882,7 +3907,7 @@ fn fragmentMain(@location(0) color: vec4f) -> @location(0) vec4f {
 		ti = $._transformIndex;
 
 		if ($._doStroke) {
-			ci = $._strokeIndex;
+			ci = $._stroke;
 
 			// stroke weight adjustment
 			let sw = $._strokeWeight / 2;
@@ -3921,7 +3946,7 @@ fn fragmentMain(@location(0) color: vec4f) -> @location(0) vec4f {
 		}
 
 		if ($._doFill) {
-			ci = colorIndex ?? $._fillIndex;
+			ci = colorIndex ?? $._fill;
 			addRect(l, t, r, t, r, b, l, b, ci, ti);
 		}
 	};
@@ -3970,19 +3995,19 @@ fn fragmentMain(@location(0) color: vec4f) -> @location(0) vec4f {
 		let ti = $._transformIndex;
 		if ($._doStroke) {
 			let sw = $._strokeWeight / 2;
-			addEllipse(x, y, a + sw, b + sw, n, $._strokeIndex, ti);
+			addEllipse(x, y, a + sw, b + sw, n, $._stroke, ti);
 			a -= sw;
 			b -= sw;
 		}
 		if ($._doFill) {
-			addEllipse(x, y, a, b, n, colorIndex ?? $._fillIndex, ti);
+			addEllipse(x, y, a, b, n, colorIndex ?? $._fill, ti);
 		}
 	};
 
 	$.circle = (x, y, d) => $.ellipse(x, y, d, d);
 
 	$.point = (x, y) => {
-		colorIndex = $._strokeIndex;
+		colorIndex = $._stroke;
 		$._doStroke = false;
 		let sw = $._strokeWeight;
 		if (sw < 2) {
@@ -3994,7 +4019,7 @@ fn fragmentMain(@location(0) color: vec4f) -> @location(0) vec4f {
 	};
 
 	$.line = (x1, y1, x2, y2) => {
-		colorIndex = $._strokeIndex;
+		colorIndex = $._stroke;
 
 		$.push();
 		$._doStroke = false;
@@ -4028,7 +4053,7 @@ fn fragmentMain(@location(0) color: vec4f) -> @location(0) vec4f {
 
 	$.vertex = (x, y) => {
 		if ($._matrixDirty) $._saveMatrix();
-		sv.push(x, -y, $._fillIndex, $._transformIndex);
+		sv.push(x, -y, $._fill, $._transformIndex);
 		shapeVertCount++;
 	};
 
@@ -4121,7 +4146,7 @@ fn fragmentMain(@location(0) color: vec4f) -> @location(0) vec4f {
 			$._rectMode = og;
 		}
 		$.pop();
-		if (!$._fillSet) $._fillIndex = 1;
+		if (!$._fillSet) $._fill = 1;
 	};
 
 	$._hooks.preRender.push(() => {
@@ -4841,8 +4866,8 @@ fn fragmentMain(input : VertexOutput) -> @location(0) vec4f {
 		text[1] = -y;
 		text[2] = $._textSize / 44;
 		text[3] = $._transformIndex;
-		text[4] = $._fillSet ? $._fillIndex : 0;
-		text[5] = $._strokeIndex;
+		text[4] = $._fillSet ? $._fill : 0;
+		text[5] = $._stroke;
 
 		$._textStack.push(text);
 		$.drawStack.push(2, measurements.printedCharCount, $._font.index);
@@ -4857,11 +4882,11 @@ fn fragmentMain(input : VertexOutput) -> @location(0) vec4f {
 		g.textSize($._textSize);
 
 		if ($._doFill) {
-			let fi = $._fillIndex * 4;
+			let fi = $._fill * 4;
 			g.fill(colorStack.slice(fi, fi + 4));
 		}
 		if ($._doStroke) {
-			let si = $._strokeIndex * 4;
+			let si = $._stroke * 4;
 			g.stroke(colorStack.slice(si, si + 4));
 		}
 
