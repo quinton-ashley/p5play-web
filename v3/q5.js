@@ -3376,16 +3376,18 @@ Q5.renderers.webgpu.canvas = ($, q) => {
 			m4 = m[4],
 			m5 = m[5];
 
-		if (!m0 && !m1 && !m4 && !m5) {
+		// if identity matrix, just set the rotation values
+		if (m0 == 1 && !m1 && !m4 && m5 == 1) {
 			m[0] = cosR;
-			m[1] = sinR;
-			m[4] = -sinR;
+			m[1] = -sinR;
+			m[4] = sinR;
 			m[5] = cosR;
 		} else {
-			m[0] = m0 * cosR + m4 * sinR;
-			m[1] = m1 * cosR + m5 * sinR;
-			m[4] = m4 * cosR - m0 * sinR;
-			m[5] = m5 * cosR - m1 * sinR;
+			// combine the current rotation with the new rotation
+			m[0] = m0 * cosR + m1 * sinR;
+			m[1] = m1 * cosR - m0 * sinR;
+			m[4] = m4 * cosR + m5 * sinR;
+			m[5] = m5 * cosR - m4 * sinR;
 		}
 
 		$._matrixDirty = true;
@@ -3726,8 +3728,7 @@ Q5.renderers.webgpu.drawing = ($, q) => {
 	let c = $.canvas,
 		drawStack = $.drawStack,
 		vertexStack = new Float32Array(1e7),
-		vertIndex = 0,
-		colorIndex;
+		vertIndex = 0;
 
 	let vertexShader = Q5.device.createShaderModule({
 		label: 'drawingVertexShader',
@@ -3909,7 +3910,7 @@ fn fragmentMain(@location(0) color: vec4f) -> @location(0) vec4f {
 			let sw = $._strokeWeight / 2;
 
 			if ($._doFill) {
-				// existing behavior: draw stroke as one big rectangle
+				// draw stroke as one big rectangle
 				let to = t + sw,
 					bo = b - sw,
 					lo = l - sw,
@@ -3924,7 +3925,7 @@ fn fragmentMain(@location(0) color: vec4f) -> @location(0) vec4f {
 				l += sw;
 				r -= sw;
 			} else {
-				// new behavior: draw stroke as four rectangles (sides)
+				// draw stroke as four rectangles (sides)
 				let lsw = l - sw,
 					rsw = r + sw,
 					tsw = t + sw,
@@ -3942,7 +3943,7 @@ fn fragmentMain(@location(0) color: vec4f) -> @location(0) vec4f {
 		}
 
 		if ($._doFill) {
-			ci = colorIndex ?? $._fill;
+			ci = $._fill;
 			addRect(l, t, r, t, r, b, l, b, ci, ti);
 		}
 	};
@@ -3983,12 +3984,13 @@ fn fragmentMain(@location(0) color: vec4f) -> @location(0) vec4f {
 	$.ellipseMode = (x) => ($._ellipseMode = x);
 
 	$.ellipse = (x, y, w, h) => {
-		let n = getArcSegments(w == h ? w : Math.max(w, h));
+		let n = getArcSegments(Math.max(w, h));
 		let a = Math.max(w, 1) / 2;
 		let b = w == h ? a : Math.max(h, 1) / 2;
-		let ci;
+
 		if ($._matrixDirty) $._saveMatrix();
 		let ti = $._transformIndex;
+
 		if ($._doStroke) {
 			let sw = $._strokeWeight / 2;
 			addEllipse(x, y, a + sw, b + sw, n, $._stroke, ti);
@@ -3996,47 +3998,52 @@ fn fragmentMain(@location(0) color: vec4f) -> @location(0) vec4f {
 			b -= sw;
 		}
 		if ($._doFill) {
-			addEllipse(x, y, a, b, n, colorIndex ?? $._fill, ti);
+			addEllipse(x, y, a, b, n, $._fill, ti);
 		}
 	};
 
 	$.circle = (x, y, d) => $.ellipse(x, y, d, d);
 
 	$.point = (x, y) => {
-		colorIndex = $._stroke;
-		$._doStroke = false;
-		let sw = $._strokeWeight;
+		if ($._matrixDirty) $._saveMatrix();
+		let ti = $._transformIndex,
+			ci = $._stroke,
+			sw = $._strokeWeight,
+			hsw = sw / 2;
+
 		if (sw < 2) {
-			sw = Math.round(sw);
-			$.rect(x, y, sw, sw);
-		} else $.ellipse(x, y, sw, sw);
-		$._doStroke = true;
-		colorIndex = null;
+			let [l, r, t, b] = $._calcBox(x, y, sw, sw, 'corner');
+			addRect(l, t, r, t, r, b, l, b, ci, ti);
+		} else {
+			let n = getArcSegments(sw);
+			addEllipse(x, y, hsw, hsw, n, ci, ti);
+		}
 	};
 
+	// Remove the internal transformations from the line function
 	$.line = (x1, y1, x2, y2) => {
-		colorIndex = $._stroke;
-
-		$.push();
-		$._doStroke = false;
-		$.translate(x1, -y1);
-		$.rotate($.atan2(y2 - y1, x2 - x1));
-		let length = Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2);
-		let sw = $._strokeWeight,
+		if ($._matrixDirty) $._saveMatrix();
+		let ti = $._transformIndex,
+			ci = $._stroke,
+			sw = $._strokeWeight,
 			hsw = sw / 2;
-		$._rectMode = 'corner';
-		if (sw < 4) {
-			$.rect(-hsw, -hsw, length + hsw, sw);
-		} else {
-			$._ellipseMode = 'center';
-			$.ellipse(0, 0, sw, sw);
-			$.ellipse(length, 0, sw, sw);
-			$.rect(0, -hsw, length, sw);
+
+		// Calculate the direction vector and length
+		let dx = x2 - x1,
+			dy = y2 - y1,
+			length = Math.hypot(dx, dy);
+
+		// Calculate the perpendicular vector for line thickness
+		let px = -(dy / length) * hsw,
+			py = (dx / length) * hsw;
+
+		addRect(x1 + px, -y1 - py, x1 - px, -y1 + py, x2 - px, -y2 + py, x2 + px, -y2 - py, ci, ti);
+
+		if (sw > 2) {
+			let n = getArcSegments(sw);
+			addEllipse(x1, y1, hsw, hsw, n, ci, ti);
+			addEllipse(x2, y2, hsw, hsw, n, ci, ti);
 		}
-
-		$.pop();
-
-		colorIndex = null;
 	};
 
 	let shapeVertCount;
@@ -4094,12 +4101,12 @@ fn fragmentMain(@location(0) color: vec4f) -> @location(0) vec4f {
 			for (let i = 0; i < shapeVertCount - 1; i++) {
 				let v1 = i * 4;
 				let v2 = (i + 1) * 4;
-				$.line(sv[v1], sv[v1 + 1], sv[v2], sv[v2 + 1]);
+				$.line(sv[v1], -sv[v1 + 1], sv[v2], -sv[v2 + 1]);
 			}
 			if (close) {
 				let v1 = (shapeVertCount - 1) * 4;
 				let v2 = 0;
-				$.line(sv[v1], sv[v1 + 1], sv[v2], sv[v2 + 1]);
+				$.line(sv[v1], -sv[v1 + 1], sv[v2], -sv[v2 + 1]);
 			}
 		}
 
@@ -4261,10 +4268,22 @@ fn fragmentMain(@location(0) texCoord: vec2f) -> @location(0) vec4f {
 
 	$._pipelines[1] = Q5.device.createRenderPipeline($._pipelineConfigs[1]);
 
-	let sampler = Q5.device.createSampler({
-		magFilter: 'linear',
-		minFilter: 'linear'
-	});
+	let sampler;
+
+	let makeSampler = (filter) => {
+		sampler = Q5.device.createSampler({
+			magFilter: filter,
+			minFilter: filter
+		});
+	};
+	makeSampler('linear');
+
+	$.smooth = () => {
+		makeSampler('linear');
+	};
+	$.noSmooth = () => {
+		makeSampler('nearest');
+	};
 
 	let MAX_TEXTURES = 12000;
 
@@ -4313,7 +4332,7 @@ fn fragmentMain(@location(0) texCoord: vec2f) -> @location(0) vec4f {
 		}
 	};
 
-	$.loadImage = $.loadTexture = (src) => {
+	$.loadImage = (src, cb) => {
 		q._preloadCount++;
 		const img = new Image();
 		img.crossOrigin = 'Anonymous';
@@ -4322,9 +4341,11 @@ fn fragmentMain(@location(0) texCoord: vec2f) -> @location(0) vec4f {
 			// should be drawn at if the user doesn't specify a display size
 			img.defaultWidth = img.width * $._defaultImageScale;
 			img.defaultHeight = img.height * $._defaultImageScale;
+			img.pixelDensity = 1;
 
 			$._createTexture(img);
 			q._preloadCount--;
+			if (cb) cb(img);
 		};
 		img.src = src;
 		return img;
@@ -4339,13 +4360,17 @@ fn fragmentMain(@location(0) texCoord: vec2f) -> @location(0) vec4f {
 		if ($._matrixDirty) $._saveMatrix();
 		let ti = $._transformIndex;
 
-		let w = img.defaultWidth;
-		let h = img.defaultHeight;
+		let w = img.width;
+		let h = img.height;
 
-		dw ??= w;
-		dh ??= h;
+		dw ??= img.defaultWidth;
+		dh ??= img.defaultHeight;
 		sw ??= w;
 		sh ??= h;
+
+		let pd = img.pixelDensity || 1;
+		dw *= pd;
+		dh *= pd;
 
 		let [l, r, t, b] = $._calcBox(dx, dy, dw, dh, $._imageMode);
 
