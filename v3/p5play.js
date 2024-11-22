@@ -8274,43 +8274,6 @@ p5.prototype.registerMethod('init', function p5playInit() {
 		}
 	}
 
-	// source: https://stackoverflow.com/a/8796597/3792062
-	function decodeFloat16(b) {
-		let e = (b & 0x7c00) >> 10,
-			f = b & 0x03ff;
-		return (
-			(b >> 15 ? -1 : 1) *
-			(e ? (e === 0x1f ? (f ? NaN : Infinity) : Math.pow(2, e - 15) * (1 + f / 0x400)) : 6.103515625e-5 * (f / 0x400))
-		);
-	}
-
-	// source: https://stackoverflow.com/a/32633586/3792062
-	const encodeFloat16 = (function () {
-		let fv = new Float32Array(1);
-		let iv = new Int32Array(fv.buffer);
-		return function toHalf(v) {
-			fv[0] = v;
-			let x = iv[0];
-			let b = (x >> 16) & 0x8000;
-			let m = (x >> 12) & 0x07ff;
-			let e = (x >> 23) & 0xff;
-			if (e < 103) return b;
-			if (e > 142) {
-				b |= 0x7c00;
-				b |= (e == 255 ? 0 : 1) && x & 0x007fffff;
-				return b;
-			}
-			if (e < 113) {
-				m |= 0x0800;
-				b |= (m >> (114 - e)) + ((m >> (113 - e)) & 1);
-				return b;
-			}
-			b |= ((e - 112) << 10) | (m >> 1);
-			b += m & 1;
-			return b;
-		};
-	})();
-
 	function isArrowFunction(fn) {
 		return !/^(?:(?:\/\*[^(?:\*\/)]*\*\/\s*)|(?:\/\/[^\r\n]*))*\s*(?:(?:(?:async\s(?:(?:\/\*[^(?:\*\/)]*\*\/\s*)|(?:\/\/[^\r\n]*))*\s*)?function|class)(?:\s|(?:(?:\/\*[^(?:\*\/)]*\*\/\s*)|(?:\/\/[^\r\n]*))*)|(?:[_$\w][\w0-9_$]*\s*(?:\/\*[^(?:\*\/)]*\*\/\s*)*\s*\()|(?:\[\s*(?:\/\*[^(?:\*\/)]*\*\/\s*)*\s*(?:(?:['][^']+['])|(?:["][^"]+["]))\s*(?:\/\*[^(?:\*\/)]*\*\/\s*)*\s*\]\())/.test(
 			fn.toString()

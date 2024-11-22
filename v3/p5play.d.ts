@@ -2683,7 +2683,6 @@ class RopeJoint extends Joint {
 class Scale {
     valueOf(): any;
 }
-function encodeFloat16(v: any): number;
 function colorPal(c: string, palette: number | any): string;
 function EmojiImage(emoji: string, textSize: number): p5.Image;
 function spriteArt(txt: string, scale: number, palette: number | any): p5.Image;
