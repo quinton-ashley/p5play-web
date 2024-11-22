@@ -12,13 +12,15 @@ Students must register for an account with their school using a class code provi
 
 Teacher accounts are for educators who are 18 years of age or older.
 
-Developer accounts are for users who are 13 years of age or older. Developer accounts can not be used by students to complete coursework.
+Developer accounts are for users who are 13 years of age or older.
 
 ## Learn pages
 
-The p5play.org/learn pages are free for personal use only.
+The "Learn p5play" interactive textbook, located in the "Learn" section of the website at https://p5play.org/learn, is proprietary content created by Quinton Ashley. It is free for personal use and teacher evaluation only.
 
-Educators may not use the learn pages in class or coursework unless they purchase a p5play Educational License. https://p5play.org/teach
+Educational use in class or coursework typically requires the purchase of a [p5play Educational License](https://p5play.org/teach), which is sold at a per-student, per-semester rate, mainly to schools.
+
+The [p5play Professional License](https://p5play.org/teach) grants licensees the right to use "Learn p5play" on an individual basis, even for educational use but just not for teaching. So a pro licensee student doesn't need to additionally purchase an Educational License.
 
 ## Denial of Service
 

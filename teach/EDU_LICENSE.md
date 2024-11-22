@@ -1,12 +1,12 @@
 # p5play Educational License
 
-This License Agreement ("Agreement") is made between Quinton Ashley, the sole copyright owner of p5play ("Licensor") and an educator or an educational institution and its staff ("Licensee") that paid license fees determined by the Licensor.
+This License Agreement ("Agreement") is made between Quinton Ashley, the sole copyright owner of p5play ("Licensor") and an educator, adult student, or an educational institution and its staff ("Licensee") that paid license fees determined by the Licensor.
 
 Contact <info@p5play.org> to request a custom invoice to use p5play in an educational setting.
 
 ## 1. License Grant
 
-The Licensee is granted the right to use the [p5play.org Learn pages](https://p5play.org/learn) in educational settings, including but not limited to schools, universities, coding bootcamps, and online tutoring.
+The Licensee is granted the right to use the [p5play.org Learn pages](https://p5play.org/learn) for educational purposes in class or coursework and in educational settings, including but not limited to schools, home schools, universities, coding bootcamps, and online tutoring.
 
 This Agreement also covers the p5play and p5play-pro software libraries ("Content") and any proprietary supplemental materials ("Supplemental Materials") provided privately to Licensees only.
 
@@ -23,6 +23,10 @@ Licensees retain the option to use the p5play and p5play-pro libraries under the
 ## 2. Licensee Eligibility
 
 Licensing fees are based on the scale of the Licensee's use of the Content at a per student rate. The Licensee must pay the appropriate amount for the number of students that will be using the Content.
+
+Individuals over the age of 18 can pay licensing fees for their own individual use. Parental guardians or other adults can make purchases on behalf of a user that's a minor, and are responsible for ensuring compliance with this Agreement.
+
+If Licensees have any concerns about what amount is appropriate for their use, they must contact the Licensor at info@p5play.org and explain their planned use of the Content.
 
 Renewal of this Agreement can only be achieved through payments on a monthly or yearly basis, depending on the payment plan chosen by the Licensee.
 
