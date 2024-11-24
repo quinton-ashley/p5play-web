@@ -8671,6 +8671,9 @@ p5.prototype.registerMethod('init', function p5playInit() {
 				}
 				playIntro();
 		}
+		if (lh.endsWith('codehs.com') && window.gtag) {
+			gtag('event', 'codehs');
+		}
 	}
 
 	let userDisabledP5Errors = p5.disableFriendlyErrors;
