@@ -1550,7 +1550,6 @@ p5.prototype.registerMethod('init', function p5playInit() {
 			return this._color;
 		}
 		set color(val) {
-			// TODO: check if the color is the same as the current color
 			if (this.watch) this.mod[9] = true;
 			this._color = this._parseColor(val);
 		}
@@ -1565,7 +1564,6 @@ p5.prototype.registerMethod('init', function p5playInit() {
 		set colour(val) {
 			this.color = val;
 		}
-
 		/**
 		 * Alias for sprite.fillColor
 		 * @type {p5.Color}
@@ -1577,11 +1575,9 @@ p5.prototype.registerMethod('init', function p5playInit() {
 		set fill(val) {
 			this.color = val;
 		}
-
 		/**
-		 * Alias for sprite.color
-		 * @type {p5.Color}
-		 * @default random color
+		 * Deprecated alias for sprite.fill, will be removed in the future.
+		 * @deprecated
 		 */
 		get fillColor() {
 			return this._color;
@@ -1605,9 +1601,8 @@ p5.prototype.registerMethod('init', function p5playInit() {
 			this._stroke = this._parseColor(val);
 		}
 		/**
-		 * Alias for sprite.stroke
-		 * @type {p5.Color}
-		 * @default undefined
+		 * Deprecated alias for sprite.stroke, will be removed in the future.
+		 * @deprecated
 		 */
 		get strokeColor() {
 			return this._stroke;
@@ -2402,7 +2397,7 @@ p5.prototype.registerMethod('init', function p5playInit() {
 			return this._tint;
 		}
 		set tint(val) {
-			if (this.watch) this.mod[42] = true;
+			if (this.watch) this.mod[38] = true;
 			this._tint = this._parseColor(val);
 		}
 
@@ -4428,6 +4423,7 @@ p5.prototype.registerMethod('init', function p5playInit() {
 	$.Sprite.propsAll = $.Sprite.props.concat([
 		'autoDraw',
 		'autoUpdate',
+		'colour',
 		'd',
 		'diameter',
 		'dynamic',
@@ -4439,6 +4435,8 @@ p5.prototype.registerMethod('init', function p5playInit() {
 		'speed',
 		'spriteSheet',
 		'static',
+		'textColour',
+		'textFill',
 		'width'
 	]);
 
