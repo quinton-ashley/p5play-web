@@ -35,6 +35,9 @@ p5.prototype.registerMethod('init', function p5playInit() {
 			gtag('js', new Date());
 			gtag('config', 'G-EHXNCTSYLK');
 			gtag('event', 'p5play_v3_24');
+			if (location.hostname.endsWith('codehs.com')) {
+				gtag('event', 'codehs');
+			}
 		};
 	}
 
@@ -8670,9 +8673,6 @@ p5.prototype.registerMethod('init', function p5playInit() {
 					break;
 				}
 				playIntro();
-		}
-		if (lh.endsWith('codehs.com') && window.gtag) {
-			gtag('event', 'codehs');
 		}
 	}
 
