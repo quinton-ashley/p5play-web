@@ -68,8 +68,8 @@ let refs = {
 		2: ['on', 'off']
 	},
 	'Canvas.html': {
-		0: ['w', 'h', 'hw', 'hh', '"w:h"', '"fullscreen"'],
-		1: ['"pixelated"'],
+		0: ['w', 'h', 'hw', 'hh'],
+		1: ['displayMode'],
 		2: ['resize']
 	},
 	'Tiles.html': {
@@ -78,8 +78,7 @@ let refs = {
 	},
 	'World.html': {
 		0: ['gravity', 'allowSleeping'],
-		1: ['timeScale', 'physicsTime', 'realTime', 'autoStep', 'step'],
-		2: ['velocityIterations', 'positionIterations']
+		1: ['timeScale', 'step']
 	},
 	'q5.js basics': {
 		'https://p5js.org/reference/p5': [
@@ -109,13 +108,14 @@ let refs = {
 		]
 	},
 	'q5.js environment': {
-		'https://p5js.org/reference/p5': [
+		'https://q5js.org/learn/#': [
 			'width',
 			'height',
 			'frameCount',
 			'frameRate',
 			'noLoop',
 			'loadImage',
+			'loadSound',
 			'loadFont',
 			'loadJSON',
 			'storeItem',
@@ -125,7 +125,7 @@ let refs = {
 		]
 	},
 	'q5.js 2D': {
-		'https://p5js.org/reference/p5': [
+		'https://q5js.org/learn/#': [
 			'background',
 			'clear',
 			'color',
@@ -143,10 +143,6 @@ let refs = {
 			'textSize',
 			'textFont'
 		]
-	},
-	'q5.js sound': {
-		'https://p5js.org/reference/p5': ['loadSound'],
-		'https://p5js.org/reference/p5.SoundFile': ['play', 'stop', 'loop', 'setVolume', 'pan']
 	}
 };
 
@@ -169,7 +165,7 @@ for (let refPage in refs) {
 
 	let div = document.createElement('div');
 	div.className = 'ref';
-	if (className == 'Sprite') div.classList.add('full');
+	if (className == 'Sprite' || className == 'JavaScript basics') div.classList.add('full');
 	let heading = document.createElement('h2');
 	heading.innerHTML = `<a href="${refPage}">${className}</a>`;
 	div.append(heading);
@@ -189,7 +185,7 @@ for (let refPage in refs) {
 			if (p5playRef) {
 				a.href = url;
 			} else {
-				a.href = url + '/' + topic;
+				a.href = url + topic;
 				a.target = '_blank';
 			}
 			a.innerHTML = topic;
@@ -199,7 +195,6 @@ for (let refPage in refs) {
 
 	// Step 1: Listen for Input Events
 	const searchInput = document.getElementById('searchInput');
-	const searchResults = document.getElementById('searchResults');
 	const refsContainer = document.getElementById('refs');
 
 	searchInput.addEventListener('input', function (event) {
