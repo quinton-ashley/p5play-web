@@ -1,6 +1,6 @@
 /**
  * q5.js
- * @version 2.10
+ * @version 2.11
  * @author quinton-ashley, Tezumie, and LingDong-
  * @license LGPL-3.0
  * @class Q5
@@ -27,7 +27,7 @@ function Q5(scope, parent, renderer) {
 	let globalScope;
 	if (scope == 'global') {
 		Q5._hasGlobal = $._isGlobal = true;
-		globalScope = !Q5._nodejs ? window : global;
+		globalScope = !Q5._server ? window : global;
 	}
 
 	let q = new Proxy($, {
@@ -283,7 +283,7 @@ Q5.render = 'q2d';
 Q5.renderers = {};
 Q5.modules = {};
 
-Q5._nodejs = typeof process == 'object';
+Q5._server = typeof process == 'object';
 
 Q5._instanceCount = 0;
 Q5._friendlyError = (msg, func) => {
@@ -300,7 +300,7 @@ Q5.methods = {
 Q5.prototype.registerMethod = (m, fn) => Q5.methods[m].push(fn);
 Q5.prototype.registerPreloadMethod = (n, fn) => (Q5.prototype[n] = fn[n]);
 
-if (Q5._nodejs) global.p5 ??= global.Q5 = Q5;
+if (Q5._server) global.p5 ??= global.Q5 = Q5;
 
 if (typeof window == 'object') window.p5 ??= window.Q5 = Q5;
 else global.window = 0;
@@ -312,7 +312,7 @@ function createCanvas(w, h, opt) {
 	}
 }
 
-Q5.version = Q5.VERSION = '2.10';
+Q5.version = Q5.VERSION = '2.11';
 
 if (typeof document == 'object') {
 	document.addEventListener('DOMContentLoaded', () => {
@@ -320,69 +320,15 @@ if (typeof document == 'object') {
 	});
 }
 Q5.modules.canvas = ($, q) => {
-	$.CENTER = 'center';
-	$.LEFT = 'left';
-	$.RIGHT = 'right';
-	$.TOP = 'top';
-	$.BOTTOM = 'bottom';
-
-	$.BASELINE = 'alphabetic';
-
-	$.NORMAL = 'normal';
-	$.ITALIC = 'italic';
-	$.BOLD = 'bold';
-	$.BOLDITALIC = 'italic bold';
-
-	$.ROUND = 'round';
-	$.SQUARE = 'butt';
-	$.PROJECT = 'square';
-	$.MITER = 'miter';
-	$.BEVEL = 'bevel';
-
-	$.CHORD_OPEN = 0;
-	$.PIE_OPEN = 1;
-	$.PIE = 2;
-	$.CHORD = 3;
-
-	$.RADIUS = 'radius';
-	$.CORNER = 'corner';
-	$.CORNERS = 'corners';
-
-	$.OPEN = 0;
-	$.CLOSE = 1;
-
-	$.LANDSCAPE = 'landscape';
-	$.PORTRAIT = 'portrait';
-
-	$.BLEND = 'source-over';
-	$.REMOVE = 'destination-out';
-	$.ADD = 'lighter';
-	$.DARKEST = 'darken';
-	$.LIGHTEST = 'lighten';
-	$.DIFFERENCE = 'difference';
-	$.SUBTRACT = 'subtract';
-	$.EXCLUSION = 'exclusion';
-	$.MULTIPLY = 'multiply';
-	$.SCREEN = 'screen';
-	$.REPLACE = 'copy';
-	$.OVERLAY = 'overlay';
-	$.HARD_LIGHT = 'hard-light';
-	$.SOFT_LIGHT = 'soft-light';
-	$.DODGE = 'color-dodge';
-	$.BURN = 'color-burn';
-
-	$.P2D = '2d';
-	$.WEBGL = 'webgl';
-
 	$._OffscreenCanvas =
 		window.OffscreenCanvas ||
 		function () {
 			return document.createElement('canvas');
 		};
 
-	if (Q5._nodejs) {
-		if (Q5._createNodeJSCanvas) {
-			q.canvas = Q5._createNodeJSCanvas(100, 100);
+	if (Q5._server) {
+		if (Q5._createServerCanvas) {
+			q.canvas = Q5._createServerCanvas(100, 100);
 		}
 	} else if ($._scope == 'image' || $._scope == 'graphics') {
 		q.canvas = new $._OffscreenCanvas(100, 100);
@@ -397,17 +343,21 @@ Q5.modules.canvas = ($, q) => {
 	}
 
 	let c = $.canvas;
-	c.width = $.width = 100;
-	c.height = $.height = 100;
+	$.width = 200;
+	$.height = 200;
 	$._pixelDensity = 1;
 
 	$.displayDensity = () => window.devicePixelRatio || 1;
 
-	if ($._scope != 'image') {
-		c.renderer = $._renderer;
-		c[$._renderer] = true;
+	if (c) {
+		c.width = 200;
+		c.height = 200;
+		if ($._scope != 'image') {
+			c.renderer = $._renderer;
+			c[$._renderer] = true;
 
-		$._pixelDensity = Math.ceil($.displayDensity());
+			$._pixelDensity = Math.ceil($.displayDensity());
+		}
 	}
 
 	$._adjustDisplay = () => {
@@ -418,6 +368,10 @@ Q5.modules.canvas = ($, q) => {
 	};
 
 	$.createCanvas = function (w, h, options) {
+		if (typeof w == 'object') {
+			options = w;
+			w = null;
+		}
 		options ??= arguments[3];
 
 		let opt = Object.assign({}, Q5.canvasOptions);
@@ -592,8 +546,10 @@ Q5.modules.canvas = ($, q) => {
 		$._resizeCanvas(w, h);
 	};
 
-	$.canvas.resize = $.resizeCanvas;
-	$.canvas.save = $.saveCanvas = $.save;
+	if (c && !Q5._createServerCanvas) {
+		c.resize = $.resizeCanvas;
+		c.save = $.saveCanvas = $.save;
+	}
 
 	$.pixelDensity = (v) => {
 		if (!v || v == $._pixelDensity) return $._pixelDensity;
@@ -652,6 +608,74 @@ Q5.modules.canvas = ($, q) => {
 	}
 };
 
+Q5.CENTER = 'center';
+Q5.LEFT = 'left';
+Q5.RIGHT = 'right';
+Q5.TOP = 'top';
+Q5.BOTTOM = 'bottom';
+
+Q5.BASELINE = 'alphabetic';
+
+Q5.NORMAL = 'normal';
+Q5.ITALIC = 'italic';
+Q5.BOLD = 'bold';
+Q5.BOLDITALIC = 'italic bold';
+
+Q5.ROUND = 'round';
+Q5.SQUARE = 'butt';
+Q5.PROJECT = 'square';
+Q5.MITER = 'miter';
+Q5.BEVEL = 'bevel';
+
+Q5.CHORD_OPEN = 0;
+Q5.PIE_OPEN = 1;
+Q5.PIE = 2;
+Q5.CHORD = 3;
+
+Q5.RADIUS = 'radius';
+Q5.CORNER = 'corner';
+Q5.CORNERS = 'corners';
+
+Q5.OPEN = 0;
+Q5.CLOSE = 1;
+
+Q5.LANDSCAPE = 'landscape';
+Q5.PORTRAIT = 'portrait';
+
+Q5.BLEND = 'source-over';
+Q5.REMOVE = 'destination-out';
+Q5.ADD = 'lighter';
+Q5.DARKEST = 'darken';
+Q5.LIGHTEST = 'lighten';
+Q5.DIFFERENCE = 'difference';
+Q5.SUBTRACT = 'subtract';
+Q5.EXCLUSION = 'exclusion';
+Q5.MULTIPLY = 'multiply';
+Q5.SCREEN = 'screen';
+Q5.REPLACE = 'copy';
+Q5.OVERLAY = 'overlay';
+Q5.HARD_LIGHT = 'hard-light';
+Q5.SOFT_LIGHT = 'soft-light';
+Q5.DODGE = 'color-dodge';
+Q5.BURN = 'color-burn';
+
+Q5.THRESHOLD = 1;
+Q5.GRAY = 2;
+Q5.OPAQUE = 3;
+Q5.INVERT = 4;
+Q5.POSTERIZE = 5;
+Q5.DILATE = 6;
+Q5.ERODE = 7;
+Q5.BLUR = 8;
+Q5.SEPIA = 9;
+Q5.BRIGHTNESS = 10;
+Q5.SATURATION = 11;
+Q5.CONTRAST = 12;
+Q5.HUE_ROTATE = 13;
+
+Q5.P2D = '2d';
+Q5.WEBGL = 'webgl';
+
 Q5.canvasOptions = {
 	alpha: false,
 	colorSpace: 'display-p3'
@@ -665,9 +689,15 @@ Q5.renderers.q2d = {};
 Q5.renderers.q2d.canvas = ($, q) => {
 	let c = $.canvas;
 
-	if ($.colorMode) $.colorMode('rgb', 'integer');
+	if ($.colorMode) {
+		$.colorMode(Q5.canvasOptions.colorSpace != 'srgb' ? 'rgb' : 'srgb', 255);
+	}
 
 	$._createCanvas = function (w, h, options) {
+		if (!c) {
+			console.error('q5 canvas could not be created. skia-canvas and jsdom packages not found.');
+			return;
+		}
 		q.ctx = q.drawingContext = c.getContext('2d', options);
 
 		if ($._scope != 'image') {
@@ -851,8 +881,8 @@ Q5.renderers.q2d.drawing = ($) => {
 	$._doFill = true;
 	$._strokeSet = false;
 	$._fillSet = false;
-	$._ellipseMode = $.CENTER;
-	$._rectMode = $.CORNER;
+	$._ellipseMode = Q5.CENTER;
+	$._rectMode = Q5.CORNER;
 	$._curveDetail = 20;
 	$._curveAlpha = 0.0;
 
@@ -1302,10 +1332,11 @@ Q5.renderers.q2d.image = ($, q) => {
 		let pd = (g._pixelDensity = opt?.pixelDensity || 1);
 
 		function loaded(img) {
+			img._pixelDensity = pd;
 			g.defaultWidth = img.width * $._defaultImageScale;
 			g.defaultHeight = img.height * $._defaultImageScale;
-			g.naturalWidth = img.naturalWidth;
-			g.naturalHeight = img.naturalHeight;
+			g.naturalWidth = img.naturalWidth || img.width;
+			g.naturalHeight = img.naturalHeight || img.height;
 			g._setImageSize(Math.ceil(g.naturalWidth / pd), Math.ceil(g.naturalHeight / pd));
 
 			g.ctx.drawImage(img, 0, 0);
@@ -1313,24 +1344,15 @@ Q5.renderers.q2d.image = ($, q) => {
 			if (cb) cb(g);
 		}
 
-		if (Q5._nodejs && global.CairoCanvas) {
-			global.CairoCanvas.loadImage(url)
-				.then(loaded)
-				.catch((e) => {
-					q._preloadCount--;
-					throw e;
-				});
-		} else {
-			let img = new window.Image();
-			img.src = url;
-			img.crossOrigin = 'Anonymous';
-			img._pixelDensity = pd;
-			img.onload = () => loaded(img);
-			img.onerror = (e) => {
-				q._preloadCount--;
-				throw e;
-			};
-		}
+		let img = new window.Image();
+		img.crossOrigin = 'Anonymous';
+		img.onload = () => loaded(img);
+		img.onerror = (e) => {
+			q._preloadCount--;
+			throw e;
+		};
+		img.src = url;
+
 		return g;
 	};
 
@@ -1338,10 +1360,7 @@ Q5.renderers.q2d.image = ($, q) => {
 
 	$.image = (img, dx, dy, dw, dh, sx = 0, sy = 0, sw, sh) => {
 		if (!img) return;
-		let drawable = img?.canvas || img;
-		if (Q5._createNodeJSCanvas) {
-			drawable = drawable.context.canvas;
-		}
+		let drawable = img.canvas || img;
 
 		dw ??= img.defaultWidth || drawable.width || img.videoWidth;
 		dh ??= img.defaultHeight || drawable.height || img.videoHeight;
@@ -1431,6 +1450,9 @@ Q5.renderers.q2d.image = ($, q) => {
 		}
 
 		$.ctx.filter = f;
+		if ($.ctx.filter == 'none') {
+			throw new Error(`Invalid filter format: ${type}`);
+		}
 		$.ctx.drawImage($.canvas, 0, 0, $.canvas.width, $.canvas.height);
 		$.ctx.filter = 'none';
 		$._retint = true;
@@ -1575,20 +1597,6 @@ Q5.renderers.q2d.image = ($, q) => {
 	};
 	$.noTint = () => ($._tint = null);
 };
-
-Q5.THRESHOLD = 1;
-Q5.GRAY = 2;
-Q5.OPAQUE = 3;
-Q5.INVERT = 4;
-Q5.POSTERIZE = 5;
-Q5.DILATE = 6;
-Q5.ERODE = 7;
-Q5.BLUR = 8;
-Q5.SEPIA = 9;
-Q5.BRIGHTNESS = 10;
-Q5.SATURATION = 11;
-Q5.CONTRAST = 12;
-Q5.HUE_ROTATE = 13;
 /* software implementation of image filters */
 Q5.renderers.q2d.soft_filters = ($) => {
 	let u = null; // uint8 temporary buffer
@@ -1763,6 +1771,7 @@ Q5.renderers.q2d.text = ($, q) => {
 			q._preloadCount--;
 			if (cb) cb(name);
 		});
+		$.textFont(name);
 		return name;
 	};
 
@@ -2063,6 +2072,7 @@ Q5.modules.ai = ($) => {
 };
 Q5.modules.color = ($, q) => {
 	$.RGB = $.RGBA = $._colorMode = 'rgb';
+	$.SRGB = 'srgb';
 	$.OKLCH = 'oklch';
 
 	$.colorMode = (mode, format) => {
@@ -2073,7 +2083,6 @@ Q5.modules.color = ($, q) => {
 		if (mode == 'oklch') {
 			q.Color = Q5.ColorOKLCH;
 		} else {
-			let srgb = $.canvas.colorSpace == 'srgb';
 			if ($._colorFormat == 255) {
 				q.Color = srgb ? Q5.ColorRGBA_8 : Q5.ColorRGBA_P3_8;
 			} else {
@@ -2153,14 +2162,19 @@ Q5.modules.color = ($, q) => {
 			if (Array.isArray(c0)) [c0, c1, c2, c3] = c0;
 		}
 
-		if (c2 == undefined) return new C(c0, c0, c0, c1);
+		if (c2 == undefined) {
+			if ($._colorMode == Q5.OKLCH) return new C(c0, 0, 0, c1);
+			return new C(c0, c0, c0, c1);
+		}
 		return new C(c0, c1, c2, c3);
 	};
 
+	// deprecated
 	$.red = (c) => c.r;
 	$.green = (c) => c.g;
 	$.blue = (c) => c.b;
 	$.alpha = (c) => c.a;
+
 	$.lightness = (c) => {
 		if (c.l) return c.l;
 		return ((0.2126 * c.r + 0.7152 * c.g + 0.0722 * c.b) * 100) / 255;
@@ -2217,6 +2231,9 @@ Q5.ColorOKLCH = class extends Q5.Color {
 		this.c = c;
 		this.h = h;
 		this.a = a ?? 1;
+	}
+	get levels() {
+		return [this.l, this.c, this.h, this.a];
 	}
 	equals(c) {
 		return c && this.l == c.l && this.c == c.c && this.h == c.h && this.a == c.a;
@@ -2311,6 +2328,7 @@ Q5.ColorRGBA_8 = class extends Q5.ColorRGBA {
 	constructor(r, g, b, a) {
 		super(r, g, b, a ?? 255);
 	}
+	// deprecated set functions for backwards compatibility
 	setRed(v) {
 		this.r = v;
 	}
@@ -2322,9 +2340,6 @@ Q5.ColorRGBA_8 = class extends Q5.ColorRGBA {
 	}
 	setAlpha(v) {
 		this.a = v;
-	}
-	get levels() {
-		return [this.r, this.g, this.b, this.a];
 	}
 	toString() {
 		return `rgb(${this.r} ${this.g} ${this.b} / ${this.a / 255})`;
@@ -2388,7 +2403,7 @@ Q5.modules.display = ($) => {
 
 	$.PIXELATED = 'pixelated';
 
-	if (Q5._instanceCount == 0 && !Q5._nodejs) {
+	if (Q5._instanceCount == 0 && !Q5._server) {
 		document.head.insertAdjacentHTML(
 			'beforeend',
 			`<style>
@@ -2512,7 +2527,7 @@ Q5.modules.input = ($, q) => {
 	$.TEXT = 'text';
 
 	let keysHeld = {};
-	let mouseBtns = [$.LEFT, $.CENTER, $.RIGHT];
+	let mouseBtns = [Q5.LEFT, Q5.CENTER, Q5.RIGHT];
 
 	let c = $.canvas;
 
@@ -3599,9 +3614,7 @@ Q5.renderers.webgpu.canvas = ($, q) => {
 
 		opt.format ??= navigator.gpu.getPreferredCanvasFormat();
 		opt.device ??= Q5.device;
-
-		// needed for other blend modes but couldn't get it working
-		// opt.alphaMode = 'premultiplied';
+		if (opt.alpha) opt.alphaMode = 'premultiplied';
 
 		$.ctx.configure(opt);
 
@@ -3651,7 +3664,8 @@ Q5.renderers.webgpu.canvas = ($, q) => {
 		colorIndex++;
 	};
 
-	$._fill = $._stroke = 0;
+	$._stroke = 0;
+	$._fill = 1;
 	$._doFill = $._doStroke = true;
 
 	$.fill = (r, g, b, a) => {
@@ -3943,7 +3957,8 @@ Q5.renderers.webgpu.canvas = ($, q) => {
 					view: mainView,
 					resolveTarget: $.ctx.getCurrentTexture().createView(),
 					loadOp: 'clear',
-					storeOp: 'store'
+					storeOp: 'store',
+					clearValue: [0, 0, 0, 0]
 				}
 			]
 		});
@@ -4004,10 +4019,12 @@ Q5.renderers.webgpu.canvas = ($, q) => {
 			}
 
 			if (curPipelineIndex == 0) {
+				// draw shapes
 				// v is the number of vertices
 				pass.draw(v, 1, drawVertOffset);
 				drawVertOffset += v;
 			} else if (curPipelineIndex == 1) {
+				// draw images
 				if (curTextureIndex != v) {
 					// v is the texture index
 					pass.setBindGroup(2, $._textureBindGroups[v]);
@@ -4015,6 +4032,7 @@ Q5.renderers.webgpu.canvas = ($, q) => {
 				pass.draw(4, 1, imageVertOffset);
 				imageVertOffset += 4;
 			} else if (curPipelineIndex == 2) {
+				// draw text
 				let o = drawStack[i + 2];
 				pass.setBindGroup(2, $._fonts[o].bindGroup);
 				pass.setBindGroup(3, $._textBindGroup);
@@ -4237,6 +4255,41 @@ fn fragmentMain(@location(0) color: vec4f) -> @location(0) vec4f {
 		drawStack.push(0, (n + 1) * 2 + 2);
 	};
 
+	const addEllipseStroke = (x, y, outerA, outerB, innerA, innerB, n, ci, ti) => {
+		y = -y;
+		let angleIncrement = $.TAU / n;
+		let t = 0;
+
+		let v = vertexStack,
+			i = vertIndex;
+
+		for (let j = 0; j <= n; j++) {
+			// Outer vertex
+			let vxOuter = x + outerA * Math.cos(t);
+			let vyOuter = y + outerB * Math.sin(t);
+
+			// Inner vertex
+			let vxInner = x + innerA * Math.cos(t);
+			let vyInner = y + innerB * Math.sin(t);
+
+			// Add vertices for triangle strip
+			v[i++] = vxOuter;
+			v[i++] = vyOuter;
+			v[i++] = ci;
+			v[i++] = ti;
+
+			v[i++] = vxInner;
+			v[i++] = vyInner;
+			v[i++] = ci;
+			v[i++] = ti;
+
+			t += angleIncrement;
+		}
+
+		vertIndex = i;
+		drawStack.push(0, (n + 1) * 2); // Use triangle strip
+	};
+
 	$.rectMode = (x) => ($._rectMode = x);
 
 	$.rect = (x, y, w, h) => {
@@ -4245,48 +4298,34 @@ fn fragmentMain(@location(0) color: vec4f) -> @location(0) vec4f {
 		if ($._matrixDirty) $._saveMatrix();
 		ti = $._transformIndex;
 
-		if ($._doStroke) {
-			ci = $._stroke;
-
-			// stroke weight adjustment
-			let sw = $._strokeWeight / 2;
-
-			if ($._doFill) {
-				// draw stroke as one big rectangle
-				let to = t + sw,
-					bo = b - sw,
-					lo = l - sw,
-					ro = r + sw;
-
-				// draw stroke rectangle
-				addRect(lo, to, ro, to, ro, bo, lo, bo, ci, ti);
-
-				// adjust inner rectangle coordinates
-				t -= sw;
-				b += sw;
-				l += sw;
-				r -= sw;
-			} else {
-				// draw stroke as four rectangles (sides)
-				let lsw = l - sw,
-					rsw = r + sw,
-					tsw = t + sw,
-					bsw = b - sw,
-					lpsw = l + sw,
-					rpsw = r - sw,
-					tpsw = t - sw,
-					bpsw = b + sw;
-
-				addRect(lsw, tpsw, rsw, tpsw, rsw, tsw, lsw, tsw, ci, ti); // top
-				addRect(lsw, bsw, rsw, bsw, rsw, bpsw, lsw, bpsw, ci, ti); // bottom
-				addRect(lsw, tsw, lpsw, tsw, lpsw, bsw, lsw, bsw, ci, ti); // left
-				addRect(rpsw, tsw, rsw, tsw, rsw, bsw, rpsw, bsw, ci, ti); // right
-			}
-		}
-
 		if ($._doFill) {
 			ci = $._fill;
 			addRect(l, t, r, t, r, b, l, b, ci, ti);
+		}
+
+		if ($._doStroke) {
+			ci = $._stroke;
+			let sw = $._strokeWeight / 2;
+
+			// Calculate stroke positions
+			let lsw = l - sw,
+				rsw = r + sw,
+				tsw = t + sw,
+				bsw = b - sw,
+				lpsw = l + sw,
+				rpsw = r - sw,
+				tpsw = t - sw,
+				bpsw = b + sw;
+
+			addRect(lsw, tpsw, rsw, tpsw, rsw, tsw, lsw, tsw, ci, ti); // Top
+			addRect(lsw, bsw, rsw, bsw, rsw, bpsw, lsw, bpsw, ci, ti); // Bottom
+
+			// Adjust side strokes to avoid overlapping corners
+			tsw = t - sw;
+			bsw = b + sw;
+
+			addRect(lsw, tsw, lpsw, tsw, lpsw, bsw, lsw, bsw, ci, ti); // Left
+			addRect(rpsw, tsw, rsw, tsw, rsw, bsw, rpsw, bsw, ci, ti); // Right
 		}
 	};
 
@@ -4333,14 +4372,13 @@ fn fragmentMain(@location(0) color: vec4f) -> @location(0) vec4f {
 		if ($._matrixDirty) $._saveMatrix();
 		let ti = $._transformIndex;
 
-		if ($._doStroke) {
-			let sw = $._strokeWeight / 2;
-			addEllipse(x, y, a + sw, b + sw, n, $._stroke, ti);
-			a -= sw;
-			b -= sw;
-		}
 		if ($._doFill) {
 			addEllipse(x, y, a, b, n, $._fill, ti);
+		}
+		if ($._doStroke) {
+			let sw = $._strokeWeight / 2;
+			// Draw the stroke as a ring using triangle strips
+			addEllipseStroke(x, y, a + sw, b + sw, a - sw, b - sw, n, $._stroke, ti);
 		}
 	};
 

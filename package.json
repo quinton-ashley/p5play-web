@@ -2,19 +2,15 @@
 	"name": "p5play-web",
 	"author": "quinton-ashley <qashto@gmail.com>",
 	"description": "The website for p5play",
-	"dependencies": {
-		"@bitjson/qr-code": "^1.0.2",
+	"devDependencies": {
 		"@types/p5": "^1.7.6",
-		"js-beautify": "^1.15.1",
 		"p5": "^1.11.0",
 		"planck": "^1.0.2",
-		"q5": "^2.9.4"
-	},
-	"devDependencies": {
-		"bun-types": "^1.1.7",
-		"canvas": "^2.11.2",
+		"q5": "^2.9.4",
+		"bun-types": "^1.1.37",
 		"jest-cli": "^29.7.0",
 		"jest-environment-jsdom": "^29.7.0",
+		"js-beautify": "^1.15.1",
 		"taffydb": "^2.7.3"
 	},
 	"homepage": "https://github.com/quinton-ashley/p5play-web",
@@ -24,7 +20,6 @@
 		}
 	},
 	"license": "NONE",
-	"main": "app/app.js",
 	"scripts": {
 		"tests": "jest tests",
 		"types": "bun types/types.js && cp v3/p5play.d.ts ../../pkg/p5play/p5play.d.ts",
@@ -36,5 +31,5 @@
 		"version": "git add -A",
 		"postversion": "git push"
 	},
-	"version": "1.13.26"
+	"version": "1.13.27"
 }
