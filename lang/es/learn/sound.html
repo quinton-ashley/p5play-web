@@ -31,24 +31,20 @@
 			<md id="md0-0">
 				<h2 id="sonido">Sonido</h2>
 				<p>Utiliza la función <code>loadSound</code> para crear un objeto <code>Sound</code>.</p>
-				<p>A menudo, para mezclar sonidos adecuadamente, querrás usar el método <code>setVolume</code>, que
-					acepta un valor en un rango de 0 a 1.</p>
-				<p>Para capacidades de mezcla de audio más extensas, puedes usar la biblioteca <a
-						href="https://p5js.org/reference/libraries/p5.sound" target="_blank">p5.sound</a>.</p>
+				<p>Mas información: <a href="https://q5js.org/learn/#loadSound"
+						target="_blank">https://q5js.org/learn/#loadSound</a></p>
 			</md>
 			<script type="mie/p5" id="loadSound" horiz="">
 let jumpSound;
 function preload() {
 	jumpSound = loadSound("assets/jump.wav");
-	jumpSound.setVolume(0.4);
+	jumpSound.volume = 0.4;
 }
 function setup() {
   new Canvas(100, 224);
 }
 function draw() {
-	if (mouse.presses()) {
-		jumpSound.play();
-	}
+	if (mouse.presses()) jumpSound.play();
 }
 			</script>
 		</div>

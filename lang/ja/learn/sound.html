@@ -35,23 +35,19 @@
 			<md id="md0-0">
 				<h2 id="サウンド">サウンド</h2>
 				<p><code>loadSound</code> 関数は、 <code>Sound</code> オブジェクトを生成します。</p>
-				<p>多くの場合、適切なサウンドのミキシングには、 <code>setVolume</code> 関数に、 0 ～ 1 の範囲で引数を与える方法がおすすめです。</p>
-				<p>より広範なオーディオのミキシングには、<a href="https://p5js.org/reference/libraries/p5.sound"
-						target="_blank">p5.sound</a>ライブラリをご利用ください。</p>
+				<p><a href="https://q5js.org/learn/#loadSound" target="_blank">https://q5js.org/learn/#loadSound</a></p>
 			</md>
 			<script type="mie/p5" id="loadSound" horiz="">
 let jumpSound;
 function preload() {
 	jumpSound = loadSound("assets/jump.wav");
-	jumpSound.setVolume(0.4);
+	jumpSound.volume = 0.4;
 }
 function setup() {
   new Canvas(100, 224);
 }
 function draw() {
-	if (mouse.presses()) {
-		jumpSound.play();
-	}
+	if (mouse.presses()) jumpSound.play();
 }
 			</script>
 		</div>
