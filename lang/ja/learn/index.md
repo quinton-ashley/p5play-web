@@ -16,4 +16,4 @@
 
 # 1-1
 
-お探しの情報が見つからない場合は、[p5play の完全なドキュメンテーション](/docs/Sprite.html)、[p5.js リファレンス](https://p5js.org/reference/)、または [p5.sound リファレンス](https://p5js.org/reference/libraries/p5.sound) を試してみるか、[デモ](https://openprocessing.org/user/350295?o=35&view=sketches)を見てみてください。
+お探しの情報が見つからない場合は、[p5play の完全なドキュメンテーション](/docs/Sprite.html)、[q5.js リファレンス](https://q5js.org/learn)、を試してみるか、[デモ](https://openprocessing.org/user/350295?o=35&view=sketches)を見てみてください。

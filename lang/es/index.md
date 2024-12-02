@@ -36,15 +36,15 @@ Pero si usas p5play profesionalmente, por favor, ¡[apoya el proyecto en Patreon
 
 # 12
 
-## ¡No se requiere instalación! 🤩
+## Comienza a programar 🚀
 
-Puedes utilizar cualquiera de estas plantillas de editores de código en línea. Sin embargo, sugiero evitar el editor web de p5.js, tiene muchos problemas. Recomiendo usar OpenProcessing.
+¡No se requiere instalación! Haz clic en uno de los siguientes enlaces para comenzar a programar con p5play utilizando un editor de código en línea.
 
-# 13-0
+# 13
 
-## Desarrollo local 🔨
+## Desarrollo Local 🔨
 
-Usa p5play en tu propio sitio web añadiendo estos enlaces a tu archivo HTML. ¿El cortafuegos de tu escuela bloquea p5play.org? Consulta las [preguntas frecuentes (FAQs)](https://github.com/quinton-ashley/p5play/wiki/FAQ#school-firewall-blocking-p5playorg)
+Puedes [usar p5play sin conexión](https://github.com/quinton-ashley/p5play/wiki/Get-Started) o utilizar estas etiquetas en tu HTML para obtener siempre la versión más reciente.
 
 # r00
 

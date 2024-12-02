@@ -36,15 +36,15 @@ p5play は、 [AGPLv3](https://github.com/quinton-ashley/p5play-web/blob/main/LI
 
 # 12
 
-## インストール不要 🤩
+## コーディングを始めましょう 🚀
 
-iPad や Chromebook でも問題ナシ！ 以下のオンラインコードエディタから、すぐにご自身の p5play プロジェクトを作り始められます。
+インストールは不要です！以下のリンクをクリックして、オンラインコードエディターで p5play のコーディングを開始しましょう。
 
-# 13-0
+# 13
 
 ## ローカル開発 🔨
 
-HTML ファイルに以下のリンクを追加することで、ご自身のウェブサイトで p5play を使用できます。え？ 学校のファイアウォールが p5play.org をブロックしているですって？ [よくある質問](https://github.com/quinton-ashley/p5play/wiki/FAQ#school-firewall-blocking-p5playorg)を読んでみてください。
+[p5play をオフラインで使用](https://github.com/quinton-ashley/p5play/wiki/Get-Started)するか、以下の HTML タグを使用して常に最新バージョンを取得できます。
 
 # r00
 

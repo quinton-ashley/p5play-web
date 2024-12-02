@@ -36,15 +36,15 @@ Unlock exclusive content by becoming a [Pro member](pro)!
 
 # 12
 
-## No installation required 🤩
+## Start coding 🚀
 
-Works great on iPads and Chromebooks! Start creating your own p5play project with an online code editor.
+No installation required! Click one of the following links to start coding with p5play using an online code editor.
 
-# 13-0
+# 13
 
 ## Local Development 🔨
 
-You can [use p5play offline](https://github.com/quinton-ashley/p5play-template) or use these tags in your HTML to always get the latest version.
+You can [use p5play offline](https://github.com/quinton-ashley/p5play/wiki/Get-Started) or use these tags in your HTML to always get the latest version.
 
 # r00
 
