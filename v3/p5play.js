@@ -10706,7 +10706,7 @@ p5.prototype.registerMethod('post', function p5playPostDraw() {
 		$.textSize(14);
 		$.textAlign($.LEFT, $.BASELINE);
 		$.text(
-			"CodeHS is currently prohibited from using p5play.\n\nCodeHS has failed to comply with p5play's AGPL license since January 11, 2024. CodeHS was notified on September 13, 2024 that their closed source, commercial use of p5play on codehs.com requires a proprietary license.\n\nSoftware theft is a violation of the Digital Millennium Copyright Act.\n\nContact CodeHS Support to voice your frustration with this disruption in service. Contact info@p5play.org for more information.",
+			"CodeHS is currently prohibited from using p5play.\n\nCodeHS has failed to comply with p5play's AGPL license since January 11, 2024. CodeHS was notified on September 13, 2024 and acknowledged that their closed source, commercial use of p5play on codehs.com requires a proprietary license. Since then, CodeHS has tried to avoid or delay making a deal for too long.\n\nSoftware theft is a violation of the Digital Millennium Copyright Act.\n\nContact CodeHS Support to voice your frustration with this disruption in service. Contact info@p5play.org for more information.",
 			12,
 			12,
 			300
