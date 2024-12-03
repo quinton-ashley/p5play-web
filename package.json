@@ -4,10 +4,10 @@
 	"description": "The website for p5play",
 	"devDependencies": {
 		"@types/p5": "^1.7.6",
-		"p5": "^1.11.0",
-		"planck": "^1.0.2",
-		"q5": "^2.9.4",
-		"bun-types": "^1.1.37",
+		"p5": "^1.11.2",
+		"planck": "^1.1.1",
+		"q5": "^2.12.0",
+		"bun-types": "^1.1.38",
 		"jest-cli": "^29.7.0",
 		"jest-environment-jsdom": "^29.7.0",
 		"js-beautify": "^1.15.1",
@@ -31,5 +31,5 @@
 		"version": "git add -A",
 		"postversion": "git push"
 	},
-	"version": "1.14.3"
+	"version": "1.14.4"
 }
