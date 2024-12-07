@@ -82,3 +82,19 @@ El `range` (rango) de la articulación determina cuán separados pueden estar lo
 Por defecto, el motor de la articulación está activado con una `speed` (velocidad) de 0, por lo que `maxPower` (poder maximo) determina cuánto puede resistir la articulación al deslizamiento.
 
 Prueba soltar cajas en la balanza haciendo clic con el ratón. ¿Cuántas cajas puedes apilar en la balanza antes de que alcance su límite? Intenta cambiar su ángulo también.
+
+# 5-0
+
+## GrabberJoint
+
+Agarra sprites y muévelos con una fuerza máxima hacia una posición objetivo usando un `GrabberJoint`.
+
+Intenta hacer clic y arrastrar sprites por el lienzo en este ejemplo.
+
+Ten en cuenta el uso de `world.getSpriteAt` para obtener el sprite en la posición del ratón, si existe.
+
+Establece continuamente la propiedad `target` para mover el sprite hacia una posición objetivo. Esto puede ser cualquier objeto con propiedades x e y.
+
+Elimina el joint para soltar el sprite que fue agarrado.
+
+Intenta cambiar `maxForce` desde su valor predeterminado de 1000.

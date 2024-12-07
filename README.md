@@ -55,7 +55,15 @@ dev
 
 ## Licensing
 
-See the [LICENSING.md][] file.
+p5play software is multi-licensed for use under the p5play Personal License, p5play Educational License, and p5play Professional License.
+
+Typical use of p5play by educators and commercial game developers requires a proprietary license. See the [Pro][] and [Teach][] pages for more information.
+
+q5.js is LGPLv3 licensed. The Ace editor is BSD-3-Clause licensed. planck and marked are MIT licensed.
+
+The example code and non-logo images shown in the mini editors on the p5play website are public domain works licensed under the CC0 license. You are free to copy and modify them for use in your own projects without attribution.
+
+Everything else in this repository, "p5play-web", is owned by Quinton Ashley, all rights reserved. This content and its source is publicly available, but you may not copy the content to a greater extent than fair use allows.
 
 ## Credits
 
@@ -135,3 +143,5 @@ https://www.pexels.com/video/skater-girl-meeting-with-her-friends-5200356/
 [p5play project planning page]: https://github.com/users/quinton-ashley/projects/5
 [mie]: https://github.com/quinton-ashley/mie
 [translations]: /lang/instructions.md
+[Pro]: https://p5play.org/pro/
+[Teach]: https://p5play.org/teach/

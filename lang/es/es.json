@@ -55,7 +55,7 @@
 			"Dibujar y actualizar"
 		],
 		"input": ["Detección de Entrada", "Teclado", "Ratón", "Ratón de Sprite", "Controladores de Juego", "Táctil"],
-		"joints": ["pegamento", "distancia", "rueda", "bisagra", "deslizador"],
+		"joints": ["pegamento", "distancia", "rueda", "bisagra", "deslizador", "agarrador"],
 		"sound": ["Usando sonidos"],
 		"sprite": [
 			"Propiedades Básicas",

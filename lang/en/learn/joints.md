@@ -83,3 +83,19 @@ The joint's `range` determines how far apart the connected sprites can be from e
 By default the joint's motor is enabled with a `speed` of 0, so `maxPower` determines how much the joint can resist sliding.
 
 Try dropping boxes on the scale by clicking with your mouse. How many boxes can you stack on the scale before it reaches its limit? Try changing its angle too.
+
+# 5-0
+
+## GrabberJoint
+
+Grab sprites and move them with a max force towards a target position using a `GrabberJoint`.
+
+Try clicking and dragging sprites around the canvas in this example.
+
+Note the use of `world.getSpriteAt` to get the sprite at the mouse position, if any.
+
+Continuously set the `target` property to move the sprite towards a target position. This can be any object with x and y properties.
+
+Remove the joint to release the sprite that was grabbed.
+
+Try changing `maxForce` from the default value of 1000.

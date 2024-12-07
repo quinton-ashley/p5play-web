@@ -56,7 +56,7 @@
 			"Draw and Update"
 		],
 		"input": ["Detecting Input", "Keyboard", "Mouse", "Sprite Mouse", "Game Controllers", "Touch"],
-		"joints": ["GlueJoint", "DistanceJoint", "WheelJoint", "HingeJoint", "SliderJoint"],
+		"joints": ["GlueJoint", "DistanceJoint", "WheelJoint", "HingeJoint", "SliderJoint", "GrabberJoint"],
 		"sound": ["Using Sounds"],
 		"sprite": [
 			"Basic Properties",
