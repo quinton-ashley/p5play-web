@@ -30,9 +30,9 @@
 
 ## このプロジェクトをサポートする 🤝
 
-p5play は、 [AGPLv3](https://github.com/quinton-ashley/p5play-web/blob/main/LICENSING.md) ライセンスの下、無料で利用できるオープンソースプロジェクトです。
+[p5play パーソナルライセンス](https://github.com/quinton-ashley/p5play/blob/main/LICENSE.md)は、p5play の無料でオープンソースの個人使用を可能にします。
 
-[_PRO_ メンバー](pro)になると、限定コンテンツがアンロックされ、[p5play プロフェッショナルライセンス](https://github.com/quinton-ashley/p5play-web/blob/main/pro/PRO_LICENSE.md)を取得できます！
+教育用には[p5play 教育ライセンス](https://p5play.org/teach)が必要です。商業ゲーム開発には[p5play プロフェッショナルライセンス](https://p5play.org/pro)が必要です。
 
 # 12
 
@@ -198,17 +198,9 @@ p5play では、スプライトに[物理コライダー](learn/sprite.html?page
 
 ## p5play は無料で使えますか？ 📖
 
-p5play はオープンソースで、[マルチライセンス](https://github.com/quinton-ashley/p5play-web/blob/main/LICENSING.md)です。 [AGPLv3](https://github.com/quinton-ashley/p5play/blob/main/LICENSE.md) の条件下でのみ無料で使用できます。
+[p5play パーソナルライセンス](https://github.com/quinton-ashley/p5play/blob/main/LICENSE.md)は、p5play の無料でオープンソースの個人使用を可能にします。
 
-p5play を無料で使用可能な事例には、以下のものが含まれます：
-
-- 不特定多数の人に公開された、無料講習での指導
-- 公的にアクセス可能な、教育課程の一部として
-- YouTube へのチュートリアル動画の投稿。動画が収益化されていても問題ありません（フェアユースによって保護されます）
-- フリーゲームの開発
-- そのソースコードとともに、有料のゲームを公開
-
-通常、教育機関での教材や、商用ゲーム開発者による使用には、プロプライエタリ・ライセンスが必要です。くわしくは[有償プラン](pro)または[教える](teach)のページをご覧ください。
+教育用には[p5play 教育ライセンス](https://p5play.org/teach)が必要です。商業ゲーム開発には[p5play プロフェッショナルライセンス](https://p5play.org/pro)が必要です。
 
 # 17-5
 

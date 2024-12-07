@@ -18,8 +18,6 @@ The [_Learn p5play_](../learn) interactive textbook makes Object Oriented Progra
 
 It's packed with reference documentation and code examples that students can experiment with right in their web browser. Works great on iPads and Chromebooks.
 
-After purchase of the Edu License, you'll be given a class ID that your students can use to gain access. Students don't need to provide any personal information.
-
 _Teachers can evaluate this resource for free._
 
 # 2-0
@@ -34,9 +32,13 @@ _2 lessons provided as a free sample. Additional lessons are exclusively for Edu
 
 # 3-0
 
-## Closed Source Use
+## How It Works
 
-Use p5play in your own lesson materials, without needing to open source them under the AGPL.
+After purchase of the Edu License, you'll be given a class ID that your students can use to gain access, by signing up for an account on p5play.org.
+
+No personal information is needed for students to create an account.
+
+Students will be able to keep using their accounts, even after the licensing term ends!
 
 # 4-0
 

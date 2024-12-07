@@ -14,6 +14,6 @@
 
 ## 無料利用
 
-p5play の無料利用は、 [AGPL](https://github.com/quinton-ashley/p5play/blob/main/LICENSE.md) の条項を遵守する必要があります。要するに、 p5play を組み込んだ作品は、完全にオープンソースとして公開しなければなりません。
+[p5play パーソナルライセンス](https://github.com/quinton-ashley/p5play/blob/main/LICENSE.md)は、p5play の無料でオープンソースの個人使用を可能にします。
 
-学校や商用ゲーム開発者による一般的な使用には、独自のライセンスが必要です。詳細については、[Teach](../teach) または [Pro](../pro) ページを参照してください。
+教育用には[p5play 教育ライセンス](https://p5play.org/teach)が必要です。商業ゲーム開発には[p5play プロフェッショナルライセンス](https://p5play.org/pro)が必要です。

@@ -14,6 +14,6 @@
 
 ## Limitaciones del Uso Gratuito
 
-El uso gratuito bajo la [AGPL](https://github.com/quinton-ashley/p5play/blob/main/LICENSE.md) está limitado: cualquier trabajo que incorpore p5play debe ser de código abierto y público.
+La [Licencia Personal de p5play](https://github.com/quinton-ashley/p5play/blob/main/LICENSE.md) permite el uso personal, gratuito y de código abierto de p5play.
 
-El uso típico por parte de escuelas y desarrolladores de juegos comerciales requiere una licencia propietaria. Consulta las páginas de [Teach](../teach) o [Pro](../pro) para más información.
+El uso educativo requiere la [Licencia Educativa de p5play](https://p5play.org/teach). El desarrollo de juegos comerciales requiere la [Licencia Profesional de p5play](https://p5play.org/pro).

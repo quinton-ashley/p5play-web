@@ -30,9 +30,9 @@ Ask questions, meet people, and share your games made with p5play on our [commun
 
 ## Support this project 🤝
 
-p5play is open source and free to use under the [AGPLv3](https://github.com/quinton-ashley/p5play/blob/main/LICENSE.md). For typical use in schools, see the [Teach](teach) page.
+The [p5play Personal License](https://github.com/quinton-ashley/p5play/blob/main/LICENSE.md) enables free, open-source, personal use of p5play.
 
-Unlock exclusive content by becoming a [Pro member](pro)!
+Typical educational use requires the [p5play Educational License](https://p5play.org/teach). Commercial game development requires the [p5play Professional License](https://p5play.org/pro).
 
 # 12
 
@@ -201,17 +201,11 @@ Whether you're a beginner, hobbyist, or professional developer: p5play was creat
 
 ## Can I use p5play for free? 📖
 
-p5play is open source and [multi-licensed](https://github.com/quinton-ashley/p5play-web/blob/main/LICENSING.md). It can only be used for free under the terms of the [AGPLv3](https://github.com/quinton-ashley/p5play/blob/main/LICENSE.md).
+The [p5play Personal License](https://github.com/quinton-ashley/p5play/blob/main/LICENSE.md) enables free, open-source, personal use of p5play.
 
-Acceptable free use of p5play includes:
+Typical educational use requires the [p5play Educational License](https://p5play.org/teach). Commercial game development requires the [p5play Professional License](https://p5play.org/pro).
 
-- teaching a free class that's open to the general public
-- in curriculum that is freely available to the public
-- posting a tutorial video on YouTube, even if it's monetized (protected by fair use)
-- developing a game that is not monetized
-- publishing a game that's open source
-
-Typical use by schools and commercial game developers requires a proprietary license. See the [Pro](pro) or [Teach](teach) pages for more information.
+It's permitted to showcase use of p5play in fixed media, such as YouTube video tutorials, which can even be monetized as long as the content does not enable direct interaction with p5play software.
 
 # 17-5
 

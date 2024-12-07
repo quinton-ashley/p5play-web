@@ -30,9 +30,9 @@ Haz preguntas y conoce a otras personas que crean arte interactivo y juegos con 
 
 ## Apoya este proyecto 🤝
 
-p5play tiene una [licencia de código abierto](https://github.com/quinton-ashley/p5play-web/blob/main/LICENSING.md) bajo GPL: ¡es gratis!
+La [Licencia Personal de p5play](https://github.com/quinton-ashley/p5play/blob/main/LICENSE.md) permite el uso personal, gratuito y de código abierto de p5play.
 
-Pero si usas p5play profesionalmente, por favor, ¡[apoya el proyecto en Patreon](https://www.patreon.com/p5play)!
+El uso educativo requiere la [Licencia Educativa de p5play](https://p5play.org/teach). El desarrollo de juegos comerciales requiere la [Licencia Profesional de p5play](https://p5play.org/pro).
 
 # 12
 
@@ -175,17 +175,9 @@ Ya seas principiante, aficionado o desarrollador profesional: ¡p5play fue cread
 
 ## ¿Puedo usar p5play gratis? 📖
 
-p5play es de código abierto y [tiene múltiples licencias](https://github.com/quinton-ashley/p5play-web/blob/main/LICENSING.md). Solo se puede usar gratis bajo los términos de la [AGPLv3](https://github.com/quinton-ashley/p5play/blob/main/LICENSE.md).
+La [Licencia Personal de p5play](https://github.com/quinton-ashley/p5play/blob/main/LICENSE.md) permite el uso personal, gratuito y de código abierto de p5play.
 
-El uso gratuito aceptable de p5play incluye:
-
-- enseñar una clase gratuita que esté abierta al público general
-- como parte de un currículo que está disponible gratuitamente para el público
-- publicar un video tutorial en YouTube, incluso si está monetizado (protegido por el uso justo)
-- desarrollar un juego que no esté monetizado
-- publicar un juego monetizado si compartes públicamente el código fuente
-
-Casi cualquier otro uso requiere una licencia propietaria. Consulte las páginas [Pro](pro) o [Teach](teach) para obtener más información.
+El uso educativo requiere la [Licencia Educativa de p5play](https://p5play.org/teach). El desarrollo de juegos comerciales requiere la [Licencia Profesional de p5play](https://p5play.org/pro).
 
 # 17-5
 

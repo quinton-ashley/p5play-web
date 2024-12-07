@@ -34,11 +34,13 @@ _Exclusivo para clientes que adquieren la subscripcion educativa._
 
 # 3-0
 
-## Uso de Código Cerrado
+## Cómo Funciona
 
-Usa p5play en tus propios materiales de lección de clase, sin necesidad de hacerlos de código abierto bajo la AGPL.
+Después de comprar la Licencia Educativa, se le proporcionará un ID de clase que sus estudiantes pueden usar para obtener acceso registrándose en una cuenta en p5play.org.
 
-_Exclusivo para clientes que adquieren la subscripcion educativa._
+La privacidad de los estudiantes está protegida, no necesitarán proporcionar ninguna información personal.
+
+¡Los estudiantes podrán seguir usando sus cuentas, incluso después de que termine el período de licencia!
 
 # 4-0
 
