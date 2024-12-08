@@ -93,7 +93,7 @@ Supplemental Materials, such as the p5play-ios app template and p5play Game Desi
 
 ## 6. Revenue Share
 
-The Licensee must pay the Licensor 10% of gross revenue when the lifetime combined revenue from all projects using the Content exceeds $1000 USD (one thousand United States Dollars). This threshold calculation includes all historical revenue since first use of the Content. "Gross revenue" includes but is not limited to:
+The Licensee must pay the Licensor 5% of gross revenue when the lifetime combined revenue from all projects using the Content exceeds $1000 USD (one thousand United States Dollars). This threshold calculation includes all historical revenue since first use of the Content. "Gross revenue" includes but is not limited to:
 
 - Direct sales
 - In-app purchases
