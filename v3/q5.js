@@ -1450,12 +1450,14 @@ Q5.renderers.q2d.image = ($, q) => {
 			return;
 		}
 
+		$.ctx.save();
 		$.ctx.filter = f;
 		if ($.ctx.filter == 'none') {
 			throw new Error(`Invalid filter format: ${type}`);
 		}
+		$.ctx.globalCompositeOperation = 'source-over';
 		$.ctx.drawImage($.canvas, 0, 0, $.canvas.w, $.canvas.h);
-		$.ctx.filter = 'none';
+		$.ctx.restore();
 		$._retint = true;
 	};
 
@@ -2669,9 +2671,9 @@ Q5.modules.input = ($, q) => {
 			q.mouseY = $.touches[0].y;
 			q.mouseIsPressed = true;
 			q.mouseButton = $.LEFT;
-			if (!$.mousePressed(e)) e.preventDefault();
+			$.mousePressed(e);
 		}
-		if (!$.touchStarted(e)) e.preventDefault();
+		$.touchStarted(e);
 	};
 
 	$._ontouchmove = (e) => {
@@ -2698,12 +2700,23 @@ Q5.modules.input = ($, q) => {
 		l('mousedown', (e) => $._onmousedown(e));
 		l('wheel', (e) => $._onwheel(e));
 		l('click', (e) => $._onclick(e));
+
+		l('touchstart', (e) => $._ontouchstart(e));
+		l('touchmove', (e) => $._ontouchmove(e));
+		l('touchend', (e) => $._ontouchend(e));
+		l('touchcancel', (e) => $._ontouchend(e));
 	}
 
 	if (window) {
 		let l = window.addEventListener;
 		l('keydown', (e) => $._onkeydown(e), false);
 		l('keyup', (e) => $._onkeyup(e), false);
+
+		if (!c) {
+			l('mousedown', (e) => $._onmousedown(e));
+			l('wheel', (e) => $._onwheel(e));
+			l('click', (e) => $._onclick(e));
+		}
 
 		l('mousemove', (e) => $._onmousemove(e), false);
 		l('mouseup', (e) => {
@@ -2712,11 +2725,6 @@ Q5.modules.input = ($, q) => {
 				$._onmouseup(e);
 			}
 		});
-
-		l('touchstart', (e) => $._ontouchstart(e));
-		l('touchmove', (e) => $._ontouchmove(e));
-		l('touchend', (e) => $._ontouchend(e));
-		l('touchcancel', (e) => $._ontouchend(e));
 	}
 };
 Q5.modules.math = ($, q) => {
