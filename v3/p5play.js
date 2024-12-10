@@ -5535,7 +5535,7 @@ p5.prototype.registerMethod('init', function p5playInit() {
 				}
 				if (!this.idNum) {
 					console.warn(
-						'ERROR: Surpassed the limit of 999 groups in memory. Use less groups or delete groups from the p5play.groups array to recycle ids.'
+						'ERROR: Surpassed the limit of 999 groups in memory. Try setting `p5play.storeRemovedGroupRefs = false`. Use less groups or delete groups from the p5play.groups array to recycle ids.'
 					);
 					// if there are no empty slots, try to prevent a crash by
 					// finding the first slot that has a group with no sprites in it
