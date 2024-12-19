@@ -236,7 +236,10 @@ mie.lang.p5 = {};
 mie.lang.p5.functionNames = [
 	'preload',
 	'setup',
+	'update',
 	'draw',
+	'updateCamera',
+	'postProcess',
 	'keyPressed',
 	'keyReleased',
 	'keyTyped',
@@ -252,7 +255,7 @@ mie.lang.p5.functionNames = [
 ];
 
 mie.lang.p5.play = function (code) {
-	if (!code.includes('function setup') && !code.includes('function draw')) {
+	if (!code.includes('function setup')) {
 		code = mie.bases[this.base || 0] + code + '}';
 	}
 	function s(p) {

@@ -54,7 +54,7 @@ function setup() {
   j = new GlueJoint(spriteA, spriteB);
 }
 
-function draw() {
+function update() {
   clear();
 }
       </script>
@@ -88,7 +88,7 @@ function setup() {
 	ball = new Sprite(300, 200, 20);
 }
 
-function draw() {
+function update() {
 	clear();
 	stick.moveTowards(mouse);
 
@@ -131,7 +131,7 @@ function setup() {
 	j.springiness = 0.8; // try changing this!
 }
 
-function draw() {
+function update() {
 	clear();
 	spA.moveTowards(mouse);
 }
@@ -177,7 +177,7 @@ function setup() {
 	ground.color = 'black';
 }
 
-function draw() {
+function update() {
 	background(200);
 
 	if (kb.pressing('left')) axleRear.speed--;
@@ -219,7 +219,7 @@ function setup() {
 	j.upperLimit;
 }
 
-function draw() {
+function update() {
 	clear();
 	if (mouse.presses()) new Sprite(mouse.x, mouse.y, 6, 6)
 }
@@ -254,7 +254,7 @@ function setup() {
 	j.angle = 90;
 }
 
-function draw() {
+function update() {
 	clear();
 
 	if (mouse.presses()) {
@@ -288,7 +288,7 @@ function setup() {
 	new Sprite(250, 390, 400, 10, 's');
 }
 
-function draw() {
+function update() {
 	background(200);
 
 	if (frameCount % 10 == 0) {

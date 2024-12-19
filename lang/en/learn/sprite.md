@@ -1,10 +1,10 @@
 # 0-0
 
-## Setup and Draw
+## Setup and Update
 
-The code inside the [q5.js](https://q5js.org) (or [p5.js](https://p5js.org)) `setup` function runs when the program starts. The `new Canvas()` constructor creates a section of the screen that the program can draw on.
+The code inside the [q5.js](https://q5js.org) (or [p5.js](https://p5js.org)) `setup` function runs when the program starts. The `update` function runs 60 times per second by default.
 
-The q5 `draw` function is run 60 times per second by default. The `background` function can be used to fill the canvas with a color each time it is drawn.
+The `new Canvas()` constructor creates a section of the screen that the program can draw on.
 
 Try changing the width and height of the canvas (the numbers inside the `Canvas` constructor), then restart the example program!
 

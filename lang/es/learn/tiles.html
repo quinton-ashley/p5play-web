@@ -82,7 +82,7 @@ function setup() {
 	);
 }
 
-function draw() {
+function update() {
 	clear();
 
 	for (let brick of bricks) {
@@ -135,7 +135,7 @@ function setup() {
 	});
 }
 
-function draw() {
+function update() {
 	for (let i = 0; i < 15; i++) {
 		for (let j = 0; j < 6; j++) {
 			rect(i * 32, j * 32, 32, 32);

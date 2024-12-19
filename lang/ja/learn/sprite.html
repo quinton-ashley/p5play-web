@@ -39,11 +39,10 @@
 		<div id="page-0" class="page">
 			<md id="md0-0">
 				<h2 id="セットアップと描画">セットアップと描画</h2>
-				<p><a href="https://p5js.org" target="_blank">p5.js</a> (または <a
-						href="https://github.com/quinton-ashley/q5.js" target="_blank">q5.js</a>) の <code>setup</code>
-					関数内のコードは、プログラムの開始とともに実行されます。<code>new Canvas()</code> コンストラクタは、スクリーン内にプログラムが描画できる領域を作成します。</p>
-				<p>p5.js の <code>draw</code> 関数は、デフォルトでは 1 秒間に 60 回実行されます。<code>background</code>
-					関数は、キャンバスが描画されるたびに、それを指定した色で塗りつぶすために使用します。</p>
+				<p><a href="https://q5js.org" target="_blank">q5.js</a> (または <a href="https://p5js.org"
+						target="_blank">p5.js</a>) の <code>setup</code> 関数内のコードは、プログラムの開始とともに実行されます。<code>update</code>
+					関数は、デフォルトでは 1 秒間に 60 回実行されます。</p>
+				<p><code>new Canvas()</code> コンストラクタは、スクリーン内にプログラムが描画できる領域を作成します。</p>
 				<p>コードサンプルで、キャンバスの幅と高さ（<code>Canvas</code> コンストラクタ内の数字）を変更して、プログラムを再実行してみましょう！</p>
 			</md>
 			<script type="mie/p5" id="setup-and-draw">
@@ -51,7 +50,7 @@ function setup() {
 	new Canvas(250, 100);
 }
 
-function draw() {
+function update() {
 	background('blue');
 }
 			</script>
@@ -75,7 +74,7 @@ function setup() {
 	sprite.height = 50;
 }
 
-function draw() {
+function update() {
 	clear();
 }
 				</script>
@@ -89,7 +88,7 @@ function setup() {
 	sprite.diameter = 50;
 }
 
-function draw() {
+function update() {
 	clear();
 }
 				</script>
@@ -143,7 +142,7 @@ function setup() {
 	ball.y = 16;
 }
 
-function draw() {
+function update() {
 	clear();
 }
 				</script>
@@ -158,7 +157,7 @@ function setup() {
   
 }
 
-function draw() {
+function update() {
 	clear();
 }
 			</script>
@@ -197,7 +196,7 @@ function setup() {
 	floor.collider = 'static';
 }
 
-function draw() {
+function update() {
 	clear();
 }
 			</script>
@@ -248,7 +247,7 @@ function setup() {
 	block.y = 0;
 }
 
-function draw() {
+function update() {
 	clear();
 }
 				</script>
@@ -261,7 +260,7 @@ function setup() {
 
 }
 
-function draw() {
+function update() {
 	clear();
 }
 			</script>
@@ -293,7 +292,7 @@ function setup() {
 	monster.image.offset.y = 6;
 }
 
-function draw() {
+function update() {
 	clear();
 	monster.debug = mouse.pressing();
 }
@@ -315,7 +314,7 @@ function setup() {
 	painting.image = '🖼️';
 }
 
-function draw() {
+function update() {
 	noLoop();
 }
 			</script>
@@ -349,7 +348,7 @@ yybyyyybyy
 	smiley.img = spriteArt(smileText, 32);
 }
 
-function draw() {
+function update() {
   noLoop();
 }
 			</script>
@@ -372,7 +371,7 @@ a.a.b.b.c...d.d.ee..fff.ggg.h.h..i...j..kk...l..mmm.n.n.o.o.p.p.q.q.r....s...t..
 	noLoop();
 }
 
-function draw() {}
+function update() {}
 
         </script>
 			</div>
@@ -410,7 +409,7 @@ uubuuuubuu
 	smiley.img = spriteArt(smileText, 32, palette);
 }
 
-function draw() {
+function update() {
 	noLoop();
 }
 			</script>
@@ -432,7 +431,7 @@ function setup() {
 	block.image = random(['🟥', '🟦', '🟩', '🟨', '🟧', '🟪', '🟫']);
 }
 
-function draw() {
+function update() {
 	clear();
 }
 					</script>
@@ -532,7 +531,7 @@ function setup() {
 	new Sprite();
 }
 
-function draw() {}
+function update() {}
 				</script>
 			</div>
 			<div class="minis horiz">
@@ -556,7 +555,7 @@ function setup() {
 	circle = new Sprite(25, 140, 10, 'static');
 }
 
-function draw() {
+function update() {
 	clear();
 }
 				</script>
@@ -572,7 +571,7 @@ function setup() {
 	floor = new Sprite(40, 155, 80, 5, 'static');
 }
 
-function draw() {
+function update() {
 	clear();
 }
 				</script>
@@ -590,7 +589,7 @@ function setup() {
 
 }
 
-function draw() {
+function update() {
 	clear();
 }
 			</script>
@@ -614,7 +613,7 @@ function setup() {
 	player = new Sprite(30, 0, 50);
 }
 
-function draw() {
+function update() {
 	clear();
 
 	if (player.collides(pillar)) {
@@ -635,7 +634,7 @@ function setup() {
 	floor.color = 'red';
 }
 
-function draw() {
+function update() {
 	clear();
 	if (block.colliding(floor)) {
 		block.color = 'red';
@@ -657,7 +656,7 @@ function setup() {
 	floor = new Sprite(30, 300, 60, 5, 'static');
 }
 
-function draw() {
+function update() {
 	clear();
 	if (block.collided(floor)) {
 		floor.collider = 'dynamic';
@@ -681,7 +680,7 @@ function setup() {
 	spriteA.overlaps(spriteB);
 }
 
-function draw() {
+function update() {
 	clear();
 }
 			</script>
@@ -716,7 +715,7 @@ function setup() {
 	player = new Sprite(50, 50);
 }
 
-function draw() {
+function update() {
 	clear();
 	player.moveTowards(mouse);
 		
@@ -741,7 +740,7 @@ function setup() {
 	sprite2.color = 'red';
 }
 
-function draw() {
+function update() {
 	clear();
 	sprite1.moveTowards(mouse);
 
@@ -767,7 +766,7 @@ function setup() {
 	player = new Sprite(50, 50);
 }
 
-function draw() {
+function update() {
 	clear();
 	player.moveTowards(mouse);
 
@@ -793,7 +792,7 @@ function setup() {
 	sprite.h = 20;
 }
 
-function draw() {
+function update() {
 	clear();
 }
 			</script>
@@ -807,7 +806,7 @@ function setup() {
 	sprite.h = 20;
 }
 
-function draw() {
+function update() {
 	clear();
 }
 			</script>
@@ -879,7 +878,7 @@ function setup() {
 	flipper.offset.x = 40;
 }
 
-function draw() {
+function update() {
 	clear();
 	if (mouse.presses()) new Sprite(mouse.x, mouse.y, 10);
 }
@@ -907,7 +906,7 @@ function setup() {
 	sprite.debug = true;
 }
 
-function draw() {
+function update() {
 	clear();
 
 	for (let i = 1; i < 10; i++) {
@@ -937,7 +936,7 @@ function setup() {
 	floor = new Sprite(119, 88, 238, 5, 's');
 	floor.rotation = 5;
 }
-function draw() {
+function update() {
 	clear();
 }
 			</script>
@@ -950,7 +949,7 @@ function setup() {
 	floor = new Sprite(119, 88, 238, 5, 's');
 	floor.rotation = 5;
 }
-function draw() {
+function update() {
 	clear();
 }
 			</script>
@@ -1021,7 +1020,7 @@ function setup() {
 	spriteB.mass = 2;
 }
 
-function draw() {
+function update() {
 	clear();
 }
 			</script>
@@ -1045,7 +1044,7 @@ function setup() {
 	ground = new Sprite(16, 184, 32, 16, 's');
 }
 
-function draw() {
+function update() {
 	background(0);
 
 	fill(100);
@@ -1073,7 +1072,7 @@ function setup() {
 	ground = new Sprite(16, 184, 32, 16, 's');
 }
 
-function draw() {
+function update() {
 	clear();
 
 	if (ball.collided(ground)) {
@@ -1103,7 +1102,7 @@ function setup() {
 	platform.color = 'red';
 }
 
-function draw() {
+function update() {
 	clear();
 	platform.vel.y = cos(frameCount * 2.2) * 6;
 
@@ -1137,7 +1136,7 @@ function setup() {
 	floor = new Sprite(50, 498, 100, 6, 's');
 }
 
-function draw() {
+function update() {
 	background(16);
 
 	if (mouse.pressing()) {
@@ -1166,7 +1165,7 @@ function setup() {
   new Sprite(50, 284, 100, 8, 's');
 }
 
-function draw() {
+function update() {
   background(16);
 	//                 (x,  y)
 	s0.applyForceScaled(0, -10);
@@ -1189,7 +1188,7 @@ function setup() {
 	electron.vel.y = 5;
 }
 
-function draw() {
+function update() {
 	background(16, 10);
 	//               (position, force)
 	electron.attractTo(nucleus, 5);
@@ -1215,7 +1214,7 @@ function setup() {
 	floor2.rotation = 10;
 }
 
-function draw() {
+function update() {
 	background(16);
 	
 	robot.applyTorque(3);
@@ -1247,7 +1246,7 @@ function setup() {
 	ball = new Sprite(40, 0, 20);
 }
 
-function draw() {
+function update() {
 	clear();
 	rect(floor.x - 2, floor.y - 2, 4, 4);
 }
@@ -1269,7 +1268,7 @@ function setup() {
 	new Sprite(40, 0, 20);
 }
 	
-function draw() {
+function update() {
 	clear();
 	rect(allSprites[0].x - 2, allSprites[0].y - 2, 4, 4);
 }
@@ -1292,7 +1291,7 @@ function setup() {
 	new Sprite(200, 0, 20);
 }
 	
-function draw() {
+function update() {
 	clear();
 	rect(allSprites[0].x - 2, allSprites[0].y - 2, 4, 4);
 }
@@ -1315,7 +1314,7 @@ function setup() {
 	new Sprite(250, 50, 50, 'pentagon');
 }
 	
-function draw() {
+function update() {
 	clear();
 }
 			</script>
@@ -1329,7 +1328,7 @@ function setup() {
 	new Sprite([[8, 8], [140, 92], [300, 40], [8, 8]]);
 }
 
-function draw() {
+function update() {
 	clear();
 }
 			</script>
@@ -1344,7 +1343,7 @@ function setup() {
 	s.shape = 'chain';
 }
 	
-function draw() {
+function update() {
 	clear();
 }
 			</script>
@@ -1362,7 +1361,7 @@ function setup() {
 	]);
 }
 
-function draw() {
+function update() {
 	clear();
 }
 			</script>
@@ -1378,7 +1377,7 @@ function setup() {
 	new Sprite(250, 80, [50, -72, 50, 144, 5]);
 }
 
-function draw() {
+function update() {
 	clear();
 }
 			</script>
@@ -1396,7 +1395,7 @@ function setup() {
 	new Sprite(251, 50, 20, 'pentagon');
 }
 
-function draw() {
+function update() {
 	clear();
 }
 			</script>
@@ -1421,7 +1420,7 @@ function setup() {
 	new Sprite(250, 90, 500, 10, 's');
 }
 
-function draw() {
+function update() {
 	clear();
 }
 			</script>
@@ -1450,12 +1449,12 @@ function draw() {
 let ball, flipper;
 
 function setup() {
-	new Canvas(180, 500);
+	new Canvas(180, 736);
 	world.gravity.y = 10;
 
 	ball = new Sprite(100, -20, 30);
 
-	flipper = new Sprite(160, 400, [
+	flipper = new Sprite(160, 500, [
 		[0, -25],
 		[-100, 12.5],
 		[0, 25],
@@ -1471,7 +1470,7 @@ function setup() {
 	flipper.debug = true;
 }
 
-function draw() {
+function update() {
 	background(16);
 
 	if (mouse.presses()) {
@@ -1527,7 +1526,7 @@ function setup() {
 	};
 }
 
-function draw() {
+function update() {
 	clear();
 }
 			</script>
@@ -1558,7 +1557,7 @@ async function squareSequence() {
 	squareSequence();
 }
 
-function draw() {
+function update() {
 	clear();
 }
 			</script>
@@ -1586,7 +1585,7 @@ async function randomSequence() {
 	randomSequence();
 }
 
-function draw() {
+function update() {
 	clear();
 }
 			</script>
@@ -1606,7 +1605,7 @@ function setup() {
 	ally = new Sprite(200, 50, 20, 20, 'n');
 }
 
-function draw() {
+function update() {
 	clear();
 }
 			</script>

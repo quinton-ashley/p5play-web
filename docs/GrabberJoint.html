@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Camera - Documentation</title>
+    <title>GrabberJoint - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -29,7 +29,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">Camera</h1>
+    <h1 class="page-title">GrabberJoint</h1>
     
 
     
@@ -42,7 +42,7 @@
 <header>
     
         <h2>
-        Camera
+        GrabberJoint
         </h2>
         
     
@@ -56,30 +56,15 @@
 
     
 
-    <h4 class="name" id="Camera"><span class="type-signature"></span>new Camera<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="GrabberJoint"><span class="type-signature"></span>new GrabberJoint<span class="signature">(sprite)</span><span class="type-signature"></span></h4>
 
     
 
 
 
 <div class="description">
-    <a href="https://p5play.org/learn/camera.html">
-Look at the Camera reference pages before reading these docs.
-</a>
-
-A `camera` object is created automatically when p5play loads.
-Currently, there can only be one camera per sketch (instance
-of p5 or q5).
-
-A camera facilitates zooming and scrolling for scenes extending beyond
-the canvas. Moving the camera does not actually move the sprites.
-
-The camera is automatically created on the first draw cycle.
-
-The camera wraps the whole drawing cycle in a transformation
-matrix (using `push`/`pushMatrix`) but it can be disabled
-during the draw cycle to draw interface elements in an
-absolute position.
+    A Grabber joint enables you to grab sprites and move them with
+a max force towards a target position.
 </div>
 
 
@@ -115,7 +100,7 @@ absolute position.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line7164">line 7164</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line8273">line 8273</a>
     </li></ul></dd>
     
 
@@ -132,6 +117,58 @@ absolute position.
 
 
 
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>sprite</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><code><a href="Sprite.html">Sprite</a></code></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">
+                the sprite to grab
+                
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
 
 
 
@@ -153,6 +190,17 @@ absolute position.
     </div>
 
     
+        <h3 class="subsection-title">Extends</h3>
+
+        
+
+
+    <ul>
+        <li><a href="Joint.html">Joint</a></li>
+    </ul>
+
+
+    
 
     
 
@@ -160,7 +208,7 @@ absolute position.
         <h3 class="subsection-title">Classes</h3>
 
         <dl>
-            <dt><a href="Camera.html">Camera</a></dt>
+            <dt><a href="GrabberJoint.html">GrabberJoint</a></dt>
             <dd></dd>
         </dl>
     
@@ -175,313 +223,13 @@ absolute position.
         
             
 <div class="section-members">
-<h4 class="name" id="pos"><span class="type-signature"></span>pos<span class="type-signature"> :Object</span></h4>
+<h4 class="name" id="maxForce"><span class="type-signature"></span>maxForce<span class="type-signature"> :Number</span></h4>
 
 
 
 
 <div class="description">
-    The camera's position. {x, y}
-</div>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line7215">line 7215</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-    <h5>Type:</h5>
-    <ul>
-        <li>
-            
-<span class="param-type"><code>Object</code></span>
-
-
-        </li>
-    </ul>
-
-
-
-
-
-</div>
-
-        
-            
-<div class="section-members">
-<h4 class="name" id="position"><span class="type-signature"></span>position<span class="type-signature"> :Object</span></h4>
-
-
-
-
-<div class="description">
-    The camera's position. Alias for pos.
-</div>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line7226">line 7226</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-    <h5>Type:</h5>
-    <ul>
-        <li>
-            
-<span class="param-type"><code>Object</code></span>
-
-
-        </li>
-    </ul>
-
-
-
-
-
-</div>
-
-        
-            
-<div class="section-members">
-<h4 class="name" id="x"><span class="type-signature"></span>x<span class="type-signature"> :Number</span></h4>
-
-
-
-
-<div class="description">
-    The camera x position.
-</div>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line7250">line 7250</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-    <h5>Type:</h5>
-    <ul>
-        <li>
-            
-<span class="param-type"><code>Number</code></span>
-
-
-        </li>
-    </ul>
-
-
-
-
-
-</div>
-
-        
-            
-<div class="section-members">
-<h4 class="name" id="y"><span class="type-signature"></span>y<span class="type-signature"> :Number</span></h4>
-
-
-
-
-<div class="description">
-    The camera y position.
-</div>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line7269">line 7269</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-    <h5>Type:</h5>
-    <ul>
-        <li>
-            
-<span class="param-type"><code>Number</code></span>
-
-
-        </li>
-    </ul>
-
-
-
-
-
-</div>
-
-        
-            
-<div class="section-members">
-<h4 class="name" id="zoom"><span class="type-signature"></span>zoom<span class="type-signature"> :Number</span></h4>
-
-
-
-
-<div class="description">
-    Camera zoom.
-
-A scale of 1 will be the normal size. Setting it to 2
-will make everything appear twice as big. .5 will make
-everything look half size.
+    The maximum force that the joint can exert on the sprite.
 </div>
 
 
@@ -515,14 +263,14 @@ everything look half size.
     
     <dt class="tag-default">Default Value:</dt>
     <dd class="tag-default"><ul class="dummy">
-            <li>1</li>
+            <li>1000</li>
         </ul></dd>
     
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line7337">line 7337</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line8324">line 8324</a>
     </li></ul></dd>
     
 
@@ -552,25 +300,16 @@ everything look half size.
 </div>
 
         
-    
-
-    
-        <h3 class="subsection-title">Methods</h3>
-
-        
             
-<div class="section-method">
+<div class="section-members">
+<h4 class="name" id="target"><span class="type-signature"></span>target<span class="type-signature"> :Object</span></h4>
 
-    
-
-    <h4 class="name" id="moveTo"><span class="type-signature"></span>moveTo<span class="signature">(x, y, speed)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
-
-    
 
 
 
 <div class="description">
-    Moves the camera to a position. Similar to `sprite.moveTo`.
+    The target position of the joint that the sprite will be
+moved towards. Must be an object with x and y properties.
 </div>
 
 
@@ -606,7 +345,7 @@ everything look half size.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line7292">line 7292</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line8308">line 8308</a>
     </li></ul></dd>
     
 
@@ -619,515 +358,25 @@ everything look half size.
 
 
 
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
+    <h5>Type:</h5>
+    <ul>
+        <li>
             
-                <td class="name"><code>x</code></td>
-            
+<span class="param-type"><code>Object</code></span>
 
-            <td class="type">
-            
-                
-<span class="param-type"><code>Number</code></span>
 
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">
-                
-                
-            </td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>y</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><code>Number</code></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">
-                
-                
-            </td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>speed</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><code>Number</code></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">
-                
-                
-            </td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="section-returns">
-<h5>Returns:</h5>
-
-        
-
-<dl class="param-type">
-    <dt>
-        Type:
-    </dt>
-    <dd>
-        
-<span class="param-type"><code>Promise</code></span>
-
-
-    </dd>
-</dl>
-
-
-<div class="param-desc">
-    resolves true when the camera reaches the target position
-</div>
-
-    
-</div>
-
-
-
-</div>
-        
-            
-<div class="section-method">
-
-    
-
-    <h4 class="name" id="off"><span class="type-signature"></span>off<span class="signature">()</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<div class="description">
-    Deactivates the camera.
-
-The canvas will be drawn normally, ignoring the camera's position
-and scale until camera.on() is called.
-</div>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line7411">line 7411</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        </li>
+    </ul>
 
 
 
 
 
 </div>
-        
-            
-<div class="section-method">
-
-    
-
-    <h4 class="name" id="on"><span class="type-signature"></span>on<span class="signature">()</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<div class="description">
-    Activates the camera.
-
-The canvas will be drawn according to the camera position and scale until
-camera.off() is called.
-</div>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line7390">line 7390</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</div>
-        
-            
-<div class="section-method">
-
-    
-
-    <h4 class="name" id="zoomTo"><span class="type-signature"></span>zoomTo<span class="signature">(target, speed)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
-
-    
-
-
-
-<div class="description">
-    Zoom the camera at a given speed.
-</div>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line7364">line 7364</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
 
         
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
     
 
-        <tr>
-            
-                <td class="name"><code>target</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><code>Number</code></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">
-                The target zoom
-                
-            </td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>speed</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><code>Number</code></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">
-                The amount of zoom per frame
-                
-            </td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="section-returns">
-<h5>Returns:</h5>
-
-        
-
-<dl class="param-type">
-    <dt>
-        Type:
-    </dt>
-    <dd>
-        
-<span class="param-type"><code>Promise</code></span>
-
-
-    </dd>
-</dl>
-
-
-<div class="param-desc">
-    resolves true when the camera reaches the target zoom
-</div>
-
-    
-</div>
-
-
-
-</div>
-        
     
 
     

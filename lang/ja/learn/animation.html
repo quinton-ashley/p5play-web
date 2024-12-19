@@ -57,7 +57,7 @@ function setup() {
 	cloudAni = loadAni('/learn/assets/cloud_breathing1.webp', 9);
 }
 
-function draw() {
+function update() {
 	clear();
 	animation(cloudAni, 250, 80);
 }
@@ -87,7 +87,7 @@ function setup() {
 	shapeShifterAni.frameDelay = 20;
 }
 
-function draw() {
+function update() {
 	clear();
 	animation(shapeShifterAni, 250, 80);
 }
@@ -110,7 +110,7 @@ function setup() {
 	});
 }
 
-function draw() {
+function update() {
 	clear();
 	animation(splatAni, 100, 100);
 
@@ -132,7 +132,7 @@ function setup() {
 	});
 }
 
-function draw() {
+function update() {
 	clear();
 	animation(wobbleAni, 100, 100);
 
@@ -157,7 +157,7 @@ function setup() {
 	]);
 }
 
-function draw() {
+function update() {
 	clear();
 	animation(splatAni, 100, 100);
 
@@ -180,7 +180,7 @@ function setup() {
 	ani = loadAni('/learn/assets/asterisk_explode01.webp', 11);
 }
 
-function draw() {
+function update() {
 	clear();
 
 	if (kb.presses('space')) {
@@ -240,7 +240,7 @@ function setup() {
 	ghost.addAni('idle', '/learn/assets/ghost_standing01.webp', 7);
 }
 
-function draw() {
+function update() {
 	clear();
 
 	ghost.debug = mouse.pressing();
@@ -257,6 +257,8 @@ function draw() {
 		ghost.changeAni('idle');
 		ghost.vel.x = 0;
 	}
+
+	ghost.opacity = cos(frameCount) + 1;
 
 	if (kb.pressing('space')) {
 		ghost.ani.pause();
@@ -284,7 +286,7 @@ function setup() {
 	splats.addAni('/learn/assets/asterisk_explode01.webp', 11);
 }
 
-function draw() {
+function update() {
 	clear();
 
 	if (mouse.presses()) {
@@ -352,7 +354,7 @@ function preload() {
 	hero.pixelPerfect = true;
 }
 
-function draw() {
+function update() {
 	clear();
 	if (kb.presses('r')) hero.changeAni('run');
 	if (kb.presses('j')) hero.changeAni('jump');
@@ -387,7 +389,7 @@ function preload() {
 	allSprites.pixelPerfect = true;
 }
 
-function draw() {
+function update() {
 	clear();
 	if (kb.presses('r')) hero.changeAni('run');
 	if (kb.presses('j')) hero.changeAni('jump');
@@ -439,7 +441,7 @@ function setup() {
 	floor.color = color(133, 228, 62);
 }
 
-function draw() {
+function update() {
 	clear();
 }
 			</script>
@@ -525,7 +527,7 @@ function setup() {
 	practice();
 }
 
-function draw() {
+function update() {
 	clear();
 }
 

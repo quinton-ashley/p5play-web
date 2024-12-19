@@ -2,9 +2,9 @@
 
 ## Configuración
 
-El código dentro de la función `setup` de p5.js (o q5.js) se ejecuta cuando comienza el programa. El constructor `new Canvas()` crea una sección de la pantalla en la que el programa puede dibujar.
+El código dentro de la función `setup` de [q5.js](https://q5js.org) (o [p5.js](https://p5js.org)) se ejecuta cuando comienza el programa. La función `update` se ejecuta 60 veces por segundo por defecto.
 
-La función `draw` de p5.js se ejecuta 60 veces por segundo por defecto. La función `background` se puede usar para llenar el canvas con un color cada vez que se dibuja.
+El constructor `new Canvas()` crea una sección de la pantalla en la que el programa puede dibujar.
 
 ¡Intenta cambiar el ancho y la altura del canvas (los números dentro del constructor `Canvas`), luego reinicia el programa de ejemplo!
 

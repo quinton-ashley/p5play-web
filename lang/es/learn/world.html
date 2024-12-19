@@ -60,7 +60,7 @@ function setup() {
 	floor = new Sprite(40, 155, 80, 5, 's');
 }
 
-function draw() {
+function update() {
 	clear();
 	if (frameCount == 100)	floor.rotation = 10;
 }
@@ -75,7 +75,7 @@ function setup() {
 	floor = new Sprite(40, 155, 80, 5, 's');
 }
 
-function draw() {
+function update() {
 	clear();
 	if (frameCount == 100)	{
 		ball.sleeping = false;
@@ -121,7 +121,7 @@ function setup() {
 	box.shape = 'chain';
 }
 
-function draw() {
+function update() {
 	if (mouse.pressing()) {
 		background(0, 0, 0, 30);
 		world.timeScale = 0.25;
@@ -164,7 +164,7 @@ function setup() {
 	}
 }
 
-function draw() {
+function update() {
 	background(20);
 
 	world.velocityIterations = 8;

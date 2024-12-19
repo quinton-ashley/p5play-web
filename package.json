@@ -4,13 +4,13 @@
 	"description": "The website for p5play",
 	"devDependencies": {
 		"@types/p5": "^1.7.6",
-		"p5": "^1.11.2",
-		"planck": "^1.1.1",
-		"q5": "^2.12.0",
 		"bun-types": "^1.1.38",
 		"jest-cli": "^29.7.0",
 		"jest-environment-jsdom": "^29.7.0",
 		"js-beautify": "^1.15.1",
+		"p5": "^1.11.2",
+		"planck": "^1.1.1",
+		"q5": "^2.12.0",
 		"taffydb": "^2.7.3"
 	},
 	"homepage": "https://github.com/quinton-ashley/p5play-web",
@@ -31,5 +31,9 @@
 		"version": "git add -A",
 		"postversion": "git push"
 	},
-	"version": "1.15.8"
+	"version": "1.16.0",
+	"dependencies": {
+		"canvas": "^2.11.2",
+		"skia-canvas": "^2.0.1"
+	}
 }

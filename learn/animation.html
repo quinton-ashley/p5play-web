@@ -54,7 +54,7 @@ function setup() {
 	cloudAni = loadAni('assets/cloud_breathing1.webp', 9);
 }
 
-function draw() {
+function update() {
 	clear();
 	animation(cloudAni, 250, 80);
 }
@@ -84,17 +84,16 @@ function setup() {
 	shapeShifterAni.frameDelay = 20;
 }
 
-function draw() {
+function update() {
 	clear();
 	animation(shapeShifterAni, 250, 80);
 }
 			</script>
 			<md id="md0-2">
 				<p>A sprite sheet is a single image that contains all the frames of an animation.
-					<code>ani.spriteSheet</code> is displayed in the sketch so you can see what one looks like.
-				</p>
-				<p>In sprite sheet mode, <code>loadAni</code> accepts an "atlas" <a href="https://p5js.org/reference/p5/Object"
-						target="_blank">JS object</a> that specifies the
+					<code>ani.spriteSheet</code> is displayed in the sketch so you can see what one looks like.</p>
+				<p>In sprite sheet mode, <code>loadAni</code> accepts an "atlas" <a
+						href="https://p5js.org/reference/p5/Object" target="_blank">JS object</a> that specifies the
 					size of each frame and how many frames of animation there are.</p>
 				<p>This easy way to load animations requires that every frame in your sprite sheet is the same size,
 					grid aligned, and in order from left to right, top to bottom.</p>
@@ -111,7 +110,7 @@ function setup() {
 	});
 }
 
-function draw() {
+function update() {
 	clear();
 	animation(splatAni, 100, 100);
 
@@ -133,7 +132,7 @@ function setup() {
 	});
 }
 
-function draw() {
+function update() {
 	clear();
 	animation(wobbleAni, 100, 100);
 
@@ -161,7 +160,7 @@ function setup() {
 	]);
 }
 
-function draw() {
+function update() {
 	clear();
 	animation(splatAni, 100, 100);
 
@@ -184,7 +183,7 @@ function setup() {
 	ani = loadAni('assets/asterisk_explode01.webp', 11);
 }
 
-function draw() {
+function update() {
 	clear();
 
 	if (kb.presses('space')) {
@@ -245,7 +244,7 @@ function setup() {
 	ghost.addAni('idle', 'assets/ghost_standing01.webp', 7);
 }
 
-function draw() {
+function update() {
 	clear();
 
 	ghost.debug = mouse.pressing();
@@ -292,7 +291,7 @@ function setup() {
 	splats.addAni('assets/asterisk_explode01.webp', 11);
 }
 
-function draw() {
+function update() {
 	clear();
 
 	if (mouse.presses()) {
@@ -306,18 +305,16 @@ function draw() {
 				<md id="md4-0">
 					<h2 id="sprite-sheets-with-multiple-animations">Sprite Sheets with Multiple Animations</h2>
 					<p>To load multiple animations from the same sprite sheet image, first set the
-						<code>spriteSheet</code> property of the sprite or group.
-					</p>
+						<code>spriteSheet</code> property of the sprite or group.</p>
 					<p>Next, use the <code>addAnimations</code> / <code>addAnis</code> function, which accepts an object
 						that uses animation names as keys and atlas objects as values.</p>
 					<p>In the "hero" example the size of the hero sprite is set to 32x32 pixels in the
 						<code>Sprite</code> constructor. The sprite's size is used as a multiplier to row and col
-						(column) values.
-					</p>
+						(column) values.</p>
 					<p>The <code>ani.offset</code> property is used to adjust the position of an animation relative to
 						the sprite's position.</p>
-					<p>Click this link to see the full <a href="/learn/assets/questKid.webp" target="_blank">questKid</a> sprite
-						sheet used in the example.</p>
+					<p>Click this link to see the full <a href="/learn/assets/questKid.webp"
+							target="_blank">questKid</a> sprite sheet used in the example.</p>
 				</md>
 				<md id="md4-1">
 					<h2 id="anis">anis</h2>
@@ -356,7 +353,7 @@ function preload() {
 	hero.pixelPerfect = true;
 }
 
-function draw() {
+function update() {
 	clear();
 	if (kb.presses('r')) hero.changeAni('run');
 	if (kb.presses('j')) hero.changeAni('jump');
@@ -391,7 +388,7 @@ function preload() {
 	allSprites.pixelPerfect = true;
 }
 
-function draw() {
+function update() {
 	clear();
 	if (kb.presses('r')) hero.changeAni('run');
 	if (kb.presses('j')) hero.changeAni('jump');
@@ -445,7 +442,7 @@ function setup() {
 	floor.color = color(133, 228, 62);
 }
 
-function draw() {
+function update() {
 	clear();
 }
 			</script>
@@ -531,7 +528,7 @@ function setup() {
 	practice();
 }
 
-function draw() {
+function update() {
 	clear();
 }
 
@@ -557,15 +554,15 @@ function draw() {
 	</article>
 
 	<script src="/v3/q5.min.js"></script>
-	<script src="/v3/planck.min.js"></script>
-	<script src="/v3/p5play.min.js"></script>
-	<script>
-		window.mie = { autoLoad: false };
+<script src="/v3/planck.min.js"></script>
+<script src="/v3/p5play.min.js"></script>
+<script>
+window.mie = { autoLoad: false };
 
 	</script>
 	<script src="/learn/mie.js"></script>
-	<script src="/learn/learn.js"></script>
-	<script src="/account/account.js"></script>
+<script src="/learn/learn.js"></script>
+<script src="/account/account.js"></script>
 </body>
 
 </html>

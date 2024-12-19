@@ -47,13 +47,15 @@ function setup() {
 	floor = new Sprite(250, 200, 500, 40, 'static');
 }
 
-function draw() {
+function update() {
 	clear();
 	if (mouse.presses()) {
 		player.vel.y = -4;
 		player.vel.x = 3;
 	}
+}
 
+function updateCamera() {
 	camera.x = player.x;
 }
 			</script>
@@ -73,7 +75,7 @@ function setup() {
 	camera.zoom = 0.5;
 }
 
-function draw() {
+function update() {
 	clear();
 
 	if (mouse.presses()) camera.zoomTo(1);

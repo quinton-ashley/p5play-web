@@ -60,7 +60,7 @@ function setup() {
 	}
 }
 
-function draw() {
+function update() {
 	clear();
 }
 			</script>
@@ -111,7 +111,7 @@ function setup() {
 	player = new Sprite();
 }
 
-function draw() {
+function update() {
 	clear();
 	player.moveTowards(mouse);
 }
@@ -140,7 +140,7 @@ let doors, rail;
         	rail.rotation = -5;
         }
         
-        function draw() {
+        function update() {
         	clear();
         }
         			</script>
@@ -160,7 +160,7 @@ function setup() {
 	orbs.amount = 11;
 }
 
-function draw() {
+function update() {
 	clear();
 }
 			</script>
@@ -200,7 +200,7 @@ function collect(player, gem) {
 	gem.remove();
 }
 
-function draw() {
+function update() {
 	clear();
 	player.moveTowards(mouse);
 }
@@ -219,7 +219,7 @@ function setup() {
 	new Sprite(50, 155, 10);
 }
 
-function draw() {
+function update() {
 	clear();
 	allSprites.moveTowards(mouse);
 }
@@ -245,7 +245,7 @@ function setup() {
 	g.text = g.health;
 }
 
-function draw() {
+function update() {
 	clear();
 }
 
@@ -280,7 +280,7 @@ function setup() {
 	bigBoxes.w = 60;
 }
 
-function draw() {
+function update() {
 	clear();
 
 	if (mouse.presses('left')) {
@@ -321,7 +321,7 @@ function setup() {
 	balls.speed = () => random(1, 5);
 	balls.amount = 10;
 }
-function draw() {
+function update() {
 	clear();
 	if (balls.cull(-50)) new balls.Sprite();
 }
@@ -347,7 +347,7 @@ function setup() {
 	water.vel.y = -6;
 	water.life = 60;
 }
-function draw() {
+function update() {
 	clear();
 	new water.Sprite(mouse.x, mouse.y, 10);
 
@@ -383,7 +383,7 @@ function setup() {
 	gems.speed = 0.5;
 	gems.amount = 4;
 }
-function draw() {
+function update() {
 	clear();
 
 	gems.draw();

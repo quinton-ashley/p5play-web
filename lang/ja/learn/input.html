@@ -57,7 +57,7 @@ function setup() {
 	kb.holdThreshold = 6;
 }
 
-function draw() {
+function update() {
 	clear();
 }
 			</script>
@@ -96,7 +96,7 @@ function setup() {
 	sprite = new Sprite();
 }
 
-function draw() {
+function update() {
 	clear();
 	sprite.color = 'yellow';
 }
@@ -129,7 +129,7 @@ function setup() {
 	player = new Sprite();
 }
 
-function draw() {
+function update() {
 	clear();
 
 	player.speed = 3;
@@ -173,7 +173,7 @@ function setup() {
 	mouse.visible = false;
 }
 
-function draw() {
+function update() {
 	clear();
 	cur.moveTowards(mouse, 1);
 }
@@ -197,7 +197,7 @@ function setup() {
 	sprite = new Sprite();
 }
 
-function draw() {
+function update() {
 	clear();
 	sprite.color = 'yellow';
 
@@ -252,7 +252,7 @@ function setup() {
 	lsb = new btns.Sprite(100, 100);
 }
 
-function draw() {
+function update() {
 	background(20);
 	fill(20);
 	stroke(255);
@@ -299,7 +299,7 @@ function setup() {
 	new Canvas(500, 200);
 }
 
-function draw() {
+function update() {
 	background(16);
 
 	for (let touch of touches) {

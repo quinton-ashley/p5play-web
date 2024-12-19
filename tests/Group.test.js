@@ -76,7 +76,7 @@ test('Group: Constructor', () => {
 				const pInst = {
 					Group: jest.fn(),
 					Sprite: jest.fn(),
-					SpriteAnimations: jest.fn(),
+					Anis: jest.fn(),
 					allSprites: null,
 					p5play: {
 						groups: {},
@@ -84,7 +84,7 @@ test('Group: Constructor', () => {
 					}
 				};
 
-				const group2 = new p.Group(10, pInst.Sprite, pInst.SpriteAnimations);
+				const group2 = new p.Group(10, pInst.Sprite, pInst.Anis);
 				expect(group2.length).toBeTruthy();
 
 				resolve();
@@ -120,7 +120,7 @@ test('Group: Properties', () => {
 
 			// set the current animation..
 			const img = p.spriteArt('ww');
-			const anim = new p.SpriteAnimation(img);
+			const anim = new p.Ani(img);
 			group.ani = anim;
 
 			expect(group.ani).toEqual(anim);
@@ -172,7 +172,7 @@ test('Group: overlaps, overlapping, overlapped', () => {
 					b.test = 2;
 				});
 
-				s1 = new g1.Sprite(254, 200);
+				s1 = new g1.Sprite(234, 200);
 
 				g2 = new p.Group();
 				g2.add(s0);
@@ -193,7 +193,6 @@ test('Group: overlaps, overlapping, overlapped', () => {
 				expect(s0.overlaps(s1)).toBe(false);
 				expect(s0.overlaps(g1)).toBe(false);
 
-				await p.sleep();
 				await p.sleep();
 
 				expect(s0.overlaps(s1)).toBe(true);

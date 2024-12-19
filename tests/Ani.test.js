@@ -127,8 +127,8 @@ test('Ani : SpriteSheet mode', () => {
 
 				let s = new p.Sprite(200, 200, 32, 32);
 
-				const spriteAnimation = new p.Ani(s, spriteSheet0, { row: 0, frames: 8 });
-				expect(spriteAnimation.length).toBe(8);
+				const ani = new p.Ani(s, spriteSheet0, { row: 0, frames: 8 });
+				expect(ani.length).toBe(8);
 
 				resolve();
 			};

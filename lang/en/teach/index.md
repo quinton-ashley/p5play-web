@@ -34,9 +34,9 @@ _2 lessons provided as a free sample. Additional lessons are exclusively for Edu
 
 ## How It Works
 
-After purchase of the Edu License, you'll be given a class ID that your students can use to gain access, by signing up for an account on p5play.org.
+After purchase of the Edu License, you'll be given a class ID that your students can use to gain access.
 
-No personal information is needed for students to create an account.
+No personal information is needed for students to create an account on p5play.org.
 
 Students will be able to keep using their accounts, even after the licensing term ends!
 

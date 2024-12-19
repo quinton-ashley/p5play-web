@@ -3,7 +3,7 @@ dev/experiments
 dev/assets
 types/p5play.js
 types/p5play.d.ts
-dev/test*
+dev/sketch*
 package-lock.json
 v4
 
