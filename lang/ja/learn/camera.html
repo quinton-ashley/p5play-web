@@ -54,14 +54,14 @@ function setup() {
 }
 
 function update() {
-	clear();
 	if (mouse.presses()) {
 		player.vel.y = -4;
 		player.vel.x = 3;
 	}
 }
 
-function updateCamera() {
+function drawFrame() {
+	clear();
 	camera.x = player.x;
 }
 			</script>
@@ -83,7 +83,7 @@ function setup() {
 	camera.zoom = 0.5;
 }
 
-function update() {
+function drawFrame() {
 	clear();
 
 	if (mouse.presses()) camera.zoomTo(1);
@@ -118,7 +118,11 @@ function setup() {
 	}
 }
 
-function draw() {
+function update() {
+	player.moveTowards(mouse, 0.02);
+}
+
+function drawFrame() {
 	background(0);
 
 	camera.on();
@@ -127,7 +131,6 @@ function draw() {
 		fill(i * 20, 200, 200); // blue to gray
 		rect(i * 25, i * 100, 400, 40);
 	}
-	player.moveTowards(mouse, 0.02);
 	player.draw();
 	camera.x = player.x;
 	camera.y = player.y;
@@ -158,7 +161,7 @@ function setup() {
 	small = new Sprite(30, 30, 20, 20);
 }
 
-function draw() {
+function drawFrame() {
 	clear();
 
 	camera.on();

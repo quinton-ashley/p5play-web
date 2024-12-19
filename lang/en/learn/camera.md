@@ -6,6 +6,8 @@ The `camera` is center positioned and located in the middle of the canvas by def
 
 The camera can be moved by changing its `x` and `y` values or by using the `camera.moveTo` function.
 
+If you want the camera to follow a sprite, put camera movement code in the `drawFrame` function, which runs after the physics simulation.
+
 In this example the camera follows the player's x axis movement.
 
 # 1-0

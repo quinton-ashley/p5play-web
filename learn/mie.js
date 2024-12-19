@@ -238,7 +238,7 @@ mie.lang.p5.functionNames = [
 	'setup',
 	'update',
 	'draw',
-	'updateCamera',
+	'drawFrame',
 	'postProcess',
 	'keyPressed',
 	'keyReleased',
