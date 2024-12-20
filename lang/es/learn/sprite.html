@@ -44,7 +44,7 @@
 				<p>¡Intenta cambiar el ancho y la altura del canvas (los números dentro del constructor
 					<code>Canvas</code>), luego reinicia el programa de ejemplo!</p>
 			</md>
-			<script type="mie/p5" id="setup-and-draw">
+			<script type="mie/p5" id="setup-and-update">
 function setup() {
 	new Canvas(250, 100);
 }
@@ -276,13 +276,10 @@ function update() {
 				<p><code>sprite.image</code> (o <code>sprite.img</code>) puede establecerse como un p5.Image o una ruta
 					de URL a un archivo de imagen.</p>
 				<p>Si necesitas que una imagen se cargue antes de que comience tu programa, es mejor usar <a
-						href="https://p5js.org/reference/p5/loadImage" target="_blank"><code>loadImage</code></a> dentro
-					de la función <code>preload</code> de p5.js.</p>
+						href="https://q5js.org/learn/#loadImage" target="_blank"><code>loadImage</code></a> dentro de la
+					función <code>preload</code> de p5.js.</p>
 				<p><code>sprite.image.offset</code> se puede usar para desplazar la imagen en relación con el centro del
 					sprite. Esto puede ayudar a alinear mejor la imagen con el colisionador de física del sprite.</p>
-				<p><code>sprite.image.scale</code> cambia el tamaño de visualización de la imagen del sprite. El valor
-					predeterminado es 1.0. Si la imagen aparece demasiado grande o pequeña, probablemente debas cambiar
-					el tamaño del archivo de imagen en sí mismo.</p>
 				<p>Intenta hacer clic en el lienzo de este ejemplo. Cuando la propiedad <code>sprite.debug</code> está
 					establecida en true, puedes ver el colisionador del cuerpo físico del sprite.</p>
 			</md>
@@ -301,6 +298,30 @@ function setup() {
 function update() {
 	clear();
 	monster.debug = mouse.pressing();
+}
+			</script>
+			<md id="md2-0-1">
+				<p>Establece la <code>opacity</code> (opacidad) de un sprite para cambiar la transparencia de su
+					apariencia. Usa un valor entre 0 (completamente transparente) y 1 (completamente opaco).</p>
+				<p><code>sprite.image.scale</code> cambia el tamaño de visualización de la imagen del sprite. El valor
+					predeterminado es 1.0. Si la imagen aparece demasiado grande o pequeña, probablemente debas cambiar
+					el tamaño del archivo de imagen en sí mismo.</p>
+			</md>
+			<script type="mie/p5" id="opacity">
+let star;
+
+function setup() {
+	new Canvas(500, 120);
+
+	star = new Sprite();
+	star.image = '/learn/assets/star.webp';
+}
+
+function update() {
+	clear();
+	let v = cos(frameCount * 2) * 0.5 + 0.5;
+	star.opacity = v;
+	star.image.scale = v;
 }
 			</script>
 			<div class="break"></div>
@@ -392,7 +413,7 @@ function update() {}
 				<p>Las paletas de colores en p5play deben proporcionarse en formato <a
 						href="https://p5js.org/reference/p5/object" target="_blank">Objeto JavaScript</a>. Un objeto JS
 					simple es como un diccionario. Puedes definir un color para cada letra que uses en tu arte de
-					píxeles. Para crear un color, utiliza la función <a href="https://p5js.org/reference/p5/color"
+					píxeles. Para crear un color, utiliza la función <a href="https://q5js.org/learn/#color"
 						target="_blank"><code>color</code></a> de p5.js, que acepta valores RGB (rojo, verde, azul) o
 					códigos de color HEX.</p>
 				<p>La forma más sencilla de encontrar colores es utilizar un <a
@@ -1566,6 +1587,10 @@ function setup() {
 
 	let face = loadImage('/learn/assets/face.webp');
 	let stretchy = new Sprite();
+
+	stretchy.update = () => {
+		stretchy.moveTowards(mouse, 0.07);
+	};
 	
 	stretchy.draw = () => {
 		fill(237, 205, 0);
@@ -1576,10 +1601,6 @@ function setup() {
 		pop();
 
 		image(face, stretchy.vel.x * 2, stretchy.vel.y * 2);
-	};
-
-	stretchy.update = () => {
-		stretchy.moveTowards(mouse, 0.07);
 	};
 }
 

@@ -30,7 +30,7 @@ En este ejemplo, se utiliza un tercer parámetro de entrada para mostrar el lien
 
 Para mostrar todos los sprites en coordenadas enteras, establece `allSprites.pixelPerfect` en true y usa coordenadas enteras para la posición y el zoom de la cámara.
 
-Ten en cuenta que las fuentes modernas son vectoriales, por lo que no se verán bien a bajas resoluciones. En su lugar, carga una fuente de píxeles con la función [`loadFont`](https://p5js.org/reference/p5/loadFont).
+Ten en cuenta que las fuentes modernas son vectoriales, por lo que no se verán bien a bajas resoluciones. En su lugar, carga una fuente de píxeles con la función [`loadFont`](https://q5js.org/learn/#loadFont).
 
 # 2-0
 

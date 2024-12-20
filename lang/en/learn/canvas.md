@@ -30,7 +30,7 @@ In this example, a third input parameter is used to display the canvas at 8x sca
 
 To display all sprites at integer coordinates, set `allSprites.pixelPerfect` to true and use integer coordinates for the camera's position and zoom.
 
-Note that modern fonts are vector based, so they won't look good at low resolutions. Load a pixel font instead with the [`loadFont`](https://p5js.org/reference/p5/loadFont) function.
+Note that modern fonts are vector based, so they won't look good at low resolutions. Load a pixel font instead with the [`loadFont`](https://q5js.org/learn/#loadFont) function.
 
 # 2-0
 

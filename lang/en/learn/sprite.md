@@ -59,13 +59,17 @@ For an extra challenge, try resetting the block to its original position after i
 
 `sprite.image` (aka `sprite.img`) can be set to a Q5.Image or a url path to an image file.
 
-If you need an image to be loaded before your program starts, it's best to use [`loadImage`](https://p5js.org/reference/p5/loadImage) inside the q5 `preload` function.
+If you need an image to be loaded before your program starts, it's best to use [`loadImage`](https://q5js.org/learn/#loadImage) inside the q5 `preload` function.
 
 `sprite.image.offset` can be used to offset the image relative to the sprite's center. This can help better align the image with the sprite's physics collider.
 
-`sprite.image.scale` changes the display size of the sprite's image. The default is 1.0. If the image appears way too big or small, you should probably change the size of the image file itself.
-
 Try clicking on the canvas of this example. When the `sprite.debug` property is set to true you can see the sprite's physics body collider.
+
+# 2-0-1
+
+Set a sprite's `opacity` to change the transparency of its appearance. Use a value between 0 (completely transparent) and 1 (completely opaque).
+
+`sprite.image.scale` changes the display size of the sprite's image. The default is 1.0. If the image appears way too big or small, you should probably change the size of the image file itself.
 
 # 2-1
 
@@ -97,7 +101,7 @@ Try making your own pixel art! Take a look at the alphabet below to see what col
 
 You can also make pixel art that uses custom colors by creating a color palette and passing it as the third parameter to the `spriteArt` function.
 
-Color palettes in p5play must be provided in [JavaScript Object literal](https://p5js.org/reference/p5/Object) format. A simple JS object is like a dictionary. You can define a color for each letter you use in your pixel art. To create a color use the q5 [`color`](https://p5js.org/reference/p5/color) function which accepts RGB (red, green, blue) values or HEX color codes.
+Color palettes in p5play must be provided in [JavaScript Object literal](https://p5js.org/reference/p5/Object) format. A simple JS object is like a dictionary. You can define a color for each letter you use in your pixel art. To create a color use the q5 [`color`](https://q5js.org/learn/#color) function which accepts RGB (red, green, blue) values or HEX color codes.
 
 The easiest way to find colors is to use a [color picker](https://www.google.com/search?q=google+color+picker).
 
@@ -444,23 +448,21 @@ You can add additional sensors to a sprite by using the `addSensor` function.
 
 # 14-0
 
+## Custom Update
+
+A sprite's `update` function runs before each physics simulation update, by default. You can customize the sprite's `update` function with user input handling and sprite specific logic.
+
+# 14-1
+
 ## Custom Draw
 
 Sometimes you won't be able to use pre-drawn animations to get the kind of visual effect you want for a sprite in motion.
 
-Fortunately, you can customize the sprite's `draw` function to make it display anything you want!
+Fortunately, you can customize the sprite's `draw` function to make it display anything you want! By default, sprites are drawn after physics simulation updates.
 
-Note that inside the sprite's draw function the center of the sprite is translated to position (0, 0).
+Note that inside the sprite's draw function, the center of the sprite is at position (0, 0).
 
-This code example rotates the sprite's ellipse to the direction it's moving and makes the ellipse stretch in that direction proportional to its speed. Kind of complicated!
-
-# 14-1
-
-## Custom Update
-
-A sprite's `update` function runs at the end of the q5 `draw` loop by default. It updates the sprite's animation (if it has one) and mouse event tracking.
-
-Thanks to some behind the scenes magic, overriding the function will not replace the default behavior, but allows you to add to it.
+This code example rotates the sprite's ellipse to the direction it's moving and makes the ellipse stretch in that direction proportional to its speed. Kind of complicated but a nice effect!
 
 # 15-0
 
@@ -482,4 +484,4 @@ But, if the sprite's movement is interrupted by a new movement or a collision th
 
 If you want a sprite to follow another sprite, you may be tempted to use `moveTo` repeatedly, without waiting for the sprite to reach its destination. But for better performance, try using the `angleTo` function, which gets the angle between a sprite and a position. This angle can be used to change the direction that the sprite moves in.
 
-In this example, the q5 [`dist`](https://p5js.org/reference/p5/dist) function is used to calculate the distance between the player and its ally.
+In this example, the q5 [`dist`](https://q5js.org/learn/#dist) function is used to calculate the distance between the player and its ally.

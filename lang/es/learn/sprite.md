@@ -54,13 +54,17 @@ Para un desafío adicional, intenta restablecer la posición original del bloque
 
 `sprite.image` (o `sprite.img`) puede establecerse como un p5.Image o una ruta de URL a un archivo de imagen.
 
-Si necesitas que una imagen se cargue antes de que comience tu programa, es mejor usar [`loadImage`](https://p5js.org/reference/p5/loadImage) dentro de la función `preload` de p5.js.
+Si necesitas que una imagen se cargue antes de que comience tu programa, es mejor usar [`loadImage`](https://q5js.org/learn/#loadImage) dentro de la función `preload` de p5.js.
 
 `sprite.image.offset` se puede usar para desplazar la imagen en relación con el centro del sprite. Esto puede ayudar a alinear mejor la imagen con el colisionador de física del sprite.
 
-`sprite.image.scale` cambia el tamaño de visualización de la imagen del sprite. El valor predeterminado es 1.0. Si la imagen aparece demasiado grande o pequeña, probablemente debas cambiar el tamaño del archivo de imagen en sí mismo.
-
 Intenta hacer clic en el lienzo de este ejemplo. Cuando la propiedad `sprite.debug` está establecida en true, puedes ver el colisionador del cuerpo físico del sprite.
+
+# 2-0-1
+
+Establece la `opacity` (opacidad) de un sprite para cambiar la transparencia de su apariencia. Usa un valor entre 0 (completamente transparente) y 1 (completamente opaco).
+
+`sprite.image.scale` cambia el tamaño de visualización de la imagen del sprite. El valor predeterminado es 1.0. Si la imagen aparece demasiado grande o pequeña, probablemente debas cambiar el tamaño del archivo de imagen en sí mismo.
 
 # 2-1
 
@@ -92,7 +96,7 @@ El segundo parámetro de entrada de la función `spriteArt` es la escala de la i
 
 También puedes crear arte de píxeles que utilice colores personalizados creando una paleta de colores y pasándola como tercer parámetro a la función `spriteArt`.
 
-Las paletas de colores en p5play deben proporcionarse en formato [Objeto JavaScript](https://p5js.org/reference/p5/object). Un objeto JS simple es como un diccionario. Puedes definir un color para cada letra que uses en tu arte de píxeles. Para crear un color, utiliza la función [`color`](https://p5js.org/reference/p5/color) de p5.js, que acepta valores RGB (rojo, verde, azul) o códigos de color HEX.
+Las paletas de colores en p5play deben proporcionarse en formato [Objeto JavaScript](https://p5js.org/reference/p5/object). Un objeto JS simple es como un diccionario. Puedes definir un color para cada letra que uses en tu arte de píxeles. Para crear un color, utiliza la función [`color`](https://q5js.org/learn/#color) de p5.js, que acepta valores RGB (rojo, verde, azul) o códigos de color HEX.
 
 La forma más sencilla de encontrar colores es utilizar un [selector de colores](https://www.google.com/search?q=selector+de+colores+google).
 
@@ -268,7 +272,7 @@ Pero, si el movimiento del sprite se interrumpe por un nuevo movimiento o una co
 
 Si deseas que un sprite siga a otro sprite, es posible que te sientas tentado a usar `moveTo` repetidamente, sin esperar a que el sprite alcance su destino. Pero para un mejor rendimiento, prueba usar la función `angleTo`, que obtiene el ángulo entre un sprite y una posición. Este ángulo puede utilizarse para cambiar la dirección en la que se mueve el sprite.
 
-En este ejemplo, se utiliza la función `dist` de [p5.js](https://p5js.org/reference/p5/dist) para calcular la distancia entre el jugador y su aliado.
+En este ejemplo, se utiliza la función `dist` de [p5.js](https://q5js.org/learn/#dist) para calcular la distancia entre el jugador y su aliado.
 
 # 9-0
 

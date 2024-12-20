@@ -45,7 +45,7 @@
 				<p><code>new Canvas()</code> コンストラクタは、スクリーン内にプログラムが描画できる領域を作成します。</p>
 				<p>コードサンプルで、キャンバスの幅と高さ（<code>Canvas</code> コンストラクタ内の数字）を変更して、プログラムを再実行してみましょう！</p>
 			</md>
-			<script type="mie/p5" id="setup-and-draw">
+			<script type="mie/p5" id="setup-and-update">
 function setup() {
 	new Canvas(250, 100);
 }
@@ -271,12 +271,10 @@ function update() {
 				<p><code>sprite.image</code> または <code>sprite.img</code> に、p5.Image 画像オブジェクトそのもの、または画像ファイルへの URL
 					パスを設定することで、スプライトに指定した画像を割り当てることができます。</p>
 				<p>画像の読み込みが完了してからプログラムを開始したい、という場合は、 p5.js の <code>preload</code> 関数で <a
-						href="https://p5js.org/reference/p5/loadImage" target="_blank"><code>loadImage</code></a>
+						href="https://q5js.org/learn/#loadImage" target="_blank"><code>loadImage</code></a>
 					を使用するのがベストです。</p>
 				<p><code>sprite.image.offset</code>
 					は、画像をスプライトの中心に対してオフセットさせるために使用できます。これにより、画像をスプライトの物理的な衝突判定とよりよく整列させることができます。</p>
-				<p><code>sprite.image.scale</code> は、スプライトの画像の表示サイズを変更します。デフォルトは 1.0
-					です。画像が非常に大きすぎるか小さすぎる場合は、おそらく画像ファイル自体のサイズを変更する必要があります。</p>
 				<p>コードサンプルの画像の上で、マウスの左ボタンを押してみてください。 <code>sprite.debug</code> プロパティが true
 					に設定されると、スプライトのコライダー部分が見えるようになります。これで分かる通り、コライダーの大きさと画像の大きさは、別々に設定可能なのです！</p>
 			</md>
@@ -295,6 +293,28 @@ function setup() {
 function update() {
 	clear();
 	monster.debug = mouse.pressing();
+}
+			</script>
+			<md id="md2-0-1">
+				<p>スプライトの<code>opacity</code>（不透明度）を設定して、見た目の透明度を変更できます。0（完全に透明）から 1（完全に不透明）までの値を使用します。</p>
+				<p><code>sprite.image.scale</code> は、スプライトの画像の表示サイズを変更します。デフォルトは 1.0
+					です。画像が非常に大きすぎるか小さすぎる場合は、おそらく画像ファイル自体のサイズを変更する必要があります。</p>
+			</md>
+			<script type="mie/p5" id="opacity">
+let star;
+
+function setup() {
+	new Canvas(500, 120);
+
+	star = new Sprite();
+	star.image = '/learn/assets/star.webp';
+}
+
+function update() {
+	clear();
+	let v = cos(frameCount * 2) * 0.5 + 0.5;
+	star.opacity = v;
+	star.image.scale = v;
 }
 			</script>
 			<div class="break"></div>
@@ -382,8 +402,8 @@ function update() {}
 				<p>p5play のカラーパレットは<a href="https://p5js.org/reference/p5/object" target="_blank">JavaScript
 						オブジェクト</a>形式でなければなりません。シンプルな JS
 					オブジェクトとは、見出しと値のペアの集まりです。ピクセルアートで使用するそれぞれの文字に対し、任意の色を定義することができます。色を作成するには、p5.js の<a
-						href="https://p5js.org/reference/p5/color" target="_blank"><code>color</code></a>関数に、
-					RGB（赤、緑、青）値、または HEX カラーコードを引数として渡します。</p>
+						href="https://q5js.org/learn/#color" target="_blank"><code>color</code></a>関数に、 RGB（赤、緑、青）値、または
+					HEX カラーコードを引数として渡します。</p>
 				<p>色の指定値を調べるには、<a href="https://www.google.com/search?q=google+color+picker"
 						target="_blank">カラーピッカー</a>を使うのがいちばんお手軽です。</p>
 			</md>
@@ -1509,6 +1529,10 @@ function setup() {
 
 	let face = loadImage('/learn/assets/face.webp');
 	let stretchy = new Sprite();
+
+	stretchy.update = () => {
+		stretchy.moveTowards(mouse, 0.07);
+	};
 	
 	stretchy.draw = () => {
 		fill(237, 205, 0);
@@ -1519,10 +1543,6 @@ function setup() {
 		pop();
 
 		image(face, stretchy.vel.x * 2, stretchy.vel.y * 2);
-	};
-
-	stretchy.update = () => {
-		stretchy.moveTowards(mouse, 0.07);
 	};
 }
 
@@ -1593,7 +1613,7 @@ function update() {
 				<p>あるスプライトを、移動指定をした別のスプライトに追従させたい場合、そのスプライトが目的地に達するのを待つのでなく、追従させる方のスプライトで <code>moveTo</code>
 					を何度も繰り返したくなるかもしれません。しかし、パフォーマンスを向上させるためには、そのスプライトと対象の位置との角度を取得する <code>angleTo</code>
 					関数の使用を検討してください。この角度は、スプライトが移動する方向を変更するために使用できます。</p>
-				<p>このコードサンプルでは、 <a href="https://p5js.org/reference/p5/dist" target="_blank">p5.js dist</a>
+				<p>このコードサンプルでは、 <a href="https://q5js.org/learn/#dist" target="_blank">p5.js dist</a>
 					関数が使用されており、プレイヤーとその味方との間の距離を計算しています。</p>
 			</md>
 			<script type="mie/p5" base-8="" hidden="">

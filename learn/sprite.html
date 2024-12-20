@@ -43,7 +43,7 @@
 				<p>Try changing the width and height of the canvas (the numbers inside the <code>Canvas</code>
 					constructor), then restart the example program!</p>
 			</md>
-			<script type="mie/p5" id="setup-and-draw">
+			<script type="mie/p5" id="setup-and-update">
 function setup() {
 	new Canvas(250, 100);
 }
@@ -273,13 +273,10 @@ function update() {
 				<p><code>sprite.image</code> (aka <code>sprite.img</code>) can be set to a Q5.Image or a url path to an
 					image file.</p>
 				<p>If you need an image to be loaded before your program starts, it's best to use <a
-						href="https://p5js.org/reference/p5/loadImage" target="_blank"><code>loadImage</code></a> inside
-					the q5 <code>preload</code> function.</p>
+						href="https://q5js.org/learn/#loadImage" target="_blank"><code>loadImage</code></a> inside the
+					q5 <code>preload</code> function.</p>
 				<p><code>sprite.image.offset</code> can be used to offset the image relative to the sprite's center.
 					This can help better align the image with the sprite's physics collider.</p>
-				<p><code>sprite.image.scale</code> changes the display size of the sprite's image. The default is 1.0.
-					If the image appears way too big or small, you should probably change the size of the image file
-					itself.</p>
 				<p>Try clicking on the canvas of this example. When the <code>sprite.debug</code> property is set to
 					true you can see the sprite's physics body collider.</p>
 			</md>
@@ -298,6 +295,30 @@ function setup() {
 function update() {
 	clear();
 	monster.debug = mouse.pressing();
+}
+			</script>
+			<md id="md2-0-1">
+				<p>Set a sprite's <code>opacity</code> to change the transparency of its appearance. Use a value between
+					0 (completely transparent) and 1 (completely opaque).</p>
+				<p><code>sprite.image.scale</code> changes the display size of the sprite's image. The default is 1.0.
+					If the image appears way too big or small, you should probably change the size of the image file
+					itself.</p>
+			</md>
+			<script type="mie/p5" id="opacity">
+let star;
+
+function setup() {
+	new Canvas(500, 120);
+
+	star = new Sprite();
+	star.image = 'assets/star.webp';
+}
+
+function update() {
+	clear();
+	let v = cos(frameCount * 2) * 0.5 + 0.5;
+	star.opacity = v;
+	star.image.scale = v;
 }
 			</script>
 			<div class="break"></div>
@@ -388,7 +409,7 @@ function update() {}
 				<p>Color palettes in p5play must be provided in <a href="https://p5js.org/reference/p5/Object"
 						target="_blank">JavaScript Object literal</a> format. A simple JS object is like a dictionary.
 					You can define a color for each letter you use in your pixel art. To create a color use the q5 <a
-						href="https://p5js.org/reference/p5/color" target="_blank"><code>color</code></a> function which
+						href="https://q5js.org/learn/#color" target="_blank"><code>color</code></a> function which
 					accepts RGB (red, green, blue) values or HEX color codes.</p>
 				<p>The easiest way to find colors is to use a <a
 						href="https://www.google.com/search?q=google+color+picker" target="_blank">color picker</a>.</p>
@@ -1548,22 +1569,20 @@ function update() {
 		<div id="page-14" class="page">
 			<div class="minis horiz">
 				<md id="md14-0">
+					<h2 id="custom-update">Custom Update</h2>
+					<p>A sprite's <code>update</code> function runs before each physics simulation update, by default.
+						You can customize the sprite's <code>update</code> function with user input handling and sprite
+						specific logic.</p>
+				</md>
+				<md id="md14-1">
 					<h2 id="custom-draw">Custom Draw</h2>
 					<p>Sometimes you won't be able to use pre-drawn animations to get the kind of visual effect you want
 						for a sprite in motion.</p>
 					<p>Fortunately, you can customize the sprite's <code>draw</code> function to make it display
-						anything you want!</p>
-					<p>Note that inside the sprite's draw function the center of the sprite is translated to position
-						(0, 0).</p>
+						anything you want! By default, sprites are drawn after physics simulation updates.</p>
+					<p>Note that inside the sprite's draw function, the center of the sprite is at position (0, 0).</p>
 					<p>This code example rotates the sprite's ellipse to the direction it's moving and makes the ellipse
-						stretch in that direction proportional to its speed. Kind of complicated!</p>
-				</md>
-				<md id="md14-1">
-					<h2 id="custom-update">Custom Update</h2>
-					<p>A sprite's <code>update</code> function runs at the end of the q5 <code>draw</code> loop by
-						default. It updates the sprite's animation (if it has one) and mouse event tracking.</p>
-					<p>Thanks to some behind the scenes magic, overriding the function will not replace the default
-						behavior, but allows you to add to it.</p>
+						stretch in that direction proportional to its speed. Kind of complicated but a nice effect!</p>
 				</md>
 			</div>
 			<script type="mie/p5" id="stretchy" lines="22">
@@ -1572,6 +1591,10 @@ function setup() {
 
 	let face = loadImage('assets/face.webp');
 	let stretchy = new Sprite();
+
+	stretchy.update = () => {
+		stretchy.moveTowards(mouse, 0.07);
+	};
 	
 	stretchy.draw = () => {
 		fill(237, 205, 0);
@@ -1582,10 +1605,6 @@ function setup() {
 		pop();
 
 		image(face, stretchy.vel.x * 2, stretchy.vel.y * 2);
-	};
-
-	stretchy.update = () => {
-		stretchy.moveTowards(mouse, 0.07);
 	};
 }
 
@@ -1661,9 +1680,8 @@ function update() {
 					repeatedly, without waiting for the sprite to reach its destination. But for better performance, try
 					using the <code>angleTo</code> function, which gets the angle between a sprite and a position. This
 					angle can be used to change the direction that the sprite moves in.</p>
-				<p>In this example, the q5 <a href="https://p5js.org/reference/p5/dist"
-						target="_blank"><code>dist</code></a> function is used to calculate the distance between the
-					player and its ally.</p>
+				<p>In this example, the q5 <a href="https://q5js.org/learn/#dist" target="_blank"><code>dist</code></a>
+					function is used to calculate the distance between the player and its ally.</p>
 			</md>
 			<script type="mie/p5" base-8="" hidden="">
 let player, ally;
