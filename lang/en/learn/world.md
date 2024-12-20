@@ -43,3 +43,13 @@ Having less sprites and using a smaller canvas will make your game perform bette
 By default the Box2D physics engine performs 8 velocity iterations `world.velocityIterations` and 3 position iterations `world.positionIterations`. Decreasing these values will make the simulation faster but also less accurate.
 
 I've tested p5play in every web browser and found that Google Chrome performs the best.
+
+# 3-0
+
+## Find Sprites
+
+You can get an array of sprites found at a point with the `world.getSpritesAt` function. Note that the sprites must have physics bodies to be found.
+
+`world.getSpriteAt` returns the first sprite found at a point, the one with the highest layer value.
+
+Try moving the mouse to make sprites stop moving!

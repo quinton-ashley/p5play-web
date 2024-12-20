@@ -43,3 +43,13 @@ Tener menos sprites y usar un lienzo más pequeño hará que tu juego funcione m
 Por defecto, el motor de física Box2D realiza 8 iteraciones de velocidad `world.velocityIterations` y 3 iteraciones de posición `world.positionIterations`. Disminuir estos valores hará que la simulación sea más rápida pero también menos precisa.
 
 He probado p5play en todos los navegadores web y encontré que Google Chrome tiene el mejor rendimiento.
+
+# 3-0
+
+## Encontrar Sprites
+
+Puedes obtener un array de sprites encontrados en un punto con la función `world.getSpritesAt`. Ten en cuenta que los sprites deben tener cuerpos físicos para ser encontrados.
+
+`world.getSpriteAt` devuelve el primer sprite encontrado en un punto, el que tiene el valor de capa más alto.
+
+¡Intenta mover el ratón para hacer que los sprites dejen de moverse!

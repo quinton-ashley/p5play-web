@@ -17,11 +17,12 @@ let refs = {
 			'visible'
 		],
 		1: ['collider'],
-		2: ['image', 'scale', 'debug'],
+		2: ['image', 'debug', 'opacity'],
 		3: ['vel / velocity', 'speed', 'direction', 'move', 'moveTo', 'moveTowards', 'angleTo'],
 		5: ['collides', 'colliding', 'collided'],
 		6: ['overlaps', 'overlapping', 'overlapped', 'layer', 'remove'],
 		7: ['rotate', 'rotateTo', 'rotateTowards', 'rotationSpeed', 'offset'],
+		8: ['scale'],
 		9: ['bounciness', 'drag', 'friction', 'mass', 'rotationDrag', 'rotationLock'],
 		10: ['applyForce', 'applyForceScaled', 'bearing', 'attractTo', 'applyTorque'],
 		12: ['shape'],
@@ -60,7 +61,8 @@ let refs = {
 		1: ['DistanceJoint'],
 		2: ['WheelJoint'],
 		3: ['HingeJoint'],
-		4: ['SliderJoint']
+		4: ['SliderJoint'],
+		5: ['GrabberJoint']
 	},
 	'Camera.html': {
 		0: ['x', 'y', 'moveTo'],
@@ -73,12 +75,12 @@ let refs = {
 		2: ['resize']
 	},
 	'Tiles.html': {
-		0: ['Tiles'],
-		1: ['tileSize']
+		0: ['Tiles']
 	},
 	'World.html': {
 		0: ['gravity', 'allowSleeping'],
-		1: ['timeScale', 'step']
+		1: ['timeScale', 'physicsUpdate', 'realTime', 'physicsTime'],
+		3: ['getSpritesAt', 'getSpriteAt']
 	},
 	'q5.js basics': {
 		'https://p5js.org/reference/p5': [

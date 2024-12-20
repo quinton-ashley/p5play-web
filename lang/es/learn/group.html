@@ -373,7 +373,7 @@ function update() {
 					</p>
 				</md>
 			</div>
-			<script type="mie/p5" id="draw-and-update">
+			<script type="mie/p5" id="custom-draw">
 let gems;
 function setup() {
 	new Canvas(500, 192);
@@ -383,7 +383,7 @@ function setup() {
 	gems.speed = 0.5;
 	gems.amount = 4;
 }
-function update() {
+function draw() {
 	clear();
 
 	gems.draw();
