@@ -80,7 +80,8 @@ let refs = {
 	'World.html': {
 		0: ['gravity', 'allowSleeping'],
 		1: ['timeScale', 'physicsUpdate', 'realTime', 'physicsTime'],
-		3: ['getSpritesAt', 'getSpriteAt']
+		3: ['getSpritesAt', 'getSpriteAt'],
+		4: ['rayCastAll', 'rayCast']
 	},
 	'q5.js basics': {
 		'https://p5js.org/reference/p5': [
