@@ -6892,18 +6892,25 @@ p5.prototype.registerMethod('init', function p5playInit() {
 		 */
 		getSpritesAt(x, y, group, cameraActiveWhenDrawn = true) {
 			if (typeof x == 'object') {
+				cameraActiveWhenDrawn = group ?? true;
+				group = h;
+				h = w;
+				w = y;
 				y = x.y;
 				x = x.x;
 			}
-			const convertedPoint = new pl.Vec2(x / $.world.meterSize, y / $.world.meterSize);
+			const point = new pl.Vec2(x / this.meterSize, y / this.meterSize);
 			const aabb = new pl.AABB();
-			aabb.lowerBound = new pl.Vec2(convertedPoint.x - 0.001, convertedPoint.y - 0.001);
-			aabb.upperBound = new pl.Vec2(convertedPoint.x + 0.001, convertedPoint.y + 0.001);
+			aabb.lowerBound = new pl.Vec2(point.x - 0.001, point.y - 0.001);
+			aabb.upperBound = new pl.Vec2(point.x + 0.001, point.y + 0.001);
 
-			// Query the world for overlapping shapes.
+			// Query the world for fixture AABBs that overlap the point AABB
+			// narrowing down the number of fixtures to check with
+			// the more expensive testPoint method
 			let fxts = [];
 			this.queryAABB(aabb, (fxt) => {
-				if (fxt.getShape().testPoint(fxt.getBody().getTransform(), convertedPoint)) {
+				// we need to make sure the point is actually within the shape
+				if (fxt.getShape().testPoint(fxt.getBody().getTransform(), point)) {
 					fxts.push(fxt);
 				}
 				return true;
