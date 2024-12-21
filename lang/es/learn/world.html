@@ -208,10 +208,52 @@ function update() {
 
 	let sprites = world.getSpritesAt(mouse);
 
-	for (let s of sprites) {
-		s.speed = 0;
+	for (let sprite of sprites) {
+		sprite.speed = 0;
 	}
 }
+			</script>
+		</div>
+		<div id="page-4" class="page">
+			<md id="md4-0">
+				<h2 id="emisión-de-rayos">Emisión de Rayos</h2>
+				<p>La función <code>world.rayCastAll</code> encuentra todos los sprites que intersectan con un rayo
+					(línea), excluyendo cualquier sprite que se intersecte con el punto de inicio.</p>
+				<p>La función <code>world.rayCast</code> es similar, pero solo devuelve el primer sprite.</p>
+				<p>Proporciona a estas funciones los puntos de inicio y fin del rayo.</p>
+				<p>Alternativamente, establece el punto de inicio del rayo, la dirección y opcionalmente la distancia
+					máxima que debe recorrer.</p>
+				<p>¡Intenta mover el ratón en el ejemplo, cuando el rayo se intersecta con un sprite, este se vuelve
+					naranja!</p>
+				<p>➡️ <a href="https://openprocessing.org/sketch/2469202" target="_blank">demo completo de ray
+						casting</a></p>
+			</md>
+			<script type="mie/p5" id="Ray Casting">
+let player, targets;
+
+function setup() {
+	new Canvas(500, 200);
+	
+	targets = new Group();
+	for (let i = 0; i < 80; i++) {
+		new targets.Sprite(random(500), random(200), 20, 20);
+	}
+	player = new Sprite(250, 100, 30);
+}
+
+function draw() {
+	background(0);
+	targets.color = color(120);
+
+	let sprites = world.rayCastAll(player, mouse);
+
+	for (let s of sprites) s.color = 'orange';
+
+	stroke('orange');
+	line(player.x, player.y, mouse.x, mouse.y);
+	noStroke();
+}
+
 			</script>
 		</div>
 
@@ -223,6 +265,7 @@ function update() {
 				<a data-page="1" href="world.html?page=1">Controlando el Tiempo</a>
 				<a data-page="2" href="world.html?page=2">Pruebas de Rendimiento</a>
 				<a data-page="3" href="world.html?page=3">Encontrar Sprites</a>
+				<a data-page="4" href="world.html?page=4">Emisión de Rayos</a>
 			</div>
 			<a id="nextPage" class="navLink">Siguiente página</a>
 		</div>

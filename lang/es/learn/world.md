@@ -53,3 +53,19 @@ Puedes obtener un array de sprites encontrados en un punto con la función `worl
 `world.getSpriteAt` devuelve el primer sprite encontrado en un punto, el que tiene el valor de capa más alto.
 
 ¡Intenta mover el ratón para hacer que los sprites dejen de moverse!
+
+# 4-0
+
+## Emisión de Rayos
+
+La función `world.rayCastAll` encuentra todos los sprites que intersectan con un rayo (línea), excluyendo cualquier sprite que se intersecte con el punto de inicio.
+
+La función `world.rayCast` es similar, pero solo devuelve el primer sprite.
+
+Proporciona a estas funciones los puntos de inicio y fin del rayo.
+
+Alternativamente, establece el punto de inicio del rayo, la dirección y opcionalmente la distancia máxima que debe recorrer.
+
+¡Intenta mover el ratón en el ejemplo, cuando el rayo se intersecta con un sprite, este se vuelve naranja!
+
+➡️ [demo completo de ray casting](https://openprocessing.org/sketch/2469202)

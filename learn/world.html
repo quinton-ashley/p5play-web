@@ -183,7 +183,7 @@ function update() {
 					Note that the sprites must have physics bodies to be found.</p>
 				<p><code>world.getSpriteAt</code> returns the first sprite found at a point, the one with the highest
 					layer value.</p>
-				<p>Try moving the mouse to make sprites stop moving!</p>
+				<p>Try moving the mouse to make sprites stop moving in the example!</p>
 			</md>
 			<script type="mie/p5" id="freeze">
 function setup() {
@@ -206,10 +206,50 @@ function update() {
 
 	let sprites = world.getSpritesAt(mouse);
 
-	for (let s of sprites) {
-		s.speed = 0;
+	for (let sprite of sprites) {
+		sprite.speed = 0;
 	}
 }
+			</script>
+		</div>
+		<div id="page-4" class="page">
+			<md id="md4-0">
+				<h2 id="ray-casting">Ray Casting</h2>
+				<p>The <code>world.rayCastAll</code> function finds all the sprites that intersects a ray (line),
+					excluding any sprites that intersect with the starting point.</p>
+				<p>The <code>world.rayCast</code> function is similar, but only returns the first sprite.</p>
+				<p>Provide these functions with the ray's start and end points.</p>
+				<p>Alternatively, set the ray's starting point, direction, and optionally the maximum distance it should
+					travel.</p>
+				<p>Try moving the mouse in the example, when the ray intersects with a sprite, it becomes orange.</p>
+				<p>➡️ <a href="https://openprocessing.org/sketch/2469202" target="_blank">full ray casting demo</a></p>
+			</md>
+			<script type="mie/p5" id="Ray Casting">
+let player, targets;
+
+function setup() {
+	new Canvas(500, 200);
+	
+	targets = new Group();
+	for (let i = 0; i < 80; i++) {
+		new targets.Sprite(random(500), random(200), 20, 20);
+	}
+	player = new Sprite(250, 100, 30);
+}
+
+function draw() {
+	background(0);
+	targets.color = color(120);
+
+	let sprites = world.rayCastAll(player, mouse);
+
+	for (let s of sprites) s.color = 'orange';
+
+	stroke('orange');
+	line(player.x, player.y, mouse.x, mouse.y);
+	noStroke();
+}
+
 			</script>
 		</div>
 
@@ -221,6 +261,7 @@ function update() {
 				<a data-page="1" href="world.html?page=1">Controlling Time</a>
 				<a data-page="2" href="world.html?page=2">Performance</a>
 				<a data-page="3" href="world.html?page=3">Find Sprites</a>
+				<a data-page="4" href="world.html?page=4">Ray Casting</a>
 			</div>
 			<a id="nextPage" class="navLink">Next Page</a>
 		</div>

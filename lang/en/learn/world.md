@@ -52,4 +52,20 @@ You can get an array of sprites found at a point with the `world.getSpritesAt` f
 
 `world.getSpriteAt` returns the first sprite found at a point, the one with the highest layer value.
 
-Try moving the mouse to make sprites stop moving!
+Try moving the mouse to make sprites stop moving in the example!
+
+# 4-0
+
+## Ray Casting
+
+The `world.rayCastAll` function finds all the sprites that intersects a ray (line), excluding any sprites that intersect with the starting point.
+
+The `world.rayCast` function is similar, but only returns the first sprite.
+
+Provide these functions with the ray's start and end points.
+
+Alternatively, set the ray's starting point, direction, and optionally the maximum distance it should travel.
+
+Try moving the mouse in the example, when the ray intersects with a sprite, it becomes orange.
+
+➡️ [full ray casting demo](https://openprocessing.org/sketch/2469202)

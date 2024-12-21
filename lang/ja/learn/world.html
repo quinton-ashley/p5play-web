@@ -199,10 +199,48 @@ function update() {
 
 	let sprites = world.getSpritesAt(mouse);
 
-	for (let s of sprites) {
-		s.speed = 0;
+	for (let sprite of sprites) {
+		sprite.speed = 0;
 	}
 }
+			</script>
+		</div>
+		<div id="page-4" class="page">
+			<md id="md4-0">
+				<h2 id="レイキャスティング">レイキャスティング</h2>
+				<p><code>world.rayCastAll</code>関数は、レイ（線）と交差するすべてのスプライトを検出します。ただし、始点と交差するスプライトは除外されます。</p>
+				<p><code>world.rayCast</code>関数も同様ですが、最初に見つかったスプライトのみを返します。</p>
+				<p>これらの関数には、レイの開始点と終了点を指定します。</p>
+				<p>または、レイの開始点、方向、そしてオプションで移動可能な最大距離を設定します。</p>
+				<p>例で、マウスを動かしてみてください。レイがスプライトと交差すると、スプライトがオレンジ色になります。</p>
+				<p>➡️ <a href="https://openprocessing.org/sketch/2469202" target="_blank">レイキャスティングの完全なデモ</a></p>
+			</md>
+			<script type="mie/p5" id="Ray Casting">
+let player, targets;
+
+function setup() {
+	new Canvas(500, 200);
+	
+	targets = new Group();
+	for (let i = 0; i < 80; i++) {
+		new targets.Sprite(random(500), random(200), 20, 20);
+	}
+	player = new Sprite(250, 100, 30);
+}
+
+function draw() {
+	background(0);
+	targets.color = color(120);
+
+	let sprites = world.rayCastAll(player, mouse);
+
+	for (let s of sprites) s.color = 'orange';
+
+	stroke('orange');
+	line(player.x, player.y, mouse.x, mouse.y);
+	noStroke();
+}
+
 			</script>
 		</div>
 
@@ -214,6 +252,7 @@ function update() {
 				<a data-page="1" href="world.html?page=1">時間速度のコントロール</a>
 				<a data-page="2" href="world.html?page=2">パフォーマンスのテスト</a>
 				<a data-page="3" href="world.html?page=3">スプライトを探す</a>
+				<a data-page="4" href="world.html?page=4">レイキャスティング</a>
 			</div>
 			<a id="nextPage" class="navLink">次へ</a>
 		</div>
