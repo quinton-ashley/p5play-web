@@ -270,8 +270,8 @@ function update() {
 		<div id="page-2" class="page">
 			<md id="md2-0">
 				<h2 id="sprites-with-an-image">Sprites with an Image</h2>
-				<p><code>sprite.image</code> (aka <code>sprite.img</code>) can be set to a Q5.Image or a url path to an
-					image file.</p>
+				<p><code>sprite.image</code> (aka <code>sprite.img</code>) can be set to a <code>Q5.Image</code> or a
+					url path to an image file.</p>
 				<p>If you need an image to be loaded before your program starts, it's best to use <a
 						href="https://q5js.org/learn/#loadImage" target="_blank"><code>loadImage</code></a> inside the
 					q5 <code>preload</code> function.</p>
@@ -1084,24 +1084,24 @@ function update() {
 			</script>
 			<div class="break"></div>
 			<md id="md9-3">
-				<h2 id="planck">planck</h2>
+				<h2 id="box2d-quirks">Box2D quirks</h2>
 				<p>p5play uses planck.js, a JS port of the Box2D physics engine. It generates realistic looking
-					interactions at a good rate of performance, but it also has some limitations you should be aware of.
-				</p>
-				<p>In this code example the ball has a <code>bounciness</code> of 1, so each time the ball bounces it
-					should return to its starting position. However, due to a bug in planck, the ball bounces
-					incrementally higher each time it hits the ground.</p>
+					interactions, but also has some quirks you should be aware of.</p>
+				<p>In this code example, the ball has a <code>bounciness</code> of 1, each time the ball bounces,
+					mathematically, it should return to its starting position. However, due to how Box2D resolves
+					collisions, the ball bounces incrementally higher each time it hits the ground.</p>
 			</md>
-			<script type="mie/p5" id="full-bounce-error" lines="10" horiz="">
+			<script type="mie/p5" id="full-bounce-error" lines="11" horiz="">
 let ball, ground;
+
 function setup() {
-	new Canvas(32, 192);
+	new Canvas(32, 206);
 	world.gravity.y = 10;
 
 	ball = new Sprite(16, 100, 8);
 	ball.bounciness = 1;
 
-	ground = new Sprite(16, 184, 32, 16, 's');
+	ground = new Sprite(16, 200, 32, 16, 's');
 }
 
 function update() {
@@ -1118,28 +1118,27 @@ function update() {
 			<md id="md9-4">
 				<p>This full bounce interaction is impossible in real life, but could be an important element in a video
 					game.</p>
-				<p>The <code>bounciness</code> bug is most noticeable when a collider bounces off a flat surface, like
-					in these examples.</p>
 				<p>Here's a workaround that overrides the ball's y velocity after it collides with the ground.</p>
 			</md>
-			<script type="mie/p5" id="full-bounce-workaround" horiz="">
-let ball, ground;
-function setup() {
-	new Canvas(32, 192);
-	world.gravity.y = 10;
-
-	ball = new Sprite(16, 100, 8);
-	ball.bounciness = 1;
-
-	ground = new Sprite(16, 184, 32, 16, 's');
-}
-
+			<script type="mie/p5" id="full-bounce-workaround" horiz="" lines="7">
 function update() {
 	clear();
 
 	if (ball.collided(ground)) {
 		ball.vel.y = -4.8;
 	}
+}
+
+let ball, ground;
+
+function setup() {
+	new Canvas(32, 128);
+	world.gravity.y = 10;
+
+	ball = new Sprite(16, 36, 8);
+	ball.bounciness = 1;
+
+	ground = new Sprite(16, 120, 32, 16, 's');
 }
 			</script>
 			<md id="md9-5">
@@ -1148,11 +1147,11 @@ function update() {
 					blue.</p>
 				<p>In real life when a person gets on an elevator and it rises, we would say that person was colliding
 					with the elevator floor.</p>
-				<p>In planck however, when a collider is displaced by another collider, they constantly collide and
+				<p>In Box2D however, when a collider is displaced by another collider, they constantly collide and
 					separate from each other.</p>
 				<p>If you're trying to make a platformer game, <code>colliding</code> is not a reliable way to check if
-					a sprite is standing on a platform. Check out my <a href="https://openprocessing.org/sketch/1869796"
-						target="_blank">platformer demo</a>.</p>
+					a sprite is standing on a platform. Check out the <a
+						href="https://openprocessing.org/sketch/1869796" target="_blank">➡️ platformer demo</a>.</p>
 			</md>
 			<script type="mie/p5" id="displacement" horiz="">
 let block, platform;
@@ -1585,7 +1584,7 @@ function update() {
 						stretch in that direction proportional to its speed. Kind of complicated but a nice effect!</p>
 				</md>
 			</div>
-			<script type="mie/p5" id="stretchy" lines="22">
+			<script type="mie/p5" id="stretchy" lines="23">
 function setup() {
 	new Canvas(500, 200);
 
@@ -1601,14 +1600,16 @@ function setup() {
 
 		push();
 		rotate(stretchy.direction);
-		ellipse(0, 0, 100 + stretchy.speed, 100 - stretchy.speed);
+		let w = 100 + stretchy.speed;
+		let h = 100 - stretchy.speed;
+		ellipse(0, 0, w, h);
 		pop();
 
-		image(face, stretchy.vel.x * 2, stretchy.vel.y * 2);
+		image(face, stretchy.vel.x*2, stretchy.vel.y*2);
 	};
 }
 
-function update() {
+function draw() {
 	clear();
 }
 			</script>
@@ -1616,96 +1617,115 @@ function update() {
 		<div id="page-15" class="page">
 			<md id="md15-0">
 				<h2 id="movement-sequencing">Movement Sequencing</h2>
-				<p>These examples use a <code>Turtle</code> sprite which is green and shaped like a triangle for that
-					classic turtle programming look. Unlike regular sprites, the turtle's direction is always the same
-					as its rotation.</p>
 				<p>You can use the <code>await</code> keyword inside an <code>async</code> function to wait for a
 					movement to finish before continuing with the next movement. This is useful for making a sprite move
 					in a sequence.</p>
 				<p>The <code>delay</code> function can be used to wait for a specified number of milliseconds. 1000
-					milliseconds is equal to 1 second!</p>
+					milliseconds is equal to 1 second.</p>
 			</md>
-			<script type="mie/p5" id="square-sequence" horiz="" lines="15">
-let turtle;
+			<script type="mie/p5" id="square-sequence" horiz="" lines="8">
+async function squareSequence() {
+	await ship.move(100);
+	await ship.rotate(90);
+	ship.direction = ship.rotation;
+
+	await delay(500);
+	squareSequence();
+}
+
+let ship;
 
 function setup() {
-	new Canvas(160, 160);
-	turtle = new Turtle(30);
-
+	new Canvas(156, 156);
+	ship = new Sprite(28, 28);
+	ship.image = 'assets/ship_C.png';
 	squareSequence();
 }
 
-async function squareSequence() {
-	await turtle.move(100);
-	await turtle.rotate(90);
-  await delay(1000);
-	squareSequence();
-}
-
-function update() {
-	clear();
+function draw() {
+	background(16);
 }
 			</script>
 			<md id="md15-1">
-				<p>The <code>move</code>, <code>moveTo</code>, <code>rotate</code>, and <code>rotateTo</code> functions
-					all return a <code>Promise</code> that resolves to true when the movement is finished.</p>
+				<p>The <code>move</code>, <code>moveTo</code>, <code>rotate</code>, <code>rotateTo</code>, and
+					<code>rotateMinTo</code> functions all return a <code>Promise</code> that resolves to true when the
+					movement is finished.</p>
 				<p>But, if the sprite's movement is interrupted by a new movement or a collision that significantly
 					changes the sprite's trajectory, the promise will resolve to false.</p>
 			</md>
-			<script type="mie/p5" id="random-sequence" horiz="" lines="17">
-let turtle, ball;
+			<script type="mie/p5" id="random-sequence" horiz="" lines="10">
+async function randomSequence() {
+	let x = random(width);
+	let y = random(height);
+
+	await ship.rotateMinTo(x, y, 5);
+	ship.direction = ship.rotation;
+	await ship.moveTo(x, y, 3);
+
+	randomSequence();
+}
+
+let ship, asteroid;
 
 function setup() {
-	new Canvas(160, 304);
-	turtle = new Turtle(30);
-	ball = new Sprite(80, 152, 50);
-
+	new Canvas(156, 192);
+	ship = new Sprite(28, 28, 16);
+	ship.image = 'assets/ship_E.png';
+	asteroid = new Sprite(80, 152, 50);
+	asteroid.image = 'assets/astr.png';
 	randomSequence();
 }
 
-async function randomSequence() {
-	let x = random(0, width);
-	let y = random(0, height);
-	await turtle.rotateTo(x, y, 5);
-	await turtle.moveTo(x, y, 3);
-	randomSequence();
-}
-
-function update() {
-	clear();
+function draw() {
+	background(16);
 }
 			</script>
 			<md id="md15-2">
 				<p>If you want a sprite to follow another sprite, you may be tempted to use <code>moveTo</code>
-					repeatedly, without waiting for the sprite to reach its destination. But for better performance, try
-					using the <code>angleTo</code> function, which gets the angle between a sprite and a position. This
-					angle can be used to change the direction that the sprite moves in.</p>
+					repeatedly, without waiting for the sprite to reach its destination. But for better performance,
+					change the sprite's direction. Use the <code>angleTo</code> function, which gets the angle between a
+					sprite and a position.</p>
 				<p>In this example, the q5 <a href="https://q5js.org/learn/#dist" target="_blank"><code>dist</code></a>
 					function is used to calculate the distance between the player and its ally.</p>
 			</md>
-			<script type="mie/p5" base-8="" hidden="">
+			<script type="mie/p5" id="angleTo" lines="12">
+function update() {
+	player.moveTowards(mouse);
+
+	let distance = dist(player, ally);
+
+	if (distance > 50) {
+		ally.direction = ally.angleTo(player);
+		ally.speed = 2;
+	} else if (distance < 40) {
+		ally.speed = 0;
+	}
+}
+
 let player, ally;
 
 function setup() {
 	new Canvas(500, 100);
-	player = new Sprite(400, 50, 20);
-	ally = new Sprite(200, 50, 20, 20, 'n');
+	player = new Sprite(400, 50, 32);
+	player.image = '🐠';
+	ally = new Sprite(-20, 50, 24, 24, 'n');
+	ally.image = '🐟';
+	ally.image.scale.x = -1;
+	mouse.visible = false;
 }
 
-function update() {
+function draw() {
 	clear();
-}
-			</script>
-			<script type="mie/p5" id="angleTo" base="8">
-player.moveTowards(mouse);
 
-let distance = dist(player.x, player.y, ally.x, ally.y);
+	if (player.direction < 90 && player.direction > -90) {
+		player.img.scale.x = -1;
+	} else player.img.scale = 1;
 
-if (distance > 40) {
-	ally.direction = ally.angleTo(player);
-	ally.speed = 2;
-} else if (distance < 30) {
-	ally.speed = 0;
+	if (ally.speed > 0) {
+		if (ally.direction < 90 && ally.direction > -90) {
+			ally.img.scale.x = -1;
+		} else ally.img.scale = 1;
+	}
 }
 			</script>
 		</div>

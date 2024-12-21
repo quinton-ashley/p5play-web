@@ -57,7 +57,7 @@ For an extra challenge, try resetting the block to its original position after i
 
 ## Sprites with an Image
 
-`sprite.image` (aka `sprite.img`) can be set to a Q5.Image or a url path to an image file.
+`sprite.image` (aka `sprite.img`) can be set to a `Q5.Image` or a url path to an image file.
 
 If you need an image to be loaded before your program starts, it's best to use [`loadImage`](https://q5js.org/learn/#loadImage) inside the q5 `preload` function.
 
@@ -298,17 +298,15 @@ This code example shows how sprites of different sizes can balance on a seesaw i
 
 # 9-3
 
-## planck
+## Box2D quirks
 
-p5play uses planck.js, a JS port of the Box2D physics engine. It generates realistic looking interactions at a good rate of performance, but it also has some limitations you should be aware of.
+p5play uses planck.js, a JS port of the Box2D physics engine. It generates realistic looking interactions, but also has some quirks you should be aware of.
 
-In this code example the ball has a `bounciness` of 1, so each time the ball bounces it should return to its starting position. However, due to a bug in planck, the ball bounces incrementally higher each time it hits the ground.
+In this code example, the ball has a `bounciness` of 1, each time the ball bounces, mathematically, it should return to its starting position. However, due to how Box2D resolves collisions, the ball bounces incrementally higher each time it hits the ground.
 
 # 9-4
 
 This full bounce interaction is impossible in real life, but could be an important element in a video game.
-
-The `bounciness` bug is most noticeable when a collider bounces off a flat surface, like in these examples.
 
 Here's a workaround that overrides the ball's y velocity after it collides with the ground.
 
@@ -318,9 +316,9 @@ In this example the block's color is red when it is colliding with the moving pl
 
 In real life when a person gets on an elevator and it rises, we would say that person was colliding with the elevator floor.
 
-In planck however, when a collider is displaced by another collider, they constantly collide and separate from each other.
+In Box2D however, when a collider is displaced by another collider, they constantly collide and separate from each other.
 
-If you're trying to make a platformer game, `colliding` is not a reliable way to check if a sprite is standing on a platform. Check out my [platformer demo](https://openprocessing.org/sketch/1869796).
+If you're trying to make a platformer game, `colliding` is not a reliable way to check if a sprite is standing on a platform. Check out the [➡️ platformer demo](https://openprocessing.org/sketch/1869796).
 
 # 10-0
 
@@ -468,20 +466,18 @@ This code example rotates the sprite's ellipse to the direction it's moving and 
 
 ## Movement Sequencing
 
-These examples use a `Turtle` sprite which is green and shaped like a triangle for that classic turtle programming look. Unlike regular sprites, the turtle's direction is always the same as its rotation.
-
 You can use the `await` keyword inside an `async` function to wait for a movement to finish before continuing with the next movement. This is useful for making a sprite move in a sequence.
 
-The `delay` function can be used to wait for a specified number of milliseconds. 1000 milliseconds is equal to 1 second!
+The `delay` function can be used to wait for a specified number of milliseconds. 1000 milliseconds is equal to 1 second.
 
 # 15-1
 
-The `move`, `moveTo`, `rotate`, and `rotateTo` functions all return a `Promise` that resolves to true when the movement is finished.
+The `move`, `moveTo`, `rotate`, `rotateTo`, and `rotateMinTo` functions all return a `Promise` that resolves to true when the movement is finished.
 
 But, if the sprite's movement is interrupted by a new movement or a collision that significantly changes the sprite's trajectory, the promise will resolve to false.
 
 # 15-2
 
-If you want a sprite to follow another sprite, you may be tempted to use `moveTo` repeatedly, without waiting for the sprite to reach its destination. But for better performance, try using the `angleTo` function, which gets the angle between a sprite and a position. This angle can be used to change the direction that the sprite moves in.
+If you want a sprite to follow another sprite, you may be tempted to use `moveTo` repeatedly, without waiting for the sprite to reach its destination. But for better performance, change the sprite's direction. Use the `angleTo` function, which gets the angle between a sprite and a position.
 
 In this example, the q5 [`dist`](https://q5js.org/learn/#dist) function is used to calculate the distance between the player and its ally.

@@ -185,6 +185,7 @@ function update() {
 					encontrados.</p>
 				<p><code>world.getSpriteAt</code> devuelve el primer sprite encontrado en un punto, el que tiene el
 					valor de capa más alto.</p>
+				<p>Ten en cuenta que los sprites deben tener cuerpos físicos para ser detectados.</p>
 				<p>¡Intenta mover el ratón para hacer que los sprites dejen de moverse!</p>
 			</md>
 			<script type="mie/p5" id="freeze">
@@ -220,6 +221,7 @@ function update() {
 				<p>La función <code>world.rayCastAll</code> encuentra todos los sprites que intersectan con un rayo
 					(línea), excluyendo cualquier sprite que se intersecte con el punto de inicio.</p>
 				<p>La función <code>world.rayCast</code> es similar, pero solo devuelve el primer sprite.</p>
+				<p>Ten en cuenta que los sprites deben tener cuerpos físicos para ser detectados.</p>
 				<p>Proporciona a estas funciones los puntos de inicio y fin del rayo.</p>
 				<p>Alternativamente, establece el punto de inicio del rayo, la dirección y opcionalmente la distancia
 					máxima que debe recorrer.</p>

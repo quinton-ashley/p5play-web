@@ -52,6 +52,8 @@ Puedes obtener un array de sprites encontrados en un punto con la función `worl
 
 `world.getSpriteAt` devuelve el primer sprite encontrado en un punto, el que tiene el valor de capa más alto.
 
+Ten en cuenta que los sprites deben tener cuerpos físicos para ser detectados.
+
 ¡Intenta mover el ratón para hacer que los sprites dejen de moverse!
 
 # 4-0
@@ -61,6 +63,8 @@ Puedes obtener un array de sprites encontrados en un punto con la función `worl
 La función `world.rayCastAll` encuentra todos los sprites que intersectan con un rayo (línea), excluyendo cualquier sprite que se intersecte con el punto de inicio.
 
 La función `world.rayCast` es similar, pero solo devuelve el primer sprite.
+
+Ten en cuenta que los sprites deben tener cuerpos físicos para ser detectados.
 
 Proporciona a estas funciones los puntos de inicio y fin del rayo.
 

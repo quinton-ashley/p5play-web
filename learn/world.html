@@ -180,9 +180,10 @@ function update() {
 			<md id="md3-0">
 				<h2 id="find-sprites">Find Sprites</h2>
 				<p>You can get an array of sprites found at a point with the <code>world.getSpritesAt</code> function.
-					Note that the sprites must have physics bodies to be found.</p>
+				</p>
 				<p><code>world.getSpriteAt</code> returns the first sprite found at a point, the one with the highest
 					layer value.</p>
+				<p>Note that the sprites must have physics bodies to be found.</p>
 				<p>Try moving the mouse to make sprites stop moving in the example!</p>
 			</md>
 			<script type="mie/p5" id="freeze">
@@ -215,9 +216,10 @@ function update() {
 		<div id="page-4" class="page">
 			<md id="md4-0">
 				<h2 id="ray-casting">Ray Casting</h2>
-				<p>The <code>world.rayCastAll</code> function finds all the sprites that intersects a ray (line),
-					excluding any sprites that intersect with the starting point.</p>
+				<p>The <code>world.rayCastAll</code> function finds all the sprites (with physics colliders) that
+					intersects a ray (line), excluding any sprites that intersect with the starting point.</p>
 				<p>The <code>world.rayCast</code> function is similar, but only returns the first sprite.</p>
+				<p>Note that the sprites must have physics bodies to be detected.</p>
 				<p>Provide these functions with the ray's start and end points.</p>
 				<p>Alternatively, set the ray's starting point, direction, and optionally the maximum distance it should
 					travel.</p>

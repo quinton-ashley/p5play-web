@@ -48,9 +48,11 @@ I've tested p5play in every web browser and found that Google Chrome performs th
 
 ## Find Sprites
 
-You can get an array of sprites found at a point with the `world.getSpritesAt` function. Note that the sprites must have physics bodies to be found.
+You can get an array of sprites found at a point with the `world.getSpritesAt` function.
 
 `world.getSpriteAt` returns the first sprite found at a point, the one with the highest layer value.
+
+Note that the sprites must have physics bodies to be found.
 
 Try moving the mouse to make sprites stop moving in the example!
 
@@ -58,9 +60,11 @@ Try moving the mouse to make sprites stop moving in the example!
 
 ## Ray Casting
 
-The `world.rayCastAll` function finds all the sprites that intersects a ray (line), excluding any sprites that intersect with the starting point.
+The `world.rayCastAll` function finds all the sprites (with physics colliders) that intersects a ray (line), excluding any sprites that intersect with the starting point.
 
 The `world.rayCast` function is similar, but only returns the first sprite.
+
+Note that the sprites must have physics bodies to be detected.
 
 Provide these functions with the ray's start and end points.
 

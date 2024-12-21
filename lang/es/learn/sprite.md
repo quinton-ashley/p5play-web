@@ -52,7 +52,7 @@ Para un desafío adicional, intenta restablecer la posición original del bloque
 
 ## Sprites con una Imagen
 
-`sprite.image` (o `sprite.img`) puede establecerse como un p5.Image o una ruta de URL a un archivo de imagen.
+`sprite.image` (o `sprite.img`) puede establecerse como un `Q5.Image` o una ruta de URL a un archivo de imagen.
 
 Si necesitas que una imagen se cargue antes de que comience tu programa, es mejor usar [`loadImage`](https://q5js.org/learn/#loadImage) dentro de la función `preload` de p5.js.
 
@@ -440,36 +440,20 @@ Puedes agregar sensores adicionales a un sprite utilizando la función `addSenso
 
 # 15-0
 
-## Movimiento Avanzado
+## Secuenciación de Movimientos
 
-Las funciones de `move` son imperativas, sobrescriben las velocidades de un sprite. Pero, ¿qué sucede si deseas que un sprite respete otras fuerzas que actúan sobre él, como la gravedad?
+Puedes usar la palabra clave `await` dentro de una función `async` para esperar a que un movimiento termine antes de continuar con el siguiente. Esto es útil para hacer que un sprite se mueva en una secuencia.
 
-Un rumbo es la dirección que debe seguirse para llegar a un destino. Cambiar el `rumbo` de un sprite no cambiará imperativamente su dirección de movimiento.
-
-Utiliza `applyForce` con un parámetro de entrada, la cantidad de fuerza, para que la fuerza se aplique en el ángulo del `rumbo` del sprite.
-
-En este ejemplo, el dron debe vencer la fuerza de gravedad para volar. ¡Haz que el dron vuele y luego déjalo caer, cuando se aplique una fuerza hacia arriba al dron, dejará gradualmente de caer y comenzará a volar!
+La función `delay` se puede usar para esperar un número específico de milisegundos. 1000 milisegundos equivalen a 1 segundo.
 
 # 15-1
 
-La función `applyForceScaled` multiplica la fuerza aplicada al sprite por su masa.
+Las funciones `move`, `moveTo`, `rotate`, `rotateTo` y `rotateMinTo` devuelven una `Promise` que se resuelve como true cuando el movimiento ha terminado.
 
-¡Puedes usar esta función para darles a los sprites su propia gravedad!
-
-Ambas funciones de fuerza pueden aceptar la fuerza como componentes x e y separados o como una cantidad, siempre que establezcas el `rumbo` del sprite.
-
-Por defecto, la fuerza se aplica al centro de masa del sprite. Pero las funciones `applyForce` y `applyForceScaled` también pueden aceptar un último parámetro de entrada, un objeto de posición con propiedades x e y que especifica la posición relativa donde se aplicará la fuerza en el sprite.
+Sin embargo, si el movimiento del sprite es interrumpido por un nuevo movimiento o una colisión que cambia significativamente su trayectoria, la promesa se resolverá como false.
 
 # 15-2
 
-Utiliza la función `attractTo` para atraer al sprite hacia una posición aplicando fuerza. La posición puede ser proporcionada como un objeto con propiedades x e y, o como parámetros separados x e y.
+Si quieres que un sprite siga a otro sprite, podrías estar tentado a usar `moveTo` repetidamente, sin esperar a que el sprite llegue a su destino. Pero para un mejor rendimiento, cambia la dirección del sprite. Usa la función `angleTo`, que obtiene el ángulo entre un sprite y una posición.
 
-Este ejemplo simula la órbita de un electrón alrededor del núcleo de un átomo.
-
-Ten en cuenta que las funciones de movimiento avanzado mostradas en esta página no despertarán a los [sprites en reposo](./world.html)!
-
-# 15-3
-
-El torque es la fuerza que provoca la rotación. Utiliza `applyTorque` para afectar el giro del sprite de manera no imperativa.
-
-En este ejemplo, el robot rueda más despacio en lugares donde el suelo es más empinado.
+En este ejemplo, la función q5 [`dist`](https://q5js.org/learn/#dist) se usa para calcular la distancia entre el jugador y su aliado.

@@ -224,7 +224,7 @@ floor.collider = 'none';
 					<h2 id="やってみよう！">やってみよう！</h2>
 					<p><code>peg</code> という名前で、static コライダーを持つ円形のスプライトを作成します。次に <code>block</code> という名前で、 dynamic
 						コライダーを持つ四角のスプライトを作成します。 peg にぶつかって右側に落っこちるように、 block を配置してみてください。</p>
-					<p>p5.js の <code>draw</code> 関数が実行されるたび、スプライトは自動的に描画・更新されます。 <code>world</code> は p5play
+					<p>q5.js の <code>draw</code> 関数が実行されるたび、スプライトは自動的に描画・更新されます。 <code>world</code> は p5play
 						がロードされるときに生成されますが、デフォルトでは重力は設定されません。 <code>world.gravity.y</code> を正の数に設定してみましょう。</p>
 					<p>さらに挑戦したい方は、ブロックが落ちた後に元の位置に戻すようにしてみてください。</p>
 				</md>
@@ -268,9 +268,9 @@ function update() {
 		<div id="page-2" class="page">
 			<md id="md2-0">
 				<h2 id="画像付きスプライト">画像付きスプライト</h2>
-				<p><code>sprite.image</code> または <code>sprite.img</code> に、p5.Image 画像オブジェクトそのもの、または画像ファイルへの URL
-					パスを設定することで、スプライトに指定した画像を割り当てることができます。</p>
-				<p>画像の読み込みが完了してからプログラムを開始したい、という場合は、 p5.js の <code>preload</code> 関数で <a
+				<p><code>sprite.image</code> または <code>sprite.img</code> に、<code>q5.Image</code>
+					画像オブジェクトそのもの、または画像ファイルへの URL パスを設定することで、スプライトに指定した画像を割り当てることができます。</p>
+				<p>画像の読み込みが完了してからプログラムを開始したい、という場合は、 q5.js の <code>preload</code> 関数で <a
 						href="https://q5js.org/learn/#loadImage" target="_blank"><code>loadImage</code></a>
 					を使用するのがベストです。</p>
 				<p><code>sprite.image.offset</code>
@@ -401,7 +401,7 @@ function update() {}
 				<p>さらに、「カラーパレット」を作成して、<code>spriteArt</code> 関数への第 3 引数に渡すことで、カスタムカラーを使ったピクセルアートを作成することもできます。</p>
 				<p>p5play のカラーパレットは<a href="https://p5js.org/reference/p5/object" target="_blank">JavaScript
 						オブジェクト</a>形式でなければなりません。シンプルな JS
-					オブジェクトとは、見出しと値のペアの集まりです。ピクセルアートで使用するそれぞれの文字に対し、任意の色を定義することができます。色を作成するには、p5.js の<a
+					オブジェクトとは、見出しと値のペアの集まりです。ピクセルアートで使用するそれぞれの文字に対し、任意の色を定義することができます。色を作成するには、q5.js の<a
 						href="https://q5js.org/learn/#color" target="_blank"><code>color</code></a>関数に、 RGB（赤、緑、青）値、または
 					HEX カラーコードを引数として渡します。</p>
 				<p>色の指定値を調べるには、<a href="https://www.google.com/search?q=google+color+picker"
@@ -468,7 +468,7 @@ if (mouse.presses()) {
 					</script>
 			<md id="md3-1">
 				<p>スプライトの移動中に、他のスプライトと物理的に干渉させたい場合は、「テレポート」を行ってはいけません！</p>
-				<p>このコードサンプルは、悪い例です。 p5.js の draw 関数によるフレーム毎のレンダリングを利用して、移動をスプライトの「テレポート」で表現すると、どうなるのを示しています。</p>
+				<p>このコードサンプルは、悪い例です。 q5.js の draw 関数によるフレーム毎のレンダリングを利用して、移動をスプライトの「テレポート」で表現すると、どうなるのを示しています。</p>
 			</md>
 			<script type="mie/p5" id="teleport-:-continuously-👎" base="3">
 player.x = mouse.x;
@@ -477,7 +477,7 @@ player.y = mouse.y;
 			<md id="md3-2">
 				<p>このページの、以降すべての説明は、移動の方法としてスプライトの x 軸と y 軸の移動量 <code>velocity</code> （ベロシティ）、別名 <code>vel</code>
 					を変更することによって行っています。</p>
-				<p><code>vel</code> は p5.js の Vector オブジェクトですが、任意のベクトル関数を使用可能です。</p>
+				<p><code>vel</code> は q5.js の Vector オブジェクトですが、任意のベクトル関数を使用可能です。</p>
 				<p>このコードサンプルを再実行して、プレイヤーのスプライトがブロックにぶつかる様子をご覧ください！</p>
 			</md>
 			<script type="mie/p5" id="velocity-:-continuously" base="3">
@@ -504,7 +504,7 @@ if (kb.presses('left')) {
 					</script>
 			<md id="md3-5">
 				<p><code>moveTowards</code> 関数は、スプライトを特定の位置に向けて、現在の位置との距離とのパーセントぶん移動させます。</p>
-				<p>このコードサンプルでは、プレイヤーは p5.js の draw 呼び出し毎に、マウスまでの距離の 10％ぶん移動します。そのスピードと、ブロックを弾き飛ばす力は、移動した距離に比例します。</p>
+				<p>このコードサンプルでは、プレイヤーは q5.js の draw 呼び出し毎に、マウスまでの距離の 10％ぶん移動します。そのスピードと、ブロックを弾き飛ばす力は、移動した距離に比例します。</p>
 			</md>
 			<script type="mie/p5" id="moveTowards-:-continuously" base="3">
 //                (x, y, tracking)
@@ -617,7 +617,7 @@ function update() {
 		<div id="page-5" class="page">
 			<md id="md5-0">
 				<h2 id="コリジョン">コリジョン</h2>
-				<p>コリジョン判定には、 p5.js の <code>draw</code> 関数の中で、以下に示す関数を使用します。</p>
+				<p>コリジョン判定には、 q5.js の <code>draw</code> 関数の中で、以下に示す関数を使用します。</p>
 				<p>スプライトが別のスプライトとのコリジョンを発生させた最初のフレームでは、<code>collides</code> 関数は true を返します。</p>
 				<p>スプライトが別のスプライトとコリジョンを起こしている間、<code>colliding</code> 関数はコリジョン（衝突あるいは接触）が発生しているフレーム数を返します。</p>
 				<p>2 つのスプライトのコリジョンが終了した最初のフレームでは、<code>collided</code> 関数は true を返します。</p>
@@ -716,7 +716,7 @@ spriteB.layer = 1;
 spriteB.text = 'Layer 1';
 			</script>
 			<md id="md6-2">
-				<p>オーバーラップ判定には、 p5.js の <code>draw</code> 関数の中で、以下に示す関数を使用します。</p>
+				<p>オーバーラップ判定には、 q5.js の <code>draw</code> 関数の中で、以下に示す関数を使用します。</p>
 				<p>スプライト同士のオーバーラップが発生した最初のフレームでは、<code>overlaps</code> 関数は true を返します。</p>
 				<p>スプライト同士のオーバーラップが継続している間、<code>overlapping</code> 関数は継続しているフレーム数を返します。</p>
 				<p>スプライト同士のオーバーラップが終了した最初のフレームでは、<code>overlapped</code> 関数は true を返します。</p>
@@ -1052,16 +1052,17 @@ function update() {
 				<p>このコードサンプルでは、ボールの <code>bounciness</code> （跳ね返り係数）が 1 なので、ボールがバウンドするたびに、それはその開始位置に戻るはずです。しかし、planck
 					のバグにより、ボールは地面で弾むたびに跳ね返りが増加し、しだいに高く跳ねるようになります。</p>
 			</md>
-			<script type="mie/p5" id="full-bounce-error" lines="10" horiz="">
+			<script type="mie/p5" id="full-bounce-error" lines="11" horiz="">
 let ball, ground;
+
 function setup() {
-	new Canvas(32, 192);
+	new Canvas(32, 206);
 	world.gravity.y = 10;
 
 	ball = new Sprite(16, 100, 8);
 	ball.bounciness = 1;
 
-	ground = new Sprite(16, 184, 32, 16, 's');
+	ground = new Sprite(16, 200, 32, 16, 's');
 }
 
 function update() {
@@ -1080,24 +1081,25 @@ function update() {
 				<p>しかしこの <code>bounciness</code> のバグは、さきの例のように、物体が地面などのフラットな面からバウンドするときに特に目立ってしまいます。</p>
 				<p>回避策として、落下したボールが地面とコリジョンを起こした直後に、 y 方向のベロシティを上書きする方法をご紹介します。</p>
 			</md>
-			<script type="mie/p5" id="full-bounce-workaround" horiz="">
-let ball, ground;
-function setup() {
-	new Canvas(32, 192);
-	world.gravity.y = 10;
-
-	ball = new Sprite(16, 100, 8);
-	ball.bounciness = 1;
-
-	ground = new Sprite(16, 184, 32, 16, 's');
-}
-
+			<script type="mie/p5" id="full-bounce-workaround" horiz="" lines="7">
 function update() {
 	clear();
 
 	if (ball.collided(ground)) {
 		ball.vel.y = -4.8;
 	}
+}
+
+let ball, ground;
+
+function setup() {
+	new Canvas(32, 128);
+	world.gravity.y = 10;
+
+	ball = new Sprite(16, 36, 8);
+	ball.bounciness = 1;
+
+	ground = new Sprite(16, 120, 32, 16, 's');
 }
 			</script>
 			<md id="md9-5">
@@ -1518,12 +1520,12 @@ function update() {
 				</md>
 				<md id="md14-1">
 					<h2 id="描画更新のカスタマイズ">描画更新のカスタマイズ</h2>
-					<p>スプライトの <code>update</code> 関数は、デフォルトでは p5.js
+					<p>スプライトの <code>update</code> 関数は、デフォルトでは q5.js
 						の描画ループの最後に実行されます。この関数は、スプライトのアニメーション（ある場合）と、マウスイベントの状態監視を更新します。</p>
 					<p>この関数をオーバーライドしても、舞台裏のマジックのおかげで、デフォルトの挙動は置き換えられず、「新しい挙動の追加」となります。</p>
 				</md>
 			</div>
-			<script type="mie/p5" id="stretchy" lines="22">
+			<script type="mie/p5" id="stretchy" lines="23">
 function setup() {
 	new Canvas(500, 200);
 
@@ -1539,14 +1541,16 @@ function setup() {
 
 		push();
 		rotate(stretchy.direction);
-		ellipse(0, 0, 100 + stretchy.speed, 100 - stretchy.speed);
+		let w = 100 + stretchy.speed;
+		let h = 100 - stretchy.speed;
+		ellipse(0, 0, w, h);
 		pop();
 
-		image(face, stretchy.vel.x * 2, stretchy.vel.y * 2);
+		image(face, stretchy.vel.x*2, stretchy.vel.y*2);
 	};
 }
 
-function update() {
+function draw() {
 	clear();
 }
 			</script>
@@ -1554,91 +1558,109 @@ function update() {
 		<div id="page-15" class="page">
 			<md id="md15-0">
 				<h2 id="シーケンシャルな移動">シーケンシャルな移動</h2>
-				<p>このページのコードサンプルで使用している <code>Turtle</code> スプライトは、昔懐かしい Turtle のプログラミングを思わせる、緑色の三角形です。ただし通常のスプライトと異なり、
-					Turtle の移動方向は、常にその向き（回転角）と等しくなっています。</p>
 				<p><code>async</code> 関数内で <code>await</code>
 					キーワードを使用すると、ひとつの移動の終了を待ってから、次の移動を開始することができます。これは、スプライトをの移動をあらかじめ決めておいた順番どおり（シーケンシャル）に行うのに便利です。</p>
 				<p><code>delay</code> 関数を使うと、指定したミリ秒だけ、次の移動を待つことができます。ちなみに 1000 ミリ秒とは、 1 秒のことです！</p>
 			</md>
-			<script type="mie/p5" id="square-sequence" horiz="" lines="15">
-let turtle;
+			<script type="mie/p5" id="square-sequence" horiz="" lines="8">
+async function squareSequence() {
+	await ship.move(100);
+	await ship.rotate(90);
+	ship.direction = ship.rotation;
+
+	await delay(500);
+	squareSequence();
+}
+
+let ship;
 
 function setup() {
-	new Canvas(160, 160);
-	turtle = new Turtle(30);
-
+	new Canvas(156, 156);
+	ship = new Sprite(28, 28);
+	ship.image = '/learn/assets/ship_C.png';
 	squareSequence();
 }
 
-async function squareSequence() {
-	await turtle.move(100);
-	await turtle.rotate(90);
-  await delay(1000);
-	squareSequence();
-}
-
-function update() {
-	clear();
+function draw() {
+	background(16);
 }
 			</script>
 			<md id="md15-1">
-				<p><code>move</code> 、 <code>moveTo</code> 、 <code>rotate</code> 、および <code>rotateTo</code>
-					関数はすべて、移動が終了したときに true へと解決される <code>Promise</code> を返します。</p>
+				<p><code>move</code> 、 <code>moveTo</code> 、 <code>rotate</code> 、<code>rotateTo</code>、および
+					<code>rotateMinTo</code> 関数はすべて、移動が終了したときに true へと解決される <code>Promise</code> を返します。</p>
 				<p>しかし、そうしたスプライトの移動が、新しい移動指定を受けたり、軌道が大幅に変わるほどのコリジョンが発生したりして妨げられると、その promise は false へと解決されます。</p>
 			</md>
-			<script type="mie/p5" id="random-sequence" horiz="" lines="17">
-let turtle, ball;
+			<script type="mie/p5" id="random-sequence" horiz="" lines="10">
+async function randomSequence() {
+	let x = random(width);
+	let y = random(height);
+
+	await ship.rotateMinTo(x, y, 5);
+	ship.direction = ship.rotation;
+	await ship.moveTo(x, y, 3);
+
+	randomSequence();
+}
+
+let ship, asteroid;
 
 function setup() {
-	new Canvas(160, 304);
-	turtle = new Turtle(30);
-	ball = new Sprite(80, 152, 50);
-
+	new Canvas(156, 192);
+	ship = new Sprite(28, 28, 16);
+	ship.image = '/learn/assets/ship_E.png';
+	asteroid = new Sprite(80, 152, 50);
+	asteroid.image = '/learn/assets/astr.png';
 	randomSequence();
 }
 
-async function randomSequence() {
-	let x = random(0, width);
-	let y = random(0, height);
-	await turtle.rotateTo(x, y, 5);
-	await turtle.moveTo(x, y, 3);
-	randomSequence();
-}
-
-function update() {
-	clear();
+function draw() {
+	background(16);
 }
 			</script>
 			<md id="md15-2">
-				<p>あるスプライトを、移動指定をした別のスプライトに追従させたい場合、そのスプライトが目的地に達するのを待つのでなく、追従させる方のスプライトで <code>moveTo</code>
-					を何度も繰り返したくなるかもしれません。しかし、パフォーマンスを向上させるためには、そのスプライトと対象の位置との角度を取得する <code>angleTo</code>
-					関数の使用を検討してください。この角度は、スプライトが移動する方向を変更するために使用できます。</p>
-				<p>このコードサンプルでは、 <a href="https://q5js.org/learn/#dist" target="_blank">p5.js dist</a>
+				<p>スプライトに別のスプライトを追従させたい場合、目的地に到達するのを待たずに<code>moveTo</code>を繰り返し使用したくなるかもしれません。しかし、パフォーマンスを向上させるには、スプライトの向きを変更してください。スプライトと位置の間の角度を取得する<code>angleTo</code>関数を使用します。
+				</p>
+				<p>このコードサンプルでは、 <a href="https://q5js.org/learn/#dist" target="_blank">q5.js dist</a>
 					関数が使用されており、プレイヤーとその味方との間の距離を計算しています。</p>
 			</md>
-			<script type="mie/p5" base-8="" hidden="">
+			<script type="mie/p5" id="angleTo" lines="12">
+function update() {
+	player.moveTowards(mouse);
+
+	let distance = dist(player, ally);
+
+	if (distance > 50) {
+		ally.direction = ally.angleTo(player);
+		ally.speed = 2;
+	} else if (distance < 40) {
+		ally.speed = 0;
+	}
+}
+
 let player, ally;
 
 function setup() {
 	new Canvas(500, 100);
-	player = new Sprite(400, 50, 20);
-	ally = new Sprite(200, 50, 20, 20, 'n');
+	player = new Sprite(400, 50, 32);
+	player.image = '🐠';
+	ally = new Sprite(-20, 50, 24, 24, 'n');
+	ally.image = '🐟';
+	ally.image.scale.x = -1;
+	mouse.visible = false;
 }
 
-function update() {
+function draw() {
 	clear();
-}
-			</script>
-			<script type="mie/p5" id="angleTo" base="8">
-player.moveTowards(mouse);
 
-let distance = dist(player.x, player.y, ally.x, ally.y);
+	if (player.direction < 90 && player.direction > -90) {
+		player.img.scale.x = -1;
+	} else player.img.scale = 1;
 
-if (distance > 40) {
-	ally.direction = ally.angleTo(player);
-	ally.speed = 2;
-} else if (distance < 30) {
-	ally.speed = 0;
+	if (ally.speed > 0) {
+		if (ally.direction < 90 && ally.direction > -90) {
+			ally.img.scale.x = -1;
+		} else ally.img.scale = 1;
+	}
 }
 			</script>
 		</div>

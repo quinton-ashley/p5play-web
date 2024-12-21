@@ -2790,8 +2790,9 @@ Q5.modules.math = ($, q) => {
 
 	$.dist = function () {
 		let a = arguments;
+		if (a.length == 2) return Math.hypot(a[0].x - a[1].x, a[0].y - a[1].y);
 		if (a.length == 4) return Math.hypot(a[0] - a[2], a[1] - a[3]);
-		else return Math.hypot(a[0] - a[3], a[1] - a[4], a[2] - a[5]);
+		return Math.hypot(a[0] - a[3], a[1] - a[4], a[2] - a[5]);
 	};
 
 	$.lerp = (a, b, t) => a * (1 - t) + b * t;
@@ -4116,7 +4117,7 @@ Q5.renderers.webgpu.canvas = ($, q) => {
 
 Q5.initWebGPU = async () => {
 	if (!navigator.gpu) {
-		console.warn('q5 WebGPU not supported on this browser!');
+		console.warn('q5 WebGPU not supported on this browser! Use Google Chrome or Edge.');
 		return false;
 	}
 	if (!Q5.device) {
