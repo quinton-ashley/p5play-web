@@ -38,7 +38,7 @@ Set `p5play.renderStats` to true to display the number of sprites drawn, display
 
 FPS in this context refers to how many frames per second your computer can generate, not including the delay between when frames are actually shown on the screen. The higher the FPS, the better your game is performing.
 
-Having less sprites and using a smaller canvas will make your game perform better. For better performance, don't use the q5.js `clear` function or sample the colors of pixels in your canvas using `canvas.get`.
+Having less sprites and using a smaller canvas will make your game perform better. For better performance, don't use the q5.js `clear` function or sample the colors of pixels in your canvas using `get`.
 
 By default the Box2D physics engine performs 8 velocity iterations `world.velocityIterations` and 3 position iterations `world.positionIterations`. Decreasing these values will make the simulation faster but also less accurate.
 
@@ -73,3 +73,19 @@ Alternatively, set the ray's starting point, direction, and optionally the maxim
 Try moving the mouse in the example, when the ray intersects with a sprite, it becomes orange.
 
 ➡️ [full ray casting demo](https://openprocessing.org/sketch/2469202)
+
+# 5-0
+
+## World Sizing
+
+The default `world.meterSize` is 60, so a sprite with a width of 60 units will be 1 meter wide in the physics simulation.
+
+The physics simulation can't run well when sprites are too small or too big. Keep the sizing human scale!
+
+# 5-1
+
+## Grid World
+
+When `p5play.snapToGrid` is true, sprites will snap to a grid when they're moved with the `move` and `moveTo` functions. `p5play.gridSize` is set to 0.5 by default.
+
+In this example, `scale(32)` makes each display unit 32 pixels in size. A grid is displayed for reference. The sprites are only 1x1 units in size, so the world's meter size is set to 2.

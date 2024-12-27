@@ -38,7 +38,7 @@ Establece `p5play.renderStats` en verdadero para mostrar el número de sprites d
 
 FPS en este contexto se refiere a cuántos cuadros por segundo puede generar tu computadora, sin incluir el retraso entre cuando los cuadros se muestran realmente en la pantalla. Cuanto más alto sea el FPS, mejor está funcionando tu juego.
 
-Tener menos sprites y usar un lienzo más pequeño hará que tu juego funcione mejor. Para un mejor rendimiento, no uses la función `clear` de p5.js o muestrees los colores de los píxeles en tu lienzo usando `canvas.get`.
+Tener menos sprites y usar un lienzo más pequeño hará que tu juego funcione mejor. Para un mejor rendimiento, no uses la función `clear` de q5.js o muestrees los colores de los píxeles en tu lienzo usando `get`.
 
 Por defecto, el motor de física Box2D realiza 8 iteraciones de velocidad `world.velocityIterations` y 3 iteraciones de posición `world.positionIterations`. Disminuir estos valores hará que la simulación sea más rápida pero también menos precisa.
 
@@ -73,3 +73,19 @@ Alternativamente, establece el punto de inicio del rayo, la dirección y opciona
 ¡Intenta mover el ratón en el ejemplo, cuando el rayo se intersecta con un sprite, este se vuelve naranja!
 
 ➡️ [demo completo de ray casting](https://openprocessing.org/sketch/2469202)
+
+# 5-0
+
+## Dimensionamiento del Mundo
+
+El `world.meterSize` predeterminado es 60, por lo que un sprite con un ancho de 60 unidades tendrá 1 metro de ancho en la simulación física.
+
+La simulación física no puede funcionar bien cuando los sprites son demasiado pequeños o demasiado grandes. ¡Mantén el tamaño a escala humana!
+
+# 5-1
+
+## Mundo en Cuadrícula
+
+Cuando `p5play.snapToGrid` es verdadero, los sprites se ajustarán a una cuadrícula cuando se muevan con las funciones `move` y `moveTo`. `p5play.gridSize` está configurado a 0.5 por defecto.
+
+En este ejemplo, `scale(32)` hace que cada unidad de visualización tenga 32 píxeles de tamaño. Se muestra una cuadrícula como referencia. Los sprites tienen solo 1x1 unidades de tamaño, por lo que el tamaño del metro del mundo se establece en 2.

@@ -304,7 +304,7 @@ function update() {
 					If the image appears way too big or small, you should probably change the size of the image file
 					itself.</p>
 			</md>
-			<script type="mie/p5" id="opacity">
+			<script type="mie/p5" id="opacity and scaling">
 let star;
 
 function setup() {
@@ -1688,24 +1688,21 @@ function draw() {
 				<p>In this example, the q5 <a href="https://q5js.org/learn/#dist" target="_blank"><code>dist</code></a>
 					function is used to calculate the distance between the player and its ally.</p>
 			</md>
-			<script type="mie/p5" id="angleTo" lines="12">
+			<script type="mie/p5" id="angleTo" lines="9">
 function update() {
 	player.moveTowards(mouse);
-
 	let distance = dist(player, ally);
 
 	if (distance > 50) {
 		ally.direction = ally.angleTo(player);
 		ally.speed = 2;
-	} else if (distance < 40) {
-		ally.speed = 0;
-	}
+	} else if (distance < 40) ally.speed = 0;
 }
 
 let player, ally;
 
 function setup() {
-	new Canvas(500, 100);
+	new Canvas(500, 160);
 	player = new Sprite(400, 50, 32);
 	player.image = '🐠';
 	ally = new Sprite(-20, 50, 24, 24, 'n');

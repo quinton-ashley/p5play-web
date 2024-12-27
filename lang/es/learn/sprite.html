@@ -227,7 +227,7 @@ floor.collider = 'none';
 					<p>Intenta crear un sprite llamado <code>peg</code> con un colisionador estático y forma de círculo.
 						Crea un sprite <code>block</code> con un colisionador dinámico y forma de caja. Posiciona el
 						bloque de modo que golpee el clavo y caiga hacia la derecha.</p>
-					<p>Cada vez que la función <code>draw</code> de p5.js termina, los sprites se dibujan y actualizan
+					<p>Cada vez que la función <code>draw</code> de q5.js termina, los sprites se dibujan y actualizan
 						automáticamente. Nota que <code>world</code> se crea cuando se carga p5play pero por defecto no
 						hay gravedad. Intenta establecer <code>world.gravity.y</code> en un número positivo.</p>
 					<p>Para un desafío adicional, intenta restablecer la posición original del bloque después de que
@@ -277,7 +277,7 @@ function update() {
 					<code>Q5.Image</code> o una ruta de URL a un archivo de imagen.</p>
 				<p>Si necesitas que una imagen se cargue antes de que comience tu programa, es mejor usar <a
 						href="https://q5js.org/learn/#loadImage" target="_blank"><code>loadImage</code></a> dentro de la
-					función <code>preload</code> de p5.js.</p>
+					función <code>preload</code> de q5.js.</p>
 				<p><code>sprite.image.offset</code> se puede usar para desplazar la imagen en relación con el centro del
 					sprite. Esto puede ayudar a alinear mejor la imagen con el colisionador de física del sprite.</p>
 				<p>Intenta hacer clic en el lienzo de este ejemplo. Cuando la propiedad <code>sprite.debug</code> está
@@ -307,7 +307,7 @@ function update() {
 					predeterminado es 1.0. Si la imagen aparece demasiado grande o pequeña, probablemente debas cambiar
 					el tamaño del archivo de imagen en sí mismo.</p>
 			</md>
-			<script type="mie/p5" id="opacity">
+			<script type="mie/p5" id="opacity and scaling">
 let star;
 
 function setup() {
@@ -414,7 +414,7 @@ function update() {}
 						href="https://p5js.org/reference/p5/object" target="_blank">Objeto JavaScript</a>. Un objeto JS
 					simple es como un diccionario. Puedes definir un color para cada letra que uses en tu arte de
 					píxeles. Para crear un color, utiliza la función <a href="https://q5js.org/learn/#color"
-						target="_blank"><code>color</code></a> de p5.js, que acepta valores RGB (rojo, verde, azul) o
+						target="_blank"><code>color</code></a> de q5.js, que acepta valores RGB (rojo, verde, azul) o
 					códigos de color HEX.</p>
 				<p>La forma más sencilla de encontrar colores es utilizar un <a
 						href="https://www.google.com/search?q=selector+de+colores+google" target="_blank">selector de
@@ -484,7 +484,7 @@ if (mouse.presses()) {
 				<p>Si deseas que un sprite interactúe físicamente con otros sprites mientras se mueve, ¡no lo
 					teletransportes!</p>
 				<p>Este mal ejemplo muestra lo que sucede si un sprite es teletransportado cada vez que la función de
-					dibujo (draw) de p5.js renderiza un fotograma.</p>
+					dibujo (draw) de q5.js renderiza un fotograma.</p>
 			</md>
 			<script type="mie/p5" id="teleport-:-continuously-👎" base="3">
 player.x = mouse.x;
@@ -493,7 +493,7 @@ player.y = mouse.y;
 			<md id="md3-2">
 				<p>Todos los otros métodos de movimiento en esta página funcionan cambiando las velocidades de los ejes
 					x e y del sprite. <code>velocity</code> también conocida como <code>vel</code> es un Vector de
-					p5.js, puedes usar cualquier función de Vector en él.</p>
+					q5.js, puedes usar cualquier función de Vector en él.</p>
 				<p>Puede que tengas que reiniciar este ejemplo para ver moverse al sprite.</p>
 			</md>
 			<script type="mie/p5" id="velocity-:-continuously" base="3">
@@ -525,7 +525,7 @@ if (kb.presses('left')) {
 				<p>La función <code>moveTowards</code> mueve un sprite hacia una posición, a un porcentaje de la
 					distancia a esa posición.</p>
 				<p>En este ejemplo, el jugador se mueve el 10% de la distancia al ratón en cada llamada de dibujo de
-					p5.js. Su velocidad, y la fuerza que ejerce sobre el bloque, es proporcional a la distancia que se
+					q5.js. Su velocidad, y la fuerza que ejerce sobre el bloque, es proporcional a la distancia que se
 					mueve.</p>
 			</md>
 			<script type="mie/p5" id="moveTowards-:-continuously" base="3">
@@ -1688,24 +1688,21 @@ function draw() {
 						target="_blank"><code>dist</code></a> se usa para calcular la distancia entre el jugador y su
 					aliado.</p>
 			</md>
-			<script type="mie/p5" id="angleTo" lines="12">
+			<script type="mie/p5" id="angleTo" lines="9">
 function update() {
 	player.moveTowards(mouse);
-
 	let distance = dist(player, ally);
 
 	if (distance > 50) {
 		ally.direction = ally.angleTo(player);
 		ally.speed = 2;
-	} else if (distance < 40) {
-		ally.speed = 0;
-	}
+	} else if (distance < 40) ally.speed = 0;
 }
 
 let player, ally;
 
 function setup() {
-	new Canvas(500, 100);
+	new Canvas(500, 160);
 	player = new Sprite(400, 50, 32);
 	player.image = '🐠';
 	ally = new Sprite(-20, 50, 24, 24, 'n');

@@ -300,7 +300,7 @@ function update() {
 				<p><code>sprite.image.scale</code> は、スプライトの画像の表示サイズを変更します。デフォルトは 1.0
 					です。画像が非常に大きすぎるか小さすぎる場合は、おそらく画像ファイル自体のサイズを変更する必要があります。</p>
 			</md>
-			<script type="mie/p5" id="opacity">
+			<script type="mie/p5" id="opacity and scaling">
 let star;
 
 function setup() {
@@ -1623,24 +1623,21 @@ function draw() {
 				<p>このコードサンプルでは、 <a href="https://q5js.org/learn/#dist" target="_blank">q5.js dist</a>
 					関数が使用されており、プレイヤーとその味方との間の距離を計算しています。</p>
 			</md>
-			<script type="mie/p5" id="angleTo" lines="12">
+			<script type="mie/p5" id="angleTo" lines="9">
 function update() {
 	player.moveTowards(mouse);
-
 	let distance = dist(player, ally);
 
 	if (distance > 50) {
 		ally.direction = ally.angleTo(player);
 		ally.speed = 2;
-	} else if (distance < 40) {
-		ally.speed = 0;
-	}
+	} else if (distance < 40) ally.speed = 0;
 }
 
 let player, ally;
 
 function setup() {
-	new Canvas(500, 100);
+	new Canvas(500, 160);
 	player = new Sprite(400, 50, 32);
 	player.image = '🐠';
 	ally = new Sprite(-20, 50, 24, 24, 'n');

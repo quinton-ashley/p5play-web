@@ -85,7 +85,7 @@
 			"Sequencing",
 			"Advanced Sequencing"
 		],
-		"tiles": ["Tiles constructor", "Using tileSize"],
-		"world": ["Sleeping", "Controlling Time", "Performance", "Find Sprites", "Ray Casting"]
+		"tiles": ["Tiles constructor"],
+		"world": ["Sleeping", "Controlling Time", "Performance", "Find Sprites", "Ray Casting", "World Sizing"]
 	}
 }

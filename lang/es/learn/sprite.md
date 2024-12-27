@@ -44,7 +44,7 @@ El tipo de colisionador también puede establecerse usando la primera letra del 
 
 Intenta crear un sprite llamado `peg` con un colisionador estático y forma de círculo. Crea un sprite `block` con un colisionador dinámico y forma de caja. Posiciona el bloque de modo que golpee el clavo y caiga hacia la derecha.
 
-Cada vez que la función `draw` de p5.js termina, los sprites se dibujan y actualizan automáticamente. Nota que `world` se crea cuando se carga p5play pero por defecto no hay gravedad. Intenta establecer `world.gravity.y` en un número positivo.
+Cada vez que la función `draw` de q5.js termina, los sprites se dibujan y actualizan automáticamente. Nota que `world` se crea cuando se carga p5play pero por defecto no hay gravedad. Intenta establecer `world.gravity.y` en un número positivo.
 
 Para un desafío adicional, intenta restablecer la posición original del bloque después de que caiga.
 
@@ -54,7 +54,7 @@ Para un desafío adicional, intenta restablecer la posición original del bloque
 
 `sprite.image` (o `sprite.img`) puede establecerse como un `Q5.Image` o una ruta de URL a un archivo de imagen.
 
-Si necesitas que una imagen se cargue antes de que comience tu programa, es mejor usar [`loadImage`](https://q5js.org/learn/#loadImage) dentro de la función `preload` de p5.js.
+Si necesitas que una imagen se cargue antes de que comience tu programa, es mejor usar [`loadImage`](https://q5js.org/learn/#loadImage) dentro de la función `preload` de q5.js.
 
 `sprite.image.offset` se puede usar para desplazar la imagen en relación con el centro del sprite. Esto puede ayudar a alinear mejor la imagen con el colisionador de física del sprite.
 
@@ -96,7 +96,7 @@ El segundo parámetro de entrada de la función `spriteArt` es la escala de la i
 
 También puedes crear arte de píxeles que utilice colores personalizados creando una paleta de colores y pasándola como tercer parámetro a la función `spriteArt`.
 
-Las paletas de colores en p5play deben proporcionarse en formato [Objeto JavaScript](https://p5js.org/reference/p5/object). Un objeto JS simple es como un diccionario. Puedes definir un color para cada letra que uses en tu arte de píxeles. Para crear un color, utiliza la función [`color`](https://q5js.org/learn/#color) de p5.js, que acepta valores RGB (rojo, verde, azul) o códigos de color HEX.
+Las paletas de colores en p5play deben proporcionarse en formato [Objeto JavaScript](https://p5js.org/reference/p5/object). Un objeto JS simple es como un diccionario. Puedes definir un color para cada letra que uses en tu arte de píxeles. Para crear un color, utiliza la función [`color`](https://q5js.org/learn/#color) de q5.js, que acepta valores RGB (rojo, verde, azul) o códigos de color HEX.
 
 La forma más sencilla de encontrar colores es utilizar un [selector de colores](https://www.google.com/search?q=selector+de+colores+google).
 
@@ -112,11 +112,11 @@ Prueba haciendo clic en este mini ejemplo.
 
 Si deseas que un sprite interactúe físicamente con otros sprites mientras se mueve, ¡no lo teletransportes!
 
-Este mal ejemplo muestra lo que sucede si un sprite es teletransportado cada vez que la función de dibujo (draw) de p5.js renderiza un fotograma.
+Este mal ejemplo muestra lo que sucede si un sprite es teletransportado cada vez que la función de dibujo (draw) de q5.js renderiza un fotograma.
 
 # 3-2
 
-Todos los otros métodos de movimiento en esta página funcionan cambiando las velocidades de los ejes x e y del sprite. `velocity` también conocida como `vel` es un Vector de p5.js, puedes usar cualquier función de Vector en él.
+Todos los otros métodos de movimiento en esta página funcionan cambiando las velocidades de los ejes x e y del sprite. `velocity` también conocida como `vel` es un Vector de q5.js, puedes usar cualquier función de Vector en él.
 
 Puede que tengas que reiniciar este ejemplo para ver moverse al sprite.
 
@@ -136,7 +136,7 @@ La función `move` mueve un sprite a través de una distancia fija. La direcció
 
 La función `moveTowards` mueve un sprite hacia una posición, a un porcentaje de la distancia a esa posición.
 
-En este ejemplo, el jugador se mueve el 10% de la distancia al ratón en cada llamada de dibujo de p5.js. Su velocidad, y la fuerza que ejerce sobre el bloque, es proporcional a la distancia que se mueve.
+En este ejemplo, el jugador se mueve el 10% de la distancia al ratón en cada llamada de dibujo de q5.js. Su velocidad, y la fuerza que ejerce sobre el bloque, es proporcional a la distancia que se mueve.
 
 # 3-6
 
@@ -272,7 +272,7 @@ Pero, si el movimiento del sprite se interrumpe por un nuevo movimiento o una co
 
 Si deseas que un sprite siga a otro sprite, es posible que te sientas tentado a usar `moveTo` repetidamente, sin esperar a que el sprite alcance su destino. Pero para un mejor rendimiento, prueba usar la función `angleTo`, que obtiene el ángulo entre un sprite y una posición. Este ángulo puede utilizarse para cambiar la dirección en la que se mueve el sprite.
 
-En este ejemplo, se utiliza la función `dist` de [p5.js](https://q5js.org/learn/#dist) para calcular la distancia entre el jugador y su aliado.
+En este ejemplo, se utiliza la función [`dist` de q5.js](https://q5js.org/learn/#dist) para calcular la distancia entre el jugador y su aliado.
 
 # 9-0
 

@@ -143,7 +143,7 @@ function update() {
 					game is performing.</p>
 				<p>Having less sprites and using a smaller canvas will make your game perform better. For better
 					performance, don't use the q5.js <code>clear</code> function or sample the colors of pixels in your
-					canvas using <code>canvas.get</code>.</p>
+					canvas using <code>get</code>.</p>
 				<p>By default the Box2D physics engine performs 8 velocity iterations
 					<code>world.velocityIterations</code> and 3 position iterations
 					<code>world.positionIterations</code>. Decreasing these values will make the simulation faster but
@@ -254,6 +254,89 @@ function draw() {
 
 			</script>
 		</div>
+		<div id="page-5" class="page">
+			<md id="md5-0">
+				<h2 id="world-sizing">World Sizing</h2>
+				<p>The default <code>world.meterSize</code> is 60, so a sprite with a width of 60 units will be 1 meter
+					wide in the physics simulation.</p>
+				<p>The physics simulation can't run well when sprites are too small or too big. Keep the sizing human
+					scale!</p>
+			</md>
+			<script type="mie/p5" id="Small World" lines="9">
+function setup() {
+	new Canvas(120, 48);
+	displayMode('normal', 'pixelated', 4);
+	world.gravity.y = 10;
+
+	world.meterSize = 15;
+
+	new Sprite(60, 48, 120, 4, 'static');
+}
+
+function update() {
+	clear();
+	noStroke();
+	if (frameCount % 10 == 0) {
+		new Sprite(random(canvas.w), 0, 4);
+	}
+}
+
+			</script>
+			<div class="break"></div>
+			<md id="md5-1">
+				<h2 id="grid-world">Grid World</h2>
+				<p>When <code>p5play.snapToGrid</code> is true, sprites will snap to a grid when they're moved with the
+					<code>move</code> and <code>moveTo</code> functions. <code>p5play.gridSize</code> is set to 0.5 by
+					default.</p>
+				<p>In this example, <code>scale(32)</code> makes each display unit 32 pixels in size. A grid is
+					displayed for reference. The sprites are only 1x1 units in size, so the world's meter size is set to
+					2.</p>
+			</md>
+			<script type="mie/p5" id="Scaled Grid World">
+let player, blocks;
+
+function setup() {
+	new Canvas(480, 192);
+
+	p5play.snapToGrid = true;
+	p5play.gridSize = 1;
+	world.meterSize = 2;
+
+	allSprites.rotationLock = true;
+	allSprites.diameter = 1;
+
+	player = new Sprite(1, 1);
+	player.color = 'red';
+
+	blocks = new Group();
+	new blocks.Sprite(4, 5);
+	new blocks.Sprite(3, 2);
+	new blocks.Sprite(6, 0);
+
+	player.collides(blocks, (player, block) => {
+		block.move(player.heading, 2);
+	});
+	blocks.collides(blocks, (a, b) => {
+		if (!a.colliding(player)) a.move(player.heading, 2);
+		if (!b.colliding(player)) b.move(player.heading, 2);
+	});
+}
+
+function update() {
+	scale(32);
+
+	strokeWeight(0.02);
+	for (let i = 0; i < 15; i++) {
+		for (let j = 0; j < 6; j++) rect(i, j, 1, 1);
+	}
+
+	if (kb.presses('up')) player.move('up', 2);
+	if (kb.presses('down')) player.move('down', 2);
+	if (kb.presses('left')) player.move('left', 2);
+	if (kb.presses('right')) player.move('right', 2);
+}
+			</script>
+		</div>
 
 		<div class="break"></div>
 		<div id="toc">
@@ -264,6 +347,7 @@ function draw() {
 				<a data-page="2" href="world.html?page=2">Performance</a>
 				<a data-page="3" href="world.html?page=3">Find Sprites</a>
 				<a data-page="4" href="world.html?page=4">Ray Casting</a>
+				<a data-page="5" href="world.html?page=5">World Sizing</a>
 			</div>
 			<a id="nextPage" class="navLink">Next Page</a>
 		</div>

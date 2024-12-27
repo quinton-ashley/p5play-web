@@ -105,9 +105,9 @@ Otra manera de limitar cuánto tiempo existe un sprite es establecer su propieda
 
 ## Dibujar
 
-Al igual que con la función `sprite.draw`, puedes usar `group.draw` para controlar manualmente cuándo se dibujan los grupos dentro del bucle de dibujo de p5.js.
+Al igual que con la función `sprite.draw`, puedes usar `group.draw` para controlar manualmente cuándo se dibujan los grupos dentro del bucle de dibujo de q5.js.
 
-Cualquier sprite no dibujado manualmente será dibujado automáticamente al final del bucle de dibujo de p5.js, a menos que su propiedad `autoDraw` esté establecida en falso.
+Cualquier sprite no dibujado manualmente será dibujado automáticamente al final del bucle de dibujo de q5.js, a menos que su propiedad `autoDraw` esté establecida en falso.
 
 Ten en cuenta que si quieres dibujar manualmente sprites o grupos y usar la cámara, tendrás que activar y desactivar la cámara manualmente.
 

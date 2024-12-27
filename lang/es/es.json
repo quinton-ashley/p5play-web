@@ -84,7 +84,7 @@
 			"Secuenciación",
 			"Secuenciación Avanzada"
 		],
-		"tiles": ["Constructor de Azulejos", "Uso de tamaño de Azulejo"],
+		"tiles": ["Constructor de Azulejos"],
 		"world": ["Durmiendo", "Controlando el Tiempo", "Pruebas de Rendimiento", "Encontrar Sprites", "Emisión de Rayos"]
 	}
 }

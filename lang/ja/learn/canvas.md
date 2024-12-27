@@ -4,7 +4,7 @@
 
 `Canvas` コンストラクタは、 HTML5 の `canvas` 要素を新規に生成し、ウェブページに追加します。
 
-これは p5.js の `createCanvas` 関数と似ていますが、いくつかの機能が追加されています！
+これは q5.js の `createCanvas` 関数と似ていますが、いくつかの機能が追加されています！
 
 キャンバスの幅を得るには `canvas.w` を、高さを得るには `canvas.h` を使います。 `canvas.hw` はキャンバスの幅の半分の値 (half width) を、 `canvas.hh` はキャンバスの高さの半分の値 (half height) を取得します。
 

@@ -142,8 +142,8 @@ function update() {
 					incluir el retraso entre cuando los cuadros se muestran realmente en la pantalla. Cuanto más alto
 					sea el FPS, mejor está funcionando tu juego.</p>
 				<p>Tener menos sprites y usar un lienzo más pequeño hará que tu juego funcione mejor. Para un mejor
-					rendimiento, no uses la función <code>clear</code> de p5.js o muestrees los colores de los píxeles
-					en tu lienzo usando <code>canvas.get</code>.</p>
+					rendimiento, no uses la función <code>clear</code> de q5.js o muestrees los colores de los píxeles
+					en tu lienzo usando <code>get</code>.</p>
 				<p>Por defecto, el motor de física Box2D realiza 8 iteraciones de velocidad
 					<code>world.velocityIterations</code> y 3 iteraciones de posición
 					<code>world.positionIterations</code>. Disminuir estos valores hará que la simulación sea más rápida
@@ -258,6 +258,89 @@ function draw() {
 
 			</script>
 		</div>
+		<div id="page-5" class="page">
+			<md id="md5-0">
+				<h2 id="dimensionamiento-del-mundo">Dimensionamiento del Mundo</h2>
+				<p>El <code>world.meterSize</code> predeterminado es 60, por lo que un sprite con un ancho de 60
+					unidades tendrá 1 metro de ancho en la simulación física.</p>
+				<p>La simulación física no puede funcionar bien cuando los sprites son demasiado pequeños o demasiado
+					grandes. ¡Mantén el tamaño a escala humana!</p>
+			</md>
+			<script type="mie/p5" id="Small World" lines="9">
+function setup() {
+	new Canvas(120, 48);
+	displayMode('normal', 'pixelated', 4);
+	world.gravity.y = 10;
+
+	world.meterSize = 15;
+
+	new Sprite(60, 48, 120, 4, 'static');
+}
+
+function update() {
+	clear();
+	noStroke();
+	if (frameCount % 10 == 0) {
+		new Sprite(random(canvas.w), 0, 4);
+	}
+}
+
+			</script>
+			<div class="break"></div>
+			<md id="md5-1">
+				<h2 id="mundo-en-cuadrícula">Mundo en Cuadrícula</h2>
+				<p>Cuando <code>p5play.snapToGrid</code> es verdadero, los sprites se ajustarán a una cuadrícula cuando
+					se muevan con las funciones <code>move</code> y <code>moveTo</code>. <code>p5play.gridSize</code>
+					está configurado a 0.5 por defecto.</p>
+				<p>En este ejemplo, <code>scale(32)</code> hace que cada unidad de visualización tenga 32 píxeles de
+					tamaño. Se muestra una cuadrícula como referencia. Los sprites tienen solo 1x1 unidades de tamaño,
+					por lo que el tamaño del metro del mundo se establece en 2.</p>
+			</md>
+			<script type="mie/p5" id="Scaled Grid World">
+let player, blocks;
+
+function setup() {
+	new Canvas(480, 192);
+
+	p5play.snapToGrid = true;
+	p5play.gridSize = 1;
+	world.meterSize = 2;
+
+	allSprites.rotationLock = true;
+	allSprites.diameter = 1;
+
+	player = new Sprite(1, 1);
+	player.color = 'red';
+
+	blocks = new Group();
+	new blocks.Sprite(4, 5);
+	new blocks.Sprite(3, 2);
+	new blocks.Sprite(6, 0);
+
+	player.collides(blocks, (player, block) => {
+		block.move(player.heading, 2);
+	});
+	blocks.collides(blocks, (a, b) => {
+		if (!a.colliding(player)) a.move(player.heading, 2);
+		if (!b.colliding(player)) b.move(player.heading, 2);
+	});
+}
+
+function update() {
+	scale(32);
+
+	strokeWeight(0.02);
+	for (let i = 0; i < 15; i++) {
+		for (let j = 0; j < 6; j++) rect(i, j, 1, 1);
+	}
+
+	if (kb.presses('up')) player.move('up', 2);
+	if (kb.presses('down')) player.move('down', 2);
+	if (kb.presses('left')) player.move('left', 2);
+	if (kb.presses('right')) player.move('right', 2);
+}
+			</script>
+		</div>
 
 		<div class="break"></div>
 		<div id="toc">
@@ -268,6 +351,7 @@ function draw() {
 				<a data-page="2" href="world.html?page=2">Pruebas de Rendimiento</a>
 				<a data-page="3" href="world.html?page=3">Encontrar Sprites</a>
 				<a data-page="4" href="world.html?page=4">Emisión de Rayos</a>
+				<a data-page="5" href="world.html?page=5">undefined</a>
 			</div>
 			<a id="nextPage" class="navLink">Siguiente página</a>
 		</div>

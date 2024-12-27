@@ -14,7 +14,7 @@ En este ejemplo, la cámara sigue el movimiento del eje x del jugador.
 
 ## Cámara Encendida/Apagada
 
-Por defecto, `allSprites.draw()` se llama al final del bucle de dibujo de p5.js. Sin embargo, si quieres controlar cuándo se dibujan los sprites y los grupos, puedes dibujarlos por separado.
+Por defecto, `allSprites.draw()` se llama al final del bucle de dibujo de q5.js. Sin embargo, si quieres controlar cuándo se dibujan los sprites y los grupos, puedes dibujarlos por separado.
 
 El jugador y el entorno de tu juego deben ser dibujados con la cámara encendida.
 

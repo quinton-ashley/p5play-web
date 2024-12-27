@@ -138,8 +138,8 @@ function update() {
 					の計算値を表示します。より包括的な結果を得るには、ウェブブラウザのパフォーマンステストツールを使用してください。</p>
 				<p>ここでいう FPS とは、実際に画面にフレームが表示されるまでの遅延を除いた、「コンピュータが 1 秒間に生成できるフレーム数 (Frames Per Second) 」のことです。 FPS
 					が高いほど、ゲームのパフォーマンスが高いことを意味します。</p>
-				<p>一般に、スプライトの数が少なく、使用するキャンバスがより小さいほど、ゲームのパフォーマンスは向上します。さらに良好なパフォーマンスを得るには、p5.js の <code>clear</code>
-					関数の使用や、 <code>canvas.get</code> でのキャンバスのピクセル色の取得を、避けるようにしてください。</p>
+				<p>一般に、スプライトの数が少なく、使用するキャンバスがより小さいほど、ゲームのパフォーマンスは向上します。さらに良好なパフォーマンスを得るには、q5.js の <code>clear</code>
+					関数の使用や、 <code>get</code> でのキャンバスのピクセル色の取得を、避けるようにしてください。</p>
 				<p>デフォルトでは、 Box2D の物理エンジンは <code>world.velocityIterations</code> （速度計算の反復）を 8 回、
 					<code>world.positionIterations</code> （位置計算の反復）を 3
 					回行います。これらの値を小さくすると、物理シミュレーション計算は速くなりますが、そのぶん精度は落ちます。</p>
@@ -245,6 +245,86 @@ function draw() {
 
 			</script>
 		</div>
+		<div id="page-5" class="page">
+			<md id="md5-0">
+				<h2 id="ワールドのサイズ設定">ワールドのサイズ設定</h2>
+				<p>デフォルトの<code>world.meterSize</code>は 60 で、幅 60 ユニットのスプライトは物理シミュレーションで 1 メートルの幅になります。</p>
+				<p>スプライトが小さすぎたり大きすぎたりすると、物理シミュレーションは正常に動作しません。人間のスケールを保つようにしてください！</p>
+			</md>
+			<script type="mie/p5" id="Small World" lines="9">
+function setup() {
+	new Canvas(120, 48);
+	displayMode('normal', 'pixelated', 4);
+	world.gravity.y = 10;
+
+	world.meterSize = 15;
+
+	new Sprite(60, 48, 120, 4, 'static');
+}
+
+function update() {
+	clear();
+	noStroke();
+	if (frameCount % 10 == 0) {
+		new Sprite(random(canvas.w), 0, 4);
+	}
+}
+
+			</script>
+			<div class="break"></div>
+			<md id="md5-1">
+				<h2 id="グリッドワールド">グリッドワールド</h2>
+				<p><code>p5play.snapToGrid</code>が true
+					の場合、スプライトは<code>move</code>と<code>moveTo</code>関数で移動する際にグリッドにスナップします。<code>p5play.gridSize</code>はデフォルトで
+					0.5 に設定されています。</p>
+				<p>この例では、<code>scale(32)</code>により各表示ユニットが 32 ピクセルのサイズになります。参考用にグリッドが表示されます。スプライトは 1x1
+					ユニットのサイズしかないため、ワールドのメートルサイズは 2 に設定されています。</p>
+			</md>
+			<script type="mie/p5" id="Scaled Grid World">
+let player, blocks;
+
+function setup() {
+	new Canvas(480, 192);
+
+	p5play.snapToGrid = true;
+	p5play.gridSize = 1;
+	world.meterSize = 2;
+
+	allSprites.rotationLock = true;
+	allSprites.diameter = 1;
+
+	player = new Sprite(1, 1);
+	player.color = 'red';
+
+	blocks = new Group();
+	new blocks.Sprite(4, 5);
+	new blocks.Sprite(3, 2);
+	new blocks.Sprite(6, 0);
+
+	player.collides(blocks, (player, block) => {
+		block.move(player.heading, 2);
+	});
+	blocks.collides(blocks, (a, b) => {
+		if (!a.colliding(player)) a.move(player.heading, 2);
+		if (!b.colliding(player)) b.move(player.heading, 2);
+	});
+}
+
+function update() {
+	scale(32);
+
+	strokeWeight(0.02);
+	for (let i = 0; i < 15; i++) {
+		for (let j = 0; j < 6; j++) rect(i, j, 1, 1);
+	}
+
+	if (kb.presses('up')) player.move('up', 2);
+	if (kb.presses('down')) player.move('down', 2);
+	if (kb.presses('left')) player.move('left', 2);
+	if (kb.presses('right')) player.move('right', 2);
+}
+			</script>
+		</div>
 
 		<div class="break"></div>
 		<div id="toc">
@@ -255,6 +335,7 @@ function draw() {
 				<a data-page="2" href="world.html?page=2">パフォーマンスのテスト</a>
 				<a data-page="3" href="world.html?page=3">スプライトを探す</a>
 				<a data-page="4" href="world.html?page=4">レイキャスティング</a>
+				<a data-page="5" href="world.html?page=5">undefined</a>
 			</div>
 			<a id="nextPage" class="navLink">次へ</a>
 		</div>

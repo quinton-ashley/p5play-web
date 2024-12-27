@@ -8,7 +8,7 @@ La función `loadAni` tiene tres modos diferentes: secuencia, lista y hoja de sp
 
 En este mini ejemplo, la animación de la nube respirando se carga utilizando una secuencia numerada de imágenes dada la ruta a la primera imagen y el índice de la última imagen en la secuencia.
 
-La función `animation` es similar a la función `image` de p5.js. Úsala en la función draw de p5.js para mostrar una animación en una posición.
+La función `animation` es similar a la función `image` de q5.js. Úsala en la función draw de q5.js para mostrar una animación en una posición.
 
 # 0-1
 
