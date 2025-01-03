@@ -35,14 +35,15 @@
 		<div id="page-0" class="page">
 			<md id="md0-0">
 				<h2 id="configuración">Configuración</h2>
-				<p>El código dentro de la función <code>setup</code> de <a href="https://q5js.org"
-						target="_blank">q5.js</a> (o <a href="https://p5js.org" target="_blank">p5.js</a>) se ejecuta
+				<p>El código dentro de la función <code>setup</code> de <a href="https://q5js.org" target="_blank">q5.js</a> (o
+					<a href="https://p5js.org" target="_blank">p5.js</a>) se ejecuta
 					cuando comienza el programa. La función <code>update</code> se ejecuta 60 veces por segundo por
 					defecto.</p>
 				<p>El constructor <code>new Canvas()</code> crea una sección de la pantalla en la que el programa puede
 					dibujar.</p>
 				<p>¡Intenta cambiar el ancho y la altura del canvas (los números dentro del constructor
-					<code>Canvas</code>), luego reinicia el programa de ejemplo!</p>
+					<code>Canvas</code>), luego reinicia el programa de ejemplo!
+				</p>
 			</md>
 			<script type="mie/p5" id="setup-and-update">
 function setup() {
@@ -174,7 +175,8 @@ function update() {
 				<p>Los colisionadores <code>'static'</code> no pueden moverse. Los colisionadores
 					<code>'kinematic'</code> pueden moverse programáticamente pero no por otros sprites. Además, no
 					colisionarán con otros colisionadores kinemáticos. Establecer el tipo de colisionador de un sprite a
-					<code>'none'</code> lo elimina de la simulación física.</p>
+					<code>'none'</code> lo elimina de la simulación física.
+				</p>
 				<p>El tipo de colisionador también puede establecerse usando la primera letra del nombre del tipo de
 					colisionador: <code>'d'</code>, <code>'s'</code>, <code>'k'</code>, o <code>'n'</code>.</p>
 				<p>¡Haz clic en el icono de recargar en la esquina superior derecha de un mini ejemplo para volver a
@@ -274,7 +276,8 @@ function update() {
 			<md id="md2-0">
 				<h2 id="sprites-con-una-imagen">Sprites con una Imagen</h2>
 				<p><code>sprite.image</code> (o <code>sprite.img</code>) puede establecerse como un
-					<code>Q5.Image</code> o una ruta de URL a un archivo de imagen.</p>
+					<code>Q5.Image</code> o una ruta de URL a un archivo de imagen.
+				</p>
 				<p>Si necesitas que una imagen se cargue antes de que comience tu programa, es mejor usar <a
 						href="https://q5js.org/learn/#loadImage" target="_blank"><code>loadImage</code></a> dentro de la
 					función <code>preload</code> de q5.js.</p>
@@ -751,7 +754,8 @@ spriteB.text = 'Layer 1';
 			</script>
 			<md id="md6-2">
 				<p>En el primer fotograma en que un sprite se superpone con otro sprite, la función
-					<code>overlaps</code> devuelve true.</p>
+					<code>overlaps</code> devuelve true.
+				</p>
 				<p>Mientras un sprite se superpone con otro sprite, la función <code>overlapping</code> devuelve el
 					número de fotogramas que ha ocurrido la superposición.</p>
 				<p>En el primer fotograma después de que dos sprites se superpongan, la función <code>overlapped</code>
@@ -1648,7 +1652,8 @@ function draw() {
 			<md id="md15-1">
 				<p>Las funciones <code>move</code>, <code>moveTo</code>, <code>rotate</code>, <code>rotateTo</code> y
 					<code>rotateMinTo</code> devuelven una <code>Promise</code> que se resuelve como true cuando el
-					movimiento ha terminado.</p>
+					movimiento ha terminado.
+				</p>
 				<p>Sin embargo, si el movimiento del sprite es interrumpido por un nuevo movimiento o una colisión que
 					cambia significativamente su trayectoria, la promesa se resolverá como false.</p>
 			</md>
@@ -1684,8 +1689,8 @@ function draw() {
 					repetidamente, sin esperar a que el sprite llegue a su destino. Pero para un mejor rendimiento,
 					cambia la dirección del sprite. Usa la función <code>angleTo</code>, que obtiene el ángulo entre un
 					sprite y una posición.</p>
-				<p>En este ejemplo, la función q5 <a href="https://q5js.org/learn/#dist"
-						target="_blank"><code>dist</code></a> se usa para calcular la distancia entre el jugador y su
+				<p>En este ejemplo, la función q5 <a href="https://q5js.org/learn/#dist" target="_blank"><code>dist</code></a>
+					se usa para calcular la distancia entre el jugador y su
 					aliado.</p>
 			</md>
 			<script type="mie/p5" id="angleTo" lines="9">
@@ -1751,21 +1756,21 @@ function draw() {
 			<a id="nextPage" class="navLink">Siguiente página</a>
 		</div>
 		<div class="break"></div>
-		<footer id="credits" class="text-small">Creado por Quinton Ashley (@quinton-ashley) derechos de autor 2022-2024
+		<footer id="credits" class="text-small">Creado por Quinton Ashley (@quinton-ashley) derechos de autor 2022-2025
 		</footer>
 	</article>
 
 	<!-- <script src="https://cdn.jsdelivr.net/npm/p5@1/lib/p5.min.js"></script> -->
-<script src="/v3/q5.min.js"></script>
-<script src="/v3/planck.min.js"></script>
-<script src="/v3/p5play.min.js"></script>
-<script>
-window.mie = { autoLoad: false };
+	<script src="/v3/q5.min.js"></script>
+	<script src="/v3/planck.min.js"></script>
+	<script src="/v3/p5play.min.js"></script>
+	<script>
+		window.mie = { autoLoad: false };
 
 	</script>
 	<script src="/learn/mie.js"></script>
-<script src="/learn/learn.js"></script>
-<script src="/account/account.js"></script>
+	<script src="/learn/learn.js"></script>
+	<script src="/account/account.js"></script>
 </body>
 
 </html>

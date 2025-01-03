@@ -91,7 +91,8 @@ function update() {
 			</script>
 			<md id="md0-2">
 				<p>Una hoja de sprites es una sola imagen que contiene todos los fotogramas de una animación.
-					<code>ani.spriteSheet</code> se muestra en el boceto para que puedas ver cómo es.</p>
+					<code>ani.spriteSheet</code> se muestra en el boceto para que puedas ver cómo es.
+				</p>
 				<p>En el modo de hoja de sprites, <code>loadAni</code> acepta un "atlas" <a
 						href="https://p5js.org/reference/p5/Object" target="_blank">objeto JS</a> que especifica el
 					tamaño de cada fotograma y cuántos fotogramas de animación hay.</p>
@@ -148,7 +149,8 @@ function update() {
 					cargar una hoja de sprites alineada en cuadrícula.</p>
 				<p>Ten en cuenta que las animaciones en estos ejemplos se están cargando de forma diferida en
 					<code>setup</code>. Si realmente necesitas usar una animación cuando tu programa comienza, cárgala
-					en la función <code>preload</code> de q5.js en su lugar.</p>
+					en la función <code>preload</code> de q5.js en su lugar.
+				</p>
 			</md>
 			<script type="mie/p5" id="sprite-sheet-mode-with-frame-locators" lines="10">
 let splatAni;
@@ -317,7 +319,8 @@ function update() {
 					<p><code>x</code>, <code>y</code>, <code>pos</code>, <code>w</code>/<code>width</code>,
 						<code>h</code>/<code>height</code>, <code>size</code>/<code>frameSize</code>, <code>row</code>,
 						<code>col</code>, <code>frames</code>/<code>frameCount</code>,
-						<code>delay</code>/<code>frameDelay</code> y <code>rotation</code>.</p>
+						<code>delay</code>/<code>frameDelay</code> y <code>rotation</code>.
+					</p>
 					<p>En el ejemplo del "héroe", el tamaño del sprite del héroe se establece en 32x32 píxeles en el
 						constructor <code>Sprite</code>. Ese tamaño se utiliza como un multiplicador para el valor de la
 						fila proporcionado.</p>
@@ -490,8 +493,7 @@ if (hero.ani.name != 'jump' && hero.ani.name != 'roll') {
 				<h2 id="secuenciación-de-animaciones-avanzada">Secuenciación de Animaciones Avanzada</h2>
 				<p><code>sprite.changeAni</code> es una función asíncrona, puedes usarla para esperar a que las
 					animaciones terminen de reproducirse. Es particularmente útil para secuencias de animación
-					programadas para <a href="https://es.wikipedia.org/wiki/Personaje_no_jugador"
-						target="_blank">NPCs</a>.</p>
+					programadas para <a href="https://es.wikipedia.org/wiki/Personaje_no_jugador" target="_blank">NPCs</a>.</p>
 				<p>En este ejemplo, el personaje héroe está practicando sus habilidades con la espada.</p>
 			</md>
 			<script type="mie/p5" id="advanced-sequencing" lines="18">
@@ -569,20 +571,20 @@ function update() {
 			<a id="nextPage" class="navLink">Siguiente página</a>
 		</div>
 		<div class="break"></div>
-		<footer id="credits" class="text-small">Creado por Quinton Ashley (@quinton-ashley) derechos de autor 2022-2024
+		<footer id="credits" class="text-small">Creado por Quinton Ashley (@quinton-ashley) derechos de autor 2022-2025
 		</footer>
 	</article>
 
 	<script src="/v3/q5.min.js"></script>
-<script src="/v3/planck.min.js"></script>
-<script src="/v3/p5play.min.js"></script>
-<script>
-window.mie = { autoLoad: false };
+	<script src="/v3/planck.min.js"></script>
+	<script src="/v3/p5play.min.js"></script>
+	<script>
+		window.mie = { autoLoad: false };
 
 	</script>
 	<script src="/learn/mie.js"></script>
-<script src="/learn/learn.js"></script>
-<script src="/account/account.js"></script>
+	<script src="/learn/learn.js"></script>
+	<script src="/account/account.js"></script>
 </body>
 
 </html>

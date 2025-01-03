@@ -46,7 +46,8 @@
 						a veces puede causar problemas.</p>
 					<p>Puedes despertar un sprite que duerme estableciendo <code>sprite.sleeping</code> en falso.
 						También puedes desactivar el dormir en base a cada sprite estableciendo
-						<code>sprite.allowSleeping</code> en falso.</p>
+						<code>sprite.allowSleeping</code> en falso.
+					</p>
 				</md>
 			</div>
 			<div class="minis horiz">
@@ -147,7 +148,8 @@ function update() {
 				<p>Por defecto, el motor de física Box2D realiza 8 iteraciones de velocidad
 					<code>world.velocityIterations</code> y 3 iteraciones de posición
 					<code>world.positionIterations</code>. Disminuir estos valores hará que la simulación sea más rápida
-					pero también menos precisa.</p>
+					pero también menos precisa.
+				</p>
 				<p>He probado p5play en todos los navegadores web y encontré que Google Chrome tiene el mejor
 					rendimiento.</p>
 			</md>
@@ -182,7 +184,8 @@ function update() {
 				<h2 id="encontrar-sprites">Encontrar Sprites</h2>
 				<p>Puedes obtener un array de sprites encontrados en un punto con la función
 					<code>world.getSpritesAt</code>. Ten en cuenta que los sprites deben tener cuerpos físicos para ser
-					encontrados.</p>
+					encontrados.
+				</p>
 				<p><code>world.getSpriteAt</code> devuelve el primer sprite encontrado en un punto, el que tiene el
 					valor de capa más alto.</p>
 				<p>Ten en cuenta que los sprites deben tener cuerpos físicos para ser detectados.</p>
@@ -356,19 +359,19 @@ function update() {
 			<a id="nextPage" class="navLink">Siguiente página</a>
 		</div>
 		<div class="break"></div>
-		<footer id="credits" class="text-small">Creado por Quinton Ashley (@quinton-ashley) derechos de autor 2022-2024
+		<footer id="credits" class="text-small">Creado por Quinton Ashley (@quinton-ashley) derechos de autor 2022-2025
 		</footer>
 	</article>
 
 	<script src="/v3/q5.min.js"></script>
-<script src="/v3/planck.min.js"></script>
-<script src="/v3/p5play.min.js"></script>
-<script>
-window.mie = { autoLoad: false };
+	<script src="/v3/planck.min.js"></script>
+	<script src="/v3/p5play.min.js"></script>
+	<script>
+		window.mie = { autoLoad: false };
 
 	</script>
 	<script src="/learn/mie.js"></script>
-<script src="/learn/learn.js"></script>
+	<script src="/learn/learn.js"></script>
 </body>
 
 </html>
