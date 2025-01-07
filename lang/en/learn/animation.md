@@ -64,7 +64,7 @@ Use the `sprite.changeAni` function to change a sprite's animation, this functio
 
 `sprite.ani` stores the sprite's current animation, which enables access to its properties and functions like `play` and `stop`.
 
-The `sprite.mirror` vector can be used to flip the sprite
+The `sprite.scale` vector can be used to flip the sprite
 horizontally or vertically.
 
 Try pressing left and right to make the ghost move.

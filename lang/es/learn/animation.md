@@ -62,7 +62,7 @@ Utiliza la función `sprite.changeAni` para cambiar la animación de un sprite. 
 
 `sprite.ani` almacena la animación actual del sprite, lo que permite acceder a sus propiedades y funciones como `play` y `stop`.
 
-El vector `sprite.mirror` se puede usar para voltear el sprite horizontal o verticalmente.
+El vector `sprite.scale` se puede usar para voltear el sprite horizontal o verticalmente.
 
 Prueba presionando izquierda y derecha para hacer que el fantasma se mueva.
 

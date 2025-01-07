@@ -30,7 +30,7 @@ let refs = {
 		14: ['draw', 'update'],
 		15: ['angleTo'],
 		'group.html?page=6': ['life'],
-		'animation.html?page=2': ['mirror', 'ani', 'addAni'],
+		'animation.html?page=2': ['ani', 'addAni'],
 		'animation.html?page=4': ['anis', 'addAnis', 'pixelPerfect', 'spriteSheet'],
 		'tiles.html?page=0': ['tile'],
 		'tiles.html?page=1': ['tileSize'],

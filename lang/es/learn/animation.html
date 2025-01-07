@@ -228,7 +228,7 @@ function update() {
 						función acepta un objeto de animación o el nombre de una animación cargada previamente.</p>
 					<p><code>sprite.ani</code> almacena la animación actual del sprite, lo que permite acceder a sus
 						propiedades y funciones como <code>play</code> y <code>stop</code>.</p>
-					<p>El vector <code>sprite.mirror</code> se puede usar para voltear el sprite horizontal o
+					<p>El vector <code>sprite.scale</code> se puede usar para voltear el sprite horizontal o
 						verticalmente.</p>
 					<p>Prueba presionando izquierda y derecha para hacer que el fantasma se mueva.</p>
 					<p>Prueba presionando la barra espaciadora para detener la animación.</p>
@@ -253,11 +253,11 @@ function update() {
 	if (kb.pressing('left')) {
 		ghost.changeAni('fly');
 		ghost.vel.x = -2;
-		ghost.mirror.x = true;
+		ghost.scale.x = -1;
 	} else if (kb.pressing('right')) {
 		ghost.changeAni('fly');
 		ghost.vel.x = 2;
-		ghost.mirror.x = false;
+		ghost.scale.x = 1;
 	} else {
 		ghost.changeAni('idle');
 		ghost.vel.x = 0;
@@ -379,6 +379,8 @@ function update() {
 	if (kb.presses('s')) hero.changeAni('stand');
 	
 }
+
+function setup() {}
 				</script>
 				<script type="mie/p5" id="hero">
 let hero;
@@ -413,6 +415,8 @@ function update() {
 	if (kb.presses('t')) hero.changeAni('turn');
 	if (kb.presses('s')) hero.changeAni('stand');
 }
+
+function setup() {}
 				</script>
 			</div>
 		</div>
@@ -475,10 +479,10 @@ else hero.vel.x = 0;
 if (hero.ani.name != 'jump' && hero.ani.name != 'roll') {
 	if (kb.pressing('left')) {
 		hero.changeAni('run');
-		hero.mirror.x = true;
+		hero.scale.x = -1;
 	} else if (kb.pressing('right')) {
 		hero.changeAni('run');
-		hero.mirror.x = false;
+		hero.scale.x = 1;
 	} else if (hero.ani.name != 'stand') {
 		hero.changeAni('stand');
 	}
@@ -500,14 +504,14 @@ let hero, floor;
 async function practice() {
 	await hero.changeAni('slashUp');
 	hero.changeAni('run');
-	hero.mirror.x = true;
+	hero.scale.x = -1;
 	await hero.move(60, 180, 1);
 	hero.speed = 0;
 
 	await hero.changeAni('slashDown');
 	hero.changeAni('roll');
 	hero.ani.frame = 1;
-	hero.mirror.x = false;
+	hero.scale.x = 1;
 	await hero.move(60, 0, 1);
 	hero.speed = 0;
 
