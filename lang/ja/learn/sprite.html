@@ -654,7 +654,7 @@ function setup() {
 	floor.color = 'red';
 }
 
-function update() {
+function drawFrame() {
 	clear();
 	if (block.colliding(floor)) {
 		block.color = 'red';
@@ -736,9 +736,11 @@ function setup() {
 }
 
 function update() {
-	clear();
 	player.moveTowards(mouse);
-		
+}
+
+function drawFrame() {
+	clear();
 	if (player.overlaps(coin)) coin.remove();
 }
 			</script>
@@ -747,7 +749,7 @@ function update() {
 				<h2 id="やってみよう！">やってみよう！</h2>
 				<p>青いスプライトが赤いスプライトとオーバーラップしている間だけ、赤に変わるようにしてみてください。</p>
 			</md>
-			<script type="mie/p5" id="Level-6-Challenge" lines="20" horiz="">
+			<script type="mie/p5" id="Level-6-Challenge" horiz="">
 let sprite1, sprite2;
 
 function setup() {
@@ -761,11 +763,14 @@ function setup() {
 }
 
 function update() {
-	clear();
 	sprite1.moveTowards(mouse);
+}
 
+function drawFrame() {
+	clear();
 	
 	
+
 }
 			</script>
 			<div class="break"></div>
@@ -1103,8 +1108,7 @@ function setup() {
 }
 			</script>
 			<md id="md9-5">
-				<p>
-					次のコードサンプルでは、ブロックと動く床がコリジョンを発生させたとき、ブロックに赤く色をつけるようにしています。床によってブロックが持ち上げられている間のコリジョンは、感覚的には衝突ではなく「接触」なのですから、ブロックが赤色のままであることを期待するでしょう。しかしご覧のとおり、ブロックは赤と青で点滅するのです。
+				<p>次のコードサンプルでは、ブロックと動く床がコリジョンを発生させたとき、ブロックに赤く色をつけるようにしています。床によってブロックが持ち上げられている間のコリジョンは、感覚的には衝突ではなく「接触」なのですから、ブロックが赤色のままであることを期待するでしょう。しかしご覧のとおり、ブロックは赤と青で点滅するのです。
 				</p>
 				<p>現実世界では、人がエレベーターに乗って上昇すると、その人とエレベーターの床とのコリジョンは「接触」であるとみなすはずです。</p>
 				<p>しかし、 planck では、コライダーが他のコライダーによって移動させられたとき、それらは「接触の継続」ではなく、「コリジョンの発生」と「コリジョンの終了」が激しく繰り返されているとみなされます。
@@ -1327,8 +1331,7 @@ function update() {
 				<p>ポリゴン名として使用できる文字列は次の通りです: <code>'triangle'</code> (三角形)、 <code>'square'</code> (四角形)、
 					<code>'pentagon'</code> (五角形)、 <code>'hexagon'</code> (六角形)、 <code>'septagon'</code> (七角形)、
 					<code>'octagon'</code> (八角形)、 <code>'enneagon'</code> (九角形)、 <code>'decagon'</code> (十角形)、
-					<code>'hendecagon'</code> (十一角形)、 <code>'dodecagon'</code> (十二角形)。
-				</p>
+					<code>'hendecagon'</code> (十一角形)、 <code>'dodecagon'</code> (十二角形)。</p>
 			</md>
 			<script type="mie/p5" id="pentagon" lines="6">
 function setup() {
@@ -1589,8 +1592,7 @@ function draw() {
 			</script>
 			<md id="md15-1">
 				<p><code>move</code> 、 <code>moveTo</code> 、 <code>rotate</code> 、<code>rotateTo</code>、および
-					<code>rotateMinTo</code> 関数はすべて、移動が終了したときに true へと解決される <code>Promise</code> を返します。
-				</p>
+					<code>rotateMinTo</code> 関数はすべて、移動が終了したときに true へと解決される <code>Promise</code> を返します。</p>
 				<p>しかし、そうしたスプライトの移動が、新しい移動指定を受けたり、軌道が大幅に変わるほどのコリジョンが発生したりして妨げられると、その promise は false へと解決されます。</p>
 			</md>
 			<script type="mie/p5" id="random-sequence" horiz="" lines="10">
@@ -1621,8 +1623,7 @@ function draw() {
 }
 			</script>
 			<md id="md15-2">
-				<p>
-					スプライトに別のスプライトを追従させたい場合、目的地に到達するのを待たずに<code>moveTo</code>を繰り返し使用したくなるかもしれません。しかし、パフォーマンスを向上させるには、スプライトの向きを変更してください。スプライトと位置の間の角度を取得する<code>angleTo</code>関数を使用します。
+				<p>スプライトに別のスプライトを追従させたい場合、目的地に到達するのを待たずに<code>moveTo</code>を繰り返し使用したくなるかもしれません。しかし、パフォーマンスを向上させるには、スプライトの向きを変更してください。スプライトと位置の間の角度を取得する<code>angleTo</code>関数を使用します。
 				</p>
 				<p>このコードサンプルでは、 <a href="https://q5js.org/learn/#dist" target="_blank">q5.js dist</a>
 					関数が使用されており、プレイヤーとその味方との間の距離を計算しています。</p>
@@ -1697,16 +1698,16 @@ function draw() {
 	</article>
 
 	<!-- <script src="https://cdn.jsdelivr.net/npm/p5@1/lib/p5.min.js"></script> -->
-	<script src="/v3/q5.min.js"></script>
-	<script src="/v3/planck.min.js"></script>
-	<script src="/v3/p5play.min.js"></script>
-	<script>
-		window.mie = { autoLoad: false };
+<script src="/v3/q5.min.js"></script>
+<script src="/v3/planck.min.js"></script>
+<script src="/v3/p5play.min.js"></script>
+<script>
+window.mie = { autoLoad: false };
 
 	</script>
 	<script src="/learn/mie.js"></script>
-	<script src="/learn/learn.js"></script>
-	<script src="/account/account.js"></script>
+<script src="/learn/learn.js"></script>
+<script src="/account/account.js"></script>
 </body>
 
 </html>

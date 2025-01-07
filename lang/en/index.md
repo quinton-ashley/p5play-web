@@ -243,4 +243,4 @@ In addition, I appreciate the Colombian government 🇨🇴 of Gustavo Petro for
 
 # ft
 
-p5play.org was created by Quinton Ashley. Copyright ©2022-2024. [info@p5play.org](mailto:info@p5play.org) Looking for the [legacy version](https://quinton-ashley.github.io/p5play-web-archive/v2) of p5play?
+p5play.org was created by Quinton Ashley. Copyright ©2022-2025. [info@p5play.org](mailto:info@p5play.org)

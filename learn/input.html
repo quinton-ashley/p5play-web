@@ -43,12 +43,10 @@
 					<li><code>touches</code> for touch screen inputs</li>
 				</ul>
 				<p>These input devices all use the same simple functions for getting the state of an input:
-					<code>presses</code>, <code>pressing</code>, and <code>released</code>.
-				</p>
+					<code>presses</code>, <code>pressing</code>, and <code>released</code>.</p>
 				<p>Input devices also store the state of all their inputs as properties. For example,
 					<code>kb.space</code> stores how many frames the user has been pressing the space key. It gets reset
-					when the user releases the input.
-				</p>
+					when the user releases the input.</p>
 			</md>
 			<script type="mie/p5" id="hidden" base-0="" hide="">
 function setup() {
@@ -113,16 +111,14 @@ if (kb.pressing('space') || mouse.pressing()) {
 				<p><code>kb</code> tracks nearly every key on the keyboard, including 'enter', 'backspace', and
 					'control'.</p>
 				<p>Note that letter input is not case sensitive. To check if a user is pressing shift use:
-					<code>kb.pressing('shift')</code>.
-				</p>
+					<code>kb.pressing('shift')</code>.</p>
 				<p>Since the WASD keys are commonly used to control the player character's movement, you can use the
 					direction names 'up', 'down', 'left', and 'right' to detect WASD and arrow key presses.</p>
 				<p>Arrow keys can also be detected separately using 'arrowUp', 'arrowDown', 'arrowLeft', and
 					'arrowRight'.</p>
 				<p>In local two player games it's common for the second player to use the IJKL keys for movement. These
 					keys can be referenced using 'up2', 'down2', 'left2', and 'right2'.</p>
-				<p><a
-						href="https://github.com/quinton-ashley/p5play/wiki/FAQ#is-p5plays-kb-input-system-compatible-with-non-qwerty-keyboards"
+				<p><a href="https://github.com/quinton-ashley/p5play/wiki/FAQ#is-p5plays-kb-input-system-compatible-with-non-qwerty-keyboards"
 						target="_blank">Using a non-QWERTY keyboard?</a></p>
 			</md>
 			<script type="mie/p5" id="keyboard-movement">
@@ -161,8 +157,8 @@ function update() {
 					the camera's position.</p>
 				<p><code>mouse.canvasPos</code> stores the absolute position of the mouse on the canvas.</p>
 				<p><code>mouse.visible</code> is a boolean that determines whether the mouse is visible or not.</p>
-				<p><code>mouse.cursor</code> can be set to a <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/cursor"
-						target="_blank">cursor style</a>.
+				<p><code>mouse.cursor</code> can be set to a <a
+						href="https://developer.mozilla.org/en-US/docs/Web/CSS/cursor" target="_blank">cursor style</a>.
 					The default is 'default', other options include 'grab', 'move', 'pointer', and 'wait'.</p>
 			</md>
 			<script type="mie/p5" id="mouse.visible">
@@ -195,8 +191,7 @@ function update() {
 				<p><code>dragging</code> detects when the user clicks and holds a mouse button on the sprite while
 					moving the mouse.</p>
 				<p>Note that <code>mouse.x</code> is the x position of the mouse on the canvas and
-					<code>sprite.mouse.x</code> is the x position of the mouse relative to the sprite.
-				</p>
+					<code>sprite.mouse.x</code> is the x position of the mouse relative to the sprite.</p>
 			</md>
 			<script type="mie/p5" id="sprite.mouse">
 let sprite;
@@ -237,8 +232,7 @@ function update() {
 					<code>r</code> (right bumper), <code>lt</code> (left trigger), <code>rt</code> (right trigger),
 					<code>up</code>, <code>down</code>, <code>left</code>, <code>right</code> (D-pad), <code>lsb</code>
 					(left stick button), <code>rsb</code> (right stick button), <code>start</code>, and
-					<code>select</code>
-				</p>
+					<code>select</code></p>
 				<p><code>leftStick</code> and <code>rightStick</code> represent the positions of the analog sticks as
 					objects with x and y properties. These values range from -1 to 1, with 0 indicating the center
 					position.</p>
@@ -285,8 +279,7 @@ if (contro.pressing('lsb')) lsb.color = 'white';
 				</script>
 				<md id="md4-1">
 					<p>For convenience, <code>contro</code> can be used to attempt to check the input states of
-						<code>contros[0]</code> and won't throw errors if a controller isn't connected yet.
-					</p>
+						<code>contros[0]</code> and won't throw errors if a controller isn't connected yet.</p>
 					<p>Try it! Connect a game controller and press any button on it for it to be detected by p5play.</p>
 					<p>➡️ <a href="https://aijs.io/editor?user=quinton-ashley&amp;project=p5play_Controller_Test"
 							target="_blank">full controller test demo</a></p>
@@ -305,8 +298,7 @@ if (contro.pressing('lsb')) lsb.color = 'white';
 				<p><code>touch.id</code> is a unique number that identifies the touch.</p>
 				<p><code>touch.duration</code> stores how many frames the touch has been active.</p>
 				<p>The frame after a touch ends, its touch object is removed from the <code>touches</code> array.
-					<code>touches[0]</code> is mapped to the <code>mouse</code>.
-				</p>
+					<code>touches[0]</code> is mapped to the <code>mouse</code>.</p>
 				<p>In the touches demo, tap the screen to create boxes and drag to throw them around!</p>
 			</md>
 			<script type="mie/p5" id="touches demo">
@@ -349,15 +341,15 @@ function update() {
 	</article>
 
 	<script src="/v3/q5.min.js"></script>
-	<script src="/v3/planck.min.js"></script>
-	<script src="/v3/p5play.min.js"></script>
-	<script>
-		window.mie = { autoLoad: false };
+<script src="/v3/planck.min.js"></script>
+<script src="/v3/p5play.min.js"></script>
+<script>
+window.mie = { autoLoad: false };
 
 	</script>
 	<script src="/learn/mie.js"></script>
-	<script src="/learn/learn.js"></script>
-	<script src="/account/account.js"></script>
+<script src="/learn/learn.js"></script>
+<script src="/account/account.js"></script>
 </body>
 
 </html>

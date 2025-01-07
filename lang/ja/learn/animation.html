@@ -42,8 +42,7 @@
 				<p>アニメーションとは、まるで本当に動いているようかのような速さで次々に表示が切り替わる、一連の画像のことです。</p>
 				<p>アニメーションを読み込む <code>loadAni</code> 関数には、 3 つの異なるモードがあります: sequence （シーケンス）、 list （リスト）、 sprite sheet
 					（スプライトシート） です。</p>
-				<p>
-					このコードサンプルで、雲が息づいているアニメーションは、ファイル名の末尾が連番（シーケンス）となっている画像ファイル群のうち、「最初の画像ファイルへのパス」と、「連番の最後の数字」を、引数として用い、ロードされています。
+				<p>このコードサンプルで、雲が息づいているアニメーションは、ファイル名の末尾が連番（シーケンス）となっている画像ファイル群のうち、「最初の画像ファイルへのパス」と、「連番の最後の数字」を、引数として用い、ロードされています。
 				</p>
 				<p><code>animation</code> 関数は、 q5.js の <code>image</code> 関数に似ています。 q5.js の draw
 					関数内で使用することで、特定の位置にアニメーションを表示します。</p>
@@ -144,8 +143,7 @@ function update() {
 				<p>スプライトシートモードで <code>loadAni</code> を使用する別の方法は、フレームの位置とサイズを指定するフレームロケータの配列を提供することです。</p>
 				<p>スプライトシートを作成する際、不規則なサイズのフレームを密に詰めて画像空間の効率を高めることと、グリッドに揃えられたスプライトシートを読み込む容易さとのトレードオフを考慮してください。</p>
 				<p>これらの例のアニメーションは <code>setup</code> で遅延読み込みされていることに注意してください。プログラム開始時にアニメーションを使用する必要がある場合は、q5.js の
-					<code>preload</code> 関数で読み込んでください。
-				</p>
+					<code>preload</code> 関数で読み込んでください。</p>
 			</md>
 			<script type="mie/p5" id="sprite-sheet-mode-with-frame-locators" lines="10">
 let splatAni;
@@ -274,8 +272,7 @@ function update() {
 			<md id="md3-0">
 				<h2 id="アニメーション付きグループ">アニメーション付きグループ</h2>
 				<p>グループに対してアニメーションが追加されると、グループの新規グループスプライトは、生成時にそのアニメーションのコピーを受け取るようになります。</p>
-				<p>
-					グループスプライトのコライダーのサイズは、アニメーションのサイズから取得されることに気をつけてください。このコードサンプルでは、「しぶき」アニメーションのサイズがコライダーのサイズとなるため、スプライトの生成時に近づけすぎると、互いに重ならなくなるまで押しのけ合ってしまいます。
+				<p>グループスプライトのコライダーのサイズは、アニメーションのサイズから取得されることに気をつけてください。このコードサンプルでは、「しぶき」アニメーションのサイズがコライダーのサイズとなるため、スプライトの生成時に近づけすぎると、互いに重ならなくなるまで押しのけ合ってしまいます。
 				</p>
 				<p>マウスクリックで、新しい「しぶき」を追加してみてください！</p>
 			</md>
@@ -310,8 +307,7 @@ function update() {
 					<p><code>x</code> 、 <code>y</code> 、 <code>pos</code> 、 <code>w</code>/<code>width</code> 、
 						<code>h</code>/<code>height</code> 、 <code>size</code>/<code>frameSize</code> 、 <code>row</code>
 						、 <code>col</code> 、 <code>frames</code>/<code>frameCount</code> 、
-						<code>delay</code>/<code>frameDelay</code> 、 <code>rotation</code>
-					</p>
+						<code>delay</code>/<code>frameDelay</code> 、 <code>rotation</code></p>
 					<p>この「勇者くん」のコードサンプルでは、勇者くんのスプライトのサイズを <code>Sprite</code> コンストラクタ引数で 32x32
 						ピクセルに設定しています。このサイズは、引数であるアトラスオブジェクトの row の値との掛け算に使用されます。</p>
 					<p><code>ani.offset</code> プロパティは、スプライトの座標に対するアニメーションの位置を微調整するために使用します。</p>
@@ -320,8 +316,7 @@ function update() {
 					<p>ところで、このコードと<a
 							href="https://labs.phaser.io/view.html?src=src/animation/create%20animation%20from%20sprite%20sheet.js"
 							target="_blank">こちらの Phaser のデモ</a>と見比べてみてください。きっと p5play の真価をご堪能いただけることでしょう。(ﾉ ∀`)ｱﾁｬｰ</p>
-					<p>
-						１つのスプライトシートでは、アニメーションのすべてのフレームを同じ大きさにし、左から右に順番に並べることをおすすめします。そうでない場合は、アトラスオブジェクトの代わりに座標の配列を使用し、各フレームの座標を手動で指定する必要があります。
+					<p>１つのスプライトシートでは、アニメーションのすべてのフレームを同じ大きさにし、左から右に順番に並べることをおすすめします。そうでない場合は、アトラスオブジェクトの代わりに座標の配列を使用し、各フレームの座標を手動で指定する必要があります。
 					</p>
 				</md>
 				<md id="md4-1">
@@ -411,8 +406,7 @@ function update() {
 				<p><code>sprite.changeAni</code>
 					関数は、引数として、アニメーションオブジェクト、アニメーション名、決められた順番（シーケンス）で再生すべきアニメーション名の配列、のいずれかを受け取ります。</p>
 				<p>デフォルトでは、ループが有効になっている場合、シーケンスの最後のアニメーションがループされ続けます。すべてのシーケンスをループさせるには、シーケンスの最後のアニメーション名に
-					<code>'**'</code> を指定します。逆に、シーケンスの終了時にアニメーションを停止させたい場合は、最後のアニメーション名に <code>';;'</code> を指定します。
-				</p>
+					<code>'**'</code> を指定します。逆に、シーケンスの終了時にアニメーションを停止させたい場合は、最後のアニメーション名に <code>';;'</code> を指定します。</p>
 				<p>このコードサンプルでは、 WASD キーまたはカーソルキーで「勇者くん」を画面内で移動させる方法を示しています！</p>
 			</md>
 			<script type="mie/p5" base-0="" hide="">
@@ -562,15 +556,15 @@ function update() {
 	</article>
 
 	<script src="/v3/q5.min.js"></script>
-	<script src="/v3/planck.min.js"></script>
-	<script src="/v3/p5play.min.js"></script>
-	<script>
-		window.mie = { autoLoad: false };
+<script src="/v3/planck.min.js"></script>
+<script src="/v3/p5play.min.js"></script>
+<script>
+window.mie = { autoLoad: false };
 
 	</script>
 	<script src="/learn/mie.js"></script>
-	<script src="/learn/learn.js"></script>
-	<script src="/account/account.js"></script>
+<script src="/learn/learn.js"></script>
+<script src="/account/account.js"></script>
 </body>
 
 </html>

@@ -166,13 +166,11 @@ function update() {
 		<div id="page-2" class="page">
 			<md id="md2-0">
 				<h2 id="コリジョンとオーバーラップ">コリジョンとオーバーラップ</h2>
-				<p>
-					コリジョン（衝突）とオーバーラップ（重なり）を検出する関数は、スプライト同士だけにとどまりません。スプライトとグループ、グループ同士のコリジョンやオーバーラップさえも判定する事ができるのです。使用できる関数は次のとおりです：
+				<p>コリジョン（衝突）とオーバーラップ（重なり）を検出する関数は、スプライト同士だけにとどまりません。スプライトとグループ、グループ同士のコリジョンやオーバーラップさえも判定する事ができるのです。使用できる関数は次のとおりです：
 				</p>
 				<p><code>collides</code> （衝突した瞬間）, <code>colliding</code> （衝突中/接触中）, <code>collided</code>
 					（衝突後に離れた瞬間）<br><code>overlaps</code> （重なった瞬間）, <code>overlapping</code> （重なり中）,
-					<code>overlapped</code> （重なりを終えた瞬間）
-				</p>
+					<code>overlapped</code> （重なりを終えた瞬間）</p>
 				<p>これらの関数を <code>if</code> 文で使う代わりに、関数の第 2
 					引数に、コールバック関数を与える方法もあります。コールバック関数は、コリジョンまたはオーバーラップのイベントが発生したときに「発火」します。このコールバック関数の引数は 2
 					つあり、それぞれ自身と相手のスプライトが割り当てられます。</p>
@@ -252,17 +250,14 @@ function update() {
 			<md id="md5-0">
 				<h2 id="サブグループ">サブグループ</h2>
 				<p>このコードサンプルでは、 <code>boxes</code> グループに 2 つの「サブグループ」があります。 <code>smallBoxes</code> と
-					<code>bigBoxes</code> です。
-				</p>
+					<code>bigBoxes</code> です。</p>
 				<p><code>bigBoxes</code> グループを使用して生成した新しいグループスプライトは、 <code>boxes</code> グループの設定をソフト継承しますが、
-					<code>smallBoxes</code> グループからは継承しません。
-				</p>
+					<code>smallBoxes</code> グループからは継承しません。</p>
 				<p><code>boxes</code> グループのグループスプライトには、 <code>smallBoxes</code> グループと <code>bigBoxes</code>
 					グループ、それぞれのグループスプライトのすべてが含まれます。</p>
 				<p><code>remove</code>
 					関数は、グループそのものを削除します。そのため、そのグループを今後使うことはないときに限り使用してください。もし、グループスプライトをすべて削除したいだけで、グループは残したいという場合は、
-					<code>removeAll</code> 関数を使用してください。
-				</p>
+					<code>removeAll</code> 関数を使用してください。</p>
 			</md>
 			<script type="mie/p5" id="SubGroup" horiz="">
 let boxes, smallBoxes, bigBoxes;
@@ -363,8 +358,7 @@ function update() {
 				<md id="md7-1">
 					<h2 id="グループの描画更新">グループの描画更新</h2>
 					<p><code>group.update</code> 関数は、すべてのグループスプライトに対し、 <code>sprite.update</code> 関数を実行します。自動更新を防ぐには、
-						<code>autoUpdate</code> を false に設定します。
-					</p>
+						<code>autoUpdate</code> を false に設定します。</p>
 				</md>
 			</div>
 			<script type="mie/p5" id="custom-draw">
@@ -411,16 +405,16 @@ function draw() {
 	</article>
 
 	<!-- <script src="https://cdn.jsdelivr.net/npm/p5@1/lib/p5.js"></script> -->
-	<script src="/v3/q5.min.js"></script>
-	<script src="/v3/planck.min.js"></script>
-	<script src="/v3/p5play.min.js"></script>
-	<script>
-		window.mie = { autoLoad: false };
+<script src="/v3/q5.min.js"></script>
+<script src="/v3/planck.min.js"></script>
+<script src="/v3/p5play.min.js"></script>
+<script>
+window.mie = { autoLoad: false };
 
 	</script>
 	<script src="/learn/mie.js"></script>
-	<script src="/learn/learn.js"></script>
-	<script src="/account/account.js"></script>
+<script src="/learn/learn.js"></script>
+<script src="/account/account.js"></script>
 </body>
 
 </html>

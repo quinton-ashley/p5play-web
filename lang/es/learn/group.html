@@ -172,8 +172,7 @@ function update() {
 					También puedes verificar colisiones y superposiciones entre sprites y grupos o entre grupos. Las
 					funciones son:</p>
 				<p><code>collides</code>, <code>colliding</code>, <code>collided</code><br><code>overlaps</code>,
-					<code>overlapping</code>, <code>overlapped</code>
-				</p>
+					<code>overlapping</code>, <code>overlapped</code></p>
 				<p>En lugar de usar estas funciones en declaraciones <code>if</code>, puedes proporcionarlas con una
 					función de callback como segundo parámetro. La función de callback se ejecutará cuando ocurra el
 					evento de colisión o superposición. La función de callback recibe, como entradas, dos sprites.</p>
@@ -256,18 +255,14 @@ function update() {
 			<md id="md5-0">
 				<h2 id="subgrupos">Subgrupos</h2>
 				<p>En este mini ejemplo hay dos subgrupos del grupo <code>boxes</code>: <code>smallBoxes</code> y
-					<code>bigBoxes</code>.
-				</p>
+					<code>bigBoxes</code>.</p>
 				<p>Los nuevos sprites creados usando el grupo <code>bigBoxes</code> heredarán rasgos del grupo
-					<code>boxes</code> pero no de los grupos <code>smallBoxes</code>.
-				</p>
+					<code>boxes</code> pero no de los grupos <code>smallBoxes</code>.</p>
 				<p>El grupo <code>boxes</code> contiene todos los sprites en los grupos <code>smallBoxes</code> y
-					<code>bigBoxes</code>.
-				</p>
+					<code>bigBoxes</code>.</p>
 				<p>La función <code>remove</code> elimina el grupo en sí, solo úsala si no quieres usar el grupo de
 					nuevo. Si solo quieres eliminar todos los sprites de un grupo, usa la función
-					<code>removeAll</code>.
-				</p>
+					<code>removeAll</code>.</p>
 			</md>
 			<script type="mie/p5" id="SubGroup" horiz="">
 let boxes, smallBoxes, bigBoxes;
@@ -308,8 +303,7 @@ function update() {
 					ralentizaría la simulación física.</p>
 				<p>Para cambiar esto, establece <code>allSprites.autoCull = false</code> o usa la función
 					<code>cull</code> para establecer un límite de culling diferente. Ten en cuenta que incluso puede
-					eliminar sprites que no tienen un colisionador físico.
-				</p>
+					eliminar sprites que no tienen un colisionador físico.</p>
 				<p>Los sprites que cruzan el límite de culling se eliminan por defecto. Como último parámetro de entrada
 					a la función <code>cull</code>, puedes insertar una función de callback. Cuando se llama, recibe el
 					sprite que fue eliminado y un conteo total de cuántos sprites fueron eliminados en ese cuadro.</p>
@@ -421,16 +415,16 @@ function draw() {
 	</article>
 
 	<!-- <script src="https://cdn.jsdelivr.net/npm/p5@1/lib/p5.js"></script> -->
-	<script src="/v3/q5.min.js"></script>
-	<script src="/v3/planck.min.js"></script>
-	<script src="/v3/p5play.min.js"></script>
-	<script>
-		window.mie = { autoLoad: false };
+<script src="/v3/q5.min.js"></script>
+<script src="/v3/planck.min.js"></script>
+<script src="/v3/p5play.min.js"></script>
+<script>
+window.mie = { autoLoad: false };
 
 	</script>
 	<script src="/learn/mie.js"></script>
-	<script src="/learn/learn.js"></script>
-	<script src="/account/account.js"></script>
+<script src="/learn/learn.js"></script>
+<script src="/account/account.js"></script>
 </body>
 
 </html>

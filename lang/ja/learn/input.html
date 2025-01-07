@@ -118,8 +118,7 @@ if (kb.pressing('space') || mouse.pressing()) {
 				<p>カーソルキーを個別に検知できるよう、 'arrowUp' 、 'arrowDown' 、 'arrowLeft' 、 'arrowRight' も指定することができます。</p>
 				<p>二人同時プレイのゲームでは、ふたりめのプレイヤーは移動に IJKL キーを使用することが一般的です。これらのキーは 'up2' 、 'down2' 、 'left2' 、 'right2'
 					を指定して参照できます。</p>
-				<p><a
-						href="https://github.com/quinton-ashley/p5play/wiki/FAQ#is-p5plays-kb-input-system-compatible-with-non-qwerty-keyboards"
+				<p><a href="https://github.com/quinton-ashley/p5play/wiki/FAQ#is-p5plays-kb-input-system-compatible-with-non-qwerty-keyboards"
 						target="_blank">QWERTY 以外のキーボードを使用していますか？</a></p>
 			</md>
 			<script type="mie/p5" id="keyboard-movement">
@@ -227,16 +226,14 @@ function update() {
 				<p><code>a</code> 、 <code>b</code> 、 <code>x</code> 、 <code>y</code> （それぞれ、 XBox
 					コントローラーでのボタン名です。別のコントローラーの場合、適宜読み替えてください）、<code>l</code>（左ショルダー/バンパー）、<code>r</code>（右ショルダー/バンパー）、<code>lt</code>（左トリガー）、<code>rt</code>（右トリガー）、<code>up</code>、<code>down</code>、<code>left</code>、<code>right</code>
 					（それぞれ、十字ボタンの方向）、<code>lsb</code>（左スティック押し込み）、<code>rsb</code>（右スティック押し込み）、<code>start</code> 、
-					<code>select</code> 。
-				</p>
+					<code>select</code> 。</p>
 				<p><code>leftStick</code> と <code>rightStick</code> は、コントローラーの各アナログスティックの倒れ方を、 x と y
 					のプロパティを持つオブジェクトとして表します。これらの値は、それぞれの成分方向に倒れる深さを -1 ～ 1 の範囲で示しており、 0 は、その方向には倒れていないことを意味します。</p>
 				<p>一部のコントローラーには、押し込みの深さを検知するアナログトリガーがあり、その深さは <code>leftTrigger</code> と <code>rightTrigger</code> によって、
 					0 ～ 1 の数値として示されます。</p>
 				<p>通常の JavaScript 配列と同様、接続された特定のコントローラーには、添字でアクセスできます。例えば、 <code>contros[0]</code> と
 					<code>contros[1]</code> は、 1 番目と 2
-					番目のコントローラーです。ただし、入力状態を取得する前に、この配列にゲームコントローラーが存在するかどうか、忘れずに確認してください。
-				</p>
+					番目のコントローラーです。ただし、入力状態を取得する前に、この配列にゲームコントローラーが存在するかどうか、忘れずに確認してください。</p>
 			</md>
 			<div class="minis horiz">
 				<script type="mie/p5" base-2="" hidden="">
@@ -292,8 +289,7 @@ if (contro.pressing('lsb')) lsb.color = 'white';
 				<p><code>touch.id</code> は、タッチを識別する、一意の番号です。</p>
 				<p><code>touch.duration</code> は、タッチが発生していたフレーム数です。</p>
 				<p>各タッチが終了した後のフレームでは、そのタッチオブジェクトは <code>touches</code> 配列から削除されます。 <code>touches[0]</code> は、
-					<code>mouse</code> と同じ意味になります。
-				</p>
+					<code>mouse</code> と同じ意味になります。</p>
 				<p>このタッチのデモでは、スクリーンをタップするとボックスが生成され、ドラッグで放り投げられます！</p>
 			</md>
 			<script type="mie/p5" id="touches demo">
@@ -339,15 +335,15 @@ function update() {
 	</article>
 
 	<script src="/v3/q5.min.js"></script>
-	<script src="/v3/planck.min.js"></script>
-	<script src="/v3/p5play.min.js"></script>
-	<script>
-		window.mie = { autoLoad: false };
+<script src="/v3/planck.min.js"></script>
+<script src="/v3/p5play.min.js"></script>
+<script>
+window.mie = { autoLoad: false };
 
 	</script>
 	<script src="/learn/mie.js"></script>
-	<script src="/learn/learn.js"></script>
-	<script src="/account/account.js"></script>
+<script src="/learn/learn.js"></script>
+<script src="/account/account.js"></script>
 </body>
 
 </html>

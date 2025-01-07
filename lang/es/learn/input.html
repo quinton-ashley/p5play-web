@@ -82,7 +82,8 @@ if (kb.released(' ')) {
 			</div>
 			<md id="md0-1">
 				<p>p5play facilita la activación de la misma acción a través de diferentes dispositivos de entrada
-					usando <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_OR"
+					usando <a
+						href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_OR"
 						target="_blank">lógica booleana</a>.</p>
 				<p>En el mini-ejemplo, el sprite se vuelve verde si presionas la tecla espaciadora o haces clic con el
 					ratón.</p>
@@ -120,8 +121,7 @@ if (kb.pressing('space') || mouse.pressing()) {
 					'arrowLeft' y 'arrowRight'.</p>
 				<p>En juegos locales para dos jugadores es común que el segundo jugador use las teclas IJKL para el
 					movimiento. Estas teclas pueden referenciarse usando 'up2', 'down2', 'left2' y 'right2'.</p>
-				<p><a
-						href="https://github.com/quinton-ashley/p5play/wiki/FAQ#is-p5plays-kb-input-system-compatible-with-non-qwerty-keyboards"
+				<p><a href="https://github.com/quinton-ashley/p5play/wiki/FAQ#is-p5plays-kb-input-system-compatible-with-non-qwerty-keyboards"
 						target="_blank">¿Usas un teclado no QWERTY?</a></p>
 			</md>
 			<script type="mie/p5" id="keyboard-movement">
@@ -237,8 +237,7 @@ function update() {
 					<code>r</code> (botón derecho), <code>lt</code> (gatillo izquierdo), <code>rt</code> (gatillo
 					derecho), <code>arriba</code>, <code>abajo</code>, <code>izquierda</code>, <code>derecha</code>
 					(D-pad), <code>lsb</code> (botón del stick izquierdo), <code>rsb</code> (botón del stick derecho),
-					<code>start</code> y <code>select</code>
-				</p>
+					<code>start</code> y <code>select</code></p>
 				<p><code>leftStick</code> y <code>rightStick</code> representan las posiciones de los sticks análogos
 					como objetos con propiedades x e y. Estos valores varían de -1 a 1, siendo 0 la posición central.
 				</p>
@@ -298,8 +297,7 @@ if (contro.pressing('lsb')) lsb.color = 'white';
 			<md id="md5-0">
 				<h2 id="tacto">Tacto</h2>
 				<p>Cada interacción con pantalla táctil genera un objeto de toque que se añade al arreglo
-					<code>touches</code>.
-				</p>
+					<code>touches</code>.</p>
 				<p>Cada toque tiene sus propias funciones para detectar estados de entrada de presión y arrastre.</p>
 				<p><code>touch.x</code> y <code>touch.y</code> almacenan la posición del toque en el mundo, basada en la
 					posición de la cámara.</p>
@@ -307,8 +305,7 @@ if (contro.pressing('lsb')) lsb.color = 'white';
 				<p><code>touch.id</code> es un número único que identifica el toque.</p>
 				<p><code>touch.duration</code> almacena cuántos cuadros el toque ha estado activo.</p>
 				<p>El cuadro después de que un toque termina, su objeto de toque se elimina del arreglo
-					<code>touches</code>. <code>touches[0]</code> se mapea al <code>mouse</code>.
-				</p>
+					<code>touches</code>. <code>touches[0]</code> se mapea al <code>mouse</code>.</p>
 				<p>¡En la demostración de toques, toca la pantalla para crear cajas y arrástralas para lanzarlas!</p>
 			</md>
 			<script type="mie/p5" id="touches demo">
@@ -352,15 +349,15 @@ function update() {
 	</article>
 
 	<script src="/v3/q5.min.js"></script>
-	<script src="/v3/planck.min.js"></script>
-	<script src="/v3/p5play.min.js"></script>
-	<script>
-		window.mie = { autoLoad: false };
+<script src="/v3/planck.min.js"></script>
+<script src="/v3/p5play.min.js"></script>
+<script>
+window.mie = { autoLoad: false };
 
 	</script>
 	<script src="/learn/mie.js"></script>
-	<script src="/learn/learn.js"></script>
-	<script src="/account/account.js"></script>
+<script src="/learn/learn.js"></script>
+<script src="/account/account.js"></script>
 </body>
 
 </html>

@@ -35,8 +35,8 @@
 		<div id="page-0" class="page">
 			<md id="md0-0">
 				<h2 id="setup-and-update">Setup and Update</h2>
-				<p>The code inside the <a href="https://q5js.org" target="_blank">q5.js</a> (or <a href="https://p5js.org"
-						target="_blank">p5.js</a>) <code>setup</code> function runs when the
+				<p>The code inside the <a href="https://q5js.org" target="_blank">q5.js</a> (or <a
+						href="https://p5js.org" target="_blank">p5.js</a>) <code>setup</code> function runs when the
 					program starts. The <code>update</code> function runs 60 times per second by default.</p>
 				<p>The <code>new Canvas()</code> constructor creates a section of the screen that the program can draw
 					on.</p>
@@ -175,8 +175,7 @@ function update() {
 					Setting a sprite's collider
 					type to <code>'none'</code> makes it have no collider.</p>
 				<p>The collider type can also be set using the first letter of the collider type name: <code>'d'</code>,
-					<code>'s'</code>, <code>'k'</code>, or <code>'n'</code>.
-				</p>
+					<code>'s'</code>, <code>'k'</code>, or <code>'n'</code>.</p>
 				<p>Click the reload icon on the top right corner of a code example to replay it!</p>
 			</md>
 			<script type="mie/p5" id="dynamic-and-static-colliders" base-2="" horiz="" lines="16">
@@ -412,8 +411,8 @@ function update() {}
 					You can define a color for each letter you use in your pixel art. To create a color use the q5 <a
 						href="https://q5js.org/learn/#color" target="_blank"><code>color</code></a> function which
 					accepts RGB (red, green, blue) values or HEX color codes.</p>
-				<p>The easiest way to find colors is to use a <a href="https://www.google.com/search?q=google+color+picker"
-						target="_blank">color picker</a>.</p>
+				<p>The easiest way to find colors is to use a <a
+						href="https://www.google.com/search?q=google+color+picker" target="_blank">color picker</a>.</p>
 			</md>
 			<script type="mie/p5" id="blue-smiley" lines="20">
 let smiley;
@@ -487,8 +486,7 @@ player.y = mouse.y;
 					</script>
 			<md id="md3-2">
 				<p>All the other movement methods on this page change the sprite's <code>velocity</code>, aka
-					<code>vel</code>, which is its rate of motion along the x and y axis.
-				</p>
+					<code>vel</code>, which is its rate of motion along the x and y axis.</p>
 				<p><code>vel</code> is Q5.Vector, you can use any vector functions on it.</p>
 				<p>Restart this example to see the player sprite hit the block!</p>
 			</md>
@@ -498,8 +496,7 @@ player.vel.y = 0.1;
 					</script>
 			<md id="md3-3">
 				<p>Yet, you may find it's more convenient to move a sprite by setting its <code>direction</code> and
-					<code>speed</code>.
-				</p>
+					<code>speed</code>.</p>
 				<p>You can also set a sprite's direction using an angle value or direction name such as: 'up', 'down',
 					'left', 'right', 'upLeft', 'upRight', 'downLeft', 'downRight'.</p>
 			</md>
@@ -682,7 +679,7 @@ function setup() {
 	floor.color = 'red';
 }
 
-function update() {
+function drawFrame() {
 	clear();
 	if (block.colliding(floor)) {
 		block.color = 'red';
@@ -769,9 +766,11 @@ function setup() {
 }
 
 function update() {
-	clear();
 	player.moveTowards(mouse);
-		
+}
+
+function drawFrame() {
+	clear();
 	if (player.overlaps(coin)) coin.remove();
 }
 			</script>
@@ -780,7 +779,7 @@ function update() {
 				<h2 id="try-it">Try it!</h2>
 				<p>Try making the blue sprite change to red only if it's overlapping with the red sprite.</p>
 			</md>
-			<script type="mie/p5" id="Level-6-Challenge" lines="20" horiz="">
+			<script type="mie/p5" id="Level-6-Challenge" horiz="">
 let sprite1, sprite2;
 
 function setup() {
@@ -794,11 +793,14 @@ function setup() {
 }
 
 function update() {
-	clear();
 	sprite1.moveTowards(mouse);
+}
 
+function drawFrame() {
+	clear();
 	
 	
+
 }
 			</script>
 			<div class="break"></div>
@@ -876,8 +878,7 @@ else sprite.rotation = 0;
 			</script>
 			<md id="md7-1">
 				<p>All of the other rotation methods on this page work by changing the sprite's
-					<code>rotationSpeed</code>.
-				</p>
+					<code>rotationSpeed</code>.</p>
 			</md>
 			<script type="mie/p5" id="rotationSpeed" base="5">
 sprite.rotationSpeed = 1;
@@ -1154,8 +1155,8 @@ function setup() {
 				<p>In Box2D however, when a collider is displaced by another collider, they constantly collide and
 					separate from each other.</p>
 				<p>If you're trying to make a platformer game, <code>colliding</code> is not a reliable way to check if
-					a sprite is standing on a platform. Check out the <a href="https://openprocessing.org/sketch/1869796"
-						target="_blank">➡️ platformer demo</a>.</p>
+					a sprite is standing on a platform. Check out the <a
+						href="https://openprocessing.org/sketch/1869796" target="_blank">➡️ platformer demo</a>.</p>
 			</md>
 			<script type="mie/p5" id="displacement" horiz="">
 let block, platform;
@@ -1523,8 +1524,7 @@ function update() {
 					<p>Overlap sensors determine if a sprite overlaps with another sprite.</p>
 					<p>By default when an overlap checking method is used, and the sprite has no sensors, the
 						<code>addDefaultSensors</code> function is used behind the scenes to create sensors for each of
-						the sprite's colliders.
-					</p>
+						the sprite's colliders.</p>
 					<p>You can add additional sensors to a sprite by using the <code>addSensor</code> function.</p>
 				</md>
 			</div>
@@ -1654,8 +1654,7 @@ function draw() {
 			<md id="md15-1">
 				<p>The <code>move</code>, <code>moveTo</code>, <code>rotate</code>, <code>rotateTo</code>, and
 					<code>rotateMinTo</code> functions all return a <code>Promise</code> that resolves to true when the
-					movement is finished.
-				</p>
+					movement is finished.</p>
 				<p>But, if the sprite's movement is interrupted by a new movement or a collision that significantly
 					changes the sprite's trajectory, the promise will resolve to false.</p>
 			</md>
@@ -1761,16 +1760,16 @@ function draw() {
 	</article>
 
 	<!-- <script src="https://cdn.jsdelivr.net/npm/p5@1/lib/p5.min.js"></script> -->
-	<script src="/v3/q5.min.js"></script>
-	<script src="/v3/planck.min.js"></script>
-	<script src="/v3/p5play.min.js"></script>
-	<script>
-		window.mie = { autoLoad: false };
+<script src="/v3/q5.min.js"></script>
+<script src="/v3/planck.min.js"></script>
+<script src="/v3/p5play.min.js"></script>
+<script>
+window.mie = { autoLoad: false };
 
 	</script>
 	<script src="/learn/mie.js"></script>
-	<script src="/learn/learn.js"></script>
-	<script src="/account/account.js"></script>
+<script src="/learn/learn.js"></script>
+<script src="/account/account.js"></script>
 </body>
 
 </html>

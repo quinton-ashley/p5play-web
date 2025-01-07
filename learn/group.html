@@ -169,8 +169,7 @@ function update() {
 					check for collisions and overlaps between sprites and groups or between groups. The functions are:
 				</p>
 				<p><code>collides</code>, <code>colliding</code>, <code>collided</code><br><code>overlaps</code>,
-					<code>overlapping</code>, <code>overlapped</code>
-				</p>
+					<code>overlapping</code>, <code>overlapped</code></p>
 				<p>Instead of using these functions in <code>if</code> statements, you can provide them with a callback
 					function as a second parameter. The callback function will run when the collision or overlap event
 					occurs. The callback function receives, as inputs, two sprites.</p>
@@ -253,14 +252,11 @@ function update() {
 			<md id="md5-0">
 				<h2 id="sub-groups">Sub Groups</h2>
 				<p>In this code example there are two sub groups of the <code>boxes</code> group:
-					<code>smallBoxes</code> and <code>bigBoxes</code>.
-				</p>
+					<code>smallBoxes</code> and <code>bigBoxes</code>.</p>
 				<p>New sprites created using the <code>bigBoxes</code> group will inherit traits from the
-					<code>boxes</code> group but not from the <code>smallBoxes</code> groups.
-				</p>
+					<code>boxes</code> group but not from the <code>smallBoxes</code> groups.</p>
 				<p>The <code>boxes</code> group contains all the sprites in the <code>smallBoxes</code> and
-					<code>bigBoxes</code> groups.
-				</p>
+					<code>bigBoxes</code> groups.</p>
 				<p>The <code>remove</code> function removes the group itself, only use it if you don't want to use the
 					group again. If you just want to remove all the sprites from a group, use the <code>removeAll</code>
 					function.</p>
@@ -307,8 +303,7 @@ function update() {
 					collider.</p>
 				<p>Sprites that cross the cull boundary are removed by default. As the last input parameter to the
 					<code>cull</code> function, you can insert a callback function. When called, it receives the sprite
-					that was culled and a total count of how many sprites were culled on that frame.
-				</p>
+					that was culled and a total count of how many sprites were culled on that frame.</p>
 				<p>Note that in this example, the amount of balls decreases if more than one ball is culled in one
 					frame.</p>
 			</md>
@@ -415,16 +410,16 @@ function draw() {
 	</article>
 
 	<!-- <script src="https://cdn.jsdelivr.net/npm/p5@1/lib/p5.js"></script> -->
-	<script src="/v3/q5.min.js"></script>
-	<script src="/v3/planck.min.js"></script>
-	<script src="/v3/p5play.min.js"></script>
-	<script>
-		window.mie = { autoLoad: false };
+<script src="/v3/q5.min.js"></script>
+<script src="/v3/planck.min.js"></script>
+<script src="/v3/p5play.min.js"></script>
+<script>
+window.mie = { autoLoad: false };
 
 	</script>
 	<script src="/learn/mie.js"></script>
-	<script src="/learn/learn.js"></script>
-	<script src="/account/account.js"></script>
+<script src="/learn/learn.js"></script>
+<script src="/account/account.js"></script>
 </body>
 
 </html>

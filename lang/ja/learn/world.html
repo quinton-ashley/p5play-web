@@ -49,8 +49,7 @@
 						（スリープ）」を開始します。「スリープ」中のスプライトは、物理シミュレーションの対象外となり、ほとんどの場合で Box2D
 						物理エンジンはそのスプライトに対する計算処理を省略します。これによってパフォーマンスは向上しますが、ときに問題を引き起こしたりもします。</p>
 					<p>スリープ中のスプライトは、 <code>sprite.sleeping</code> を false に設定することで、「目覚めさせる（スリープを解除する）」ことができます。また、
-						<code>sprite.allowSleeping</code> を false に設定することで、スプライトごとにスリープ機能をを無効にすることもできます。
-					</p>
+						<code>sprite.allowSleeping</code> を false に設定することで、スプライトごとにスリープ機能をを無効にすることもできます。</p>
 				</md>
 			</div>
 			<div class="minis horiz">
@@ -96,8 +95,7 @@ function update() {
 					<p><code>world.timeScale</code> （時間速度）係数は、デフォルトでは 1
 						で、これは現実時間での物理シミュレーションの設定です。この値を小さくすると、動きはスローモーションになります。 0 にすると、時間は停止します！</p>
 					<p>注意すべきは、 Box2D 物理エンジンのソルバ（計算器）が安定して動作可能な時間速度は、 2 が限界だということです。もし、物理シミュレーションの時間をさらに速く進めたい場合は、代わりに
-						<code>world.step</code> 関数を複数回、実行してください。
-					</p>
+						<code>world.step</code> 関数を複数回、実行してください。</p>
 					<p>コードサンプルのキャンバスをクリックしてみてください。物理シミュレーションが実時間の 1/4
 						のスローモーションで進みます。このときの、映画『マトリックス』の銃弾の残像のようなイフェクトは、フレームごとの背景の塗りつぶし色を、わずかに透明にすることで作ることができます。</p>
 					<p><code>world.realTime</code> は、一時停止中の時間も含め、ワールドが起動してからの、「現実の」経過秒数を表します。</p>
@@ -144,8 +142,7 @@ function update() {
 					関数の使用や、 <code>get</code> でのキャンバスのピクセル色の取得を、避けるようにしてください。</p>
 				<p>デフォルトでは、 Box2D の物理エンジンは <code>world.velocityIterations</code> （速度計算の反復）を 8 回、
 					<code>world.positionIterations</code> （位置計算の反復）を 3
-					回行います。これらの値を小さくすると、物理シミュレーション計算は速くなりますが、そのぶん精度は落ちます。
-				</p>
+					回行います。これらの値を小さくすると、物理シミュレーション計算は速くなりますが、そのぶん精度は落ちます。</p>
 				<p>さまざまなウェブブラウザで p5play をテストした結果、 Google Chrome が最もパフォーマンスに優れていることがわかりました。</p>
 			</md>
 			<script type="mie/p5" id="renderStats">
@@ -350,14 +347,14 @@ function update() {
 	</article>
 
 	<script src="/v3/q5.min.js"></script>
-	<script src="/v3/planck.min.js"></script>
-	<script src="/v3/p5play.min.js"></script>
-	<script>
-		window.mie = { autoLoad: false };
+<script src="/v3/planck.min.js"></script>
+<script src="/v3/p5play.min.js"></script>
+<script>
+window.mie = { autoLoad: false };
 
 	</script>
 	<script src="/learn/mie.js"></script>
-	<script src="/learn/learn.js"></script>
+<script src="/learn/learn.js"></script>
 </body>
 
 </html>
