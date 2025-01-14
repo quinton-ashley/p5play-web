@@ -4771,8 +4771,10 @@ p5.prototype.registerMethod('init', function p5playInit() {
 						}
 						for (let i = 0; i < frameCount; i++) {
 							let f = { x, y, w, h };
-							f.defaultWidth = w * $._defaultImageScale;
-							f.defaultHeight = h * $._defaultImageScale;
+							if ($._defaultImageScale) {
+								f.defaultWidth = w * $._defaultImageScale;
+								f.defaultHeight = h * $._defaultImageScale;
+							}
 							_this.push(f);
 							x += w;
 							if (x >= _this.spriteSheet.width) {
@@ -4803,8 +4805,10 @@ p5.prototype.registerMethod('init', function p5playInit() {
 									};
 								}
 							}
-							f.defaultWidth = f.w * $._defaultImageScale;
-							f.defaultHeight = f.h * $._defaultImageScale;
+							if ($._defaultImageScale) {
+								f.defaultWidth = f.w * $._defaultImageScale;
+								f.defaultHeight = f.h * $._defaultImageScale;
+							}
 							_this.push(f);
 						}
 					}
