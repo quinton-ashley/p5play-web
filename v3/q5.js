@@ -1,6 +1,6 @@
 /**
  * q5.js
- * @version 2.15
+ * @version 2.17
  * @author quinton-ashley, Tezumie, and LingDong-
  * @license LGPL-3.0
  * @class Q5
@@ -71,6 +71,7 @@ function Q5(scope, parent, renderer) {
 
 	$._incrementPreload = () => q._preloadCount++;
 	$._decrementPreload = () => q._preloadCount--;
+	$.disablePreloadSystem = () => ($._disablePreload = true);
 
 	$._draw = (timestamp) => {
 		let ts = timestamp || performance.now();
@@ -310,7 +311,7 @@ function createCanvas(w, h, opt) {
 	}
 }
 
-Q5.version = Q5.VERSION = '2.15';
+Q5.version = Q5.VERSION = '2.17';
 
 if (typeof document == 'object') {
 	document.addEventListener('DOMContentLoaded', () => {
@@ -463,8 +464,10 @@ Q5.modules.canvas = ($, q) => {
 	};
 
 	$._setCanvasSize = (w, h) => {
+		if (!w) h ??= window.innerHeight;
+		else h ??= w;
 		w ??= window.innerWidth;
-		h ??= window.innerHeight;
+
 		$.defaultWidth = c.w = w = Math.ceil(w);
 		$.defaultHeight = c.h = h = Math.ceil(h);
 		c.hw = w / 2;
@@ -1342,28 +1345,33 @@ Q5.renderers.c2d.image = ($, q) => {
 		let g = $.createImage(1, 1, opt);
 		let pd = (g._pixelDensity = opt?.pixelDensity || 1);
 
-		function loaded(img) {
-			img._pixelDensity = pd;
-			g.defaultWidth = img.width * $._defaultImageScale;
-			g.defaultHeight = img.height * $._defaultImageScale;
-			g.naturalWidth = img.naturalWidth || img.width;
-			g.naturalHeight = img.naturalHeight || img.height;
-			g._setImageSize(Math.ceil(g.naturalWidth / pd), Math.ceil(g.naturalHeight / pd));
-
-			g.ctx.drawImage(img, 0, 0);
-			q._preloadCount--;
-			if (cb) cb(g);
-		}
-
 		let img = new window.Image();
 		img.crossOrigin = 'Anonymous';
-		img.onload = () => loaded(img);
-		img.onerror = (e) => {
-			q._preloadCount--;
-			throw e;
-		};
+
+		g._loader = new Promise((resolve, reject) => {
+			img.onload = () => {
+				img._pixelDensity = pd;
+				g.defaultWidth = img.width * $._defaultImageScale;
+				g.defaultHeight = img.height * $._defaultImageScale;
+				g.naturalWidth = img.naturalWidth || img.width;
+				g.naturalHeight = img.naturalHeight || img.height;
+				g._setImageSize(Math.ceil(g.naturalWidth / pd), Math.ceil(g.naturalHeight / pd));
+
+				g.ctx.drawImage(img, 0, 0);
+				q._preloadCount--;
+				if (cb) cb(g);
+				delete g._loader;
+				resolve(g);
+			};
+			img.onerror = (e) => {
+				q._preloadCount--;
+				reject(e);
+			};
+		});
+
 		img.src = url;
 
+		if ($._disablePreload) return g._loader;
 		return g;
 	};
 
@@ -1755,7 +1763,7 @@ Q5.renderers.c2d.soft_filters = ($) => {
 
 	$._softFilter = (typ, x) => {
 		if (!$._filters) initSoftFilters();
-		let imgData = $.ctx._getImageData(0, 0, $.canvas.width, $.canvas.height);
+		let imgData = $._getImageData(0, 0, $.canvas.width, $.canvas.height);
 		$._filters[typ](imgData.data, x);
 		$.ctx.putImageData(imgData, 0, 0);
 	};
@@ -1785,15 +1793,26 @@ Q5.renderers.c2d.text = ($, q) => {
 		let name = url.split('/').pop().split('.')[0].replace(' ', '');
 		let f = new FontFace(name, `url(${url})`);
 		document.fonts.add(f);
-		f.load().then(() => {
+		f._loader = (async () => {
+			let err;
+			try {
+				await f.load();
+			} catch (e) {
+				err = e;
+			}
 			q._preloadCount--;
-			if (cb) cb(name);
-		});
+			delete f._loader;
+			if (err) throw err;
+			if (cb) cb(f);
+			return f;
+		})();
 		$.textFont(name);
-		return name;
+		if ($._disablePreload) return f._loader;
+		return f;
 	};
 
 	$.textFont = (x) => {
+		if (typeof x != 'string') x = x.family;
 		if (!x || x == font) return font;
 		font = x;
 		fontMod = true;
@@ -2521,7 +2540,9 @@ main {
 		}
 		if (displayMode == 'center') displayMode = 'centered';
 		Object.assign(c, { displayMode, renderQuality, displayScale });
+		if ($.ctx) $.pushStyles();
 		$._adjustDisplay();
+		if ($.ctx) $.popStyles();
 	};
 
 	$.fullscreen = (v) => {
@@ -2529,6 +2550,264 @@ main {
 		if (v) document.body.requestFullscreen();
 		else document.body.exitFullscreen();
 	};
+};
+Q5.modules.dom = ($) => {
+	$.elementMode = (mode) => ($._elementMode = mode);
+
+	$.createElement = (tag, content) => {
+		let el = document.createElement(tag);
+
+		if ($._elementMode == 'center') {
+			el.style.transform = 'translate(-50%, -50%)';
+		}
+
+		if (content) el.innerHTML = content;
+
+		Object.defineProperty(el, 'x', {
+			get: () => el._x,
+			set: (v) => {
+				let pos = el.style.position;
+				if (!pos || pos == 'relative') {
+					el.style.position = 'absolute';
+				}
+				let x = $.canvas.offsetLeft + v;
+				el.style.left = x + 'px';
+				el._x = x;
+			}
+		});
+
+		Object.defineProperty(el, 'y', {
+			get: () => el._y,
+			set: (v) => {
+				let pos = el.style.position;
+				if (!pos || pos == 'relative') {
+					el.style.position = 'absolute';
+				}
+				let y = $.canvas.offsetTop + v;
+				el.style.top = y + 'px';
+				el._y = y;
+			}
+		});
+
+		Object.defineProperty(el, 'width', {
+			get: () => el.style.width,
+			set: (v) => (el.style.width = v + 'px')
+		});
+
+		Object.defineProperty(el, 'height', {
+			get: () => el.style.height,
+			set: (v) => (el.style.height = v + 'px')
+		});
+
+		el.position = (x, y, scheme) => {
+			if (scheme) el.style.position = scheme;
+			el.x = x;
+			el.y = y;
+			return el;
+		};
+
+		// overwrite size
+		Object.defineProperty(el, 'size', {
+			writable: true
+		});
+
+		el.size = (w, h) => {
+			el.width = w;
+			el.height = h;
+			return el;
+		};
+
+		el.center = () => {
+			el.style.position = 'absolute';
+			el.x = $.canvas.hw;
+			el.y = $.canvas.hh;
+			return el;
+		};
+
+		el.show = () => {
+			el.style.display = 'block';
+			return el;
+		};
+
+		el.hide = () => {
+			el.style.display = 'none';
+			return el;
+		};
+
+		el.parent = (parent) => {
+			parent.append(el);
+			return el;
+		};
+
+		$._elements.push(el);
+		$.canvas.parentElement.append(el);
+
+		return el;
+	};
+	$.createEl = $.createElement;
+
+	$.createA = (href, content, newTab) => {
+		let el = $.createEl('a', content);
+		el.href = href;
+		el.target = newTab ? '_blank' : '_self';
+		return el;
+	};
+
+	$.createButton = (content) => $.createEl('button', content);
+
+	$.createCheckbox = (label = '', checked = false) => {
+		let el = $.createEl('input');
+		el.type = 'checkbox';
+		el.checked = checked;
+		let lbl = $.createEl('label', label);
+		lbl.addEventListener('click', () => {
+			el.checked = !el.checked;
+			el.dispatchEvent(new Event('change', { bubbles: true }));
+		});
+		el.insertAdjacentElement('afterend', lbl);
+		el.label = lbl;
+		return el;
+	};
+
+	$.createColorPicker = (value = '#ffffff') => {
+		let el = $.createEl('input');
+		el.type = 'color';
+		el.value = value.toString();
+		return el;
+	};
+
+	$.createDiv = (content) => $.createEl('div', content);
+
+	$.createImg = (src) => {
+		let el = $.createEl('img');
+		el.crossOrigin = 'anonymous';
+		el.src = src;
+		return el;
+	};
+
+	$.createInput = (value = '', type = 'text') => {
+		let el = $.createEl('input');
+		el.value = value;
+		el.type = type;
+		el.style.boxSizing = 'border-box';
+		return el;
+	};
+
+	$.createP = (content) => $.createEl('p', content);
+
+	let radioCount = 0;
+	$.createRadio = (name) => {
+		let el = $.createEl('div');
+		el.name = name || 'radio' + radioCount++;
+		el.buttons = [];
+		Object.defineProperty(el, 'value', {
+			get: () => el.selected?.value,
+			set: (v) => {
+				let btn = el.buttons.find((b) => b.value == v);
+				if (btn) {
+					btn.checked = true;
+					el.selected = btn;
+				}
+			}
+		});
+		el.option = (label, value) => {
+			let btn = $.createEl('input');
+			btn.type = 'radio';
+			btn.name = el.name;
+			btn.value = value || label;
+			btn.addEventListener('change', () => (el.selected = btn));
+
+			let lbl = $.createEl('label', label);
+			lbl.addEventListener('click', () => {
+				btn.checked = true;
+				el.selected = btn;
+				btn.dispatchEvent(new Event('change', { bubbles: true }));
+			});
+
+			btn.label = lbl;
+			el.append(btn);
+			el.append(lbl);
+			el.buttons.push(btn);
+			return el;
+		};
+
+		return el;
+	};
+
+	$.createSelect = (placeholder) => {
+		let el = $.createEl('select');
+		if (placeholder) {
+			let opt = $.createEl('option', placeholder);
+			opt.disabled = true;
+			opt.selected = true;
+			el.append(opt);
+		}
+		Object.defineProperty(el, 'selected', {
+			get: () => {
+				if (el.multiple) return Array.from(el.selectedOptions);
+				return el.selectedOptions[0];
+			},
+			set: (v) => {
+				if (el.multiple) {
+					el.options.forEach((o) => (o.selected = v.includes(o)));
+				} else {
+					v.selected = true;
+				}
+			}
+		});
+		Object.defineProperty(el, 'value', {
+			get: () => {
+				if (el.multiple) {
+					return Array.from(el.selectedOptions).map((o) => o.value);
+				}
+				return el.selectedOptions[0]?.value;
+			},
+			set: (v) => {
+				if (el.multiple) {
+					el.options.forEach((o) => (o.selected = v.includes(o.value)));
+				} else {
+					let opt;
+					for (let i = 0; i < el.options.length; i++) {
+						if (el.options[i].value == v) {
+							opt = el.options[i];
+							break;
+						}
+					}
+					if (opt) opt.selected = true;
+				}
+			}
+		});
+		el.option = (label, value) => {
+			let opt = $.createEl('option', label);
+			opt.value = value || label;
+			el.append(opt);
+			return el;
+		};
+		return el;
+	};
+
+	$.createSlider = (min, max, value, step) => {
+		let el = $.createEl('input');
+		el.type = 'range';
+		el.min = min;
+		el.max = max;
+		el.value = value;
+		el.step = step;
+		el.val = () => parseFloat(el.value);
+		return el;
+	};
+
+	$.createSpan = (content) => $.createEl('span', content);
+
+	$.createVideo = (src) => {
+		let el = $.createEl('video');
+		el.crossOrigin = 'anonymous';
+		el.src = src;
+		return el;
+	};
+
+	$.findElement = (selector) => document.querySelector(selector);
+	$.findElements = (selector) => document.querySelectorAll(selector);
 };
 Q5.modules.input = ($, q) => {
 	if ($._scope == 'graphics') return;
@@ -2569,7 +2848,7 @@ Q5.modules.input = ($, q) => {
 	let c = $.canvas;
 
 	$._startAudio = () => {
-		if (!Q5.aud || Q5.aud?.state == 'suspended') $.userStartAudio();
+		if (!Q5.aud || Q5.aud?.state != 'running') $.userStartAudio();
 	};
 
 	$._updateMouse = (e) => {
@@ -3171,28 +3450,61 @@ Q5.PerlinNoise = class extends Q5.Noise {
 };
 Q5.modules.sound = ($, q) => {
 	$.Sound = Q5.Sound;
-
 	let sounds = [];
 
-	$.loadSound = (path, cb) => {
+	$.loadSound = (url, cb) => {
 		q._preloadCount++;
-		let s = new Q5.Sound(path, cb);
-		s.crossOrigin = 'Anonymous';
-		s.addEventListener('canplaythrough', () => {
-			if (!s.loaded) {
-				q._preloadCount--;
-				s.loaded = true;
-				if (Q5.aud) s.init();
-				if (cb) cb(s);
-			}
-		});
+
+		let s = new Q5.Sound();
 		sounds.push(s);
+
+		s._loader = (async () => {
+			let err;
+			try {
+				await s.load(url);
+			} catch (e) {
+				err = e;
+			}
+			q._preloadCount--;
+			delete s._loader;
+			if (err) throw err;
+			if (cb) cb(s);
+			return s;
+		})();
+
+		if ($._disablePreload) return s._loader;
 		return s;
 	};
+
+	$.loadAudio = (url, cb) => {
+		q._preloadCount++;
+		let a = new Audio(url);
+		a.crossOrigin = 'Anonymous';
+		a.addEventListener('canplaythrough', () => {
+			if (!a.loaded) {
+				q._preloadCount--;
+				a.loaded = true;
+				if (cb) cb(a);
+			}
+		});
+		let preloadSkip = () => {
+			a._preloadSkip = true;
+			q._preloadCount--;
+		};
+		a.addEventListener('suspend', preloadSkip);
+		a.addEventListener('error', (e) => {
+			preloadSkip();
+			throw e;
+		});
+		return a;
+	};
+
 	$.getAudioContext = () => Q5.aud;
+
 	$.userStartAudio = () => {
 		if (window.AudioContext) {
-			if (!Q5.aud) {
+			if (Q5._offlineAudio) {
+				Q5._offlineAudio = false;
 				Q5.aud = new window.AudioContext();
 				for (let s of sounds) s.init();
 			}
@@ -3201,59 +3513,206 @@ Q5.modules.sound = ($, q) => {
 	};
 };
 
-if (window.Audio) {
-	Q5.Sound ??= class extends Audio {
-		init() {
-			let s = this;
-			s.panner = Q5.aud.createStereoPanner();
-			s.source = Q5.aud.createMediaElementSource(s);
-			s.source.connect(s.panner);
-			s.panner.connect(Q5.aud.destination);
-			let pan = s.pan;
-			Object.defineProperty(s, 'pan', {
-				get: () => s.panner.pan.value,
-				set: (v) => (s.panner.pan.value = v)
-			});
-			if (pan) s.pan = pan;
-		}
-		setVolume(level) {
-			this.volume = level;
-		}
-		setLoop(loop) {
-			this.loop = loop;
-		}
-		setPan(value) {
-			this.pan = value;
-		}
-		isLoaded() {
-			return this.loaded;
-		}
-		isPlaying() {
-			return !this.paused;
-		}
-	};
+if (window.OfflineAudioContext) {
+	Q5.aud = new window.OfflineAudioContext(2, 1, 44100);
+	Q5._offlineAudio = true;
 }
+
+Q5.Sound = class {
+	constructor() {
+		this.sources = new Set();
+		this.loaded = this.paused = false;
+	}
+
+	async load(url) {
+		this.url = url;
+		let res = await fetch(url);
+		this.buffer = await res.arrayBuffer();
+		this.buffer = await Q5.aud.decodeAudioData(this.buffer);
+	}
+
+	init() {
+		this.gainNode = Q5.aud.createGain();
+		this.pannerNode = Q5.aud.createStereoPanner();
+		this.gainNode.connect(this.pannerNode);
+		this.pannerNode.connect(Q5.aud.destination);
+
+		this.loaded = true;
+		if (this._volume) this.volume = this._volume;
+		if (this._pan) this.pan = this._pan;
+	}
+
+	_newSource(offset, duration) {
+		let source = Q5.aud.createBufferSource();
+		source.buffer = this.buffer;
+		source.connect(this.gainNode);
+		source.loop = this._loop;
+
+		source._startedAt = Q5.aud.currentTime;
+		source._offset = offset;
+		source._duration = duration;
+
+		source.start(0, source._offset, source._duration);
+
+		this.sources.add(source);
+		source.onended = () => {
+			if (!this.paused) {
+				this.ended = true;
+				this.sources.delete(source);
+			}
+		};
+	}
+
+	play(time = 0, duration) {
+		if (!this.loaded) return;
+
+		if (!this.paused) {
+			this._newSource(time, duration);
+		} else {
+			let timings = [];
+			for (let source of this.sources) {
+				timings.push(source._offset, source._duration);
+				this.sources.delete(source);
+			}
+			for (let i = 0; i < timings.length; i += 2) {
+				this._newSource(timings[i], timings[i + 1]);
+			}
+		}
+
+		this.paused = this.ended = false;
+	}
+
+	pause() {
+		if (!this.isPlaying()) return;
+
+		for (let source of this.sources) {
+			source.stop();
+			let timePassed = Q5.aud.currentTime - source._startedAt;
+			source._offset += timePassed;
+			if (source._duration) source._duration -= timePassed;
+		}
+		this.paused = true;
+	}
+
+	stop() {
+		for (let source of this.sources) {
+			source.stop();
+			this.sources.delete(source);
+		}
+		this.paused = false;
+		this.ended = true;
+	}
+
+	get volume() {
+		return this._volume;
+	}
+	set volume(level) {
+		if (this.loaded) this.gainNode.gain.value = level;
+		this._volume = level;
+	}
+
+	get pan() {
+		return this._pan;
+	}
+	set pan(value) {
+		if (this.loaded) this.pannerNode.pan.value = value;
+		this._pan = value;
+	}
+
+	get loop() {
+		return this._loop;
+	}
+	set loop(value) {
+		this.sources.forEach((source) => (source.loop = value));
+		this._loop = value;
+	}
+
+	get playing() {
+		return !this.paused && this.sources.size > 0;
+	}
+
+	// backwards compatibility
+	setVolume(level) {
+		this.volume = level;
+	}
+	setPan(value) {
+		this.pan = value;
+	}
+	setLoop(loop) {
+		this.loop = loop;
+	}
+	isLoaded() {
+		return this.loaded;
+	}
+	isPlaying() {
+		return this.playing;
+	}
+	isPaused() {
+		return this.paused;
+	}
+	isLooping() {
+		return this._loop;
+	}
+};
 Q5.modules.util = ($, q) => {
-	$._loadFile = (path, cb, type) => {
+	$._loadFile = (url, cb, type) => {
 		q._preloadCount++;
 		let ret = {};
-		fetch(path)
-			.then((r) => {
-				if (type == 'json') return r.json();
-				return r.text();
-			})
-			.then((r) => {
-				q._preloadCount--;
-				if (type == 'csv') r = $.CSV.parse(r);
-				Object.assign(ret, r);
-				if (cb) cb(r);
-			});
+		ret._loader = new Promise((resolve, reject) => {
+			fetch(url)
+				.then((res) => {
+					if (!res.ok) {
+						reject('error loading file');
+						return null;
+					}
+					if (type == 'json') return res.json();
+					return res.text();
+				})
+				.then((f) => {
+					if (type == 'csv') f = $.CSV.parse(f);
+					if (typeof f == 'string') ret.text = f;
+					else Object.assign(ret, f);
+					delete ret._loader;
+					if (cb) cb(f);
+					q._preloadCount--;
+					resolve(f);
+				});
+		});
 		return ret;
 	};
 
-	$.loadText = (path, cb) => $._loadFile(path, cb, 'text');
-	$.loadJSON = (path, cb) => $._loadFile(path, cb, 'json');
-	$.loadCSV = (path, cb) => $._loadFile(path, cb, 'csv');
+	$.loadText = (url, cb) => $._loadFile(url, cb, 'text');
+	$.loadJSON = (url, cb) => $._loadFile(url, cb, 'json');
+	$.loadCSV = (url, cb) => $._loadFile(url, cb, 'csv');
+
+	$.load = function (...urls) {
+		if (Array.isArray(urls[0])) urls = urls[0];
+
+		let loaders = [];
+
+		for (let url of urls) {
+			let ext = url.split('.').pop().toLowerCase();
+
+			let obj;
+			if (ext == 'json' && !url.includes('-msdf.')) {
+				obj = $.loadJSON(url);
+			} else if (ext == 'csv') {
+				obj = $.loadCSV(url);
+			} else if (/(jpe?g|png|gif|webp|avif|svg)/.test(ext)) {
+				obj = $.loadImage(url);
+			} else if (/(ttf|otf|woff2?|eot|json)/i.test(ext)) {
+				obj = $.loadFont(url);
+			} else if (/(wav|flac|mp3|ogg|m4a|aac|aiff|weba)/.test(ext)) {
+				obj = $.loadSound(url);
+			} else {
+				obj = $.loadText(url);
+			}
+			loaders.push(obj._loader);
+		}
+
+		if (urls.length == 1) return loaders[0];
+		return Promise.all(loaders);
+	};
 
 	$.CSV = {};
 	$.CSV.parse = (csv, sep = ',', lineSep = '\n') => {
@@ -4757,7 +5216,7 @@ fn fragmentMain(@location(0) color: vec4f) -> @location(0) vec4f {
 	$.background = (r, g, b, a) => {
 		$.push();
 		$.resetMatrix();
-		if (r.src) {
+		if (r.canvas) {
 			let img = r;
 			$._imageMode = 'corner';
 			$.image(img, -c.hw, -c.hh, c.w, c.h);
@@ -4970,7 +5429,7 @@ fn fragmentMain(f: FragmentParams) -> @location(0) vec4f {
 			g.defaultHeight = img.height * $._defaultImageScale;
 			$._createTexture(img);
 			q._preloadCount--;
-			if (cb) cb(img);
+			if (cb) cb(g);
 		});
 		return g;
 	};
@@ -5343,8 +5802,13 @@ fn fragmentMain(f : FragmentParams) -> @location(0) vec4f {
 		let ext = url.slice(url.lastIndexOf('.') + 1);
 		if (ext != 'json') return $._g.loadFont(url, cb);
 		let fontName = url.slice(url.lastIndexOf('/') + 1, url.lastIndexOf('-'));
-		createFont(url, fontName, cb);
-		return fontName;
+		let f = { family: fontName };
+		f._loader = createFont(url, fontName, () => {
+			delete f._loader;
+			if (cb) cb(f);
+		});
+		if ($._disablePreload) return f._loader;
+		return f;
 	};
 
 	$._loadDefaultFont = (fontName) => {
@@ -5365,6 +5829,7 @@ fn fragmentMain(f : FragmentParams) -> @location(0) vec4f {
 		leadPercent = 1.25;
 
 	$.textFont = (fontName) => {
+		if (typeof fontName != 'string') fontName = fontName.family;
 		let font = fonts[fontName];
 		if (font) $._font = font;
 		else if (font === undefined) $._loadDefaultFont(fontName);

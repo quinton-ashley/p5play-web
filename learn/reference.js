@@ -84,25 +84,17 @@ let refs = {
 		4: ['rayCastAll', 'rayCast']
 	},
 	'q5.js basics': {
-		'https://p5js.org/reference/p5': [
+		'https://p5js.org/reference/p5/': [
 			'let',
-			'const',
-			'===',
-			'>=',
-			'<',
-			'<=',
-			'if-else',
+			'if',
 			'function',
-			'return',
-			'boolean',
-			'string',
-			'number',
-			'object',
-			'for',
 			'while',
-			'console',
+			'Boolean',
+			'String',
+			'Number',
+			'Array',
+			'for',
 			'random',
-			'round',
 			'sin',
 			'cos',
 			'max',
@@ -112,22 +104,23 @@ let refs = {
 	},
 	'q5.js environment': {
 		'https://q5js.org/learn/#': [
+			'log',
+			'preload',
+			'setup',
+			'draw',
+			'postProcess',
 			'width',
 			'height',
 			'frameCount',
 			'frameRate',
 			'noLoop',
-			'loadImage',
-			'loadSound',
-			'loadFont',
 			'loadJSON',
 			'storeItem',
 			'getItem',
-			'clearStorage',
 			'fullscreen'
 		]
 	},
-	'q5.js 2D': {
+	'q5.js drawing': {
 		'https://q5js.org/learn/#': [
 			'background',
 			'clear',
@@ -136,15 +129,19 @@ let refs = {
 			'noFill',
 			'stroke',
 			'noStroke',
+			'shadow',
 			'circle',
 			'rect',
 			'line',
+			'loadImage',
 			'image',
 			'tint',
+			'opacity',
+			'loadFont',
 			'text',
 			'textAlign',
 			'textSize',
-			'textFont'
+			'loadSound'
 		]
 	}
 };
@@ -162,7 +159,7 @@ for (let refPage in refs) {
 		refPage = refPage.toLowerCase();
 	} else {
 		if (className == 'q5.js basics') className = 'JavaScript basics';
-		refPage = 'https://p5js.org/reference';
+		refPage = 'https://q5js.org/learn';
 		p5playRef = false;
 	}
 
