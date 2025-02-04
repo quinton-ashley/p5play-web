@@ -1,6 +1,6 @@
 /**
  * q5.js
- * @version 2.17
+ * @version 2.19
  * @author quinton-ashley, Tezumie, and LingDong-
  * @license LGPL-3.0
  * @class Q5
@@ -104,9 +104,9 @@ function Q5(scope, parent, renderer) {
 			throw e;
 		}
 		for (let m of Q5.methods.post) m.call($);
+		$.postProcess();
 		if ($._render) $._render();
 		if ($._finishRender) $._finishRender();
-		$.postProcess();
 		q.pmouseX = $.mouseX;
 		q.pmouseY = $.mouseY;
 		q.moveX = q.moveY = 0;
@@ -223,6 +223,8 @@ function Q5(scope, parent, renderer) {
 	$.postProcess ??= () => {};
 
 	let userFns = [
+		'setup',
+		'postProcess',
 		'mouseMoved',
 		'mousePressed',
 		'mouseReleased',
@@ -311,7 +313,7 @@ function createCanvas(w, h, opt) {
 	}
 }
 
-Q5.version = Q5.VERSION = '2.17';
+Q5.version = Q5.VERSION = '2.19';
 
 if (typeof document == 'object') {
 	document.addEventListener('DOMContentLoaded', () => {
@@ -420,49 +422,6 @@ Q5.modules.canvas = ($, q) => {
 		return g;
 	};
 
-	async function saveFile(data, name, ext) {
-		name = name || 'untitled';
-		ext = ext || 'png';
-		if (ext == 'jpg' || ext == 'png' || ext == 'webp') {
-			if (data instanceof OffscreenCanvas) {
-				const blob = await data.convertToBlob({ type: 'image/' + ext });
-				data = await new Promise((resolve) => {
-					const reader = new FileReader();
-					reader.onloadend = () => resolve(reader.result);
-					reader.readAsDataURL(blob);
-				});
-			} else {
-				data = data.toDataURL('image/' + ext);
-			}
-		} else {
-			let type = 'text/plain';
-			if (ext == 'json') {
-				if (typeof data != 'string') data = JSON.stringify(data);
-				type = 'text/json';
-			}
-			data = new Blob([data], { type });
-			data = URL.createObjectURL(data);
-		}
-		let a = document.createElement('a');
-		a.href = data;
-		a.download = name + '.' + ext;
-		a.click();
-		URL.revokeObjectURL(a.href);
-	}
-
-	$.save = (a, b, c) => {
-		if (!a || (typeof a == 'string' && (!b || (!c && b.length < 5)))) {
-			c = b;
-			b = a;
-			a = $.canvas;
-		}
-		if (c) return saveFile(a, b, c);
-		if (b) {
-			b = b.split('.');
-			saveFile(a, b[0], b.at(-1));
-		} else saveFile(a);
-	};
-
 	$._setCanvasSize = (w, h) => {
 		if (!w) h ??= window.innerHeight;
 		else h ??= w;
@@ -547,10 +506,7 @@ Q5.modules.canvas = ($, q) => {
 		$._resizeCanvas(w, h);
 	};
 
-	if (c && !Q5._createServerCanvas) {
-		c.resize = $.resizeCanvas;
-		c.save = $.saveCanvas = $.save;
-	}
+	if (c && !Q5._createServerCanvas) c.resize = $.resizeCanvas;
 
 	$.pixelDensity = (v) => {
 		if (!v || v == $._pixelDensity) return $._pixelDensity;
@@ -1322,10 +1278,7 @@ Q5.renderers.c2d.image = ($, q) => {
 		opt ??= {};
 		opt.alpha ??= true;
 		opt.colorSpace ??= $.canvas.colorSpace || Q5.canvasOptions.colorSpace;
-		let img = new Q5.Image(w, h, opt);
-		img.defaultWidth = w * $._defaultImageScale;
-		img.defaultHeight = h * $._defaultImageScale;
-		return img;
+		return new Q5.Image(w, h, opt);
 	};
 
 	$.loadImage = function (url, cb, opt) {
@@ -1481,7 +1434,7 @@ Q5.renderers.c2d.image = ($, q) => {
 		$.ctx.globalCompositeOperation = 'source-over';
 		$.ctx.drawImage($.canvas, 0, 0, $.canvas.w, $.canvas.h);
 		$.ctx.restore();
-		$._retint = true;
+		$.modified = $._retint = true;
 	};
 
 	if ($._scope == 'image') {
@@ -1499,7 +1452,7 @@ Q5.renderers.c2d.image = ($, q) => {
 			$.ctx.clearRect(0, 0, c.width, c.height);
 			$.ctx.drawImage(o, 0, 0, c.width, c.height);
 
-			$._retint = true;
+			$.modified = $._retint = true;
 		};
 	}
 
@@ -1546,17 +1499,25 @@ Q5.renderers.c2d.image = ($, q) => {
 		$.ctx.globalCompositeOperation = old;
 		$.ctx.restore();
 
-		$._retint = true;
+		$.modified = $._retint = true;
 	};
 
 	$.inset = (x, y, w, h, dx, dy, dw, dh) => {
 		let pd = $._pixelDensity || 1;
 		$.ctx.drawImage($.canvas, x * pd, y * pd, w * pd, h * pd, dx, dy, dw, dh);
 
-		$._retint = true;
+		$.modified = $._retint = true;
 	};
 
-	$.copy = () => $.get();
+	$.copy = () => {
+		let img = $.get();
+		for (let prop in $) {
+			if (typeof $[prop] != 'function' && !/(canvas|ctx|texture|textureIndex)/.test(prop)) {
+				img[prop] = $[prop];
+			}
+		}
+		return img;
+	};
 
 	$.get = (x, y, w, h) => {
 		let pd = $._pixelDensity || 1;
@@ -1566,22 +1527,19 @@ Q5.renderers.c2d.image = ($, q) => {
 		}
 		x = Math.floor(x || 0) * pd;
 		y = Math.floor(y || 0) * pd;
-		let _w = (w = w || $.width);
-		let _h = (h = h || $.height);
-		w *= pd;
-		h *= pd;
-		let img = $.createImage(w, h);
-		img.ctx.drawImage($.canvas, x, y, w, h, 0, 0, w, h);
-		img._pixelDensity = pd;
-		img.width = _w;
-		img.height = _h;
+		w ??= $.width;
+		h ??= $.height;
+		let img = $.createImage(w, h, { pixelDensity: pd });
+		img.ctx.drawImage($.canvas, x, y, w * pd, h * pd, 0, 0, w, h);
+		img.width = w;
+		img.height = h;
 		return img;
 	};
 
 	$.set = (x, y, c) => {
 		x = Math.floor(x);
 		y = Math.floor(y);
-		$._retint = true;
+		$.modified = $._retint = true;
 		if (c.canvas) {
 			let old = $._tint;
 			$._tint = null;
@@ -1609,7 +1567,7 @@ Q5.renderers.c2d.image = ($, q) => {
 	$.updatePixels = () => {
 		if (imgData != null) {
 			$.ctx.putImageData(imgData, 0, 0);
-			$._retint = true;
+			$.modified = $._retint = true;
 		}
 	};
 
@@ -1617,6 +1575,20 @@ Q5.renderers.c2d.image = ($, q) => {
 	$.noSmooth = () => ($.ctx.imageSmoothingEnabled = false);
 
 	if ($._scope == 'image') return;
+
+	$._saveCanvas = async (data, ext) => {
+		data = data.canvas || data;
+		if (data instanceof OffscreenCanvas) {
+			const blob = await data.convertToBlob({ type: 'image/' + ext });
+
+			return await new Promise((resolve) => {
+				const reader = new FileReader();
+				reader.onloadend = () => resolve(reader.result);
+				reader.readAsDataURL(blob);
+			});
+		}
+		return data.toDataURL('image/' + ext);
+	};
 
 	$.tint = function (c) {
 		$._tint = (c._q5Color ? c : $.color(...arguments)).toString();
@@ -1961,9 +1933,14 @@ Q5.renderers.c2d.text = ($, q) => {
 			tY = leading * lines.length;
 
 			if (!img) {
+				let ogBaseline = $.ctx.textBaseline;
+				$.ctx.textBaseline = 'alphabetic';
+
 				let measure = ctx.measureText(' ');
 				let ascent = measure.fontBoundingBoxAscent;
 				let descent = measure.fontBoundingBoxDescent;
+
+				$.ctx.textBaseline = ogBaseline;
 
 				img = $.createImage.call($, Math.ceil(ctx.measureText(str).width), Math.ceil(tY + descent), {
 					pixelDensity: $._pixelDensity
@@ -1975,12 +1952,13 @@ Q5.renderers.c2d.text = ($, q) => {
 				img._middle = img._top + ascent * 0.5;
 				img._bottom = img._top + ascent;
 				img._leading = leading;
+			} else {
+				img.modified = true;
 			}
 
 			img._fill = $._fill;
 			img._stroke = $._stroke;
 			img._strokeWeight = $._strokeWeight;
-			img.modified = true;
 
 			ctx = img.ctx;
 
@@ -2082,8 +2060,8 @@ Q5.modules.ai = ($) => {
 		let parts = errFile.split(':');
 		let lineNum = parseInt(parts.at(-2));
 		if (askAI) lineNum++;
-		parts[3] = parts[3].split(')')[0];
-		let fileUrl = parts.slice(0, 2).join(':');
+		parts[parts.length - 1] = parts.at(-1).split(')')[0];
+		let fileUrl = parts.slice(0, -2).join(':');
 		let fileBase = fileUrl.split('/').at(-1);
 
 		try {
@@ -2107,7 +2085,7 @@ Q5.modules.ai = ($) => {
 				askAI && e.message.length > 10 ? e.message.slice(10) : 'Whats+wrong+with+this+line%3F+short+answer';
 
 			let url =
-				'https://chatgpt.com/?q=q5.js+' +
+				'https://chatgpt.com/?q=using+q5.js+not+p5.js+' +
 				question +
 				(askAI ? '' : '%0A%0A' + encodeURIComponent(e.name + ': ' + e.message)) +
 				'%0A%0ALine%3A+' +
@@ -2625,7 +2603,7 @@ Q5.modules.dom = ($) => {
 		};
 
 		el.show = () => {
-			el.style.display = 'block';
+			el.style.display = '';
 			return el;
 		};
 
@@ -2662,6 +2640,7 @@ Q5.modules.dom = ($) => {
 		let lbl = $.createEl('label', label);
 		lbl.addEventListener('click', () => {
 			el.checked = !el.checked;
+			el.dispatchEvent(new Event('input', { bubbles: true }));
 			el.dispatchEvent(new Event('change', { bubbles: true }));
 		});
 		el.insertAdjacentElement('afterend', lbl);
@@ -2715,12 +2694,13 @@ Q5.modules.dom = ($) => {
 			btn.type = 'radio';
 			btn.name = el.name;
 			btn.value = value || label;
-			btn.addEventListener('change', () => (el.selected = btn));
+			btn.addEventListener('input', () => (el.selected = btn));
 
 			let lbl = $.createEl('label', label);
 			lbl.addEventListener('click', () => {
 				btn.checked = true;
 				el.selected = btn;
+				btn.dispatchEvent(new Event('input', { bubbles: true }));
 				btn.dispatchEvent(new Event('change', { bubbles: true }));
 			});
 
@@ -2744,14 +2724,19 @@ Q5.modules.dom = ($) => {
 		}
 		Object.defineProperty(el, 'selected', {
 			get: () => {
-				if (el.multiple) return Array.from(el.selectedOptions);
-				return el.selectedOptions[0];
+				if (el.multiple) {
+					return Array.from(el.selectedOptions).map((opt) => opt.textContent);
+				}
+				return el.selectedOptions[0]?.textContent;
 			},
 			set: (v) => {
 				if (el.multiple) {
-					el.options.forEach((o) => (o.selected = v.includes(o)));
+					Array.from(el.options).forEach((opt) => {
+						opt.selected = v.includes(opt.textContent);
+					});
 				} else {
-					v.selected = true;
+					const option = Array.from(el.options).find((opt) => opt.textContent === v);
+					if (option) option.selected = true;
 				}
 			}
 		});
@@ -2904,7 +2889,7 @@ Q5.modules.input = ($, q) => {
 	$._onwheel = (e) => {
 		$._updateMouse(e);
 		e.delta = e.deltaY;
-		if ($.mouseWheel(e) == false) e.preventDefault();
+		if ($.mouseWheel(e) == false || $._noScroll) e.preventDefault();
 	};
 
 	$.cursor = (name, x, y) => {
@@ -2919,9 +2904,8 @@ Q5.modules.input = ($, q) => {
 		$.canvas.style.cursor = name + pfx;
 	};
 
-	$.noCursor = () => {
-		$.canvas.style.cursor = 'none';
-	};
+	$.noCursor = () => ($.canvas.style.cursor = 'none');
+	$.noScroll = () => ($._noScroll = true);
 
 	if (window) {
 		$.lockMouse = document.body?.requestPointerLock;
@@ -3159,6 +3143,14 @@ Q5.modules.math = ($, q) => {
 			return a[Math.trunc(a.length * rng1.rand())];
 		}
 	};
+
+	if ($._renderer == 'c2d' && !$._webgpuFallback) {
+		$.randomX = (v = 0) => $.random(-v, $.canvas.w + v);
+		$.randomY = (v = 0) => $.random(-v, $.canvas.h + v);
+	} else {
+		$.randomX = (v = 0) => $.random(-$.canvas.hw - v, $.canvas.hw + v);
+		$.randomY = (v = 0) => $.random(-$.canvas.hh - v, $.canvas.hh + v);
+	}
 
 	$.randomGenerator = (method) => {
 		if (method == $.LCG) rng1 = lcg();
@@ -3448,6 +3440,348 @@ Q5.PerlinNoise = class extends Q5.Noise {
 		return (total / maxAmp + 1) / 2;
 	}
 };
+Q5.modules.record = ($, q) => {
+	let rec, btn0, btn1, timer, formatSelect, qualitySelect;
+
+	$.recording = false;
+
+	function initRecorder(opt = {}) {
+		document.head.insertAdjacentHTML(
+			'beforeend',
+			`<style>
+.rec {
+	display: flex;
+	z-index: 1000;
+	gap: 6px;
+	background: #1a1b1d;
+	padding: 6px 8px;
+	border-radius: 21px;
+	box-shadow: #0000001a 0px 4px 12px;
+	border: 2px solid transparent; 
+	opacity: 0.6;
+	transition: all 0.3s;
+	width: 134px;
+	overflow: hidden;
+}
+
+.rec:hover {
+	width: unset;
+	opacity: 0.96;
+}
+
+.rec.recording { border-color: #cc3e44; }
+
+.rec button,
+.rec select { cursor: pointer; }
+
+.rec button,
+.rec select,
+.rec .record-timer {
+	font-family: sans-serif;
+	font-size: 14px;
+	padding: 2px 10px;
+	border-radius: 18px;
+	outline: none;
+	background-color: #232529;
+	color: #d4dae6;
+	box-shadow: #0000001a 0px 4px 12px;
+	border: 1px solid #46494e;
+	vertical-align: middle;
+	line-height: 18px;
+	transition: all 0.3s;
+}
+
+.rec .record-button { 
+	color: #cc3e44;
+	font-size: 18px;
+}
+
+.rec select:hover,
+.rec button:hover { background-color: #292b30; }
+
+.rec button:disabled {
+	opacity: 0.5;
+	color: #969ba5;
+	cursor: not-allowed;
+}
+</style>`
+		);
+
+		rec = $.createEl('div');
+		rec.className = 'rec';
+		rec.innerHTML = `
+<button class="record-button"></button>
+<span class="record-timer"></span>
+<button></button>
+`;
+
+		[btn0, timer, btn1] = rec.children;
+
+		rec.x = rec.y = 8;
+
+		rec.resetTimer = () => (rec.time = { hours: 0, minutes: 0, seconds: 0, frames: 0 });
+		rec.resetTimer();
+
+		rec.formats = opt.formats || {
+			'H.264': 'video/mp4; codecs="avc1.42E01E"',
+			VP9: 'video/mp4; codecs=vp9'
+		};
+
+		// remove unsupported formats
+		for (let format in rec.formats) {
+			if (!MediaRecorder.isTypeSupported(rec.formats[format])) {
+				delete rec.formats[format];
+			}
+		}
+
+		formatSelect = $.createSelect('format');
+		for (const name in rec.formats) {
+			formatSelect.option(name, rec.formats[name]);
+		}
+		formatSelect.title = 'Video Format';
+		rec.append(formatSelect);
+
+		let qMult = {
+			min: 0.1,
+			low: 0.25,
+			mid: 0.5,
+			high: 0.75,
+			ultra: 0.9,
+			max: 1
+		};
+
+		qualitySelect = $.createSelect('quality');
+		for (let name in qMult) {
+			qualitySelect.option(name, qMult[name]);
+		}
+		qualitySelect.title = 'Video Quality';
+		rec.append(qualitySelect);
+
+		rec.encoderSettings = {};
+
+		function changeFormat() {
+			rec.encoderSettings.mimeType = formatSelect.value;
+		}
+
+		function changeQuality() {
+			rec.encoderSettings.videoBitsPerSecond = maxVideoBitRate * qualitySelect.value;
+		}
+
+		formatSelect.addEventListener('change', changeFormat);
+		qualitySelect.addEventListener('change', changeQuality);
+
+		Object.defineProperty(rec, 'quality', {
+			get: () => qualitySelect.selected,
+			set: (v) => {
+				v = v.toLowerCase();
+				if (qMult[v]) {
+					qualitySelect.selected = v;
+					changeQuality();
+				}
+			}
+		});
+
+		Object.defineProperty(rec, 'format', {
+			get: () => formatSelect.selected,
+			set: (v) => {
+				v = v.toUpperCase();
+				if (rec.formats[v]) {
+					formatSelect.selected = v;
+					changeFormat();
+				}
+			}
+		});
+
+		let h = $.canvas.height;
+
+		if (h >= 1440 && rec.formats.VP9) rec.format = 'VP9';
+		else rec.format = 'H.264';
+
+		let maxVideoBitRate =
+			(h >= 4320 ? 128 : h >= 2160 ? 75 : h >= 1440 ? 36 : h >= 1080 ? 28 : h >= 720 ? 22 : 16) * 1000000;
+
+		rec.quality = 'high';
+
+		btn0.addEventListener('click', () => {
+			if (!$.recording) start();
+			else if (!rec.paused) $.pauseRecording();
+			else resumeRecording();
+		});
+
+		btn1.addEventListener('click', () => {
+			if (rec.paused) $.saveRecording();
+			else $.deleteRecording();
+		});
+
+		resetUI();
+
+		$.registerMethod('post', updateTimer);
+	}
+
+	function start() {
+		if ($.recording) return;
+
+		if (!rec.stream) {
+			rec.frameRate ??= $.getTargetFrameRate();
+			let canvasStream = $.canvas.captureStream(rec.frameRate);
+			// let audioStream = Q5.aud.createMediaStreamDestination().stream;
+			// rec.stream = new MediaStream([canvasStream.getTracks()[0], ...audioStream.getTracks()]);
+			rec.stream = canvasStream;
+		}
+
+		try {
+			rec.mediaRecorder = new MediaRecorder(rec.stream, rec.encoderSettings);
+		} catch (e) {
+			console.error('Failed to initialize MediaRecorder: ', e);
+			return;
+		}
+
+		rec.chunks = [];
+		rec.mediaRecorder.addEventListener('dataavailable', (e) => {
+			if (e.data.size > 0) rec.chunks.push(e.data);
+		});
+
+		rec.mediaRecorder.start();
+		q.recording = true;
+		rec.paused = false;
+		rec.classList.add('recording');
+
+		rec.resetTimer();
+		resetUI(true);
+	}
+
+	function resumeRecording() {
+		if (!$.recording || !rec.paused) return;
+
+		rec.mediaRecorder.resume();
+		rec.paused = false;
+		resetUI(true);
+	}
+
+	function stop() {
+		if (!$.recording) return;
+
+		rec.resetTimer();
+		rec.mediaRecorder.stop();
+		q.recording = false;
+		rec.paused = false;
+		rec.classList.remove('recording');
+	}
+
+	function resetUI(r) {
+		btn0.textContent = r ? '⏸' : '⏺';
+		btn0.title = (r ? 'Pause' : 'Start') + ' Recording';
+		btn1.textContent = r ? '🗑️' : '💾';
+		btn1.title = (r ? 'Delete' : 'Save') + ' Recording';
+		btn1.disabled = !r;
+	}
+
+	function updateTimer() {
+		if ($.recording && !rec.paused) {
+			rec.time.frames++;
+			let fr = $.getTargetFrameRate();
+
+			if (rec.time.frames >= fr) {
+				rec.time.seconds += Math.floor(rec.time.frames / fr);
+				rec.time.frames %= fr;
+
+				if (rec.time.seconds >= 60) {
+					rec.time.minutes += Math.floor(rec.time.seconds / 60);
+					rec.time.seconds %= 60;
+
+					if (rec.time.minutes >= 60) {
+						rec.time.hours += Math.floor(rec.time.minutes / 60);
+						rec.time.minutes %= 60;
+					}
+				}
+			}
+		}
+		timer.textContent = formatTime();
+	}
+
+	function formatTime() {
+		let { hours, minutes, seconds, frames } = rec.time;
+		return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(
+			2,
+			'0'
+		)}:${String(frames).padStart(2, '0')}`;
+	}
+
+	$.createRecorder = (opt) => {
+		if (!rec) initRecorder(opt);
+		return rec;
+	};
+
+	$.record = (opt) => {
+		if (!rec) {
+			initRecorder(opt);
+			rec.hide();
+		}
+		if (!$.recording) start();
+		else if (rec.paused) resumeRecording();
+	};
+
+	$.pauseRecording = () => {
+		if (!$.recording || rec.paused) return;
+
+		rec.mediaRecorder.pause();
+		rec.paused = true;
+
+		resetUI();
+		btn0.title = 'Resume Recording';
+		btn1.disabled = false;
+	};
+
+	$.deleteRecording = () => {
+		stop();
+		resetUI();
+		q.recording = false;
+	};
+
+	$.saveRecording = async (fileName) => {
+		if (!$.recording) return;
+
+		await new Promise((resolve) => {
+			rec.mediaRecorder.onstop = resolve;
+			stop();
+		});
+
+		let type = rec.encoderSettings.mimeType,
+			extension = type.slice(6, type.indexOf(';')),
+			dataUrl = URL.createObjectURL(new Blob(rec.chunks, { type })),
+			iframe = document.createElement('iframe'),
+			a = document.createElement('a');
+
+		// Create an invisible iframe to detect load completion
+		iframe.style.display = 'none';
+		iframe.name = 'download_' + Date.now();
+		document.body.append(iframe);
+
+		a.target = iframe.name;
+		a.href = dataUrl;
+		fileName ??=
+			document.title +
+			' ' +
+			new Date()
+				.toLocaleString(undefined, { hour12: false })
+				.replace(',', ' at')
+				.replaceAll('/', '-')
+				.replaceAll(':', '_');
+		a.download = `${fileName}.${extension}`;
+
+		await new Promise((resolve) => {
+			iframe.onload = () => {
+				document.body.removeChild(iframe);
+				resolve();
+			};
+			a.click();
+		});
+
+		setTimeout(() => URL.revokeObjectURL(dataUrl), 1000);
+		resetUI();
+		q.recording = false;
+	};
+};
 Q5.modules.sound = ($, q) => {
 	$.Sound = Q5.Sound;
 	let sounds = [];
@@ -3685,6 +4019,10 @@ Q5.modules.util = ($, q) => {
 	$.loadJSON = (url, cb) => $._loadFile(url, cb, 'json');
 	$.loadCSV = (url, cb) => $._loadFile(url, cb, 'csv');
 
+	const imgRegex = /(jpe?g|png|gif|webp|avif|svg)/,
+		fontRegex = /(ttf|otf|woff2?|eot|json)/,
+		audioRegex = /(wav|flac|mp3|ogg|m4a|aac|aiff|weba)/;
+
 	$.load = function (...urls) {
 		if (Array.isArray(urls[0])) urls = urls[0];
 
@@ -3698,11 +4036,11 @@ Q5.modules.util = ($, q) => {
 				obj = $.loadJSON(url);
 			} else if (ext == 'csv') {
 				obj = $.loadCSV(url);
-			} else if (/(jpe?g|png|gif|webp|avif|svg)/.test(ext)) {
+			} else if (imgRegex.test(ext)) {
 				obj = $.loadImage(url);
-			} else if (/(ttf|otf|woff2?|eot|json)/i.test(ext)) {
+			} else if (fontRegex.test(ext)) {
 				obj = $.loadFont(url);
-			} else if (/(wav|flac|mp3|ogg|m4a|aac|aiff|weba)/.test(ext)) {
+			} else if (audioRegex.test(ext)) {
 				obj = $.loadSound(url);
 			} else {
 				obj = $.loadText(url);
@@ -3712,6 +4050,40 @@ Q5.modules.util = ($, q) => {
 
 		if (urls.length == 1) return loaders[0];
 		return Promise.all(loaders);
+	};
+
+	async function saveFile(data, name, ext) {
+		name = name || 'untitled';
+		ext = ext || 'png';
+		if (imgRegex.test(ext)) {
+			data = await $._saveCanvas(data, ext);
+		} else {
+			let type = 'text/plain';
+			if (ext == 'json') {
+				if (typeof data != 'string') data = JSON.stringify(data);
+				type = 'text/json';
+			}
+			data = new Blob([data], { type });
+			data = URL.createObjectURL(data);
+		}
+		let a = document.createElement('a');
+		a.href = data;
+		a.download = name + '.' + ext;
+		a.click();
+		setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+	}
+
+	$.save = (a, b, c) => {
+		if (!a || (typeof a == 'string' && (!b || (!c && b.length < 5)))) {
+			c = b;
+			b = a;
+			a = $.canvas;
+		}
+		if (c) saveFile(a, b, c);
+		else if (b) {
+			let lastDot = b.lastIndexOf('.');
+			saveFile(a, b.slice(0, lastDot), b.slice(lastDot + 1));
+		} else saveFile(a);
 	};
 
 	$.CSV = {};
@@ -3728,6 +4100,10 @@ Q5.modules.util = ($, q) => {
 		}
 		return a;
 	};
+
+	if ($.canvas && !Q5._createServerCanvas) {
+		$.canvas.save = $.saveCanvas = $.save;
+	}
 
 	if (typeof localStorage == 'object') {
 		$.storeItem = localStorage.setItem;
@@ -4047,11 +4423,6 @@ Q5.Vector.sub = (v, u) => v.copy().sub(u);
 for (let k of ['fromAngle', 'fromAngles', 'random2D', 'random3D']) {
 	Q5.Vector[k] = (u, v, t) => new Q5.Vector()[k](u, v, t);
 }
-/**
- * q5-webgpu
- *
- * EXPERIMENTAL, for developer testing only!
- */
 Q5.renderers.webgpu = {};
 
 Q5.renderers.webgpu.canvas = ($, q) => {
@@ -4067,6 +4438,11 @@ Q5.renderers.webgpu.canvas = ($, q) => {
 
 	let pass,
 		mainView,
+		frameTextureA,
+		frameTextureB,
+		frameSampler,
+		framePipeline,
+		frameBindGroup,
 		colorIndex = 1,
 		colorStackIndex = 8;
 
@@ -4115,14 +4491,60 @@ Q5.renderers.webgpu.canvas = ($, q) => {
 	});
 
 	let createMainView = () => {
+		let w = $.canvas.width,
+			h = $.canvas.height,
+			size = [w, h],
+			format = 'bgra8unorm';
+
 		mainView = Q5.device
 			.createTexture({
-				size: [$.canvas.width, $.canvas.height],
+				size,
 				sampleCount: 4,
-				format: 'bgra8unorm',
+				format,
 				usage: GPUTextureUsage.RENDER_ATTACHMENT
 			})
 			.createView();
+
+		let usage =
+			GPUTextureUsage.COPY_SRC |
+			GPUTextureUsage.COPY_DST |
+			GPUTextureUsage.TEXTURE_BINDING |
+			GPUTextureUsage.RENDER_ATTACHMENT;
+
+		frameTextureA = Q5.device.createTexture({ size, format, usage });
+		frameTextureB = Q5.device.createTexture({ size, format, usage });
+
+		let finalShader = Q5.device.createShaderModule({
+			code: `
+@vertex fn v(@builtin(vertex_index)i:u32)->@builtin(position)vec4<f32>{
+	const pos=array(vec2(-1f,-1f),vec2(1f,-1f),vec2(-1f,1f),vec2(1f,1f));
+	return vec4(pos[i],0f,1f);
+}
+@group(0) @binding(0) var s: sampler;
+@group(0) @binding(1) var t: texture_2d<f32>;
+@fragment fn f(@builtin(position)c:vec4<f32>)->@location(0)vec4<f32>{
+	let uv=c.xy/vec2(${w}, ${h});
+	return textureSample(t,s,uv);
+}`
+		});
+
+		frameSampler = Q5.device.createSampler({
+			magFilter: 'linear',
+			minFilter: 'linear'
+		});
+
+		// Create a pipeline for rendering
+		framePipeline = Q5.device.createRenderPipeline({
+			layout: 'auto',
+			vertex: { module: finalShader, entryPoint: 'v' },
+			fragment: {
+				module: finalShader,
+				entryPoint: 'f',
+				targets: [{ format, writeMask: GPUColorWrite.ALL }]
+			},
+			primitive: { topology: 'triangle-strip' },
+			multisample: { count: 4 }
+		});
 	};
 
 	$._createCanvas = (w, h, opt) => {
@@ -4488,23 +4910,52 @@ Q5.renderers.webgpu.canvas = ($, q) => {
 		}
 	};
 
-	$.clear = () => {};
+	let shouldClear = false;
+	$.clear = () => {
+		shouldClear = true;
+	};
+
+	const _drawFrame = () => {
+		pass.setPipeline(framePipeline);
+		pass.setBindGroup(0, frameBindGroup);
+		pass.draw(4);
+	};
 
 	$._beginRender = () => {
+		// swap the frame textures
+		const temp = frameTextureA;
+		frameTextureA = frameTextureB;
+		frameTextureB = temp;
+		$.canvas.texture = frameTextureA;
+
 		$.encoder = Q5.device.createCommandEncoder();
+
+		let target = shouldClear ? $.ctx.getCurrentTexture().createView() : frameTextureA.createView();
 
 		pass = q.pass = $.encoder.beginRenderPass({
 			label: 'q5-webgpu',
 			colorAttachments: [
 				{
 					view: mainView,
-					resolveTarget: $.ctx.getCurrentTexture().createView(),
+					resolveTarget: target,
 					loadOp: 'clear',
 					storeOp: 'store',
 					clearValue: [0, 0, 0, 0]
 				}
 			]
 		});
+
+		if (!shouldClear) {
+			frameBindGroup = Q5.device.createBindGroup({
+				layout: framePipeline.getBindGroupLayout(0),
+				entries: [
+					{ binding: 0, resource: frameSampler },
+					{ binding: 1, resource: frameTextureB.createView() }
+				]
+			});
+
+			_drawFrame();
+		}
 	};
 
 	$._render = () => {
@@ -4579,8 +5030,33 @@ Q5.renderers.webgpu.canvas = ($, q) => {
 
 	$._finishRender = () => {
 		pass.end();
-		let commandBuffer = $.encoder.finish();
-		Q5.device.queue.submit([commandBuffer]);
+
+		if (!shouldClear) {
+			pass = $.encoder.beginRenderPass({
+				colorAttachments: [
+					{
+						view: mainView,
+						resolveTarget: $.ctx.getCurrentTexture().createView(),
+						loadOp: 'clear',
+						storeOp: 'store',
+						clearValue: [0, 0, 0, 0]
+					}
+				]
+			});
+
+			frameBindGroup = Q5.device.createBindGroup({
+				layout: framePipeline.getBindGroupLayout(0),
+				entries: [
+					{ binding: 0, resource: frameSampler },
+					{ binding: 1, resource: frameTextureA.createView() }
+				]
+			});
+			_drawFrame();
+			pass.end();
+			shouldClear = false;
+		}
+
+		Q5.device.queue.submit([$.encoder.finish()]);
 
 		q.pass = $.encoder = null;
 
@@ -5375,12 +5851,10 @@ fn fragmentMain(f: FragmentParams) -> @location(0) vec4f {
 
 	$.smooth();
 
-	let MAX_TEXTURES = 12000;
-
-	$._textures = [];
 	let tIdx = 0;
 
 	$._createTexture = (img) => {
+		let g = img;
 		if (img.canvas) img = img.canvas;
 
 		let textureSize = [img.width, img.height, 1];
@@ -5400,26 +5874,18 @@ fn fragmentMain(f: FragmentParams) -> @location(0) vec4f {
 			textureSize
 		);
 
-		$._textures[tIdx] = texture;
-		img.textureIndex = tIdx;
+		g.texture = texture;
+		g.textureIndex = tIdx;
 
-		const textureBindGroup = Q5.device.createBindGroup({
+		$._textureBindGroups[tIdx] = Q5.device.createBindGroup({
 			layout: textureLayout,
 			entries: [
 				{ binding: 0, resource: sampler },
 				{ binding: 1, resource: texture.createView() }
 			]
 		});
-		$._textureBindGroups[tIdx] = textureBindGroup;
 
-		tIdx = (tIdx + 1) % MAX_TEXTURES;
-
-		// if the texture array is full, destroy the oldest texture
-		if ($._textures[tIdx]) {
-			$._textures[tIdx].destroy();
-			delete $._textures[tIdx];
-			delete $._textureBindGroups[tIdx];
-		}
+		tIdx++;
 	};
 
 	$.loadImage = (src, cb) => {
@@ -5450,23 +5916,31 @@ fn fragmentMain(f: FragmentParams) -> @location(0) vec4f {
 	};
 
 	$.image = (img, dx = 0, dy = 0, dw, dh, sx = 0, sy = 0, sw, sh) => {
-		let g = img;
-		if (img.canvas) img = img.canvas;
 		if (img.textureIndex == undefined) return;
+
+		let cnv = img.canvas || img;
 
 		if ($._matrixDirty) $._saveMatrix();
 
-		let w = img.width,
-			h = img.height,
-			pd = g._pixelDensity || 1;
+		let w = cnv.width,
+			h = cnv.height,
+			pd = img._pixelDensity || 1;
 
-		dw ??= g.defaultWidth;
-		dh ??= g.defaultHeight;
+		if (img.modified) {
+			Q5.device.queue.copyExternalImageToTexture(
+				{ source: cnv },
+				{ texture: img.texture, colorSpace: $.canvas.colorSpace },
+				[w, h, 1]
+			);
+			img.modified = false;
+		}
+
+		dw ??= img.defaultWidth;
+		dh ??= img.defaultHeight;
 		sw ??= w;
 		sh ??= h;
-
-		dw *= pd;
-		dh *= pd;
+		sx *= pd;
+		sy *= pd;
 
 		let [l, r, t, b] = $._calcBox(dx, dy, dw, dh, $._imageMode);
 
@@ -5486,8 +5960,62 @@ fn fragmentMain(f: FragmentParams) -> @location(0) vec4f {
 		$.drawStack.push(1, img.textureIndex);
 	};
 
+	$._saveCanvas = async (data, ext) => {
+		let texture = data.texture,
+			w = texture.width,
+			h = texture.height,
+			bytesPerRow = Math.ceil((w * 4) / 256) * 256;
+
+		let buffer = Q5.device.createBuffer({
+			size: bytesPerRow * h,
+			usage: GPUBufferUsage.COPY_DST | GPUBufferUsage.MAP_READ
+		});
+
+		let en = Q5.device.createCommandEncoder();
+
+		en.copyTextureToBuffer({ texture }, { buffer, bytesPerRow, rowsPerImage: h }, { width: w, height: h });
+
+		Q5.device.queue.submit([en.finish()]);
+
+		await buffer.mapAsync(GPUMapMode.READ);
+
+		let pad = new Uint8Array(buffer.getMappedRange());
+		data = new Uint8Array(w * h * 4); // unpadded data
+
+		// Remove padding from each row and swap BGR to RGB
+		for (let y = 0; y < h; y++) {
+			const p = y * bytesPerRow; // padded row offset
+			const u = y * w * 4; // unpadded row offset
+			for (let x = 0; x < w; x++) {
+				const pp = p + x * 4; // padded pixel offset
+				const up = u + x * 4; // unpadded pixel offset
+				data[up + 0] = pad[pp + 2]; // R <- B
+				data[up + 1] = pad[pp + 1]; // G <- G
+				data[up + 2] = pad[pp + 0]; // B <- R
+				data[up + 3] = pad[pp + 3]; // A <- A
+			}
+		}
+
+		buffer.unmap();
+
+		let colorSpace = $.canvas.colorSpace;
+		data = new Uint8ClampedArray(data.buffer);
+		data = new ImageData(data, w, h, { colorSpace });
+		let cnv = new OffscreenCanvas(w, h);
+		let ctx = cnv.getContext('2d', { colorSpace });
+		ctx.putImageData(data, 0, 0);
+
+		// Convert to blob then data URL
+		let blob = await cnv.convertToBlob({ type: 'image/' + ext });
+		return await new Promise((resolve) => {
+			let r = new FileReader();
+			r.onloadend = () => resolve(r.result);
+			r.readAsDataURL(blob);
+		});
+	};
+
 	$._hooks.preRender.push(() => {
-		if (!$._textureBindGroups.length) return;
+		if (!vertIndex) return;
 
 		// Switch to image pipeline
 		$.pass.setPipeline($._pipelines[1]);
@@ -6028,20 +6556,14 @@ fn fragmentMain(f : FragmentParams) -> @location(0) vec4f {
 		}
 
 		let img = $._g.createTextImage(str, w, h);
-
-		if (img.canvas.textureIndex == undefined) {
+		if (img.textureIndex == undefined) {
 			$._createTexture(img);
-		} else if (img.modified) {
-			let cnv = img.canvas;
-			let textureSize = [cnv.width, cnv.height, 1];
-			let texture = $._textures[cnv.textureIndex];
-
-			Q5.device.queue.copyExternalImageToTexture(
-				{ source: cnv },
-				{ texture, colorSpace: $.canvas.colorSpace },
-				textureSize
-			);
-			img.modified = false;
+			let _copy = img.copy;
+			img.copy = function () {
+				let copy = _copy();
+				$._createTexture(copy);
+				return copy;
+			};
 		}
 		return img;
 	};
