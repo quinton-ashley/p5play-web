@@ -1,6 +1,6 @@
 /**
  * q5.js
- * @version 2.19
+ * @version 2.20
  * @author quinton-ashley, Tezumie, and LingDong-
  * @license LGPL-3.0
  * @class Q5
@@ -313,7 +313,7 @@ function createCanvas(w, h, opt) {
 	}
 }
 
-Q5.version = Q5.VERSION = '2.19';
+Q5.version = Q5.VERSION = '2.20';
 
 if (typeof document == 'object') {
 	document.addEventListener('DOMContentLoaded', () => {
@@ -427,10 +427,10 @@ Q5.modules.canvas = ($, q) => {
 		else h ??= w;
 		w ??= window.innerWidth;
 
-		$.defaultWidth = c.w = w = Math.ceil(w);
-		$.defaultHeight = c.h = h = Math.ceil(h);
-		c.hw = w / 2;
-		c.hh = h / 2;
+		q.defaultWidth = c.w = w = Math.ceil(w);
+		q.defaultHeight = c.h = h = Math.ceil(h);
+		q.halfWidth = c.hw = w / 2;
+		q.halfHeight = c.hh = h / 2;
 
 		// changes the actual size of the canvas
 		c.width = Math.ceil(w * $._pixelDensity);
@@ -448,8 +448,8 @@ Q5.modules.canvas = ($, q) => {
 	$._setImageSize = (w, h) => {
 		q.width = c.w = w;
 		q.height = c.h = h;
-		c.hw = w / 2;
-		c.hh = h / 2;
+		q.halfWidth = c.hw = w / 2;
+		q.halfHeight = c.hh = h / 2;
 
 		// changes the actual size of the canvas
 		c.width = Math.ceil(w * $._pixelDensity);
@@ -598,6 +598,9 @@ Q5.CORNERS = 'corners';
 Q5.OPEN = 0;
 Q5.CLOSE = 1;
 
+Q5.VIDEO = 'video';
+Q5.AUDIO = 'audio';
+
 Q5.LANDSCAPE = 'landscape';
 Q5.PORTRAIT = 'portrait';
 
@@ -632,7 +635,7 @@ Q5.SATURATION = 11;
 Q5.CONTRAST = 12;
 Q5.HUE_ROTATE = 13;
 
-Q5.P2D = '2d';
+Q5.C2D = Q5.P2D = Q5.P2DHDR = 'c2d';
 Q5.WEBGL = 'webgl';
 
 Q5.canvasOptions = {
@@ -829,20 +832,6 @@ Q5.renderers.c2d.canvas = ($, q) => {
 	$.pop = () => {
 		$.ctx.restore();
 		_popStyles();
-	};
-
-	$.createCapture = (x) => {
-		var vid = document.createElement('video');
-		vid.playsinline = 'playsinline';
-		vid.autoplay = 'autoplay';
-		navigator.mediaDevices.getUserMedia(x).then((stream) => {
-			vid.srcObject = stream;
-		});
-		vid.style.position = 'absolute';
-		vid.style.opacity = 0.00001;
-		vid.style.zIndex = -1000;
-		document.body.append(vid);
-		return vid;
 	};
 };
 Q5.renderers.c2d.drawing = ($) => {
@@ -1246,7 +1235,7 @@ Q5.renderers.c2d.drawing = ($) => {
 };
 Q5.renderers.c2d.image = ($, q) => {
 	class Q5Image {
-		constructor(w, h, opt) {
+		constructor(w, h, opt = {}) {
 			let $ = this;
 			$._scope = 'image';
 			$.canvas = $.ctx = $.drawingContext = null;
@@ -1386,7 +1375,14 @@ Q5.renderers.c2d.image = ($, q) => {
 			drawable = img._tintImg.canvas;
 		}
 
+		if (img.flipped) {
+			$.ctx.save();
+			$.ctx.translate(dx + dw, 0);
+			$.ctx.scale(-1, 1);
+			dx = 0;
+		}
 		$.ctx.drawImage(drawable, sx * pd, sy * pd, sw, sh, dx, dy, dw, dh);
+		if (img.flipped) $.ctx.restore();
 	};
 
 	$.filter = (type, value) => {
@@ -2025,16 +2021,6 @@ Q5.renderers.c2d.text = ($, q) => {
 		$.image(img, x, y);
 		$._imageMode = og;
 	};
-
-	$.nf = (n, l, r) => {
-		let neg = n < 0;
-		n = Math.abs(n);
-		let parts = n.toFixed(r).split('.');
-		parts[0] = parts[0].padStart(l, '0');
-		let s = parts.join('.');
-		if (neg) s = '-' + s;
-		return s;
-	};
 };
 Q5.modules.ai = ($) => {
 	$.askAI = (question = '') => {
@@ -2529,7 +2515,7 @@ main {
 		else document.body.exitFullscreen();
 	};
 };
-Q5.modules.dom = ($) => {
+Q5.modules.dom = ($, q) => {
 	$.elementMode = (mode) => ($._elementMode = mode);
 
 	$.createElement = (tag, content) => {
@@ -2568,12 +2554,12 @@ Q5.modules.dom = ($) => {
 		});
 
 		Object.defineProperty(el, 'width', {
-			get: () => el.style.width,
+			get: () => parseInt(el.style.width || 0),
 			set: (v) => (el.style.width = v + 'px')
 		});
 
 		Object.defineProperty(el, 'height', {
-			get: () => el.style.height,
+			get: () => parseInt(el.style.height || 0),
 			set: (v) => (el.style.height = v + 'px')
 		});
 
@@ -2618,7 +2604,8 @@ Q5.modules.dom = ($) => {
 		};
 
 		$._elements.push(el);
-		$.canvas.parentElement.append(el);
+		if ($.canvas) $.canvas.parentElement.append(el);
+		else document.body.append(el);
 
 		return el;
 	};
@@ -2787,8 +2774,56 @@ Q5.modules.dom = ($) => {
 	$.createVideo = (src) => {
 		let el = $.createEl('video');
 		el.crossOrigin = 'anonymous';
-		el.src = src;
+		if (src) el.src = src;
 		return el;
+	};
+
+	$.createCapture = function (type, flipped = true, cb) {
+		q._preloadCount++;
+
+		let constraints = typeof type == 'string' ? { [type]: true } : type || { video: true, audio: true };
+
+		if (constraints.video) {
+			// basically request the highest resolution possible
+			constraints.video = { width: 3840, height: 2160 };
+		}
+
+		let vid = $.createVideo();
+		vid.playsinline = true;
+		vid.autoplay = true;
+		if (flipped) {
+			vid.flipped = true;
+			vid.style.transform = 'scale(-1, 1)';
+		}
+
+		vid._loader = (async () => {
+			let stream;
+			try {
+				stream = await navigator.mediaDevices.getUserMedia(constraints);
+			} catch (e) {
+				q._preloadCount--;
+				throw e;
+			}
+
+			vid.srcObject = stream;
+			await new Promise((resolve) => vid.addEventListener('loadedmetadata', resolve));
+
+			vid.width ||= vid.videoWidth;
+			vid.height ||= vid.videoHeight;
+			vid.loadPixels = () => {
+				let g = $.createGraphics(vid.videoWidth, vid.videoHeight);
+				g.image(vid, 0, 0);
+				g.loadPixels();
+				vid.pixels = g.pixels;
+				g.remove();
+			};
+			if (cb) cb(vid);
+			q._preloadCount--;
+			return vid;
+		})();
+
+		if ($._disablePreload) return vid._loader;
+		return vid;
 	};
 
 	$.findElement = (selector) => document.querySelector(selector);
@@ -3441,7 +3476,7 @@ Q5.PerlinNoise = class extends Q5.Noise {
 	}
 };
 Q5.modules.record = ($, q) => {
-	let rec, btn0, btn1, timer, formatSelect, qualitySelect;
+	let rec, btn0, btn1, timer, formatSelect, bitrateInput;
 
 	$.recording = false;
 
@@ -3476,6 +3511,7 @@ Q5.modules.record = ($, q) => {
 
 .rec button,
 .rec select,
+.rec input,
 .rec .record-timer {
 	font-family: sans-serif;
 	font-size: 14px;
@@ -3541,21 +3577,10 @@ Q5.modules.record = ($, q) => {
 		formatSelect.title = 'Video Format';
 		rec.append(formatSelect);
 
-		let qMult = {
-			min: 0.1,
-			low: 0.25,
-			mid: 0.5,
-			high: 0.75,
-			ultra: 0.9,
-			max: 1
-		};
-
-		qualitySelect = $.createSelect('quality');
-		for (let name in qMult) {
-			qualitySelect.option(name, qMult[name]);
-		}
-		qualitySelect.title = 'Video Quality';
-		rec.append(qualitySelect);
+		bitrateInput = $.createInput();
+		bitrateInput.title = 'Video Bitrate';
+		bitrateInput.style.width = '48px';
+		rec.append(bitrateInput);
 
 		rec.encoderSettings = {};
 
@@ -3563,21 +3588,18 @@ Q5.modules.record = ($, q) => {
 			rec.encoderSettings.mimeType = formatSelect.value;
 		}
 
-		function changeQuality() {
-			rec.encoderSettings.videoBitsPerSecond = maxVideoBitRate * qualitySelect.value;
+		function changeBitrate() {
+			rec.encoderSettings.videoBitsPerSecond = 1000000 * bitrateInput.value;
 		}
 
 		formatSelect.addEventListener('change', changeFormat);
-		qualitySelect.addEventListener('change', changeQuality);
+		bitrateInput.addEventListener('change', changeBitrate);
 
-		Object.defineProperty(rec, 'quality', {
-			get: () => qualitySelect.selected,
+		Object.defineProperty(rec, 'bitrate', {
+			get: () => bitrateInput.value,
 			set: (v) => {
-				v = v.toLowerCase();
-				if (qMult[v]) {
-					qualitySelect.selected = v;
-					changeQuality();
-				}
+				bitrateInput.value = v;
+				changeBitrate();
 			}
 		});
 
@@ -3592,15 +3614,10 @@ Q5.modules.record = ($, q) => {
 			}
 		});
 
+		rec.format = 'H.264';
+
 		let h = $.canvas.height;
-
-		if (h >= 1440 && rec.formats.VP9) rec.format = 'VP9';
-		else rec.format = 'H.264';
-
-		let maxVideoBitRate =
-			(h >= 4320 ? 128 : h >= 2160 ? 75 : h >= 1440 ? 36 : h >= 1080 ? 28 : h >= 720 ? 22 : 16) * 1000000;
-
-		rec.quality = 'high';
+		rec.bitrate = h >= 4320 ? 128 : h >= 2160 ? 75 : h >= 1440 ? 50 : h >= 1080 ? 32 : h >= 720 ? 26 : 16;
 
 		btn0.addEventListener('click', () => {
 			if (!$.recording) start();
@@ -4117,9 +4134,20 @@ Q5.modules.util = ($, q) => {
 	$.hour = () => new Date().getHours();
 	$.minute = () => new Date().getMinutes();
 	$.second = () => new Date().getSeconds();
+
+	$.nf = (n, l, r) => {
+		let neg = n < 0;
+		n = Math.abs(n);
+		let parts = n.toFixed(r).split('.');
+		parts[0] = parts[0].padStart(l, '0');
+		let s = parts.join('.');
+		if (neg) s = '-' + s;
+		return s;
+	};
 };
 Q5.modules.vector = ($) => {
-	$.createVector = (x, y, z) => new Q5.Vector(x, y, z, $);
+	$.Vector = Q5.Vector;
+	$.createVector = (x, y, z) => new $.Vector(x, y, z, $);
 };
 
 Q5.Vector = class {
@@ -5004,17 +5032,17 @@ Q5.renderers.webgpu.canvas = ($, q) => {
 			}
 
 			if (curPipelineIndex == 0) {
-				// draw shapes
+				// draw a shape
 				// v is the number of vertices
 				pass.draw(v, 1, drawVertOffset);
 				drawVertOffset += v;
-			} else if (curPipelineIndex == 1) {
-				// draw images
+			} else if (curPipelineIndex == 1 || curPipelineIndex == 2) {
+				// draw an image or video frame
 				// v is the texture index
 				pass.setBindGroup(1, $._textureBindGroups[v]);
 				pass.draw(4, 1, imageVertOffset);
 				imageVertOffset += 4;
-			} else if (curPipelineIndex == 2) {
+			} else if (curPipelineIndex == 3) {
 				// draw text
 				let o = drawStack[i + 2];
 				pass.setBindGroup(1, $._fonts[o].bindGroup);
@@ -5729,9 +5757,7 @@ Q5.renderers.webgpu.image = ($, q) => {
 	let vertexStack = new Float32Array(1e7),
 		vertIndex = 0;
 
-	let imageShader = Q5.device.createShaderModule({
-		label: 'imageShader',
-		code: `
+	let imageShaderCode = `
 struct Uniforms {
 	halfWidth: f32,
 	halfHeight: f32
@@ -5781,10 +5807,32 @@ fn fragmentMain(f: FragmentParams) -> @location(0) vec4f {
 		let tinted = vec4f(texColor.rgb * tintColor.rgb, texColor.a * f.globalAlpha);
 		return mix(texColor, tinted, tintColor.a);
 }
-	`
+`;
+
+	let imageShader = Q5.device.createShaderModule({
+		label: 'imageShader',
+		code: imageShaderCode
 	});
 
-	$._textureBindGroups = [];
+	let videoShaderCode = imageShaderCode
+		.replace('texture_2d<f32>', 'texture_external')
+		.replace('textureSample', 'textureSampleBaseClampToEdge');
+
+	let videoShader = Q5.device.createShaderModule({
+		label: 'videoShader',
+		code: videoShaderCode
+	});
+
+	let vertexBufferLayout = {
+		arrayStride: 28,
+		attributes: [
+			{ shaderLocation: 0, offset: 0, format: 'float32x2' },
+			{ shaderLocation: 1, offset: 8, format: 'float32x2' },
+			{ shaderLocation: 2, offset: 16, format: 'float32' }, // tintIndex
+			{ shaderLocation: 3, offset: 20, format: 'float32' }, // matrixIndex
+			{ shaderLocation: 4, offset: 24, format: 'float32' } // globalAlpha
+		]
+	};
 
 	let textureLayout = Q5.device.createBindGroupLayout({
 		label: 'textureLayout',
@@ -5802,25 +5850,35 @@ fn fragmentMain(f: FragmentParams) -> @location(0) vec4f {
 		]
 	});
 
-	const vertexBufferLayout = {
-		arrayStride: 28,
-		attributes: [
-			{ shaderLocation: 0, offset: 0, format: 'float32x2' },
-			{ shaderLocation: 1, offset: 8, format: 'float32x2' },
-			{ shaderLocation: 2, offset: 16, format: 'float32' }, // tintIndex
-			{ shaderLocation: 3, offset: 20, format: 'float32' }, // matrixIndex
-			{ shaderLocation: 4, offset: 24, format: 'float32' } // globalAlpha
+	let videoTextureLayout = Q5.device.createBindGroupLayout({
+		label: 'videoTextureLayout',
+		entries: [
+			{
+				binding: 0,
+				visibility: GPUShaderStage.FRAGMENT,
+				sampler: { type: 'filtering' }
+			},
+			{
+				binding: 1,
+				visibility: GPUShaderStage.FRAGMENT,
+				externalTexture: {}
+			}
 		]
-	};
+	});
 
-	const pipelineLayout = Q5.device.createPipelineLayout({
+	let imagePipelineLayout = Q5.device.createPipelineLayout({
 		label: 'imagePipelineLayout',
 		bindGroupLayouts: [...$.bindGroupLayouts, textureLayout]
 	});
 
+	let videoPipelineLayout = Q5.device.createPipelineLayout({
+		label: 'videoPipelineLayout',
+		bindGroupLayouts: [...$.bindGroupLayouts, videoTextureLayout]
+	});
+
 	$._pipelineConfigs[1] = {
 		label: 'imagePipeline',
-		layout: pipelineLayout,
+		layout: imagePipelineLayout,
 		vertex: {
 			module: imageShader,
 			entryPoint: 'vertexMain',
@@ -5837,10 +5895,29 @@ fn fragmentMain(f: FragmentParams) -> @location(0) vec4f {
 
 	$._pipelines[1] = Q5.device.createRenderPipeline($._pipelineConfigs[1]);
 
-	let sampler;
+	$._pipelineConfigs[2] = {
+		label: 'videoPipeline',
+		layout: videoPipelineLayout,
+		vertex: {
+			module: videoShader,
+			entryPoint: 'vertexMain',
+			buffers: [{ arrayStride: 0, attributes: [] }, vertexBufferLayout]
+		},
+		fragment: {
+			module: videoShader,
+			entryPoint: 'fragmentMain',
+			targets: [{ format: 'bgra8unorm', blend: $.blendConfigs.normal }]
+		},
+		primitive: { topology: 'triangle-strip', stripIndexFormat: 'uint32' },
+		multisample: { count: 4 }
+	};
+
+	$._pipelines[2] = Q5.device.createRenderPipeline($._pipelineConfigs[2]);
+
+	$._textureBindGroups = [];
 
 	let makeSampler = (filter) => {
-		sampler = Q5.device.createSampler({
+		$._imageSampler = Q5.device.createSampler({
 			magFilter: filter,
 			minFilter: filter
 		});
@@ -5851,7 +5928,8 @@ fn fragmentMain(f: FragmentParams) -> @location(0) vec4f {
 
 	$.smooth();
 
-	let tIdx = 0;
+	let tIdx = 0,
+		vidFrames = 0;
 
 	$._createTexture = (img) => {
 		let g = img;
@@ -5875,12 +5953,12 @@ fn fragmentMain(f: FragmentParams) -> @location(0) vec4f {
 		);
 
 		g.texture = texture;
-		g.textureIndex = tIdx;
+		g.textureIndex = tIdx + vidFrames;
 
-		$._textureBindGroups[tIdx] = Q5.device.createBindGroup({
+		$._textureBindGroups[tIdx + vidFrames] = Q5.device.createBindGroup({
 			layout: textureLayout,
 			entries: [
-				{ binding: 0, resource: sampler },
+				{ binding: 0, resource: $._imageSampler },
 				{ binding: 1, resource: texture.createView() }
 			]
 		});
@@ -5916,7 +5994,12 @@ fn fragmentMain(f: FragmentParams) -> @location(0) vec4f {
 	};
 
 	$.image = (img, dx = 0, dy = 0, dw, dh, sx = 0, sy = 0, sw, sh) => {
-		if (img.textureIndex == undefined) return;
+		let isVideo;
+		if (img.textureIndex == undefined) {
+			isVideo = img.tagName == 'VIDEO';
+			if (!isVideo || !img.width) return;
+			if (img.flipped) $.scale(-1, 1);
+		}
 
 		let cnv = img.canvas || img;
 
@@ -5935,8 +6018,8 @@ fn fragmentMain(f: FragmentParams) -> @location(0) vec4f {
 			img.modified = false;
 		}
 
-		dw ??= img.defaultWidth;
-		dh ??= img.defaultHeight;
+		dw ??= img.defaultWidth || img.videoWidth;
+		dh ??= img.defaultHeight || img.videoHeight;
 		sw ??= w;
 		sh ??= h;
 		sx *= pd;
@@ -5957,7 +6040,27 @@ fn fragmentMain(f: FragmentParams) -> @location(0) vec4f {
 		addVert(l, b, u0, v1, ci, ti, ga);
 		addVert(r, b, u1, v1, ci, ti, ga);
 
-		$.drawStack.push(1, img.textureIndex);
+		if (!isVideo) {
+			$.drawStack.push(1, img.textureIndex);
+		} else {
+			// draw video
+			let externalTexture = Q5.device.importExternalTexture({ source: img });
+
+			// Create bind group for video texture that will only exist for this frame
+			$._textureBindGroups.push(
+				Q5.device.createBindGroup({
+					layout: videoTextureLayout,
+					entries: [
+						{ binding: 0, resource: $._imageSampler },
+						{ binding: 1, resource: externalTexture }
+					]
+				})
+			);
+
+			$.drawStack.push(2, $._textureBindGroups.length - 1);
+
+			if (img.flipped) $.scale(-1, 1);
+		}
 	};
 
 	$._saveCanvas = async (data, ext) => {
@@ -6030,10 +6133,18 @@ fn fragmentMain(f: FragmentParams) -> @location(0) vec4f {
 		vertexBuffer.unmap();
 
 		$.pass.setVertexBuffer(1, vertexBuffer);
+
+		if (vidFrames) {
+			// Switch to video pipeline
+			$.pass.setPipeline($._pipelines[3]);
+			$.pass.setVertexBuffer(1, vertexBuffer);
+		}
 	});
 
 	$._hooks.postRender.push(() => {
 		vertIndex = 0;
+		$._textureBindGroups.splice(tIdx, vidFrames);
+		vidFrames = 0;
 	});
 };
 
@@ -6185,7 +6296,7 @@ fn fragmentMain(f : FragmentParams) -> @location(0) vec4f {
 		bindGroupLayouts: [...$.bindGroupLayouts, fontBindGroupLayout, textBindGroupLayout]
 	});
 
-	$._pipelineConfigs[2] = {
+	$._pipelineConfigs[3] = {
 		label: 'msdf font pipeline',
 		layout: fontPipelineLayout,
 		vertex: { module: textShader, entryPoint: 'vertexMain' },
@@ -6198,7 +6309,7 @@ fn fragmentMain(f : FragmentParams) -> @location(0) vec4f {
 		multisample: { count: 4 }
 	};
 
-	$._pipelines[2] = Q5.device.createRenderPipeline($._pipelineConfigs[2]);
+	$._pipelines[3] = Q5.device.createRenderPipeline($._pipelineConfigs[3]);
 
 	class MsdfFont {
 		constructor(bindGroup, lineHeight, chars, kernings) {
@@ -6535,7 +6646,7 @@ fn fragmentMain(f : FragmentParams) -> @location(0) vec4f {
 		txt[5] = $._stroke;
 
 		textStack.push(txt);
-		$.drawStack.push(2, measurements.printedCharCount, $._font.index);
+		$.drawStack.push(3, measurements.printedCharCount, $._font.index);
 	};
 
 	$.textWidth = (str) => {
