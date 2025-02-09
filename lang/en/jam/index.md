@@ -6,9 +6,19 @@ The p5play Game Jam is a competition held bi-annually to see who can make the be
 
 You can work individually or in a team. Share your game in the [#share](https://discord.gg/EJwnJATmj7) channel on Discord to receive feedback before the competition ends. Submit your game using the google form linked below.
 
-Games must use the latest version of p5play and be submitted before ~~December 20th 2024~~ January 10th 2025.
+Games must use the latest version of p5play and be submitted before June 20th 2025.
 
 ## 🎉 [Submit your game!](https://forms.gle/xn2PvsC8FA8Hf8Qo8) 🎉
+
+# w2024
+
+## 🥇 Winter 2024 : [@doityourseph](https://doityourseph.com)
+
+["Rat Race"](https://doityourseph2.github.io/rat-race/), by Joseph Chee, prompts players to assist collared shirt and tie clad rats keen on climbing the corporate ladder. It was originally presented as an [interactive art installation](https://doityourseph.com/#/projects/rat-race) at Nanyang Technological University.
+
+Players watch as the rats inevitably get kicked around by sloth managers, pushed by worker bees, yapped to by sneaky weasels, bombarded with the prideful peacock's trophies, and growled at by wolves in sheep's clothes. Even the lions at the top are struggling in the perpetual pursuit of money, power, and status. No one wins in a rat race!
+
+This game won the jam because of its brilliant visuals, thought provoking theme, and charming character design. The code features excellent use of animation sequencing.
 
 # s2024
 

@@ -6,9 +6,19 @@
 
 Puedes trabajar de forma individual o en equipo. Comparte tu juego en el canal [#share](https://discord.gg/EJwnJATmj7) en Discord para recibir comentarios antes de que termine la competencia. Envía tu juego utilizando el formulario de Google vinculado a continuación.
 
-Los juegos deben utilizar la última versión de p5play y deben enviarse antes del 20 de Diciembre de 2024.
+Los juegos deben usar la última versión de p5play y deben enviarse antes del 20 de junio de 2025.
 
 ## 🎉 [¡Envía tu juego!](https://forms.gle/xn2PvsC8FA8Hf8Qo8) 🎉
+
+# w2024
+
+## 🥇 Invierno 2024 : [@doityourseph](https://doityourseph.com)
+
+["Carrera de Ratas"](https://doityourseph2.github.io/rat-race/), por Joseph Chee, invita a los jugadores a ayudar a ratas vestidas con camisa y corbata ansiosas por ascender en la escalera corporativa. Originalmente se presentó como una [instalación artística interactiva](https://doityourseph.com/#/projects/rat-race) en la Universidad Tecnológica de Nanyang.
+
+Los jugadores observan cómo las ratas inevitablemente son pateadas por gerentes perezosos, empujadas por abejas obreras, regañadas por comadrejas astutas, bombardeadas con los trofeos orgullosos del pavo real y gruñidas por lobos vestidos de oveja. Incluso los leones en la cima están luchando en la búsqueda perpetua de dinero, poder y estatus. ¡Nadie gana en una carrera de ratas!
+
+Este juego ganó la competencia por sus brillantes visuales, tema que invita a la reflexión y encantador diseño de personajes. El código presenta un excelente uso de secuencias de animación.
 
 # s2024
 
