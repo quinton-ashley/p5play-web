@@ -6,9 +6,17 @@
 
 ## Edu License
 
-Obtain the Educational License to unlock the power of p5play in your classroom!
+### $5 USD
 
-See our [Educational Pricing](#educational-pricing) below.
+per student per semester
+
+# 0-2
+
+Buy Now (Semester)
+
+# 0-3
+
+Buy Now (Full Year)
 
 # 1-0
 
@@ -42,26 +50,12 @@ Students will be able to keep using their accounts, even after the licensing ter
 
 # 4-0
 
-## Educational Pricing
-
-### $5 USD
-
-per student per semester
-
-# 4-1
-
-Buy Now (Semester)
-
-# 4-2
-
-Buy Now (Full Year)
-
-# 4-3
-
-## Request Invoice
-
-# 4-4
+## License Agreement
 
 Read the [p5play Educational License](https://github.com/quinton-ashley/p5play-web/blob/main/teach/EDU_LICENSE.md) agreement before purchasing.
 
 Equitable access is important to us. We offer discounts for schools in low-income areas. If you want to use p5play, we'll work with you to make it happen!
+
+# 4-1
+
+## Request Invoice

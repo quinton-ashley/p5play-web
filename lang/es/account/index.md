@@ -2,7 +2,9 @@
 
 ## Cuenta
 
-¡Regístrate para obtener una cuenta gratuita y acceder a las páginas de aprendizaje, además de recibir notificaciones por correo electrónico sobre nuevas características!
+¡Regístrate para obtener una cuenta gratuita y acceder a las páginas de aprendizaje!
+
+[¿Olvidaste tu contraseña?](https://p5play.auth.us-west-2.amazoncognito.com/forgotPassword?client_id=3oegfdhu2r7eo8nr371496718c&response_type=token&scope=email+openid+profile&redirect_uri=https%3A%2F%2Fp5play.org%2Faccount%2Findex.html)
 
 # 0-1
 

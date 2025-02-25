@@ -6,9 +6,17 @@
 
 ## Licencia Edu
 
-¡Obtén la Licencia Educativa para desbloquear el poder de p5play en tu aula!
+### $5 USD
 
-Consulte nuestros [Precios Educativos](#precios-educativos) a continuación.
+por estudiante cada semestre
+
+# 0-2
+
+Comprar Ahora (Semestre)
+
+# 0-3
+
+Comprar Ahora (Año Completo)
 
 # 1-0
 
@@ -44,26 +52,10 @@ La privacidad de los estudiantes está protegida, no necesitarán proporcionar n
 
 # 4-0
 
-## Precios Educativos
-
-### $5 USD
-
-por estudiante cada semestre
-
-# 4-1
-
-Comprar Ahora (Semestre)
-
-# 4-2
-
-Comprar Ahora (Año Completo)
-
-# 4-3
-
-## ¡Dame la factura!
-
-# 4-4
-
 Lea el [Acuerdo de Licencia Educativa de p5play](https://github.com/quinton-ashley/p5play-web/blob/main/teach/EDU_LICENSE.md) antes de realizar la compra.
 
 El acceso equitativo es importante para nosotros. Ofrecemos descuentos para escuelas en áreas de bajos ingresos. Si deseas usar p5play, trabajaremos contigo para hacerlo posible.
+
+# 4-1
+
+## ¡Dame la factura!
