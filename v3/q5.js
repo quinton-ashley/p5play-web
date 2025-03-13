@@ -1,6 +1,6 @@
 /**
  * q5.js
- * @version 2.21
+ * @version 2.22
  * @author quinton-ashley, Tezumie, and LingDong-
  * @license LGPL-3.0
  * @class Q5
@@ -41,7 +41,8 @@ function Q5(scope, parent, renderer) {
 
 	$.canvas = $.ctx = $.drawingContext = null;
 	$.pixels = [];
-	let looper = null;
+	let looper = null,
+		useRAF = true;
 
 	$.frameCount = 0;
 	$.deltaTime = 16;
@@ -83,13 +84,22 @@ function Q5(scope, parent, renderer) {
 			$._didResize = false;
 		}
 
-		if ($._loop) looper = raf($._draw);
-		else if ($.frameCount && !$._redraw) return;
+		if ($._loop) {
+			if (useRAF) looper = raf($._draw);
+			else {
+				let nextTS = ts + $._targetFrameDuration;
+				let frameDelay = nextTS - performance.now();
+				while (frameDelay < 0) frameDelay += $._targetFrameDuration;
+				log(frameDelay);
+				looper = setTimeout(() => $._draw(nextTS), frameDelay);
+			}
+		} else if ($.frameCount && !$._redraw) return;
 
-		if (looper && $.frameCount) {
-			let time_since_last = ts - $._lastFrameTime;
-			if (time_since_last < $._targetFrameDuration - 4) return;
+		if ($.frameCount && useRAF) {
+			let timeSinceLast = ts - $._lastFrameTime;
+			if (timeSinceLast < $._targetFrameDuration - 4) return;
 		}
+
 		q.deltaTime = ts - $._lastFrameTime;
 		$._frameRate = 1000 / $.deltaTime;
 		q.frameCount++;
@@ -100,7 +110,6 @@ function Q5(scope, parent, renderer) {
 		try {
 			$.draw();
 		} catch (e) {
-			if (!Q5.disableFriendlyErrors && $._askAI) $._askAI(e);
 			if (!Q5.errorTolerant) $.noLoop();
 			throw e;
 		}
@@ -117,6 +126,10 @@ function Q5(scope, parent, renderer) {
 	};
 	$.noLoop = () => {
 		$._loop = false;
+		if (looper) {
+			if (useRAF) cancelAnimationFrame(looper);
+			else clearTimeout(looper);
+		}
 		looper = null;
 	};
 	$.loop = () => {
@@ -140,6 +153,14 @@ function Q5(scope, parent, renderer) {
 		if (hz) {
 			$._targetFrameRate = hz;
 			$._targetFrameDuration = 1000 / hz;
+
+			if ($._loop && $._setupDone && looper != null) {
+				if (useRAF) cancelAnimationFrame(looper);
+				else clearTimeout(looper);
+				looper = null;
+			}
+			useRAF = hz <= 60;
+			setTimeout(() => $._draw(), $._targetFrameDuration);
 		}
 		return $._frameRate;
 	};
@@ -177,7 +198,9 @@ function Q5(scope, parent, renderer) {
 	if ($._graphics) return;
 
 	if (scope == 'global') {
-		Object.assign(Q5, $);
+		let tmp = Object.assign({}, $);
+		delete tmp.Color;
+		Object.assign(Q5, tmp);
 		delete Q5.Q5;
 	}
 
@@ -243,20 +266,13 @@ function Q5(scope, parent, renderer) {
 	for (let k of userFns) {
 		if (!t[k]) $[k] = () => {};
 		else if ($._isGlobal) {
-			$[k] = (event) => {
-				try {
-					return t[k](event);
-				} catch (e) {
-					if ($._askAI) $._askAI(e);
-					throw e;
-				}
-			};
+			$[k] = (event) => t[k](event);
 		}
 	}
 
 	async function _setup() {
 		$._startDone = true;
-		if ($._preloadCount > 0) return raf(_setup);
+		if ($._preloadCount > 0 || $._g?._preloadCount > 0) return raf(_setup);
 		millisStart = performance.now();
 		await $.setup();
 		$._setupDone = true;
@@ -314,7 +330,7 @@ function createCanvas(w, h, opt) {
 	}
 }
 
-Q5.version = Q5.VERSION = '2.21';
+Q5.version = Q5.VERSION = '2.22';
 
 if (typeof document == 'object') {
 	document.addEventListener('DOMContentLoaded', () => {
@@ -375,7 +391,7 @@ Q5.modules.canvas = ($, q) => {
 			w = null;
 		}
 		options ??= arguments[3];
-
+		if (typeof options == 'string') options = { renderer: options };
 		let opt = Object.assign({}, Q5.canvasOptions);
 		if (typeof options == 'object') Object.assign(opt, options);
 
@@ -407,7 +423,6 @@ Q5.modules.canvas = ($, q) => {
 		if ($._hooks) {
 			for (let m of $._hooks.postCanvas) m();
 		}
-		if ($._beginRender) $._beginRender();
 
 		if ($._addEventMethods) $._addEventMethods(c);
 
@@ -415,6 +430,7 @@ Q5.modules.canvas = ($, q) => {
 	};
 
 	$.createGraphics = function (w, h, opt = {}) {
+		if (typeof opt == 'string') opt = { renderer: opt };
 		let g = new Q5('graphics', undefined, opt.renderer || ($._webgpuFallback ? 'webgpu-fallback' : $._renderer));
 		opt.alpha ??= true;
 		opt.colorSpace ??= $.canvas.colorSpace;
@@ -514,7 +530,7 @@ Q5.modules.canvas = ($, q) => {
 	$.pixelDensity = (v) => {
 		if (!v || v == $._pixelDensity) return $._pixelDensity;
 		$._pixelDensity = v;
-		$._setCanvasSize(c.w, c.h);
+		$._resizeCanvas(c.w, c.h);
 		return v;
 	};
 
@@ -640,6 +656,7 @@ Q5.HUE_ROTATE = 13;
 
 Q5.C2D = Q5.P2D = Q5.P2DHDR = 'c2d';
 Q5.WEBGL = 'webgl';
+Q5.WEBGPU = 'webgpu';
 
 Q5.canvasOptions = {
 	alpha: false,
@@ -687,6 +704,22 @@ Q5.renderers.c2d.canvas = ($, q) => {
 	};
 
 	if ($._scope == 'image') return;
+
+	$.background = function (c) {
+		$.ctx.save();
+		$.ctx.resetTransform();
+		$.ctx.globalAlpha = 1;
+		if (c.canvas) $.image(c, 0, 0, $.canvas.width, $.canvas.height);
+		else {
+			if (Q5.Color && !c._q5Color) {
+				if (typeof c != 'string') c = $.color(...arguments);
+				else if ($._namedColors[c]) c = $.color(...$._namedColors[c]);
+			}
+			$.ctx.fillStyle = c.toString();
+			$.ctx.fillRect(0, 0, $.canvas.width, $.canvas.height);
+		}
+		$.ctx.restore();
+	};
 
 	$._resizeCanvas = (w, h) => {
 		let t = {};
@@ -867,22 +900,6 @@ Q5.renderers.c2d.shapes = ($) => {
 	$.curveTightness = (x) => ($._curveAlpha = x);
 
 	// DRAWING
-
-	$.background = function (c) {
-		$.ctx.save();
-		$.ctx.resetTransform();
-		$.ctx.globalAlpha = 1;
-		if (c.canvas) $.image(c, 0, 0, $.canvas.width, $.canvas.height);
-		else {
-			if (Q5.Color && !c._q5Color) {
-				if (typeof c != 'string') c = $.color(...arguments);
-				else if ($._namedColors[c]) c = $.color(...$._namedColors[c]);
-			}
-			$.ctx.fillStyle = c.toString();
-			$.ctx.fillRect(0, 0, $.canvas.width, $.canvas.height);
-		}
-		$.ctx.restore();
-	};
 
 	$.line = (x0, y0, x1, y1) => {
 		if ($._doStroke) {
@@ -1217,8 +1234,8 @@ Q5.renderers.c2d.shapes = ($) => {
 	$.erase = function (fillAlpha = 255, strokeAlpha = 255) {
 		$.ctx.save();
 		$.ctx.globalCompositeOperation = 'destination-out';
-		$.ctx.fillStyle = `rgba(0, 0, 0, ${fillAlpha / 255})`;
-		$.ctx.strokeStyle = `rgba(0, 0, 0, ${strokeAlpha / 255})`;
+		$.ctx.fillStyle = `rgb(0 0 0 / ${fillAlpha / 255})`;
+		$.ctx.strokeStyle = `rgb(0 0 0 / ${strokeAlpha / 255})`;
 	};
 
 	$.noErase = function () {
@@ -1868,7 +1885,7 @@ Q5.renderers.c2d.text = ($, q) => {
 
 	$.createTextImage = (str, w, h) => {
 		genTextImage = true;
-		img = $.text(str, 0, 0, w, h);
+		let img = $.text(str, 0, 0, w, h);
 		genTextImage = false;
 		return img;
 	};
@@ -2095,21 +2112,29 @@ Q5.modules.ai = ($) => {
 };
 Q5.modules.color = ($, q) => {
 	$.RGB = $.RGBA = $._colorMode = 'rgb';
-	$.SRGB = 'srgb';
+	$.HSL = 'hsl';
+	$.HSB = 'hsb';
 	$.OKLCH = 'oklch';
 
-	$.colorMode = (mode, format) => {
+	$.SRGB = 'srgb';
+	$.DISPLAY_P3 = 'display-p3';
+
+	$.colorMode = (mode, format, gamut) => {
 		$._colorMode = mode;
-		let srgb = $.canvas.colorSpace == 'srgb' || mode == 'srgb';
+		let srgb = $.canvas.colorSpace == 'srgb' || gamut == 'srgb';
 		format ??= srgb ? 'integer' : 'float';
 		$._colorFormat = format == 'float' || format == 1 ? 1 : 255;
 		if (mode == 'oklch') {
 			q.Color = Q5.ColorOKLCH;
+		} else if (mode == 'hsl') {
+			q.Color = srgb ? Q5.ColorHSL : Q5.ColorHSL_P3;
+		} else if (mode == 'hsb') {
+			q.Color = srgb ? Q5.ColorHSB : Q5.ColorHSB_P3;
 		} else {
 			if ($._colorFormat == 255) {
-				q.Color = srgb ? Q5.ColorRGBA_8 : Q5.ColorRGBA_P3_8;
+				q.Color = srgb ? Q5.ColorRGB_8 : Q5.ColorRGB_P3_8;
 			} else {
-				q.Color = srgb ? Q5.ColorRGBA : Q5.ColorRGBA_P3;
+				q.Color = srgb ? Q5.ColorRGB : Q5.ColorRGB_P3;
 			}
 			$._colorMode = 'rgb';
 		}
@@ -2203,7 +2228,8 @@ Q5.modules.color = ($, q) => {
 
 	$.lightness = (c) => {
 		if (c.l) return c.l;
-		return ((0.2126 * c.r + 0.7152 * c.g + 0.0722 * c.b) * 100) / 255;
+		let l = (0.2126 * c.r + 0.7152 * c.g + 0.0722 * c.b) * 100;
+		return $._colorFormat == 255 ? l / 255 : l;
 	};
 	$.hue = (c) => {
 		if (c.h) return c.h;
@@ -2248,6 +2274,12 @@ Q5.Color = class {
 	constructor() {
 		this._q5Color = true;
 	}
+	get alpha() {
+		return this.a;
+	}
+	set alpha(v) {
+		this.a = v;
+	}
 };
 
 Q5.ColorOKLCH = class extends Q5.Color {
@@ -2289,15 +2321,9 @@ Q5.ColorOKLCH = class extends Q5.Color {
 	set hue(v) {
 		this.h = v;
 	}
-	get alpha() {
-		return this.a;
-	}
-	set alpha(v) {
-		this.a = v;
-	}
 };
 
-Q5.ColorRGBA = class extends Q5.Color {
+Q5.ColorRGB = class extends Q5.Color {
 	constructor(r, g, b, a) {
 		super();
 		this.r = r;
@@ -2317,6 +2343,7 @@ Q5.ColorRGBA = class extends Q5.Color {
 	toString() {
 		return `color(srgb ${this.r} ${this.g} ${this.b} / ${this.a})`;
 	}
+
 	get red() {
 		return this.r;
 	}
@@ -2335,22 +2362,16 @@ Q5.ColorRGBA = class extends Q5.Color {
 	set blue(v) {
 		this.b = v;
 	}
-	get alpha() {
-		return this.a;
-	}
-	set alpha(v) {
-		this.a = v;
-	}
 };
 
-Q5.ColorRGBA_P3 = class extends Q5.ColorRGBA {
+Q5.ColorRGB_P3 = class extends Q5.ColorRGB {
 	toString() {
 		return `color(display-p3 ${this.r} ${this.g} ${this.b} / ${this.a})`;
 	}
 };
 
-// legacy 8-bit (0-255) integer color format
-Q5.ColorRGBA_8 = class extends Q5.ColorRGBA {
+// legacy 8-bit (0-255) integer color format, srgb color space
+Q5.ColorRGB_8 = class extends Q5.ColorRGB {
 	constructor(r, g, b, a) {
 		super(r, g, b, a ?? 255);
 	}
@@ -2373,7 +2394,7 @@ Q5.ColorRGBA_8 = class extends Q5.ColorRGBA {
 };
 
 // p3 10-bit color in integer color format, for backwards compatibility
-Q5.ColorRGBA_P3_8 = class extends Q5.ColorRGBA {
+Q5.ColorRGB_P3_8 = class extends Q5.ColorRGB_8 {
 	constructor(r, g, b, a) {
 		super(r, g, b, a ?? 255);
 		this._edited = true;
@@ -2418,6 +2439,159 @@ Q5.ColorRGBA_P3_8 = class extends Q5.ColorRGBA {
 		return this._css;
 	}
 };
+
+Q5.ColorHSL = class extends Q5.Color {
+	constructor(h, s, l, a) {
+		super();
+		this.h = h;
+		this.s = s;
+		this.l = l;
+		this.a = a ?? 1;
+	}
+	get levels() {
+		return [this.h, this.s, this.l, this.a];
+	}
+	equals(c) {
+		return c && this.h == c.h && this.s == c.s && this.l == c.l && this.a == c.a;
+	}
+	isSameColor(c) {
+		return c && this.h == c.h && this.s == c.s && this.l == c.l;
+	}
+	toString() {
+		return `hsl(${this.h} ${this.s} ${this.l} / ${this.a})`;
+	}
+
+	get hue() {
+		return this.h;
+	}
+	set hue(v) {
+		this.h = v;
+	}
+	get saturation() {
+		return this.s;
+	}
+	set saturation(v) {
+		this.s = v;
+	}
+	get lightness() {
+		return this.l;
+	}
+	set lightness(v) {
+		this.l = v;
+	}
+};
+
+Q5.ColorHSL_P3 = class extends Q5.ColorHSL {
+	toString() {
+		let o = Q5.HSLtoRGB(this.h, this.s, this.l);
+		return `color(display-p3 ${o.join(' ')} / ${this.a})`;
+	}
+};
+
+Q5.ColorHSB = class extends Q5.ColorHSL {
+	constructor(h, s, b, a) {
+		super(h, s, b, a);
+		delete this.l;
+		this.b = b;
+	}
+	get levels() {
+		return [this.h, this.s, this.b, this.a];
+	}
+	equals(c) {
+		return c && this.h == c.h && this.s == c.s && this.b == c.b && this.a == c.a;
+	}
+	isSameColor(c) {
+		return c && this.h == c.h && this.s == c.s && this.b == c.b;
+	}
+	toString() {
+		let o = Q5.HSBtoHSL(this.h, this.s, this.b);
+		return `hsl(${o.join(' ')} / ${this.a})`;
+	}
+
+	get v() {
+		return this.b;
+	}
+	set v(v) {
+		this.b = v;
+	}
+	get brightness() {
+		return this.b;
+	}
+	set brightness(v) {
+		this.b = v;
+	}
+	get value() {
+		return this.b;
+	}
+	set value(v) {
+		this.b = v;
+	}
+};
+
+Q5.ColorHSB_P3 = class extends Q5.ColorHSB {
+	toString() {
+		let o = Q5.HSLtoRGB(...Q5.HSBtoHSL(this.h, this.s, this.b));
+		return `color(display-p3 ${o.join(' ')} / ${this.a})`;
+	}
+};
+
+Q5.HSLtoRGB = (h, s, l) => {
+	l /= 100;
+	let m = (s / 100) * Math.min(l, 1 - l);
+	let f = (n, k = (n + h / 30) % 12) => l - m * Math.max(Math.min(k - 3, 9 - k, 1), -1);
+	return [f(0), f(8), f(4)];
+};
+
+Q5.HSBtoHSL = (h, s, v, l = v * (1 - s / 200)) => [h, !l || l == 100 ? 0 : ((v - l) / Math.min(l, 100 - l)) * 100, l];
+
+{
+	const multiplyMatrices = (A, B) => [
+		A[0] * B[0] + A[1] * B[1] + A[2] * B[2],
+		A[3] * B[0] + A[4] * B[1] + A[5] * B[2],
+		A[6] * B[0] + A[7] * B[1] + A[8] * B[2]
+	];
+
+	const oklch2oklab = (l, c, h) => [
+		l,
+		isNaN(h) ? 0 : c * Math.cos((h * Math.PI) / 180),
+		isNaN(h) ? 0 : c * Math.sin((h * Math.PI) / 180)
+	];
+
+	const srgbLinear2rgb = (rgb) =>
+		rgb.map((c) =>
+			Math.max(
+				0,
+				Math.min(1, Math.abs(c) > 0.0031308 ? (c < 0 ? -1 : 1) * (1.055 * Math.abs(c) ** (1 / 2.4) - 0.055) : 12.92 * c)
+			)
+		);
+
+	const oklab2xyz = (lab) => {
+		const LMSg = multiplyMatrices(
+			[
+				1, 0.3963377773761749, 0.2158037573099136, 1, -0.1055613458156586, -0.0638541728258133, 1, -0.0894841775298119,
+				-1.2914855480194092
+			],
+			lab
+		);
+		return multiplyMatrices(
+			[
+				1.2268798758459243, -0.5578149944602171, 0.2813910456659647, -0.0405757452148008, 1.112286803280317,
+				-0.0717110580655164, -0.0763729366746601, -0.4214933324022432, 1.5869240198367816
+			],
+			LMSg.map((val) => val ** 3)
+		);
+	};
+	const xyz2rgbLinear = (xyz) =>
+		multiplyMatrices(
+			[
+				3.2409699419045226, -1.537383177570094, -0.4986107602930034, -0.9692436362808796, 1.8759675015077202,
+				0.04155505740717559, 0.05563007969699366, -0.20397695888897652, 1.0569715142428786
+			],
+			xyz
+		);
+
+	Q5.OKLCHtoRGB = (l, c, h) => srgbLinear2rgb(xyz2rgbLinear(oklab2xyz(oklch2oklab(l, c, h))));
+}
 Q5.modules.display = ($) => {
 	if (!$.canvas || $._scope == 'graphics') return;
 
@@ -3516,7 +3690,7 @@ Q5.PerlinNoise = class extends Q5.NoiseGenerator {
 	}
 };
 Q5.modules.record = ($, q) => {
-	let rec, btn0, btn1, timer, formatSelect, bitrateInput;
+	let rec, btn0, btn1, timer, formatSelect, bitrateInput, audioToggle;
 
 	$.recording = false;
 
@@ -3567,6 +3741,11 @@ Q5.modules.record = ($, q) => {
 	transition: all 0.3s;
 }
 
+.rec .audio-toggle {
+	font-size: 16px;
+	padding: 2px 10px;
+}
+
 .rec .bitrate input {
 	border-radius: 18px 0 0 18px;
 	border-right: 0;
@@ -3588,7 +3767,7 @@ Q5.modules.record = ($, q) => {
 }
 
 .rec select:hover,
-.rec button:hover { background: #292b30; }
+.rec button:hover { background: #32343b; }
 
 .rec button:disabled {
 	opacity: 0.5;
@@ -3613,17 +3792,19 @@ Q5.modules.record = ($, q) => {
 		rec.resetTimer = () => (rec.time = { hours: 0, minutes: 0, seconds: 0, frames: 0 });
 		rec.resetTimer();
 
-		rec.formats = opt.formats || {
-			'H.264': 'video/mp4; codecs="avc1.42E01E"',
-			VP9: 'video/mp4; codecs=vp9'
+		let f = 'video/mp4; codecs=';
+		rec.formats = {
+			'H.264': f + '"avc1.42E01E"',
+			VP9: f + 'vp9'
 		};
+		let highProfile = f + '"avc1.640034"';
 
-		// remove unsupported formats
-		for (let format in rec.formats) {
-			if (!MediaRecorder.isTypeSupported(rec.formats[format])) {
-				delete rec.formats[format];
-			}
+		let pixelCount = $.canvas.width * $.canvas.height;
+		if (pixelCount > 3200000 && MediaRecorder.isTypeSupported(highProfile)) {
+			rec.formats['H.264'] = highProfile;
 		}
+
+		Object.assign(rec.formats, opt.formats);
 
 		formatSelect = $.createSelect('format');
 		for (const name in rec.formats) {
@@ -3643,6 +3824,20 @@ Q5.modules.record = ($, q) => {
 		bitrateInput.title = span.title = 'Video Bitrate';
 		div.append(bitrateInput);
 		div.append(span);
+
+		audioToggle = $.createEl('button');
+		audioToggle.className = 'audio-toggle active';
+		audioToggle.textContent = '🔊';
+		audioToggle.title = 'Toggle Audio Recording';
+		rec.append(audioToggle);
+
+		rec.captureAudio = true;
+
+		audioToggle.addEventListener('click', () => {
+			rec.captureAudio = !rec.captureAudio;
+			audioToggle.textContent = rec.captureAudio ? '🔊' : '🔇';
+			audioToggle.classList.toggle('active', rec.captureAudio);
+		});
 
 		rec.encoderSettings = {};
 
@@ -3679,7 +3874,7 @@ Q5.modules.record = ($, q) => {
 		rec.format = 'H.264';
 
 		let h = $.canvas.height;
-		rec.bitrate = h >= 4320 ? 128 : h >= 2160 ? 75 : h >= 1440 ? 50 : h >= 1080 ? 32 : h >= 720 ? 26 : 16;
+		rec.bitrate = h >= 4320 ? 96 : h >= 2160 ? 64 : h >= 1440 ? 48 : h >= 1080 ? 32 : h >= 720 ? 26 : 16;
 
 		btn0.addEventListener('click', () => {
 			if (!$.recording) start();
@@ -3700,20 +3895,29 @@ Q5.modules.record = ($, q) => {
 	function start() {
 		if ($.recording) return;
 
+		$.userStartAudio();
+
 		if (!rec.stream) {
 			rec.frameRate ??= $.getTargetFrameRate();
 			let canvasStream = $.canvas.captureStream(rec.frameRate);
-			// let audioStream = Q5.aud.createMediaStreamDestination().stream;
-			// rec.stream = new MediaStream([canvasStream.getTracks()[0], ...audioStream.getTracks()]);
-			rec.stream = canvasStream;
+
+			rec.videoTrack = canvasStream.getVideoTracks()[0];
+
+			if (rec.captureAudio && $.getAudioContext) {
+				let aud = $.getAudioContext();
+				let dest = aud.createMediaStreamDestination();
+
+				// if using p5.sound
+				if (aud.destination.input) aud.destination.input.connect(dest);
+				else Q5.soundOut.connect(dest);
+
+				rec.audioTrack = dest.stream.getAudioTracks()[0];
+
+				rec.stream = new MediaStream([rec.videoTrack, rec.audioTrack]);
+			} else rec.stream = canvasStream;
 		}
 
-		try {
-			rec.mediaRecorder = new MediaRecorder(rec.stream, rec.encoderSettings);
-		} catch (e) {
-			console.error('Failed to initialize MediaRecorder: ', e);
-			return;
-		}
+		rec.mediaRecorder = new MediaRecorder(rec.stream, rec.encoderSettings);
 
 		rec.chunks = [];
 		rec.mediaRecorder.addEventListener('dataavailable', (e) => {
@@ -3919,6 +4123,9 @@ Q5.modules.sound = ($, q) => {
 			if (Q5._offlineAudio) {
 				Q5._offlineAudio = false;
 				Q5.aud = new window.AudioContext();
+				Q5.soundOut = Q5.aud.createGain();
+				Q5.soundOut.connect(Q5.aud.destination);
+
 				for (let s of sounds) s.init();
 			}
 			return Q5.aud.resume();
@@ -3929,6 +4136,8 @@ Q5.modules.sound = ($, q) => {
 if (window.OfflineAudioContext) {
 	Q5.aud = new window.OfflineAudioContext(2, 1, 44100);
 	Q5._offlineAudio = true;
+	Q5.soundOut = Q5.aud.createGain();
+	Q5.soundOut.connect(Q5.aud.destination);
 }
 
 Q5.Sound = class {
@@ -3948,7 +4157,7 @@ Q5.Sound = class {
 		this.gainNode = Q5.aud.createGain();
 		this.pannerNode = Q5.aud.createStereoPanner();
 		this.gainNode.connect(this.pannerNode);
-		this.pannerNode.connect(Q5.aud.destination);
+		this.pannerNode.connect(Q5.soundOut);
 
 		this.loaded = true;
 		if (this._volume) this.volume = this._volume;
@@ -4556,9 +4765,11 @@ struct Q5 {
 	$._pipelineConfigs = [];
 	$._pipelines = [];
 	$._buffers = [];
+	$._prevFramePL = 0;
 	$._framePL = 0;
 
 	// local variables used for slightly better performance
+
 	// stores pipeline shifts and vertex counts/image indices
 	let drawStack = ($.drawStack = []);
 
@@ -4595,7 +4806,7 @@ struct Q5 {
 	$.bindGroupLayouts = [mainLayout];
 
 	let uniformBuffer = Q5.device.createBuffer({
-		size: 64, // Size of four floats
+		size: 64,
 		usage: GPUBufferUsage.UNIFORM | GPUBufferUsage.COPY_DST
 	});
 
@@ -4695,7 +4906,7 @@ fn fragMain(f: FragParams ) -> @location(0) vec4f {
 			fragment: {
 				module: frameShader,
 				entryPoint: 'fragMain',
-				targets: [{ format, blend: $.blendConfigs.normal }]
+				targets: [{ format }]
 			},
 			primitive: { topology: 'triangle-strip' },
 			multisample: { count: 4 }
@@ -4723,27 +4934,24 @@ fn fragMain(f: FragParams ) -> @location(0) vec4f {
 		createMainView();
 	};
 
-	$.pixelDensity = (v) => {
-		if (!v || v == $._pixelDensity) return $._pixelDensity;
-		$._pixelDensity = v;
-		$._setCanvasSize(c.w, c.h);
-		createMainView();
-		return v;
-	};
-
-	// current color index, used to associate a vertex with a color
 	let addColor = (r, g, b, a = 1) => {
-		if (typeof r == 'string') r = $.color(r);
-		else if (b == undefined) {
+		if (typeof r == 'string' || $._colorMode != 'rgb') {
+			r = $.color(r, g, b, a);
+		} else if (b == undefined) {
 			// grayscale mode `fill(1, 0.5)`
 			a = g ?? 1;
 			g = b = r;
 		}
 		if (r._q5Color) {
-			a = r.a;
-			b = r.b;
-			g = r.g;
-			r = r.r;
+			let c = r;
+			if (c.r) ({ r, g, b, a } = c);
+			else {
+				a = c.a;
+				if (c.c != undefined) c = Q5.OKLCHtoRGB(c.l, c.c, c.h);
+				else if (c.l != undefined) c = Q5.HSLtoRGB(c.h, c.s, c.l);
+				else c = Q5.HSLtoRGB(...Q5.HSBtoHSL(c.h, c.s, c.b));
+				[r, g, b] = c;
+			}
 		}
 
 		let cs = colorStack,
@@ -4776,7 +4984,6 @@ fn fragMain(f: FragParams ) -> @location(0) vec4f {
 		$._tint = colorIndex;
 	};
 	$.opacity = (a) => ($._globalAlpha = a);
-
 	$.noFill = () => ($._doFill = false);
 	$.noStroke = () => ($._doStroke = false);
 	$.noTint = () => ($._tint = 1);
@@ -4784,6 +4991,7 @@ fn fragMain(f: FragParams ) -> @location(0) vec4f {
 	$._strokeWeight = 1;
 	$._hsw = 0.5;
 	$._scaledSW = 1;
+
 	$.strokeWeight = (v) => {
 		v = Math.abs(v);
 		$._strokeWeight = v;
@@ -4934,7 +5142,7 @@ fn fragMain(f: FragParams ) -> @location(0) vec4f {
 		$._matrixDirty = true;
 	};
 
-	// function to save the current matrix state if dirty
+	// saves the current matrix state
 	$._saveMatrix = () => {
 		transforms.set(matrix, matrices.length * MATRIX_SIZE);
 		$._matrixIndex = matrices.length;
@@ -5066,13 +5274,28 @@ fn fragMain(f: FragParams ) -> @location(0) vec4f {
 	};
 
 	let shouldClear;
+
 	$.clear = () => {
 		shouldClear = true;
 	};
 
-	$._beginRender = () => {
-		if (encoder) return;
+	$.background = (r, g, b, a) => {
+		$.push();
+		$.resetMatrix();
+		if (r.canvas) {
+			let img = r;
+			$._imageMode = 'corner';
+			$.image(img, -c.hw, -c.hh, c.w, c.h);
+		} else {
+			$._rectMode = 'corner';
+			$.fill(r, g, b, a);
+			$._doStroke = false;
+			$.rect(-c.hw, -c.hh, c.w, c.h);
+		}
+		$.pop();
+	};
 
+	$._beginRender = () => {
 		// swap the frame textures
 		const temp = frameA;
 		frameA = frameB;
@@ -5103,7 +5326,7 @@ fn fragMain(f: FragParams ) -> @location(0) vec4f {
 		});
 
 		if (!shouldClear) {
-			pass.setPipeline($._pipelines[0]);
+			pass.setPipeline($._pipelines[$._prevFramePL]);
 			pass.setBindGroup(0, frameBindGroup);
 			pass.draw(4);
 		}
@@ -5120,6 +5343,8 @@ fn fragMain(f: FragParams ) -> @location(0) vec4f {
 		new Float32Array(transformBuffer.getMappedRange()).set(transforms.slice(0, matrices.length * MATRIX_SIZE));
 		transformBuffer.unmap();
 
+		$._buffers.push(transformBuffer);
+
 		let colorsBuffer = Q5.device.createBuffer({
 			size: colorStackIndex * 4,
 			usage: GPUBufferUsage.STORAGE,
@@ -5128,6 +5353,8 @@ fn fragMain(f: FragParams ) -> @location(0) vec4f {
 
 		new Float32Array(colorsBuffer.getMappedRange()).set(colorStack.slice(0, colorStackIndex));
 		colorsBuffer.unmap();
+
+		$._buffers.push(colorsBuffer);
 
 		$._uniforms = [
 			$.width,
@@ -5189,7 +5416,7 @@ fn fragMain(f: FragParams ) -> @location(0) vec4f {
 				pass.setBindGroup(1, $._textureBindGroups[v]);
 				pass.draw(4, 1, imageVertOffset);
 				imageVertOffset += 4;
-			} else if (curPipelineIndex == 1 || curPipelineIndex >= 1000) {
+			} else {
 				// draw a shape
 				// v is the number of vertices
 				pass.draw(v, 1, drawVertOffset);
@@ -5198,7 +5425,7 @@ fn fragMain(f: FragParams ) -> @location(0) vec4f {
 		}
 	};
 
-	$._finishRender = () => {
+	$._finishRender = async () => {
 		pass.end();
 
 		pass = encoder.beginRenderPass({
@@ -5228,14 +5455,13 @@ fn fragMain(f: FragParams ) -> @location(0) vec4f {
 		pass.end();
 
 		Q5.device.queue.submit([encoder.finish()]);
+		$._pass = pass = encoder = null;
 
 		// destroy buffers
 		Q5.device.queue.onSubmittedWorkDone().then(() => {
 			for (let b of $._buffers) b.destroy();
 			$._buffers = [];
 		});
-
-		$._pass = pass = encoder = null;
 
 		// clear the stacks for the next frame
 		drawStack.splice(0, drawStack.length);
@@ -5886,22 +6112,6 @@ fn fragMain(f: FragParams) -> @location(0) vec4f {
 		$.endShape(true);
 	};
 
-	$.background = (r, g, b, a) => {
-		$.push();
-		$.resetMatrix();
-		if (r.canvas) {
-			let img = r;
-			$._imageMode = 'corner';
-			$.image(img, -c.hw, -c.hh, c.w, c.h);
-		} else {
-			$._rectMode = 'corner';
-			$.fill(r, g, b, a);
-			$._doStroke = false;
-			$.rect(-c.hw, -c.hh, c.w, c.h);
-		}
-		$.pop();
-	};
-
 	$._hooks.preRender.push(() => {
 		$._pass.setPipeline($._pipelines[1]);
 
@@ -6231,9 +6441,11 @@ fn fragMain(f: FragParams) -> @location(0) vec4f {
 
 	$.createGraphics = (w, h, opt) => {
 		let g = _createGraphics(w, h, opt);
-		$._addTexture(g, g._frameA);
-		$._addTexture(g, g._frameB);
-		g._beginRender();
+		if (g.canvas.renderer == 'webgpu') {
+			$._addTexture(g, g._frameA);
+			$._addTexture(g, g._frameB);
+			g._beginRender();
+		}
 		return g;
 	};
 
@@ -6720,6 +6932,7 @@ fn fragMain(f : FragParams) -> @location(0) vec4f {
 		leadPercent = 1.25;
 
 	$.textFont = (fontName) => {
+		if (!fontName) return $._font;
 		if (typeof fontName != 'string') fontName = fontName.family;
 		let font = fonts[fontName];
 		if (font) $._font = font;
@@ -7049,6 +7262,7 @@ Q5.renderers.webgpu.shaders = ($) => {
 
 		let pl = plCounters[type];
 		$._pipelines[pl] = Q5.device.createRenderPipeline(config);
+		$._pipelines[pl].shader = shader;
 		shader.pipelineIndex = pl;
 
 		plCounters[type]++;
@@ -7063,15 +7277,17 @@ Q5.renderers.webgpu.shaders = ($) => {
 	$.createTextShader = (code) => $._createShader(code, 'text');
 
 	$.shader = (shader) => {
-		$['_' + shader.type + 'PL'] = shader.pipelineIndex;
+		if (shader.applyBeforeDraw) $._prevFramePL = shader.pipelineIndex;
+		else $['_' + shader.type + 'PL'] = shader.pipelineIndex;
 	};
 
 	$.resetShader = (type = 'shapes') => {
+		if (type == 'frame') $._prevFramePL = 0;
 		$['_' + type + 'PL'] = pipelineTypes.indexOf(type);
 	};
 
 	$.resetShaders = () => {
-		$._framePL = 0;
+		$._prevFramePL = $._framePL = 0;
 		$._shapesPL = 1;
 		$._imagePL = 2;
 		$._videoPL = 3;
