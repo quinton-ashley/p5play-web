@@ -18,7 +18,7 @@ file = file.slice(start, end + 1);
 
 file = file.replace('const $ = this;', 'let $;');
 
-file = file.replace('this.log = console.log;', '');
+file = file.replace('let log = ($.log = console.log);', '');
 
 file = file.replace(/^\s*this\.([_\w]+) = class/gm, 'class $1');
 file = file.replace(/extends this\.([_\w]+)/gm, 'extends $1');
@@ -68,13 +68,7 @@ dec = dec.replace(
 );
 dec = dec.replace(/^(const|function|var)*\s*_[^{\n]+\n/gm, '');
 dec = dec.replace(/^\s*(const|var)*\s*_([^{\n]+){(?:[^{}]*{[^{}]*}[^{}]*)*[^{}]*};\n/gm, '');
-dec =
-	`import * as p5 from 'p5';
-
-declare global {
-` +
-	dec +
-	'\n}\n';
+dec = `import 'q5';\n\ndeclare global {\n` + dec + '\n}\n';
 await Bun.write('v3/p5play.d.ts', dec);
 
 unlinkSync('types/p5play.d.ts'); // delete temp files

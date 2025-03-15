@@ -263,13 +263,11 @@ p5.prototype.registerMethod('init', function p5playInit() {
 	let usePhysics = true;
 	let timeScale = 1;
 
-	const log = console.log;
-	/**
-	 * Shortcut for console.log
-	 * @type {Function}
-	 * @param {...any} args
-	 */
-	this.log = console.log;
+	let log = ($.log = console.log);
+
+	$.DYN = $.DYNAMIC = 'dynamic';
+	$.STA = $.STATIC = 'static';
+	$.KIN = $.KINEMATIC = 'kinematic';
 
 	/**
 	 * @class
@@ -288,7 +286,7 @@ p5.prototype.registerMethod('init', function p5playInit() {
 		 * expect it to, if not you'll just get an error.
 		 *
 		 * Special feature! If the first parameter to this constructor is a
-		 * loaded p5.Image, Ani, or name of a animation,
+		 * loaded Image, Ani, or name of a animation,
 		 * then the Sprite will be created with that animation. If the
 		 * dimensions of the sprite are not given, then the Sprite will be
 		 * created using the dimensions of the animation.
@@ -342,7 +340,7 @@ p5.prototype.registerMethod('init', function p5playInit() {
 				args = args.slice(1);
 			}
 
-			// first arg is a Ani, animation name, or p5.Image
+			// first arg is a Ani, animation name, or Image
 			if (
 				args[0] !== undefined &&
 				(typeof args[0] == 'string' || args[0] instanceof $.Ani || args[0] instanceof p5.Image)
@@ -1561,7 +1559,7 @@ p5.prototype.registerMethod('init', function p5playInit() {
 
 		/**
 		 * The sprite's current color. By default sprites get a random color.
-		 * @type {p5.Color}
+		 * @type {Color}
 		 * @default random color
 		 */
 		get color() {
@@ -1573,7 +1571,7 @@ p5.prototype.registerMethod('init', function p5playInit() {
 		}
 		/**
 		 * Alias for color. colour is the British English spelling.
-		 * @type {p5.Color}
+		 * @type {Color}
 		 * @default random color
 		 */
 		get colour() {
@@ -1584,7 +1582,7 @@ p5.prototype.registerMethod('init', function p5playInit() {
 		}
 		/**
 		 * Alias for sprite.fillColor
-		 * @type {p5.Color}
+		 * @type {Color}
 		 * @default random color
 		 */
 		get fill() {
@@ -1598,7 +1596,7 @@ p5.prototype.registerMethod('init', function p5playInit() {
 		 * Overrides sprite's stroke color. By default the stroke of a sprite
 		 * is determined by its collider type, which can also be overridden
 		 * by the sketch's stroke color.
-		 * @type {p5.Color}
+		 * @type {Color}
 		 * @default undefined
 		 */
 		get stroke() {
@@ -1624,7 +1622,7 @@ p5.prototype.registerMethod('init', function p5playInit() {
 
 		/**
 		 * The sprite's text fill color. Black by default.
-		 * @type {p5.Color}
+		 * @type {Color}
 		 * @default black (#000000)
 		 */
 		get textColor() {
@@ -1642,7 +1640,7 @@ p5.prototype.registerMethod('init', function p5playInit() {
 		}
 		/**
 		 * The sprite's text fill color. Black by default.
-		 * @type {p5.Color}
+		 * @type {Color}
 		 * @default black (#000000)
 		 */
 		get textFill() {
@@ -1667,7 +1665,7 @@ p5.prototype.registerMethod('init', function p5playInit() {
 		/**
 		 * The sprite's text stroke color.
 		 * No stroke by default, does not inherit from the sketch's stroke color.
-		 * @type {p5.Color}
+		 * @type {Color}
 		 * @default undefined
 		 */
 		get textStroke() {
@@ -1932,7 +1930,7 @@ p5.prototype.registerMethod('init', function p5playInit() {
 
 		/**
 		 * Alias for `sprite.image`.
-		 * @type {p5.Image}
+		 * @type {Image}
 		 */
 		get img() {
 			return this._img || this._ani?.frameImage;
@@ -1950,7 +1948,7 @@ p5.prototype.registerMethod('init', function p5playInit() {
 		 * should be drawn at relative to the sprite's center.
 		 *
 		 * `sprite.image.scale` determines the x and y scale of the image.
-		 * @type {p5.Image}
+		 * @type {Image}
 		 */
 		get image() {
 			return this._img || this._ani?.frameImage;
@@ -2390,7 +2388,7 @@ p5.prototype.registerMethod('init', function p5playInit() {
 		 *
 		 * Note that this is not good for performance, you should probably
 		 * pre-render the effect if you want to use it a lot.
-		 * @type {p5.Color}
+		 * @type {Color}
 		 * @default undefined
 		 */
 		get tint() {
@@ -2403,7 +2401,7 @@ p5.prototype.registerMethod('init', function p5playInit() {
 
 		/**
 		 * Alias for sprite.tint
-		 * @type {p5.Color}
+		 * @type {Color}
 		 * @default undefined
 		 */
 		get tintColor() {
@@ -2492,7 +2490,7 @@ p5.prototype.registerMethod('init', function p5playInit() {
 		}
 		/**
 		 * The position vector {x, y}
-		 * @type {p5.Vector}
+		 * @type {Vector}
 		 */
 		get pos() {
 			return this._pos;
@@ -2507,7 +2505,7 @@ p5.prototype.registerMethod('init', function p5playInit() {
 		}
 		/**
 		 * The position vector {x, y}
-		 * @type {p5.Vector}
+		 * @type {Vector}
 		 */
 		get position() {
 			return this._pos;
@@ -2516,8 +2514,7 @@ p5.prototype.registerMethod('init', function p5playInit() {
 			this.pos = val;
 		}
 		/**
-		 * The sprite's absolute position on the canvas.
-		 * @readonly
+		 * The sprite's absolute position on the canvas. Read only.
 		 */
 		get canvasPos() {
 			return this._canvasPos;
@@ -2846,7 +2843,7 @@ p5.prototype.registerMethod('init', function p5playInit() {
 
 		/**
 		 * The sprite's velocity vector {x, y}
-		 * @type {p5.Vector}
+		 * @type {Vector}
 		 * @default {x: 0, y: 0}
 		 */
 		get vel() {
@@ -2859,7 +2856,7 @@ p5.prototype.registerMethod('init', function p5playInit() {
 
 		/**
 		 * The sprite's velocity vector {x, y}
-		 * @type {p5.Vector}
+		 * @type {Vector}
 		 * @default {x: 0, y: 0}
 		 */
 		get velocity() {
@@ -4469,7 +4466,7 @@ p5.prototype.registerMethod('init', function p5playInit() {
 
 	/**
 	 * @class
-	 * @extends Array<p5.Image>
+	 * @extends Array<Image>
 	 */
 	this.Ani = class extends Array {
 		/**
@@ -4491,7 +4488,7 @@ p5.prototype.registerMethod('init', function p5playInit() {
 		 * `Ani` is not a shorthand for `Animation`, since that class name
 		 * is already used by the JS Web Animations API.
 		 *
-		 * @param {...p5.Image} ...images - p5.Image objects to be used as frames
+		 * @param {...Image} ...images - Image objects to be used as frames
 		 * @example
 		 * let shapeShifter = new Ani("dog.png", "cat.png", "snake.png");
 		 */
@@ -5151,8 +5148,8 @@ p5.prototype.registerMethod('init', function p5playInit() {
 		}
 
 		/**
-		 * The current frame as p5.Image. Read only.
-		 * @type {p5.Image}
+		 * The current frame as an Image object. Read only.
+		 * @type {Image}
 		 */
 		get frameImage() {
 			let f = this._frame;
@@ -5423,7 +5420,7 @@ p5.prototype.registerMethod('init', function p5playInit() {
 			 */
 			this.mirror;
 			/**
-			 * @type {p5.Vector}
+			 * @type {Vector}
 			 */
 			this.offset;
 			/**
@@ -5443,7 +5440,7 @@ p5.prototype.registerMethod('init', function p5playInit() {
 			 */
 			this.rotationLock;
 			/**
-			 * @type {p5.Vector}
+			 * @type {Vector}
 			 */
 			this.scale;
 			/**
@@ -5455,7 +5452,7 @@ p5.prototype.registerMethod('init', function p5playInit() {
 			 */
 			this.sleeping;
 			/**
-			 * @type {p5.Color}
+			 * @type {Color}
 			 */
 			this.stroke;
 			/**
@@ -5467,7 +5464,7 @@ p5.prototype.registerMethod('init', function p5playInit() {
 			 */
 			this.text;
 			/**
-			 * @type {p5.Color}
+			 * @type {Color}
 			 */
 			this.textColor;
 			/**
@@ -5787,7 +5784,7 @@ p5.prototype.registerMethod('init', function p5playInit() {
 		}
 		/**
 		 * Alias for `group.image`.
-		 * @type {p5.Image}
+		 * @type {Image}
 		 */
 		get img() {
 			return this._img;
@@ -5797,7 +5794,7 @@ p5.prototype.registerMethod('init', function p5playInit() {
 		}
 		/**
 		 * The group's image.
-		 * @type {p5.Image}
+		 * @type {Image}
 		 */
 		get image() {
 			return this._img;
@@ -5863,7 +5860,7 @@ p5.prototype.registerMethod('init', function p5playInit() {
 
 		/**
 		 * The sprite's velocity vector {x, y}
-		 * @type {p5.Vector}
+		 * @type {Vector}
 		 * @default {x: 0, y: 0}
 		 */
 		get velocity() {
@@ -7727,7 +7724,7 @@ p5.prototype.registerMethod('init', function p5playInit() {
 		 * Offset to the joint's anchorA position from the center of spriteA.
 		 *
 		 * Only distance and hinge joints have an offsetA.
-		 * @type {p5.Vector}
+		 * @type {Vector}
 		 * @default {x: 0, y: 0}
 		 */
 		get offsetA() {
@@ -7742,7 +7739,7 @@ p5.prototype.registerMethod('init', function p5playInit() {
 		 * Offset to the joint's anchorB position from the center of spriteB.
 		 *
 		 * Only distance, hinge, and wheel joints have an offsetB.
-		 * @type {p5.Vector}
+		 * @type {Vector}
 		 * @default {x: 0, y: 0}
 		 */
 		get offsetB() {
@@ -8516,7 +8513,7 @@ p5.prototype.registerMethod('init', function p5playInit() {
 	 * Creates a new image of an emoji, trimmed to the emoji's dimensions.
 	 * @param {String} emoji
 	 * @param {Number} textSize
-	 * @returns {p5.Image} emojiImage
+	 * @returns {Image} emojiImage
 	 * @example
 	 * let img = new EmojiImage('🏀', 32);
 	 */
@@ -8571,7 +8568,7 @@ p5.prototype.registerMethod('init', function p5playInit() {
 	 * @param {String} txt - each character represents a pixel color value
 	 * @param {Number} scale - the scale of the image
 	 * @param {Number|Object} palette - color palette
-	 * @returns {p5.Image} A p5.Image object
+	 * @returns {Image} An Image object
 	 *
 	 * @example
 	 * let str = `
@@ -8826,10 +8823,7 @@ p5.prototype.registerMethod('init', function p5playInit() {
 	 * Use of `new Canvas()` is preferred. Check the Canvas constructor
 	 * for documentation.
 	 *
-	 * This function differs from `new Canvas()` because it returns a
-	 * p5.Renderer object instead of the HTML5 canvas object itself.
-	 *
-	 * @returns {p5.Renderer} renderer object
+	 * @returns {Canvas} renderer object
 	 */
 	this.createCanvas = function () {
 		let args = [...arguments];
@@ -8946,11 +8940,11 @@ p5.prototype.registerMethod('init', function p5playInit() {
 		 * For an easy way to scale the canvas or make it pixelated, use
 		 * the `displayMode` function.
 		 *
-		 * Only q5.js has support for canvas options (context attributes).
+		 * Only q5.js has support for canvas options.
 		 *
 		 * @param {Number} [width]
 		 * @param {Number} [height]
-		 * @param {Object} [options] - context attributes
+		 * @param {Object} [options] - canvas options or renderer
 		 * @returns HTML5 canvas element
 		 * @example
 		 * // fills the window
@@ -8960,7 +8954,7 @@ p5.prototype.registerMethod('init', function p5playInit() {
 		 * // 800x600 pixels
 		 * new Canvas(800, 600);
 		 */
-		constructor(width, height, renderer, options) {
+		constructor(width, height, options) {
 			/**
 			 * The width of the canvas.
 			 * @type {Number}
@@ -9130,7 +9124,7 @@ p5.prototype.registerMethod('init', function p5playInit() {
 	 * @param {number} [width]
 	 * @param {number} [height]
 	 * @param {function} [callback]
-	 * @returns {p5.Image}
+	 * @returns {Image}
 	 */
 	this.loadImage = this.loadImg = function () {
 		if ($.p5play.disableImages) {
@@ -9202,7 +9196,7 @@ p5.prototype.registerMethod('init', function p5playInit() {
 	/**
 	 * Display an image
 	 * unless `p5play.disableImages` is true.
-	 * @param {p5.Image} img
+	 * @param {Image} img
 	 */
 	$.image = function () {
 		if ($.p5play.disableImages) return;
@@ -9973,11 +9967,7 @@ main {
 		}
 	};
 
-	/**
-	 * An array of touch objects.
-	 * @type {_Touch[]}
-	 */
-	this.touches = [];
+	$.touches = [];
 	$.touches.holdThreshold = 12;
 
 	$._ontouchstart = function (e) {
