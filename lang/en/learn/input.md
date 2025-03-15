@@ -82,7 +82,7 @@ For convenience, `contro` can be used to attempt to check the input states of `c
 
 Try it! Connect a game controller and press any button on it for it to be detected by p5play.
 
-➡️ [full controller test demo](https://aijs.io/editor?user=quinton-ashley&project=p5play_Controller_Test)
+➡️ [full controller test demo](https://openprocessing.org/sketch/2227913)
 
 # 5-0
 

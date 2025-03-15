@@ -82,7 +82,7 @@ WASD キーはプレイヤーキャラクターの移動によく使われるた
 
 お試しあれ！ ゲームコントローラーを接続し、そのいずれかのボタンを押すと、p5play によって検知されます。
 
-➡️ [ゲームコントローラーの全ての入力デモ](https://aijs.io/editor?user=quinton-ashley&project=p5play_Controller_Test)
+➡️ [ゲームコントローラーの全ての入力デモ](https://openprocessing.org/sketch/2227913)
 
 # 5-0
 

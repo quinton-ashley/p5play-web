@@ -430,6 +430,12 @@ body:not(.dark) #discord-brand img {
 	filter: invert(1);
 }
 
+#editors a {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
 #vscode-brand {
 	display: flex;
 	gap: 16px;
@@ -441,8 +447,14 @@ body:not(.dark) #discord-brand img {
 	height: 56px;
 }
 
-#aijs-brand {
+#idx-logo {
 	height: 72px;
+}
+
+#idx-brand {
+	color: var(--primary);
+	font-weight: 400;
+	font-size: 24px;
 }
 
 #npm-brand {

@@ -82,7 +82,7 @@ Para mayor conveniencia, `contro` se puede utilizar para intentar verificar los 
 
 ¡Pruébalo! Conecta un control de juego y presiona cualquier botón en él para que sea detectado por p5play.
 
-➡️ [demo completa de prueba de control](https://aijs.io/editor?user=quinton-ashley&project=p5play_Controller_Test)
+➡️ [demo completa de prueba de control](https://openprocessing.org/sketch/2227913)
 
 # 5-0
 
