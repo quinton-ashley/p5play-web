@@ -6,7 +6,7 @@
 
 ### uses [q5.js](http://q5js.org/) for graphics
 
-### is easy to learn!
+### is beginner friendly!
 
 ### uses [Box2D](https://piqnt.com/planck.js/) for physics
 

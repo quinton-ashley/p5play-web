@@ -1,16 +1,16 @@
 # 0
 
-### ¡es poderoso!
+### es poderoso!
 
 ### motor de juego en JS
 
 ### [q5.js](http://q5js.org/) para gráficos
 
-### ¡es fácil de aprender!
+### es amigable!
 
 ### [Box2D](https://piqnt.com/planck.js/) para física
 
-### ¡es poderoso!
+### es poderoso!
 
 # 1
 

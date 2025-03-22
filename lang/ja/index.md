@@ -6,7 +6,7 @@
 
 ### [q5.js](http://q5js.org/) による描画！
 
-### スラスラ学べる！
+### 初心者に優しいです！
 
 ### [Box2D](https://piqnt.com/planck.js/) による物理演算！
 
