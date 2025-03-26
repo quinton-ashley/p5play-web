@@ -66,7 +66,7 @@ Use of the "made with p5play" Loading Screen is required for all published work 
 
 ## 2. Licensee Eligibility Requirements
 
-Active subscription status must be maintained through the Licensor's authorized payment platforms ([GitHub Sponsors](https://github.com/sponsors/quinton-ashley) or [Patreon](https://www.patreon.com/p5play)) at the designated tier level.
+Active subscription status must be maintained through the Licensor's authorized payment platforms ([GitHub Sponsors](https://github.com/sponsors/quinton-ashley) or [Patreon](https://www.patreon.com/q5play)) at the designated tier level.
 
 Eligible Licensees must either be:
 

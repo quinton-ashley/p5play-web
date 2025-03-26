@@ -6,7 +6,7 @@
 
 ## Pro メンバーシップ
 
-[Patreon](https://www.patreon.com/p5play) や [GitHub Sponsors](https://github.com/sponsors/quinton-ashley) で [p5play](https://www.patreon.com/p5play) を支援して、Pro メンバーになりましょう。
+[Patreon](https://www.patreon.com/q5play) や [GitHub Sponsors](https://github.com/sponsors/quinton-ashley) で [p5play](https://www.patreon.com/q5play) を支援して、Pro メンバーになりましょう。
 
 # 1-0
 
@@ -42,7 +42,7 @@ _プロメンバー限定。_
 
 ## 購入について
 
-まずは [Patreon](https://www.patreon.com/p5play) および [GitHub Sponsors](https://github.com/sponsors/quinton-ashley) 記載の、ご利用プラン一覧をご一読ください。学生や小規模開発チームの皆さまには特別割引を提供し、インディーズ開発者をサポートしています！
+まずは [Patreon](https://www.patreon.com/q5play) および [GitHub Sponsors](https://github.com/sponsors/quinton-ashley) 記載の、ご利用プラン一覧をご一読ください。学生や小規模開発チームの皆さまには特別割引を提供し、インディーズ開発者をサポートしています！
 
 Pro メンバーシップの料金を支払う余裕がない場合は、[info@p5play.org](mailto:info@p5play.org?subject=Equitable%20Access) までご連絡いただき、p5play の使用目的のご説明をお願いいたします。
 

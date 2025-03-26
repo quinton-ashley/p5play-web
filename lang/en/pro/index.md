@@ -6,7 +6,7 @@
 
 ## Pro Membership
 
-Become a Pro member by supporting p5play on [Patreon](https://www.patreon.com/p5play) or [GitHub Sponsors](https://github.com/sponsors/quinton-ashley).
+Become a Pro member by supporting p5play on [Patreon](https://www.patreon.com/q5play) or [GitHub Sponsors](https://github.com/sponsors/quinton-ashley).
 
 # 1-0
 
@@ -42,7 +42,7 @@ _Exclusively for Pro members._
 
 ## Subscribe
 
-Take a look at our tier pricing on [Patreon](https://www.patreon.com/p5play) or [GitHub Sponsors](https://github.com/sponsors/quinton-ashley). We support indie devs by offering discounts for students and small development teams!
+Take a look at our tier pricing on [Patreon](https://www.patreon.com/q5play) or [GitHub Sponsors](https://github.com/sponsors/quinton-ashley). We support indie devs by offering discounts for students and small development teams!
 
 If you can't afford to pay for a Pro membership, contact us at [info@p5play.org](mailto:info@p5play.org?subject=Equitable%20Access) and explain your intended use of p5play.
 
