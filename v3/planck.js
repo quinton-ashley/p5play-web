@@ -2,7 +2,7 @@
   typeof exports === "object" && typeof module !== "undefined" ? factory(exports) : typeof define === "function" && define.amd ? define(["exports"], factory) : (global = typeof globalThis !== "undefined" ? globalThis : global || self, factory(global.planck = {}));
 })(this, function(exports2) {
   "use strict";/**
- * Planck.js v1.1.1
+ * Planck.js v1.3.0
  * @license The MIT license
  * @copyright Copyright (c) 2024 Erin Catto, Ali Shakiba
  *
@@ -326,6 +326,14 @@
         this.y *= invLength;
         return length;
       };
+      Vec22.normalize = function(v3) {
+        var length = Vec22.lengthOf(v3);
+        if (length < EPSILON) {
+          return Vec22.zero();
+        }
+        var invLength = 1 / length;
+        return Vec22.neo(v3.x * invLength, v3.y * invLength);
+      };
       Vec22.lengthOf = function(v3) {
         return math_sqrt$5(v3.x * v3.x + v3.y * v3.y);
       };
@@ -444,6 +452,12 @@
         var r = Vec22.neo(v3.x, v3.y);
         r.clamp(max);
         return r;
+      };
+      Vec22.clampVec2 = function(v3, min, max) {
+        return {
+          x: clamp(v3.x, min === null || min === void 0 ? void 0 : min.x, max === null || max === void 0 ? void 0 : max.x),
+          y: clamp(v3.y, min === null || min === void 0 ? void 0 : min.y, max === null || max === void 0 ? void 0 : max.y)
+        };
       };
       Vec22.scaleFn = function(x2, y) {
         return function(v3) {
@@ -2179,7 +2193,6 @@
         this.aabb = new AABB();
         this.fixture = fixture;
         this.childIndex = childIndex;
-        this.proxyId;
       }
       return FixtureProxy2;
     }()
@@ -2214,6 +2227,9 @@
           this.m_proxies[i] = new FixtureProxy(this, i);
         }
         this.m_userData = def.userData;
+        if (typeof def.style === "object" && def.style !== null) {
+          this.style = def.style;
+        }
       }
       Fixture2.prototype._reset = function() {
         var body = this.getBody();
@@ -2462,6 +2478,9 @@
         this.m_prev = null;
         this.m_next = null;
         this.m_destroyed = false;
+        if (typeof def.style === "object" && def.style !== null) {
+          this.style = def.style;
+        }
       }
       Body2.prototype._serialize = function() {
         var fixtures = [];
@@ -2641,11 +2660,15 @@
       Body2.prototype.getTransform = function() {
         return this.m_xf;
       };
-      Body2.prototype.setTransform = function(position, angle) {
+      Body2.prototype.setTransform = function(a2, b2) {
         if (this.isWorldLocked() == true) {
           return;
         }
-        this.m_xf.setNum(position, angle);
+        if (typeof b2 === "number") {
+          this.m_xf.setNum(a2, b2);
+        } else {
+          this.m_xf.setTransform(a2);
+        }
         this.m_sweep.setTransform(this.m_xf);
         var broadPhase = this.m_world.m_broadPhase;
         for (var f = this.m_fixtureList; f; f = f.m_next) {
@@ -3011,6 +3034,9 @@
         this.m_bodyB = bodyB;
         this.m_collideConnected = !!def.collideConnected;
         this.m_userData = def.userData;
+        if (typeof def.style === "object" && def.style !== null) {
+          this.style = def.style;
+        }
       }
       Joint2.prototype.isActive = function() {
         return this.m_bodyA.isActive() && this.m_bodyB.isActive();
@@ -5927,6 +5953,7 @@
         this.m_velocityIterations = def.velocityIterations;
         this.m_positionIterations = def.positionIterations;
         this.m_t = 0;
+        this.m_step_callback = [];
       }
       World2.prototype._serialize = function() {
         var bodies = [];
@@ -6073,7 +6100,7 @@
         return this.m_broadPhase.getTreeQuality();
       };
       World2.prototype.shiftOrigin = function(newOrigin) {
-        if (this.m_locked) {
+        if (this.isLocked()) {
           return;
         }
         for (var b2 = this.m_bodyList; b2; b2 = b2.m_next) {
@@ -6305,7 +6332,18 @@
           this.clearForces();
         }
         this.m_locked = false;
+        var callback;
+        while (callback = this.m_step_callback.shift()) {
+          callback(this);
+        }
         this.publish("post-step", timeStep);
+      };
+      World2.prototype.queueUpdate = function(callback) {
+        if (!this.isLocked()) {
+          callback(this);
+        } else {
+          this.m_step_callback.push(callback);
+        }
       };
       World2.prototype.findNewContacts = function() {
         var _this = this;
@@ -10039,14 +10077,6 @@
         _this.m_impulse = new Vec3();
         _this.m_bias = 0;
         _this.m_gamma = 0;
-        _this.m_rA;
-        _this.m_rB;
-        _this.m_localCenterA;
-        _this.m_localCenterB;
-        _this.m_invMassA;
-        _this.m_invMassB;
-        _this.m_invIA;
-        _this.m_invIB;
         _this.m_mass = new Mat33();
         return _this;
       }
@@ -11125,7 +11155,8 @@
       manifold.type = exports2.ManifoldType.e_faceA;
       flip = false;
     }
-    incidentEdge[0].recycle(), incidentEdge[1].recycle();
+    incidentEdge[0].recycle();
+    incidentEdge[1].recycle();
     findIncidentEdge(incidentEdge, poly1, xf1, edge12, poly2, xf2);
     var count1 = poly1.m_count;
     var vertices1 = poly1.m_vertices;
@@ -11144,8 +11175,10 @@
     var frontOffset = dotVec2(normal$1, v11);
     var sideOffset1 = -dotVec2(tangent, v11) + totalRadius;
     var sideOffset2 = dotVec2(tangent, v12) + totalRadius;
-    clipPoints1$1[0].recycle(), clipPoints1$1[1].recycle();
-    clipPoints2$1[0].recycle(), clipPoints2$1[1].recycle();
+    clipPoints1$1[0].recycle();
+    clipPoints1$1[1].recycle();
+    clipPoints2$1[0].recycle();
+    clipPoints2$1[1].recycle();
     setVec2(clipSegmentToLineNormal, -tangent.x, -tangent.y);
     var np1 = clipSegmentToLine(clipPoints1$1, incidentEdge, clipSegmentToLineNormal, sideOffset1, iv1);
     if (np1 < 2) {
@@ -11549,7 +11582,8 @@
     } else {
       primaryAxis = edgeAxis;
     }
-    ie[0].recycle(), ie[1].recycle();
+    ie[0].recycle();
+    ie[1].recycle();
     if (primaryAxis.type == EPAxisType.e_edgeA) {
       manifold.type = exports2.ManifoldType.e_faceA;
       var bestIndex = 0;
@@ -11596,8 +11630,10 @@
     setVec2(rf.sideNormal2, -rf.sideNormal1.x, -rf.sideNormal1.y);
     rf.sideOffset1 = dotVec2(rf.sideNormal1, rf.v1);
     rf.sideOffset2 = dotVec2(rf.sideNormal2, rf.v2);
-    clipPoints1[0].recycle(), clipPoints1[1].recycle();
-    clipPoints2[0].recycle(), clipPoints2[1].recycle();
+    clipPoints1[0].recycle();
+    clipPoints1[1].recycle();
+    clipPoints2[0].recycle();
+    clipPoints2[1].recycle();
     var np1 = clipSegmentToLine(clipPoints1, ie, rf.sideNormal1, rf.sideOffset1, rf.i1);
     if (np1 < SettingsInternal.maxManifoldPoints) {
       return;
@@ -11641,6 +11677,78 @@
     DynamicTree,
     stats
   };
+  var DataDriver = (
+    /** @class */
+    function() {
+      function DataDriver2(key, listener) {
+        this._refMap = {};
+        this._map = {};
+        this._xmap = {};
+        this._data = [];
+        this._entered = [];
+        this._exited = [];
+        this._key = key;
+        this._listener = listener;
+      }
+      DataDriver2.prototype.update = function(data) {
+        if (!Array.isArray(data))
+          throw "Invalid data: " + data;
+        this._entered.length = 0;
+        this._exited.length = 0;
+        this._data.length = data.length;
+        for (var i = 0; i < data.length; i++) {
+          if (typeof data[i] !== "object" || data[i] === null)
+            continue;
+          var d2 = data[i];
+          var id = this._key(d2);
+          if (!this._map[id]) {
+            this._entered.push(d2);
+          } else {
+            delete this._map[id];
+          }
+          this._data[i] = d2;
+          this._xmap[id] = d2;
+        }
+        for (var id in this._map) {
+          this._exited.push(this._map[id]);
+          delete this._map[id];
+        }
+        var temp3 = this._map;
+        this._map = this._xmap;
+        this._xmap = temp3;
+        for (var i = 0; i < this._exited.length; i++) {
+          var d2 = this._exited[i];
+          var key = this._key(d2);
+          var ref = this._refMap[key];
+          this._listener.exit(d2, ref);
+          delete this._refMap[key];
+        }
+        for (var i = 0; i < this._entered.length; i++) {
+          var d2 = this._entered[i];
+          var key = this._key(d2);
+          var ref = this._listener.enter(d2);
+          if (ref) {
+            this._refMap[key] = ref;
+          }
+        }
+        for (var i = 0; i < this._data.length; i++) {
+          if (typeof data[i] !== "object" || data[i] === null)
+            continue;
+          var d2 = this._data[i];
+          var key = this._key(d2);
+          var ref = this._refMap[key];
+          this._listener.update(d2, ref);
+        }
+        this._entered.length = 0;
+        this._exited.length = 0;
+        this._data.length = 0;
+      };
+      DataDriver2.prototype.ref = function(d2) {
+        return this._refMap[this._key(d2)];
+      };
+      return DataDriver2;
+    }()
+  );
   const planck = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
     __proto__: null,
     AABB,
@@ -11665,6 +11773,7 @@
     },
     ContactID,
     ContactImpulse,
+    DataDriver,
     Distance,
     DistanceInput,
     DistanceJoint,
@@ -11754,6 +11863,7 @@
   exports2.ContactEdge = ContactEdge;
   exports2.ContactID = ContactID;
   exports2.ContactImpulse = ContactImpulse;
+  exports2.DataDriver = DataDriver;
   exports2.Distance = Distance;
   exports2.DistanceInput = DistanceInput;
   exports2.DistanceJoint = DistanceJoint;

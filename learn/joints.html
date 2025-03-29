@@ -46,7 +46,7 @@ let floor, spriteA, spriteB, j;
 function setup() {
   new Canvas(100, 200);
   world.gravity.y = 10;
-  floor = new Sprite(50, 180, 100, 10, 's');
+  floor = new Sprite(50, 180, 100, 10, STA);
 
   spriteA = new Sprite(65, 40, 30, 30);
   spriteB = new Sprite(85, 60, 30, 30);
@@ -80,7 +80,7 @@ let floor, stick, ball;
 function setup() {
 	new Canvas(500, 400);
 	world.gravity.y = 10;
-  floor = new Sprite(250, 400, 10000, 10, 's');
+  floor = new Sprite(250, 400, 10000, 10, STA);
 	stick = new Sprite(200, 100, 10, 120);
 	ball = new Sprite(300, 200, 20);
 }
@@ -117,7 +117,7 @@ function setup() {
 	new Canvas(500, 500);
 	world.gravity.y = 10;
 
-	spA = new Sprite(250, 0, 300, 20, 'k');
+	spA = new Sprite(250, 0, 300, 20, KIN);
 	spB = new Sprite(200, 20, 40);
 
 	j = new DistanceJoint(spA, spB);
@@ -167,7 +167,7 @@ function setup() {
 	for (let i = 0; i < 100; i++) {
 		grade.push([random(50, 200), random(-30, 30)]);
 	}
-	let ground = new Sprite(30, 200, grade, 's');
+	let ground = new Sprite(30, 200, grade, STA);
 	ground.color = 'black';
 }
 
@@ -201,7 +201,7 @@ function setup() {
 	new Canvas(500, 200);
 	world.gravity.y = 10;
 
-	s0 = new Sprite(250, 100, 30, 30, 'k');
+	s0 = new Sprite(250, 100, 30, 30, KIN);
 	s1 = new Sprite(250, 100, 400, 20);
 
 	j = new HingeJoint(s0, s1);
@@ -275,7 +275,7 @@ let j;
 function setup() {
 	new Canvas(500, 400);
 	world.gravity.y = 10;
-	new Sprite(250, 390, 400, 10, 's');
+	new Sprite(250, 390, 400, 10, STA);
 }
 
 function update() {

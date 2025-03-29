@@ -60,7 +60,7 @@ function setup() {
 	new Canvas(80, 240);
 	world.gravity.y = 10;
 	ball = new Sprite(40, 30, 50);
-	floor = new Sprite(40, 155, 80, 5, 's');
+	floor = new Sprite(40, 155, 80, 5, STA);
 }
 
 function update() {
@@ -75,7 +75,7 @@ function setup() {
 	new Canvas(80, 256);
 	world.gravity.y = 10;
 	ball = new Sprite(40, 30, 50);
-	floor = new Sprite(40, 155, 80, 5, 's');
+	floor = new Sprite(40, 155, 80, 5, STA);
 }
 
 function update() {
@@ -116,7 +116,7 @@ function setup() {
 	ball.friction = 0;
 	ball.strokeWeight = 0;
 
-	box = new Sprite(250, 96, 490, 180, 's');
+	box = new Sprite(250, 96, 490, 180, STA);
 	box.shape = 'chain';
 }
 

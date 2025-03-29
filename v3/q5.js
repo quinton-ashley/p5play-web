@@ -10,10 +10,11 @@ function Q5(scope, parent, renderer) {
 	$._q5 = true;
 	$._parent = parent;
 	if (renderer == 'webgpu-fallback') {
-		$._webgpuFallback = true;
 		$._renderer = 'c2d';
+		$._webgpu = $._webgpuFallback = true;
 	} else {
 		$._renderer = renderer || Q5.render;
+		$['_' + $._renderer] = true;
 	}
 	$._preloadCount = 0;
 
@@ -113,6 +114,7 @@ function Q5(scope, parent, renderer) {
 			$.draw();
 		} catch (e) {
 			if (!Q5.errorTolerant) $.noLoop();
+			if ($._fes) $._fes(e);
 			throw e;
 		}
 		for (let m of Q5.methods.post) m.call($);
@@ -195,8 +197,6 @@ function Q5(scope, parent, renderer) {
 		}
 	}
 
-	if ($._webgpuFallback) $.colorMode('rgb', 1);
-
 	if ($._graphics) return;
 
 	if (scope == 'global') {
@@ -268,7 +268,14 @@ function Q5(scope, parent, renderer) {
 	for (let k of userFns) {
 		if (!t[k]) $[k] = () => {};
 		else if ($._isGlobal) {
-			$[k] = (event) => t[k](event);
+			$[k] = (event) => {
+				try {
+					return t[k](event);
+				} catch (e) {
+					if ($._fes) $._fes(e);
+					throw e;
+				}
+			};
 		}
 	}
 
@@ -288,7 +295,7 @@ function Q5(scope, parent, renderer) {
 			$.preload();
 			if (!$._startDone) _setup();
 		} catch (e) {
-			if ($._askAI) $._askAI(e);
+			if ($._fes) $._fes(e);
 			throw e;
 		}
 	}
@@ -718,10 +725,7 @@ Q5.renderers.c2d.canvas = ($, q) => {
 		$.ctx.globalAlpha = 1;
 		if (c.canvas) $.image(c, 0, 0, $.canvas.width, $.canvas.height);
 		else {
-			if (Q5.Color && !c._q5Color) {
-				if (typeof c != 'string') c = $.color(...arguments);
-				else if ($._namedColors[c]) c = $.color(...$._namedColors[c]);
-			}
+			if (Q5.Color && !c._q5Color) c = $.color(...arguments);
 			$.ctx.fillStyle = c.toString();
 			$.ctx.fillRect(0, 0, $.canvas.width, $.canvas.height);
 		}
@@ -755,9 +759,8 @@ Q5.renderers.c2d.canvas = ($, q) => {
 	$.fill = function (c) {
 		$._doFill = $._fillSet = true;
 		if (Q5.Color) {
-			if (!c._q5Color) {
-				if (typeof c != 'string') c = $.color(...arguments);
-				else if ($._namedColors[c]) c = $.color(...$._namedColors[c]);
+			if (!c._q5Color && (typeof c != 'string' || $._namedColors[c])) {
+				c = $.color(...arguments);
 			}
 			if (c.a <= 0) return ($._doFill = false);
 		}
@@ -767,9 +770,8 @@ Q5.renderers.c2d.canvas = ($, q) => {
 	$.stroke = function (c) {
 		$._doStroke = $._strokeSet = true;
 		if (Q5.Color) {
-			if (!c._q5Color) {
-				if (typeof c != 'string') c = $.color(...arguments);
-				else if ($._namedColors[c]) c = $.color(...$._namedColors[c]);
+			if (!c._q5Color && (typeof c != 'string' || $._namedColors[c])) {
+				c = $.color(...arguments);
 			}
 			if (c.a <= 0) return ($._doStroke = false);
 		}
@@ -791,10 +793,10 @@ Q5.renderers.c2d.canvas = ($, q) => {
 
 	$.shadow = function (c) {
 		if (Q5.Color) {
-			if (!c._q5Color) {
-				if (typeof c != 'string') c = $.color(...arguments);
-				else if ($._namedColors[c]) c = $.color(...$._namedColors[c]);
+			if (!c._q5Color && (typeof c != 'string' || $._namedColors[c])) {
+				c = $.color(...arguments);
 			}
+			if (c.a <= 0) return ($._doShadow = false);
 		}
 		$.ctx.shadowColor = $._shadow = c.toString();
 		$._doShadow = true;
@@ -847,7 +849,7 @@ Q5.renderers.c2d.canvas = ($, q) => {
 		if ($.ctx) {
 			$.ctx.resetTransform();
 			$.scale($._pixelDensity);
-			if ($._webgpuFallback) $.translate($.canvas.hw, $.canvas.hh);
+			if ($._webgpu) $.translate($.halfWidth, $.halfHeight);
 		}
 	};
 
@@ -2072,7 +2074,7 @@ Q5.modules.color = ($, q) => {
 	$.colorMode = (mode, format, gamut) => {
 		$._colorMode = mode;
 		let srgb = $.canvas.colorSpace == 'srgb' || gamut == 'srgb';
-		format ??= mode == 'rgb' ? ($.canvas.renderer == 'c2d' || srgb ? 255 : 1) : 1;
+		format ??= mode == 'rgb' ? ($._c2d || srgb ? 255 : 1) : 1;
 		$._colorFormat = format == 'integer' || format == 255 ? 255 : 1;
 		if (mode == 'oklch') {
 			q.Color = Q5.ColorOKLCH;
@@ -2991,6 +2993,44 @@ Q5.modules.dom = ($, q) => {
 	$.findElement = (selector) => document.querySelector(selector);
 	$.findElements = (selector) => document.querySelectorAll(selector);
 };
+Q5.modules.fes = ($) => {
+	$._fes = async (e) => {
+		if (Q5.disableFriendlyErrors) return;
+
+		let stackLines = e.stack?.split('\n');
+		if (!e.stack || stackLines.length <= 1) return;
+
+		let idx = 1;
+		let sep = '(';
+		if (navigator.userAgent.indexOf('Chrome') == -1) {
+			idx = 0;
+			sep = '@';
+		}
+		while (stackLines[idx].indexOf('q5') >= 0) idx++;
+
+		let errFile = stackLines[idx].split(sep).at(-1);
+		if (errFile.startsWith('blob:')) errFile = errFile.slice(5);
+		let parts = errFile.split(':');
+		let lineNum = parseInt(parts.at(-2));
+		parts[parts.length - 1] = parts.at(-1).split(')')[0];
+		let fileUrl = parts.slice(0, -2).join(':');
+		let fileBase = fileUrl.split('/').at(-1);
+
+		try {
+			let res = await (await fetch(fileUrl)).text();
+			let lines = res.split('\n');
+			let errLine = lines[lineNum - 1].trim();
+
+			let bug = ['🐛', '🐞', '🐜', '🦗', '🦋', '🪲'][Math.floor(Math.random() * 6)];
+
+			console.log(
+				'%cq5.js ' + bug + '%c Error in ' + fileBase + ' on line ' + lineNum + ':\n\n' + errLine,
+				'background: #b7ebff; color: #000;',
+				''
+			);
+		} catch (err) {}
+	};
+};
 Q5.modules.input = ($, q) => {
 	if ($._scope == 'graphics') return;
 
@@ -3041,7 +3081,7 @@ Q5.modules.input = ($, q) => {
 			let sy = c.scrollHeight / $.height || 1;
 			q.mouseX = (e.clientX - rect.left) / sx;
 			q.mouseY = (e.clientY - rect.top) / sy;
-			if (c.renderer == 'webgpu') {
+			if ($._webgpu) {
 				q.mouseX -= c.hw;
 				q.mouseY -= c.hh;
 			}
@@ -3134,9 +3174,15 @@ Q5.modules.input = ($, q) => {
 		const rect = $.canvas.getBoundingClientRect();
 		const sx = $.canvas.scrollWidth / $.width || 1;
 		const sy = $.canvas.scrollHeight / $.height || 1;
+		let modX = 0,
+			modY = 0;
+		if ($._webgpu) {
+			modX = $.halfWidth;
+			modY = $.halfHeight;
+		}
 		return {
-			x: (touch.clientX - rect.left) / sx,
-			y: (touch.clientY - rect.top) / sy,
+			x: (touch.clientX - rect.left) / sx - modX,
+			y: (touch.clientY - rect.top) / sy - modY,
 			id: touch.identifier
 		};
 	}
@@ -3345,7 +3391,7 @@ Q5.modules.math = ($, q) => {
 		}
 	};
 
-	if ($._renderer == 'c2d' && !$._webgpuFallback) {
+	if ($._c2d) {
 		$.randomX = (v = 0) => $.random(-v, $.canvas.w + v);
 		$.randomY = (v = 0) => $.random(-v, $.canvas.h + v);
 	} else {
@@ -4686,6 +4732,10 @@ for (let k of ['fromAngle', 'fromAngles', 'random2D', 'random3D']) {
 Q5.renderers.webgpu = {};
 
 Q5.renderers.webgpu.canvas = ($, q) => {
+	let c = $.canvas;
+
+	if ($.colorMode) $.colorMode('rgb', 1);
+
 	$._baseShaderCode = /* wgsl */ `
 struct Q5 {
 	width: f32,
@@ -4703,14 +4753,8 @@ struct Q5 {
 	keyIsPressed: f32
 }`;
 
-	let c = $.canvas;
-
-	c.width = $.width = 500;
-	c.height = $.height = 500;
-
-	$._g = $.createGraphics(1, 1, { renderer: 'c2d' });
-
-	if ($.colorMode) $.colorMode('rgb', 1);
+	$._g = $.createGraphics(1, 1, 'c2d');
+	$._g.colorMode($.RGB, 1);
 
 	let encoder,
 		pass,
@@ -5883,7 +5927,7 @@ fn fragMain(f: FragParams) -> @location(0) vec4f {
 		if ($._doStroke) {
 			let hsw = $._hsw;
 			addArcStroke(x, -y, a + hsw, b + hsw, a - hsw, b - hsw, start, stop, n, $._stroke, ti);
-			if ($._strokeJoin == 'round') {
+			if ($._strokeCap == 'round') {
 				addArc(x + a * Math.cos(start), -y - b * Math.sin(start), hsw, hsw, 0, TAU, n, $._stroke, ti);
 				addArc(x + a * Math.cos(stop), -y - b * Math.sin(stop), hsw, hsw, 0, TAU, n, $._stroke, ti);
 			}
@@ -5906,9 +5950,13 @@ fn fragMain(f: FragParams) -> @location(0) vec4f {
 		}
 	};
 
-	$._strokeJoin = 'round';
+	$._strokeCap = $._strokeJoin = 'round';
+	$.strokeCap = (x) => ($._strokeCap = x);
 	$.strokeJoin = (x) => ($._strokeJoin = x);
-	$.lineMode = () => ($._strokeJoin = 'none');
+	$.lineMode = () => {
+		$._strokeCap = 'square';
+		$._strokeJoin = 'none';
+	};
 
 	$.line = (x1, y1, x2, y2) => {
 		if ($._matrixDirty) $._saveMatrix();
@@ -5928,7 +5976,7 @@ fn fragMain(f: FragParams) -> @location(0) vec4f {
 
 		addRect(x1 + px, -y1 - py, x1 - px, -y1 + py, x2 - px, -y2 + py, x2 + px, -y2 - py, ci, ti);
 
-		if ($._scaledSW > 2 && $._strokeJoin != 'none') {
+		if ($._scaledSW > 2 && $._strokeCap != 'square') {
 			let n = getArcSegments($._scaledSW);
 			addArc(x1, -y1, hsw, hsw, 0, TAU, n, ci, ti);
 			addArc(x2, -y2, hsw, hsw, 0, TAU, n, ci, ti);
@@ -6094,8 +6142,8 @@ fn fragMain(f: FragParams) -> @location(0) vec4f {
 			let hsw = $._hsw,
 				n = getArcSegments($._scaledSW),
 				ti = $._matrixIndex,
-				ogStrokeJoin = $._strokeJoin;
-			$._strokeJoin = 'none';
+				ogStrokeCap = $._strokeCap;
+			$._strokeCap = 'square';
 			// draw lines between vertices
 			for (let i = 0; i < shapeVertCount - 1; i++) {
 				let v1 = i * 4;
@@ -6108,7 +6156,7 @@ fn fragMain(f: FragParams) -> @location(0) vec4f {
 			let v2 = 0;
 			if (close) $.line(sv[v1], -sv[v1 + 1], sv[v2], -sv[v2 + 1]);
 			addArc(sv[v1], sv[v1 + 1], hsw, hsw, 0, TAU, n, $._stroke, ti);
-			$._strokeJoin = ogStrokeJoin;
+			$._strokeCap = ogStrokeCap;
 		}
 
 		// reset for the next shape
@@ -6483,7 +6531,7 @@ fn fragMain(f: FragParams) -> @location(0) vec4f {
 
 	$.createGraphics = (w, h, opt) => {
 		let g = _createGraphics(w, h, opt);
-		if (g.canvas.renderer == 'webgpu') {
+		if (g.canvas.webgpu) {
 			$._addTexture(g, g._frameA);
 			$._addTexture(g, g._frameB);
 			g._beginRender();
@@ -6940,8 +6988,6 @@ fn fragMain(f : FragParams) -> @location(0) vec4f {
 
 		if (cb) cb(fontName);
 	};
-
-	$._g.colorMode($.RGB, 1);
 
 	$.loadFont = (url, cb) => {
 		let ext = url.slice(url.lastIndexOf('.') + 1);

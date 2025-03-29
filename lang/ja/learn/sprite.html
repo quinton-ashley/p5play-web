@@ -167,15 +167,15 @@ function update() {
 				<h2 id="スプライトの物理挙動">スプライトの物理挙動</h2>
 				<p>スプライトのコライダー（衝突を判定する仕組み）は、
 					他のスプライトとのコリジョン（衝突）を検出するために使用されます。
-					スプライトがデフォルトで持つ <code>'dynamic'</code> コライダーは、
+					スプライトがデフォルトで持つ <code>DYNAMIC</code> コライダーは、
 					自由に移動でき、重力の影響を受けられるコライダーです。</p>
-				<p><code>'static'</code> コライダーを持つスプライトは、動かせません。
-					<code>'kinematic'</code> コライダーを持つスプライトは、プログラム的に移動させることができますが、他のスプライトの影響を受けません。また、他の kinematic
+				<p><code>STATIC</code> コライダーを持つスプライトは、動かせません。
+					<code>KINEMATIC</code> コライダーを持つスプライトは、プログラム的に移動させることができますが、他のスプライトの影響を受けません。また、他の kinematic
 					コライダーともコリジョンを起こしません。
-					スプライトのコライダーを <code>'none'</code> に設定すると、コライダーを持っていないことになります。
+					スプライトのコライダーを <code>NONE</code> に設定すると、コライダーを持っていないことになります。
 				</p>
-				<p>コライダーのタイプは、 <code>'d'</code> 、 <code>'s'</code> 、 <code>'k'</code> および <code>'n'</code>
-					のように、それぞれのタイプ名の頭文字で指定することもできます。</p>
+				<p>コライダーのタイプは、 <code>DYN</code> 、 <code>STA</code> 、および <code>KIN</code> のように、それぞれのタイプ名の頭文字で指定することもできます。
+				</p>
 				<p>コードサンプルを再生するには、右上のリロードアイコンをクリックしてください！</p>
 			</md>
 			<script type="mie/p5" id="dynamic-and-static-colliders" base-2="" horiz="" lines="16">
@@ -193,7 +193,7 @@ function setup() {
 	floor.y = 190;
 	floor.w = 238;
 	floor.h = 5;
-	floor.collider = 'static';
+	floor.collider = STATIC;
 }
 
 function update() {
@@ -211,11 +211,11 @@ floor.rotation = 2;
 
 			<div class="minis">
 				<script type="mie/p5" id="rising-platform" base="2">
-floor.collider = 'k';
+floor.collider = KIN;
 floor.velocity.y = -1;
 				</script>
 				<script type="mie/p5" id="whoops!" base="2">
-floor.collider = 'none';
+floor.collider = NONE;
 				</script>
 			</div>
 			<div class="break"></div>
@@ -238,7 +238,7 @@ function setup() {
 	peg = new Sprite();
 	peg.diameter = 10;
 	peg.y = 40;
-	peg.collider = 'static';
+	peg.collider = STATIC;
 
 	block = new Sprite();
 	block.w = 30;
@@ -786,7 +786,7 @@ let player, wall;
 function setup() {
 	new Canvas(500, 100);
 
-	wall = new Sprite(250, 50, 30, 400, 's');
+	wall = new Sprite(250, 50, 30, 400, STA);
 	wall.color = 'purple';
 	player = new Sprite(50, 50);
 }
@@ -897,7 +897,7 @@ sprite.rotateTowards(mouse, 0.1, 0);
 function setup() {
 	new Canvas(500, 200);
 
-	let flipper = new Sprite(250, 100, 200, 20, 'k');
+	let flipper = new Sprite(250, 100, 200, 20, KIN);
 	flipper.debug = true;
 	flipper.rotationSpeed = 1;
 	flipper.offset.x = 40;
@@ -958,7 +958,7 @@ function setup() {
 	new Canvas(238, 100);
 	world.gravity.y = 10;
 	sprite = new Sprite(26, 0, 40, 40);
-	floor = new Sprite(119, 88, 238, 5, 's');
+	floor = new Sprite(119, 88, 238, 5, STA);
 	floor.rotation = 5;
 }
 function update() {
@@ -971,7 +971,7 @@ function setup() {
 	new Canvas(238, 100);
 	world.gravity.y = 10;
 	sprite = new Sprite(26, 0, 40);
-	floor = new Sprite(119, 88, 238, 5, 's');
+	floor = new Sprite(119, 88, 238, 5, STA);
 	floor.rotation = 5;
 }
 function update() {
@@ -1036,7 +1036,7 @@ function setup() {
 	world.gravity.y = 10;
 
 	platform = new Sprite(150, 88, 232, 5);
-	pin = new Sprite(150, 93, 5, 's');
+	pin = new Sprite(150, 93, 5, STA);
 
 	spriteA = new Sprite(50, 0, 80, 40);
 	spriteA.mass = 2;
@@ -1067,7 +1067,7 @@ function setup() {
 	ball = new Sprite(16, 100, 8);
 	ball.bounciness = 1;
 
-	ground = new Sprite(16, 200, 32, 16, 's');
+	ground = new Sprite(16, 200, 32, 16, STA);
 }
 
 function update() {
@@ -1104,7 +1104,7 @@ function setup() {
 	ball = new Sprite(16, 36, 8);
 	ball.bounciness = 1;
 
-	ground = new Sprite(16, 120, 32, 16, 's');
+	ground = new Sprite(16, 120, 32, 16, STA);
 }
 			</script>
 			<md id="md9-5">
@@ -1125,7 +1125,7 @@ function setup() {
 	world.gravity.y = 10;
 
 	block = new Sprite(30, 30);
-	platform = new Sprite(30, 200, 60, 5, 'k');
+	platform = new Sprite(30, 200, 60, 5, KIN);
 	platform.color = 'red';
 }
 
@@ -1160,7 +1160,7 @@ function setup() {
 
 	drone = new Sprite(50, 0, 40, 10);
 	
-	floor = new Sprite(50, 498, 100, 6, 's');
+	floor = new Sprite(50, 498, 100, 6, STA);
 }
 
 function update() {
@@ -1188,8 +1188,8 @@ function setup() {
   new Canvas(100, 288);
   s0 = new Sprite(51, 252, 20, 20);
 	s1 = new Sprite(49, 32, 20, 20);
-	new Sprite(50, 4, 100, 8, 's');
-  new Sprite(50, 284, 100, 8, 's');
+	new Sprite(50, 4, 100, 8, STA);
+  new Sprite(50, 284, 100, 8, STA);
 }
 
 function update() {
@@ -1235,9 +1235,9 @@ function setup() {
 	robot = new Sprite(250, 0, 50);
 	robot.debug = true;
 
-	floor1 = new Sprite(400, 100, 500, 5, 's');
+	floor1 = new Sprite(400, 100, 500, 5, STA);
 	floor1.rotation = -10;
-	floor2 = new Sprite(890, 100, 500, 5, 's');
+	floor2 = new Sprite(890, 100, 500, 5, STA);
 	floor2.rotation = 10;
 }
 
@@ -1290,7 +1290,7 @@ function setup() {
 	world.gravity.y = 10;
 
 	//        ( x,  y, [distance0, distance1, ...])
-	new Sprite(30, 50, [[60, 20], [90, -9], [90, 9]], 's');
+	new Sprite(30, 50, [[60, 20], [90, -9], [90, 9]], STA);
 
 	new Sprite(40, 0, 20);
 }
@@ -1313,7 +1313,7 @@ function setup() {
 	world.gravity.y = 10;
 
 	//        (  x,   y, [length0, angle0, length1, ...])
-	new Sprite(250, 100, [50, 20, 50, -20, 50, -20], 's');
+	new Sprite(250, 100, [50, 20, 50, -20, 50, -20], STA);
 
 	new Sprite(200, 0, 20);
 }
@@ -1417,7 +1417,7 @@ function setup() {
 	new Canvas(500, 180);
 	world.gravity.y = 10;
 
-	new Sprite(250, 90, [40, 72, 40, -72, 40, 72, 5], 's');
+	new Sprite(250, 90, [40, 72, 40, -72, 40, 72, 5], STA);
 
 	new Sprite(251, 50, 20, 'pentagon');
 }
@@ -1444,7 +1444,7 @@ function setup() {
 		[200, 0]
 	]);
 
-	new Sprite(250, 90, 500, 10, 's');
+	new Sprite(250, 90, 500, 10, STA);
 }
 
 function update() {
@@ -1487,7 +1487,7 @@ function setup() {
 		[0, 25],
 		[100, 12.5],
 		[0, -25]
-	], 'k');
+	], KIN);
 
 	flipper.addCollider(-60, 0, 25);
 	flipper.addCollider(40, 0, 50);
