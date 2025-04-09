@@ -1,7 +1,8 @@
 /**
  * q5.js
- * @version 2.24
- * @author quinton-ashley, Tezumie, and LingDong-
+ * @version 2.26
+ * @author quinton-ashley
+ * @contributors Tezumie, LingDong-
  * @license LGPL-3.0
  * @class Q5
  */
@@ -71,13 +72,18 @@ function Q5(scope, parent, renderer) {
 		$.deviceOrientation = window.screen?.orientation?.type;
 	}
 
-	$._preloadCount = 0;
-	$._incrementPreload = () => q._preloadCount++;
-	$._decrementPreload = () => q._preloadCount--;
-
+	$._preloadPromises = [];
 	$._usePreload = true;
 	$.usePreloadSystem = (v) => ($._usePreload = v);
 	$.isPreloadSupported = () => $._usePreload;
+
+	const resolvers = [];
+	$._incrementPreload = () => {
+		$._preloadPromises.push(new Promise((resolve) => resolvers.push(resolve)));
+	};
+	$._decrementPreload = () => {
+		if (resolvers.length) resolvers.pop()();
+	};
 
 	$._draw = (timestamp) => {
 		let ts = timestamp || performance.now();
@@ -94,7 +100,6 @@ function Q5(scope, parent, renderer) {
 				let nextTS = ts + $._targetFrameDuration;
 				let frameDelay = nextTS - performance.now();
 				while (frameDelay < 0) frameDelay += $._targetFrameDuration;
-				log(frameDelay);
 				looper = setTimeout(() => $._draw(nextTS), frameDelay);
 			}
 		} else if ($.frameCount && !$._redraw) return;
@@ -131,7 +136,7 @@ function Q5(scope, parent, renderer) {
 	};
 	$.noLoop = () => {
 		$._loop = false;
-		if (looper) {
+		if (looper != null) {
 			if (useRAF) cancelAnimationFrame(looper);
 			else clearTimeout(looper);
 		}
@@ -155,17 +160,20 @@ function Q5(scope, parent, renderer) {
 	};
 
 	$.frameRate = (hz) => {
-		if (hz) {
+		if (hz != $._targetFrameRate) {
 			$._targetFrameRate = hz;
 			$._targetFrameDuration = 1000 / hz;
 
-			if ($._loop && $._setupDone && looper != null) {
+			if ($._loop && looper != null) {
 				if (useRAF) cancelAnimationFrame(looper);
 				else clearTimeout(looper);
 				looper = null;
 			}
 			useRAF = hz <= 60;
-			setTimeout(() => $._draw(), $._targetFrameDuration);
+			if ($._setupDone) {
+				if (useRAF) looper = raf($._draw);
+				else looper = setTimeout(() => $._draw(), $._targetFrameDuration);
+			}
 		}
 		return $._frameRate;
 	};
@@ -215,10 +223,22 @@ function Q5(scope, parent, renderer) {
 		if (n[0] != '_' && typeof $[n] == 'function') $[n] = fn.bind($);
 	}
 
+	for (let [n, fn] of Object.entries(Q5.preloadMethods)) {
+		$[n] = function () {
+			$._incrementPreload();
+			return fn.apply($, arguments);
+			// fn is responsible for calling $._decrementPreload
+		};
+	}
+
 	if (scope == 'global') {
 		let props = Object.getOwnPropertyNames($);
 		for (let p of props) {
 			if (p[0] != '_') globalScope[p] = $[p];
+		}
+		// to support p5.sound
+		for (let p of ['_incrementPreload', '_decrementPreload']) {
+			globalScope[p] = $[p];
 		}
 	}
 
@@ -282,7 +302,8 @@ function Q5(scope, parent, renderer) {
 
 	async function _setup() {
 		$._startDone = true;
-		if ($._preloadCount > 0 || $._g?._preloadCount > 0) return raf(_setup);
+		await Promise.all($._preloadPromises);
+		if ($._g) await Promise.all($._g._preloadPromises);
 		millisStart = performance.now();
 		await $.setup();
 		$._setupDone = true;
@@ -326,7 +347,9 @@ Q5.methods = {
 	remove: []
 };
 Q5.prototype.registerMethod = (m, fn) => Q5.methods[m].push(fn);
-Q5.prototype.registerPreloadMethod = (n, fn) => (Q5.prototype[n] = fn[n]);
+
+Q5.preloadMethods = {};
+Q5.prototype.registerPreloadMethod = (n, fn) => (Q5.preloadMethods[n] = fn[n]);
 
 if (Q5._server) global.p5 ??= global.Q5 = Q5;
 
@@ -340,7 +363,7 @@ function createCanvas(w, h, opt) {
 	}
 }
 
-Q5.version = Q5.VERSION = '2.24';
+Q5.version = Q5.VERSION = '2.26';
 
 if (typeof document == 'object') {
 	document.addEventListener('DOMContentLoaded', () => {
@@ -934,6 +957,9 @@ Q5.renderers.c2d.shapes = ($) => {
 		w /= 2;
 		h /= 2;
 
+		w = Math.abs(w);
+		h = Math.abs(h);
+
 		if (!$._doFill && mode == $.PIE_OPEN) mode = $.CHORD_OPEN;
 
 		$.ctx.beginPath();
@@ -975,7 +1001,7 @@ Q5.renderers.c2d.shapes = ($) => {
 
 	function ellipse(x, y, w, h) {
 		$.ctx.beginPath();
-		$.ctx.ellipse(x, y, w / 2, h / 2, 0, 0, TAU);
+		$.ctx.ellipse(x, y, Math.abs(w / 2), Math.abs(h / 2), 0, 0, TAU);
 		ink();
 	}
 
@@ -1006,7 +1032,7 @@ Q5.renderers.c2d.shapes = ($) => {
 				d *= $._da;
 			}
 			$.ctx.beginPath();
-			$.ctx.arc(x, y, d / 2, 0, TAU);
+			$.ctx.arc(x, y, Math.abs(d / 2), 0, TAU);
 			ink();
 		} else $.ellipse(x, y, d, d);
 	};
@@ -1264,35 +1290,6 @@ Q5.renderers.c2d.shapes = ($) => {
 	};
 };
 Q5.renderers.c2d.image = ($, q) => {
-	class Q5Image {
-		constructor(w, h, opt = {}) {
-			let $ = this;
-			$._scope = 'image';
-			$.canvas = $.ctx = $.drawingContext = null;
-			$.pixels = [];
-			Q5.modules.canvas($, $);
-			let r = Q5.renderers.c2d;
-			for (let m of ['canvas', 'image', 'soft_filters']) {
-				if (r[m]) r[m]($, $);
-			}
-			$._pixelDensity = opt.pixelDensity || 1;
-			$.createCanvas(w, h, opt);
-			let scale = $._pixelDensity * q._defaultImageScale;
-			$.defaultWidth = w * scale;
-			$.defaultHeight = h * scale;
-			delete $.createCanvas;
-			$._loop = false;
-		}
-		get w() {
-			return this.width;
-		}
-		get h() {
-			return this.height;
-		}
-	}
-
-	Q5.Image ??= Q5Image;
-
 	$._tint = null;
 	let imgData = null;
 
@@ -1300,7 +1297,7 @@ Q5.renderers.c2d.image = ($, q) => {
 		opt ??= {};
 		opt.alpha ??= true;
 		opt.colorSpace ??= $.canvas.colorSpace || Q5.canvasOptions.colorSpace;
-		return new Q5.Image(w, h, opt);
+		return new Q5.Image($, w, h, opt);
 	};
 
 	$.loadImage = function (url, cb, opt) {
@@ -1310,7 +1307,6 @@ Q5.renderers.c2d.image = ($, q) => {
 				`q5 doesn't support GIFs. Use a video or p5play animation instead. https://github.com/q5js/q5.js/issues/84`
 			);
 		}
-		q._preloadCount++;
 		let last = [...arguments].at(-1);
 		if (typeof last == 'object') {
 			opt = last;
@@ -1323,7 +1319,7 @@ Q5.renderers.c2d.image = ($, q) => {
 		let img = new window.Image();
 		img.crossOrigin = 'Anonymous';
 
-		g._loader = new Promise((resolve, reject) => {
+		g.promise = new Promise((resolve, reject) => {
 			img.onload = () => {
 				img._pixelDensity = pd;
 				g.defaultWidth = img.width * $._defaultImageScale;
@@ -1333,20 +1329,17 @@ Q5.renderers.c2d.image = ($, q) => {
 				g._setImageSize(Math.ceil(g.naturalWidth / pd), Math.ceil(g.naturalHeight / pd));
 
 				g.ctx.drawImage(img, 0, 0);
-				q._preloadCount--;
 				if (cb) cb(g);
-				delete g._loader;
+				delete g.promise;
 				resolve(g);
 			};
-			img.onerror = (e) => {
-				q._preloadCount--;
-				reject(e);
-			};
+			img.onerror = reject;
 		});
+		$._preloadPromises.push(g.promise);
 
 		g.src = img.src = url;
 
-		if (!$._usePreload) return g._loader;
+		if (!$._usePreload) return g.promise;
 		return g;
 	};
 
@@ -1541,7 +1534,7 @@ Q5.renderers.c2d.image = ($, q) => {
 	$.copy = () => {
 		let img = $.get();
 		for (let prop in $) {
-			if (typeof $[prop] != 'function' && !/(canvas|ctx|texture|textureIndex)/.test(prop)) {
+			if (typeof $[prop] != 'function' && !/(canvas|ctx|texture)/.test(prop)) {
 				img[prop] = $[prop];
 			}
 		}
@@ -1624,8 +1617,35 @@ Q5.renderers.c2d.image = ($, q) => {
 	};
 	$.noTint = () => ($._tint = null);
 };
+
+Q5.Image = class {
+	constructor(q, w, h, opt = {}) {
+		let $ = this;
+		$._scope = 'image';
+		$.canvas = $.ctx = $.drawingContext = null;
+		$.pixels = [];
+		Q5.modules.canvas($, $);
+		let r = Q5.renderers.c2d;
+		for (let m of ['canvas', 'image', 'softFilters']) {
+			if (r[m]) r[m]($, $);
+		}
+		$._pixelDensity = opt.pixelDensity || 1;
+		$.createCanvas(w, h, opt);
+		let scale = $._pixelDensity * q._defaultImageScale;
+		$.defaultWidth = w * scale;
+		$.defaultHeight = h * scale;
+		delete $.createCanvas;
+		$._loop = false;
+	}
+	get w() {
+		return this.width;
+	}
+	get h() {
+		return this.height;
+	}
+};
 /* software implementation of image filters */
-Q5.renderers.c2d.soft_filters = ($) => {
+Q5.renderers.c2d.softFilters = ($) => {
 	let u = null; // uint8 temporary buffer
 
 	function ensureBuf() {
@@ -1783,34 +1803,32 @@ Q5.renderers.c2d.text = ($, q) => {
 		fontMod = false,
 		styleHash = 0,
 		styleHashes = [],
-		useCache = false,
 		genTextImage = false,
-		cacheSize = 0,
-		cacheMax = 12000;
+		cacheSize = 0;
 
 	let cache = ($._textCache = {});
+	$._textCacheMaxSize = 12000;
 
 	$.loadFont = (url, cb) => {
-		q._preloadCount++;
 		let name = url.split('/').pop().split('.')[0].replace(' ', '');
 
 		let f = new FontFace(name, `url(${url})`);
 		document.fonts.add(f);
-		f._loader = (async () => {
+		f.promise = (async () => {
 			let err;
 			try {
 				await f.load();
 			} catch (e) {
 				err = e;
 			}
-			q._preloadCount--;
-			delete f._loader;
+			delete f.promise;
 			if (err) throw err;
 			if (cb) cb(f);
 			return f;
 		})();
+		$._preloadPromises.push(f.promise);
 		$.textFont(name);
-		if (!$._usePreload) return f._loader;
+		if (!$._usePreload) return f.promise;
 		return f;
 	};
 
@@ -1896,12 +1914,6 @@ Q5.renderers.c2d.text = ($, q) => {
 		styleHash = hash >>> 0;
 	};
 
-	$.textCache = (enable, maxSize) => {
-		if (maxSize) cacheMax = maxSize;
-		if (enable !== undefined) useCache = enable;
-		return useCache;
-	};
-
 	$.createTextImage = (str, w, h) => {
 		genTextImage = true;
 		let img = $.text(str, 0, 0, w, h);
@@ -1923,7 +1935,7 @@ Q5.renderers.c2d.text = ($, q) => {
 
 		if (fontMod) updateFont();
 
-		if (useCache || genTextImage) {
+		if (genTextImage) {
 			if (styleHash == -1) updateStyleHash();
 
 			img = cache[str];
@@ -1931,8 +1943,7 @@ Q5.renderers.c2d.text = ($, q) => {
 
 			if (img) {
 				if (img._fill == $._fill && img._stroke == $._stroke && img._strokeWeight == $._strokeWeight) {
-					if (genTextImage) return img;
-					return $.textImage(img, x, y);
+					return img;
 				} else img.clear();
 			}
 		}
@@ -1960,12 +1971,14 @@ Q5.renderers.c2d.text = ($, q) => {
 			lines = wrapped;
 		}
 
-		if (!useCache && !genTextImage) {
+		if (!genTextImage) {
 			tX = x;
 			tY = y;
+			if ($._textBaseline == 'middle') tY -= leading * (lines.length - 1) * 0.5;
+			else if ($._textBaseline == 'bottom') tY -= leading * (lines.length - 1);
 		} else {
 			tX = 0;
-			tY = leading * lines.length;
+			tY = leading;
 
 			if (!img) {
 				let ogBaseline = $.ctx.textBaseline;
@@ -1977,15 +1990,24 @@ Q5.renderers.c2d.text = ($, q) => {
 
 				$.ctx.textBaseline = ogBaseline;
 
-				img = $.createImage.call($, Math.ceil(ctx.measureText(str).width), Math.ceil(tY + descent), {
+				let maxWidth = 0;
+				for (let line of lines) {
+					let lineWidth = ctx.measureText(line).width;
+					if (lineWidth > maxWidth) maxWidth = lineWidth;
+				}
+
+				let imgW = Math.ceil(maxWidth),
+					imgH = Math.ceil(leading * lines.length + descent);
+
+				img = $.createImage.call($, imgW, imgH, {
 					pixelDensity: $._pixelDensity
 				});
 
 				img._ascent = ascent;
 				img._descent = descent;
 				img._top = descent + leadDiff;
-				img._middle = img._top + ascent * 0.5;
-				img._bottom = img._top + ascent;
+				img._middle = img._top + ascent * 0.5 + leading * (lines.length - 1) * 0.5;
+				img._bottom = img._top + ascent + leading * (lines.length - 1);
 				img._leading = leading;
 			} else {
 				img.modified = true;
@@ -2021,12 +2043,12 @@ Q5.renderers.c2d.text = ($, q) => {
 
 		if (!$._fillSet) ctx.fillStyle = ogFill;
 
-		if (useCache || genTextImage) {
+		if (genTextImage) {
 			styleHashes.push(styleHash);
 			(cache[str] ??= {})[styleHash] = img;
 
 			cacheSize++;
-			if (cacheSize > cacheMax) {
+			if (cacheSize > $._textCacheMaxSize) {
 				let half = Math.ceil(cacheSize / 2);
 				let hashes = styleHashes.splice(0, half);
 				for (let s in cache) {
@@ -2035,9 +2057,7 @@ Q5.renderers.c2d.text = ($, q) => {
 				}
 				cacheSize -= half;
 			}
-
-			if (genTextImage) return img;
-			$.textImage(img, x, y);
+			return img;
 		}
 	};
 
@@ -2552,10 +2572,8 @@ Q5.modules.display = ($) => {
 
 	let c = $.canvas;
 
-	$.CENTERED = 'centered';
-	$.FULLSCREEN = 'fullscreen';
 	$.MAXED = 'maxed';
-
+	$.SMOOTH = 'smooth';
 	$.PIXELATED = 'pixelated';
 
 	if (Q5._instanceCount == 0 && !Q5._server) {
@@ -2579,15 +2597,13 @@ html, body {
 	-webkit-font-smoothing: none;
 }
 .q5-centered,
-.q5-maxed,
-.q5-fullscreen {
+.q5-maxed {
   display: flex;
 	align-items: center;
 	justify-content: center;
 }
 main.q5-centered,
-main.q5-maxed,
-.q5-fullscreen {
+main.q5-maxed {
 	height: 100vh;
 }
 main {
@@ -2608,8 +2624,8 @@ main {
 			if ($.noSmooth) $.noSmooth();
 			if ($.textFont) $.textFont('monospace');
 		}
-		if (c.displayMode == 'default' || c.displayMode == 'normal') {
-			p.classList.remove('q5-centered', 'q5-maxed', 'q5-fullscreen');
+		if (c.displayMode == 'normal') {
+			p.classList.remove('q5-centered', 'q5-maxed');
 			s.width = c.w * c.displayScale + 'px';
 			s.height = c.h * c.displayScale + 'px';
 		} else {
@@ -2637,6 +2653,7 @@ main {
 		if (typeof displayScale == 'string') {
 			displayScale = parseFloat(displayScale.slice(1));
 		}
+		if (displayMode == 'fullscreen') displayMode = 'maxed';
 		if (displayMode == 'center') displayMode = 'centered';
 		Object.assign(c, { displayMode, renderQuality, displayScale });
 		if ($.ctx) $.pushStyles();
@@ -2645,7 +2662,7 @@ main {
 	};
 
 	$.fullscreen = (v) => {
-		if (v === undefined) return document.fullscreenElement;
+		if (v == undefined) return document.fullscreenElement;
 		if (v) document.body.requestFullscreen();
 		else document.body.exitFullscreen();
 	};
@@ -2932,24 +2949,21 @@ Q5.modules.dom = ($, q) => {
 		};
 
 		if (src) {
-			q._preloadCount++;
-			el._loader = new Promise((resolve) => {
+			el.promise = new Promise((resolve) => {
 				el.addEventListener('loadeddata', () => {
 					el._load();
-					q._preloadCount--;
 					resolve(el);
 				});
 				el.src = src;
 			});
+			$._preloadPromises.push(el.promise);
 
-			if (!$._usePreload) return el._loader;
+			if (!$._usePreload) return el.promise;
 		}
 		return el;
 	};
 
 	$.createCapture = function (type, flipped = true, cb) {
-		q._preloadCount++;
-
 		let constraints = typeof type == 'string' ? { [type]: true } : type || { video: true, audio: true };
 
 		if (constraints.video === true) {
@@ -2971,12 +2985,11 @@ Q5.modules.dom = ($, q) => {
 			vid.pixels = g.pixels;
 			g.remove();
 		};
-		vid._loader = (async () => {
+		vid.promise = (async () => {
 			let stream;
 			try {
 				stream = await navigator.mediaDevices.getUserMedia(constraints);
 			} catch (e) {
-				q._preloadCount--;
 				throw e;
 			}
 
@@ -2985,11 +2998,11 @@ Q5.modules.dom = ($, q) => {
 
 			vid._load();
 			if (cb) cb(vid);
-			q._preloadCount--;
 			return vid;
 		})();
+		$._preloadPromises.push(vid.promise);
 
-		if (!$._usePreload) return vid._loader;
+		if (!$._usePreload) return vid.promise;
 		return vid;
 	};
 
@@ -3394,7 +3407,7 @@ Q5.modules.math = ($, q) => {
 		}
 	};
 
-	$.randSym = (v = 1) => $.random(-v, v);
+	$.jit = (amt = 1) => $.random(-amt, amt);
 
 	$.randomGenerator = (method) => {
 		if (method == $.LCG) rng1 = lcg();
@@ -4065,49 +4078,44 @@ Q5.modules.sound = ($, q) => {
 	let sounds = [];
 
 	$.loadSound = (url, cb) => {
-		q._preloadCount++;
-
 		let s = new Q5.Sound();
 		sounds.push(s);
 
-		s._loader = (async () => {
+		s.promise = (async () => {
 			let err;
 			try {
 				await s.load(url);
 			} catch (e) {
 				err = e;
 			}
-			q._preloadCount--;
-			delete s._loader;
+			delete s.promise;
 			if (err) throw err;
 			if (cb) cb(s);
 			return s;
 		})();
+		$._preloadPromises.push(s.promise);
 
-		if (!$._usePreload) return s._loader;
+		if (!$._usePreload) return s.promise;
 		return s;
 	};
 
 	$.loadAudio = (url, cb) => {
-		q._preloadCount++;
 		let a = new Audio(url);
 		a.crossOrigin = 'Anonymous';
-		a.addEventListener('canplaythrough', () => {
-			if (!a.loaded) {
-				q._preloadCount--;
-				a.loaded = true;
-				if (cb) cb(a);
-			}
+		a.promise = new Promise((resolve, reject) => {
+			a.addEventListener('canplaythrough', () => {
+				if (!a.loaded) {
+					a.loaded = true;
+					if (cb) cb(a);
+					resolve(a);
+				}
+			});
+			a.addEventListener('suspend', resolve);
+			a.addEventListener('error', reject);
 		});
-		let preloadSkip = () => {
-			a._preloadSkip = true;
-			q._preloadCount--;
-		};
-		a.addEventListener('suspend', preloadSkip);
-		a.addEventListener('error', (e) => {
-			preloadSkip();
-			throw e;
-		});
+		$._preloadPromises.push(a.promise);
+
+		if (!$._usePreload) return a.promise;
 		return a;
 	};
 
@@ -4273,9 +4281,8 @@ Q5.Sound = class {
 };
 Q5.modules.util = ($, q) => {
 	$._loadFile = (url, cb, type) => {
-		q._preloadCount++;
 		let ret = {};
-		ret._loader = new Promise((resolve, reject) => {
+		ret.promise = new Promise((resolve, reject) => {
 			fetch(url)
 				.then((res) => {
 					if (!res.ok) {
@@ -4289,9 +4296,8 @@ Q5.modules.util = ($, q) => {
 					if (type == 'csv') f = $.CSV.parse(f);
 					if (typeof f == 'string') ret.text = f;
 					else Object.assign(ret, f);
-					delete ret._loader;
+					delete ret.promise;
 					if (cb) cb(f);
-					q._preloadCount--;
 					resolve(f);
 				});
 		});
@@ -4302,14 +4308,15 @@ Q5.modules.util = ($, q) => {
 	$.loadJSON = (url, cb) => $._loadFile(url, cb, 'json');
 	$.loadCSV = (url, cb) => $._loadFile(url, cb, 'csv');
 
-	const imgRegex = /(jpe?g|png|gif|webp|avif|svg)/,
-		fontRegex = /(ttf|otf|woff2?|eot|json)/,
-		audioRegex = /(wav|flac|mp3|ogg|m4a|aac|aiff|weba)/;
+	const imgRegex = /(jpe?g|png|gif|webp|avif|svg)/i,
+		fontRegex = /(ttf|otf|woff2?|eot|json)/i,
+		fontCategoryRegex = /(serif|sans-serif|monospace|cursive|fantasy)/i,
+		audioRegex = /(wav|flac|mp3|ogg|m4a|aac|aiff|weba)/i;
 
 	$.load = function (...urls) {
 		if (Array.isArray(urls[0])) urls = urls[0];
 
-		let loaders = [];
+		let promises = [];
 
 		for (let url of urls) {
 			let ext = url.split('.').pop().toLowerCase();
@@ -4321,25 +4328,29 @@ Q5.modules.util = ($, q) => {
 				obj = $.loadCSV(url);
 			} else if (imgRegex.test(ext)) {
 				obj = $.loadImage(url);
-			} else if (fontRegex.test(ext)) {
+			} else if (fontRegex.test(ext) || fontCategoryRegex.test(url)) {
 				obj = $.loadFont(url);
 			} else if (audioRegex.test(ext)) {
 				obj = $.loadSound(url);
 			} else {
 				obj = $.loadText(url);
 			}
-			loaders.push(obj._loader);
+			promises.push(obj.promise);
 		}
 
-		if (urls.length == 1) return loaders[0];
-		return Promise.all(loaders);
+		if (urls.length == 1) return promises[0];
+		return Promise.all(promises);
 	};
 
 	async function saveFile(data, name, ext) {
 		name = name || 'untitled';
 		ext = ext || 'png';
 		if (imgRegex.test(ext)) {
-			data = await $._saveCanvas(data, ext);
+			if ($.canvas?.renderer == 'webgpu' && data.canvas.renderer == 'c2d') {
+				data = await $._g._saveCanvas(data, ext);
+			} else {
+				data = await $._saveCanvas(data, ext);
+			}
 		} else {
 			let type = 'text/plain';
 			if (ext == 'json') {
@@ -4389,10 +4400,10 @@ Q5.modules.util = ($, q) => {
 	}
 
 	if (typeof localStorage == 'object') {
-		$.storeItem = localStorage.setItem;
-		$.getItem = localStorage.getItem;
-		$.removeItem = localStorage.removeItem;
-		$.clearStorage = localStorage.clear;
+		$.storeItem = (name, val) => localStorage.setItem(name, val);
+		$.getItem = (name) => localStorage.getItem(name);
+		$.removeItem = (name) => localStorage.removeItem(name);
+		$.clearStorage = () => localStorage.clear();
 	}
 
 	$.year = () => new Date().getFullYear();
@@ -4722,10 +4733,11 @@ Q5.Vector.mult = (v, u) => v.copy().mult(u);
 Q5.Vector.normalize = (v) => v.copy().normalize();
 Q5.Vector.rem = (v, u) => v.copy().rem(u);
 Q5.Vector.sub = (v, u) => v.copy().sub(u);
-
-for (let k of ['fromAngle', 'fromAngles', 'random2D', 'random3D']) {
-	Q5.Vector[k] = (u, v, t) => new Q5.Vector()[k](u, v, t);
-}
+Q5.Vector.reflect = (v, n) => v.copy().reflect(n);
+Q5.Vector.random2D = () => new Q5.Vector().random2D();
+Q5.Vector.random3D = () => new Q5.Vector().random3D();
+Q5.Vector.fromAngle = (th, l) => new Q5.Vector().fromAngle(th, l);
+Q5.Vector.fromAngles = (th, ph, l) => new Q5.Vector().fromAngles(th, ph, l);
 Q5.renderers.webgpu = {};
 
 Q5.renderers.webgpu.canvas = ($, q) => {
@@ -4751,7 +4763,7 @@ struct Q5 {
 }`;
 
 	$._g = $.createGraphics(1, 1, 'c2d');
-	$._g.colorMode($.RGB, 1);
+	if ($._g.colorMode) $._g.colorMode($.RGB, 1);
 
 	let encoder,
 		pass,
@@ -4833,8 +4845,9 @@ struct Q5 {
 			GPUTextureUsage.TEXTURE_BINDING |
 			GPUTextureUsage.RENDER_ATTACHMENT;
 
-		$._frameA = frameA = Q5.device.createTexture({ size, format, usage });
-		$._frameB = frameB = Q5.device.createTexture({ size, format, usage });
+		// start swapped so that beginRender will make frameA the first frame
+		$._frameA = frameB = Q5.device.createTexture({ label: 'frameA', size, format, usage });
+		$._frameB = frameA = Q5.device.createTexture({ label: 'frameB', size, format, usage });
 
 		$._frameShaderCode =
 			$._baseShaderCode +
@@ -4936,16 +4949,27 @@ fn fragMain(f: FragParams ) -> @location(0) vec4f {
 		createMainView();
 	};
 
+	let usingRGB = true,
+		colorFormat = 1;
+
+	if ($.colorMode) {
+		let cm = $.colorMode;
+		$.colorMode = function () {
+			cm(...arguments);
+			usingRGB = $._colorMode == 'rgb';
+			colorFormat = $._colorFormat;
+		};
+	}
+
 	let addColor = (r, g, b, a) => {
-		let cf = $._colorFormat;
-		if (typeof r == 'string' || $._colorMode != 'rgb') {
+		if (typeof r === 'string' || usingRGB === false) {
 			r = $.color(r, g, b, a);
-		} else if (b == undefined) {
+		} else if (b === undefined) {
 			// grayscale mode `fill(1, 0.5)`
-			a = g ?? cf;
+			a = g ?? colorFormat;
 			g = b = r;
 		}
-		a ??= cf;
+		a ??= colorFormat;
 		if (r._q5Color) {
 			let c = r;
 			if (c.r != undefined) ({ r, g, b, a } = c);
@@ -4958,7 +4982,7 @@ fn fragMain(f: FragParams ) -> @location(0) vec4f {
 			}
 		}
 
-		if (cf == 255) {
+		if (colorFormat === 255) {
 			r /= 255;
 			g /= 255;
 			b /= 255;
@@ -5223,14 +5247,14 @@ fn fragMain(f: FragParams ) -> @location(0) vec4f {
 
 	// prettier-ignore
 	let blendFactors = [
-			'zero',                // 0
-			'one',                 // 1
-			'src-alpha',           // 2
-			'one-minus-src-alpha', // 3
-			'dst',                 // 4
-			'dst-alpha',           // 5
-			'one-minus-dst-alpha', // 6
-			'one-minus-src'        // 7
+		'zero',                // 0
+		'one',                 // 1
+		'src-alpha',           // 2
+		'one-minus-src-alpha', // 3
+		'dst',                 // 4
+		'dst-alpha',           // 5
+		'one-minus-dst-alpha', // 6
+		'one-minus-src'        // 7
 	];
 	let blendOps = [
 		'add', // 0
@@ -5240,18 +5264,22 @@ fn fragMain(f: FragParams ) -> @location(0) vec4f {
 		'max' // 4
 	];
 
-	// other blend modes are not supported yet
 	const blendModes = {
-		normal: [2, 3, 0, 2, 3, 0],
-		// destination_over: [6, 1, 0, 6, 1, 0],
-		additive: [1, 1, 0, 1, 1, 0]
-		// source_in: [5, 0, 0, 5, 0, 0],
-		// destination_in: [0, 2, 0, 0, 2, 0],
-		// source_out: [6, 0, 0, 6, 0, 0],
-		// destination_out: [0, 3, 0, 0, 3, 0],
-		// source_atop: [5, 3, 0, 5, 3, 0],
-		// destination_atop: [6, 2, 0, 6, 2, 0]
+		'source-over': [2, 3, 0, 2, 3, 0],
+		'destination-over': [6, 1, 0, 6, 1, 0],
+		'source-in': [5, 0, 0, 5, 0, 0],
+		'destination-in': [0, 2, 0, 0, 2, 0],
+		'source-out': [6, 0, 0, 6, 0, 0],
+		'destination-out': [0, 3, 0, 0, 3, 0],
+		'source-atop': [5, 3, 0, 5, 3, 0],
+		'destination-atop': [6, 2, 0, 6, 2, 0],
+		lighter: [1, 1, 0, 1, 1, 0],
+		darken: [1, 1, 3, 3, 5, 0],
+		lighten: [1, 1, 4, 3, 5, 0],
+		replace: [1, 0, 0, 1, 0, 0]
 	};
+
+	$._blendModeNames = Object.keys(blendModes);
 
 	$.blendConfigs = {};
 
@@ -5270,19 +5298,17 @@ fn fragMain(f: FragParams ) -> @location(0) vec4f {
 		};
 	}
 
-	$._blendMode = 'normal';
+	$._blendMode = 'source-over';
 
 	$.blendMode = (mode) => {
 		if (mode == $._blendMode) return;
-		if (mode == 'source-over') mode = 'normal';
-		if (mode == 'lighter') mode = 'additive';
-		mode = mode.toLowerCase().replace(/[ -]/g, '_');
 		$._blendMode = mode;
-
-		for (let i = 0; i < $._pipelines.length; i++) {
-			$._pipelineConfigs[i].fragment.targets[0].blend = $.blendConfigs[mode];
-			$._pipelines[i] = Q5.device.createRenderPipeline($._pipelineConfigs[i]);
+		let i = $._blendModeNames.indexOf(mode);
+		if (i == -1) {
+			console.error(`Blend mode "${mode}" not supported in q5.js WebGPU.`);
+			return;
 		}
+		drawStack.push(0, i);
 	};
 
 	let shouldClear;
@@ -5407,7 +5433,17 @@ fn fragMain(f: FragParams ) -> @location(0) vec4f {
 		for (let i = 0; i < drawStack.length; i += 2) {
 			let v = drawStack[i + 1];
 
-			if (curPipelineIndex != drawStack[i]) {
+			if (drawStack[i] != curPipelineIndex) {
+				if (drawStack[i] == 0) {
+					// change blend mode
+					let mode = $._blendModeNames[v];
+					for (let i = 1; i < $._pipelines.length; i++) {
+						$._pipelineConfigs[i].fragment.targets[0].blend = $.blendConfigs[mode];
+						$._pipelines[i] = Q5.device.createRenderPipeline($._pipelineConfigs[i]);
+					}
+					continue;
+				}
+
 				curPipelineIndex = drawStack[i];
 				pass.setPipeline($._pipelines[curPipelineIndex]);
 			}
@@ -5481,6 +5517,8 @@ fn fragMain(f: FragParams ) -> @location(0) vec4f {
 		colorStackIndex = 8;
 		matrices = [matrices[0]];
 		matricesIndexStack = [];
+
+		$.texture = frameA;
 
 		for (let m of $._hooks.postRender) m();
 	};
@@ -5598,7 +5636,7 @@ fn fragMain(f: FragParams) -> @location(0) vec4f {
 		fragment: {
 			module: shapesShader,
 			entryPoint: 'fragMain',
-			targets: [{ format: 'bgra8unorm', blend: $.blendConfigs.normal }]
+			targets: [{ format: 'bgra8unorm', blend: $.blendConfigs['source-over'] }]
 		},
 		primitive: { topology: 'triangle-strip', stripIndexFormat: 'uint32' },
 		multisample: { count: 4 }
@@ -5714,6 +5752,7 @@ fn fragMain(f: FragParams) -> @location(0) vec4f {
 	$.rectMode = (x) => ($._rectMode = x);
 
 	$.rect = (x, y, w, h, rr = 0) => {
+		h ??= w;
 		let [l, r, t, b] = $._calcBox(x, y, w, h, $._rectMode);
 		let ci, ti;
 		if ($._matrixDirty) $._saveMatrix();
@@ -6361,7 +6400,7 @@ fn fragMain(f: FragParams) -> @location(0) vec4f {
 		fragment: {
 			module: imageShader,
 			entryPoint: 'fragMain',
-			targets: [{ format: 'bgra8unorm', blend: $.blendConfigs.normal }]
+			targets: [{ format: 'bgra8unorm', blend: $.blendConfigs['source-over'] }]
 		},
 		primitive: { topology: 'triangle-strip', stripIndexFormat: 'uint32' },
 		multisample: { count: 4 }
@@ -6380,7 +6419,7 @@ fn fragMain(f: FragParams) -> @location(0) vec4f {
 		fragment: {
 			module: videoShader,
 			entryPoint: 'fragMain',
-			targets: [{ format: 'bgra8unorm', blend: $.blendConfigs.normal }]
+			targets: [{ format: 'bgra8unorm', blend: $.blendConfigs['source-over'] }]
 		},
 		primitive: { topology: 'triangle-strip', stripIndexFormat: 'uint32' },
 		multisample: { count: 4 }
@@ -6390,9 +6429,15 @@ fn fragMain(f: FragParams) -> @location(0) vec4f {
 
 	$._textureBindGroups = [];
 
-	$._saveCanvas = async (data, ext) => {
-		let texture = data.texture,
-			w = texture.width,
+	$._saveCanvas = async (img, ext) => {
+		let graphicsFrame = img._graphics && img._drawStack?.length;
+		if (graphicsFrame) img.finishFrame();
+
+		let texture = img.texture;
+
+		if (graphicsFrame) img.beginFrame();
+
+		let w = texture.width,
 			h = texture.height,
 			bytesPerRow = Math.ceil((w * 4) / 256) * 256;
 
@@ -6412,7 +6457,7 @@ fn fragMain(f: FragParams) -> @location(0) vec4f {
 		await buffer.mapAsync(GPUMapMode.READ);
 
 		let pad = new Uint8Array(buffer.getMappedRange());
-		data = new Uint8Array(w * h * 4); // unpadded data
+		let data = new Uint8Array(w * h * 4); // unpadded data
 
 		// Remove padding from each row and swap BGR to RGB
 		for (let y = 0; y < h; y++) {
@@ -6464,9 +6509,9 @@ fn fragMain(f: FragParams) -> @location(0) vec4f {
 	$._addTexture = (img, texture) => {
 		let cnv = img.canvas || img;
 
-		let textureSize = [cnv.width, cnv.height, 1];
-
 		if (!texture) {
+			let textureSize = [cnv.width, cnv.height, 1];
+
 			texture = Q5.device.createTexture({
 				size: textureSize,
 				format: 'bgra8unorm',
@@ -6487,10 +6532,10 @@ fn fragMain(f: FragParams) -> @location(0) vec4f {
 			);
 		}
 
+		texture.index = tIdx + vidFrames;
 		img.texture = texture;
-		img.textureIndex = tIdx + vidFrames;
 
-		$._textureBindGroups[img.textureIndex] = Q5.device.createBindGroup({
+		$._textureBindGroups[texture.index] = Q5.device.createBindGroup({
 			label: img.src || 'canvas',
 			layout: textureLayout,
 			entries: [
@@ -6502,37 +6547,57 @@ fn fragMain(f: FragParams) -> @location(0) vec4f {
 		tIdx++;
 	};
 
-	let Q5Image = Q5.Image;
-	Q5.Image = function (w, h) {
-		let g = new Q5Image(...arguments);
-		if (w > 1 && h > 1) {
-			$._addTexture(g);
-			g.modified = true;
-		}
-		return g;
-	};
-
 	$.loadImage = (src, cb) => {
-		q._preloadCount++;
-		let g = $._g.loadImage(src, (img) => {
-			$._addTexture(img);
-			q._preloadCount--;
+		let g = $._g.loadImage(src, () => {
+			$._extendImage(g);
 			if (cb) cb(g);
 		});
 		return g;
 	};
 
-	$.createImage = $._g.createImage;
+	$._extendImage = (g) => {
+		$._addTexture(g);
+		let _copy = g.copy;
+		g.copy = function () {
+			let copy = _copy();
+			$._addTexture(copy);
+			return copy;
+		};
+		g.modified = true;
+	};
+
+	$.createImage = (w, h, opt) => {
+		let g = $._g.createImage(w, h, opt);
+		$._extendImage(g);
+		return g;
+	};
 
 	let _createGraphics = $.createGraphics;
 
-	$.createGraphics = (w, h, opt) => {
+	$.createGraphics = (w, h, opt = {}) => {
+		if (!Q5.experimental) {
+			throw new Error(
+				'createGraphics is disabled by default in q5 WebGPU. See issue https://github.com/q5js/q5.js/issues/104 for details.'
+			);
+		}
+		if (typeof opt == 'string') opt = { renderer: opt };
+		opt.renderer ??= 'c2d';
 		let g = _createGraphics(w, h, opt);
 		if (g.canvas.webgpu) {
 			$._addTexture(g, g._frameA);
 			$._addTexture(g, g._frameB);
 			g._beginRender();
-		}
+
+			g.finishFrame = function () {
+				this._render();
+				this._finishRender();
+			};
+			g.beginFrame = function () {
+				this.resetMatrix();
+				this._beginRender();
+				this.frameCount++;
+			};
+		} else $._extendImage(g);
 		return g;
 	};
 
@@ -6553,31 +6618,21 @@ fn fragMain(f: FragParams) -> @location(0) vec4f {
 
 	$.image = (img, dx = 0, dy = 0, dw, dh, sx = 0, sy = 0, sw, sh) => {
 		let isVideo;
-		if (img.textureIndex == undefined) {
+		if (img.texture == undefined) {
 			isVideo = img.tagName == 'VIDEO';
 			if (!isVideo || !img.width || !img.currentTime) return;
 			if (img.flipped) $.scale(-1, 1);
 		}
 
-		let cnv = img.canvas || img;
-
 		if ($._matrixDirty) $._saveMatrix();
 
-		let w = cnv.width,
+		let cnv = img.canvas || img,
+			w = cnv.width,
 			h = cnv.height,
-			pd = img._pixelDensity || 1;
+			pd = img._pixelDensity || 1,
+			graphicsFrame = img._graphics && img._drawStack?.length;
 
-		if (img._graphics) {
-			let g = img;
-			if (g.drawStack.length) {
-				g._render();
-				g._finishRender();
-				g.textureIndex += g.frameCount % 2 == 0 ? -1 : 1;
-				g.resetMatrix();
-				g._beginRender();
-				g.frameCount++;
-			}
-		}
+		if (graphicsFrame) img.finishFrame();
 
 		if (img.modified) {
 			Q5.device.queue.copyExternalImageToTexture(
@@ -6585,6 +6640,7 @@ fn fragMain(f: FragParams) -> @location(0) vec4f {
 				{ texture: img.texture, colorSpace: $.canvas.colorSpace },
 				[w, h, 1]
 			);
+			img.frameCount++;
 			img.modified = false;
 		}
 
@@ -6611,7 +6667,9 @@ fn fragMain(f: FragParams) -> @location(0) vec4f {
 		addVert(r, b, u1, v1, ci, ti, ia);
 
 		if (!isVideo) {
-			$._drawStack.push($._imagePL, img.textureIndex);
+			$._drawStack.push($._imagePL, img.texture.index);
+
+			if (graphicsFrame) img.beginFrame();
 		} else {
 			// render video
 			let externalTexture = Q5.device.importExternalTexture({ source: img });
@@ -6690,7 +6748,8 @@ struct FragParams {
 	@location(0) texCoord : vec2f,
 	@location(1) fillColor : vec4f,
 	@location(2) strokeColor : vec4f,
-	@location(3) strokeWeight : f32
+	@location(3) strokeWeight : f32,
+	@location(4) edge : f32
 }
 struct Char {
 	texOffset: vec2f,
@@ -6704,7 +6763,8 @@ struct Text {
 	matrixIndex: f32,
 	fillIndex: f32,
 	strokeIndex: f32,
-	strokeWeight: f32
+	strokeWeight: f32,
+	edge: f32
 }
 
 @group(0) @binding(0) var<uniform> q: Q5;
@@ -6765,12 +6825,13 @@ fn vertexMain(v : VertexParams) -> FragParams {
 	f.fillColor = colors[i32(text.fillIndex)];
 	f.strokeColor = colors[i32(text.strokeIndex)];
 	f.strokeWeight = text.strokeWeight;
+	f.edge = text.edge;
 	return f;
 }
 
 @fragment
 fn fragMain(f : FragParams) -> @location(0) vec4f {
-	let edge = 0.5;
+	let edge = f.edge;
 	let dist = calcDist(f.texCoord, edge);
 
 	if (f.strokeWeight == 0.0) {
@@ -6854,7 +6915,7 @@ fn fragMain(f : FragParams) -> @location(0) vec4f {
 		fragment: {
 			module: textShader,
 			entryPoint: 'fragMain',
-			targets: [{ format: 'bgra8unorm', blend: $.blendConfigs.normal }]
+			targets: [{ format: 'bgra8unorm', blend: $.blendConfigs['source-over'] }]
 		},
 		primitive: { topology: 'triangle-strip', stripIndexFormat: 'uint32' },
 		multisample: { count: 4 }
@@ -6893,14 +6954,10 @@ fn fragMain(f : FragParams) -> @location(0) vec4f {
 	$._fonts = [];
 	let fonts = {};
 
-	let createFont = async (fontJsonUrl, fontName, cb) => {
-		q._preloadCount++;
-
+	async function createFont(fontJsonUrl, fontName, cb) {
 		let res = await fetch(fontJsonUrl);
-		if (res.status == 404) {
-			q._preloadCount--;
-			return '';
-		}
+		if (res.status == 404) return '';
+
 		let atlas = await res.json();
 
 		let slashIdx = fontJsonUrl.lastIndexOf('/');
@@ -6981,31 +7038,32 @@ fn fragMain(f : FragParams) -> @location(0) vec4f {
 		$._fonts.push($._font);
 		fonts[fontName] = $._font;
 
-		q._preloadCount--;
-
 		if (cb) cb(fontName);
-	};
+	}
 
 	$.loadFont = (url, cb) => {
 		let ext = url.slice(url.lastIndexOf('.') + 1);
+		if (url == ext) return $._loadDefaultFont(url, cb);
 		if (ext != 'json') return $._g.loadFont(url, cb);
 		let fontName = url.slice(url.lastIndexOf('/') + 1, url.lastIndexOf('-'));
 		let f = { family: fontName };
-		f._loader = createFont(url, fontName, () => {
-			delete f._loader;
+		f.promise = createFont(url, fontName, () => {
+			delete f.promise;
 			if (cb) cb(f);
 		});
-		if (!$._usePreload) return f._loader;
+		$._preloadPromises.push(f.promise);
+
+		if (!$._usePreload) return f.promise;
 		return f;
 	};
 
-	$._loadDefaultFont = (fontName) => {
+	$._loadDefaultFont = (fontName, cb) => {
 		fonts[fontName] = null;
-		if (navigator.onLine) {
-			$.loadFont(`https://q5js.org/fonts/${fontName}-msdf.json`);
-		} else {
-			$.loadFont(`/node_modules/q5/builtinFonts/${fontName}-msdf.json`);
+		let url = `https://q5js.org/fonts/${fontName}-msdf.json`;
+		if (!navigator.onLine) {
+			url = `/node_modules/q5/builtinFonts/${fontName}-msdf.json`;
 		}
+		return $.loadFont(url, cb);
 	};
 
 	$._textSize = 18;
@@ -7021,7 +7079,7 @@ fn fragMain(f : FragParams) -> @location(0) vec4f {
 		if (typeof fontName != 'string') fontName = fontName.family;
 		let font = fonts[fontName];
 		if (font) $._font = font;
-		else if (font === undefined) $._loadDefaultFont(fontName);
+		else if (font === undefined) return $._loadDefaultFont(fontName);
 	};
 
 	$.textSize = (size) => {
@@ -7031,6 +7089,33 @@ fn fragMain(f : FragParams) -> @location(0) vec4f {
 			leading = size * leadPercent;
 			leadDiff = leading - size;
 		}
+	};
+
+	let weights = {
+		thin: 100,
+		extralight: 200,
+		light: 300,
+		normal: 400,
+		regular: 400,
+		medium: 500,
+		semibold: 600,
+		bold: 700,
+		bolder: 800,
+		extrabold: 800,
+		black: 900,
+		heavy: 900
+	};
+
+	// ranges from 0.35 (black) to 0.65 (thin)
+	$._textEdge = 0.5;
+
+	$.textWeight = (weight) => {
+		if (!weight) return $._textWeight;
+		if (typeof weight == 'string') {
+			weight = weights[weight.toLowerCase().replace(/[ _-]/g, '')];
+			if (!weight) throw new Error(`Invalid font weight: ${weight}`);
+		}
+		$._textEdge = 0.6875 - weight * 0.000375;
 	};
 
 	$.textLeading = (lineHeight) => {
@@ -7191,12 +7276,12 @@ fn fragMain(f : FragParams) -> @location(0) vec4f {
 
 		txt[0] = x;
 		txt[1] = -y;
-		txt[2] = $._textSize / 44;
+		txt[2] = $._textSize / 42;
 		txt[3] = $._matrixIndex;
 		txt[4] = $._doFill && $._fillSet ? $._fill : 0;
 		txt[5] = $._stroke;
 		txt[6] = $._doStroke && $._strokeSet ? $._strokeWeight : 0;
-		txt[7] = 0; // padding
+		txt[7] = $._textEdge;
 
 		textStack.push(txt);
 		$._drawStack.push($._textPL, measurements.printedCharCount, $._font.index);
@@ -7219,17 +7304,9 @@ fn fragMain(f : FragParams) -> @location(0) vec4f {
 			$._g.stroke($._colorStack.slice(si, si + 4));
 		}
 
-		let img = $._g.createTextImage(str, w, h);
-		if (img.textureIndex == undefined) {
-			$._createTexture(img);
-			let _copy = img.copy;
-			img.copy = function () {
-				let copy = _copy();
-				$._createTexture(copy);
-				return copy;
-			};
-		}
-		return img;
+		let g = $._g.createTextImage(str, w, h);
+		$._extendImage(g);
+		return g;
 	};
 
 	$.textImage = (img, x, y) => {
