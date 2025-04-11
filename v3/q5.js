@@ -1,6 +1,6 @@
 /**
  * q5.js
- * @version 2.26
+ * @version 2.27
  * @author quinton-ashley
  * @contributors Tezumie, LingDong-
  * @license LGPL-3.0
@@ -160,7 +160,7 @@ function Q5(scope, parent, renderer) {
 	};
 
 	$.frameRate = (hz) => {
-		if (hz != $._targetFrameRate) {
+		if (hz && hz != $._targetFrameRate) {
 			$._targetFrameRate = hz;
 			$._targetFrameDuration = 1000 / hz;
 
@@ -256,18 +256,8 @@ function Q5(scope, parent, renderer) {
 		};
 
 	let t = globalScope || $;
-	$._isTouchAware = t.touchStarted || t.touchMoved || t.touchEnded;
 
-	if ($._isGlobal) {
-		$.preload = t.preload;
-		$.setup = t.setup;
-		$.draw = t.draw;
-		$.postProcess = t.postProcess;
-	}
-	$.preload ??= () => {};
-	$.setup ??= () => {};
-	$.draw ??= () => {};
-	$.postProcess ??= () => {};
+	$._isTouchAware = t.touchStarted || t.touchMoved || t.touchEnded;
 
 	let userFns = [
 		'setup',
@@ -277,6 +267,7 @@ function Q5(scope, parent, renderer) {
 		'mouseReleased',
 		'mouseDragged',
 		'mouseClicked',
+		'doubleClicked',
 		'mouseWheel',
 		'keyPressed',
 		'keyReleased',
@@ -286,12 +277,15 @@ function Q5(scope, parent, renderer) {
 		'touchEnded',
 		'windowResized'
 	];
-	for (let k of userFns) {
-		if (!t[k]) $[k] = () => {};
+	// shim if undefined
+	for (let name of userFns) $[name] ??= () => {};
+
+	function wrapWithFES(fn) {
+		if (!t[fn]) $[fn] = () => {};
 		else if ($._isGlobal) {
-			$[k] = (event) => {
+			$[fn] = (event) => {
 				try {
-					return t[k](event);
+					return t[fn](event);
 				} catch (e) {
 					if ($._fes) $._fes(e);
 					throw e;
@@ -300,26 +294,22 @@ function Q5(scope, parent, renderer) {
 		}
 	}
 
-	async function _setup() {
-		$._startDone = true;
+	async function _start() {
+		wrapWithFES('preload');
+		$.preload();
 		await Promise.all($._preloadPromises);
 		if ($._g) await Promise.all($._g._preloadPromises);
+
+		for (let name of userFns) wrapWithFES(name);
+
+		$.draw = t.draw || (() => {});
+
 		millisStart = performance.now();
 		await $.setup();
 		$._setupDone = true;
-		if ($.frameCount) return;
 		if ($.ctx === null) $.createCanvas(200, 200);
+		if ($.frameCount) return;
 		raf($._draw);
-	}
-
-	function _start() {
-		try {
-			$.preload();
-			if (!$._startDone) _setup();
-		} catch (e) {
-			if ($._fes) $._fes(e);
-			throw e;
-		}
 	}
 
 	if (autoLoaded) _start();
@@ -363,7 +353,7 @@ function createCanvas(w, h, opt) {
 	}
 }
 
-Q5.version = Q5.VERSION = '2.26';
+Q5.version = Q5.VERSION = '2.27';
 
 if (typeof document == 'object') {
 	document.addEventListener('DOMContentLoaded', () => {
@@ -430,21 +420,44 @@ Q5.modules.canvas = ($, q) => {
 
 		if ($._scope != 'image') {
 			if ($._scope == 'graphics') $._pixelDensity = this._pixelDensity;
-			else if (window.IntersectionObserver) {
-				let wasObserved = false;
-				new IntersectionObserver((e) => {
-					c.visible = e[0].isIntersecting;
-					if (!wasObserved) {
-						$._wasLooping = $._loop;
-						wasObserved = true;
-					}
-					if (c.visible) {
-						if ($._wasLooping && !$._loop) $.loop();
-					} else {
-						$._wasLooping = $._loop;
-						$.noLoop();
-					}
-				}).observe(c);
+			else if (!Q5._server) {
+				// the canvas can become detached from the DOM
+				// if the innerHTML of one of its parents is edited
+				// check if canvas is still attached to the DOM
+				let el = c;
+				while (el && el.parentElement != document.body) {
+					el = el.parentElement;
+				}
+				if (!el) {
+					// reattach canvas to the DOM
+					document.getElementById(c.id)?.remove();
+					addCanvas();
+				}
+
+				if (window.IntersectionObserver) {
+					let wasObserved = false;
+					new IntersectionObserver((e) => {
+						let isIntersecting = e[0].isIntersecting;
+
+						if (!isIntersecting) {
+							// the canvas might still be onscreen, just behind other elements
+							let r = c.getBoundingClientRect();
+							c.visible = r.top < window.innerHeight && r.bottom > 0 && r.left < window.innerWidth && r.right > 0;
+						} else c.visible = true;
+
+						if (!wasObserved) {
+							$._wasLooping = $._loop;
+							wasObserved = true;
+						}
+
+						if (c.visible) {
+							if ($._wasLooping && !$._loop) $.loop();
+						} else {
+							$._wasLooping = $._loop;
+							$.noLoop();
+						}
+					}).observe(c);
+				}
 			}
 		}
 
@@ -609,7 +622,9 @@ Q5.modules.canvas = ($, q) => {
 	$.popStyles = () => {
 		let styles = $._styles.pop();
 		for (let s of $._styleNames) $[s] = styles[s];
-		q.Color = styles.Color;
+
+		if ($._webgpu) $.colorMode($._colorMode, $._colorFormat);
+		else q.Color = styles.Color;
 	};
 
 	if (window && $._scope != 'graphics') {
@@ -3091,7 +3106,12 @@ Q5.modules.input = ($, q) => {
 
 	$._updateMouse = (e) => {
 		if (e.changedTouches) return;
-		if (c) {
+
+		if (document.pointerLockElement) {
+			// In pointer lock mode, update position based on movement
+			q.mouseX += e.movementX;
+			q.mouseY += e.movementY;
+		} else if (c) {
 			let rect = c.getBoundingClientRect();
 			let sx = c.scrollWidth / $.width || 1;
 			let sy = c.scrollHeight / $.height || 1;
@@ -3109,10 +3129,8 @@ Q5.modules.input = ($, q) => {
 		q.moveY = e.movementY;
 	};
 
-	let pressedInCanvas = 0;
-
 	$._onmousedown = (e) => {
-		pressedInCanvas++;
+		if (!c?.visible) return;
 		$._startAudio();
 		$._updateMouse(e);
 		q.mouseIsPressed = true;
@@ -3127,19 +3145,30 @@ Q5.modules.input = ($, q) => {
 	};
 
 	$._onmouseup = (e) => {
+		if (!c?.visible) return;
 		$._updateMouse(e);
 		q.mouseIsPressed = false;
 		$.mouseReleased(e);
 	};
 
 	$._onclick = (e) => {
+		if (!c?.visible) return;
 		$._updateMouse(e);
 		q.mouseIsPressed = true;
 		$.mouseClicked(e);
 		q.mouseIsPressed = false;
 	};
 
+	$._ondblclick = (e) => {
+		if (!c?.visible) return;
+		$._updateMouse(e);
+		q.mouseIsPressed = true;
+		$.doubleClicked(e);
+		q.mouseIsPressed = false;
+	};
+
 	$._onwheel = (e) => {
+		if (!c?.visible) return;
 		$._updateMouse(e);
 		e.delta = e.deltaY;
 		if ($.mouseWheel(e) == false || $._noScroll) e.preventDefault();
@@ -3160,10 +3189,10 @@ Q5.modules.input = ($, q) => {
 	$.noCursor = () => ($.canvas.style.cursor = 'none');
 	$.noScroll = () => ($._noScroll = true);
 
-	if (window) {
-		$.lockMouse = document.body?.requestPointerLock;
-		$.unlockMouse = document.exitPointerLock;
-	}
+	$.requestPointerLock = (unadjustedMovement = false) => {
+		return document.body?.requestPointerLock({ unadjustedMovement });
+	};
+	$.exitPointerLock = () => document.exitPointerLock();
 
 	$._onkeydown = (e) => {
 		if (e.repeat) return;
@@ -3204,6 +3233,7 @@ Q5.modules.input = ($, q) => {
 	}
 
 	$._ontouchstart = (e) => {
+		if (!c?.visible) return;
 		$._startAudio();
 		q.touches = [...e.touches].map(getTouchInfo);
 		if (!$._isTouchAware) {
@@ -3217,6 +3247,7 @@ Q5.modules.input = ($, q) => {
 	};
 
 	$._ontouchmove = (e) => {
+		if (!c?.visible) return;
 		q.touches = [...e.touches].map(getTouchInfo);
 		if (!$._isTouchAware) {
 			q.mouseX = $.touches[0].x;
@@ -3227,6 +3258,7 @@ Q5.modules.input = ($, q) => {
 	};
 
 	$._ontouchend = (e) => {
+		if (!c?.visible) return;
 		q.touches = [...e.touches].map(getTouchInfo);
 		if (!$._isTouchAware && !$.touches.length) {
 			q.mouseIsPressed = false;
@@ -3235,11 +3267,18 @@ Q5.modules.input = ($, q) => {
 		if (!$.touchEnded(e)) e.preventDefault();
 	};
 
-	if (c) {
-		let l = c.addEventListener.bind(c);
+	if (window) {
+		let l = window.addEventListener;
+		l('keydown', (e) => $._onkeydown(e), false);
+		l('keyup', (e) => $._onkeyup(e), false);
+
 		l('mousedown', (e) => $._onmousedown(e));
-		l('wheel', (e) => $._onwheel(e));
+		l('mousemove', (e) => $._onmousemove(e), false);
+		l('mouseup', (e) => $._onmouseup(e));
 		l('click', (e) => $._onclick(e));
+		l('dblclick', (e) => $._ondblclick(e));
+
+		if (!c) l('wheel', (e) => $._onwheel(e));
 
 		l('touchstart', (e) => $._ontouchstart(e));
 		l('touchmove', (e) => $._ontouchmove(e));
@@ -3247,25 +3286,10 @@ Q5.modules.input = ($, q) => {
 		l('touchcancel', (e) => $._ontouchend(e));
 	}
 
-	if (window) {
-		let l = window.addEventListener;
-		l('keydown', (e) => $._onkeydown(e), false);
-		l('keyup', (e) => $._onkeyup(e), false);
-
-		if (!c) {
-			l('mousedown', (e) => $._onmousedown(e));
-			l('wheel', (e) => $._onwheel(e));
-			l('click', (e) => $._onclick(e));
-		}
-
-		l('mousemove', (e) => $._onmousemove(e), false);
-		l('mouseup', (e) => {
-			if (pressedInCanvas > 0) {
-				pressedInCanvas--;
-				$._onmouseup(e);
-			}
-		});
-	}
+	// making the window level event listener for wheel events
+	// not passive would be necessary to be able to use `e.preventDefault`
+	// but browsers warn that it's bad for performance
+	if (c) c.addEventListener('wheel', (e) => $._onwheel(e));
 };
 Q5.modules.math = ($, q) => {
 	$.RADIANS = 0;
@@ -4134,6 +4158,10 @@ Q5.modules.sound = ($, q) => {
 			return Q5.aud.resume();
 		}
 	};
+
+	$.outputVolume = (level) => {
+		if (Q5.soundOut) Q5.soundOut.gain.value = level;
+	};
 };
 
 if (window.OfflineAudioContext) {
@@ -4183,6 +4211,7 @@ Q5.Sound = class {
 		source.onended = () => {
 			if (!this.paused) {
 				this.ended = true;
+				if (this._onended) this._onended();
 				this.sources.delete(source);
 			}
 		};
@@ -4278,6 +4307,9 @@ Q5.Sound = class {
 	isLooping() {
 		return this._loop;
 	}
+	onended(cb) {
+		this._onended = cb;
+	}
 };
 Q5.modules.util = ($, q) => {
 	$._loadFile = (url, cb, type) => {
@@ -4346,7 +4378,7 @@ Q5.modules.util = ($, q) => {
 		name = name || 'untitled';
 		ext = ext || 'png';
 		if (imgRegex.test(ext)) {
-			if ($.canvas?.renderer == 'webgpu' && data.canvas.renderer == 'c2d') {
+			if ($.canvas?.renderer == 'webgpu' && data.canvas?.renderer == 'c2d') {
 				data = await $._g._saveCanvas(data, ext);
 			} else {
 				data = await $._saveCanvas(data, ext);
@@ -4371,8 +4403,9 @@ Q5.modules.util = ($, q) => {
 		if (!a || (typeof a == 'string' && (!b || (!c && b.length < 5)))) {
 			c = b;
 			b = a;
-			a = $.canvas;
+			a = $;
 		}
+		if (a == $.canvas) a = $;
 		if (c) saveFile(a, b, c);
 		else if (b) {
 			let lastDot = b.lastIndexOf('.');
@@ -4949,6 +4982,8 @@ fn fragMain(f: FragParams ) -> @location(0) vec4f {
 		createMainView();
 	};
 
+	// since these values are checked so often in `addColor`,
+	// they're stored in local variables for better performance
 	let usingRGB = true,
 		colorFormat = 1;
 
@@ -5473,7 +5508,7 @@ fn fragMain(f: FragParams ) -> @location(0) vec4f {
 		}
 	};
 
-	$._finishRender = async () => {
+	$._finishRender = () => {
 		pass.end();
 
 		pass = encoder.beginRenderPass({
@@ -5505,12 +5540,6 @@ fn fragMain(f: FragParams ) -> @location(0) vec4f {
 		Q5.device.queue.submit([encoder.finish()]);
 		$._pass = pass = encoder = null;
 
-		// destroy buffers
-		Q5.device.queue.onSubmittedWorkDone().then(() => {
-			for (let b of $._buffers) b.destroy();
-			$._buffers = [];
-		});
-
 		// clear the stacks for the next frame
 		drawStack.splice(0, drawStack.length);
 		colorIndex = 1;
@@ -5518,9 +5547,15 @@ fn fragMain(f: FragParams ) -> @location(0) vec4f {
 		matrices = [matrices[0]];
 		matricesIndexStack = [];
 
-		$.texture = frameA;
+		$._texture = frameA;
 
 		for (let m of $._hooks.postRender) m();
+
+		// destroy buffers
+		Q5.device.queue.onSubmittedWorkDone().then(() => {
+			for (let b of $._buffers) b.destroy();
+			$._buffers = [];
+		});
 	};
 };
 
@@ -6020,7 +6055,10 @@ fn fragMain(f: FragParams) -> @location(0) vec4f {
 	};
 
 	let curveSegments = 20;
-	$.curveDetail = (x) => (curveSegments = x);
+	$.curveDetail = (v) => (curveSegments = v);
+
+	let bezierSegments = 20;
+	$.bezierDetail = (v) => (bezierSegments = v);
 
 	let shapeVertCount;
 	let sv = []; // shape vertices
@@ -6052,7 +6090,7 @@ fn fragMain(f: FragParams) -> @location(0) vec4f {
 		let startX = sv[prevIndex];
 		let startY = sv[prevIndex + 1];
 
-		let step = 1 / curveSegments;
+		let step = 1 / bezierSegments;
 
 		let vx, vy;
 		let quadratic = arguments.length == 4;
@@ -6100,6 +6138,9 @@ fn fragMain(f: FragParams) -> @location(0) vec4f {
 				}
 			}
 
+			// Use curveSegments to determine step size
+			let step = 1 / curveSegments;
+
 			// calculate catmull-rom spline curve points
 			for (let i = 0; i < points.length - 3; i++) {
 				let p0 = points[i];
@@ -6107,7 +6148,7 @@ fn fragMain(f: FragParams) -> @location(0) vec4f {
 				let p2 = points[i + 2];
 				let p3 = points[i + 3];
 
-				for (let t = 0; t <= 1; t += 0.1) {
+				for (let t = 0; t <= 1; t += step) {
 					let t2 = t * t;
 					let t3 = t2 * t;
 
@@ -6429,13 +6470,16 @@ fn fragMain(f: FragParams) -> @location(0) vec4f {
 
 	$._textureBindGroups = [];
 
-	$._saveCanvas = async (img, ext) => {
-		let graphicsFrame = img._graphics && img._drawStack?.length;
-		if (graphicsFrame) img.finishFrame();
+	$._saveCanvas = async (g, ext) => {
+		let makeFrame = g._drawStack?.length;
+		if (makeFrame) {
+			g._render();
+			g._finishRender();
+		}
 
-		let texture = img.texture;
+		let texture = g._texture;
 
-		if (graphicsFrame) img.beginFrame();
+		if (makeFrame) g._beginRender();
 
 		let w = texture.width,
 			h = texture.height,
@@ -6445,8 +6489,6 @@ fn fragMain(f: FragParams) -> @location(0) vec4f {
 			size: bytesPerRow * h,
 			usage: GPUBufferUsage.COPY_DST | GPUBufferUsage.MAP_READ
 		});
-
-		$._buffers.push(buffer);
 
 		let en = Q5.device.createCommandEncoder();
 
@@ -6481,6 +6523,8 @@ fn fragMain(f: FragParams) -> @location(0) vec4f {
 		let cnv = new $._Canvas(w, h);
 		let ctx = cnv.getContext('2d', { colorSpace });
 		ctx.putImageData(data, 0, 0);
+
+		$._buffers.push(buffer);
 
 		// Convert to blob then data URL
 		let blob = await cnv.convertToBlob({ type: 'image/' + ext });
@@ -6533,10 +6577,10 @@ fn fragMain(f: FragParams) -> @location(0) vec4f {
 		}
 
 		texture.index = tIdx + vidFrames;
-		img.texture = texture;
+		img._texture = texture;
 
 		$._textureBindGroups[texture.index] = Q5.device.createBindGroup({
-			label: img.src || 'canvas',
+			label: img.src || texture.label || 'canvas',
 			layout: textureLayout,
 			entries: [
 				{ binding: 0, resource: $._imageSampler },
@@ -6587,16 +6631,6 @@ fn fragMain(f: FragParams) -> @location(0) vec4f {
 			$._addTexture(g, g._frameA);
 			$._addTexture(g, g._frameB);
 			g._beginRender();
-
-			g.finishFrame = function () {
-				this._render();
-				this._finishRender();
-			};
-			g.beginFrame = function () {
-				this.resetMatrix();
-				this._beginRender();
-				this.frameCount++;
-			};
 		} else $._extendImage(g);
 		return g;
 	};
@@ -6618,7 +6652,7 @@ fn fragMain(f: FragParams) -> @location(0) vec4f {
 
 	$.image = (img, dx = 0, dy = 0, dw, dh, sx = 0, sy = 0, sw, sh) => {
 		let isVideo;
-		if (img.texture == undefined) {
+		if (img._texture == undefined) {
 			isVideo = img.tagName == 'VIDEO';
 			if (!isVideo || !img.width || !img.currentTime) return;
 			if (img.flipped) $.scale(-1, 1);
@@ -6630,14 +6664,17 @@ fn fragMain(f: FragParams) -> @location(0) vec4f {
 			w = cnv.width,
 			h = cnv.height,
 			pd = img._pixelDensity || 1,
-			graphicsFrame = img._graphics && img._drawStack?.length;
+			makeFrame = img._graphics && img._drawStack?.length;
 
-		if (graphicsFrame) img.finishFrame();
+		if (makeFrame) {
+			img._render();
+			img._finishRender();
+		}
 
 		if (img.modified) {
 			Q5.device.queue.copyExternalImageToTexture(
 				{ source: cnv },
-				{ texture: img.texture, colorSpace: $.canvas.colorSpace },
+				{ texture: img._texture, colorSpace: $.canvas.colorSpace },
 				[w, h, 1]
 			);
 			img.frameCount++;
@@ -6667,9 +6704,13 @@ fn fragMain(f: FragParams) -> @location(0) vec4f {
 		addVert(r, b, u1, v1, ci, ti, ia);
 
 		if (!isVideo) {
-			$._drawStack.push($._imagePL, img.texture.index);
+			$._drawStack.push($._imagePL, img._texture.index);
 
-			if (graphicsFrame) img.beginFrame();
+			if (makeFrame) {
+				img.resetMatrix();
+				img._beginRender();
+				img.frameCount++;
+			}
 		} else {
 			// render video
 			let externalTexture = Q5.device.importExternalTexture({ source: img });
