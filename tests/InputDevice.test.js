@@ -52,7 +52,6 @@ test('InputDevice : mouse', () => {
 					expect(p.mouse.position.y).toEqual(20);
 				}
 
-				// TODO: continue tests by creating MouseEvents..
 				if (p.frameCount == 3) {
 					// Test left button..
 					evt = new MouseEvent('mousedown', {

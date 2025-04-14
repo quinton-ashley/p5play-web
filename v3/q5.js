@@ -2,7 +2,7 @@
  * q5.js
  * @version 2.27
  * @author quinton-ashley
- * @contributors Tezumie, LingDong-
+ * @contributors evanalulu, Tezumie, ormaq, Dukemz, LingDong-
  * @license LGPL-3.0
  * @class Q5
  */
@@ -74,7 +74,8 @@ function Q5(scope, parent, renderer) {
 
 	$._preloadPromises = [];
 	$._usePreload = true;
-	$.usePreloadSystem = (v) => ($._usePreload = v);
+	$.usePromiseLoading = (v = true) => ($._usePreload = !v);
+	$.usePreloadSystem = (v = true) => ($._usePreload = v);
 	$.isPreloadSupported = () => $._usePreload;
 
 	const resolvers = [];
@@ -87,7 +88,6 @@ function Q5(scope, parent, renderer) {
 
 	$._draw = (timestamp) => {
 		let ts = timestamp || performance.now();
-		$._lastFrameTime ??= ts - $._targetFrameDuration;
 
 		if ($._didResize) {
 			$.windowResized();
@@ -137,7 +137,7 @@ function Q5(scope, parent, renderer) {
 	$.noLoop = () => {
 		$._loop = false;
 		if (looper != null) {
-			if (useRAF) cancelAnimationFrame(looper);
+			if (useRAF && window.cancelAnimationFrame) cancelAnimationFrame(looper);
 			else clearTimeout(looper);
 		}
 		looper = null;
@@ -165,7 +165,7 @@ function Q5(scope, parent, renderer) {
 			$._targetFrameDuration = 1000 / hz;
 
 			if ($._loop && looper != null) {
-				if (useRAF) cancelAnimationFrame(looper);
+				if (useRAF && window.cancelAnimationFrame) cancelAnimationFrame(looper);
 				else clearTimeout(looper);
 				looper = null;
 			}
@@ -300,6 +300,8 @@ function Q5(scope, parent, renderer) {
 		await Promise.all($._preloadPromises);
 		if ($._g) await Promise.all($._g._preloadPromises);
 
+		if (t.setup?.constructor.name == 'AsyncFunction') $.usePromiseLoading();
+
 		for (let name of userFns) wrapWithFES(name);
 
 		$.draw = t.draw || (() => {});
@@ -309,8 +311,11 @@ function Q5(scope, parent, renderer) {
 		$._setupDone = true;
 		if ($.ctx === null) $.createCanvas(200, 200);
 		if ($.frameCount) return;
+		$._lastFrameTime = performance.now() - 15;
 		raf($._draw);
 	}
+
+	Q5.instances.push($);
 
 	if (autoLoaded) _start();
 	else setTimeout(_start, 32);
@@ -325,6 +330,7 @@ Q5._server = typeof process == 'object';
 Q5._esm = this === undefined;
 
 Q5._instanceCount = 0;
+Q5.instances = [];
 Q5._friendlyError = (msg, func) => {
 	if (!Q5.disableFriendlyErrors) console.error(func + ': ' + msg);
 };
@@ -458,7 +464,7 @@ Q5.modules.canvas = ($, q) => {
 						}
 					}).observe(c);
 				}
-			}
+			} else c.visible = true;
 		}
 
 		$._setCanvasSize(w, h);
@@ -1825,27 +1831,111 @@ Q5.renderers.c2d.text = ($, q) => {
 	$._textCacheMaxSize = 12000;
 
 	$.loadFont = (url, cb) => {
-		let name = url.split('/').pop().split('.')[0].replace(' ', '');
+		let f;
 
-		let f = new FontFace(name, `url(${url})`);
-		document.fonts.add(f);
-		f.promise = (async () => {
-			let err;
-			try {
-				await f.load();
-			} catch (e) {
-				err = e;
-			}
-			delete f.promise;
-			if (err) throw err;
-			if (cb) cb(f);
-			return f;
-		})();
+		if (url.includes('fonts.googleapis.com/css')) {
+			f = loadGoogleFont(url, cb);
+		} else {
+			let name = url.split('/').pop().split('.')[0].replace(' ', '');
+
+			f = new FontFace(name, `url(${url})`);
+			document.fonts.add(f);
+			f.promise = (async () => {
+				let err;
+				try {
+					await f.load();
+				} catch (e) {
+					err = e;
+				}
+				delete f.promise;
+				if (err) throw err;
+				if (cb) cb(f);
+				return f;
+			})();
+		}
+
 		$._preloadPromises.push(f.promise);
-		$.textFont(name);
+		$.textFont(f.family);
 		if (!$._usePreload) return f.promise;
 		return f;
 	};
+
+	function loadGoogleFont(url, cb) {
+		if (!url.startsWith('http')) url = 'https://' + url;
+		const urlParams = new URL(url).searchParams;
+		const familyParam = urlParams.get('family');
+		if (!familyParam) {
+			console.error('Invalid Google Fonts URL: missing family parameter');
+			return null;
+		}
+
+		const fontFamily = familyParam.split(':')[0];
+		let f = { family: fontFamily };
+
+		f.promise = (async () => {
+			try {
+				const res = await fetch(url);
+				if (!res.ok) {
+					throw new Error(`Failed to fetch Google Font: ${res.status} ${res.statusText}`);
+				}
+
+				let css = await res.text();
+
+				let fontFaceRegex = /@font-face\s*{([^}]*)}/g;
+				let srcRegex = /src:\s*url\(([^)]+)\)[^;]*;/;
+				let fontFamilyRegex = /font-family:\s*['"]([^'"]+)['"]/;
+				let fontWeightRegex = /font-weight:\s*([^;]+);/;
+				let fontStyleRegex = /font-style:\s*([^;]+);/;
+
+				let fontFaceMatch;
+				let loadedFaces = [];
+
+				while ((fontFaceMatch = fontFaceRegex.exec(css)) !== null) {
+					let fontFaceCSS = fontFaceMatch[1];
+
+					let srcMatch = srcRegex.exec(fontFaceCSS);
+					if (!srcMatch) continue;
+					let fontUrl = srcMatch[1];
+
+					let familyMatch = fontFamilyRegex.exec(fontFaceCSS);
+					if (!familyMatch) continue;
+					let family = familyMatch[1];
+
+					let weightMatch = fontWeightRegex.exec(fontFaceCSS);
+					let weight = weightMatch ? weightMatch[1] : '400';
+
+					let styleMatch = fontStyleRegex.exec(fontFaceCSS);
+					let style = styleMatch ? styleMatch[1] : 'normal';
+
+					let faceName = `${family}-${weight}-${style}`.replace(/\s+/g, '-');
+
+					let fontFace = new FontFace(family, `url(${fontUrl})`, {
+						weight,
+						style
+					});
+
+					document.fonts.add(fontFace);
+
+					try {
+						await fontFace.load();
+						loadedFaces.push(fontFace);
+					} catch (e) {
+						console.error(`Failed to load font face: ${faceName}`, e);
+					}
+				}
+
+				f.faces = loadedFaces;
+				delete f.promise;
+				if (cb) cb(f);
+				return f;
+			} catch (e) {
+				console.error('Error loading Google Font:', e);
+				throw e;
+			}
+		})();
+
+		return f;
+	}
 
 	$.textFont = (x) => {
 		if (x && typeof x != 'string') x = x.family;
@@ -3054,7 +3144,7 @@ Q5.modules.fes = ($) => {
 
 			let bug = ['🐛', '🐞', '🐜', '🦗', '🦋', '🪲'][Math.floor(Math.random() * 6)];
 
-			console.log(
+			$.log(
 				'%cq5.js ' + bug + '%c Error in ' + fileBase + ' on line ' + lineNum + ':\n\n' + errLine,
 				'background: #b7ebff; color: #000;',
 				''
@@ -3129,8 +3219,10 @@ Q5.modules.input = ($, q) => {
 		q.moveY = e.movementY;
 	};
 
+	let pressAmt = 0;
+
 	$._onmousedown = (e) => {
-		if (!c?.visible) return;
+		pressAmt++;
 		$._startAudio();
 		$._updateMouse(e);
 		q.mouseIsPressed = true;
@@ -3139,20 +3231,21 @@ Q5.modules.input = ($, q) => {
 	};
 
 	$._onmousemove = (e) => {
+		if (c && !c.visible) return;
 		$._updateMouse(e);
 		if ($.mouseIsPressed) $.mouseDragged(e);
 		else $.mouseMoved(e);
 	};
 
 	$._onmouseup = (e) => {
-		if (!c?.visible) return;
+		if (pressAmt > 0) pressAmt--;
+		else return;
 		$._updateMouse(e);
 		q.mouseIsPressed = false;
 		$.mouseReleased(e);
 	};
 
 	$._onclick = (e) => {
-		if (!c?.visible) return;
 		$._updateMouse(e);
 		q.mouseIsPressed = true;
 		$.mouseClicked(e);
@@ -3160,7 +3253,6 @@ Q5.modules.input = ($, q) => {
 	};
 
 	$._ondblclick = (e) => {
-		if (!c?.visible) return;
 		$._updateMouse(e);
 		q.mouseIsPressed = true;
 		$.doubleClicked(e);
@@ -3168,7 +3260,6 @@ Q5.modules.input = ($, q) => {
 	};
 
 	$._onwheel = (e) => {
-		if (!c?.visible) return;
 		$._updateMouse(e);
 		e.delta = e.deltaY;
 		if ($.mouseWheel(e) == false || $._noScroll) e.preventDefault();
@@ -3233,37 +3324,19 @@ Q5.modules.input = ($, q) => {
 	}
 
 	$._ontouchstart = (e) => {
-		if (!c?.visible) return;
 		$._startAudio();
 		q.touches = [...e.touches].map(getTouchInfo);
-		if (!$._isTouchAware) {
-			q.mouseX = $.touches[0].x;
-			q.mouseY = $.touches[0].y;
-			q.mouseIsPressed = true;
-			q.mouseButton = $.LEFT;
-			$.mousePressed(e);
-		}
-		$.touchStarted(e);
+		if (!$.touchStarted(e)) e.preventDefault();
 	};
 
 	$._ontouchmove = (e) => {
-		if (!c?.visible) return;
+		if (c && !c.visible) return;
 		q.touches = [...e.touches].map(getTouchInfo);
-		if (!$._isTouchAware) {
-			q.mouseX = $.touches[0].x;
-			q.mouseY = $.touches[0].y;
-			if (!$.mouseDragged(e)) e.preventDefault();
-		}
 		if (!$.touchMoved(e)) e.preventDefault();
 	};
 
 	$._ontouchend = (e) => {
-		if (!c?.visible) return;
 		q.touches = [...e.touches].map(getTouchInfo);
-		if (!$._isTouchAware && !$.touches.length) {
-			q.mouseIsPressed = false;
-			if (!$.mouseReleased(e)) e.preventDefault();
-		}
 		if (!$.touchEnded(e)) e.preventDefault();
 	};
 
@@ -3272,24 +3345,30 @@ Q5.modules.input = ($, q) => {
 		l('keydown', (e) => $._onkeydown(e), false);
 		l('keyup', (e) => $._onkeyup(e), false);
 
-		l('mousedown', (e) => $._onmousedown(e));
-		l('mousemove', (e) => $._onmousemove(e), false);
-		l('mouseup', (e) => $._onmouseup(e));
+		let pointer = window.PointerEvent ? 'pointer' : 'mouse';
+
+		l(pointer + 'move', (e) => $._onmousemove(e), false);
+
+		l('touchmove', (e) => $._ontouchmove(e));
+
+		if (!c) l('wheel', (e) => $._onwheel(e));
+		// making the window level event listener for wheel events
+		// not passive would be necessary to be able to use `e.preventDefault`
+		// but browsers warn that it's bad for performance
+		else c.addEventListener('wheel', (e) => $._onwheel(e));
+
+		if (!$._isGlobal && c) l = c.addEventListener.bind(c);
+
+		l(pointer + 'down', (e) => $._onmousedown(e));
+		l(pointer + 'up', (e) => $._onmouseup(e));
+
 		l('click', (e) => $._onclick(e));
 		l('dblclick', (e) => $._ondblclick(e));
 
-		if (!c) l('wheel', (e) => $._onwheel(e));
-
 		l('touchstart', (e) => $._ontouchstart(e));
-		l('touchmove', (e) => $._ontouchmove(e));
 		l('touchend', (e) => $._ontouchend(e));
 		l('touchcancel', (e) => $._ontouchend(e));
 	}
-
-	// making the window level event listener for wheel events
-	// not passive would be necessary to be able to use `e.preventDefault`
-	// but browsers warn that it's bad for performance
-	if (c) c.addEventListener('wheel', (e) => $._onwheel(e));
 };
 Q5.modules.math = ($, q) => {
 	$.RADIANS = 0;
@@ -4153,10 +4232,16 @@ Q5.modules.sound = ($, q) => {
 				Q5.soundOut = Q5.aud.createGain();
 				Q5.soundOut.connect(Q5.aud.destination);
 
-				for (let s of sounds) s.init();
+				for (let inst of Q5.instances) {
+					inst._userAudioStarted();
+				}
 			}
 			return Q5.aud.resume();
 		}
+	};
+
+	$._userAudioStarted = () => {
+		for (let s of sounds) s.init();
 	};
 
 	$.outputVolume = (level) => {
@@ -4182,6 +4267,7 @@ Q5.Sound = class {
 		let res = await fetch(url);
 		this.buffer = await res.arrayBuffer();
 		this.buffer = await Q5.aud.decodeAudioData(this.buffer);
+		if (Q5.aud) this.init();
 	}
 
 	init() {
@@ -4367,7 +4453,7 @@ Q5.modules.util = ($, q) => {
 			} else {
 				obj = $.loadText(url);
 			}
-			promises.push(obj.promise);
+			promises.push($._usePreload ? obj.promise : obj);
 		}
 
 		if (urls.length == 1) return promises[0];
@@ -7083,6 +7169,10 @@ fn fragMain(f : FragParams) -> @location(0) vec4f {
 	}
 
 	$.loadFont = (url, cb) => {
+		if (url.startsWith('https://fonts.googleapis.com/css')) {
+			return $._g.loadFont(url, cb);
+		}
+		
 		let ext = url.slice(url.lastIndexOf('.') + 1);
 		if (url == ext) return $._loadDefaultFont(url, cb);
 		if (ext != 'json') return $._g.loadFont(url, cb);
