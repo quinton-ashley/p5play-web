@@ -398,7 +398,7 @@ body:not(.dark) #discord-brand img {
 }
 
 .strive-editor-brand {
-	height: 64px;
+	height: 56px;
 }
 
 .p5js-web-editor-brand,
@@ -424,6 +424,7 @@ body:not(.dark) #discord-brand img {
 	transform: scale(1.5);
 }
 
+.light #firebase-studio-brand,
 .light #codepen-brand,
 .light .discord-brand,
 .light .discord-logo {
@@ -447,14 +448,12 @@ body:not(.dark) #discord-brand img {
 	height: 56px;
 }
 
-#idx-logo {
-	height: 72px;
+#firebase-studio-logo {
+	height: 56px;
 }
 
-#idx-brand {
-	color: var(--primary);
-	font-weight: 400;
-	font-size: 24px;
+#firebase-studio-brand {
+	height: 24px;
 }
 
 #npm-brand {
