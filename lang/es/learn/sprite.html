@@ -594,16 +594,16 @@ function setup() {
 	world.gravity.y = 10;
 
 	//             	( x,  y,  w,  h, collider)
-	box = new Sprite(25, 70, 10, 90, 'static');
+	box = new Sprite(25, 70, 10, 90, STATIC);
 	// same as setting the values separately
 	// box.x = 25;
 	// box.y = 70;
 	// box.width = 10;
 	// box.height = 90;
-	// box.collider = 'static';
+	// box.collider = STATIC;
 
 	// 					 	     ( x,   y,  d, collider)
-	circle = new Sprite(25, 140, 10, 'static');
+	circle = new Sprite(25, 140, 10, STATIC);
 }
 
 function update() {
@@ -619,7 +619,7 @@ function setup() {
 	
 	ball = new Sprite(40, 30, 50);
 
-	floor = new Sprite(40, 155, 80, 5, 'static');
+	floor = new Sprite(40, 155, 80, 5, STATIC);
 }
 
 function update() {
@@ -662,7 +662,7 @@ function setup() {
 	new Canvas(60, 342);
 	world.gravity.y = 10;
 	
-	pillar = new Sprite(30, 362, 30, 500, 'static')
+	pillar = new Sprite(30, 362, 30, 500, STATIC)
 	player = new Sprite(30, 0, 50);
 }
 
@@ -683,7 +683,7 @@ function setup() {
 	world.gravity.y = 10;
 	
 	block = new Sprite(30, 30);
-	floor = new Sprite(30, 300, 60, 5, 'static');
+	floor = new Sprite(30, 300, 60, 5, STATIC);
 	floor.color = 'red';
 }
 
@@ -706,13 +706,13 @@ function setup() {
 	world.gravity.y = 10;
 	
 	block = new Sprite(30, 30);
-	floor = new Sprite(30, 300, 60, 5, 'static');
+	floor = new Sprite(30, 300, 60, 5, STATIC);
 }
 
 function update() {
 	clear();
 	if (block.collided(floor)) {
-		floor.collider = 'dynamic';
+		floor.collider = DYNAMIC;
 	}
 }
 			</script>
@@ -1315,7 +1315,7 @@ function setup() {
 
 	//                ([vertex0, vertex1, vertex2, ...])
 	floor = new Sprite([[20, 60], [200, 140], [450, 180]]);
-	floor.collider = 'static';
+	floor.collider = STATIC;
 
 	ball = new Sprite(40, 0, 20);
 }
