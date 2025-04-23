@@ -96,6 +96,18 @@ h2 {
 	margin-left: 0;
 }
 
+.heroBtns {
+	display: block;
+}
+
+.heroBtns h2 {
+	font-size: 24px;
+}
+
+#md0-2 {
+	display: inline;
+}
+
 #p5play-pro {
 	display: flex;
 	justify-content: center;

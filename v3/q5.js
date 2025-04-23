@@ -399,10 +399,10 @@ Q5.modules.canvas = ($, q) => {
 
 	if (Q5._server) {
 		if (Q5._createServerCanvas) {
-			q.canvas = Q5._createServerCanvas(100, 100);
+			q.canvas = Q5._createServerCanvas(200, 200);
 		}
 	} else if ($._scope == 'image' || $._scope == 'graphics') {
-		q.canvas = new $._Canvas(100, 100);
+		q.canvas = new $._Canvas(200, 200);
 	}
 
 	if (!$.canvas) {
@@ -413,12 +413,13 @@ Q5.modules.canvas = ($, q) => {
 		} else $.noCanvas();
 	}
 
-	let c = $.canvas;
+	$.displayDensity = () => window.devicePixelRatio || 1;
+
 	$.width = 200;
 	$.height = 200;
 	$._pixelDensity = 1;
 
-	$.displayDensity = () => window.devicePixelRatio || 1;
+	let c = $.canvas;
 
 	if (c) {
 		c.width = 200;
@@ -1327,13 +1328,23 @@ Q5.renderers.c2d.shapes = ($) => {
 	};
 };
 Q5.renderers.c2d.image = ($, q) => {
+	const c = $.canvas;
+
+	if (c) {
+		// polyfill for HTMLCanvasElement
+		c.convertToBlob ??= (opt) =>
+			new Promise((resolve) => {
+				c.toBlob((blob) => resolve(blob), opt.type, opt.quality);
+			});
+	}
+
 	$._tint = null;
 	let imgData = null;
 
 	$.createImage = (w, h, opt) => {
 		opt ??= {};
 		opt.alpha ??= true;
-		opt.colorSpace ??= $.canvas.colorSpace || Q5.canvasOptions.colorSpace;
+		opt.colorSpace ??= c.colorSpace || Q5.canvasOptions.colorSpace;
 		return new Q5.Image($, w, h, opt);
 	};
 
@@ -1491,14 +1502,13 @@ Q5.renderers.c2d.image = ($, q) => {
 		if (!f) $._softFilter(type, value);
 
 		$.ctx.globalCompositeOperation = 'source-over';
-		$.ctx.drawImage($.canvas, 0, 0, $.canvas.w, $.canvas.h);
+		$.ctx.drawImage(c, 0, 0, c.w, c.h);
 		$.ctx.restore();
 		$.modified = $._retint = true;
 	};
 
 	if ($._scope == 'image') {
 		$.resize = (w, h) => {
-			let c = $.canvas;
 			let o = new $._Canvas(c.width, c.height);
 			let tmpCtx = o.getContext('2d', {
 				colorSpace: c.colorSpace
@@ -1516,13 +1526,13 @@ Q5.renderers.c2d.image = ($, q) => {
 	}
 
 	$._getImageData = (x, y, w, h) => {
-		return $.ctx.getImageData(x, y, w, h, { colorSpace: $.canvas.colorSpace });
+		return $.ctx.getImageData(x, y, w, h, { colorSpace: c.colorSpace });
 	};
 
 	$.trim = () => {
 		let pd = $._pixelDensity || 1;
-		let w = $.canvas.width;
-		let h = $.canvas.height;
+		let w = c.width;
+		let h = c.height;
 		let data = $._getImageData(0, 0, w, h).data;
 		let left = w,
 			right = 0,
@@ -1563,7 +1573,7 @@ Q5.renderers.c2d.image = ($, q) => {
 
 	$.inset = (x, y, w, h, dx, dy, dw, dh) => {
 		let pd = $._pixelDensity || 1;
-		$.ctx.drawImage($.canvas, x * pd, y * pd, w * pd, h * pd, dx, dy, dw, dh);
+		$.ctx.drawImage(c, x * pd, y * pd, w * pd, h * pd, dx, dy, dw, dh);
 
 		$.modified = $._retint = true;
 	};
@@ -1589,7 +1599,7 @@ Q5.renderers.c2d.image = ($, q) => {
 		w ??= $.width;
 		h ??= $.height;
 		let img = $.createImage(w, h, { pixelDensity: pd });
-		img.ctx.drawImage($.canvas, x, y, w * pd, h * pd, 0, 0, w, h);
+		img.ctx.drawImage(c, x, y, w * pd, h * pd, 0, 0, w, h);
 		img.width = w;
 		img.height = h;
 		return img;
@@ -1610,7 +1620,7 @@ Q5.renderers.c2d.image = ($, q) => {
 		let mod = $._pixelDensity || 1;
 		for (let i = 0; i < mod; i++) {
 			for (let j = 0; j < mod; j++) {
-				let idx = 4 * ((y * mod + i) * $.canvas.width + x * mod + j);
+				let idx = 4 * ((y * mod + i) * c.width + x * mod + j);
 				$.pixels[idx] = c.r;
 				$.pixels[idx + 1] = c.g;
 				$.pixels[idx + 2] = c.b;
@@ -1620,7 +1630,7 @@ Q5.renderers.c2d.image = ($, q) => {
 	};
 
 	$.loadPixels = () => {
-		imgData = $._getImageData(0, 0, $.canvas.width, $.canvas.height);
+		imgData = $._getImageData(0, 0, c.width, c.height);
 		q.pixels = imgData.data;
 	};
 	$.updatePixels = () => {
@@ -1634,20 +1644,6 @@ Q5.renderers.c2d.image = ($, q) => {
 	$.noSmooth = () => ($.ctx.imageSmoothingEnabled = false);
 
 	if ($._scope == 'image') return;
-
-	$._saveCanvas = async (data, ext) => {
-		data = data.canvas || data;
-		if (data instanceof OffscreenCanvas) {
-			const blob = await data.convertToBlob({ type: 'image/' + ext });
-
-			return await new Promise((resolve) => {
-				const reader = new FileReader();
-				reader.onloadend = () => resolve(reader.result);
-				reader.readAsDataURL(blob);
-			});
-		}
-		return data.toDataURL('image/' + ext);
-	};
 
 	$.tint = function (c) {
 		$._tint = (c._q5Color ? c : $.color(...arguments)).toString();
@@ -3279,7 +3275,7 @@ Q5.modules.input = ($, q) => {
 		$._updateMouse(e);
 		e.delta = e.deltaY;
 		let ret = $.mouseWheel(e);
-		if (($._isGlobal && !ret) || ret == false || $._noScroll) {
+		if (($._isGlobal && !ret) || ret == false) {
 			e.preventDefault();
 		}
 	};
@@ -3297,12 +3293,10 @@ Q5.modules.input = ($, q) => {
 	};
 
 	$.noCursor = () => ($.canvas.style.cursor = 'none');
-	$.noScroll = () => ($._noScroll = true);
 
-	$.requestPointerLock = (unadjustedMovement = false) => {
-		return document.body?.requestPointerLock({ unadjustedMovement });
+	$.pointerLock = (unadjustedMovement = false) => {
+		document.body?.requestPointerLock({ unadjustedMovement });
 	};
-	$.exitPointerLock = () => document.exitPointerLock();
 
 	$._onkeydown = (e) => {
 		if (e.repeat) return;
@@ -3371,11 +3365,7 @@ Q5.modules.input = ($, q) => {
 		l('touchend', (e) => $._ontouchend(e));
 		l('touchcancel', (e) => $._ontouchend(e));
 
-		if (!c) l('wheel', (e) => $._onwheel(e));
-		// making the window level event listener for wheel events
-		// not passive would be necessary to be able to use `e.preventDefault`
-		// but browsers warn that it's bad for performance
-		else c.addEventListener('wheel', (e) => $._onwheel(e));
+		if (c) c.addEventListener('wheel', (e) => $._onwheel(e));
 
 		if (!$._isGlobal && c) l = c.addEventListener.bind(c);
 
@@ -4478,23 +4468,22 @@ Q5.modules.util = ($, q) => {
 	async function saveFile(data, name, ext) {
 		name = name || 'untitled';
 		ext = ext || 'png';
+
+		let blob;
 		if (imgRegex.test(ext)) {
-			if ($.canvas?.renderer == 'webgpu' && data.canvas?.renderer == 'c2d') {
-				data = await $._g._saveCanvas(data, ext);
-			} else {
-				data = await $._saveCanvas(data, ext);
-			}
+			let cnv = data.canvas || data;
+			blob = await cnv.convertToBlob({ type: 'image/' + ext });
 		} else {
 			let type = 'text/plain';
 			if (ext == 'json') {
 				if (typeof data != 'string') data = JSON.stringify(data);
 				type = 'text/json';
 			}
-			data = new Blob([data], { type });
-			data = URL.createObjectURL(data);
+			blob = new Blob([data], { type });
 		}
+
 		let a = document.createElement('a');
-		a.href = data;
+		a.href = URL.createObjectURL(blob);
 		a.download = name + '.' + ext;
 		a.click();
 		setTimeout(() => URL.revokeObjectURL(a.href), 1000);
@@ -4506,7 +4495,6 @@ Q5.modules.util = ($, q) => {
 			b = a;
 			a = $;
 		}
-		if (a == $.canvas) a = $;
 		if (c) saveFile(a, b, c);
 		else if (b) {
 			let lastDot = b.lastIndexOf('.');
@@ -4875,7 +4863,7 @@ Q5.Vector.fromAngles = (th, ph, l) => new Q5.Vector().fromAngles(th, ph, l);
 Q5.renderers.webgpu = {};
 
 Q5.renderers.webgpu.canvas = ($, q) => {
-	let c = $.canvas;
+	const c = $.canvas;
 
 	if ($.colorMode) $.colorMode('rgb', 1);
 
@@ -4915,11 +4903,6 @@ struct Q5 {
 	$._pipelineConfigs = [];
 	$._pipelines = [];
 	$._buffers = [];
-
-	$._hooks = {
-		prerender: [],
-		postrender: []
-	};
 
 	// local variables used for slightly better performance
 
@@ -5105,9 +5088,7 @@ fn fragMain(f: FragParams ) -> @location(0) vec4f {
 	}
 
 	const addColor = (r, g, b, a) => {
-		let isColor = r._q5Color;
-
-		if (usingRGB === false || (g === undefined && !isColor && typeof r !== 'number')) {
+		if (usingRGB === false || (g === undefined && !r._q5Color && typeof r !== 'number')) {
 			if (usingRGB === false || typeof r == 'string' || !Array.isArray(r)) {
 				r = $.color(r, g, b, a);
 			} else {
@@ -5120,7 +5101,7 @@ fn fragMain(f: FragParams ) -> @location(0) vec4f {
 		}
 		a ??= _colorFormat;
 
-		if (isColor === true) {
+		if (r._q5Color) {
 			let c = r;
 			if (usingRGB) ({ r, g, b, a } = c);
 			else {
@@ -5182,11 +5163,19 @@ fn fragMain(f: FragParams ) -> @location(0) vec4f {
 	$.noTint = () => (tintIdx = 1);
 
 	$.strokeWeight = (v) => {
+		if (v === undefined) return sw;
 		v = Math.abs(v);
 		sw = v;
 		scaledSW = v * _scale;
 		hsw = v / 2;
 	};
+
+	$._getFillIdx = () => fillIdx;
+	$._setFillIdx = (v) => (fillIdx = v);
+	$._doFill = () => (doFill = true);
+	$._getStrokeIdx = () => strokeIdx;
+	$._setStrokeIdx = (v) => (strokeIdx = v);
+	$._doStroke = () => (doStroke = true);
 
 	const MAX_TRANSFORMS = $._graphics ? 1000 : 1e7,
 		MATRIX_SIZE = 16, // 4x4 matrix
@@ -5629,7 +5618,92 @@ fn fragMain(f: FragParams ) -> @location(0) vec4f {
 
 		pass.setBindGroup(0, mainBindGroup);
 
-		for (let m of $._hooks.prerender) m();
+		// prepare to render shapes
+
+		$._pass.setPipeline($._pipelines[1]); // shapes pipeline
+
+		let shapesVertBuff = Q5.device.createBuffer({
+			size: shapesVertIdx * 4,
+			usage: GPUBufferUsage.VERTEX,
+			mappedAtCreation: true
+		});
+
+		new Float32Array(shapesVertBuff.getMappedRange()).set(shapesVertStack.slice(0, shapesVertIdx));
+		shapesVertBuff.unmap();
+
+		$._pass.setVertexBuffer(0, shapesVertBuff);
+
+		$._buffers.push(shapesVertBuff);
+
+		// prepare to render images and videos
+
+		if (imgVertIdx) {
+			$._pass.setPipeline($._pipelines[2]); // images pipeline
+
+			let imgVertBuff = Q5.device.createBuffer({
+				size: imgVertIdx * 5,
+				usage: GPUBufferUsage.VERTEX,
+				mappedAtCreation: true
+			});
+
+			new Float32Array(imgVertBuff.getMappedRange()).set(imgVertStack.slice(0, imgVertIdx));
+			imgVertBuff.unmap();
+
+			$._pass.setVertexBuffer(1, imgVertBuff);
+
+			$._buffers.push(imgVertBuff);
+
+			if (vidFrames) {
+				$._pass.setPipeline($._pipelines[3]); // video pipeline
+				$._pass.setVertexBuffer(1, imgVertBuff);
+			}
+		}
+
+		if (charStack.length) {
+			// calculate total buffer size for text data
+			let totalTextSize = 0;
+			for (let charsData of charStack) {
+				totalTextSize += charsData.length * 4;
+			}
+
+			// create a single buffer for all the char data
+			let charBuffer = Q5.device.createBuffer({
+				size: totalTextSize,
+				usage: GPUBufferUsage.STORAGE,
+				mappedAtCreation: true
+			});
+
+			// copy all the text data into the buffer
+			new Float32Array(charBuffer.getMappedRange()).set(charStack.flat());
+			charBuffer.unmap();
+
+			// calculate total buffer size for metadata
+			let totalMetadataSize = textStack.length * 8 * 4;
+
+			// create a single buffer for all metadata
+			let textBuffer = Q5.device.createBuffer({
+				label: 'textBuffer',
+				size: totalMetadataSize,
+				usage: GPUBufferUsage.STORAGE,
+				mappedAtCreation: true
+			});
+
+			// copy all metadata into the buffer
+			new Float32Array(textBuffer.getMappedRange()).set(textStack.flat());
+			textBuffer.unmap();
+
+			$._buffers.push(charBuffer, textBuffer);
+
+			// create a single bind group for the text buffer and metadata buffer
+			$._textBindGroup = Q5.device.createBindGroup({
+				label: 'textBindGroup',
+				layout: textBindGroupLayout,
+				entries: [
+					{ binding: 0, resource: { buffer: charBuffer } },
+					{ binding: 1, resource: { buffer: textBuffer } }
+				]
+			});
+		}
 
 		let drawVertOffset = 0,
 			imageVertOffset = 0,
@@ -5657,7 +5731,7 @@ fn fragMain(f: FragParams ) -> @location(0) vec4f {
 			if (curPipelineIndex == 4 || curPipelineIndex >= 4000) {
 				// draw text
 				let o = drawStack[i + 2];
-				pass.setBindGroup(1, $._fonts[o].bindGroup);
+				pass.setBindGroup(1, fontsArr[o].bindGroup);
 				pass.setBindGroup(2, $._textBindGroup);
 
 				// v is the number of characters in the text
@@ -5680,8 +5754,10 @@ fn fragMain(f: FragParams ) -> @location(0) vec4f {
 	};
 
 	$._finishRender = () => {
+		// finish rendering frameA
 		pass.end();
 
+		// create a new render pass to render frameA to the canvas
 		pass = encoder.beginRenderPass({
 			colorAttachments: [
 				{
@@ -5708,6 +5784,7 @@ fn fragMain(f: FragParams ) -> @location(0) vec4f {
 		pass.draw(4);
 		pass.end();
 
+		// submit the commands to the GPU
 		Q5.device.queue.submit([encoder.finish()]);
 		$._pass = pass = encoder = null;
 
@@ -5718,9 +5795,16 @@ fn fragMain(f: FragParams ) -> @location(0) vec4f {
 		matrices = [matrices[0]];
 		matricesIdxStack = [];
 
+		// frameA can now be saved when saveCanvas is run
 		$._texture = frameA;
 
-		for (let m of $._hooks.postrender) m();
+		// reset
+		shapesVertIdx = 0;
+		imgVertIdx = 0;
+		$._textureBindGroups.splice(tIdx, vidFrames);
+		vidFrames = 0;
+		charStack = [];
+		textStack = [];
 
 		// destroy buffers
 		Q5.device.queue.onSubmittedWorkDone().then(() => {
@@ -6411,27 +6495,6 @@ fn fragMain(f: FragParams) -> @location(0) vec4f {
 		$.endShape(true);
 	};
 
-	$._hooks.prerender.push(() => {
-		$._pass.setPipeline($._pipelines[1]);
-
-		let shapesVertBuff = Q5.device.createBuffer({
-			size: shapesVertIdx * 4,
-			usage: GPUBufferUsage.VERTEX,
-			mappedAtCreation: true
-		});
-
-		new Float32Array(shapesVertBuff.getMappedRange()).set(shapesVertStack.slice(0, shapesVertIdx));
-		shapesVertBuff.unmap();
-
-		$._pass.setVertexBuffer(0, shapesVertBuff);
-
-		$._buffers.push(shapesVertBuff);
-	});
-
-	$._hooks.postrender.push(() => {
-		shapesVertIdx = 0;
-	});
-
 	/* IMAGE */
 
 	let imagePL = 2,
@@ -6607,70 +6670,69 @@ fn fragMain(f: FragParams) -> @location(0) vec4f {
 
 	$._textureBindGroups = [];
 
-	$._saveCanvas = async (g, ext) => {
-		let makeFrame = g._drawStack?.length;
-		if (makeFrame) {
-			g._render();
-			g._finishRender();
-		}
-
-		let texture = g._texture;
-
-		if (makeFrame) g._beginRender();
-
-		let w = texture.width,
-			h = texture.height,
-			bytesPerRow = Math.ceil((w * 4) / 256) * 256;
-
-		let buffer = Q5.device.createBuffer({
-			size: bytesPerRow * h,
-			usage: GPUBufferUsage.COPY_DST | GPUBufferUsage.MAP_READ
-		});
-
-		let en = Q5.device.createCommandEncoder();
-
-		en.copyTextureToBuffer({ texture }, { buffer, bytesPerRow, rowsPerImage: h }, { width: w, height: h });
-
-		Q5.device.queue.submit([en.finish()]);
-
-		await buffer.mapAsync(GPUMapMode.READ);
-
-		let pad = new Uint8Array(buffer.getMappedRange());
-		let data = new Uint8Array(w * h * 4); // unpadded data
-
-		// Remove padding from each row and swap BGR to RGB
-		for (let y = 0; y < h; y++) {
-			const p = y * bytesPerRow; // padded row offset
-			const u = y * w * 4; // unpadded row offset
-			for (let x = 0; x < w; x++) {
-				const pp = p + x * 4; // padded pixel offset
-				const up = u + x * 4; // unpadded pixel offset
-				data[up + 0] = pad[pp + 2]; // R <- B
-				data[up + 1] = pad[pp + 1]; // G <- G
-				data[up + 2] = pad[pp + 0]; // B <- R
-				data[up + 3] = pad[pp + 3]; // A <- A
+	if (c) {
+		// polyfill for canvas.convertToBlob
+		c.convertToBlob = async (opt) => {
+			let makeFrame = $._drawStack?.length;
+			if (makeFrame) {
+				$._render();
+				$._finishRender();
 			}
-		}
 
-		buffer.unmap();
+			let texture = $._texture;
 
-		let colorSpace = $.canvas.colorSpace;
-		data = new Uint8ClampedArray(data.buffer);
-		data = new ImageData(data, w, h, { colorSpace });
-		let cnv = new $._Canvas(w, h);
-		let ctx = cnv.getContext('2d', { colorSpace });
-		ctx.putImageData(data, 0, 0);
+			// this changes the value of $._texture
+			if (makeFrame) $._beginRender();
 
-		$._buffers.push(buffer);
+			let w = texture.width,
+				h = texture.height,
+				bytesPerRow = Math.ceil((w * 4) / 256) * 256;
 
-		// Convert to blob then data URL
-		let blob = await cnv.convertToBlob({ type: 'image/' + ext });
-		return await new Promise((resolve) => {
-			let r = new FileReader();
-			r.onloadend = () => resolve(r.result);
-			r.readAsDataURL(blob);
-		});
-	};
+			let buffer = Q5.device.createBuffer({
+				size: bytesPerRow * h,
+				usage: GPUBufferUsage.COPY_DST | GPUBufferUsage.MAP_READ
+			});
+
+			let en = Q5.device.createCommandEncoder();
+
+			en.copyTextureToBuffer({ texture }, { buffer, bytesPerRow, rowsPerImage: h }, { width: w, height: h });
+
+			Q5.device.queue.submit([en.finish()]);
+
+			await buffer.mapAsync(GPUMapMode.READ);
+
+			let pad = new Uint8Array(buffer.getMappedRange());
+			let data = new Uint8Array(w * h * 4); // unpadded data
+
+			// Remove padding from each row and swap BGR to RGB
+			for (let y = 0; y < h; y++) {
+				const p = y * bytesPerRow; // padded row offset
+				const u = y * w * 4; // unpadded row offset
+				for (let x = 0; x < w; x++) {
+					const pp = p + x * 4; // padded pixel offset
+					const up = u + x * 4; // unpadded pixel offset
+					data[up + 0] = pad[pp + 2]; // R <- B
+					data[up + 1] = pad[pp + 1]; // G <- G
+					data[up + 2] = pad[pp + 0]; // B <- R
+					data[up + 3] = pad[pp + 3]; // A <- A
+				}
+			}
+
+			buffer.unmap();
+
+			let colorSpace = $.canvas.colorSpace;
+			data = new Uint8ClampedArray(data.buffer);
+			data = new ImageData(data, w, h, { colorSpace });
+
+			let cnv = new OffscreenCanvas(w, h);
+			let ctx = cnv.getContext('2d', { colorSpace });
+			ctx.putImageData(data, 0, 0);
+
+			$._buffers.push(buffer);
+
+			return await cnv.convertToBlob(opt);
+		};
+	}
 
 	let makeSampler = (filter) => {
 		$._imageSampler = Q5.device.createSampler({
@@ -6871,38 +6933,6 @@ fn fragMain(f: FragParams) -> @location(0) vec4f {
 			if (img.flipped) $.scale(-1, 1);
 		}
 	};
-
-	$._hooks.prerender.push(() => {
-		if (!imgVertIdx) return;
-
-		// Switch to image pipeline
-		$._pass.setPipeline($._pipelines[2]);
-
-		let imgVertBuff = Q5.device.createBuffer({
-			size: imgVertIdx * 5,
-			usage: GPUBufferUsage.VERTEX,
-			mappedAtCreation: true
-		});
-
-		new Float32Array(imgVertBuff.getMappedRange()).set(imgVertStack.slice(0, imgVertIdx));
-		imgVertBuff.unmap();
-
-		$._pass.setVertexBuffer(1, imgVertBuff);
-
-		$._buffers.push(imgVertBuff);
-
-		if (vidFrames) {
-			// Switch to video pipeline
-			$._pass.setPipeline($._pipelines[3]);
-			$._pass.setVertexBuffer(1, imgVertBuff);
-		}
-	});
-
-	$._hooks.postrender.push(() => {
-		imgVertIdx = 0;
-		$._textureBindGroups.splice(tIdx, vidFrames);
-		vidFrames = 0;
-	});
 
 	/* TEXT */
 
@@ -7123,7 +7153,7 @@ fn fragMain(f : FragParams) -> @location(0) vec4f {
 		}
 	}
 
-	$._fonts = [];
+	let fontsArr = [];
 	let fonts = {};
 
 	async function createFont(fontJsonUrl, fontName, cb) {
@@ -7206,8 +7236,8 @@ fn fragMain(f : FragParams) -> @location(0) vec4f {
 
 		$._font = new MsdfFont(fontBindGroup, atlas.common.lineHeight, chars, kernings);
 
-		$._font.index = $._fonts.length;
-		$._fonts.push($._font);
+		$._font.index = fontsArr.length;
+		fontsArr.push($._font);
 		fonts[fontName] = $._font;
 
 		if (cb) cb(fontName);
@@ -7504,59 +7534,6 @@ fn fragMain(f : FragParams) -> @location(0) vec4f {
 		$.image(img, x, y);
 		_imageMode = og;
 	};
-
-	$._hooks.prerender.push(() => {
-		if (!charStack.length) return;
-
-		// calculate total buffer size for text data
-		let totalTextSize = 0;
-		for (let charsData of charStack) {
-			totalTextSize += charsData.length * 4;
-		}
-
-		// create a single buffer for all the char data
-		let charBuffer = Q5.device.createBuffer({
-			size: totalTextSize,
-			usage: GPUBufferUsage.STORAGE,
-			mappedAtCreation: true
-		});
-
-		// copy all the text data into the buffer
-		new Float32Array(charBuffer.getMappedRange()).set(charStack.flat());
-		charBuffer.unmap();
-
-		// calculate total buffer size for metadata
-		let totalMetadataSize = textStack.length * 8 * 4;
-
-		// create a single buffer for all metadata
-		let textBuffer = Q5.device.createBuffer({
-			label: 'textBuffer',
-			size: totalMetadataSize,
-			usage: GPUBufferUsage.STORAGE,
-			mappedAtCreation: true
-		});
-
-		// copy all metadata into the buffer
-		new Float32Array(textBuffer.getMappedRange()).set(textStack.flat());
-		textBuffer.unmap();
-
-		$._buffers.push(charBuffer, textBuffer);
-
-		// create a single bind group for the text buffer and metadata buffer
-		$._textBindGroup = Q5.device.createBindGroup({
-			label: 'textBindGroup',
-			layout: textBindGroupLayout,
-			entries: [
-				{ binding: 0, resource: { buffer: charBuffer } },
-				{ binding: 1, resource: { buffer: textBuffer } }
-			]
-		});
-	});
-
-	$._hooks.postrender.push(() => {
-		charStack = [];
-		textStack = [];
-	});
 
 	/* SHADERS */
 

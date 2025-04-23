@@ -1,6 +1,6 @@
 # Terms of Service
 
-By using p5play.org, you agree to these terms of service and p5play's [End User License Agreement](https://github.com/quinton-ashley/p5play/blob/main/EULA.md).
+To create an account on p5play.org you must agree to these Terms of Service.
 
 p5play is a sole proprietorship owned and operated by Quinton Ashley.
 
@@ -8,7 +8,7 @@ p5play is a sole proprietorship owned and operated by Quinton Ashley.
 
 You must provide accurate and complete information when creating an account.
 
-Students must register for an account with their school using a class code provided by their teacher. Students may not create an account without a class code.
+Students must register for an account using a valid class ID provided by their teacher.
 
 Teacher accounts are for educators who are 18 years of age or older.
 
@@ -16,11 +16,9 @@ Developer accounts are for users who are 13 years of age or older.
 
 ## Learn pages
 
-The "Learn p5play" interactive textbook, located in the "Learn" section of the website at https://p5play.org/learn, is proprietary content created by Quinton Ashley. It is free for personal use and teacher evaluation only.
+The "Learn p5play" interactive textbook, located at https://p5play.org/learn, is proprietary content created by Quinton Ashley. It's free for personal use and teacher evaluation only.
 
-Educational use in class or coursework typically requires the purchase of a [p5play Educational License](https://p5play.org/teach), which is sold at a per-student, per-semester rate, mainly to schools.
-
-The [p5play Professional License](https://p5play.org/teach) grants licensees the right to use "Learn p5play" on an individual basis, even for educational use but just not for teaching. So a pro licensee student doesn't need to additionally purchase an Educational License.
+To use "Learn p5play" for academic purposes, pay license fees as determined by the Licensor and agree to the [p5play Educational License](https://p5play.org/teach). This is required even if "Learn p5play" is used indirectly through a third-party provider.
 
 ## Denial of Service
 

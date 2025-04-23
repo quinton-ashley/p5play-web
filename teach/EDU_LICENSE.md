@@ -4,15 +4,17 @@ This License Agreement ("Agreement") is made between Quinton Ashley, the sole co
 
 https://p5play.org/teach
 
-For commercial use, see the [p5play Professional License](https://p5play.org/pro).
+**_For commercial use, see the [p5play Professional License](https://p5play.org/pro)._**
 
 ## 1. License Grant
 
 This Agreement ("License") governs the use of the p5play and p5play-pro software libraries (collectively, the "Content").
 
-The rights granted by this license extend to all students for whom the Licensee has paid the appropriate per-student fees. After the licensing term expires, students may continue to use p5play for free under the terms of the p5play Personal License.
+The Licensee is granted the right to use the [p5play.org Learn pages](https://p5play.org/learn) for instructional purposes in class or coursework and in educational settings, including but not limited to schools, home schools, universities, coding bootcamps, and online tutoring.
 
-If the Licensee solely paid for its own use of p5play, third-parties must obtain their own license to use the Content for educational purposes, even if their use is through the Licensee.
+Supplemental Materials, such as the p5play-ios app template and p5play Game Design Fundamentals curriculum, are provided exclusively to authorized Licensees. These materials are intended to enhance the Licensees use of the Content and are not to be redistributed or used outside the scope of this Agreement.
+
+The rights granted by this license extend to all students for whom the Licensee has paid the appropriate per-student fees. After the licensing term expires, students may continue to use p5play under the terms of the p5play Personal License or the [p5play Professional License](https://p5play.org/pro).
 
 The Licensor grants to the Licensee a non-exclusive, non-transferable, and non-perpetual worldwide license to use the Content, subject to the following restrictions.
 
@@ -33,20 +35,13 @@ The Licensee may not use the Content for commercial purposes that are not direct
 - Commercial art or design
 - Marketing or advertising not related to the Licensee's educational services
 
-The Licensee must purchase a [p5play Professional License](https://p5play.org/pro) to use p5play for commercial purposes not related to education.
+The Licensee must create an account on p5play.org and agree to the [p5play Professional License](https://p5play.org/pro) to use the Content for commercial purposes not related to education.
 
-### 1b. Derivative Work Restrictions
+### 1b. Derivative Work
 
-Any modification, enhancement, or adaptation of the Content ("Derivative Work") shall be owned by the Licensor. Derivative Works must be created for the sole purpose of improving the Content, for the benefit of all users of p5play.
+Publishing modified versions of the Content ("Derivative Work") is permitted only for the purpose of contributing directly to the original p5play project (for example, by creating a temporary fork to submit a pull request or patch to the official repository).
 
-By creating a Derivative Work, the Licensee hereby:
-
-- Assigns all rights, title, and interest in the Derivative Work to the Licensor
-- Waives any moral rights in the Derivative Work
-- Grants the Licensor exclusive rights to use, modify, and distribute the Derivative Work
-- Agrees to execute any documents necessary to perfect such rights
-
-The Licensee must notify and distribute Derivative Works to the Licensor via GitHub PR, email (info@p5play.org), or Discord post/message and not by any other means.
+The Licensee may not use the Content to create a competing product or service.
 
 ### 1c. Limited Redistribution
 
@@ -77,12 +72,6 @@ The License is granted on a subscription basis through one of the following paym
 - Annual payments
 - Custom payment arrangements
 
-Renewal requires:
-
-- Additional payment before the end of the current term
-- Updated student enrollment numbers
-- Compliance with all license terms
-
 Custom payment arrangements must be negotiated directly with the Licensor and the Licensor will define what use is permitted under the custom arrangement.
 
 The Licensee must pay the appropriate amount, as determined by the Licensor, for the quantity of students that will be using the Content. If Licensees have any concerns about what amount is appropriate for their use, they must contact the Licensor.
@@ -93,42 +82,42 @@ Parental guardians or other adults can make purchases on behalf of a user that's
 
 A Licensee can pay more than the required amount if they wish to support the Licensor's work to a greater extent, which is greatly appreciated.
 
-Note that the Licensor reserves the right to change the cost of renewing this license agreement at any time.
+## 3. Licensee Obligations
 
-## 3. Licensee Consent
+Renewal requires:
+
+- Additional payment before the end of the current term
+- Updated student enrollment numbers
+- Compliance with all license terms
+
+## 3. Privacy
 
 Licensees optionally consent to p5play using Google Analytics to track how they use p5play. To revoke this consent, you can use a browser extension to block Google Analytics or set `window._p5play_gtagged = false;` before loading p5play.
 
-## 4. "Learn p5play" Interactive Textbook Access
+## 4. Privacy
 
-The Licensee is also granted the right to use the [p5play.org Learn pages](https://p5play.org/learn) for instructional purposes in class or coursework and in educational settings, including but not limited to schools, home schools, universities, coding bootcamps, and online tutoring.
+Licensees optionally consent to p5play using Google Analytics to track how they use p5play. To revoke this consent, you can use a browser extension to block Google Analytics or set `window._p5play_gtagged = false;` before loading p5play.
 
-## 5. Supplemental Materials
-
-Supplemental Materials, such as the p5play-ios app template and p5play Game Design Fundamentals curriculum, are provided exclusively to authorized Licensees. These materials are intended to enhance the use of the Content and are not to be redistributed or used outside the scope of this Agreement.
-
-## 6. No Warranty
+## 5. No Warranty
 
 The Content is provided "as is." The Licensor makes no warranties, express or implied, including without limitation any implied warranty of merchantability or fitness for a particular purpose, concerning the Content.
 
-If the Licensee has any issues with the Content, they must contact the Licensor.
-
-If the Licensee is not satisfied with the Content, it is their responsibility to discontinue use of the Content.
-
-## 7. Limitation of Liability
+## 6. Limitation of Liability
 
 The Licensor shall not be liable for any damages suffered by the Licensee resulting from the use or inability to use the Content.
 
 Licensees must comply with all applicable laws and regulations when using p5play. It is illegal to create content that infringes on the rights of others. Licensees are fully liable for any content they create with p5play.
 
+## 7. Amendments
+
+This Agreement can be amended by the Licensor at any time. To the extent possible, if any provision of this Public License is deemed unenforceable, it shall be automatically reformed to the minimum extent necessary to make it enforceable. If the provision cannot be reformed, it shall be severed from this Public License without affecting the enforceability of the remaining terms and conditions.
+
 ## 8. Termination
 
 Termination of the Agreement will occur if the Licensee fails to comply with any term(s) of this Agreement. Therefore, termination can occur automatically, without notice from the Licensor.
 
-Note that the Licensor reserves the right to change the cost of renewing this license at any time. Any lapse in licensing payments will result in the immediate termination of this Agreement.
+Upon termination, the Licensee must cease all use and distribution of the Content.
 
 ## 9. Entire Agreement
 
 This Agreement constitutes the entire agreement between the parties and supersedes all prior understandings and agreements, whether written or oral, relating to the subject matter of this Agreement.
-
-This Agreement can be amended by the Licensor at any time. To the extent possible, if any provision of this Public License is deemed unenforceable, it shall be automatically reformed to the minimum extent necessary to make it enforceable. If the provision cannot be reformed, it shall be severed from this Public License without affecting the enforceability of the remaining terms and conditions.

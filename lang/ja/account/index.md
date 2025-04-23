@@ -14,8 +14,8 @@
 
 # 1-0
 
-## 無料利用
+## 無料リソース
 
-[p5play パーソナルライセンス](https://github.com/quinton-ashley/p5play/blob/main/LICENSE.md)は、p5play の無料でオープンソースの個人使用を可能にします。
-
-教育用には[p5play 教育ライセンス](https://p5play.org/teach)が必要です。商業ゲーム開発には[p5play プロフェッショナルライセンス](https://p5play.org/pro)が必要です。
+- [p5play-vscode](https://github.com/quinton-ashley/p5play-vscode) : VSCode 拡張機能
+- [p5play-template](https://github.com/quinton-ashley/p5play-template) : スターターコード
+- [p5play-desktop](https://github.com/quinton-ashley/p5play-desktop) : デスクトップアプリテンプレート

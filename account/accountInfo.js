@@ -1,15 +1,17 @@
+let $ = (n) => document.getElementById(n.slice(1));
+
 function showAuthContent() {
-	let $ = (n) => document.getElementById(n);
 	let usr = p5playAccount;
-	$('account-type').innerHTML = usr.type;
+	$('#account-type').textContent = usr.type;
+	$('#account-id').textContent = usr.username;
 	let name;
 	if (usr.type == 'Student') {
 		name = usr.classID + '-' + usr.studentID;
 	} else {
 		name = usr.full_name.split(' ')[0];
-		// loadUserData();
+		loadUserData();
 	}
-	$('username').innerHTML = name;
+	$('#username').textContent = name;
 }
 
 async function loadUserData() {
@@ -27,4 +29,11 @@ async function loadUserData() {
 	).json();
 
 	console.log(res);
+
+	let account = res;
+
+	let el;
+	el = $('#account-pro');
+	if (account.pro) el.textContent = '✅ since ' + Date(account.pro);
+	else el.textContent = '❌ No';
 }

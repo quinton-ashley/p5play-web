@@ -28,11 +28,9 @@ Haz preguntas y conoce a otras personas que crean arte interactivo y juegos con 
 
 # 11
 
-## Apoya este proyecto 🤝
+## Apoya 🤝
 
-La [Licencia Personal de p5play](https://github.com/quinton-ashley/p5play/blob/main/LICENSE.md) permite el uso personal, gratuito y de código abierto de p5play.
-
-El uso educativo requiere la [Licencia Educativa de p5play](https://p5play.org/teach). El desarrollo de juegos comerciales requiere la [Licencia Profesional de p5play](https://p5play.org/pro).
+Apoya el desarrollo de [q5.js](https://q5js.org) y [q5play](https://q5play.org), la próxima secuela de p5play.
 
 # 12
 
@@ -187,6 +185,16 @@ Consulta a [@quinton-ashley](https://openprocessing.org/user/350295?o=35&view=sk
 
 # 17-6
 
+## ¿Puedo contribuir? 🧑‍💻
+
+El código fuente de p5play está disponible en [GitHub](https://github.com/quinton-ashley/p5play).
+
+Si encuentras un error o quieres solicitar una nueva función, por favor [abre un issue](https://github.com/quinton-ashley/p5play/issues/new) primero.
+
+Ten en cuenta que p5play será reemplazado por [q5play](https://q5play.org), que actualmente está en desarrollo.
+
+# 17-7
+
 ## Créditos ⭐️
 
 ¡Muchas gracias a todos los que han contribuido a crear p5play! 😄
@@ -200,14 +208,6 @@ Ali Shakiba, creador de planck.js, un puerto de JavaScript de Box2D usado detrá
 Contribuyentes actuales: @Tezumie, Oliver Zell, Caleb Foss y Bobby S.
 
 Probadores y reporteros de errores: Raj Raizada, Nathan Anil, Chayarat Wangweera, Zhiyuan Guo, Aarnav Gupta y Carter Noa.
-
-# 17-7
-
-## Agradecimientos especiales 🙌
-
-Quiero comenzar agradeciendo a mis padres por su apoyo y por inscribirme en clases de programación cuando era niño. También quiero agradecer a mi esposa, Victoria, y a mi hija, Luna, por su apoyo y ánimo. 💞
-
-Además, agradezco al gobierno colombiano 🇨🇴 de Gustavo Petro por otorgar visas extendidas a nómadas digitales. Si aún viviera en EE. UU., p5play probablemente no existiría. No podría permitirme pasar incontables horas en un proyecto de pasión como este.
 
 # ft
 

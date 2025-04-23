@@ -6,15 +6,13 @@
 
 ## Pro Membership
 
-Become a Pro member by supporting p5play on [Patreon](https://www.patreon.com/q5play) or [GitHub Sponsors](https://github.com/sponsors/quinton-ashley).
+Become a Pro member by agreeing to the terms of the [p5play Professional License](https://github.com/quinton-ashley/p5play-web/blob/main/pro/PRO_LICENSE.md).
 
 # 1-0
 
 ## Commercial Use
 
-The [p5play Professional License](https://github.com/quinton-ashley/p5play-web/blob/main/pro/PRO_LICENSE.md) enables you to publish closed source games.
-
-Sell or monetize your games in online stores like [Steam](https://store.steampowered.com) and [Epic Games](https://store.epicgames.com)!
+Sell or monetize your games in online stores like [Steam](https://store.steampowered.com), [itch.io](https://itch.io), and [Epic Games](https://store.epicgames.com)!
 
 _Exclusively for Pro members._
 
@@ -26,30 +24,16 @@ Use templates to build iOS apps without coding in Swift. Sell games on [Apple's 
 
 Requires an [Apple Developer Account](https://developer.apple.com/programs/) and Xcode.
 
-_Exclusively for Pro members._
-
 # 3-0
-
-## GDF Curriculum
-
-[p5play Game Design Fundamentals](https://drive.google.com/drive/folders/1IhB6eEEABuGAe3eNEc0-SG0VujDZVDXA) is a curriculum made by Quinton Ashley, the creator of p5play v3.
-
-Level up your game design skills!
-
-_Exclusively for Pro members._
-
-# 4-0
 
 ## Subscribe
 
-Take a look at our tier pricing on [Patreon](https://www.patreon.com/q5play) or [GitHub Sponsors](https://github.com/sponsors/quinton-ashley). We support indie devs by offering discounts for students and small development teams!
+Subscribe to our [Substack newsletter](https://substack.com/@quintonashley) to get the latest news and updates about p5play.
 
-If you can't afford to pay for a Pro membership, contact us at [info@p5play.org](mailto:info@p5play.org?subject=Equitable%20Access) and explain your intended use of p5play.
+Subscribe to our [YouTube channel](https://www.youtube.com/@q5play-game-dev) for tutorials and game development tips.
 
-# 5-0
+# 4-0
 
-## Free Resources
+## Support the Developer
 
-- [p5play-vscode](https://github.com/quinton-ashley/p5play-vscode) : VSCode extension
-- [p5play-template](https://github.com/quinton-ashley/p5play-template) : starter code
-- [p5play-desktop](https://github.com/quinton-ashley/p5play-desktop) : desktop app template
+If you enjoy using p5play, please consider supporting the development of [q5.js](https://q5js.org) and [q5play](https://q5play.org) on [Patreon](https://www.patreon.com/q5play) or [GitHub Sponsors](https://github.com/sponsors/quinton-ashley)!

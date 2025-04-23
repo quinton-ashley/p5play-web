@@ -28,11 +28,9 @@ Ask questions, meet people, and share your games made with p5play on our [commun
 
 # 11
 
-## Support this project 🤝
+## Support 🤝
 
-The [p5play Personal License](https://github.com/quinton-ashley/p5play/blob/main/LICENSE.md) enables free, open-source, personal use of p5play.
-
-Typical educational use requires the [p5play Educational License](https://p5play.org/teach). Commercial game development requires the [p5play Professional License](https://p5play.org/pro).
+Support the development of [q5.js](https://q5js.org) and [q5play](https://q5play.org), the upcoming sequel to p5play.
 
 # 12
 
@@ -42,7 +40,7 @@ No installation required! Click one of the following links to start coding with 
 
 # 13
 
-## Local Development 🔨
+## Local Dev 🔨
 
 You can [use p5play offline](https://github.com/quinton-ashley/p5play/wiki/Get-Started) or use these tags in your HTML to always get the latest version.
 
@@ -201,11 +199,11 @@ Whether you're a beginner, hobbyist, or professional developer: p5play was creat
 
 ## Can I use p5play for free? 📖
 
-The [p5play Personal License](https://github.com/quinton-ashley/p5play/blob/main/LICENSE.md) enables free, open-source, personal use of p5play.
+Free, open-source, personal use of p5play is enabled by the [p5play Personal License](https://github.com/quinton-ashley/p5play/blob/main/LICENSE.md).
 
-Typical educational use requires the [p5play Educational License](https://p5play.org/teach). Commercial game development requires the [p5play Professional License](https://p5play.org/pro).
+To publish commercial games made with p5play, simply create an account on p5play.org and agree to the terms of the [p5play Professional License](https://p5play.org/pro).
 
-It's permitted to showcase use of p5play in fixed media, such as YouTube video tutorials, which can even be monetized as long as the content does not enable direct interaction with p5play software.
+Educational use of p5play and the "Learn p5play" interactive textbook is not free. The [p5play Educational License](https://p5play.org/teach) costs $5 USD per student per semester.
 
 # 17-5
 
@@ -213,9 +211,19 @@ It's permitted to showcase use of p5play in fixed media, such as YouTube video t
 
 Take a look at the student projects featured on the [Play page](play/index.html)!
 
-Also check out [@quinton-ashley](https://openprocessing.org/user/350295?o=35&view=sketches) on OpenProcessing and the #share channel on [p5play's community Discord](https://discord.gg/EJwnJATmj7) to see what people are making with p5play.
+Also check out [@p5play](https://openprocessing.org/user/350295?o=35&view=sketches) on OpenProcessing and the #share channel on [p5play's community Discord](https://discord.gg/EJwnJATmj7) to see what people are making with p5play.
 
 # 17-6
+
+## Can I contribute? 🧑‍💻
+
+p5play's source code is available on [GitHub](https://github.com/quinton-ashley/p5play).
+
+If you find a bug or want to request a new feature, please [open an issue](https://github.com/quinton-ashley/p5play/issues/new) first.
+
+Note that p5play will be superseded by [q5play](https://q5play.org), which is currently in development.
+
+# 17-7
 
 ## Credits ⭐️
 
@@ -232,14 +240,6 @@ Ali Shakiba, creator of planck.js, a JavaScript port of Box2D used behind the sc
 Contributors: @Tezumie, Oliver Zell, Caleb Foss, and Bobby S.
 
 Testers and bug reporters: Lachlan Noble, Raj Raizada, Nathan Anil, Chayarat Wangweera, Zhiyuan Guo, Aarnav Gupta, and Carter Noa.
-
-# 17-7
-
-## Special Thanks 🙌
-
-I want to start by thanking my parents for their support and for enrolling me in coding classes when I was a kid! I also want to thank my wife, Victoria, and daughter, Luna, for their support and encouragement. 💞
-
-In addition, I appreciate the Colombian government 🇨🇴 of Gustavo Petro for giving extended visas to digital nomads. If I still lived in US, p5play probably wouldn't exist. I couldn't afford to spend countless hours on a passion project like this one.
 
 # ft
 

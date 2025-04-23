@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<link rel="icon" href="/assets/p5play_logo.svg">
+	<title>p5play Professional License</title>
+	<style>
+		html,
+		body {
+			height: 100%;
+			margin: 0;
+			padding: 0;
+		}
+
+		body {
+			font-family: Arial, sans-serif;
+			margin: 0;
+			padding: 0;
+			background: #f9f9f9;
+			height: 100vh;
+			overflow: hidden;
+		}
+
+		.bg-right {
+			position: fixed;
+			top: 0;
+			right: 0;
+			width: 50vw;
+			height: 100vh;
+			background: url('https://quinton-ashley.github.io/p5play-assets/account/p5play_account1.webp') 30% center no-repeat;
+			background-size: cover;
+			z-index: 1;
+		}
+
+		.license-modal {
+			position: absolute;
+			box-sizing: border-box;
+			top: 50%;
+			left: 5vw;
+			transform: translateY(-50%);
+			width: 50vw;
+			background: #fff;
+			border-radius: 16px;
+			box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18), 0 1.5px 8px rgba(0, 0, 0, 0.08);
+			z-index: 2;
+			display: flex;
+			flex-direction: column;
+			padding: 8px;
+		}
+
+		.license-container {
+			border: 1px solid #ccc;
+			background: #fff;
+			padding: 0 24px;
+			height: 400px;
+			overflow-y: scroll;
+			box-shadow: none;
+			border-radius: 8px;
+		}
+
+		.actions {
+			text-align: center;
+		}
+
+		.signature-label {
+			display: block;
+			margin: 12px 0 6px 0;
+			font-size: 1em;
+			color: #333;
+			text-align: left;
+		}
+
+		.signature-input {
+			width: 100%;
+			padding: 8px;
+			font-size: 1em;
+			border: 1px solid #bbb;
+			border-radius: 8px;
+			box-sizing: border-box;
+		}
+
+		.signature-note {
+			font-size: 0.85em;
+			color: #666;
+			margin: 16px 0;
+			text-align: center;
+		}
+
+		button:disabled {
+			background: #ccc;
+			cursor: not-allowed;
+		}
+
+		button {
+			width: 100%;
+			padding: 10px 32px;
+			font-size: 1.1em;
+			border: none;
+			border-radius: 8px;
+			background: #007bff;
+			color: #fff;
+			transition: background 0.2s;
+		}
+
+		button:not(:disabled):hover {
+			background: #0056b3;
+			cursor: pointer;
+		}
+
+		#fullscreen-loading {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100vw;
+			height: 100vh;
+			background: rgba(255, 255, 255, 0.85);
+			z-index: 9999;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			visibility: hidden;
+			opacity: 0;
+			transition: opacity 0.3s;
+		}
+
+		#fullscreen-loading.active {
+			visibility: visible;
+			opacity: 1;
+		}
+
+		.loading-spinner {
+			border: 8px solid #eee;
+			border-top: 8px solid #007bff;
+			border-radius: 50%;
+			width: 70px;
+			height: 70px;
+			animation: spin 1s linear infinite;
+			margin: 0 auto;
+		}
+
+		@keyframes spin {
+			0% {
+				transform: rotate(0deg);
+			}
+
+			100% {
+				transform: rotate(360deg);
+			}
+		}
+
+		.loading-text {
+			margin-top: 24px;
+			font-size: 1.2em;
+			color: #333;
+			text-align: center;
+		}
+
+		@media (max-width: 900px) {
+			.bg-right {
+				display: none;
+			}
+
+			.license-modal {
+				width: 90vw;
+			}
+		}
+	</style>
+</head>
+
+<body>
+	<div class="bg-right"></div>
+	<div class="license-modal">
+		<div class="license-container" id="license-container">
+			<div id="license-text">Loading license...</div>
+		</div>
+		<div class="actions">
+			<p style="font-size: 0.9em; color: #666;">Please read the entire license agreement carefully before proceeding.
+			</p>
+			<input type="text" id="signature-input" class="signature-input" autocomplete="name"
+				placeholder="Your full legal name">
+			<div class="signature-note">
+				By typing your name, you are digitally signing and agreeing to the terms of this license agreement.
+			</div>
+			<button id="agree-btn" disabled>I Agree</button>
+		</div>
+	</div>
+	<div id="fullscreen-loading">
+		<div>
+			<div class="loading-spinner"></div>
+			<div class="loading-text">Processing your agreement...</div>
+		</div>
+	</div>
+	<script src="/learn/marked/marked.min.js"></script>
+	<script>
+		// Fetch the markdown file and render it as HTML
+		fetch('/pro/PRO_LICENSE.md')
+			.then((res) => res.text())
+			.then((md) => {
+				document.getElementById('license-text').innerHTML = marked.parse(md);
+			});
+
+		const container = document.getElementById('license-container');
+		const agreeBtn = document.getElementById('agree-btn');
+		const signatureInput = document.getElementById('signature-input');
+		const loading = document.getElementById('fullscreen-loading');
+
+		let scrolledToBottom = false;
+		let hasSignature = false;
+
+		function updateAgreeState() {
+			agreeBtn.disabled = !(scrolledToBottom && hasSignature);
+		}
+
+		container.addEventListener('scroll', function () {
+			const atBottom = container.scrollTop + container.clientHeight >= container.scrollHeight - 2;
+			scrolledToBottom = atBottom;
+			updateAgreeState();
+		});
+
+		signatureInput.addEventListener('input', function () {
+			hasSignature = signatureInput.value.trim().length > 0;
+			updateAgreeState();
+		});
+
+		// Handle button click
+		agreeBtn.addEventListener('click', agreeToProLicense);
+
+		async function agreeToProLicense() {
+			loading.classList.add('active');
+
+			const idToken = localStorage.getItem('idToken');
+
+			if (!idToken) {
+				loading.classList.remove('active');
+				alert('ERROR! Create an account or login to access this feature.');
+				return;
+			}
+
+			let apiUrl = 'https://ntaknarhb9.execute-api.us-west-2.amazonaws.com/prod/p5play-server';
+			let res = await (
+				await fetch(apiUrl + '?req=agreeToProLicense', {
+					method: 'GET',
+					headers: {
+						Authorization: idToken,
+						'Content-Type': 'application/json'
+					}
+				})
+			).json();
+
+			console.log(res);
+
+			if (!res.pro) {
+				loading.classList.remove('active');
+				alert('ERROR! Unable to fulfill your request, please contact support: info@p5play.org');
+				return;
+			}
+
+			// Show success message, then redirect after a delay
+			document.querySelector('.loading-text').textContent = "Success! Redirecting to your account page...";
+			document.querySelector('.loading-spinner').style.borderTopColor = "#28a745"; // green
+
+			setTimeout(() => {
+				open('/account', '_self');
+			}, 3000);
+		}
+	</script>
+</body>
+
+</html>

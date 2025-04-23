@@ -28,11 +28,9 @@
 
 # 11
 
-## このプロジェクトをサポートする 🤝
+## サポート 🤝
 
-[p5play パーソナルライセンス](https://github.com/quinton-ashley/p5play/blob/main/LICENSE.md)は、p5play の無料でオープンソースの個人使用を可能にします。
-
-教育用には[p5play 教育ライセンス](https://p5play.org/teach)が必要です。商業ゲーム開発には[p5play プロフェッショナルライセンス](https://p5play.org/pro)が必要です。
+[q5.js](https://q5js.org) および [q5play](https://q5play.org)（p5play の次期バージョン）の開発をサポートしてください。
 
 # 12
 
@@ -212,6 +210,16 @@ p5play では、スプライトに[物理コライダー](learn/sprite.html?page
 
 # 17-6
 
+## 貢献できますか？🧑‍💻
+
+p5play のソースコードは[GitHub](https://github.com/quinton-ashley/p5play)で公開されています。
+
+バグを見つけたり新機能をリクエストしたい場合は、まず[issue を作成](https://github.com/quinton-ashley/p5play/issues/new)してください。
+
+なお、p5play は現在開発中の[q5play](https://q5play.org)に置き換えられる予定です。
+
+# 17-7
+
 ## クレジット ⭐️
 
 p5play （バージョン 3 ）の作成に貢献してくれたすべての人に大きな感謝を！ 😄
@@ -225,14 +233,6 @@ p5play の裏で使用されている Box2D の JavaScript 移植版 planck.js �
 現在のコントリビューター： @Tezumie、 Oliver Zell、Caleb Foss、そして Bobby S。
 
 テスターとバグレポーター： Raj Raizada、 Nathan Anil、 Chayarat Wangweera、 Zhiyuan Guo、 Aarnav Gupta、そして Carter Noa。
-
-# 17-7
-
-## スペシャルサンクス 🙌
-
-まず、子供の頃に私をコーディング教室に入れてくれた両親へのサポートに感謝したいと思います！ また、応援と激励をくれた妻の Victoria と娘の Luna にも感謝します。 💞
-
-加えて、デジタルノマドに延長ビザを与えてくれたコロンビア政府 🇨🇴 の Gustavo Petro に感謝します。もし私がまだアメリカに住んでいたら、 p5play は存在しえなかったでしょう。アメリカ暮らしでは、このような情熱的なプロジェクトに、長い長い時間を費やす余裕はありませんでした。
 
 # ft
 

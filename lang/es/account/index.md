@@ -14,8 +14,8 @@
 
 # 1-0
 
-## Limitaciones del Uso Gratuito
+## Recursos Gratuitos
 
-La [Licencia Personal de p5play](https://github.com/quinton-ashley/p5play/blob/main/LICENSE.md) permite el uso personal, gratuito y de código abierto de p5play.
-
-El uso educativo requiere la [Licencia Educativa de p5play](https://p5play.org/teach). El desarrollo de juegos comerciales requiere la [Licencia Profesional de p5play](https://p5play.org/pro).
+- [p5play-vscode](https://github.com/quinton-ashley/p5play-vscode) : extensión para VSCode
+- [p5play-template](https://github.com/quinton-ashley/p5play-template) : código inicial
+- [p5play-desktop](https://github.com/quinton-ashley/p5play-desktop) : plantilla de aplicación de escritorio

@@ -16,8 +16,8 @@ Welcome <span id="username"></span>!
 
 # 1-0
 
-## Free Use Limitations
+## Free Resources
 
-The [p5play Personal License](https://github.com/quinton-ashley/p5play/blob/main/LICENSE.md) enables free, open-source, personal use of p5play.
-
-Typical educational use requires the [p5play Educational License](https://p5play.org/teach). Commercial game development requires the [p5play Professional License](https://p5play.org/pro).
+- [p5play-vscode](https://github.com/quinton-ashley/p5play-vscode) : VSCode extension
+- [p5play-template](https://github.com/quinton-ashley/p5play-template) : starter code
+- [p5play-desktop](https://github.com/quinton-ashley/p5play-desktop) : desktop app template

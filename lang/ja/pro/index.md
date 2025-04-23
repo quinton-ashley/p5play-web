@@ -4,17 +4,15 @@
 
 # 0-1
 
-## Pro メンバーシップ
+## プロメンバーシップ
 
-[Patreon](https://www.patreon.com/q5play) や [GitHub Sponsors](https://github.com/sponsors/quinton-ashley) で [p5play](https://www.patreon.com/q5play) を支援して、Pro メンバーになりましょう。
+[p5play プロフェッショナルライセンス](https://github.com/quinton-ashley/p5play-web/blob/main/pro/PRO_LICENSE.md)の条件に同意してプロメンバーになろう。
 
 # 1-0
 
-## 商業利用
+## 商用利用
 
-[p5play プロフェッショナルライセンス](https://github.com/quinton-ashley/p5play-web/blob/main/pro/PRO_LICENSE.md)により、クローズドソースのゲームを公開できます。
-
-[Steam](https://store.steampowered.com) や [Epic Games](https://store.epicgames.com) などのオンラインストアでゲームを販売または収益化しましょう！
+[Steam](https://store.steampowered.com)、[itch.io](https://itch.io)、[Epic Games](https://store.epicgames.com)などのオンラインストアでゲームを販売・収益化できます！
 
 _プロメンバー限定。_
 
@@ -22,34 +20,20 @@ _プロメンバー限定。_
 
 ## iOS アプリテンプレート
 
-テンプレートを使用すると、Swift によるコーディング不要で iOS アプリを作成できます。[Apple の App Store](https://www.apple.com/app-store/) でゲームを販売したり、広告収入を得たりすることができます。
+Swift を使わずに iOS アプリを作成できるテンプレートを利用できます。[Apple の App Store](https://www.apple.com/app-store/)でゲームを販売したり、広告収入を得たりできます。
 
-[Apple Developer](https://developer.apple.com/programs/) アカウントと Xcode が必要です。
-
-_プロメンバー限定。_
+[Apple デベロッパーアカウント](https://developer.apple.com/programs/)と Xcode が必要です。
 
 # 3-0
 
-## カリキュラム
+## 購読する
 
-[p5play ゲームデザイン基礎](https://drive.google.com/drive/folders/1IhB6eEEABuGAe3eNEc0-SG0VujDZVDXA)は、p5play v3 の作成者である Quinton Ashley によって作成されたカリキュラムです。
+最新ニュースや p5play のアップデートを受け取るには、[Substack ニュースレター](https://substack.com/@quintonashley)を購読してください。
 
-ゲームデザインのスキルを向上させましょう！
-
-_プロメンバー限定。_
+チュートリアルやゲーム開発のヒントは[YouTube チャンネル](https://www.youtube.com/@q5play-game-dev)を購読してください。
 
 # 4-0
 
-## 購入について
+## 開発者をサポート
 
-まずは [Patreon](https://www.patreon.com/q5play) および [GitHub Sponsors](https://github.com/sponsors/quinton-ashley) 記載の、ご利用プラン一覧をご一読ください。学生や小規模開発チームの皆さまには特別割引を提供し、インディーズ開発者をサポートしています！
-
-Pro メンバーシップの料金を支払う余裕がない場合は、[info@p5play.org](mailto:info@p5play.org?subject=Equitable%20Access) までご連絡いただき、p5play の使用目的のご説明をお願いいたします。
-
-# 5-0
-
-## 無料リソース
-
-- [p5play-vscode](https://github.com/quinton-ashley/p5play-vscode) : VSCode 拡張機能
-- [p5play-template](https://github.com/quinton-ashley/p5play-template) : スターターコード
-- [p5play-desktop](https://github.com/quinton-ashley/p5play-desktop) : デスクトップアプリテンプレート
+p5play を気に入っていただけたら、[q5.js](https://q5js.org)や[q5play](https://q5play.org)の開発を[Patreon](https://www.patreon.com/q5play)や[GitHub Sponsors](https://github.com/sponsors/quinton-ashley)でサポートしてください！
