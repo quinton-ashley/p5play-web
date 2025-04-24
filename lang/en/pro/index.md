@@ -6,7 +6,7 @@
 
 ## Pro Membership
 
-Become a Pro member by agreeing to the terms of the [p5play Professional License](https://github.com/quinton-ashley/p5play-web/blob/main/pro/PRO_LICENSE.md).
+Become a Pro member by agreeing to the terms of the [p5play Professional License](/pro/license.html).
 
 # 1-0
 

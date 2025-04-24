@@ -6,7 +6,7 @@
 
 ## Membresía Pro
 
-Hazte miembro Pro aceptando los términos de la [Licencia Profesional de p5play](https://github.com/quinton-ashley/p5play-web/blob/main/pro/PRO_LICENSE.md).
+Hazte miembro Pro aceptando los términos de la [Licencia Profesional de p5play](/pro/license.html).
 
 # 1-0
 

@@ -6,7 +6,7 @@
 
 ## プロメンバーシップ
 
-[p5play プロフェッショナルライセンス](https://github.com/quinton-ashley/p5play-web/blob/main/pro/PRO_LICENSE.md)の条件に同意してプロメンバーになろう。
+[p5play プロフェッショナルライセンス](/pro/license.html)の条件に同意してプロメンバーになろう。
 
 # 1-0
 
