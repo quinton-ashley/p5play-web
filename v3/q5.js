@@ -622,7 +622,7 @@ Q5.modules.canvas = ($, q) => {
 		} else $._da = 0;
 	};
 
-	if (window && $._isGraphics) {
+	if (window && !$._isGraphics) {
 		window.addEventListener('resize', () => {
 			$._didResize = true;
 			q.windowWidth = window.innerWidth;
@@ -1128,6 +1128,7 @@ Q5.renderers.c2d.shapes = ($) => {
 			bl *= $._da;
 			br *= $._da;
 		}
+		$.ctx.beginPath();
 		$.ctx.roundRect(x, y, w, h, [tl, tr, br, bl]);
 		ink();
 	}
