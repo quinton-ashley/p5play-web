@@ -69,6 +69,17 @@ dec = dec.replace(
 dec = dec.replace(/^(const|function|var)*\s*_[^{\n]+\n/gm, '');
 dec = dec.replace(/^\s*(const|var)*\s*_([^{\n]+){(?:[^{}]*{[^{}]*}[^{}]*)*[^{}]*};\n/gm, '');
 dec = `import 'q5';\n\ndeclare global {\n` + dec + '\n}\n';
+dec = dec.replace(
+	`
+function resizeCanvas(w: any, h: any): void;
+function frameRate(hz: any): any;
+function background(...args: any[]): void;
+function fill(...args: any[]): void;
+function stroke(...args: any[]): void;
+function loadImage(...args: any[]): new (width?: number, height?: number) => HTMLImageElement;
+function loadImg(...args: any[]): new (width?: number, height?: number) => HTMLImageElement;`,
+	'\n'
+);
 await Bun.write('v3/p5play.d.ts', dec);
 
 unlinkSync('types/p5play.d.ts'); // delete temp files
