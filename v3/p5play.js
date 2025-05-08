@@ -42,6 +42,7 @@ let p5playInit = function () {
 	}
 
 	let using_p5v1 = !$._q5 && p5.VERSION[0] == 1;
+	let using_p5v2 = !$._q5 && p5.VERSION[0] == 2;
 
 	// in p5play the default angle mode is degrees
 	const DEGREES = $.DEGREES;
@@ -8746,7 +8747,7 @@ let p5playInit = function () {
 
 	async function playIntro() {
 		if (document.getElementById('p5play-intro')) return;
-		$._incrementPreload();
+		if (!using_p5v2) $._incrementPreload();
 		let d = document.createElement('div');
 		d.id = 'p5play-intro';
 		d.style = 'position: absolute; width: 100%; height: 100%; top: 0; left: 0; z-index: 1000; background-color: black;';
@@ -8778,7 +8779,7 @@ let p5playInit = function () {
 		d.style.display = 'none';
 		d.remove();
 		document.getElementById('p5play-intro')?.remove();
-		$._decrementPreload();
+		if (!using_p5v2) $._decrementPreload();
 	}
 
 	if (window.location) {
@@ -8926,6 +8927,13 @@ let p5playInit = function () {
 		if (!userDisabledP5Errors) p5.disableFriendlyErrors = false;
 
 		$.displayMode(displayMode, renderQuality, displayScale);
+
+		let pointer = window.PointerEvent ? 'pointer' : 'mouse';
+		c.addEventListener(pointer + 'down', onpointerdown);
+		if (window) {
+			window.addEventListener(pointer + 'move', onpointermove);
+			window.addEventListener(pointer + 'up', onpointerup);
+		}
 
 		return rend;
 	};
@@ -9113,7 +9121,7 @@ let p5playInit = function () {
 	};
 
 	// image cache can't be used with p5 v2
-	if ($._q5 || using_p5v1) {
+	if (!using_p5v2) {
 		const _loadImage = $.loadImage;
 
 		/**
@@ -9808,8 +9816,13 @@ main {
 		}
 	};
 
+	let pressAmt = 0;
+
 	let onpointerdown = function (e) {
 		if (!$._setupDone) return;
+		pressAmt++;
+
+		if (p5.aud && p5.aud.state != 'running') p5.aud.resume();
 
 		let btn = 'left';
 		if (e.button === 1) btn = 'center';
@@ -9846,6 +9859,8 @@ main {
 
 	let onpointerup = function (e) {
 		if (!$._setupDone) return;
+		if (pressAmt > 0) pressAmt--;
+		else return;
 
 		let btn = 'left';
 		if (e.button === 1) btn = 'center';
@@ -9872,12 +9887,6 @@ main {
 			msm.drag[btn] = 0;
 		}
 	};
-
-	if (window) {
-		window.addEventListener('pointerdown', onpointerdown);
-		window.addEventListener('pointermove', onpointermove);
-		window.addEventListener('pointerup', onpointerup);
-	}
 
 	/**
 	 * @class
@@ -10967,9 +10976,11 @@ if (p5.prototype?.registerMethod == undefined) {
 	// p5.js v2
 	console.error('p5play is not compatible with p5.js v2. Please use p5.js v1 or q5.js. https://q5js.org');
 
-	// p5.js preload compatibility addon, modified to work with p5play
-	// https://github.com/processing/p5.js-compatibility/blob/main/src/preload.js
 	p5.registerAddon((p5, proto, lifecycles) => {
+		// the following code is from the p5.js preload compatibility addon
+		// which has been modified to work with p5play via a hacky workaround
+		// https://github.com/processing/p5.js-compatibility/blob/main/src/preload.js
+
 		let methods = {
 			loadImage: () => new p5.Image(1, 1),
 			loadModel: () => new p5.Geometry(),
@@ -10983,8 +10994,6 @@ if (p5.prototype?.registerMethod == undefined) {
 		let promises = [];
 		let prevMethods = {};
 
-		// Override existing methods to return an object immediately,
-		// and keep track of all things being loaded
 		for (let method in methods) {
 			let prevMethod = proto[method];
 			prevMethods[method] = prevMethod;
@@ -11004,53 +11013,62 @@ if (p5.prototype?.registerMethod == undefined) {
 			};
 		}
 
+		// the old p5.sound fails to load with p5.js v2
+		p5.Sound = class extends Audio {
+			constructor(path) {
+				super(path);
+				this.load();
+			}
+			setVolume(level) {
+				this.volume = level;
+			}
+			setLoop(loop) {
+				this.loop = loop;
+			}
+			setPan() {}
+			isLoaded() {
+				return this.loaded;
+			}
+			isPlaying() {
+				return !this.paused;
+			}
+		};
+
+		proto.loadSound = (path) => {
+			p5.aud ??= new AudioContext();
+			let a = new p5.Sound(path);
+			a.crossOrigin = 'Anonymous';
+			promises.push(
+				(a.promise = new Promise((resolve) => {
+					a.addEventListener('canplaythrough', () => {
+						a.loaded = true;
+						resolve(a);
+					});
+				}))
+			);
+			return a;
+		};
+		proto.getAudioContext = () => p5.aud;
+		proto.userStartAudio = () => p5.aud.resume();
+
+		// having "code" be reserved by p5 makes "Red Remover" not work
+		delete proto.code;
+
 		lifecycles.presetup = async function () {
 			const $ = this;
+
+			// p5 v2 requires a canvas to be created before preload
+			// otherwise functions like color() will throw errors
+			// because _renderer is not defined
+			$.createCanvas.call($, 100, 100);
+
+			// init hook
 			p5playInit.call($);
 
+			// manually propagate p5play stuff to the global window object
 			if ($._isGlobal) {
-				// manually propagate p5play stuff to the global window object
-				let props = [
-					'p5play',
-					'DYN',
-					'DYNAMIC',
-					'STA',
-					'STATIC',
-					'KIN',
-					'KINEMATIC',
-					'Sprite',
-					'Ani',
-					'Anis',
-					'Group',
-					'World',
-					'world',
-					'createCanvas',
-					'Canvas',
-					'canvas',
-					'displayMode',
-					'Camera',
-					'camera',
-					'Tiles',
-					'Joint',
-					'GlueJoint',
-					'DistanceJoint',
-					'WheelJoint',
-					'HingeJoint',
-					'SliderJoint',
-					'RopeJoint',
-					'GrabberJoint',
-					'kb',
-					'keyboard',
-					'mouse',
-					'touches',
-					'allSprites',
-					'camera',
-					'contro',
-					'contros',
-					'controllers',
-					'spriteArt',
-					'EmojiImage',
-					'getFPS'
+				// prettier-ignore
+				let props = ['p5play','DYN','DYNAMIC','STA','STATIC','KIN','KINEMATIC','Sprite','Ani','Anis','Group','World','world','createCanvas','Canvas','canvas','displayMode','Camera','camera','Tiles','Joint','GlueJoint','DistanceJoint','WheelJoint','HingeJoint','SliderJoint','RopeJoint','GrabberJoint','kb','keyboard','mouse','touches','allSprites','camera','contro','contros','controllers','spriteArt','EmojiImage','getFPS'
 				];
 				for (let p of props) {
 					window[p] = $[p];
@@ -11058,8 +11076,6 @@ if (p5.prototype?.registerMethod == undefined) {
 			}
 
 			if (!window.preload) return;
-
-			$.createCanvas.call($, 100, 100);
 
 			$._isInPreload = true;
 			window.preload();
