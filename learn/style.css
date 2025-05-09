@@ -594,6 +594,7 @@ nav {
 	border-bottom-right-radius: 0; */
 }
 
+#infoBreak,
 #langBreak {
 	width: 100%;
 	display: flex;
@@ -602,12 +603,14 @@ nav {
 	margin-bottom: 6px;
 }
 
+#infoBreak .break,
 #langBreak .break {
 	width: unset;
 	flex-grow: 1;
 	box-shadow: 0px 4px 0px var(--pink2);
 }
 
+#announcement,
 #langNav {
 	width: fit-content;
 	margin-top: 0;
@@ -618,15 +621,21 @@ nav {
 	overflow-x: hidden;
 }
 
+#announcement a,
 #langNav a {
 	width: max-content;
-	color: var(--dark);
 	font-size: 16px;
 	writing-mode: horizontal-tb;
 	transition: 0.3s;
 	font-weight: bold;
 }
 
+#langNav a {
+	color: var(--dark);
+}
+
+#announcement a.active,
+#announcement a:hover,
 #langNav a.active,
 #langNav a:hover {
 	color: var(--pink1);
