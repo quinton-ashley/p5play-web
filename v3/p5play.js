@@ -14,6 +14,8 @@ if (typeof planck != 'object') {
 	} else throw 'You need to load planck.js before p5play!';
 }
 
+// START p5play.d.ts
+
 let p5playInit = function () {
 	const $ = this; // the p5 or q5 instance that called p5playInit
 	const pl = planck;
@@ -10971,6 +10973,8 @@ let p5playPostDraw = function () {
 	}
 	$.p5play._inPostDraw = false;
 };
+
+// END p5play.d.ts
 
 if (p5.prototype?.registerMethod == undefined) {
 	// p5.js v2
