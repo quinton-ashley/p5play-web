@@ -172,16 +172,14 @@ function update() {
 		<div id="page-1" class="page">
 			<md id="md1-0">
 				<h2 id="sprite-physics">Sprite physics</h2>
-				<p>A sprite's collider is used to detect collisions with other
-					sprites. By default, sprites have a <code>DYNAMIC</code> physics
-					collider that allows the sprite to move freely and be affected by
-					gravity.</p>
-				<p><code>STATIC</code> colliders can't be moved. <code>KINEMATIC</code> colliders can be moved
-					programmatically but not by other sprites. They also won't collide with other kinematic colliders.
-					Setting a sprite's collider
-					type to <code>NONE</code> makes it have no collider.</p>
-				<p>The collider type can also be set using abbreviations of collider type name: <code>DYN</code>,
-					<code>STA</code>, or <code>KIN</code>.</p>
+				<p>A sprite's <code>physicsType</code>/<code>physics</code> determines how it behaves in the physics
+					simulation:</p>
+				<ul>
+					<li><code>DYNAMIC</code>/<code>DYN</code> (default): affected by gravity</li>
+					<li><code>STATIC</code>/<code>STA</code>: doesn't move</li>
+					<li><code>KINEMATIC</code>/<code>KIN</code>: not moved by other sprites</li>
+				</ul>
+				<p>By default, sprites have a collider that can be used to detect collisions with other sprites.</p>
 				<p>Click the reload icon on the top right corner of a code example to replay it!</p>
 			</md>
 			<script type="mie/p5" id="dynamic-and-static-colliders" base-2="" horiz="" lines="16">
@@ -199,7 +197,7 @@ function setup() {
 	floor.y = 190;
 	floor.w = 238;
 	floor.h = 5;
-	floor.collider = STATIC;
+	floor.physics = STATIC;
 }
 
 function update() {
@@ -217,11 +215,11 @@ floor.rotation = 2;
 
 			<div class="minis">
 				<script type="mie/p5" id="rising-platform" base="2">
-floor.collider = KIN;
+floor.physics = KIN;
 floor.velocity.y = -1;
 				</script>
 				<script type="mie/p5" id="whoops!" base="2">
-floor.collider = NONE;
+floor.physics = NONE;
 				</script>
 			</div>
 			<div class="break"></div>
@@ -246,7 +244,7 @@ function setup() {
 	peg = new Sprite();
 	peg.diameter = 10;
 	peg.y = 40;
-	peg.collider = STATIC;
+	peg.physics = STATIC;
 
 	block = new Sprite();
 	block.w = 30;
@@ -598,7 +596,7 @@ function setup() {
 	// box.y = 70;
 	// box.width = 10;
 	// box.height = 90;
-	// box.collider = STATIC;
+	// box.physics = STATIC;
 
 	// 					 	     ( x,   y,  d, collider)
 	circle = new Sprite(25, 140, 10, STATIC);
@@ -710,7 +708,7 @@ function setup() {
 function update() {
 	clear();
 	if (block.collided(floor)) {
-		floor.collider = DYNAMIC;
+		floor.physics = DYNAMIC;
 	}
 }
 			</script>
@@ -1323,7 +1321,7 @@ function setup() {
 
 	//                ([vertex0, vertex1, vertex2, ...])
 	floor = new Sprite([[20, 60], [200, 140], [450, 180]]);
-	floor.collider = STATIC;
+	floor.physics = STATIC;
 
 	ball = new Sprite(40, 0, 20);
 }

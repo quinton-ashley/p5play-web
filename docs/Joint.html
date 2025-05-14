@@ -69,7 +69,7 @@ if it is used a GlueJoint will be created.
 It's better to use a specific joint class constructor:
 
 GlueJoint, DistanceJoint, WheelJoint, HingeJoint,
-SliderJoint, or RopeJoint.
+SliderJoint, RopeJoint, or GrabberJoint.
 
 All other joint classes extend this class. Joint type
 can not be changed after a joint is created.
@@ -108,7 +108,7 @@ can not be changed after a joint is created.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line7577">line 7577</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line7611">line 7611</a>
     </li></ul></dd>
     
 
@@ -348,7 +348,7 @@ each other.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line7890">line 7890</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line7924">line 7924</a>
     </li></ul></dd>
     
 
@@ -435,7 +435,7 @@ making the joint completely rigid, regardless of its springiness.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line7811">line 7811</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line7845">line 7845</a>
     </li></ul></dd>
     
 
@@ -509,7 +509,7 @@ making the joint completely rigid, regardless of its springiness.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line7718">line 7718</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line7752">line 7752</a>
     </li></ul></dd>
     
 
@@ -585,7 +585,7 @@ car in neutral.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line7850">line 7850</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line7884">line 7884</a>
     </li></ul></dd>
     
 
@@ -665,7 +665,7 @@ around its axis of rotation.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line7863">line 7863</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line7897">line 7897</a>
     </li></ul></dd>
     
 
@@ -746,7 +746,7 @@ Only distance and hinge joints have an offsetA.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line7732">line 7732</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line7766">line 7766</a>
     </li></ul></dd>
     
 
@@ -827,7 +827,7 @@ Only distance, hinge, and wheel joints have an offsetB.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line7747">line 7747</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line7781">line 7781</a>
     </li></ul></dd>
     
 
@@ -907,7 +907,7 @@ being applied on the joint's axis of rotation.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line7880">line 7880</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line7914">line 7914</a>
     </li></ul></dd>
     
 
@@ -981,7 +981,7 @@ being applied on the joint's axis of rotation.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line7900">line 7900</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line7934">line 7934</a>
     </li></ul></dd>
     
 
@@ -1045,7 +1045,7 @@ being applied on the joint's axis of rotation.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line7907">line 7907</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line7941">line 7941</a>
     </li></ul></dd>
     
 
@@ -1114,7 +1114,7 @@ being applied on the joint's axis of rotation.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line7830">line 7830</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line7864">line 7864</a>
     </li></ul></dd>
     
 
@@ -1208,7 +1208,7 @@ to the range of 30-0.2hz, except 0 remains 0.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line7775">line 7775</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line7809">line 7809</a>
     </li></ul></dd>
     
 
@@ -1293,7 +1293,7 @@ sprites' joints arrays.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line7915">line 7915</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line7949">line 7949</a>
     </li></ul></dd>
     
 
@@ -1345,7 +1345,7 @@ sprites' joints arrays.
 <br class="clear">
 
 <footer>
-    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Tue May 06 2025 09:57:59 GMT-0500 (Colombia Standard Time) using the Minami theme.
+    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Tue May 13 2025 21:43:54 GMT-0500 (Colombia Standard Time) using the Minami theme.
 </footer>
 
 <script>prettyPrint();</script>

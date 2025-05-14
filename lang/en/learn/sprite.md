@@ -30,16 +30,13 @@ Try turning the sprite named `ball` into a blue circle with a diameter of 30 and
 
 ## Sprite physics
 
-A sprite's collider is used to detect collisions with other
-sprites. By default, sprites have a `DYNAMIC` physics
-collider that allows the sprite to move freely and be affected by
-gravity.
+A sprite's `physicsType`/`physics` determines how it behaves in the physics simulation:
 
-`STATIC` colliders can't be moved. `KINEMATIC` colliders can be moved
-programmatically but not by other sprites. They also won't collide with other kinematic colliders. Setting a sprite's collider
-type to `NONE` makes it have no collider.
+- `DYNAMIC`/`DYN` (default): affected by gravity
+- `STATIC`/`STA`: doesn't move
+- `KINEMATIC`/`KIN`: not moved by other sprites
 
-The collider type can also be set using abbreviations of collider type name: `DYN`, `STA`, or `KIN`.
+By default, sprites have a collider that can be used to detect collisions with other sprites.
 
 Click the reload icon on the top right corner of a code example to replay it!
 

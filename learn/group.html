@@ -321,7 +321,7 @@ function setup() {
 	new Canvas(500, 192);
 	balls = new Group();
 	balls.d = 20;
-	balls.collider = 'none';
+	balls.physics = 'none';
 	balls.direction = () => random(0, 360);
 	balls.speed = () => random(1, 5);
 	balls.amount = 10;

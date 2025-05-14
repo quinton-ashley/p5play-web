@@ -30,13 +30,15 @@ Intenta convertir el sprite llamado `ball` en un círculo azul con un diámetro 
 
 ## Física de los sprites
 
-El colisionador de un sprite se utiliza para detectar colisiones con otros sprites. Por defecto, los sprites tienen un colisionador de física `DYNAMIC` que permite que el sprite se mueva libremente y sea afectado por la gravedad.
+La propiedad `physicsType` o `physics` de un sprite determina cómo se comporta su collider en la simulación física:
 
-Los colisionadores `STATIC` no pueden moverse. Los colisionadores `KINEMATIC` pueden moverse programáticamente pero no por otros sprites. Además, no colisionarán con otros colisionadores kinemáticos. Establecer el tipo de colisionador de un sprite a `NONE` lo elimina de la simulación física.
+- `DYNAMIC`/`DYN` (por defecto): afectado por la gravedad
+- `STATIC`/`STA`: no se mueve
+- `KINEMATIC`/`KIN`: no es movido por otros sprites
 
-El tipo de colisionador también puede establecerse usando la primera letra del nombre del tipo de colisionador: `DYN`, `STA`, o `KIN`.
+Por defecto, los sprites tienen un collider que se puede usar para detectar colisiones con otros sprites.
 
-¡Haz clic en el icono de recargar en la esquina superior derecha de un mini ejemplo para volver a reproducirlo!
+¡Haz clic en el ícono de recargar en la esquina superior derecha de un ejemplo de código para volver a reproducirlo!
 
 # 1-1
 

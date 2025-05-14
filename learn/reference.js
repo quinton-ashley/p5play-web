@@ -16,7 +16,7 @@ let refs = {
 			'textSize',
 			'visible'
 		],
-		1: ['collider'],
+		1: ['physicsType / physics'],
 		2: ['image', 'debug', 'opacity'],
 		3: ['vel / velocity', 'speed', 'direction', 'move', 'moveTo', 'moveTowards', 'angleTo'],
 		5: ['collides', 'colliding', 'collided'],

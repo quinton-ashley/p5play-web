@@ -171,18 +171,14 @@ function update() {
 		<div id="page-1" class="page">
 			<md id="md1-0">
 				<h2 id="スプライトの物理挙動">スプライトの物理挙動</h2>
-				<p>スプライトのコライダー（衝突を判定する仕組み）は、
-					他のスプライトとのコリジョン（衝突）を検出するために使用されます。
-					スプライトがデフォルトで持つ <code>DYNAMIC</code> コライダーは、
-					自由に移動でき、重力の影響を受けられるコライダーです。</p>
-				<p><code>STATIC</code> コライダーを持つスプライトは、動かせません。
-					<code>KINEMATIC</code> コライダーを持つスプライトは、プログラム的に移動させることができますが、他のスプライトの影響を受けません。また、他の kinematic
-					コライダーともコリジョンを起こしません。
-					スプライトのコライダーを <code>NONE</code> に設定すると、コライダーを持っていないことになります。
-				</p>
-				<p>コライダーのタイプは、 <code>DYN</code> 、 <code>STA</code> 、および <code>KIN</code> のように、それぞれのタイプ名の頭文字で指定することもできます。
-				</p>
-				<p>コードサンプルを再生するには、右上のリロードアイコンをクリックしてください！</p>
+				<p>スプライトの <code>physicsType</code> または <code>physics</code> プロパティは、物理シミュレーション内でのコライダーの挙動を決定します。</p>
+				<ul>
+					<li><code>DYNAMIC</code>/<code>DYN</code>（デフォルト）：重力の影響を受ける</li>
+					<li><code>STATIC</code>/<code>STA</code>：動かない</li>
+					<li><code>KINEMATIC</code>/<code>KIN</code>：他のスプライトによって動かされない</li>
+				</ul>
+				<p>デフォルトで、スプライトには他のスプライトとの衝突を検出できるコライダーが付いています。</p>
+				<p>コード例の右上にあるリロードアイコンをクリックすると、もう一度</p>
 			</md>
 			<script type="mie/p5" id="dynamic-and-static-colliders" base-2="" horiz="" lines="16">
 let ball, floor;
@@ -199,7 +195,7 @@ function setup() {
 	floor.y = 190;
 	floor.w = 238;
 	floor.h = 5;
-	floor.collider = STATIC;
+	floor.physics = STATIC;
 }
 
 function update() {
@@ -217,11 +213,11 @@ floor.rotation = 2;
 
 			<div class="minis">
 				<script type="mie/p5" id="rising-platform" base="2">
-floor.collider = KIN;
+floor.physics = KIN;
 floor.velocity.y = -1;
 				</script>
 				<script type="mie/p5" id="whoops!" base="2">
-floor.collider = NONE;
+floor.physics = NONE;
 				</script>
 			</div>
 			<div class="break"></div>
@@ -244,7 +240,7 @@ function setup() {
 	peg = new Sprite();
 	peg.diameter = 10;
 	peg.y = 40;
-	peg.collider = STATIC;
+	peg.physics = STATIC;
 
 	block = new Sprite();
 	block.w = 30;
@@ -575,7 +571,7 @@ function setup() {
 	// box.y = 70;
 	// box.width = 10;
 	// box.height = 90;
-	// box.collider = STATIC;
+	// box.physics = STATIC;
 
 	// 					 	     ( x,   y,  d, collider)
 	circle = new Sprite(25, 140, 10, STATIC);
@@ -685,7 +681,7 @@ function setup() {
 function update() {
 	clear();
 	if (block.collided(floor)) {
-		floor.collider = DYNAMIC;
+		floor.physics = DYNAMIC;
 	}
 }
 			</script>
@@ -1274,7 +1270,7 @@ function setup() {
 
 	//                ([vertex0, vertex1, vertex2, ...])
 	floor = new Sprite([[20, 60], [200, 140], [450, 180]]);
-	floor.collider = STATIC;
+	floor.physics = STATIC;
 
 	ball = new Sprite(40, 0, 20);
 }
