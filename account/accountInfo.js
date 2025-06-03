@@ -3,10 +3,11 @@ let $ = (n) => document.getElementById(n.slice(1));
 function showAuthContent() {
 	let usr = p5playAccount;
 	$('#account-type').textContent = usr.type;
-	$('#account-id').textContent = usr.username;
+	$('#account-id').textContent = usr.username || usr.classID;
 	let name;
 	if (usr.type == 'Student') {
-		name = usr.classID + '-' + usr.studentID;
+		name = usr.studentID;
+		$('#account-pro').textContent = '❌ No';
 	} else {
 		name = usr.full_name.split(' ')[0];
 		loadUserData();
