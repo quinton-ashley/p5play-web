@@ -10,9 +10,13 @@ Having trouble creating an account? [Contact us.](mailto:info@p5play.org)
 
 # 0-1
 
-## <span id="account-type"></span> Account
+<h2 id="auth-account"><span id="account-type"></span> Account</h2>
 
 Welcome <span id="username"></span>!
+
+Account ID: <span id="account-id"></span>
+
+[Pro](../pro) member: <span id="account-pro"></span>
 
 # 1-0
 

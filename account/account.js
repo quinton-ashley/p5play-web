@@ -92,9 +92,9 @@ function jwtDecode(token, options) {
 
 		// if there's no token, display the unauthorized section of the page
 		if (!idToken) {
-			if (window.showUnauthContent) await showUnauthContent();
 			let els = document.getElementsByClassName('unauth');
 			for (let el of els) el.style.display = 'block';
+			if (window.showUnauthContent) await showUnauthContent();
 			return;
 		}
 
@@ -120,11 +120,11 @@ function jwtDecode(token, options) {
 		localStorage.setItem('p5playAccount', JSON.stringify(p5playAccount));
 	}
 
-	// show section of page that requires authentication
-	if (window.showAuthContent) await showAuthContent();
-
 	let els = document.getElementsByClassName('unauth');
 	for (let el of els) el.style.display = 'none';
 	els = document.getElementsByClassName('auth');
 	for (let el of els) el.style.display = 'block';
+
+	// populate section of page that requires authentication
+	if (window.showAuthContent) await showAuthContent();
 })();

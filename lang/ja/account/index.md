@@ -8,9 +8,13 @@
 
 # 0-1
 
-## <span id="account-type"></span> アカウント
+<h2 id="auth-account"><span id="account-type"></span> アカウント</h2>
 
 ようこそ <span id="username"></span>さん！
+
+アカウント ID: <span id="account-id"></span>
+
+[Pro](../pro): <span id="account-pro"></span>
 
 # 1-0
 

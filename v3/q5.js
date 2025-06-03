@@ -1354,6 +1354,8 @@ Q5.renderers.c2d.image = ($, q) => {
 		return g;
 	};
 
+	$._imageMode = Q5.CORNER;
+
 	$.imageMode = (mode) => ($._imageMode = mode);
 
 	$.image = (img, dx, dy, dw, dh, sx = 0, sy = 0, sw, sh) => {
@@ -1387,7 +1389,7 @@ Q5.renderers.c2d.image = ($, q) => {
 				tnt.fillStyle = $._tint;
 				tnt.fillRect(0, 0, img.width, img.height);
 
-				if (img.canvas.alpha) {
+				if (img?.canvas?.alpha) {
 					tnt.globalCompositeOperation = 'destination-in';
 					tnt.drawImage(drawable, 0, 0, img.width, img.height);
 				}
@@ -5193,7 +5195,7 @@ fn fragMain(f: FragParams ) -> @location(0) vec4f {
 	$.opacity = (a) => (globalAlpha = a);
 	$.noFill = () => (doFill = false);
 	$.noStroke = () => (doStroke = false);
-	$.noTint = () => (tintIdx = 1);
+	$.noTint = () => (tintIdx = 2);
 
 	$.strokeWeight = (v) => {
 		if (v === undefined) return sw;
@@ -5253,13 +5255,20 @@ fn fragMain(f: FragParams ) -> @location(0) vec4f {
 		matrixDirty = true;
 	};
 
-	$.rotate = $.rotateZ = (a) => {
+	$.rotate = $.rotateZ = (a, a1) => {
 		if (!a) return;
-		if ($._angleMode) a *= $._DEGTORAD;
 
-		let cosR = Math.cos(a),
-			sinR = Math.sin(a),
-			m = matrix,
+		let cosR, sinR;
+		if (a1 === undefined) {
+			if ($._angleMode) a *= $._DEGTORAD;
+			cosR = Math.cos(a);
+			sinR = Math.sin(a);
+		} else {
+			cosR = a;
+			sinR = a1;
+		}
+
+		let m = matrix,
 			m0 = m[0],
 			m1 = m[1],
 			m4 = m[4],
@@ -6462,6 +6471,7 @@ fn fragMain(f: FragParams) -> @location(0) vec4f {
 	let _rectMode = 'corner';
 
 	$.rectMode = (x) => (_rectMode = x);
+	$._getRectMode = () => _rectMode;
 
 	function applyRectMode(x, y, w, h) {
 		let hw = w / 2,
@@ -6756,6 +6766,7 @@ fn fragMain(f: FragParams) -> @location(0) vec4f {
 	let _ellipseMode = 'center';
 
 	$.ellipseMode = (x) => (_ellipseMode = x);
+	$._getEllipseMode = () => _ellipseMode;
 
 	function applyEllipseMode(x, y, w, h) {
 		h ??= w;
@@ -6786,7 +6797,7 @@ fn fragMain(f: FragParams) -> @location(0) vec4f {
 
 		if (matrixDirty) saveMatrix();
 
-		addEllipse(x, y, a, b, 0, TAU, sw, doFill);
+		addEllipse(x, y, a, b, 0, TAU, doStroke ? sw : 0, doFill);
 	};
 
 	$.circle = (x, y, d) => $.ellipse(x, y, d, d);
@@ -6814,13 +6825,14 @@ fn fragMain(f: FragParams) -> @location(0) vec4f {
 
 		if (matrixDirty) saveMatrix();
 
-		addEllipse(x, y, a, b, start, stop, sw, doFill);
+		addEllipse(x, y, a, b, start, stop, doStroke ? sw : 0, doFill);
 	};
 
 	$.point = (x, y) => {
 		if (matrixDirty) saveMatrix();
 
-		if (scaledHSW < 1) {
+		// if the point stroke size is a single pixel (or smaller), use a rectangle
+		if (scaledHSW <= 0.5) {
 			addRect(x, y, hsw, hsw, 0, sw, 0);
 		} else {
 			// dimensions of the point needs to be set to half the stroke weight
@@ -7170,6 +7182,7 @@ fn fragMain(f: FragParams) -> @location(0) vec4f {
 	let _imageMode = 'corner';
 
 	$.imageMode = (x) => (_imageMode = x);
+	$._getImageMode = () => _imageMode;
 
 	const addImgVert = (x, y, u, v, ci, ti, ia) => {
 		let s = imgVertStack,

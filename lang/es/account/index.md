@@ -8,9 +8,13 @@
 
 # 0-1
 
-## Cuenta <span id="account-type"></span>
+<h2 id="auth-account"><span id="account-type"></span> Cuenta</h2>
 
 ¡Bienvenido <span id="username"></span>!
+
+Cuenta ID: <span id="account-id"></span>
+
+[Pro](../pro): <span id="account-pro"></span>
 
 # 1-0
 
