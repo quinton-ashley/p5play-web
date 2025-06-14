@@ -193,6 +193,23 @@
 	</div>
 	<script src="/learn/marked/marked.min.js"></script>
 	<script>
+		const idToken = localStorage.getItem('idToken');
+
+		// check if expired
+		let expired = true;
+
+		// redirect to login if not logged in
+		if (localStorage.getItem('idToken')) {
+			if (window.p5playAccount) {
+				let now = Date.now() / 1000;
+				expired = p5playAccount.tokenExp < now || p5playAccount.exp < now;
+			}
+		}
+
+		if (expired) {
+			window.location.href = 'https://p5play.auth.us-west-2.amazoncognito.com/login?client_id=3oegfdhu2r7eo8nr371496718c&response_type=token&scope=email+openid+profile&redirect_uri=https%3A%2F%2Fp5play.org%2Fpro%2Flicense.html';
+		}
+
 		// Fetch the markdown file and render it as HTML
 		fetch('/pro/PRO_LICENSE.md')
 			.then((res) => res.text())
@@ -228,8 +245,6 @@
 
 		async function agreeToProLicense() {
 			loading.classList.add('active');
-
-			const idToken = localStorage.getItem('idToken');
 
 			if (!idToken) {
 				loading.classList.remove('active');

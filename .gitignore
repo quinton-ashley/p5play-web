@@ -5,19 +5,9 @@ types/p5play.js
 types/p5play.d.ts
 dev/sketch*
 package-lock.json
-v4
-
-.DS_STORE
+.DS_Store
 logs
 *.log
 npm-debug.log*
-
 bun.lockb
-
-node_modules/
-
-# ignore to preserve files
-demos
-v2
-
 .vscode
