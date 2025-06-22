@@ -2,9 +2,9 @@
   typeof exports === "object" && typeof module !== "undefined" ? factory(exports) : typeof define === "function" && define.amd ? define(["exports"], factory) : (global = typeof globalThis !== "undefined" ? globalThis : global || self, factory(global.planck = {}));
 })(this, function(exports2) {
   "use strict";/**
- * Planck.js v1.3.0
+ * Planck.js v1.4.2
  * @license The MIT license
- * @copyright Copyright (c) 2024 Erin Catto, Ali Shakiba
+ * @copyright Copyright (c) 2025 Erin Catto, Ali Shakiba
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -581,15 +581,15 @@
         var d2 = Vec2.sub(input2.p2, input2.p1);
         var absD = Vec2.abs(d2);
         var normal3 = Vec2.zero();
-        for (var f = "x"; f !== null; f = f === "x" ? "y" : null) {
+        {
           if (absD.x < EPSILON) {
-            if (p[f] < this.lowerBound[f] || this.upperBound[f] < p[f]) {
+            if (p.x < this.lowerBound.x || this.upperBound.x < p.x) {
               return false;
             }
           } else {
-            var inv_d = 1 / d2[f];
-            var t1 = (this.lowerBound[f] - p[f]) * inv_d;
-            var t2 = (this.upperBound[f] - p[f]) * inv_d;
+            var inv_d = 1 / d2.x;
+            var t1 = (this.lowerBound.x - p.x) * inv_d;
+            var t2 = (this.upperBound.x - p.x) * inv_d;
             var s2 = -1;
             if (t1 > t2) {
               var temp3 = t1;
@@ -599,7 +599,34 @@
             }
             if (t1 > tmin) {
               normal3.setZero();
-              normal3[f] = s2;
+              normal3.x = s2;
+              tmin = t1;
+            }
+            tmax = math_min$7(tmax, t2);
+            if (tmin > tmax) {
+              return false;
+            }
+          }
+        }
+        {
+          if (absD.y < EPSILON) {
+            if (p.y < this.lowerBound.y || this.upperBound.y < p.y) {
+              return false;
+            }
+          } else {
+            var inv_d = 1 / d2.y;
+            var t1 = (this.lowerBound.y - p.y) * inv_d;
+            var t2 = (this.upperBound.y - p.y) * inv_d;
+            var s2 = -1;
+            if (t1 > t2) {
+              var temp3 = t1;
+              t1 = t2;
+              t2 = temp3;
+              s2 = 1;
+            }
+            if (t1 > tmin) {
+              normal3.setZero();
+              normal3.y = s2;
               tmin = t1;
             }
             tmax = math_min$7(tmax, t2);
@@ -1306,10 +1333,6 @@
         if (node.isLeaf()) {
           return;
         }
-        child1.height;
-        child2.height;
-        var aabb = new AABB();
-        aabb.combine(child1.aabb, child2.aabb);
         this.validateMetrics(child1);
         this.validateMetrics(child2);
       };
@@ -3422,7 +3445,6 @@
       Simplex2.prototype.getSearchDirection = function() {
         var v13 = this.m_v1;
         var v22 = this.m_v2;
-        this.m_v3;
         switch (this.m_count) {
           case 1:
             return setVec2(searchDirection_reuse, -v13.w.x, -v13.w.y);
@@ -3442,7 +3464,6 @@
       Simplex2.prototype.getClosestPoint = function() {
         var v13 = this.m_v1;
         var v22 = this.m_v2;
-        this.m_v3;
         switch (this.m_count) {
           case 0:
             return zeroVec2(closestPoint_reuse);
@@ -4441,8 +4462,6 @@
               }
               var indexA = c_3.getChildIndexA();
               var indexB = c_3.getChildIndexB();
-              bA_1.m_sweep;
-              bB_1.m_sweep;
               input.proxyA.set(fA_1.getShape(), indexA);
               input.proxyB.set(fB_1.getShape(), indexB);
               input.sweepA.set(bA_1.m_sweep);
@@ -5451,21 +5470,19 @@
         var bodyB = fixtureB.m_body;
         if (bodyA === null || bodyB === null)
           return minSeparation;
-        bodyA.c_velocity;
-        bodyB.c_velocity;
         var positionA = bodyA.c_position;
         var positionB = bodyB.c_position;
         var localCenterA = this.p_localCenterA;
         var localCenterB = this.p_localCenterB;
         var mA = 0;
         var iA = 0;
-        if (!toi || (bodyA === toiA || bodyA === toiB)) {
+        if (!toi || bodyA === toiA || bodyA === toiB) {
           mA = this.p_invMassA;
           iA = this.p_invIA;
         }
         var mB = 0;
         var iB = 0;
-        if (!toi || (bodyB === toiA || bodyB === toiB)) {
+        if (!toi || bodyB === toiA || bodyB === toiB) {
           mB = this.p_invMassB;
           iB = this.p_invIB;
         }
@@ -5640,8 +5657,6 @@
           return;
         var velocityA = bodyA.c_velocity;
         var velocityB = bodyB.c_velocity;
-        bodyA.c_position;
-        bodyB.c_position;
         var mA = this.v_invMassA;
         var iA = this.v_invIA;
         var mB = this.v_invMassB;
@@ -5682,9 +5697,7 @@
         if (bodyA === null || bodyB === null)
           return;
         var velocityA = bodyA.c_velocity;
-        bodyA.c_position;
         var velocityB = bodyB.c_velocity;
-        bodyB.c_position;
         var mA = this.v_invMassA;
         var iA = this.v_invIA;
         var mB = this.v_invMassB;
@@ -6786,7 +6799,6 @@
       return EdgeShape2;
     }(Shape)
   );
-  var Edge = EdgeShape;
   var v1$1 = vec2(0, 0);
   var v2 = vec2(0, 0);
   var ChainShape = (
@@ -6861,10 +6873,7 @@
         if (vertices.length < 3) {
           return;
         }
-        for (var i = 1; i < vertices.length; ++i) {
-          vertices[i - 1];
-          vertices[i];
-        }
+        var i;
         this.m_vertices = [];
         this.m_count = vertices.length + 1;
         for (var i = 0; i < vertices.length; ++i) {
@@ -6878,10 +6887,7 @@
         return this;
       };
       ChainShape2.prototype._createChain = function(vertices) {
-        for (var i = 1; i < vertices.length; ++i) {
-          vertices[i - 1];
-          vertices[i];
-        }
+        var i;
         this.m_vertices = [];
         this.m_count = vertices.length;
         for (var i = 0; i < vertices.length; ++i) {
@@ -6985,7 +6991,6 @@
       return ChainShape2;
     }(Shape)
   );
-  var Chain = ChainShape;
   var math_max$1 = Math.max;
   var math_min$3 = Math.min;
   var temp$1 = vec2(0, 0);
@@ -7303,7 +7308,6 @@
     c2.mul(1 / area);
     return c2;
   }
-  var Polygon = PolygonShape;
   var math_sqrt = Math.sqrt;
   var math_PI$4 = Math.PI;
   var temp = vec2(0, 0);
@@ -7406,7 +7410,6 @@
       return CircleShape2;
     }(Shape)
   );
-  var Circle = CircleShape;
   var math_abs$5 = Math.abs;
   var math_PI$3 = Math.PI;
   var DEFAULTS$a = {
@@ -10854,24 +10857,6 @@
     /** @class */
     function() {
       function Testbed2() {
-        this.width = 80;
-        this.height = 60;
-        this.x = 0;
-        this.y = -10;
-        this.scaleY = -1;
-        this.hz = 60;
-        this.speed = 1;
-        this.background = "#222222";
-        this.activeKeys = {};
-        this.step = function(dt, t) {
-          return;
-        };
-        this.keydown = function(keyCode, label) {
-          return;
-        };
-        this.keyup = function(keyCode, label) {
-          return;
-        };
       }
       Testbed2.mount = function(options2) {
         throw new Error("Not implemented");
@@ -10880,12 +10865,6 @@
         var testbed2 = Testbed2.mount();
         testbed2.start(world);
         return testbed2;
-      };
-      Testbed2.prototype.color = function(r, g, b2) {
-        r = r * 256 | 0;
-        g = g * 256 | 0;
-        b2 = b2 * 256 | 0;
-        return "rgb(" + r + ", " + g + ", " + b2 + ")";
       };
       return Testbed2;
     }()
@@ -10927,7 +10906,6 @@
       return BoxShape2;
     }(PolygonShape)
   );
-  var Box = BoxShape;
   Contact.addType(CircleShape.TYPE, CircleShape.TYPE, CircleCircleContact);
   function CircleCircleContact(manifold, xfA2, fixtureA, indexA, xfB2, fixtureB, indexB) {
     CollideCircles(manifold, fixtureA.getShape(), xfA2, fixtureB.getShape(), xfB2);
@@ -11753,12 +11731,12 @@
     __proto__: null,
     AABB,
     Body,
-    Box,
+    Box: BoxShape,
     BoxShape,
     BroadPhase,
-    Chain,
+    Chain: ChainShape,
     ChainShape,
-    Circle,
+    Circle: CircleShape,
     CircleShape,
     ClipVertex,
     CollideCircles,
@@ -11780,7 +11758,7 @@
     DistanceOutput,
     DistanceProxy,
     DynamicTree,
-    Edge,
+    Edge: EdgeShape,
     EdgeShape,
     Fixture,
     FixtureProxy,
@@ -11801,7 +11779,7 @@
     get PointState() {
       return exports2.PointState;
     },
-    Polygon,
+    Polygon: PolygonShape,
     PolygonShape,
     PrismaticJoint,
     PulleyJoint,
@@ -11846,12 +11824,12 @@
   }, Symbol.toStringTag, { value: "Module" }));
   exports2.AABB = AABB;
   exports2.Body = Body;
-  exports2.Box = Box;
+  exports2.Box = BoxShape;
   exports2.BoxShape = BoxShape;
   exports2.BroadPhase = BroadPhase;
-  exports2.Chain = Chain;
+  exports2.Chain = ChainShape;
   exports2.ChainShape = ChainShape;
-  exports2.Circle = Circle;
+  exports2.Circle = CircleShape;
   exports2.CircleShape = CircleShape;
   exports2.ClipVertex = ClipVertex;
   exports2.CollideCircles = CollideCircles;
@@ -11870,7 +11848,7 @@
   exports2.DistanceOutput = DistanceOutput;
   exports2.DistanceProxy = DistanceProxy;
   exports2.DynamicTree = DynamicTree;
-  exports2.Edge = Edge;
+  exports2.Edge = EdgeShape;
   exports2.EdgeShape = EdgeShape;
   exports2.Fixture = Fixture;
   exports2.FixtureProxy = FixtureProxy;
@@ -11885,7 +11863,7 @@
   exports2.Math = math;
   exports2.MotorJoint = MotorJoint;
   exports2.MouseJoint = MouseJoint;
-  exports2.Polygon = Polygon;
+  exports2.Polygon = PolygonShape;
   exports2.PolygonShape = PolygonShape;
   exports2.PrismaticJoint = PrismaticJoint;
   exports2.PulleyJoint = PulleyJoint;
