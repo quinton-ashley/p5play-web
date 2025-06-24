@@ -6,9 +6,23 @@ The p5play Game Jam is a competition held bi-annually to see who can make the be
 
 You can work individually or in a team. Share your game in the [#share](https://discord.gg/EJwnJATmj7) channel on Discord to receive feedback before the competition ends. Submit your game using the google form linked below.
 
-Games must use the latest version of p5play and be submitted before June 20th 2025.
+Games must use the latest version of p5play and be submitted before December 20th 2025.
 
 ## 🎉 [Submit your game!](https://forms.gle/xn2PvsC8FA8Hf8Qo8) 🎉
+
+# s2025
+
+## 🥇 Summer 2025 : [@perhapseb](https://www.perhapstudios.com/)
+
+["ChromaJump"](https://perhapseb.github.io/ChromaJump/), by Sebastian C. (age 18), is a retro puzzle platformer. Swap between tinted camera lenses to reveal and remove parts of the world!
+
+Is a wall blocking your path? A gap you can't possibly cross? Try seeing the world in a different light.
+
+Use your keyboard or plug in a controller to play. Sit back and enjoy the meditative music and satisfying sound design of this atmospheric game. The depth of a vast cavern is simulated through a subtle parallax effect.
+
+Play as an adorably pudgy glowing alien that moon jumps through life and is unfazed by death… pick up right where you last touched solid ground and try again! Levels get progressively more challenging. In the end you'll need to be light on your toes and take a few leaps of faith.
+
+This game won because of its highly polished execution of a simple yet clever mechanic. It makes great use of [q5.js](https://q5js.org)' Auto-HDR feature. Note the vivid contrast between the bright platforms and dark backgrounds.
 
 # w2024
 
@@ -34,7 +48,7 @@ This game won because of its zany, fast paced, and chaotic gameplay. The game's 
 
 ## 🥇 Winter 2023 : [@pannawit0](https://www.youtube.com/@hazu0)
 
-["Skull Knight"](https://pannawit0.github.io/SkullKnight), by Pannawit (age 17), is a survival game. You play as a knight with a floating skull companion in a castle filled with dangerous traps and monsters.
+["Skull Knight"](https://pannawit0.github.io/SkullKnight), by Neo Jittungtrong (age 17), is a survival game. You play as a knight with a floating skull companion in a castle filled with dangerous traps and monsters.
 
 This game won because of its atmospheric design and challenging gameplay. Check out the game's [code](https://github.com/Pannawit0/SkullKnight/blob/master/skullKnight.js) to see how Pannawit used p5play's movement and rotation functions to create enemy AI and text animations.
 

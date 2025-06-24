@@ -6,9 +6,23 @@
 
 Puedes trabajar de forma individual o en equipo. Comparte tu juego en el canal [#share](https://discord.gg/EJwnJATmj7) en Discord para recibir comentarios antes de que termine la competencia. Envía tu juego utilizando el formulario de Google vinculado a continuación.
 
-Los juegos deben usar la última versión de p5play y deben enviarse antes del 20 de junio de 2025.
+Los juegos deben usar la última versión de p5play y deben enviarse antes del 20 de diciembre de 2025.
 
 ## 🎉 [¡Envía tu juego!](https://forms.gle/xn2PvsC8FA8Hf8Qo8) 🎉
+
+# s2025
+
+## 🥇 Verano 2025 : [@perhapseb](https://www.perhapstudios.com/)
+
+["ChromaJump"](https://perhapseb.github.io/ChromaJump/), de Sebastian C. (18 años), es un juego de plataformas y rompecabezas retro. ¡Cambia entre lentes de cámara tintados para revelar y eliminar partes del mundo!
+
+¿Hay una pared bloqueando tu camino? ¿Un hueco que parece imposible de cruzar? Intenta ver el mundo bajo otra luz.
+
+Usa tu teclado o conecta un control para jugar. Relájate y disfruta de la música meditativa y el satisfactorio diseño de sonido de este juego atmosférico. La profundidad de una vasta caverna se simula mediante un sutil efecto de paralaje.
+
+Juega como un adorable y regordete alienígena brillante que salta como en la luna y no se inmuta ante la muerte… ¡vuelves justo donde tocaste el suelo por última vez y lo intentas de nuevo! Los niveles se vuelven progresivamente más desafiantes. Al final, necesitarás ser ágil y dar algunos saltos de fe.
+
+Este juego ganó por su ejecución altamente pulida de una mecánica simple pero ingeniosa. Hace gran uso de la función Auto-HDR de [q5.js](https://q5js.org). Observa el vívido contraste entre las plataformas brillantes y los fondos oscuros.
 
 # w2024
 

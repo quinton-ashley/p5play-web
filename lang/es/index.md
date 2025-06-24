@@ -211,4 +211,4 @@ Probadores y reporteros de errores: Raj Raizada, Nathan Anil, Chayarat Wangweera
 
 # ft
 
-p5play.org fue creado por Quinton Ashley. Copyright ©2022-2024. [info@p5play.org](mailto:info@p5play.org) ¿Buscas la [versión legado](https://quinton-ashley.github.io/p5play-web-archive/v2) de p5play?
+p5play.org fue creado por Quinton Ashley. Copyright ©2022-2025. [info@p5play.org](mailto:info@p5play.org) ¿Buscas la [versión legado](https://quinton-ashley.github.io/p5play-web-archive/v2) de p5play?

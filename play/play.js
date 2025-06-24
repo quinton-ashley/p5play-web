@@ -14,9 +14,21 @@ let projects = [
 		video: true
 	},
 	{
+		title: 'ChromaJump',
+		author: '@perhapseb',
+		url: 'https://perhapseb.github.io/ChromaJump/',
+		size: 1
+	},
+	{
 		title: 'Into the Mines',
 		author: '@Tezumies',
 		url: 'https://tezumie.github.io/into-the-mines/',
+		size: 1
+	},
+	{
+		title: 'Malice and Mercy',
+		author: '@emptyconsole',
+		url: 'https://emptyconsole.github.io/Malice-and-Mercy/',
 		size: 1
 	},
 	{
@@ -26,17 +38,15 @@ let projects = [
 		size: 1
 	},
 	{
-		title: 'Fruit 2048',
-		author: '@arissazh',
-		url: 'https://arissazh.github.io/final-project/',
-		size: 1,
-		video: true
-	},
-	{
 		title: 'Desert Golfing',
 		author: '@mtrc',
 		url: 'https://editor.p5js.org/mtrc/sketches/Zc9cjBS3R',
-		size: 1,
+		video: true
+	},
+	{
+		title: 'Fruit 2048',
+		author: '@arissazh',
+		url: 'https://arissazh.github.io/final-project/',
 		video: true
 	},
 	{
@@ -44,6 +54,11 @@ let projects = [
 		author: '@kevin98799',
 		url: 'https://kevin98799.itch.io/puzzling-magnetism-recharged',
 		video: true
+	},
+	{
+		title: 'Lily Leap',
+		author: '@amanizungu',
+		url: 'https://quinton-ashley.github.io/quintos/?user=quinton-ashley&game=LilyLeap'
 	},
 	{
 		title: 'Forrest Life',
@@ -57,16 +72,11 @@ let projects = [
 		url: 'https://quinton-ashley.github.io/TheLakeHouse/Code/index.html',
 		video: true
 	},
-	{
-		title: 'Lily Leap',
-		author: '@AmaniZungu',
-		url: 'https://quinton-ashley.github.io/quintos/?user=AmaniZungu&game=LilyLeap&v=4'
-	},
-	{
-		title: 'Dodeca Done',
-		author: '@coding398',
-		url: 'https://store.steampowered.com/app/2754840/Dodecadone/'
-	},
+	// {
+	// 	title: 'Dodeca Done',
+	// 	author: '@coding398',
+	// 	url: 'https://store.steampowered.com/app/2754840/Dodecadone/'
+	// },
 	{
 		title: 'Break Those Blocks',
 		author: '@moonflower2022',
@@ -77,11 +87,6 @@ let projects = [
 		title: 'Sun Warrior',
 		author: '@andyjshaw000',
 		url: 'https://andyjshaw000.github.io/Final438/'
-	},
-	{
-		title: 'Save the Mushrooms',
-		author: '@chickenandwafflesequalsyes',
-		url: 'https://openprocessing.org/sketch/1995592'
 	}
 ];
 
