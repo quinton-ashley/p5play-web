@@ -193,55 +193,44 @@
 	</div>
 	<script src="/learn/marked/marked.min.js"></script>
 	<script>
-		const idToken = localStorage.getItem('idToken');
-
-		// check if expired
-		let expired = true;
-
-		// redirect to login if not logged in
-		if (localStorage.getItem('idToken')) {
-			if (window.p5playAccount) {
-				let now = Date.now() / 1000;
-				expired = p5playAccount.tokenExp < now || p5playAccount.exp < now;
-			}
-		}
-
-		if (expired) {
+		function showUnauthContent() {
 			window.location.href = 'https://p5play.auth.us-west-2.amazoncognito.com/login?client_id=3oegfdhu2r7eo8nr371496718c&response_type=token&scope=email+openid+profile&redirect_uri=https%3A%2F%2Fp5play.org%2Fpro%2Flicense.html';
 		}
 
-		// Fetch the markdown file and render it as HTML
-		fetch('/pro/PRO_LICENSE.md')
-			.then((res) => res.text())
-			.then((md) => {
-				document.getElementById('license-text').innerHTML = marked.parse(md);
+		function showAuthContent() {
+			// Fetch the markdown file and render it as HTML
+			fetch('/pro/PRO_LICENSE.md')
+				.then((res) => res.text())
+				.then((md) => {
+					document.getElementById('license-text').innerHTML = marked.parse(md);
+				});
+
+			const container = document.getElementById('license-container');
+			const agreeBtn = document.getElementById('agree-btn');
+			const signatureInput = document.getElementById('signature-input');
+			const loading = document.getElementById('fullscreen-loading');
+
+			let scrolledToBottom = false;
+			let hasSignature = false;
+
+			function updateAgreeState() {
+				agreeBtn.disabled = !(scrolledToBottom && hasSignature);
+			}
+
+			container.addEventListener('scroll', function () {
+				const atBottom = container.scrollTop + container.clientHeight >= container.scrollHeight - 2;
+				scrolledToBottom = atBottom;
+				updateAgreeState();
 			});
 
-		const container = document.getElementById('license-container');
-		const agreeBtn = document.getElementById('agree-btn');
-		const signatureInput = document.getElementById('signature-input');
-		const loading = document.getElementById('fullscreen-loading');
+			signatureInput.addEventListener('input', function () {
+				hasSignature = signatureInput.value.trim().length > 0;
+				updateAgreeState();
+			});
 
-		let scrolledToBottom = false;
-		let hasSignature = false;
-
-		function updateAgreeState() {
-			agreeBtn.disabled = !(scrolledToBottom && hasSignature);
+			// Handle button click
+			agreeBtn.addEventListener('click', agreeToProLicense);
 		}
-
-		container.addEventListener('scroll', function () {
-			const atBottom = container.scrollTop + container.clientHeight >= container.scrollHeight - 2;
-			scrolledToBottom = atBottom;
-			updateAgreeState();
-		});
-
-		signatureInput.addEventListener('input', function () {
-			hasSignature = signatureInput.value.trim().length > 0;
-			updateAgreeState();
-		});
-
-		// Handle button click
-		agreeBtn.addEventListener('click', agreeToProLicense);
 
 		async function agreeToProLicense() {
 			loading.classList.add('active');
@@ -280,6 +269,7 @@
 			}, 3000);
 		}
 	</script>
+	<script src="../account/account.js"></script>
 </body>
 
 </html>
