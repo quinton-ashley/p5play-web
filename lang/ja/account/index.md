@@ -20,6 +20,6 @@
 
 ## 無料リソース
 
-- [p5play-vscode](https://github.com/quinton-ashley/p5play-vscode) : VSCode 拡張機能
-- [p5play-template](https://github.com/quinton-ashley/p5play-template) : スターターコード
-- [p5play-desktop](https://github.com/quinton-ashley/p5play-desktop) : デスクトップアプリテンプレート
+- [p5play-vscode](https://github.com/p5playjs/p5play-vscode) : VSCode 拡張機能
+- [p5play-template](https://github.com/p5playjs/p5play-template) : スターターコード
+- [p5play-desktop](https://github.com/p5playjs/p5play-desktop) : デスクトップアプリテンプレート

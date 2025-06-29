@@ -20,6 +20,6 @@ Cuenta ID: <span id="account-id"></span>
 
 ## Recursos Gratuitos
 
-- [p5play-vscode](https://github.com/quinton-ashley/p5play-vscode) : extensión para VSCode
-- [p5play-template](https://github.com/quinton-ashley/p5play-template) : código inicial
-- [p5play-desktop](https://github.com/quinton-ashley/p5play-desktop) : plantilla de aplicación de escritorio
+- [p5play-vscode](https://github.com/p5playjs/p5play-vscode) : extensión para VSCode
+- [p5play-template](https://github.com/p5playjs/p5play-template) : código inicial
+- [p5play-desktop](https://github.com/p5playjs/p5play-desktop) : plantilla de aplicación de escritorio

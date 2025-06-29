@@ -2172,6 +2172,7 @@ Q5.modules.color = ($, q) => {
 	$.colorMode = (mode, format, gamut) => {
 		$._colorMode = mode;
 		let srgb = $.canvas.colorSpace == 'srgb' || gamut == 'srgb';
+		$._srgb = srgb;
 		format ??= mode == 'rgb' ? ($._c2d || srgb ? 255 : 1) : 1;
 		$._colorFormat = format == 'integer' || format == 255 ? 255 : 1;
 		if (mode == 'oklch') {
@@ -2243,6 +2244,10 @@ Q5.modules.color = ($, q) => {
 					}
 				} else if ($._namedColors[c0]) {
 					[c0, c1, c2, c3] = $._namedColors[c0];
+					if ($._colorMode != 'rgb') {
+						C = $._srgb ? Q5.ColorRGB_8 : Q5.ColorRGB_P3_8;
+						return new C(c0, c1, c2, c3);
+					}
 				} else {
 					// css color string not parsed
 					let c = new C(0, 0, 0);
@@ -2755,7 +2760,7 @@ main {
 	$.fullscreen = (v) => {
 		if (v == undefined) return document.fullscreenElement;
 		if (v) document.body.requestFullscreen();
-		else document.body.exitFullscreen();
+		else document.exitFullscreen();
 	};
 };
 Q5.modules.dom = ($, q) => {
@@ -5268,8 +5273,9 @@ fn fragMain(f: FragParams ) -> @location(0) vec4f {
 	$._setStrokeIdx = (v) => (strokeIdx = v);
 	$._doStroke = () => (doStroke = true);
 
-	const MAX_TRANSFORMS = $._isGraphics ? 1000 : 1e7,
+	const MAX_TRANSFORMS = $._isGraphics ? 1000 : Q5.MAX_TRANSFORMS,
 		MATRIX_SIZE = 16, // 4x4 matrix
+		MAX_TRANSFORM_BUFFER_SIZE = MAX_TRANSFORMS * MATRIX_SIZE * 4,
 		transforms = new Float32Array(MAX_TRANSFORMS * MATRIX_SIZE);
 
 	let matrix,
@@ -5669,28 +5675,30 @@ fn fragMain(f: FragParams ) -> @location(0) vec4f {
 		shouldClear = false;
 	};
 
+	let transformsBuffer, colorsBuffer, shapesVertBuff, imgVertBuff, charBuffer, textBuffer;
+
 	$._render = () => {
-		let transformBuffer = Q5.device.createBuffer({
-			size: matrices.length * MATRIX_SIZE * 4, // 4 bytes per float
-			usage: GPUBufferUsage.STORAGE,
-			mappedAtCreation: true
-		});
+		let transformsSize = matrices.length * MATRIX_SIZE * 4; // 4 bytes per float
+		if (!transformsBuffer || transformsBuffer.size < transformsSize) {
+			if (transformsBuffer) transformsBuffer.destroy();
+			transformsBuffer = Q5.device.createBuffer({
+				size: Math.min(transformsSize * 2, MAX_TRANSFORM_BUFFER_SIZE),
+				usage: GPUBufferUsage.STORAGE | GPUBufferUsage.COPY_DST
+			});
+		}
 
-		new Float32Array(transformBuffer.getMappedRange()).set(transforms.slice(0, matrices.length * MATRIX_SIZE));
-		transformBuffer.unmap();
+		Q5.device.queue.writeBuffer(transformsBuffer, 0, transforms.subarray(0, matrices.length * MATRIX_SIZE));
 
-		$._buffers.push(transformBuffer);
+		let colorsSize = colorStackIndex * 4;
+		if (!colorsBuffer || colorsBuffer.size < colorsSize) {
+			if (colorsBuffer) colorsBuffer.destroy();
+			colorsBuffer = Q5.device.createBuffer({
+				size: colorsSize * 2,
+				usage: GPUBufferUsage.STORAGE | GPUBufferUsage.COPY_DST
+			});
+		}
 
-		let colorsBuffer = Q5.device.createBuffer({
-			size: colorStackIndex * 4,
-			usage: GPUBufferUsage.STORAGE,
-			mappedAtCreation: true
-		});
-
-		new Float32Array(colorsBuffer.getMappedRange()).set(colorStack.slice(0, colorStackIndex));
-		colorsBuffer.unmap();
-
-		$._buffers.push(colorsBuffer);
+		Q5.device.queue.writeBuffer(colorsBuffer, 0, colorStack.subarray(0, colorStackIndex));
 
 		$._uniforms = [
 			$.width,
@@ -5714,7 +5722,7 @@ fn fragMain(f: FragParams ) -> @location(0) vec4f {
 			layout: mainLayout,
 			entries: [
 				{ binding: 0, resource: { buffer: uniformBuffer } },
-				{ binding: 1, resource: { buffer: transformBuffer } },
+				{ binding: 1, resource: { buffer: transformsBuffer } },
 				{ binding: 2, resource: { buffer: colorsBuffer } }
 			]
 		});
@@ -5725,36 +5733,36 @@ fn fragMain(f: FragParams ) -> @location(0) vec4f {
 
 		$._pass.setPipeline($._pipelines[1]); // shapes pipeline
 
-		let shapesVertBuff = Q5.device.createBuffer({
-			size: shapesVertIdx * 4,
-			usage: GPUBufferUsage.VERTEX,
-			mappedAtCreation: true
-		});
+		let shapesVertSize = shapesVertIdx * 4; // 4 bytes per float
+		if (!shapesVertBuff || shapesVertBuff.size < shapesVertSize) {
+			if (shapesVertBuff) shapesVertBuff.destroy();
+			shapesVertBuff = Q5.device.createBuffer({
+				size: shapesVertSize * 2,
+				usage: GPUBufferUsage.VERTEX | GPUBufferUsage.COPY_DST
+			});
+		}
 
-		new Float32Array(shapesVertBuff.getMappedRange()).set(shapesVertStack.slice(0, shapesVertIdx));
-		shapesVertBuff.unmap();
+		Q5.device.queue.writeBuffer(shapesVertBuff, 0, shapesVertStack.subarray(0, shapesVertIdx));
 
 		$._pass.setVertexBuffer(0, shapesVertBuff);
-
-		$._buffers.push(shapesVertBuff);
 
 		// prepare to render images and videos
 
 		if (imgVertIdx) {
 			$._pass.setPipeline($._pipelines[2]); // images pipeline
 
-			let imgVertBuff = Q5.device.createBuffer({
-				size: imgVertIdx * 5,
-				usage: GPUBufferUsage.VERTEX,
-				mappedAtCreation: true
-			});
+			let imgVertSize = imgVertIdx * 4; // 4 bytes per float
+			if (!imgVertBuff || imgVertBuff.size < imgVertSize) {
+				if (imgVertBuff) imgVertBuff.destroy();
+				imgVertBuff = Q5.device.createBuffer({
+					size: imgVertSize * 2,
+					usage: GPUBufferUsage.VERTEX | GPUBufferUsage.COPY_DST
+				});
+			}
 
-			new Float32Array(imgVertBuff.getMappedRange()).set(imgVertStack.slice(0, imgVertIdx));
-			imgVertBuff.unmap();
+			Q5.device.queue.writeBuffer(imgVertBuff, 0, imgVertStack.subarray(0, imgVertIdx));
 
 			$._pass.setVertexBuffer(1, imgVertBuff);
-
-			$._buffers.push(imgVertBuff);
 
 			if (vidFrames) {
 				$._pass.setPipeline($._pipelines[3]); // video pipeline
@@ -5765,39 +5773,34 @@ fn fragMain(f: FragParams ) -> @location(0) vec4f {
 		// prepare to render text
 
 		if (charStack.length) {
-			// calculate total buffer size for text data
+			// Calculate total buffer size for text data
 			let totalTextSize = 0;
 			for (let charsData of charStack) {
 				totalTextSize += charsData.length * 4;
 			}
 
-			// create a single buffer for all the char data
-			let charBuffer = Q5.device.createBuffer({
-				size: totalTextSize,
-				usage: GPUBufferUsage.STORAGE,
-				mappedAtCreation: true
-			});
+			if (!charBuffer || charBuffer.size < totalTextSize) {
+				if (charBuffer) charBuffer.destroy();
+				charBuffer = Q5.device.createBuffer({
+					size: totalTextSize * 2,
+					usage: GPUBufferUsage.STORAGE | GPUBufferUsage.COPY_DST
+				});
+			}
 
-			// copy all the text data into the buffer
-			new Float32Array(charBuffer.getMappedRange()).set(charStack.flat());
-			charBuffer.unmap();
+			Q5.device.queue.writeBuffer(charBuffer, 0, new Float32Array(charStack.flat()));
 
-			// calculate total buffer size for metadata
+			// Calculate total buffer size for metadata
 			let totalMetadataSize = textStack.length * 8 * 4;
+			if (!textBuffer || textBuffer.size < totalMetadataSize) {
+				if (textBuffer) textBuffer.destroy();
+				textBuffer = Q5.device.createBuffer({
+					label: 'textBuffer',
+					size: totalMetadataSize * 2,
+					usage: GPUBufferUsage.STORAGE | GPUBufferUsage.COPY_DST
+				});
+			}
 
-			// create a single buffer for all metadata
-			let textBuffer = Q5.device.createBuffer({
-				label: 'textBuffer',
-				size: totalMetadataSize,
-				usage: GPUBufferUsage.STORAGE,
-				mappedAtCreation: true
-			});
-
-			// copy all metadata into the buffer
-			new Float32Array(textBuffer.getMappedRange()).set(textStack.flat());
-			textBuffer.unmap();
-
-			$._buffers.push(charBuffer, textBuffer);
+			Q5.device.queue.writeBuffer(textBuffer, 0, new Float32Array(textStack.flat()));
 
 			// create a single bind group for the text buffer and metadata buffer
 			$._textBindGroup = Q5.device.createBindGroup({
@@ -7149,6 +7152,7 @@ fn fragMain(f: FragParams) -> @location(0) vec4f {
 		let cnv = img.canvas || img;
 
 		if (!texture) {
+			if (img._texture) return;
 			let textureSize = [cnv.width, cnv.height, 1];
 
 			texture = Q5.device.createTexture({
@@ -7881,7 +7885,7 @@ fn fragMain(f : FragParams) -> @location(0) vec4f {
 		txt[1] = y;
 		txt[2] = _textSize / 42;
 		txt[3] = matrixIdx;
-		txt[4] = doFill && fillSet ? fillIdx : 0;
+		txt[4] = doFill && fillSet ? fillIdx : 1;
 		txt[5] = strokeIdx;
 		txt[6] = doStroke && strokeSet ? sw : 0;
 		txt[7] = textEdge;
@@ -8027,6 +8031,7 @@ Q5.DILATE = 6;
 Q5.ERODE = 7;
 Q5.BLUR = 8;
 
+Q5.MAX_TRANSFORMS = 1e7;
 Q5.MAX_RECTS = 200200;
 Q5.MAX_ELLIPSES = 200200;
 

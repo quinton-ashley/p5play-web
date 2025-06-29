@@ -32,7 +32,7 @@ If you want an animation to only use specific frames from the sprite sheet, set 
 
 # 0-4
 
-Another way to use `loadAni` in sprite sheet mode, is to provide an array of frame locators, arrays that specify the position and size of a frame.
+Another way to use `loadAni` in sprite sheet mode, is to provide an array of frame locators, that specify the position and size of a frame.
 
 When creating sprite sheets consider the tradeoff between the image space efficiency gained by tightly packing irregular sized frames together, versus the ease of loading a grid aligned sprite sheet.
 

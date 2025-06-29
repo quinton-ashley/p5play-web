@@ -93,7 +93,7 @@ let projects = [
 let largeCardsCount = 0;
 let smallCardsCount = 0;
 
-let assets = 'https://quinton-ashley.github.io/p5play-assets/play/';
+let assets = 'https://p5playjs.github.io/p5play-assets/play/';
 
 let cols = document.getElementsByClassName('col');
 
