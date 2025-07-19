@@ -10969,7 +10969,6 @@ let p5playPreDraw = function () {
 // called after each draw function call
 let p5playPostDraw = function () {
 	const $ = this;
-	$.p5play._inPostDraw = true;
 
 	if ($.allSprites.autoCull) {
 		$.allSprites.cull(10000);
@@ -10980,6 +10979,7 @@ let p5playPostDraw = function () {
 	}
 	$.world.autoStep ??= true;
 
+	$.p5play._inPostDraw = true;
 	$.drawFrame();
 
 	if ($.allSprites._autoDraw) {

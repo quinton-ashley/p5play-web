@@ -34,5 +34,5 @@
 		"version": "git add -A",
 		"postversion": "git push"
 	},
-	"version": "1.25.2"
+	"version": "1.25.3"
 }
