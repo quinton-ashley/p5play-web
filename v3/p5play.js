@@ -10979,8 +10979,9 @@ let p5playPostDraw = function () {
 	}
 	$.world.autoStep ??= true;
 
-	$.p5play._inPostDraw = true;
 	$.drawFrame();
+
+	$.p5play._inPostDraw = true;
 
 	if ($.allSprites._autoDraw) {
 		$.camera.on();
