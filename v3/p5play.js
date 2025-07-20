@@ -6621,7 +6621,7 @@ let p5playInit = function () {
 		 */
 		update() {
 			for (let s of this) {
-				if (!$.p5play._inPostDraw || s.autoUpdate) {
+				if (s.autoUpdate) {
 					s.update();
 				}
 			}
@@ -10979,9 +10979,11 @@ let p5playPostDraw = function () {
 	}
 	$.world.autoStep ??= true;
 
-	$.drawFrame();
-
+	// TODO BUG FIX
+	// This should be moved after the drawFrame call
+	// but it has unintended side effects.
 	$.p5play._inPostDraw = true;
+	$.drawFrame();
 
 	if ($.allSprites._autoDraw) {
 		$.camera.on();
