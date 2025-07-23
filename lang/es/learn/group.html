@@ -205,7 +205,7 @@ function setup() {
 }
 
 function collect(player, gem) {
-	gem.remove();
+	gem.delete();
 }
 
 function update() {
@@ -268,9 +268,9 @@ function update() {
 					<code>boxes</code> pero no de los grupos <code>smallBoxes</code>.</p>
 				<p>El grupo <code>boxes</code> contiene todos los sprites en los grupos <code>smallBoxes</code> y
 					<code>bigBoxes</code>.</p>
-				<p>La función <code>remove</code> elimina el grupo en sí, solo úsala si no quieres usar el grupo de
+				<p>La función <code>delete</code> elimina el grupo en sí, solo úsala si no quieres usar el grupo de
 					nuevo. Si solo quieres eliminar todos los sprites de un grupo, usa la función
-					<code>removeAll</code>.</p>
+					<code>deleteAll</code>.</p>
 			</md>
 			<script type="mie/p5" id="SubGroup" horiz="">
 let boxes, smallBoxes, bigBoxes;
@@ -298,7 +298,7 @@ function update() {
 		new bigBoxes.Sprite(mouse.x, mouse.y);
 	}
 	if (kb.presses('space')) {
-		boxes.removeAll();
+		boxes.deleteAll();
 	}
 }
 			</script>

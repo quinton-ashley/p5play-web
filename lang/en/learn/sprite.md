@@ -209,7 +209,7 @@ On the first frame after two sprites overlapped, the `overlapped` function retur
 Note that physical interactions between sprites, including collisions and overlaps, can't be properly detected when a
 sprite is teleported, its position is directly changed!
 
-The `remove` function deletes a sprite.
+The `delete` function deletes a sprite from the physics world simulation and removes it from all the groups it belongs to.
 
 # 6-3
 

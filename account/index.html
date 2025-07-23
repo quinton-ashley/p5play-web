@@ -45,8 +45,7 @@
 				<md id="md0-0">
 					<h2 id="account">Account</h2>
 					<p>Sign up for a free account to access the Learn pages!</p>
-					<p><a
-							href="https://p5play.auth.us-west-2.amazoncognito.com/forgotPassword?client_id=3oegfdhu2r7eo8nr371496718c&amp;response_type=token&amp;scope=email+openid+profile&amp;redirect_uri=https%3A%2F%2Fp5play.org%2Faccount%2Findex.html"
+					<p><a href="https://p5play.auth.us-west-2.amazoncognito.com/forgotPassword?client_id=3oegfdhu2r7eo8nr371496718c&amp;response_type=token&amp;scope=email+openid+profile&amp;redirect_uri=https%3A%2F%2Fp5play.org%2Faccount%2Findex.html"
 							target="_blank">Forgot your password?</a></p>
 					<p>Having trouble creating an account? <a href="mailto:info@p5play.org" target="_blank">Contact
 							us.</a></p>
@@ -71,10 +70,10 @@
 			<md id="md1-0">
 				<h2 id="free-resources">Free Resources</h2>
 				<ul>
-					<li><a href="https://github.com/p5playjs/p5play-vscode" target="_blank">p5play-vscode</a> :
-						VSCode extension</li>
-					<li><a href="https://github.com/p5playjs/p5play-template" target="_blank">p5play-template</a>
-						: starter code</li>
+					<li><a href="https://github.com/p5playjs/p5play-vscode" target="_blank">p5play-vscode</a> : VSCode
+						extension</li>
+					<li><a href="https://github.com/p5playjs/p5play-template" target="_blank">p5play-template</a> :
+						starter code</li>
 					<li><a href="https://github.com/p5playjs/p5play-desktop" target="_blank">p5play-desktop</a> :
 						desktop app template</li>
 				</ul>
@@ -87,34 +86,35 @@
 	</article>
 
 	<script src="/learn/main.js"></script>
-	<script src="/account/accountInfo.js"></script>
-	<script src="/account/account.js"></script>
-	<style>
-		.page {
-			display: flex;
-		}
+<script src="/account/accountInfo.js"></script>
+<script src="/account/account.js"></script>
+<style>
+.page {
+	display: flex;
+}
 
-		.auth {
-			display: none;
-		}
+.auth {
+	display: none;
+}
 
-		.login {
-			margin-top: 16px;
-			font-size: 32px;
-			font-weight: bold;
-			display: flex;
-			justify-content: center;
-			gap: 50px;
-		}
+.login {
+	margin-top: 16px;
+	font-size: 32px;
+	font-weight: bold;
+	display: flex;
+	justify-content: center;
+	gap: 50px;
+}
 
-		lbl {
-			font-weight: bold;
-		}
+lbl {
+	font-weight: bold;
+}
+
 	</style>
 	<script>
-		logout.addEventListener('click', () => {
-			localStorage.p5playAccount = null;
-		});
+logout.addEventListener('click', () => {
+	localStorage.p5playAccount = null;
+});
 
 	</script>
 

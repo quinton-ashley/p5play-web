@@ -765,6 +765,7 @@ spriteB.text = 'Layer 1';
 				<p>Ten en cuenta que las interacciones físicas entre sprites, incluyendo colisiones y superposiciones,
 					no pueden detectarse correctamente cuando un sprite es teletransportado, ¡su posición cambia
 					directamente!</p>
+				<p>La función <code>delete</code> elimina un sprite.</p>
 			</md>
 			<script type="mie/p5" id="collect-coin">
 let player, coin;
@@ -783,7 +784,7 @@ function update() {
 
 function drawFrame() {
 	clear();
-	if (player.overlaps(coin)) coin.remove();
+	if (player.overlaps(coin)) coin.delete();
 }
 			</script>
 			<div class="break"></div>

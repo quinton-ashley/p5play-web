@@ -28,7 +28,7 @@ Using movement functions like `moveTowards` on a group, will cause all the sprit
 
 If you set a group property to an arrow `=>` function, each new sprite created using that group will use the function to evaluate the property.
 
-When `group.amount` is adjusted, the group will automatically create or remove sprites to match the set amount.
+When `group.amount` is adjusted, the group will automatically create or delete sprites to match the set amount.
 
 In this code example, each gem sprite is assigned a random position on the canvas.
 
@@ -51,7 +51,7 @@ Collision and overlap functions aren't just for detecting events between two spr
 
 Instead of using these functions in `if` statements, you can provide them with a callback function as a second parameter. The callback function will run when the collision or overlap event occurs. The callback function receives, as inputs, two sprites.
 
-In this code example the callback function receives the player sprite and the gem sprite in the gems group that the player overlaps. That gem gets collected (removed).
+In this code example the callback function receives the player sprite and the gem sprite in the gems group that the player overlaps. That gem gets collected (deleted).
 
 # 3-0
 
@@ -77,7 +77,7 @@ New sprites created using the `bigBoxes` group will inherit traits from the `box
 
 The `boxes` group contains all the sprites in the `smallBoxes` and `bigBoxes` groups.
 
-The `remove` function removes the group itself, only use it if you don't want to use the group again. If you just want to remove all the sprites from a group, use the `removeAll` function.
+The `delete` function removes the group itself, only use it if you don't want to use the group again. If you want to delete all the sprites in a group, use the `deleteAll` function.
 
 # 6-0
 

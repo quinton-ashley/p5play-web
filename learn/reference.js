@@ -20,7 +20,7 @@ let refs = {
 		2: ['image', 'debug', 'opacity'],
 		3: ['vel / velocity', 'speed', 'direction', 'move', 'moveTo', 'moveTowards', 'angleTo'],
 		5: ['collides', 'colliding', 'collided'],
-		6: ['overlaps', 'overlapping', 'overlapped', 'layer', 'remove'],
+		6: ['overlaps', 'overlapping', 'overlapped', 'layer', 'delete'],
 		7: ['rotate', 'rotateTo', 'rotateTowards', 'rotationSpeed', 'offset'],
 		8: ['scale'],
 		9: ['bounciness', 'drag', 'friction', 'mass', 'rotationDrag', 'rotationLock'],
@@ -42,7 +42,7 @@ let refs = {
 		1: ['amount', '=>'],
 		2: ['collides', 'overlaps'],
 		3: ['allSprites'],
-		5: ['remove', 'removeAll', 'SubGroup'],
+		5: ['delete', 'deleteAll', 'SubGroup'],
 		6: ['autoCull', 'cull'],
 		7: ['autoDraw', 'autoUpdate']
 	},

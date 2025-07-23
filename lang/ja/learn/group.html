@@ -202,7 +202,7 @@ function setup() {
 }
 
 function collect(player, gem) {
-	gem.remove();
+	gem.delete();
 }
 
 function update() {
@@ -263,9 +263,9 @@ function update() {
 					<code>smallBoxes</code> グループからは継承しません。</p>
 				<p><code>boxes</code> グループのグループスプライトには、 <code>smallBoxes</code> グループと <code>bigBoxes</code>
 					グループ、それぞれのグループスプライトのすべてが含まれます。</p>
-				<p><code>remove</code>
+				<p><code>delete</code>
 					関数は、グループそのものを削除します。そのため、そのグループを今後使うことはないときに限り使用してください。もし、グループスプライトをすべて削除したいだけで、グループは残したいという場合は、
-					<code>removeAll</code> 関数を使用してください。</p>
+					<code>deleteAll</code> 関数を使用してください。</p>
 			</md>
 			<script type="mie/p5" id="SubGroup" horiz="">
 let boxes, smallBoxes, bigBoxes;
@@ -293,7 +293,7 @@ function update() {
 		new bigBoxes.Sprite(mouse.x, mouse.y);
 	}
 	if (kb.presses('space')) {
-		boxes.removeAll();
+		boxes.deleteAll();
 	}
 }
 			</script>

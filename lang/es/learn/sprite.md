@@ -204,6 +204,8 @@ En el primer fotograma después de que dos sprites se superpongan, la función `
 
 Ten en cuenta que las interacciones físicas entre sprites, incluyendo colisiones y superposiciones, no pueden detectarse correctamente cuando un sprite es teletransportado, ¡su posición cambia directamente!
 
+La función `delete` elimina un sprite.
+
 # 6-3
 
 ## ¡Pruébalo!

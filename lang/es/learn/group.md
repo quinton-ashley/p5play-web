@@ -79,7 +79,7 @@ Los nuevos sprites creados usando el grupo `bigBoxes` heredarán rasgos del grup
 
 El grupo `boxes` contiene todos los sprites en los grupos `smallBoxes` y `bigBoxes`.
 
-La función `remove` elimina el grupo en sí, solo úsala si no quieres usar el grupo de nuevo. Si solo quieres eliminar todos los sprites de un grupo, usa la función `removeAll`.
+La función `delete` elimina el grupo en sí, solo úsala si no quieres usar el grupo de nuevo. Si solo quieres eliminar todos los sprites de un grupo, usa la función `deleteAll`.
 
 # 6-0
 

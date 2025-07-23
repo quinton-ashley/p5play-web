@@ -724,7 +724,7 @@ spriteB.text = 'Layer 1';
 				<p>スプライト同士のオーバーラップが終了した最初のフレームでは、<code>overlapped</code> 関数は true を返します。</p>
 				<p>スプライト間の物理挙動（コリジョンやオーバーラップを含む）は、スプライトが「テレポート」されると正しく検出されないことに注意してください。
 					スプライトが「テレポート」されると、その座標が直接変更されるためです！</p>
-				<p><code>remove</code> 関数で、そのスプライトを削除します。</p>
+				<p><code>delete</code> 関数で、そのスプライトを削除します。</p>
 			</md>
 			<script type="mie/p5" id="collect-coin">
 let player, coin;
@@ -743,7 +743,7 @@ function update() {
 
 function drawFrame() {
 	clear();
-	if (player.overlaps(coin)) coin.remove();
+	if (player.overlaps(coin)) coin.delete();
 }
 			</script>
 			<div class="break"></div>
