@@ -8968,8 +8968,8 @@ let p5playInit = function () {
 			case 'jsfiddle.net':
 			case 'aijs.io':
 			case 'preview-aijs.web.app':
-			case 'quinton-ashley.github.io':
 				break;
+
 			default:
 				if (
 					/^[\d\.]+$/.test(lh) ||
