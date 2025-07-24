@@ -1075,7 +1075,7 @@ sprite.applyForce(amount);</code></pre>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line2572">line 2572</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line2579">line 2579</a>
     </li></ul></dd>
     
 
@@ -1380,7 +1380,7 @@ By default sprites get a random color.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line2680">line 2680</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line2687">line 2687</a>
     </li></ul></dd>
     
 
@@ -1538,7 +1538,7 @@ By default sprites get a random color.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line4145">line 4145</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line4152">line 4152</a>
     </li></ul></dd>
     
 
@@ -1691,7 +1691,7 @@ By default sprites get a random color.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line2702">line 2702</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line2709">line 2709</a>
     </li></ul></dd>
     
 
@@ -2395,7 +2395,7 @@ when rubbing against another physics body.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line2927">line 2927</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line2934">line 2934</a>
     </li></ul></dd>
     
 
@@ -2469,7 +2469,7 @@ when rubbing against another physics body.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line2628">line 2628</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line2635">line 2635</a>
     </li></ul></dd>
     
 
@@ -2543,7 +2543,7 @@ when rubbing against another physics body.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line2670">line 2670</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line2677">line 2677</a>
     </li></ul></dd>
     
 
@@ -2617,7 +2617,7 @@ when rubbing against another physics body.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line2618">line 2618</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line2625">line 2625</a>
     </li></ul></dd>
     
 
@@ -2774,7 +2774,7 @@ underscores, and dashes.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line2660">line 2660</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line2667">line 2667</a>
     </li></ul></dd>
     
 
@@ -2848,7 +2848,7 @@ underscores, and dashes.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line2650">line 2650</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line2657">line 2657</a>
     </li></ul></dd>
     
 
@@ -2922,7 +2922,7 @@ underscores, and dashes.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line2598">line 2598</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line2605">line 2605</a>
     </li></ul></dd>
     
 
@@ -4170,6 +4170,11 @@ sprite overlap with all sprites.
 
 Set pixelPerfect to true to make p5play always display sprites
 at integer pixel precision. This is useful for making retro games.
+
+This will also set `sprite.anis.cutFrames` to true, which
+will make p5play cut frames from a sprite sheet into
+separate images, so that pixel bleeding from other frames
+doesn't occur. This can be disabled separately.
 </div>
 
 
@@ -4210,7 +4215,7 @@ at integer pixel precision. This is useful for making retro games.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line2266">line 2266</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line2272">line 2272</a>
     </li></ul></dd>
     
 
@@ -4284,7 +4289,7 @@ at integer pixel precision. This is useful for making retro games.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line2548">line 2548</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line2555">line 2555</a>
     </li></ul></dd>
     
 
@@ -4358,7 +4363,7 @@ at integer pixel precision. This is useful for making retro games.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line2563">line 2563</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line2570">line 2570</a>
     </li></ul></dd>
     
 
@@ -4434,7 +4439,7 @@ Users should not directly run this function.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line2890">line 2890</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line2897">line 2897</a>
     </li></ul></dd>
     
 
@@ -4656,7 +4661,7 @@ Users should not directly run this function.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line2713">line 2713</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line2720">line 2720</a>
     </li></ul></dd>
     
 
@@ -4730,7 +4735,7 @@ Users should not directly run this function.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line2724">line 2724</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line2731">line 2731</a>
     </li></ul></dd>
     
 
@@ -4811,7 +4816,7 @@ Users should not directly run this function.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line4156">line 4156</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line4163">line 4163</a>
     </li></ul></dd>
     
 
@@ -4893,7 +4898,7 @@ a range of -180 to 180.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line2282">line 2282</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line2289">line 2289</a>
     </li></ul></dd>
     
 
@@ -4972,7 +4977,7 @@ a range of -180 to 180.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line2302">line 2302</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line2309">line 2309</a>
     </li></ul></dd>
     
 
@@ -5051,7 +5056,7 @@ a range of -180 to 180.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line2315">line 2315</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line2322">line 2322</a>
     </li></ul></dd>
     
 
@@ -5130,7 +5135,7 @@ a range of -180 to 180.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line2330">line 2330</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line2337">line 2337</a>
     </li></ul></dd>
     
 
@@ -5216,7 +5221,7 @@ to double the sprite's scale.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line2357">line 2357</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line2364">line 2364</a>
     </li></ul></dd>
     
 
@@ -5301,7 +5306,7 @@ chain or polygon, the circle will be turned into a dodecagon.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line2793">line 2793</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line2800">line 2800</a>
     </li></ul></dd>
     
 
@@ -5384,7 +5389,7 @@ with anything that it wasn't already touching.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line2399">line 2399</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line2406">line 2406</a>
     </li></ul></dd>
     
 
@@ -5466,7 +5471,7 @@ Setting speed to a negative value will make the sprite move
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line2417">line 2417</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line2424">line 2424</a>
     </li></ul></dd>
     
 
@@ -5545,7 +5550,7 @@ Setting speed to a negative value will make the sprite move
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line2431">line 2431</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line2438">line 2438</a>
     </li></ul></dd>
     
 
@@ -6419,7 +6424,7 @@ pre-render the effect if you want to use it a lot.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line2447">line 2447</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line2454">line 2454</a>
     </li></ul></dd>
     
 
@@ -6498,7 +6503,7 @@ pre-render the effect if you want to use it a lot.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line2460">line 2460</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line2467">line 2467</a>
     </li></ul></dd>
     
 
@@ -6579,7 +6584,7 @@ function.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line2877">line 2877</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line2884">line 2884</a>
     </li></ul></dd>
     
 
@@ -6658,7 +6663,7 @@ function.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line2902">line 2902</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line2909">line 2909</a>
     </li></ul></dd>
     
 
@@ -6737,7 +6742,7 @@ function.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line2915">line 2915</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line2922">line 2922</a>
     </li></ul></dd>
     
 
@@ -6811,7 +6816,7 @@ function.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line2471">line 2471</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line2478">line 2478</a>
     </li></ul></dd>
     
 
@@ -6893,7 +6898,7 @@ set to true again if it goes back on screen.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line2516">line 2516</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line2523">line 2523</a>
     </li></ul></dd>
     
 
@@ -6967,7 +6972,7 @@ set to true again if it goes back on screen.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line2579">line 2579</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line2586">line 2586</a>
     </li></ul></dd>
     
 
@@ -7041,7 +7046,7 @@ set to true again if it goes back on screen.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line2608">line 2608</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line2615">line 2615</a>
     </li></ul></dd>
     
 
@@ -7115,7 +7120,7 @@ set to true again if it goes back on screen.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line2528">line 2528</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line2535">line 2535</a>
     </li></ul></dd>
     
 
@@ -7189,7 +7194,7 @@ set to true again if it goes back on screen.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line2538">line 2538</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line2545">line 2545</a>
     </li></ul></dd>
     
 
@@ -7279,7 +7284,7 @@ the animation will be automatically created and added instead.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line3914">line 3914</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line3921">line 3921</a>
     </li></ul></dd>
     
 
@@ -7449,7 +7454,7 @@ sprite.addAni(name, atlas);</code></pre>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line3957">line 3957</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line3964">line 3964</a>
     </li></ul></dd>
     
 
@@ -7830,7 +7835,7 @@ addSensor function.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line4419">line 4419</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line4426">line 4426</a>
     </li></ul></dd>
     
 
@@ -8145,7 +8150,7 @@ Used internally by `moveTo` and `moveTowards`.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line3699">line 3699</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line3706">line 3706</a>
     </li></ul></dd>
     
 
@@ -8342,7 +8347,7 @@ Used internally by `rotateMinTo` and `rotateTowards`.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line3751">line 3751</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line3758">line 3758</a>
     </li></ul></dd>
     
 
@@ -8560,7 +8565,7 @@ center of the sprite.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line3334">line 3334</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line3341">line 3341</a>
     </li></ul></dd>
     
 
@@ -8752,7 +8757,7 @@ sprite.applyForce({x, y}, {x: originX, y: originY});</code></pre>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line3350">line 3350</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line3357">line 3357</a>
     </li></ul></dd>
     
 
@@ -8939,7 +8944,7 @@ It will not imperatively set the sprite's rotation.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line3423">line 3423</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line3430">line 3430</a>
     </li></ul></dd>
     
 
@@ -9077,7 +9082,7 @@ Radius and easing not implemented yet!
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line3373">line 3373</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line3380">line 3380</a>
     </li></ul></dd>
     
 
@@ -9371,7 +9376,7 @@ animation(s) first.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line3981">line 3981</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line3988">line 3988</a>
     </li></ul></dd>
     
 
@@ -9534,7 +9539,7 @@ animation(s) first. Alt for `changeAni`.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line4076">line 4076</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line4083">line 4083</a>
     </li></ul></dd>
     
 
@@ -9697,7 +9702,7 @@ with the target sprite or group.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line4265">line 4265</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line4272">line 4272</a>
     </li></ul></dd>
     
 
@@ -9906,7 +9911,7 @@ in an if statement or adding a callback as the second parameter.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line4232">line 4232</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line4239">line 4239</a>
     </li></ul></dd>
     
 
@@ -10092,7 +10097,7 @@ the sprite has been colliding with the target.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line4248">line 4248</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line4255">line 4255</a>
     </li></ul></dd>
     
 
@@ -10309,7 +10314,7 @@ hide a sprite use `sprite.visible = false` instead.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line4123">line 4123</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line4130">line 4130</a>
     </li></ul></dd>
     
 
@@ -10394,7 +10399,7 @@ function.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line4444">line 4444</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line4451">line 4451</a>
     </li></ul></dd>
     
 
@@ -10562,7 +10567,7 @@ nearest half tile.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line3502">line 3502</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line3509">line 3509</a>
     </li></ul></dd>
     
 
@@ -10821,7 +10826,7 @@ at a percentage of the distance between itself and the position.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line3471">line 3471</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line3478">line 3478</a>
     </li></ul></dd>
     
 
@@ -11039,7 +11044,7 @@ at a percentage of the distance between itself and the position.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line3550">line 3550</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line3557">line 3557</a>
     </li></ul></dd>
     
 
@@ -11284,7 +11289,7 @@ between itself and the destination.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line3436">line 3436</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line3443">line 3443</a>
     </li></ul></dd>
     
 
@@ -11503,7 +11508,7 @@ with the target sprite or group.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line4360">line 4360</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line4367">line 4367</a>
     </li></ul></dd>
     
 
@@ -11710,7 +11715,7 @@ frames the sprite has been overlapping with the target.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line4343">line 4343</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line4350">line 4350</a>
     </li></ul></dd>
     
 
@@ -11923,7 +11928,7 @@ in an if statement or adding a callback as the second parameter.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line4327">line 4327</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line4334">line 4334</a>
     </li></ul></dd>
     
 
@@ -12461,7 +12466,7 @@ destination angle.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line3851">line 3851</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line3858">line 3858</a>
     </li></ul></dd>
     
 
@@ -12669,7 +12674,7 @@ rotation speed.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line3811">line 3811</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line3818">line 3818</a>
     </li></ul></dd>
     
 
@@ -12860,7 +12865,7 @@ at a given rotation speed.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line3775">line 3775</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line3782">line 3782</a>
     </li></ul></dd>
     
 
@@ -13121,7 +13126,7 @@ with x and y properties.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line3655">line 3655</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line3662">line 3662</a>
     </li></ul></dd>
     
 
@@ -13344,7 +13349,7 @@ Used internally by `rotateTo`.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line3726">line 3726</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line3733">line 3733</a>
     </li></ul></dd>
     
 
@@ -13586,7 +13591,7 @@ Returns the sprite's unique identifier `sprite.idNum`.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line4167">line 4167</a>
+        <a href="p5play.js.html">p5play.js</a>, <a href="p5play.js.html#line4174">line 4174</a>
     </li></ul></dd>
     
 
@@ -13651,7 +13656,7 @@ Returns the sprite's unique identifier `sprite.idNum`.
 <br class="clear">
 
 <footer>
-    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Tue Jul 22 2025 22:16:48 GMT-0500 (Colombia Standard Time) using the Minami theme.
+    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Thu Jul 24 2025 09:53:43 GMT-0500 (Colombia Standard Time) using the Minami theme.
 </footer>
 
 <script>prettyPrint();</script>
