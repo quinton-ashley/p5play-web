@@ -83,7 +83,7 @@ Try clicking the mouse to add new splats!
 
 # 4-0
 
-## Sprite Sheets with Multiple Animations
+## Sprite Sheet of Animations
 
 To load multiple animations from the same sprite sheet image, first set the `spriteSheet` property of the sprite or group.
 
@@ -93,17 +93,45 @@ In the "hero" example the size of the hero sprite is set to 32x32 pixels in the 
 
 The `ani.offset` property is used to adjust the position of an animation relative to the sprite's position.
 
-Click this link to see the full [questKid](/learn/assets/questKid.webp) sprite sheet used in the example.
+Click this link to see the full [questKid sprite sheet](/learn/assets/questKid.webp) used in the example.
 
 # 4-1
 
-## anis
+## Anis
 
 Every sprite and group has an `animations` / `anis` object that stores its animations. The keys are animation names and values are animation objects. It works like groups do, utilizing soft and dynamic inheritance.
 
-When `sprite.pixelPerfect` is set to true, the sprite will be drawn at integer coordinates, while retaining the precise position of its collider. This is useful for pixel art games!
+When `pixelPerfect` is set to true, the sprite will be drawn at integer coordinates, while retaining the precise position of its collider. This is useful for pixel art games!
 
 # 5-0
+
+## Sprite Sheet of Images
+
+Some sprite sheets contain a collection of images (subtextures) packed into a single file. This enables them to be loaded with one network request, reducing loading time and improving performance.
+
+Take a look at the [traffic sprite sheet](/learn/assets/traffic.png) from [Kenny's "Pixel Vehicle Pack"](https://kenney.nl/assets/pixel-vehicle-pack).
+
+In p5play, each subtexture can be loaded as a single frame animation.
+
+# 5-1
+
+## XML Texture Atlas
+
+A texture atlas describes the size and position of each subtexture within a tightly packed sprite sheet. For example, see the [traffic texture atlas](/learn/assets/traffic_atlas.xml).
+
+Use `parseTextureAtlas` to parse an xml texture atlas into an object that can be used with `addAnis`.
+
+# 5-2
+
+## Cut Frames
+
+When sections of a pixel art (low resolution) sprite sheet are drawn to the canvas, edge artifacts can occur.
+
+In this example, notice how the edges contains parts of other vehicles?
+
+Set `anis.cutFrames` to true before loading animations to make p5play cut a sprite sheet image into separate images for each frame.
+
+# 6-0
 
 ## Animation Sequencing
 
@@ -113,7 +141,7 @@ By default if looping is enabled, the last animation in the sequence will be loo
 
 This code example shows how the hero character can be moved around the screen using WASD or the arrow keys!
 
-# 6-0
+# 7-0
 
 ## Advanced Animation Sequencing
 

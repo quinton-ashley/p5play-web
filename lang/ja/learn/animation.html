@@ -334,24 +334,24 @@ function update() {
 				</md>
 			</div>
 			<div class="minis horiz">
-				<script type="mie/p5" id="hero-demoMode" hide-editor="">
+				<script type="mie/p5" id="hero-sprite-sheet" hide-editor="">
 let hero;
 
 function preload() {
-	new Canvas(250, 96);
-	displayMode('default', 'pixelated', 2);
+	new Canvas(250, 64);
+	displayMode('normal', 'pixelated', 2);
 
-	hero = new Sprite(125, 48, 32, 32);
+	hero = new Sprite(125, 24, 32, 32);
 	hero.spriteSheet = '/learn/assets/questKid.webp';
 	hero.anis.offset.x = 2;
 	hero.anis.frameDelay = 32;
+	hero.anis.cutFrames = false;
 	hero.anis.demoMode = true;
 
 	hero.addAnis({
 		run: { row: 0, frames: 8 },
 		jump: { row: 1, frames: 6 },
 		roll: { row: 2, frames: 5 },
-		turn: { row: 3, frames: 7 },
 		stand: { row: 3 }
 	});
 	hero.changeAni('run');
@@ -365,7 +365,6 @@ function update() {
 	if (kb.presses('r')) hero.changeAni('run');
 	if (kb.presses('j')) hero.changeAni('jump');
 	if (kb.presses('l')) hero.changeAni('roll');
-	if (kb.presses('t')) hero.changeAni('turn');
 	if (kb.presses('s')) hero.changeAni('stand');
 	
 }
@@ -375,11 +374,12 @@ function setup() {}
 				<script type="mie/p5" id="hero">
 let hero;
 
-function preload() {
-	new Canvas(124, 48);
+function setup() {
+	new Canvas(124, 26);
 	displayMode('normal', 'pixelated', 4);
+	allSprites.pixelPerfect = true;
 
-	hero = new Sprite(62, 24, 32, 32);
+	hero = new Sprite(62, 10, 32, 32);
 	hero.spriteSheet = '/learn/assets/questKid.webp';
 	hero.anis.offset.x = 2;
 	hero.anis.frameDelay = 8;
@@ -389,12 +389,9 @@ function preload() {
 		run: { row: 0, frames: 8 },
 		jump: { row: 1, frames: 6 },
 		roll: { row: 2, frames: 5, frameDelay: 14 },
-		turn: { row: 3, frames: 7 },
 		stand: { row: 3 }
 	});
 	hero.changeAni('run');
-
-	allSprites.pixelPerfect = true;
 }
 
 function update() {
@@ -402,16 +399,95 @@ function update() {
 	if (kb.presses('r')) hero.changeAni('run');
 	if (kb.presses('j')) hero.changeAni('jump');
 	if (kb.presses('l')) hero.changeAni('roll');
-	if (kb.presses('t')) hero.changeAni('turn');
 	if (kb.presses('s')) hero.changeAni('stand');
 }
-
-function setup() {}
 				</script>
 			</div>
 		</div>
 		<div id="page-5" class="page">
 			<md id="md5-0">
+				<h2 id="画像のスプライトシート">画像のスプライトシート</h2>
+				<p>一部のスプライトシートには、複数の画像（サブテクスチャ）が 1 つのファイルにまとめられています。これにより、1
+					回のネットワークリクエストで読み込むことができ、読み込み時間が短縮され、パフォーマンスが向上します。</p>
+				<p><a href="/learn/assets/traffic.png" target="_blank">Kenny の「Pixel Vehicle Pack」</a>の<a
+						href="https://kenney.nl/assets/pixel-vehicle-pack" target="_blank">トラフィックスプライトシート</a>を見てみましょう。
+				</p>
+				<p>p5play では、各サブテクスチャを 1 フレームのアニメーションとして読み込むことができます。</p>
+			</md>
+			<script type="mie/p5" id="traffic" hide-editor="">
+let cars, img, atlas;
+
+function preload() {
+	new Canvas(500, 250);
+	displayMode('normal', 'pixelated');
+
+	img = loadImage('/learn/assets/traffic.png');
+}
+
+function setup() {
+	translate(250, 125);
+	scale(3);
+	imageMode(CENTER);
+	image(img, 0, 0);
+
+	strokeWeight(3);
+	stroke(0, 255, 0, 200);
+	noFill();
+	rect(26, -40, 40, 22);
+	noLoop();
+}
+
+function update() {}
+			
+			</script>
+			<div class="break"></div>
+			<script type="mie/p5" id="cutFrames">
+let cars, img, atlas;
+
+function preload() {
+	new Canvas(500, 180);
+	displayMode('normal', 'pixelated');
+
+	atlas = loadXML('/learn/assets/traffic_atlas.xml');
+	img = loadImage('/learn/assets/traffic.png');
+}
+
+function setup() {
+	cars = new Group();
+	cars.width = 16;
+	cars.height = 16;
+	cars.scale = 8;
+	cars.rotation = 22.5;
+
+	cars.anis.cutFrames = false; // <- set to true
+
+	cars.spriteSheet = img;
+	atlas = parseTextureAtlas(atlas);
+	cars.addAnis(atlas);
+
+	new cars.Sprite('suv');
+}
+
+function update() {}
+
+			</script>
+			<div class="minis">
+				<md id="md5-1">
+					<h2 id="xml-テクスチャアトラス">XML テクスチャアトラス</h2>
+					<p>テクスチャアトラスは、スプライトシート内の各サブテクスチャのサイズと位置を記述します。例えば、<a href="/learn/assets/traffic_atlas.xml"
+							target="_blank">トラフィックテクスチャアトラス</a>を参照してください。</p>
+					<p><code>parseTextureAtlas</code>を使って、XML テクスチャアトラスを<code>addAnis</code>で使用できるオブジェクトに変換します。</p>
+				</md>
+				<md id="md5-2">
+					<h2 id="フレームの切り出し">フレームの切り出し</h2>
+					<p>ピクセルアート（低解像度）のスプライトシートの一部をキャンバスに描画すると、端にアーティファクトが発生することがあります。</p>
+					<p>この例では、端に他の車両の一部が含まれていることに注目してください。</p>
+					<p>アニメーションを読み込む前に<code>anis.cutFrames</code>を true に設定すると、p5play がスプライトシート画像をフレームごとに</p>
+				</md>
+			</div>
+		</div>
+		<div id="page-6" class="page">
+			<md id="md6-0">
 				<h2 id="シーケンシャルなアニメーション定義">シーケンシャルなアニメーション定義</h2>
 				<p><code>sprite.changeAni</code>
 					関数は、引数として、アニメーションオブジェクト、アニメーション名、決められた順番（シーケンス）で再生すべきアニメーション名の配列、のいずれかを受け取ります。</p>
@@ -476,8 +552,8 @@ if (hero.ani.name != 'jump' && hero.ani.name != 'roll') {
 }
 			</script>
 		</div>
-		<div id="page-6" class="page">
-			<md id="md6-0">
+		<div id="page-7" class="page">
+			<md id="md7-0">
 				<h2 id="複雑でシーケンシャルなアニメーション定義">複雑でシーケンシャルなアニメーション定義</h2>
 				<p><code>sprite.changeAni</code> は async 関数なので、 await などでアニメーションの完了を待機する事ができます。特に、 <a
 						href="http://ja.wikipedia.org/w/index.php?curid=2031381" target="_blank">NPC</a>
@@ -552,9 +628,10 @@ function update() {
 				<a data-page="1" href="animation.html?page=1">アニメーションの制御</a>
 				<a data-page="2" href="animation.html?page=2">アニメーション付きスプライト</a>
 				<a data-page="3" href="animation.html?page=3">アニメーション付きグループ</a>
-				<a data-page="4" href="animation.html?page=4">ひとつのスプライトシートに複数のアニメーションを定義</a>
-				<a data-page="5" href="animation.html?page=5">シーケンシャルなアニメーション定義</a>
-				<a data-page="6" href="animation.html?page=6">複雑でシーケンシャルなアニメーション定義</a>
+				<a data-page="4" href="animation.html?page=4">アニメーションのスプライトシート</a>
+				<a data-page="5" href="animation.html?page=5">画像のスプライトシート</a>
+				<a data-page="6" href="animation.html?page=6">シーケンシャルなアニメーション定義</a>
+				<a data-page="7" href="animation.html?page=7">複雑でシーケンシャルなアニメーション定義</a>
 			</div>
 			<a id="nextPage" class="navLink">次へ</a>
 		</div>

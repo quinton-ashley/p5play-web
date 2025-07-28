@@ -6,7 +6,7 @@
 
 ## Licencia Edu
 
-### $5 USD
+### $6 USD
 
 por estudiante cada semestre
 

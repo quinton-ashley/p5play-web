@@ -6,7 +6,7 @@
 
 ## Edu License
 
-### $5 USD
+### $6 USD
 
 per student per semester
 

@@ -309,7 +309,7 @@ function update() {
 		<div id="page-4" class="page">
 			<div class="minis">
 				<md id="md4-0">
-					<h2 id="sprite-sheets-with-multiple-animations">Sprite Sheets with Multiple Animations</h2>
+					<h2 id="sprite-sheet-of-animations">Sprite Sheet of Animations</h2>
 					<p>To load multiple animations from the same sprite sheet image, first set the
 						<code>spriteSheet</code> property of the sprite or group.</p>
 					<p>Next, use the <code>addAnimations</code> / <code>addAnis</code> function, which accepts an object
@@ -319,38 +319,37 @@ function update() {
 						(column) values.</p>
 					<p>The <code>ani.offset</code> property is used to adjust the position of an animation relative to
 						the sprite's position.</p>
-					<p>Click this link to see the full <a href="/learn/assets/questKid.webp"
-							target="_blank">questKid</a> sprite sheet used in the example.</p>
+					<p>Click this link to see the full <a href="/learn/assets/questKid.webp" target="_blank">questKid
+							sprite sheet</a> used in the example.</p>
 				</md>
 				<md id="md4-1">
-					<h2 id="anis">anis</h2>
+					<h2 id="anis">Anis</h2>
 					<p>Every sprite and group has an <code>animations</code> / <code>anis</code> object that stores its
 						animations. The keys are animation names and values are animation objects. It works like groups
 						do, utilizing soft and dynamic inheritance.</p>
-					<p>When <code>sprite.pixelPerfect</code> is set to true, the sprite will be drawn at integer
-						coordinates, while retaining the precise position of its collider. This is useful for pixel art
-						games!</p>
+					<p>When <code>pixelPerfect</code> is set to true, the sprite will be drawn at integer coordinates,
+						while retaining the precise position of its collider. This is useful for pixel art games!</p>
 				</md>
 			</div>
 			<div class="minis horiz">
-				<script type="mie/p5" id="hero-demoMode" hide-editor="">
+				<script type="mie/p5" id="hero-sprite-sheet" hide-editor="">
 let hero;
 
 function preload() {
-	new Canvas(250, 96);
-	displayMode('default', 'pixelated', 2);
+	new Canvas(250, 64);
+	displayMode('normal', 'pixelated', 2);
 
-	hero = new Sprite(125, 48, 32, 32);
+	hero = new Sprite(125, 24, 32, 32);
 	hero.spriteSheet = 'assets/questKid.webp';
 	hero.anis.offset.x = 2;
 	hero.anis.frameDelay = 32;
+	hero.anis.cutFrames = false;
 	hero.anis.demoMode = true;
 
 	hero.addAnis({
 		run: { row: 0, frames: 8 },
 		jump: { row: 1, frames: 6 },
 		roll: { row: 2, frames: 5 },
-		turn: { row: 3, frames: 7 },
 		stand: { row: 3 }
 	});
 	hero.changeAni('run');
@@ -364,7 +363,6 @@ function update() {
 	if (kb.presses('r')) hero.changeAni('run');
 	if (kb.presses('j')) hero.changeAni('jump');
 	if (kb.presses('l')) hero.changeAni('roll');
-	if (kb.presses('t')) hero.changeAni('turn');
 	if (kb.presses('s')) hero.changeAni('stand');
 	
 }
@@ -374,11 +372,12 @@ function setup() {}
 				<script type="mie/p5" id="hero">
 let hero;
 
-function preload() {
-	new Canvas(124, 48);
+function setup() {
+	new Canvas(124, 26);
 	displayMode('normal', 'pixelated', 4);
+	allSprites.pixelPerfect = true;
 
-	hero = new Sprite(62, 24, 32, 32);
+	hero = new Sprite(62, 10, 32, 32);
 	hero.spriteSheet = 'assets/questKid.webp';
 	hero.anis.offset.x = 2;
 	hero.anis.frameDelay = 8;
@@ -388,12 +387,9 @@ function preload() {
 		run: { row: 0, frames: 8 },
 		jump: { row: 1, frames: 6 },
 		roll: { row: 2, frames: 5, frameDelay: 14 },
-		turn: { row: 3, frames: 7 },
 		stand: { row: 3 }
 	});
 	hero.changeAni('run');
-
-	allSprites.pixelPerfect = true;
 }
 
 function update() {
@@ -401,16 +397,100 @@ function update() {
 	if (kb.presses('r')) hero.changeAni('run');
 	if (kb.presses('j')) hero.changeAni('jump');
 	if (kb.presses('l')) hero.changeAni('roll');
-	if (kb.presses('t')) hero.changeAni('turn');
 	if (kb.presses('s')) hero.changeAni('stand');
 }
-
-function setup() {}
 				</script>
 			</div>
 		</div>
 		<div id="page-5" class="page">
 			<md id="md5-0">
+				<h2 id="sprite-sheet-of-images">Sprite Sheet of Images</h2>
+				<p>Some sprite sheets contain a collection of images (subtextures) packed into a single file. This
+					enables them to be loaded with one network request, reducing loading time and improving performance.
+				</p>
+				<p>Take a look at the <a href="/learn/assets/traffic.png" target="_blank">traffic sprite sheet</a> from
+					<a href="https://kenney.nl/assets/pixel-vehicle-pack" target="_blank">Kenny's "Pixel Vehicle
+						Pack"</a>.</p>
+				<p>In p5play, each subtexture can be loaded as a single frame animation.</p>
+			</md>
+			<script type="mie/p5" id="traffic" hide-editor="">
+let cars, img, atlas;
+
+function preload() {
+	new Canvas(500, 250);
+	displayMode('normal', 'pixelated');
+
+	img = loadImage('/learn/assets/traffic.png');
+}
+
+function setup() {
+	translate(250, 125);
+	scale(3);
+	imageMode(CENTER);
+	image(img, 0, 0);
+
+	strokeWeight(3);
+	stroke(0, 255, 0, 200);
+	noFill();
+	rect(26, -40, 40, 22);
+	noLoop();
+}
+
+function update() {}
+			
+			</script>
+			<div class="break"></div>
+			<script type="mie/p5" id="cutFrames">
+let cars, img, atlas;
+
+function preload() {
+	new Canvas(500, 180);
+	displayMode('normal', 'pixelated');
+
+	atlas = loadXML('/learn/assets/traffic_atlas.xml');
+	img = loadImage('/learn/assets/traffic.png');
+}
+
+function setup() {
+	cars = new Group();
+	cars.width = 16;
+	cars.height = 16;
+	cars.scale = 8;
+	cars.rotation = 22.5;
+
+	cars.anis.cutFrames = false; // <- set to true
+
+	cars.spriteSheet = img;
+	atlas = parseTextureAtlas(atlas);
+	cars.addAnis(atlas);
+
+	new cars.Sprite('suv');
+}
+
+function update() {}
+
+			</script>
+			<div class="minis">
+				<md id="md5-1">
+					<h2 id="xml-texture-atlas">XML Texture Atlas</h2>
+					<p>A texture atlas describes the size and position of each subtexture within a tightly packed sprite
+						sheet. For example, see the <a href="/learn/assets/traffic_atlas.xml" target="_blank">traffic
+							texture atlas</a>.</p>
+					<p>Use <code>parseTextureAtlas</code> to parse an xml texture atlas into an object that can be used
+						with <code>addAnis</code>.</p>
+				</md>
+				<md id="md5-2">
+					<h2 id="cut-frames">Cut Frames</h2>
+					<p>When sections of a pixel art (low resolution) sprite sheet are drawn to the canvas, edge
+						artifacts can occur.</p>
+					<p>In this example, notice how the edges contains parts of other vehicles?</p>
+					<p>Set <code>anis.cutFrames</code> to true before loading animations to make p5play cut a sprite
+						sheet image into separate images for each frame.</p>
+				</md>
+			</div>
+		</div>
+		<div id="page-6" class="page">
+			<md id="md6-0">
 				<h2 id="animation-sequencing">Animation Sequencing</h2>
 				<p><code>sprite.changeAni</code> can accept an animation object, animation name, or array of animation
 					names that will be played in sequence.</p>
@@ -477,8 +557,8 @@ if (hero.ani.name != 'jump' && hero.ani.name != 'roll') {
 }
 			</script>
 		</div>
-		<div id="page-6" class="page">
-			<md id="md6-0">
+		<div id="page-7" class="page">
+			<md id="md7-0">
 				<h2 id="advanced-animation-sequencing">Advanced Animation Sequencing</h2>
 				<p><code>sprite.changeAni</code> is an async function, you can use it to wait for animations to finish
 					playing. It's particularly useful for scripted animation sequences for <a
@@ -553,9 +633,10 @@ function update() {
 				<a data-page="1" href="animation.html?page=1">Animation Controls</a>
 				<a data-page="2" href="animation.html?page=2">Sprites with Animations</a>
 				<a data-page="3" href="animation.html?page=3">Groups with Animations</a>
-				<a data-page="4" href="animation.html?page=4">Sprite Sheets with Multiple Animations</a>
-				<a data-page="5" href="animation.html?page=5">Sequencing</a>
-				<a data-page="6" href="animation.html?page=6">Advanced Sequencing</a>
+				<a data-page="4" href="animation.html?page=4">Sprite Sheet of Animations</a>
+				<a data-page="5" href="animation.html?page=5">Sprite Sheet of Images</a>
+				<a data-page="6" href="animation.html?page=6">Sequencing</a>
+				<a data-page="7" href="animation.html?page=7">Advanced Sequencing</a>
 			</div>
 			<a id="nextPage" class="navLink">Next Page</a>
 		</div>

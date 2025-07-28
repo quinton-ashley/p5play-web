@@ -9,8 +9,7 @@
 			"teach": "Teach",
 			"account": "Account",
 			"reviews-h1": "Reviews",
-			"more-info": "More Info",
-			"banner": "🇵🇸 We support students protesting for peace and justice! 🇵🇸"
+			"more-info": "More Info"
 		}
 	},
 	"account": {
@@ -81,7 +80,8 @@
 			"Animation Controls",
 			"Sprites with Animations",
 			"Groups with Animations",
-			"Sprite Sheets with Multiple Animations",
+			"Sprite Sheet of Animations",
+			"Sprite Sheet of Images",
 			"Sequencing",
 			"Advanced Sequencing"
 		],

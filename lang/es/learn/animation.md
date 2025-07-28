@@ -112,6 +112,34 @@ Cuando `sprite.pixelPerfect` está configurado en true, el sprite se dibujará e
 
 # 5-0
 
+## Hoja de Imágenes de Sprite
+
+Algunas hojas de sprite contienen una colección de imágenes (subtexturas) empaquetadas en un solo archivo. Esto permite que se carguen con una sola solicitud de red, reduciendo el tiempo de carga y mejorando el rendimiento.
+
+Echa un vistazo a la [hoja de sprites de tráfico](/learn/assets/traffic.png) del [Paquete de Vehículos Pixelados de Kenny](https://kenney.nl/assets/pixel-vehicle-pack).
+
+En p5play, cada subtextura se puede cargar como una animación de un solo fotograma.
+
+# 5-1
+
+## Atlas de Texturas XML
+
+Un atlas de texturas describe el tamaño y la posición de cada subtextura dentro de una hoja de sprites compacta. Por ejemplo, consulta el [atlas de texturas de tráfico](/learn/assets/traffic_atlas.xml).
+
+Usa `parseTextureAtlas` para analizar un atlas de texturas XML y convertirlo en un objeto que se puede usar con `addAnis`.
+
+# 5-2
+
+## Cortar Fotogramas
+
+Cuando se dibujan secciones de una hoja de sprites de pixel art (baja resolución) en el lienzo, pueden aparecer artefactos en los bordes.
+
+En este ejemplo, observa cómo los bordes contienen partes de otros vehículos.
+
+Configura `anis.cutFrames` en true antes de cargar animaciones para que p5play corte la imagen de la hoja de sprites en imágenes separadas
+
+# 6-0
+
 ## Secuenciación de Animaciones
 
 `sprite.changeAni` puede aceptar un objeto de animación, un nombre de animación o una matriz de nombres de animación que se reproducirán en secuencia.
@@ -120,7 +148,7 @@ De manera predeterminada, si la repetición está habilitada, la última animaci
 
 ¡Este ejemplo muestra cómo el personaje héroe puede moverse por la pantalla usando las teclas WASD o las teclas de flecha!
 
-# 6-0
+# 7-0
 
 ## Secuenciación de Animaciones Avanzada
 
