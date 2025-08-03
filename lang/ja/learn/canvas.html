@@ -58,12 +58,12 @@
 				<h2 id="表示モード">表示モード</h2>
 				<p><code>displayMode</code> 関数を使用すると、キャンバスの表示方法をカスタマイズできます。</p>
 				<ul>
-					<li><code>"normal"</code> はデフォルトで、キャンバスやその親要素にスタイルを適用しません</li>
-					<li><code>"centered"</code> はキャンバスを親要素の中央に水平および垂直に配置します</li>
-					<li><code>"maxed"</code> はキャンバスが親要素を埋め、必要に応じてアスペクト比を維持するためにレターボックスを使用します</li>
+					<li><code>NORMAL</code> はデフォルトで、キャンバスやその親要素にスタイルを適用しません</li>
+					<li><code>CENTER</code> はキャンバスを親要素の中央に水平および垂直に配置します</li>
+					<li><code>MAXED</code> はキャンバスが親要素を埋め、必要に応じてアスペクト比を維持するためにレターボックスを使用します</li>
 				</ul>
-				<p>この関数は、レンダリング品質のプリセットを 2 番目の入力パラメータとして受け取ります。8 ビットまたは 16
-					ビットスタイルのレトロゲームを作成するには、<code>"pixelated"</code> プリセットを使用してください！</p>
+				<p>この関数は、レンダリング品質のプリセットを 2 番目の入力パラメータとして受け取ります。8 ビットまたは 16 ビットスタイルのレトロゲームを作成するには、<code>PIXELATED</code>
+					プリセットを使用してください！</p>
 				<p>この例では、キャンバスを 8 倍のスケールで表示するために 3 番目の入力パラメータが使用されています。</p>
 				<p>すべてのスプライトを整数座標で表示するには、<code>allSprites.pixelPerfect</code> を true に設定し、カメラの位置とズームに整数座標を使用します。</p>
 				<p>現代のフォントはベクターベースなので、低解像度では見栄えが良くありません。代わりに、<a href="https://q5js.org/learn/#loadFont"
@@ -90,7 +90,7 @@ function update() {
 function setup() {
 	new Canvas(60, 10);
 
-	displayMode('centered', 'default', 8);
+	displayMode('center', 'smooth', 8);
 
 	background(255);
 	fill(0);
@@ -104,12 +104,12 @@ function update() {
 	noLoop();
 }
 				</script>
-				<script type="mie/p5" id="pixelated-and-display-scale-x8" lines="12">
+				<script type="mie/p5" id="pixelated-and-display-scale-x8" lines="14">
 function setup() {
   new Canvas(60, 10);
 
-	//         (    mode, renderQuality, scale)
-	displayMode('centered', 'pixelated', 8);
+	//         (mode, renderQuality, scale)
+	displayMode(CENTER, PIXELATED, 8);
 	
   background('white');
 	fill('black');

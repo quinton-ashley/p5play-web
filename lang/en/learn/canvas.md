@@ -20,11 +20,11 @@ You can also pass an aspect ratio to the Canvas constructor. This will create th
 
 The `displayMode` function lets you customize how your canvas is presented.
 
-- `"normal"`, is the default, which doesn't apply styling to the canvas or its parent element
-- `"centered"` makes the canvas horizontally and vertically centered in its parent element
-- `"maxed"` makes the canvas fill the parent element with letterboxing if necessary to preserve its aspect ratio
+- `NORMAL`, is the default, which doesn't apply styling to the canvas or its parent element
+- `CENTER` makes the canvas horizontally and vertically centered in its parent element
+- `MAXED` makes the canvas fill the parent element, with letterboxing if necessary to preserve its aspect ratio
 
-This function also accepts a render quality preset as the second input parameter. Use the `"pixelated"` preset for making 8-bit or 16-bit style retro games!
+This function also accepts a render quality preset as the second input parameter. Use the `PIXELATED` preset for making 8-bit or 16-bit style retro games!
 
 In this example, a third input parameter is used to display the canvas at 8x scale.
 

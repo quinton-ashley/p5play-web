@@ -58,15 +58,15 @@
 				<h2 id="display-mode">Display Mode</h2>
 				<p>The <code>displayMode</code> function lets you customize how your canvas is presented.</p>
 				<ul>
-					<li><code>"normal"</code>, is the default, which doesn't apply styling to the canvas or its parent
+					<li><code>NORMAL</code>, is the default, which doesn't apply styling to the canvas or its parent
 						element</li>
-					<li><code>"centered"</code> makes the canvas horizontally and vertically centered in its parent
-						element</li>
-					<li><code>"maxed"</code> makes the canvas fill the parent element with letterboxing if necessary to
+					<li><code>CENTER</code> makes the canvas horizontally and vertically centered in its parent element
+					</li>
+					<li><code>MAXED</code> makes the canvas fill the parent element, with letterboxing if necessary to
 						preserve its aspect ratio</li>
 				</ul>
 				<p>This function also accepts a render quality preset as the second input parameter. Use the
-					<code>"pixelated"</code> preset for making 8-bit or 16-bit style retro games!</p>
+					<code>PIXELATED</code> preset for making 8-bit or 16-bit style retro games!</p>
 				<p>In this example, a third input parameter is used to display the canvas at 8x scale.</p>
 				<p>To display all sprites at integer coordinates, set <code>allSprites.pixelPerfect</code> to true and
 					use integer coordinates for the camera's position and zoom.</p>
@@ -95,7 +95,7 @@ function update() {
 function setup() {
 	new Canvas(60, 10);
 
-	displayMode('centered', 'default', 8);
+	displayMode('center', 'smooth', 8);
 
 	background(255);
 	fill(0);
@@ -109,12 +109,12 @@ function update() {
 	noLoop();
 }
 				</script>
-				<script type="mie/p5" id="pixelated-and-display-scale-x8" lines="12">
+				<script type="mie/p5" id="pixelated-and-display-scale-x8" lines="14">
 function setup() {
   new Canvas(60, 10);
 
-	//         (    mode, renderQuality, scale)
-	displayMode('centered', 'pixelated', 8);
+	//         (mode, renderQuality, scale)
+	displayMode(CENTER, PIXELATED, 8);
 	
   background('white');
 	fill('black');

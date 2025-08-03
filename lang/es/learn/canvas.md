@@ -20,11 +20,11 @@ También puedes pasar una relación de aspecto al constructor de Canvas. Esto cr
 
 La función `displayMode` te permite personalizar cómo se presenta tu lienzo.
 
-- `"normal"` es el valor predeterminado, que no aplica estilo al lienzo ni a su elemento padre.
-- `"centered"` hace que el lienzo se centre horizontal y verticalmente en su elemento padre.
-- `"maxed"` hace que el lienzo llene el elemento padre con letterboxing si es necesario para preservar su relación de aspecto.
+- `NORMAL` es el valor predeterminado, que no aplica estilo al lienzo ni a su elemento padre.
+- `CENTER` hace que el lienzo se centre horizontal y verticalmente en su elemento padre.
+- `MAXED` hace que el lienzo llene el elemento padre con letterboxing si es necesario para preservar su relación de aspecto.
 
-Esta función también acepta un ajuste preestablecido de calidad de renderizado como segundo parámetro de entrada. ¡Usa el ajuste preestablecido `"pixelated"` para hacer juegos retro de estilo 8-bit o 16-bit!
+Esta función también acepta un ajuste preestablecido de calidad de renderizado como segundo parámetro de entrada. ¡Usa el ajuste preestablecido `PIXELATED` para hacer juegos retro de estilo 8-bit o 16-bit!
 
 En este ejemplo, se utiliza un tercer parámetro de entrada para mostrar el lienzo a una escala de 8x.
 
