@@ -2,7 +2,7 @@ let projects = [
 	{
 		title: 'Red Remover',
 		author: '@Nirmay',
-		url: 'https://thegamebox.ca/redremover.html',
+		url: 'https://game.thegamebox.ca/red_remover/',
 		size: 1,
 		video: true
 	},
