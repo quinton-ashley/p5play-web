@@ -58,7 +58,7 @@ let projects = [
 	{
 		title: 'Lily Leap',
 		author: '@amanizungu',
-		url: 'https://quinton-ashley.github.io/quintos/?user=quinton-ashley&game=LilyLeap'
+		url: 'https://quintos-org.github.io/quintos/?user=quintos-org&game=LilyLeap'
 	},
 	{
 		title: 'Forrest Life',
