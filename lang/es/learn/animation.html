@@ -361,9 +361,7 @@ function preload() {
 	hero.spriteSheet = '/learn/assets/questKid.webp';
 	hero.anis.offset.x = 2;
 	hero.anis.frameDelay = 32;
-	hero.anis.cutFrames = false;
 	hero.anis.demoMode = true;
-
 	hero.addAnis({
 		run: { row: 0, frames: 8 },
 		jump: { row: 1, frames: 6 },
@@ -382,7 +380,6 @@ function update() {
 	if (kb.presses('j')) hero.changeAni('jump');
 	if (kb.presses('l')) hero.changeAni('roll');
 	if (kb.presses('s')) hero.changeAni('stand');
-	
 }
 
 function setup() {}
@@ -390,17 +387,16 @@ function setup() {}
 				<script type="mie/p5" id="hero">
 let hero;
 
-function setup() {
+function preload() {
 	new Canvas(124, 26);
 	displayMode('normal', 'pixelated', 4);
 	allSprites.pixelPerfect = true;
 
 	hero = new Sprite(62, 10, 32, 32);
+	hero.friction = 0;
 	hero.spriteSheet = '/learn/assets/questKid.webp';
 	hero.anis.offset.x = 2;
 	hero.anis.frameDelay = 8;
-	hero.friction = 0;
-
 	hero.addAnis({
 		run: { row: 0, frames: 8 },
 		jump: { row: 1, frames: 6 },
